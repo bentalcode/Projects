@@ -1,0 +1,5 @@
+rootProject.name = 'DevEnvironment'
+include 'Base'
+include 'DataStructures'
+include 'DataCommand'
+

@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea4abab1-b33c-4b5d-be5d-00f9f382ad2c" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/.gradle/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path="$PROJECT_DIR$/Base/.gradle/" />
+    <ignored path="$PROJECT_DIR$/Base/build/" />
+    <ignored path="$PROJECT_DIR$/DataStructures/.gradle/" />
+    <ignored path="$PROJECT_DIR$/DataStructures/build/" />
+    <ignored path="$PROJECT_DIR$/DataCommand/.gradle/" />
+    <ignored path="$PROJECT_DIR$/DataCommand/build/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevEnvironment" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DataAggregationSolution.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor>
+                <caret column="32" selection-start-column="32" selection-end-column="32" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Environment.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="765">
+                <caret line="45" selection-start-line="45" selection-end-line="45" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>extends Comparable&lt;TKey&gt;</find>
+      <find>compare</find>
+      <find>compareTo</find>
+      <find>this.comparator</find>
+      <find>insert</find>
+      <find>void insert</find>
+      <find>void insert(</find>
+      <find>processOverflow</find>
+      <find>properties</find>
+      <find>search</find>
+      <find>this.getKeyCount() + 1</find>
+      <find>foreach</find>
+      <find>forEach</find>
+      <find>BlockTreeLevel</find>
+      <find>BlockTree</find>
+      <find>a Tree</find>
+      <find>getDefaultComparator</find>
+      <find>TreeNodeDataIterator</find>
+      <find>MapAggregationResults</find>
+      <find>addResult</find>
+      <find>DataCommandParameters</find>
+      <find>calaculateHashCode</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Tree</replace>
+      <replace>a tree</replace>
+      <replace>CacheProperties</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>C:\Development\Projects\DevEnvironment</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/tree/interfaces/ITreeStatistics.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/IBPlusTreeStatistics.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeStatistics.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTreeNode.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTreeNodeProperties.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTreeLeafNodeProperties.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeInnerNodeProperties.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeLeafNodeProperties.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeNodeProperties.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeProperties.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/AggregationResult.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IComputationProperties.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/CacheDataStructureType.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/DataStructureType.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/interfaces/IPrimitiveSize.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/interfaces/IPair.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/core/Triple.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/interfaces/ITriple.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/test/java/interfaces/ITestData.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/interfaces/ICalculator.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/interfaces/IBuilder.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeMetricsCalculator.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/test/java/datastructures/plustree/core/BPlusTreeTest.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeLeafNode.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeMetrics.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTreeMetrics.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/tree/interfaces/ITreeMetrics.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeInnerNode.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/test/java/datastructures/plustree/core/TestData.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTree.java" />
+        <option value="$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTree.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/ICacheProperties.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/interfaces/IRange.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/core/Range.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IAggregationResults.java" />
+        <option value="$PROJECT_DIR$/Base/src/main/java/base/core/DestructorHandler.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IDataCommandParameters.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/AggregationDataStructureType.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/MapAggregationResults.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/AbstractAggregationResults.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IAggregationResultsProperties.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/BPlusTreeAggregationResults.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/DataCommand.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/CacheProperties.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/DataCommandParameters.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IAggregationResult.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/Main.java" />
+        <option value="$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/AggregationResultsProperties.java" />
+        <option value="$PROJECT_DIR$/DataCommand/DataAggregationSolution.md" />
+        <option value="$PROJECT_DIR$/DevEnvironment.md" />
+        <option value="$PROJECT_DIR$/Environment.md" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="DevEnvironment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevEnvironment" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevEnvironment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevEnvironment" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="DataCommand" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevEnvironment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevEnvironment" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="DataStructures" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevEnvironment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevEnvironment" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="DataStructures" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevEnvironment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevEnvironment" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="DataStructures" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevEnvironment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevEnvironment" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="DataStructures" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevEnvironment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevEnvironment" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="DataStructures" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="datastructures" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Development\Projects\DevEnvironment" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="datacommand.interfaces" />
+      <recent name="datacommand.core" />
+      <recent name="base.interfaces" />
+      <recent name="base.core" />
+      <recent name="datastructures.bplustree.core" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Development\Projects\DevEnvironment" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.DataCommand">
+    <configuration name="BPlusTreeTest.createTreeTest" type="AndroidJUnit" temporary="true" nameIsGenerated="true">
+      <module name="DevEnvironment.DataStructures.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="interfaces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="datastructures.plustree.core" />
+      <option name="MAIN_CLASS_NAME" value="datastructures.plustree.core.BPlusTreeTest" />
+      <option name="METHOD_NAME" value="createTreeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataCommand" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="datacommand.core.Main" />
+      <module name="DevEnvironment.DataCommand.main" />
+      <option name="PROGRAM_PARAMETERS" value="C:\Development\Projects\DevEnvironment\DataCommand\src\main\resources\data.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="datacommand.core.Main" />
+      <module name="DevEnvironment.DataCommand.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="datacommand.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BPlusTreeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;datastructures.plustree.core.BPlusTreeTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":DataStructures:cleanTest" />
+            <option value=":DataStructures:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BPlusTreeTest.calculateTreeMetricsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;datastructures.plustree.core.BPlusTreeTest.calculateTreeMetricsTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":DataStructures:cleanTest" />
+            <option value=":DataStructures:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BPlusTreeTest.iterateTreeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;datastructures.plustree.core.BPlusTreeTest.iterateTreeTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":DataStructures:cleanTest" />
+            <option value=":DataStructures:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Android JUnit.BPlusTreeTest.createTreeTest" />
+      <item itemvalue="Application.DataCommand" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.BPlusTreeTest" />
+      <item itemvalue="Gradle.BPlusTreeTest.iterateTreeTest" />
+      <item itemvalue="Gradle.BPlusTreeTest.calculateTreeMetricsTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.BPlusTreeTest.calculateTreeMetricsTest" />
+        <item itemvalue="Android JUnit.BPlusTreeTest.createTreeTest" />
+        <item itemvalue="Gradle.BPlusTreeTest.iterateTreeTest" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.BPlusTreeTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea4abab1-b33c-4b5d-be5d-00f9f382ad2c" name="Default Changelist" comment="" />
+      <created>1555606978836</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555606978836</updated>
+      <workItem from="1555606981836" duration="6148000" />
+      <workItem from="1555613809035" duration="69040000" />
+      <workItem from="1555959726034" duration="89615000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 16m 29s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 17m 00s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 18m 05s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 18m 57s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 21m 26s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 21m 27s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 24m 47s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 25m 24s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 26m 14s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+    <history-entry file="BPlusTreeTest_calculateTreeMetricsTest - 2019.04.24 at 12h 39m 51s.xml">
+      <configuration name="BPlusTreeTest.calculateTreeMetricsTest" configurationId="GradleRunConfiguration" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="164803000" />
+  </component>
+  <component name="TodoView" selected-index="1">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3011727" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49946696" weight="0.30444205" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32936078" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32936078" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Version Control" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32995737" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Gradle" order="6" weight="0.32995737" />
+      <window_info anchor="right" id="Database" order="7" weight="0.32995737" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20149253" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49946696" weight="0.30444205" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Version Control" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Gradle" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Base/src/main/java/base/core/Conditions.java</url>
+          <line>23</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/DataStructures/src/test/java/datastructures/plustree/core/BPlusTreeTest.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Base/src/main/java/base/core/AbstractDestructor.java</url>
+          <line>36</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>this.calculateLeafNodeCapacity(properties)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.getKeyCount()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.properties.getValueSizeInBytes()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>getKeyCount</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.getKeyCount() + 1</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.nodesData.size()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.currentNode.getRightSibling() != null</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.currentNode.getKeyCount()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>str == null || str.isEmpty()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Base/src/main/java/base/interfaces/IBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeNodeProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="90" column="34" lean-forward="true" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeLeafNodeProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTreeInnerNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/tree/interfaces/ITreeLevels.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="119" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/tree/core/TreeLevels.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="102" lean-forward="true" selection-start-line="57" selection-start-column="4" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeMetrics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2235#2236#0" expanded="true" />
+            <element signature="e#2270#2271#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/tree/interfaces/ITreeMetrics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeInnerNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="336" selection-start-line="336" selection-end-line="336" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeLeafNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="246" selection-start-line="246" selection-end-line="246" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeMetricsCalculator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1510#1511#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTreeProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTreeMetrics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="148" column="22" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="171" column="24" selection-start-line="171" selection-start-column="24" selection-end-line="171" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/ICacheProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Base/src/main/java/base/interfaces/IRange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Base/src/main/java/base/core/Range.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+          <folding>
+            <element signature="e#423#424#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+            <element signature="e#535#536#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#739#740#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IAggregationResults.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="18" lean-forward="true" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Base/src/main/java/base/core/Conditions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="409" selection-start-line="409" selection-end-line="409" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1941#1942#0" expanded="true" />
+            <element signature="e#1977#1978#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
+            <element signature="e#2896#2897#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Base/src/main/java/base/core/Comparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#416#417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Base/src/main/java/base/core/DestructorHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Base/src/main/java/base/core/DestructorFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="e#1043#1044#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeInnerNodeProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2467#2468#0" expanded="true" />
+            <element signature="e#2509#2510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/tree/core/TreeData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-403">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/test/java/datastructures/plustree/core/TestData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="45" column="66" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IDataCommandParameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/AggregationDataStructureType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/core/BPlusTreeProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="176" column="37" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IAggregationResultsProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Base/src/main/java/base/core/AbstractDestructor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/interfaces/IAggregationResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/AbstractAggregationResults.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2082#2083#0" expanded="true" />
+            <element signature="e#2121#2122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/DataCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/BPlusTreeAggregationResults.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/AggregationResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="94" column="21" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/MapAggregationResults.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="73" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Base/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/DataCommandParameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/AggregationResultsProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/src/main/java/datacommand/core/CacheProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#812#813#0" expanded="true" />
+            <element signature="e#856#857#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/main/java/datastructures/bplustree/interfaces/IBPlusTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/src/test/java/datastructures/plustree/core/BPlusTreeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="174" selection-start-line="174" selection-end-line="174" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataStructures/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCommand/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environment.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="765">
+            <caret line="45" selection-start-line="45" selection-end-line="45" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataAggregationSolution.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="32" selection-start-column="32" selection-end-column="32" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>test|DataCommand|DevEnvironment</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>12</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Gradle: junit:junit:4.12</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
