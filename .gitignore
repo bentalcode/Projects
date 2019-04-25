@@ -1,0 +1,23 @@
+# Ignore the following files
+
+#
+# Appending a slash indicates the pattern is a directory. 
+# The entire contents of any directory in the repository matching that name 
+# including all of its files and subdirectories  will be ignored.
+#
+.idea/
+.gradle/
+build/
+
+#
+# An asterisk is a wildcard that matches zero or more characters. 
+#
+*.log
+
+#
+# Always include the build scripts...
+#
+!build.sh
+!README.md
+!CHANGELOG.md
+!.gitignore
