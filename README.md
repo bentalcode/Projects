@@ -1,4 +1,4 @@
-This is root repository for implementing the Aggragation Results project.
+This is root repository for implementing the 'Data Aggragation' project.
 
-For more information about the Aggragation Results project please read:
-Check DataAggregationSolution.md
+For more information about the 'Data Aggragation' project please read:
+DevEnvironment/DataAggregationSolution.md
