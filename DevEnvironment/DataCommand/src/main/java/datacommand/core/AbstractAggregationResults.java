@@ -1,6 +1,7 @@
 package datacommand.core;
 
 import base.core.Conditions;
+import base.interfaces.IPrimitiveSize;
 import datacommand.interfaces.IAggregationResult;
 import datacommand.interfaces.IAggregationResults;
 import datacommand.interfaces.IAggregationResultsProperties;
@@ -41,6 +42,13 @@ public abstract class AbstractAggregationResults implements IAggregationResults 
         // Update the total size in bytes when a new entry is added...
         //
         this.updateSize(key, result);
+
+        //
+        // If we are already in the secondary zone, then start calculating the size precisely...
+        //
+        if (this.inSecondaryIntensityZone()) {
+            this.sizeInBytes = this.calculateSize();
+        }
     }
 
     /**
@@ -79,17 +87,24 @@ public abstract class AbstractAggregationResults implements IAggregationResults 
     }
 
     /**
-     * Checks whether the aggregation results are in intensity zone.
+     * Checks whether the aggregation results are in an intensity zone.
      */
     @Override
     public boolean inIntensityZone() {
         long currSize = this.getSizeInBytes();
-        long intensityZoneSize =
-            (long)(
-                this.properties.getCacheProperties().getSizeInBytes() *
-                this.properties.getCacheProperties().getIntensityFactor());
+        long intensityZoneSize = this.properties.getCacheProperties().getIntensityZoneSizeInBytes();
 
         return (currSize >= intensityZoneSize);
+    }
+
+    /**
+     * Checks whether the aggregation results are in a secondary intensity zone.
+     */
+    public boolean inSecondaryIntensityZone() {
+        long currSize = this.getSizeInBytes();
+        long secondaryIntensityZoneSize = this.properties.getCacheProperties().getSecondaryIntensityZoneSizeInBytes();
+
+        return (currSize >= secondaryIntensityZoneSize);
     }
 
     /**
@@ -97,11 +112,7 @@ public abstract class AbstractAggregationResults implements IAggregationResults 
      */
     @Override
     public void reduce() {
-        long reductionSize =
-            (long)(
-                this.getSizeInBytes() *
-                this.properties.getCacheProperties().getReductionFactor());
-
+        long reductionSize = this.properties.getCacheProperties().getReductionSizeInBytes();
         this.reduce(reductionSize);
     }
 
@@ -123,7 +134,7 @@ public abstract class AbstractAggregationResults implements IAggregationResults 
     /**
      * Calculates the size of the aggregation results.
      */
-    protected abstract long calculateSize(String key, IAggregationResult result);
+    protected abstract long calculateSize();
 
     /**
      * Reduces the aggregation results to the reduction size.
@@ -134,7 +145,21 @@ public abstract class AbstractAggregationResults implements IAggregationResults 
      * Updates the size of the aggregation results.
      */
     private void updateSize(String key, IAggregationResult result) {
-        this.sizeInBytes = this.calculateSize(key, result);
+        //
+        // Retrieve the current size in bytes...
+        //
+        long currSizeInBytes = this.getSizeInBytes();
+
+        //
+        // Update the total size in bytes...
+        //
+        int keySize = key.length() * IPrimitiveSize.InBytes.CharacterSize;
+        int resultSize = result.getSizeInBytes();
+        int entrySize = keySize + resultSize;
+
+        long size = currSizeInBytes + entrySize;
+
+        this.sizeInBytes += size;
     }
 
     /**

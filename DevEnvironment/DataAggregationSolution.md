@@ -38,6 +38,16 @@ After each record update, in case the aggregation results are in the memory inte
 (has result of data size growth), the data structure is reduced in memory to the configured reduction size and 
 the remaining of it's data is getting serialized to disk.
 
+Caching Logic:
+--------------
+1. In the normal zone, until entering any of the intensity zones, the size of the data is calculated 
+incrementally.
+2. Once, entering the secondary intensity zone, the size of data is calculated precisely by performing 
+BFS in the complexity of O(N) on the B+ tree.
+3. Once entering an intensity zone, the cache size in memory is reduced to the configured reduction size 
+by serializing the remaining of it's size to disk. 
+
+
 Code References:
 ----------------
 The main entry to the Data Command module is:

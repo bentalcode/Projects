@@ -8,6 +8,7 @@ import datastructures.bplustree.core.BPlusTree;
 import datastructures.bplustree.core.BPlusTreeNode;
 import datastructures.bplustree.core.BPlusTreeProperties;
 import datastructures.bplustree.interfaces.IBPlusTree;
+import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
 import datastructures.tree.interfaces.ITreeMetrics;
@@ -78,13 +79,13 @@ public final class BPlusTreeAggregationResults extends AbstractAggregationResult
     }
 
     /**
-     * Updates the size of the aggregation results.
+     * Calculates the size of the aggregation results.
      */
     @Override
-    protected long calculateSize(String key, IAggregationResult result) {
-        ITreeMetrics metrics = this.results.getMetrics();
+    protected long calculateSize() {
+        IBPlusTreeMetrics metrics = this.results.calculateMetrics();
 
-        long size = metrics.getSizeInBytes();
+        long size = metrics.getCapacityInBytes();
 
         return size;
     }

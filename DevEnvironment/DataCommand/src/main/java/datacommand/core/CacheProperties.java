@@ -1,6 +1,9 @@
 package datacommand.core;
 
 import base.core.Conditions;
+import base.core.Range;
+import base.core.RangeType;
+import base.interfaces.IRange;
 import datacommand.interfaces.ICacheProperties;
 
 /**
@@ -11,11 +14,22 @@ public final class CacheProperties implements ICacheProperties {
     private static final long MaximumCacheSize = 1 << 30;
     private static final long DefaultCacheSize = 1 << 20;
 
+    private static final double MinimumIntensityFactor = 0;
+    private static final double MaximumIntensityFactor = 1;
+
     private static final double DefaultCacheIntensityFactor = 0.8;
+    private static final double DefaultSecondaryIntensityFactor = 0.9;
     private static final double DefaultReductionIntensityFactor = 0.4;
+
+    private static final IRange<Long> CacheSizeRange = new Range<>(
+        MinimumCacheSize, MaximumCacheSize);
+
+    private static final IRange<Double> IntensityFactorRange = new Range<>(
+        RangeType.ExclusiveToExclusive, MinimumIntensityFactor, MaximumIntensityFactor);
 
     private final long sizeInBytes;
     private final double intensityFactor;
+    private final double secondaryIntensityFactor;
     private final double reductionFactor;
 
     /**
@@ -32,6 +46,7 @@ public final class CacheProperties implements ICacheProperties {
         this(
             CacheProperties.DefaultCacheSize,
             CacheProperties.DefaultCacheIntensityFactor,
+            CacheProperties.DefaultSecondaryIntensityFactor,
             CacheProperties.DefaultReductionIntensityFactor);
     }
 
@@ -41,24 +56,31 @@ public final class CacheProperties implements ICacheProperties {
     public CacheProperties(
         long sizeInBytes,
         double intensityFactor,
+        double secondaryIntensityFactor,
         double reductionFactor) {
 
         Conditions.validate(
-            sizeInBytes >= CacheProperties.MinimumCacheSize && sizeInBytes <= CacheProperties.MaximumCacheSize,
-            "The cache size for processing data is defined at range: " +
-            "[" + CacheProperties.MinimumCacheSize + "-" + CacheProperties.MaximumCacheSize + "]");
+            CacheSizeRange.inRange(sizeInBytes),
+            "The cache size for processing data is defined at range: " + CacheSizeRange);
 
         Conditions.validate(
-            intensityFactor > 0 && intensityFactor < 1,
-            "The intensity factor of a cache for processing data is defined at range: (0-1)");
+            IntensityFactorRange.inRange(intensityFactor),
+            "The intensity factor of a cache for processing data is defined at range: " +
+            IntensityFactorRange);
 
         Conditions.validate(
-            reductionFactor > 0 && reductionFactor < intensityFactor,
+            IntensityFactorRange.inRange(secondaryIntensityFactor),
+            "The secondary intensity factor of a cache for processing data is defined at range: " +
+            IntensityFactorRange);
+
+        Conditions.validate(
+            IntensityFactorRange.inRange(reductionFactor),
             "The reduction factor of a cache for processing data is defined at range: " +
-            "(0-" + intensityFactor + ")");
+            IntensityFactorRange);
 
         this.sizeInBytes = sizeInBytes;
         this.intensityFactor = intensityFactor;
+        this.secondaryIntensityFactor = secondaryIntensityFactor;
         this.reductionFactor = reductionFactor;
     }
 
@@ -71,11 +93,46 @@ public final class CacheProperties implements ICacheProperties {
     }
 
     /**
+     * Gets a size of an intensity zone of the cache in bytes.
+     */
+    @Override
+    public long getIntensityZoneSizeInBytes() {
+        long size = (long)(this.sizeInBytes * this.intensityFactor);
+        return size;
+    }
+
+    /**
+     * Gets a size of a secondary intensity zone of the cache in bytes.
+     */
+    @Override
+    public long getSecondaryIntensityZoneSizeInBytes() {
+        long size = (long)(this.getIntensityZoneSizeInBytes() * this.secondaryIntensityFactor);
+        return size;
+    }
+
+    /**
+     * Gets a size of a reduction of the cache in bytes.
+     */
+    @Override
+    public long getReductionSizeInBytes() {
+        long size = (long)(this.sizeInBytes * this.reductionFactor);
+        return size;
+    }
+
+    /**
      * Gets an intensity factor of a cache.
      */
     @Override
     public double getIntensityFactor() {
         return this.intensityFactor;
+    }
+
+    /**
+     * Gets a secondary intensity factor of a cache.
+     */
+    @Override
+    public double getSecondaryIntensityFactor() {
+        return this.secondaryIntensityFactor;
     }
 
     /**

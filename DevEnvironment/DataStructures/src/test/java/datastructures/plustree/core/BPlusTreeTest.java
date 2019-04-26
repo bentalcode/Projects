@@ -172,7 +172,7 @@ public final class BPlusTreeTest {
         IBPlusTreeFactory<TKey, TValue> treeFactory = new BPlusTreeFactory<>(treeProperties);
         IBPlusTree<TKey, TValue> tree = treeFactory.create(treeData);
 
-        ITreeMetrics currMetrics = tree.getMetrics();
+        ITreeMetrics currMetrics = tree.calculateMetrics();
 
         Assert.assertTrue(
             "The number of data of a nodes in a B+ tree is invalid.",

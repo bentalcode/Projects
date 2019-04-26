@@ -17,6 +17,11 @@ public interface IBPlusTreeInnerNode<TKey extends Comparable<TKey>> extends IBPl
     List<IBPlusTreeNode<TKey>> getChildren();
 
     /**
+     * Gets the children count of a node.
+     */
+    int getChildrenCount();
+
+    /**
      * Sets a child by index.
      */
     void setChild(int index, IBPlusTreeNode<TKey> child);

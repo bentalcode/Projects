@@ -19,25 +19,45 @@ public final class Main {
      * The main entry.
      */
     public static void main(String[] args) {
-        Conditions.validateNotNull(args, "The arguments can not be null.");
+        try {
+            Conditions.validateNotNull(
+                args,
+                "The arguments of main can not be null.");
 
-        IDataCommandParameters parameters = Main.tryParse(args);
+            IDataCommandParameters parameters = Main.tryParse(args);
 
-        /**
-         * Process the data...
-         */
-        IDataResult result = Main.processData(parameters);
+            if (parameters == null) {
+                Main.usage();
+                System.exit(0);
 
-        /**
-         * Writes the result to the console...
-         */
-        Main.displayResult(
-            result,
-            System.out);
+                return;
+            }
+
+            /**
+             * Process the data...
+             */
+            IDataResult result = Main.processData(parameters);
+
+            /**
+             * Writes the result to the console...
+             */
+            Main.displayResult(result);
+
+            System.exit(0);
+        }
+        catch(Exception e) {
+            String errorMessage =
+                "The Data Command has failed to process the data due to an unexpected error: " + e.getMessage() +
+                ", Exit Status: -1";
+
+            Main.writeErrorMessage(errorMessage);
+
+            System.exit(-1);
+        }
     }
 
     /**
-     * Processes the data.
+     * Processes data.
      */
     private static IDataResult processData(IDataCommandParameters parameters) {
 
@@ -56,21 +76,7 @@ public final class Main {
     }
 
     /**
-     * Writes the result to the writer.
-     */
-    private static void displayResult(IDataResult result, PrintStream outputStream) {
-        Iterator<IAggregationResult> iterator = result.getIterator();
-
-        while (iterator.hasNext()) {
-            IAggregationResult currResult = iterator.next();
-
-            outputStream.println(currResult);
-            outputStream.flush();
-        }
-    }
-
-    /**
-     * Tries to parse the arguments.
+     * Tries to parse arguments.
      */
     private static IDataCommandParameters tryParse(String[] args) {
         if (args.length != 1) {
@@ -78,5 +84,57 @@ public final class Main {
         }
 
         return new DataCommandParameters(args[0]);
+    }
+
+    /**
+     * Displays usage to an output stream.
+     */
+    private static void usage() {
+        Main.writeInformationalMessage("DataCommand <filePath>");
+    }
+
+    /**
+     * Displays result to an output stream.
+     */
+    private static void displayResult(IDataResult result) {
+        Iterator<IAggregationResult> iterator = result.getIterator();
+
+        while (iterator.hasNext()) {
+            IAggregationResult currResult = iterator.next();
+
+            Main.writeInformationalMessage(currResult.toString());
+        }
+    }
+
+    /**
+     * Writes an informational message.
+     */
+    private static void writeInformationalMessage(String message) {
+        PrintStream outputStream = System.out;
+        Main.writeMessage(message, outputStream);
+    }
+
+    /**
+     * Writes a warning message.
+     */
+    private static void writeWarningMessage(String message) {
+        PrintStream outputStream = System.err;
+        Main.writeMessage(message, outputStream);
+    }
+
+    /**
+     * Writes an error message.
+     */
+    private static void writeErrorMessage(String message) {
+        PrintStream outputStream = System.err;
+        Main.writeMessage(message, outputStream);
+    }
+
+    /**
+     * Writes a message to an output stream.
+     */
+    private static void writeMessage(String message, PrintStream outputStream) {
+        outputStream.println(message);
+        outputStream.flush();
     }
 }

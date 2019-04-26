@@ -55,23 +55,26 @@ public final class MapAggregationResults extends AbstractAggregationResults {
     }
 
     /**
-     * Updates the size of the aggregation results.
+     * Calculates the size of the aggregation results.
      */
     @Override
-    protected long calculateSize(String key, IAggregationResult result) {
-        //
-        // Retrieve the current size in bytes...
-        //
-        long currSizeInBytes = this.getSizeInBytes();
+    protected long calculateSize() {
+        long size = 0;
 
-        //
-        // Update the total size in bytes...
-        //
-        int keySize = key.length() * IPrimitiveSize.InBytes.CharacterSize;
-        int resultSize = result.getSizeInBytes();
-        int entrySize = keySize + resultSize;
+        for (Map.Entry<String, IAggregationResult> entry : this.results.entrySet()) {
 
-        long size = currSizeInBytes + entrySize;
+            String key = entry.getKey();
+            IAggregationResult value = entry.getValue();
+
+            //
+            // Update the total size of the current entry...
+            //
+            int keySize = key.length() * IPrimitiveSize.InBytes.CharacterSize;
+            int valueSize = value.getSizeInBytes();
+            int entrySize = keySize + valueSize;
+
+            size += entrySize;
+        }
 
         return size;
     }

@@ -49,11 +49,19 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
     public List<IBPlusTreeNode<TKey>> getChildren() {
         List<IBPlusTreeNode<TKey>> children = new ArrayList<>();
 
-        for (int i = 0; i < this.getKeyCount() + 1; ++i) {
+        for (int i = 0; i < this.getChildrenCount(); ++i) {
             children.add(this.getChild(i));
         }
 
         return children;
+    }
+
+    /**
+     * Gets the children count of a node.
+     */
+    @Override
+    public int getChildrenCount() {
+        return this.getKeyCount() + 1;
     }
 
     /**
@@ -137,7 +145,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
 
         int borrowerChildIndex = 0;
 
-        while (borrowerChildIndex < this.getKeyCount() + 1 && this.getChild(borrowerChildIndex) != borrower) {
+        while (borrowerChildIndex < this.getChildrenCount() && this.getChild(borrowerChildIndex) != borrower) {
             ++borrowerChildIndex;
         }
 
@@ -224,7 +232,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
             this.setKey(keyIndex + i, currKey);
         }
 
-        for (int i = 0; i < rightSiblingNode.getKeyCount() + 1; ++i) {
+        for (int i = 0; i < rightSiblingNode.getChildrenCount(); ++i) {
             IBPlusTreeNode<TKey> currChild = rightSiblingNode.getChild(i);
             this.setChild(keyIndex + i, currChild);
         }
@@ -330,7 +338,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
     @Override
     public int getSizeInBytes() {
         int keysSize = this.getKeyCount() * this.getProperties().getKeySizeInBytes();
-        int valuesSize = (this.getKeyCount() + 1) * IPrimitiveSize.InBytes.ReferenceSize;
+        int valuesSize = this.getChildrenCount() * IPrimitiveSize.InBytes.ReferenceSize;
 
         int size = keysSize + valuesSize;
 
@@ -381,7 +389,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
      * Shifts the children to the right.
      */
     protected void shiftChildrenToRight(int index) {
-        for (int i = this.getKeyCount() + 1; i > index; --i) {
+        for (int i = this.getChildrenCount(); i > index; --i) {
             this.setChild(i, this.getChild(i - 1));
         }
     }

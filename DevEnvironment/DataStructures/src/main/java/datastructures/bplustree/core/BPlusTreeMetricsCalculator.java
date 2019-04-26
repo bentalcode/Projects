@@ -64,7 +64,6 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
         while (!queue.isEmpty()) {
 
             int levelSize = queue.size();
-            ++height;
 
             for (int i = 0; i < levelSize; ++i) {
                 IBPlusTreeNode<TKey> currNode = queue.poll();
@@ -84,6 +83,7 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
                     ++numberOfLeafNodes;
                 }
 
+                ++height;
                 sizeInBytes += currNode.getSizeInBytes();
             }
         }

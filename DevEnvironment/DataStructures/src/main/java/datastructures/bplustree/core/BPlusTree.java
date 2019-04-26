@@ -48,6 +48,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
 
     /**
      * Gets the properties of the B+ tree.
+     * Complexity: O(1)
      */
     @Override
     public IBPlusTreeProperties<TKey, TValue> getProperties() {
@@ -56,6 +57,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
 
     /**
      * Inserts a new key and it's associated value into a B+ tree.
+     * Complexity: O(LogN)
      */
     @Override
     public void insert(TKey key, TValue value) {
@@ -73,6 +75,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
 
     /**
      * Deletes a key and it's associated value from the tree.
+     * Complexity: O(LogN)
      */
     @Override
     public void delete(TKey key) {
@@ -89,6 +92,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
 
     /**
      * Searches a key value on the tree and return it's associated value.
+     * Complexity: O(LogN)
      */
     @Override
     public TValue search(TKey key) {
@@ -107,6 +111,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
 
     /**
      * Gets an iterator of keys of a tree.
+     * Complexity: O(LogN)
      */
     public IKeyIterator<TKey> getKeyIterator() {
         return new KeyIterator<>(this.getDataIterator());
@@ -114,6 +119,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
 
     /**
      * Gets an iterator of values of a tree.
+     * Complexity: O(LogN)
      */
     @Override
     public IValueIterator<TValue> getValueIterator() {
@@ -122,6 +128,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
 
     /**
      * Gets an iterator of data of a tree.
+     * Complexity: O(LogN)
      */
     @Override
     public ITreeDataIterator<TKey, TValue> getDataIterator() {
@@ -129,7 +136,38 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
     }
 
     /**
+     * Gets the height of a tree.
+     * The height of a tree is the number of edges on the longest path from root to a leaf node.
+     *
+     * Complexity: O(LogN)
+     */
+    @Override
+    public int getHeight() {
+        int height = 0 ;
+
+        IBPlusTreeNode<TKey> currNode = this.root;
+
+        while (currNode != null) {
+
+            if (currNode.getNodeType() == TreeNodeType.InnerNode) {
+
+                IBPlusTreeInnerNode<TKey> currInnerNode = Casting.cast(currNode);
+                assert(currInnerNode.getChildrenCount() > 0);
+
+                int firstChild = 0;
+                currNode = currInnerNode.getChild(firstChild);
+
+                ++height;
+            }
+
+        }
+
+        return height;
+    }
+
+    /**
      * Gets levels of a tree.
+     * Complexity: O(N)
      */
     @Override
     public IBlockTreeLevels<TKey, INullable> getTreeLevels() {
@@ -167,9 +205,10 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
     }
 
     /**
-     * Gets metrics of a tree.
+     * Calculates metrics of a tree.
+     * Complexity: O(N)
      */
-    public IBPlusTreeMetrics getMetrics() {
+    public IBPlusTreeMetrics calculateMetrics() {
         ICalculator<IBPlusTreeMetrics> metricsCalculator = new BPlusTreeMetricsCalculator<>(
             this.properties,
             this.root);
