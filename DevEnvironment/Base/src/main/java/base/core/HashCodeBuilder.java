@@ -1,25 +1,21 @@
 package base.core;
 
-import base.interfaces.IComparatorFactory;
 import base.interfaces.IHashCodeBuilder;
 import base.interfaces.IHashCodeProvider;
 import base.interfaces.IPrimitiveSize;
-
 import java.util.Collection;
 
 /**
  * The HashCodeBuilder class implements a hash code builder.
  */
 public final class HashCodeBuilder implements IHashCodeBuilder {
-    private final IComparatorFactory comparatorFactory = new ComparatorFactory();
-
     private final int factorPrimeNumber;
     private int code;
 
     /**
      * The HashCodeBuilder constructor.
      */
-    public HashCodeBuilder(int initialPrimeNumber, final int factorPrimeNumber) {
+    public HashCodeBuilder(int initialPrimeNumber, int factorPrimeNumber) {
         this.factorPrimeNumber = factorPrimeNumber;
         this.code = initialPrimeNumber;
     }
@@ -34,7 +30,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a boolean.
+     * With a boolean. (Size of the boolean in java is virtual machine dependent.)
      */
     @Override
     public IHashCodeBuilder withBoolean(boolean value) {
@@ -44,7 +40,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a byte.
+     * With a byte. (Size of a byte is 1 byte.)
      */
     @Override
     public IHashCodeBuilder withByte(byte value) {
@@ -66,7 +62,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a short.
+     * With a short. (Size of a short is 2 bytes.)
      */
     @Override
     public IHashCodeBuilder withShort(short value) {
@@ -82,7 +78,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With an integer.
+     * With an integer. (Size of an integer is 4 bytes.)
      */
     @Override
     public IHashCodeBuilder withInteger(int value) {
@@ -94,7 +90,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a long.
+     * With a long. (Size of a long is 8 bytes.)
      */
     @Override
     public IHashCodeBuilder withLong(long value) {
@@ -112,27 +108,32 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a float.
+     * With a float. (Size of a float is 4 bytes.)
      */
     @Override
     public IHashCodeBuilder withFloat(float value) {
+        int currentCode = (int)value;
+        this.updateCode(currentCode);
+
         return this;
     }
 
     /**
-     * With a double.
+     * With a double. (Size of a double is 8 bytes.)
      */
     @Override
     public IHashCodeBuilder withDouble(double value) {
-        return this;
+        long currentValue = (long)value;
+        return this.withLong(currentValue);
     }
 
     /**
-     * With a character.
+     * With a character. (Size of a double is 2 bytes.)
      */
     @Override
     public IHashCodeBuilder withCharacter(char value) {
-        return this;
+        short currentValue = (short)value;
+        return this.withShort(currentValue);
     }
 
     /**
@@ -140,6 +141,10 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withString(String value) {
+        for (int i = 0; i < value.length(); ++i) {
+            this.withCharacter(value.charAt(i));
+        }
+
         return this;
     }
 
@@ -147,7 +152,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a boolean array.
      */
     @Override
-    public IHashCodeBuilder withBooleanArray(boolean[] value) {
+    public IHashCodeBuilder withBooleanArray(boolean[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withBoolean(array[i]);
+        }
+
         return this;
     }
 
@@ -155,7 +164,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a byte array.
      */
     @Override
-    public IHashCodeBuilder withByteArray(byte[] value) {
+    public IHashCodeBuilder withByteArray(byte[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withByte(array[i]);
+        }
+
         return this;
     }
 
@@ -163,7 +176,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a short array.
      */
     @Override
-    public IHashCodeBuilder withShortArray(short[] value) {
+    public IHashCodeBuilder withShortArray(short[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withShort(array[i]);
+        }
+
         return this;
     }
 
@@ -171,7 +188,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With an integer array.
      */
     @Override
-    public IHashCodeBuilder withIntegerArray(int[] value) {
+    public IHashCodeBuilder withIntegerArray(int[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withInteger(array[i]);
+        }
+
         return this;
     }
 
@@ -179,7 +200,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a float array.
      */
     @Override
-    public IHashCodeBuilder withFloatArray(float[] value) {
+    public IHashCodeBuilder withFloatArray(float[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withFloat(array[i]);
+        }
+
         return this;
     }
 
@@ -187,7 +212,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a double array.
      */
     @Override
-    public IHashCodeBuilder withDoubleArray(double[] value) {
+    public IHashCodeBuilder withDoubleArray(double[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withDouble(array[i]);
+        }
+
         return this;
     }
 
@@ -195,7 +224,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a character array.
      */
     @Override
-    public IHashCodeBuilder withCharacterArray(char[] value) {
+    public IHashCodeBuilder withCharacterArray(char[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withCharacter(array[i]);
+        }
+
         return this;
     }
 
@@ -203,7 +236,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a string array.
      */
     @Override
-    public IHashCodeBuilder withStringArray(String[] value) {
+    public IHashCodeBuilder withStringArray(String[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withString(array[i]);
+        }
+
         return this;
     }
 
@@ -212,6 +249,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T> IHashCodeBuilder withGeneric(T obj, IHashCodeProvider<T> provider) {
+        int currentCode = provider.getHashCode(obj);
+        this.updateCode(currentCode);
         return this;
     }
 
@@ -220,6 +259,10 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T> IHashCodeBuilder withArray(T[] array, IHashCodeProvider<T> provider) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withGeneric(array[i], provider);
+        }
+
         return this;
     }
 
@@ -227,7 +270,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a generic collection.
      */
     @Override
-    public <T> IHashCodeBuilder withCollection(Collection<T> lhs, IHashCodeProvider<T> provider) {
+    public <T> IHashCodeBuilder withCollection(Collection<T> collection, IHashCodeProvider<T> provider) {
+        for (T item : collection) {
+            this.withGeneric(item, provider);
+        }
+
         return this;
     }
 

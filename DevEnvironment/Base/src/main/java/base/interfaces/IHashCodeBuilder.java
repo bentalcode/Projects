@@ -59,42 +59,42 @@ public interface IHashCodeBuilder {
     /**
      * With a boolean array.
      */
-    IHashCodeBuilder withBooleanArray(boolean[] value);
+    IHashCodeBuilder withBooleanArray(boolean[] array);
 
     /**
      * With a byte array.
      */
-    IHashCodeBuilder withByteArray(byte[] value);
+    IHashCodeBuilder withByteArray(byte[] array);
 
     /**
      * With a short array.
      */
-    IHashCodeBuilder withShortArray(short[] value);
+    IHashCodeBuilder withShortArray(short[] array);
 
     /**
      * With an integer array.
      */
-    IHashCodeBuilder withIntegerArray(int[] value);
+    IHashCodeBuilder withIntegerArray(int[] array);
 
     /**
      * With a float array.
      */
-    IHashCodeBuilder withFloatArray(float[] value);
+    IHashCodeBuilder withFloatArray(float[] array);
 
     /**
      * With a double array.
      */
-    IHashCodeBuilder withDoubleArray(double[] value);
+    IHashCodeBuilder withDoubleArray(double[] array);
 
     /**
      * With a character array.
      */
-    IHashCodeBuilder withCharacterArray(char[] value);
+    IHashCodeBuilder withCharacterArray(char[] array);
 
     /**
      * With a string array.
      */
-    IHashCodeBuilder withStringArray(String[] value);
+    IHashCodeBuilder withStringArray(String[] array);
 
     /**
      * With a generic.
@@ -109,7 +109,7 @@ public interface IHashCodeBuilder {
     /**
      * With a generic collection.
      */
-    <T> IHashCodeBuilder withCollection(Collection<T> lhs, IHashCodeProvider<T> provider);
+    <T> IHashCodeBuilder withCollection(Collection<T> collection, IHashCodeProvider<T> provider);
 
     /**
      * Builds the resultant hash code.
