@@ -32,15 +32,15 @@ public abstract class BPlusTreeNodeProperties<TKey extends Comparable<TKey>> imp
 
         Conditions.validateNotNull(
             keyClassType,
-            "The class type of a key of a B+ tree can not be null.");
+            "The class type of a key of a B+ tree.");
 
         Conditions.validateNotNull(
             keyComparator,
-            "The comparator of a key of a node of a B+ tree can not be null.");
+            "The comparator of a key of a node of a B+ tree.");
 
         Conditions.validateNotNull(
             nodeComparator,
-            "The comparator of a node of a B+ tree can not be null.");
+            "The comparator of a node of a B+ tree.");
 
         Conditions.validate(
             keySizeInBytes > 0,

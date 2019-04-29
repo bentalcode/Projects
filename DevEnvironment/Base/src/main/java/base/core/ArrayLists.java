@@ -72,11 +72,11 @@ public final class ArrayLists {
      * Creates a new instance of a list.
      */
     public static <T> List<T> of(
-            T value1,
-            T value2,
-            T value3,
-            T value4,
-            T value5) {
+        T value1,
+        T value2,
+        T value3,
+        T value4,
+        T value5) {
 
         List<T> list = new ArrayList<>();
 

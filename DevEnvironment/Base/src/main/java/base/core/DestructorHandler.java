@@ -6,6 +6,8 @@ import base.interfaces.IDestructorHandler;
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The DestructorHandler class implements a destructor handler for invoking
@@ -14,6 +16,9 @@ import java.util.List;
 public final class DestructorHandler implements IDestructorHandler {
     private final IDestructorFactory destructorFactory = new DestructorFactory();
     private final List<IDestructor> destructors = new ArrayList<>();
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     /**
      * The DestructorHandler constructor.
      */
@@ -27,7 +32,7 @@ public final class DestructorHandler implements IDestructorHandler {
     public <T extends Closeable> IDestructor register(T obj) {
         Conditions.validateNotNull(
             obj,
-            "The instance of an object for registering for destruction can not be null.");
+            "The instance of an object for registering for destruction.");
 
         IDestructor destructor = this.destructorFactory.create(obj);
         this.destructors.add(destructor);
@@ -58,7 +63,8 @@ public final class DestructorHandler implements IDestructorHandler {
                     "; Aborting the destruction logic with success ratio of: " +
                     numberOfDestructedObjects + "/" + numberOfObjectsToDestruct;
 
-                throw new DestructorException(errorMessage);
+                this.log.error(errorMessage);
+                throw new DestructorException(errorMessage, e);
             }
 
             ++numberOfDestructedObjects;

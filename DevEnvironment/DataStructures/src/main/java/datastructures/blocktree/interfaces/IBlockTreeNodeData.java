@@ -4,7 +4,7 @@ import base.interfaces.IUnaryComparator;
 import java.util.List;
 
 /**
- * The IBlockTreeNodeData interface defines a data of a block-node in a tree.
+ * The IBlockTreeNodeData interface defines data of a block-node in a tree.
  */
 public interface IBlockTreeNodeData<TKey extends Comparable<TKey>, TValue> extends IUnaryComparator<IBlockTreeNodeData<TKey, TValue>> {
     /**

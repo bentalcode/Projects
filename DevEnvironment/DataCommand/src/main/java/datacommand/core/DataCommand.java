@@ -9,6 +9,8 @@ import datacommand.interfaces.IDataCommand;
 import datacommand.interfaces.IDataCommandParameters;
 import datacommand.interfaces.IDataResult;
 import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The DataCommand class implements a command for processing data.
@@ -16,13 +18,15 @@ import java.util.Scanner;
 public final class DataCommand implements IDataCommand {
     private final IDataCommandParameters parameters;
 
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     /**
      * The DataCommandParameters constructor.
      */
     public DataCommand(IDataCommandParameters parameters) {
         Conditions.validateNotNull(
             parameters,
-            "The parameters of a data command can not be null.");
+            "The parameters of data command.");
 
         this.parameters = parameters;
     }
@@ -34,7 +38,7 @@ public final class DataCommand implements IDataCommand {
     public IDataResult process(Scanner scanner) {
         Conditions.validateNotNull(
             scanner,
-            "The scanner of data can not be null.");
+            "The scanner of data.");
 
         //
         // Use a map for aggregating the results of the data...
@@ -56,7 +60,7 @@ public final class DataCommand implements IDataCommand {
             }
 
             //
-            // Process a data entry...
+            // Process data entry...
             //
             this.processDataEntry(
                 entry,
@@ -72,7 +76,7 @@ public final class DataCommand implements IDataCommand {
     }
 
     /**
-     * Tries to parse a data entry.
+     * Tries to parse data entry.
      */
     IPair<String, String> tryParseDataEntry(String entry) {
         //
@@ -93,6 +97,7 @@ public final class DataCommand implements IDataCommand {
             String errorMessage =
                 "The entry line: "  + entry + " is invalid since it does not contain two key-value pair tokens.";
 
+            this.log.error(errorMessage);
             throw new DataCommandException(errorMessage);
         }
 
@@ -100,7 +105,7 @@ public final class DataCommand implements IDataCommand {
     }
 
     /**
-     * Processes a data entry.
+     * Processes data entry.
      */
     private void processDataEntry(
         IPair<String, String> entry,

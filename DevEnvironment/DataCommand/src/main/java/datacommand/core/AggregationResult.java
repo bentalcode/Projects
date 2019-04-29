@@ -22,7 +22,7 @@ public final class AggregationResult implements IAggregationResult {
 
         Conditions.validateNotNull(
             key,
-            "The key of an aggregation result can not be null.");
+            "The key of an aggregation result.");
 
         Conditions.validate(
             keyCounter >= 1,
@@ -30,7 +30,7 @@ public final class AggregationResult implements IAggregationResult {
 
         Conditions.validateNotNull(
             highestSortOrderValue,
-            "The value with the highest sort order can not be null.");
+            "The value with the highest sort order.");
 
         this.key = key;
         this.keyCounter = keyCounter;

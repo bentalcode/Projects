@@ -4,7 +4,7 @@ import datacommand.core.BPlusTreeAggregationResults;
 import datacommand.core.MapAggregationResults;
 
 /**
- * The AggregationDataStructureType defines an enum of a data-structure of an aggregation.
+ * The AggregationDataStructureType defines an enum of data-structure of an aggregation.
  */
 public enum AggregationDataStructureType {
 

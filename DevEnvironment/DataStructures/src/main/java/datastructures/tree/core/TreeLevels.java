@@ -37,11 +37,11 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
 
         Conditions.validateNotNull(
             levels,
-            "The levels of a tree can not be null.");
+            "The levels of a tree.");
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a tree can not be null.");
+            "The comparator of a tree.");
 
         this.levels = levels;
         this.comparator = comparator;
@@ -121,7 +121,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
         public Comparator(IBinaryComparator<ITreeLevel<TKey, TValue>> levelComparator) {
             Conditions.validateNotNull(
                 levelComparator,
-                "The level comparator of a tree can not be null.");
+                "The level comparator of a tree.");
 
             this.levelComparator = levelComparator;
         }
@@ -198,7 +198,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
         public Builder<TKey, TValue> addLevel(ITreeLevel<TKey, TValue> level) {
             Conditions.validateNotNull(
                 level,
-                "The level of a tree can not be null.");
+                "The level of a tree.");
 
             this.levels.add(level);
 
@@ -211,7 +211,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
         public Builder<TKey, TValue> addLevelByKeys(List<TKey> nodesKeys) {
             Conditions.validateNotNull(
                 nodesKeys,
-                "The keys of nodes of a tree can not be null.");
+                "The keys of nodes of a tree.");
 
             TreeLevel.Builder<TKey, TValue> levelBuilder = new TreeLevel.Builder<>();
 

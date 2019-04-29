@@ -29,11 +29,11 @@ public final class DataCommandParameters implements IDataCommandParameters {
 
         Conditions.validateStringNotNullOrEmpty(
             dataPath,
-            "The path of data can not be null.");
+            "The path of data.");
 
         Conditions.validateNotNull(
             aggregationResultsProperties,
-            "The properties of an aggregation results can not be null.");
+            "The properties of an aggregation results.");
 
         this.dataPath = dataPath;
         this.aggregationResultsProperties = aggregationResultsProperties;

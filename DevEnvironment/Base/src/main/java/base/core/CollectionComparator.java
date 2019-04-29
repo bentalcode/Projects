@@ -9,7 +9,6 @@ import java.util.Iterator;
  * The CollectionComparator class implements a comparator for a collection.
  */
 public final class CollectionComparator<T> implements ICollectionComparator<T> {
-
     /**
      * The CollectionComparator constructor.
      */
@@ -23,7 +22,7 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
     public boolean isEqual(Collection<T> lhs, Collection<T> rhs, IBinaryComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a collection element can not be null.");
+            "The comparator of a collection element.");
 
         if (lhs == null && rhs == null) {
             return true;
@@ -65,7 +64,7 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
     public int compareTo(Collection<T> lhs, Collection<T> rhs, IBinaryComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a list element can not be null.");
+            "The comparator of a list element.");
 
         if (lhs == null && rhs == null) {
             return 0;

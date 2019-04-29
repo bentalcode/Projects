@@ -22,7 +22,7 @@ public final class Main {
         try {
             Conditions.validateNotNull(
                 args,
-                "The arguments of main can not be null.");
+                "The arguments of main.");
 
             IDataCommandParameters parameters = Main.tryParse(args);
 

@@ -16,7 +16,7 @@ import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
 import datastructures.tree.core.TreeData;
 import datastructures.tree.interfaces.ITreeData;
-import interfaces.ITestData;
+import json.interfaces.ITestData;
 import java.util.List;
 
 /**

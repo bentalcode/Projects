@@ -38,11 +38,11 @@ public final class TreeNodeData<TKey extends Comparable<TKey>, TValue> implement
 
         Conditions.validateNotNull(
             key,
-            "The key of node of a tree can not be null.");
+            "The key of node of a tree.");
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of node of a tree can not be null.");
+            "The comparator of node of a tree.");
 
         this.key = key;
         this.value = value;
@@ -133,7 +133,7 @@ public final class TreeNodeData<TKey extends Comparable<TKey>, TValue> implement
         public Comparator(IBinaryComparator<TKey> keyComparator) {
             Conditions.validateNotNull(
                 keyComparator,
-                "The key comparator of a tree can not be null.");
+                "The key comparator of a tree.");
 
             this.keyComparator = keyComparator;
         }
@@ -209,7 +209,7 @@ public final class TreeNodeData<TKey extends Comparable<TKey>, TValue> implement
         public Builder setKey(TKey key) {
             Conditions.validateNotNull(
                 key,
-                "The key of a node of a tree can not be null.");
+                "The key of a node of a tree.");
 
             this.key = key;
             return this;

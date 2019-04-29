@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The TreeData class implements a data of a tree.
+ * The TreeData class implements data of a tree.
  */
 public final class TreeData<TKey extends Comparable<TKey>, TValue> implements ITreeData<TKey, TValue> {
     private final List<ITreeNodeData<TKey, TValue>> nodesData;
@@ -20,7 +20,7 @@ public final class TreeData<TKey extends Comparable<TKey>, TValue> implements IT
     public TreeData(List<ITreeNodeData<TKey, TValue>> nodesData) {
         Conditions.validateNotNull(
             nodesData,
-            "The data of nodes of a tree can not be null.");
+            "The data of nodes of a tree.");
 
         this.nodesData = nodesData;
     }
@@ -59,7 +59,7 @@ public final class TreeData<TKey extends Comparable<TKey>, TValue> implements IT
         public Builder<TKey, TValue> addNodeData(ITreeNodeData<TKey, TValue> nodeData) {
             Conditions.validateNotNull(
                 nodeData,
-                "The data of a node of a tree can not be null.");
+                "The data of a node of a tree.");
 
             this.nodesData.add(nodeData);
 

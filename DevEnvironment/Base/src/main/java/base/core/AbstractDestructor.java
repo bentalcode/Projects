@@ -1,6 +1,8 @@
 package base.core;
 
 import base.interfaces.IDestructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.Closeable;
 import java.io.IOException;
 
@@ -11,13 +13,15 @@ public abstract class AbstractDestructor<T extends Closeable> implements IDestru
     private final T obj;
     private boolean toDestruct = true;
 
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     /**
      * The CloseableDestructor constructor.
      */
     public AbstractDestructor(T obj) {
         Conditions.validateNotNull(
             obj,
-            "The instance of an object for closing can not be null.");
+            "The instance of an object for closing.");
 
         this.obj = obj;
     }
@@ -38,7 +42,8 @@ public abstract class AbstractDestructor<T extends Closeable> implements IDestru
                 "The object: " + this.obj.getClass().getSimpleName() + " failed to get closed " +
                 " due to the following error: " + e.getMessage();
 
-            throw new BaseException(errorMessage);
+            this.log.error(errorMessage, e);
+            throw new BaseException(errorMessage, e);
         }
     }
 

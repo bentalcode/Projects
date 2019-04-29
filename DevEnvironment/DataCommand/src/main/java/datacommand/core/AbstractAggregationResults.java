@@ -20,7 +20,7 @@ public abstract class AbstractAggregationResults implements IAggregationResults 
 
         Conditions.validateNotNull(
             properties,
-            "The properties of an aggregation results can not be null.");
+            "The properties of an aggregation results.");
 
         this.properties = properties;
     }
@@ -168,7 +168,7 @@ public abstract class AbstractAggregationResults implements IAggregationResults 
     private static void validateKey(String key) {
         Conditions.validateStringNotNullOrEmpty(
             key,
-            "The key of an aggregation result can not be null or empty.");
+            "The key of an aggregation result.");
     }
 
     /**
@@ -177,6 +177,6 @@ public abstract class AbstractAggregationResults implements IAggregationResults 
     private static void validateResult(IAggregationResult result) {
         Conditions.validateNotNull(
             result,
-            "The aggregation result can not be null.");
+            "The aggregation result.");
     }
 }

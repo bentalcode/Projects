@@ -44,7 +44,7 @@ public final class AggregationResultsProperties implements IAggregationResultsPr
 
         Conditions.validateNotNull(
             cacheProperties,
-            "The properties of a cache can not be null.");
+            "The properties of a cache.");
 
         this.dataStructureType = dataStructureType;
         this.keyMaxSizeInBytes = keyMaxSizeInBytes;

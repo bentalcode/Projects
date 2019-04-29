@@ -14,7 +14,7 @@ import datastructures.tree.interfaces.ITreeData;
 import datastructures.tree.interfaces.ITreeDataIterator;
 import datastructures.tree.interfaces.ITreeMetrics;
 import datastructures.tree.interfaces.ITreeNodeData;
-import interfaces.ITestData;
+import json.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -20,7 +20,7 @@ public final class TreeDataIterator<TKey extends Comparable<TKey>, TValue> imple
     public TreeDataIterator(List<ITreeNodeData<TKey, TValue>> nodesData) {
         Conditions.validateNotNull(
             nodesData,
-            "The nodes data of a tree can not be null.");
+            "The nodes data of a tree.");
 
         this.nodesData = nodesData;
     }

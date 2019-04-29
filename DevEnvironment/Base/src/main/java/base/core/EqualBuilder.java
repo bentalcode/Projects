@@ -1,10 +1,11 @@
 package base.core;
 
-import base.interfaces.*;
-
+import base.interfaces.IArrayComparator;
+import base.interfaces.IBinaryComparator;
+import base.interfaces.ICollectionComparator;
+import base.interfaces.IComparatorFactory;
+import base.interfaces.IEqualBuilder;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 /**
  * The EqualBuilder class implements an equal builder.

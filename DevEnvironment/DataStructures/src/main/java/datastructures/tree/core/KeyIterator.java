@@ -17,7 +17,7 @@ public final class KeyIterator<TKey extends Comparable<TKey>, TValue> implements
     public KeyIterator(ITreeDataIterator<TKey, TValue> iterator) {
         Conditions.validateNotNull(
             iterator,
-            "The iterator of data of a tree can not be null.");
+            "The iterator of data of a tree.");
 
         this.iterator = iterator;
     }

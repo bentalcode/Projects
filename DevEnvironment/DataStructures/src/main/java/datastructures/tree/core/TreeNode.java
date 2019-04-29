@@ -43,11 +43,11 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
 
         Conditions.validateNotNull(
             key,
-            "The key of a node of a tree can not be null.");
+            "The key of a node of a tree.");
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a key of a node of a tree can not be null.");
+            "The comparator of a key of a node of a tree.");
 
         this.key = key;
         this.value = value;
@@ -167,7 +167,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
         public Comparator(IBinaryComparator<TKey> keyComparator) {
             Conditions.validateNotNull(
                     keyComparator,
-                    "The key comparator of a block tree can not be null.");
+                    "The key comparator of a block tree.");
 
             this.keyComparator = keyComparator;
         }
@@ -245,7 +245,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
         public Builder<TKey, TValue> setKey(TKey key) {
             Conditions.validateNotNull(
                 key,
-                "The key of a node of a tree can not be null.");
+                "The key of a node of a tree.");
 
             this.key = key;
 
@@ -266,7 +266,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
         public Builder<TKey, TValue> addChild(ITreeNode<TKey, TValue> child) {
             Conditions.validateNotNull(
                 child,
-                "The child of a tree can not be null.");
+                "The child of a tree.");
 
             this.children.add(child);
 
@@ -279,7 +279,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
         public Builder<TKey, TValue> setComparator(IBinaryComparator<TKey> comparator) {
             Conditions.validateNotNull(
                 comparator,
-                "The comparator of a node of a tree can not be null.");
+                "The comparator of a node of a tree.");
 
             this.comparator = comparator;
 

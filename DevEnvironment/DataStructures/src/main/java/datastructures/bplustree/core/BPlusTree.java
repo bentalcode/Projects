@@ -40,7 +40,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
     public BPlusTree(IBPlusTreeProperties<TKey, TValue> properties) {
         Conditions.validateNotNull(
             properties,
-            "The properties of a B+ tree can not be null.");
+            "The properties of a B+ tree.");
 
         this.properties = properties;
         this.root = new BPlusTreeLeafNode<>(properties.getLeafNodeProperties());

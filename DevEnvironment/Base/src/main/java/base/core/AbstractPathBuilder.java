@@ -18,7 +18,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
     protected AbstractPathBuilder(char separator) {
         Conditions.validateNotNull(
             separator,
-            "The separator of a path can not be null.");
+            "The separator of a path.");
 
         this.separator = separator;
     }
@@ -38,7 +38,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
     public IPathBuilder addComponent(String component) {
         Conditions.validateNotNull(
             component,
-            "The component of a path can not be null.");
+            "The component of a path.");
 
         this.components.add(component);
 
@@ -52,7 +52,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
     public void setExtension(String extension) {
         Conditions.validateNotNull(
             extension,
-            "The extension of a path can not be null.");
+            "The extension of a path.");
 
         this.extension = extension;
     }

@@ -37,11 +37,11 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
 
         Conditions.validateNotNull(
             nodesData,
-            "The data of nodes in a level of a block tree can not be null.");
+            "The data of nodes in a level of a block tree.");
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a level of a block tree can not be null.");
+            "The comparator of a level of a block tree.");
 
         this.nodesData = nodesData;
         this.comparator = comparator;
@@ -123,7 +123,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
         public Comparator(IBinaryComparator<IBlockTreeNodeData<TKey, TValue>> nodeComparator) {
             Conditions.validateNotNull(
                 nodeComparator,
-                "The node comparator of a block tree can not be null.");
+                "The node comparator of a block tree.");
 
             this.nodeComparator = nodeComparator;
         }
@@ -200,7 +200,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
         public Builder<TKey, TValue> addNode(IBlockTreeNodeData<TKey, TValue> nodeData) {
             Conditions.validateNotNull(
                 nodeData,
-                "The data of a node of a block tree can not be null.");
+                "The data of a node of a block tree.");
 
             this.nodesData.add(nodeData);
 

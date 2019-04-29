@@ -63,15 +63,15 @@ public final class BPlusTreeProperties<TKey extends Comparable<TKey>, TValue> im
 
         Conditions.validateNotNull(
             nodeComparator,
-            "The comparator of a node of a B+ tree can not be null.");
+            "The comparator of a node of a B+ tree.");
 
         Conditions.validateNotNull(
             innerNodeProperties,
-            "The properties of an inner node of a B+ tree can not be null.");
+            "The properties of an inner node of a B+ tree.");
 
         Conditions.validateNotNull(
             leafNodeProperties,
-            "The properties of a leaf node of a B+ tree can not be null.");
+            "The properties of a leaf node of a B+ tree.");
 
         this.degree = degree;
         this.nodeComparator = nodeComparator;

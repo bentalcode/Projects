@@ -16,7 +16,7 @@ public class ReverseIterator<T> implements Iterator<T>, Iterable<T> {
     public ReverseIterator(List<T> list) {
         Conditions.validateNotNull(
             list,
-            "The list to iterate in reverse can not be null.");
+            "The list to iterate in reverse.");
 
         this.list = list;
         this.position = list.size() - 1;

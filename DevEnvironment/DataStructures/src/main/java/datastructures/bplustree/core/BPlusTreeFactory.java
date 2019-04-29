@@ -19,7 +19,7 @@ public final class BPlusTreeFactory<TKey extends Comparable<TKey>, TValue> imple
     public BPlusTreeFactory(IBPlusTreeProperties<TKey, TValue> properties) {
         Conditions.validateNotNull(
             properties,
-            "The properties of a B+ tree can not be null.");
+            "The properties of a B+ tree.");
 
         this.properties = properties;
     }
@@ -42,11 +42,11 @@ public final class BPlusTreeFactory<TKey extends Comparable<TKey>, TValue> imple
 
         Conditions.validateNotNull(
             properties,
-            "The properties of a B+ tree can not be null.");
+            "The properties of a B+ tree.");
 
         Conditions.validateNotNull(
             treeData,
-            "The data of a B+ tree can not be null.");
+            "The data of a B+ tree.");
 
         IBPlusTree<TKey, TValue> tree = new BPlusTree<>(this.properties);
 

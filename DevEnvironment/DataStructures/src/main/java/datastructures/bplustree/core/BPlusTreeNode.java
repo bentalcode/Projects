@@ -30,7 +30,7 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
     protected BPlusTreeNode(IBPlusTreeNodeProperties<TKey> properties) {
         Conditions.validateNotNull(
             properties,
-            "The properties of a node of a B+ tree can not be null.");
+            "The properties of a node of a B+ tree.");
 
         this.properties = properties;
         this.keys = Arrays.newInstance(properties.getKeyClassType(), properties.getDegree());
@@ -422,7 +422,7 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
         public Comparator(IBinaryComparator<TKey> keyComparator) {
             Conditions.validateNotNull(
                 keyComparator,
-                "The key comparator can not be null.");
+                "The key comparator.");
 
             this.keyComparator = keyComparator;
         }

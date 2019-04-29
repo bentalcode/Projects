@@ -53,11 +53,11 @@ Code References:
 The main entry to the Data Command module is:
 DevEnvironment\DataCommand\src\main\java\datacommand\core\Main.java
 
-The interface of a data command is:
-DevEnvironment\DataCommand\src\main\java\datacommand\interfaces\IDataCommand.java
+The interface of data command is:
+DevEnvironment\DataCommand\src\main\java\datacommand\json.interfaces\IDataCommand.java
 
 The interface of an aggregation results is: 
-DevEnvironment\DataCommand\src\main\java\datacommand\interfaces\IAggregationResults.java
+DevEnvironment\DataCommand\src\main\java\datacommand\json.interfaces\IAggregationResults.java
 
 Parameters:
 -----------

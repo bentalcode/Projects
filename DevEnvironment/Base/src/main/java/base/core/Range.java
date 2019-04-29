@@ -51,15 +51,15 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
 
         Conditions.validateNotNull(
             start,
-            "The start value of a range can not be null.");
+            "The start value of a range.");
 
         Conditions.validateNotNull(
             start,
-            "The end value of a range can not be null.");
+            "The end value of a range.");
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a range can not be null.");
+            "The comparator of a range.");
 
         this.start = start;
         this.end = end;

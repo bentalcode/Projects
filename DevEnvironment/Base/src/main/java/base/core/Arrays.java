@@ -6,18 +6,17 @@ import java.lang.reflect.Array;
  * The Arrays class implements complementary APIs for arrays.
  */
 public final class Arrays {
-
     /**
      * Creates a new instance of an array.
      */
     public static <T> T[] newInstance(Class<?> classType, int size) {
         Conditions.validateNotNull(
             classType,
-            "The class type for creating an array can not be null.");
+            "The class type for creating an array.");
 
         Conditions.validate(
             size > 0,
-            "The size of the array for creating has to be positive.");
+            "The size of an array for creating has to be positive.");
 
         Object objectArray = Array.newInstance(classType, size);
         T[] result = Casting.cast(objectArray);
@@ -60,7 +59,7 @@ public final class Arrays {
      * Validates an index of an array.
      */
     public static <T> void validateIndex(T[] array, int startIndex, int endIndex, int index) {
-        Conditions.validateNotNull(array, "The array can not be null.");
+        Conditions.validateNotNull(array, "The array.");
 
         Conditions.validate(
             index >= startIndex && index <= endIndex,

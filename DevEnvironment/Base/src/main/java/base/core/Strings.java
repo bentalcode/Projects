@@ -5,7 +5,7 @@ package base.core;
  */
 public final class Strings {
     /**
-     * Determines whether a string is null or empty.
+     * Determines whether a string is not null or empty.
      */
     public static boolean isNullOrEmpty(String str) {
         return str == null || str.isEmpty();

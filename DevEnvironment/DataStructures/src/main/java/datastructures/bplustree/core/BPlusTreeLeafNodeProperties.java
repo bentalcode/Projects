@@ -35,7 +35,7 @@ public final class BPlusTreeLeafNodeProperties<TKey extends Comparable<TKey>, TV
 
         Conditions.validateNotNull(
             valueClassType,
-            "The class type of a node of a B+ tree can not be null.");
+            "The class type of a node of a B+ tree.");
 
         Conditions.validate(
             valueSizeInBytes >= 0,

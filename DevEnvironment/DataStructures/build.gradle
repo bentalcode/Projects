@@ -2,10 +2,28 @@ plugins {
     id 'java'
 }
 
-group 'Environment'
+group 'DevEnvironment'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceSets {
+    main {
+        java {
+            srcDirs 'java'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+
+    test {
+        java {
+            srcDirs 'java'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
 
 repositories {
     mavenCentral()

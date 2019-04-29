@@ -1,9 +1,14 @@
 package base.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+
 /**
  * The Conditions class implements validations for various conditions.
  */
 public final class Conditions {
+    private static Logger Log = LoggerFactory.getLogger(Casting.class);
 
     /**
      * Validates a conditions.
@@ -11,6 +16,8 @@ public final class Conditions {
     public static void validate(boolean condition, String errorMessage) {
         if (!condition) {
             String message = "Condition.validate() failed due to the following error: " + errorMessage;
+
+            Conditions.Log.error(message);
             throw new BaseException(message);
         }
     }
@@ -18,19 +25,35 @@ public final class Conditions {
     /**
      * Validates a not null condition.
      */
-    public static <T> void validateNotNull(T obj, String objName) {
+    public static <T> void validateNotNull(T obj, String name) {
         if (obj == null) {
-            String message = "The instance of object parameter: " + objName + " can not be null.";
+            String message = "The instance of an object can not be null. Parameter: " + name;
+
+            Conditions.Log.error(message);
             throw new BaseException(message);
         }
     }
 
     /**
-     * Validates a string not null or empty condition.
+     * Validates a string is not null or empty condition.
      */
     public static void validateStringNotNullOrEmpty(String str, String name) {
         if (Strings.isNullOrEmpty(str)) {
-            String message = "The instance of string parameter: " + name + " can not be null or empty.";
+            String message = "The instance of a string can not be null or empty. Parameter: " + name;
+
+            Conditions.Log.error(message);
+            throw new BaseException(message);
+        }
+    }
+
+    /**
+     * Validates a path is not null or empty condition.
+     */
+    public static void validatePathNotNullOrEmpty(Path path, String name) {
+        if (Paths.isNullOrEmpty(path)) {
+            String message = "The instance of a path can not be null or empty. Parameter: " + name;
+
+            Conditions.Log.error(message);
             throw new BaseException(message);
         }
     }

@@ -36,7 +36,7 @@ public final class DataResult implements IDataResult {
     public DataResult(IAggregationResults aggregationResults) {
         Conditions.validateNotNull(
             aggregationResults,
-            "The aggregation results can not be null.");
+            "The aggregation results.");
 
         this.aggregationResults = aggregationResults;
     }

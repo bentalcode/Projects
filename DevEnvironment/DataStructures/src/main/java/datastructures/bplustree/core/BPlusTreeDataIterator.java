@@ -24,7 +24,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
     public BPlusTreeDataIterator(IBPlusTreeNode<TKey> root) {
         Conditions.validateNotNull(
             root,
-            "The root of a B+ tree can not be null.");
+            "The root of a B+ tree.");
 
         IBPlusTreeNode<TKey> node = root;
 

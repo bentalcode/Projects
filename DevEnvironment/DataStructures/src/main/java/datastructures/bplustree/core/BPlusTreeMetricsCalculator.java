@@ -28,11 +28,11 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
 
         Conditions.validateNotNull(
             properties,
-            "The properties of a B+ tree can not be null.");
+            "The properties of a B+ tree.");
 
         Conditions.validateNotNull(
             root,
-            "The root of a B+ tree can not be null.");
+            "The root of a B+ tree.");
 
         this.properties = properties;
         this.root = root;

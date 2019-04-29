@@ -7,7 +7,6 @@ import base.interfaces.IBinaryComparator;
  * The ArrayComparator class implements a comparator for an array.
  */
 public final class ArrayComparator<T> implements IArrayComparator<T> {
-
     /**
      * The ArrayComparator constructor.
      */
@@ -21,7 +20,7 @@ public final class ArrayComparator<T> implements IArrayComparator<T> {
     public boolean isEqual(T[] lhs, T[] rhs, IBinaryComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
-            "The comparator of an array element can not be null.");
+            "The comparator of an array element.");
 
         if (lhs == null && rhs == null) {
             return true;
@@ -57,7 +56,7 @@ public final class ArrayComparator<T> implements IArrayComparator<T> {
     public int compareTo(T[] lhs, T[] rhs, IBinaryComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
-            "The comparator of an array element can not be null.");
+            "The comparator of an array element.");
 
         if (lhs == null && rhs == null) {
             return 0;
