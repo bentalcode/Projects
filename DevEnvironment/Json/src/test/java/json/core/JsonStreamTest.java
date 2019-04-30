@@ -1,12 +1,13 @@
 package json.core;
 
 import base.core.ResourceReader;
+import java.nio.file.Path;
+import json.interfaces.IFruit;
 import json.interfaces.ITestData;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.nio.file.Path;
 
 /**
  * The JsonStreamTest class implements tests for reading writing from/to json streams.
@@ -49,5 +50,15 @@ public final class JsonStreamTest {
      * Tests streaming json.
      */
     private void testStreamingJson(String json) {
+        JsonStream stream = new JsonStream();
+        IFruit obj1 = stream.fromJson(json, Fruit.class);
+
+        String json2 = stream.toJson(obj1);
+
+        IFruit obj2 = stream.fromJson(json2, Fruit.class);
+
+        Assert.assertTrue(
+            "The json streaming logic is invalid.",
+            obj1.equals(obj2));
     }
 }

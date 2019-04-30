@@ -1,6 +1,6 @@
 {
-  "fruit": "Apple",
-  "size": "Large",
+  "kind": "Apple",
+  "size": 100,
   "color": "Red",
-  "price": 10
+  "price": 10.5
 }

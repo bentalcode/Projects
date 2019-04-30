@@ -46,6 +46,18 @@ public final class Casting {
     }
 
     /**
+     * Casts an integer to a long.
+     */
+    public static int toInteger(long value) {
+        if (value < Integer.MIN_VALUE || value > Integer.MAX_VALUE) {
+            String errorMessage = "Failed to cast a long: " + value + " to an integer.";
+            throw new BaseException(errorMessage);
+        }
+
+        return (int)value;
+    }
+
+    /**
      * Performs an unsafe cast.
      */
     private static <TTo> TTo unsafeCast(Object obj) {

@@ -5,7 +5,7 @@ package json.interfaces;
  */
 public interface IJsonSerialization {
     /**
-     * Gets the json representation of an object.
+     * Writes an object to a json writer.
      */
-    String toJson();
+    void writeJson(IJsonWriter writer);
 }

@@ -6,104 +6,103 @@ import java.util.Collection;
  * The IJsonReader interface defines a json reader.
  */
 public interface IJsonReader {
-
     /**
      * Reads a boolean.
      */
-    boolean readBoolean();
+    boolean readBoolean(String name);
 
     /**
      * Reads a byte.
      */
-    byte readByte();
+    byte readByte(String name);
 
     /**
      * Reads a short.
      */
-    short readShort();
+    short readShort(String name);
 
     /**
      * Reads an integer.
      */
-    int readInteger();
+    int readInteger(String name);
 
     /**
      * Reads a long.
      */
-    long readLong();
+    long readLong(String name);
 
     /**
      * Reads a float.
      */
-    void readFloat();
+    float readFloat(String name);
 
     /**
      * Reads a double.
      */
-    void readDouble();
+    double readDouble(String name);
 
     /**
      * Reads a character.
      */
-    void readCharacter();
+    char readCharacter(String name);
 
     /**
      * Reads a string.
      */
-    void readString();
+    String readString(String name);
 
     /**
      * Reads a boolean array.
      */
-    boolean[] readBooleanArray();
+    boolean[] readBooleanArray(String name);
 
     /**
      * Reads a byte array.
      */
-    byte[] readByteArray(byte[] value);
+    byte[] readByteArray(String name);
 
     /**
      * Reads a short array.
      */
-    short[] readShortArray(short[] value);
+    short[] readShortArray(String name);
 
     /**
      * Reads an integer array.
      */
-    int[] readIntegerArray(int[] value);
+    int[] readIntegerArray(String name);
 
     /**
      * Reads a float array.
      */
-    float[] readFloatArray(float[] value);
+    float[] readFloatArray(String name);
 
     /**
      * Reads a double array.
      */
-    double[] readDoubleArray(double[] value);
+    double[] readDoubleArray(String name);
 
     /**
      * Reads a character array.
      */
-    char[] readCharacterArray(char[] value);
+    char[] readCharacterArray(String name);
 
     /**
      * Reads a string array.
      */
-    String[] readStringArray(String[] value);
+    String[] readStringArray(String name);
 
     /**
      * Reads a generic.
      */
-    <T> void readGeneric(T value);
+    <T> void readGeneric(String name);
 
     /**
      * Reads a generic array.
      */
-    <T> T[] readArray();
+    <T> T[] readArray(String name);
 
     /**
      * Reads a generic collection.
      */
-    <T> Collection<T> readCollection();
+    <T> Collection<T> readCollection(String name);
 }

@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.nio.file.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,19 @@ import org.slf4j.LoggerFactory;
  */
 public final class Readers {
     private static final Logger Log = LoggerFactory.getLogger(Files.class);
+
+    /**
+     * Creates a new string reader.
+     */
+    public static StringReader createStringReader(String content) {
+        Conditions.validateNotNull(
+            content,
+            "The content of a string.");
+
+        StringReader reader = new StringReader(content);
+
+        return reader;
+    }
 
     /**
      * Creates an input stream reader from an input stream.

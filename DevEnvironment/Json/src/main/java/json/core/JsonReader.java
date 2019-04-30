@@ -7,26 +7,28 @@ import java.util.Collection;
  * The JsonReader class implements a json reader.
  */
 public final class JsonReader implements IJsonReader {
+    private final IJsonObject jsonObject;
 
     /**
      * The JsonReader constructor.
      */
-    public JsonReader() {
+    public JsonReader(IJsonObject jsonObject) {
+        this.jsonObject = jsonObject;
     }
 
     /**
      * Reads a boolean.
      */
     @Override
-    public boolean readBoolean() {
-        throw new UnsupportedOperationException();
+    public boolean readBoolean(String name) {
+        return this.jsonObject.getBooleanProperty(name);
     }
 
     /**
      * Reads a byte.
      */
     @Override
-    public byte readByte() {
+    public byte readByte(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -34,7 +36,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a short.
      */
     @Override
-    public short readShort() {
+    public short readShort(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -42,55 +44,55 @@ public final class JsonReader implements IJsonReader {
      * Reads an integer.
      */
     @Override
-    public int readInteger() {
-        throw new UnsupportedOperationException();
+    public int readInteger(String name) {
+        return this.jsonObject.getIntegerProperty(name);
     }
 
     /**
      * Reads a long.
      */
     @Override
-    public long readLong() {
-        throw new UnsupportedOperationException();
+    public long readLong(String name) {
+        return this.jsonObject.getLongProperty(name);
     }
 
     /**
      * Reads a float.
      */
     @Override
-    public void readFloat() {
-
+    public float readFloat(String name) {
+        return this.jsonObject.getFloatProperty(name);
     }
 
     /**
      * Reads a double.
      */
     @Override
-    public void readDouble() {
-
+    public double readDouble(String name) {
+        return this.jsonObject.getDoubleProperty(name);
     }
 
     /**
      * Reads a character.
      */
     @Override
-    public void readCharacter() {
-
+    public char readCharacter(String name) {
+        throw new UnsupportedOperationException();
     }
 
     /**
      * Reads a string.
      */
     @Override
-    public void readString() {
-        throw new UnsupportedOperationException();
+    public String readString(String name) {
+        return this.jsonObject.getStringProperty(name);
     }
 
     /**
      * Reads a boolean array.
      */
     @Override
-    public boolean[] readBooleanArray() {
+    public boolean[] readBooleanArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -98,7 +100,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a byte array.
      */
     @Override
-    public byte[] readByteArray(byte[] value) {
+    public byte[] readByteArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -106,7 +108,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a short array.
      */
     @Override
-    public short[] readShortArray(short[] value) {
+    public short[] readShortArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -114,7 +116,7 @@ public final class JsonReader implements IJsonReader {
      * Reads an integer array.
      */
     @Override
-    public int[] readIntegerArray(int[] value) {
+    public int[] readIntegerArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -122,7 +124,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a float array.
      */
     @Override
-    public float[] readFloatArray(float[] value) {
+    public float[] readFloatArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -130,7 +132,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a double array.
      */
     @Override
-    public double[] readDoubleArray(double[] value) {
+    public double[] readDoubleArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -138,7 +140,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a character array.
      */
     @Override
-    public char[] readCharacterArray(char[] value) {
+    public char[] readCharacterArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -146,7 +148,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a string array.
      */
     @Override
-    public String[] readStringArray(String[] value) {
+    public String[] readStringArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -154,7 +156,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a generic.
      */
     @Override
-    public <T> void readGeneric(T value) {
+    public <T> void readGeneric(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -162,7 +164,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a generic array.
      */
     @Override
-    public <T> T[] readArray() {
+    public <T> T[] readArray(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -170,7 +172,7 @@ public final class JsonReader implements IJsonReader {
      * Reads a generic collection.
      */
     @Override
-    public <T> Collection<T> readCollection() {
+    public <T> Collection<T> readCollection(String name) {
         throw new UnsupportedOperationException();
     }
 }
