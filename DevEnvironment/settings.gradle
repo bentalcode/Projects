@@ -1,6 +1,8 @@
 rootProject.name = 'DevEnvironment'
-include 'Base'
-include 'DataStructures'
-include 'DataCommand'
-include 'Json'
+
+include ':Base'
+include ':DataStructures'
+include ':DataCommand'
+include ':Json'
+
 

@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+group 'DevEnvironment'
+version '1.0-SNAPSHOT'
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+}
+
+dependencies {
+    compile project(':DevEnvironment')
+}

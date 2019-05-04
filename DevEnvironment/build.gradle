@@ -1,16 +1,40 @@
-plugins {
-    id 'java'
-}
+apply from: "$commonDir/common.build.gradle"
 
 group 'DevEnvironment'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
 
-repositories {
-    mavenCentral()
-}
+    sourceSets {
+        main {
+            java {
+                srcDirs 'java'
+            }
+            resources {
+                srcDir 'resources'
+            }
+        }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+        test {
+            java {
+                srcDirs 'java'
+            }
+            resources {
+                srcDir 'resources'
+            }
+        }
+    }
+
+    dependencies {
+        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked"
+        }
+    }
 }

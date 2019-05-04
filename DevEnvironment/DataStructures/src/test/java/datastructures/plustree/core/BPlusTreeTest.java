@@ -90,7 +90,7 @@ public final class BPlusTreeTest {
     /**
      * Tests the calculation of metrics of a B+ tree.
      */
-    @Test
+    //@Test
     public void calculateTreeMetricsTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getTreeProperties();
 
