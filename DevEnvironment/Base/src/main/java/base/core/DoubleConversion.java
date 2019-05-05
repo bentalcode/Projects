@@ -17,7 +17,10 @@ public final class DoubleConversion implements IDoubleConversion {
      */
     public float toFloat(double value) {
         if (value > Float.MAX_VALUE || value < Float.MIN_VALUE) {
-            String errorMessage = "Failed to convert a double: " + value + " to a float.";
+            String errorMessage =
+                "Failed to convert a double: " + value + " to a float." +
+                "The input double is out of range.";
+
             throw new BaseException(errorMessage);
         }
 

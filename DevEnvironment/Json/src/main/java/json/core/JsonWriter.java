@@ -1,5 +1,6 @@
 package json.core;
 
+import base.core.Conditions;
 import json.interfaces.IJsonWriter;
 import java.util.Collection;
 
@@ -7,152 +8,172 @@ import java.util.Collection;
  * The JsonWriter class implements a Json writer.
  */
 public final class JsonWriter implements IJsonWriter {
+    private final IJsonTree jsonTree;
+    private final IJsonObject jsonRoot;
+
     /**
      * The JsonWriter constructor.
      */
-    public JsonWriter() {
+    public JsonWriter(IJsonTree jsonTree) {
+        Conditions.validateNotNull(
+            jsonTree,
+            "The json tree.");
+
+        this.jsonTree = jsonTree;
+        this.jsonRoot = this.jsonTree.getRoot();
     }
 
     /**
-     * Writes a boolean.
+     * Writes a boolean property.
      */
-    public void writeBoolean(boolean value) {
+    public void writeBooleanProperty(String name, boolean value) {
+        this.jsonRoot.writeBooleanProperty(name, value);
+    }
+
+    /**
+     * Writes a byte property.
+     */
+    public void writeByteProperty(String name, byte value) {
+        int valueToWrite = value;
+        this.writeIntegerProperty(name, valueToWrite);
+    }
+
+    /**
+     * Writes a short property.
+     */
+    public void writeShortProperty(String name, short value) {
+        int valueToWrite = value;
+        this.writeIntegerProperty(name, valueToWrite);
+    }
+
+    /**
+     * Writes an integer property.
+     */
+    public void writeIntegerProperty(String name, int value) {
+        this.jsonRoot.writeIntegerProperty(name, value);
+    }
+
+    /**
+     * Writes a long property.
+     */
+    public void writeLongProperty(String name, long value) {
+        this.jsonRoot.writeLongProperty(name, value);
+    }
+
+    /**
+     * Writes a float property.
+     */
+    public void writeFloatProperty(String name, float value) {
+        this.jsonRoot.writeFloatProperty(name, value);
+    }
+
+    /**
+     * Writes a double property.
+     */
+    public void writeDoubleProperty(String name, double value) {
+        this.jsonRoot.writeDoubleProperty(name, value);
+    }
+
+    /**
+     * Writes a character property.
+     */
+    public void writeCharacterProperty(String name, char value) {
+        String valueToWrite = String.valueOf(value);
+        this.writeStringProperty(name, valueToWrite);
+    }
+
+    /**
+     * Writes a string property.
+     */
+    public void writeStringProperty(String name, String value) {
+        this.jsonRoot.writeStringProperty(name, value);
+    }
+
+    /**
+     * Writes a boolean array property.
+     */
+    public void writeBooleanArrayProperty(String name, boolean[] value) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Writes a byte.
+     * Writes a byte array property.
      */
-    public void writeByte(byte value) {
+    public void writeByteArrayProperty(String name, byte[] value) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Writes a short.
+     * Writes a short array property.
      */
-    public void writeShort(short value) {
+    public void writeShortArrayProperty(String name, short[] value) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Writes an integer.
+     * Writes an integer array property.
      */
-    public void writeInteger(int value) {
+    public void writeIntegerArrayProperty(String name, int[] value) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Writes a long.
+     * Writes a float array property.
      */
-    public void writeLong(long value) {
+    public void writeFloatArrayProperty(String name, float[] value) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Writes a float.
+     * Writes a double array property.
      */
-    public void writeFloat(float value) {
+    public void writeDoubleArrayProperty(String name, double[] value) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Writes a double.
+     * Writes a character array property.
      */
-    public void writeDouble(double value) {
+    public void writeCharacterArrayProperty(String name, char[] value) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Writes a character.
+     * Writes a string array property.
      */
-    public void writeCharacter(char value) {
+    public void writeStringArrayProperty(String name, String[] value) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Writes a string.
-     */
-    public void writeString(String value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a boolean array.
-     */
-    public void writeBooleanArray(boolean[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a byte array.
-     */
-    public void writeByteArray(byte[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a short array.
-     */
-    public void writeShortArray(short[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes an integer array.
-     */
-    public void writeIntegerArray(int[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a float array.
-     */
-    public void writeFloatArray(float[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a double array.
-     */
-    public void writeDoubleArray(double[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a character array.
-     */
-    public void writeCharacterArray(char[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a string array.
-     */
-    public void writeStringArray(String[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a generic.
-     */
-    @Override
-    public <T> void writeGeneric(T value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a generic array.
-     */
-    @Override
-    public <T> void writeArray(T[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a generic collection.
+     * Writes a generic property.
      */
     @Override
-    public <T> void writeCollection(Collection<T> value) {
+    public <T> void writeGenericProperty(String name, T value) {
         throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Writes a generic array property.
+     */
+    @Override
+    public <T> void writeArrayProperty(String name, T[] value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Writes a generic collection property.
+     */
+    @Override
+    public <T> void writeCollectionProperty(String name, Collection<T> value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Gets the string representation of the json tree.
+     */
+    @Override
+    public String toString() {
+        return this.jsonTree.getRoot().toString();
     }
 }

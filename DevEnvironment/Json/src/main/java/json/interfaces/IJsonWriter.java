@@ -7,102 +7,102 @@ import java.util.Collection;
  */
 public interface IJsonWriter {
     /**
-     * Writes a boolean.
+     * Writes a boolean property.
      */
-    void writeBoolean(boolean value);
+    void writeBooleanProperty(String name, boolean value);
 
     /**
-     * Writes a byte.
+     * Writes a byte property.
      */
-    void writeByte(byte value);
+    void writeByteProperty(String name, byte value);
 
     /**
-     * Writes a short.
+     * Writes a short property.
      */
-    void writeShort(short value);
+    void writeShortProperty(String name, short value);
 
     /**
-     * Writes an integer.
+     * Writes an integer property.
      */
-    void writeInteger(int value);
+    void writeIntegerProperty(String name, int value);
 
     /**
-     * Writes a long.
+     * Writes a long property.
      */
-    void writeLong(long value);
+    void writeLongProperty(String name, long value);
 
     /**
-     * Writes a float.
+     * Writes a float property.
      */
-    void writeFloat(float value);
+    void writeFloatProperty(String name, float value);
 
     /**
-     * Writes a double.
+     * Writes a double property.
      */
-    void writeDouble(double value);
+    void writeDoubleProperty(String name, double value);
 
     /**
-     * Writes a character.
+     * Writes a character property.
      */
-    void writeCharacter(char value);
+    void writeCharacterProperty(String name, char value);
 
     /**
-     * Writes a string.
+     * Writes a string property.
      */
-    void writeString(String value);
+    void writeStringProperty(String name, String value);
 
     /**
-     * Writes a boolean array.
+     * Writes a boolean array property.
      */
-    void writeBooleanArray(boolean[] value);
+    void writeBooleanArrayProperty(String name, boolean[] value);
 
     /**
-     * Writes a byte array.
+     * Writes a byte array property.
      */
-    void writeByteArray(byte[] value);
+    void writeByteArrayProperty(String name, byte[] value);
 
     /**
-     * Writes a short array.
+     * Writes a short array property.
      */
-    void writeShortArray(short[] value);
+    void writeShortArrayProperty(String name, short[] value);
 
     /**
-     * Writes an integer array.
+     * Writes an integer array property.
      */
-    void writeIntegerArray(int[] value);
+    void writeIntegerArrayProperty(String name, int[] value);
 
     /**
-     * Writes a float array.
+     * Writes a float array property.
      */
-    void writeFloatArray(float[] value);
+    void writeFloatArrayProperty(String name, float[] value);
 
     /**
-     * Writes a double array.
+     * Writes a double array property.
      */
-    void writeDoubleArray(double[] value);
+    void writeDoubleArrayProperty(String name, double[] value);
 
     /**
-     * Writes a character array.
+     * Writes a character array property.
      */
-    void writeCharacterArray(char[] value);
+    void writeCharacterArrayProperty(String name, char[] value);
 
     /**
-     * Writes a string array.
+     * Writes a string array property.
      */
-    void writeStringArray(String[] value);
+    void writeStringArrayProperty(String name, String[] value);
 
     /**
-     * Writes a generic.
+     * Writes a generic property.
      */
-    <T> void writeGeneric(T value);
+    <T> void writeGenericProperty(String name, T value);
 
     /**
-     * Writes a generic array.
+     * Writes a generic array property.
      */
-    <T> void writeArray(T[] value);
+    <T> void writeArrayProperty(String name, T[] value);
 
     /**
-     * Writes a generic collection.
+     * Writes a generic collection property.
      */
-    <T> void writeCollection(Collection<T> value);
+    <T> void writeCollectionProperty(String name, Collection<T> value);
 }

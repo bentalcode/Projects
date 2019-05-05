@@ -1,7 +1,9 @@
 package base.core;
 
 import base.interfaces.IDoubleConversion;
+import base.interfaces.IIntegerConversion;
 import base.interfaces.ILongConversion;
+import base.interfaces.IStringConversion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,8 +11,10 @@ import org.slf4j.LoggerFactory;
  * The Conversion class implements complementary APIs for conversions.
  */
 public final class Conversion {
+    private static final IIntegerConversion IntegerConversion = new IntegerConversion();
     private static final ILongConversion LongConversion = new LongConversion();
     private static final IDoubleConversion DoubleConversion = new DoubleConversion();
+    private static final IStringConversion StringConversion = new StringConversion();
 
     private static final Logger Log = LoggerFactory.getLogger(Conversion.class);
 
@@ -51,6 +55,13 @@ public final class Conversion {
     }
 
     /**
+     * Gets an interface for integer conversions.
+     */
+    public static IIntegerConversion integerConversion() {
+        return Conversion.IntegerConversion;
+    }
+
+    /**
      * Gets an interface for long conversions.
      */
     public static ILongConversion longConversion() {
@@ -62,6 +73,13 @@ public final class Conversion {
      */
     public static IDoubleConversion doubleConversion() {
         return Conversion.DoubleConversion;
+    }
+
+    /**
+     * Gets an interface for string conversions.
+     */
+    public static IStringConversion stringConversion() {
+        return Conversion.StringConversion;
     }
 
     /**

@@ -58,5 +58,4 @@ public class ReverseIterator<T> implements Iterator<T>, Iterable<T> {
     public void remove() {
         throw new UnsupportedOperationException();
     }
-
 }

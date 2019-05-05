@@ -9,7 +9,13 @@ import org.json.simple.JSONObject;
  */
 public final class JsonTree implements IJsonTree {
     private final IJsonObject rootObject;
-    private int id;
+
+    /**
+     * The JsonTree constructor.
+     */
+    public JsonTree() {
+        this(new JSONObject());
+    }
 
     /**
      * The JsonTree constructor.
@@ -34,15 +40,21 @@ public final class JsonTree implements IJsonTree {
      * Creates a new json object.
      */
     public IJsonObject createObject(JSONObject object) {
-        ++this.id;
-        return new JsonObject(this.id, object);
+        return new JsonObject(object);
     }
 
     /**
      * Creates a new json array.
      */
     public IJsonArray createArray(JSONArray array) {
-        ++this.id;
-        return new JsonArray(this.id, array);
+        return new JsonArray(array);
+    }
+
+    /**
+     * Gets the string representation of the json object.
+     */
+    @Override
+    public String toString() {
+        return this.rootObject.toString();
     }
 }

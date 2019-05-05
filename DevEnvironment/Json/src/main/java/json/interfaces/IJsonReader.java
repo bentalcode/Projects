@@ -7,102 +7,102 @@ import java.util.Collection;
  */
 public interface IJsonReader {
     /**
-     * Reads a boolean.
+     * Reads a boolean property.
      */
-    boolean readBoolean(String name);
+    boolean readBooleanProperty(String name);
 
     /**
-     * Reads a byte.
+     * Reads a byte property.
      */
-    byte readByte(String name);
+    byte readByteProperty(String name);
 
     /**
-     * Reads a short.
+     * Reads a short property.
      */
-    short readShort(String name);
+    short readShortProperty(String name);
 
     /**
-     * Reads an integer.
+     * Reads an integer property.
      */
-    int readInteger(String name);
+    int readIntegerProperty(String name);
 
     /**
-     * Reads a long.
+     * Reads a long property.
      */
-    long readLong(String name);
+    long readLongProperty(String name);
 
     /**
-     * Reads a float.
+     * Reads a float property.
      */
-    float readFloat(String name);
+    float readFloatProperty(String name);
 
     /**
-     * Reads a double.
+     * Reads a double property.
      */
-    double readDouble(String name);
+    double readDoubleProperty(String name);
 
     /**
-     * Reads a character.
+     * Reads a character property.
      */
-    char readCharacter(String name);
+    char readCharacterProperty(String name);
 
     /**
-     * Reads a string.
+     * Reads a string property.
      */
-    String readString(String name);
+    String readStringProperty(String name);
 
     /**
-     * Reads a boolean array.
+     * Reads a boolean array property.
      */
-    boolean[] readBooleanArray(String name);
+    boolean[] readBooleanArrayProperty(String name);
 
     /**
-     * Reads a byte array.
+     * Reads a byte array property.
      */
-    byte[] readByteArray(String name);
+    byte[] readByteArrayProperty(String name);
 
     /**
-     * Reads a short array.
+     * Reads a short array property.
      */
-    short[] readShortArray(String name);
+    short[] readShortArrayProperty(String name);
 
     /**
-     * Reads an integer array.
+     * Reads an integer array property.
      */
-    int[] readIntegerArray(String name);
+    int[] readIntegerArrayProperty(String name);
 
     /**
-     * Reads a float array.
+     * Reads a float array property.
      */
-    float[] readFloatArray(String name);
+    float[] readFloatArrayProperty(String name);
 
     /**
-     * Reads a double array.
+     * Reads a double array property.
      */
-    double[] readDoubleArray(String name);
+    double[] readDoubleArrayProperty(String name);
 
     /**
-     * Reads a character array.
+     * Reads a character array property.
      */
-    char[] readCharacterArray(String name);
+    char[] readCharacterArrayProperty(String name);
 
     /**
-     * Reads a string array.
+     * Reads a string array property.
      */
-    String[] readStringArray(String name);
+    String[] readStringArrayProperty(String name);
 
     /**
-     * Reads a generic.
+     * Reads a generic property.
      */
-    <T> void readGeneric(String name);
+    <T> void readGenericProperty(String name);
 
     /**
-     * Reads a generic array.
+     * Reads a generic array property.
      */
-    <T> T[] readArray(String name);
+    <T> T[] readArrayProperty(String name);
 
     /**
-     * Reads a generic collection.
+     * Reads a generic collection property.
      */
-    <T> Collection<T> readCollection(String name);
+    <T> Collection<T> readCollectionProperty(String name);
 }

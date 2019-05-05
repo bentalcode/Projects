@@ -22,7 +22,7 @@ public final class Fruit implements IFruit {
     private final int size;
     private final String color;
     private final double price;
-    private final IBinaryComparator<IFruit> comparator = new Comparator();
+    private final IBinaryComparator<IFruit> comparator = Fruit.DefaultComparator();
 
     /**
      * The Fruit constructor.
@@ -76,33 +76,26 @@ public final class Fruit implements IFruit {
      */
     @Override
     public void writeJson(IJsonWriter writer) {
-        writer.writeString(this.kind);
-        writer.writeInteger(this.size);
-        writer.writeString(this.color);
-        writer.writeDouble(this.price);
+        writer.writeStringProperty(Fruit.Kind, this.kind);
+        writer.writeIntegerProperty(Fruit.Size, this.size);
+        writer.writeStringProperty(Fruit.Color, this.color);
+        writer.writeDoubleProperty(Fruit.Price, this.price);
     }
 
     /**
      * Reads a json.
      */
     public static IFruit readJson(IJsonReader reader) {
-        String kind = reader.readString(Fruit.Kind);
-        int size = reader.readInteger(Fruit.Size);
-        String color = reader.readString(Fruit.Color);
-        double price = reader.readDouble(Fruit.Price);
+        String kind = reader.readStringProperty(Fruit.Kind);
+        int size = reader.readIntegerProperty(Fruit.Size);
+        String color = reader.readStringProperty(Fruit.Color);
+        double price = reader.readDoubleProperty(Fruit.Price);
 
         return new Fruit(
             kind,
             size,
             color,
             price);
-    }
-
-    /**
-     * Reads a json.
-     */
-    public static IFruit readJson1() {
-        return null;
     }
 
     /**

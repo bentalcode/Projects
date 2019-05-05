@@ -8,15 +8,12 @@ import java.io.Reader;
 import json.interfaces.IJsonReader;
 import json.interfaces.IJsonSerialization;
 import json.interfaces.IJsonStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import json.interfaces.IJsonWriter;
 
 /**
  * The JsonStream class implements a json stream.
  */
 public final class JsonStream implements IJsonStream {
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     /**
      * The JsonStream constructor.
      */
@@ -31,7 +28,12 @@ public final class JsonStream implements IJsonStream {
             obj,
             "The object for serializing to a json string.");
 
-        return "";
+        IJsonTree tree = new JsonTree();
+        IJsonWriter treeWriter = new JsonWriter(tree);
+
+        obj.writeJson(treeWriter);
+
+        return treeWriter.toString();
     }
 
     /**
@@ -55,12 +57,10 @@ public final class JsonStream implements IJsonStream {
             IJsonParser parser = new JsonParser();
             IJsonTree tree = parser.parse(reader);
 
-            IJsonObject rootObject = tree.getRoot();
-
-            IJsonReader rootObjectReader = new JsonReader(rootObject);
+            IJsonReader treeReader = new JsonReader(tree);
 
             ReflectionHandler reflectionHandler = new ReflectionHandler();
-            instance = reflectionHandler.invoke(classType, "readJson", IJsonReader.class, rootObjectReader);
+            instance = reflectionHandler.invoke(classType, "readJson", IJsonReader.class, treeReader);
         }
 
         return instance;
