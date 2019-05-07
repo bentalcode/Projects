@@ -4,16 +4,22 @@ import base.core.Conditions;
 import base.core.DestructorHandler;
 import base.core.Readers;
 import base.core.ReflectionHandler;
+
+import java.io.IOException;
 import java.io.Reader;
-import json.interfaces.IJsonReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import base.core.Writers;
+import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonSerialization;
 import json.interfaces.IJsonStream;
-import json.interfaces.IJsonWriter;
 
 /**
  * The JsonStream class implements a json stream.
  */
 public final class JsonStream implements IJsonStream {
+    private final IJsonFactory factory = new JsonFactory();
+
     /**
      * The JsonStream constructor.
      */
@@ -28,18 +34,27 @@ public final class JsonStream implements IJsonStream {
             obj,
             "The object for serializing to a json string.");
 
-        IJsonTree tree = new JsonTree();
-        IJsonWriter treeWriter = new JsonWriter(tree);
+        String json;
 
-        obj.writeJson(treeWriter);
+        try (DestructorHandler destructorHandler = new DestructorHandler()) {
+            StringWriter writer = Writers.createStringWriter();
+            destructorHandler.register(writer);
 
-        return treeWriter.toString();
+            JsonWriter jsonWriter = new JsonWriter(this.factory, writer);
+            destructorHandler.register(jsonWriter);
+
+            jsonWriter.writeObject(obj);
+            jsonWriter.flush();
+            json = writer.toString();
+        }
+
+        return json;
     }
 
     /**
      * De-Serializes an object from a json string.
      */
-    public <T extends IJsonSerialization> T fromJson(String json, Class<T> classType) {
+    public <T extends IJsonSerialization> T fromJson(String json, Class<?> classType) {
         Conditions.validateNotNull(
             json,
             "The json string for de-serializing an object.");
@@ -51,16 +66,19 @@ public final class JsonStream implements IJsonStream {
         T instance;
 
         try (DestructorHandler destructorHandler = new DestructorHandler()) {
+
             Reader reader = Readers.createStringReader(json);
             destructorHandler.register(reader);
 
-            IJsonParser parser = new JsonParser();
-            IJsonTree tree = parser.parse(reader);
+            JsonParser parser = new JsonParser(this.factory, reader);
+            destructorHandler.register(parser);
 
-            IJsonReader treeReader = new JsonReader(tree);
+            IJsonTree tree = parser.parse();
+
+            IJsonObjectReader objectReader = new JsonObjectReader(tree.getRootObject());
 
             ReflectionHandler reflectionHandler = new ReflectionHandler();
-            instance = reflectionHandler.invoke(classType, "readJson", IJsonReader.class, treeReader);
+            instance = reflectionHandler.invoke(classType, "readJson", IJsonObjectReader.class, objectReader);
         }
 
         return instance;

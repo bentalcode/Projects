@@ -1,12 +1,12 @@
 package base.core;
 
 import base.interfaces.IDestructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Scanner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Scanners class implements complementary APIs for scanners.

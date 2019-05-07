@@ -13,5 +13,5 @@ public interface IJsonStream {
     /**
      * De-Serializes an object from a json string.
      */
-    <T extends IJsonSerialization> T fromJson(String json, Class<T> classType);
+    <T extends IJsonSerialization> T fromJson(String json, Class<?> classType);
 }

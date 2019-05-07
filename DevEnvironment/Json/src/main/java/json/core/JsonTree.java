@@ -1,60 +1,84 @@
 package json.core;
 
-import base.core.Conditions;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 /**
  * The JsonTree class implements a json tree.
  */
 public final class JsonTree implements IJsonTree {
-    private final IJsonObject rootObject;
+    private static final int RootId = 0;
+
+    private IJsonObject rootObject;
+    private IJsonArray rootArray;
+    private int id = RootId;
 
     /**
-     * The JsonTree constructor.
+     * Creates a json tree from a root object.
      */
-    public JsonTree() {
-        this(new JSONObject());
+    public static IJsonTree createWithRootObject() {
+        IJsonTree tree = new JsonTree(new JsonObject(RootId));
+        return tree;
+    }
+
+    /**
+     * Creates a json tree from a root array.
+     */
+    public static IJsonTree createWithRootArray() {
+        IJsonTree tree = new JsonTree(new JsonArray(RootId));
+        return tree;
     }
 
     /**
      * The JsonTree constructor.
      */
-    public JsonTree(JSONObject rootObject) {
-        Conditions.validateNotNull(
-            rootObject,
-            "The root object.");
+    private JsonTree(IJsonObject rootObject) {
+        this.rootObject = rootObject;
+        this.rootArray = null;
+    }
 
-        this.rootObject = this.createObject(rootObject);
+    /**
+     * The JsonTree constructor.
+     */
+    private JsonTree(IJsonArray rootArray) {
+        this.rootObject = null;
+        this.rootArray = rootArray;
     }
 
     /**
      * Gets the root object.
      */
     @Override
-    public IJsonObject getRoot() {
+    public IJsonObject getRootObject() {
         return this.rootObject;
+    }
+
+    /**
+     * Gets the root array.
+     */
+    @Override
+    public IJsonArray getRootArray() {
+        return this.rootArray;
     }
 
     /**
      * Creates a new json object.
      */
-    public IJsonObject createObject(JSONObject object) {
-        return new JsonObject(object);
+    public IJsonObject createObject() {
+        int currId = this.nextId();
+        return new JsonObject(currId);
     }
 
     /**
      * Creates a new json array.
      */
-    public IJsonArray createArray(JSONArray array) {
-        return new JsonArray(array);
+    public IJsonArray createArray() {
+        int currId = this.nextId();
+        return new JsonArray(currId);
     }
 
     /**
-     * Gets the string representation of the json object.
+     * Returns the next identifier of a json object.
      */
-    @Override
-    public String toString() {
-        return this.rootObject.toString();
+    private int nextId() {
+        ++this.id;
+        return this.id;
     }
 }

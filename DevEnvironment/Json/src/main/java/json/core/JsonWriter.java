@@ -1,179 +1,111 @@
 package json.core;
 
 import base.core.Conditions;
-import json.interfaces.IJsonWriter;
-import java.util.Collection;
+import base.core.DestructorHandler;
+import base.interfaces.ICloseable;
+import json.interfaces.IJsonObjectWriter;
+import json.interfaces.IJsonSerialization;
+import java.io.Writer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * The JsonWriter class implements a Json writer.
+ * The JsonWriter class implements a json writer.
  */
-public final class JsonWriter implements IJsonWriter {
-    private final IJsonTree jsonTree;
-    private final IJsonObject jsonRoot;
+public final class JsonWriter implements IJsonWriter, ICloseable {
+    private final IJsonFactory factory;
+    private final JsonGenerator generator;
+
+    private final DestructorHandler destructorHandler = new DestructorHandler();
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The JsonWriter constructor.
      */
-    public JsonWriter(IJsonTree jsonTree) {
+    public JsonWriter(IJsonFactory factory, Writer writer) {
         Conditions.validateNotNull(
-            jsonTree,
-            "The json tree.");
+            factory,
+            "The json factory.");
 
-        this.jsonTree = jsonTree;
-        this.jsonRoot = this.jsonTree.getRoot();
+        Conditions.validateNotNull(
+            writer,
+            "The writer to write a json into.");
+
+        this.factory = factory;
+        this.generator = this.factory.createGenerator(writer);
+        this.destructorHandler.register(this.generator);
     }
 
     /**
-     * Writes a boolean property.
+     * Closes the writer.
      */
-    public void writeBooleanProperty(String name, boolean value) {
-        this.jsonRoot.writeBooleanProperty(name, value);
+    @Override
+    public void close() {
+        this.destructorHandler.close();
     }
 
     /**
-     * Writes a byte property.
+     * Flushes the writer.
      */
-    public void writeByteProperty(String name, byte value) {
-        int valueToWrite = value;
-        this.writeIntegerProperty(name, valueToWrite);
+    @Override
+    public void flush() {
+        this.generator.flush();
     }
 
     /**
-     * Writes a short property.
+     * Writes a generic object.
      */
-    public void writeShortProperty(String name, short value) {
-        int valueToWrite = value;
-        this.writeIntegerProperty(name, valueToWrite);
-    }
+    @Override
+    public <T extends IJsonSerialization> void writeObject(T obj) {
+        Conditions.validateNotNull(
+            obj,
+            "The object to write to a json writer.");
 
-    /**
-     * Writes an integer property.
-     */
-    public void writeIntegerProperty(String name, int value) {
-        this.jsonRoot.writeIntegerProperty(name, value);
-    }
+        this.generator.writeStartObject();
 
-    /**
-     * Writes a long property.
-     */
-    public void writeLongProperty(String name, long value) {
-        this.jsonRoot.writeLongProperty(name, value);
-    }
+        IJsonObjectWriter objectWriter = new JsonObjectWriter(this);
+        obj.writeJson(objectWriter);
 
-    /**
-     * Writes a float property.
-     */
-    public void writeFloatProperty(String name, float value) {
-        this.jsonRoot.writeFloatProperty(name, value);
-    }
-
-    /**
-     * Writes a double property.
-     */
-    public void writeDoubleProperty(String name, double value) {
-        this.jsonRoot.writeDoubleProperty(name, value);
-    }
-
-    /**
-     * Writes a character property.
-     */
-    public void writeCharacterProperty(String name, char value) {
-        String valueToWrite = String.valueOf(value);
-        this.writeStringProperty(name, valueToWrite);
+        this.generator.writeEndObject();
     }
 
     /**
      * Writes a string property.
      */
+    @Override
     public void writeStringProperty(String name, String value) {
-        this.jsonRoot.writeStringProperty(name, value);
+        this.generator.writeStringProperty(name, value);
     }
 
     /**
-     * Writes a boolean array property.
-     */
-    public void writeBooleanArrayProperty(String name, boolean[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a byte array property.
-     */
-    public void writeByteArrayProperty(String name, byte[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a short array property.
-     */
-    public void writeShortArrayProperty(String name, short[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes an integer array property.
-     */
-    public void writeIntegerArrayProperty(String name, int[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a float array property.
-     */
-    public void writeFloatArrayProperty(String name, float[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a double array property.
-     */
-    public void writeDoubleArrayProperty(String name, double[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a character array property.
-     */
-    public void writeCharacterArrayProperty(String name, char[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a string array property.
-     */
-    public void writeStringArrayProperty(String name, String[] value) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Writes a generic property.
+     * Writes an integer property.
      */
     @Override
-    public <T> void writeGenericProperty(String name, T value) {
-        throw new UnsupportedOperationException();
+    public void writeIntegerProperty(String name, int value) {
+        this.generator.writeIntegerProperty(name, value);
     }
 
     /**
-     * Writes a generic array property.
+     * Writes a long property.
      */
     @Override
-    public <T> void writeArrayProperty(String name, T[] value) {
-        throw new UnsupportedOperationException();
+    public void writeLongProperty(String name, long value) {
+        this.generator.writeLongProperty(name, value);
     }
 
     /**
-     * Writes a generic collection property.
+     * Writes a float property.
      */
     @Override
-    public <T> void writeCollectionProperty(String name, Collection<T> value) {
-        throw new UnsupportedOperationException();
+    public void writeFloatProperty(String name, float value) {
+        this.generator.writeFloatProperty(name, value);
     }
 
     /**
-     * Gets the string representation of the json tree.
+     * Writes a double property.
      */
     @Override
-    public String toString() {
-        return this.jsonTree.getRoot().toString();
+    public void writeDoubleProperty(String name, double value) {
+        this.generator.writeDoubleProperty(name, value);
     }
 }

@@ -30,6 +30,7 @@ public final class TreeDataIterator<TKey extends Comparable<TKey>, TValue> imple
      */
     @Override
     public Iterator<ITreeNodeData<TKey, TValue>> iterator() {
+        this.currentIndex = 0;
         return this;
     }
 

@@ -1,11 +1,11 @@
 package json.interfaces;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
- * The IJsonWriter interface defines a json writer.
+ * The IJsonObjectWriter interface defines a writer of a json object.
  */
-public interface IJsonWriter {
+public interface IJsonObjectWriter {
     /**
      * Writes a boolean property.
      */
@@ -102,7 +102,7 @@ public interface IJsonWriter {
     <T> void writeArrayProperty(String name, T[] value);
 
     /**
-     * Writes a generic collection property.
+     * Writes a generic list property.
      */
-    <T> void writeCollectionProperty(String name, Collection<T> value);
+    <T extends IJsonSerialization> void writeListProperty(String name, List<T> value);
 }

@@ -1,11 +1,11 @@
 package json.interfaces;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
- * The IJsonReader interface defines a json reader.
+ * The IJsonObjectReader interface defines a reader of a json object.
  */
-public interface IJsonReader {
+public interface IJsonObjectReader {
     /**
      * Reads a boolean property.
      */
@@ -94,7 +94,7 @@ public interface IJsonReader {
     /**
      * Reads a generic property.
      */
-    <T> void readGenericProperty(String name);
+    <T> T readGenericProperty(String name);
 
     /**
      * Reads a generic array property.
@@ -102,7 +102,7 @@ public interface IJsonReader {
     <T> T[] readArrayProperty(String name);
 
     /**
-     * Reads a generic collection property.
+     * Reads a generic list property.
      */
-    <T> Collection<T> readCollectionProperty(String name);
+    <T> List<T> readListProperty(String name);
 }

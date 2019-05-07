@@ -1,8 +1,9 @@
 package json.core;
 
+import base.core.Pair;
 import base.core.ResourceReader;
 import java.nio.file.Path;
-import json.interfaces.IFruit;
+import json.interfaces.IJsonSerialization;
 import json.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Assert;
@@ -40,23 +41,22 @@ public final class JsonStreamTest {
      */
     @Test
     public void jsonStreamingTest() {
-        for (Path path : this.testData.getSimpleJsonResources()) {
-            String json = ResourceReader.loadString(path);
-
-            this.testStreamingJson(json);
+        for (Pair<Path, Class<?>> resourceInformation : this.testData.getSimpleJsonResourcesInformation()) {
+            String json = ResourceReader.loadString(resourceInformation.first());
+            this.testStreamingJson(json, resourceInformation.second());
         }
     }
 
     /**
      * Tests streaming json.
      */
-    private void testStreamingJson(String json) {
+    private <T extends IJsonSerialization> void testStreamingJson(String json, Class<?> classType) {
         JsonStream stream = new JsonStream();
-        IFruit obj1 = stream.fromJson(json, Fruit.class);
+        T obj1 = stream.fromJson(json, classType);
 
         String json2 = stream.toJson(obj1);
 
-        IFruit obj2 = stream.fromJson(json2, Fruit.class);
+        T obj2 = stream.fromJson(json2, classType);
 
         Assert.assertTrue(
             "The json streaming logic is invalid.",

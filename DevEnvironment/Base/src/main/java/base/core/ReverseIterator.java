@@ -27,6 +27,7 @@ public class ReverseIterator<T> implements Iterator<T>, Iterable<T> {
      */
     @Override
     public Iterator<T> iterator() {
+        this.position = list.size() - 1;
         return this;
     }
 

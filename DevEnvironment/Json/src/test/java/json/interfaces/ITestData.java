@@ -1,5 +1,6 @@
 package json.interfaces;
 
+import base.core.Pair;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public interface ITestData {
     /**
-     * Gets simple resources of Json.
+     * Gets information of simple json resources.
      */
-    List<Path> getSimpleJsonResources();
+    List<Pair<Path, Class<?>>> getSimpleJsonResourcesInformation();
 }

@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.file.Path;
 import org.slf4j.Logger;
@@ -16,6 +18,13 @@ import org.slf4j.LoggerFactory;
  */
 public final class Writers {
     private static final Logger Log = LoggerFactory.getLogger(Writers.class);
+
+    /**
+     * Creates a string writer.
+     */
+    public static StringWriter createStringWriter() {
+        return new StringWriter();
+    }
 
     /**
      * Creates a buffered writer.

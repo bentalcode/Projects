@@ -7,5 +7,20 @@ public interface IJsonTree {
     /**
      * Gets the root object.
      */
-    IJsonObject getRoot();
+    IJsonObject getRootObject();
+
+    /**
+     * Gets the root array.
+     */
+    IJsonArray getRootArray();
+
+    /**
+     * Creates a new json object.
+     */
+    IJsonObject createObject();
+
+    /**
+     * Creates a new json array.
+     */
+    IJsonArray createArray();
 }

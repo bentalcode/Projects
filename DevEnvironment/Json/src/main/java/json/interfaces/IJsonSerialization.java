@@ -7,5 +7,5 @@ public interface IJsonSerialization {
     /**
      * Writes an object to a json writer.
      */
-    void writeJson(IJsonWriter writer);
+    void writeJson(IJsonObjectWriter writer);
 }

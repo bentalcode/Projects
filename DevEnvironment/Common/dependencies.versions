@@ -1,4 +1,4 @@
 ext {
     slf4jVersion = '1.7.26'     // slf4j-api
-    jsonSimple = '1.1.1'        // json-simple
+    jacksonCore = '2.9.8'       // jackson-core
 }

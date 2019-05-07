@@ -5,70 +5,59 @@ import base.core.CompareToBuilder;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import json.interfaces.IFruit;
+import json.interfaces.IColor;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
 
 /**
- * The Fruit class implements properties of a fruit.
+ * The Color class implements properties of a color.
  */
-public final class Fruit implements IFruit {
-    private static final String PropertyKind = "kind";
-    private static final String PropertySize = "size";
-    private static final String PropertyColor = "color";
-    private static final String PropertyPrice = "price";
+public final class Color implements IColor {
+    private static final String PropertyName = "name";
+    private static final String PropertyHex = "hex";
+    private static final String PropertyRgb = "rgb";
 
-    private final String kind;
-    private final int size;
-    private final String color;
-    private final double price;
-    private final IBinaryComparator<IFruit> comparator = Fruit.DefaultComparator();
+    private final String name;
+    private final String hex;
+    private final String rgb;
+    
+    private final IBinaryComparator<IColor> comparator = Color.DefaultComparator();
 
     /**
-     * The Fruit constructor.
+     * The Color constructor.
      */
-    public Fruit(
-        String kind,
-        int size,
-        String color,
-        double price) {
+    public Color(
+        String name,
+        String hex,
+        String rgb) {
 
-        this.kind = kind;
-        this.size = size;
-        this.color = color;
-        this.price = price;
+        this.name = name;
+        this.hex = hex;
+        this.rgb = rgb;
     }
 
     /**
-     * Gets the kind of a fruit.
+     * Gets the name of a color.
      */
     @Override
-    public String getKind() {
-        return this.kind;
+    public String getName() {
+        return this.name;
     }
 
     /**
-     * Gets size of a fruit.
+     * Gets the hex of a color.
      */
     @Override
-    public int getSize() {
-        return this.size;
+    public String getHex() {
+        return this.hex;
     }
 
     /**
-     * Gets color of a fruit.
+     * Gets the rgb of a color.
      */
     @Override
-    public String getColor() {
-        return this.color;
-    }
-
-    /**
-     * Gets price of a fruit.
-     */
-    @Override
-    public double getPrice() {
-        return this.price;
+    public String getRgb() {
+        return this.rgb;
     }
 
     /**
@@ -76,26 +65,23 @@ public final class Fruit implements IFruit {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(Fruit.PropertyKind, this.kind);
-        writer.writeIntegerProperty(Fruit.PropertySize, this.size);
-        writer.writeStringProperty(Fruit.PropertyColor, this.color);
-        writer.writeDoubleProperty(Fruit.PropertyPrice, this.price);
+        writer.writeStringProperty(Color.PropertyName, this.name);
+        writer.writeStringProperty(Color.PropertyHex, this.hex);
+        writer.writeStringProperty(Color.PropertyRgb, this.rgb);
     }
 
     /**
      * Reads a json.
      */
-    public static IFruit readJson(IJsonObjectReader reader) {
-        String kind = reader.readStringProperty(Fruit.PropertyKind);
-        int size = reader.readIntegerProperty(Fruit.PropertySize);
-        String color = reader.readStringProperty(Fruit.PropertyColor);
-        double price = reader.readDoubleProperty(Fruit.PropertyPrice);
+    public static IColor readJson(IJsonObjectReader reader) {
+        String name = reader.readStringProperty(Color.PropertyName);
+        String hex = reader.readStringProperty(Color.PropertyHex);
+        String rgb = reader.readStringProperty(Color.PropertyRgb);
 
-        return new Fruit(
-            kind,
-            size,
-            color,
-            price);
+        return new Color(
+            name,
+            hex,
+            rgb);
     }
 
     /**
@@ -130,7 +116,7 @@ public final class Fruit implements IFruit {
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IFruit other) {
+    public boolean isEqual(IColor other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -142,21 +128,21 @@ public final class Fruit implements IFruit {
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IFruit other) {
+    public int compareTo(IColor other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IFruit> DefaultComparator() {
+    public static IBinaryComparator<IColor> DefaultComparator() {
         return new Comparator();
     }
 
     /**
      * The Comparator class implements a comparator of a fruit.
      */
-    public static final class Comparator implements IBinaryComparator<IFruit> {
+    public static final class Comparator implements IBinaryComparator<IColor> {
         /**
          * The Comparator constructor.
          */
@@ -167,19 +153,18 @@ public final class Fruit implements IFruit {
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IFruit obj) {
+        public int getHashCode(IColor obj) {
             return new HashCodeBuilder(3, 5)
-                .withString(obj.getKind())
-                .withInteger(obj.getSize())
-                .withString(obj.getColor())
-                .withDouble(obj.getPrice())
+                .withString(obj.getName())
+                .withString(obj.getHex())
+                .withString(obj.getRgb())
                 .build();
         }
 
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(IFruit lhs, IFruit rhs) {
+        public boolean isEqual(IColor lhs, IColor rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -189,10 +174,9 @@ public final class Fruit implements IFruit {
             }
 
             return new EqualBuilder()
-                .withString(lhs.getKind(), rhs.getKind())
-                .withInteger(lhs.getSize(), rhs.getSize())
-                .withString(lhs.getColor(), rhs.getColor())
-                .withDouble(lhs.getPrice(), rhs.getPrice())
+                .withString(lhs.getName(), rhs.getName())
+                .withString(lhs.getHex(), rhs.getHex())
+                .withString(lhs.getRgb(), rhs.getRgb())
                 .build();
         }
 
@@ -204,7 +188,7 @@ public final class Fruit implements IFruit {
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IFruit lhs, IFruit rhs) {
+        public int compareTo(IColor lhs, IColor rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -218,11 +202,11 @@ public final class Fruit implements IFruit {
             }
 
             return new CompareToBuilder()
-                .withString(lhs.getKind(), rhs.getKind())
-                .withInteger(lhs.getSize(), rhs.getSize())
-                .withString(lhs.getColor(), rhs.getColor())
-                .withDouble(lhs.getPrice(), rhs.getPrice())
+                .withString(lhs.getName(), rhs.getName())
+                .withString(lhs.getHex(), rhs.getHex())
+                .withString(lhs.getRgb(), rhs.getRgb())
                 .build();
         }
     }
+
 }

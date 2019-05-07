@@ -1,13 +1,18 @@
 package json.core;
 
 /**
- * The IJsonObjectWriter interface defines a writer of a json object.
+ * The IJsonGenerator interface defines a generator for json.
  */
-public interface IJsonObjectWriter {
+public interface IJsonGenerator {
     /**
-     * Writes a boolean property.
+     * Writes a start object.
      */
-    void writeBooleanProperty(String name, boolean value);
+    void writeStartObject();
+
+    /**
+     * Writes an end object.
+     */
+    void writeEndObject();
 
     /**
      * Writes a string property.
@@ -35,12 +40,7 @@ public interface IJsonObjectWriter {
     void writeDoubleProperty(String name, double value);
 
     /**
-     * Writes a generic object property.
+     * Flushes the writer.
      */
-    void writeObjectProperty(String name, IJsonObjectWriter value);
-
-    /**
-     * Writes a generic array property.
-     */
-    void writeArrayProperty(String name, IJsonArray value);
+    void flush();
 }

@@ -42,6 +42,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public Iterator<ITreeNodeData<TKey, TValue>> iterator() {
+        this.currentInnerNodeIndex = 0;
         return this;
     }
 

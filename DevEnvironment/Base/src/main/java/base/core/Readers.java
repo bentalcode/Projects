@@ -23,7 +23,7 @@ public final class Readers {
     private static final Logger Log = LoggerFactory.getLogger(Files.class);
 
     /**
-     * Creates a new string reader.
+     * Creates a string reader.
      */
     public static StringReader createStringReader(String content) {
         Conditions.validateNotNull(

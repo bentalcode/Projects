@@ -1,6 +1,7 @@
 package base.interfaces;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * The IEqualBuilder interface defines an equal builder.
