@@ -1,16 +1,13 @@
 package json.core;
 
+import base.core.Casting;
 import base.core.Conditions;
 import base.core.DestructorHandler;
 import base.core.Readers;
-import base.core.ReflectionHandler;
-
-import java.io.IOException;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.io.Writer;
 import base.core.Writers;
-import json.interfaces.IJsonObjectReader;
+import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
 import json.interfaces.IJsonStream;
 
@@ -40,11 +37,13 @@ public final class JsonStream implements IJsonStream {
             StringWriter writer = Writers.createStringWriter();
             destructorHandler.register(writer);
 
-            JsonWriter jsonWriter = new JsonWriter(this.factory, writer);
-            destructorHandler.register(jsonWriter);
+            JsonGenerator generator = this.factory.createGenerator(writer);
+            destructorHandler.register(generator);
 
-            jsonWriter.writeObject(obj);
-            jsonWriter.flush();
+            IJsonValueWriter valueWriter = new JsonValueWriter(generator);
+            valueWriter.writeObject(obj);
+
+            generator.flush();
             json = writer.toString();
         }
 
@@ -67,18 +66,27 @@ public final class JsonStream implements IJsonStream {
 
         try (DestructorHandler destructorHandler = new DestructorHandler()) {
 
+            //
+            // Create a reader to the json stream...
+            //
             Reader reader = Readers.createStringReader(json);
             destructorHandler.register(reader);
 
+            //
+            // Parse the json stream into a json tree...
+            //
             JsonParser parser = new JsonParser(this.factory, reader);
             destructorHandler.register(parser);
 
             IJsonTree tree = parser.parse();
 
-            IJsonObjectReader objectReader = new JsonObjectReader(tree.getRootObject());
+            //
+            // Read the corresponding object by using a reader...
+            //
+            IJsonObjectValue value = new JsonObjectValue(tree.getRootObject());
+            IJsonValueReader valueReader = new JsonValueReader(value);
 
-            ReflectionHandler reflectionHandler = new ReflectionHandler();
-            instance = reflectionHandler.invoke(classType, "readJson", IJsonObjectReader.class, objectReader);
+            instance = valueReader.readObject(Casting.cast(classType));
         }
 
         return instance;

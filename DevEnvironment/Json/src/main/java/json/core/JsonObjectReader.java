@@ -6,6 +6,7 @@ import base.core.Conditions;
 import base.core.Conversion;
 import json.interfaces.IJsonObjectReader;
 import java.util.List;
+import json.interfaces.IJsonSerialization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,14 +42,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
-     * Reads a byte property.
-     */
-    @Override
-    public byte readByteProperty(String name) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Reads a short property.
      */
     @Override
@@ -73,7 +66,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
     @Override
     public long readLongProperty(String name) {
         IJsonValue jsonValue = this.getPropertyValue(name);
-        IJsonIntegerValue integerValue = Casting.cast(jsonValue);
+        IJsonLongValue integerValue = Casting.cast(jsonValue);
 
         long result = integerValue.getValue();
 
@@ -105,14 +98,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
-     * Reads a character property.
-     */
-    @Override
-    public char readCharacterProperty(String name) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Reads a string property.
      */
     @Override
@@ -130,14 +115,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public boolean[] readBooleanArrayProperty(String name) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Reads a byte array property.
-     */
-    @Override
-    public byte[] readByteArrayProperty(String name) {
         throw new UnsupportedOperationException();
     }
 
@@ -174,14 +151,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
-     * Reads a character array property.
-     */
-    @Override
-    public char[] readCharacterArrayProperty(String name) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Reads a string array property.
      */
     @Override
@@ -190,27 +159,51 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
-     * Reads a generic property.
+     * Reads a generic object property.
      */
     @Override
-    public <T> T readGenericProperty(String name) {
-        throw new UnsupportedOperationException();
+    public <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType readObjectProperty(
+        String name,
+        Class<ClassType> classType) {
+
+        IJsonValue value = this.getPropertyValue(name);
+        IJsonValueReader reader = new JsonValueReader(value);
+
+        ResultType result = reader.readObject(classType);
+
+        return result;
     }
 
     /**
      * Reads a generic array property.
      */
     @Override
-    public <T> T[] readArrayProperty(String name) {
-        throw new UnsupportedOperationException();
+    public <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType[] readArrayProperty(
+        String name,
+        Class<ClassType> classType) {
+
+        IJsonValue value = this.getPropertyValue(name);
+        IJsonValueReader reader = new JsonValueReader(value);
+
+        ResultType[] result = reader.readArray(classType);
+
+        return result;
     }
 
     /**
      * Reads a generic list property.
      */
     @Override
-    public <T> List<T> readListProperty(String name) {
-        throw new UnsupportedOperationException();
+    public <ResultType extends IJsonSerialization, ClassType extends ResultType> List<ResultType> readListProperty(
+        String name,
+        Class<ClassType> classType) {
+
+        IJsonValue value = this.getPropertyValue(name);
+        IJsonValueReader reader = new JsonValueReader(value);
+
+        List<ResultType> result = reader.readList(classType);
+
+        return result;
     }
 
     /**

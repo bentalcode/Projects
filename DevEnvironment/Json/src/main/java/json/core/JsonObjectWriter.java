@@ -9,17 +9,17 @@ import java.util.List;
  * The JsonObjectWriter class implements a writer of a json object.
  */
 public final class JsonObjectWriter implements IJsonObjectWriter {
-    private final IJsonWriter jsonWriter;
+    private final IJsonGenerator generator;
 
     /**
      * The JsonObjectWriter constructor.
      */
-    public JsonObjectWriter(IJsonWriter jsonWriter) {
+    public JsonObjectWriter(IJsonGenerator generator) {
         Conditions.validateNotNull(
-            jsonWriter,
-            "The json writer to write into.");
+            generator,
+            "The json generator to write into.");
 
-        this.jsonWriter = jsonWriter;
+        this.generator = generator;
     }
 
     /**
@@ -27,15 +27,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      */
     @Override
     public void writeBooleanProperty(String name, boolean value) {
-        throw new UnsupportedOperationException();
-    }
+        this.validatePropertyName(name);
 
-    /**
-     * Writes a byte property.
-     */
-    @Override
-    public void writeByteProperty(String name, byte value) {
-        throw new UnsupportedOperationException();
+        this.generator.writePropertyName(name);
+        this.generator.writeBoolean(value);
     }
 
     /**
@@ -43,7 +38,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      */
     @Override
     public void writeShortProperty(String name, short value) {
-        throw new UnsupportedOperationException();
+        this.validatePropertyName(name);
+
+        this.generator.writePropertyName(name);
+        this.generator.writeShort(value);
     }
 
     /**
@@ -51,7 +49,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      */
     @Override
     public void writeIntegerProperty(String name, int value) {
-        this.jsonWriter.writeIntegerProperty(name, value);
+        this.validatePropertyName(name);
+
+        this.generator.writePropertyName(name);
+        this.generator.writeInteger(value);
     }
 
     /**
@@ -59,7 +60,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      */
     @Override
     public void writeLongProperty(String name, long value) {
-        this.jsonWriter.writeLongProperty(name, value);
+        this.validatePropertyName(name);
+
+        this.generator.writePropertyName(name);
+        this.generator.writeLong(value);
     }
 
     /**
@@ -67,7 +71,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      */
     @Override
     public void writeFloatProperty(String name, float value) {
-        this.jsonWriter.writeFloatProperty(name, value);
+        this.validatePropertyName(name);
+
+        this.generator.writePropertyName(name);
+        this.generator.writeFloat(value);
     }
 
     /**
@@ -75,15 +82,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      */
     @Override
     public void writeDoubleProperty(String name, double value) {
-        this.jsonWriter.writeDoubleProperty(name, value);
-    }
+        this.validatePropertyName(name);
 
-    /**
-     * Writes a character property.
-     */
-    @Override
-    public void writeCharacterProperty(String name, char value) {
-        throw new UnsupportedOperationException();
+        this.generator.writePropertyName(name);
+        this.generator.writeDouble(value);
     }
 
     /**
@@ -91,94 +93,165 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      */
     @Override
     public void writeStringProperty(String name, String value) {
-        this.jsonWriter.writeStringProperty(name, value);
+        this.validatePropertyName(name);
+
+        if (value == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeString(value);
     }
 
     /**
      * Writes a boolean array property.
      */
     @Override
-    public void writeBooleanArrayProperty(String name, boolean[] value) {
-        throw new UnsupportedOperationException();
-    }
+    public void writeBooleanArrayProperty(String name, boolean[] array) {
+        this.validatePropertyName(name);
 
-    /**
-     * Writes a byte array property.
-     */
-    @Override
-    public void writeByteArrayProperty(String name, byte[] value) {
-        throw new UnsupportedOperationException();
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeBooleanArray(array);
     }
 
     /**
      * Writes a short array property.
      */
     @Override
-    public void writeShortArrayProperty(String name, short[] value) {
-        throw new UnsupportedOperationException();
+    public void writeShortArrayProperty(String name, short[] array) {
+        this.validatePropertyName(name);
+
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeShortArray(array);
     }
 
     /**
      * Writes an integer array property.
      */
     @Override
-    public void writeIntegerArrayProperty(String name, int[] value) {
-        throw new UnsupportedOperationException();
+    public void writeIntegerArrayProperty(String name, int[] array) {
+        this.validatePropertyName(name);
+
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeIntegerArray(array);
     }
 
     /**
      * Writes a float array property.
      */
     @Override
-    public void writeFloatArrayProperty(String name, float[] value) {
-        throw new UnsupportedOperationException();
+    public void writeFloatArrayProperty(String name, float[] array) {
+        this.validatePropertyName(name);
+
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeFloatArray(array);
     }
 
     /**
      * Writes a double array property.
      */
     @Override
-    public void writeDoubleArrayProperty(String name, double[] value) {
-        throw new UnsupportedOperationException();
-    }
+    public void writeDoubleArrayProperty(String name, double[] array) {
+        this.validatePropertyName(name);
 
-    /**
-     * Writes a character array property.
-     */
-    @Override
-    public void writeCharacterArrayProperty(String name, char[] value) {
-        throw new UnsupportedOperationException();
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeDoubleArray(array);
     }
 
     /**
      * Writes a string array property.
      */
     @Override
-    public void writeStringArrayProperty(String name, String[] value) {
-        throw new UnsupportedOperationException();
+    public void writeStringArrayProperty(String name, String[] array) {
+        this.validatePropertyName(name);
+
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeStringArray(array);
     }
 
     /**
-     * Writes a generic property.
+     * Writes a generic object property.
      */
     @Override
-    public <T> void writeGenericProperty(String name, T value) {
-        throw new UnsupportedOperationException();
+    public <T extends IJsonSerialization> void writeObjectProperty(String name, T object) {
+        this.validatePropertyName(name);
+
+        if (object == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+
+        this.generator.writePropertyName(name);
+
+        IJsonValueWriter writer = new JsonValueWriter(this.generator);
+        writer.writeObject(object);
     }
 
     /**
      * Writes a generic array property.
      */
     @Override
-    public <T> void writeArrayProperty(String name, T[] value) {
-        throw new UnsupportedOperationException();
+    public <T extends IJsonSerialization> void writeArrayProperty(String name, T[] array) {
+        this.validatePropertyName(name);
+
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+
+        IJsonValueWriter writer = new JsonValueWriter(this.generator);
+        writer.writeArray(array);
     }
 
     /**
      * Writes a generic list property.
      */
     @Override
-    public <T extends IJsonSerialization> void writeListProperty(String name, List<T> value) {
-        throw new UnsupportedOperationException();
+    public <T extends IJsonSerialization> void writeListProperty(String name, List<T> list) {
+        this.validatePropertyName(name);
+
+        if (list == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+
+        IJsonValueWriter writer = new JsonValueWriter(this.generator);
+        writer.writeList(list);
+    }
+
+    /**
+     * Validates a name of a property.
+     */
+    private void validatePropertyName(String name) {
+        Conditions.validateNotNull(
+            name,
+            "The name of a property.");
     }
 }

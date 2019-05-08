@@ -59,7 +59,7 @@ public final class Colors implements IColors {
      */
     public static IColors readJson(IJsonObjectReader reader) {
         String category = reader.readStringProperty(Colors.PropertyCategory);
-        List<IColor> colors = reader.readListProperty(Colors.PropertyColors);
+        List<IColor> colors = reader.readListProperty(Colors.PropertyColors, Color.class);
 
         return new Colors(
             category,

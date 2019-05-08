@@ -66,7 +66,7 @@ public final class JsonArray extends JsonElement implements IJsonArray {
      */
     @Override
     public boolean hasNext() {
-        return this.position >= 0;
+        return this.position < this.array.size();
     }
 
     /**

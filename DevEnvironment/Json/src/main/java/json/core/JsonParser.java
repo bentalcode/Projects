@@ -65,12 +65,14 @@ public final class JsonParser implements IJsonParser, ICloseable {
 
             if (token.equals(JsonToken.START_OBJECT)) {
                 this.startObject();
+                this.resetPropertyName();
             }
             else if (token.equals(JsonToken.END_OBJECT)) {
                 this.endObject();
             }
             if (token.equals(JsonToken.START_ARRAY)) {
                 this.startArray();
+                this.resetPropertyName();
             }
             else if (token.equals(JsonToken.END_ARRAY)) {
                 this.endArray();
@@ -83,25 +85,27 @@ public final class JsonParser implements IJsonParser, ICloseable {
             }
             else if (token.equals(JsonToken.VALUE_STRING)) {
                 this.setStringValue();
+                this.resetPropertyName();
             }
             else if (token.equals(JsonToken.VALUE_NUMBER_INTEGER)) {
                 this.setIntegerValue();
+                this.resetPropertyName();
             }
             else if (token.equals(JsonToken.VALUE_NUMBER_DOUBLE)) {
                 this.setDoubleValue();
+                this.resetPropertyName();
             }
             else if (token.equals(JsonToken.VALUE_TRUE)) {
                  this.setTrueValue();
+                this.resetPropertyName();
             }
             else if (token.equals(JsonToken.VALUE_FALSE)) {
                 this.setFalseValue();
+                this.resetPropertyName();
             }
             else if (token.equals(JsonToken.VALUE_NULL)) {
                 this.setNullValue();
-            }
-
-            if (!token.equals(JsonToken.FIELD_NAME)) {
-                this.currentPropertyName = null;
+                this.resetPropertyName();
             }
         }
 
@@ -112,17 +116,27 @@ public final class JsonParser implements IJsonParser, ICloseable {
      * Starts an object.
      */
     private void startObject() {
-        IJsonElement currentElement;
-
+        //
+        // If the object is the root, then create it and set it as the root of the json tree...
+        //
         if (this.jsonTree == null) {
             this.jsonTree = JsonTree.createWithRootObject();
-            currentElement = this.jsonTree.getRootObject();
-        }
-        else {
-            currentElement = this.jsonTree.createObject();
+            IJsonObject rootObject = this.jsonTree.getRootObject();
+            this.elementsStack.push(rootObject);
+
+            return;
         }
 
-        this.elementsStack.push(currentElement);
+        //
+        // Otherwise, create the object and set it to it's parent...
+        //
+        IJsonObject currentObject = this.jsonTree.createObject();
+        IJsonObjectValue currentObjectValue = new JsonObjectValue(currentObject);
+
+        IJsonElement parentElement = this.currentElement();
+        this.elementsStack.push(currentObject);
+
+        parentElement.setValue(this.currentPropertyName, currentObjectValue);
     }
 
     /**
@@ -136,17 +150,27 @@ public final class JsonParser implements IJsonParser, ICloseable {
      * Starts an array.
      */
     private void startArray() {
-        IJsonElement currentObject;
-
+        //
+        // If the array is the root, then create it and set it as the root of the json tree...
+        //
         if (this.jsonTree == null) {
             this.jsonTree = JsonTree.createWithRootArray();
-            currentObject = this.jsonTree.getRootArray();
-        }
-        else {
-            currentObject = this.jsonTree.createObject();
+            IJsonArray rootArray = this.jsonTree.getRootArray();
+            this.elementsStack.push(rootArray);
+
+            return;
         }
 
-        this.elementsStack.push(currentObject);
+        //
+        // Otherwise, create the array and set it to it's parent...
+        //
+        IJsonArray currentArray = this.jsonTree.createArray();
+        IJsonArrayValue currentArrayValue = new JsonArrayValue(currentArray);
+
+        IJsonElement parentElement = this.currentElement();
+        this.elementsStack.push(currentArray);
+
+        parentElement.setValue(this.currentPropertyName, currentArrayValue);
     }
 
     /**
@@ -157,9 +181,9 @@ public final class JsonParser implements IJsonParser, ICloseable {
     }
 
     /**
-     * Gets the current object.
+     * Gets the current element.
      */
-    private IJsonElement currentObject() {
+    private IJsonElement currentElement() {
         return this.elementsStack.peek();
     }
 
@@ -171,11 +195,18 @@ public final class JsonParser implements IJsonParser, ICloseable {
     }
 
     /**
+     * Resets a property name.
+     */
+    private void resetPropertyName() {
+        this.currentPropertyName = null;
+    }
+
+    /**
      * Sets a string value.
      */
     private void setStringValue() {
         String currentValue = this.tokenizer.currentStringValue();
-        IJsonElement currentElement = this.currentObject();
+        IJsonElement currentElement = this.currentElement();
         currentElement.setValue(this.currentPropertyName, new JsonStringValue(currentValue));
     }
 
@@ -184,8 +215,8 @@ public final class JsonParser implements IJsonParser, ICloseable {
      */
     private void setIntegerValue() {
         long value = this.tokenizer.currentLongValue();
-        IJsonElement currentElement = this.currentObject();
-        currentElement.setValue(this.currentPropertyName, new JsonIntegerValue(value));
+        IJsonElement currentElement = this.currentElement();
+        currentElement.setValue(this.currentPropertyName, new JsonLongValue(value));
     }
 
     /**
@@ -193,7 +224,7 @@ public final class JsonParser implements IJsonParser, ICloseable {
      */
     private void setDoubleValue() {
         double value = this.tokenizer.currentDoubleValue();
-        IJsonElement currentElement = this.currentObject();
+        IJsonElement currentElement = this.currentElement();
         currentElement.setValue(this.currentPropertyName, new JsonDoubleValue(value));
     }
 
@@ -201,7 +232,7 @@ public final class JsonParser implements IJsonParser, ICloseable {
      * Sets a true value.
      */
     private void setTrueValue() {
-        IJsonElement currentElement = this.currentObject();
+        IJsonElement currentElement = this.currentElement();
         currentElement.setValue(this.currentPropertyName, new JsonBooleanValue(true));
     }
 
@@ -209,7 +240,7 @@ public final class JsonParser implements IJsonParser, ICloseable {
      * Sets a false value.
      */
     private void setFalseValue() {
-        IJsonElement currentElement = this.currentObject();
+        IJsonElement currentElement = this.currentElement();
         currentElement.setValue(this.currentPropertyName, new JsonBooleanValue(false));
     }
 

@@ -12,11 +12,6 @@ public interface IJsonObjectReader {
     boolean readBooleanProperty(String name);
 
     /**
-     * Reads a byte property.
-     */
-    byte readByteProperty(String name);
-
-    /**
      * Reads a short property.
      */
     short readShortProperty(String name);
@@ -42,11 +37,6 @@ public interface IJsonObjectReader {
     double readDoubleProperty(String name);
 
     /**
-     * Reads a character property.
-     */
-    char readCharacterProperty(String name);
-
-    /**
      * Reads a string property.
      */
     String readStringProperty(String name);
@@ -55,11 +45,6 @@ public interface IJsonObjectReader {
      * Reads a boolean array property.
      */
     boolean[] readBooleanArrayProperty(String name);
-
-    /**
-     * Reads a byte array property.
-     */
-    byte[] readByteArrayProperty(String name);
 
     /**
      * Reads a short array property.
@@ -82,27 +67,22 @@ public interface IJsonObjectReader {
     double[] readDoubleArrayProperty(String name);
 
     /**
-     * Reads a character array property.
-     */
-    char[] readCharacterArrayProperty(String name);
-
-    /**
      * Reads a string array property.
      */
     String[] readStringArrayProperty(String name);
 
     /**
-     * Reads a generic property.
+     * Reads a generic object property.
      */
-    <T> T readGenericProperty(String name);
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType readObjectProperty(String name, Class<ClassType> classType);
 
     /**
      * Reads a generic array property.
      */
-    <T> T[] readArrayProperty(String name);
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType[] readArrayProperty(String name, Class<ClassType> classType);
 
     /**
      * Reads a generic list property.
      */
-    <T> List<T> readListProperty(String name);
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> List<ResultType> readListProperty(String name, Class<ClassType> classType);
 }

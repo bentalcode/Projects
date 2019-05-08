@@ -12,11 +12,6 @@ public interface IJsonObjectWriter {
     void writeBooleanProperty(String name, boolean value);
 
     /**
-     * Writes a byte property.
-     */
-    void writeByteProperty(String name, byte value);
-
-    /**
      * Writes a short property.
      */
     void writeShortProperty(String name, short value);
@@ -42,11 +37,6 @@ public interface IJsonObjectWriter {
     void writeDoubleProperty(String name, double value);
 
     /**
-     * Writes a character property.
-     */
-    void writeCharacterProperty(String name, char value);
-
-    /**
      * Writes a string property.
      */
     void writeStringProperty(String name, String value);
@@ -55,11 +45,6 @@ public interface IJsonObjectWriter {
      * Writes a boolean array property.
      */
     void writeBooleanArrayProperty(String name, boolean[] value);
-
-    /**
-     * Writes a byte array property.
-     */
-    void writeByteArrayProperty(String name, byte[] value);
 
     /**
      * Writes a short array property.
@@ -82,24 +67,19 @@ public interface IJsonObjectWriter {
     void writeDoubleArrayProperty(String name, double[] value);
 
     /**
-     * Writes a character array property.
-     */
-    void writeCharacterArrayProperty(String name, char[] value);
-
-    /**
      * Writes a string array property.
      */
     void writeStringArrayProperty(String name, String[] value);
 
     /**
-     * Writes a generic property.
+     * Writes a generic object property.
      */
-    <T> void writeGenericProperty(String name, T value);
+    <T extends IJsonSerialization> void writeObjectProperty(String name, T value);
 
     /**
      * Writes a generic array property.
      */
-    <T> void writeArrayProperty(String name, T[] value);
+    <T extends IJsonSerialization> void writeArrayProperty(String name, T[] value);
 
     /**
      * Writes a generic list property.
