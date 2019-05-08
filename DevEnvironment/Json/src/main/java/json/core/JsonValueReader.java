@@ -6,6 +6,8 @@ import base.core.Conditions;
 import base.core.Conversion;
 import base.core.ReflectionHandler;
 import json.interfaces.IJsonObjectReader;
+
+import java.io.ObjectStreamException;
 import java.util.ArrayList;
 import java.util.List;
 import json.interfaces.IJsonSerialization;
@@ -101,6 +103,14 @@ public final class JsonValueReader implements IJsonValueReader {
     }
 
     /**
+     * Reads a character.
+     */
+    @Override
+    public char readCharacter() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * Reads a string.
      */
     @Override
@@ -145,6 +155,14 @@ public final class JsonValueReader implements IJsonValueReader {
     }
 
     /**
+     * Reads a long array.
+     */
+    @Override
+    public long[] readLongArray() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * Reads a float array.
      */
     @Override
@@ -157,6 +175,14 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public double[] readDoubleArray() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Reads a character array.
+     */
+    @Override
+    public char[] readCharacterArray() {
         throw new UnsupportedOperationException();
     }
 

@@ -153,7 +153,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     @Override
     public ICompareToBuilder withString(String lhs, String rhs) {
         IBinaryComparator<String> comparator = this.comparatorFactory.createComparator();
-        return this.withGeneric(lhs, rhs, comparator);
+        return this.withObject(lhs, rhs, comparator);
     }
 
     /**
@@ -301,6 +301,42 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
+     * With a long array.
+     */
+    @Override
+    public ICompareToBuilder withLongArray(long[] lhs, long[] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int length = lhs.length;
+
+        for (int i = 0; i < length; ++i) {
+            this.compareStatus = Long.compare(lhs[i], rhs[i]);
+
+            if(this.compareStatus != 0) {
+                return this;
+            }
+        }
+
+        return this;
+    }
+
+    /**
      * With a float array.
      */
     @Override
@@ -422,7 +458,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
      * With a generic.
      */
     @Override
-    public <T> ICompareToBuilder withGeneric(T lhs, T rhs, IBinaryComparator<T> comparator) {
+    public <T> ICompareToBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator) {
         if (this.compareStatus != 0) {
             return this;
         }

@@ -43,6 +43,11 @@ interface IJsonValueReader {
     double readDouble();
 
     /**
+     * Reads a character.
+     */
+    char readCharacter();
+
+    /**
      * Reads a string.
      */
     String readString();
@@ -68,6 +73,11 @@ interface IJsonValueReader {
     int[] readIntegerArray();
 
     /**
+     * Reads a long array.
+     */
+    long[] readLongArray();
+
+    /**
      * Reads a float array.
      */
     float[] readFloatArray();
@@ -76,6 +86,11 @@ interface IJsonValueReader {
      * Reads a double array.
      */
     double[] readDoubleArray();
+
+    /**
+     * Reads a character array.
+     */
+    char[] readCharacterArray();
 
     /**
      * Reads a string array.

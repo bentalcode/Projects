@@ -77,6 +77,11 @@ public interface IHashCodeBuilder {
     IHashCodeBuilder withIntegerArray(int[] array);
 
     /**
+     * With a long array.
+     */
+    IHashCodeBuilder withLongArray(long[] array);
+
+    /**
      * With a float array.
      */
     IHashCodeBuilder withFloatArray(float[] array);
@@ -97,9 +102,9 @@ public interface IHashCodeBuilder {
     IHashCodeBuilder withStringArray(String[] array);
 
     /**
-     * With a generic.
+     * With a generic object.
      */
-    <T> IHashCodeBuilder withGeneric(T obj, IHashCodeProvider<T> provider);
+    <T> IHashCodeBuilder withObject(T obj, IHashCodeProvider<T> provider);
 
     /**
      * With a generic array.

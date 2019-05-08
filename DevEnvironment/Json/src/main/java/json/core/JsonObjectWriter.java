@@ -34,6 +34,17 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
+     * Writes a byte property.
+     */
+    @Override
+    public void writeByteProperty(String name, byte value) {
+        this.validatePropertyName(name);
+
+        this.generator.writePropertyName(name);
+        this.generator.writeByte(value);
+    }
+
+    /**
      * Writes a short property.
      */
     @Override
@@ -89,6 +100,17 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
+     * Writes a character property.
+     */
+    @Override
+    public void writeCharacterProperty(String name, char value) {
+        this.validatePropertyName(name);
+
+        this.generator.writePropertyName(name);
+        this.generator.writeCharacter(value);
+    }
+
+    /**
      * Writes a string property.
      */
     @Override
@@ -116,6 +138,21 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
 
         this.generator.writePropertyName(name);
         this.generator.writeBooleanArray(array);
+    }
+
+    /**
+     * Writes a byte array property.
+     */
+    @Override
+    public void writeByteArrayProperty(String name, byte[] array) {
+        this.validatePropertyName(name);
+
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeByteArray(array);
     }
 
     /**
@@ -149,6 +186,21 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
+     * Writes a long array property.
+     */
+    @Override
+    public void writeLongArrayProperty(String name, long[] array) {
+        this.validatePropertyName(name);
+
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeLongArray(array);
+    }
+
+    /**
      * Writes a float array property.
      */
     @Override
@@ -179,6 +231,21 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
+     * Writes a character array property.
+     */
+    @Override
+    public void writeCharacterArrayProperty(String name, char[] array) {
+        this.validatePropertyName(name);
+
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeCharacterArray(array);
+    }
+
+    /**
      * Writes a string array property.
      */
     @Override
@@ -203,8 +270,6 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
         if (object == null) {
             return;
         }
-
-        this.generator.writePropertyName(name);
 
         this.generator.writePropertyName(name);
 

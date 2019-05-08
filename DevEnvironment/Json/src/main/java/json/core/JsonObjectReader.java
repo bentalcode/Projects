@@ -33,10 +33,23 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public boolean readBooleanProperty(String name) {
-        IJsonValue jsonValue = this.getPropertyValue(name);
-        IJsonBooleanValue booleanValue = Casting.cast(jsonValue);
+        IJsonValue value = this.getPropertyValue(name);
 
-        boolean result = booleanValue.getValue();
+        IJsonValueReader reader = new JsonValueReader(value);
+        boolean result = reader.readBoolean();
+
+        return result;
+    }
+
+    /**
+     * Reads a byte property.
+     */
+    @Override
+    public byte readByteProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        byte result = reader.readByte();
 
         return result;
     }
@@ -46,7 +59,12 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public short readShortProperty(String name) {
-        throw new UnsupportedOperationException();
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        short result = reader.readShort();
+
+        return result;
     }
 
     /**
@@ -54,8 +72,10 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public int readIntegerProperty(String name) {
-        long value = this.readLongProperty(name);
-        int result = Conversion.longConversion().toInteger(value);
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        int result = reader.readInteger();
 
         return result;
     }
@@ -65,10 +85,10 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public long readLongProperty(String name) {
-        IJsonValue jsonValue = this.getPropertyValue(name);
-        IJsonLongValue integerValue = Casting.cast(jsonValue);
+        IJsonValue value = this.getPropertyValue(name);
 
-        long result = integerValue.getValue();
+        IJsonValueReader reader = new JsonValueReader(value);
+        long result = reader.readLong();
 
         return result;
     }
@@ -78,8 +98,10 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public float readFloatProperty(String name) {
-        double value = this.readDoubleProperty(name);
-        float result = Conversion.doubleConversion().toFloat(value);
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        float result = reader.readFloat();
 
         return result;
     }
@@ -89,10 +111,23 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public double readDoubleProperty(String name) {
-        IJsonValue jsonValue = this.getPropertyValue(name);
-        IJsonDoubleValue doubleValue = Casting.cast(jsonValue);
+        IJsonValue value = this.getPropertyValue(name);
 
-        double result = doubleValue.getValue();
+        IJsonValueReader reader = new JsonValueReader(value);
+        double result = reader.readDouble();
+
+        return result;
+    }
+
+    /**
+     * Reads a char property.
+     */
+    @Override
+    public char readCharacterProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        char result = reader.readCharacter();
 
         return result;
     }
@@ -102,10 +137,10 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public String readStringProperty(String name) {
-        IJsonValue jsonValue = this.getPropertyValue(name);
-        IJsonStringValue stringValue = Casting.cast(jsonValue);
+        IJsonValue value = this.getPropertyValue(name);
 
-        String result = stringValue.getValue();
+        IJsonValueReader reader = new JsonValueReader(value);
+        String result = reader.readString();
 
         return result;
     }
@@ -115,7 +150,25 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public boolean[] readBooleanArrayProperty(String name) {
-        throw new UnsupportedOperationException();
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        boolean[] result = reader.readBooleanArray();
+
+        return result;
+    }
+
+    /**
+     * Reads a byte array property.
+     */
+    @Override
+    public byte[] readByteArrayProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        byte[] result = reader.readByteArray();
+
+        return result;
     }
 
     /**
@@ -123,7 +176,12 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public short[] readShortArrayProperty(String name) {
-        throw new UnsupportedOperationException();
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        short[] result = reader.readShortArray();
+
+        return result;
     }
 
     /**
@@ -131,7 +189,25 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public int[] readIntegerArrayProperty(String name) {
-        throw new UnsupportedOperationException();
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        int[] result = reader.readIntegerArray();
+
+        return result;
+    }
+
+    /**
+     * Reads a long array property.
+     */
+    @Override
+    public long[] readLongArrayProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        long[] result = reader.readLongArray();
+
+        return result;
     }
 
     /**
@@ -139,7 +215,12 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public float[] readFloatArrayProperty(String name) {
-        throw new UnsupportedOperationException();
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        float[] result = reader.readFloatArray();
+
+        return result;
     }
 
     /**
@@ -147,7 +228,25 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public double[] readDoubleArrayProperty(String name) {
-        throw new UnsupportedOperationException();
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        double[] result = reader.readDoubleArray();
+
+        return result;
+    }
+
+    /**
+     * Reads a character array property.
+     */
+    @Override
+    public char[] readCharacterArrayProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        char[] result = reader.readCharacterArray();
+
+        return result;
     }
 
     /**
@@ -155,7 +254,12 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public String[] readStringArrayProperty(String name) {
-        throw new UnsupportedOperationException();
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        String[] result = reader.readStringArray();
+
+        return result;
     }
 
     /**

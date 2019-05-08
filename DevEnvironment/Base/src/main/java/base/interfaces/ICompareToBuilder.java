@@ -77,6 +77,11 @@ public interface ICompareToBuilder {
     ICompareToBuilder withIntegerArray(int[] lhs, int[] rhs);
 
     /**
+     * With a long array.
+     */
+    ICompareToBuilder withLongArray(long[] lhs, long[] rhs);
+
+    /**
      * With a float array.
      */
     ICompareToBuilder withFloatArray(float[] lhs, float[] rhs);
@@ -97,9 +102,9 @@ public interface ICompareToBuilder {
     ICompareToBuilder withStringArray(String[] lhs, String[] rhs);
 
     /**
-     * With a generic.
+     * With a generic object.
      */
-    <T> ICompareToBuilder withGeneric(T lhs, T rhs, IBinaryComparator<T> comparator);
+    <T> ICompareToBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator);
 
     /**
      * With a generic array.

@@ -197,6 +197,18 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
+     * With a long array.
+     */
+    @Override
+    public IHashCodeBuilder withLongArray(long[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withLong(array[i]);
+        }
+
+        return this;
+    }
+
+    /**
      * With a float array.
      */
     @Override
@@ -245,10 +257,10 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a generic.
+     * With a generic object.
      */
     @Override
-    public <T> IHashCodeBuilder withGeneric(T obj, IHashCodeProvider<T> provider) {
+    public <T> IHashCodeBuilder withObject(T obj, IHashCodeProvider<T> provider) {
         int currentCode = provider.getHashCode(obj);
         this.updateCode(currentCode);
         return this;
@@ -260,7 +272,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     @Override
     public <T> IHashCodeBuilder withArray(T[] array, IHashCodeProvider<T> provider) {
         for (int i = 0; i < array.length; ++i) {
-            this.withGeneric(array[i], provider);
+            this.withObject(array[i], provider);
         }
 
         return this;
@@ -272,7 +284,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     @Override
     public <T> IHashCodeBuilder withCollection(Collection<T> collection, IHashCodeProvider<T> provider) {
         for (T item : collection) {
-            this.withGeneric(item, provider);
+            this.withObject(item, provider);
         }
 
         return this;

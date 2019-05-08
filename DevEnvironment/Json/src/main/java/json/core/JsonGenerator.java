@@ -162,6 +162,25 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     }
 
     /**
+     * Writes a byte.
+     */
+    @Override
+    public void writeByte(byte value) {
+        try {
+            short shortValue = value;
+            this.generator.writeNumber(shortValue);
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a byte: " + value +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+            throw new JsonException(errorMessage, e);
+        }
+    }
+
+    /**
      * Writes a short.
      */
     @Override
@@ -252,6 +271,25 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     }
 
     /**
+     * Writes a character.
+     */
+    @Override
+    public void writeCharacter(char value) {
+        try {
+            String valueToWrite = String.valueOf(value);
+            this.generator.writeString(valueToWrite);
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a character: " + value +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+            throw new JsonException(errorMessage, e);
+        }
+    }
+
+    /**
      * Writes a string.
      */
     @Override
@@ -282,6 +320,23 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
         catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a boolean array" +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+        }
+    }
+
+    /**
+     * Writes a byte array.
+     */
+    @Override
+    public void writeByteArray(byte[] array) {
+        try {
+            this.generator.writeBinary(array);
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a byte array" +
                 ", due to the following error: " + e.getMessage();
 
             this.log.error(errorMessage, e);
@@ -378,6 +433,23 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
 
             this.log.error(errorMessage, e);
             throw new JsonException(errorMessage, e);
+        }
+    }
+
+    /**
+     * Writes a character array.
+     */
+    @Override
+    public void writeCharacterArray(char[] array) {
+        try {
+            this.generator.writeRaw(array, 0, array.length);
+        }
+        catch (IOException e) {
+            String errorMessage =
+               "The JsonGenerator failed writing a character array" +
+               ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
         }
     }
 

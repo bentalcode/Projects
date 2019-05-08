@@ -159,7 +159,7 @@ public final class TreeNodeData<TKey extends Comparable<TKey>, TValue> implement
             }
 
             return new EqualBuilder()
-                .withGeneric(lhs.getKey(), rhs.getKey(), this.keyComparator)
+                .withObject(lhs.getKey(), rhs.getKey(), this.keyComparator)
                 .build();
         }
 
@@ -185,7 +185,7 @@ public final class TreeNodeData<TKey extends Comparable<TKey>, TValue> implement
             }
 
             return new CompareToBuilder()
-                .withGeneric(lhs.getKey(), rhs.getKey(), this.keyComparator)
+                .withObject(lhs.getKey(), rhs.getKey(), this.keyComparator)
                 .build();
         }
     }

@@ -13,6 +13,11 @@ public interface IJsonValueWriter {
     void writeBoolean(boolean value);
 
     /**
+     * Writes a byte.
+     */
+    void writeByte(byte value);
+
+    /**
      * Writes a short.
      */
     void writeShort(short value);
@@ -38,6 +43,11 @@ public interface IJsonValueWriter {
     void writeDouble(double value);
 
     /**
+     * Writes a character.
+     */
+    void writeCharacter(char value);
+
+    /**
      * Writes a string.
      */
     void writeString(String value);
@@ -46,6 +56,11 @@ public interface IJsonValueWriter {
      * Writes a boolean array.
      */
     void writeBooleanArray(boolean[] value);
+
+    /**
+     * Writes a byte array.
+     */
+    void writeByteArray(byte[] value);
 
     /**
      * Writes a short array.
@@ -66,6 +81,11 @@ public interface IJsonValueWriter {
      * Writes a double array.
      */
     void writeDoubleArray(double[] value);
+
+    /**
+     * Writes a character array.
+     */
+    void writeCharacterArray(char[] value);
 
     /**
      * Writes a string array.

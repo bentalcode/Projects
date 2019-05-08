@@ -153,7 +153,7 @@ public final class EqualBuilder implements IEqualBuilder {
     @Override
     public IEqualBuilder withString(String lhs, String rhs) {
         IBinaryComparator<String> comparator = this.comparatorFactory.createComparator();
-        return this.withGeneric(lhs, rhs, comparator);
+        return this.withObject(lhs, rhs, comparator);
     }
 
     /**
@@ -269,6 +269,42 @@ public final class EqualBuilder implements IEqualBuilder {
      */
     @Override
     public IEqualBuilder withIntegerArray(int[] lhs, int[] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs != null || rhs != null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int length = lhs.length;
+
+        for (int i = 0; i < length; ++i) {
+            this.equalityStatus = lhs[i] != rhs[i];
+
+            if(!this.equalityStatus) {
+                return this;
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a long array.
+     */
+    @Override
+    public IEqualBuilder withLongArray(long[] lhs, long[] rhs) {
         if (!this.equalityStatus) {
             return this;
         }
@@ -422,7 +458,7 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic.
      */
     @Override
-    public <T> IEqualBuilder withGeneric(T lhs, T rhs, IBinaryComparator<T> comparator) {
+    public <T> IEqualBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }

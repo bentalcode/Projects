@@ -34,6 +34,14 @@ public final class JsonValueWriter implements IJsonValueWriter {
     }
 
     /**
+     * Writes a byte.
+     */
+    @Override
+    public void writeByte(byte value) {
+        this.generator.writeByte(value);
+    }
+
+    /**
      * Writes a short.
      */
     @Override
@@ -74,6 +82,14 @@ public final class JsonValueWriter implements IJsonValueWriter {
     }
 
     /**
+     * Writes a character.
+     */
+    @Override
+    public void writeCharacter(char value) {
+        this.generator.writeCharacter(value);
+    }
+
+    /**
      * Writes a string.
      */
     @Override
@@ -91,6 +107,18 @@ public final class JsonValueWriter implements IJsonValueWriter {
         }
 
         this.generator.writeBooleanArray(array);
+    }
+
+    /**
+     * Writes a byte array.
+     */
+    @Override
+    public void writeByteArray(byte[] array) {
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writeByteArray(array);
     }
 
     /**
@@ -139,6 +167,18 @@ public final class JsonValueWriter implements IJsonValueWriter {
         }
 
         this.generator.writeDoubleArray(array);
+    }
+
+    /**
+     * Writes a character array.
+     */
+    @Override
+    public void writeCharacterArray(char[] array) {
+        if (array == null) {
+            return;
+        }
+
+        this.generator.writeCharacterArray(array);
     }
 
     /**

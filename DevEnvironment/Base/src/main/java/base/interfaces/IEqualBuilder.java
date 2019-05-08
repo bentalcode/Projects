@@ -78,6 +78,11 @@ public interface IEqualBuilder {
     IEqualBuilder withIntegerArray(int[] lhs, int[] rhs);
 
     /**
+     * With a long array.
+     */
+    IEqualBuilder withLongArray(long[] lhs, long[] rhs);
+
+    /**
      * With a float array.
      */
     IEqualBuilder withFloatArray(float[] lhs, float[] rhs);
@@ -98,9 +103,9 @@ public interface IEqualBuilder {
     IEqualBuilder withStringArray(String[] lhs, String[] rhs);
 
     /**
-     * With a generic.
+     * With a generic object.
      */
-    <T> IEqualBuilder withGeneric(T lhs, T rhs, IBinaryComparator<T> comparator);
+    <T> IEqualBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator);
 
     /**
      * With a generic array.
