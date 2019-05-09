@@ -110,6 +110,11 @@ public interface IJsonGenerator {
     void writeStringArray(String[] array);
 
     /**
+     * Writes a blob.
+     */
+    void writeBlob(byte[] blob);
+
+    /**
      * Flushes the writer.
      */
     void flush();

@@ -87,6 +87,11 @@ public interface IJsonObjectWriter {
     void writeStringArrayProperty(String name, String[] array);
 
     /**
+     * Writes a blob property.
+     */
+    void writeBlobProperty(String name, byte[] blob);
+
+    /**
      * Writes a generic object property.
      */
     <T extends IJsonSerialization> void writeObjectProperty(String name, T object);

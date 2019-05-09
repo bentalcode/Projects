@@ -75,4 +75,9 @@ public interface ITypes extends IUnaryComparator<ITypes>, IJsonSerialization {
      * Gets a string array.
      */
     String[] getStringArray();
+
+    /**
+     * Gets a blob.
+     */
+    byte[] getBlob();
 }

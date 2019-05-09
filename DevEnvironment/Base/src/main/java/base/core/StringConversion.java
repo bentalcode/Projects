@@ -51,4 +51,12 @@ public final class StringConversion implements IStringConversion {
 
         return result;
     }
+
+    /**
+     * Converts a string to bytes.
+     */
+    @Override
+    public byte[] toBytes(String value) {
+        return Bytes.fromString(value);
+    }
 }

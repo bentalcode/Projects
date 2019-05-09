@@ -77,6 +77,11 @@ public interface IJsonObjectReader {
     String[] readStringArrayProperty(String name);
 
     /**
+     * Reads a blob property.
+     */
+    byte[] readBlobProperty(String name);
+
+    /**
      * Reads a generic object property.
      */
     <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType readObjectProperty(String name, Class<ClassType> classType);

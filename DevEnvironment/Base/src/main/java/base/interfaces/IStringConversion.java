@@ -18,4 +18,9 @@ public interface IStringConversion {
      * Converts a string to a string array.
      */
     String[] toArray(String value, String separator);
+
+    /**
+     * Converts a string to bytes.
+     */
+    byte[] toBytes(String value);
 }

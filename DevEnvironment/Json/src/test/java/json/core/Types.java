@@ -28,6 +28,7 @@ public final class Types implements ITypes {
     private static final String FloatArrayProperty = "floatArray";
     private static final String DoubleArrayProperty = "doubleArray";
     private static final String StringArrayProperty = "stringArray";
+    private static final String BlobProperty = "blob";
 
     private final boolean booleanValue;
     private final short shortValue;
@@ -44,6 +45,7 @@ public final class Types implements ITypes {
     private final float[] floatArray;
     private final double[] doubleArray;
     private final String[] stringArray;
+    private final byte[] blob;
 
     private final IBinaryComparator<ITypes> comparator = Types.DefaultComparator();
 
@@ -64,7 +66,8 @@ public final class Types implements ITypes {
         long[] longArray,
         float[] floatArray,
         double[] doubleArray,
-        String[] stringArray) {
+        String[] stringArray,
+        byte[] blob) {
 
         this.booleanValue = booleanValue;
         this.shortValue = shortValue;
@@ -80,6 +83,7 @@ public final class Types implements ITypes {
         this.floatArray = floatArray;
         this.doubleArray = doubleArray;
         this.stringArray = stringArray;
+        this.blob = blob;
     }
 
     /**
@@ -195,6 +199,14 @@ public final class Types implements ITypes {
     }
 
     /**
+     * Gets a blob.
+     */
+    @Override
+    public byte[] getBlob() {
+        return this.blob;
+    }
+
+    /**
      * Writes an object to a json writer.
      */
     @Override
@@ -214,6 +226,7 @@ public final class Types implements ITypes {
         writer.writeFloatArrayProperty(Types.FloatArrayProperty, this.getFloatArray());
         writer.writeDoubleArrayProperty(Types.DoubleArrayProperty, this.getDoubleArray());
         writer.writeStringArrayProperty(Types.StringArrayProperty, this.getStringArray());
+        writer.writeBlobProperty(Types.BlobProperty, this.getBlob());
     }
 
     /**
@@ -235,6 +248,7 @@ public final class Types implements ITypes {
         float[] floatArray = reader.readFloatArrayProperty(Types.FloatArrayProperty);
         double[] doubleArray = reader.readDoubleArrayProperty(Types.DoubleArrayProperty);
         String[] stringArray = reader.readStringArrayProperty(Types.StringArrayProperty);
+        byte[] blob = reader.readBlobProperty(Types.BlobProperty);
 
         return new Types(
             booleanValue,
@@ -250,7 +264,8 @@ public final class Types implements ITypes {
             longArray,
             floatArray,
             doubleArray,
-            stringArray);
+            stringArray,
+            blob);
     }
 
     /**
@@ -338,6 +353,7 @@ public final class Types implements ITypes {
                 .withFloatArray(obj.getFloatArray())
                 .withDoubleArray(obj.getDoubleArray())
                 .withStringArray(obj.getStringArray())
+                .withByteArray(obj.getBlob())
                 .build();
         }
 
@@ -368,6 +384,7 @@ public final class Types implements ITypes {
                 .withFloatArray(lhs.getFloatArray(), rhs.getFloatArray())
                 .withDoubleArray(lhs.getDoubleArray(), rhs.getDoubleArray())
                 .withStringArray(lhs.getStringArray(), rhs.getStringArray())
+                .withByteArray(lhs.getBlob(), rhs.getBlob())
                 .build();
         }
 
@@ -407,6 +424,7 @@ public final class Types implements ITypes {
                 .withFloatArray(lhs.getFloatArray(), rhs.getFloatArray())
                 .withDoubleArray(lhs.getDoubleArray(), rhs.getDoubleArray())
                 .withStringArray(lhs.getStringArray(), rhs.getStringArray())
+                .withByteArray(lhs.getBlob(), rhs.getBlob())
                 .build();
         }
     }

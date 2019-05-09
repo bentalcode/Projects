@@ -451,4 +451,21 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
             this.log.error(errorMessage, e);
         }
     }
+
+    /**
+     * Writes a blob.
+     */
+    @Override
+    public void writeBlob(byte[] blob) {
+        try {
+            this.generator.writeBinary(blob);
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a blob" +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+        }
+    }
 }

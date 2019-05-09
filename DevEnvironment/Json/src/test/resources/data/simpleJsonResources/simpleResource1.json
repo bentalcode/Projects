@@ -12,5 +12,6 @@
   "longArray": [1, 2, 3, 4, 5],
   "floatArray": [0.0, 0.1, 0.6, 1.2],
   "doubleArray": [1.1, 2.7, -4.8, 8.0],
-  "stringArray": ["a1","b2","c3"]
+  "stringArray": ["a1","b2","c3"],
+  "blob": "92734927sdfskjglgjkg"
 }

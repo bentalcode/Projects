@@ -78,6 +78,11 @@ interface IJsonValueReader {
     String[] readStringArray();
 
     /**
+     * Reads a blob.
+     */
+    byte[] readBlob();
+
+    /**
      * Reads a generic object.
      */
     <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType readObject(Class<ClassType> classType);

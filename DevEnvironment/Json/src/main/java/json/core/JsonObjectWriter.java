@@ -235,6 +235,21 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
+     * Writes a blob property.
+     */
+    @Override
+    public void writeBlobProperty(String name, byte[] blob) {
+        this.validatePropertyName(name);
+
+        if (blob == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeBlob(blob);
+    }
+
+    /**
      * Writes a generic object property.
      */
     @Override

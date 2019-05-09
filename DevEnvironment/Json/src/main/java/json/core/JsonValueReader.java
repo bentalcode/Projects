@@ -6,9 +6,13 @@ import base.core.Conditions;
 import base.core.Conversion;
 import base.core.ReflectionHandler;
 import json.interfaces.IJsonObjectReader;
+
+import java.io.ObjectStreamException;
 import java.util.ArrayList;
 import java.util.List;
 import json.interfaces.IJsonSerialization;
+
+import javax.naming.OperationNotSupportedException;
 
 /**
  * The JsonValueReader class implements a reader of a json value.
@@ -265,6 +269,18 @@ public final class JsonValueReader implements IJsonValueReader {
 
             result[i] = valueReader.readString();
         }
+
+        return result;
+    }
+
+    /**
+     * Reads a blob.
+     */
+    @Override
+    public byte[] readBlob() {
+        String value = this.readString();
+
+        byte[] result = Conversion.stringConversion().toBytes(value);
 
         return result;
     }

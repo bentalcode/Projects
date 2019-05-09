@@ -211,6 +211,19 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
+     * Reads a blob property.
+     */
+    @Override
+    public byte[] readBlobProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        byte[] result = reader.readBlob();
+
+        return result;
+    }
+
+    /**
      * Reads a generic object property.
      */
     @Override
