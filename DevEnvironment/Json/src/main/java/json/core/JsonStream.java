@@ -1,13 +1,11 @@
 package json.core;
 
-import base.core.Casting;
 import base.core.Conditions;
 import base.core.DestructorHandler;
 import base.core.Readers;
 import java.io.Reader;
 import java.io.StringWriter;
 import base.core.Writers;
-import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
 import json.interfaces.IJsonStream;
 
@@ -53,7 +51,7 @@ public final class JsonStream implements IJsonStream {
     /**
      * De-Serializes an object from a json string.
      */
-    public <T extends IJsonSerialization> T fromJson(String json, Class<?> classType) {
+    public <T extends IJsonSerialization> T fromJson(String json, Class<T> classType) {
         Conditions.validateNotNull(
             json,
             "The json string for de-serializing an object.");
@@ -86,7 +84,7 @@ public final class JsonStream implements IJsonStream {
             IJsonObjectValue value = new JsonObjectValue(tree.getRootObject());
             IJsonValueReader valueReader = new JsonValueReader(value);
 
-            instance = valueReader.readObject(Casting.cast(classType));
+            instance = valueReader.readObject(classType);
         }
 
         return instance;

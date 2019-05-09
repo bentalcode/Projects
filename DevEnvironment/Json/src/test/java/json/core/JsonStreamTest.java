@@ -1,5 +1,6 @@
 package json.core;
 
+import base.core.Casting;
 import base.core.Pair;
 import base.core.ResourceReader;
 import java.nio.file.Path;
@@ -43,14 +44,14 @@ public final class JsonStreamTest {
     public void jsonStreamingTest() {
         for (Pair<Path, Class<?>> resourceInformation : this.testData.getSimpleJsonResourcesInformation()) {
             String json = ResourceReader.loadString(resourceInformation.first());
-            this.testStreamingJson(json, resourceInformation.second());
+            this.testStreamingJson(json, Casting.cast(resourceInformation.second()));
         }
     }
 
     /**
      * Tests streaming json.
      */
-    private <T extends IJsonSerialization> void testStreamingJson(String json, Class<?> classType) {
+    private <T extends IJsonSerialization> void testStreamingJson(String json, Class<T> classType) {
         JsonStream stream = new JsonStream();
         T obj1 = stream.fromJson(json, classType);
 

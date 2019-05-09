@@ -27,4 +27,28 @@ public final class StringConversion implements IStringConversion {
 
         return value.charAt(0);
     }
+
+    /**
+     * Converts a string to a string array.
+     */
+    @Override
+    public String[] toArray(String value) {
+        String separator = String.valueOf(",");
+        return this.toArray(value, separator);
+    }
+
+    /**
+     * Converts a string to a string array.
+     */
+    @Override
+    public String[] toArray(String value, String separator) {
+        Conditions.validateNotNull(
+            value,
+            "The array value.");
+
+        String array = value.trim();
+        String[] result = array.split(separator);
+
+        return result;
+    }
 }

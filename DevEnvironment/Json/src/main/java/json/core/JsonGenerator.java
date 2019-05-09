@@ -271,25 +271,6 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     }
 
     /**
-     * Writes a character.
-     */
-    @Override
-    public void writeCharacter(char value) {
-        try {
-            String valueToWrite = String.valueOf(value);
-            this.generator.writeString(valueToWrite);
-        }
-        catch (IOException e) {
-            String errorMessage =
-                "The JsonGenerator failed writing a character: " + value +
-                ", due to the following error: " + e.getMessage();
-
-            this.log.error(errorMessage, e);
-            throw new JsonException(errorMessage, e);
-        }
-    }
-
-    /**
      * Writes a string.
      */
     @Override
@@ -313,9 +294,13 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     @Override
     public void writeBooleanArray(boolean[] array) {
         try {
+            this.writeStartArray();
+
             for (boolean value : array) {
                 this.generator.writeBoolean(value);
             }
+
+            this.writeEndArray();
         }
         catch (IOException e) {
             String errorMessage =
@@ -349,9 +334,13 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     @Override
     public void writeShortArray(short[] array) {
         try {
+            this.writeStartArray();
+
             for (short value : array) {
                 this.generator.writeNumber(value);
             }
+
+            this.writeEndArray();
         }
         catch (IOException e) {
             String errorMessage =
@@ -404,9 +393,13 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     @Override
     public void writeFloatArray(float[] array) {
         try {
+            this.writeStartArray();
+
             for (float value : array) {
                 this.generator.writeNumber(value);
             }
+
+            this.writeEndArray();
         }
         catch (IOException e) {
             String errorMessage =
@@ -437,31 +430,18 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     }
 
     /**
-     * Writes a character array.
-     */
-    @Override
-    public void writeCharacterArray(char[] array) {
-        try {
-            this.generator.writeRaw(array, 0, array.length);
-        }
-        catch (IOException e) {
-            String errorMessage =
-               "The JsonGenerator failed writing a character array" +
-               ", due to the following error: " + e.getMessage();
-
-            this.log.error(errorMessage, e);
-        }
-    }
-
-    /**
      * Writes a string array.
      */
     @Override
     public void writeStringArray(String[] array) {
         try {
+            this.generator.writeStartArray();
+
             for (String value : array) {
                 this.generator.writeString(value);
             }
+
+            this.generator.writeEndArray();
         }
         catch (IOException e) {
             String errorMessage =

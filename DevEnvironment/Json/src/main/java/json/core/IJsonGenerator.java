@@ -65,11 +65,6 @@ public interface IJsonGenerator {
     void writeDouble(double value);
 
     /**
-     * Writes a character.
-     */
-    void writeCharacter(char value);
-
-    /**
      * Writes a string.
      */
     void writeString(String value);
@@ -108,11 +103,6 @@ public interface IJsonGenerator {
      * Writes a double array.
      */
     void writeDoubleArray(double[] array);
-
-    /**
-     * Writes a character array.
-     */
-    void writeCharacterArray(char[] array);
 
     /**
      * Writes a string array.

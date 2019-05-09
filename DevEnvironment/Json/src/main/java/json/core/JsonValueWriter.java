@@ -82,14 +82,6 @@ public final class JsonValueWriter implements IJsonValueWriter {
     }
 
     /**
-     * Writes a character.
-     */
-    @Override
-    public void writeCharacter(char value) {
-        this.generator.writeCharacter(value);
-    }
-
-    /**
      * Writes a string.
      */
     @Override
@@ -167,18 +159,6 @@ public final class JsonValueWriter implements IJsonValueWriter {
         }
 
         this.generator.writeDoubleArray(array);
-    }
-
-    /**
-     * Writes a character array.
-     */
-    @Override
-    public void writeCharacterArray(char[] array) {
-        if (array == null) {
-            return;
-        }
-
-        this.generator.writeCharacterArray(array);
     }
 
     /**

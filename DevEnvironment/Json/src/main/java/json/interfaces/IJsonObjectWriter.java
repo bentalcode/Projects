@@ -42,11 +42,6 @@ public interface IJsonObjectWriter {
     void writeDoubleProperty(String name, double value);
 
     /**
-     * Writes a character property.
-     */
-    void writeCharacterProperty(String name, char value);
-
-    /**
      * Writes a string property.
      */
     void writeStringProperty(String name, String value);
@@ -85,11 +80,6 @@ public interface IJsonObjectWriter {
      * Writes a double array property.
      */
     void writeDoubleArrayProperty(String name, double[] array);
-
-    /**
-     * Writes a character array property.
-     */
-    void writeCharacterArrayProperty(String name, char[] array);
 
     /**
      * Writes a string array property.

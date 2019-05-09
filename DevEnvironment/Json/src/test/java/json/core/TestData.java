@@ -18,6 +18,7 @@ public final class TestData implements ITestData {
     private static final List<Pair<String, Class<?>>> SimpleJsonResourcesInformation = new ArrayList<>();
 
     static {
+        SimpleJsonResourcesInformation.add(new Pair<>("simpleResource1.json", Types.class));
         SimpleJsonResourcesInformation.add(new Pair<>("simpleResource2.json", Fruit.class));
         SimpleJsonResourcesInformation.add(new Pair<>("simpleResource3.json", Colors.class));
     }

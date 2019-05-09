@@ -1,15 +1,16 @@
 {
+  "boolean": true,
   "short": 0,
   "integer": -5,
   "long": 0,
   "float": 2.0,
   "double": 1.0,
   "string": "",
+  "booleanArray": [true, false, true],
   "shortArray": [1,2,3],
   "integerArray": [1, 2, 3, 4],
   "longArray": [1, 2, 3, 4, 5],
   "floatArray": [0.0, 0.1, 0.6, 1.2],
-  "doubleArray": [1.1, 2.7, -4.8, 8],
-  "stringArray": ["a", "b" ,"c"],
-  "blob": "jdhfjdshfjs6526356253623523",
+  "doubleArray": [1.1, 2.7, -4.8, 8.0],
+  "stringArray": ["a1","b2","c3"]
 }

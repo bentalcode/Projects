@@ -100,17 +100,6 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
-     * Writes a character property.
-     */
-    @Override
-    public void writeCharacterProperty(String name, char value) {
-        this.validatePropertyName(name);
-
-        this.generator.writePropertyName(name);
-        this.generator.writeCharacter(value);
-    }
-
-    /**
      * Writes a string property.
      */
     @Override
@@ -228,21 +217,6 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
 
         this.generator.writePropertyName(name);
         this.generator.writeDoubleArray(array);
-    }
-
-    /**
-     * Writes a character array property.
-     */
-    @Override
-    public void writeCharacterArrayProperty(String name, char[] array) {
-        this.validatePropertyName(name);
-
-        if (array == null) {
-            return;
-        }
-
-        this.generator.writePropertyName(name);
-        this.generator.writeCharacterArray(array);
     }
 
     /**

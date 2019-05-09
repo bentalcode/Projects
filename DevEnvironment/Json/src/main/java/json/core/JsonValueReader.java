@@ -6,8 +6,6 @@ import base.core.Conditions;
 import base.core.Conversion;
 import base.core.ReflectionHandler;
 import json.interfaces.IJsonObjectReader;
-
-import java.io.ObjectStreamException;
 import java.util.ArrayList;
 import java.util.List;
 import json.interfaces.IJsonSerialization;
@@ -34,17 +32,9 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public boolean readBoolean() {
-        IJsonBooleanValue value = Casting.cast(this.jsonValue);
+        IJsonBooleanValue value = Casting.cast(this.jsonValue, IJsonBooleanValue.class);
         boolean result = value.getValue();
         return result;
-    }
-
-    /**
-     * Reads a byte.
-     */
-    @Override
-    public byte readByte() {
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -52,7 +42,11 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public short readShort() {
-        throw new UnsupportedOperationException();
+        long value = this.readLong();
+
+        short result = Conversion.longConversion().toShort(value);
+
+        return result;
     }
 
     /**
@@ -72,7 +66,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public long readLong() {
-        IJsonLongValue value = Casting.cast(this.jsonValue);
+        IJsonLongValue value = Casting.cast(this.jsonValue, IJsonLongValue.class);
 
         long result = value.getValue();
 
@@ -95,7 +89,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public double readDouble() {
-        IJsonDoubleValue value = Casting.cast(this.jsonValue);
+        IJsonDoubleValue value = Casting.cast(this.jsonValue, IJsonDoubleValue.class);
 
         double result = value.getValue();
 
@@ -103,19 +97,11 @@ public final class JsonValueReader implements IJsonValueReader {
     }
 
     /**
-     * Reads a character.
-     */
-    @Override
-    public char readCharacter() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Reads a string.
      */
     @Override
     public String readString() {
-        IJsonStringValue value = Casting.cast(this.jsonValue);;
+        IJsonStringValue value = Casting.cast(this.jsonValue, IJsonStringValue.class);
 
         String result = value.getValue();
 
@@ -127,15 +113,22 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public boolean[] readBooleanArray() {
-        throw new UnsupportedOperationException();
-    }
+        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
+        IJsonArray array = value.getValue();
 
-    /**
-     * Reads a byte array.
-     */
-    @Override
-    public byte[] readByteArray() {
-        throw new UnsupportedOperationException();
+        if (array.empty()) {
+            return null;
+        }
+
+        boolean[] result = new boolean[array.size()];
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result[i] = valueReader.readBoolean();
+        }
+
+        return result;
     }
 
     /**
@@ -143,7 +136,22 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public short[] readShortArray() {
-        throw new UnsupportedOperationException();
+        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
+        IJsonArray array = value.getValue();
+
+        if (array.empty()) {
+            return null;
+        }
+
+        short[] result = new short[array.size()];
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result[i] = valueReader.readShort();
+        }
+
+        return result;
     }
 
     /**
@@ -151,7 +159,22 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public int[] readIntegerArray() {
-        throw new UnsupportedOperationException();
+        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
+        IJsonArray array = value.getValue();
+
+        if (array.empty()) {
+            return null;
+        }
+
+        int[] result = new int[array.size()];
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result[i] = valueReader.readInteger();
+        }
+
+        return result;
     }
 
     /**
@@ -159,7 +182,22 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public long[] readLongArray() {
-        throw new UnsupportedOperationException();
+        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
+        IJsonArray array = value.getValue();
+
+        if (array.empty()) {
+            return null;
+        }
+
+        long[] result = new long[array.size()];
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result[i] = valueReader.readLong();
+        }
+
+        return result;
     }
 
     /**
@@ -167,7 +205,22 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public float[] readFloatArray() {
-        throw new UnsupportedOperationException();
+        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
+        IJsonArray array = value.getValue();
+
+        if (array.empty()) {
+            return null;
+        }
+
+        float[] result = new float[array.size()];
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result[i] = valueReader.readFloat();
+        }
+
+        return result;
     }
 
     /**
@@ -175,15 +228,22 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public double[] readDoubleArray() {
-        throw new UnsupportedOperationException();
-    }
+        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
+        IJsonArray array = value.getValue();
 
-    /**
-     * Reads a character array.
-     */
-    @Override
-    public char[] readCharacterArray() {
-        throw new UnsupportedOperationException();
+        if (array.empty()) {
+            return null;
+        }
+
+        double[] result = new double[array.size()];
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result[i] = valueReader.readDouble();
+        }
+
+        return result;
     }
 
     /**
@@ -191,7 +251,22 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public String[] readStringArray() {
-        throw new UnsupportedOperationException();
+        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
+        IJsonArray array = value.getValue();
+
+        if (array.empty()) {
+            return null;
+        }
+
+        String[] result = new String[array.size()];
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result[i] = valueReader.readString();
+        }
+
+        return result;
     }
 
     /**
@@ -201,11 +276,12 @@ public final class JsonValueReader implements IJsonValueReader {
     public <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType readObject(Class<ClassType> classType) {
         this.validateClassType(classType);
 
-        IJsonObjectValue objectValue = Casting.cast(this.jsonValue);
+        IJsonObjectValue objectValue = Casting.cast(this.jsonValue, IJsonObjectValue.class);
         IJsonObjectReader reader = new JsonObjectReader(objectValue.getValue());
 
         ReflectionHandler reflectionHandler = new ReflectionHandler();
-        ResultType result = reflectionHandler.invoke(classType, "readJson", IJsonObjectReader.class, reader);
+
+        ResultType result = reflectionHandler.invoke(classType, "readJson", classType, IJsonObjectReader.class, reader);
 
         return result;
     }
@@ -217,7 +293,7 @@ public final class JsonValueReader implements IJsonValueReader {
     public <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType[] readArray(Class<ClassType> classType) {
         this.validateClassType(classType);
 
-        IJsonArray array = Casting.cast(this.jsonValue);
+        IJsonArray array = Casting.cast(this.jsonValue, IJsonArray.class);
         int arraySize = array.size();
 
         ResultType[] result = Arrays.newInstance(classType, arraySize);
@@ -241,7 +317,7 @@ public final class JsonValueReader implements IJsonValueReader {
     public <ResultType extends IJsonSerialization, ClassType extends ResultType> List<ResultType> readList(Class<ClassType> classType) {
         this.validateClassType(classType);
 
-        IJsonArrayValue array = Casting.cast(this.jsonValue);
+        IJsonArrayValue array = Casting.cast(this.jsonValue, IJsonArrayValue.class);
 
         List<ResultType> result = new ArrayList<>();
 

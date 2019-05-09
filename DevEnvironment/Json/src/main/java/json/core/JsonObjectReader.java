@@ -42,19 +42,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
-     * Reads a byte property.
-     */
-    @Override
-    public byte readByteProperty(String name) {
-        IJsonValue value = this.getPropertyValue(name);
-
-        IJsonValueReader reader = new JsonValueReader(value);
-        byte result = reader.readByte();
-
-        return result;
-    }
-
-    /**
      * Reads a short property.
      */
     @Override
@@ -120,19 +107,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
-     * Reads a char property.
-     */
-    @Override
-    public char readCharacterProperty(String name) {
-        IJsonValue value = this.getPropertyValue(name);
-
-        IJsonValueReader reader = new JsonValueReader(value);
-        char result = reader.readCharacter();
-
-        return result;
-    }
-
-    /**
      * Reads a string property.
      */
     @Override
@@ -154,19 +128,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
 
         IJsonValueReader reader = new JsonValueReader(value);
         boolean[] result = reader.readBooleanArray();
-
-        return result;
-    }
-
-    /**
-     * Reads a byte array property.
-     */
-    @Override
-    public byte[] readByteArrayProperty(String name) {
-        IJsonValue value = this.getPropertyValue(name);
-
-        IJsonValueReader reader = new JsonValueReader(value);
-        byte[] result = reader.readByteArray();
 
         return result;
     }
@@ -232,19 +193,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
 
         IJsonValueReader reader = new JsonValueReader(value);
         double[] result = reader.readDoubleArray();
-
-        return result;
-    }
-
-    /**
-     * Reads a character array property.
-     */
-    @Override
-    public char[] readCharacterArrayProperty(String name) {
-        IJsonValue value = this.getPropertyValue(name);
-
-        IJsonValueReader reader = new JsonValueReader(value);
-        char[] result = reader.readCharacterArray();
 
         return result;
     }

@@ -13,11 +13,6 @@ interface IJsonValueReader {
     boolean readBoolean();
 
     /**
-     * Reads a byte.
-     */
-    byte readByte();
-
-    /**
      * Reads a short.
      */
     short readShort();
@@ -43,11 +38,6 @@ interface IJsonValueReader {
     double readDouble();
 
     /**
-     * Reads a character.
-     */
-    char readCharacter();
-
-    /**
      * Reads a string.
      */
     String readString();
@@ -56,11 +46,6 @@ interface IJsonValueReader {
      * Reads a boolean array.
      */
     boolean[] readBooleanArray();
-
-    /**
-     * Reads a byte array.
-     */
-    byte[] readByteArray();
 
     /**
      * Reads a short array.
@@ -86,11 +71,6 @@ interface IJsonValueReader {
      * Reads a double array.
      */
     double[] readDoubleArray();
-
-    /**
-     * Reads a character array.
-     */
-    char[] readCharacterArray();
 
     /**
      * Reads a string array.

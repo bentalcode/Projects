@@ -12,7 +12,7 @@ public final class Casting {
     /**
      * Casts the object to the requested type.
      */
-    public static <TTo> TTo cast(Object obj) {
+    public static <TTo, TFrom> TTo cast(TFrom obj) {
         try {
             TTo convertedType = Casting.unsafeCast(obj);
             return convertedType;
@@ -30,31 +30,29 @@ public final class Casting {
     /**
      * Casts the object to the requested type.
      */
-    public static <TTo, TFrom> TTo cast(TFrom obj, Class<TTo> requestedType) {
+    public static <TTo, TFrom> TTo cast(TFrom obj, Class<?> requestedType) {
         try {
             TTo convertedType = Casting.unsafeCast(obj);
+
+            if (!requestedType.isAssignableFrom(convertedType.getClass())) {
+                String errorMessage =
+                    "Failed to cast an instance of class type: " + obj.getClass().getName() +
+                    " to the requested type: " + requestedType.getName();
+
+                Casting.Log.error(errorMessage);
+                throw new BaseException(errorMessage);
+            }
+
             return convertedType;
         }
         catch (ClassCastException e) {
             String errorMessage =
                 "Failed to cast an instance of class type: " + obj.getClass().getName() +
-                " to the requested typ: " + requestedType.getName() + " due to the following error: " + e.getMessage();
+                " to the requested type: " + requestedType.getName() + " due to the following error: " + e.getMessage();
 
             Casting.Log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
-    }
-
-    /**
-     * Casts an integer to a long.
-     */
-    public static int toInteger(long value) {
-        if (value < Integer.MIN_VALUE || value > Integer.MAX_VALUE) {
-            String errorMessage = "Failed to cast a long: " + value + " to an integer.";
-            throw new BaseException(errorMessage);
-        }
-
-        return (int)value;
     }
 
     /**

@@ -111,7 +111,11 @@ public final class ReflectionHandler {
     /**
      * Invokes a method with no parameters and a return type.
      */
-    public <Type, ReturnType> ReturnType invoke(Class<Type> classType, String methodName) {
+    public <Type, ReturnType> ReturnType invoke(
+        Class<Type> classType,
+        String methodName,
+        Class<ReturnType> returnType) {
+
         Conditions.validateNotNull(
             classType,
             "The type of a class to invoke with reflection.");
@@ -120,12 +124,16 @@ public final class ReflectionHandler {
             methodName,
             "The method name to invoke with reflection.");
 
+        Conditions.validateNotNull(
+            returnType,
+            "The type of a return value of the invoked method with reflection.");
+
         Method method = this.getMethod(classType, methodName);
 
         ReturnType result;
 
         try {
-            result = Casting.cast(method.invoke(null));
+            result = Casting.cast(method.invoke(null), returnType);
         }
         catch (ReflectiveOperationException e) {
             String errorMessage =
@@ -145,6 +153,7 @@ public final class ReflectionHandler {
     public <Type, ParamType, ReturnType> ReturnType invoke(
         Class<Type> classType,
         String methodName,
+        Class<ReturnType> returnType,
         Class<ParamType> paramType,
         ParamType param) {
 
@@ -156,19 +165,27 @@ public final class ReflectionHandler {
             methodName,
             "The method name to invoke with reflection.");
 
+        Conditions.validateNotNull(
+            returnType,
+            "The type of a return value of the invoked method with reflection.");
+
+        Conditions.validateNotNull(
+            paramType,
+            "The type of a parameter of the invoked method with reflection.");
+
         Method method = this.getMethod(classType, methodName, paramType);
 
         ReturnType result;
 
         try {
-            result = Casting.cast(method.invoke(null, param));
+            result = Casting.cast(method.invoke(null, param), returnType);
         }
         catch (ReflectiveOperationException e) {
             String errorMessage =
                 "The Reflection Handler failed invoking method: " + methodName +
                 " with param: " + paramType +
                 " of class: " + classType +
-                ", due to the following error: " + e.getMessage();
+                ", due to the following error: " + Exceptions.getErrorMessages(e);
 
             throw new BaseException(errorMessage, e);
         }

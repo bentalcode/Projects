@@ -7,6 +7,11 @@ import base.interfaces.IUnaryComparator;
  */
 public interface ITypes extends IUnaryComparator<ITypes>, IJsonSerialization {
     /**
+     * Gets a boolean value.
+     */
+    boolean getBooleanValue();
+
+    /**
      * Gets a short value.
      */
     short getShortValue();
@@ -37,6 +42,11 @@ public interface ITypes extends IUnaryComparator<ITypes>, IJsonSerialization {
     String getStringValue();
 
     /**
+     * Gets a boolean array.
+     */
+    boolean[] getBooleanArray();
+
+    /**
      * Gets a short array.
      */
     short[] getShortArray();
@@ -65,9 +75,4 @@ public interface ITypes extends IUnaryComparator<ITypes>, IJsonSerialization {
      * Gets a string array.
      */
     String[] getStringArray();
-
-    /**
-     * Gets a blob.
-     */
-    byte[] getBlob();
 }

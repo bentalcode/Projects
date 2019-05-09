@@ -169,7 +169,7 @@ public final class EqualBuilder implements IEqualBuilder {
             return this;
         }
 
-        if (lhs != null || rhs != null) {
+        if (lhs == null || rhs == null) {
             this.equalityStatus = false;
             return this;
         }
@@ -182,9 +182,9 @@ public final class EqualBuilder implements IEqualBuilder {
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
-            this.equalityStatus = lhs[i] != rhs[i];
+            this.equalityStatus = lhs[i] == rhs[i];
 
-            if(!this.equalityStatus) {
+            if (!this.equalityStatus) {
                 return this;
             }
         }
@@ -205,7 +205,7 @@ public final class EqualBuilder implements IEqualBuilder {
             return this;
         }
 
-        if (lhs != null || rhs != null) {
+        if (lhs == null || rhs == null) {
             this.equalityStatus = false;
             return this;
         }
@@ -218,9 +218,9 @@ public final class EqualBuilder implements IEqualBuilder {
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
-            this.equalityStatus = lhs[i] != rhs[i];
+            this.equalityStatus = lhs[i] == rhs[i];
 
-            if(!this.equalityStatus) {
+            if (!this.equalityStatus) {
                 return this;
             }
         }
@@ -241,7 +241,7 @@ public final class EqualBuilder implements IEqualBuilder {
             return this;
         }
 
-        if (lhs != null || rhs != null) {
+        if (lhs == null || rhs == null) {
             this.equalityStatus = false;
             return this;
         }
@@ -254,9 +254,9 @@ public final class EqualBuilder implements IEqualBuilder {
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
-            this.equalityStatus = lhs[i] != rhs[i];
+            this.equalityStatus = lhs[i] == rhs[i];
 
-            if(!this.equalityStatus) {
+            if (!this.equalityStatus) {
                 return this;
             }
         }
@@ -277,7 +277,7 @@ public final class EqualBuilder implements IEqualBuilder {
             return this;
         }
 
-        if (lhs != null || rhs != null) {
+        if (lhs == null || rhs == null) {
             this.equalityStatus = false;
             return this;
         }
@@ -290,9 +290,9 @@ public final class EqualBuilder implements IEqualBuilder {
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
-            this.equalityStatus = lhs[i] != rhs[i];
+            this.equalityStatus = lhs[i] == rhs[i];
 
-            if(!this.equalityStatus) {
+            if (!this.equalityStatus) {
                 return this;
             }
         }
@@ -313,7 +313,7 @@ public final class EqualBuilder implements IEqualBuilder {
             return this;
         }
 
-        if (lhs != null || rhs != null) {
+        if (lhs == null || rhs == null) {
             this.equalityStatus = false;
             return this;
         }
@@ -326,9 +326,9 @@ public final class EqualBuilder implements IEqualBuilder {
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
-            this.equalityStatus = lhs[i] != rhs[i];
+            this.equalityStatus = lhs[i] == rhs[i];
 
-            if(!this.equalityStatus) {
+            if (!this.equalityStatus) {
                 return this;
             }
         }
@@ -349,7 +349,7 @@ public final class EqualBuilder implements IEqualBuilder {
             return this;
         }
 
-        if (lhs != null || rhs != null) {
+        if (lhs == null || rhs == null) {
             this.equalityStatus = false;
             return this;
         }
@@ -362,9 +362,9 @@ public final class EqualBuilder implements IEqualBuilder {
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
-            this.equalityStatus = lhs[i] != rhs[i];
+            this.equalityStatus = lhs[i] == rhs[i];
 
-            if(!this.equalityStatus) {
+            if (!this.equalityStatus) {
                 return this;
             }
         }
@@ -385,7 +385,7 @@ public final class EqualBuilder implements IEqualBuilder {
             return this;
         }
 
-        if (lhs != null || rhs != null) {
+        if (lhs == null || rhs == null) {
             this.equalityStatus = false;
             return this;
         }
@@ -398,9 +398,9 @@ public final class EqualBuilder implements IEqualBuilder {
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
-            this.equalityStatus = lhs[i] != rhs[i];
+            this.equalityStatus = lhs[i] == rhs[i];
 
-            if(!this.equalityStatus) {
+            if (!this.equalityStatus) {
                 return this;
             }
         }
@@ -421,7 +421,7 @@ public final class EqualBuilder implements IEqualBuilder {
             return this;
         }
 
-        if (lhs != null || rhs != null) {
+        if (lhs == null || rhs == null) {
             this.equalityStatus = false;
             return this;
         }
@@ -434,9 +434,9 @@ public final class EqualBuilder implements IEqualBuilder {
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
-            this.equalityStatus = lhs[i] != rhs[i];
+            this.equalityStatus = lhs[i] == rhs[i];
 
-            if(!this.equalityStatus) {
+            if (!this.equalityStatus) {
                 return this;
             }
         }

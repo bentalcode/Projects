@@ -12,11 +12,6 @@ public interface IJsonObjectReader {
     boolean readBooleanProperty(String name);
 
     /**
-     * Reads a byte property.
-     */
-    byte readByteProperty(String name);
-
-    /**
      * Reads a short property.
      */
     short readShortProperty(String name);
@@ -42,11 +37,6 @@ public interface IJsonObjectReader {
     double readDoubleProperty(String name);
 
     /**
-     * Reads a character property.
-     */
-    char readCharacterProperty(String name);
-
-    /**
      * Reads a string property.
      */
     String readStringProperty(String name);
@@ -55,11 +45,6 @@ public interface IJsonObjectReader {
      * Reads a boolean array property.
      */
     boolean[] readBooleanArrayProperty(String name);
-
-    /**
-     * Reads a byte array property.
-     */
-    byte[] readByteArrayProperty(String name);
 
     /**
      * Reads a short array property.
@@ -85,11 +70,6 @@ public interface IJsonObjectReader {
      * Reads a double array property.
      */
     double[] readDoubleArrayProperty(String name);
-
-    /**
-     * Reads a character array property.
-     */
-    char[] readCharacterArrayProperty(String name);
 
     /**
      * Reads a string array property.

@@ -43,11 +43,6 @@ public interface IJsonValueWriter {
     void writeDouble(double value);
 
     /**
-     * Writes a character.
-     */
-    void writeCharacter(char value);
-
-    /**
      * Writes a string.
      */
     void writeString(String value);
@@ -81,11 +76,6 @@ public interface IJsonValueWriter {
      * Writes a double array.
      */
     void writeDoubleArray(double[] value);
-
-    /**
-     * Writes a character array.
-     */
-    void writeCharacterArray(char[] value);
 
     /**
      * Writes a string array.

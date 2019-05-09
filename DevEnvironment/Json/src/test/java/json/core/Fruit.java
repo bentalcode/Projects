@@ -85,7 +85,7 @@ public final class Fruit implements IFruit {
     /**
      * Reads a json.
      */
-    public static IFruit readJson(IJsonObjectReader reader) {
+    public static Fruit readJson(IJsonObjectReader reader) {
         String kind = reader.readStringProperty(Fruit.PropertyKind);
         int size = reader.readIntegerProperty(Fruit.PropertySize);
         String color = reader.readStringProperty(Fruit.PropertyColor);
