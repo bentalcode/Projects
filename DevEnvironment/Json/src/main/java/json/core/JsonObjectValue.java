@@ -3,7 +3,7 @@ package json.core;
 /**
  * The JsonObjectValue class implements a json value of an object.
  */
-public final class JsonObjectValue implements IJsonObjectValue {
+public final class JsonObjectValue extends AbstractJsonValue {
     private final IJsonObject value;
 
     /**
@@ -14,9 +14,9 @@ public final class JsonObjectValue implements IJsonObjectValue {
     }
 
     /**
-     * Gets a value.
+     * Gets an object.
      */
-    public IJsonObject getValue() {
+    public IJsonObject getObject() {
         return this.value;
     }
 }

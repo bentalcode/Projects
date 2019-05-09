@@ -81,7 +81,7 @@ public final class JsonStream implements IJsonStream {
             //
             // Read the corresponding object by using a reader...
             //
-            IJsonObjectValue value = new JsonObjectValue(tree.getRootObject());
+            IJsonValue value = new JsonObjectValue(tree.getRootObject());
             IJsonValueReader valueReader = new JsonValueReader(value);
 
             instance = valueReader.readObject(classType);

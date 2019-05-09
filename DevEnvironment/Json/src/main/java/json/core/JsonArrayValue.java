@@ -3,7 +3,7 @@ package json.core;
 /**
  * The JsonArrayValue class implements a json value of an array.
  */
-public final class JsonArrayValue implements IJsonArrayValue {
+public final class JsonArrayValue extends AbstractJsonValue {
     private final IJsonArray value;
 
     /**
@@ -16,7 +16,8 @@ public final class JsonArrayValue implements IJsonArrayValue {
     /**
      * Gets a value.
      */
-    public IJsonArray getValue() {
+    @Override
+    public IJsonArray getArray() {
         return this.value;
     }
 }

@@ -6,13 +6,9 @@ import base.core.Conditions;
 import base.core.Conversion;
 import base.core.ReflectionHandler;
 import json.interfaces.IJsonObjectReader;
-
-import java.io.ObjectStreamException;
 import java.util.ArrayList;
 import java.util.List;
 import json.interfaces.IJsonSerialization;
-
-import javax.naming.OperationNotSupportedException;
 
 /**
  * The JsonValueReader class implements a reader of a json value.
@@ -36,9 +32,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public boolean readBoolean() {
-        IJsonBooleanValue value = Casting.cast(this.jsonValue, IJsonBooleanValue.class);
-        boolean result = value.getValue();
-        return result;
+        return this.jsonValue.getBooleanValue();
     }
 
     /**
@@ -70,11 +64,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public long readLong() {
-        IJsonLongValue value = Casting.cast(this.jsonValue, IJsonLongValue.class);
-
-        long result = value.getValue();
-
-        return result;
+        return this.jsonValue.getLongValue();
     }
 
     /**
@@ -82,7 +72,8 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public float readFloat() {
-        double value = this.readDouble();
+        double value = this.jsonValue.getDoubleValue();
+
         float result = Conversion.doubleConversion().toFloat(value);
 
         return result;
@@ -93,11 +84,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public double readDouble() {
-        IJsonDoubleValue value = Casting.cast(this.jsonValue, IJsonDoubleValue.class);
-
-        double result = value.getValue();
-
-        return result;
+        return this.jsonValue.getDoubleValue();
     }
 
     /**
@@ -105,11 +92,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public String readString() {
-        IJsonStringValue value = Casting.cast(this.jsonValue, IJsonStringValue.class);
-
-        String result = value.getValue();
-
-        return result;
+        return this.jsonValue.getStringValue();
     }
 
     /**
@@ -117,8 +100,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public boolean[] readBooleanArray() {
-        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
-        IJsonArray array = value.getValue();
+        IJsonArray array = this.jsonValue.getArray();
 
         if (array.empty()) {
             return null;
@@ -140,8 +122,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public short[] readShortArray() {
-        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
-        IJsonArray array = value.getValue();
+        IJsonArray array = this.jsonValue.getArray();
 
         if (array.empty()) {
             return null;
@@ -163,8 +144,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public int[] readIntegerArray() {
-        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
-        IJsonArray array = value.getValue();
+        IJsonArray array = this.jsonValue.getArray();
 
         if (array.empty()) {
             return null;
@@ -186,8 +166,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public long[] readLongArray() {
-        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
-        IJsonArray array = value.getValue();
+        IJsonArray array = this.jsonValue.getArray();
 
         if (array.empty()) {
             return null;
@@ -209,8 +188,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public float[] readFloatArray() {
-        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
-        IJsonArray array = value.getValue();
+        IJsonArray array = this.jsonValue.getArray();
 
         if (array.empty()) {
             return null;
@@ -232,8 +210,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public double[] readDoubleArray() {
-        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
-        IJsonArray array = value.getValue();
+        IJsonArray array = this.jsonValue.getArray();
 
         if (array.empty()) {
             return null;
@@ -255,8 +232,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     @Override
     public String[] readStringArray() {
-        IJsonArrayValue value = Casting.cast(this.jsonValue, IJsonArrayValue.class);
-        IJsonArray array = value.getValue();
+        IJsonArray array = this.jsonValue.getArray();
 
         if (array.empty()) {
             return null;
@@ -292,8 +268,7 @@ public final class JsonValueReader implements IJsonValueReader {
     public <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType readObject(Class<ClassType> classType) {
         this.validateClassType(classType);
 
-        IJsonObjectValue objectValue = Casting.cast(this.jsonValue, IJsonObjectValue.class);
-        IJsonObjectReader reader = new JsonObjectReader(objectValue.getValue());
+        IJsonObjectReader reader = new JsonObjectReader(this.jsonValue.getObject());
 
         ReflectionHandler reflectionHandler = new ReflectionHandler();
 
@@ -309,7 +284,7 @@ public final class JsonValueReader implements IJsonValueReader {
     public <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType[] readArray(Class<ClassType> classType) {
         this.validateClassType(classType);
 
-        IJsonArray array = Casting.cast(this.jsonValue, IJsonArray.class);
+        IJsonArray array = this.jsonValue.getArray();
         int arraySize = array.size();
 
         ResultType[] result = Arrays.newInstance(classType, arraySize);
@@ -333,11 +308,11 @@ public final class JsonValueReader implements IJsonValueReader {
     public <ResultType extends IJsonSerialization, ClassType extends ResultType> List<ResultType> readList(Class<ClassType> classType) {
         this.validateClassType(classType);
 
-        IJsonArrayValue array = Casting.cast(this.jsonValue, IJsonArrayValue.class);
+        IJsonArray array = this.jsonValue.getArray();
 
         List<ResultType> result = new ArrayList<>();
 
-        for (IJsonValue currValue : array.getValue()) {
+        for (IJsonValue currValue : array) {
             IJsonValueReader currValueReader = new JsonValueReader(currValue);
 
             ResultType currItem = currValueReader.readObject(classType);

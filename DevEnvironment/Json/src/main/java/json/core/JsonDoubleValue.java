@@ -3,7 +3,7 @@ package json.core;
 /**
  * The JsonDoubleValue class implements a json value of a double.
  */
-public final class JsonDoubleValue implements IJsonDoubleValue {
+public final class JsonDoubleValue extends AbstractJsonValue {
     private final double value;
 
     /**
@@ -14,9 +14,9 @@ public final class JsonDoubleValue implements IJsonDoubleValue {
     }
 
     /**
-     * Gets a value.
+     * Gets a double value.
      */
-    public double getValue() {
+    public double getDoubleValue() {
         return this.value;
     }
 }

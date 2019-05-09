@@ -131,7 +131,7 @@ public final class JsonParser implements IJsonParser, ICloseable {
         // Otherwise, create the object and set it to it's parent...
         //
         IJsonObject currentObject = this.jsonTree.createObject();
-        IJsonObjectValue currentObjectValue = new JsonObjectValue(currentObject);
+        IJsonValue currentObjectValue = new JsonObjectValue(currentObject);
 
         IJsonElement parentElement = this.currentElement();
         this.elementsStack.push(currentObject);
@@ -165,7 +165,7 @@ public final class JsonParser implements IJsonParser, ICloseable {
         // Otherwise, create the array and set it to it's parent...
         //
         IJsonArray currentArray = this.jsonTree.createArray();
-        IJsonArrayValue currentArrayValue = new JsonArrayValue(currentArray);
+        IJsonValue currentArrayValue = new JsonArrayValue(currentArray);
 
         IJsonElement parentElement = this.currentElement();
         this.elementsStack.push(currentArray);

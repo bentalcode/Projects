@@ -3,7 +3,7 @@ package json.core;
 /**
  * The JsonLongValue class implements a json value of a long.
  */
-public final class JsonLongValue implements IJsonLongValue {
+public final class JsonLongValue extends AbstractJsonValue {
     private final long value;
 
     /**
@@ -14,9 +14,9 @@ public final class JsonLongValue implements IJsonLongValue {
     }
 
     /**
-     * Gets a value.
+     * Gets a long value.
      */
-    public long getValue() {
+    public long getLongValue() {
         return this.value;
     }
 }

@@ -3,7 +3,7 @@ package json.core;
 /**
  * The JsonStringValue class implements a json value of a string.
  */
-public final class JsonStringValue implements IJsonStringValue {
+public final class JsonStringValue extends AbstractJsonValue {
     private final String value;
 
     /**
@@ -14,9 +14,9 @@ public final class JsonStringValue implements IJsonStringValue {
     }
 
     /**
-     * Gets a value.
+     * Gets a string value.
      */
-    public String getValue() {
+    public String getStringValue() {
         return this.value;
     }
 }

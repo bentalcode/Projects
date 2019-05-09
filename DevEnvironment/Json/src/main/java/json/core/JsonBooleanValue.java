@@ -3,7 +3,7 @@ package json.core;
 /**
  * The JsonBooleanValue class implements a json value of a boolean.
  */
-public final class JsonBooleanValue implements IJsonBooleanValue {
+public final class JsonBooleanValue extends AbstractJsonValue {
     private final boolean value;
 
     /**
@@ -14,9 +14,9 @@ public final class JsonBooleanValue implements IJsonBooleanValue {
     }
 
     /**
-     * Gets a value.
+     * Gets a boolean value.
      */
-    public boolean getValue() {
+    public boolean getBooleanValue() {
         return this.value;
     }
 }
