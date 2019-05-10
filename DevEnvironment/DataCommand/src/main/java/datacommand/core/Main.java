@@ -66,7 +66,7 @@ public final class Main {
         IDataResult dataResult;
 
         try (DestructorHandler destructorHandler = new DestructorHandler()) {
-            Scanner scanner = Scanners.createScanner(parameters.getDataPath());
+            Scanner scanner = Scanners.createFileScanner(parameters.getDataPath());
             destructorHandler.register(scanner);
 
             dataResult = dataCommand.process(scanner);

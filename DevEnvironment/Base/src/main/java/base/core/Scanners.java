@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.FileReader;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -15,16 +16,56 @@ public final class Scanners {
     private static final Logger Log = LoggerFactory.getLogger(Scanners.class);
 
     /**
-     * Creates a scanner to a file.
+     * Creates a scanner to a string.
      */
-    public static Scanner createScanner(String path) {
-        return Scanners.createScanner(Paths.create(path));
+    public static Scanner createStringScanner(String str) {
+        Conditions.validateNotNull(
+            str,
+            "The string to scan.");
+
+        Scanner scanner;
+
+        try (DestructorHandler destructorHandler = new DestructorHandler()) {
+
+            StringReader reader = Readers.createStringReader(str);
+            IDestructor readerDestructor = destructorHandler.register(reader);
+
+            try {
+                scanner = new Scanner(reader);
+                readerDestructor.detach();
+            }
+            catch (Exception e) {
+                String errorMessage =
+                    "The Scanner to a string failed to get created" +
+                    " due to the following error: " + e.getMessage();
+
+                Scanners.Log.error(errorMessage, e);
+                throw new BaseException(errorMessage, e);
+            }
+        }
+
+        return scanner;
     }
 
     /**
      * Creates a scanner to a file.
      */
-    public static Scanner createScanner(Path path) {
+    public static Scanner createFileScanner(String path) {
+        Conditions.validateStringNotNullOrEmpty(
+            path,
+            "The path of a file to scan.");
+
+        return Scanners.createFileScanner(Paths.create(path));
+    }
+
+    /**
+     * Creates a scanner to a file.
+     */
+    public static Scanner createFileScanner(Path path) {
+        Conditions.validatePathNotNullOrEmpty(
+            path,
+            "The path of a file to scan.");
+
         Scanner scanner;
 
         try (DestructorHandler destructorHandler = new DestructorHandler()) {
