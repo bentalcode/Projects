@@ -16,6 +16,14 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * The HashCodeBuilder constructor.
      */
     public HashCodeBuilder(int initialPrimeNumber, int factorPrimeNumber) {
+        Conditions.validate(
+            Primes.isPrime(initialPrimeNumber),
+            "The initial prime number is not a prime.");
+
+        Conditions.validate(
+            Primes.isPrime(factorPrimeNumber),
+            "The factor prime number is not a prime.");
+
         this.factorPrimeNumber = factorPrimeNumber;
         this.code = initialPrimeNumber;
     }

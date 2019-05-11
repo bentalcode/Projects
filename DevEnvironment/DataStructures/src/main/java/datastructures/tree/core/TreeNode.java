@@ -6,6 +6,7 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import base.interfaces.IVisitor;
 import datastructures.tree.interfaces.ITreeNode;
 import java.util.ArrayList;
 import java.util.List;
