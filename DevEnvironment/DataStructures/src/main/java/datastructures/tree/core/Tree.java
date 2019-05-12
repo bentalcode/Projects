@@ -58,8 +58,16 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
      * Gets an interface of a tree traversal.
      */
     @Override
-    public ITreeTraversal getTreeTraversal() {
-        return new TreeTraversal(this.comparator);
+    public ITreeTraversal<TKey , TValue> getTreeTraversal() {
+        return this.getTreeTraversal(TreeNode.DefaultComparator());
+    }
+
+    /**
+     * Gets an interface of a tree traversal.
+     */
+    @Override
+    public ITreeTraversal<TKey , TValue> getTreeTraversal(IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator) {
+        return new TreeTraversal<>(nodeComparator);
     }
 
     /**

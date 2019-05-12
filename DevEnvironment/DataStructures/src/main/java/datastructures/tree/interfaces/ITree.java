@@ -1,5 +1,6 @@
 package datastructures.tree.interfaces;
 
+import base.interfaces.IBinaryComparator;
 import base.interfaces.IUnaryComparator;
 
 /**
@@ -20,4 +21,9 @@ public interface ITree<TKey extends Comparable<TKey>, TValue> extends IUnaryComp
      * Gets an interface of a tree traversal.
      */
     ITreeTraversal getTreeTraversal();
+
+    /**
+     * Gets an interface of a tree traversal.
+     */
+    ITreeTraversal<TKey , TValue> getTreeTraversal(IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator);
 }
