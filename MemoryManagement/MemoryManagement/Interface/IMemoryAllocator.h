@@ -29,6 +29,11 @@ namespace memory_management
          * Allocates aligned memory.
          */
         virtual void releaseAligned(void* memoryPtr) = 0;
+
+        /**
+         * Clears the allocated memory.
+         */
+        virtual void clear(void* memoryPtr, std::size_t size) = 0;
     };
 }
 

@@ -9,14 +9,14 @@ namespace memory_management
         virtual ~IMemoryPool() {};
 
         /**
-         * Acquires a memory block.
+         * Acquires an element from the pool.
          */
-        virtual void* getMemory(std::size_t size) = 0;
+        virtual void* acquireElement() = 0;
 
         /**
-         * Releases a memory block.
+         * Release an element and return it to the pool.
          */
-        virtual void releaseMemory(void* memoryPtr, std::size_t size) = 0;
+        virtual void releaseElement(void* elementPtr) = 0;
     };
 }
 

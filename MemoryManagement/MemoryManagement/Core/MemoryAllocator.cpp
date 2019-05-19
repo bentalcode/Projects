@@ -1,7 +1,41 @@
 #include "MemoryAllocator.h"
-#include <cassert>
 
 using namespace memory_management;
+
+void* MemoryAllocator::allocateMemory(const std::size_t size)
+{
+    MemoryAllocator allocator;
+    return allocator.allocate(size);
+}
+
+void MemoryAllocator::releaseMemory(void* memoryPtr)
+{
+    MemoryAllocator allocator;
+    allocator.release(memoryPtr);
+}
+
+void* MemoryAllocator::allocateAlignedMemory(
+        std::size_t size,
+        const std::size_t alignment)
+{
+    MemoryAllocator allocator;
+    return allocator.allocateAligned(size, alignment);
+}
+
+void MemoryAllocator::releaseAlignedMemory(void* memoryPtr)
+{
+    MemoryAllocator allocator;
+    allocator.releaseAligned(memoryPtr);
+}
+
+/**
+ * Clears the allocated memory.
+ */
+void MemoryAllocator::clearMemory(void* memoryPtr, std::size_t size)
+{
+    MemoryAllocator allocator;
+    allocator.clear(memoryPtr, size);
+}
 
 /**
  * The MemoryAllocator constructor.
@@ -87,6 +121,19 @@ void MemoryAllocator::releaseAligned(void* memoryPtr)
     void* allocatedAddress = pReturnedAddress[-1];
 
     release(allocatedAddress);
+}
+
+/**
+ * Clears the allocated memory.
+ */
+void MemoryAllocator::clear(void* memoryPtr, std::size_t size)
+{
+    std::uintptr_t rawAddress = reinterpret_cast<std::uintptr_t>(memoryPtr);
+
+    for (std::size_t i = 0; i < size; ++i)
+    {
+        rawAddress = 0;
+    }
 }
 
 bool MemoryAllocator::isAlignmentValid(size_t alignment)
