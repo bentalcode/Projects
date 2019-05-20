@@ -14,7 +14,7 @@ namespace memory_management
     /**
      * The FixedMemoryPool class.
      */
-    class FixedMemoryPool : public IMemoryPool, private boost::noncopyable
+    class FixedMemoryPool : public IMemoryPool
     {
     public:
         /**
@@ -28,7 +28,7 @@ namespace memory_management
         /**
          * The FixedMemoryPool destructor.
          */
-        ~FixedMemoryPool();
+        virtual ~FixedMemoryPool();
 
         /**
          * Acquires an element from the pool.

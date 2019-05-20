@@ -8,10 +8,13 @@
 
 namespace memory_management
 {
+    class MemoryPool;
+    typedef std::shared_ptr<MemoryPool> MemoryPoolPtr;
+
     /**
      * The MemoryPool class.
      */
-    class MemoryPool : public IMemoryPool, private boost::noncopyable
+    class MemoryPool : public IMemoryPool
     {
     public:
         /**
@@ -25,17 +28,17 @@ namespace memory_management
         /**
          * The MemoryPool destructor.
          */
-        ~MemoryPool();
+        virtual ~MemoryPool();
 
         /**
          * Acquires an element from the pool.
          */
-        virtual void* acquireElement();
+        virtual ElementPtr acquireElement();
 
         /**
          * Release an element and return it to the pool.
          */
-        virtual void releaseElement(void* elementPtr);
+        virtual void releaseElement(ElementPtr elementPtr);
 
         /**
          * Gets number of acquired elements.

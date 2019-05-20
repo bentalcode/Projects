@@ -7,6 +7,5 @@
 #include <vector>
 #include <map>
 #include <cassert>
-#include <boost/core/noncopyable.hpp>
 
 #endif /* PRE_COMPILED_HEADERS_H */
