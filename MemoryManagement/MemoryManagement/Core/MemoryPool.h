@@ -3,7 +3,7 @@
 
 #include "PreCompiled.h"
 #include "IMemoryPool.h"
-#include "MemoryAllocator.h"
+#include "FixedMemoryPool.h"
 #include <mutex>
 
 namespace memory_management
@@ -18,8 +18,8 @@ namespace memory_management
          * The MemoryPool constructor.
          */
         explicit MemoryPool(
+            std::size_t initialNumberOfElements,
             std::size_t elementSizeInBytes,
-            std::size_t numberOfElements,
             std::size_t alignment);
 
         /**
@@ -38,63 +38,49 @@ namespace memory_management
         virtual void releaseElement(void* elementPtr);
 
         /**
-         * Determines whether the memory pool has reached it's capacity.
-         */
-        bool overCapacity() const;
-
-        /**
-         * Gets number of supported elements.
-         */
-        std::size_t numberOfElements() const;
-
-        /**
          * Gets number of acquired elements.
          */
-        std::size_t numberOfAcquiredElements() const;
-
-        /**
-         * Gets number of available elements.
-         */
-        std::size_t numberOfAvailableElements() const;
+        virtual std::size_t numberOfAcquiredElements() const;
 
         /**
          * Gets a size of an element in bytes.
          */
-        std::size_t elementSize() const;
+        inline std::size_t elementSize() const
+        {
+            return m_elementSizeInBytes;
+        }
 
     private:
         /**
-         * Allocates the pool.
+         * Adds a new pool.
          */
-        void allocate(
-            std::size_t elementSizeInBytes,
-            std::size_t numberOfElements,
-            std::size_t alignment);
+        FixedMemoryPoolPtr addPool();
 
         /**
-         * Releases the pool.
+         * Checks whether an element is in the pool.
          */
-        void release();
+        bool hasElement(ElementPtr elementPtr) const;
 
         /**
-         * Updates elements counters.
+         * Gets the corresponding pool of an element.
          */
-        void updateElementsCounters(bool acquired);
+        FixedMemoryPoolPtr getElementPool(ElementPtr elementPtr) const;
+
+        /**
+         * Sets the corresponding pool of an element.
+         */
+        void setElementPool(ElementPtr elementPtr, FixedMemoryPoolPtr poolPtr);
+
+        /**
+         * Removes the corresponding pool of an element.
+         */
+        void removeElementPool(ElementPtr elementPtr);
 
         // The mutex of the pool.
         mutable std::mutex m_mutex;
 
-        // The size of a pool in bytes.
-        std::size_t m_poolSizeInBytes;
-
-        // The number of supported elements in the pool.
-        std::size_t m_numberOfElements;
-
-        // The number of acquired elements in the pool.
-        std::size_t m_numberOfAcquiredElements;
-
-        // The number of available elements in the pool.
-        std::size_t m_numberOfAvailableElements;
+        // The initial number of elements in the pool.
+        std::size_t m_initialNumberOfElements;
 
         // The size of an element in the pool in bytes.
         std::size_t m_elementSizeInBytes;
@@ -102,14 +88,13 @@ namespace memory_management
         // The pool/element alignment
         std::size_t m_alignment;
 
-        // The raw memory of the pool.
-        AlignedMemoryPtr m_memoryPtr;
+        // The list of fixed memory pools.
+        typedef std::list<FixedMemoryPoolPtr> MemoryPoolList;
+        MemoryPoolList m_poolList;
 
-        // The free memory block list.
-        typedef std::list<void*> MemoryList;
-        MemoryList m_freeMemoryBlockList;
-
-        friend std::ostream & operator<<(std::ostream& stream, const MemoryPool& memoryPool);
+        // The mapping of the element address to it's corresponding pool.
+        typedef std::map<ElementRawPtr, FixedMemoryPoolPtr> ElementAddressToPoolMap;
+        ElementAddressToPoolMap m_elementToPoolMap;
     };
 
     std::ostream& operator<<(std::ostream& stream, const MemoryPool& memoryPool);

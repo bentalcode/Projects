@@ -9,14 +9,14 @@ include_directories(. Interface Core)
 
 set(INCLUDES
     Core/MemoryAllocator.h
-    Core/MemoryBlock.h
+    Core/FixedMemoryPool.h
     Core/MemoryPool.h
     Core/PreCompiled.h
     MemoryManagementException.h)
 
 set(SOURCES
     Core/MemoryAllocator.cpp
-    Core/MemoryBlock.cpp
+    Core/FixedMemoryPool.cpp
     Core/MemoryPool.cpp
     Core/PreCompiled.cpp)
 

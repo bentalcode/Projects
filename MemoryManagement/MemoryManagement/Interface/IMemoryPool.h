@@ -5,18 +5,21 @@ namespace memory_management
 {
     class IMemoryPool
     {
-    public :
+    public:
+        typedef void* ElementPtr;
+        typedef std::uintptr_t ElementRawPtr;
+
         virtual ~IMemoryPool() {};
 
         /**
          * Acquires an element from the pool.
          */
-        virtual void* acquireElement() = 0;
+        virtual ElementPtr acquireElement() = 0;
 
         /**
          * Release an element and return it to the pool.
          */
-        virtual void releaseElement(void* elementPtr) = 0;
+        virtual void releaseElement(ElementPtr elementPtr) = 0;
     };
 }
 

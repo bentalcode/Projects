@@ -7,19 +7,12 @@ using namespace memory_management;
  * The MemoryPool constructor.
  */
 MemoryPool::MemoryPool(
+    std::size_t initialNumberOfElements,
     std::size_t elementSizeInBytes,
-    std::size_t numberOfElements,
     std::size_t alignment) :
-    m_numberOfElements(numberOfElements),
-    m_numberOfAcquiredElements(0),
-    m_numberOfAvailableElements(numberOfElements),
     m_elementSizeInBytes(elementSizeInBytes),
     m_alignment(alignment)
 {
-    //
-    // Allocates the pool...
-    //
-    allocate(elementSizeInBytes, numberOfElements, alignment);
 }
 
 /**
@@ -40,85 +33,49 @@ void* MemoryPool::acquireElement()
     std::lock_guard<std::mutex> guard(m_mutex);
 
     //
-    // Validate that the pool has not reached it's maximum capacity...
+    // First, try to find a pool with an available element...
     //
-    if (m_freeMemoryBlockList.empty())
+    FixedMemoryPoolPtr availablePool;
+
+    for (MemoryPoolList::iterator i = m_poolList.begin(); i != m_poolList.end(); ++i)
     {
-        std::string errorMessage = "The memory pool has reached it's maximum capacity.";
-        throw MemoryManagementException(errorMessage);
+        FixedMemoryPoolPtr currPool = *i;
+
+        if (!currPool->overCapacity())
+        {
+            availablePool = currPool;
+            break;
+        }
     }
 
     //
-    // Retrieve the current element...
+    // If no pool has an availability, then add a new one...
     //
-    void* currElement = m_freeMemoryBlockList.front();
+    if (availablePool == nullptr)
+    {
+        availablePool = addPool();
+    }
 
-    //
-    // Remove the current element from the free memory list...
-    //
-    m_freeMemoryBlockList.erase(m_freeMemoryBlockList.begin());
+    ElementPtr elementPtr = availablePool->acquireElement();
+    setElementPool(elementPtr, availablePool);
 
-    //
-    // Update the number of acquired/released elements in the pool...
-    //
-    bool acquired = true;
-    updateElementsCounters(acquired);
-
-    return currElement;
+    return elementPtr;
 }
 
 /**
  * Release an element and return it to the pool.
  */
-void MemoryPool::releaseElement(void* elementPtr)
-{
-    if (elementPtr == nullptr)
-    {
-        std::string errorMessage = "The memory of the element is not valid.";
-        throw MemoryManagementException(errorMessage);
-    }
-
-    //
-    // Acquire a lock...
-    //
-    std::lock_guard<std::mutex> guard(m_mutex);
-
-    //
-    // Clear the memory of the returned element...
-    //
-    MemoryAllocator::clearMemory(elementPtr, m_elementSizeInBytes);
-
-    //
-    // Return the element to the end of the free list...
-    //
-    m_freeMemoryBlockList.push_back(elementPtr);
-
-    //
-    // Update the number of acquired/released elements in the pool...
-    //
-    bool acquired = false;
-    updateElementsCounters(acquired);
-}
-
-/**
- * Determines whether the memory pool has reached it's capacity.
- */
-bool MemoryPool::overCapacity() const
+void MemoryPool::releaseElement(ElementPtr elementPtr)
 {
     //
     // Acquire a lock...
     //
     std::lock_guard<std::mutex> guard(m_mutex);
 
-    return m_numberOfAvailableElements == 0;
-}
+    FixedMemoryPoolPtr elementPool = getElementPool(elementPtr);
 
-/**
- * Gets number of supported elements.
- */
-std::size_t MemoryPool::numberOfElements() const
-{
-    return m_numberOfElements;
+    elementPool->releaseElement(elementPtr);
+    removeElementPool(elementPtr);
 }
 
 /**
@@ -131,100 +88,75 @@ std::size_t MemoryPool::numberOfAcquiredElements() const
     //
     std::lock_guard<std::mutex> guard(m_mutex);
 
-    return m_numberOfAcquiredElements;
+    return m_elementToPoolMap.size();
 }
 
 /**
- * Gets number of available elements.
+ * Adds a new pool.
  */
-std::size_t MemoryPool::numberOfAvailableElements() const
+FixedMemoryPoolPtr MemoryPool::addPool()
 {
-    //
-    // Acquire a lock...
-    //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    FixedMemoryPoolPtr poolPtr(new FixedMemoryPool(
+        m_initialNumberOfElements,
+        m_elementSizeInBytes,
+        m_alignment));
 
-    return m_numberOfAvailableElements;
+    m_poolList.push_back(poolPtr);
+
+    return poolPtr;
 }
 
 /**
- * Gets a size of an element in bytes.
+ * Checks whether an element is in the pool.
  */
-std::size_t MemoryPool::elementSize() const
+bool MemoryPool::hasElement(ElementPtr elementPtr) const
 {
-    return m_elementSizeInBytes;
+    ElementRawPtr elementRawPtr = reinterpret_cast<ElementRawPtr>(elementPtr);
+    ElementAddressToPoolMap::const_iterator i = m_elementToPoolMap.find(elementRawPtr);
+
+    return i != m_elementToPoolMap.end();
 }
 
 /**
- * Allocates the pool.
+ * Gets the corresponding pool of an element.
  */
-void MemoryPool::allocate(
-    std::size_t elementSizeInBytes,
-    std::size_t numberOfElements,
-    std::size_t alignment)
+FixedMemoryPoolPtr MemoryPool::getElementPool(ElementPtr elementPtr) const
 {
-    //
-    // Allocate the required size of the memory pool...
-    //
-    std::size_t poolSizeInBytes = elementSizeInBytes * numberOfElements;
-    m_memoryPtr.reset(MemoryAllocator::allocateAlignedMemory(poolSizeInBytes, alignment));
+    ElementRawPtr elementRawPtr = reinterpret_cast<ElementRawPtr>(elementPtr);
+    ElementAddressToPoolMap::const_iterator i = m_elementToPoolMap.find(elementRawPtr);
 
-    //
-    // Get the address of the end of the memory block...
-    //
-    std::uintptr_t startRawAddress = reinterpret_cast<std::uintptr_t>(m_memoryPtr.get());
-    std::uintptr_t endRawAddress = startRawAddress + poolSizeInBytes;
-
-    //
-    // Initialize the free list for each element...
-    //
-    for (std::size_t i = 0; i < numberOfElements; ++i) {
-
-        std::uintptr_t elementRawAddress = startRawAddress + (i * elementSizeInBytes);
-        assert(elementRawAddress < endRawAddress);
-
-        void* elementAddress = reinterpret_cast<void*>(elementRawAddress);
-
-        m_freeMemoryBlockList.push_back(elementAddress);
-    }
-}
-
-/**
- * Releases the pool.
- */
-void MemoryPool::release()
-{
-    //
-    // Release the memory by invoking the memory release API...
-    //
-    m_memoryPtr.reset(nullptr);
-}
-
-/**
- * Updates elements counters.
- */
-void MemoryPool::updateElementsCounters(bool acquired)
-{
-    if (acquired)
+    if (i == m_elementToPoolMap.end())
     {
-        ++m_numberOfAcquiredElements;
-        --m_numberOfAvailableElements;
-    }
-    else
-    {
-        --m_numberOfAcquiredElements;
-        ++m_numberOfAvailableElements;
+        std::string errorMessage = "The pool does not own the specified element.";
+        throw MemoryManagementException(errorMessage);
     }
 
-    assert(m_numberOfAvailableElements + m_numberOfAcquiredElements == m_numberOfElements);
+    return i->second;
 }
 
-std::ostream& operator<<(std::ostream& stream, const MemoryPool& memoryPool)
+/**
+ * Sets the corresponding pool of an element.
+ */
+void MemoryPool::setElementPool(ElementPtr elementPtr, FixedMemoryPoolPtr poolPtr)
+{
+    ElementRawPtr elementRawPtr = reinterpret_cast<ElementRawPtr>(elementPtr);
+    m_elementToPoolMap[elementRawPtr] = poolPtr;
+}
+
+/**
+ * Removes the corresponding pool of an element.
+ */
+void MemoryPool::removeElementPool(ElementPtr elementPtr)
+{
+    ElementRawPtr elementRawPtr = reinterpret_cast<ElementRawPtr>(elementPtr);
+    m_elementToPoolMap.erase(elementRawPtr);
+}
+
+std::ostream& memory_management::operator<<(std::ostream& stream, const MemoryPool& memoryPool)
 {
     stream
-        << "NumberOfElements: " << memoryPool.numberOfElements() << std::endl
         << "NumberOfAcquiredElements: " << memoryPool.numberOfAcquiredElements() << std::endl
-        << "NumberOfReleasedElements: " << memoryPool.numberOfAvailableElements() << std::endl;
+        << "ElementSizeInBytes: " << memoryPool.elementSize() << std::endl;
 
     return stream;
 }
