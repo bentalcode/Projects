@@ -1,3 +1,4 @@
+#include <MemoryManagementException.h>
 #include "MemoryAllocator.h"
 
 using namespace memory_management;
@@ -85,7 +86,11 @@ void MemoryAllocator::release(void* memoryPtr)
  */
 void* MemoryAllocator::allocateAligned(std::size_t size, const std::size_t alignment)
 {
-    assert(MemoryAllocator::isAlignmentValid(alignment));
+    if (!MemoryAllocator::isAlignmentValid(alignment))
+    {
+        std::string errorMessage = "The alignment is invalid.";
+        throw new MemoryManagementException(errorMessage);
+    }
 
     if (size == 0)
     {

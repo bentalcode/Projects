@@ -12,14 +12,19 @@ namespace memory_management
         virtual ~IObjectPool() {};
 
         /**
-         * Acquires an element from the pool.
+         * Acquires an object from the pool.
          */
-        virtual T* acquireElement() = 0;
+        virtual T* acquireObject() = 0;
 
         /**
-         * Release an element and return it to the pool.
+         * Releases an object and returns it to the pool.
          */
-        virtual void releaseElement(T* elementPtr) = 0;
+        virtual void releaseObject(T* objectPtr) = 0;
+
+        /**
+         * Gets number of acquired elements.
+         */
+        virtual std::size_t numberOfAcquiredElements() const = 0;
     };
 }
 

@@ -33,7 +33,7 @@ FixedMemoryPool::~FixedMemoryPool()
 /**
  * Acquires an element from the pool.
  */
-IMemoryPool::ElementPtr FixedMemoryPool::acquireElement()
+IMemoryPool::MemoryAddress FixedMemoryPool::acquireElement()
 {
     //
     // Acquire a lock...
@@ -52,7 +52,7 @@ IMemoryPool::ElementPtr FixedMemoryPool::acquireElement()
     //
     // Retrieve the current element...
     //
-    ElementPtr currElement = m_freeMemoryBlockList.front();
+    MemoryAddress currElement = m_freeMemoryBlockList.front();
 
     //
     // Remove the current element from the free memory list...
@@ -71,7 +71,7 @@ IMemoryPool::ElementPtr FixedMemoryPool::acquireElement()
 /**
  * Release an element and return it to the pool.
  */
-void FixedMemoryPool::releaseElement(ElementPtr elementPtr)
+void FixedMemoryPool::releaseElement(MemoryAddress elementPtr)
 {
     if (elementPtr == nullptr)
     {
@@ -165,18 +165,18 @@ void FixedMemoryPool::allocate(
     //
     // Get the address of the end of the memory block...
     //
-    ElementRawPtr startRawAddress = reinterpret_cast<ElementRawPtr>(m_memoryPtr.get());
-    ElementRawPtr endRawAddress = startRawAddress + poolSizeInBytes;
+    MemoryRawAddress startRawAddress = reinterpret_cast<MemoryRawAddress>(m_memoryPtr.get());
+    MemoryRawAddress endRawAddress = startRawAddress + poolSizeInBytes;
 
     //
     // Initialize the free list for each element...
     //
     for (std::size_t i = 0; i < numberOfElements; ++i) {
 
-        ElementRawPtr elementRawAddress = startRawAddress + (i * elementSizeInBytes);
+        MemoryRawAddress elementRawAddress = startRawAddress + (i * elementSizeInBytes);
         assert(elementRawAddress < endRawAddress);
 
-        ElementPtr elementAddress = reinterpret_cast<ElementPtr>(elementRawAddress);
+        MemoryAddress elementAddress = reinterpret_cast<MemoryAddress>(elementRawAddress);
 
         m_freeMemoryBlockList.push_back(elementAddress);
     }
@@ -209,6 +209,7 @@ void FixedMemoryPool::updateElementsCounters(bool acquired)
         ++m_numberOfAvailableElements;
     }
 
+    assert(m_numberOfAvailableElements == m_freeMemoryBlockList.size());
     assert(m_numberOfAvailableElements + m_numberOfAcquiredElements == m_numberOfElements);
 }
 

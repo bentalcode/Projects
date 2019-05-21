@@ -10,9 +10,11 @@ MemoryPool::MemoryPool(
     std::size_t initialNumberOfElements,
     std::size_t elementSizeInBytes,
     std::size_t alignment) :
+    m_initialNumberOfElements(initialNumberOfElements),
     m_elementSizeInBytes(elementSizeInBytes),
     m_alignment(alignment)
 {
+    addPool();
 }
 
 /**
@@ -56,7 +58,7 @@ void* MemoryPool::acquireElement()
         availablePool = addPool();
     }
 
-    ElementPtr elementPtr = availablePool->acquireElement();
+    MemoryAddress elementPtr = availablePool->acquireElement();
     setElementPool(elementPtr, availablePool);
 
     return elementPtr;
@@ -65,7 +67,7 @@ void* MemoryPool::acquireElement()
 /**
  * Release an element and return it to the pool.
  */
-void MemoryPool::releaseElement(ElementPtr elementPtr)
+void MemoryPool::releaseElement(MemoryAddress elementPtr)
 {
     //
     // Acquire a lock...
@@ -109,9 +111,9 @@ FixedMemoryPoolPtr MemoryPool::addPool()
 /**
  * Checks whether an element is in the pool.
  */
-bool MemoryPool::hasElement(ElementPtr elementPtr) const
+bool MemoryPool::hasElement(MemoryAddress elementPtr) const
 {
-    ElementRawPtr elementRawPtr = reinterpret_cast<ElementRawPtr>(elementPtr);
+    MemoryRawAddress elementRawPtr = reinterpret_cast<MemoryRawAddress>(elementPtr);
     ElementAddressToPoolMap::const_iterator i = m_elementToPoolMap.find(elementRawPtr);
 
     return i != m_elementToPoolMap.end();
@@ -120,9 +122,9 @@ bool MemoryPool::hasElement(ElementPtr elementPtr) const
 /**
  * Gets the corresponding pool of an element.
  */
-FixedMemoryPoolPtr MemoryPool::getElementPool(ElementPtr elementPtr) const
+FixedMemoryPoolPtr MemoryPool::getElementPool(MemoryAddress elementPtr) const
 {
-    ElementRawPtr elementRawPtr = reinterpret_cast<ElementRawPtr>(elementPtr);
+    MemoryRawAddress elementRawPtr = reinterpret_cast<MemoryRawAddress>(elementPtr);
     ElementAddressToPoolMap::const_iterator i = m_elementToPoolMap.find(elementRawPtr);
 
     if (i == m_elementToPoolMap.end())
@@ -137,18 +139,18 @@ FixedMemoryPoolPtr MemoryPool::getElementPool(ElementPtr elementPtr) const
 /**
  * Sets the corresponding pool of an element.
  */
-void MemoryPool::setElementPool(ElementPtr elementPtr, FixedMemoryPoolPtr poolPtr)
+void MemoryPool::setElementPool(MemoryAddress elementPtr, FixedMemoryPoolPtr poolPtr)
 {
-    ElementRawPtr elementRawPtr = reinterpret_cast<ElementRawPtr>(elementPtr);
+    MemoryRawAddress elementRawPtr = reinterpret_cast<MemoryRawAddress>(elementPtr);
     m_elementToPoolMap[elementRawPtr] = poolPtr;
 }
 
 /**
  * Removes the corresponding pool of an element.
  */
-void MemoryPool::removeElementPool(ElementPtr elementPtr)
+void MemoryPool::removeElementPool(MemoryAddress elementPtr)
 {
-    ElementRawPtr elementRawPtr = reinterpret_cast<ElementRawPtr>(elementPtr);
+    MemoryRawAddress elementRawPtr = reinterpret_cast<MemoryRawAddress>(elementPtr);
     m_elementToPoolMap.erase(elementRawPtr);
 }
 

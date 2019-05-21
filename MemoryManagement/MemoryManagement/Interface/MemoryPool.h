@@ -8,9 +8,6 @@
 
 namespace memory_management
 {
-    class MemoryPool;
-    typedef std::shared_ptr<MemoryPool> MemoryPoolPtr;
-
     /**
      * The MemoryPool class.
      */
@@ -33,12 +30,12 @@ namespace memory_management
         /**
          * Acquires an element from the pool.
          */
-        virtual ElementPtr acquireElement();
+        virtual MemoryAddress acquireElement();
 
         /**
-         * Release an element and return it to the pool.
+         * Releases an element and returns it to the pool.
          */
-        virtual void releaseElement(ElementPtr elementPtr);
+        virtual void releaseElement(MemoryAddress elementPtr);
 
         /**
          * Gets number of acquired elements.
@@ -62,22 +59,22 @@ namespace memory_management
         /**
          * Checks whether an element is in the pool.
          */
-        bool hasElement(ElementPtr elementPtr) const;
+        bool hasElement(MemoryAddress elementPtr) const;
 
         /**
          * Gets the corresponding pool of an element.
          */
-        FixedMemoryPoolPtr getElementPool(ElementPtr elementPtr) const;
+        FixedMemoryPoolPtr getElementPool(MemoryAddress elementPtr) const;
 
         /**
          * Sets the corresponding pool of an element.
          */
-        void setElementPool(ElementPtr elementPtr, FixedMemoryPoolPtr poolPtr);
+        void setElementPool(MemoryAddress elementPtr, FixedMemoryPoolPtr poolPtr);
 
         /**
          * Removes the corresponding pool of an element.
          */
-        void removeElementPool(ElementPtr elementPtr);
+        void removeElementPool(MemoryAddress elementPtr);
 
         // The mutex of the pool.
         mutable std::mutex m_mutex;
@@ -95,8 +92,8 @@ namespace memory_management
         typedef std::list<FixedMemoryPoolPtr> MemoryPoolList;
         MemoryPoolList m_poolList;
 
-        // The mapping of the element address to it's corresponding pool.
-        typedef std::map<ElementRawPtr, FixedMemoryPoolPtr> ElementAddressToPoolMap;
+        // The mapping of an element address to it's corresponding pool.
+        typedef std::map<MemoryRawAddress, FixedMemoryPoolPtr> ElementAddressToPoolMap;
         ElementAddressToPoolMap m_elementToPoolMap;
     };
 

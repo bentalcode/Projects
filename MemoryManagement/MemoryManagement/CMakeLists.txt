@@ -22,10 +22,10 @@ set(INCLUDES
     Interface/IMemoryAllocator.h
     Interface/IMemoryPool.h
     Interface/IObjectPool.h
+    Interface/MemoryPool.h
+    Interface/ObjectPool.h
     Core/MemoryAllocator.h
     Core/FixedMemoryPool.h
-    Core/MemoryPool.h
-    Core/ObjectPool.h
     Core/PreCompiled.h
     MemoryManagementException.h)
 

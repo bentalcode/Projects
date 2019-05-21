@@ -33,12 +33,12 @@ namespace memory_management
         /**
          * Acquires an element from the pool.
          */
-        virtual ElementPtr acquireElement();
+        virtual MemoryAddress acquireElement();
 
         /**
-         * Release an element and return it to the pool.
+         * Release an element and returns it to the pool.
          */
-        virtual void releaseElement(ElementPtr elementPtr);
+        virtual void releaseElement(MemoryAddress elementPtr);
 
         /**
          * Determines whether the memory pool has reached it's capacity.
@@ -109,7 +109,7 @@ namespace memory_management
         AlignedMemoryPtr m_memoryPtr;
 
         // The free memory block list.
-        typedef std::list<ElementPtr> MemoryList;
+        typedef std::list<MemoryAddress> MemoryList;
         MemoryList m_freeMemoryBlockList;
     };
 
