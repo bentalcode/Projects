@@ -57,7 +57,10 @@ IMemoryPool::MemoryAddress FixedMemoryPool::acquireElement()
     //
     // Remove the current element from the free memory list...
     //
+    MemoryList::size_type before = m_freeMemoryBlockList.size();
     m_freeMemoryBlockList.erase(m_freeMemoryBlockList.begin());
+    MemoryList::size_type after = m_freeMemoryBlockList.size();
+    assert(before - 1 == after);
 
     //
     // Update the number of acquired/released elements in the pool...
@@ -87,7 +90,7 @@ void FixedMemoryPool::releaseElement(MemoryAddress elementPtr)
     //
     // Clear the memory of the returned element...
     //
-    MemoryAllocator::clearMemory(elementPtr, m_elementSizeInBytes);
+    MemoryAllocator::clearMemory(elementPtr, m_elementAllocationSizeInBytes);
 
     //
     // Return the element to the end of the free list...
@@ -149,6 +152,58 @@ std::size_t FixedMemoryPool::numberOfAvailableElements() const
 }
 
 /**
+ * Gets a size of an element in bytes.
+ */
+std::size_t FixedMemoryPool::elementSize() const
+{
+    return m_elementSizeInBytes;
+}
+
+/**
+ * Gets a size of an allocated element in bytes.
+ */
+std::size_t FixedMemoryPool::elementAllocationSize() const
+{
+    return m_elementAllocationSizeInBytes;
+}
+
+/**
+ * Gets a size of a pool in bytes.
+ */
+std::size_t FixedMemoryPool::size() const
+{
+    //
+    // Acquire a lock...
+    //
+    std::lock_guard<std::mutex> guard(m_mutex);
+
+    //
+    // Include the size of the pool...
+    //
+    size_t size = m_numberOfAcquiredElements * m_elementAllocationSizeInBytes;
+
+    //
+    // Include the size of the free list...
+    //
+    size += m_freeMemoryBlockList.size() * sizeof(MemoryList::value_type);
+
+    //
+    // Include the size of the data members...
+    //
+    size += sizeof(m_mutex);
+    size += sizeof(m_numberOfElements);
+    size += sizeof(m_elementSizeInBytes);
+    size += sizeof(m_alignment);
+    size += sizeof(m_elementAllocationSizeInBytes);
+    size += sizeof(m_numberOfAcquiredElements);
+    size += sizeof(m_numberOfAvailableElements);
+    size += sizeof(m_memoryPtr);
+    size += sizeof(m_freeMemoryBlockList);
+
+    return size;
+}
+
+/**
  * Allocates the pool.
  */
 void FixedMemoryPool::allocate(
@@ -157,9 +212,27 @@ void FixedMemoryPool::allocate(
     std::size_t alignment)
 {
     //
+    // Calculate the pad size of each element...
+    //
+    std::size_t unalignedSize = 0;
+
+    if (elementSizeInBytes > alignment)
+    {
+        unalignedSize = elementSizeInBytes % alignment;
+    }
+    else if (elementSizeInBytes < alignment)
+    {
+        unalignedSize = alignment - elementSizeInBytes;
+
+    }
+
+    std::size_t padSize = alignment - unalignedSize;
+    m_elementAllocationSizeInBytes = elementSizeInBytes + padSize;
+
+    //
     // Allocate the required size of the memory pool...
     //
-    std::size_t poolSizeInBytes = elementSizeInBytes * numberOfElements;
+    std::size_t poolSizeInBytes = m_elementAllocationSizeInBytes * numberOfElements;
     m_memoryPtr.reset(MemoryAllocator::allocateAlignedMemory(poolSizeInBytes, alignment));
 
     //
@@ -173,7 +246,7 @@ void FixedMemoryPool::allocate(
     //
     for (std::size_t i = 0; i < numberOfElements; ++i) {
 
-        MemoryRawAddress elementRawAddress = startRawAddress + (i * elementSizeInBytes);
+        MemoryRawAddress elementRawAddress = startRawAddress + (i * m_elementAllocationSizeInBytes);
         assert(elementRawAddress < endRawAddress);
 
         MemoryAddress elementAddress = reinterpret_cast<MemoryAddress>(elementRawAddress);
@@ -216,11 +289,13 @@ void FixedMemoryPool::updateElementsCounters(bool acquired)
 std::ostream& memory_management::operator<<(std::ostream& stream, const FixedMemoryPool& memoryPool)
 {
     stream
+        << "OverCapacity: " << memoryPool.overCapacity() << std::endl
         << "NumberOfElements: " << memoryPool.numberOfElements() << std::endl
-        << "ElementSizeInBytes: " << memoryPool.elementSize() << std::endl
         << "NumberOfAcquiredElements: " << memoryPool.numberOfAcquiredElements() << std::endl
         << "NumberOfAvailableElements: " << memoryPool.numberOfAvailableElements() << std::endl
-        << "OverCapacity: " << memoryPool.overCapacity() << std::endl;
+        << "ElementSizeInBytes: " << memoryPool.elementSize() << std::endl
+        << "ElementAllocationSizeInBytes: " << memoryPool.elementAllocationSize() << std::endl
+        << "PoolSizeInBytes: " << memoryPool.size() << std::endl;
 
     return stream;
 }

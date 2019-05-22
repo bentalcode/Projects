@@ -7,7 +7,7 @@
 namespace memory_management
 {
     /**
-     * The MemoryAllocator class.
+     * The MemoryAllocator class implements a memory allocator.
      */
     class MemoryAllocator : public IMemoryAllocator
     {

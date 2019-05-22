@@ -9,10 +9,12 @@ using namespace memory_management;
 MemoryPool::MemoryPool(
     std::size_t initialNumberOfElements,
     std::size_t elementSizeInBytes,
-    std::size_t alignment) :
+    std::size_t alignment,
+    bool dynamicAllocation) :
     m_initialNumberOfElements(initialNumberOfElements),
     m_elementSizeInBytes(elementSizeInBytes),
-    m_alignment(alignment)
+    m_alignment(alignment),
+    m_dynamicAllocation(dynamicAllocation)
 {
     addPool();
 }
@@ -55,6 +57,12 @@ void* MemoryPool::acquireElement()
     //
     if (availablePool == nullptr)
     {
+        if (!m_dynamicAllocation)
+        {
+            std::string errorMessage = "The Memory Pool has reached it's limits.";
+            throw MemoryManagementException(errorMessage);
+        }
+
         availablePool = addPool();
     }
 
@@ -91,6 +99,56 @@ std::size_t MemoryPool::numberOfAcquiredElements() const
     std::lock_guard<std::mutex> guard(m_mutex);
 
     return m_elementToPoolMap.size();
+}
+
+/**
+ * Gets a size of an element in bytes.
+ */
+std::size_t MemoryPool::elementSize() const
+{
+    return m_elementSizeInBytes;
+}
+
+/**
+ * Gets a size of a pool in bytes.
+ */
+std::size_t MemoryPool::size() const
+{
+    //
+    // Acquire a lock...
+    //
+    std::lock_guard<std::mutex> guard(m_mutex);
+
+    size_t size = 0;
+
+    //
+    // Include the size of the pools...
+    //
+    for (MemoryPoolList::const_iterator i = m_poolList.begin(); i != m_poolList.end(); ++i)
+    {
+        size += (*i)->size();
+    }
+
+    //
+    // Include the size of the pool...
+    //
+    size_t poolMapEntry = sizeof(MemoryRawAddress) + sizeof(FixedMemoryPoolPtr);
+    size_t poolMapSize = m_elementToPoolMap.size() * poolMapEntry;
+
+    size += poolMapSize;
+
+    //
+    // Include the size of the data members...
+    //
+    size += sizeof(m_mutex);
+    size += sizeof(m_dynamicAllocation);
+    size += sizeof(m_initialNumberOfElements);
+    size += sizeof(m_elementSizeInBytes);
+    size += sizeof(m_alignment);
+    size += sizeof(m_poolList);
+    size += sizeof(m_elementToPoolMap);
+
+    return size;
 }
 
 /**
@@ -158,7 +216,8 @@ std::ostream& memory_management::operator<<(std::ostream& stream, const MemoryPo
 {
     stream
         << "NumberOfAcquiredElements: " << memoryPool.numberOfAcquiredElements() << std::endl
-        << "ElementSizeInBytes: " << memoryPool.elementSize() << std::endl;
+        << "ElementSizeInBytes: " << memoryPool.elementSize() << std::endl
+        << "PoolSizeInBytes: " << memoryPool.size() << std::endl;
 
     return stream;
 }

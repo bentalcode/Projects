@@ -5,6 +5,9 @@
 
 namespace memory_management
 {
+    /**
+     * The IObjectPool interface defines an object pool.
+     */
     template <typename T>
     class IObjectPool : private boost::noncopyable
     {
@@ -12,19 +15,24 @@ namespace memory_management
         virtual ~IObjectPool() {};
 
         /**
-         * Acquires an object from the pool.
+         * Acquires an element from the pool.
          */
-        virtual T* acquireObject() = 0;
+        virtual T* acquireElement() = 0;
 
         /**
-         * Releases an object and returns it to the pool.
+         * Releases an element and returns it to the pool.
          */
-        virtual void releaseObject(T* objectPtr) = 0;
+        virtual void releaseElement(T* objectPtr) = 0;
 
         /**
          * Gets number of acquired elements.
          */
         virtual std::size_t numberOfAcquiredElements() const = 0;
+
+        /**
+         * Gets size of the pool in bytes.
+         */
+        virtual std::size_t size() const = 0;
     };
 }
 

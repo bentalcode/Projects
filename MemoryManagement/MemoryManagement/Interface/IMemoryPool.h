@@ -3,6 +3,9 @@
 
 namespace memory_management
 {
+    /**
+     * The IMemoryPool interface defines a memory pool.
+     */
     class IMemoryPool
     {
     public:
@@ -25,6 +28,11 @@ namespace memory_management
          * Gets number of acquired elements.
          */
         virtual std::size_t numberOfAcquiredElements() const = 0;
+
+        /**
+         * Gets a size of a pool in bytes.
+         */
+        virtual std::size_t size() const = 0;
     };
 }
 

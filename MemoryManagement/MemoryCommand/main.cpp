@@ -1,17 +1,39 @@
 #include <iostream>
 #include "ObjectPool.h"
+#include "ObjectPoolElement.h"
 
 using namespace memory_management;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    int numberOfElements = 100;
 
-    ObjectPool<int> objectPool(10);
+    std::vector<int*> elements;
+    elements.reserve(numberOfElements);
 
-    for (int i = 0; i < 10; ++i)
+    ObjectPool<int> objectPool1(numberOfElements);
+
+    for (int i = 0; i < numberOfElements; ++i)
     {
-        int* p1 = objectPool.acquireObject();
+        int* elementPtr = objectPool1.acquireElement();
+        elements.push_back(elementPtr);
+        std::cout << objectPool1;
     }
+
+    for (std::vector<int*>::const_iterator i = elements.begin(); i != elements.end(); ++i)
+    {
+        objectPool1.releaseElement(*i);
+        std::cout << objectPool1;
+    }
+
+    ObjectPool<int> objectPool2(numberOfElements);
+
+    for (int i = 0; i < numberOfElements; ++i)
+    {
+        ObjectPoolElement<int> element(objectPool2.acquireElement(), objectPool2);
+        std::cout << objectPool2;
+    }
+
+    std::cout << objectPool2;
 
     return 0;
 }

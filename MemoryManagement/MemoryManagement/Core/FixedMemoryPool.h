@@ -12,7 +12,7 @@ namespace memory_management
     typedef std::shared_ptr<FixedMemoryPool> FixedMemoryPoolPtr;
 
     /**
-     * The FixedMemoryPool class.
+     * The FixedMemoryPool class implements a fixed memory pool.
      */
     class FixedMemoryPool : public IMemoryPool
     {
@@ -63,10 +63,17 @@ namespace memory_management
         /**
          * Gets a size of an element in bytes.
          */
-        inline std::size_t elementSize() const
-        {
-            return this->m_elementSizeInBytes;
-        }
+        std::size_t elementSize() const;
+
+        /**
+         * Gets a size of an allocated element in bytes.
+         */
+        std::size_t elementAllocationSize() const;
+
+        /**
+         * Gets a size of a pool in bytes.
+         */
+        virtual std::size_t size() const;
 
     private:
         /**
@@ -98,6 +105,9 @@ namespace memory_management
 
         // The pool/element alignment
         std::size_t m_alignment;
+
+        // The size of an allocated element in the pool in bytes.
+        std::size_t m_elementAllocationSizeInBytes;
 
         // The number of acquired elements in the pool.
         std::size_t m_numberOfAcquiredElements;

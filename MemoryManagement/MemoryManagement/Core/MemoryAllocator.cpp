@@ -89,7 +89,7 @@ void* MemoryAllocator::allocateAligned(std::size_t size, const std::size_t align
     if (!MemoryAllocator::isAlignmentValid(alignment))
     {
         std::string errorMessage = "The alignment is invalid.";
-        throw new MemoryManagementException(errorMessage);
+        throw MemoryManagementException(errorMessage);
     }
 
     if (size == 0)

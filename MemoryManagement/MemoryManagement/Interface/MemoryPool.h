@@ -9,7 +9,7 @@
 namespace memory_management
 {
     /**
-     * The MemoryPool class.
+     * The MemoryPool class implements a memory pool.
      */
     class MemoryPool : public IMemoryPool
     {
@@ -20,7 +20,8 @@ namespace memory_management
         explicit MemoryPool(
             std::size_t initialNumberOfElements,
             std::size_t elementSizeInBytes,
-            std::size_t alignment);
+            std::size_t alignment,
+            bool dynamicAllocation = true);
 
         /**
          * The MemoryPool destructor.
@@ -45,10 +46,12 @@ namespace memory_management
         /**
          * Gets a size of an element in bytes.
          */
-        inline std::size_t elementSize() const
-        {
-            return m_elementSizeInBytes;
-        }
+        std::size_t elementSize() const;
+
+        /**
+         * Gets a size of a pool in bytes.
+         */
+        virtual std::size_t size() const;
 
     private:
         /**
@@ -78,6 +81,9 @@ namespace memory_management
 
         // The mutex of the pool.
         mutable std::mutex m_mutex;
+
+        // Enable a dynamic allocation.
+        bool m_dynamicAllocation;
 
         // The initial number of elements in the pool.
         std::size_t m_initialNumberOfElements;

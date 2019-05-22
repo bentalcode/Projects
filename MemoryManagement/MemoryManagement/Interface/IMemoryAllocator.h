@@ -5,6 +5,9 @@
 
 namespace memory_management
 {
+    /**
+     * The IMemoryAllocator interface defines a memory allocator.
+     */
     class IMemoryAllocator
     {
     public :

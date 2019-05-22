@@ -9,7 +9,7 @@
 namespace memory_management
 {
     /**
-     * The ObjectPool class.
+     * The ObjectPool class implements an object pool.
      */
     template <typename T>
     class ObjectPool : public IObjectPool<T>
@@ -19,8 +19,9 @@ namespace memory_management
          * The ObjectPool constructor.
          */
         explicit ObjectPool(
-            std::size_t initialNumberOfObjects,
-            std::size_t alignment = 8);
+            std::size_t initialNumberOfElements,
+            std::size_t alignment = 8,
+            bool dynamicAllocation = true);
 
         /**
          * The ObjectPool destructor.
@@ -28,31 +29,36 @@ namespace memory_management
         virtual ~ObjectPool();
 
         /**
-         * Acquires an object from the pool.
+         * Acquires an element from the pool.
          */
-        virtual T* acquireObject();
+        virtual T* acquireElement();
 
         /**
-         * Releases an object and returns it to the pool.
+         * Releases an element and returns it to the pool.
          */
-        virtual void releaseObject(T* objectPtr);
+        virtual void releaseElement(T* elementPtr);
 
         /**
          * Gets number of acquired elements.
          */
         virtual std::size_t numberOfAcquiredElements() const;
 
+        /**
+         * Gets size of the pool in bytes.
+         */
+        virtual std::size_t size() const;
+
     private:
         // The mutex of the pool.
         mutable std::mutex m_mutex;
 
-        // The initial number of objects in the pool.
-        std::size_t m_initialNumberOfObjects;
+        // The initial number of elements in the pool.
+        std::size_t m_initialNumberOfElements;
 
-        // The size of an object in the pool in bytes.
-        std::size_t m_objectSizeInBytes;
+        // The size of an element in the pool in bytes.
+        std::size_t m_elementSizeInBytes;
 
-        // The object alignment
+        // The element alignment.
         std::size_t m_alignment;
 
         // The memory pool.
@@ -65,16 +71,18 @@ namespace memory_management
      */
     template <typename T>
     ObjectPool<T>::ObjectPool(
-        std::size_t initialNumberOfObjects,
-        std::size_t alignment) :
-        m_initialNumberOfObjects(initialNumberOfObjects),
-        m_objectSizeInBytes(sizeof(T)),
+        std::size_t initialNumberOfElements,
+        std::size_t alignment,
+        bool dynamicAllocation) :
+        m_initialNumberOfElements(initialNumberOfElements),
+        m_elementSizeInBytes(sizeof(T)),
         m_alignment(alignment)
     {
         m_memoryPoolPtr.reset(new MemoryPool(
-            m_initialNumberOfObjects,
-            m_objectSizeInBytes,
-            m_alignment));
+            m_initialNumberOfElements,
+            m_elementSizeInBytes,
+            m_alignment,
+            dynamicAllocation));
     }
 
     /**
@@ -87,11 +95,16 @@ namespace memory_management
     }
 
     /**
-     * Acquires an object from the pool.
+     * Acquires an element from the pool.
      */
     template <typename T>
-    T* ObjectPool<T>::acquireObject()
+    T* ObjectPool<T>::acquireElement()
     {
+        //
+        // Acquire a lock...
+        //
+        std::lock_guard<std::mutex> guard(m_mutex);
+
         //
         // Acquire free memory for the new element...
         //
@@ -106,21 +119,26 @@ namespace memory_management
     }
 
     /**
-     * Releases an object and returns it to the pool.
+     * Releases an element and returns it to the pool.
      */
     template <typename T>
-    void ObjectPool<T>::releaseObject(T* objectPtr)
+    void ObjectPool<T>::releaseElement(T* elementPtr)
     {
+        //
+        // Acquire a lock...
+        //
+        std::lock_guard<std::mutex> guard(m_mutex);
+
         //
         // Invoke a destructor of the element...
         //
-        objectPtr->~T();
+        elementPtr->~T();
 
         //
         // Release the allocated memory of the element...
         //
-        IMemoryPool::MemoryAddress elementPtr = objectPtr;
-        m_memoryPoolPtr->releaseElement(elementPtr);
+        IMemoryPool::MemoryAddress elementAddress = elementPtr;
+        m_memoryPoolPtr->releaseElement(elementAddress);
     }
 
     /**
@@ -129,13 +147,49 @@ namespace memory_management
     template <typename T>
     std::size_t ObjectPool<T>::numberOfAcquiredElements() const
     {
+        //
+        // Acquire a lock...
+        //
+        std::lock_guard<std::mutex> guard(m_mutex);
+
         return m_memoryPoolPtr->numberOfAcquiredElements();
+    }
+
+    /**
+     * Gets size of the pool in bytes.
+     */
+    template <typename T>
+    std::size_t ObjectPool<T>::size() const
+    {
+        //
+        // Acquire a lock...
+        //
+        std::lock_guard<std::mutex> guard(m_mutex);
+
+        //
+        // Include the size of pool...
+        //
+        size_t size = m_memoryPoolPtr->size();
+
+        //
+        // Include the size of data members...
+        //
+        size += sizeof(m_mutex);
+        size += sizeof(m_initialNumberOfElements);
+        size += sizeof(m_elementSizeInBytes);
+        size += sizeof(m_alignment);
+        size += sizeof(m_memoryPoolPtr);
+
+        return size;
     }
 
     template <typename T>
     std::ostream& operator<<(std::ostream& stream, const ObjectPool<T>& objectPool)
     {
-        stream << "NumberOfAcquiredElements: " << objectPool.numberOfAcquiredElements() << std::endl;
+        stream
+            << "NumberOfAcquiredElements: " << objectPool.numberOfAcquiredElements() << std::endl
+            << "PoolSizeInBytes: " << objectPool.size() << std::endl;
+
         return stream;
     }
 }
