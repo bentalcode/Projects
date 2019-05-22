@@ -3,6 +3,8 @@ rootProject.name = 'DevEnvironment'
 include ':Base'
 include ':DataStructures'
 include ':DataCommand'
+include ':TreeExpressionCommand'
 include ':Json'
+
 
 
