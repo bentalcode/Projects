@@ -1,4 +1,6 @@
-package expressiontree.core;
+package expressiontreecommand.core;
+
+import expressiontreecommand.interfaces.IExpressionTreeResult;
 
 /**
  * The ExpressionTreeResult class implements a result of an expression tree.

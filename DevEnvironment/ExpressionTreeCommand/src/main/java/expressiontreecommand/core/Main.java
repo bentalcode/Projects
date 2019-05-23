@@ -1,10 +1,12 @@
-package expressiontree.core;
+package expressiontreecommand.core;
 
 import base.core.Conditions;
 import base.core.DestructorHandler;
 import base.core.Scanners;
+import expressiontreecommand.interfaces.IExpressionTreeCommand;
+import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
+import expressiontreecommand.interfaces.IExpressionTreeResult;
 import java.io.PrintStream;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -93,9 +95,9 @@ public final class Main {
      * Displays result to an output stream.
      */
     private static void displayResult(IExpressionTreeResult result) {
-        String content;
+        String content = "";
 
-        Main.writeInformationalMessage(currResult.toString());
+        Main.writeInformationalMessage(content);
     }
 
     /**

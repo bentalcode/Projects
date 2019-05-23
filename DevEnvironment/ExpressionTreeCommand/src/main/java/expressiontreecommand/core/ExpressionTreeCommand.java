@@ -1,19 +1,15 @@
-package expressiontree.core;
+package expressiontreecommand.core;
 
 import base.core.Conditions;
-import base.core.Pair;
-import base.interfaces.IPair;
-import ExpressionTreeCommand.interfaces.IAggregationResult;
-import ExpressionTreeCommand.interfaces.IAggregationResults;
-import ExpressionTreeCommand.interfaces.IExpressionTreeCommand;
-import ExpressionTreeCommand.interfaces.IExpressionTreeCommandParameters;
-import ExpressionTreeCommand.interfaces.IDataResult;
 import java.util.Scanner;
+import expressiontreecommand.interfaces.IExpressionTreeCommand;
+import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
+import expressiontreecommand.interfaces.IExpressionTreeResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The ExpressionTreeCommand class implements a command for processing data.
+ * The ExpressionTreeCommand class implements a command for processing expression tree.
  */
 public final class ExpressionTreeCommand implements IExpressionTreeCommand {
     private final IExpressionTreeCommandParameters parameters;
@@ -32,7 +28,7 @@ public final class ExpressionTreeCommand implements IExpressionTreeCommand {
     }
 
     /**
-     * Processes the stream of data.
+     * Processes a stream of data.
      */
     @Override
     public IExpressionTreeResult process(Scanner scanner) {

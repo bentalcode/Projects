@@ -1,4 +1,4 @@
-package expressiontree.interfaces;
+package expressiontreecommand.interfaces;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public interface IExpressionTreeCommand {
     /**
-     * Processes the stream of data.
+     * Processes a stream of data.
      */
     IExpressionTreeResult process(Scanner stream);
 }

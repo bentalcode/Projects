@@ -1,4 +1,4 @@
-package expressiontree.interfaces;
+package expressiontreecommand.interfaces;
 
 /**
  * The IExpressionTreeCommandParameters interface defines parameters of an expression tree command.
@@ -12,5 +12,5 @@ public interface IExpressionTreeCommandParameters {
     /**
      * Gets properties of an expression tree.
      */
-    IExpressionTreeCommandParametersProperties getExpressionTreeProperties();
+    IExpressionTreeProperties getProperties();
 }

@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public interface IDataCommand {
     /**
-     * Processes the stream of data.
+     * Processes a stream of data.
      */
     IDataResult process(Scanner stream);
 }

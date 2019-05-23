@@ -1,4 +1,4 @@
-package expressiontree.interfaces;
+package expressiontreecommand.interfaces;
 
 /**
  * The IExpressionTreeResult interface defines a result of an expression tree.

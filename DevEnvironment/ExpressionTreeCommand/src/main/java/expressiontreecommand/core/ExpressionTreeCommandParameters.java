@@ -1,8 +1,8 @@
-package expressiontree.core;
+package expressiontreecommand.core;
 
 import base.core.Conditions;
-import ExpressionTreecommand.interfaces.IAggregationResultsProperties;
-import ExpressionTreecommand.interfaces.IExpressionTreeCommandParameters;
+import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
+import expressiontreecommand.interfaces.IExpressionTreeProperties;
 
 /**
  * The ExpressionTreeCommandParameters class implements parameters of an ExpressionTree command.
@@ -17,7 +17,7 @@ public final class ExpressionTreeCommandParameters implements IExpressionTreeCom
     public ExpressionTreeCommandParameters(String path) {
         this(
             path,
-            ExpressionTreeCommandProperties.DefaultProperties());
+            ExpressionTreeProperties.DefaultProperties());
     }
 
     /**
@@ -25,14 +25,14 @@ public final class ExpressionTreeCommandParameters implements IExpressionTreeCom
      */
     public ExpressionTreeCommandParameters(
         String path,
-        IAggregationResultsProperties properties) {
+        IExpressionTreeProperties properties) {
 
         Conditions.validateStringNotNullOrEmpty(
                 path,
             "The path of an expression tree.");
 
         Conditions.validateNotNull(
-            aggregationResultsProperties,
+            properties,
             "The properties of an expression tree.");
 
         this.path = path;
@@ -40,10 +40,10 @@ public final class ExpressionTreeCommandParameters implements IExpressionTreeCom
     }
 
     /**
-     * Gets a path of an expression tree.
+     * Gets a path of data.
      */
     @Override
-    public Str ing getPath() {
+    public String getDataPath() {
         return this.path;
     }
 
@@ -51,7 +51,7 @@ public final class ExpressionTreeCommandParameters implements IExpressionTreeCom
      * Gets properties of an expression tree.
      */
     @Override
-    public IExpressionTreeResultsProperties getProperties() {
+    public IExpressionTreeProperties getProperties() {
         return this.properties;
     }
 }

@@ -1,4 +1,1 @@
-key1 abcd
-key2 zzz
-key1 hello
-key3 world
+? 1/2 * 3_/4

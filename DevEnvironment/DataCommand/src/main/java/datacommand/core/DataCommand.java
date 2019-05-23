@@ -32,7 +32,7 @@ public final class DataCommand implements IDataCommand {
     }
 
     /**
-     * Processes the stream of data.
+     * Processes a stream of data.
      */
     @Override
     public IDataResult process(Scanner scanner) {

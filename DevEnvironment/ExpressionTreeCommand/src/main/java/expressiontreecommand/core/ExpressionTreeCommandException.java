@@ -1,7 +1,7 @@
-package expressiontree.core;
+package expressiontreecommand.core;
 
 /**
- * The ExpressionTreeCommandException class captures errors in the expression-tree-command module.
+ * The ExpressionTreeCommandException class captures errors in the expression tree command module.
  */
 public class ExpressionTreeCommandException extends RuntimeException {
     /**
