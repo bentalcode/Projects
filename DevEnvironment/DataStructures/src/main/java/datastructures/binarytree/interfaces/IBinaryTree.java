@@ -1,12 +1,14 @@
-package datastructures.tree.interfaces;
+package datastructures.binarytree.interfaces;
 
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IUnaryComparator;
+import datastructures.tree.interfaces.ITreeNode;
+import datastructures.tree.interfaces.ITreeTraversal;
 
 /**
- * The ITreeNode interface defines a generic tree.
+ * The IBinaryTree interface defines a binary tree.
  */
-public interface ITree<TKey extends Comparable<TKey>, TValue> extends IUnaryComparator<ITree<TKey, TValue>> {
+public interface IBinaryTree<TKey extends Comparable<TKey>, TValue> extends IUnaryComparator<IBinaryTree<TKey, TValue>> {
     /**
      * Gets a root of a tree.
      */

@@ -5,7 +5,6 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IVisitor;
 import datastructures.tree.interfaces.ITreeNode;
 import datastructures.tree.interfaces.ITreeTraversal;
-
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;

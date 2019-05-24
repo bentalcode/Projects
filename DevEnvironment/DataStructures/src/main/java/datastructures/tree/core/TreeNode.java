@@ -168,7 +168,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
         public Comparator(IBinaryComparator<TKey> keyComparator) {
             Conditions.validateNotNull(
                     keyComparator,
-                    "The key comparator of a block tree.");
+                    "The key comparator of a tree.");
 
             this.keyComparator = keyComparator;
         }

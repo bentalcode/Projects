@@ -1,32 +1,35 @@
-package datastructures.tree.core;
+package datastructures.binarytree.core;
 
 import base.core.Casting;
 import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import datastructures.tree.core.TreeNode;
+import datastructures.tree.core.TreeTraversal;
 import datastructures.tree.interfaces.ITree;
 import datastructures.tree.interfaces.ITreeNode;
 import datastructures.tree.interfaces.ITreeTraversal;
+
 import java.util.List;
 
 /**
- * The ITreeNode class implements a generic tree.
+ * The ITreeNode class implements a binary tree.
  */
-public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey, TValue> {
+public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey, TValue> {
     private ITreeNode<TKey, TValue> root;
     private final IBinaryComparator<ITree<TKey, TValue>> comparator;
 
     /**
      * The Tree constructor.
      */
-    public Tree(IBinaryComparator<ITree<TKey, TValue>> comparator) {
+    public BinaryTree(IBinaryComparator<ITree<TKey, TValue>> comparator) {
         this(null, comparator);
     }
 
     /**
      * The Tree constructor.
      */
-    public Tree(
+    public BinaryTree(
         ITreeNode<TKey, TValue> root,
         IBinaryComparator<ITree<TKey, TValue>> comparator) {
 
@@ -121,7 +124,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITree<TKey, TValue>> DefaultComparator() {
         IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator = TreeNode.DefaultComparator();
-        return new Tree.Comparator<>(nodeComparator);
+        return new BinaryTree.Comparator<>(nodeComparator);
     }
 
     /**
@@ -289,7 +292,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         /**
          * Sets the root of a tree.
          */
-        public Tree.Builder<TKey, TValue> setRoot(ITreeNode<TKey, TValue> root) {
+        public BinaryTree.Builder<TKey, TValue> setRoot(ITreeNode<TKey, TValue> root) {
             Conditions.validateNotNull(
                 root,
                 "The root of a tree.");
@@ -302,7 +305,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         /**
          * Adds a node.
          */
-        public Tree.Builder<TKey, TValue> addNode(
+        public BinaryTree.Builder<TKey, TValue> addNode(
             ITreeNode<TKey, TValue> parentNode,
             ITreeNode<TKey, TValue> childNode) {
 
@@ -322,7 +325,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         /**
          * Sets the comparator of a tree.
          */
-        public Tree.Builder<TKey, TValue> setComparator(IBinaryComparator<ITree<TKey, TValue>> comparator) {
+        public BinaryTree.Builder<TKey, TValue> setComparator(IBinaryComparator<ITree<TKey, TValue>> comparator) {
             Conditions.validateNotNull(
                 comparator,
                 "The comparator of a tree.");
@@ -338,10 +341,10 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         @Override
         public ITree<TKey, TValue> build() {
             if (this.comparator == null) {
-                this.comparator = Tree.DefaultComparator();
+                this.comparator = BinaryTree.DefaultComparator();
             }
 
-            return new Tree<>(this.root, this.comparator);
+            return new BinaryTree<>(this.root, this.comparator);
         }
     }
 }
