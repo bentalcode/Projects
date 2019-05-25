@@ -55,7 +55,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
             tokens.remove(0);
         }
 
-        List<String> postfixTokens = transformInfixToPostfix(tokens);
+        List<String> postfixTokens = this.transformInfixToPostfix(tokens);
 
         IExpressionTree tree = this.buildExpressionTree(postfixTokens);
 
@@ -83,7 +83,8 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
                 // create an unary operator and push it back to the stack...
                 //
                 IOperand operand = Casting.cast(stack.pop());
-                IUnaryOperator operator = parseUnaryOperator(token, operand);
+
+                IOperand operator = this.parseUnaryOperator(token, operand);
 
                 stack.push(operator);
             }
@@ -95,7 +96,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
                 IOperand rhsOperand = Casting.cast(stack.pop());
                 IOperand lhsOperand = Casting.cast(stack.pop());
 
-                IBinaryOperator operator = parseBinaryOperator(token, lhsOperand, rhsOperand);
+                IBinaryOperator operator = this.parseBinaryOperator(token, lhsOperand, rhsOperand);
 
                 stack.push(operator);
             }
@@ -131,17 +132,14 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
     private IOperand parseOperand(String token) {
         Integer integerValue = this.tryParseInteger(token);
 
-        if (integerValue == null) {
+        if (integerValue != null) {
             return new IntegerOperand(integerValue);
         }
 
         Double doubleValue = this.tryParseDouble(token);
 
-        if (doubleValue == null) {
-            String errorMessage = "The parser of an expression tree failed parsing operand: " + token;
-
-            this.log.error(errorMessage);
-            throw new ExpressionTreeException(errorMessage);
+        if (doubleValue != null) {
+            return new DoubleOperand(doubleValue);
         }
 
         String errorMessage = "The parser of an expression tree detected an unsupported operand: " + token;
@@ -357,14 +355,14 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
         Matcher matcher = matchingResult.second();
 
         if (index == 0) {
-            integerToken = matcher.group(0);
+            integerToken = matcher.group(1);
         } else if (index == 1) {
-            numeratorToken = matcher.group(0);
-            denominatorToken = matcher.group(1);
-        } else if (index == 2) {
-            integerToken = matcher.group(0);
             numeratorToken = matcher.group(1);
             denominatorToken = matcher.group(2);
+        } else if (index == 2) {
+            integerToken = matcher.group(1);
+            numeratorToken = matcher.group(2);
+            denominatorToken = matcher.group(3);
         } else {
             assert(false);
         }
@@ -373,12 +371,12 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
         double fraction = 0.0;
 
         if (integerToken != null) {
-            integer = Conversion.doubleConversion().parse(integerToken);
+            integer = Conversion.integerConversion().parse(integerToken);
         }
 
         if (numeratorToken != null && denominatorToken != null) {
-            double numerator = Conversion.doubleConversion().parse(numeratorToken);
-            double denominator = Conversion.doubleConversion().parse(denominatorToken);
+            double numerator = Conversion.integerConversion().parse(numeratorToken);
+            double denominator = Conversion.integerConversion().parse(denominatorToken);
 
             fraction = numerator / denominator;
         }

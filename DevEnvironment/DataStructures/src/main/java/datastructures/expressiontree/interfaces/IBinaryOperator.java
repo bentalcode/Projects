@@ -3,7 +3,7 @@ package datastructures.expressiontree.interfaces;
 /**
  * The IBinaryOperator interface defines a binary operator of an expression tree.
  */
-public interface IBinaryOperator extends IOperator {
+public interface IBinaryOperator extends IOperator, IOperand {
     /**
      * Gets the left hand side operand.
      */
