@@ -26,4 +26,20 @@ public abstract class BinaryOperator implements IBinaryOperator {
         this.lhsOperand = lhsOperand;
         this.rhsOperand = rhsOperand;
     }
+
+    /**
+     * Gets the left hand side operand.
+     */
+    @Override
+    public IOperand getLeftOperand() {
+        return this.lhsOperand;
+    }
+
+    /**
+     * Gets the right hand side operand.
+     */
+    @Override
+    public IOperand getRightOperand() {
+        return this.rhsOperand;
+    }
 }

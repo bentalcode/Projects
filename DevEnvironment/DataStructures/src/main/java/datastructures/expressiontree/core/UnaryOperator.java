@@ -20,4 +20,12 @@ public abstract class UnaryOperator implements IUnaryOperator {
 
         this.operand = operand;
     }
+
+    /**
+     * Gets an operand.
+     */
+    @Override
+    public IOperand getOperand() {
+        return this.operand;
+    }
 }

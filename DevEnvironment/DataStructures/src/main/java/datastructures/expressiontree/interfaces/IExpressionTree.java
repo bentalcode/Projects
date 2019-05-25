@@ -1,13 +1,16 @@
 package datastructures.expressiontree.interfaces;
 
-import datastructures.binarytree.interfaces.IBinaryTree;
-
 /**
  * The IExpressionTree interface defines an expression tree.
  */
 public interface IExpressionTree {
     /**
-     * Gets the corresponding expression as a binary tree.
+     * Gets the root of an expression tree.
      */
-    IBinaryTree<String, IExpressionTreeElement> getTree();
+    IExpressionTreeElement getRoot();
+
+    /**
+     * Evaluates a result of an expression tree.
+     */
+    double evaluate();
 }

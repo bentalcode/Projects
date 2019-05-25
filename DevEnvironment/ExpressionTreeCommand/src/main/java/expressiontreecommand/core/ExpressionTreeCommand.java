@@ -1,12 +1,17 @@
 package expressiontreecommand.core;
 
 import base.core.Conditions;
-import java.util.Scanner;
+import datastructures.expressiontree.core.ExpressionTree;
+import datastructures.expressiontree.interfaces.IExpressionTree;
 import expressiontreecommand.interfaces.IExpressionTreeCommand;
 import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
 import expressiontreecommand.interfaces.IExpressionTreeResult;
+import expressiontreecommand.interfaces.IExpressionTreeResults;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Scanner;
 
 /**
  * The ExpressionTreeCommand class implements a command for processing expression tree.
@@ -31,11 +36,24 @@ public final class ExpressionTreeCommand implements IExpressionTreeCommand {
      * Processes a stream of data.
      */
     @Override
-    public IExpressionTreeResult process(Scanner scanner) {
+    public IExpressionTreeResults process(Scanner scanner) {
         Conditions.validateNotNull(
             scanner,
             "The scanner of data.");
 
-        return new ExpressionTreeResult();
+        IExpressionTreeResults result = new ExpressionTreeResults();
+
+        while (scanner.hasNextLine()) {
+            String expression = scanner.nextLine();
+
+            IExpressionTree expressionTree = ExpressionTree.parse(expression);
+            double expressionResult = expressionTree.evaluate();
+
+            IExpressionTreeResult currResult = new ExpressionTreeResult(expression, expressionResult);
+
+            result.add(currResult);
+        }
+
+        return result;
     }
 }

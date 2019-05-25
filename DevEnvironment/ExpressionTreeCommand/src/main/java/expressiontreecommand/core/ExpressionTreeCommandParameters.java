@@ -28,7 +28,7 @@ public final class ExpressionTreeCommandParameters implements IExpressionTreeCom
         IExpressionTreeProperties properties) {
 
         Conditions.validateStringNotNullOrEmpty(
-                path,
+            path,
             "The path of an expression tree.");
 
         Conditions.validateNotNull(

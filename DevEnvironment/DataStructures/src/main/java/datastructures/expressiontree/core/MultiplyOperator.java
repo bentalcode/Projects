@@ -7,14 +7,20 @@ import datastructures.expressiontree.interfaces.IExpressionTreeSymbols;
 /**
  * The MultiplyOperator class implements a multiply operator of an expression tree.
  */
-public final class MultiplyOperator extends BinaryOperator
-    implements IMultiplyOperator {
-
+public final class MultiplyOperator extends BinaryOperator implements IMultiplyOperator {
     /**
      * The MultiplyOperator constructor.
      */
     public MultiplyOperator(IOperand lhsOperand, IOperand rhsOperand) {
         super(lhsOperand, rhsOperand);
+    }
+
+    /**
+     * Evaluates a result of an expression element.
+     */
+    @Override
+    public double evaluate() {
+        return this.getLeftOperand().evaluate() * this.getRightOperand().evaluate();
     }
 
     /**

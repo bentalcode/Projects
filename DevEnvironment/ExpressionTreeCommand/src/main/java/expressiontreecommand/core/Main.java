@@ -6,6 +6,8 @@ import base.core.Scanners;
 import expressiontreecommand.interfaces.IExpressionTreeCommand;
 import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
 import expressiontreecommand.interfaces.IExpressionTreeResult;
+import expressiontreecommand.interfaces.IExpressionTreeResults;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -34,12 +36,12 @@ public final class Main {
             /**
              * Process the data...
              */
-            IExpressionTreeResult result = Main.processData(parameters);
+            IExpressionTreeResults results = Main.processData(parameters);
 
             /**
              * Writes the result to the console...
              */
-            Main.displayResult(result);
+            Main.displayResult(results);
 
             System.exit(0);
         }
@@ -57,20 +59,20 @@ public final class Main {
     /**
      * Processes data.
      */
-    private static IExpressionTreeResult processData(IExpressionTreeCommandParameters parameters) {
+    private static IExpressionTreeResults processData(IExpressionTreeCommandParameters parameters) {
 
         IExpressionTreeCommand command = new ExpressionTreeCommand(parameters);
 
-        IExpressionTreeResult result;
+        IExpressionTreeResults results;
 
         try (DestructorHandler destructorHandler = new DestructorHandler()) {
             Scanner scanner = Scanners.createFileScanner(parameters.getDataPath());
             destructorHandler.register(scanner);
 
-            result = command.process(scanner);
+            results = command.process(scanner);
         }
 
-        return result;
+        return results;
     }
 
     /**
@@ -94,10 +96,10 @@ public final class Main {
     /**
      * Displays result to an output stream.
      */
-    private static void displayResult(IExpressionTreeResult result) {
-        String content = "";
-
-        Main.writeInformationalMessage(content);
+    private static void displayResult(IExpressionTreeResults results) {
+        for (IExpressionTreeResult result : results) {
+            Main.writeInformationalMessage(result.toString());
+        }
     }
 
     /**

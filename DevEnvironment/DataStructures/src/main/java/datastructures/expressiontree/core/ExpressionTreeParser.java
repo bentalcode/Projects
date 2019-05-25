@@ -1,12 +1,19 @@
 package datastructures.expressiontree.core;
 
-import base.core.*;
-import datastructures.binarytree.interfaces.IBinaryTree;
+import base.core.ArrayLists;
+import base.core.Casting;
+import base.core.Conditions;
+import base.core.Conversion;
+import base.core.Lists;
+import base.core.Pair;
+import base.core.RegexMatcher;
 import datastructures.expressiontree.ExpressionTreeException;
+import datastructures.expressiontree.interfaces.IBinaryOperator;
 import datastructures.expressiontree.interfaces.IExpressionTree;
 import datastructures.expressiontree.interfaces.IExpressionTreeElement;
 import datastructures.expressiontree.interfaces.IOperand;
 import datastructures.expressiontree.interfaces.IExpressionTreeParser;
+import datastructures.expressiontree.interfaces.IUnaryOperator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
@@ -41,11 +48,16 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
      * Gets the corresponding binary tree.
      */
     @Override
-    public IBinaryTree<String, IExpressionTreeElement> parse() {
-        String[] tokens = this.expression.split(" ");
+    public IExpressionTree parse() {
+        List<String> tokens = Lists.fromArray(this.expression.split( " "));
+
+        if (!tokens.isEmpty() && tokens.get(0).equals("?")) {
+            tokens.remove(0);
+        }
+
         List<String> postfixTokens = transformInfixToPostfix(tokens);
 
-        IBinaryTree<String, IExpressionTreeElement> tree = this.buildExpressionTree(postfixTokens);
+        IExpressionTree tree = this.buildExpressionTree(postfixTokens);
 
         return tree;
     }
@@ -53,22 +65,64 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
     /**
      * Builds an expression tree from postfix tokens.
      */
-    private IBinaryTree<String, IExpressionTreeElement> buildExpressionTree(List<String> postfixTokens) {
+    private IExpressionTree buildExpressionTree(List<String> postfixTokens) {
         Stack<IExpressionTreeElement> stack = new Stack<>();
 
         for (String token : postfixTokens) {
 
-            //
-            // If the current token is an operand, then simply add it to the stack...
-            //
             if (ExpressionTreeElement.isOperand(token)) {
+                //
+                // If the current token is an operand, then simply add it to the stack...
+                //
                 IOperand operand = this.parseOperand(token);
                 stack.push(operand);
+            }
+            else if (ExpressionTreeElement.isUnaryOperator(token)) {
+                //
+                // If the current token is an unary operator, then pop the operand from the stack,
+                // create an unary operator and push it back to the stack...
+                //
+                IOperand operand = Casting.cast(stack.pop());
+                IUnaryOperator operator = parseUnaryOperator(token, operand);
+
+                stack.push(operator);
+            }
+            else if (ExpressionTreeElement.isBinaryOperator(token)) {
+                //
+                // If the current token is a binary operator, then pop two operands from the stack,
+                // create a binary operator and push it back to the stack...
+                //
+                IOperand rhsOperand = Casting.cast(stack.pop());
+                IOperand lhsOperand = Casting.cast(stack.pop());
+
+                IBinaryOperator operator = parseBinaryOperator(token, lhsOperand, rhsOperand);
+
+                stack.push(operator);
             }
 
         }
 
-        return null;
+        if (stack.empty()) {
+            String errorMessage =
+                "Invalid expression tree creation logic from postfix: Stack is empty." +
+                "At the end, the stack should contain a single element as the root of the expression tree.";
+
+            throw new ExpressionTreeException(errorMessage);
+        }
+
+        IExpressionTreeElement root = stack.pop();
+
+        if (!stack.empty()) {
+            String errorMessage =
+                "Invalid expression tree creation logic from postfix: Stack is not empty." +
+                "At the end, the stack should contain no elements.";
+
+            throw new ExpressionTreeException(errorMessage);
+        }
+
+        IExpressionTree tree = new ExpressionTree(root);
+
+        return tree;
     }
 
     /**
@@ -87,19 +141,71 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
             String errorMessage = "The parser of an expression tree failed parsing operand: " + token;
 
             this.log.error(errorMessage);
-            throw new BaseException(errorMessage);
+            throw new ExpressionTreeException(errorMessage);
         }
 
-        return null;
+        String errorMessage = "The parser of an expression tree detected an unsupported operand: " + token;
+
+        this.log.error(errorMessage);
+        throw new ExpressionTreeException(errorMessage);
+    }
+
+    /**
+     * Parses an unary operand.
+     */
+    private IUnaryOperator parseUnaryOperator(String token, IOperand operand) {
+        if (SquareRootOperator.isOperator(token)) {
+            return new SquareRootOperator(operand);
+        }
+        else {
+            String errorMessage =
+                "The parser of an expression tree detected an unsupported unary operator: " + token;
+
+            this.log.error(errorMessage);
+            throw new ExpressionTreeException(errorMessage);
+        }
+    }
+
+    /**
+     * Parses a binary operand.
+     */
+    private IBinaryOperator parseBinaryOperator(
+        String token,
+        IOperand lhsOperand,
+        IOperand rhsOperand) {
+
+        if (AddOperator.isOperator(token)) {
+            return new AddOperator(lhsOperand, rhsOperand);
+        }
+        else if (SubtractOperator.isOperator(token)) {
+            return new SubtractOperator(lhsOperand, rhsOperand);
+        }
+        else if (MultiplyOperator.isOperator(token)) {
+            return new MultiplyOperator(lhsOperand, rhsOperand);
+        }
+        else if (DivideOperator.isOperator(token)) {
+            return new DivideOperator(lhsOperand, rhsOperand);
+        }
+        else if (PowOperator.isOperator(token)) {
+            return new PowOperator(lhsOperand, rhsOperand);
+        }
+        else {
+            String errorMessage =
+                "The parser of an expression tree detected an unsupported binary operator: " + token;
+
+            this.log.error(errorMessage);
+            throw new ExpressionTreeException(errorMessage);
+        }
     }
 
     /**
      * Transforms an infix to postfix form.
      */
-    private List<String> transformInfixToPostfix(String[] infix) {
+    private List<String> transformInfixToPostfix(List<String> infix) {
         List<String> result = new ArrayList<>();
 
-        List<String> tokens = Lists.fromArray(infix);
+        List<String> tokens = infix;
+
         tokens.add(")");
 
         Stack<String> stack = new Stack<>();

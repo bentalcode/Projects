@@ -16,6 +16,14 @@ public final class IntegerOperand implements IIntegerOperand {
     }
 
     /**
+     * Evaluates a result of an expression element.
+     */
+    @Override
+    public double evaluate() {
+        return this.value;
+    }
+
+    /**
      * Gets an integer value of an operand.
      */
     @Override

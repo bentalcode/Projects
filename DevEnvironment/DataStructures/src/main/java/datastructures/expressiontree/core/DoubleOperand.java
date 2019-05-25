@@ -16,6 +16,14 @@ public final class DoubleOperand implements IDoubleOperand {
     }
 
     /**
+     * Evaluates a result of an expression element.
+     */
+    @Override
+    public double evaluate() {
+        return this.value;
+    }
+
+    /**
      * Gets a double value of an operand.
      */
     @Override

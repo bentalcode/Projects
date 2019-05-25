@@ -9,5 +9,5 @@ public interface IExpressionTreeCommand {
     /**
      * Processes a stream of data.
      */
-    IExpressionTreeResult process(Scanner stream);
+    IExpressionTreeResults process(Scanner stream);
 }

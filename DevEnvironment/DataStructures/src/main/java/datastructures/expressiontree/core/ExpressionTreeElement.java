@@ -19,7 +19,7 @@ public abstract class ExpressionTreeElement implements IExpressionTreeElement {
     public static boolean isOperand(String token) {
         return
             !ExpressionTreeElement.isOperator(token) &&
-            !ExpressionTreeElement.isOpenParentheses(token) ||
+            !ExpressionTreeElement.isOpenParentheses(token) &&
             !ExpressionTreeElement.isCloseParentheses(token);
     }
 
@@ -28,11 +28,27 @@ public abstract class ExpressionTreeElement implements IExpressionTreeElement {
      */
     public static boolean isOperator(String token) {
         return
-            PowOperator.isOperator(token) ||
+            ExpressionTreeElement.isUnaryOperator(token) ||
+            ExpressionTreeElement.isBinaryOperator(token);
+    }
+
+    /**
+     * Checks whether this token is an unary operator.
+     */
+    public static boolean isUnaryOperator(String token) {
+        return SquareRootOperator.isOperator(token);
+    }
+
+    /**
+     * Checks whether this token is a binary operator.
+     */
+    public static boolean isBinaryOperator(String token) {
+        return
+            AddOperator.isOperator(token) ||
+            SubtractOperator.isOperator(token) ||
             MultiplyOperator.isOperator(token) ||
             DivideOperator.isOperator(token) ||
-            AddOperator.isOperator(token) ||
-            SubtractOperator.isOperator(token);
+            PowOperator.isOperator(token);
     }
 
     /**
