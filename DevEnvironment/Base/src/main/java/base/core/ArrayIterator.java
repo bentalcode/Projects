@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * The ArrayIterator class implements an iterator of an array.
  */
-public class ArrayIterator<T> implements Iterator<T>, Iterable<T> {
+public class ArrayIterator<T> implements Iterable<T>, Iterator<T> {
     private final T[] array;
     private int position;
 
@@ -22,7 +22,7 @@ public class ArrayIterator<T> implements Iterator<T>, Iterable<T> {
     }
 
     /**
-     * Gets the iterator for iterating over the collection.
+     * Gets an iterator for iterating over a collection.
      */
     @Override
     public Iterator<T> iterator() {

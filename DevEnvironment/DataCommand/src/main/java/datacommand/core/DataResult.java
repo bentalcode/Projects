@@ -42,7 +42,7 @@ public final class DataResult implements IDataResult {
     }
 
     /**
-     * Gets the iterator for iterating over the results.
+     * Gets an iterator for iterating over the results.
      */
     @Override
     public Iterator<IAggregationResult> getIterator() {

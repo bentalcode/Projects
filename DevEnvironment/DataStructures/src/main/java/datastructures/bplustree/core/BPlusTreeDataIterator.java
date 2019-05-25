@@ -38,7 +38,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
     }
 
     /**
-     * Gets the iterator for iterating over data.
+     * Gets an iterator for iterating over data.
      */
     @Override
     public Iterator<ITreeNodeData<TKey, TValue>> iterator() {

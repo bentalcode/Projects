@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * The IJsonArray interface defines a json array.
  */
-public interface IJsonArray extends IJsonElement, Iterator<IJsonValue>, Iterable<IJsonValue> {
+public interface IJsonArray extends IJsonElement, Iterable<IJsonValue>, Iterator<IJsonValue> {
     /**
      * Gets a json value of an array at a specified index.
      */

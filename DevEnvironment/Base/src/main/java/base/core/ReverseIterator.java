@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * The ReverseIterator class implements a reverse iterator.
  */
-public class ReverseIterator<T> implements Iterator<T>, Iterable<T> {
+public class ReverseIterator<T> implements Iterable<T>, Iterator<T> {
     private final List<T> list;
     private int position;
 
@@ -23,7 +23,7 @@ public class ReverseIterator<T> implements Iterator<T>, Iterable<T> {
     }
 
     /**
-     * Gets the iterator for iterating over the collection.
+     * Gets an iterator for iterating over a collection.
      */
     @Override
     public Iterator<T> iterator() {

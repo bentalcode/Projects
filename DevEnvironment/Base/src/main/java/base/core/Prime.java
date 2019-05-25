@@ -1,13 +1,19 @@
 package base.core;
 
+import base.interfaces.IPrime;
 import java.util.BitSet;
+import java.util.Iterator;
 
 /**
  * The Prime class implements complementary APIs for a prime number.
  */
-public final class Prime {
+public final class Prime implements IPrime {
+    private static int IterationStartNumber = 1;
+
     private final int primesLength;
     private final BitSet primes;
+    private int currPrime;
+    private int maxPrime;
 
     /**
      * The Prime constructor.
@@ -24,11 +30,18 @@ public final class Prime {
         // Calculates the primes...
         //
         this.calculatePrimes(this.primes, this.primesLength);
+
+        //
+        // Initialize prime iteration indexes...
+        //
+        this.currPrime = Prime.IterationStartNumber;
+        this.maxPrime = this.maxPrime();
     }
 
     /**
      * Checks whether a number is a prime number.
      */
+    @Override
     public boolean isPrime(int number) {
         if (number <= 1) {
             return false;
@@ -50,6 +63,7 @@ public final class Prime {
     /**
      * Gets the next prime number.
      */
+    @Override
     public int getNextPrime(int number) {
         int nextPrime;
 
@@ -84,6 +98,7 @@ public final class Prime {
      * Calculates prime numbers in range 0 to maxNumber.
      * Algorithm: Sieve of Eratosthenes.
      */
+    @Override
     public BitSet calculatePrimes(int maxNumber) {
         Conditions.validate(
             maxNumber >= 10,
@@ -104,10 +119,53 @@ public final class Prime {
     }
 
     /**
+     * Gets an iterator for iterating over a collection.
+     */
+    @Override
+    public Iterator<Integer> iterator() {
+        return this.iterator(Prime.IterationStartNumber);
+    }
+
+    /**
+     * Gets an iterator for iterating over a collection from a specific number.
+     */
+    @Override
+    public Iterator<Integer> iterator(int fromNumber) {
+        this.currPrime = fromNumber;
+        return this;
+    }
+
+    /**
+     * Checks whether there is a next prime number.
+     */
+    @Override
+    public boolean hasNext() {
+        return this.currPrime < this.maxPrime;
+    }
+
+    /**
+     * Gets the next prime number.
+     */
+    @Override
+    public Integer next() {
+        int nextPrime = this.getNextPrime(this.currPrime);
+        this.currPrime = nextPrime;
+        return nextPrime;
+    }
+
+    /**
+     * Removes the current prime number.
+     */
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * Calculates prime numbers in range 0 to length - 1.
      * Algorithm: Sieve of Eratosthenes.
      */
-    public void calculatePrimes(BitSet primes, int length) {
+    private void calculatePrimes(BitSet primes, int length) {
         //
         // Set all number as primes besides zero and one...
         //
@@ -187,5 +245,25 @@ public final class Prime {
         }
 
         return null;
+    }
+
+    /**
+     * Calculates the max prime number for an integer.
+     */
+    private int maxPrime() {
+        int maxPrime = 2;
+
+        int currNumber = Integer.MAX_VALUE;
+
+        while (currNumber >= 2) {
+            if (this.isPrime(currNumber)) {
+                maxPrime = currNumber;
+                break;
+            }
+
+            --currNumber;
+        }
+
+        return maxPrime;
     }
 }
