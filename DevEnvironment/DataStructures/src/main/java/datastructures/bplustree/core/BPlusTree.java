@@ -18,7 +18,6 @@ import datastructures.tree.core.KeyIterator;
 import datastructures.tree.core.ValueIterator;
 import datastructures.tree.interfaces.IKeyIterator;
 import datastructures.tree.interfaces.ITreeDataIterator;
-import datastructures.tree.interfaces.ITreeMetrics;
 import datastructures.tree.interfaces.IValueIterator;
 import java.util.LinkedList;
 import java.util.List;
