@@ -58,7 +58,7 @@ public final class IntegerConversion implements IIntegerConversion {
         int result;
 
         try {
-            result = Integer.parseInt(value);
+            result = Integer.parseInt(value.trim());
         } catch (NumberFormatException e) {
             String errorMessage =
                 "Failed to convert a string to an integer due to the following error: " + e.getMessage();

@@ -2,6 +2,8 @@ package base.core;
 
 import base.interfaces.ITestData;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The TestData class implements the data of the tests.
@@ -20,6 +22,7 @@ public final class TestData implements ITestData {
     /**
      * Gets path of a primes resource.
      */
+    @Override
     public Path getPrimesResourcePath() {
         Path path = this.createResourcePath(
             TestData.DataDirectoryName,
@@ -27,6 +30,22 @@ public final class TestData implements ITestData {
             TestData.PrimesFileName);
 
         return path;
+    }
+
+    /**
+     * Gets values of integer-string.
+     */
+    @Override
+    public List<Pair<Integer, String>> getIntegerStrings() {
+        List<Pair<Integer, String>> values = new ArrayList<>();
+
+        values.add(new Pair<>(0, "0"));
+        values.add(new Pair<>(101, "101"));
+        values.add(new Pair<>(-2222, "-2222"));
+        values.add(new Pair<>(2222, "2222"));
+        values.add(new Pair<>(22222222, "22222222"));
+
+        return values;
     }
 
     /**

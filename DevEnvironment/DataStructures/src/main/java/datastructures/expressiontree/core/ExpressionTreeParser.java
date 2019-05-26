@@ -26,9 +26,9 @@ import java.util.regex.Pattern;
  * The IExpressionTreeParser class implements a parser of an expression tree.
  */
 public final class ExpressionTreeParser implements IExpressionTreeParser {
-    private static final Pattern DoublePattern1 = Pattern.compile("([\\d+])");
-    private static final Pattern DoublePattern2 = Pattern.compile("([\\d+])/([\\d+])");
-    private static final Pattern DoublePattern3 = Pattern.compile("([\\d+])_([\\d+])/([\\d+])");
+    private static final Pattern DoublePattern1 = Pattern.compile("([\\d]+)");
+    private static final Pattern DoublePattern2 = Pattern.compile("([\\d]+)/([\\d]+)");
+    private static final Pattern DoublePattern3 = Pattern.compile("([\\d]+)_([\\d]+)/([\\d]+)");
 
     private final String expression;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -49,7 +49,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
      */
     @Override
     public IExpressionTree parse() {
-        List<String> tokens = Lists.fromArray(this.expression.split( " "));
+        List<String> tokens = Lists.fromArray(this.expression.split(" "));
 
         if (!tokens.isEmpty() && tokens.get(0).equals("?")) {
             tokens.remove(0);
@@ -206,8 +206,8 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
 
         tokens.add(")");
 
-        Stack<String> stack = new Stack<>();
-        stack.push("(");
+        Stack<String> operatorStack = new Stack<>();
+        operatorStack.push("(");
 
         for (String token : tokens) {
 
@@ -222,7 +222,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
                 // If the current encountered token is an open parentheses,
                 // then push it to the stack...
                 //
-                stack.push(token);
+                operatorStack.push(token);
             }
             else if (ExpressionTreeElement.isCloseParentheses(token)) {
                 //
@@ -232,13 +232,13 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
                 //
                 // Remove the open parentheses from the stack...
                 //
-                while (!stack.empty() && !ExpressionTreeElement.isOpenParentheses(stack.peek())) {
-                    String currOperator = stack.pop();
+                while (!operatorStack.empty() && !ExpressionTreeElement.isOpenParentheses(operatorStack.peek())) {
+                    String currOperator = operatorStack.pop();
 
                     result.add(currOperator);
                 }
 
-                if (stack.empty()) {
+                if (operatorStack.empty()) {
                     String errorMessage =
                         "Invalid open/close parentheses sequence in an expression tree.";
 
@@ -246,7 +246,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
                     throw new ExpressionTreeException(errorMessage);
                 }
                 else {
-                    stack.pop();
+                    operatorStack.pop();
                 }
             }
             else if (ExpressionTreeElement.isOperator(token)) {
@@ -256,15 +256,15 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
                 // the current encountered operator, and append those operators to the result.
                 //
                 // Add the current encountered operator to the stack...
-                while (!stack.empty() && this.precedence(stack.peek()) >= this.precedence(token)) {
-                    String currOperator = stack.pop();
+                while (!operatorStack.empty() && this.precedence(operatorStack.peek()) >= this.precedence(token)) {
+                    String currOperator = operatorStack.pop();
 
                     this.validateOperator(currOperator);
 
                     result.add(currOperator);
                 }
 
-                stack.push(token);
+                operatorStack.push(token);
 
             }
             else {
@@ -276,8 +276,8 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
             }
         }
 
-        while (!stack.empty()) {
-            String currOperator = stack.pop();
+        while (!operatorStack.empty()) {
+            String currOperator = operatorStack.pop();
 
             this.validateOperator(currOperator);
 
@@ -371,12 +371,12 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
         double fraction = 0.0;
 
         if (integerToken != null) {
-            integer = Conversion.integerConversion().parse(integerToken);
+            integer = Conversion.doubleConversion().parse(integerToken);
         }
 
         if (numeratorToken != null && denominatorToken != null) {
-            double numerator = Conversion.integerConversion().parse(numeratorToken);
-            double denominator = Conversion.integerConversion().parse(denominatorToken);
+            double numerator = Conversion.doubleConversion().parse(numeratorToken);
+            double denominator = Conversion.doubleConversion().parse(denominatorToken);
 
             fraction = numerator / denominator;
         }
