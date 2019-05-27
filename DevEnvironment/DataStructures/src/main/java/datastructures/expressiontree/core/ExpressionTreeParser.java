@@ -152,8 +152,28 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
      * Parses an unary operand.
      */
     private IUnaryOperator parseUnaryOperator(String token, IOperand operand) {
+        UnaryOperatorType operatorType = this.parseUnaryOperatorType(token);
+        return operatorType.create(operand);
+    }
+
+    /**
+     * Parses a binary operator.
+     */
+    private IBinaryOperator parseBinaryOperator(
+        String token,
+        IOperand lhsOperand,
+        IOperand rhsOperand) {
+
+        BinaryOperatorType operatorType = this.parseBinaryOperatorType(token);
+        return operatorType.create(lhsOperand, rhsOperand);
+    }
+
+    /**
+     * Parses an unary operand type.
+     */
+    private UnaryOperatorType parseUnaryOperatorType(String token) {
         if (SquareRootOperator.isOperator(token)) {
-            return new SquareRootOperator(operand);
+            return UnaryOperatorType.SquareRoot;
         }
         else {
             String errorMessage =
@@ -165,27 +185,24 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
     }
 
     /**
-     * Parses a binary operand.
+     * Parses a binary operator type.
      */
-    private IBinaryOperator parseBinaryOperator(
-        String token,
-        IOperand lhsOperand,
-        IOperand rhsOperand) {
+    private BinaryOperatorType parseBinaryOperatorType(String token) {
 
         if (AddOperator.isOperator(token)) {
-            return new AddOperator(lhsOperand, rhsOperand);
+            return BinaryOperatorType.AddOperator;
         }
         else if (SubtractOperator.isOperator(token)) {
-            return new SubtractOperator(lhsOperand, rhsOperand);
+            return BinaryOperatorType.SubtractOperator;
         }
         else if (MultiplyOperator.isOperator(token)) {
-            return new MultiplyOperator(lhsOperand, rhsOperand);
+            return BinaryOperatorType.MultiplyOperator;
         }
         else if (DivideOperator.isOperator(token)) {
-            return new DivideOperator(lhsOperand, rhsOperand);
+            return BinaryOperatorType.DivideOperator;
         }
         else if (PowOperator.isOperator(token)) {
-            return new PowOperator(lhsOperand, rhsOperand);
+            return BinaryOperatorType.PowOperator;
         }
         else {
             String errorMessage =
@@ -301,6 +318,9 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
         }
         else if (PowOperator.isOperator(operator)) {
             return 3;
+        }
+        else if (SquareRootOperator.isOperator(operator)) {
+            return 4;
         }
         else {
             return -1;

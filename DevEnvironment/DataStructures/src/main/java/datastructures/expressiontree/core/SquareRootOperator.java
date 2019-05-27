@@ -27,6 +27,6 @@ public final class SquareRootOperator extends UnaryOperator implements ISquareRo
      * Checks whether this token is an add operator.
      */
     public static boolean isOperator(String token) {
-        return token.equals(IExpressionTreeSymbols.SquareOperator);
+        return token.equals(IExpressionTreeSymbols.SquareRootOperator);
     }
 }

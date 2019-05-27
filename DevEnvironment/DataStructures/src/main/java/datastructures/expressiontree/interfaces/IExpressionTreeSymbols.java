@@ -11,5 +11,5 @@ public interface IExpressionTreeSymbols {
     char MultiplyOperator = '*';
     char DivideOperator = '/';
     char PowOperator = '^';
-    String SquareOperator = "sqrt";
+    String SquareRootOperator = "sqrt";
 }
