@@ -103,6 +103,9 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
 
         }
 
+        //
+        //  At end, the top element of stack will be root of expression tree...
+        //
         if (stack.empty()) {
             String errorMessage =
                 "Invalid expression tree creation logic from postfix: Stack is empty." +
@@ -293,6 +296,9 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
             }
         }
 
+        //
+        // Append all remainder operators in the stack to the result.
+        //
         while (!operatorStack.empty()) {
             String currOperator = operatorStack.pop();
 
