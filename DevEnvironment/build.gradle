@@ -28,9 +28,8 @@ allprojects {
     }
 
     dependencies {
-        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
-        compile group: 'com.jwebmp.jre11.jackson.core', name: 'jackson-core', version: '0.63.0.19'
-        testCompile group: 'junit', name: 'junit', version: '4.12'
+        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jApiVersion
+        testCompile group: 'junit', name: 'junit', version: junitVersion
     }
 
     gradle.projectsEvaluated {

@@ -2,5 +2,5 @@ apply from: "${commonDir}/common.build.gradle"
 
 dependencies {
     compile project(':Base')
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.8'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonCoreVersion
 }

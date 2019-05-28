@@ -1,8 +1,10 @@
-package datacommand.core;
+package datacommand;
 
 import base.core.Conditions;
 import base.core.DestructorHandler;
 import base.core.Scanners;
+import datacommand.core.DataCommand;
+import datacommand.core.DataCommandParameters;
 import datacommand.interfaces.IAggregationResult;
 import datacommand.interfaces.IDataCommand;
 import datacommand.interfaces.IDataCommandParameters;

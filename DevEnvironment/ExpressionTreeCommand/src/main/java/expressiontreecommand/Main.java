@@ -1,8 +1,10 @@
-package expressiontreecommand.core;
+package expressiontreecommand;
 
 import base.core.Conditions;
 import base.core.DestructorHandler;
 import base.core.Scanners;
+import expressiontreecommand.core.ExpressionTreeCommand;
+import expressiontreecommand.core.ExpressionTreeCommandParameters;
 import expressiontreecommand.interfaces.IExpressionTreeCommand;
 import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
 import expressiontreecommand.interfaces.IExpressionTreeResult;
