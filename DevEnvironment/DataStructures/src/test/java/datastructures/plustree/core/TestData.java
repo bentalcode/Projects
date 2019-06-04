@@ -14,8 +14,8 @@ import datastructures.bplustree.core.BPlusTreeProperties;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.tree.core.TreeData;
-import datastructures.tree.interfaces.ITreeData;
+import datastructures.node.core.Nodes;
+import datastructures.node.interfaces.INodes;
 import json.interfaces.ITestData;
 import java.util.List;
 
@@ -54,22 +54,22 @@ public final class TestData implements ITestData {
      * Gets the creation data of a B+ tree.
      */
     @Override
-    public List<Pair<ITreeData<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData() {
-        ITreeData<Integer, String> treeData1 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
+    public List<Pair<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData() {
+        INodes<Integer, String> treeData1 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels1 = new BlockTreeLevels.Builder<Integer, INullable>()
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4, 9)))
             .build();
 
-        ITreeData<Integer, String> treeData2 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
+        INodes<Integer, String> treeData2 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels2 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -77,12 +77,12 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10)))
             .build();
 
-        ITreeData<Integer, String> treeData3 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
-            .addNodeData(11, "e")
+        INodes<Integer, String> treeData3 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
+            .addNode(11, "e")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels3 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -90,13 +90,13 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10, 11)))
             .build();
 
-        ITreeData<Integer, String> treeData4 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
-            .addNodeData(11, "e")
-            .addNodeData(12, "f")
+        INodes<Integer, String> treeData4 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
+            .addNode(11, "e")
+            .addNode(12, "f")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels4 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -104,14 +104,14 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12)))
             .build();
 
-        ITreeData<Integer, String> treeData5 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
-            .addNodeData(11, "e")
-            .addNodeData(12, "f")
-            .addNodeData(13, "g")
+        INodes<Integer, String> treeData5 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
+            .addNode(11, "e")
+            .addNode(12, "f")
+            .addNode(13, "g")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels5 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -119,15 +119,15 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12, 13)))
             .build();
 
-        ITreeData<Integer, String> treeData6 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
-            .addNodeData(11, "e")
-            .addNodeData(12, "f")
-            .addNodeData(13, "g")
-            .addNodeData(15, "h")
+        INodes<Integer, String> treeData6 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
+            .addNode(11, "e")
+            .addNode(12, "f")
+            .addNode(13, "g")
+            .addNode(15, "h")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels6 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -135,16 +135,16 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12), ArrayLists.of(13, 15)))
             .build();
 
-        ITreeData<Integer, String> treeData7 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
-            .addNodeData(11, "e")
-            .addNodeData(12, "f")
-            .addNodeData(13, "g")
-            .addNodeData(15, "h")
-            .addNodeData(16, "i")
+        INodes<Integer, String> treeData7 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
+            .addNode(11, "e")
+            .addNode(12, "f")
+            .addNode(13, "g")
+            .addNode(15, "h")
+            .addNode(16, "i")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels7 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -152,17 +152,17 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12), ArrayLists.of(13, 15, 16)))
             .build();
 
-        ITreeData<Integer, String> treeData8 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
-            .addNodeData(11, "e")
-            .addNodeData(12, "f")
-            .addNodeData(13, "g")
-            .addNodeData(15, "h")
-            .addNodeData(16, "i")
-            .addNodeData(20, "j")
+        INodes<Integer, String> treeData8 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
+            .addNode(11, "e")
+            .addNode(12, "f")
+            .addNode(13, "g")
+            .addNode(15, "h")
+            .addNode(16, "i")
+            .addNode(20, "j")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels8 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -171,18 +171,18 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12), ArrayLists.of(13, 15), ArrayLists.of(16, 20)))
             .build();
 
-        ITreeData<Integer, String> treeData9 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
-            .addNodeData(11, "e")
-            .addNodeData(12, "f")
-            .addNodeData(13, "g")
-            .addNodeData(15, "h")
-            .addNodeData(16, "i")
-            .addNodeData(20, "j")
-            .addNodeData(25, "k")
+        INodes<Integer, String> treeData9 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
+            .addNode(11, "e")
+            .addNode(12, "f")
+            .addNode(13, "g")
+            .addNode(15, "h")
+            .addNode(16, "i")
+            .addNode(20, "j")
+            .addNode(25, "k")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels9 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -207,11 +207,11 @@ public final class TestData implements ITestData {
      * Gets the data of B+ trees.
      */
     @Override
-    public List<Triple<ITreeData<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData() {
-        ITreeData<Integer, String> treeData1 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
+    public List<Triple<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData() {
+        INodes<Integer, String> treeData1 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels1 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -227,11 +227,11 @@ public final class TestData implements ITestData {
             .withCapacityInBytes(24)
             .build();
 
-        ITreeData<Integer, String> treeData2 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
+        INodes<Integer, String> treeData2 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels2 = new BlockTreeLevels.Builder<Integer, INullable>()
@@ -248,12 +248,12 @@ public final class TestData implements ITestData {
             .withCapacityInBytes(104)
             .build();
 
-        ITreeData<Integer, String> treeData3 = new TreeData.Builder<Integer, String>()
-            .addNodeData(1, "a")
-            .addNodeData(4, "b")
-            .addNodeData(9, "c")
-            .addNodeData(10, "d")
-            .addNodeData(11, "e")
+        INodes<Integer, String> treeData3 = new Nodes.Builder<Integer, String>()
+            .addNode(1, "a")
+            .addNode(4, "b")
+            .addNode(9, "c")
+            .addNode(10, "d")
+            .addNode(11, "e")
             .build();
 
         IBlockTreeLevels<Integer, INullable> treeLevels3 = new BlockTreeLevels.Builder<Integer, INullable>()

@@ -10,10 +10,10 @@ import datastructures.bplustree.interfaces.IBPlusTree;
 import datastructures.bplustree.interfaces.IBPlusTreeFactory;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.tree.interfaces.ITreeData;
-import datastructures.tree.interfaces.ITreeDataIterator;
+import datastructures.node.interfaces.INode;
+import datastructures.node.interfaces.INodeIterator;
+import datastructures.node.interfaces.INodes;
 import datastructures.tree.interfaces.ITreeMetrics;
-import datastructures.tree.interfaces.ITreeNodeData;
 import json.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
@@ -54,11 +54,11 @@ public final class BPlusTreeTest {
     public void createTreeTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getTreeProperties();
 
-        List<Pair<ITreeData<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
+        List<Pair<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
             this.testData.getCreationData();
 
-        for (Pair<ITreeData<Integer, String>, IBlockTreeLevels<Integer, INullable>> entry : creationData) {
-            ITreeData<Integer, String> treeData = entry.first();
+        for (Pair<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>> entry : creationData) {
+            INodes<Integer, String> treeData = entry.first();
             IBlockTreeLevels<Integer, INullable> treeLevels = entry.second();
 
             this.testCreateTree(
@@ -75,11 +75,11 @@ public final class BPlusTreeTest {
     public void iterateTreeTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getTreeProperties();
 
-        List<Pair<ITreeData<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
+        List<Pair<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
             this.testData.getCreationData();
 
-        for (Pair<ITreeData<Integer, String>, IBlockTreeLevels<Integer, INullable>> entry : creationData) {
-            ITreeData<Integer, String> treeData = entry.first();
+        for (Pair<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>> entry : creationData) {
+            INodes<Integer, String> treeData = entry.first();
 
             this.testIterateTree(
                 treeProperties,
@@ -94,11 +94,11 @@ public final class BPlusTreeTest {
     public void calculateTreeMetricsTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getTreeProperties();
 
-        List<Triple<ITreeData<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> data =
+        List<Triple<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> data =
             this.testData.getTreesData();
 
-        for (Triple<ITreeData<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics> entry : data) {
-            ITreeData<Integer, String> treeData = entry.first();
+        for (Triple<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics> entry : data) {
+            INodes<Integer, String> treeData = entry.first();
             IBPlusTreeMetrics treeMetrics = entry.third();
 
             this.testTreeMetrics(
@@ -113,16 +113,16 @@ public final class BPlusTreeTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testCreateTree(
         IBPlusTreeProperties<TKey, TValue> treeProperties,
-        ITreeData<TKey, TValue> treeData,
+        INodes<TKey, TValue> treeData,
         IBlockTreeLevels<TKey, INullable> expectedTreeLevels) {
 
         IBPlusTree<TKey, TValue> tree = new BPlusTree<>(treeProperties);
 
         IBlockTreeLevels<TKey, INullable> currTreeLevels = null;
 
-        for (ITreeNodeData<TKey, TValue> nodeData : treeData.getNodesData()) {
+        for (INode<TKey, TValue> node : treeData.getNodes()) {
 
-            tree.insert(nodeData.getKey(), nodeData.getValue());
+            tree.insert(node.getKey(), node.getValue());
 
             currTreeLevels = tree.getTreeLevels();
         }
@@ -139,17 +139,17 @@ public final class BPlusTreeTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testIterateTree(
         IBPlusTreeProperties<TKey, TValue> treeProperties,
-        ITreeData<TKey, TValue> treeData) {
+        INodes<TKey, TValue> treeData) {
 
         IBPlusTreeFactory<TKey, TValue> treeFactory = new BPlusTreeFactory<>(treeProperties);
         IBPlusTree<TKey, TValue> tree = treeFactory.create(treeData);
 
-        ITreeDataIterator<TKey, TValue> currDataIterator = tree.getDataIterator();
-        ITreeDataIterator<TKey, TValue> expectedDataIterator = treeData.getIterator();
+        INodeIterator<TKey, TValue> currDataIterator = tree.getDataIterator();
+        INodeIterator<TKey, TValue> expectedDataIterator = treeData.getIterator();
 
         while (currDataIterator.hasNext() && expectedDataIterator.hasNext()) {
-            ITreeNodeData<TKey, TValue> currNodeData = currDataIterator.next();
-            ITreeNodeData<TKey, TValue> expectedNodeData = expectedDataIterator.next();
+            INode<TKey, TValue> currNodeData = currDataIterator.next();
+            INode<TKey, TValue> expectedNodeData = expectedDataIterator.next();
 
             Assert.assertTrue(
                 "The data of a node of a B+ tree is invalid.",
@@ -166,7 +166,7 @@ public final class BPlusTreeTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testTreeMetrics(
         IBPlusTreeProperties<TKey, TValue> treeProperties,
-        ITreeData<TKey, TValue> treeData,
+        INodes<TKey, TValue> treeData,
         ITreeMetrics expectedMetrics) {
 
         IBPlusTreeFactory<TKey, TValue> treeFactory = new BPlusTreeFactory<>(treeProperties);

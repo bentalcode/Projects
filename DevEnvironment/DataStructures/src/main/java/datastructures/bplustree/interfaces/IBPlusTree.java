@@ -2,9 +2,8 @@ package datastructures.bplustree.interfaces;
 
 import base.interfaces.INullable;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
+import datastructures.node.interfaces.INodeIterator;
 import datastructures.tree.interfaces.IKeyIterator;
-import datastructures.tree.interfaces.ITreeDataIterator;
-import datastructures.tree.interfaces.ITreeMetrics;
 import datastructures.tree.interfaces.IValueIterator;
 
 /**
@@ -51,7 +50,7 @@ public interface IBPlusTree<TKey extends Comparable<TKey>, TValue> {
      * Gets an iterator of data of a tree.
      * Complexity: O(LogN)
      */
-    ITreeDataIterator<TKey, TValue> getDataIterator();
+    INodeIterator<TKey, TValue> getDataIterator();
 
     /**
      * Gets the height of a tree.

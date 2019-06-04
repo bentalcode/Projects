@@ -14,10 +14,10 @@ import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
+import datastructures.node.interfaces.INodeIterator;
 import datastructures.tree.core.KeyIterator;
 import datastructures.tree.core.ValueIterator;
 import datastructures.tree.interfaces.IKeyIterator;
-import datastructures.tree.interfaces.ITreeDataIterator;
 import datastructures.tree.interfaces.IValueIterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -130,7 +130,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      * Complexity: O(LogN)
      */
     @Override
-    public ITreeDataIterator<TKey, TValue> getDataIterator() {
+    public INodeIterator<TKey, TValue> getDataIterator() {
         return new BPlusTreeDataIterator<>(this.root);
     }
 

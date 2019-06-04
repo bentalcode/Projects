@@ -4,8 +4,8 @@ import base.core.Conditions;
 import datastructures.bplustree.interfaces.IBPlusTree;
 import datastructures.bplustree.interfaces.IBPlusTreeFactory;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.tree.interfaces.ITreeData;
-import datastructures.tree.interfaces.ITreeNodeData;
+import datastructures.node.interfaces.INode;
+import datastructures.node.interfaces.INodes;
 
 /**
  * The BPlusTreeFactory class implements a factory for creating B+ trees.
@@ -28,7 +28,7 @@ public final class BPlusTreeFactory<TKey extends Comparable<TKey>, TValue> imple
      * Creates a new B+ tree.
      */
     @Override
-    public IBPlusTree<TKey, TValue> create(ITreeData<TKey, TValue> treeData) {
+    public IBPlusTree<TKey, TValue> create(INodes<TKey, TValue> treeData) {
         return this.create(this.properties, treeData);
     }
 
@@ -38,7 +38,7 @@ public final class BPlusTreeFactory<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IBPlusTree<TKey, TValue> create(
         IBPlusTreeProperties<TKey, TValue> properties,
-        ITreeData<TKey, TValue> treeData) {
+        INodes<TKey, TValue> treeData) {
 
         Conditions.validateNotNull(
             properties,
@@ -50,8 +50,8 @@ public final class BPlusTreeFactory<TKey extends Comparable<TKey>, TValue> imple
 
         IBPlusTree<TKey, TValue> tree = new BPlusTree<>(this.properties);
 
-        for (ITreeNodeData<TKey, TValue> nodeData : treeData.getNodesData()) {
-            tree.insert(nodeData.getKey(), nodeData.getValue());
+        for (INode<TKey, TValue> node : treeData.getNodes()) {
+            tree.insert(node.getKey(), node.getValue());
         }
 
         return tree;

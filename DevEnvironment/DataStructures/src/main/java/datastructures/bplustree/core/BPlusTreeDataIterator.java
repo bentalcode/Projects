@@ -4,16 +4,17 @@ import base.core.Casting;
 import base.core.Conditions;
 import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
-import datastructures.tree.core.TreeNodeData;
-import datastructures.tree.interfaces.ITreeDataIterator;
-import datastructures.tree.interfaces.ITreeNodeData;
+import datastructures.node.core.Node;
+import datastructures.node.interfaces.INode;
+import datastructures.node.interfaces.INodeIterator;
+
 import java.util.Iterator;
 
 /**
  * The BPlusTreeDataIterator class implements an iterator of data of a B+ Tree.
  */
 public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
-    implements ITreeDataIterator<TKey, TValue> {
+    implements INodeIterator<TKey, TValue> {
 
     private IBPlusTreeLeafNode<TKey, TValue> currentNode;
     private int currentInnerNodeIndex;
@@ -41,7 +42,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
      * Gets an iterator for iterating over data.
      */
     @Override
-    public Iterator<ITreeNodeData<TKey, TValue>> iterator() {
+    public Iterator<INode<TKey, TValue>> iterator() {
         this.currentInnerNodeIndex = 0;
         return this;
     }
@@ -60,7 +61,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
      * Gets the next data.
      */
     @Override
-    public ITreeNodeData<TKey, TValue> next() {
+    public INode<TKey, TValue> next() {
         Conditions.validate(
             this.hasNext(),
             "The iterator has already reached the end of data of a B+ tree.");
@@ -82,7 +83,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
             }
         }
 
-        ITreeNodeData<TKey, TValue> currNode = new TreeNodeData<>(currKey, currValue);
+        INode<TKey, TValue> currNode = new Node<>(currKey, currValue);
 
         return currNode;
     }

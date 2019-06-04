@@ -1,7 +1,7 @@
 package datastructures.tree.core;
 
 import base.core.Conditions;
-import datastructures.tree.interfaces.ITreeDataIterator;
+import datastructures.node.interfaces.INodeIterator;
 import datastructures.tree.interfaces.IValueIterator;
 import java.util.Iterator;
 
@@ -9,12 +9,12 @@ import java.util.Iterator;
  * The ValueIterator class implements an iterator of values of a B+ Tree.
  */
 public final class ValueIterator<TKey extends Comparable<TKey>, TValue> implements IValueIterator<TValue> {
-    private final ITreeDataIterator<TKey, TValue> iterator;
+    private final INodeIterator<TKey, TValue> iterator;
 
     /**
      * The ValueIterator constructor.
      */
-    public ValueIterator(ITreeDataIterator<TKey, TValue> iterator) {
+    public ValueIterator(INodeIterator<TKey, TValue> iterator) {
         Conditions.validateNotNull(
             iterator,
             "The iterator of data of a tree.");
