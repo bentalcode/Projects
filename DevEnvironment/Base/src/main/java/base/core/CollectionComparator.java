@@ -64,7 +64,7 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
     public int compareTo(Collection<T> lhs, Collection<T> rhs, IBinaryComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a list element.");
+            "The comparator of a collection element.");
 
         if (lhs == null && rhs == null) {
             return 0;

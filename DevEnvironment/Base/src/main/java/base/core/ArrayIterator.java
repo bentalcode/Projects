@@ -18,7 +18,6 @@ public class ArrayIterator<T> implements Iterable<T>, Iterator<T> {
             "The array to iterate.");
 
         this.array = array;
-        this.position = 0;
     }
 
     /**
@@ -49,13 +48,5 @@ public class ArrayIterator<T> implements Iterable<T>, Iterator<T> {
         ++this.position;
 
         return currElement;
-    }
-
-    /**
-     * Removes the current element.
-     */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
     }
 }

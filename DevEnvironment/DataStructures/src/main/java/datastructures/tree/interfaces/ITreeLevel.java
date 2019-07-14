@@ -1,7 +1,7 @@
 package datastructures.tree.interfaces;
 
 import base.interfaces.IUnaryComparator;
-import datastructures.node.interfaces.INode;
+import datastructures.node.interfaces.IKeyValueNode;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public interface ITreeLevel<TKey extends Comparable<TKey>, TValue> extends IUnar
     /**
      * Gets the data of nodes.
      */
-    List<INode<TKey, TValue>> getNodesData();
+    List<IKeyValueNode<TKey, TValue>> getNodesData();
 }

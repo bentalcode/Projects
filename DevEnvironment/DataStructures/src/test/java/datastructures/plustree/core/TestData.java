@@ -14,8 +14,8 @@ import datastructures.bplustree.core.BPlusTreeProperties;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.node.core.Nodes;
-import datastructures.node.interfaces.INodes;
+import datastructures.node.core.KeyValueNodes;
+import datastructures.node.interfaces.IKeyValueNodes;
 import json.interfaces.ITestData;
 import java.util.List;
 
@@ -54,8 +54,8 @@ public final class TestData implements ITestData {
      * Gets the creation data of a B+ tree.
      */
     @Override
-    public List<Pair<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData() {
-        INodes<Integer, String> treeData1 = new Nodes.Builder<Integer, String>()
+    public List<Pair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData() {
+        IKeyValueNodes<Integer, String> treeData1 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -65,7 +65,7 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4, 9)))
             .build();
 
-        INodes<Integer, String> treeData2 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData2 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -77,7 +77,7 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10)))
             .build();
 
-        INodes<Integer, String> treeData3 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData3 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -90,7 +90,7 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10, 11)))
             .build();
 
-        INodes<Integer, String> treeData4 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData4 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -104,7 +104,7 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12)))
             .build();
 
-        INodes<Integer, String> treeData5 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData5 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -119,7 +119,7 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12, 13)))
             .build();
 
-        INodes<Integer, String> treeData6 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData6 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -135,7 +135,7 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12), ArrayLists.of(13, 15)))
             .build();
 
-        INodes<Integer, String> treeData7 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData7 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -152,7 +152,7 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12), ArrayLists.of(13, 15, 16)))
             .build();
 
-        INodes<Integer, String> treeData8 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData8 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -171,7 +171,7 @@ public final class TestData implements ITestData {
             .addLevelByKeys(ArrayLists.of(ArrayLists.of(1, 4), ArrayLists.of(9, 10), ArrayLists.of(11, 12), ArrayLists.of(13, 15), ArrayLists.of(16, 20)))
             .build();
 
-        INodes<Integer, String> treeData9 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData9 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -207,8 +207,8 @@ public final class TestData implements ITestData {
      * Gets the data of B+ trees.
      */
     @Override
-    public List<Triple<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData() {
-        INodes<Integer, String> treeData1 = new Nodes.Builder<Integer, String>()
+    public List<Triple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData() {
+        IKeyValueNodes<Integer, String> treeData1 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -227,7 +227,7 @@ public final class TestData implements ITestData {
             .withCapacityInBytes(24)
             .build();
 
-        INodes<Integer, String> treeData2 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData2 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")
@@ -248,7 +248,7 @@ public final class TestData implements ITestData {
             .withCapacityInBytes(104)
             .build();
 
-        INodes<Integer, String> treeData3 = new Nodes.Builder<Integer, String>()
+        IKeyValueNodes<Integer, String> treeData3 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
             .addNode(9, "c")

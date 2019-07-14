@@ -63,12 +63,4 @@ public final class Directions implements IDirections {
 
         return currDirection;
     }
-
-    /**
-     * Removes the current direction.
-     */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
 }

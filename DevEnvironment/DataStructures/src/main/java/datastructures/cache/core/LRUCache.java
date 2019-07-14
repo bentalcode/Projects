@@ -4,20 +4,24 @@ import base.core.Conditions;
 import datastructures.cache.CacheException;
 import datastructures.cache.interfaces.ICacheProperties;
 import datastructures.cache.interfaces.ILRUCache;
-import datastructures.node.core.DoublyLinkedListNode;
-import datastructures.node.core.DoublyLinkedListNodeIterator;
-import datastructures.node.interfaces.IDoublyLinkedListNode;
-import datastructures.node.interfaces.INodeIterator;
-import datastructures.tree.core.KeyIterator;
-import datastructures.tree.core.ValueIterator;
-import datastructures.tree.interfaces.IKeyIterator;
-import datastructures.tree.interfaces.IValueIterator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import datastructures.doublylinkedlist.core.DoublyLinkedList;
+import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
+import datastructures.node.core.KeyValueNode;
+import datastructures.node.core.KeyValueNodeIterator;
+import datastructures.node.interfaces.IKeyValueNode;
+import datastructures.node.interfaces.IKeyValueNodeIterator;
+import datastructures.node.core.NodeKeyIterator;
+import datastructures.node.core.NodeValueIterator;
+import datastructures.collections.interfaces.IKeyIterator;
+import datastructures.collections.interfaces.IValueIterator;
 import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The LRUCache class implements a least recently used cache.
@@ -26,9 +30,8 @@ import java.util.Map;
 public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements ILRUCache<TKey, TValue> {
     private final ICacheProperties properties;
 
-    private IDoublyLinkedListNode<TKey, TValue> usedListHead;
-    private IDoublyLinkedListNode<TKey, TValue> usedListTail;
-    private Map<Key, IDoublyLinkedListNode<TKey, TValue>> data = new HashMap<>();
+    private IDoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList = new DoublyLinkedList<>();
+    private Map<Key, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup = new HashMap<>();
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -59,14 +62,17 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
     public void set(TKey key, TValue value) {
         this.validateKey(key);
 
-        IDoublyLinkedListNode<TKey, TValue> currentNode;
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currentNode;
+        boolean existingItem;
 
-        if (this.data.containsKey(key)) {
+        if (this.dataLookup.containsKey(key)) {
             //
             // If the key is set in the cache, update it's value...
             //
-            currentNode = this.data.get(key);
-            currentNode.setValue(value);
+            currentNode = this.dataLookup.get(key);
+            currentNode.getValue().setValue(value);
+
+            existingItem = true;
         }
         else {
             //
@@ -74,20 +80,22 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
             // from the back of the used list, and create a new node...
             //
             if (this.overCapacity()) {
-                this.removeNodeToBackUsedList();
+                this.removeLruItem();
 
                 Conditions.validate(
                     !this.overCapacity(),
                     "The cache should have an available space.");
             }
 
-            currentNode = new DoublyLinkedListNode<>(key, value);
+            currentNode = new DoublyLinkedListNode<>(new KeyValueNode<>(key, value));
+
+            existingItem = false;
         }
 
         //
-        // Move the node to the from of the used list...
+        // Mark the item as most recently used...
         //
-        this.moveNodeToFrontUsedList(currentNode);
+        this.setMruItem(currentNode, existingItem);
     }
 
     /**
@@ -102,13 +110,15 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
         //
         // Get the current value of the node...
         //
-        IDoublyLinkedListNode<TKey, TValue> currentNode = this.data.get(key);
-        TValue currentValue = currentNode.getValue();
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currentNode = this.dataLookup.get(key);
+
+        TValue currentValue = currentNode.getValue().getValue();
 
         //
-        // Move the node to the from of the used list...
+        // Mark the item as most recently used...
         //
-        this.moveNodeToFrontUsedList(currentNode);
+        boolean existingItem = true;
+        this.setMruItem(currentNode, existingItem);
 
         return currentValue;
     }
@@ -125,11 +135,15 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
     public boolean delete(TKey key) {
         this.validateKey(key);
 
-        if (!this.data.containsKey(key)) {
+        if (!this.dataLookup.containsKey(key)) {
             return false;
         }
 
-        this.data.remove(key);
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node = this.dataLookup.get(key);
+
+        this.usedList.remove(node);
+        this.dataLookup.remove(key);
+
         return true;
     }
 
@@ -139,7 +153,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
      */
     @Override
     public boolean has(TKey key) {
-        return this.data.containsKey(key);
+        return this.dataLookup.containsKey(key);
     }
 
     /**
@@ -147,7 +161,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
      * Complexity: O(1)
      */
     public IKeyIterator<TKey> getKeyIterator() {
-        return new KeyIterator<>(this.getDataIterator());
+        return new NodeKeyIterator<>(this.getDataIterator());
     }
 
     /**
@@ -156,7 +170,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
      */
     @Override
     public IValueIterator<TValue> getValueIterator() {
-        return new ValueIterator<>(this.getDataIterator());
+        return new NodeValueIterator<>(this.getDataIterator());
     }
 
     /**
@@ -164,37 +178,57 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
      * Complexity: O(1)
      */
     @Override
-    public INodeIterator<TKey, TValue> getDataIterator() {
-        return new DoublyLinkedListNodeIterator<>(this.usedListHead);
+    public IKeyValueNodeIterator<TKey, TValue> getDataIterator() {
+        throw new UnsupportedOperationException();
     }
 
     /**
      * Gets the size of a cache.
      */
     @Override
-    public int getSize() {
-        return this.data.size();
+    public int size() {
+        return this.dataLookup.size();
+    }
+
+    /**
+     * Checks whether the cache is empty.
+     */
+    @Override
+    public boolean empty() {
+        return this.size() == 0;
     }
 
     /**
      * Determines whether the used-list has reached it's maximum capacity.
      */
     private boolean overCapacity() {
-        return this.getSize() >= this.properties.getCapacity();
+        return this.size() >= this.properties.getCapacity();
     }
 
     /**
-     * Moves a node to front of used-list.
+     * Removes the least recently used item.
      */
-    private void moveNodeToFrontUsedList(IDoublyLinkedListNode<TKey, TValue> node) {
-        throw new UnsupportedOperationException();
+    private void removeLruItem() {
+        assert(!this.empty());
+
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> itemToRemove = this.usedList.getTail();
+
+        this.usedList.removeFromBack();
+        this.dataLookup.remove(itemToRemove.getValue().getKey());
     }
 
-    /**
-     * Removes a node from back of used-list.
-     */
-    private void removeNodeToBackUsedList() {
-        throw new UnsupportedOperationException();
+    //
+    // Marks the item as most recently used.
+    //
+    private void setMruItem(
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> item,
+        boolean existingItem) {
+
+        if (existingItem) {
+            this.usedList.remove(item);
+        }
+
+        this.usedList.addToFront(item);
     }
 
     /**

@@ -60,12 +60,4 @@ public final class ExpressionTreeResults implements IExpressionTreeResults {
 
         return currResult;
     }
-
-    /**
-     * Removes the current result.
-     */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
 }

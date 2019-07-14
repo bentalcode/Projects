@@ -1,8 +1,9 @@
 package datastructures.cache.interfaces;
 
-import datastructures.node.interfaces.INodeIterator;
-import datastructures.tree.interfaces.IKeyIterator;
-import datastructures.tree.interfaces.IValueIterator;
+import datastructures.node.interfaces.IKeyValueNode;
+import datastructures.node.interfaces.IKeyValueNodeIterator;
+import datastructures.collections.interfaces.IKeyIterator;
+import datastructures.collections.interfaces.IValueIterator;
 
 /**
  * The ILRUCache interface defines a least recently used cache.
@@ -57,10 +58,15 @@ public interface ILRUCache<TKey extends Comparable<TKey>, TValue> {
      * Gets an iterator of data of a cache.
      * Complexity: O(1)
      */
-    INodeIterator<TKey, TValue> getDataIterator();
+    IKeyValueNodeIterator<TKey, TValue> getDataIterator();
 
     /**
      * Gets the size of a cache.
      */
-    int getSize();
+    int size();
+
+    /**
+     * Checks whether the cache is empty.
+     */
+    boolean empty();
 }

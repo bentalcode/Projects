@@ -52,11 +52,4 @@ public class ReverseIterator<T> implements Iterable<T>, Iterator<T> {
         return currElement;
     }
 
-    /**
-     * Removes the current element.
-     */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
 }

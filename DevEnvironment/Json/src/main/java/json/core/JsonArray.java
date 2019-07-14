@@ -83,14 +83,6 @@ public final class JsonArray extends JsonElement implements IJsonArray {
     }
 
     /**
-     * Removes the current element.
-     */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Sets a value.
      */
     @Override

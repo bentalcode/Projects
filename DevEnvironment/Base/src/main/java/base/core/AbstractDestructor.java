@@ -39,7 +39,7 @@ public abstract class AbstractDestructor<T extends Closeable> implements IDestru
         }
         catch (IOException e) {
             String errorMessage =
-                "The object: " + this.obj.getClass().getSimpleName() + " failed to get closed " +
+                "The object: " + ClassTypes.getName(this.obj) + " failed to get closed " +
                 " due to the following error: " + e.getMessage();
 
             this.log.error(errorMessage, e);

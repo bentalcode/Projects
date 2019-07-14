@@ -15,13 +15,13 @@ public final class Enums {
      * Parses a name of an enum.
      * The Enum should implement the toString() API.
      */
-    public static <TEnum extends Enum<TEnum>> TEnum parse(Class<TEnum> classType, String name) {
-        if (Strings.isNullOrEmpty(name)) {
-            String errorMessage = "The name of an enum can not be null or empty.";
+    public static <TEnum extends Enum<TEnum>> TEnum parse(
+        Class<TEnum> classType,
+        String name) {
 
-            Enums.Log.error(errorMessage);
-            throw new BaseException(errorMessage);
-        }
+        Conditions.validateStringNotNullOrEmpty(
+            name,
+            "The name of an enum.");
 
         TEnum result = Enums.tryParse(classType, name);
 
@@ -41,7 +41,9 @@ public final class Enums {
      * Tries to parse a name of an enum.
      * The Enum should implement the toString() API.
      */
-    public static <TEnum extends Enum<TEnum>> TEnum tryParse(Class<TEnum> classType, String name) {
+    public static <TEnum extends Enum<TEnum>> TEnum tryParse(
+        Class<TEnum> classType,
+        String name) {
 
         Conditions.validateNotNull(
             classType,

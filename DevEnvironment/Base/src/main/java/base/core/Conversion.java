@@ -28,7 +28,7 @@ public final class Conversion {
         }
         catch (ClassCastException e) {
             String errorMessage =
-                "Failed to cast an instance of class type: " + obj.getClass().getName() +
+                "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                 " to the requested type due to the following error: " + e.getMessage();
 
             Conversion.Log.error(errorMessage, e);
@@ -46,7 +46,7 @@ public final class Conversion {
         }
         catch (ClassCastException e) {
             String errorMessage =
-                "Failed to cast an instance of class type: " + obj.getClass().getName() +
+                "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                 " to the requested typ: " + requestedType.getName() + " due to the following error: " + e.getMessage();
 
             Conversion.Log.error(errorMessage, e);

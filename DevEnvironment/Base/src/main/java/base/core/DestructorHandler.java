@@ -59,7 +59,7 @@ public final class DestructorHandler implements IDestructorHandler {
             catch (Exception e) {
                 String errorMessage =
                     "The Destructor Handler failed invoking a destructor of " +
-                    currDestructor.getClass().getSimpleName() + " due to the following error: " + e.getMessage() +
+                    ClassTypes.getName(currDestructor) + " due to the following error: " + e.getMessage() +
                     "; Aborting the destruction logic with success ratio of: " +
                     numberOfDestructedObjects + "/" + numberOfObjectsToDestruct;
 

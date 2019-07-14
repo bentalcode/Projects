@@ -6,7 +6,7 @@ import base.interfaces.INullable;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.node.interfaces.INodes;
+import datastructures.node.interfaces.IKeyValueNodes;
 
 import java.util.List;
 
@@ -22,10 +22,10 @@ public interface ITestData {
     /**
      * Gets the creation data of B+ trees.
      */
-    List<Pair<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData();
+    List<Pair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData();
 
     /**
      * Gets the data of B+ trees.
      */
-    List<Triple<INodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData();
+    List<Triple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData();
 }

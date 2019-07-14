@@ -19,7 +19,7 @@ public final class Exceptions {
                 result.append("; ");
             }
 
-            result.append(ClassTypes.getName(exception.getClass()) + ",");
+            result.append(ClassTypes.getName(exception.getClass()) + ":");
             result.append(currentException.getMessage());
 
             currentException = currentException.getCause();

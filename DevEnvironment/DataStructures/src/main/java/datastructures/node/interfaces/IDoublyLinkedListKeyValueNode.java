@@ -1,9 +1,9 @@
 package datastructures.node.interfaces;
 
 /**
- * The IDoublyLinkedListNode interface defines a node of a doubly linked list.
+ * The IDoublyLinkedListKeyValueNode interface defines a key-value node of a doubly linked list.
  */
-public interface IDoublyLinkedListNode<TKey extends Comparable<TKey>, TValue> {
+public interface IDoublyLinkedListKeyValueNode<TKey extends Comparable<TKey>, TValue> {
     /**
      * Gets a key of a node.
      */
@@ -22,10 +22,10 @@ public interface IDoublyLinkedListNode<TKey extends Comparable<TKey>, TValue> {
     /**
      * Gets a next node.
      */
-    IDoublyLinkedListNode<TKey, TValue> getNext();
+    IDoublyLinkedListKeyValueNode<TKey, TValue> next();
 
     /**
      * Gets a previous node.
      */
-    IDoublyLinkedListNode<TKey, TValue> getPrevious();
+    IDoublyLinkedListKeyValueNode<TKey, TValue> previous();
 }

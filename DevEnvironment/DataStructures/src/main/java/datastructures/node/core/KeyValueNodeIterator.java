@@ -1,22 +1,23 @@
 package datastructures.node.core;
 
 import base.core.Conditions;
-import datastructures.node.interfaces.INode;
-import datastructures.node.interfaces.INodeIterator;
+import datastructures.node.interfaces.IKeyValueNode;
+import datastructures.node.interfaces.IKeyValueNodeIterator;
+
 import java.util.Iterator;
 import java.util.List;
 
 /**
- * The NodeIterator class implements an iterator of data.
+ * The KeyValueNodeIterator class implements an iterator of generic key-value nodes.
  */
-public final class NodeIterator<TKey extends Comparable<TKey>, TValue> implements INodeIterator<TKey, TValue> {
-    private List<INode<TKey, TValue>> nodes;
+public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue> implements IKeyValueNodeIterator<TKey, TValue> {
+    private List<IKeyValueNode<TKey, TValue>> nodes;
     private int currentIndex;
 
     /**
-     * The NodeIterator constructor.
+     * The KeyValueNodeIterator constructor.
      */
-    public NodeIterator(List<INode<TKey, TValue>> nodes) {
+    public KeyValueNodeIterator(List<IKeyValueNode<TKey, TValue>> nodes) {
         Conditions.validateNotNull(
             nodes,
             "The list of nodes.");
@@ -28,7 +29,7 @@ public final class NodeIterator<TKey extends Comparable<TKey>, TValue> implement
      * Gets an iterator for iterating over nodes.
      */
     @Override
-    public Iterator<INode<TKey, TValue>> iterator() {
+    public Iterator<IKeyValueNode<TKey, TValue>> iterator() {
         this.currentIndex = 0;
         return this;
     }
@@ -45,22 +46,14 @@ public final class NodeIterator<TKey extends Comparable<TKey>, TValue> implement
      * Gets the next node.
      */
     @Override
-    public INode<TKey, TValue> next() {
+    public IKeyValueNode<TKey, TValue> next() {
         Conditions.validate(
             this.hasNext(),
             "The iterator has already reached the end of nodes.");
 
-        INode<TKey, TValue> currNodeData = this.nodes.get(this.currentIndex);
+        IKeyValueNode<TKey, TValue> currNodeData = this.nodes.get(this.currentIndex);
         ++this.currentIndex;
 
         return currNodeData;
-    }
-
-    /**
-     * Removes the current node.
-     */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("Removing node from a list is not supported.");
     }
 }

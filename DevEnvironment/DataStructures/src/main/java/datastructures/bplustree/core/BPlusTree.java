@@ -14,11 +14,11 @@ import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.node.interfaces.INodeIterator;
-import datastructures.tree.core.KeyIterator;
-import datastructures.tree.core.ValueIterator;
-import datastructures.tree.interfaces.IKeyIterator;
-import datastructures.tree.interfaces.IValueIterator;
+import datastructures.node.core.NodeKeyIterator;
+import datastructures.node.core.NodeValueIterator;
+import datastructures.node.interfaces.IKeyValueNodeIterator;
+import datastructures.collections.interfaces.IKeyIterator;
+import datastructures.collections.interfaces.IValueIterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -113,7 +113,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      * Complexity: O(LogN)
      */
     public IKeyIterator<TKey> getKeyIterator() {
-        return new KeyIterator<>(this.getDataIterator());
+        return new NodeKeyIterator<>(this.getDataIterator());
     }
 
     /**
@@ -122,7 +122,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IValueIterator<TValue> getValueIterator() {
-        return new ValueIterator<>(this.getDataIterator());
+        return new NodeValueIterator<>(this.getDataIterator());
     }
 
     /**
@@ -130,7 +130,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      * Complexity: O(LogN)
      */
     @Override
-    public INodeIterator<TKey, TValue> getDataIterator() {
+    public IKeyValueNodeIterator<TKey, TValue> getDataIterator() {
         return new BPlusTreeDataIterator<>(this.root);
     }
 

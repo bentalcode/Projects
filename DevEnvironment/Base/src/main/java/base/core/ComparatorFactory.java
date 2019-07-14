@@ -16,7 +16,7 @@ public final class ComparatorFactory implements IComparatorFactory {
     }
 
     /**
-     * Create a generic comparator.
+     * Creates a generic comparator.
      */
     @Override
     public <T extends Comparable<T>> IBinaryComparator<T> createComparator() {
@@ -24,7 +24,7 @@ public final class ComparatorFactory implements IComparatorFactory {
     }
 
     /**
-     * Create an array comparator.
+     * Creates an array comparator.
      */
     @Override
     public <T> IArrayComparator<T> createArrayComparator() {
@@ -32,7 +32,7 @@ public final class ComparatorFactory implements IComparatorFactory {
     }
 
     /**
-     * Create a collection comparator.
+     * Creates a collection comparator.
      */
     @Override
     public <T> ICollectionComparator<T> createCollectionComparator() {

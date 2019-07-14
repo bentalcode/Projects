@@ -28,7 +28,7 @@ public final class Triple<Type1, Type2, Type3> implements ITriple<Type1, Type2, 
     }
 
     /**
-     * Gets the first value.
+     * Gets the second value.
      */
     @Override
     public Type2 second() {
@@ -36,7 +36,7 @@ public final class Triple<Type1, Type2, Type3> implements ITriple<Type1, Type2, 
     }
 
     /**
-     * Gets the first value.
+     * Gets the third value.
      */
     @Override
     public Type3 third() {

@@ -7,8 +7,8 @@ import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
-import datastructures.node.core.Node;
-import datastructures.node.interfaces.INode;
+import datastructures.node.core.KeyValueNode;
+import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.tree.interfaces.ITreeLevel;
 
 import java.util.ArrayList;
@@ -18,13 +18,13 @@ import java.util.List;
  * The TreeLevel class implements a level of a tree.
  */
 public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements ITreeLevel<TKey, TValue> {
-    private final List<INode<TKey, TValue>> nodesData;
+    private final List<IKeyValueNode<TKey, TValue>> nodesData;
     private final IBinaryComparator<ITreeLevel<TKey, TValue>> comparator;
 
     /**
      * The TreeLevel constructor.
      */
-    public TreeLevel(List<INode<TKey, TValue>> nodesData) {
+    public TreeLevel(List<IKeyValueNode<TKey, TValue>> nodesData) {
         this(
             nodesData,
             TreeLevel.DefaultComparator());
@@ -34,7 +34,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
      * The TreeLevel constructor.
      */
     private TreeLevel(
-        List<INode<TKey, TValue>> nodesData,
+        List<IKeyValueNode<TKey, TValue>> nodesData,
         IBinaryComparator<ITreeLevel<TKey, TValue>> comparator) {
 
         Conditions.validateNotNull(
@@ -53,7 +53,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
      * Gets the data of nodes.
      */
     @Override
-    public List<INode<TKey, TValue>> getNodesData() {
+    public List<IKeyValueNode<TKey, TValue>> getNodesData() {
         return this.nodesData;
     }
 
@@ -109,7 +109,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeLevel<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<INode<TKey, TValue>> nodeComparator = Node.DefaultComparator();
+        IBinaryComparator<IKeyValueNode<TKey, TValue>> nodeComparator = KeyValueNode.DefaultComparator();
         return new Comparator<>(nodeComparator);
     }
 
@@ -117,12 +117,12 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
      * The Comparator class implements a comparator of a level of a block tree.
      */
     public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<ITreeLevel<TKey, TValue>> {
-        private final IBinaryComparator<INode<TKey, TValue>> nodeComparator;
+        private final IBinaryComparator<IKeyValueNode<TKey, TValue>> nodeComparator;
 
         /**
          * The Comparator constructor.
          */
-        public Comparator(IBinaryComparator<INode<TKey, TValue>> nodeComparator) {
+        public Comparator(IBinaryComparator<IKeyValueNode<TKey, TValue>> nodeComparator) {
             Conditions.validateNotNull(
                 nodeComparator,
                 "The node comparator of a tree.");
@@ -188,7 +188,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
      * The Builder class implements a builder for creating a level of a tree.
      */
     public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<ITreeLevel<TKey, TValue>> {
-        private final List<INode<TKey, TValue>> nodesData = new ArrayList<>();
+        private final List<IKeyValueNode<TKey, TValue>> nodesData = new ArrayList<>();
 
         /**
          * The Builder constructor.
@@ -199,7 +199,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
         /**
          * Adds a new node data.
          */
-        public Builder<TKey, TValue> addNode(INode<TKey, TValue> nodeData) {
+        public Builder<TKey, TValue> addNode(IKeyValueNode<TKey, TValue> nodeData) {
             Conditions.validateNotNull(
                 nodeData,
                 "The data of a node of a tree.");
@@ -213,7 +213,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
          * Adds a new node data by key and value.
          */
         public Builder<TKey, TValue> addNode(TKey nodeKey, TValue nodeValue) {
-            INode<TKey, TValue> nodeData = new Node<>(nodeKey, nodeValue);
+            IKeyValueNode<TKey, TValue> nodeData = new KeyValueNode<>(nodeKey, nodeValue);
             return this.addNode(nodeData);
         }
 

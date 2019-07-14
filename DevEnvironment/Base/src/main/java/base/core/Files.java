@@ -17,7 +17,6 @@ public final class Files {
      * Creates a new file from a path.
      */
     public static File createFile(Path path) {
-
         Conditions.validatePathNotNullOrEmpty(
             path,
             "The path of a file resource.");
@@ -31,7 +30,6 @@ public final class Files {
      * Reads a content of a file as string.
      */
     public static String readContent(Path path) {
-
         Conditions.validatePathNotNullOrEmpty(
             path,
             "The path of a file resource.");
@@ -46,7 +44,6 @@ public final class Files {
      * Reads all bytes of a file.
      */
     public static byte[] readAllBytes(Path path) {
-
         Conditions.validatePathNotNullOrEmpty(
             path,
             "The path of a resource file.");

@@ -25,7 +25,7 @@ public final class Arrays {
     }
 
     /**
-     * Swaps the values of two elements in an array.
+     * Swaps values of two elements in an array.
      */
     public static <T> void swap(T[] arr, int lhsIndex, int rhsIndex) {
         Arrays.validateIndex(arr, lhsIndex);
@@ -59,7 +59,9 @@ public final class Arrays {
      * Validates an index of an array.
      */
     public static <T> void validateIndex(T[] array, int startIndex, int endIndex, int index) {
-        Conditions.validateNotNull(array, "The array.");
+        Conditions.validateNotNull(
+            array,
+            "The array.");
 
         Conditions.validate(
             index >= startIndex && index <= endIndex,

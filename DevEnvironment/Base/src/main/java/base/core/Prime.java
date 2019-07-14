@@ -154,14 +154,6 @@ public final class Prime implements IPrime {
     }
 
     /**
-     * Removes the current prime number.
-     */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Calculates prime numbers in range 0 to length - 1.
      * Algorithm: Sieve of Eratosthenes.
      */

@@ -4,9 +4,9 @@ import base.core.Casting;
 import base.core.Conditions;
 import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
-import datastructures.node.core.Node;
-import datastructures.node.interfaces.INode;
-import datastructures.node.interfaces.INodeIterator;
+import datastructures.node.core.KeyValueNode;
+import datastructures.node.interfaces.IKeyValueNode;
+import datastructures.node.interfaces.IKeyValueNodeIterator;
 
 import java.util.Iterator;
 
@@ -14,7 +14,7 @@ import java.util.Iterator;
  * The BPlusTreeDataIterator class implements an iterator of data of a B+ Tree.
  */
 public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
-    implements INodeIterator<TKey, TValue> {
+    implements IKeyValueNodeIterator<TKey, TValue> {
 
     private IBPlusTreeLeafNode<TKey, TValue> currentNode;
     private int currentInnerNodeIndex;
@@ -42,7 +42,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
      * Gets an iterator for iterating over data.
      */
     @Override
-    public Iterator<INode<TKey, TValue>> iterator() {
+    public Iterator<IKeyValueNode<TKey, TValue>> iterator() {
         this.currentInnerNodeIndex = 0;
         return this;
     }
@@ -61,7 +61,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
      * Gets the next data.
      */
     @Override
-    public INode<TKey, TValue> next() {
+    public IKeyValueNode<TKey, TValue> next() {
         Conditions.validate(
             this.hasNext(),
             "The iterator has already reached the end of data of a B+ tree.");
@@ -83,16 +83,9 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
             }
         }
 
-        INode<TKey, TValue> currNode = new Node<>(currKey, currValue);
+        IKeyValueNode<TKey, TValue> currNode = new KeyValueNode<>(currKey, currValue);
 
         return currNode;
     }
 
-    /**
-     * Removes the current data.
-     */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("Removing data from a B+ tree is not supported.");
-    }
 }

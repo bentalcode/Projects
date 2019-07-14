@@ -13,7 +13,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
     private String extension;
 
     /**
-     * The PathBuilder constructor.
+     * The AbstractPathBuilder constructor.
      */
     protected AbstractPathBuilder(char separator) {
         Conditions.validateNotNull(
@@ -64,7 +64,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
     public String build() {
         StringBuilder result = new StringBuilder();
 
-        for (String component : components) {
+        for (String component : this.components) {
             if (result.length() > 0) {
                 result.append(this.separator);
             }

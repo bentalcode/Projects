@@ -455,7 +455,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a generic.
+     * With a generic object.
      */
     @Override
     public <T> IEqualBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator) {

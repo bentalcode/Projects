@@ -19,7 +19,7 @@ public final class Casting {
         }
         catch (ClassCastException e) {
             String errorMessage =
-                "Failed to cast an instance of class type: " + obj.getClass().getName() +
+                "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                 " to the requested type due to the following error: " + e.getMessage();
 
             Casting.Log.error(errorMessage, e);
@@ -36,7 +36,7 @@ public final class Casting {
 
             if (!requestedType.isAssignableFrom(convertedType.getClass())) {
                 String errorMessage =
-                    "Failed to cast an instance of class type: " + obj.getClass().getName() +
+                    "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                     " to the requested type: " + requestedType.getName();
 
                 Casting.Log.error(errorMessage);
@@ -47,8 +47,9 @@ public final class Casting {
         }
         catch (ClassCastException e) {
             String errorMessage =
-                "Failed to cast an instance of class type: " + obj.getClass().getName() +
-                " to the requested type: " + requestedType.getName() + " due to the following error: " + e.getMessage();
+                "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
+                " to the requested type: " + requestedType.getName() +
+                " due to the following error: " + e.getMessage();
 
             Casting.Log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
