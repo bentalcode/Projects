@@ -3,9 +3,11 @@ package datastructures.binarytree.interfaces;
 import base.interfaces.IUnaryComparator;
 
 /**
- * The IBinaryTreeNode interface defines a binary node in a binary tree.
+ * The IBinaryTreeNode interface defines a node of a binary tree.
  */
-public interface IBinaryTreeNode<TKey extends Comparable<TKey>, TValue> extends IUnaryComparator<IBinaryTreeNode<TKey, TValue>> {
+public interface IBinaryTreeNode<TKey extends Comparable<TKey>, TValue>
+    extends IUnaryComparator<IBinaryTreeNode<TKey, TValue>> {
+
     /**
      * Gets the key of the node.
      */

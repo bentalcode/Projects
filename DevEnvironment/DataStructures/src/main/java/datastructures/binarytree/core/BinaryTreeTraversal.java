@@ -1,34 +1,26 @@
 package datastructures.binarytree.core;
 
 import base.core.Conditions;
-import base.interfaces.IBinaryComparator;
 import base.interfaces.IVisitor;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeTraversal;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
+import java.util.Stack;
 
 /**
  * The BinaryTreeTraversal class implements various search methods in a binary tree.
  */
 public final class BinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> implements IBinaryTreeTraversal<TKey, TValue> {
-    private final IBinaryComparator<IBinaryTreeNode<TKey, TValue>> nodeComparator;
-
     /**
      * The BinaryTreeTraversal constructor.
      */
-    public BinaryTreeTraversal(IBinaryComparator<IBinaryTreeNode<TKey, TValue>> nodeComparator) {
-        Conditions.validateNotNull(
-            nodeComparator,
-            "The comparator of a node in tree.");
-
-        this.nodeComparator = nodeComparator;
+    public BinaryTreeTraversal() {
     }
 
     /**
      * Performs a Breadth-First search.
+     * Implemented with a queue.
      */
     @Override
     public void breadthFirstSearch(
@@ -61,6 +53,7 @@ public final class BinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> im
 
     /**
      * Performs a Depth-First search.
+     * Implemented with a stack.
      */
     @Override
     public void depthFirstSearch(
@@ -73,13 +66,23 @@ public final class BinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> im
             return;
         }
 
-        Set<IBinaryTreeNode<TKey, TValue>> visited = new HashSet<>();
+        Stack<IBinaryTreeNode<TKey, TValue>> stack = new Stack<>();
 
-        visitor.visit(root);
-        visited.add(root);
+        stack.push(root);
 
-        this.depthFirstSearch(root.getLeftChild(), visitor);
-        this.depthFirstSearch(root.getRightChild(), visitor);
+        while (!stack.empty()) {
+            IBinaryTreeNode<TKey, TValue> currNode = stack.pop();
+
+            visitor.visit(currNode);
+
+            if (currNode.getRightChild() != null) {
+                stack.push(currNode.getRightChild());
+            }
+
+            if (currNode.getLeftChild() != null) {
+                stack.push(currNode.getLeftChild());
+            }
+        }
     }
     
     /**

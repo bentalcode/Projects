@@ -9,21 +9,33 @@ import base.interfaces.IBuilder;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 
 /**
- * The BinaryTreeNode class implements a binary node in a binary tree.
+ * The BinaryTreeNode class implements a node of a binary tree.
  */
 public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> implements IBinaryTreeNode<TKey, TValue> {
     private final TKey key;
     private TValue value;
     private IBinaryTreeNode<TKey, TValue> leftChild;
     private IBinaryTreeNode<TKey, TValue> rightChild;
-    private final IBinaryComparator<TKey> comparator;
+    private final IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator;
+
+    /**
+     * The BinaryTreeNode constructor.
+     */
+    public BinaryTreeNode(TKey key) {
+        this(
+            key,
+            null,
+            null,
+            null,
+            BinaryTreeNode.DefaultComparator());
+    }
 
     /**
      * The BinaryTreeNode constructor.
      */
     public BinaryTreeNode(
         TKey key,
-        IBinaryComparator<TKey> comparator) {
+        IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator) {
         this(
             key,
             null,
@@ -40,15 +52,15 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         TValue value,
         IBinaryTreeNode<TKey, TValue> leftChild,
         IBinaryTreeNode<TKey, TValue> rightChild,
-        IBinaryComparator<TKey> comparator) {
+        IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator) {
 
         Conditions.validateNotNull(
             key,
-            "The key of a node of a binary tree.");
+            "The key of a binary node.");
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a key of a node of a binary tree.");
+            "The comparator of a binary node.");
 
         this.key = key;
         this.value = value;
@@ -118,7 +130,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this.getKey());
+        return this.comparator.getHashCode(this);
     }
 
     /**
@@ -142,11 +154,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
      */
     @Override
     public boolean isEqual(IBinaryTreeNode<TKey, TValue> other) {
-        boolean status = new EqualBuilder()
-            .withObject(this.getKey(), other.getKey(), this.comparator)
-            .build();
-
-        return status;
+        return this.comparator.isEqual(this, other);
     }
 
     /**
@@ -158,11 +166,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
      */
     @Override
     public int compareTo(IBinaryTreeNode<TKey, TValue> other) {
-        int status = new CompareToBuilder()
-            .withObject(this.getKey(), other.getKey(), this.comparator)
-            .build();
-
-        return status;
+        return this.comparator.compareTo(this, other);
     }
 
     /**
@@ -174,9 +178,11 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * The Comparator class implements a comparator of a binary node of a binary tree.
+     * The Comparator class implements a comparator of a binary node.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IBinaryTreeNode<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        implements IBinaryComparator<IBinaryTreeNode<TKey, TValue>> {
+
         private final IBinaryComparator<TKey> keyComparator;
 
         /**
@@ -185,7 +191,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         public Comparator(IBinaryComparator<TKey> keyComparator) {
             Conditions.validateNotNull(
                 keyComparator,
-                "The key comparator of a binary tree.");
+                "The comparator of a key of a binary node.");
 
             this.keyComparator = keyComparator;
         }
@@ -243,14 +249,16 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * The Builder class implements a builder for creating a binary node of a binary tree.
+     * The Builder class implements a builder for creating a node of a binary tree.
      */
-    public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<IBinaryTreeNode<TKey, TValue>> {
+    public static final class Builder<TKey extends Comparable<TKey>, TValue>
+        implements IBuilder<IBinaryTreeNode<TKey, TValue>> {
+
         private TKey key;
         private TValue value;
         private IBinaryTreeNode<TKey, TValue> leftChild;
         private IBinaryTreeNode<TKey, TValue> rightChild;
-        private IBinaryComparator<TKey> comparator;
+        private IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator;
 
         /**
          * The Builder constructor.
@@ -259,12 +267,12 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         }
 
         /**
-         * Sets a key a tree node.
+         * Sets a key a node.
          */
         public Builder<TKey, TValue> setKey(TKey key) {
             Conditions.validateNotNull(
                 key,
-                "The key of a binary node of a binary tree.");
+                "The key of a binary node.");
 
             this.key = key;
 
@@ -272,7 +280,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         }
 
         /**
-         * Sets a value of a tree node.
+         * Sets a value of a node.
          */
         public Builder<TKey, TValue> setValue(TValue value) {
             this.value = value;
@@ -280,12 +288,12 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         }
 
         /**
-         * Adds a left child to a binary tree node.
+         * Sets a left child of a node.
          */
         public Builder<TKey, TValue> setLeftChild(IBinaryTreeNode<TKey, TValue> node) {
             Conditions.validateNotNull(
                 node,
-                "The left child of a binary tree.");
+                "The left child of a binary node.");
 
             this.leftChild = node;
 
@@ -293,12 +301,12 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         }
 
         /**
-         * Adds a right child to a binary tree node.
+         * Sets a right child to a node.
          */
         public Builder<TKey, TValue> setRightChild(IBinaryTreeNode<TKey, TValue> node) {
             Conditions.validateNotNull(
                 node,
-                "The right child of a binary tree.");
+                "The right child of a binary node.");
 
             this.rightChild = node;
 
@@ -306,12 +314,12 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         }
 
         /**
-         * Sets a comparator of a key of node of a tree.
+         * Sets a comparator of a node.
          */
-        public Builder<TKey, TValue> setComparator(IBinaryComparator<TKey> comparator) {
+        public Builder<TKey, TValue> setComparator(IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator) {
             Conditions.validateNotNull(
                 comparator,
-                "The comparator of a binary node of a binary tree.");
+                "The comparator of a binary node.");
 
             this.comparator = comparator;
 

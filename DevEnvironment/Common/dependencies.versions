@@ -1,6 +1,6 @@
 ext {
     logBackVersion = '1.2.3'            // logback
-    slf4jApiVersion = '1.7.26' //         // slf4j-api
+    slf4jApiVersion = '1.7.26'          // slf4j-api
     jacksonCoreVersion = '2.9.8'        // jackson-core
     junitVersion = '4.12'               // JUnit
 }
