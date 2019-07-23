@@ -5,19 +5,17 @@ import datastructures.cache.CacheException;
 import datastructures.cache.interfaces.ICacheProperties;
 import datastructures.cache.interfaces.ILRUCache;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
+import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeIterator;
 import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.node.core.KeyValueNode;
-import datastructures.node.core.KeyValueNodeIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
 import datastructures.node.core.NodeKeyIterator;
 import datastructures.node.core.NodeValueIterator;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
-import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -31,7 +29,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
     private final ICacheProperties properties;
 
     private IDoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList = new DoublyLinkedList<>();
-    private Map<Key, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup = new HashMap<>();
+    private Map<TKey, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup = new HashMap<>();
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -63,7 +61,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
         this.validateKey(key);
 
         IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currentNode;
-        boolean existingItem;
+        boolean newItem;
 
         if (this.dataLookup.containsKey(key)) {
             //
@@ -72,7 +70,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
             currentNode = this.dataLookup.get(key);
             currentNode.getValue().setValue(value);
 
-            existingItem = true;
+            newItem = false;
         }
         else {
             //
@@ -89,13 +87,15 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
 
             currentNode = new DoublyLinkedListNode<>(new KeyValueNode<>(key, value));
 
-            existingItem = false;
+            this.dataLookup.put(key, currentNode);
+
+            newItem = true;
         }
 
         //
         // Mark the item as most recently used...
         //
-        this.setMruItem(currentNode, existingItem);
+        this.setMruItem(currentNode, newItem);
     }
 
     /**
@@ -117,8 +117,8 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
         //
         // Mark the item as most recently used...
         //
-        boolean existingItem = true;
-        this.setMruItem(currentNode, existingItem);
+        boolean newItem = false;
+        this.setMruItem(currentNode, newItem);
 
         return currentValue;
     }
@@ -179,7 +179,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
      */
     @Override
     public IKeyValueNodeIterator<TKey, TValue> getDataIterator() {
-        throw new UnsupportedOperationException();
+        return new DoublyLinkedListKeyValueNodeIterator<>(this.usedList.getIterator());
     }
 
     /**
@@ -222,9 +222,12 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
     //
     private void setMruItem(
         IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> item,
-        boolean existingItem) {
+        boolean newItem) {
 
-        if (existingItem) {
+        if (newItem) {
+            this.dataLookup.put(item.getValue().getKey(), item);
+        }
+        else {
             this.usedList.remove(item);
         }
 

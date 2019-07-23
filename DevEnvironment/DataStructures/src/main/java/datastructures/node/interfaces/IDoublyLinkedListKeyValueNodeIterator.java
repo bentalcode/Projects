@@ -5,15 +5,5 @@ package datastructures.node.interfaces;
  * of a doubly linked list.
  */
 public interface IDoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<TKey>, TValue> extends
-        IKeyValueNodeIterator<TKey, TValue> {
-
-    /**
-     * Checks whether there is a previous node.
-     */
-    boolean hasPrevious();
-
-    /**
-     * Gets the previous node.
-     */
-    IKeyValueNode<TKey, TValue> previous();
+    IKeyValueNodeIterator<TKey, TValue>, IKeyValueNodeReverseIterator<TKey, TValue> {
 }

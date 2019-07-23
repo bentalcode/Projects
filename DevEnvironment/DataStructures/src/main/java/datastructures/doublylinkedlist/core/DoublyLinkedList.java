@@ -1,5 +1,6 @@
 package datastructures.doublylinkedlist.core;
 
+import base.core.Collections;
 import base.core.Conditions;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
@@ -174,18 +175,7 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
         }
 
         IDoublyLinkedListNode<TValue> nodeToRemove = this.head;
-        IDoublyLinkedListNode<TValue> nextNode = nodeToRemove.next();
-
-        if (nextNode == null) {
-            this.head = null;
-            this.tail = null;
-        }
-        else {
-            this.linkedNodes(null, nextNode);
-            this.head = nextNode;
-        }
-
-        this.nodeRemoved(nodeToRemove);
+        this.remove(nodeToRemove);
     }
 
     /**
@@ -198,19 +188,9 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
             return;
         }
 
-        IDoublyLinkedListNode<TValue> nodeToRemove = this.head;
-        IDoublyLinkedListNode<TValue> previousNode = nodeToRemove.previous();
+        IDoublyLinkedListNode<TValue> nodeToRemove = this.tail;
 
-        if (previousNode == null) {
-            this.head = null;
-            this.tail = null;
-        }
-        else {
-            this.linkedNodes(previousNode, null);
-            this.tail = previousNode;
-        }
-
-        this.nodeRemoved(nodeToRemove);
+        this.remove(nodeToRemove);
     }
 
     /**
@@ -226,6 +206,10 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
         IDoublyLinkedListNode<TValue> previousNode = nodeToRemove.previous();
 
         this.linkedNodes(previousNode, nextNode);
+
+        if (nodeToRemove == this.tail) {
+            this.tail = previousNode;
+        }
 
         this.nodeRemoved(nodeToRemove);
     }
@@ -252,6 +236,14 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
     @Override
     public IValueIterator<TValue> getValueIterator() {
         return new DoublyLinkedListNodeValueIterator<>(this.getIterator());
+    }
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getValueIterator());
     }
 
     /**

@@ -22,6 +22,7 @@ public final class DoublyLinkedListNodeIterator<TValue> implements IDoublyLinked
             "The head node of a doubly linked list.");
 
         this.headNode = headNode;
+        this.reset();
     }
 
     /**
@@ -29,7 +30,7 @@ public final class DoublyLinkedListNodeIterator<TValue> implements IDoublyLinked
      */
     @Override
     public Iterator<IDoublyLinkedListNode<TValue>> iterator() {
-        this.currentNode = this.headNode;
+        this.reset();
         return this;
     }
 
@@ -38,7 +39,7 @@ public final class DoublyLinkedListNodeIterator<TValue> implements IDoublyLinked
      */
     @Override
     public boolean hasNext() {
-        return this.currentNode.next() != null;
+        return this.currentNode != null;
     }
 
     /**
@@ -50,6 +51,8 @@ public final class DoublyLinkedListNodeIterator<TValue> implements IDoublyLinked
             this.hasNext(),
             "The iterator has already reached the end of list.");
 
+
+        IDoublyLinkedListNode<TValue> currentNode = this.currentNode;
         this.currentNode = this.currentNode.next();
 
         return currentNode;
@@ -72,8 +75,16 @@ public final class DoublyLinkedListNodeIterator<TValue> implements IDoublyLinked
             this.hasPrevious(),
             "The iterator has already reached the start of list.");
 
+        IDoublyLinkedListNode<TValue> currentNode = this.currentNode;
         this.currentNode = this.currentNode.previous();
 
         return currentNode;
+    }
+
+    /**
+     * Resets an iterator.
+     */
+    private void reset() {
+        this.currentNode = this.headNode;
     }
 }

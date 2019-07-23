@@ -7,7 +7,6 @@ import datastructures.blocktree.interfaces.IBlockTreeLevels;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
 import datastructures.node.interfaces.IKeyValueNodes;
-
 import java.util.List;
 
 /**
@@ -28,4 +27,9 @@ public interface ITestData {
      * Gets the data of B+ trees.
      */
     List<Triple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData();
+
+    /**
+     * Gets the least recently used set data.
+     */
+    List<Pair<Integer, List<Integer>>> getLRUSetData();
 }

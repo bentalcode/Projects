@@ -17,6 +17,9 @@ import datastructures.bplustree.interfaces.IBPlusTreeProperties;
 import datastructures.node.core.KeyValueNodes;
 import datastructures.node.interfaces.IKeyValueNodes;
 import json.interfaces.ITestData;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -274,5 +277,28 @@ public final class TestData implements ITestData {
             new Triple<>(treeData1, treeLevels1, treeMetrics1),
             new Triple<>(treeData2, treeLevels2, treeMetrics2),
             new Triple<>(treeData3, treeLevels3, treeMetrics3));
+    }
+
+    /**
+     * Gets the least recently used set data.
+     */
+    @Override
+    public List<Pair<Integer, List<Integer>>> getLRUSetData() {
+        List<Pair<Integer, List<Integer>>> data = new ArrayList<>();
+
+        data.add (new Pair<>(1, ArrayLists.of(1)));
+        data.add (new Pair<>(2, ArrayLists.of(2, 1)));
+        data.add (new Pair<>(3, ArrayLists.of(3, 2, 1)));
+        data.add (new Pair<>(4, ArrayLists.of(4, 3, 2)));
+        data.add (new Pair<>(1, ArrayLists.of(1, 4, 3)));
+        data.add (new Pair<>(2, ArrayLists.of(2, 1, 4)));
+        data.add (new Pair<>(5, ArrayLists.of(5, 2, 1)));
+        data.add (new Pair<>(1, ArrayLists.of(1, 5, 2)));
+        data.add (new Pair<>(2, ArrayLists.of(2, 1, 5)));
+        data.add (new Pair<>(3, ArrayLists.of(3, 2, 1)));
+        data.add (new Pair<>(4, ArrayLists.of(4, 3, 2)));
+        data.add (new Pair<>(5, ArrayLists.of(5, 4, 3)));
+
+        return data;
     }
 }
