@@ -1,14 +1,13 @@
 package datastructures.bplustree.core;
 
-import testbase.core.Casting;
-import testbase.core.Conditions;
+import base.interfaces.IIterator;
+import base.core.Casting;
+import base.core.Conditions;
 import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
-
-import java.util.Iterator;
 
 /**
  * The BPlusTreeDataIterator class implements an iterator of data of a B+ Tree.
@@ -35,15 +34,17 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
         }
 
         this.currentNode = Casting.cast(node);
-        this.currentInnerNodeIndex = 0;
+
+        this.reset();
     }
 
     /**
      * Gets an iterator for iterating over data.
      */
     @Override
-    public Iterator<IKeyValueNode<TKey, TValue>> iterator() {
-        this.currentInnerNodeIndex = 0;
+    public IIterator<IKeyValueNode<TKey, TValue>> iterator() {
+        this.reset();
+
         return this;
     }
 
@@ -88,4 +89,11 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue>
         return currNode;
     }
 
+    /**
+     * Reset the iterator.
+     */
+    @Override
+    public void reset() {
+        this.currentInnerNodeIndex = 0;
+    }
 }

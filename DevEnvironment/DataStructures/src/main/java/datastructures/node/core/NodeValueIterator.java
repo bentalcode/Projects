@@ -1,9 +1,9 @@
 package datastructures.node.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
 import datastructures.collections.interfaces.IValueIterator;
-import java.util.Iterator;
 
 /**
  * The NodeValueIterator class implements an iterator of values of generic nodes.
@@ -20,13 +20,16 @@ public final class NodeValueIterator<TKey extends Comparable<TKey>, TValue> impl
             "The iterator of a node.");
 
         this.iterator = iterator;
+
+        this.reset();
     }
 
     /**
      * Gets an iterator for iterating over values.
      */
     @Override
-    public Iterator<TValue> iterator() {
+    public IIterator<TValue> iterator() {
+        this.reset();
         return this;
     }
 
@@ -44,5 +47,13 @@ public final class NodeValueIterator<TKey extends Comparable<TKey>, TValue> impl
     @Override
     public TValue next() {
         return this.iterator.next().getValue();
+    }
+
+    /**
+     * Reset the iterator.
+     */
+    @Override
+    public void reset() {
+        this.iterator.reset();
     }
 }

@@ -1,10 +1,10 @@
 package json.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import java.io.Reader;
 import java.util.Stack;
 
-import testbase.core.DestructorHandler;
+import base.core.DestructorHandler;
 import base.interfaces.ICloseable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

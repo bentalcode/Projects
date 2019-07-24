@@ -1,9 +1,9 @@
 package datastructures.bplustree.core;
 
-import testbase.core.Casting;
-import testbase.core.CompareToBuilder;
-import testbase.core.EqualBuilder;
-import testbase.core.HashCodeBuilder;
+import base.core.Casting;
+import base.core.CompareToBuilder;
+import base.core.EqualBuilder;
+import base.core.HashCodeBuilder;
 import base.interfaces.IBuilder;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 

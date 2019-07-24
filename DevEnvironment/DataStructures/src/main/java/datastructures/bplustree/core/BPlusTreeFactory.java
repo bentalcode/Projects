@@ -1,6 +1,6 @@
 package datastructures.bplustree.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import datastructures.bplustree.interfaces.IBPlusTree;
 import datastructures.bplustree.interfaces.IBPlusTreeFactory;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;

@@ -1,7 +1,7 @@
 package datastructures.doublylinkedlist.core;
 
 import datastructures.collections.core.Collections;
-import testbase.core.Conditions;
+import base.core.Conditions;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;

@@ -1,6 +1,6 @@
 package cache.core;
 
-import testbase.core.Triple;
+import base.core.Triple;
 import datastructures.cache.core.CacheProperties;
 import datastructures.cache.core.LRUCache;
 import datastructures.collections.interfaces.IKeyIterator;
@@ -73,6 +73,12 @@ public final class LRUCacheTest {
 
         if (operation.equalsIgnoreCase("set")) {
             cache.set(item, null);
+        }
+        else if (operation.equalsIgnoreCase("get")) {
+            cache.get(item);
+        }
+        else if (operation.equalsIgnoreCase("delete")) {
+            cache.delete(item);
         }
 
         this.validateContent(cache, expectedContent);

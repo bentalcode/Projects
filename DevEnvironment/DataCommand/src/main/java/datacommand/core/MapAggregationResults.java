@@ -1,10 +1,11 @@
 package datacommand.core;
 
+import base.core.Iterator;
+import base.interfaces.IIterator;
 import base.interfaces.IPrimitiveSize;
 import datacommand.interfaces.IAggregationResult;
 import datacommand.interfaces.IAggregationResultsProperties;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -50,8 +51,8 @@ public final class MapAggregationResults extends AbstractAggregationResults {
      * Gets an iterator for iterating over the results.
      */
     @Override
-    public Iterator<IAggregationResult> getIterator() {
-        return this.results.values().iterator();
+    public IIterator<IAggregationResult> getIterator() {
+        return Iterator.of(this.results.values());
     }
 
     /**

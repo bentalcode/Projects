@@ -1,7 +1,8 @@
 package doublylinkedlist.core;
 
+import base.core.Iterator;
 import testbase.core.Assertion;
-import testbase.core.Triple;
+import base.core.Triple;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.core.TestData;
 import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
@@ -45,6 +46,7 @@ public final class DoublyLinkedListTest {
     @Test
     public void DoublyLinkedListTest() {
         DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
         List<Triple<String, Integer, List<Integer>>> data = this.testData.getDoublyLinkedListData();
 
         this.testDoublyLinkedList(list, data);
@@ -92,7 +94,7 @@ public final class DoublyLinkedListTest {
         IAssertion assertion = new Assertion();
         assertion.assertEquals(
             list.getValueIterator(),
-            expectedContent.iterator(),
+            Iterator.of(expectedContent),
             "Invalid content of doubly linked list.");
     }
 }

@@ -1,6 +1,6 @@
 package datacommand.interfaces;
 
-import java.util.Iterator;
+import base.interfaces.IIterator;
 
 /**
  * The IDataResult interface defines a result of the data.
@@ -27,5 +27,5 @@ public interface IDataResult {
     /**
      * Gets an iterator for iterating over the results.
      */
-    Iterator<IAggregationResult> getIterator();
+    IIterator<IAggregationResult> getIterator();
 }

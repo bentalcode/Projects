@@ -1,6 +1,6 @@
 package datastructures.bplustree.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
 import datastructures.bplustree.interfaces.IBPlusTreeLeafNodeProperties;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;

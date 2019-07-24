@@ -1,6 +1,6 @@
 package json.core;
 
-import testbase.core.ClassTypes;
+import base.core.ClassTypes;
 
 /**
  * The AbstractJsonValue class implements an abstract json value.

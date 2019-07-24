@@ -1,9 +1,9 @@
 package datastructures.dimentions.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.dimentions.interfaces.IDirection;
 import datastructures.dimentions.interfaces.IDirections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -34,14 +34,16 @@ public final class Directions implements IDirections {
             "The directions.");
 
         this.directions = directions;
+
+        this.reset();
     }
 
     /**
      * Gets an iterator for iterating over a collection.
      */
     @Override
-    public Iterator<IDirection> iterator() {
-        this.index = 0;
+    public IIterator<IDirection> iterator() {
+        this.reset();
         return this;
     }
 
@@ -62,5 +64,13 @@ public final class Directions implements IDirections {
         ++this.index;
 
         return currDirection;
+    }
+
+    /**
+     * Resets the iterator.
+     */
+    @Override
+    public void reset() {
+        this.index = 0;
     }
 }

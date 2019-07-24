@@ -1,8 +1,8 @@
 package json.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
+import base.interfaces.IIterator;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,6 +17,8 @@ public final class JsonArray extends JsonElement implements IJsonArray {
      */
     public JsonArray(int id) {
         super(id);
+
+        this.reset();
     }
 
     /**
@@ -56,8 +58,8 @@ public final class JsonArray extends JsonElement implements IJsonArray {
      * Gets an iterator for iterating over the collection.
      */
     @Override
-    public Iterator<IJsonValue> iterator() {
-        this.position = 0;
+    public IIterator<IJsonValue> iterator() {
+        this.reset();
         return this;
     }
 
@@ -92,5 +94,13 @@ public final class JsonArray extends JsonElement implements IJsonArray {
             "A Json Array does not support properties.");
 
         this.array.add(value);
+    }
+
+    /**
+     * Reset the iterator.
+     */
+    @Override
+    public void reset() {
+        this.position = 0;
     }
 }

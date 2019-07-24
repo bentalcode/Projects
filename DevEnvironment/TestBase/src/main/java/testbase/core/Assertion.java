@@ -1,9 +1,10 @@
 package testbase.core;
 
+import base.core.Comparator;
+import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
+import base.interfaces.IIterator;
 import testbase.interfaces.IAssertion;
-
-import java.util.Iterator;
 
 /**
  * The Assertion class implements an assertion.
@@ -20,8 +21,8 @@ public final class Assertion implements IAssertion {
      */
     @Override
     public <T extends Comparable<T>> void assertEquals(
-        Iterator<T> lhs,
-        Iterator<T> rhs,
+        IIterator<T> lhs,
+        IIterator<T> rhs,
         String message) {
 
         IBinaryComparator<T> comparator = Comparator.DefaultComparator();
@@ -38,8 +39,8 @@ public final class Assertion implements IAssertion {
      */
     @Override
     public <T extends Comparable<T>> void assertEquals(
-        Iterator<T> lhs,
-        Iterator<T> rhs,
+        IIterator<T> lhs,
+        IIterator<T> rhs,
         IBinaryComparator<T> comparator,
         String message) {
 

@@ -1,9 +1,9 @@
 package datastructures.collections.interfaces;
 
-import java.util.Iterator;
+import base.interfaces.IIterator;
 
 /**
  * The IValueIterator interface defines an iterator of values of a collection.
  */
-public interface IValueIterator<TValue> extends Iterable<TValue>, Iterator<TValue> {
+public interface IValueIterator<TValue> extends IIterator<TValue> {
 }

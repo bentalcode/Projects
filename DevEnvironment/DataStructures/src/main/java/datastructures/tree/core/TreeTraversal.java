@@ -1,6 +1,6 @@
 package datastructures.tree.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IVisitor;
 import datastructures.tree.interfaces.ITreeNode;

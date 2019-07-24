@@ -1,6 +1,6 @@
 package datastructures.expressiontree.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import datastructures.expressiontree.interfaces.IOperand;
 import datastructures.expressiontree.interfaces.IUnaryOperator;
 

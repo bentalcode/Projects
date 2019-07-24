@@ -1,16 +1,17 @@
 package datastructures.node.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
-
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * The KeyValueNodeIterator class implements an iterator of generic key-value nodes.
  */
-public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue> implements IKeyValueNodeIterator<TKey, TValue> {
+public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
+    implements IKeyValueNodeIterator<TKey, TValue> {
+
     private List<IKeyValueNode<TKey, TValue>> nodes;
     private int currentIndex;
 
@@ -23,14 +24,16 @@ public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue> i
             "The list of nodes.");
 
         this.nodes = nodes;
+
+        this.reset();
     }
 
     /**
      * Gets an iterator for iterating over nodes.
      */
     @Override
-    public Iterator<IKeyValueNode<TKey, TValue>> iterator() {
-        this.currentIndex = 0;
+    public IIterator<IKeyValueNode<TKey, TValue>> iterator() {
+        this.reset();
         return this;
     }
 
@@ -55,5 +58,13 @@ public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue> i
         ++this.currentIndex;
 
         return currNodeData;
+    }
+
+    /**
+     * Resets the iterator.
+     */
+    @Override
+    public void reset() {
+        this.currentIndex = 0;
     }
 }

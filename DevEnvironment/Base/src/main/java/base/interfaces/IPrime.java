@@ -1,12 +1,11 @@
 package base.interfaces;
 
 import java.util.BitSet;
-import java.util.Iterator;
 
 /**
  * The IPrime interface defines complimentary APIs for a prime number.
  */
-public interface IPrime extends Iterable<Integer>, Iterator<Integer> {
+public interface IPrime extends IIterator<Integer> {
     /**
      * Checks whether a number is a prime.
      */
@@ -25,5 +24,5 @@ public interface IPrime extends Iterable<Integer>, Iterator<Integer> {
     /**
      * Gets an iterator for iterating over a collection from a specific number.
      */
-    Iterator<Integer> iterator(int fromNumber);
+    IIterator<Integer> iterator(int fromNumber);
 }

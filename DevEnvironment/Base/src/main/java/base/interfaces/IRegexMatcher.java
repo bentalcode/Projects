@@ -1,6 +1,6 @@
 package base.interfaces;
 
-import testbase.core.Pair;
+import base.core.Pair;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

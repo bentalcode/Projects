@@ -1,6 +1,6 @@
 package base.interfaces;
 
-import testbase.core.Pair;
+import base.core.Pair;
 import java.nio.file.Path;
 import java.util.List;
 

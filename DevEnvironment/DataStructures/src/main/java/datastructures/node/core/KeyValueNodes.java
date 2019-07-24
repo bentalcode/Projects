@@ -1,6 +1,6 @@
 package datastructures.node.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import base.interfaces.IBuilder;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;

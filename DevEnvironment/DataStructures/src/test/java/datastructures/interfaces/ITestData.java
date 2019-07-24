@@ -1,7 +1,7 @@
 package datastructures.interfaces;
 
-import testbase.core.Pair;
-import testbase.core.Triple;
+import base.core.Pair;
+import base.core.Triple;
 import base.interfaces.INullable;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;

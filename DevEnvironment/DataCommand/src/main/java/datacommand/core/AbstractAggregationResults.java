@@ -1,6 +1,6 @@
 package datacommand.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import base.interfaces.IPrimitiveSize;
 import datacommand.interfaces.IAggregationResult;
 import datacommand.interfaces.IAggregationResults;

@@ -1,6 +1,6 @@
 package datacommand.interfaces;
 
-import java.util.Iterator;
+import base.interfaces.IIterator;
 
 /**
  * The IAggregationResults interface defines aggregation results of the data.
@@ -24,7 +24,7 @@ public interface IAggregationResults {
     /**
      * Gets an iterator for iterating over the results.
      */
-    Iterator<IAggregationResult> getIterator();
+    IIterator<IAggregationResult> getIterator();
 
     /**
      * Gets the size of results in bytes.

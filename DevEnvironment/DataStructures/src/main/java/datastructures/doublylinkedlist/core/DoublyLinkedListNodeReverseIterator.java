@@ -1,9 +1,9 @@
 package datastructures.doublylinkedlist.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
-import java.util.Iterator;
 
 /**
  * The DoublyLinkedListNodeReverseIterator class implements a reverse iterator of nodes of a doubly linked list.
@@ -22,14 +22,16 @@ public final class DoublyLinkedListNodeReverseIterator<TValue> implements IDoubl
             "The tail node of a doubly linked list.");
 
         this.tailNode = tailNode;
+
+        this.reset();
     }
 
     /**
      * Gets an iterator for iterating over nodes.
      */
     @Override
-    public Iterator<IDoublyLinkedListNode<TValue>> iterator() {
-        this.currentNode = this.tailNode;
+    public IIterator<IDoublyLinkedListNode<TValue>> iterator() {
+        this.reset();
         return this;
     }
 
@@ -75,5 +77,13 @@ public final class DoublyLinkedListNodeReverseIterator<TValue> implements IDoubl
         this.currentNode = this.currentNode.next();
 
         return currentNode;
+    }
+
+    /**
+     * Resets the iterator.
+     */
+    @Override
+    public void reset() {
+        this.currentNode = this.tailNode;
     }
 }

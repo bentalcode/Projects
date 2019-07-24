@@ -1,6 +1,6 @@
 package json.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
 import java.util.List;

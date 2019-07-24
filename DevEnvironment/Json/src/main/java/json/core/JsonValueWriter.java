@@ -1,11 +1,11 @@
 package json.core;
 
-import testbase.core.ArrayIterator;
-import testbase.core.Conditions;
+import base.core.ArrayIterator;
+import base.core.Conditions;
+import base.core.Iterator;
+import base.interfaces.IIterator;
 import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
-
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -211,13 +211,13 @@ public final class JsonValueWriter implements IJsonValueWriter {
             return;
         }
 
-        this.writeCollection(list.iterator());
+        this.writeCollection(Iterator.of(list));
     }
 
     /**
      * Writes a generic collection.
      */
-    private <T extends IJsonSerialization> void writeCollection(Iterator<T> iterator) {
+    private <T extends IJsonSerialization> void writeCollection(IIterator<T> iterator) {
         this.generator.writeStartArray();
 
         while (iterator.hasNext()) {

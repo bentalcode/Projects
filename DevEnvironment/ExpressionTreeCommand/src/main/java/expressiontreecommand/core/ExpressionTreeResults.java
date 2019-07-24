@@ -1,10 +1,10 @@
 package expressiontreecommand.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
+import base.interfaces.IIterator;
 import expressiontreecommand.interfaces.IExpressionTreeResult;
 import expressiontreecommand.interfaces.IExpressionTreeResults;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -18,6 +18,7 @@ public final class ExpressionTreeResults implements IExpressionTreeResults {
      * The ExpressionTreeResults constructor.
      */
     public ExpressionTreeResults() {
+        this.reset();
     }
 
     /**
@@ -35,8 +36,8 @@ public final class ExpressionTreeResults implements IExpressionTreeResults {
      * Gets an iterator for iterating over a collection.
      */
     @Override
-    public Iterator<IExpressionTreeResult> iterator() {
-        this.position = 0;
+    public IIterator<IExpressionTreeResult> iterator() {
+        this.reset();
         return this;
     }
 
@@ -59,5 +60,13 @@ public final class ExpressionTreeResults implements IExpressionTreeResults {
         ++this.position;
 
         return currResult;
+    }
+
+    /**
+     * Reset the iterator.
+     */
+    @Override
+    public void reset() {
+        this.position = 0;
     }
 }

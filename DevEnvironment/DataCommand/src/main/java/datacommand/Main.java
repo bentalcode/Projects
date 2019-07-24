@@ -1,8 +1,9 @@
 package datacommand;
 
-import testbase.core.Conditions;
-import testbase.core.DestructorHandler;
-import testbase.core.Scanners;
+import base.core.Conditions;
+import base.core.DestructorHandler;
+import base.core.Scanners;
+import base.interfaces.IIterator;
 import datacommand.core.DataCommand;
 import datacommand.core.DataCommandParameters;
 import datacommand.interfaces.IAggregationResult;
@@ -10,7 +11,6 @@ import datacommand.interfaces.IDataCommand;
 import datacommand.interfaces.IDataCommandParameters;
 import datacommand.interfaces.IDataResult;
 import java.io.PrintStream;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -99,7 +99,7 @@ public final class Main {
      * Displays result to an output stream.
      */
     private static void displayResult(IDataResult result) {
-        Iterator<IAggregationResult> iterator = result.getIterator();
+        IIterator<IAggregationResult> iterator = result.getIterator();
 
         while (iterator.hasNext()) {
             IAggregationResult currResult = iterator.next();

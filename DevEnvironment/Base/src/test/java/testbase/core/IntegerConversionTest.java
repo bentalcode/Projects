@@ -1,5 +1,7 @@
 package testbase.core;
 
+import base.core.Conversion;
+import base.core.Pair;
 import base.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Assert;

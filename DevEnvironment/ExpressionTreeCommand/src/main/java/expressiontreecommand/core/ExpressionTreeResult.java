@@ -1,6 +1,6 @@
 package expressiontreecommand.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import expressiontreecommand.interfaces.IExpressionTreeResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

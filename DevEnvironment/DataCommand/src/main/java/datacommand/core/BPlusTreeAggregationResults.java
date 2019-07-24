@@ -1,6 +1,7 @@
 package datacommand.core;
 
-import testbase.core.Comparator;
+import base.interfaces.IIterator;
+import base.core.Comparator;
 import base.interfaces.IBinaryComparator;
 import datacommand.interfaces.IAggregationResult;
 import datacommand.interfaces.IAggregationResultsProperties;
@@ -11,8 +12,6 @@ import datastructures.bplustree.interfaces.IBPlusTree;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-
-import java.util.Iterator;
 
 /**
  * The BPlusTreeAggregationResults class implements aggregation results of the data
@@ -74,7 +73,7 @@ public final class BPlusTreeAggregationResults extends AbstractAggregationResult
      * Gets an iterator for iterating over the results.
      */
     @Override
-    public Iterator<IAggregationResult> getIterator() {
+    public IIterator<IAggregationResult> getIterator() {
         return this.results.getValueIterator();
     }
 

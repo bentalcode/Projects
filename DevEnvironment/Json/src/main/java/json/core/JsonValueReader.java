@@ -1,9 +1,9 @@
 package json.core;
 
-import testbase.core.Arrays;
-import testbase.core.Conditions;
-import testbase.core.Conversion;
-import testbase.core.ReflectionHandler;
+import base.core.Arrays;
+import base.core.Conditions;
+import base.core.Conversion;
+import base.core.ReflectionHandler;
 import json.interfaces.IJsonObjectReader;
 import java.util.ArrayList;
 import java.util.List;

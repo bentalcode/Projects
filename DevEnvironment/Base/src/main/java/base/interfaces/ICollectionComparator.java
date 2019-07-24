@@ -1,7 +1,6 @@
 package base.interfaces;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * The ICollectionComparator interface defines a comparator for generic collection.
@@ -24,7 +23,7 @@ public interface ICollectionComparator<T> {
     /**
      * Checks whether the iterators are equals with an element comparator.
      */
-    boolean isEqual(Iterator<T> lhs, Iterator<T> rhs, IBinaryComparator<T> comparator);
+    boolean isEqual(IIterator<T> lhs, IIterator<T> rhs, IBinaryComparator<T> comparator);
 
     /**
      * Determines the relative order of iterators with an element comparator.
@@ -33,5 +32,5 @@ public interface ICollectionComparator<T> {
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
-    int compareTo(Iterator<T> lhs, Iterator<T> rhs, IBinaryComparator<T> comparator);
+    int compareTo(IIterator<T> lhs, IIterator<T> rhs, IBinaryComparator<T> comparator);
 }

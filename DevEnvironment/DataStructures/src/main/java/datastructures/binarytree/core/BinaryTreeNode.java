@@ -1,9 +1,9 @@
 package datastructures.binarytree.core;
 
-import testbase.core.Casting;
-import testbase.core.CompareToBuilder;
-import testbase.core.Conditions;
-import testbase.core.EqualBuilder;
+import base.core.Casting;
+import base.core.CompareToBuilder;
+import base.core.Conditions;
+import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
@@ -173,7 +173,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBinaryTreeNode<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = testbase.core.Comparator.DefaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
         return new Comparator<>(keyComparator);
     }
 

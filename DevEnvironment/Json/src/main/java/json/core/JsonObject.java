@@ -1,6 +1,6 @@
 package json.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
 import java.util.HashMap;
 import java.util.Map;
 

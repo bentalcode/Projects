@@ -1,10 +1,10 @@
 package datacommand.core;
 
-import testbase.core.Conditions;
+import base.interfaces.IIterator;
+import base.core.Conditions;
 import datacommand.interfaces.IAggregationResult;
 import datacommand.interfaces.IAggregationResults;
 import datacommand.interfaces.IDataResult;
-import java.util.Iterator;
 
 /**
  * The IDataResult interface defines a result of the data.
@@ -45,7 +45,7 @@ public final class DataResult implements IDataResult {
      * Gets an iterator for iterating over the results.
      */
     @Override
-    public Iterator<IAggregationResult> getIterator() {
+    public IIterator<IAggregationResult> getIterator() {
         return this.aggregationResults.getIterator();
     }
 }

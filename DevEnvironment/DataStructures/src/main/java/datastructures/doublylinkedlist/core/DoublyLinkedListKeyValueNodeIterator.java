@@ -1,11 +1,11 @@
 package datastructures.doublylinkedlist.core;
 
-import testbase.core.Conditions;
+import base.interfaces.IIterator;
+import base.core.Conditions;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
 import datastructures.node.interfaces.IKeyValueNodeReverseIterator;
-import java.util.Iterator;
 
 /**
  * The DoublyLinkedListKeyValueNodeIterator class implements an iterator of key-value nodes of a doubly linked list.
@@ -24,13 +24,16 @@ public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<
             "The iterator of a key-value node of doubly linked list.");
 
         this.iterator = iterator;
+
+        this.reset();
     }
 
     /**
      * Gets an iterator for iterating over nodes.
      */
     @Override
-    public Iterator<IKeyValueNode<TKey, TValue>> iterator() {
+    public IIterator<IKeyValueNode<TKey, TValue>> iterator() {
+        this.reset();
         return this;
     }
 
@@ -76,5 +79,13 @@ public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<
         IKeyValueNode<TKey, TValue> node = this.iterator.previous().getValue();
 
         return node;
+    }
+
+    /**
+     * Resets the iterator.
+     */
+    @Override
+    public void reset() {
+        this.iterator.reset();
     }
 }

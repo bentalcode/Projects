@@ -1,12 +1,11 @@
 package datastructures.doublylinkedlist.interfaces;
 
-import java.util.Iterator;
+import base.interfaces.IIterator;
 
 /**
  * The IDoublyLinkedListNodeIterator interface defines an iterator of nodes of a doubly linked list.
  */
-public interface IDoublyLinkedListNodeIterator<TValue>
-    extends Iterable<IDoublyLinkedListNode<TValue>>, Iterator<IDoublyLinkedListNode<TValue>> {
+public interface IDoublyLinkedListNodeIterator<TValue> extends IIterator<IDoublyLinkedListNode<TValue>> {
 
     /**
      * Checks whether there is a next node.

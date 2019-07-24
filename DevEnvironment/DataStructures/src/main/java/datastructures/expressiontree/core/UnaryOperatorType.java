@@ -1,6 +1,6 @@
 package datastructures.expressiontree.core;
 
-import testbase.core.Enums;
+import base.core.Enums;
 import datastructures.expressiontree.interfaces.IExpressionTreeSymbols;
 import datastructures.expressiontree.interfaces.IOperand;
 import datastructures.expressiontree.interfaces.IUnaryOperator;

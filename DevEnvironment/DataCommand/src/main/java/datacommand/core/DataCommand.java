@@ -1,7 +1,7 @@
 package datacommand.core;
 
-import testbase.core.Conditions;
-import testbase.core.Pair;
+import base.core.Conditions;
+import base.core.Pair;
 import base.interfaces.IPair;
 import datacommand.interfaces.IAggregationResult;
 import datacommand.interfaces.IAggregationResults;

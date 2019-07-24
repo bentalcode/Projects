@@ -1,9 +1,9 @@
 package datastructures.doublylinkedlist.core;
 
-import testbase.core.Conditions;
+import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
-import java.util.Iterator;
 
 /**
  * The DoublyLinkedListNodeValueIterator class implements an iterator of values of a doubly linked list.
@@ -20,13 +20,16 @@ public final class DoublyLinkedListNodeValueIterator<TValue> implements IValueIt
             "The iterator of a node of a doubly linked list.");
 
         this.iterator = iterator;
+
+        this.reset();
     }
 
     /**
      * Gets an iterator for iterating over values.
      */
     @Override
-    public Iterator<TValue> iterator() {
+    public IIterator<TValue> iterator() {
+        this.reset();
         return this;
     }
 
@@ -44,5 +47,13 @@ public final class DoublyLinkedListNodeValueIterator<TValue> implements IValueIt
     @Override
     public TValue next() {
         return this.iterator.next().getValue();
+    }
+
+    /**
+     * Resets the iterator.
+     */
+    @Override
+    public void reset() {
+        this.iterator.reset();
     }
 }

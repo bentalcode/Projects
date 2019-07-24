@@ -1,11 +1,11 @@
 package json.core;
 
-import java.util.Iterator;
+import base.interfaces.IIterator;
 
 /**
  * The IJsonArray interface defines a json array.
  */
-public interface IJsonArray extends IJsonElement, Iterable<IJsonValue>, Iterator<IJsonValue> {
+public interface IJsonArray extends IJsonElement, IIterator<IJsonValue> {
     /**
      * Gets a json value of an array at a specified index.
      */

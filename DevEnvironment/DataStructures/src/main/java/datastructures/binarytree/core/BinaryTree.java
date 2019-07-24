@@ -1,7 +1,7 @@
 package datastructures.binarytree.core;
 
-import testbase.core.Casting;
-import testbase.core.Conditions;
+import base.core.Casting;
+import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import datastructures.binarytree.interfaces.IBinaryTree;

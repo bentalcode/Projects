@@ -1,8 +1,9 @@
 package datastructures.core;
 
-import testbase.core.ArrayLists;
-import testbase.core.Pair;
-import testbase.core.Triple;
+import base.core.ArrayLists;
+import base.core.Comparator;
+import base.core.Pair;
+import base.core.Triple;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.INullable;
 import base.interfaces.IPrimitiveSize;
@@ -36,7 +37,7 @@ public final class TestData implements ITestData {
      */
     @Override
     public IBPlusTreeProperties<Integer, String> getTreeProperties() {
-        IBinaryComparator<Integer> keyComparator = testbase.core.Comparator.DefaultComparator();
+        IBinaryComparator<Integer> keyComparator = Comparator.DefaultComparator();
         IBinaryComparator<IBPlusTreeNode<Integer>> nodeComparator = BPlusTreeNode.DefaultComparator(keyComparator);
 
         IBPlusTreeProperties<Integer, String> properties = new BPlusTreeProperties.Builder<Integer, String>()
@@ -287,16 +288,23 @@ public final class TestData implements ITestData {
 
         data.add (new Triple<>("set", 1, ArrayLists.of(1)));
         data.add (new Triple<>("set", 2, ArrayLists.of(2, 1)));
-        data.add (new Triple<>("set",3, ArrayLists.of(3, 2, 1)));
-        data.add (new Triple<>("set",4, ArrayLists.of(4, 3, 2)));
-        data.add (new Triple<>("set",1, ArrayLists.of(1, 4, 3)));
-        data.add (new Triple<>("set",2, ArrayLists.of(2, 1, 4)));
-        data.add (new Triple<>("set",5, ArrayLists.of(5, 2, 1)));
-        data.add (new Triple<>("set",1, ArrayLists.of(1, 5, 2)));
-        data.add (new Triple<>("set",2, ArrayLists.of(2, 1, 5)));
-        data.add (new Triple<>("set",3, ArrayLists.of(3, 2, 1)));
-        data.add (new Triple<>("set",4, ArrayLists.of(4, 3, 2)));
-        data.add (new Triple<>("set",5, ArrayLists.of(5, 4, 3)));
+        data.add (new Triple<>("set", 3, ArrayLists.of(3, 2, 1)));
+        data.add (new Triple<>("set", 4, ArrayLists.of(4, 3, 2)));
+        data.add (new Triple<>("set", 1, ArrayLists.of(1, 4, 3)));
+        data.add (new Triple<>("set", 2, ArrayLists.of(2, 1, 4)));
+        data.add (new Triple<>("set", 5, ArrayLists.of(5, 2, 1)));
+        data.add (new Triple<>("set", 1, ArrayLists.of(1, 5, 2)));
+        data.add (new Triple<>("set", 2, ArrayLists.of(2, 1, 5)));
+        data.add (new Triple<>("set", 3, ArrayLists.of(3, 2, 1)));
+        data.add (new Triple<>("set", 4, ArrayLists.of(4, 3, 2)));
+        data.add (new Triple<>("set", 5, ArrayLists.of(5, 4, 3)));
+        data.add (new Triple<>("get", 3, ArrayLists.of(3, 5, 4)));
+        data.add (new Triple<>("get", 3, ArrayLists.of(3, 5, 4)));
+        data.add (new Triple<>("get", 4, ArrayLists.of(4, 3, 5)));
+        data.add (new Triple<>("get", 5, ArrayLists.of(5, 4, 3)));
+        data.add (new Triple<>("delete", 4, ArrayLists.of(5, 3)));
+        data.add (new Triple<>("delete", 3, ArrayLists.of(5)));
+        data.add (new Triple<>("delete", 5, new ArrayList<>()));
 
         return data;
     }

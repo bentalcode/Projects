@@ -1,5 +1,9 @@
 package testbase.core;
 
+import base.core.DestructorHandler;
+import base.core.Prime;
+import base.core.ResourceReader;
+import base.core.Scanners;
 import base.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Assert;

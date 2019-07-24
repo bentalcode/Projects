@@ -1,7 +1,7 @@
 package datastructures.collections.core;
 
-import testbase.core.Conditions;
-import java.util.Iterator;
+import base.core.Conditions;
+import base.interfaces.IIterator;
 
 /**
  * The Collections class implements complementary APIs for collections.
@@ -14,7 +14,7 @@ public final class Collections {
     /**
      * Converts a collection of values into a string.
      */
-    public static <T> String toString(Iterator<T> iterator) {
+    public static <T> String toString(IIterator<T> iterator) {
         String prefix = Collections.DefaultPrefix;
         String postfix = Collections.DefaultPostfix;
         String delimiter = Collections.DefaultDelimiter;
@@ -32,7 +32,7 @@ public final class Collections {
     public static <T> String toString(
         String prefix,
         String postfix,
-        Iterator<T> iterator,
+        IIterator<T> iterator,
         String delimiter) {
 
         Conditions.validateNotNull(
