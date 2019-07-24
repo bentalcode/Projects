@@ -1,7 +1,7 @@
 package json.core;
 
-import base.core.Conditions;
-import base.core.DestructorHandler;
+import testbase.core.Conditions;
+import testbase.core.DestructorHandler;
 import base.interfaces.ICloseable;
 import java.io.IOException;
 import org.slf4j.Logger;

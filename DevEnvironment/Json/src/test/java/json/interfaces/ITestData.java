@@ -1,6 +1,6 @@
 package json.interfaces;
 
-import base.core.Pair;
+import testbase.core.Pair;
 import java.nio.file.Path;
 import java.util.List;
 

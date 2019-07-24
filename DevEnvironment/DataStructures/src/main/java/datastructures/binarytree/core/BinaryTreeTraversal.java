@@ -1,6 +1,6 @@
 package datastructures.binarytree.core;
 
-import base.core.Conditions;
+import testbase.core.Conditions;
 import base.interfaces.IVisitor;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeTraversal;

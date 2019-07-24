@@ -1,6 +1,6 @@
 package datacommand.core;
 
-import base.core.Comparator;
+import testbase.core.Comparator;
 import base.interfaces.IBinaryComparator;
 import datacommand.interfaces.IAggregationResult;
 import datacommand.interfaces.IAggregationResultsProperties;
@@ -11,7 +11,7 @@ import datastructures.bplustree.interfaces.IBPlusTree;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.tree.interfaces.ITreeMetrics;
+
 import java.util.Iterator;
 
 /**

@@ -1,12 +1,11 @@
 package datastructures.tree.core;
 
-import base.core.Casting;
-import base.core.CompareToBuilder;
-import base.core.Conditions;
-import base.core.EqualBuilder;
+import testbase.core.Casting;
+import testbase.core.CompareToBuilder;
+import testbase.core.Conditions;
+import testbase.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
-import base.interfaces.IVisitor;
 import datastructures.tree.interfaces.ITreeNode;
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +151,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeNode<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+        IBinaryComparator<TKey> keyComparator = testbase.core.Comparator.DefaultComparator();
         return new Comparator<>(keyComparator);
     }
 

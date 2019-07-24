@@ -1,11 +1,10 @@
 package datastructures.blocktree.core;
 
-import base.core.Casting;
-import base.core.Comparator;
-import base.core.CompareToBuilder;
-import base.core.Conditions;
-import base.core.EqualBuilder;
-import base.core.HashCodeBuilder;
+import testbase.core.Casting;
+import testbase.core.CompareToBuilder;
+import testbase.core.Conditions;
+import testbase.core.EqualBuilder;
+import testbase.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import datastructures.blocktree.interfaces.IBlockTreeNodeData;
@@ -122,7 +121,7 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBlockTreeNodeData<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+        IBinaryComparator<TKey> keyComparator = testbase.core.Comparator.DefaultComparator();
         return new Comparator<>(keyComparator);
     }
 

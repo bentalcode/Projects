@@ -1,7 +1,7 @@
 package datastructures.bplustree.core;
 
-import base.core.Casting;
-import base.core.Conditions;
+import testbase.core.Casting;
+import testbase.core.Conditions;
 import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.node.core.KeyValueNode;

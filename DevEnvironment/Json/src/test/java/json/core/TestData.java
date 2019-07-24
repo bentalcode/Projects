@@ -1,8 +1,8 @@
 package json.core;
 
-import base.core.Pair;
-import base.core.Paths;
-import base.core.ResourcePathBuilder;
+import testbase.core.Pair;
+import testbase.core.Paths;
+import testbase.core.ResourcePathBuilder;
 import json.interfaces.ITestData;
 import java.nio.file.Path;
 import java.util.ArrayList;

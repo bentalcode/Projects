@@ -1,9 +1,9 @@
 package datastructures.node.core;
 
-import base.core.Casting;
-import base.core.CompareToBuilder;
-import base.core.Conditions;
-import base.core.EqualBuilder;
+import testbase.core.Casting;
+import testbase.core.CompareToBuilder;
+import testbase.core.Conditions;
+import testbase.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import datastructures.node.interfaces.IKeyValueNode;
@@ -125,7 +125,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IKeyValueNode<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+        IBinaryComparator<TKey> keyComparator = testbase.core.Comparator.DefaultComparator();
         return new Comparator<>(keyComparator);
     }
 

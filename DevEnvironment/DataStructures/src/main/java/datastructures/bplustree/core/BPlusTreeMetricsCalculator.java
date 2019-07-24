@@ -1,7 +1,7 @@
 package datastructures.bplustree.core;
 
-import base.core.Casting;
-import base.core.Conditions;
+import testbase.core.Casting;
+import testbase.core.Conditions;
 import base.interfaces.ICalculator;
 import base.interfaces.IPrimitiveSize;
 import datastructures.bplustree.interfaces.IBPlusTreeInnerNode;

@@ -1,6 +1,6 @@
 package datastructures.expressiontree.core;
 
-import base.core.Conditions;
+import testbase.core.Conditions;
 import datastructures.expressiontree.ExpressionTreeException;
 import datastructures.expressiontree.interfaces.IExpressionTree;
 import datastructures.expressiontree.interfaces.IExpressionTreeElement;

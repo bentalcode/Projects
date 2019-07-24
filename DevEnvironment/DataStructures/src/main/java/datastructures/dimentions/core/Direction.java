@@ -1,8 +1,8 @@
 package datastructures.dimentions.core;
 
-import base.core.Casting;
-import base.core.Conditions;
-import base.core.HashCodeBuilder;
+import testbase.core.Casting;
+import testbase.core.Conditions;
+import testbase.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import datastructures.dimentions.interfaces.IDirection;
 

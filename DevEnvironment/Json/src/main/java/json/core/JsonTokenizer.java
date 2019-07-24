@@ -1,8 +1,8 @@
 package json.core;
 
-import base.core.Conditions;
-import base.core.Converter;
-import base.core.DestructorHandler;
+import testbase.core.Conditions;
+import testbase.core.Converter;
+import testbase.core.DestructorHandler;
 import base.interfaces.ICloseable;
 import base.interfaces.IConverter;
 import org.slf4j.Logger;

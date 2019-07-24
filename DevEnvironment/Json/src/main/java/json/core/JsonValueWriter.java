@@ -1,7 +1,7 @@
 package json.core;
 
-import base.core.ArrayIterator;
-import base.core.Conditions;
+import testbase.core.ArrayIterator;
+import testbase.core.Conditions;
 import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
 

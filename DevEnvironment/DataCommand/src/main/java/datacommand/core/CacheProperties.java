@@ -1,8 +1,8 @@
 package datacommand.core;
 
-import base.core.Conditions;
-import base.core.Range;
-import base.core.RangeType;
+import testbase.core.Conditions;
+import testbase.core.Range;
+import testbase.core.RangeType;
 import base.interfaces.IRange;
 import datacommand.interfaces.ICacheProperties;
 

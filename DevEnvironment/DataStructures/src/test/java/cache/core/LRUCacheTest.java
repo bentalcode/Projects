@@ -1,11 +1,11 @@
 package cache.core;
 
-import base.core.Pair;
+import testbase.core.Triple;
 import datastructures.cache.core.CacheProperties;
 import datastructures.cache.core.LRUCache;
 import datastructures.collections.interfaces.IKeyIterator;
-import datastructures.plustree.core.TestData;
-import json.interfaces.ITestData;
+import datastructures.core.TestData;
+import datastructures.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -46,7 +46,7 @@ public final class LRUCacheTest {
     public void LRUCacheTest() {
         LRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
 
-        List<Pair<Integer, List<Integer>>> data = this.testData.getLRUSetData();
+        List<Triple<String, Integer, List<Integer>>> data = this.testData.getLRUData();
         this.testLRUCache(cache, data);
     }
 
@@ -55,10 +55,10 @@ public final class LRUCacheTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testLRUCache(
         LRUCache<TKey, TValue> cache,
-        List<Pair<TKey, List<TKey>>> data) {
+        List<Triple<String, TKey, List<TKey>>> data) {
 
-        for (Pair<TKey, List<TKey>> entry : data) {
-            this.testSet(cache, entry.first(), entry.second());
+        for (Triple<String, TKey, List<TKey>> entry : data) {
+            this.testSet(cache, entry.first(), entry.second(), entry.third());
         }
     }
 
@@ -67,15 +67,20 @@ public final class LRUCacheTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testSet(
         LRUCache<TKey, TValue> cache,
-        TKey itemToAdd,
+        String operation,
+        TKey item,
         List<TKey> expectedContent) {
 
-        cache.set(itemToAdd, null);
+        if (operation.equalsIgnoreCase("set")) {
+            cache.set(item, null);
+        }
 
         this.validateContent(cache, expectedContent);
     }
 
-
+    /**
+     * Validates content of a least recently used.
+     */
     private <TKey extends Comparable<TKey>, TValue> void validateContent(
         LRUCache<TKey, TValue> cache,
         List<TKey> expectedContent) {

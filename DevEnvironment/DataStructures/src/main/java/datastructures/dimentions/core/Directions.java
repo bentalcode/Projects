@@ -1,6 +1,6 @@
 package datastructures.dimentions.core;
 
-import base.core.Conditions;
+import testbase.core.Conditions;
 import datastructures.dimentions.interfaces.IDirection;
 import datastructures.dimentions.interfaces.IDirections;
 import java.util.Iterator;

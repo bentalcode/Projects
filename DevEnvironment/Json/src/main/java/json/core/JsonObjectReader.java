@@ -1,9 +1,7 @@
 package json.core;
 
-import base.core.Casting;
-import base.core.ClassTypes;
-import base.core.Conditions;
-import base.core.Conversion;
+import testbase.core.ClassTypes;
+import testbase.core.Conditions;
 import json.interfaces.IJsonObjectReader;
 import java.util.List;
 import json.interfaces.IJsonSerialization;

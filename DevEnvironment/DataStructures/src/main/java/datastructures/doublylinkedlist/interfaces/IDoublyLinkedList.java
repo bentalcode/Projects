@@ -27,6 +27,26 @@ public interface IDoublyLinkedList<TValue> {
     boolean empty();
 
     /**
+     * Adds a new value to the front of the list.
+     */
+    void addToFront(TValue value);
+
+    /**
+     * Adds a new value to the back of the list.
+     */
+    void addToBack(TValue value);
+
+    /**
+     * Adds a new value after a specific node of the list.
+     */
+    void addAfter(IDoublyLinkedListNode<TValue> currNode, TValue valueToAdd);
+
+    /**
+     * Adds a new value before a specific node of the list.
+     */
+    void addBefore(IDoublyLinkedListNode<TValue> currNode, TValue valueToAdd);
+
+    /**
      * Adds a new node to the front of the list.
      */
     void addToFront(IDoublyLinkedListNode<TValue> node);

@@ -1,11 +1,11 @@
 package json.core;
 
-import base.core.Conditions;
-import base.core.DestructorHandler;
-import base.core.Readers;
+import testbase.core.Conditions;
+import testbase.core.DestructorHandler;
+import testbase.core.Readers;
 import java.io.Reader;
 import java.io.StringWriter;
-import base.core.Writers;
+import testbase.core.Writers;
 import json.interfaces.IJsonSerialization;
 import json.interfaces.IJsonStream;
 

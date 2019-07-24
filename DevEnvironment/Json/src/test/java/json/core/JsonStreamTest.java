@@ -1,8 +1,8 @@
 package json.core;
 
-import base.core.Casting;
-import base.core.Pair;
-import base.core.ResourceReader;
+import testbase.core.Casting;
+import testbase.core.Pair;
+import testbase.core.ResourceReader;
 import java.nio.file.Path;
 import json.interfaces.IJsonSerialization;
 import json.interfaces.ITestData;

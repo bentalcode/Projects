@@ -1,6 +1,6 @@
 package expressiontreecommand.core;
 
-import base.core.Conditions;
+import testbase.core.Conditions;
 import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
 import expressiontreecommand.interfaces.IExpressionTreeProperties;
 

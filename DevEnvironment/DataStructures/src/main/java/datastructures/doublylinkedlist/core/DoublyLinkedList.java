@@ -1,7 +1,7 @@
 package datastructures.doublylinkedlist.core;
 
-import base.core.Collections;
-import base.core.Conditions;
+import datastructures.collections.core.Collections;
+import testbase.core.Conditions;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
@@ -50,6 +50,38 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
     @Override
     public boolean empty() {
         return this.size == 0;
+    }
+
+    /**
+     * Adds a new value to the front of the list.
+     */
+    @Override
+    public void addToFront(TValue value) {
+        this.addToFront(new DoublyLinkedListNode<>(value));
+    }
+
+    /**
+     * Adds a new value to the back of the list.
+     */
+    @Override
+    public void addToBack(TValue value) {
+        this.addToBack(new DoublyLinkedListNode<>(value));
+    }
+
+    /**
+     * Adds a new value after a specific node of the list.
+     */
+    @Override
+    public void addAfter(IDoublyLinkedListNode<TValue> currNode, TValue valueToAdd) {
+        this.addAfter(currNode, new DoublyLinkedListNode<>(valueToAdd));
+    }
+
+    /**
+     * Adds a new value before a specific node of the list.
+     */
+    @Override
+    public void addBefore(IDoublyLinkedListNode<TValue> currNode, TValue nodeToAdd) {
+        this.addBefore(currNode, new DoublyLinkedListNode<>(nodeToAdd));
     }
 
     /**

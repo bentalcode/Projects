@@ -1,6 +1,6 @@
 package datastructures.doublylinkedlist.core;
 
-import base.core.Conditions;
+import testbase.core.Conditions;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import java.util.Iterator;

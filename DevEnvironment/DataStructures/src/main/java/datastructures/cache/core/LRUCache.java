@@ -1,6 +1,6 @@
 package datastructures.cache.core;
 
-import base.core.Conditions;
+import testbase.core.Conditions;
 import datastructures.cache.CacheException;
 import datastructures.cache.interfaces.ICacheProperties;
 import datastructures.cache.interfaces.ILRUCache;

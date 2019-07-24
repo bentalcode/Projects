@@ -1,8 +1,8 @@
 package expressiontreecommand;
 
-import base.core.Conditions;
-import base.core.DestructorHandler;
-import base.core.Scanners;
+import testbase.core.Conditions;
+import testbase.core.DestructorHandler;
+import testbase.core.Scanners;
 import expressiontreecommand.core.ExpressionTreeCommand;
 import expressiontreecommand.core.ExpressionTreeCommandParameters;
 import expressiontreecommand.interfaces.IExpressionTreeCommand;
