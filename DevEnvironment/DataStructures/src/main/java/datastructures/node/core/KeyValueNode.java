@@ -15,6 +15,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
     private final TKey key;
     private TValue value;
     private final IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator;
+    private final int hashCode;
 
     /**
      * The KeyValueNode constructor.
@@ -47,6 +48,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         this.key = key;
         this.value = value;
         this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -78,7 +80,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

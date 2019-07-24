@@ -18,6 +18,7 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
     private final List<TKey> keys;
     private final List<TValue> values;
     private final IBinaryComparator<IBlockTreeNodeData<TKey, TValue>> comparator;
+    private final int hashCode;
 
     /**
      * The BlockTreeNodeData constructor.
@@ -51,6 +52,7 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
         this.keys = keys;
         this.values = values;
         this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -74,7 +76,7 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

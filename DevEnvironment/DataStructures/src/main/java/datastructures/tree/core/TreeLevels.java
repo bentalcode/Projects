@@ -18,6 +18,7 @@ import java.util.List;
 public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements ITreeLevels<TKey, TValue> {
     private final List<ITreeLevel<TKey, TValue>> levels;
     private final IBinaryComparator<ITreeLevels<TKey, TValue>> comparator;
+    private final int hashCode;
 
     /**
      * The TreeLevels constructor.
@@ -45,6 +46,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
 
         this.levels = levels;
         this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -60,7 +62,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

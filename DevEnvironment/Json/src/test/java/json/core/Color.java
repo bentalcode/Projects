@@ -22,6 +22,7 @@ public final class Color implements IColor {
     private final String rgb;
     
     private final IBinaryComparator<IColor> comparator = Color.DefaultComparator();
+    private final int hashCode;
 
     /**
      * The Color constructor.
@@ -34,6 +35,7 @@ public final class Color implements IColor {
         this.name = name;
         this.hex = hex;
         this.rgb = rgb;
+        this.hashCode = this.comparator.getHashCode(this);
     }
 
     /**
@@ -89,7 +91,7 @@ public final class Color implements IColor {
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

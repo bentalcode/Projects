@@ -10,7 +10,6 @@ import base.interfaces.IBuilder;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.tree.interfaces.ITreeLevel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +19,7 @@ import java.util.List;
 public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements ITreeLevel<TKey, TValue> {
     private final List<IKeyValueNode<TKey, TValue>> nodesData;
     private final IBinaryComparator<ITreeLevel<TKey, TValue>> comparator;
+    private final int hashCode;
 
     /**
      * The TreeLevel constructor.
@@ -47,6 +47,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
 
         this.nodesData = nodesData;
         this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -62,7 +63,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

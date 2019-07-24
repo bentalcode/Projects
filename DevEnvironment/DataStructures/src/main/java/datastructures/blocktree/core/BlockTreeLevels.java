@@ -18,6 +18,7 @@ import java.util.List;
 public final class BlockTreeLevels<TKey extends Comparable<TKey>, TValue> implements IBlockTreeLevels<TKey, TValue> {
     private final List<IBlockTreeLevel<TKey, TValue>> levels;
     private final IBinaryComparator<IBlockTreeLevels<TKey, TValue>> comparator;
+    private final int hashCode;
 
     /**
      * The BlockTreeLevels constructor.
@@ -45,6 +46,7 @@ public final class BlockTreeLevels<TKey extends Comparable<TKey>, TValue> implem
 
         this.levels = levels;
         this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -60,7 +62,7 @@ public final class BlockTreeLevels<TKey extends Comparable<TKey>, TValue> implem
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

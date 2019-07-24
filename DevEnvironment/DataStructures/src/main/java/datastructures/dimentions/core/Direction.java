@@ -15,8 +15,7 @@ public final class Direction implements IDirection {
 
     private final double angle; // 0-360
     private final IBinaryComparator<IDirection> comparator;
-
-    private int hashCode;
+    private final int hashCode;
 
     /**
      * The Direction constructor.
@@ -46,7 +45,6 @@ public final class Direction implements IDirection {
 
         this.angle = angle;
         this.comparator = comparator;
-
         this.hashCode = comparator.getHashCode(this);
     }
 
@@ -63,7 +61,7 @@ public final class Direction implements IDirection {
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

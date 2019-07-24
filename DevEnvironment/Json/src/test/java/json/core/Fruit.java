@@ -22,7 +22,8 @@ public final class Fruit implements IFruit {
     private final int size;
     private final String color;
     private final double price;
-    private final IBinaryComparator<IFruit> comparator = Fruit.DefaultComparator();
+    private final IBinaryComparator<IFruit> comparator;
+    private final int hashCode;
 
     /**
      * The Fruit constructor.
@@ -33,10 +34,25 @@ public final class Fruit implements IFruit {
         String color,
         double price) {
 
+        this(kind, size, color, price, Fruit.DefaultComparator());
+    }
+
+    /**
+     * The Fruit constructor.
+     */
+    public Fruit(
+        String kind,
+        int size,
+        String color,
+        double price,
+        IBinaryComparator<IFruit> comparator) {
+
         this.kind = kind;
         this.size = size;
         this.color = color;
         this.price = price;
+        this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -103,7 +119,7 @@ public final class Fruit implements IFruit {
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

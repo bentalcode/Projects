@@ -37,7 +37,6 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
         this.numberOfLeafNodes = numberOfLeafNodes;
         this.sizeInBytes = sizeInBytes;
         this.capacityInBytes = capacityInBytes;
-
         this.hashCode = this.calculateHashCode();
     }
 

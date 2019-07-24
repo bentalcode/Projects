@@ -17,6 +17,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     private IBinaryTreeNode<TKey, TValue> leftChild;
     private IBinaryTreeNode<TKey, TValue> rightChild;
     private final IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator;
+    private final int hashCode;
 
     /**
      * The BinaryTreeNode constructor.
@@ -67,6 +68,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         this.leftChild = leftChild;
         this.rightChild = rightChild;
         this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -130,7 +132,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

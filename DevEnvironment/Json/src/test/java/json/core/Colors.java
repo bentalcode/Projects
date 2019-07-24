@@ -20,15 +20,24 @@ public final class Colors implements IColors {
     
     private final String category;
     private final List<IColor> colors;
-
-    private final IBinaryComparator<IColors> comparator = DefaultComparator();
+    private final IBinaryComparator<IColors> comparator;
+    private final int hashCode;
 
     /**
      * The Colors constructor.
      */
     public Colors(String category, List<IColor> colors) {
+        this(category, colors, Colors.DefaultComparator());
+    }
+
+    /**
+     * The Colors constructor.
+     */
+    public Colors(String category, List<IColor> colors, IBinaryComparator<IColors> comparator) {
         this.category = category;
         this.colors = colors;
+        this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
     
     /**
@@ -71,7 +80,7 @@ public final class Colors implements IColors {
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

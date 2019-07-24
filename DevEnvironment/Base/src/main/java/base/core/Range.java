@@ -11,6 +11,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     private final T end;
     private final RangeType rangeType;
     private final IBinaryComparator<IRange<T>> comparator;
+    private final int hashCode;
 
     /**
      * The Range constructor.
@@ -65,6 +66,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
         this.end = end;
         this.rangeType = rangeType;
         this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -104,7 +106,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return this.hashCode;
     }
 
     /**

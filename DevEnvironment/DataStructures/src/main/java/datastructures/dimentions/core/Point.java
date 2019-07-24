@@ -15,8 +15,6 @@ public final class Point implements IPoint {
     private double y;
     private final IBinaryComparator<IPoint> comparator;
 
-    private int hashCode;
-
     /**
      * The Point constructor.
      */
@@ -42,8 +40,6 @@ public final class Point implements IPoint {
         this.x = x;
         this.y = y;
         this.comparator = comparator;
-
-        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -74,8 +70,6 @@ public final class Point implements IPoint {
         this.x += point.getX();
         this.y += point.getY();
 
-        this.hashCode = this.comparator.getHashCode(this);
-
         return this;
     }
 
@@ -90,8 +84,6 @@ public final class Point implements IPoint {
 
         this.x -= point.getX();
         this.y -= point.getY();
-
-        this.hashCode = this.comparator.getHashCode(this);
 
         return this;
     }
@@ -110,8 +102,6 @@ public final class Point implements IPoint {
             this.y += point.getY();
         }
 
-        this.hashCode = this.comparator.getHashCode(this);
-
         return this;
     }
 
@@ -127,8 +117,6 @@ public final class Point implements IPoint {
             this.x -= point.getX();
             this.y -= point.getY();
         }
-
-        this.hashCode = this.comparator.getHashCode(this);
 
         return this;
     }

@@ -46,8 +46,8 @@ public final class Types implements ITypes {
     private final double[] doubleArray;
     private final String[] stringArray;
     private final byte[] blob;
-
-    private final IBinaryComparator<ITypes> comparator = Types.DefaultComparator();
+    private final IBinaryComparator<ITypes> comparator;
+    private final int hashCode;
 
     /**
      * The Color constructor.
@@ -69,6 +69,45 @@ public final class Types implements ITypes {
         String[] stringArray,
         byte[] blob) {
 
+        this(
+            booleanValue,
+            shortValue,
+            integerValue,
+            longValue,
+            floatValue,
+            doubleValue,
+            stringValue,
+            booleanArray,
+            shortArray,
+            integerArray,
+            longArray,
+            floatArray,
+            doubleArray,
+            stringArray,
+            blob,
+            Types.DefaultComparator());
+    }
+    /**
+     * The Color constructor.
+     */
+    public Types(
+        boolean booleanValue,
+        short shortValue,
+        int integerValue,
+        long longValue,
+        float floatValue,
+        double doubleValue,
+        String stringValue,
+        boolean[] booleanArray,
+        short[] shortArray,
+        int[] integerArray,
+        long[] longArray,
+        float[] floatArray,
+        double[] doubleArray,
+        String[] stringArray,
+        byte[] blob,
+        IBinaryComparator<ITypes> comparator) {
+
         this.booleanValue = booleanValue;
         this.shortValue = shortValue;
         this.integerValue = integerValue;
@@ -84,6 +123,8 @@ public final class Types implements ITypes {
         this.doubleArray = doubleArray;
         this.stringArray = stringArray;
         this.blob = blob;
+        this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -273,7 +314,7 @@ public final class Types implements ITypes {
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this);
+        return hashCode;
     }
 
     /**
