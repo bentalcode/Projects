@@ -12,33 +12,6 @@ public final class Collections {
     private static final String DefaultDelimiter = ", ";
 
     /**
-     * Checks equality of collections.
-     */
-    public <TValue> boolean equals(
-        Iterator<TValue> lhsIterator,
-        Iterator<TValue> rhsIterator) {
-
-        if (lhsIterator == null && rhsIterator == null) {
-            return true;
-        }
-
-        if (lhsIterator == null || rhsIterator == null) {
-            return true;
-        }
-
-        while (lhsIterator.hasNext() && rhsIterator.hasNext()) {
-            TValue lhsValue = lhsIterator.next();
-            TValue rhsValue = rhsIterator.next();
-
-            if (!lhsValue.equals(rhsValue)) {
-                return false;
-            }
-        }
-
-        return !lhsIterator.hasNext() && !rhsIterator.hasNext();
-    }
-
-    /**
      * Converts a collection of values into a string.
      */
     public static <T> String toString(Iterator<T> iterator) {

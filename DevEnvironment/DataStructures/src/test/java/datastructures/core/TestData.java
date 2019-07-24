@@ -309,6 +309,16 @@ public final class TestData implements ITestData {
         List<Triple<String, Integer, List<Integer>>> data = new ArrayList<>();
 
         data.add(new Triple<>("addToFront", 1, ArrayLists.of(1)));
+        data.add(new Triple<>("addToFront", 2, ArrayLists.of(2, 1)));
+        data.add(new Triple<>("addToFront", 3, ArrayLists.of(3, 2, 1)));
+        data.add(new Triple<>("removeFromFront", null, ArrayLists.of(2, 1)));
+        data.add(new Triple<>("removeFromFront", null, ArrayLists.of(1)));
+        data.add(new Triple<>("addToBack", 2, ArrayLists.of(1, 2)));
+        data.add(new Triple<>("addToBack", 3, ArrayLists.of(1, 2, 3)));
+        data.add(new Triple<>("addToBack", 4, ArrayLists.of(1, 2, 3, 4)));
+        data.add(new Triple<>("addToBack", 5, ArrayLists.of(1, 2, 3, 4, 5)));
+        data.add(new Triple<>("removeFromBack", null, ArrayLists.of(1, 2, 3, 4)));
+        data.add(new Triple<>("removeFromBack", null, ArrayLists.of(1, 2, 3)));
 
         return data;
     }

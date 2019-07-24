@@ -234,12 +234,16 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
             nodeToRemove,
             "The node to remove.");
 
-        IDoublyLinkedListNode<TValue> nextNode = nodeToRemove.next();
         IDoublyLinkedListNode<TValue> previousNode = nodeToRemove.previous();
+        IDoublyLinkedListNode<TValue> nextNode = nodeToRemove.next();
 
         this.linkedNodes(previousNode, nextNode);
 
-        if (nodeToRemove == this.tail) {
+        if (previousNode == null) {
+            this.head = nextNode;
+        }
+
+        if (nextNode == null) {
             this.tail = previousNode;
         }
 

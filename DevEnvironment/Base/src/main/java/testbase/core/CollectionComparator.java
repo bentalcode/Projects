@@ -36,21 +36,7 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
             return false;
         }
 
-        Iterator<T> lhsIterator = lhs.iterator();
-        Iterator<T> rhsIterator = rhs.iterator();
-
-        while (lhsIterator.hasNext() && rhsIterator.hasNext()) {
-            T lhsValue = lhsIterator.next();
-            T rhsValue = rhsIterator.next();
-
-            if (!comparator.isEqual(lhsValue, rhsValue)) {
-                return false;
-            }
-        }
-
-        assert(!lhsIterator.hasNext() && !rhsIterator.hasNext());
-
-        return true;
+        return this.isEqual(lhs.iterator(), rhs.iterator(), comparator);
     }
 
     /**
@@ -86,12 +72,66 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
             return 1;
         }
 
-        Iterator<T> lhsIterator = lhs.iterator();
-        Iterator<T> rhsIterator = rhs.iterator();
+        return this.compareTo(lhs.iterator(), rhs.iterator(), comparator);
+    }
 
-        while (lhsIterator.hasNext() && rhsIterator.hasNext()) {
-            T lhsValue = lhsIterator.next();
-            T rhsValue = rhsIterator.next();
+    /**
+     * Checks whether the iterators of collections are equals with an element comparator.
+     */
+    @Override
+    public boolean isEqual(Iterator<T> lhs, Iterator<T> rhs, IBinaryComparator<T> comparator) {
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator of a collection element.");
+
+        if (lhs == null && rhs == null) {
+            return true;
+        }
+
+        if (lhs == null || rhs == null) {
+            return false;
+        }
+
+        while (lhs.hasNext() && rhs.hasNext()) {
+            T lhsValue = lhs.next();
+            T rhsValue = rhs.next();
+
+            if (!comparator.isEqual(lhsValue, rhsValue)) {
+                return false;
+            }
+        }
+
+        return !lhs.hasNext() && !rhs.hasNext();
+    }
+
+    /**
+     * Determines the relative order of arrays with an element comparator.
+     *
+     * Returns -1 if the left hand side value is less than the right hand side value.
+     * Returns 0 if the left hand side value is equal to the right hand side value.
+     * Returns 1 if the left hand side value is greater than the right hand side value.
+     */
+    @Override
+    public int compareTo(Iterator<T> lhs, Iterator<T> rhs, IBinaryComparator<T> comparator) {
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator of a collection element.");
+
+        if (lhs == null && rhs == null) {
+            return 0;
+        }
+
+        if (lhs == null) {
+            return -1;
+        }
+
+        if (rhs == null) {
+            return 1;
+        }
+
+        while (lhs.hasNext() && rhs.hasNext()) {
+            T lhsValue = lhs.next();
+            T rhsValue = rhs.next();
 
             int status = comparator.compareTo(lhsValue, rhsValue);
 
@@ -100,7 +140,13 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
             }
         }
 
-        assert(!lhsIterator.hasNext() && !rhsIterator.hasNext());
+        if (!lhs.hasNext() && rhs.hasNext()) {
+            return -1;
+        }
+
+        if (lhs.hasNext() && !rhs.hasNext()) {
+            return 1;
+        }
 
         return 0;
     }

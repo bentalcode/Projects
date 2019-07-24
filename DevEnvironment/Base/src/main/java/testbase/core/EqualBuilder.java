@@ -6,6 +6,7 @@ import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparatorFactory;
 import base.interfaces.IEqualBuilder;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * The EqualBuilder class implements an equal builder.
@@ -488,6 +489,21 @@ public final class EqualBuilder implements IEqualBuilder {
      */
     @Override
     public <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IBinaryComparator<T> comparator) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        ICollectionComparator<T> collectionComparator = this.comparatorFactory.createCollectionComparator();
+        this.equalityStatus = collectionComparator.isEqual(lhs, rhs, comparator);
+
+        return this;
+    }
+
+    /**
+     * With a generic iterator.
+     */
+    @Override
+    public <T> IEqualBuilder withIterator(Iterator<T> lhs, Iterator<T> rhs, IBinaryComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }

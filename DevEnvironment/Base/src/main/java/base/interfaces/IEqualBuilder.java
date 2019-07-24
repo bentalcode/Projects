@@ -1,6 +1,7 @@
 package base.interfaces;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -116,6 +117,11 @@ public interface IEqualBuilder {
      * With a generic collection.
      */
     <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IBinaryComparator<T> comparator);
+
+    /**
+     * With a generic iterator.
+     */
+    <T> IEqualBuilder withIterator(Iterator<T> lhs, Iterator<T> rhs, IBinaryComparator<T> comparator);
 
     /**
      * Builds the resultant equality status.
