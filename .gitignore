@@ -9,6 +9,8 @@
 .gradle/
 gradle/
 build/
+out/
+gradlew.bat
 
 #
 # An asterisk is a wildcard that matches zero or more characters. 

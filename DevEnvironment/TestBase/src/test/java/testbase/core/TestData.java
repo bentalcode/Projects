@@ -1,9 +1,7 @@
 package testbase.core;
 
-import base.interfaces.ITestData;
+import testbase.interfaces.ITestData;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The TestData class implements the data of the tests.
