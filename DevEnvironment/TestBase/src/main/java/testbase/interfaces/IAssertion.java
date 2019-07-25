@@ -8,7 +8,24 @@ import base.interfaces.IIterator;
  */
 public interface IAssertion {
     /**
-     * Asserts equality.
+     * Asserts equality with objects.
+     */
+    <T extends Comparable<T>> void assertEquals(
+        T lhs,
+        T rhs,
+        String message);
+
+    /**
+     * Asserts equality with objects..
+     */
+    <T extends Comparable<T>> void assertEquals(
+        T lhs,
+        T rhs,
+        IBinaryComparator<T> comparator,
+        String message);
+
+    /**
+     * Asserts equality with iterators.
      */
     <T extends Comparable<T>> void assertEquals(
         IIterator<T> lhs,
@@ -16,7 +33,7 @@ public interface IAssertion {
         String message);
 
     /**
-     * Asserts equality.
+     * Asserts equality with iterators.
      */
     <T extends Comparable<T>> void assertEquals(
         IIterator<T> lhs,

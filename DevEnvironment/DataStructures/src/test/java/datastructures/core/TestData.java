@@ -6,7 +6,9 @@ import base.core.Pair;
 import base.core.Triple;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.INullable;
+import base.interfaces.IPair;
 import base.interfaces.IPrimitiveSize;
+import base.interfaces.ITriple;
 import datastructures.blocktree.core.BlockTreeLevels;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
 import datastructures.bplustree.core.BPlusTreeMetrics;
@@ -15,10 +17,11 @@ import datastructures.bplustree.core.BPlusTreeProperties;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
+import datastructures.node.core.KeyValueNode;
 import datastructures.node.core.KeyValueNodes;
+import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodes;
 import datastructures.interfaces.ITestData;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +60,7 @@ public final class TestData implements ITestData {
      * Gets the creation data of a B+ tree.
      */
     @Override
-    public List<Pair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData() {
+    public List<IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData() {
         IKeyValueNodes<Integer, String> treeData1 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
@@ -195,22 +198,22 @@ public final class TestData implements ITestData {
             .build();
 
         return ArrayLists.of(
-            new Pair<>(treeData1, treeLevels1),
-            new Pair<>(treeData2, treeLevels2),
-            new Pair<>(treeData3, treeLevels3),
-            new Pair<>(treeData4, treeLevels4),
-            new Pair<>(treeData5, treeLevels5),
-            new Pair<>(treeData6, treeLevels6),
-            new Pair<>(treeData7, treeLevels7),
-            new Pair<>(treeData8, treeLevels8),
-            new Pair<>(treeData9, treeLevels9));
+            Pair.of(treeData1, treeLevels1),
+            Pair.of(treeData2, treeLevels2),
+            Pair.of(treeData3, treeLevels3),
+            Pair.of(treeData4, treeLevels4),
+            Pair.of(treeData5, treeLevels5),
+            Pair.of(treeData6, treeLevels6),
+            Pair.of(treeData7, treeLevels7),
+            Pair.of(treeData8, treeLevels8),
+            Pair.of(treeData9, treeLevels9));
     }
 
     /**
      * Gets the data of B+ trees.
      */
     @Override
-    public List<Triple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData() {
+    public List<ITriple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData() {
         IKeyValueNodes<Integer, String> treeData1 = new KeyValueNodes.Builder<Integer, String>()
             .addNode(1, "a")
             .addNode(4, "b")
@@ -274,37 +277,37 @@ public final class TestData implements ITestData {
             .build();
 
         return ArrayLists.of(
-            new Triple<>(treeData1, treeLevels1, treeMetrics1),
-            new Triple<>(treeData2, treeLevels2, treeMetrics2),
-            new Triple<>(treeData3, treeLevels3, treeMetrics3));
+            Triple.of(treeData1, treeLevels1, treeMetrics1),
+            Triple.of(treeData2, treeLevels2, treeMetrics2),
+            Triple.of(treeData3, treeLevels3, treeMetrics3));
     }
 
     /**
      * Gets the least recently used data.
      */
     @Override
-    public List<Triple<String, Integer, List<Integer>>> getLRUData() {
-        List<Triple<String, Integer, List<Integer>>> data = new ArrayList<>();
+    public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getLRUData() {
+        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = new ArrayList<>();
 
-        data.add (new Triple<>("set", 1, ArrayLists.of(1)));
-        data.add (new Triple<>("set", 2, ArrayLists.of(2, 1)));
-        data.add (new Triple<>("set", 3, ArrayLists.of(3, 2, 1)));
-        data.add (new Triple<>("set", 4, ArrayLists.of(4, 3, 2)));
-        data.add (new Triple<>("set", 1, ArrayLists.of(1, 4, 3)));
-        data.add (new Triple<>("set", 2, ArrayLists.of(2, 1, 4)));
-        data.add (new Triple<>("set", 5, ArrayLists.of(5, 2, 1)));
-        data.add (new Triple<>("set", 1, ArrayLists.of(1, 5, 2)));
-        data.add (new Triple<>("set", 2, ArrayLists.of(2, 1, 5)));
-        data.add (new Triple<>("set", 3, ArrayLists.of(3, 2, 1)));
-        data.add (new Triple<>("set", 4, ArrayLists.of(4, 3, 2)));
-        data.add (new Triple<>("set", 5, ArrayLists.of(5, 4, 3)));
-        data.add (new Triple<>("get", 3, ArrayLists.of(3, 5, 4)));
-        data.add (new Triple<>("get", 3, ArrayLists.of(3, 5, 4)));
-        data.add (new Triple<>("get", 4, ArrayLists.of(4, 3, 5)));
-        data.add (new Triple<>("get", 5, ArrayLists.of(5, 4, 3)));
-        data.add (new Triple<>("delete", 4, ArrayLists.of(5, 3)));
-        data.add (new Triple<>("delete", 3, ArrayLists.of(5)));
-        data.add (new Triple<>("delete", 5, new ArrayList<>()));
+        data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"))));
+        data.add(Triple.of("set", KeyValueNode.of(2, "b"), ArrayLists.of(KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
+        data.add(Triple.of("set", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
+        data.add(Triple.of("set", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"))));
+        data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
+        data.add(Triple.of("set", KeyValueNode.of(2, "b"), ArrayLists.of(KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"), KeyValueNode.of(4, "d"))));
+        data.add(Triple.of("set", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
+        data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"), KeyValueNode.of(5, "e"), KeyValueNode.of(2, "b"))));
+        data.add(Triple.of("set", KeyValueNode.of(2, "b"), ArrayLists.of(KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"), KeyValueNode.of(5, "e"))));
+        data.add(Triple.of("set", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
+        data.add(Triple.of("set", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"))));
+        data.add(Triple.of("set", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
+        data.add(Triple.of("get", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"))));
+        data.add(Triple.of("get", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"))));
+        data.add(Triple.of("get", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"))));
+        data.add(Triple.of("get", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
+        data.add(Triple.of("delete", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(3, "c"))));
+        data.add(Triple.of("delete", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(5, "e"))));
+        data.add(Triple.of("delete", KeyValueNode.of(5, "e"), new ArrayList<>()));
 
         return data;
     }
@@ -313,20 +316,20 @@ public final class TestData implements ITestData {
      * Gets the doubly linked list data.
      */
     @Override
-    public List<Triple<String, Integer, List<Integer>>> getDoublyLinkedListData() {
-        List<Triple<String, Integer, List<Integer>>> data = new ArrayList<>();
+    public List<ITriple<String, Integer, List<Integer>>> getDoublyLinkedListData() {
+        List<ITriple<String, Integer, List<Integer>>> data = new ArrayList<>();
 
-        data.add(new Triple<>("addToFront", 1, ArrayLists.of(1)));
-        data.add(new Triple<>("addToFront", 2, ArrayLists.of(2, 1)));
-        data.add(new Triple<>("addToFront", 3, ArrayLists.of(3, 2, 1)));
-        data.add(new Triple<>("removeFromFront", null, ArrayLists.of(2, 1)));
-        data.add(new Triple<>("removeFromFront", null, ArrayLists.of(1)));
-        data.add(new Triple<>("addToBack", 2, ArrayLists.of(1, 2)));
-        data.add(new Triple<>("addToBack", 3, ArrayLists.of(1, 2, 3)));
-        data.add(new Triple<>("addToBack", 4, ArrayLists.of(1, 2, 3, 4)));
-        data.add(new Triple<>("addToBack", 5, ArrayLists.of(1, 2, 3, 4, 5)));
-        data.add(new Triple<>("removeFromBack", null, ArrayLists.of(1, 2, 3, 4)));
-        data.add(new Triple<>("removeFromBack", null, ArrayLists.of(1, 2, 3)));
+        data.add(Triple.of("addToFront", 1, ArrayLists.of(1)));
+        data.add(Triple.of("addToFront", 2, ArrayLists.of(2, 1)));
+        data.add(Triple.of("addToFront", 3, ArrayLists.of(3, 2, 1)));
+        data.add(Triple.of("removeFromFront", null, ArrayLists.of(2, 1)));
+        data.add(Triple.of("removeFromFront", null, ArrayLists.of(1)));
+        data.add(Triple.of("addToBack", 2, ArrayLists.of(1, 2)));
+        data.add(Triple.of("addToBack", 3, ArrayLists.of(1, 2, 3)));
+        data.add(Triple.of("addToBack", 4, ArrayLists.of(1, 2, 3, 4)));
+        data.add(Triple.of("addToBack", 5, ArrayLists.of(1, 2, 3, 4, 5)));
+        data.add(Triple.of("removeFromBack", null, ArrayLists.of(1, 2, 3, 4)));
+        data.add(Triple.of("removeFromBack", null, ArrayLists.of(1, 2, 3)));
 
         return data;
     }

@@ -36,7 +36,7 @@ public final class ExpressionTreeResults implements IExpressionTreeResults {
      * Gets an iterator for iterating over a collection.
      */
     @Override
-    public IIterator<IExpressionTreeResult> iterator() {
+    public IIterator<IExpressionTreeResult> getIterator() {
         this.reset();
         return this;
     }

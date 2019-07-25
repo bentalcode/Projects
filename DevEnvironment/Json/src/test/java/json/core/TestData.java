@@ -3,6 +3,7 @@ package json.core;
 import base.core.Pair;
 import base.core.Paths;
 import base.core.ResourcePathBuilder;
+import base.interfaces.IPair;
 import json.interfaces.ITestData;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,12 +16,12 @@ public final class TestData implements ITestData {
     private static final String DataDirectoryName = "data";
     private static final String SimpleJsonResourcesDirectoryName = "simpleJsonResources";
 
-    private static final List<Pair<String, Class<?>>> SimpleJsonResourcesInformation = new ArrayList<>();
+    private static final List<IPair<String, Class<?>>> SimpleJsonResourcesInformation = new ArrayList<>();
 
     static {
-        SimpleJsonResourcesInformation.add(new Pair<>("simpleResource1.json", Types.class));
-        SimpleJsonResourcesInformation.add(new Pair<>("simpleResource2.json", Fruit.class));
-        SimpleJsonResourcesInformation.add(new Pair<>("simpleResource3.json", Colors.class));
+        SimpleJsonResourcesInformation.add(Pair.of("simpleResource1.json", Types.class));
+        SimpleJsonResourcesInformation.add(Pair.of("simpleResource2.json", Fruit.class));
+        SimpleJsonResourcesInformation.add(Pair.of("simpleResource3.json", Colors.class));
     }
 
     /**
@@ -32,14 +33,15 @@ public final class TestData implements ITestData {
     /**
      * Gets information of simple json resources.
      */
-    public List<Pair<Path, Class<?>>> getSimpleJsonResourcesInformation() {
-        List<Pair<Path, Class<?>>> information = new ArrayList<>();
+    @Override
+    public List<IPair<Path, Class<?>>> getSimpleJsonResourcesInformation() {
+        List<IPair<Path, Class<?>>> information = new ArrayList<>();
 
-        for (Pair<String, Class<?>> resourceInformation : TestData.SimpleJsonResourcesInformation) {
+        for (IPair<String, Class<?>> resourceInformation : TestData.SimpleJsonResourcesInformation) {
             Path path = this.createSimpleJsonResourcePath(resourceInformation.first());
             Class<?> classType = resourceInformation.second();
 
-            information.add(new Pair<>(path, classType));
+            information.add(Pair.of(path, classType));
         }
 
         return information;

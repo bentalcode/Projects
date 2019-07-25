@@ -101,7 +101,7 @@ public final class DataCommand implements IDataCommand {
             throw new DataCommandException(errorMessage);
         }
 
-        return new Pair<>(keyValue[0], keyValue[1]);
+        return Pair.of(keyValue[0], keyValue[1]);
     }
 
     /**

@@ -1,8 +1,8 @@
 package datastructures.plustree.core;
 
-import base.core.Pair;
-import base.core.Triple;
 import base.interfaces.INullable;
+import base.interfaces.IPair;
+import base.interfaces.ITriple;
 import datastructures.core.TestData;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
 import datastructures.bplustree.core.BPlusTree;
@@ -55,10 +55,10 @@ public final class BPlusTreeTest {
     public void createTreeTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getTreeProperties();
 
-        List<Pair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
+        List<IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
             this.testData.getCreationData();
 
-        for (Pair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>> entry : creationData) {
+        for (IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>> entry : creationData) {
             IKeyValueNodes<Integer, String> treeData = entry.first();
             IBlockTreeLevels<Integer, INullable> treeLevels = entry.second();
 
@@ -76,10 +76,10 @@ public final class BPlusTreeTest {
     public void iterateTreeTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getTreeProperties();
 
-        List<Pair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
+        List<IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
             this.testData.getCreationData();
 
-        for (Pair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>> entry : creationData) {
+        for (IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>> entry : creationData) {
             IKeyValueNodes<Integer, String> treeData = entry.first();
 
             this.testIterateTree(
@@ -95,10 +95,10 @@ public final class BPlusTreeTest {
     public void calculateTreeMetricsTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getTreeProperties();
 
-        List<Triple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> data =
+        List<ITriple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> data =
             this.testData.getTreesData();
 
-        for (Triple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics> entry : data) {
+        for (ITriple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics> entry : data) {
             IKeyValueNodes<Integer, String> treeData = entry.first();
             IBPlusTreeMetrics treeMetrics = entry.third();
 

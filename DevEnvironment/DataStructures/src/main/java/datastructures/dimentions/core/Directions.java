@@ -42,7 +42,7 @@ public final class Directions implements IDirections {
      * Gets an iterator for iterating over a collection.
      */
     @Override
-    public IIterator<IDirection> iterator() {
+    public IIterator<IDirection> getIterator() {
         this.reset();
         return this;
     }

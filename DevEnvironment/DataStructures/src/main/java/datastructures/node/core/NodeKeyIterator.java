@@ -1,7 +1,6 @@
 package datastructures.node.core;
 
 import base.core.Conditions;
-import base.interfaces.IIterator;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
 import datastructures.collections.interfaces.IKeyIterator;
 
@@ -22,15 +21,6 @@ public final class NodeKeyIterator<TKey extends Comparable<TKey>, TValue> implem
         this.iterator = iterator;
 
         this.reset();
-    }
-
-    /**
-     * Gets an iterator for iterating over keys.
-     */
-    @Override
-    public IIterator<TKey> iterator() {
-        this.reset();
-        return this;
     }
 
     /**

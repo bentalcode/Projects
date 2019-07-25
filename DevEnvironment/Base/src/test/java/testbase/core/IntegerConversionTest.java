@@ -1,7 +1,7 @@
 package testbase.core;
 
 import base.core.Conversion;
-import base.core.Pair;
+import base.interfaces.IPair;
 import base.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Assert;
@@ -40,9 +40,9 @@ public final class IntegerConversionTest {
      */
     @Test
     public void testConversion() {
-        List<Pair<Integer, String>> values = this.testData.getIntegerStrings();
+        List<IPair<Integer, String>> values = this.testData.getIntegerStrings();
 
-        for (Pair<Integer, String> value : values) {
+        for (IPair<Integer, String> value : values) {
             this.testConversion(value.second(), value.first());
         }
     }

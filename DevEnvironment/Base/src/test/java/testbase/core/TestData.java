@@ -3,6 +3,7 @@ package testbase.core;
 import base.core.Pair;
 import base.core.Paths;
 import base.core.ResourcePathBuilder;
+import base.interfaces.IPair;
 import base.interfaces.ITestData;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -39,14 +40,14 @@ public final class TestData implements ITestData {
      * Gets values of integer-string.
      */
     @Override
-    public List<Pair<Integer, String>> getIntegerStrings() {
-        List<Pair<Integer, String>> values = new ArrayList<>();
+    public List<IPair<Integer, String>> getIntegerStrings() {
+        List<IPair<Integer, String>> values = new ArrayList<>();
 
-        values.add(new Pair<>(0, "0"));
-        values.add(new Pair<>(101, "101"));
-        values.add(new Pair<>(-2222, "-2222"));
-        values.add(new Pair<>(2222, "2222"));
-        values.add(new Pair<>(22222222, "22222222"));
+        values.add(Pair.of(0, "0"));
+        values.add(Pair.of(101, "101"));
+        values.add(Pair.of(-2222, "-2222"));
+        values.add(Pair.of(2222, "2222"));
+        values.add(Pair.of(22222222, "22222222"));
 
         return values;
     }

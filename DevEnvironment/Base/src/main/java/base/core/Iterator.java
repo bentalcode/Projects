@@ -6,7 +6,7 @@ import java.util.Collection;
 /**
  * The Iterator class implements a wrapper for the build-in iterator.
  */
-public class Iterator<T> implements IIterator<T> {
+public final class Iterator<T> implements IIterator<T> {
     private java.util.Iterator<T> iterator;
 
     /**
@@ -31,15 +31,6 @@ public class Iterator<T> implements IIterator<T> {
         this.iterator = iterator;
 
         this.reset();
-    }
-
-    /**
-     * Gets an iterator for iterating over a collection.
-     */
-    @Override
-    public IIterator<T> iterator() {
-        this.reset();
-        return this;
     }
 
     /**

@@ -1,6 +1,7 @@
 package datastructures.cache.core;
 
 import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.cache.CacheException;
 import datastructures.cache.interfaces.ICacheProperties;
 import datastructures.cache.interfaces.ILRUCache;
@@ -9,6 +10,7 @@ import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeIterator
 import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
@@ -28,7 +30,7 @@ import org.slf4j.LoggerFactory;
 public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements ILRUCache<TKey, TValue> {
     private final ICacheProperties properties;
 
-    private IDoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList = new DoublyLinkedList<>();
+    private DoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList = new DoublyLinkedList<>();
     private Map<TKey, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup = new HashMap<>();
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -37,7 +39,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
      * The LRUCache constructor.
      */
     public LRUCache(ICacheProperties properties) {
-        Conditions.validateNotNull(
+            Conditions.validateNotNull(
             properties,
             "The properties of a cache.");
 
@@ -157,11 +159,21 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
     }
 
     /**
+     * Gets an iterator of data of a cache.
+     * Complexity: O(1)
+     */
+    @Override
+    public IKeyValueNodeIterator<TKey, TValue> getIterator() {
+        IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator = this.usedList.getIterator();
+        return new DoublyLinkedListKeyValueNodeIterator<>(iterator);
+    }
+
+    /**
      * Gets an iterator of keys of a cache.
      * Complexity: O(1)
      */
     public IKeyIterator<TKey> getKeyIterator() {
-        return new NodeKeyIterator<>(this.getDataIterator());
+        return new NodeKeyIterator<>(this.getIterator());
     }
 
     /**
@@ -170,16 +182,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> implements IL
      */
     @Override
     public IValueIterator<TValue> getValueIterator() {
-        return new NodeValueIterator<>(this.getDataIterator());
-    }
-
-    /**
-     * Gets an iterator of data of a cache.
-     * Complexity: O(1)
-     */
-    @Override
-    public IKeyValueNodeIterator<TKey, TValue> getDataIterator() {
-        return new DoublyLinkedListKeyValueNodeIterator<>(this.usedList.getIterator());
+        return new NodeValueIterator<>(this.getIterator());
     }
 
     /**

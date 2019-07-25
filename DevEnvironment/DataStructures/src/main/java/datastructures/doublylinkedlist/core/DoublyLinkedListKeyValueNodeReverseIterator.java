@@ -1,14 +1,16 @@
 package datastructures.doublylinkedlist.core;
 
 import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
 
 /**
- * The DoublyLinkedListKeyValueNodeIterator class implements an iterator of key-value nodes of a doubly linked list.
+ * The DoublyLinkedListKeyValueNodeReverseIterator class implements a reverse iterator
+ * of key-value nodes of a doubly linked list.
  */
-public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
+public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TValue>
     implements IKeyValueNodeIterator<TKey, TValue> {
 
     private final IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator;
@@ -16,7 +18,7 @@ public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<
     /**
      * The DoublyLinkedListNodeIterator constructor.
      */
-    public DoublyLinkedListKeyValueNodeIterator(IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator) {
+    public DoublyLinkedListKeyValueNodeReverseIterator(IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator) {
         Conditions.validateNotNull(
             iterator,
             "The iterator of a key-value node of doubly linked list.");

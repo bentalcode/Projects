@@ -1,22 +1,30 @@
 package cache.core;
 
-import base.core.Triple;
+import base.core.Iterator;
+import base.interfaces.IIterator;
+import base.interfaces.ITriple;
 import datastructures.cache.core.CacheProperties;
 import datastructures.cache.core.LRUCache;
+import datastructures.cache.interfaces.ILRUCache;
 import datastructures.collections.interfaces.IKeyIterator;
+import datastructures.collections.interfaces.IValueIterator;
 import datastructures.core.TestData;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.interfaces.ITestData;
+import datastructures.node.interfaces.IKeyValueNode;
+import datastructures.node.interfaces.IKeyValueNodeIterator;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.core.Assertion;
+import testbase.interfaces.IAssertion;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * The LRUCacheTest class implements tests for a least recently used cache.
  */
 public final class LRUCacheTest {
+    private final IAssertion assertion = new Assertion();
     private final ITestData testData = new TestData();
 
     /**
@@ -40,69 +48,171 @@ public final class LRUCacheTest {
     }
 
     /**
-     * Tests the set logic of a cache.
+     * Tests the updation logic of a cache.
      */
     @Test
-    public void LRUCacheTest() {
-        LRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
+    public void LRUCacheUpdationTest() {
+        ILRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
 
-        List<Triple<String, Integer, List<Integer>>> data = this.testData.getLRUData();
-        this.testLRUCache(cache, data);
+        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = this.testData.getLRUData();
+
+        this.testUpdation(cache, data);
     }
 
     /**
-     * Tests the least recently used cache.
+     * Tests the iteration logic of a cache.
      */
-    private <TKey extends Comparable<TKey>, TValue> void testLRUCache(
-        LRUCache<TKey, TValue> cache,
-        List<Triple<String, TKey, List<TKey>>> data) {
+    @Test
+    public void LRUCacheIterationTest() {
+        ILRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
 
-        for (Triple<String, TKey, List<TKey>> entry : data) {
-            this.testSet(cache, entry.first(), entry.second(), entry.third());
+        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = this.testData.getLRUData();
+
+        this.testIteration(cache, data);
+    }
+
+    /**
+     * Tests the updation logic of a cache.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void testUpdation(
+        ILRUCache<TKey, TValue> cache,
+        List<ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>>> data) {
+
+        for (ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>> entry : data) {
+            this.testUpdation(
+                cache,
+                entry.first(),
+                entry.second(),
+                entry.third());
         }
     }
 
     /**
-     * Tests the insertion logic of a LRU cache.
+     * Tests the iteration logic of a cache.
      */
-    private <TKey extends Comparable<TKey>, TValue> void testSet(
-        LRUCache<TKey, TValue> cache,
+    private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testIteration(
+        ILRUCache<TKey, TValue> cache,
+        List<ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>>> data) {
+
+        for (ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>> entry : data) {
+            this.testIteration(
+                cache,
+                entry.first(),
+                entry.second(),
+                entry.third());
+        }
+    }
+
+    /**
+     * Tests the updation logic of a cache.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void testUpdation(
+        ILRUCache<TKey, TValue> cache,
         String operation,
-        TKey item,
-        List<TKey> expectedContent) {
+        IKeyValueNode<TKey, TValue> item,
+        List<IKeyValueNode<TKey, TValue>> expectedContent) {
+
+        this.updateCache(cache, operation, item);
+
+        this.assertion.assertEquals(
+            cache.getIterator(),
+            Iterator.of(expectedContent),
+            "Invalid updation logic of a cache.");
+    }
+
+    /**
+     * Tests the iteration logic of a cache.
+     */
+    private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testIteration(
+        ILRUCache<TKey, TValue> cache,
+        String operation,
+        IKeyValueNode<TKey, TValue> item,
+        List<IKeyValueNode<TKey, TValue>> expectedContent) {
+
+        this.updateCache(cache, operation, item);
+
+        //
+        // Test the default iterator of the container...
+        //
+        int index = 0;
+
+        for (IKeyValueNode<TKey, TValue> node : cache) {
+            this.assertion.assertEquals(
+                node,
+                expectedContent.get(index),
+                "Invalid logic of default forward iterator over nodes.");
+
+            ++index;
+        }
+
+        //
+        // Test the forward iteration over nodes...
+        //
+        IIterator<IKeyValueNode<TKey, TValue>> iterator = cache.getIterator();
+        index = 0;
+
+        while (iterator.hasNext()) {
+            IKeyValueNode<TKey, TValue> node = iterator.next();
+
+            this.assertion.assertEquals(
+                node,
+                expectedContent.get(index),
+                "Invalid logic of forward iterator over nodes.");
+
+            ++index;
+        }
+
+        //
+        // Test the forward iteration over keys...
+        //
+        IKeyIterator<TKey> keyIterator = cache.getKeyIterator();
+        index = 0;
+
+        while (keyIterator.hasNext()) {
+            TKey key = keyIterator.next();
+
+            this.assertion.assertEquals(
+                key,
+                expectedContent.get(index).getKey(),
+                "Invalid logic of forward iterator over keys.");
+
+            ++index;
+        }
+
+        //
+        // Test the forward iteration over values...
+        //
+        IValueIterator<TValue> valueIterator = cache.getValueIterator();
+        index = 0;
+
+        while (valueIterator.hasNext()) {
+            TValue value = valueIterator.next();
+
+            this.assertion.assertEquals(
+                value,
+                expectedContent.get(index).getValue(),
+                "Invalid logic of forward iterator over values.");
+
+            ++index;
+        }
+    }
+
+    /**
+     * Updates the cache.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void updateCache(
+        ILRUCache<TKey, TValue> cache,
+        String operation,
+        IKeyValueNode<TKey, TValue> item) {
 
         if (operation.equalsIgnoreCase("set")) {
-            cache.set(item, null);
+            cache.set(item.getKey(), item.getValue());
         }
         else if (operation.equalsIgnoreCase("get")) {
-            cache.get(item);
+            cache.get(item.getKey());
         }
         else if (operation.equalsIgnoreCase("delete")) {
-            cache.delete(item);
+            cache.delete(item.getKey());
         }
-
-        this.validateContent(cache, expectedContent);
-    }
-
-    /**
-     * Validates content of a least recently used.
-     */
-    private <TKey extends Comparable<TKey>, TValue> void validateContent(
-        LRUCache<TKey, TValue> cache,
-        List<TKey> expectedContent) {
-
-        IKeyIterator<TKey> actualKeyIterator = cache.getKeyIterator();
-        ListIterator<TKey> expectedKeyIterator = expectedContent.listIterator();
-
-        while (actualKeyIterator.hasNext() && expectedKeyIterator.hasNext()) {
-            TKey actualKey = actualKeyIterator.next();
-            TKey expectedKey = expectedKeyIterator.next();
-
-            Assert.assertEquals(actualKey, expectedKey);
-        }
-
-        Assert.assertTrue(
-            "Invalid content in LRU Cache after set.",
-            !actualKeyIterator.hasNext() && !expectedKeyIterator.hasNext());
     }
 }

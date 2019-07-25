@@ -5,7 +5,7 @@ import base.interfaces.IIterator;
 /**
  * The ArrayIterator class implements an iterator of an array.
  */
-public class ArrayIterator<T> implements IIterator<T> {
+public class ArrayIterator<T> implements IIterator<T>, Iterable<T> {
     private final T[] array;
     private int position;
 

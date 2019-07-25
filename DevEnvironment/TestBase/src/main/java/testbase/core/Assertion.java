@@ -17,7 +17,45 @@ public final class Assertion implements IAssertion {
     }
 
     /**
-     * Asserts equality.
+     * Asserts equality with objects.
+     */
+    @Override
+    public <T extends Comparable<T>> void assertEquals(
+        T lhs,
+        T rhs,
+        String message) {
+
+        IBinaryComparator<T> comparator = Comparator.DefaultComparator();
+
+        this.assertEquals(
+            lhs,
+            rhs,
+            comparator,
+            message);
+    }
+
+    /**
+     * Asserts equality with objects.
+     */
+    @Override
+    public <T extends Comparable<T>> void assertEquals(
+        T lhs,
+        T rhs,
+        IBinaryComparator<T> comparator,
+        String message) {
+
+        boolean status = new EqualBuilder().withObject(
+            lhs,
+            rhs,
+            comparator).build();
+
+        org.junit.Assert.assertTrue(
+            message,
+            status);
+    }
+
+    /**
+     * Asserts equality with iterators.
      */
     @Override
     public <T extends Comparable<T>> void assertEquals(
@@ -35,7 +73,7 @@ public final class Assertion implements IAssertion {
     }
 
     /**
-     * Asserts equality.
+     * Asserts equality with iterators.
      */
     @Override
     public <T extends Comparable<T>> void assertEquals(

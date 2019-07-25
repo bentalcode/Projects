@@ -16,5 +16,5 @@ public interface ITestData {
     /**
      * Gets values of integer-string.
      */
-    List<Pair<Integer, String>> getIntegerStrings();
+    List<IPair<Integer, String>> getIntegerStrings();
 }

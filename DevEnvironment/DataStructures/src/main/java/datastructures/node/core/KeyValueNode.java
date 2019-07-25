@@ -18,6 +18,13 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
     private final int hashCode;
 
     /**
+     * Creates a new instance of a key-value node.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IKeyValueNode<TKey, TValue> of(TKey key, TValue value) {
+        return new KeyValueNode<>(key, value);
+    }
+
+    /**
      * The KeyValueNode constructor.
      */
     public KeyValueNode(

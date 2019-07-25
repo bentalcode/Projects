@@ -1,11 +1,12 @@
 package datastructures.interfaces;
 
-import base.core.Pair;
-import base.core.Triple;
 import base.interfaces.INullable;
+import base.interfaces.IPair;
+import base.interfaces.ITriple;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
+import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodes;
 import java.util.List;
 
@@ -21,20 +22,20 @@ public interface ITestData {
     /**
      * Gets the creation data of B+ trees.
      */
-    List<Pair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData();
+    List<IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData();
 
     /**
      * Gets the data of B+ trees.
      */
-    List<Triple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData();
+    List<ITriple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData();
 
     /**
      * Gets the least recently used data.
      */
-    List<Triple<String, Integer, List<Integer>>> getLRUData();
+    List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getLRUData();
 
     /**
      * Gets the doubly linked list data.
      */
-    List<Triple<String, Integer, List<Integer>>> getDoublyLinkedListData();
+    List<ITriple<String, Integer, List<Integer>>> getDoublyLinkedListData();
 }

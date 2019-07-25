@@ -1,11 +1,13 @@
 package datastructures.doublylinkedlist.core;
 
-import datastructures.collections.core.Collections;
 import base.core.Conditions;
+import datastructures.collections.core.Collections;
 import datastructures.collections.interfaces.IValueIterator;
+import datastructures.collections.interfaces.IValueReverseIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
 
 /**
  * The DoublyLinkedList class implements a doubly linked list.
@@ -259,19 +261,27 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
     }
 
     /**
-     * Gets a reverse iterator of nodes of a list.
-     */
-    @Override
-    public IDoublyLinkedListNodeIterator<TValue> getReverseIterator() {
-        return new DoublyLinkedListNodeReverseIterator<>(this.tail);
-    }
-
-    /**
      * Gets an iterator of values of a list.
      */
     @Override
     public IValueIterator<TValue> getValueIterator() {
         return new DoublyLinkedListNodeValueIterator<>(this.getIterator());
+    }
+
+    /**
+     * Gets a reverse iterator of nodes of a list.
+     */
+    @Override
+    public IDoublyLinkedListNodeReverseIterator<TValue> getReverseIterator() {
+        return new DoublyLinkedListNodeReverseIterator<>(this.tail);
+    }
+
+    /**
+     * Gets a reverse iterator of values of a list.
+     */
+    @Override
+    public IValueReverseIterator<TValue> getValueReverseIterator() {
+        return new DoublyLinkedListNodeValueReverseIterator<>(this.getReverseIterator());
     }
 
     /**

@@ -5,7 +5,7 @@ import java.util.BitSet;
 /**
  * The IPrime interface defines complimentary APIs for a prime number.
  */
-public interface IPrime extends IIterator<Integer> {
+public interface IPrime extends Iterable<Integer>, IIterator<Integer> {
     /**
      * Checks whether a number is a prime.
      */

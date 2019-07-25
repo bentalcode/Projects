@@ -58,7 +58,7 @@ public final class JsonArray extends JsonElement implements IJsonArray {
      * Gets an iterator for iterating over the collection.
      */
     @Override
-    public IIterator<IJsonValue> iterator() {
+    public IIterator<IJsonValue> getIterator() {
         this.reset();
         return this;
     }

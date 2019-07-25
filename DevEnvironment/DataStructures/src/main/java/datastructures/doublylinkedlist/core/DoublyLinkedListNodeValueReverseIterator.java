@@ -1,22 +1,23 @@
 package datastructures.doublylinkedlist.core;
 
 import base.core.Conditions;
-import datastructures.collections.interfaces.IValueIterator;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
+import datastructures.collections.interfaces.IValueReverseIterator;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
 
 /**
- * The DoublyLinkedListNodeValueIterator class implements an iterator of values of a doubly linked list.
+ * The DoublyLinkedListNodeValueReverseIterator class implements a reverse iterator
+ * of values of a doubly linked list.
  */
-public final class DoublyLinkedListNodeValueIterator<TValue> implements IValueIterator<TValue> {
-    private final IDoublyLinkedListNodeIterator<TValue> iterator;
+public final class DoublyLinkedListNodeValueReverseIterator<TValue> implements IValueReverseIterator<TValue> {
+    private final IDoublyLinkedListNodeReverseIterator<TValue> iterator;
 
     /**
      * The NodeValueIterator constructor.
      */
-    public DoublyLinkedListNodeValueIterator(IDoublyLinkedListNodeIterator<TValue> iterator) {
+    public DoublyLinkedListNodeValueReverseIterator(IDoublyLinkedListNodeReverseIterator<TValue> iterator) {
         Conditions.validateNotNull(
             iterator,
-            "The iterator of a node of a doubly linked list.");
+            "The reverse iterator of a node of a doubly linked list.");
 
         this.iterator = iterator;
 

@@ -2,7 +2,10 @@ package base.interfaces;
 
 import java.util.Iterator;
 
-public interface IIterator<T> extends Iterable<T>, Iterator<T> {
+/**
+ * The IIterator interface defines an iterator.
+ */
+public interface IIterator<T> extends Iterator<T> {
     /*
      * Resets the iterator.
      */

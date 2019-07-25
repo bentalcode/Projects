@@ -1,13 +1,14 @@
 package datastructures.cache.interfaces;
 
-import datastructures.node.interfaces.IKeyValueNodeIterator;
+import base.interfaces.IIterable;
+import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 
 /**
  * The ILRUCache interface defines a least recently used cache.
  */
-public interface ILRUCache<TKey extends Comparable<TKey>, TValue> {
+public interface ILRUCache<TKey extends Comparable<TKey>, TValue> extends IIterable<IKeyValueNode<TKey, TValue>> {
     /**
      * Gets properties of a cache.
      */
@@ -52,12 +53,6 @@ public interface ILRUCache<TKey extends Comparable<TKey>, TValue> {
      * Complexity: O(1)
      */
     IValueIterator<TValue> getValueIterator();
-
-    /**
-     * Gets an iterator of data of a cache.
-     * Complexity: O(1)
-     */
-    IKeyValueNodeIterator<TKey, TValue> getDataIterator();
 
     /**
      * Gets the size of a cache.

@@ -1,11 +1,13 @@
 package datastructures.doublylinkedlist.interfaces;
 
+import base.interfaces.IIterable;
 import datastructures.collections.interfaces.IValueIterator;
+import datastructures.collections.interfaces.IValueReverseIterator;
 
 /**
  * The IDoublyLinkedList interface defines a doubly linked list.
  */
-public interface IDoublyLinkedList<TValue> {
+public interface IDoublyLinkedList<TValue> extends IIterable<IDoublyLinkedListNode<TValue>> {
     /**
      * Gets the head node of the list.
      */
@@ -82,17 +84,17 @@ public interface IDoublyLinkedList<TValue> {
     void remove(IDoublyLinkedListNode<TValue> nodeToRemove);
 
     /**
-     * Gets an iterator of nodes of a list.
+     * Gets an iterator of values of a list.
      */
-    IDoublyLinkedListNodeIterator<TValue> getIterator();
+    IValueIterator<TValue> getValueIterator();
 
     /**
      * Gets a reverse iterator of nodes of a list.
      */
-    IDoublyLinkedListNodeIterator<TValue> getReverseIterator();
+    IDoublyLinkedListNodeReverseIterator<TValue> getReverseIterator();
 
     /**
-     * Gets an iterator of values of a list.
+     * Gets a reverse iterator of values of a list.
      */
-    IValueIterator<TValue> getValueIterator();
+    IValueReverseIterator<TValue> getValueReverseIterator();
 }

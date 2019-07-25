@@ -8,11 +8,18 @@ import base.interfaces.IPair;
 public final class Pair<Type1, Type2> implements IPair<Type1, Type2> {
     private final Type1 first;
     private final Type2 second;
-    
+
+    /**
+     * Creates a new instance of a pair.
+     */
+    public static <Type1, Type2> IPair<Type1, Type2> of(Type1 first, Type2 second) {
+        return new Pair<>(first, second);
+    }
+
     /**
      * The Pair constructor.
      */
-    public Pair(Type1 first, Type2 second) {
+    private Pair(Type1 first, Type2 second) {
         this.first = first;
         this.second = second;
     }

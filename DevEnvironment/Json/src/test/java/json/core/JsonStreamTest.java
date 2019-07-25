@@ -1,8 +1,8 @@
 package json.core;
 
 import base.core.Casting;
-import base.core.Pair;
 import base.core.ResourceReader;
+import base.interfaces.IPair;
 import java.nio.file.Path;
 import json.interfaces.IJsonSerialization;
 import json.interfaces.ITestData;
@@ -42,7 +42,7 @@ public final class JsonStreamTest {
      */
     @Test
     public void jsonStreamingTest() {
-        for (Pair<Path, Class<?>> resourceInformation : this.testData.getSimpleJsonResourcesInformation()) {
+        for (IPair<Path, Class<?>> resourceInformation : this.testData.getSimpleJsonResourcesInformation()) {
             String json = ResourceReader.loadString(resourceInformation.first());
             this.testStreamingJson(json, Casting.cast(resourceInformation.second()));
         }

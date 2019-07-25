@@ -2,22 +2,22 @@ package datastructures.node.core;
 
 import base.core.Conditions;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
+import datastructures.node.interfaces.IKeyValueNodeReverseIterator;
 import java.util.List;
 
 /**
- * The KeyValueNodeIterator class implements an iterator of generic key-value nodes.
+ * The KeyValueNodeReverseIterator class implements a reverse iterator of generic key-value nodes.
  */
-public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
-    implements IKeyValueNodeIterator<TKey, TValue> {
+public final class KeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TValue>
+    implements IKeyValueNodeReverseIterator<TKey, TValue> {
 
     private final List<IKeyValueNode<TKey, TValue>> nodes;
     private int currentIndex;
 
     /**
-     * The KeyValueNodeIterator constructor.
+     * The KeyValueNodeReverseIterator constructor.
      */
-    public KeyValueNodeIterator(List<IKeyValueNode<TKey, TValue>> nodes) {
+    public KeyValueNodeReverseIterator(List<IKeyValueNode<TKey, TValue>> nodes) {
         Conditions.validateNotNull(
             nodes,
             "The list of nodes.");
@@ -32,7 +32,7 @@ public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public boolean hasNext() {
-        return this.currentIndex < this.nodes.size();
+        return this.currentIndex >= 0;
     }
 
     /**
@@ -42,10 +42,10 @@ public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
     public IKeyValueNode<TKey, TValue> next() {
         Conditions.validate(
             this.hasNext(),
-            "The iterator has already reached the end of nodes.");
+            "The iterator has already reached the start of list.");
 
         IKeyValueNode<TKey, TValue> currNodeData = this.nodes.get(this.currentIndex);
-        ++this.currentIndex;
+        --this.currentIndex;
 
         return currNodeData;
     }
@@ -55,6 +55,6 @@ public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public void reset() {
-        this.currentIndex = 0;
+        this.currentIndex = this.nodes.size() - 1;
     }
 }
