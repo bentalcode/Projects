@@ -10,11 +10,14 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.core.Assertion;
+import testbase.interfaces.IAssertion;
 
 /**
  * The JsonStreamTest class implements tests for reading writing from/to json streams.
  */
 public final class JsonStreamTest {
+    private final IAssertion assertion = new Assertion();
     private final ITestData testData = new TestData();
 
     /**
@@ -59,8 +62,8 @@ public final class JsonStreamTest {
 
         T obj2 = stream.fromJson(json2, classType);
 
-        Assert.assertTrue(
-            "The json streaming logic is invalid.",
-            obj1.equals(obj2));
+        this.assertion.assertTrue(
+            obj1.equals(obj2),
+            "The json streaming logic is invalid.");
     }
 }

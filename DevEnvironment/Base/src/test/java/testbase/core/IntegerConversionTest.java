@@ -4,15 +4,16 @@ import base.core.Conversion;
 import base.interfaces.IPair;
 import base.interfaces.ITestData;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.interfaces.IAssertion;
 import java.util.List;
 
 /**
  * The IntegerConversionTest class implements tests for integer-conversions.
  */
 public final class IntegerConversionTest {
+    private final IAssertion assertion = new Assertion();
     private final ITestData testData = new TestData();
 
     /**
@@ -53,8 +54,9 @@ public final class IntegerConversionTest {
     private void testConversion(String value, int expectedResult) {
         int result = Conversion.integerConversion().parse(value);
 
-        Assert.assertTrue(
-            "Invalid integer-String conversion logic.",
-            result == expectedResult);
+        this.assertion.assertEquals(
+            result,
+            expectedResult,
+            "Invalid integer-String conversion logic.");
     }
 }

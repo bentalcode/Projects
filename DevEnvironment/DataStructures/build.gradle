@@ -2,5 +2,4 @@ apply from: "${commonDir}/common.build.gradle"
 
 dependencies {
     compile project(':Base')
-    testCompile project(':TestBase')
 }

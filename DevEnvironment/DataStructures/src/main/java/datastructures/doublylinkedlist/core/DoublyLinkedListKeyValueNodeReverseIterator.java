@@ -1,8 +1,8 @@
 package datastructures.doublylinkedlist.core;
 
 import base.core.Conditions;
-import base.interfaces.IIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
 
@@ -13,15 +13,17 @@ import datastructures.node.interfaces.IKeyValueNodeIterator;
 public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TValue>
     implements IKeyValueNodeIterator<TKey, TValue> {
 
-    private final IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator;
+    private final IDoublyLinkedListNodeReverseIterator<IKeyValueNode<TKey, TValue>> iterator;
 
     /**
      * The DoublyLinkedListNodeIterator constructor.
      */
-    public DoublyLinkedListKeyValueNodeReverseIterator(IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator) {
+    public DoublyLinkedListKeyValueNodeReverseIterator(
+        IDoublyLinkedListNodeReverseIterator<IKeyValueNode<TKey, TValue>> iterator) {
+
         Conditions.validateNotNull(
             iterator,
-            "The iterator of a key-value node of doubly linked list.");
+            "The reverse iterator of a key-value node of a doubly linked list.");
 
         this.iterator = iterator;
 
@@ -43,7 +45,7 @@ public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comp
     public IKeyValueNode<TKey, TValue> next() {
         Conditions.validate(
             this.hasNext(),
-            "The iterator has already reached the end of list.");
+            "The reverse iterator has already reached the start of list.");
 
         IKeyValueNode<TKey, TValue> node = this.iterator.next().getValue();
 

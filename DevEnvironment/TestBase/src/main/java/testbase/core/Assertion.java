@@ -4,6 +4,7 @@ import base.core.Comparator;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
+import org.junit.Assert;
 import testbase.interfaces.IAssertion;
 
 /**
@@ -14,6 +15,19 @@ public final class Assertion implements IAssertion {
      * The Assertion constructor.
      */
     public Assertion() {
+    }
+
+    /**
+     * Asserts true.
+     */
+    @Override
+    public void assertTrue(
+        boolean expression,
+        String message) {
+
+        Assert.assertTrue(
+            message,
+            expression);
     }
 
     /**

@@ -39,7 +39,7 @@ public final class DoublyLinkedListNodeReverseIterator<TValue> implements IDoubl
     public IDoublyLinkedListNode<TValue> next() {
         Conditions.validate(
             this.hasNext(),
-            "The iterator has already reached the start of list.");
+            "The reverse iterator has already reached the start of list.");
 
         IDoublyLinkedListNode<TValue> currentNode = this.currentNode;
         this.currentNode = this.currentNode.previous();

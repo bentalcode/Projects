@@ -6,9 +6,9 @@ import base.core.ResourceReader;
 import base.core.Scanners;
 import base.interfaces.ITestData;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.interfaces.IAssertion;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -16,6 +16,7 @@ import java.util.Scanner;
  * The PrimesTest class implements tests for primes.
  */
 public final class PrimesTest {
+    private final IAssertion assertion = new Assertion();
     private final ITestData testData = new TestData();
 
     /**
@@ -70,9 +71,10 @@ public final class PrimesTest {
             boolean result = prime.isPrime(number);
             boolean expectedResult = Boolean.parseBoolean(currLine);
 
-            Assert.assertTrue(
-                "The primes logic is invalid.",
-                result == expectedResult);
+            this.assertion.assertEquals(
+                result,
+                expectedResult,
+                "The primes logic is invalid.");
         }
     }
 }

@@ -9,10 +9,8 @@ import datastructures.cache.interfaces.ILRUCache;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.core.TestData;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -129,6 +127,9 @@ public final class LRUCacheTest {
         IKeyValueNode<TKey, TValue> item,
         List<IKeyValueNode<TKey, TValue>> expectedContent) {
 
+        //
+        // Update the cache with the data...
+        //
         this.updateCache(cache, operation, item);
 
         //
