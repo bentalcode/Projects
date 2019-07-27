@@ -225,7 +225,7 @@ public final class TestData implements ITestData {
             .build();
 
         IBPlusTreeMetrics treeMetrics1 = new BPlusTreeMetrics.Builder()
-            .withHeight(1)
+            .withHeight(0)
             .withNumberOfNodes(1)
             .withNumberOfInnerNodes(0)
             .withNumberOfLeafNodes(1)
@@ -246,7 +246,7 @@ public final class TestData implements ITestData {
             .build();
 
         IBPlusTreeMetrics treeMetrics2 = new BPlusTreeMetrics.Builder()
-            .withHeight(2)
+            .withHeight(1)
             .withNumberOfNodes(3)
             .withNumberOfInnerNodes(1)
             .withNumberOfLeafNodes(2)
@@ -268,7 +268,7 @@ public final class TestData implements ITestData {
             .build();
 
         IBPlusTreeMetrics treeMetrics3 = new BPlusTreeMetrics.Builder()
-            .withHeight(2)
+            .withHeight(1)
             .withNumberOfNodes(3)
             .withNumberOfInnerNodes(1)
             .withNumberOfLeafNodes(2)

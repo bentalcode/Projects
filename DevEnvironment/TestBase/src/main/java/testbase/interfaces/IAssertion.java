@@ -1,7 +1,6 @@
 package testbase.interfaces;
 
 import base.interfaces.IBinaryComparator;
-import base.interfaces.IEquatable;
 import base.interfaces.IIterator;
 
 /**

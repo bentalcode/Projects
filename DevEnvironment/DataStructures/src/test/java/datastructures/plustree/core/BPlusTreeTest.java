@@ -15,11 +15,9 @@ import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;
 import datastructures.node.interfaces.IKeyValueNodes;
-import datastructures.tree.interfaces.ITreeMetrics;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.util.List;
@@ -94,7 +92,7 @@ public final class BPlusTreeTest {
     /**
      * Tests the calculation of metrics of a B+ tree.
      */
-    //@Test
+    @Test
     public void calculateTreeMetricsTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getTreeProperties();
 
@@ -171,18 +169,20 @@ public final class BPlusTreeTest {
     private <TKey extends Comparable<TKey>, TValue> void testTreeMetrics(
         IBPlusTreeProperties<TKey, TValue> treeProperties,
         IKeyValueNodes<TKey, TValue> treeData,
-        ITreeMetrics expectedMetrics) {
+        IBPlusTreeMetrics expectedMetrics) {
 
         IBPlusTreeFactory<TKey, TValue> treeFactory = new BPlusTreeFactory<>(treeProperties);
         IBPlusTree<TKey, TValue> tree = treeFactory.create(treeData);
 
-        ITreeMetrics currMetrics = tree.calculateMetrics();
+        IBPlusTreeMetrics currMetrics = tree.calculateMetrics();
 
-        /*
+        if (!currMetrics.isEqual(expectedMetrics)) {
+            int status = 0;
+        }
+
         this.assertion.assertEquals(
             currMetrics,
             expectedMetrics,
-            "The number of data of a nodes in a B+ tree is invalid.");
-        */
+            "Invalid metrics.");
     }
 }

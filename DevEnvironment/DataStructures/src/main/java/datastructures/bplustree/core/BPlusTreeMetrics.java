@@ -4,6 +4,7 @@ import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 
@@ -17,7 +18,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
     private final int numberOfLeafNodes;
     private final int sizeInBytes;
     private final int capacityInBytes;
-
+    private final IBinaryComparator<IBPlusTreeMetrics> comparator;
     private final int hashCode;
 
     /**
@@ -31,13 +32,36 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
         int sizeInBytes,
         int capacityInBytes) {
 
+        this(
+            height,
+            numberOfNodes,
+            numberOfInnerNodes,
+            numberOfLeafNodes,
+            sizeInBytes,
+            capacityInBytes,
+            BPlusTreeMetrics.DefaultComparator());
+    }
+
+    /**
+     * The BPlusTreeMetrics constructor.
+     */
+    public BPlusTreeMetrics(
+        int height,
+        int numberOfNodes,
+        int numberOfInnerNodes,
+        int numberOfLeafNodes,
+        int sizeInBytes,
+        int capacityInBytes,
+        IBinaryComparator<IBPlusTreeMetrics> comparator) {
+
         this.height = height;
         this.numberOfNodes = numberOfNodes;
         this.numberOfInnerNodes = numberOfInnerNodes;
         this.numberOfLeafNodes = numberOfLeafNodes;
         this.sizeInBytes = sizeInBytes;
         this.capacityInBytes = capacityInBytes;
-        this.hashCode = this.calculateHashCode();
+        this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
@@ -120,14 +144,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
      * Checks whether the instances are equals.
      */
     public boolean isEqual(IBPlusTreeMetrics other) {
-        return new EqualBuilder()
-            .withInteger(this.getHeight(), other.getHeight())
-            .withInteger(this.getNumberOfNodes(), other.getNumberOfNodes())
-            .withInteger(this.getNumberOfInnerNodes(), other.getNumberOfInnerNodes())
-            .withInteger(this.getNumberOfLeafNodes(), other.getNumberOfLeafNodes())
-            .withLong(this.getSizeInBytes(), other.getSizeInBytes())
-            .withLong(this.getCapacityInBytes(), other.getCapacityInBytes())
-            .build();
+        return this.comparator.isEqual(this, other);
     }
 
     /**
@@ -138,28 +155,100 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     public int compareTo(IBPlusTreeMetrics other) {
-        return new CompareToBuilder()
-            .withInteger(this.getHeight(), other.getHeight())
-            .withInteger(this.getNumberOfNodes(), other.getNumberOfNodes())
-            .withInteger(this.getNumberOfInnerNodes(), other.getNumberOfInnerNodes())
-            .withInteger(this.getNumberOfLeafNodes(), other.getNumberOfLeafNodes())
-            .withLong(this.getSizeInBytes(), other.getSizeInBytes())
-            .withLong(this.getCapacityInBytes(), other.getCapacityInBytes())
-            .build();
+        return this.comparator.compareTo(this, other);
     }
 
     /**
      * Calculates the hash code.
      */
     private int calculateHashCode() {
-        return new HashCodeBuilder(3, 5)
-            .withInteger(this.getHeight())
-            .withInteger(this.getNumberOfNodes())
-            .withInteger(this.getNumberOfInnerNodes())
-            .withInteger(this.getNumberOfLeafNodes())
-            .withLong(this.getSizeInBytes())
-            .withLong(this.getCapacityInBytes())
-            .build();
+        return this.hashCode;
+    }
+
+    /**
+     * Gets the default comparator.
+     */
+    public static IBinaryComparator<IBPlusTreeMetrics> DefaultComparator() {
+        return new Comparator();
+    }
+
+    /**
+     * The Comparator class implements a comparator of metrics of a B+ tree.
+     */
+    public static final class Comparator implements IBinaryComparator<IBPlusTreeMetrics> {
+        /**
+         * The Comparator constructor.
+         */
+        public Comparator() {
+        }
+
+        /**
+         * Gets a hash code of this instance.
+         */
+        @Override
+        public int getHashCode(IBPlusTreeMetrics metrics) {
+            return new HashCodeBuilder(3, 5)
+                .withInteger(metrics.getHeight())
+                .withInteger(metrics.getNumberOfNodes())
+                .withInteger(metrics.getNumberOfInnerNodes())
+                .withInteger(metrics.getNumberOfLeafNodes())
+                .withLong(metrics.getSizeInBytes())
+                .withLong(metrics.getCapacityInBytes())
+                .build();
+        }
+
+        /**
+         * Checks whether two instances are equals.
+         */
+        public boolean isEqual(IBPlusTreeMetrics lhs, IBPlusTreeMetrics rhs) {
+            if (lhs == null && rhs == null) {
+                return true;
+            }
+
+            if (lhs == null || rhs == null) {
+                return false;
+            }
+
+            return new EqualBuilder()
+                .withInteger(lhs.getHeight(), rhs.getHeight())
+                .withInteger(lhs.getNumberOfNodes(), rhs.getNumberOfNodes())
+                .withInteger(lhs.getNumberOfInnerNodes(), rhs.getNumberOfInnerNodes())
+                .withInteger(lhs.getNumberOfLeafNodes(), rhs.getNumberOfLeafNodes())
+                .withLong(lhs.getSizeInBytes(), rhs.getSizeInBytes())
+                .withLong(lhs.getCapacityInBytes(), rhs.getCapacityInBytes())
+                .build();
+        }
+
+        /**
+         * Determines the relative order of two instances.
+         *
+         * Returns -1 if the left hand side value is less than the right hand side value.
+         * Returns 0 if the left hand side value is equal to the right hand side value.
+         * Returns 1 if the left hand side value is greater than the right hand side value.
+         */
+        @Override
+        public int compareTo(IBPlusTreeMetrics lhs, IBPlusTreeMetrics rhs) {
+            if (lhs == null && rhs == null) {
+                return 0;
+            }
+
+            if (lhs == null) {
+                return -1;
+            }
+
+            if (rhs == null) {
+                return 1;
+            }
+
+            return new CompareToBuilder()
+                .withInteger(lhs.getHeight(), rhs.getHeight())
+                .withInteger(lhs.getNumberOfNodes(), rhs.getNumberOfNodes())
+                .withInteger(lhs.getNumberOfInnerNodes(), rhs.getNumberOfInnerNodes())
+                .withInteger(lhs.getNumberOfLeafNodes(), rhs.getNumberOfLeafNodes())
+                .withLong(lhs.getSizeInBytes(), rhs.getSizeInBytes())
+                .withLong(lhs.getCapacityInBytes(), rhs.getCapacityInBytes())
+                .build();
+        }
     }
 
     /**

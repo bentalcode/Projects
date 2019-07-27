@@ -53,7 +53,7 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
         IBPlusTreeProperties<TKey, TValue> properties,
         IBPlusTreeNode<TKey> root) {
 
-        int height = 0;
+        int height = -1;
         int numberOfInnerNodes = 0;
         int numberOfLeafNodes = 0;
         int sizeInBytes = 0;
@@ -62,6 +62,7 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
         queue.offer(Casting.cast(root));
 
         while (!queue.isEmpty()) {
+            ++height;
 
             int levelSize = queue.size();
 
@@ -83,7 +84,6 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
                     ++numberOfLeafNodes;
                 }
 
-                ++height;
                 sizeInBytes += currNode.getSizeInBytes();
             }
         }
