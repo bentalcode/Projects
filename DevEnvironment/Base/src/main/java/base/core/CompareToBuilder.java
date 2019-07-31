@@ -5,6 +5,8 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparatorFactory;
 import base.interfaces.ICompareToBuilder;
+import base.interfaces.ITwoDimensionalArrayComparator;
+
 import java.util.Collection;
 
 /**
@@ -179,6 +181,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
             return this;
         }
 
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
@@ -211,6 +223,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
         }
 
         if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
             this.compareStatus = 1;
             return this;
         }
@@ -251,6 +273,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
             return this;
         }
 
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
@@ -283,6 +315,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
         }
 
         if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
             this.compareStatus = 1;
             return this;
         }
@@ -323,6 +365,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
             return this;
         }
 
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
@@ -355,6 +407,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
         }
 
         if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
             this.compareStatus = 1;
             return this;
         }
@@ -395,6 +457,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
             return this;
         }
 
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
@@ -431,6 +503,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
             return this;
         }
 
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
         int length = lhs.length;
 
         for (int i = 0; i < length; ++i) {
@@ -449,6 +531,496 @@ public final class CompareToBuilder implements ICompareToBuilder {
      */
     @Override
     public ICompareToBuilder withStringArray(String[] lhs, String[] rhs) {
+        IBinaryComparator<String> comparator = this.comparatorFactory.createComparator();
+
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a boolean two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs[0].length < rhs[0].length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs[0].length > rhs[0].length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.compareStatus = Boolean.compare(lhs[row][column], rhs[row][column]);
+
+                if(this.compareStatus != 0) {
+                    return this;
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a byte two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withByteArray(byte[][] lhs, byte[][] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs[0].length < rhs[0].length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs[0].length > rhs[0].length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.compareStatus = Byte.compare(lhs[row][column], rhs[row][column]);
+
+                if(this.compareStatus != 0) {
+                    return this;
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a short two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withShortArray(short[][] lhs, short[][] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs[0].length < rhs[0].length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs[0].length > rhs[0].length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.compareStatus = Short.compare(lhs[row][column], rhs[row][column]);
+
+                if(this.compareStatus != 0) {
+                    return this;
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With an integer two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withIntegerArray(int[][] lhs, int[][] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs[0].length < rhs[0].length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs[0].length > rhs[0].length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.compareStatus = Integer.compare(lhs[row][column], rhs[row][column]);
+
+                if(this.compareStatus != 0) {
+                    return this;
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a long two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withLongArray(long[][] lhs, long[][] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs[0].length < rhs[0].length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs[0].length > rhs[0].length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.compareStatus = Long.compare(lhs[row][column], rhs[row][column]);
+
+                if(this.compareStatus != 0) {
+                    return this;
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a float two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withFloatArray(float[][] lhs, float[][] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs[0].length < rhs[0].length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs[0].length > rhs[0].length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.compareStatus = Float.compare(lhs[row][column], rhs[row][column]);
+
+                if(this.compareStatus != 0) {
+                    return this;
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a double two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withDoubleArray(double[][] lhs, double[][] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs[0].length < rhs[0].length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs[0].length > rhs[0].length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.compareStatus = Double.compare(lhs[row][column], rhs[row][column]);
+
+                if(this.compareStatus != 0) {
+                    return this;
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a character two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withCharacterArray(char[][] lhs, char[][] rhs) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (rhs == null) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs.length < rhs.length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs.length > rhs.length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        if (lhs[0].length < rhs[0].length) {
+            this.compareStatus = -1;
+            return this;
+        }
+
+        if (lhs[0].length > rhs[0].length) {
+            this.compareStatus = 1;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.compareStatus = Character.compare(lhs[row][column], rhs[row][column]);
+
+                if(this.compareStatus != 0) {
+                    return this;
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a string two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withStringArray(String[][] lhs, String[][] rhs) {
         IBinaryComparator<String> comparator = this.comparatorFactory.createComparator();
 
         return this.withArray(lhs, rhs, comparator);
@@ -478,6 +1050,21 @@ public final class CompareToBuilder implements ICompareToBuilder {
         }
 
         IArrayComparator<T> arrayComparator = this.comparatorFactory.createArrayComparator();
+        this.compareStatus = arrayComparator.compareTo(lhs, rhs, comparator);
+
+        return this;
+    }
+
+    /**
+     * With a generic two dimensional array.
+     */
+    @Override
+    public <T> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        ITwoDimensionalArrayComparator<T> arrayComparator = this.comparatorFactory.createTwoDimensionalArrayComparator();
         this.compareStatus = arrayComparator.compareTo(lhs, rhs, comparator);
 
         return this;

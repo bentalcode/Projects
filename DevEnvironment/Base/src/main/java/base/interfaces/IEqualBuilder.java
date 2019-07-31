@@ -102,6 +102,51 @@ public interface IEqualBuilder {
     IEqualBuilder withStringArray(String[] lhs, String[] rhs);
 
     /**
+     * With a boolean two dimensional array.
+     */
+    IEqualBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs);
+
+    /**
+     * With a byte two dimensional array.
+     */
+    IEqualBuilder withByteArray(byte[][] lhs, byte[][] rhs);
+
+    /**
+     * With a short two dimensional array.
+     */
+    IEqualBuilder withShortArray(short[][] lhs, short[][] rhs);
+
+    /**
+     * With an integer two dimensional array.
+     */
+    IEqualBuilder withIntegerArray(int[][] lhs, int[][] rhs);
+
+    /**
+     * With a long two dimensional array.
+     */
+    IEqualBuilder withLongArray(long[][] lhs, long[][] rhs);
+
+    /**
+     * With a float two dimensional array.
+     */
+    IEqualBuilder withFloatArray(float[][] lhs, float[][] rhs);
+
+    /**
+     * With a double two dimensional array.
+     */
+    IEqualBuilder withDoubleArray(double[][] lhs, double[][] rhs);
+
+    /**
+     * With a character two dimensional array.
+     */
+    IEqualBuilder withCharacterArray(char[][] lhs, char[][] rhs);
+
+    /**
+     * With a string two dimensional array.
+     */
+    IEqualBuilder withStringArray(String[][] lhs, String[][] rhs);
+
+    /**
      * With a generic object.
      */
     <T> IEqualBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator);
@@ -110,6 +155,11 @@ public interface IEqualBuilder {
      * With a generic array.
      */
     <T> IEqualBuilder withArray(T[] lhs, T[] rhs, IBinaryComparator<T> comparator);
+
+    /**
+     * With a generic two dimensional array.
+     */
+    <T> IEqualBuilder withArray(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator);
 
     /**
      * With a generic collection.

@@ -1,4 +1,4 @@
-package datastructures.node.core;
+package graph.core;
 
 import base.core.Casting;
 import base.core.CompareToBuilder;
@@ -6,51 +6,49 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
-import datastructures.node.interfaces.IKeyValueNode;
+import graph.interfaces.IVertex;
 
 /**
- * The KeyValueNode class implements a generic key-value node.
+ * The Vertex class implements a vertex of a graph.
  */
-public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implements IKeyValueNode<TKey, TValue> {
+public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVertex<TKey, TValue> {
     private final TKey key;
     private TValue value;
-    private final IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator;
+    private final IBinaryComparator<IVertex<TKey, TValue>> comparator;
     private final int hashCode;
 
     /**
-     * Creates a new instance of a key-value node.
+     * Creates a new instance of a vertex.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IKeyValueNode<TKey, TValue> of(TKey key, TValue value) {
-        return new KeyValueNode<>(key, value);
+    public static <TKey extends Comparable<TKey>, TValue> IVertex<TKey, TValue> of(TKey key, TValue value) {
+        return new Vertex<>(key, value);
     }
 
     /**
-     * The KeyValueNode constructor.
+     * The Vertex constructor.
      */
-    public KeyValueNode(
-        TKey key,
-        TValue value) {
+    public Vertex(TKey key, TValue value) {
         this(
             key,
             value,
-            KeyValueNode.DefaultComparator());
+            Vertex.DefaultComparator());
     }
 
     /**
-     * The KeyValueNode constructor.
+     * The Vertex constructor.
      */
-    private KeyValueNode(
+    private Vertex(
         TKey key,
         TValue value,
-        IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator) {
+        IBinaryComparator<IVertex<TKey, TValue>> comparator) {
 
         Conditions.validateNotNull(
             key,
-            "The key of a node.");
-
+            "The key of a vertex.");
+        
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a node.");
+            "The comparator of a vertex.");
 
         this.key = key;
         this.value = value;
@@ -59,27 +57,19 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
     }
 
     /**
-     * Gets a key of a node.
+     * Gets a key of a vertex.
      */
     @Override
     public TKey getKey() {
         return this.key;
     }
-
+    
     /**
-     * Gets a value of a node.
+     * Gets a value of a vertex.
      */
     @Override
     public TValue getValue() {
         return this.value;
-    }
-
-    /**
-     * Sets a value of a node.
-     */
-    @Override
-    public void setValue(TValue value) {
-        this.value = value;
     }
 
     /**
@@ -114,7 +104,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IKeyValueNode<TKey, TValue> other) {
+    public boolean isEqual(IVertex<TKey, TValue> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -126,22 +116,22 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IKeyValueNode<TKey, TValue> other) {
+    public int compareTo(IVertex<TKey, TValue> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IKeyValueNode<TKey, TValue>> DefaultComparator() {
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IVertex<TKey, TValue>> DefaultComparator() {
         IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
         return new Comparator<>(keyComparator);
     }
 
     /**
-     * The Comparator class implements a comparator of a generic node.
+     * The Comparator class implements a comparator of a generic vertex.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IKeyValueNode<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IVertex<TKey, TValue>> {
         private final IBinaryComparator<TKey> keyComparator;
 
         /**
@@ -150,7 +140,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         public Comparator(IBinaryComparator<TKey> keyComparator) {
             Conditions.validateNotNull(
                 keyComparator,
-                "The key comparator of a node.");
+                "The comparator of a key.");
 
             this.keyComparator = keyComparator;
         }
@@ -159,14 +149,14 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IKeyValueNode<TKey, TValue> obj) {
+        public int getHashCode(IVertex<TKey, TValue> obj) {
             return this.keyComparator.getHashCode(obj.getKey());
         }
 
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(IKeyValueNode<TKey, TValue> lhs, IKeyValueNode<TKey, TValue> rhs) {
+        public boolean isEqual(IVertex<TKey, TValue> lhs, IVertex<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -188,7 +178,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IKeyValueNode<TKey, TValue> lhs, IKeyValueNode<TKey, TValue> rhs) {
+        public int compareTo(IVertex<TKey, TValue> lhs, IVertex<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -208,9 +198,9 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
     }
 
     /**
-     * The Builder class implements a builder for creating data of a key-value node.
+     * The Builder class implements a builder for creating a vertex.
      */
-    public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<IKeyValueNode<TKey, TValue>> {
+    public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<IVertex<TKey, TValue>> {
         private TKey key;
         private TValue value;
 
@@ -221,19 +211,15 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         }
 
         /**
-         * Sets the key of a node.
+         * Sets the key of a vertex.
          */
         public Builder setKey(TKey key) {
-            Conditions.validateNotNull(
-                key,
-                "The key of a node.");
-
             this.key = key;
             return this;
         }
 
         /**
-         * Adds the value of a node.
+         * Sets the value of a vertex.
          */
         public Builder setValue(TValue value) {
             this.value = value;
@@ -241,16 +227,16 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         }
 
         /**
-         * Builds the data of a node.
+         * Builds the a vertex.
          */
         @Override
-        public IKeyValueNode<TKey, TValue> build() {
-            IKeyValueNode<TKey, TValue> node = new KeyValueNode<>(
+        public IVertex<TKey, TValue> build() {
+            IVertex<TKey, TValue> vertex = new Vertex<>(
                 this.key,
                 this.value,
-                KeyValueNode.DefaultComparator());
+                Vertex.DefaultComparator());
 
-            return node;
+            return vertex;
         }
     }
 }

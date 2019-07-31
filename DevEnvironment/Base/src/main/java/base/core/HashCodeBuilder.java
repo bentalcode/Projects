@@ -265,6 +265,159 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
+     * With a boolean two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withBooleanArray(boolean[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withBoolean(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a byte two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withByteArray(byte[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withByte(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a short two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withShortArray(short[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withShort(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With an integer two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withIntegerArray(int[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withInteger(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a long two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withLongArray(long[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withLong(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a float two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withFloatArray(float[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withFloat(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a double two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withDoubleArray(double[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withDouble(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a character two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withCharacterArray(char[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withCharacter(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a string two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withStringArray(String[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withString(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
      * With a generic object.
      */
     @Override

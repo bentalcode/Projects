@@ -4,8 +4,10 @@ import base.interfaces.IArrayComparator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparatorFactory;
+import base.interfaces.ICompareToBuilder;
 import base.interfaces.IEqualBuilder;
 import base.interfaces.IIterator;
+import base.interfaces.ITwoDimensionalArrayComparator;
 
 import java.util.Collection;
 
@@ -457,6 +459,384 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
+     * With a boolean two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null || rhs == null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs[0].length != rhs[0].length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.equalityStatus = lhs[row][column] == rhs[row][column];
+
+                if (!this.equalityStatus) {
+                    return this;
+                }
+
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a byte two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withByteArray(byte[][] lhs, byte[][] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null || rhs == null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs[0].length != rhs[0].length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.equalityStatus = lhs[row][column] == rhs[row][column];
+
+                if (!this.equalityStatus) {
+                    return this;
+                }
+
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a short two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withShortArray(short[][] lhs, short[][] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null || rhs == null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs[0].length != rhs[0].length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.equalityStatus = lhs[row][column] == rhs[row][column];
+
+                if (!this.equalityStatus) {
+                    return this;
+                }
+
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With an integer two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withIntegerArray(int[][] lhs, int[][] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null || rhs == null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs[0].length != rhs[0].length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.equalityStatus = lhs[row][column] == rhs[row][column];
+
+                if (!this.equalityStatus) {
+                    return this;
+                }
+
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a long two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withLongArray(long[][] lhs, long[][] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null || rhs == null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs[0].length != rhs[0].length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.equalityStatus = lhs[row][column] == rhs[row][column];
+
+                if (!this.equalityStatus) {
+                    return this;
+                }
+
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a float two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withFloatArray(float[][] lhs, float[][] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null || rhs == null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs[0].length != rhs[0].length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.equalityStatus = lhs[row][column] == rhs[row][column];
+
+                if (!this.equalityStatus) {
+                    return this;
+                }
+
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a double two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withDoubleArray(double[][] lhs, double[][] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null || rhs == null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs[0].length != rhs[0].length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.equalityStatus = lhs[row][column] == rhs[row][column];
+
+                if (!this.equalityStatus) {
+                    return this;
+                }
+
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a character two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withCharacterArray(char[][] lhs, char[][] rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        if (lhs == null && rhs == null) {
+            return this;
+        }
+
+        if (lhs == null || rhs == null) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs.length != rhs.length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        if (lhs[0].length != rhs[0].length) {
+            this.equalityStatus = false;
+            return this;
+        }
+
+        int rowsLength = lhs.length;
+        int columnsLength = lhs[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+
+                this.equalityStatus = lhs[row][column] == rhs[row][column];
+
+                if (!this.equalityStatus) {
+                    return this;
+                }
+
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a string two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withStringArray(String[][] lhs, String[][] rhs) {
+        IBinaryComparator<String> comparator = this.comparatorFactory.createComparator();
+
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
      * With a generic object.
      */
     @Override
@@ -480,6 +860,21 @@ public final class EqualBuilder implements IEqualBuilder {
         }
 
         IArrayComparator<T> arrayComparator = new ArrayComparator<>();
+        this.equalityStatus = arrayComparator.isEqual(lhs, rhs, comparator);
+
+        return this;
+    }
+
+    /**
+     * With a generic two dimensional array.
+     */
+    @Override
+    public <T> IEqualBuilder withArray(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        ITwoDimensionalArrayComparator<T> arrayComparator = this.comparatorFactory.createTwoDimensionalArrayComparator();
         this.equalityStatus = arrayComparator.isEqual(lhs, rhs, comparator);
 
         return this;

@@ -6,64 +6,38 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
-import datastructures.node.interfaces.IKeyValueNode;
+import datastructures.node.interfaces.INode;
 
 /**
- * The KeyValueNode class implements a generic key-value node.
+ * The Node class implements a generic node.
  */
-public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implements IKeyValueNode<TKey, TValue> {
-    private final TKey key;
+public final class Node<TValue extends Comparable<TValue>> implements INode<TValue> {
     private TValue value;
-    private final IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator;
-    private final int hashCode;
+    private final IBinaryComparator<INode<TValue>> comparator;
 
     /**
-     * Creates a new instance of a key-value node.
+     * Creates a new instance of a node.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IKeyValueNode<TKey, TValue> of(TKey key, TValue value) {
-        return new KeyValueNode<>(key, value);
-    }
-
-    /**
-     * The KeyValueNode constructor.
-     */
-    public KeyValueNode(
-        TKey key,
-        TValue value) {
-        this(
-            key,
-            value,
-            KeyValueNode.DefaultComparator());
-    }
-
-    /**
-     * The KeyValueNode constructor.
-     */
-    private KeyValueNode(
-        TKey key,
+    public static <TValue extends Comparable<TValue>> INode<TValue> of(
         TValue value,
-        IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator) {
+        IBinaryComparator<INode<TValue>> comparator) {
 
-        Conditions.validateNotNull(
-            key,
-            "The key of a node.");
+        return new Node<>(value, comparator);
+    }
+
+    /**
+     * The Node constructor.
+     */
+    private Node(
+        TValue value,
+        IBinaryComparator<INode<TValue>> comparator) {
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of a node.");
 
-        this.key = key;
         this.value = value;
         this.comparator = comparator;
-        this.hashCode = comparator.getHashCode(this);
-    }
-
-    /**
-     * Gets a key of a node.
-     */
-    @Override
-    public TKey getKey() {
-        return this.key;
     }
 
     /**
@@ -87,7 +61,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
      */
     @Override
     public int hashCode() {
-        return this.hashCode;
+        return this.comparator.getHashCode(this);
     }
 
     /**
@@ -114,7 +88,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IKeyValueNode<TKey, TValue> other) {
+    public boolean isEqual(INode<TValue> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -126,47 +100,39 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IKeyValueNode<TKey, TValue> other) {
+    public int compareTo(INode<TValue> other) {
         return this.comparator.compareTo(this, other);
-    }
-
-    /**
-     * Gets the default comparator.
-     */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IKeyValueNode<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
-        return new Comparator<>(keyComparator);
     }
 
     /**
      * The Comparator class implements a comparator of a generic node.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IKeyValueNode<TKey, TValue>> {
-        private final IBinaryComparator<TKey> keyComparator;
+    public static final class Comparator<TValue extends Comparable<TValue>> implements IBinaryComparator<INode<TValue>> {
+        private final IBinaryComparator<TValue> valueComparator;
 
         /**
          * The Comparator constructor.
          */
-        public Comparator(IBinaryComparator<TKey> keyComparator) {
+        public Comparator(IBinaryComparator<TValue> valueComparator) {
             Conditions.validateNotNull(
-                keyComparator,
-                "The key comparator of a node.");
+                valueComparator,
+                "The value comparator of a node.");
 
-            this.keyComparator = keyComparator;
+            this.valueComparator = valueComparator;
         }
 
         /**
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IKeyValueNode<TKey, TValue> obj) {
-            return this.keyComparator.getHashCode(obj.getKey());
+        public int getHashCode(INode<TValue> obj) {
+            return this.valueComparator.getHashCode(obj.getValue());
         }
 
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(IKeyValueNode<TKey, TValue> lhs, IKeyValueNode<TKey, TValue> rhs) {
+        public boolean isEqual(INode<TValue> lhs, INode<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -176,7 +142,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
             }
 
             return new EqualBuilder()
-                .withObject(lhs.getKey(), rhs.getKey(), this.keyComparator)
+                .withObject(lhs.getValue(), rhs.getValue(), this.valueComparator)
                 .build();
         }
 
@@ -188,7 +154,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IKeyValueNode<TKey, TValue> lhs, IKeyValueNode<TKey, TValue> rhs) {
+        public int compareTo(INode<TValue> lhs, INode<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -202,16 +168,15 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
             }
 
             return new CompareToBuilder()
-                .withObject(lhs.getKey(), rhs.getKey(), this.keyComparator)
+                .withObject(lhs.getValue(), rhs.getValue(), this.valueComparator)
                 .build();
         }
     }
 
     /**
-     * The Builder class implements a builder for creating data of a key-value node.
+     * The Builder class implements a builder for creating a node.
      */
-    public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<IKeyValueNode<TKey, TValue>> {
-        private TKey key;
+    public static final class Builder<TValue extends Comparable<TValue>> implements IBuilder<INode<TValue>> {
         private TValue value;
 
         /**
@@ -221,19 +186,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         }
 
         /**
-         * Sets the key of a node.
-         */
-        public Builder setKey(TKey key) {
-            Conditions.validateNotNull(
-                key,
-                "The key of a node.");
-
-            this.key = key;
-            return this;
-        }
-
-        /**
-         * Adds the value of a node.
+         * Sets the value of a node.
          */
         public Builder setValue(TValue value) {
             this.value = value;
@@ -241,14 +194,13 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         }
 
         /**
-         * Builds the data of a node.
+         * Builds a node.
          */
         @Override
-        public IKeyValueNode<TKey, TValue> build() {
-            IKeyValueNode<TKey, TValue> node = new KeyValueNode<>(
-                this.key,
+        public INode<TValue> build() {
+            INode<TValue> node = new Node<>(
                 this.value,
-                KeyValueNode.DefaultComparator());
+                base.core.Comparator.DefaultComparator());
 
             return node;
         }

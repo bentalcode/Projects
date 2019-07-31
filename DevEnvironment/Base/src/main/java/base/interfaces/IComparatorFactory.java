@@ -15,6 +15,11 @@ public interface IComparatorFactory {
     <T> IArrayComparator<T> createArrayComparator();
 
     /**
+     * Create a two dimensional array comparator.
+     */
+    <T> ITwoDimensionalArrayComparator<T> createTwoDimensionalArrayComparator();
+
+    /**
      * Create a collection comparator.
      */
     <T> ICollectionComparator<T> createCollectionComparator();

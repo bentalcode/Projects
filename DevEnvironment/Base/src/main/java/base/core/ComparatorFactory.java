@@ -4,6 +4,7 @@ import base.interfaces.IArrayComparator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparatorFactory;
+import base.interfaces.ITwoDimensionalArrayComparator;
 
 /**
  * The ComparatorFactory class implements a factory for creating binary comparators.
@@ -29,6 +30,14 @@ public final class ComparatorFactory implements IComparatorFactory {
     @Override
     public <T> IArrayComparator<T> createArrayComparator() {
         return new ArrayComparator<>();
+    }
+
+    /**
+     * Creates a two dimensional array comparator.
+     */
+    @Override
+    public <T> ITwoDimensionalArrayComparator<T> createTwoDimensionalArrayComparator() {
+        return new TwoDimensionalArrayComparator<>();
     }
 
     /**

@@ -102,6 +102,51 @@ public interface ICompareToBuilder {
     ICompareToBuilder withStringArray(String[] lhs, String[] rhs);
 
     /**
+     * With a boolean two dimensional array.
+     */
+    ICompareToBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs);
+
+    /**
+     * With a byte two dimensional array.
+     */
+    ICompareToBuilder withByteArray(byte[][] lhs, byte[][] rhs);
+
+    /**
+     * With a short two dimensional array.
+     */
+    ICompareToBuilder withShortArray(short[][] lhs, short[][] rhs);
+
+    /**
+     * With an integer two dimensional array.
+     */
+    ICompareToBuilder withIntegerArray(int[][] lhs, int[][] rhs);
+
+    /**
+     * With a long two dimensional array.
+     */
+    ICompareToBuilder withLongArray(long[][] lhs, long[][] rhs);
+
+    /**
+     * With a float two dimensional array.
+     */
+    ICompareToBuilder withFloatArray(float[][] lhs, float[][] rhs);
+
+    /**
+     * With a double two dimensional array.
+     */
+    ICompareToBuilder withDoubleArray(double[][] lhs, double[][] rhs);
+
+    /**
+     * With a character two dimensional array.
+     */
+    ICompareToBuilder withCharacterArray(char[][] lhs, char[][] rhs);
+
+    /**
+     * With a string two dimensional array.
+     */
+    ICompareToBuilder withStringArray(String[][] lhs, String[][] rhs);
+
+    /**
      * With a generic object.
      */
     <T> ICompareToBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator);
@@ -110,6 +155,11 @@ public interface ICompareToBuilder {
      * With a generic array.
      */
     <T> ICompareToBuilder withArray(T[] lhs, T[] rhs, IBinaryComparator<T> comparator);
+
+    /**
+     * With a generic two dimensional array.
+     */
+    <T> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator);
 
     /**
      * With a generic collection.
