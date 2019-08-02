@@ -97,4 +97,9 @@ public interface IDoublyLinkedList<TValue> extends IIterable<IDoublyLinkedListNo
      * Gets a reverse iterator of values of a list.
      */
     IValueReverseIterator<TValue> getValueReverseIterator();
+
+    /**
+     * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
+     */
+    IDoublyLinkedListNode<TValue> getNode(int index);
 }

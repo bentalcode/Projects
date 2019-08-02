@@ -1,28 +1,25 @@
 package base.core;
 
-import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparableComparator;
 import base.interfaces.IEquatableComparator;
+import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
-import java.util.Collection;
 
 /**
- * The CollectionComparator class implements a comparator for a collection.
+ * The IteratorComparator class implements a comparator for iterators.
  */
-public final class CollectionComparator<T> implements ICollectionComparator<T> {
-    private final IIteratorComparator<T> iteratorComparator = new IteratorComparator<>();
-
+public final class IteratorComparator<T> implements IIteratorComparator<T> {
     /**
-     * The CollectionComparator constructor.
+     * The IteratorComparator constructor.
      */
-    public CollectionComparator() {
+    public IteratorComparator() {
     }
 
     /**
-     * Checks whether the collection are equals with an element comparator.
+     * Checks whether the iterators are equals with an element comparator.
      */
     @Override
-    public boolean isEqual(Collection<T> lhs, Collection<T> rhs, IEquatableComparator<T> comparator) {
+    public boolean isEqual(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
@@ -35,11 +32,16 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
             return false;
         }
 
-        if (lhs.size() != rhs.size()) {
-            return false;
+        while (lhs.hasNext() && rhs.hasNext()) {
+            T lhsValue = lhs.next();
+            T rhsValue = rhs.next();
+
+            if (!comparator.isEqual(lhsValue, rhsValue)) {
+                return false;
+            }
         }
 
-        return this.iteratorComparator.isEqual(Iterator.of(lhs), Iterator.of(rhs), comparator);
+        return !lhs.hasNext() && !rhs.hasNext();
     }
 
     /**
@@ -50,7 +52,7 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(Collection<T> lhs, Collection<T> rhs, IComparableComparator<T> comparator) {
+    public int compareTo(IIterator<T> lhs, IIterator<T> rhs, IComparableComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
@@ -67,14 +69,25 @@ public final class CollectionComparator<T> implements ICollectionComparator<T> {
             return 1;
         }
 
-        if (lhs.size() < rhs.size()) {
+        while (lhs.hasNext() && rhs.hasNext()) {
+            T lhsValue = lhs.next();
+            T rhsValue = rhs.next();
+
+            int status = comparator.compareTo(lhsValue, rhsValue);
+
+            if (status != 0) {
+                return status;
+            }
+        }
+
+        if (!lhs.hasNext() && rhs.hasNext()) {
             return -1;
         }
 
-        if (lhs.size() > rhs.size()) {
+        if (lhs.hasNext() && !rhs.hasNext()) {
             return 1;
         }
 
-        return this.iteratorComparator.compareTo(Iterator.of(lhs), Iterator.of(rhs), comparator);
+        return 0;
     }
 }

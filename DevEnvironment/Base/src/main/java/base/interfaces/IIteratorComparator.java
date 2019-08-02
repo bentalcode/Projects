@@ -1,14 +1,13 @@
 package base.interfaces;
 
 /**
- * The ITwoDimensionalArrayComparator interface defines a comparator for generic two dimensional arrays.
+ * The IArrayComparator interface defines a comparator for generic arrays.
  */
-public interface ITwoDimensionalArrayComparator<T> {
-
+public interface IIteratorComparator<T> {
     /**
-     * Checks whether the arrays are equals with an element comparator.
+     * Checks whether the iterators are equals with an element comparator.
      */
-    boolean isEqual(T[][] lhs, T[][] rhs, IEquatableComparator<T> comparator);
+    boolean isEqual(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator);
 
     /**
      * Determines the relative order of arrays with an element comparator.
@@ -17,5 +16,5 @@ public interface ITwoDimensionalArrayComparator<T> {
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
-    int compareTo(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator);
+    int compareTo(IIterator<T> lhs, IIterator<T> rhs, IComparableComparator<T> comparator);
 }

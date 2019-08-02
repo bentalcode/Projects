@@ -6,20 +6,27 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
+import base.interfaces.IComparableComparator;
+import base.interfaces.IEquatableComparator;
+import base.interfaces.IHashCodeProvider;
 import graph.interfaces.IAdjacencyMatrix;
+import graph.interfaces.IVertex;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The AdjacencyMatrix class implements an adjacency matrix of a graph.
  */
-public final class AdjacencyMatrix implements IAdjacencyMatrix {
-    private final boolean[][] connections;
-    private IBinaryComparator<IAdjacencyMatrix> comparator;
+public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implements IAdjacencyMatrix<TKey, TValue> {
+    private final Map<IVertex<TKey, TValue>, Set<IVertex<TKey, TValue>>> connections;
+
+    private final IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> comparator;
     private final int hashCode;
 
     /**
      * The AdjacencyMatrix constructor.
      */
-    public AdjacencyMatrix(boolean[][] connections) {
+    public AdjacencyMatrix(Map<IVertex<TKey, TValue>, Set<IVertex<TKey, TValue>>> connections) {
         this(
             connections,
             AdjacencyMatrix.DefaultComparator());
@@ -29,8 +36,8 @@ public final class AdjacencyMatrix implements IAdjacencyMatrix {
      * The AdjacencyMatrix constructor.
      */
     public AdjacencyMatrix(
-        boolean[][] connections,
-        IBinaryComparator<IAdjacencyMatrix> comparator) {
+        Map<IVertex<TKey, TValue>, Set<IVertex<TKey, TValue>>> connections,
+        IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> comparator) {
 
         Conditions.validateNotNull(
             connections,
@@ -49,7 +56,7 @@ public final class AdjacencyMatrix implements IAdjacencyMatrix {
      * Gets the connections of an adjacency matrix.
      */
     @Override
-    public boolean[][] connections() {
+    public Map<IVertex<TKey, TValue>, Set<IVertex<TKey, TValue>>> connections() {
         return this.connections;
     }
 
@@ -57,16 +64,20 @@ public final class AdjacencyMatrix implements IAdjacencyMatrix {
      * Checks whether two vertices are connected.
      */
     @Override
-    public boolean connected(int row, int column) {
-        Conditions.validate(
-            row >= 0 && row < this.connections.length,
-            "The row index is out of range.");
+    public boolean connected(IVertex<TKey, TValue> sourceVertex, IVertex<TKey, TValue> destinationVertex) {
+        return
+            this.connections.containsKey(sourceVertex) &&
+            this.connections.get(sourceVertex).contains(destinationVertex);
+    }
 
-        Conditions.validate(
-            column >= 0 && column < this.connections[0].length,
-            "The column index is out of range.");
+    /**
+     * Gets the adjacent vertices of a vertex.
+     */
+    @Override
+    public Set<IVertex<TKey, TValue>> getAdjacentVertices(IVertex<TKey, TValue> vertex) {
+        this.validateVertex(vertex);
 
-        return this.connections[row][column];
+        return this.connections.get(vertex);
     }
 
     /**
@@ -101,7 +112,7 @@ public final class AdjacencyMatrix implements IAdjacencyMatrix {
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IAdjacencyMatrix other) {
+    public boolean isEqual(IAdjacencyMatrix<TKey, TValue> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -113,41 +124,54 @@ public final class AdjacencyMatrix implements IAdjacencyMatrix {
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IAdjacencyMatrix other) {
+    public int compareTo(IAdjacencyMatrix<TKey, TValue> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IAdjacencyMatrix> DefaultComparator() {
-        return new Comparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> DefaultComparator() {
+        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = Vertex.DefaultComparator();
+        return new Comparator<>(vertexComparator);
     }
 
     /**
      * The Comparator class implements a comparator of an adjacency matrix.
      */
-    public static final class Comparator implements IBinaryComparator<IAdjacencyMatrix> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> {
+        private final IBinaryComparator<IVertex<TKey, TValue>> vertexComparator;
+
         /**
          * The Comparator constructor.
          */
-        public Comparator() {
+        public Comparator(IBinaryComparator<IVertex<TKey, TValue>> vertexComparator) {
+            this.vertexComparator = vertexComparator;
         }
 
         /**
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IAdjacencyMatrix obj) {
+        public int getHashCode(IAdjacencyMatrix<TKey, TValue> obj) {
+
+            IHashCodeProvider<IVertex<TKey, TValue>> keyProvider = this.vertexComparator;
+
+            IHashCodeProvider<Set<IVertex<TKey, TValue>>> valueProvider =
+                (vertices) -> { return new HashCodeBuilder(3, 5).withCollection(vertices, this.vertexComparator).build(); };
+
             return new HashCodeBuilder(3, 5)
-                .withBooleanArray(obj.connections())
-                .build();
+                .withMap(
+                    obj.connections(),
+                    keyProvider,
+                    valueProvider)
+                    .build();
         }
 
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(IAdjacencyMatrix lhs, IAdjacencyMatrix rhs) {
+        public boolean isEqual(IAdjacencyMatrix<TKey, TValue> lhs, IAdjacencyMatrix<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -156,9 +180,20 @@ public final class AdjacencyMatrix implements IAdjacencyMatrix {
                 return false;
             }
 
+            IEquatableComparator<IVertex<TKey, TValue>> keyComparator = this.vertexComparator;
+
+            IEquatableComparator<Set<IVertex<TKey, TValue>>> valueComparator =
+                (vertices1, vertices2) -> {
+                    return new EqualBuilder().withCollection(vertices1, vertices2, this.vertexComparator).build();
+                };
+
             return new EqualBuilder()
-                .withBooleanArray(lhs.connections(), rhs.connections())
-                .build();
+                .withMap(
+                    lhs.connections(),
+                    rhs.connections(),
+                    keyComparator,
+                    valueComparator)
+                    .build();
         }
 
         /**
@@ -169,7 +204,7 @@ public final class AdjacencyMatrix implements IAdjacencyMatrix {
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IAdjacencyMatrix lhs, IAdjacencyMatrix rhs) {
+        public int compareTo(IAdjacencyMatrix<TKey, TValue> lhs, IAdjacencyMatrix<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -182,9 +217,29 @@ public final class AdjacencyMatrix implements IAdjacencyMatrix {
                 return 1;
             }
 
+            IComparableComparator<IVertex<TKey, TValue>> keyComparator = this.vertexComparator;
+
+            IComparableComparator<Set<IVertex<TKey, TValue>>> valueComparator =
+                (vertices1, vertices2) -> {
+                    return new CompareToBuilder().withCollection(vertices1, vertices2, this.vertexComparator).build();
+                };
+
             return new CompareToBuilder()
-                .withBooleanArray(lhs.connections(), rhs.connections())
+                .withMap(
+                    lhs.connections(),
+                    rhs.connections(),
+                    keyComparator,
+                    valueComparator)
                 .build();
         }
+    }
+
+    /**
+     * Validates a vertex.
+     */
+    private void validateVertex(IVertex<TKey, TValue> vertex) {
+        Conditions.validate(
+            this.connections.containsKey(vertex),
+            "The vertex is not defined in the adjacency matrix.");
     }
 }

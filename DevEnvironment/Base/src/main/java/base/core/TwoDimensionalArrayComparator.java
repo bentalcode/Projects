@@ -1,12 +1,16 @@
 package base.core;
 
-import base.interfaces.IBinaryComparator;
+import base.interfaces.IComparableComparator;
+import base.interfaces.IEquatableComparator;
+import base.interfaces.IIteratorComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
 
 /**
  * The TwoDimensionalArrayComparator class implements a comparator for a two dimensional array.
  */
 public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalArrayComparator<T> {
+    private final IIteratorComparator<T> iteratorComparator = new IteratorComparator<>();
+
     /**
      * The TwoDimensionalArrayComparator constructor.
      */
@@ -17,7 +21,7 @@ public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalAr
      * Checks whether the arrays are equals with an element comparator.
      */
     @Override
-    public boolean isEqual(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator) {
+    public boolean isEqual(T[][] lhs, T[][] rhs, IEquatableComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
             "The comparator of an array element.");
@@ -38,18 +42,10 @@ public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalAr
             return false;
         }
 
-        int rowsLength = lhs.length;
-        int columnsLength = lhs[0].length;
-
-        for (int row = 0; row < rowsLength; ++row) {
-            for (int column = 0; column < columnsLength; ++column) {
-                if (!comparator.isEqual(lhs[row][column], rhs[row][column])) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+        return this.iteratorComparator.isEqual(
+            TwoDimensionalArrayIterator.of(lhs),
+            TwoDimensionalArrayIterator.of(rhs),
+            comparator);
     }
 
     /**
@@ -60,7 +56,7 @@ public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalAr
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator) {
+    public int compareTo(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
             "The comparator of an array element.");
@@ -93,20 +89,9 @@ public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalAr
             return 1;
         }
 
-        int rowsLength = lhs.length;
-        int columnsLength = lhs[0].length;
-
-        for (int row = 0; row < rowsLength; ++row) {
-            for (int column = 0; column < columnsLength; ++column) {
-
-                int status = comparator.compareTo(lhs[row][column], rhs[row][column]);
-
-                if (status != 0) {
-                    return status;
-                }
-            }
-        }
-
-        return 0;
+        return this.iteratorComparator.compareTo(
+            TwoDimensionalArrayIterator.of(lhs),
+            TwoDimensionalArrayIterator.of(rhs),
+            comparator);
     }
 }

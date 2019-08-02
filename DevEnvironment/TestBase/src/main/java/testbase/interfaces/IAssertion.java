@@ -1,6 +1,6 @@
 package testbase.interfaces;
 
-import base.interfaces.IBinaryComparator;
+import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterator;
 
 /**
@@ -25,10 +25,27 @@ public interface IAssertion {
     /**
      * Asserts equality with objects.
      */
-    <T extends Comparable<T>> void assertEquals(
+    <T> void assertEquals(
         T lhs,
         T rhs,
-        IBinaryComparator<T> comparator,
+        IEquatableComparator<T> comparator,
+        String message);
+
+    /**
+     * Asserts equality with arrays.
+     */
+    <T extends Comparable<T>> void assertEquals(
+        T[] lhs,
+        T[] rhs,
+        String message);
+
+    /**
+     * Asserts equality with arrays.
+     */
+    <T> void assertEquals(
+        T[] lhs,
+        T[] rhs,
+        IEquatableComparator<T> comparator,
         String message);
 
     /**
@@ -42,9 +59,9 @@ public interface IAssertion {
     /**
      * Asserts equality with iterators.
      */
-    <T extends Comparable<T>> void assertEquals(
+    <T> void assertEquals(
         IIterator<T> lhs,
         IIterator<T> rhs,
-        IBinaryComparator<T> comparator,
+        IEquatableComparator<T> comparator,
         String message);
 }

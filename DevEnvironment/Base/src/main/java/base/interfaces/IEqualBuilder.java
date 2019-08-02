@@ -1,6 +1,7 @@
 package base.interfaces;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * The IEqualBuilder interface defines an equal builder.
@@ -149,27 +150,36 @@ public interface IEqualBuilder {
     /**
      * With a generic object.
      */
-    <T> IEqualBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator);
+    <T> IEqualBuilder withObject(T lhs, T rhs, IEquatableComparator<T> comparator);
 
     /**
      * With a generic array.
      */
-    <T> IEqualBuilder withArray(T[] lhs, T[] rhs, IBinaryComparator<T> comparator);
+    <T> IEqualBuilder withArray(T[] lhs, T[] rhs, IEquatableComparator<T> comparator);
 
     /**
      * With a generic two dimensional array.
      */
-    <T> IEqualBuilder withArray(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator);
+    <T> IEqualBuilder withArray(T[][] lhs, T[][] rhs, IEquatableComparator<T> comparator);
 
     /**
      * With a generic collection.
      */
-    <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IBinaryComparator<T> comparator);
+    <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IEquatableComparator<T> comparator);
 
     /**
      * With a generic iterator.
      */
-    <T> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IBinaryComparator<T> comparator);
+    <T> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator);
+
+    /**
+     * With a generic map.
+     */
+    <TKey, TValue> IEqualBuilder withMap(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs,
+        IEquatableComparator<TKey> keyComparator,
+        IEquatableComparator<TValue> valueComparator);
 
     /**
      * Builds the resultant equality status.

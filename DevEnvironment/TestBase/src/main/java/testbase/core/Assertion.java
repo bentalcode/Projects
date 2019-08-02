@@ -3,6 +3,7 @@ package testbase.core;
 import base.core.Comparator;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
+import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterator;
 import org.junit.Assert;
 import testbase.interfaces.IAssertion;
@@ -52,10 +53,10 @@ public final class Assertion implements IAssertion {
      * Asserts equality with objects.
      */
     @Override
-    public <T extends Comparable<T>> void assertEquals(
+    public <T> void assertEquals(
         T lhs,
         T rhs,
-        IBinaryComparator<T> comparator,
+        IEquatableComparator<T> comparator,
         String message) {
 
         boolean status = new EqualBuilder().withObject(
@@ -63,9 +64,47 @@ public final class Assertion implements IAssertion {
             rhs,
             comparator).build();
 
-        org.junit.Assert.assertTrue(
-            message,
-            status);
+        this.assertTrue(
+            status,
+            message);
+    }
+
+    /**
+     * Asserts equality with objects.
+     */
+    @Override
+    public <T extends Comparable<T>> void assertEquals(
+        T[] lhs,
+        T[] rhs,
+        String message) {
+
+        IBinaryComparator<T> comparator = Comparator.DefaultComparator();
+
+        this.assertEquals(
+            lhs,
+            rhs,
+            comparator,
+            message);
+    }
+
+    /**
+     * Asserts equality with objects.
+     */
+    @Override
+    public <T> void assertEquals(
+        T[] lhs,
+        T[] rhs,
+        IEquatableComparator<T> comparator,
+        String message) {
+
+        boolean status = new EqualBuilder().withArray(
+            lhs,
+            rhs,
+            comparator).build();
+
+        this.assertTrue(
+            status,
+            message);
     }
 
     /**
@@ -90,10 +129,10 @@ public final class Assertion implements IAssertion {
      * Asserts equality with iterators.
      */
     @Override
-    public <T extends Comparable<T>> void assertEquals(
+    public <T> void assertEquals(
         IIterator<T> lhs,
         IIterator<T> rhs,
-        IBinaryComparator<T> comparator,
+        IEquatableComparator<T> comparator,
         String message) {
 
         boolean status = new EqualBuilder().withIterator(
@@ -101,8 +140,8 @@ public final class Assertion implements IAssertion {
             rhs,
             comparator).build();
 
-        org.junit.Assert.assertTrue(
-            message,
-            status);
+        this.assertTrue(
+            status,
+            message);
     }
 }

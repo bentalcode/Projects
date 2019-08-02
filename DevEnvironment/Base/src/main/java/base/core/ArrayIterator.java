@@ -5,14 +5,21 @@ import base.interfaces.IIterator;
 /**
  * The ArrayIterator class implements an iterator of an array.
  */
-public class ArrayIterator<T> implements IIterator<T>, Iterable<T> {
+public class ArrayIterator<T> implements IIterator<T> {
     private final T[] array;
     private int position;
 
     /**
-     * The ReverseIterator constructor.
+     * Creates a new array iterator.
      */
-    public ArrayIterator(T[] array) {
+    public static <T> IIterator<T> of(T[] array) {
+        return new ArrayIterator<>(array);
+    }
+
+    /**
+     * The ArrayIterator constructor.
+     */
+    private ArrayIterator(T[] array) {
         Conditions.validateNotNull(
             array,
             "The array to iterate.");
@@ -20,15 +27,6 @@ public class ArrayIterator<T> implements IIterator<T>, Iterable<T> {
         this.array = array;
 
         this.reset();
-    }
-
-    /**
-     * Gets an iterator for iterating over a collection.
-     */
-    @Override
-    public IIterator<T> iterator() {
-        this.reset();
-        return this;
     }
 
     /**

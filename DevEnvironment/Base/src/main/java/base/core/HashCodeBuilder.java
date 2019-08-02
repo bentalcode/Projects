@@ -1,9 +1,14 @@
 package base.core;
 
+import base.interfaces.IBinaryComparator;
+import base.interfaces.ICollectionComparator;
+import base.interfaces.IEqualBuilder;
 import base.interfaces.IHashCodeBuilder;
 import base.interfaces.IHashCodeProvider;
+import base.interfaces.IIterator;
 import base.interfaces.IPrimitiveSize;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * The HashCodeBuilder class implements a hash code builder.
@@ -432,11 +437,15 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T> IHashCodeBuilder withArray(T[] array, IHashCodeProvider<T> provider) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withObject(array[i], provider);
-        }
+        return this.withIterator(ArrayIterator.of(array), provider);
+    }
 
-        return this;
+    /**
+     * With a generic two dimensional array.
+     */
+    @Override
+    public <T> IHashCodeBuilder withArray(T[][] array, IHashCodeProvider<T> provider) {
+        return this.withIterator(TwoDimensionalArrayIterator.of(array), provider);
     }
 
     /**
@@ -444,8 +453,38 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T> IHashCodeBuilder withCollection(Collection<T> collection, IHashCodeProvider<T> provider) {
-        for (T item : collection) {
-            this.withObject(item, provider);
+        return this.withIterator(Iterator.of(collection), provider);
+    }
+
+    /**
+     * With a generic iterator.
+     */
+    @Override
+    public <T> IHashCodeBuilder withIterator(IIterator<T> iterator, IHashCodeProvider<T> comparator) {
+        while (iterator.hasNext()) {
+            T item = iterator.next();
+
+            this.withObject(item, comparator);
+        }
+
+        return this;
+    }
+
+    /**
+     * With a generic map.
+     */
+    @Override
+    public <TKey, TValue> IHashCodeBuilder withMap(
+        Map<TKey, TValue> map,
+        IHashCodeProvider<TKey> keyProvider,
+        IHashCodeProvider<TValue> valueProvider) {
+
+        for (TKey item : map.keySet()) {
+            this.withObject(item, keyProvider);
+        }
+
+        for (TValue value : map.values()) {
+            this.withObject(value, valueProvider);
         }
 
         return this;

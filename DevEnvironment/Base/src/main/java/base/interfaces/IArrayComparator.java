@@ -8,7 +8,7 @@ public interface IArrayComparator<T> {
     /**
      * Checks whether the arrays are equals with an element comparator.
      */
-    boolean isEqual(T[] lhs, T[] rhs, IBinaryComparator<T> comparator);
+    boolean isEqual(T[] lhs, T[] rhs, IEquatableComparator<T> comparator);
 
     /**
      * Determines the relative order of arrays with an element comparator.
@@ -17,5 +17,5 @@ public interface IArrayComparator<T> {
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
-    int compareTo(T[] lhs, T[] rhs, IBinaryComparator<T> comparator);
+    int compareTo(T[] lhs, T[] rhs, IComparableComparator<T> comparator);
 }

@@ -1,6 +1,7 @@
 package base.interfaces;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * The ICompareToBuilder interface defines a compare to builder.
@@ -149,22 +150,36 @@ public interface ICompareToBuilder {
     /**
      * With a generic object.
      */
-    <T> ICompareToBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator);
+    <T> ICompareToBuilder withObject(T lhs, T rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic array.
      */
-    <T> ICompareToBuilder withArray(T[] lhs, T[] rhs, IBinaryComparator<T> comparator);
+    <T> ICompareToBuilder withArray(T[] lhs, T[] rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic two dimensional array.
      */
-    <T> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator);
+    <T> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic collection.
      */
-    <T> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IBinaryComparator<T> comparator);
+    <T> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IComparableComparator<T> comparator);
+
+    /**
+     * With a generic iterator.
+     */
+    <T> ICompareToBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IComparableComparator<T> comparator);
+
+    /**
+     * With a generic map.
+     */
+    <TKey, TValue> ICompareToBuilder withMap(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs,
+        IComparableComparator<TKey> keyComparator,
+        IComparableComparator<TValue> valueComparator);
 
     /**
      * Builds the resultant compare status.

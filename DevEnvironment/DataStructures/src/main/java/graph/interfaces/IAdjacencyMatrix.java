@@ -1,18 +1,25 @@
 package graph.interfaces;
 
 import base.interfaces.IUnaryComparator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The IAdjacencyMatrix interface defines an adjacency matrix of a graph.
  */
-public interface IAdjacencyMatrix extends IUnaryComparator<IAdjacencyMatrix> {
+public interface IAdjacencyMatrix<TKey extends Comparable<TKey>, TValue> extends IUnaryComparator<IAdjacencyMatrix<TKey, TValue>> {
     /**
      * Gets the connections of an adjacency matrix.
      */
-    boolean[][] connections();
+    Map<IVertex<TKey, TValue>, Set<IVertex<TKey, TValue>>> connections();
 
     /**
      * Checks whether two vertices are connected.
      */
-    boolean connected(int row, int column);
+    boolean connected(IVertex<TKey, TValue> sourceVertex, IVertex<TKey, TValue> destinationVertex);
+
+    /**
+     * Gets the adjacent vertices of a vertex.
+     */
+    Set<IVertex<TKey, TValue>> getAdjacentVertices(IVertex<TKey, TValue> vertex);
 }

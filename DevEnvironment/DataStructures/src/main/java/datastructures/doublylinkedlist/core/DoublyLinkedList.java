@@ -285,6 +285,31 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
     }
 
     /**
+     * Gets a specific node by index. [0, 1, 2, ... , size -1]
+     */
+    @Override
+    public IDoublyLinkedListNode<TValue> getNode(int index) {
+        Conditions.validate(
+            index >= 0 && index < this.size(),
+            "Invalid index.");
+
+        IDoublyLinkedListNode<TValue> currNode = this.head;
+
+        int currIndex = 0;
+
+        while (currNode != null) {
+            if (currIndex == index) {
+                return currNode;
+            }
+
+            ++currIndex;
+            currNode = currNode.next();
+        }
+
+        return currNode;
+    }
+
+    /**
      * Gets string representation of this instance.
      */
     @Override

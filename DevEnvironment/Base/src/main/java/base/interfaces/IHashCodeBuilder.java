@@ -1,6 +1,7 @@
 package base.interfaces;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * The IHashCodeBuilder interface defines a hash code builder.
@@ -157,9 +158,27 @@ public interface IHashCodeBuilder {
     <T> IHashCodeBuilder withArray(T[] array, IHashCodeProvider<T> provider);
 
     /**
+     * With a generic two dimensional array.
+     */
+    <T> IHashCodeBuilder withArray(T[][] array, IHashCodeProvider<T> provider);
+
+    /**
      * With a generic collection.
      */
     <T> IHashCodeBuilder withCollection(Collection<T> collection, IHashCodeProvider<T> provider);
+
+    /**
+     * With a generic iterator.
+     */
+    <T> IHashCodeBuilder withIterator(IIterator<T> iterator, IHashCodeProvider<T> comparator);
+
+    /**
+     * With a generic map.
+     */
+    <TKey, TValue> IHashCodeBuilder withMap(
+        Map<TKey, TValue> map,
+        IHashCodeProvider<TKey> keyProvider,
+        IHashCodeProvider<TValue> valueProvider);
 
     /**
      * Builds the resultant hash code.

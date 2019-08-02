@@ -1,12 +1,16 @@
 package base.core;
 
 import base.interfaces.IArrayComparator;
-import base.interfaces.IBinaryComparator;
+import base.interfaces.IComparableComparator;
+import base.interfaces.IEquatableComparator;
+import base.interfaces.IIteratorComparator;
 
 /**
  * The ArrayComparator class implements a comparator for an array.
  */
 public final class ArrayComparator<T> implements IArrayComparator<T> {
+    private final IIteratorComparator<T> iteratorComparator = new IteratorComparator<>();
+
     /**
      * The ArrayComparator constructor.
      */
@@ -17,7 +21,7 @@ public final class ArrayComparator<T> implements IArrayComparator<T> {
      * Checks whether the arrays are equals with an element comparator.
      */
     @Override
-    public boolean isEqual(T[] lhs, T[] rhs, IBinaryComparator<T> comparator) {
+    public boolean isEqual(T[] lhs, T[] rhs, IEquatableComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
             "The comparator of an array element.");
@@ -34,15 +38,7 @@ public final class ArrayComparator<T> implements IArrayComparator<T> {
             return false;
         }
 
-        int length = lhs.length;
-
-        for (int i = 0; i < length; ++i) {
-            if (!comparator.isEqual(lhs[i], rhs[i])) {
-                return false;
-            }
-        }
-
-        return true;
+        return this.iteratorComparator.isEqual(ArrayIterator.of(lhs), ArrayIterator.of(rhs), comparator);
     }
 
     /**
@@ -53,7 +49,7 @@ public final class ArrayComparator<T> implements IArrayComparator<T> {
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(T[] lhs, T[] rhs, IBinaryComparator<T> comparator) {
+    public int compareTo(T[] lhs, T[] rhs, IComparableComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
             "The comparator of an array element.");
@@ -78,16 +74,6 @@ public final class ArrayComparator<T> implements IArrayComparator<T> {
             return 1;
         }
 
-        int length = lhs.length;
-
-        for (int i = 0; i < length; ++i) {
-            int status = comparator.compareTo(lhs[i], rhs[i]);
-
-            if (status != 0) {
-                return status;
-            }
-        }
-
-        return 0;
+        return this.iteratorComparator.compareTo(ArrayIterator.of(lhs), ArrayIterator.of(rhs), comparator);
     }
 }

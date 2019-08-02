@@ -23,4 +23,14 @@ public interface IComparatorFactory {
      * Create a collection comparator.
      */
     <T> ICollectionComparator<T> createCollectionComparator();
+
+    /**
+     * Create an iterator comparator.
+     */
+    <T> IIteratorComparator<T> createIteratorComparator();
+
+    /**
+     * Creates a map comparator.
+     */
+    <TKey, TValue> IMapComparator<TKey, TValue> createMapComparator();
 }

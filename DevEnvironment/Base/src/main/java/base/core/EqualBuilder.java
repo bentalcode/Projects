@@ -1,15 +1,16 @@
 package base.core;
 
 import base.interfaces.IArrayComparator;
-import base.interfaces.IBinaryComparator;
 import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparatorFactory;
-import base.interfaces.ICompareToBuilder;
 import base.interfaces.IEqualBuilder;
+import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterator;
+import base.interfaces.IIteratorComparator;
+import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
-
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * The EqualBuilder class implements an equal builder.
@@ -156,7 +157,7 @@ public final class EqualBuilder implements IEqualBuilder {
      */
     @Override
     public IEqualBuilder withString(String lhs, String rhs) {
-        IBinaryComparator<String> comparator = this.comparatorFactory.createComparator();
+        IEquatableComparator<String> comparator = this.comparatorFactory.createComparator();
         return this.withObject(lhs, rhs, comparator);
     }
 
@@ -453,7 +454,7 @@ public final class EqualBuilder implements IEqualBuilder {
      */
     @Override
     public IEqualBuilder withStringArray(String[] lhs, String[] rhs) {
-        IBinaryComparator<String> comparator = this.comparatorFactory.createComparator();
+        IEquatableComparator<String> comparator = this.comparatorFactory.createComparator();
 
         return this.withArray(lhs, rhs, comparator);
     }
@@ -831,7 +832,7 @@ public final class EqualBuilder implements IEqualBuilder {
      */
     @Override
     public IEqualBuilder withStringArray(String[][] lhs, String[][] rhs) {
-        IBinaryComparator<String> comparator = this.comparatorFactory.createComparator();
+        IEquatableComparator<String> comparator = this.comparatorFactory.createComparator();
 
         return this.withArray(lhs, rhs, comparator);
     }
@@ -840,7 +841,7 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic object.
      */
     @Override
-    public <T> IEqualBuilder withObject(T lhs, T rhs, IBinaryComparator<T> comparator) {
+    public <T> IEqualBuilder withObject(T lhs, T rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }
@@ -854,12 +855,12 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic array.
      */
     @Override
-    public <T> IEqualBuilder withArray(T[] lhs, T[] rhs, IBinaryComparator<T> comparator) {
+    public <T> IEqualBuilder withArray(T[] lhs, T[] rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }
 
-        IArrayComparator<T> arrayComparator = new ArrayComparator<>();
+        IArrayComparator<T> arrayComparator = this.comparatorFactory.createArrayComparator();
         this.equalityStatus = arrayComparator.isEqual(lhs, rhs, comparator);
 
         return this;
@@ -869,7 +870,7 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic two dimensional array.
      */
     @Override
-    public <T> IEqualBuilder withArray(T[][] lhs, T[][] rhs, IBinaryComparator<T> comparator) {
+    public <T> IEqualBuilder withArray(T[][] lhs, T[][] rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }
@@ -884,7 +885,7 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic collection.
      */
     @Override
-    public <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IBinaryComparator<T> comparator) {
+    public <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }
@@ -899,13 +900,33 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic iterator.
      */
     @Override
-    public <T> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IBinaryComparator<T> comparator) {
+    public <T> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }
 
-        ICollectionComparator<T> collectionComparator = this.comparatorFactory.createCollectionComparator();
-        this.equalityStatus = collectionComparator.isEqual(lhs, rhs, comparator);
+        IIteratorComparator<T> iteratorComparator = this.comparatorFactory.createIteratorComparator();
+        this.equalityStatus = iteratorComparator.isEqual(lhs, rhs, comparator);
+
+        return this;
+    }
+
+    /**
+     * With a generic map.
+     */
+    @Override
+    public <TKey, TValue> IEqualBuilder withMap(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs,
+        IEquatableComparator<TKey> keyComparator,
+        IEquatableComparator<TValue> valueComparator) {
+
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        IMapComparator<TKey, TValue> mapComparator = this.comparatorFactory.createMapComparator();
+        this.equalityStatus = mapComparator.isEqual(lhs, rhs, keyComparator, valueComparator);
 
         return this;
     }

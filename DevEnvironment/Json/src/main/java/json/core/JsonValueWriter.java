@@ -199,7 +199,7 @@ public final class JsonValueWriter implements IJsonValueWriter {
             return;
         }
 
-        this.writeCollection(new ArrayIterator<>(array));
+        this.writeCollection(ArrayIterator.of(array));
     }
 
     /**

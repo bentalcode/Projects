@@ -4,7 +4,7 @@ package base.interfaces;
  * The IComparableComparator interface defines a comparable comparator,
  * for determining comparable order between two instances.
  */
-public interface IComparableComparator<T> extends IHashCodeProvider<T> {
+public interface IComparableComparator<T> {
     /**
      * Determines the relative order of two instances.
      *
