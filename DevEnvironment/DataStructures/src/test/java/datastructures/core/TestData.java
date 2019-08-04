@@ -6,6 +6,8 @@ import datastructures.cache.core.CacheTestData;
 import datastructures.cache.interfaces.ICacheTestData;
 import datastructures.doublylinkedlist.core.DoublyLinkedListTestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
+import datastructures.graph.core.GraphTestData;
+import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.interfaces.ITestData;
 
 /**
@@ -16,6 +18,22 @@ public final class TestData implements ITestData {
      * The TestData constructor.
      */
     public TestData() {
+    }
+
+    /**
+     * Gets the data of tests of a doubly linked list.
+     */
+    @Override
+    public IDoublyLinkedListTestData getDoublyLinkedListData() {
+        return new DoublyLinkedListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a graph.
+     */
+    @Override
+    public IGraphTestData getGraphData() {
+        return new GraphTestData();
     }
 
     /**
@@ -32,13 +50,5 @@ public final class TestData implements ITestData {
     @Override
     public ICacheTestData getCacheData() {
         return new CacheTestData();
-    }
-
-    /**
-     * Gets the data of tests of a doubly linked list.
-     */
-    @Override
-    public IDoublyLinkedListTestData getDoublyLinkedListData() {
-        return new DoublyLinkedListTestData();
     }
 }

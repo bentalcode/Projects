@@ -1,6 +1,7 @@
 package datastructures.graph.core;
 
 import datastructures.core.TestData;
+import datastructures.graph.interfaces.IGraph;
 import datastructures.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
@@ -40,12 +41,25 @@ public final class GraphTest {
      */
     @Test
     public void loopDetectionTest() {
-        this.testLoopDetection();
+        for (IGraph<Integer, String> graph : this.testData.getGraphData().getGraphs()) {
+            this.testLoopDetection(graph, false);
+        }
+
+        for (IGraph<Integer, String> graph : this.testData.getGraphData().getGraphsWithLoops()) {
+            this.testLoopDetection(graph, true);
+        }
+
     }
 
     /**
      * Tests the loop detection logic of a graph.
      */
-    private void testLoopDetection() {
+    private void testLoopDetection(IGraph graph, boolean expectedStatus) {
+        boolean status = graph.getGraphLogic().detectLoop();
+
+        this.assertion.assertEquals(
+            status,
+            expectedStatus,
+            "Invalid logic of loop detection in a graph.");
     }
 }

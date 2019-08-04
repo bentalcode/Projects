@@ -38,9 +38,12 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
             }
 
             Set<IVertex<TKey, TValue>> searchStack = new HashSet<>();
+
             if (this.detectLoop(vertex, visited, searchStack)) {
                 return true;
             }
+
+            assert(searchStack.isEmpty());
         }
 
         return false;
@@ -54,10 +57,6 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
         Set<IVertex<TKey, TValue>> visited,
         Set<IVertex<TKey, TValue>> searchStack) {
 
-        if (searchStack.contains(vertex)) {
-            return true;
-        }
-
         if (visited.contains(vertex)) {
             return false;
         }
@@ -66,15 +65,18 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
         searchStack.add(vertex);
 
         for (IVertex<TKey, TValue> nextVertex : this.graph.getAdjacencyMatrix().getAdjacentVertices(vertex)) {
+            if (searchStack.contains(nextVertex)) {
+                return true;
+            }
 
             if (visited.contains(nextVertex)) {
                 continue;
             }
 
-            if (this.detectLoop(nextVertex, visited, searchStack)) {
-                return true;
-            }
+            this.detectLoop(nextVertex, visited, searchStack);
         }
+
+        searchStack.remove(vertex);
 
         return false;
     }
