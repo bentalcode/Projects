@@ -1,4 +1,4 @@
-package graph.interfaces;
+package datastructures.graph.interfaces;
 
 import base.interfaces.IUnaryComparator;
 

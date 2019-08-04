@@ -1,4 +1,4 @@
-package graph.core;
+package datastructures.graph.core;
 
 import base.core.Casting;
 import base.core.CompareToBuilder;
@@ -6,14 +6,16 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import graph.interfaces.IAdjacencyMatrix;
-import graph.interfaces.IEdge;
-import graph.interfaces.IGraph;
-import graph.interfaces.IVertex;
+import datastructures.graph.interfaces.IAdjacencyMatrix;
+import datastructures.graph.interfaces.IEdge;
+import datastructures.graph.interfaces.IGraph;
+import datastructures.graph.interfaces.IGraphLogic;
+import datastructures.graph.interfaces.IGraphTraversal;
+import datastructures.graph.interfaces.IVertex;
 import java.util.Set;
 
 /**
- * The Graph interface defines a graph.
+ * The Graph class implements a graph.
  */
 public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGraph<TKey, TValue> {
     private final Set<IVertex<TKey, TValue>> vertices;
@@ -22,6 +24,20 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
 
     private final IBinaryComparator<IGraph<TKey, TValue>> comparator;
     private final int hashCode;
+
+    /**
+     * The Graph constructor.
+     */
+    public Graph(
+        Set<IVertex<TKey, TValue>> vertices,
+        Set<IEdge<TKey, TValue>> edges,
+        IAdjacencyMatrix<TKey, TValue> adjacencyMatrix) {
+        this(
+            vertices,
+            edges,
+            adjacencyMatrix,
+            Graph.DefaultComparator());
+    }
 
     /**
      * The Graph constructor.
@@ -97,6 +113,22 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
     public int getDegree(IVertex<TKey, TValue> vertex) {
         Set<IVertex<TKey, TValue>> adjacentVertices = this.adjacencyMatrix.getAdjacentVertices(vertex);
         return adjacentVertices.size();
+    }
+
+    /**
+     * Gets an interface of a graph traversal.
+     */
+    @Override
+    public IGraphTraversal getGraphTraversal() {
+        return new GraphTraversal<>(this);
+    }
+
+    /**
+     * Gets an interface of a graph logic.
+     */
+    @Override
+    public IGraphLogic getGraphLogic() {
+        return new GraphLogic<>(this);
     }
 
     /**

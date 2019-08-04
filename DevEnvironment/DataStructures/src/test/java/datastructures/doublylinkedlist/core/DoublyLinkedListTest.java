@@ -1,19 +1,15 @@
-package doublylinkedlist.core;
+package datastructures.doublylinkedlist.core;
 
 import base.core.Iterator;
 import base.interfaces.IIterator;
 import base.interfaces.ITriple;
-import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.collections.interfaces.IValueReverseIterator;
+import datastructures.core.TestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
-import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
 import testbase.core.Assertion;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
-import datastructures.core.TestData;
 import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.interfaces.ITestData;
@@ -57,7 +53,8 @@ public final class DoublyLinkedListTest {
     public void DoublyLinkedListUpdationTest() {
         IDoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
-        List<ITriple<String, Integer, List<Integer>>> data = this.testData.getDoublyLinkedListData();
+        List<ITriple<String, Integer, List<Integer>>> data =
+            this.testData.getDoublyLinkedListData().getDoublyLinkedListData();
 
         this.testUpdation(list, data);
     }
@@ -69,7 +66,8 @@ public final class DoublyLinkedListTest {
     public void DoublyLinkedListIterationTest() {
         IDoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
-        List<ITriple<String, Integer, List<Integer>>> data = this.testData.getDoublyLinkedListData();
+        List<ITriple<String, Integer, List<Integer>>> data =
+            this.testData.getDoublyLinkedListData().getDoublyLinkedListData();
 
         this.testIteration(list, data);
     }

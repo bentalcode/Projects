@@ -1,4 +1,4 @@
-package graph.core;
+package datastructures.graph.core;
 
 import base.core.Casting;
 import base.core.CompareToBuilder;
@@ -6,7 +6,7 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
-import graph.interfaces.IVertex;
+import datastructures.graph.interfaces.IVertex;
 
 /**
  * The Vertex class implements a vertex of a graph.

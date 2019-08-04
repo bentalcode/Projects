@@ -1,4 +1,4 @@
-package graph.core;
+package datastructures.graph.core;
 
 import base.core.Casting;
 import base.core.CompareToBuilder;
@@ -9,8 +9,8 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IComparableComparator;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IHashCodeProvider;
-import graph.interfaces.IAdjacencyMatrix;
-import graph.interfaces.IVertex;
+import datastructures.graph.interfaces.IAdjacencyMatrix;
+import datastructures.graph.interfaces.IVertex;
 import java.util.Map;
 import java.util.Set;
 

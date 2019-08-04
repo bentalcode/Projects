@@ -1,4 +1,4 @@
-package graph.interfaces;
+package datastructures.graph.interfaces;
 
 import base.interfaces.IUnaryComparator;
 import java.util.Set;
@@ -33,4 +33,14 @@ public interface IGraph<TKey extends Comparable<TKey>, TValue> extends IUnaryCom
      * A vertex degree is the number of edges incident to a vertex. Notated as d(V).
      */
     int getDegree(IVertex<TKey, TValue> vertex);
+
+    /**
+     * Gets an interface of a graph traversal.
+     */
+    IGraphTraversal getGraphTraversal();
+
+    /**
+     * Gets an interface of a graph logic.
+     */
+    IGraphLogic getGraphLogic();
 }

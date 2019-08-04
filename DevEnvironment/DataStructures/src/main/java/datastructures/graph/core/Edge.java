@@ -1,4 +1,4 @@
-package graph.core;
+package datastructures.graph.core;
 
 import base.core.Casting;
 import base.core.CompareToBuilder;
@@ -7,8 +7,8 @@ import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
-import graph.interfaces.IEdge;
-import graph.interfaces.IVertex;
+import datastructures.graph.interfaces.IEdge;
+import datastructures.graph.interfaces.IVertex;
 
 /**
  * The Edge class implements an edge of a graph.

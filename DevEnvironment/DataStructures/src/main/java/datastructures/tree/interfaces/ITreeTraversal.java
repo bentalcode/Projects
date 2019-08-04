@@ -3,7 +3,7 @@ package datastructures.tree.interfaces;
 import base.interfaces.IVisitor;
 
 /**
- * The ITreeTraversal interface defines various traversal in a tree.
+ * The ITreeTraversal interface defines various traversals of a tree.
  */
 public interface ITreeTraversal<TKey extends Comparable<TKey>, TValue> {
     /**

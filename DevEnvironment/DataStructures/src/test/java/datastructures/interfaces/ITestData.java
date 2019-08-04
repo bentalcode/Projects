@@ -1,41 +1,25 @@
 package datastructures.interfaces;
 
-import base.interfaces.INullable;
-import base.interfaces.IPair;
-import base.interfaces.ITriple;
-import datastructures.blocktree.interfaces.IBlockTreeLevels;
-import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
-import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodes;
-import java.util.List;
+import datastructures.bplustree.interfaces.IBPlusTreeTestData;
+import datastructures.cache.interfaces.ICacheTestData;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 
 /**
  * The ITestData interface defines the data of the tests.
  */
 public interface ITestData {
     /**
-     * Gets the properties of a B+ tree.
+     * Gets the data of tests of a B+ tree.
      */
-    IBPlusTreeProperties<Integer, String> getTreeProperties();
+    IBPlusTreeTestData getBPlusData();
 
     /**
-     * Gets the creation data of B+ trees.
+     * Gets the data of tests of a cache.
      */
-    List<IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> getCreationData();
+    ICacheTestData getCacheData();
 
     /**
-     * Gets the data of B+ trees.
+     * Gets the data of tests of a doubly linked list.
      */
-    List<ITriple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> getTreesData();
-
-    /**
-     * Gets the least recently used data.
-     */
-    List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getLRUData();
-
-    /**
-     * Gets the doubly linked list data.
-     */
-    List<ITriple<String, Integer, List<Integer>>> getDoublyLinkedListData();
+    IDoublyLinkedListTestData getDoublyLinkedListData();
 }

@@ -12,7 +12,7 @@ import java.util.Queue;
 import java.util.Set;
 
 /**
- * The TreeTraversal class implements various search methods in a tree.
+ * The TreeTraversal class implements various traversals of a tree.
  */
 public final class TreeTraversal<TKey extends Comparable<TKey>, TValue> implements ITreeTraversal<TKey, TValue> {
     private final IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator;

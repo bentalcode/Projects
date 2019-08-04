@@ -1,4 +1,4 @@
-package cache.core;
+package datastructures.cache.core;
 
 import base.core.Iterator;
 import base.interfaces.IIterator;
@@ -52,7 +52,8 @@ public final class LRUCacheTest {
     public void LRUCacheUpdationTest() {
         ILRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
 
-        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = this.testData.getLRUData();
+        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
+            this.testData.getCacheData().getLRUData();
 
         this.testUpdation(cache, data);
     }
@@ -64,7 +65,8 @@ public final class LRUCacheTest {
     public void LRUCacheIterationTest() {
         ILRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
 
-        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = this.testData.getLRUData();
+        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
+            this.testData.getCacheData().getLRUData();
 
         this.testIteration(cache, data);
     }
