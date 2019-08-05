@@ -37,10 +37,10 @@ public interface IGraph<TKey extends Comparable<TKey>, TValue> extends IUnaryCom
     /**
      * Gets an interface of a graph traversal.
      */
-    IGraphTraversal getGraphTraversal();
+    IGraphTraversal<TKey, TValue> getGraphTraversal();
 
     /**
      * Gets an interface of a graph logic.
      */
-    IGraphLogic getGraphLogic();
+    IGraphLogic<TKey, TValue> getGraphLogic();
 }

@@ -68,7 +68,7 @@ public final class GraphTest {
     /**
      * Tests the logic of a loop detection of a graph.
      */
-    private void testLoopDetection(IGraph graph, boolean expectedStatus) {
+    private void testLoopDetection(IGraph<Integer, String> graph, boolean expectedStatus) {
         boolean status = graph.getGraphLogic().detectLoop();
 
         this.assertion.assertEquals(
@@ -80,7 +80,7 @@ public final class GraphTest {
     /**
      * Tests the logic of a topological search of a graph.
      */
-    private void testTopologicalSearch(IGraph graph, ITwoDimensionalList<IVertex<Integer, String>> expectedResult) {
+    private void testTopologicalSearch(IGraph<Integer, String> graph, ITwoDimensionalList<IVertex<Integer, String>> expectedResult) {
         boolean hasLoop = graph.getGraphLogic().detectLoop();
         this.assertion.assertEquals(
             hasLoop,

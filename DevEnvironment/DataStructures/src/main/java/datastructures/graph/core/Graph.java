@@ -119,7 +119,7 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
      * Gets an interface of a graph traversal.
      */
     @Override
-    public IGraphTraversal getGraphTraversal() {
+    public IGraphTraversal<TKey, TValue> getGraphTraversal() {
         return new GraphTraversal<>(this);
     }
 
@@ -127,7 +127,7 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
      * Gets an interface of a graph logic.
      */
     @Override
-    public IGraphLogic getGraphLogic() {
+    public IGraphLogic<TKey, TValue> getGraphLogic() {
         return new GraphLogic<>(this);
     }
 
