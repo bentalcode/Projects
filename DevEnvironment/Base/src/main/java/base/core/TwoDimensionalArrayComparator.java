@@ -38,10 +38,6 @@ public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalAr
             return false;
         }
 
-        if (lhs[0].length != rhs[0].length) {
-            return false;
-        }
-
         return this.iteratorComparator.isEqual(
             TwoDimensionalArrayIterator.of(lhs),
             TwoDimensionalArrayIterator.of(rhs),
@@ -78,14 +74,6 @@ public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalAr
         }
 
         if (lhs.length > rhs.length) {
-            return 1;
-        }
-
-        if (lhs[0].length < rhs[0].length) {
-            return -1;
-        }
-
-        if (lhs[0].length > rhs[0].length) {
             return 1;
         }
 

@@ -1,7 +1,7 @@
 package base.interfaces;
 
 /**
- * The ITwoDimensionalArrayComparator interface defines a comparator for generic two dimensional arrays.
+ * The ITwoDimensionalArrayComparator interface defines a comparator for generic two dimensional array.
  */
 public interface ITwoDimensionalArrayComparator<T> {
 

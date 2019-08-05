@@ -1,33 +1,34 @@
 package base.core;
 
 import base.interfaces.IIterator;
+import java.util.List;
 
 /**
- * The TwoDimensionalArrayIterator class implements an iterator of a two dimensional array.
+ * The TwoDimensionalListIterator class implements an iterator of a two dimensional list.
  */
-public class TwoDimensionalArrayIterator<T> implements IIterator<T> {
-    private final T[][] array;
+public class TwoDimensionalListIterator<T> implements IIterator<T> {
+    private final List<List<T>> list;
     private final int rows;
     private int rowPosition;
     private int columnPosition;
 
     /**
-     * Creates a new array iterator.
+     * Creates a new list iterator.
      */
-    public static <T> IIterator<T> of(T[][] array) {
-        return new TwoDimensionalArrayIterator<>(array);
+    public static <T> IIterator<T> of(List<List<T>> list) {
+        return new TwoDimensionalListIterator<>(list);
     }
 
     /**
      * The TwoDimensionalArrayIterator constructor.
      */
-    private TwoDimensionalArrayIterator(T[][] array) {
+    private TwoDimensionalListIterator(List<List<T>> list) {
         Conditions.validateNotNull(
-            array,
-            "The array to iterate.");
+            list,
+            "The list to iterate.");
 
-        this.array = array;
-        this.rows = array.length;
+        this.list = list;
+        this.rows = list.size();
 
         this.reset();
     }
@@ -47,7 +48,7 @@ public class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     public T next() {
         assert(this.hasNext());
 
-        T currElement = this.array[this.rowPosition][this.columnPosition];
+        T currElement = this.list.get(this.rowPosition).get(this.columnPosition);
 
         this.moveNext();
 
@@ -80,6 +81,6 @@ public class TwoDimensionalArrayIterator<T> implements IIterator<T> {
      * Gets the size of a specific row.
      */
     private int rowSize(int rowIndex) {
-        return this.array[rowIndex].length;
+        return this.list.get(rowIndex).size();
     }
 }
