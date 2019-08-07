@@ -7,7 +7,7 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 /**
  * The DoublyLinkedListNodeValueIterator class implements an iterator of values of a doubly linked list.
  */
-public final class DoublyLinkedListNodeValueIterator<TValue> implements IValueIterator<TValue> {
+public final class DoublyLinkedListNodeValueIterator<TValue extends Comparable<TValue>> implements IValueIterator<TValue> {
     private final IDoublyLinkedListNodeIterator<TValue> iterator;
 
     /**

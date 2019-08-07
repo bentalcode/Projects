@@ -1,11 +1,11 @@
 package datastructures.binarytree.interfaces;
 
-import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 
 /**
  * The IBinaryTreeNodeIterator interface defines an iterator of binary nodes.
  */
-public interface IBinaryTreeNodeIterator<T> extends IIterator<T> {
+public interface IBinaryTreeNodeReverseIterator<T> extends IReverseIterator<T> {
     /*
      * Skips over end nodes.
      * Returns the previous set status.

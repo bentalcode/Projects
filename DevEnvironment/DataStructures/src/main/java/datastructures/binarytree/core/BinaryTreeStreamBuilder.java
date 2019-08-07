@@ -5,17 +5,18 @@ import base.interfaces.IBuilder;
 import base.interfaces.IIterator;
 import datastructures.binarytree.interfaces.IBinaryTree;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
+import datastructures.binarytree.interfaces.IBinaryTreeNodeIterator;
 
 /**
  * The BinaryTreeStreamBuilder class implements a builder for a binary tree from a stream.
  */
 public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue> implements IBuilder<IBinaryTree<TKey, TValue>> {
-    private final IIterator<IBinaryTreeNode<TKey, TValue>> iterator;
+    private final IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> iterator;
 
     /**
      * The BinaryTreeBuilder constructor.
      */
-    public BinaryTreeStreamBuilder(IIterator<IBinaryTreeNode<TKey, TValue>> iterator) {
+    public BinaryTreeStreamBuilder(IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> iterator) {
         Conditions.validateNotNull(
             iterator,
             "The iterator of binary nodes.");
@@ -28,8 +29,13 @@ public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue
      */
     @Override
     public IBinaryTree<TKey, TValue> build() {
+        boolean previousStatus = this.iterator.includeEndNodes();
         IBinaryTreeNode<TKey, TValue> rootNode = this.read(this.iterator);
-        return new BinaryTree<>(rootNode);
+        this.iterator.setSkipEndNodesStatus(previousStatus);
+
+        IBinaryTree<TKey, TValue> tree = new BinaryTree<>(rootNode);
+
+        return tree;
     }
 
     /**

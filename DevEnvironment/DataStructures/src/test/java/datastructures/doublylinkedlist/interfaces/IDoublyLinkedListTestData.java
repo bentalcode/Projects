@@ -8,6 +8,11 @@ import java.util.List;
  */
 public interface IDoublyLinkedListTestData {
     /**
+     * Gets the data of the doubly linked list.
+     */
+    List<List<IDoublyLinkedListNode<Integer>>> getData();
+
+    /**
      * Gets the updation data.
      */
     List<ITriple<String, Integer, List<Integer>>> getUpdationData();

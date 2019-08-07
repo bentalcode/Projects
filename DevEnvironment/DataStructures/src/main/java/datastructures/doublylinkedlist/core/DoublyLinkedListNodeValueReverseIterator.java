@@ -8,7 +8,7 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIt
  * The DoublyLinkedListNodeValueReverseIterator class implements a reverse iterator
  * of values of a doubly linked list.
  */
-public final class DoublyLinkedListNodeValueReverseIterator<TValue> implements IValueReverseIterator<TValue> {
+public final class DoublyLinkedListNodeValueReverseIterator<TValue extends Comparable<TValue>> implements IValueReverseIterator<TValue> {
     private final IDoublyLinkedListNodeReverseIterator<TValue> iterator;
 
     /**

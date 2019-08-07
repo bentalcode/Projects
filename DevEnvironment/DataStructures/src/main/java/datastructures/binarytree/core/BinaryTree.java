@@ -2,7 +2,6 @@ package datastructures.binarytree.core;
 
 import base.core.Casting;
 import base.core.Conditions;
-import base.core.ReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import base.interfaces.IIterator;
@@ -74,6 +73,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
     /**
      * Gets an iterator of a tree.
      */
+    @Override
     public IIterator<IBinaryTreeNode<TKey , TValue>> getIterator() {
         return BinaryTreeIterator.of(this.root);
     }
@@ -81,10 +81,10 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
     /**
      * Gets a reverse iterator of a tree.
      */
+    @Override
     public IReverseIterator<IBinaryTreeNode<TKey , TValue>> getReverseIterator() {
         return BinaryTreeReverseIterator.of(this.root);
     }
-
 
     /**
      * Gets the hash code.
@@ -168,16 +168,16 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(IBinaryTree<TKey, TValue> lhsTree, IBinaryTree<TKey, TValue> rhsTree) {
-            if (lhsTree == null && rhsTree == null) {
+        public boolean isEqual(IBinaryTree<TKey, TValue> lhs, IBinaryTree<TKey, TValue> rhs) {
+            if (lhs == null && rhs == null) {
                 return true;
             }
 
-            if (lhsTree == null || rhsTree == null) {
+            if (lhs == null || rhs == null) {
                 return false;
             }
 
-            return this.isEqual(lhsTree.getRoot(), rhsTree.getRoot());
+            return this.isEqual(lhs.getRoot(), rhs.getRoot());
         }
 
         /**
@@ -188,38 +188,38 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IBinaryTree<TKey, TValue> lhsTree, IBinaryTree<TKey, TValue> rhsTree) {
-            if (lhsTree == null && rhsTree == null) {
+        public int compareTo(IBinaryTree<TKey, TValue> lhs, IBinaryTree<TKey, TValue> rhs) {
+            if (lhs == null && rhs == null) {
                 return 0;
             }
 
-            if (lhsTree == null) {
+            if (lhs == null) {
                 return -1;
             }
 
-            if (rhsTree == null) {
+            if (rhs == null) {
                 return 1;
             }
 
-            return this.compareTo(lhsTree.getRoot(), rhsTree.getRoot());
+            return this.compareTo(lhs.getRoot(), rhs.getRoot());
         }
 
         /**
          * Checks whether two instances are equals.
          */
-        private boolean isEqual(IBinaryTreeNode<TKey, TValue> lhsRoot, IBinaryTreeNode<TKey, TValue> rhsRoot) {
-            if (lhsRoot == null && rhsRoot == null) {
+        private boolean isEqual(IBinaryTreeNode<TKey, TValue> lhs, IBinaryTreeNode<TKey, TValue> rhs) {
+            if (lhs == null && rhs == null) {
                 return true;
             }
 
-            if (lhsRoot == null || rhsRoot == null) {
+            if (lhs == null || rhs == null) {
                 return false;
             }
 
             return
-                this.nodeComparator.isEqual(lhsRoot, rhsRoot) &&
-                    this.isEqual(lhsRoot.getLeftChild(), rhsRoot.getLeftChild()) &&
-                    this.isEqual(lhsRoot.getRightChild(), rhsRoot.getRightChild());
+                this.nodeComparator.isEqual(lhs, rhs) &&
+                    this.isEqual(lhs.getLeftChild(), rhs.getLeftChild()) &&
+                    this.isEqual(lhs.getRightChild(), rhs.getRightChild());
         }
 
         /**
@@ -229,32 +229,32 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
          * Returns 0 if the left hand side value is equal to the right hand side value.
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
-        private int compareTo(IBinaryTreeNode<TKey, TValue> lhsRoot, IBinaryTreeNode<TKey, TValue> rhsRoot) {
-            if (lhsRoot == null && rhsRoot == null) {
+        private int compareTo(IBinaryTreeNode<TKey, TValue> lhs, IBinaryTreeNode<TKey, TValue> rhs) {
+            if (lhs == null && rhs == null) {
                 return 0;
             }
 
-            if (lhsRoot == null) {
+            if (lhs == null) {
                 return -1;
             }
 
-            if (rhsRoot == null) {
+            if (rhs == null) {
                 return 1;
             }
 
-            int result = this.nodeComparator.compareTo(lhsRoot, rhsRoot);
+            int result = this.nodeComparator.compareTo(lhs, rhs);
 
             if (result != 0) {
                 return result;
             }
 
-            result = this.compareTo(lhsRoot.getLeftChild(), rhsRoot.getLeftChild());
+            result = this.compareTo(lhs.getLeftChild(), rhs.getLeftChild());
 
             if (result != 0) {
                 return result;
             }
 
-            return this.compareTo(lhsRoot.getRightChild(), rhsRoot.getRightChild());
+            return this.compareTo(lhs.getRightChild(), rhs.getRightChild());
         }
     }
 

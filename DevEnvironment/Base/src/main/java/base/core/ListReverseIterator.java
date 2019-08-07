@@ -1,29 +1,29 @@
 package base.core;
 
-import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import java.util.List;
 
 /**
- * The ListIterator class implements an iterator of a list.
+ * The ListReverseIterator class implements a reverse iterator of a list.
  */
-public class ListIterator<T> implements IIterator<T> {
+public class ListReverseIterator<T> implements IReverseIterator<T> {
     private final List<T> list;
     private int position;
 
     /**
-     * Creates a new iterator of a list.
+     * Creates a new reverse iterator of a list.
      */
-    public static <T> IIterator<T> of(List<T> list) {
-        return new ListIterator<>(list);
+    public static <T> IReverseIterator<T> of(List<T> list) {
+        return new ListReverseIterator<>(list);
     }
 
     /**
-     * The ListIterator constructor.
+     * The ListReverseIterator constructor.
      */
-    private ListIterator(List<T> list) {
+    private ListReverseIterator(List<T> list) {
         Conditions.validateNotNull(
             list,
-            "The list to iterate.");
+            "The list to iterate in reverse.");
 
         this.list = list;
 
@@ -35,7 +35,7 @@ public class ListIterator<T> implements IIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.position < this.list.size();
+        return this.position >= 0;
     }
 
     /**
@@ -46,7 +46,7 @@ public class ListIterator<T> implements IIterator<T> {
         assert(this.hasNext());
 
         T currElement = this.list.get(this.position);
-        ++this.position;
+        --this.position;
 
         return currElement;
     }
@@ -56,6 +56,6 @@ public class ListIterator<T> implements IIterator<T> {
      */
     @Override
     public void reset() {
-        this.position = 0;
+        this.position = this.list.size() - 1;
     }
 }

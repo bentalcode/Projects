@@ -1,9 +1,11 @@
 package datastructures.doublylinkedlist.interfaces;
 
+import base.interfaces.IUnaryComparator;
+
 /**
  * The IDoublyLinkedListKeyValueNode interface defines a node of a doubly linked list.
  */
-public interface IDoublyLinkedListNode<TValue> {
+public interface IDoublyLinkedListNode<TValue extends Comparable<TValue>> extends IUnaryComparator<IDoublyLinkedListNode<TValue>> {
     /**
      * Gets a value of a node.
      */

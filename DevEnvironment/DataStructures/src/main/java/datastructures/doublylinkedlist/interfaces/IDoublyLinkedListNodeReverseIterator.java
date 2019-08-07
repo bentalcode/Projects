@@ -5,5 +5,5 @@ import base.interfaces.IReverseIterator;
 /**
  * The IDoublyLinkedListNodeReverseIterator interface defines a reverse iterator of nodes of a doubly linked list.
  */
-public interface IDoublyLinkedListNodeReverseIterator<TValue> extends IReverseIterator<IDoublyLinkedListNode<TValue>> {
+public interface IDoublyLinkedListNodeReverseIterator<TValue extends Comparable<TValue>> extends IReverseIterator<IDoublyLinkedListNode<TValue>> {
 }

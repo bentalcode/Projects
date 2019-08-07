@@ -1,6 +1,11 @@
 package datastructures.doublylinkedlist.core;
 
+import base.core.Casting;
+import base.core.CompareToBuilder;
 import base.core.Conditions;
+import base.core.EqualBuilder;
+import base.core.HashCodeBuilder;
+import base.interfaces.IBinaryComparator;
 import datastructures.collections.core.Collections;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.collections.interfaces.IValueReverseIterator;
@@ -12,15 +17,44 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIt
 /**
  * The DoublyLinkedList class implements a doubly linked list.
  */
-public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue> {
+public final class DoublyLinkedList<TValue extends Comparable<TValue>> implements IDoublyLinkedList<TValue> {
     private IDoublyLinkedListNode<TValue> head;
     private IDoublyLinkedListNode<TValue> tail;
     private int size;
+    private final IBinaryComparator<IDoublyLinkedList<TValue>> comparator;
 
     /**
      * The DoublyLinkedList constructor.
      */
     public DoublyLinkedList() {
+        this(null);
+    }
+
+    /**
+     * The DoublyLinkedList constructor.
+     */
+    public DoublyLinkedList(IDoublyLinkedListNode<TValue> head) {
+        this(
+            head,
+            DoublyLinkedList.DefaultComparator());
+    }
+
+    /**
+     * The DoublyLinkedList constructor.
+     */
+    public DoublyLinkedList(
+        IDoublyLinkedListNode<TValue> head,
+        IBinaryComparator<IDoublyLinkedList<TValue>> comparator) {
+
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator of a doubly linked list.");
+
+        if (head != null) {
+            this.addToFront(head);
+        }
+
+        this.comparator = comparator;
     }
 
     /**
@@ -307,6 +341,131 @@ public final class DoublyLinkedList<TValue> implements IDoublyLinkedList<TValue>
         }
 
         return currNode;
+    }
+
+    /**
+     * Gets the hash code.
+     */
+    @Override
+    public int hashCode() {
+        return this.comparator.getHashCode(this);
+    }
+
+    /**
+     * Checks whether the instances are equals.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+
+        if (this == other) {
+            return true;
+        }
+
+        if (!this.getClass().isInstance(other)) {
+            return false;
+        }
+
+        return this.isEqual(Casting.cast(other));
+    }
+
+    /**
+     * Checks whether the instances are equals.
+     */
+    public boolean isEqual(IDoublyLinkedList<TValue> other) {
+        return this.comparator.isEqual(this, other);
+    }
+
+    /**
+     * Determines the relative order of two instances.
+     *
+     * Returns -1 if the left hand side value is less than the right hand side value.
+     * Returns 0 if the left hand side value is equal to the right hand side value.
+     * Returns 1 if the left hand side value is greater than the right hand side value.
+     */
+    public int compareTo(IDoublyLinkedList<TValue> other) {
+        return this.comparator.compareTo(this, other);
+    }
+
+    /**
+     * Gets the default comparator.
+     */
+    public static <TValue extends Comparable<TValue>> IBinaryComparator<IDoublyLinkedList<TValue>> DefaultComparator() {
+        IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator = DoublyLinkedListNode.DefaultComparator();
+        return new DoublyLinkedList.Comparator<>(nodeComparator);
+    }
+
+    /**
+     * The Comparator class implements a comparator of a doubly linked list.
+     */
+    public static final class Comparator<TValue extends Comparable<TValue>> implements IBinaryComparator<IDoublyLinkedList<TValue>> {
+        private final IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator;
+
+        /**
+         * The Comparator constructor.
+         */
+        public Comparator(IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator) {
+            Conditions.validateNotNull(
+                nodeComparator,
+                "The comparator of a node of a doubly linked list.");
+
+            this.nodeComparator = nodeComparator;
+        }
+
+        /**
+         * Gets a hash code of this instance.
+         */
+        @Override
+        public int getHashCode(IDoublyLinkedList<TValue> obj) {
+            return new HashCodeBuilder(3, 5)
+                .withIterator(obj.getIterator(), this.nodeComparator)
+                .build();
+        }
+
+        /**
+         * Checks whether two instances are equals.
+         */
+        public boolean isEqual(IDoublyLinkedList<TValue> lhs, IDoublyLinkedList<TValue> rhs) {
+            if (lhs == null && rhs == null) {
+                return true;
+            }
+
+            if (lhs == null || rhs == null) {
+                return false;
+            }
+
+            return new EqualBuilder()
+                .withIterator(lhs.getIterator(), rhs.getIterator(), this.nodeComparator)
+                .build();
+        }
+
+        /**
+         * Determines the relative order of two instances.
+         *
+         * Returns -1 if the left hand side value is less than the right hand side value.
+         * Returns 0 if the left hand side value is equal to the right hand side value.
+         * Returns 1 if the left hand side value is greater than the right hand side value.
+         */
+        @Override
+        public int compareTo(IDoublyLinkedList<TValue> lhs, IDoublyLinkedList<TValue> rhs) {
+            if (lhs == null && rhs == null) {
+                return 0;
+            }
+
+            if (lhs == null) {
+                return -1;
+            }
+
+            if (rhs == null) {
+                return 1;
+            }
+
+            return new CompareToBuilder()
+                .withIterator(lhs.getIterator(), rhs.getIterator(), this.nodeComparator)
+                .build();
+        }
     }
 
     /**

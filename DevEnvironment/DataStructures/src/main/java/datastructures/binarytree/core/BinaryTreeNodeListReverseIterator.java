@@ -2,30 +2,32 @@ package datastructures.binarytree.core;
 
 import base.core.Conditions;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
-import datastructures.binarytree.interfaces.IBinaryTreeNodeIterator;
+import datastructures.binarytree.interfaces.IBinaryTreeNodeReverseIterator;
 import java.util.List;
 
 /**
- * The BinaryTreeNodeListIterator class implements an iterator of a list of binary nodes.
+ * The BinaryTreeNodeListReverseIterator class implements a reverse iterator of a list of binary nodes.
  */
-public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
-    implements IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> {
+public class BinaryTreeNodeListReverseIterator<TKey extends Comparable<TKey>, TValue>
+    implements IBinaryTreeNodeReverseIterator<IBinaryTreeNode<TKey, TValue>> {
 
     private final List<IBinaryTreeNode<TKey, TValue>> nodes;
     private int position;
     private boolean skipEndNodes;
 
     /**
-     * Creates a new iterator of a tree.
+     * Creates a new reverse iterator of a list.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> of(List<IBinaryTreeNode<TKey, TValue>> nodes) {
-        return new BinaryTreeNodeListIterator<>(nodes);
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNodeReverseIterator<IBinaryTreeNode<TKey, TValue>> of(
+        List<IBinaryTreeNode<TKey, TValue>> nodes) {
+
+        return new BinaryTreeNodeListReverseIterator<>(nodes);
     }
 
     /**
      * The BinaryTreeNodeListIterator constructor.
      */
-    private BinaryTreeNodeListIterator(List<IBinaryTreeNode<TKey, TValue>> nodes) {
+    private BinaryTreeNodeListReverseIterator(List<IBinaryTreeNode<TKey, TValue>> nodes) {
         Conditions.validateNotNull(
             nodes,
             "The nodes to iterate.");
@@ -40,7 +42,7 @@ public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public boolean hasNext() {
-        return this.position < this.nodes.size();
+        return this.position >= 0;
     }
 
     /**
@@ -54,7 +56,7 @@ public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
 
         while (this.hasNext()) {
             currElement = this.nodes.get(this.position);
-            ++this.position;
+            --this.position;
 
             if (this.skipEndNodes && currElement.getClass().isInstance(BinaryTreeEndNode.class)) {
                 continue;
@@ -69,7 +71,7 @@ public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public void reset() {
-        this.position = 0;
+        this.position = this.nodes.size() - 1;
         this.skipEndNodes();
     }
 
@@ -96,7 +98,7 @@ public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public boolean setSkipEndNodesStatus(boolean status) {
-        boolean previousStatus = this.skipEndNodes;
+        boolean previousStatus = status;
         this.skipEndNodes = status;
         return previousStatus;
     }
