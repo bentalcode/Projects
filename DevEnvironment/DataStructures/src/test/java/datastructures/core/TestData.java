@@ -1,5 +1,8 @@
 package datastructures.core;
 
+import datastructures.binarytree.core.BinaryTreeTestData;
+import datastructures.binarytree.interfaces.IBinaryTree;
+import datastructures.binarytree.interfaces.IBinaryTreeTestData;
 import datastructures.bplustree.core.BPlusTreeTestData;
 import datastructures.bplustree.interfaces.IBPlusTreeTestData;
 import datastructures.cache.core.CacheTestData;
@@ -26,6 +29,14 @@ public final class TestData implements ITestData {
     @Override
     public IDoublyLinkedListTestData getDoublyLinkedListData() {
         return new DoublyLinkedListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a binary tree.
+     */
+    @Override
+    public IBinaryTreeTestData getBinaryTreeData() {
+        return new BinaryTreeTestData();
     }
 
     /**

@@ -41,11 +41,11 @@ public final class BinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> im
 
             visitor.visit(currNode);
 
-            if (currNode.getLeftChild() != null) {
+            if (currNode.hasLeftChild()) {
                 queue.offer(currNode.getLeftChild());
             }
 
-            if (currNode.getRightChild() != null) {
+            if (currNode.hasRightChild()) {
                 queue.offer(currNode.getRightChild());
             }
         }
@@ -75,11 +75,11 @@ public final class BinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> im
 
             visitor.visit(currNode);
 
-            if (currNode.getRightChild() != null) {
+            if (currNode.hasRightChild()) {
                 stack.push(currNode.getRightChild());
             }
 
-            if (currNode.getLeftChild() != null) {
+            if (currNode.hasLeftChild()) {
                 stack.push(currNode.getLeftChild());
             }
         }

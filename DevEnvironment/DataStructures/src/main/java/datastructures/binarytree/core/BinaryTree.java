@@ -2,8 +2,11 @@ package datastructures.binarytree.core;
 
 import base.core.Casting;
 import base.core.Conditions;
+import base.core.ReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import datastructures.binarytree.interfaces.IBinaryTree;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeTraversal;
@@ -18,8 +21,15 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
     /**
      * The BinaryTree constructor.
      */
-    public BinaryTree(IBinaryComparator<IBinaryTree<TKey, TValue>> comparator) {
-        this(null, comparator);
+    public BinaryTree() {
+        this(null);
+    }
+
+    /**
+     * The BinaryTree constructor.
+     */
+    public BinaryTree(IBinaryTreeNode<TKey, TValue> root) {
+        this(root, BinaryTree.DefaultComparator());
     }
 
     /**
@@ -60,6 +70,21 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
     public IBinaryTreeTraversal<TKey , TValue> getTreeTraversal() {
         return new BinaryTreeTraversal<>();
     }
+
+    /**
+     * Gets an iterator of a tree.
+     */
+    public IIterator<IBinaryTreeNode<TKey , TValue>> getIterator() {
+        return BinaryTreeIterator.of(this.root);
+    }
+
+    /**
+     * Gets a reverse iterator of a tree.
+     */
+    public IReverseIterator<IBinaryTreeNode<TKey , TValue>> getReverseIterator() {
+        return BinaryTreeReverseIterator.of(this.root);
+    }
+
 
     /**
      * Gets the hash code.

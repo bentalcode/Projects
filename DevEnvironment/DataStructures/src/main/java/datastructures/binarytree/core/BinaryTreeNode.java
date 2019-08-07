@@ -7,6 +7,7 @@ import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
+import java.util.Stack;
 
 /**
  * The BinaryTreeNode class implements a node of a binary tree.
@@ -20,12 +21,21 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     private final int hashCode;
 
     /**
+     * Creates a new binary tree node.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNode<TKey, TValue> of(TKey key, TValue value) {
+        return new BinaryTreeNode<>(key, value);
+    }
+
+    /**
      * The BinaryTreeNode constructor.
      */
-    public BinaryTreeNode(TKey key) {
+    public BinaryTreeNode(
+        TKey key,
+        TValue value) {
         this(
             key,
-            null,
+            value,
             null,
             null,
             BinaryTreeNode.DefaultComparator());
@@ -36,10 +46,11 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
      */
     public BinaryTreeNode(
         TKey key,
+        TValue value,
         IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator) {
         this(
             key,
-            null,
+            value,
             null,
             null,
             comparator);
@@ -96,7 +107,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Gets the left child node.
+     * Gets the node of a left child.
      */
     @Override
     public IBinaryTreeNode<TKey, TValue> getLeftChild() {
@@ -104,7 +115,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Gets the right child node.
+     * Gets the node of a right child.
      */
     @Override
     public IBinaryTreeNode<TKey, TValue> getRightChild() {
@@ -112,7 +123,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Sets the left child node.
+     * Sets the node of a left child.
      */
     @Override
     public void setLeftChild(IBinaryTreeNode<TKey, TValue> node) {
@@ -120,11 +131,99 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Sets the right child node.
+     * Sets the node of a right child.
      */
     @Deprecated
     public void setRightChild(IBinaryTreeNode<TKey, TValue> node) {
         this.rightChild = node;
+    }
+
+    /**
+     * Checks whether there is a left child.
+     */
+    @Override
+    public boolean hasLeftChild() {
+        return this.leftChild != null;
+    }
+
+    /**
+     * Checks whether there is a right child.
+     */
+    @Override
+    public boolean hasRightChild() {
+        return this.rightChild != null;
+    }
+
+    /**
+     * Gets the minimum node.
+     */
+    @Override
+    public IBinaryTreeNode<TKey, TValue> getMinimumNode() {
+        IBinaryTreeNode<TKey, TValue> currNode  = this;
+
+        while (currNode != null && currNode.hasLeftChild()) {
+            currNode = currNode.getLeftChild();
+        }
+
+        return currNode;
+    }
+
+    /**
+     * Moves to the minimum node by storing the nodes in the stack.
+     */
+    @Override
+    public void moveMinimumNode(Stack<IBinaryTreeNode<TKey, TValue>> stack) {
+        Conditions.validateNotNull(
+            stack,
+            "The stack.");
+
+        IBinaryTreeNode<TKey, TValue> currNode  = this;
+
+        while (currNode != null) {
+            if (!currNode.hasLeftChild()) {
+                break;
+            }
+
+            stack.push(currNode);
+
+            currNode = currNode.getLeftChild();
+        }
+    }
+
+    /**
+     * Gets the maximum node.
+     */
+    @Override
+    public IBinaryTreeNode<TKey, TValue> getMaximumNode() {
+        IBinaryTreeNode<TKey, TValue> currNode  = this;
+
+        while (currNode != null && currNode.hasRightChild()) {
+            currNode = currNode.getRightChild();
+        }
+
+        return currNode;
+    }
+
+    /**
+     * Moves to the maximum node by storing the nodes in the stack.
+     */
+    @Override
+    public void moveMaximumNode(Stack<IBinaryTreeNode<TKey, TValue>> stack) {
+        Conditions.validateNotNull(
+            stack,
+            "The stack.");
+
+        IBinaryTreeNode<TKey, TValue> currNode  = this;
+
+        while (currNode != null) {
+            if (!currNode.hasRightChild()) {
+                break;
+            }
+
+            stack.push(currNode);
+
+            currNode = currNode.getRightChild();
+        }
     }
 
     /**

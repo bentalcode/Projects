@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The DoublyLinkedListTestData class implements tests for a graph.
+ * The DoublyLinkedListTestData class implements data of tests of a doubly linked list.
  */
 public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData {
     /**
@@ -18,10 +18,10 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     }
 
     /**
-     * Gets the doubly linked list data.
+     * Gets the updation data.
      */
     @Override
-    public List<ITriple<String, Integer, List<Integer>>> getDoublyLinkedListData() {
+    public List<ITriple<String, Integer, List<Integer>>> getUpdationData() {
         List<ITriple<String, Integer, List<Integer>>> data = new ArrayList<>();
 
         data.add(Triple.of("addToFront", 1, ArrayLists.of(1)));

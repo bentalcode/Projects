@@ -5,7 +5,7 @@ import base.interfaces.IBuilder;
 import java.util.List;
 
 /**
- * The IGraph interface defines a graph.
+ * The IGraph interface defines a builder of a graph.
  */
 public interface IGraphBuilder<TKey extends Comparable<TKey>, TValue> extends IBuilder<IGraph<TKey, TValue>> {
     /**

@@ -8,7 +8,6 @@ import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphBuilder;
 import datastructures.graph.interfaces.IVertex;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -60,7 +59,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
     }
 
     /**
-     * The Graph constructor.
+     * The GraphBuilder constructor.
      */
     public GraphBuilder() {
     }
@@ -161,7 +160,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
     }
 
     /**
-     * Adds an edge.
+     * Builds the graph.
      */
     @Override
     public IGraph<TKey, TValue> build() {
@@ -175,7 +174,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
             this.vertices,
             this.edges,
             adjacencyMatrix,
-            comparator);
+            this.comparator);
     }
 
     /**

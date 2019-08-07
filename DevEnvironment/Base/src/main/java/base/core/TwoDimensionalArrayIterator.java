@@ -12,7 +12,7 @@ public class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     private int columnPosition;
 
     /**
-     * Creates a new array iterator.
+     * Creates a new iterator of an array.
      */
     public static <T> IIterator<T> of(T[][] array) {
         return new TwoDimensionalArrayIterator<>(array);

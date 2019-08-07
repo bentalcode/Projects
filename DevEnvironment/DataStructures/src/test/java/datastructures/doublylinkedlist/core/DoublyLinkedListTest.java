@@ -9,8 +9,6 @@ import datastructures.core.TestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
 import testbase.core.Assertion;
-import datastructures.doublylinkedlist.core.DoublyLinkedList;
-import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.interfaces.ITestData;
 import org.junit.After;
@@ -54,7 +52,7 @@ public final class DoublyLinkedListTest {
         IDoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
         List<ITriple<String, Integer, List<Integer>>> data =
-            this.testData.getDoublyLinkedListData().getDoublyLinkedListData();
+            this.testData.getDoublyLinkedListData().getUpdationData();
 
         this.testUpdation(list, data);
     }
@@ -67,7 +65,7 @@ public final class DoublyLinkedListTest {
         IDoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
         List<ITriple<String, Integer, List<Integer>>> data =
-            this.testData.getDoublyLinkedListData().getDoublyLinkedListData();
+            this.testData.getDoublyLinkedListData().getUpdationData();
 
         this.testIteration(list, data);
     }

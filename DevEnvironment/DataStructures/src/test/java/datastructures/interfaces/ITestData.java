@@ -1,5 +1,6 @@
 package datastructures.interfaces;
 
+import datastructures.binarytree.interfaces.IBinaryTreeTestData;
 import datastructures.bplustree.interfaces.IBPlusTreeTestData;
 import datastructures.cache.interfaces.ICacheTestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
@@ -13,6 +14,11 @@ public interface ITestData {
      * Gets the data of tests of a doubly linked list.
      */
     IDoublyLinkedListTestData getDoublyLinkedListData();
+
+    /**
+     * Gets the data of tests of a binary tree.
+     */
+    IBinaryTreeTestData getBinaryTreeData();
 
     /**
      * Gets the data of tests of a graph.

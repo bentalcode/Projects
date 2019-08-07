@@ -13,7 +13,7 @@ public class TwoDimensionalListIterator<T> implements IIterator<T> {
     private int columnPosition;
 
     /**
-     * Creates a new list iterator.
+     * Creates a new iterator of a list.
      */
     public static <T> IIterator<T> of(List<List<T>> list) {
         return new TwoDimensionalListIterator<>(list);

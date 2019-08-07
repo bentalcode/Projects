@@ -15,7 +15,7 @@ import datastructures.graph.interfaces.IVertex;
 import java.util.Set;
 
 /**
- * The Graph class implements a graph.
+ * The Graph class implements a builder of a graph.
  */
 public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGraph<TKey, TValue> {
     private final Set<IVertex<TKey, TValue>> vertices;
