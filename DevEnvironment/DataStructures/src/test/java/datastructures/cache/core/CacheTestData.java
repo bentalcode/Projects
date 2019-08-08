@@ -23,7 +23,7 @@ public final class CacheTestData implements ICacheTestData {
      * Gets the least recently used data.
      */
     @Override
-    public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getLRUData() {
+    public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getUpdationData() {
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = new ArrayList<>();
 
         data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"))));

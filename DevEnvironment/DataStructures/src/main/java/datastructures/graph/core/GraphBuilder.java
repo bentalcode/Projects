@@ -2,11 +2,12 @@ package datastructures.graph.core;
 
 import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
-import base.interfaces.IPair;
+import base.interfaces.IIterator;
 import datastructures.graph.interfaces.IAdjacencyMatrix;
 import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphBuilder;
+import datastructures.graph.interfaces.IGraphData;
 import datastructures.graph.interfaces.IVertex;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,33 +26,30 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
     private IBinaryComparator<IGraph<TKey, TValue>> comparator;
 
     /**
-     * Creates a graph from it's data.
+     * Creates a new graph from it's data.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> createGraph(
-        List<IVertex<TKey, TValue>> vertices,
-        List<IEdge<TKey, TValue>> edges) {
+    public static <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> create(
+        IGraphData<TKey, TValue> graphData) {
 
-        IGraph<TKey, TValue> graph = new GraphBuilder<TKey, TValue>()
-            .addVertices(vertices)
-            .addEdges(edges)
-            .build();
+        IGraphBuilder<TKey, TValue> graphBuilder = new GraphBuilder<>();
+
+        graphBuilder.addGraphData(graphData);
+        IGraph<TKey, TValue> graph = graphBuilder.build();
 
         return graph;
     }
 
     /**
-     * Creates graphs from it's data.
+     * Creates new graphs from it's data.
      */
-    public static <TKey extends Comparable<TKey>, TValue> List<IGraph<TKey, TValue>> createGraphs(
-        List<IPair<List<IVertex<TKey, TValue>>, List<IEdge<TKey, TValue>>>> graphsData) {
+    public static <TKey extends Comparable<TKey>, TValue> List<IGraph<TKey, TValue>> create(
+        IIterator<IGraphData<TKey, TValue>> dataIIterator) {
 
         List<IGraph<TKey, TValue>> graphs = new ArrayList<>();
 
-        for (IPair<List<IVertex<TKey, TValue>>, List<IEdge<TKey, TValue>>> graphData : graphsData) {
-            List<IVertex<TKey, TValue>> vertices = graphData.first();
-            List<IEdge<TKey, TValue>> edges = graphData.second();
-
-            IGraph<TKey, TValue> graph = GraphBuilder.createGraph(vertices, edges);
+        while (dataIIterator.hasNext()) {
+            IGraphData<TKey, TValue> graphData = dataIIterator.next();
+            IGraph<TKey, TValue> graph = GraphBuilder.create(graphData);
             graphs.add(graph);
         }
 
@@ -62,6 +60,21 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
      * The GraphBuilder constructor.
      */
     public GraphBuilder() {
+    }
+
+    /**
+     * Adds data of a graph.
+     */
+    @Override
+    public IGraphBuilder<TKey, TValue> addGraphData(IGraphData<TKey, TValue> graphData) {
+        Conditions.validateNotNull(
+            graphData,
+            "The data for adding to the graph.");
+
+        this.addEdges(graphData.edges());
+        this.addVertices(graphData.vertices());
+
+        return this;
     }
 
     /**
@@ -82,13 +95,14 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
      * Adds vertices.
      */
     @Override
-    public IGraphBuilder<TKey, TValue> addVertices(List<IVertex<TKey, TValue>> vertices) {
+    public IGraphBuilder<TKey, TValue> addVertices(IIterator<IVertex<TKey, TValue>> vertices) {
         Conditions.validateNotNull(
             vertices,
             "The vertices for adding to the graph.");
 
-        for (IVertex<TKey, TValue> vertex : vertices) {
-            this.addVertex(vertex);
+        while (vertices.hasNext()) {
+            IVertex<TKey, TValue> currVertex = vertices.next();
+            this.addVertex(currVertex);
         }
 
         return this;
@@ -133,13 +147,14 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
      * Adds edges.
      */
     @Override
-    public IGraphBuilder<TKey, TValue> addEdges(List<IEdge<TKey, TValue>> edges) {
+    public IGraphBuilder<TKey, TValue> addEdges(IIterator<IEdge<TKey, TValue>> edges) {
         Conditions.validateNotNull(
             edges,
             "The edges for adding to the graph.");
 
-        for (IEdge<TKey, TValue> edge : edges) {
-            this.addEdge(edge);
+        while (edges.hasNext()) {
+            IEdge<TKey, TValue> currEdge = edges.next();
+            this.addEdge(currEdge);
         }
 
         return this;

@@ -28,11 +28,11 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     public List<List<IDoublyLinkedListNode<Integer>>> getData() {
         List<List<IDoublyLinkedListNode<Integer>>> data = new ArrayList<>();
 
-        //data.add(this.getData(0));
+        data.add(this.getData(0));
         data.add(this.getData(1));
-        //data.add(this.getData(3));
-        //data.add(this.getData(100));
-        //data.add(this.getData(1000000));
+        data.add(this.getData(3));
+        data.add(this.getData(100));
+        data.add(this.getData(1000000));
 
         return data;
     }

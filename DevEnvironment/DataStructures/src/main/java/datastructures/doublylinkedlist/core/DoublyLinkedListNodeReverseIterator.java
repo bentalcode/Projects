@@ -15,10 +15,6 @@ public final class DoublyLinkedListNodeReverseIterator<TValue extends Comparable
      * The DoublyLinkedListNodeIterator constructor.
      */
     public DoublyLinkedListNodeReverseIterator(IDoublyLinkedListNode<TValue> tailNode) {
-        Conditions.validateNotNull(
-            tailNode,
-            "The tail node of a doubly linked list.");
-
         this.tailNode = tailNode;
 
         this.reset();

@@ -3,12 +3,11 @@ package datastructures.cache.core;
 import base.core.Iterator;
 import base.interfaces.IIterator;
 import base.interfaces.ITriple;
-import datastructures.cache.core.CacheProperties;
-import datastructures.cache.core.LRUCache;
 import datastructures.cache.interfaces.ILRUCache;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.core.TestData;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
 import org.junit.After;
@@ -53,7 +52,7 @@ public final class LRUCacheTest {
         ILRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
-            this.testData.getCacheData().getLRUData();
+            this.testData.getCacheData().getUpdationData();
 
         this.testUpdation(cache, data);
     }
@@ -66,7 +65,7 @@ public final class LRUCacheTest {
         ILRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
-            this.testData.getCacheData().getLRUData();
+            this.testData.getCacheData().getUpdationData();
 
         this.testIteration(cache, data);
     }

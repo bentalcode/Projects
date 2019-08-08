@@ -2,7 +2,6 @@ package datastructures.graph.interfaces;
 
 import base.interfaces.IPair;
 import base.interfaces.ITwoDimensionalList;
-
 import java.util.List;
 
 /**
@@ -22,12 +21,12 @@ public interface IGraphTestData {
     /**
      * Gets data of graphs.
      */
-    List<IPair<List<IVertex<Integer, String>>, List<IEdge<Integer, String>>>> getGraphsData();
+    List<IGraphData<Integer, String>> getGraphsData();
 
     /**
      * Gets data of graphs with loops.
      */
-    List<IPair<List<IVertex<Integer, String>>, List<IEdge<Integer, String>>>> getGraphsDataWithLoops();
+    List<IGraphData<Integer, String>> getGraphsDataWithLoops();
 
     /**
      * Gets data of topological search of graphs.
