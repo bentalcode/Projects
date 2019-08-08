@@ -1,7 +1,6 @@
 package datastructures.binarytree.interfaces;
 
 import base.interfaces.IUnaryComparator;
-
 import java.util.Stack;
 
 /**

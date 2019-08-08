@@ -1,7 +1,10 @@
 package datastructures.binarytree.core;
 
 import base.core.Casting;
+import base.core.CompareToBuilder;
 import base.core.Conditions;
+import base.core.EqualBuilder;
+import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import base.interfaces.IIterator;
@@ -162,7 +165,9 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
          */
         @Override
         public int getHashCode(IBinaryTree<TKey, TValue> obj) {
-            return this.nodeComparator.getHashCode(obj.getRoot());
+            return new HashCodeBuilder(3, 5)
+                .withIterator(obj.getIterator(), this.nodeComparator)
+                .build();
         }
 
         /**
@@ -177,7 +182,9 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
                 return false;
             }
 
-            return this.isEqual(lhs.getRoot(), rhs.getRoot());
+            return new EqualBuilder()
+                .withIterator(lhs.getIterator(), rhs.getIterator(), this.nodeComparator)
+                .build();
         }
 
         /**
@@ -201,60 +208,9 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
                 return 1;
             }
 
-            return this.compareTo(lhs.getRoot(), rhs.getRoot());
-        }
-
-        /**
-         * Checks whether two instances are equals.
-         */
-        private boolean isEqual(IBinaryTreeNode<TKey, TValue> lhs, IBinaryTreeNode<TKey, TValue> rhs) {
-            if (lhs == null && rhs == null) {
-                return true;
-            }
-
-            if (lhs == null || rhs == null) {
-                return false;
-            }
-
-            return
-                this.nodeComparator.isEqual(lhs, rhs) &&
-                    this.isEqual(lhs.getLeftChild(), rhs.getLeftChild()) &&
-                    this.isEqual(lhs.getRightChild(), rhs.getRightChild());
-        }
-
-        /**
-         * Determines the relative order of two instances.
-         *
-         * Returns -1 if the left hand side value is less than the right hand side value.
-         * Returns 0 if the left hand side value is equal to the right hand side value.
-         * Returns 1 if the left hand side value is greater than the right hand side value.
-         */
-        private int compareTo(IBinaryTreeNode<TKey, TValue> lhs, IBinaryTreeNode<TKey, TValue> rhs) {
-            if (lhs == null && rhs == null) {
-                return 0;
-            }
-
-            if (lhs == null) {
-                return -1;
-            }
-
-            if (rhs == null) {
-                return 1;
-            }
-
-            int result = this.nodeComparator.compareTo(lhs, rhs);
-
-            if (result != 0) {
-                return result;
-            }
-
-            result = this.compareTo(lhs.getLeftChild(), rhs.getLeftChild());
-
-            if (result != 0) {
-                return result;
-            }
-
-            return this.compareTo(lhs.getRightChild(), rhs.getRightChild());
+            return new CompareToBuilder()
+                .withIterator(lhs.getIterator(), rhs.getIterator(), this.nodeComparator)
+                .build();
         }
     }
 
