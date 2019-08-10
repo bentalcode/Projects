@@ -1,5 +1,7 @@
 package datastructures.tree.interfaces;
 
+import java.math.BigInteger;
+
 /**
  * The ITreeMetrics interface defines metrics of a tree.
  */
@@ -27,5 +29,5 @@ public interface ITreeMetrics {
     /**
      * Gets the size in bytes of a tree.
      */
-    long getSizeInBytes();
+    BigInteger getSizeInBytes();
 }

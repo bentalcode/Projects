@@ -2,11 +2,13 @@ package datastructures.bplustree.core;
 
 import base.core.Casting;
 import base.core.CompareToBuilder;
+import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
+import java.math.BigInteger;
 
 /**
  * The BPlusTreeMetrics class implements metrics of a tree.
@@ -16,8 +18,8 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
     private final int numberOfNodes;
     private final int numberOfInnerNodes;
     private final int numberOfLeafNodes;
-    private final int sizeInBytes;
-    private final int capacityInBytes;
+    private final BigInteger sizeInBytes;
+    private final BigInteger capacityInBytes;
     private final IBinaryComparator<IBPlusTreeMetrics> comparator;
     private final int hashCode;
 
@@ -29,8 +31,8 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
         int numberOfNodes,
         int numberOfInnerNodes,
         int numberOfLeafNodes,
-        int sizeInBytes,
-        int capacityInBytes) {
+        BigInteger sizeInBytes,
+        BigInteger capacityInBytes) {
 
         this(
             height,
@@ -50,9 +52,21 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
         int numberOfNodes,
         int numberOfInnerNodes,
         int numberOfLeafNodes,
-        int sizeInBytes,
-        int capacityInBytes,
+        BigInteger sizeInBytes,
+        BigInteger capacityInBytes,
         IBinaryComparator<IBPlusTreeMetrics> comparator) {
+
+        Conditions.validateNotNull(
+            sizeInBytes,
+            "The size in bytes.");
+
+        Conditions.validateNotNull(
+            capacityInBytes,
+            "The capacity in bytes.");
+
+        Conditions.validateNotNull(
+            capacityInBytes,
+            "The comparator of metrics.");
 
         this.height = height;
         this.numberOfNodes = numberOfNodes;
@@ -100,7 +114,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
      * Gets the size in bytes of a B+ tree.
      */
     @Override
-    public long getSizeInBytes() {
+    public BigInteger getSizeInBytes() {
         return this.sizeInBytes;
     }
 
@@ -108,7 +122,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
      * Gets the capacity in bytes of a B+ tree.
      */
     @Override
-    public long getCapacityInBytes() {
+    public BigInteger getCapacityInBytes() {
         return this.capacityInBytes;
     }
 
@@ -192,8 +206,8 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
                 .withInteger(metrics.getNumberOfNodes())
                 .withInteger(metrics.getNumberOfInnerNodes())
                 .withInteger(metrics.getNumberOfLeafNodes())
-                .withLong(metrics.getSizeInBytes())
-                .withLong(metrics.getCapacityInBytes())
+                .withBigInteger(metrics.getSizeInBytes())
+                .withBigInteger(metrics.getCapacityInBytes())
                 .build();
         }
 
@@ -214,8 +228,8 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
                 .withInteger(lhs.getNumberOfNodes(), rhs.getNumberOfNodes())
                 .withInteger(lhs.getNumberOfInnerNodes(), rhs.getNumberOfInnerNodes())
                 .withInteger(lhs.getNumberOfLeafNodes(), rhs.getNumberOfLeafNodes())
-                .withLong(lhs.getSizeInBytes(), rhs.getSizeInBytes())
-                .withLong(lhs.getCapacityInBytes(), rhs.getCapacityInBytes())
+                .withBigInteger(lhs.getSizeInBytes(), rhs.getSizeInBytes())
+                .withBigInteger(lhs.getCapacityInBytes(), rhs.getCapacityInBytes())
                 .build();
         }
 
@@ -245,8 +259,8 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
                 .withInteger(lhs.getNumberOfNodes(), rhs.getNumberOfNodes())
                 .withInteger(lhs.getNumberOfInnerNodes(), rhs.getNumberOfInnerNodes())
                 .withInteger(lhs.getNumberOfLeafNodes(), rhs.getNumberOfLeafNodes())
-                .withLong(lhs.getSizeInBytes(), rhs.getSizeInBytes())
-                .withLong(lhs.getCapacityInBytes(), rhs.getCapacityInBytes())
+                .withBigInteger(lhs.getSizeInBytes(), rhs.getSizeInBytes())
+                .withBigInteger(lhs.getCapacityInBytes(), rhs.getCapacityInBytes())
                 .build();
         }
     }
@@ -259,8 +273,8 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
         private int numberOfNodes;
         private int numberOfInnerNodes;
         private int numberOfLeafNodes;
-        private int sizeInBytes;
-        private int capacityInBytes;
+        private BigInteger sizeInBytes;
+        private BigInteger capacityInBytes;
 
         /**
          * The Builder constructor.
@@ -303,7 +317,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
         /**
          * Sets the size in bytes of a tree.
          */
-        public Builder withSizeInBytes(int size) {
+        public Builder withSizeInBytes(BigInteger size) {
             this.sizeInBytes = size;
             return this;
         }
@@ -311,7 +325,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
         /**
          * Sets the capacity in bytes of a tree.
          */
-        public Builder withCapacityInBytes(int size) {
+        public Builder withCapacityInBytes(BigInteger size) {
             this.capacityInBytes = size;
             return this;
         }

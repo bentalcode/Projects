@@ -9,6 +9,8 @@ import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
+
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
@@ -158,6 +160,15 @@ public final class EqualBuilder implements IEqualBuilder {
     @Override
     public IEqualBuilder withString(String lhs, String rhs) {
         IEquatableComparator<String> comparator = this.comparatorFactory.createComparator();
+        return this.withObject(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a big integer.
+     */
+    @Override
+    public IEqualBuilder withBigInteger(BigInteger lhs, BigInteger rhs) {
+        IEquatableComparator<BigInteger> comparator = this.comparatorFactory.createComparator();
         return this.withObject(lhs, rhs, comparator);
     }
 
@@ -455,6 +466,16 @@ public final class EqualBuilder implements IEqualBuilder {
     @Override
     public IEqualBuilder withStringArray(String[] lhs, String[] rhs) {
         IEquatableComparator<String> comparator = this.comparatorFactory.createComparator();
+
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a big integer array.
+     */
+    @Override
+    public IEqualBuilder withBigIntegerArray(BigInteger[] lhs, BigInteger[] rhs) {
+        IEquatableComparator<BigInteger> comparator = this.comparatorFactory.createComparator();
 
         return this.withArray(lhs, rhs, comparator);
     }
@@ -833,6 +854,16 @@ public final class EqualBuilder implements IEqualBuilder {
     @Override
     public IEqualBuilder withStringArray(String[][] lhs, String[][] rhs) {
         IEquatableComparator<String> comparator = this.comparatorFactory.createComparator();
+
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a big integer two dimensional array.
+     */
+    @Override
+    public IEqualBuilder withBigIntegerArray(BigInteger[][] lhs, BigInteger[][] rhs) {
+        IEquatableComparator<BigInteger> comparator = this.comparatorFactory.createComparator();
 
         return this.withArray(lhs, rhs, comparator);
     }

@@ -1,12 +1,11 @@
 package base.core;
 
-import base.interfaces.IBinaryComparator;
-import base.interfaces.ICollectionComparator;
-import base.interfaces.IEqualBuilder;
 import base.interfaces.IHashCodeBuilder;
 import base.interfaces.IHashCodeProvider;
 import base.interfaces.IIterator;
 import base.interfaces.IPrimitiveSize;
+
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
@@ -162,6 +161,18 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
+     * With a big integer.
+     */
+    @Override
+    public IHashCodeBuilder withBigInteger(BigInteger value) {
+        for (byte byteValue : value.toByteArray()) {
+            this.withByte(byteValue);
+        }
+
+        return this;
+    }
+
+    /**
      * With a boolean array.
      */
     @Override
@@ -264,6 +275,18 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     public IHashCodeBuilder withStringArray(String[] array) {
         for (int i = 0; i < array.length; ++i) {
             this.withString(array[i]);
+        }
+
+        return this;
+    }
+
+    /**
+     * With a big integer array.
+     */
+    @Override
+    public IHashCodeBuilder withBigIntegerArray(BigInteger[] array) {
+        for (int i = 0; i < array.length; ++i) {
+            this.withBigInteger(array[i]);
         }
 
         return this;
@@ -416,6 +439,23 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
         for (int row = 0; row < rowsLength; ++row) {
             for (int column = 0; column < columnsLength; ++column) {
                 this.withString(array[row][column]);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * With a big integer two dimensional array.
+     */
+    @Override
+    public IHashCodeBuilder withBigIntegerArray(BigInteger[][] array) {
+        int rowsLength = array.length;
+        int columnsLength = array[0].length;
+
+        for (int row = 0; row < rowsLength; ++row) {
+            for (int column = 0; column < columnsLength; ++column) {
+                this.withBigInteger(array[row][column]);
             }
         }
 

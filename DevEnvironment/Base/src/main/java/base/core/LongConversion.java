@@ -19,7 +19,7 @@ public final class LongConversion implements ILongConversion {
         if (value > Byte.MAX_VALUE || value < Short.MIN_VALUE) {
             String errorMessage =
                 "Failed to convert a long: " + value + " to a byte." +
-                " The input long is out of range.";
+                " The input long is over of the range of a byte.";
 
             throw new BaseException(errorMessage);
         }
@@ -34,7 +34,7 @@ public final class LongConversion implements ILongConversion {
         if (value > Short.MAX_VALUE || value < Short.MIN_VALUE) {
             String errorMessage =
                 "Failed to convert a long: " + value + " to a short." +
-                " The input long is out of range.";
+                " The input long is over the range of a short.";
 
             throw new BaseException(errorMessage);
         }
@@ -49,7 +49,7 @@ public final class LongConversion implements ILongConversion {
         if (value > Integer.MAX_VALUE || value < Integer.MIN_VALUE) {
             String errorMessage =
                 "Failed to convert a long: " + value + " to an integer." +
-                " The input long is out of range.";
+                " The input long is over the range of an integer.";
 
             throw new BaseException(errorMessage);
         }

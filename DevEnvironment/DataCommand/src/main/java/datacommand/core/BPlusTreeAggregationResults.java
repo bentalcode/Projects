@@ -1,5 +1,7 @@
 package datacommand.core;
 
+import base.core.BigIntegerConversion;
+import base.core.Conversion;
 import base.interfaces.IIterator;
 import base.core.Comparator;
 import base.interfaces.IBinaryComparator;
@@ -12,6 +14,7 @@ import datastructures.bplustree.interfaces.IBPlusTree;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
+import java.math.BigInteger;
 
 /**
  * The BPlusTreeAggregationResults class implements aggregation results of the data
@@ -81,10 +84,10 @@ public final class BPlusTreeAggregationResults extends AbstractAggregationResult
      * Calculates the size of the aggregation results.
      */
     @Override
-    protected long calculateSize() {
+    public long calculateSize() {
         IBPlusTreeMetrics metrics = this.results.calculateMetrics();
 
-        long size = metrics.getCapacityInBytes();
+        long size = Conversion.bigIntegerConversion().toLong(metrics.getCapacityInBytes());
 
         return size;
     }

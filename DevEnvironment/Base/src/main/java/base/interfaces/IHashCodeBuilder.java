@@ -1,5 +1,6 @@
 package base.interfaces;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
@@ -58,6 +59,11 @@ public interface IHashCodeBuilder {
     IHashCodeBuilder withString(String value);
 
     /**
+     * With a big integer.
+     */
+    IHashCodeBuilder withBigInteger(BigInteger value);
+
+    /**
      * With a boolean array.
      */
     IHashCodeBuilder withBooleanArray(boolean[] array);
@@ -103,6 +109,11 @@ public interface IHashCodeBuilder {
     IHashCodeBuilder withStringArray(String[] array);
 
     /**
+     * With a big integer array.
+     */
+    IHashCodeBuilder withBigIntegerArray(BigInteger[] array);
+
+    /**
      * With a boolean two dimensional array.
      */
     IHashCodeBuilder withBooleanArray(boolean[][] array);
@@ -146,6 +157,11 @@ public interface IHashCodeBuilder {
      * With a string two dimensional array.
      */
     IHashCodeBuilder withStringArray(String[][] array);
+
+    /**
+     * With a big integer two dimensional array.
+     */
+    IHashCodeBuilder withBigIntegerArray(BigInteger[][] array);
 
     /**
      * With a generic object.

@@ -1,5 +1,6 @@
 package base.interfaces;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
@@ -58,6 +59,11 @@ public interface ICompareToBuilder {
     ICompareToBuilder withString(String lhs, String rhs);
 
     /**
+     * With a big integer.
+     */
+    ICompareToBuilder withBigInteger(BigInteger lhs, BigInteger rhs);
+
+    /**
      * With a boolean array.
      */
     ICompareToBuilder withBooleanArray(boolean[] lhs, boolean[] rhs);
@@ -103,6 +109,11 @@ public interface ICompareToBuilder {
     ICompareToBuilder withStringArray(String[] lhs, String[] rhs);
 
     /**
+     * With a big integer array.
+     */
+    ICompareToBuilder withBigIntegerArray(BigInteger[] lhs, BigInteger[] rhs);
+
+    /**
      * With a boolean two dimensional array.
      */
     ICompareToBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs);
@@ -146,6 +157,11 @@ public interface ICompareToBuilder {
      * With a string two dimensional array.
      */
     ICompareToBuilder withStringArray(String[][] lhs, String[][] rhs);
+
+    /**
+     * With a big integer two dimensional array.
+     */
+    ICompareToBuilder withBigIntegerArray(BigInteger[][] lhs, BigInteger[][] rhs);
 
     /**
      * With a generic object.

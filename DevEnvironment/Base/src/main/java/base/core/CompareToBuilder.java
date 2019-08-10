@@ -5,13 +5,11 @@ import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparableComparator;
 import base.interfaces.IComparatorFactory;
 import base.interfaces.ICompareToBuilder;
-import base.interfaces.IEqualBuilder;
-import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
-
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
@@ -161,6 +159,15 @@ public final class CompareToBuilder implements ICompareToBuilder {
     @Override
     public ICompareToBuilder withString(String lhs, String rhs) {
         IComparableComparator<String> comparator = this.comparatorFactory.createComparator();
+        return this.withObject(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a big integer.
+     */
+    @Override
+    public ICompareToBuilder withBigInteger(BigInteger lhs, BigInteger rhs) {
+        IComparableComparator<BigInteger> comparator = this.comparatorFactory.createComparator();
         return this.withObject(lhs, rhs, comparator);
     }
 
@@ -538,6 +545,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
     @Override
     public ICompareToBuilder withStringArray(String[] lhs, String[] rhs) {
         IComparableComparator<String> comparator = this.comparatorFactory.createComparator();
+
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a big integer array.
+     */
+    @Override
+    public ICompareToBuilder withBigIntegerArray(BigInteger[] lhs, BigInteger[] rhs) {
+        IComparableComparator<BigInteger> comparator = this.comparatorFactory.createComparator();
 
         return this.withArray(lhs, rhs, comparator);
     }
@@ -1028,6 +1045,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
     @Override
     public ICompareToBuilder withStringArray(String[][] lhs, String[][] rhs) {
         IComparableComparator<String> comparator = this.comparatorFactory.createComparator();
+
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a big integer two dimensional array.
+     */
+    @Override
+    public ICompareToBuilder withBigIntegerArray(BigInteger[][] lhs, BigInteger[][] rhs) {
+        IComparableComparator<BigInteger> comparator = this.comparatorFactory.createComparator();
 
         return this.withArray(lhs, rhs, comparator);
     }

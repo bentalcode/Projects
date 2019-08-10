@@ -8,6 +8,8 @@ import datastructures.bplustree.interfaces.IBPlusTreeInnerNode;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
+
+import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -56,7 +58,8 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
         int height = -1;
         int numberOfInnerNodes = 0;
         int numberOfLeafNodes = 0;
-        int sizeInBytes = 0;
+
+        BigInteger sizeInBytes = BigInteger.ZERO;
 
         Queue<IBPlusTreeNode<TKey>> queue = new LinkedList<>();
         queue.offer(Casting.cast(root));
@@ -84,16 +87,17 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
                     ++numberOfLeafNodes;
                 }
 
-                sizeInBytes += currNode.getSizeInBytes();
+                BigInteger currNodeSizeInBytes = BigInteger.valueOf(currNode.getSizeInBytes());
+                sizeInBytes = sizeInBytes.add(currNodeSizeInBytes);
             }
         }
 
         int numberOfNodes = numberOfInnerNodes + numberOfLeafNodes;
 
-        int innerNodeCapacity = this.calculateInnerNodeCapacity(properties) * numberOfInnerNodes;
-        int leafNodeCapacity = this.calculateLeafNodeCapacity(properties) * numberOfLeafNodes;
+        BigInteger innerNodeCapacity = BigInteger.valueOf(this.calculateInnerNodeCapacity(properties) * numberOfInnerNodes);
+        BigInteger leafNodeCapacity = BigInteger.valueOf(this.calculateLeafNodeCapacity(properties) * numberOfLeafNodes);
 
-        int capacityInBytes = innerNodeCapacity + leafNodeCapacity;
+        BigInteger capacityInBytes = innerNodeCapacity.add(leafNodeCapacity);
 
         return new BPlusTreeMetrics(
             height,

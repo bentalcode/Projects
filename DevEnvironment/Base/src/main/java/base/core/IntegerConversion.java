@@ -24,7 +24,7 @@ public final class IntegerConversion implements IIntegerConversion {
         if (value > Byte.MAX_VALUE || value < Byte.MIN_VALUE) {
             String errorMessage =
                 "Failed to convert an integer: " + value + " to a byte." +
-                "The input integer is out of range.";
+                "The input integer is over of the range of a byte.";
 
             log.error(errorMessage);
             throw new BaseException(errorMessage);
@@ -41,7 +41,7 @@ public final class IntegerConversion implements IIntegerConversion {
         if (value > Short.MAX_VALUE || value < Short.MIN_VALUE) {
             String errorMessage =
                 "Failed to convert an integer: " + value + " to a short." +
-                "The input integer is out of range.";
+                "The input integer is over of the range of a short.";
 
             log.error(errorMessage);
             throw new BaseException(errorMessage);

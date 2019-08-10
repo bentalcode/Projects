@@ -17,6 +17,8 @@ import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
 import datastructures.node.core.KeyValueNodes;
 import datastructures.node.interfaces.IKeyValueNodes;
+
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -223,8 +225,8 @@ public final class BPlusTreeTestData implements IBPlusTreeTestData {
             .withNumberOfNodes(1)
             .withNumberOfInnerNodes(0)
             .withNumberOfLeafNodes(1)
-            .withSizeInBytes(18)
-            .withCapacityInBytes(24)
+            .withSizeInBytes(BigInteger.valueOf(18))
+            .withCapacityInBytes(BigInteger.valueOf(24))
             .build();
 
         IKeyValueNodes<Integer, String> treeData2 = new KeyValueNodes.Builder<Integer, String>()
@@ -244,8 +246,8 @@ public final class BPlusTreeTestData implements IBPlusTreeTestData {
             .withNumberOfNodes(3)
             .withNumberOfInnerNodes(1)
             .withNumberOfLeafNodes(2)
-            .withSizeInBytes(44)
-            .withCapacityInBytes(104)
+            .withSizeInBytes(BigInteger.valueOf(44))
+            .withCapacityInBytes(BigInteger.valueOf(104))
             .build();
 
         IKeyValueNodes<Integer, String> treeData3 = new KeyValueNodes.Builder<Integer, String>()
@@ -266,8 +268,8 @@ public final class BPlusTreeTestData implements IBPlusTreeTestData {
             .withNumberOfNodes(3)
             .withNumberOfInnerNodes(1)
             .withNumberOfLeafNodes(2)
-            .withSizeInBytes(50)
-            .withCapacityInBytes(104)
+            .withSizeInBytes(BigInteger.valueOf(50))
+            .withCapacityInBytes(BigInteger.valueOf(104))
             .build();
 
         return ArrayLists.of(

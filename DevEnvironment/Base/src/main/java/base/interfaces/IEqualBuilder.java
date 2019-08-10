@@ -1,5 +1,6 @@
 package base.interfaces;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
@@ -58,6 +59,11 @@ public interface IEqualBuilder {
     IEqualBuilder withString(String lhs, String rhs);
 
     /**
+     * With a big integer.
+     */
+    IEqualBuilder withBigInteger(BigInteger lhs, BigInteger rhs);
+
+    /**
      * With a boolean array.
      */
     IEqualBuilder withBooleanArray(boolean[] lhs, boolean[] rhs);
@@ -103,6 +109,11 @@ public interface IEqualBuilder {
     IEqualBuilder withStringArray(String[] lhs, String[] rhs);
 
     /**
+     * With a big integer array.
+     */
+    IEqualBuilder withBigIntegerArray(BigInteger[] lhs, BigInteger[] rhs);
+
+    /**
      * With a boolean two dimensional array.
      */
     IEqualBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs);
@@ -146,6 +157,11 @@ public interface IEqualBuilder {
      * With a string two dimensional array.
      */
     IEqualBuilder withStringArray(String[][] lhs, String[][] rhs);
+
+    /**
+     * With a big integer array.
+     */
+    IEqualBuilder withBigIntegerArray(BigInteger[][] lhs, BigInteger[][] rhs);
 
     /**
      * With a generic object.

@@ -1,5 +1,6 @@
 package base.core;
 
+import base.interfaces.IBigIntegerConversion;
 import base.interfaces.IDoubleConversion;
 import base.interfaces.IIntegerConversion;
 import base.interfaces.ILongConversion;
@@ -15,6 +16,7 @@ public final class Conversion {
     private static final ILongConversion LongConversion = new LongConversion();
     private static final IDoubleConversion DoubleConversion = new DoubleConversion();
     private static final IStringConversion StringConversion = new StringConversion();
+    private static final IBigIntegerConversion BigIntegerConversion = new BigIntegerConversion();
 
     private static final Logger Log = LoggerFactory.getLogger(Conversion.class);
 
@@ -47,7 +49,7 @@ public final class Conversion {
         catch (ClassCastException e) {
             String errorMessage =
                 "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
-                " to the requested typ: " + requestedType.getName() + " due to the following error: " + e.getMessage();
+                " to the requested type: " + requestedType.getName() + " due to the following error: " + e.getMessage();
 
             Conversion.Log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
@@ -80,6 +82,13 @@ public final class Conversion {
      */
     public static IStringConversion stringConversion() {
         return Conversion.StringConversion;
+    }
+
+    /**
+     * Gets an interface for big integer conversions.
+     */
+    public static IBigIntegerConversion bigIntegerConversion() {
+        return Conversion.BigIntegerConversion;
     }
 
     /**

@@ -23,7 +23,7 @@ public final class DoubleConversion implements IDoubleConversion {
         if (value > Float.MAX_VALUE) {
             String errorMessage =
                 "Failed to convert a double: " + value + " to a float." +
-                "The input double is out of range.";
+                "The input double is over of the range of a float.";
 
             this.log.error(errorMessage);
             throw new BaseException(errorMessage);
