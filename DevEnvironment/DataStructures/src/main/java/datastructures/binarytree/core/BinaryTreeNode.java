@@ -180,10 +180,6 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         IBinaryTreeNode<TKey, TValue> currNode  = this;
 
         while (currNode != null) {
-            if (!currNode.hasLeftChild()) {
-                break;
-            }
-
             stack.push(currNode);
 
             currNode = currNode.getLeftChild();
@@ -216,10 +212,6 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         IBinaryTreeNode<TKey, TValue> currNode  = this;
 
         while (currNode != null) {
-            if (!currNode.hasRightChild()) {
-                break;
-            }
-
             stack.push(currNode);
 
             currNode = currNode.getRightChild();
