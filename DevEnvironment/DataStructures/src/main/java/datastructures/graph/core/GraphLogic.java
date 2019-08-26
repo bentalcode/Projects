@@ -34,20 +34,20 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public boolean detectLoop() {
-        Set<IVertex<TKey, TValue>> visited = new HashSet<>();
-        Set<IVertex<TKey, TValue>> searchStack = new HashSet<>();
+        Set<IVertex<TKey, TValue>> visitedVertices = new HashSet<>();
+        Set<IVertex<TKey, TValue>> searchVertices = new HashSet<>();
 
         for (IVertex<TKey, TValue> vertex : this.graph.vertices()) {
 
-            if (visited.contains(vertex)) {
+            if (visitedVertices.contains(vertex)) {
                 continue;
             }
 
-            if (this.detectLoop(vertex, visited, searchStack)) {
+            if (this.detectLoop(vertex, visitedVertices, searchVertices)) {
                 return true;
             }
 
-            assert(searchStack.isEmpty());
+            assert(searchVertices.isEmpty());
         }
 
         return false;
@@ -60,26 +60,26 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
     public List<IVertex<TKey, TValue>> topologicalSearch() {
         Stack<IVertex<TKey, TValue>> resultStack = new Stack<>();
 
-        Set<IVertex<TKey, TValue>> visited = new HashSet<>();
-        Set<IVertex<TKey, TValue>> searchStack = new HashSet<>();
+        Set<IVertex<TKey, TValue>> visitedVertices = new HashSet<>();
+        Set<IVertex<TKey, TValue>> searchVertices = new HashSet<>();
 
         for (IVertex<TKey, TValue> vertex : this.graph.vertices()) {
 
-            if (visited.contains(vertex)) {
+            if (visitedVertices.contains(vertex)) {
                 continue;
             }
 
             if (!this.topologicalSearch(
                     vertex,
-                    visited,
-                    searchStack,
+                    visitedVertices,
+                    searchVertices,
                     resultStack)) {
 
                 String errorMessage = "The graph contains a loop. No topological search is possible.";
                 throw new GraphException(errorMessage);
             }
 
-            assert(searchStack.isEmpty());
+            assert(searchVertices.isEmpty());
         }
 
         List<IVertex<TKey, TValue>> result = new ArrayList<>();
@@ -96,29 +96,29 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
      */
     private boolean detectLoop(
         IVertex<TKey, TValue> vertex,
-        Set<IVertex<TKey, TValue>> visited,
-        Set<IVertex<TKey, TValue>> searchStack) {
+        Set<IVertex<TKey, TValue>> visitedVertices,
+        Set<IVertex<TKey, TValue>> searchVertices) {
 
-        if (visited.contains(vertex)) {
+        if (visitedVertices.contains(vertex)) {
             return false;
         }
 
-        visited.add(vertex);
-        searchStack.add(vertex);
+        visitedVertices.add(vertex);
+        searchVertices.add(vertex);
 
         for (IVertex<TKey, TValue> nextVertex : this.graph.getAdjacencyMatrix().getAdjacentVertices(vertex)) {
-            if (searchStack.contains(nextVertex)) {
+            if (searchVertices.contains(nextVertex)) {
                 return true;
             }
 
-            if (visited.contains(nextVertex)) {
+            if (visitedVertices.contains(nextVertex)) {
                 continue;
             }
 
-            this.detectLoop(nextVertex, visited, searchStack);
+            this.detectLoop(nextVertex, visitedVertices, searchVertices);
         }
 
-        searchStack.remove(vertex);
+        searchVertices.remove(vertex);
 
         return false;
     }
@@ -128,30 +128,30 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
      */
     private boolean topologicalSearch(
         IVertex<TKey, TValue> vertex,
-        Set<IVertex<TKey, TValue>> visited,
-        Set<IVertex<TKey, TValue>> searchStack,
+        Set<IVertex<TKey, TValue>> visitedVertices,
+        Set<IVertex<TKey, TValue>> searchVertices,
         Stack<IVertex<TKey, TValue>> resultStack) {
 
-        if (visited.contains(vertex)) {
+        if (visitedVertices.contains(vertex)) {
             return true;
         }
 
-        visited.add(vertex);
-        searchStack.add(vertex);
+        visitedVertices.add(vertex);
+        searchVertices.add(vertex);
 
         for (IVertex<TKey, TValue> nextVertex : this.graph.getAdjacencyMatrix().getAdjacentVertices(vertex)) {
-            if (searchStack.contains(nextVertex)) {
+            if (searchVertices.contains(nextVertex)) {
                 return false;
             }
 
-            if (visited.contains(nextVertex)) {
+            if (visitedVertices.contains(nextVertex)) {
                 continue;
             }
 
-            this.topologicalSearch(nextVertex, visited, searchStack, resultStack);
+            this.topologicalSearch(nextVertex, visitedVertices, searchVertices, resultStack);
         }
 
-        searchStack.remove(vertex);
+        searchVertices.remove(vertex);
 
         resultStack.push(vertex);
 

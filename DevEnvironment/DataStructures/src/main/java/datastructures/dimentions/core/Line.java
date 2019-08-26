@@ -56,18 +56,27 @@ public final class Line implements ILine {
             pointComparator,
             "The comparator of a point.");
 
-        this.start = start;
-        this.end = end;
+        int compareStatus = pointComparator.compareTo(start, end);
+
+        if (compareStatus <= 0) {
+            this.start = start;
+            this.end = end;
+        }
+        else {
+            this.start = end;
+            this.end = start;
+        }
+
         this.lineComparator = lineComparator;
         this.pointComparator = pointComparator;
 
-        if (start.isEqual(end)) {
+        if (this.start.getX() == this.end.getX()) {
             this.slope = Double.POSITIVE_INFINITY;
             this.yIntercept = Double.POSITIVE_INFINITY;
         }
         else {
-            this.slope = (end.getY() - start.getY()) / (end.getX() - start.getX());
-            this.yIntercept = start.getY() - this.slope * start.getX();
+            this.slope = (this.end.getY() - this.start.getY()) / (this.end.getX() - this.start.getX());
+            this.yIntercept = this.start.getY() - this.slope * this.start.getX();
         }
     }
 
