@@ -83,6 +83,8 @@ public final class BinaryTreeTest {
         //
         // Test the data of the tree...
         //
+        dataIterator.reset();
+
         this.assertion.assertEquals(
             tree.getIterator(),
             dataIterator,
@@ -105,6 +107,8 @@ public final class BinaryTreeTest {
         //
         // Test the default iterator of the container...
         //
+        dataIterator.reset();
+
         for (IBinaryTreeNode<TKey, TValue> currNode : tree) {
 
             IBinaryTreeNode<TKey, TValue> dataNode = dataIterator.next();
