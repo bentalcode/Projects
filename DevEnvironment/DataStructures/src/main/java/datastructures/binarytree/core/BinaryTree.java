@@ -106,6 +106,14 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
     }
 
     /**
+     * Gets a postorder iterator of a tree.
+     */
+    @Override
+    public IIterator<IBinaryTreeNode<TKey , TValue>> getPostorderIterator() {
+        return BinaryTreePostorderIterator.of(this.root);
+    }
+
+    /**
      * Gets the hash code.
      */
     @Override

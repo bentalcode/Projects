@@ -153,5 +153,53 @@ public final class BinaryTreeTest {
                 dataNode,
                 "Invalid logic of reverse iterator.");
         }
+
+        //
+        // Test the inorder iterator of the container...
+        //
+        IIterator<IBinaryTreeNode<TKey, TValue>> inorderIterator = tree.getInorderIterator();
+        dataIterator = ListIterator.of(treeData.getInorder());
+
+        while (iterator.hasNext() && dataIterator.hasNext()) {
+            IBinaryTreeNode<TKey, TValue> currNode = inorderIterator.next();
+            IBinaryTreeNode<TKey, TValue> dataNode = dataIterator.next();
+
+            this.assertion.assertEquals(
+                    currNode,
+                    dataNode,
+                    "Invalid logic of inorder iterator.");
+        }
+
+        //
+        // Test the preorder iterator of the container...
+        //
+        IIterator<IBinaryTreeNode<TKey, TValue>> preorderIterator = tree.getPreorderIterator();
+        dataIterator = ListIterator.of(treeData.getPreorder());
+
+        while (preorderIterator.hasNext() && dataIterator.hasNext()) {
+            IBinaryTreeNode<TKey, TValue> currNode = preorderIterator.next();
+            IBinaryTreeNode<TKey, TValue> dataNode = dataIterator.next();
+
+            this.assertion.assertEquals(
+                currNode,
+                dataNode,
+                "Invalid logic of preorder iterator.");
+        }
+
+        //
+        // Test the postorder iterator of the container...
+        //
+        IIterator<IBinaryTreeNode<TKey, TValue>> postorderIterator = tree.getPostorderIterator();
+        dataIterator = ListIterator.of(treeData.getPostorder());
+
+        while (postorderIterator.hasNext() && dataIterator.hasNext()) {
+            IBinaryTreeNode<TKey, TValue> currNode = postorderIterator.next();
+            IBinaryTreeNode<TKey, TValue> dataNode = dataIterator.next();
+
+            this.assertion.assertEquals(
+                currNode,
+                dataNode,
+                "Invalid logic of postorder iterator.");
+        }
     }
 }

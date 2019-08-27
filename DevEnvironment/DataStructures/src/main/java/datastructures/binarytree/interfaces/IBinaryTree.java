@@ -46,4 +46,9 @@ public interface IBinaryTree<TKey extends Comparable<TKey>, TValue> extends
      * Gets a preorder iterator of a tree.
      */
     IIterator<IBinaryTreeNode<TKey , TValue>> getPreorderIterator();
+
+    /**
+     * Gets a postorder iterator of a tree.
+     */
+    IIterator<IBinaryTreeNode<TKey , TValue>> getPostorderIterator();
 }
