@@ -1,11 +1,13 @@
 package datastructures.binarytree.core;
 
+import base.core.ListIterator;
 import base.interfaces.IBuilder;
 import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import datastructures.binarytree.interfaces.IBinaryTree;
+import datastructures.binarytree.interfaces.IBinaryTreeData;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeNodeIterator;
-import datastructures.binarytree.interfaces.IBinaryTreeNodeReverseIterator;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import org.junit.After;
@@ -47,10 +49,10 @@ public final class BinaryTreeTest {
      */
     @Test
     public void BinaryTreeCreationTest() {
-        List<List<IBinaryTreeNode<Integer, String>>> data = this.testData.getBinaryTreeData().getData();
+        List<IBinaryTreeData<Integer, String>> data = this.testData.getBinaryTreeData().getTreesData();
 
-        for (List<IBinaryTreeNode<Integer, String>> treeData : data) {
-            this.testCreation(BinaryTreeNodeListIterator.of(treeData));
+        for (IBinaryTreeData<Integer, String> treeData : data) {
+            this.testCreation(treeData);
         }
     }
 
@@ -59,55 +61,55 @@ public final class BinaryTreeTest {
      */
     @Test
     public void BinaryTreeIterationTest() {
-        List<List<IBinaryTreeNode<Integer, String>>> data = this.testData.getBinaryTreeData().getData();
+        List<IBinaryTreeData<Integer, String>> data = this.testData.getBinaryTreeData().getTreesData();
 
-        for (List<IBinaryTreeNode<Integer, String>> treeData : data) {
-            this.testIteration(
-                BinaryTreeNodeListIterator.of(treeData),
-                BinaryTreeNodeListReverseIterator.of(treeData));
+        for (IBinaryTreeData<Integer, String> treeData : data) {
+            this.testIteration(treeData);
         }
     }
 
     /**
      * Tests the creation logic of a binary tree.
      */
-    private <TKey extends Comparable<TKey>, TValue> void testCreation(
-        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> dataIterator) {
-
+    private <TKey extends Comparable<TKey>, TValue> void testCreation(IBinaryTreeData<TKey, TValue> treeData) {
         //
         // Create the tree...
         //
+        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> dataIterator =
+            BinaryTreeNodeListIterator.of(treeData.getCreationData());
+
         IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreeStreamBuilder<>(dataIterator);
         IBinaryTree<TKey, TValue> tree = builder.build();
 
         //
         // Test the data of the tree...
         //
-        dataIterator.reset();
+        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> preOrderIterator =
+            BinaryTreeNodeListIterator.of(treeData.getPreorder());
 
         this.assertion.assertEquals(
-            tree.getIterator(),
-            dataIterator,
+            tree.getPreorderIterator(),
+            preOrderIterator,
             "Invalid creation logic of a binary tree.");
     }
 
     /**
      * Tests the iteration logic of a binary tree.
      */
-    private <TKey extends Comparable<TKey>, TValue> void testIteration(
-        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> dataIterator,
-        IBinaryTreeNodeReverseIterator<IBinaryTreeNode<TKey, TValue>> reverseDataIterator) {
-
+    private <TKey extends Comparable<TKey>, TValue> void testIteration(IBinaryTreeData<TKey, TValue> treeData) {
         //
         // Create the tree...
         //
-        IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreeStreamBuilder<>(dataIterator);
+        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> creationDataIterator =
+            BinaryTreeNodeListIterator.of(treeData.getCreationData());
+
+        IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreeStreamBuilder<>(creationDataIterator);
         IBinaryTree<TKey, TValue> tree = builder.build();
 
         //
         // Test the default iterator of the container...
         //
-        dataIterator.reset();
+        IIterator<IBinaryTreeNode<TKey, TValue>> dataIterator = ListIterator.of(treeData.getInorder());
 
         for (IBinaryTreeNode<TKey, TValue> currNode : tree) {
 
@@ -119,12 +121,11 @@ public final class BinaryTreeTest {
                 "Invalid logic of default forward iteration.");
         }
 
-        dataIterator.reset();
-
         //
         // Test the forward iterator of the container...
         //
         IIterator<IBinaryTreeNode<TKey, TValue>> iterator = tree.getIterator();
+        dataIterator = ListIterator.of(treeData.getInorder());
 
         while (iterator.hasNext() && dataIterator.hasNext()) {
             IBinaryTreeNode<TKey, TValue> currNode = iterator.next();
@@ -136,12 +137,12 @@ public final class BinaryTreeTest {
                 "Invalid logic of forward iterator.");
         }
 
-        dataIterator.reset();
-
         //
         // Test the reverse iterator of the container...
         //
-        IIterator<IBinaryTreeNode<TKey, TValue>> reverseIterator = tree.getReverseIterator();
+        IReverseIterator<IBinaryTreeNode<TKey, TValue>> reverseIterator = tree.getReverseIterator();
+        IReverseIterator<IBinaryTreeNode<TKey, TValue>> reverseDataIterator =
+            BinaryTreeNodeListReverseIterator.of(treeData.getInorder());
 
         while (reverseIterator.hasNext() && reverseDataIterator.hasNext()) {
             IBinaryTreeNode<TKey, TValue> currNode = reverseIterator.next();
@@ -152,7 +153,5 @@ public final class BinaryTreeTest {
                 dataNode,
                 "Invalid logic of reverse iterator.");
         }
-
-        reverseDataIterator.reset();
     }
 }

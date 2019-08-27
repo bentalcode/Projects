@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface IBinaryTreeTestData {
     /**
-     * Gets the data of the tree.
+     * Gets the data of trees.
      */
-    List<List<IBinaryTreeNode<Integer, String>>> getData();
+    List<IBinaryTreeData<Integer, String>> getTreesData();
 }

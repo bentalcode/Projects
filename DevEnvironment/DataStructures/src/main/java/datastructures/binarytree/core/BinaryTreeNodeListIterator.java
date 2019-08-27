@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * The BinaryTreeNodeListIterator class implements an iterator of a list of binary nodes.
  */
-public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
+public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
     implements IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> {
 
     private final List<IBinaryTreeNode<TKey, TValue>> nodes;
@@ -50,16 +50,8 @@ public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
     public IBinaryTreeNode<TKey, TValue> next() {
         assert(this.hasNext());
 
-        IBinaryTreeNode<TKey, TValue> currElement = null;
-
-        while (this.hasNext()) {
-            currElement = this.nodes.get(this.position);
-            ++this.position;
-
-            if (this.skipEndNodes && currElement.getClass().isInstance(BinaryTreeEndNode.class)) {
-                continue;
-            }
-        }
+        IBinaryTreeNode<TKey, TValue> currElement = this.nodes.get(this.position);
+        this.position = this.nextPosition(this.position);
 
         return currElement;
     }
@@ -69,8 +61,8 @@ public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public void reset() {
-        this.position = 0;
         this.skipEndNodes();
+        this.position = this.alignPosition(0);
     }
 
     /*
@@ -99,5 +91,34 @@ public class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
         boolean previousStatus = this.skipEndNodes;
         this.skipEndNodes = status;
         return previousStatus;
+    }
+
+    /*
+     * Gets the next position.
+     */
+    private int nextPosition(int currPosition) {
+        return this.alignPosition(currPosition + 1);
+    }
+    /*
+     * Aligns the position.
+     */
+    private int alignPosition(int currPosition) {
+        int position = currPosition;
+
+        if (!this.skipEndNodes) {
+            return position;
+        }
+
+        while (position < this.nodes.size()) {
+            IBinaryTreeNode<TKey, TValue> currNode = this.nodes.get(position);
+
+            if (!BinaryTreeEndNode.isEndNode(currNode)) {
+                break;
+            }
+
+            ++position;
+        }
+
+        return position;
     }
 }

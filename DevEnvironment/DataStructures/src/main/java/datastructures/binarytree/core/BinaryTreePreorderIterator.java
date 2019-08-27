@@ -1,27 +1,27 @@
 package datastructures.binarytree.core;
 
-import base.interfaces.IReverseIterator;
+import base.interfaces.IIterator;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import java.util.Stack;
 
 /**
- * The BinaryTreeReverseIterator class implements a reverse iterator of a binary tree.
+ * The BinaryTreePreorderIterator class implements a preorder iterator of a binary tree.
  */
-public class BinaryTreeReverseIterator<TKey extends Comparable<TKey>, TValue> implements IReverseIterator<IBinaryTreeNode<TKey, TValue>> {
+public final class BinaryTreePreorderIterator<TKey extends Comparable<TKey>, TValue> implements IIterator<IBinaryTreeNode<TKey, TValue>> {
     private final IBinaryTreeNode<TKey, TValue> root;
     private final Stack<IBinaryTreeNode<TKey, TValue>> stack = new Stack<>();
 
     /**
-     * Creates a new reverse iterator of a binary tree.
+     * Creates a new preorder iterator of a binary tree.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IBinaryTreeNode<TKey, TValue>> of(IBinaryTreeNode<TKey, TValue> root) {
-        return new BinaryTreeReverseIterator<>(root);
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IBinaryTreeNode<TKey, TValue>> of(IBinaryTreeNode<TKey, TValue> root) {
+        return new BinaryTreePreorderIterator<>(root);
     }
 
     /**
-     * The BinaryTreeReverseIterator constructor.
+     * The BinaryTreePreorderIterator constructor.
      */
-    private BinaryTreeReverseIterator(IBinaryTreeNode<TKey, TValue> root) {
+    private BinaryTreePreorderIterator(IBinaryTreeNode<TKey, TValue> root) {
         this.root = root;
 
         this.reset();
@@ -44,8 +44,12 @@ public class BinaryTreeReverseIterator<TKey extends Comparable<TKey>, TValue> im
 
         IBinaryTreeNode<TKey, TValue> currElement = this.stack.pop();
 
+        if (currElement.hasRightChild()) {
+            this.stack.push(currElement.getRightChild());
+        }
+
         if (currElement.hasLeftChild()) {
-            currElement.getRightChild().moveMaximumNode(this.stack);
+            this.stack.push(currElement.getLeftChild());
         }
 
         return currElement;
@@ -57,7 +61,7 @@ public class BinaryTreeReverseIterator<TKey extends Comparable<TKey>, TValue> im
     @Override
     public void reset() {
         if (this.root != null) {
-            this.root.moveMaximumNode(this.stack);
+            this.stack.push(this.root);
         }
     }
 }

@@ -78,7 +78,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IIterator<IBinaryTreeNode<TKey , TValue>> getIterator() {
-        return BinaryTreeIterator.of(this.root);
+        return this.getInorderIterator();
     }
 
     /**
@@ -86,7 +86,23 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IReverseIterator<IBinaryTreeNode<TKey , TValue>> getReverseIterator() {
-        return BinaryTreeReverseIterator.of(this.root);
+        return BinaryTreeReverseInorderIterator.of(this.root);
+    }
+
+    /**
+     * Gets an inorder iterator of a tree.
+     */
+    @Override
+    public IIterator<IBinaryTreeNode<TKey , TValue>> getInorderIterator() {
+        return BinaryTreeInorderIterator.of(this.root);
+    }
+
+    /**
+     * Gets a preorder iterator of a tree.
+     */
+    @Override
+    public IIterator<IBinaryTreeNode<TKey , TValue>> getPreorderIterator() {
+        return BinaryTreePreorderIterator.of(this.root);
     }
 
     /**

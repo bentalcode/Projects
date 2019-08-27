@@ -36,4 +36,14 @@ public interface IBinaryTree<TKey extends Comparable<TKey>, TValue> extends
      * Gets a reverse iterator of a tree.
      */
     IReverseIterator<IBinaryTreeNode<TKey , TValue>> getReverseIterator();
+
+    /**
+     * Gets an inorder iterator of a tree.
+     */
+    IIterator<IBinaryTreeNode<TKey , TValue>> getInorderIterator();
+
+    /**
+     * Gets a preorder iterator of a tree.
+     */
+    IIterator<IBinaryTreeNode<TKey , TValue>> getPreorderIterator();
 }
