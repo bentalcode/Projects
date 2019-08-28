@@ -74,6 +74,7 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
         creationData.add(BinaryTreeNode.of(2, "b"));
         creationData.add(BinaryTreeNode.of(3, "c"));
         creationData.add(new BinaryTreeEndNode<>());
+        creationData.add(new BinaryTreeEndNode<>());
         creationData.add(BinaryTreeNode.of(4, "d"));
         creationData.add(new BinaryTreeEndNode<>());
         creationData.add(new BinaryTreeEndNode<>());
@@ -119,14 +120,15 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
         creationData.add(BinaryTreeNode.of(2, "b"));
         creationData.add(BinaryTreeNode.of(4, "d"));
         creationData.add(new BinaryTreeEndNode<>());
+        creationData.add(new BinaryTreeEndNode<>());
         creationData.add(BinaryTreeNode.of(5, "e"));
         creationData.add(new BinaryTreeEndNode<>());
         creationData.add(new BinaryTreeEndNode<>());
         creationData.add(BinaryTreeNode.of(3, "c"));
         creationData.add(BinaryTreeNode.of(6, "f"));
         creationData.add(new BinaryTreeEndNode<>());
-        creationData.add(BinaryTreeNode.of(7, "h"));
         creationData.add(new BinaryTreeEndNode<>());
+        creationData.add(BinaryTreeNode.of(7, "h"));
         creationData.add(new BinaryTreeEndNode<>());
         creationData.add(new BinaryTreeEndNode<>());
 

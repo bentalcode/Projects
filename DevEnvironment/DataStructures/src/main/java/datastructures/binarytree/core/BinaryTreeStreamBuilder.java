@@ -52,19 +52,18 @@ public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue
             return null;
         }
 
-        boolean addLeftChild = true;
-
-        while (iterator.hasNext()) {
+        if (iterator.hasNext()) {
             IBinaryTreeNode<TKey, TValue> childNode = this.read(iterator);
 
-            if (childNode == null) {
-                break;
-            }
-            else if (addLeftChild) {
+            if (childNode != null) {
                 rootNode.setLeftChild(childNode);
-                addLeftChild = false;
             }
-            else {
+        }
+
+        if (iterator.hasNext()) {
+            IBinaryTreeNode<TKey, TValue> childNode = this.read(iterator);
+
+            if (childNode != null) {
                 rootNode.setRightChild(childNode);
             }
         }
