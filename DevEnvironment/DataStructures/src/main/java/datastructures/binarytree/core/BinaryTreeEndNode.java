@@ -159,11 +159,4 @@ public final class BinaryTreeEndNode<TKey extends Comparable<TKey>, TValue> impl
     public int compareTo(IBinaryTreeNode<TKey, TValue> other) {
         return this.comparator.compareTo(this, other);
     }
-
-    /**
-     * Checks whether the node is an end node.
-     */
-    public static <TKey extends Comparable<TKey>, TValue> boolean isEndNode(IBinaryTreeNode<TKey, TValue> node) {
-        return node != null && node instanceof BinaryTreeEndNode;
-    }
 }
