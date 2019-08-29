@@ -234,31 +234,37 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
 
     /**
      * Removes the front node from the list.
+     * Returns the removed node or null if the list is empty.
      */
     @Override
-    public void removeFromFront() {
+    public IDoublyLinkedListNode<TValue> removeFromFront() {
         if (this.head == null) {
             assert(this.tail == null && this.empty());
-            return;
+            return null;
         }
 
         IDoublyLinkedListNode<TValue> nodeToRemove = this.head;
         this.remove(nodeToRemove);
+
+        return nodeToRemove;
     }
 
     /**
      * Removes the back node from the list.
+     * Returns the removed node or null if the list is empty.
      */
     @Override
-    public void removeFromBack() {
+    public IDoublyLinkedListNode<TValue> removeFromBack() {
         if (this.tail == null) {
             assert(this.head == null && this.empty());
-            return;
+            return null;
         }
 
         IDoublyLinkedListNode<TValue> nodeToRemove = this.tail;
 
         this.remove(nodeToRemove);
+
+        return nodeToRemove;
     }
 
     /**

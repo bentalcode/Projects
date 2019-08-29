@@ -74,13 +74,15 @@ public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
 
     /**
      * Removes the front node from the list.
+     * Returns the removed node or null if the list is empty.
      */
-    void removeFromFront();
+    IDoublyLinkedListNode<TValue> removeFromFront();
 
     /**
      * Removes the back node from the list.
+     * Returns the removed node or null if the list is empty.
      */
-    void removeFromBack();
+    IDoublyLinkedListNode<TValue> removeFromBack();
 
     /**
      * Removes the a node from the list.

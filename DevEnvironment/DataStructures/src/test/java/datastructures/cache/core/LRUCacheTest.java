@@ -3,11 +3,10 @@ package datastructures.cache.core;
 import base.core.Iterator;
 import base.interfaces.IIterator;
 import base.interfaces.ITriple;
-import datastructures.cache.interfaces.ILRUCache;
+import datastructures.cache.interfaces.ICache;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.core.TestData;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
 import org.junit.After;
@@ -49,7 +48,7 @@ public final class LRUCacheTest {
      */
     @Test
     public void LRUCacheUpdationTest() {
-        ILRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
+        ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
             this.testData.getCacheData().getUpdationData();
@@ -62,7 +61,7 @@ public final class LRUCacheTest {
      */
     @Test
     public void LRUCacheIterationTest() {
-        ILRUCache<Integer, String> cache = new LRUCache<>(new CacheProperties(3));
+        ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
             this.testData.getCacheData().getUpdationData();
@@ -74,7 +73,7 @@ public final class LRUCacheTest {
      * Tests the updation logic of a cache.
      */
     private <TKey extends Comparable<TKey>, TValue> void testUpdation(
-        ILRUCache<TKey, TValue> cache,
+        ICache<TKey, TValue> cache,
         List<ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>>> data) {
 
         for (ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>> entry : data) {
@@ -90,7 +89,7 @@ public final class LRUCacheTest {
      * Tests the iteration logic of a cache.
      */
     private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testIteration(
-        ILRUCache<TKey, TValue> cache,
+        ICache<TKey, TValue> cache,
         List<ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>>> data) {
 
         for (ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>> entry : data) {
@@ -106,7 +105,7 @@ public final class LRUCacheTest {
      * Tests the updation logic of a cache.
      */
     private <TKey extends Comparable<TKey>, TValue> void testUpdation(
-        ILRUCache<TKey, TValue> cache,
+        ICache<TKey, TValue> cache,
         String operation,
         IKeyValueNode<TKey, TValue> item,
         List<IKeyValueNode<TKey, TValue>> expectedContent) {
@@ -123,7 +122,7 @@ public final class LRUCacheTest {
      * Tests the iteration logic of a cache.
      */
     private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testIteration(
-        ILRUCache<TKey, TValue> cache,
+        ICache<TKey, TValue> cache,
         String operation,
         IKeyValueNode<TKey, TValue> item,
         List<IKeyValueNode<TKey, TValue>> expectedContent) {
@@ -203,7 +202,7 @@ public final class LRUCacheTest {
      * Updates the cache.
      */
     private <TKey extends Comparable<TKey>, TValue> void updateCache(
-        ILRUCache<TKey, TValue> cache,
+        ICache<TKey, TValue> cache,
         String operation,
         IKeyValueNode<TKey, TValue> item) {
 
