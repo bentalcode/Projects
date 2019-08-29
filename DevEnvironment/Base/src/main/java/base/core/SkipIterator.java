@@ -18,8 +18,15 @@ public abstract class SkipIterator<TElement> implements ISkipIterator<TElement> 
     }
 
     /*
+     * Registers the class type of a generic skip element.
+     */
+    @Override
+    public void registerGenericSkipElement(Class<?> classTypeToSkip) {
+        this.registerSkipElement(Casting.cast(classTypeToSkip));
+    }
+
+    /*
      * Registers the class type of a skip element.
-     * Returns the previous configured status.
      */
     @Override
     public <TSkipElement extends TElement> void registerSkipElement(Class<TSkipElement> classTypeToSkip) {

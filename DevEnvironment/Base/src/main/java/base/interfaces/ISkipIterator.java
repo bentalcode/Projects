@@ -5,8 +5,12 @@ package base.interfaces;
  */
 public interface ISkipIterator<TElement> {
     /*
+     * Registers the class type of a generic skip element.
+     */
+    void registerGenericSkipElement(Class<?> classTypeToSkip);
+
+    /*
      * Registers the class type of a skip element.
-     * Returns the previous configured status.
      */
     <TSkipElement extends TElement> void registerSkipElement(Class<TSkipElement> classTypeToSkip);
 

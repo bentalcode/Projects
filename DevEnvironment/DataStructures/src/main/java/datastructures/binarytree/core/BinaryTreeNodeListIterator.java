@@ -32,7 +32,7 @@ public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TVa
             "The nodes to iterate.");
 
         this.nodes = nodes;
-        this.registerSkipElement(BinaryTreeEndNode.class);
+        this.registerGenericSkipElement(BinaryTreeEndNode.class);
 
         this.reset();
     }
