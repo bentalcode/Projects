@@ -28,7 +28,7 @@ public final class CircularStringReverseIterator implements IReverseIterator<Cha
      */
     @Override
     public boolean hasNext() {
-        return this.currIndex > 0;
+        return this.currIndex >= 0;
     }
 
     /**

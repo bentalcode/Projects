@@ -100,7 +100,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public IIterator<T> getIterator() {
-        return null;
+        return new CircularArrayIterator<>(this);
     }
 
     /**
@@ -108,7 +108,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return null;
+        return new CircularArrayReverseIterator<>(this);
     }
 
     /**
