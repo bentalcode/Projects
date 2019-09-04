@@ -1,6 +1,7 @@
 package datastructures.doublylinkedlist.interfaces;
 
 import base.interfaces.IIterable;
+import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.collections.interfaces.IValueReverseIterator;
@@ -10,7 +11,8 @@ import datastructures.collections.interfaces.IValueReverseIterator;
  */
 public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
     IUnaryComparator<IDoublyLinkedList<TValue>>,
-    IIterable<IDoublyLinkedListNode<TValue>> {
+    IIterable<IDoublyLinkedListNode<TValue>>,
+    IReverseIterable<IDoublyLinkedListNode<TValue>> {
 
     /**
      * Gets the head node of the list.
@@ -93,11 +95,6 @@ public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
      * Gets an iterator of values of a list.
      */
     IValueIterator<TValue> getValueIterator();
-
-    /**
-     * Gets a reverse iterator of nodes of a list.
-     */
-    IDoublyLinkedListNodeReverseIterator<TValue> getReverseIterator();
 
     /**
      * Gets a reverse iterator of values of a list.

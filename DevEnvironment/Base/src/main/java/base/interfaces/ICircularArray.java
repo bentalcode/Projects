@@ -3,7 +3,11 @@ package base.interfaces;
 /**
  * The ICircularString interface defines a circular string.
  */
-public interface ICircularString extends IUnaryComparator<ICircularString>, IIterable<Character>, IReverseIterable<Character> {
+public interface ICircularArray<T extends Comparable<T>> extends
+    IUnaryComparator<ICircularArray<T>>,
+    IIterable<T>,
+    IReverseIterable<T> {
+
     /**
      * Gets the start index.
      */
@@ -12,15 +16,15 @@ public interface ICircularString extends IUnaryComparator<ICircularString>, IIte
     /**
      * Gets the value of an index.
      */
-    char charAt(int index);
+    T get(int index);
 
     /**
-     * Gets the length of a string.
+     * Gets the length of an array.
      */
     int length();
 
     /**
-     * Checks whether a string is empty.
+     * Checks whether an array is empty.
      */
     boolean empty();
 }

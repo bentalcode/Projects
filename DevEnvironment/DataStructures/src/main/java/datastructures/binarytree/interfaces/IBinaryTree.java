@@ -2,7 +2,7 @@ package datastructures.binarytree.interfaces;
 
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
-import base.interfaces.IReverseIterator;
+import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
 
 /**
@@ -10,7 +10,8 @@ import base.interfaces.IUnaryComparator;
  */
 public interface IBinaryTree<TKey extends Comparable<TKey>, TValue> extends
     IUnaryComparator<IBinaryTree<TKey, TValue>>,
-    IIterable<IBinaryTreeNode<TKey, TValue>> {
+    IIterable<IBinaryTreeNode<TKey, TValue>>,
+    IReverseIterable<IBinaryTreeNode<TKey, TValue>> {
 
     /**
      * Gets a root of a tree.
@@ -26,16 +27,6 @@ public interface IBinaryTree<TKey extends Comparable<TKey>, TValue> extends
      * Gets an interface of a tree traversal.
      */
     IBinaryTreeTraversal<TKey , TValue> getTreeTraversal();
-
-    /**
-     * Gets an iterator of a tree.
-     */
-    IIterator<IBinaryTreeNode<TKey , TValue>> getIterator();
-
-    /**
-     * Gets a reverse iterator of a tree.
-     */
-    IReverseIterator<IBinaryTreeNode<TKey , TValue>> getReverseIterator();
 
     /**
      * Gets an inorder iterator of a tree.

@@ -3,6 +3,7 @@ package base.core;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.ICircularString;
 import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 
 /**
  * The CircularString class implements a circular string.
@@ -109,6 +110,14 @@ public final class CircularString implements ICircularString {
     @Override
     public IIterator<Character> getIterator() {
         return new CircularStringIterator(this);
+    }
+
+    /**
+     * Gets the reverse iterator.
+     */
+    @Override
+    public IReverseIterator<Character> getReverseIterator() {
+        return new CircularStringReverseIterator(this);
     }
 
     /**
