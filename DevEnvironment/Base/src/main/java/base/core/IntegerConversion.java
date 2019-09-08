@@ -51,6 +51,23 @@ public final class IntegerConversion implements IIntegerConversion {
     }
 
     /**
+     * Converts an integer to a character.
+     */
+    @Override
+    public char toCharacter(int value) {
+        if (value > Character.MAX_VALUE || value < Character.MIN_VALUE) {
+            String errorMessage =
+                "Failed to convert an integer: " + value + " to a character." +
+                "The input integer is over of the range of a character.";
+
+            log.error(errorMessage);
+            throw new BaseException(errorMessage);
+        }
+
+        return (char)value;
+    }
+
+    /**
      * Parses an integer.
      */
     @Override

@@ -32,4 +32,44 @@ public interface IGraphTestData {
      * Gets data of topological search of graphs.
      */
     List<IPair<IGraph<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> getTopologicalSearchData();
+
+    /**
+     * Generates a random vertex by integer.
+     */
+    IVertex<Integer, Integer> nextVertexByInteger();
+
+    /**
+     * Generates a random vertex by double.
+     */
+    IVertex<Double, Double> nextVertexByDouble();
+
+    /**
+     * Generates a random vertex by character.
+     */
+    IVertex<Character, Character> nextVertexByCharacter();
+
+    /**
+     * Generates a random vertex by string.
+     */
+    IVertex<String, String> nextVertexByString();
+
+    /**
+     * Generates a random edge by integer.
+     */
+    IEdge<Integer, Integer> nextDirectedEdgeByInteger();
+
+    /**
+     * Generates a random edge by double.
+     */
+    IEdge<Double, Double> nextDirectedEdgeByDouble();
+
+    /**
+     * Generates a random edge by character.
+     */
+    IEdge<Character, Character> nextDirectedEdgeByCharacter();
+
+    /**
+     * Generates a random edge by string.
+     */
+    IEdge<String, String> nextDirectedEdgeByString();
 }

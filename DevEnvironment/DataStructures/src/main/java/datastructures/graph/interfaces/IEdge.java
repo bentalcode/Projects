@@ -1,5 +1,6 @@
 package datastructures.graph.interfaces;
 
+import base.interfaces.IBinaryComparator;
 import base.interfaces.IUnaryComparator;
 
 /**
@@ -20,4 +21,9 @@ public interface IEdge<TKey extends Comparable<TKey>, TValue> extends IUnaryComp
      * returns whether an edge is directed.
      */
     boolean directed();
+
+    /**
+     * Gets the comparator.
+     */
+    IBinaryComparator<IEdge<TKey, TValue>> getComparator();
 }

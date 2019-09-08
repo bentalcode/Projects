@@ -48,13 +48,13 @@ by serializing the remaining of it's size to disk.
 Code References:
 ----------------
 The main entry to the Data Command module is:
-DevEnvironment\DataCommand\src\main\java\datacommand\core\Main.java
+DevEnvironment/DataCommand/src/main/java/datacommand/Main.java
 
 The interface of data command is:
-DevEnvironment\DataCommand\src\main\java\datacommand\json.interfaces\IDataCommand.java
+DevEnvironment/DataCommand/src/main/java/datacommand/interfaces/IDataCommand.java
 
 The interface of an aggregation results is: 
-DevEnvironment\DataCommand\src\main\java\datacommand\json.interfaces\IAggregationResults.java
+DevEnvironment/DataCommand/src/main/java/datacommand/interfaces/IAggregationResult.java
 
 Parameters:
 -----------
@@ -93,29 +93,15 @@ DataCommand Library:
 --------------------
 The Data Command library exposes data commands for processing data and calculating aggregation results.
 
-The code is defined at: DevEnvironment\DataCommand
+The code is defined at: 
+DevEnvironment/DataCommand
 
 Data Structures Library:
 ------------------------
 The Data Structures library defines and implements various data structures, specifically, a BPlusTree.
 
-The library includes the following modules:
-
-BPlusTree:
-----------
-The BPlusTree module implements logic for inserting, deleting, iterating and calculating metrics for data in B+ trees.
-
-BlockTree:
-----------
-The BlockTree module implements logic for handling trees with internal nodes such as B+ or B trees.
-
-Tree:
------ 
-The Tree module implements logic for handling generic trees.
-
-Expression Tree:
-----------------
-The Expression Tree module implements logic for handling expression trees.
+The code is defined at: 
+DevEnvironment/DataStructures
 
 Base Library:
 ------------- 
@@ -124,7 +110,8 @@ This library includes basic classes such as EqualBuilder for calculating equalit
 comparing objects, Comparators, DestructorHandler for registering objects for invoking their destructors automatically
  after usage and etc.    
 
-The code is defined at: DevEnvironment\Base
+The code is defined at:
+DevEnvironment/Base
 
 Testing:
 --------
@@ -132,4 +119,4 @@ I have implemented unit tests for validating the functionality of the BPlus tree
 Those tests validates insertion, iteration, and calculated metrics of those B+ trees.
 
 The code is defined at: 
-DevEnvironment\DataStructures\src\test\java\datastructures\plustree\core\BPlusTreeTest.java
+DevEnvironment/DataStructures/src/test/java/datastructures/bplustree/core/BPlusTreeTest.java

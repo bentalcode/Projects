@@ -5,7 +5,6 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
-import base.interfaces.IBuilder;
 import datastructures.tree.interfaces.ITreeNode;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,20 +15,45 @@ import java.util.List;
 public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements ITreeNode<TKey, TValue> {
     private final TKey key;
     private TValue value;
-    private List<ITreeNode<TKey, TValue>> children;
-    private final IBinaryComparator<TKey> comparator;
+    private final List<ITreeNode<TKey, TValue>> children = new ArrayList<>();
+    private final IBinaryComparator<TKey> keyComparator;
+
+    /**
+     * Creates a new tree node.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> ITreeNode<TKey, TValue> create(TKey key) {
+        return TreeNode.create(key, null);
+    }
+
+    /**
+     * Creates a new tree node.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> ITreeNode<TKey, TValue> create(TKey key, TValue value) {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+        return TreeNode.create(key, value, keyComparator);
+    }
+
+    /**
+     * Creates a new tree node.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> ITreeNode<TKey, TValue> create(
+        TKey key,
+        TValue value,
+        IBinaryComparator<TKey> keyComparator) {
+
+        return new TreeNode<>(key, value, keyComparator);
+    }
 
     /**
      * The TreeNode constructor.
      */
-    public TreeNode(
+    private TreeNode(
         TKey key,
-        IBinaryComparator<TKey> comparator) {
+        IBinaryComparator<TKey> keyComparator) {
         this(
             key,
             null,
-            new ArrayList<>(),
-            comparator);
+            keyComparator);
     }
 
     /**
@@ -38,21 +62,19 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
     public TreeNode(
         TKey key,
         TValue value,
-        List<ITreeNode<TKey, TValue>> children,
-        IBinaryComparator<TKey> comparator) {
+        IBinaryComparator<TKey> keyComparator) {
 
         Conditions.validateNotNull(
             key,
             "The key of a node of a tree.");
 
         Conditions.validateNotNull(
-            comparator,
+            keyComparator,
             "The comparator of a key of a node of a tree.");
 
         this.key = key;
         this.value = value;
-        this.children = children;
-        this.comparator = comparator;
+        this.keyComparator = keyComparator;
     }
 
     /**
@@ -88,11 +110,15 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
     }
 
     /**
-     * Sets the children of the node.
+     * Adds a child to the node.
      */
     @Override
-    public void setChildren(List<ITreeNode<TKey, TValue>> children) {
-        this.children = children;
+    public void addChild(ITreeNode<TKey, TValue> child) {
+        Conditions.validateNotNull(
+            child,
+            "The child.");
+
+        this.children.add(child);
     }
 
     /**
@@ -100,11 +126,11 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
      */
     @Override
     public int hashCode() {
-        return this.comparator.getHashCode(this.getKey());
+        return this.keyComparator.getHashCode(this.getKey());
     }
 
     /**
-     * Gets the hash code of a node of a B+ tree.
+     * Gets the hash code of this instance.
      */
     @Override
     public boolean equals(Object obj) {
@@ -125,7 +151,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
     @Override
     public boolean isEqual(ITreeNode<TKey, TValue> other) {
         boolean status = new EqualBuilder()
-            .withObject(this.getKey(), other.getKey(), this.comparator)
+            .withObject(this.getKey(), other.getKey(), this.keyComparator)
             .build();
 
         return status;
@@ -141,7 +167,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
     @Override
     public int compareTo(ITreeNode<TKey, TValue> other) {
         int status = new CompareToBuilder()
-            .withObject(this.getKey(), other.getKey(), this.comparator)
+            .withObject(this.getKey(), other.getKey(), this.keyComparator)
             .build();
 
         return status;
@@ -166,8 +192,8 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
          */
         public Comparator(IBinaryComparator<TKey> keyComparator) {
             Conditions.validateNotNull(
-                    keyComparator,
-                    "The key comparator of a tree.");
+                keyComparator,
+                "The comparator of a key of a node of a trie.");
 
             this.keyComparator = keyComparator;
         }
@@ -221,83 +247,6 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
             return new CompareToBuilder()
                 .withObject(lhs.getKey(), rhs.getKey(), this.keyComparator)
                 .build();
-        }
-    }
-
-    /**
-     * The Builder class implements a builder for creating a node of a tree.
-     */
-    public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<ITreeNode<TKey, TValue>> {
-        private TKey key;
-        private TValue value;
-        private List<ITreeNode<TKey, TValue>> children;
-        private IBinaryComparator<TKey> comparator;
-
-        /**
-         * The Builder constructor.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Sets a key a tree node.
-         */
-        public Builder<TKey, TValue> setKey(TKey key) {
-            Conditions.validateNotNull(
-                key,
-                "The key of a node of a tree.");
-
-            this.key = key;
-
-            return this;
-        }
-
-        /**
-         * Sets a value of a tree node.
-         */
-        public Builder<TKey, TValue> setValue(TValue value) {
-            this.value = value;
-            return this;
-        }
-
-        /**
-         * Adds a new child to a tree node.
-         */
-        public Builder<TKey, TValue> addChild(ITreeNode<TKey, TValue> child) {
-            Conditions.validateNotNull(
-                child,
-                "The child of a tree.");
-
-            this.children.add(child);
-
-            return this;
-        }
-
-        /**
-         * Sets a comparator of a key of node of a tree.
-         */
-        public Builder<TKey, TValue> setComparator(IBinaryComparator<TKey> comparator) {
-            Conditions.validateNotNull(
-                comparator,
-                "The comparator of a node of a tree.");
-
-            this.comparator = comparator;
-
-            return this;
-        }
-
-        /**
-         * Builds a node of a tree.
-         */
-        @Override
-        public ITreeNode<TKey, TValue> build() {
-            ITreeNode<TKey, TValue> node = new TreeNode<>(
-                this.key,
-                this.value,
-                this.children,
-                this.comparator);
-
-            return node;
         }
     }
 }

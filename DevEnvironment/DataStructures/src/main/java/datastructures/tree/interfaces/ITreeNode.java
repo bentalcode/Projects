@@ -1,7 +1,7 @@
 package datastructures.tree.interfaces;
 
 import base.interfaces.IUnaryComparator;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * The ITreeNode interface defines a node in a tree.
@@ -25,10 +25,10 @@ public interface ITreeNode<TKey extends Comparable<TKey>, TValue> extends IUnary
     /**
      * Gets the children of the node.
      */
-    List<ITreeNode<TKey, TValue>> getChildren();
+    Collection<ITreeNode<TKey, TValue>> getChildren();
 
     /**
-     * Sets the children of the node.
+     * Adds a child to the node.
      */
-    void setChildren(List<ITreeNode<TKey, TValue>> children);
+    void addChild(ITreeNode<TKey, TValue> child);
 }

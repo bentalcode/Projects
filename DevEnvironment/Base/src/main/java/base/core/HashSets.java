@@ -1,11 +1,29 @@
 package base.core;
 
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * The HashSets class implements a factory for creating hash-sets.
  */
 public final class HashSets {
+    /**
+     * Creates a new instance of a hash-set from a list.
+     */
+    public static <TKey> HashSet<TKey> from(List<TKey> list) {
+        Conditions.validateNotNull(
+            list,
+            "The list to read from.");
+
+        HashSet<TKey> set = new HashSet<>();
+
+        for (TKey item : list) {
+            set.add(item);
+        }
+
+        return set;
+    }
+
     /**
      * Creates a new instance of a hash-set.
      */

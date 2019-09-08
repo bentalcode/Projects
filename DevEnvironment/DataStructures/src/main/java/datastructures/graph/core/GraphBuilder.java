@@ -144,6 +144,30 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
     }
 
     /**
+     * Adds an edge by vertices.
+     */
+    @Override
+    public IGraphBuilder<TKey, TValue> addEdge(
+        IVertex<TKey, TValue> source,
+        IVertex<TKey, TValue> destination) {
+
+        IEdge edge = Edge.newEdge(source, destination);
+        return this.addEdge(edge);
+    }
+
+    /**
+     * Adds a directed edge by vertices.
+     */
+    @Override
+    public IGraphBuilder<TKey, TValue> addDirectedEdge(
+        IVertex<TKey, TValue> source,
+        IVertex<TKey, TValue> destination) {
+
+        IEdge edge = Edge.newDirectedEdge(source, destination);
+        return this.addEdge(edge);
+    }
+
+    /**
      * Adds edges.
      */
     @Override

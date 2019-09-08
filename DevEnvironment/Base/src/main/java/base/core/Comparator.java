@@ -24,6 +24,10 @@ public final class Comparator<T extends Comparable<T>> implements IBinaryCompara
      */
     @Override
     public int getHashCode(T obj) {
+        if (obj == null) {
+            return 0;
+        }
+
         return obj.hashCode();
     }
 

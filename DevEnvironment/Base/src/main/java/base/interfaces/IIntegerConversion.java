@@ -15,6 +15,11 @@ public interface IIntegerConversion {
     short toShort(int value);
 
     /**
+     * Converts an integer to a character.
+     */
+    char toCharacter(int value);
+
+    /**
      * Parses an integer.
      */
     int parse(String value);

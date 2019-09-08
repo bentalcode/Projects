@@ -41,6 +41,22 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
     }
 
     /**
+     * Creates a new instance of a directed edge.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IEdge<TKey, TValue> copy(IEdge<TKey, TValue> other) {
+        Conditions.validateNotNull(
+            other,
+            "The edge for copying.");
+
+        Vertex.copy(other.source());
+        return new Edge<>(
+            Vertex.copy(other.source()),
+            Vertex.copy(other.destination()),
+            other.directed(),
+            other.getComparator());
+    }
+
+    /**
      * The Edge constructor.
      */
     private Edge(
@@ -90,6 +106,13 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
     @Override
     public boolean directed() {
         return this.directed;
+    }
+
+    /**
+     * Gets the comparator.
+     */
+    public IBinaryComparator<IEdge<TKey, TValue>> getComparator() {
+        return this.comparator;
     }
 
     /**
@@ -191,7 +214,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
 
             return new EqualBuilder()
                 .withObject(lhs.source(), rhs.source(), this.vertexComparator)
-                .withObject(lhs.destination(), rhs.source(), this.vertexComparator)
+                .withObject(lhs.destination(), rhs.destination(), this.vertexComparator)
                 .withBoolean(lhs.directed(), rhs.directed())
                 .build();
         }

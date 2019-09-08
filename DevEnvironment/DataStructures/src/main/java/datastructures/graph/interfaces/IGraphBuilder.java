@@ -29,6 +29,16 @@ public interface IGraphBuilder<TKey extends Comparable<TKey>, TValue> extends IB
     IGraphBuilder<TKey, TValue> addEdge(IEdge<TKey, TValue> edge);
 
     /**
+     * Adds an edge by vertices.
+     */
+    IGraphBuilder<TKey, TValue> addEdge(IVertex<TKey, TValue> source, IVertex<TKey, TValue> destination);
+
+    /**
+     * Adds a directed edge by vertices.
+     */
+    IGraphBuilder<TKey, TValue> addDirectedEdge(IVertex<TKey, TValue> source, IVertex<TKey, TValue> destination);
+
+    /**
      * Adds edges.
      */
     IGraphBuilder<TKey, TValue> addEdges(IIterator<IEdge<TKey, TValue>> edges);

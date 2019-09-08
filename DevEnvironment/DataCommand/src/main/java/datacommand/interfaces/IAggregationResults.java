@@ -1,11 +1,12 @@
 package datacommand.interfaces;
 
+import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 
 /**
  * The IAggregationResults interface defines aggregation results of the data.
  */
-public interface IAggregationResults {
+public interface IAggregationResults extends IIterable<IAggregationResult> {
     /**
      * Sets an aggregation result.
      */

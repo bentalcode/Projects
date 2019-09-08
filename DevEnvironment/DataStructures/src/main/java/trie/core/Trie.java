@@ -1,88 +1,85 @@
-package datastructures.tree.core;
+package trie.core;
 
 import base.core.Casting;
 import base.core.CollectionIterator;
 import base.core.Conditions;
 import base.core.HashCodeBuilder;
-import base.core.ListIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import base.interfaces.IHashCodeBuilder;
 import base.interfaces.IIterator;
 import base.interfaces.IVisitor;
-import datastructures.tree.interfaces.ITree;
-import datastructures.tree.interfaces.ITreeNode;
-import datastructures.tree.interfaces.ITreeTraversal;
-
+import trie.interfaces.ITrie;
+import trie.interfaces.ITrieNode;
+import trie.interfaces.ITrieTraversal;
 import java.util.Collection;
-import java.util.List;
 
 /**
- * The Tree class implements a generic tree.
+ * The Trie class implements a trie.
  */
-public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey, TValue> {
-    private ITreeNode<TKey, TValue> root;
-    private final IBinaryComparator<ITree<TKey, TValue>> comparator;
+public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<TKey, TValue> {
+    private ITrieNode<TKey, TValue> root;
+    private final IBinaryComparator<ITrie<TKey, TValue>> comparator;
 
     /**
-     * The Tree constructor.
+     * The Trie constructor.
      */
-    public Tree() {
-        this(null, Tree.DefaultComparator());
+    public Trie() {
+        this(null, Trie.DefaultComparator());
     }
 
     /**
-     * The Tree constructor.
+     * The Trie constructor.
      */
-    public Tree(IBinaryComparator<ITree<TKey, TValue>> comparator) {
+    public Trie(IBinaryComparator<ITrie<TKey, TValue>> comparator) {
         this(null, comparator);
     }
 
     /**
-     * The Tree constructor.
+     * The Trie constructor.
      */
-    public Tree(
-        ITreeNode<TKey, TValue> root,
-        IBinaryComparator<ITree<TKey, TValue>> comparator) {
+    public Trie(
+        ITrieNode<TKey, TValue> root,
+        IBinaryComparator<ITrie<TKey, TValue>> comparator) {
 
         Conditions.validateNotNull(
             comparator,
-            "The tree comparator.");
+            "The trie comparator.");
 
         this.root = root;
         this.comparator = comparator;
     }
 
     /**
-     * Gets a root of a tree.
+     * Gets a root of a trie.
      */
     @Override
-    public ITreeNode<TKey, TValue> getRoot() {
+    public ITrieNode<TKey, TValue> getRoot() {
         return this.root;
     }
 
     /**
-     * Sets a root of a tree.
+     * Sets a root of a trie.
      */
     @Override
-    public void setRoot(ITreeNode<TKey, TValue> root) {
+    public void setRoot(ITrieNode<TKey, TValue> root) {
         this.root = root;
     }
 
     /**
-     * Gets an interface of a tree traversal.
+     * Gets an interface of a trie traversal.
      */
     @Override
-    public ITreeTraversal<TKey , TValue> getTreeTraversal() {
-        return this.getTreeTraversal(TreeNode.DefaultComparator());
+    public ITrieTraversal<TKey , TValue> getTrieTraversal() {
+        return this.getTrieTraversal(TrieNode.DefaultComparator());
     }
 
     /**
-     * Gets an interface of a tree traversal.
+     * Gets an interface of a trie traversal.
      */
     @Override
-    public ITreeTraversal<TKey , TValue> getTreeTraversal(IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator) {
-        return new TreeTraversal<>(nodeComparator);
+    public ITrieTraversal<TKey , TValue> getTrieTraversal(IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator) {
+        return new TrieTraversal<>(nodeComparator);
     }
 
     /**
@@ -116,7 +113,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
     /**
      * Checks whether the instances are equals.
      */
-    public boolean isEqual(ITree<TKey, TValue> other) {
+    public boolean isEqual(ITrie<TKey, TValue> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -127,31 +124,31 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
-    public int compareTo(ITree<TKey, TValue> other) {
+    public int compareTo(ITrie<TKey, TValue> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITree<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator = TreeNode.DefaultComparator();
-        return new Tree.Comparator<>(nodeComparator);
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITrie<TKey, TValue>> DefaultComparator() {
+        IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator = TrieNode.DefaultComparator();
+        return new Trie.Comparator<>(nodeComparator);
     }
 
     /**
-     * The Comparator class implements a comparator of a tree.
+     * The Comparator class implements a comparator of a trie.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<ITree<TKey, TValue>> {
-        private final IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator;
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<ITrie<TKey, TValue>> {
+        private final IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator;
 
         /**
          * The Comparator constructor.
          */
-        public Comparator(IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator) {
+        public Comparator(IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator) {
             Conditions.validateNotNull(
                 nodeComparator,
-                "The comparator of a node of a tree.");
+                "The comparator of a node of a trie.");
 
             this.nodeComparator = nodeComparator;
         }
@@ -160,17 +157,17 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ITree<TKey, TValue> obj) {
+        public int getHashCode(ITrie<TKey, TValue> obj) {
             if (obj == null) {
                 return 0;
             }
 
             IHashCodeBuilder hashCodeBuilder = new HashCodeBuilder(3, 5);
-            IVisitor<ITreeNode<TKey, TValue>> visitor = new HashCodeVisitor<>(
+            IVisitor<ITrieNode<TKey, TValue>> visitor = new HashCodeVisitor<>(
                 hashCodeBuilder,
                 this.nodeComparator);
 
-            ITreeTraversal<TKey, TValue> traversal = obj.getTreeTraversal();
+            ITrieTraversal<TKey, TValue> traversal = obj.getTrieTraversal();
             traversal.breadthFirstSearch(obj.getRoot(), visitor);
 
             return hashCodeBuilder.build();
@@ -179,22 +176,22 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(ITree<TKey, TValue> lhsTree, ITree<TKey, TValue> rhsTree) {
-            if (lhsTree == null && rhsTree == null) {
+        public boolean isEqual(ITrie<TKey, TValue> lhsTrie, ITrie<TKey, TValue> rhsTrie) {
+            if (lhsTrie == null && rhsTrie == null) {
                 return true;
             }
 
-            if (lhsTree == null || rhsTree == null) {
+            if (lhsTrie == null || rhsTrie == null) {
                 return false;
             }
 
-            return this.isEqual(lhsTree.getRoot(), rhsTree.getRoot());
+            return this.isEqual(lhsTrie.getRoot(), rhsTrie.getRoot());
         }
 
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(ITreeNode<TKey, TValue> lhsRoot, ITreeNode<TKey, TValue> rhsRoot) {
+        public boolean isEqual(ITrieNode<TKey, TValue> lhsRoot, ITrieNode<TKey, TValue> rhsRoot) {
             if (lhsRoot == null && rhsRoot == null) {
                 return true;
             }
@@ -207,19 +204,19 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
                 return false;
             }
 
-            Collection<ITreeNode<TKey, TValue>> lhsChildren = lhsRoot.getChildren();
-            Collection<ITreeNode<TKey, TValue>> rhsChildren = rhsRoot.getChildren();
+            Collection<ITrieNode<TKey, TValue>> lhsChildren = lhsRoot.getChildren();
+            Collection<ITrieNode<TKey, TValue>> rhsChildren = rhsRoot.getChildren();
 
             if (lhsChildren.size() != rhsChildren.size()) {
                 return false;
             }
 
-            IIterator<ITreeNode<TKey, TValue>> lhsChildrenIterator = CollectionIterator.of(lhsChildren);
-            IIterator<ITreeNode<TKey, TValue>> rhsChildrenIterator = CollectionIterator.of(rhsChildren);
+            IIterator<ITrieNode<TKey, TValue>> lhsChildrenIterator = CollectionIterator.of(lhsChildren);
+            IIterator<ITrieNode<TKey, TValue>> rhsChildrenIterator = CollectionIterator.of(rhsChildren);
 
             while (lhsChildrenIterator.hasNext() && rhsChildrenIterator.hasNext()) {
-                ITreeNode<TKey, TValue> lhsChild = lhsChildrenIterator.next();
-                ITreeNode<TKey, TValue> rhsChild = rhsChildrenIterator.next();
+                ITrieNode<TKey, TValue> lhsChild = lhsChildrenIterator.next();
+                ITrieNode<TKey, TValue> rhsChild = rhsChildrenIterator.next();
 
                 if (!this.isEqual(lhsChild, rhsChild)) {
                     return false;
@@ -239,20 +236,20 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ITree<TKey, TValue> lhsTree, ITree<TKey, TValue> rhsTree) {
-            if (lhsTree == null && rhsTree == null) {
+        public int compareTo(ITrie<TKey, TValue> lhsTrie, ITrie<TKey, TValue> rhsTrie) {
+            if (lhsTrie == null && rhsTrie == null) {
                 return 0;
             }
 
-            if (lhsTree == null) {
+            if (lhsTrie == null) {
                 return -1;
             }
 
-            if (rhsTree == null) {
+            if (rhsTrie == null) {
                 return 1;
             }
 
-            return this.compareTo(lhsTree.getRoot(), rhsTree.getRoot());
+            return this.compareTo(lhsTrie.getRoot(), rhsTrie.getRoot());
         }
 
         /**
@@ -262,7 +259,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
          * Returns 0 if the left hand side value is equal to the right hand side value.
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
-        public int compareTo(ITreeNode<TKey, TValue> lhsRoot, ITreeNode<TKey, TValue> rhsRoot) {
+        public int compareTo(ITrieNode<TKey, TValue> lhsRoot, ITrieNode<TKey, TValue> rhsRoot) {
             if (lhsRoot == null && rhsRoot == null) {
                 return 0;
             }
@@ -281,8 +278,8 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
                 return result;
             }
 
-            Collection<ITreeNode<TKey, TValue>> lhsChildren = lhsRoot.getChildren();
-            Collection<ITreeNode<TKey, TValue>> rhsChildren = rhsRoot.getChildren();
+            Collection<ITrieNode<TKey, TValue>> lhsChildren = lhsRoot.getChildren();
+            Collection<ITrieNode<TKey, TValue>> rhsChildren = rhsRoot.getChildren();
 
             if (lhsChildren.size() < rhsChildren.size()) {
                 return -1;
@@ -292,12 +289,12 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
                 return 1;
             }
 
-            IIterator<ITreeNode<TKey, TValue>> lhsChildrenIterator = CollectionIterator.of(lhsChildren);
-            IIterator<ITreeNode<TKey, TValue>> rhsChildrenIterator = CollectionIterator.of(rhsChildren);
+            IIterator<ITrieNode<TKey, TValue>> lhsChildrenIterator = CollectionIterator.of(lhsChildren);
+            IIterator<ITrieNode<TKey, TValue>> rhsChildrenIterator = CollectionIterator.of(rhsChildren);
 
             while (lhsChildrenIterator.hasNext() && rhsChildrenIterator.hasNext()) {
-                ITreeNode<TKey, TValue> lhsChild = lhsChildrenIterator.next();
-                ITreeNode<TKey, TValue> rhsChild = rhsChildrenIterator.next();
+                ITrieNode<TKey, TValue> lhsChild = lhsChildrenIterator.next();
+                ITrieNode<TKey, TValue> rhsChild = rhsChildrenIterator.next();
 
                 result = this.compareTo(lhsChild, rhsChild);
 
@@ -313,11 +310,11 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
     }
 
     /**
-     * The Builder class implements a builder for creating levels of a tree.
+     * The Builder class implements a builder for creating levels of a trie.
      */
-    public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<ITree<TKey, TValue>> {
-        private ITreeNode<TKey, TValue> root;
-        private IBinaryComparator<ITree<TKey, TValue>> comparator;
+    public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<ITrie<TKey, TValue>> {
+        private ITrieNode<TKey, TValue> root;
+        private IBinaryComparator<ITrie<TKey, TValue>> comparator;
 
         /**
          * The Builder constructor.
@@ -326,12 +323,12 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         }
 
         /**
-         * Sets the root of a tree.
+         * Sets the root of a trie.
          */
-        public Tree.Builder<TKey, TValue> setRoot(ITreeNode<TKey, TValue> root) {
+        public Trie.Builder<TKey, TValue> setRoot(ITrieNode<TKey, TValue> root) {
             Conditions.validateNotNull(
                 root,
-                "The root of a tree.");
+                "The root of a trie.");
 
             this.root = root;
 
@@ -341,9 +338,9 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         /**
          * Adds a node.
          */
-        public Tree.Builder<TKey, TValue> addNode(
-            ITreeNode<TKey, TValue> parentNode,
-            ITreeNode<TKey, TValue> childNode) {
+        public Trie.Builder<TKey, TValue> addNode(
+            ITrieNode<TKey, TValue> parentNode,
+            ITrieNode<TKey, TValue> childNode) {
 
             Conditions.validateNotNull(
                 parentNode,
@@ -353,18 +350,18 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
                 childNode,
                 "The child node to add to a parent node.");
 
-            parentNode.getChildren().add(childNode);
+            parentNode.addChild(childNode);
 
             return this;
         }
 
         /**
-         * Sets the comparator of a tree.
+         * Sets the comparator of a trie.
          */
-        public Tree.Builder<TKey, TValue> setComparator(IBinaryComparator<ITree<TKey, TValue>> comparator) {
+        public Trie.Builder<TKey, TValue> setComparator(IBinaryComparator<ITrie<TKey, TValue>> comparator) {
             Conditions.validateNotNull(
                 comparator,
-                "The comparator of a tree.");
+                "The comparator of a trie.");
 
             this.comparator = comparator;
 
@@ -372,40 +369,40 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         }
 
         /**
-         * Builds the tree.
+         * Builds the trie.
          */
         @Override
-        public ITree<TKey, TValue> build() {
+        public ITrie<TKey, TValue> build() {
             if (this.comparator == null) {
-                this.comparator = Tree.DefaultComparator();
+                this.comparator = Trie.DefaultComparator();
             }
 
-            return new Tree<>(this.root, this.comparator);
+            return new Trie<>(this.root, this.comparator);
         }
     }
 
     /**
-     * The HashCodeVisitor class implements a visitor for calculating the hash code of the tree.
+     * The HashCodeVisitor class implements a visitor for calculating the hash code of the trie.
      */
-    private static class HashCodeVisitor<TKey extends Comparable<TKey>, TValue> implements IVisitor<ITreeNode<TKey, TValue>> {
+    private static class HashCodeVisitor<TKey extends Comparable<TKey>, TValue> implements IVisitor<ITrieNode<TKey, TValue>> {
         public final IHashCodeBuilder hashCodeBuilder;
-        private final IBinaryComparator<ITreeNode<TKey, TValue>> comparator;
+        private final IBinaryComparator<ITrieNode<TKey, TValue>> comparator;
 
         /**
          * The HashCodeVisitor constructor.
          */
         public HashCodeVisitor(
             IHashCodeBuilder hashCodeBuilder,
-            IBinaryComparator<ITreeNode<TKey, TValue>> comparator) {
+            IBinaryComparator<ITrieNode<TKey, TValue>> comparator) {
             this.hashCodeBuilder = hashCodeBuilder;
             this.comparator = comparator;
         }
 
         /**
-         * Visits a node in the tree.
+         * Visits a node in the trie.
          */
         @Override
-        public void visit(ITreeNode<TKey, TValue> root) {
+        public void visit(ITrieNode<TKey, TValue> root) {
             if (root == null) {
                 return;
             }

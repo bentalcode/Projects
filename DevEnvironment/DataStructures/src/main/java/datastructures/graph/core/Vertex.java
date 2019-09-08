@@ -6,6 +6,7 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IVertex;
 
 /**
@@ -16,6 +17,13 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
     private TValue value;
     private final IBinaryComparator<IVertex<TKey, TValue>> comparator;
     private final int hashCode;
+
+    /**
+     * Creates a new instance of a vertex.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IVertex<TKey, TValue> of(TKey key) {
+        return new Vertex<>(key, null);
+    }
 
     /**
      * Creates a new instance of a vertex.
@@ -57,6 +65,17 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
     }
 
     /**
+     * Creates a new instance of a directed edge.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IVertex<TKey, TValue> copy(IVertex<TKey, TValue> other) {
+        Conditions.validateNotNull(
+            other,
+            "The vertex for copying.");
+
+        return new Vertex<>(other.getKey(), other.getValue());
+    }
+
+    /**
      * Gets a key of a vertex.
      */
     @Override
@@ -70,6 +89,13 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
     @Override
     public TValue getValue() {
         return this.value;
+    }
+
+    /**
+     * Gets the comparator.
+     */
+    public IBinaryComparator<IVertex<TKey, TValue>> getComparator() {
+        return this.comparator;
     }
 
     /**

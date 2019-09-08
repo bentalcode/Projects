@@ -19,25 +19,4 @@ public interface ITreeTraversal<TKey extends Comparable<TKey>, TValue> {
     void depthFirstSearch(
         ITreeNode<TKey, TValue> root,
         IVisitor<ITreeNode<TKey, TValue>> visitor);
-
-    /**
-     * Performs a Pre-Order search.
-     */
-    void preOrder(
-        ITreeNode<TKey, TValue> root,
-        IVisitor<ITreeNode<TKey, TValue>> visitor);
-
-    /**
-     * Performs an In-Order search.
-     */
-    void inOrder(
-        ITreeNode<TKey, TValue> root,
-        IVisitor<ITreeNode<TKey, TValue>> visitor);
-
-    /**
-     * Performs an Post-Order search.
-     */
-    void postOrder(
-        ITreeNode<TKey, TValue> root,
-        IVisitor<ITreeNode<TKey, TValue>> visitor);
 }

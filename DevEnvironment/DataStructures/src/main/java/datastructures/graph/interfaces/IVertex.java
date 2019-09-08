@@ -1,5 +1,6 @@
 package datastructures.graph.interfaces;
 
+import base.interfaces.IBinaryComparator;
 import base.interfaces.IUnaryComparator;
 
 /**
@@ -15,4 +16,9 @@ public interface IVertex<TKey extends Comparable<TKey>, TValue> extends IUnaryCo
      * Gets a value of a vertex.
      */
     TValue getValue();
+
+    /**
+     * Gets the comparator.
+     */
+    IBinaryComparator<IVertex<TKey, TValue>> getComparator();
 }
