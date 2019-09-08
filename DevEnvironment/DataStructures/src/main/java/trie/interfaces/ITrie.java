@@ -20,7 +20,7 @@ public interface ITrie<TKey extends Comparable<TKey>, TValue> extends IUnaryComp
     /**
      * Gets an interface of a trie traversal.
      */
-    ITrieTraversal getTrieTraversal();
+    ITrieTraversal<TKey, TValue> getTrieTraversal();
 
     /**
      * Gets an interface of a trie traversal.

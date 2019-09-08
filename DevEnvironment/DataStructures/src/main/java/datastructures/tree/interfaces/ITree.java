@@ -20,7 +20,7 @@ public interface ITree<TKey extends Comparable<TKey>, TValue> extends IUnaryComp
     /**
      * Gets an interface of a tree traversal.
      */
-    ITreeTraversal getTreeTraversal();
+    ITreeTraversal<TKey, TValue> getTreeTraversal();
 
     /**
      * Gets an interface of a tree traversal.

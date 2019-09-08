@@ -151,7 +151,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
         IVertex<TKey, TValue> source,
         IVertex<TKey, TValue> destination) {
 
-        IEdge edge = Edge.newEdge(source, destination);
+        IEdge<TKey, TValue> edge = Edge.newEdge(source, destination);
         return this.addEdge(edge);
     }
 
@@ -163,7 +163,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
         IVertex<TKey, TValue> source,
         IVertex<TKey, TValue> destination) {
 
-        IEdge edge = Edge.newDirectedEdge(source, destination);
+        IEdge<TKey, TValue> edge = Edge.newDirectedEdge(source, destination);
         return this.addEdge(edge);
     }
 
