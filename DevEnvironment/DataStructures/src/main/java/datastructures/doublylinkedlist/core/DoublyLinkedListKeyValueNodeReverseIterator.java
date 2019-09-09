@@ -1,7 +1,6 @@
 package datastructures.doublylinkedlist.core;
 
 import base.core.Conditions;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodeIterator;

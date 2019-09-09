@@ -1,5 +1,6 @@
 package trie.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CollectionIterator;
 import base.core.Conditions;
@@ -139,7 +140,9 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
     /**
      * The Comparator class implements a comparator of a trie.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<ITrie<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        extends AbstractBinaryComparator<ITrie<TKey, TValue>> {
+
         private final IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator;
 
         /**

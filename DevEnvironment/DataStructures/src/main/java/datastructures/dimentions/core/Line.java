@@ -1,5 +1,6 @@
 package datastructures.dimentions.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.Conditions;
 import base.core.EqualBuilder;
@@ -191,7 +192,7 @@ public final class Line implements ILine {
     /**
      * The Comparator class implements a comparator of a point.
      */
-    public static final class Comparator implements IBinaryComparator<ILine> {
+    public static final class Comparator extends AbstractBinaryComparator<ILine> {
         private final IBinaryComparator<IPoint> pointComparator;
 
         /**

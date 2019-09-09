@@ -1,12 +1,12 @@
 package datastructures.graph.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
-import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IVertex;
 
 /**
@@ -157,7 +157,9 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
     /**
      * The Comparator class implements a comparator of a generic vertex.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IVertex<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        extends AbstractBinaryComparator<IVertex<TKey, TValue>> {
+
         private final IBinaryComparator<TKey> keyComparator;
 
         /**

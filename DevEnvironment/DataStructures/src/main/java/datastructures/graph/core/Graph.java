@@ -1,5 +1,6 @@
 package datastructures.graph.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -196,7 +197,9 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
     /**
      * The Comparator class implements a comparator of a graph.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IGraph<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        extends AbstractBinaryComparator<IGraph<TKey, TValue>> {
+
         private final IBinaryComparator<IVertex<TKey, TValue>> vertexComparator;
         private final IBinaryComparator<IEdge<TKey, TValue>> edgeComparator;
         private final IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> adjacencyMatrixComparator;

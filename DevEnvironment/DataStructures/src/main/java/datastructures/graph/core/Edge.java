@@ -1,5 +1,6 @@
 package datastructures.graph.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -174,7 +175,9 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
     /**
      * The Comparator class implements a comparator of an edge.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IEdge<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        extends AbstractBinaryComparator<IEdge<TKey, TValue>> {
+
         private final IBinaryComparator<IVertex<TKey, TValue>> vertexComparator;
 
         /**

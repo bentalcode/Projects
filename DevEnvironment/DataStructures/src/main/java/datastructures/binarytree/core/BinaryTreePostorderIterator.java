@@ -9,7 +9,7 @@ import java.util.Stack;
  */
 public final class BinaryTreePostorderIterator<TKey extends Comparable<TKey>, TValue> implements IIterator<IBinaryTreeNode<TKey, TValue>> {
     private final IBinaryTreeNode<TKey, TValue> root;
-    private final Stack<IBinaryTreeNode<TKey, TValue>> stack = new Stack<>();
+    private Stack<IBinaryTreeNode<TKey, TValue>> stack;
 
     /**
      * Creates a new postorder iterator of a binary tree.
@@ -70,6 +70,7 @@ public final class BinaryTreePostorderIterator<TKey extends Comparable<TKey>, TV
      */
     @Override
     public void reset() {
+        this.stack = new Stack<>();
         this.moveMinimumNode(this.root);
     }
 

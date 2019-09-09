@@ -1,5 +1,6 @@
 package datastructures.graph.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -139,7 +140,9 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
     /**
      * The Comparator class implements a comparator of an adjacency matrix.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        extends AbstractBinaryComparator<IAdjacencyMatrix<TKey, TValue>> {
+
         private final IBinaryComparator<IVertex<TKey, TValue>> vertexComparator;
 
         /**

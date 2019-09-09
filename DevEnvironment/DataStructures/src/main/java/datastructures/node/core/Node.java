@@ -1,5 +1,6 @@
 package datastructures.node.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -107,7 +108,9 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
     /**
      * The Comparator class implements a comparator of a generic node.
      */
-    public static final class Comparator<TValue extends Comparable<TValue>> implements IBinaryComparator<INode<TValue>> {
+    public static final class Comparator<TValue extends Comparable<TValue>>
+        extends AbstractBinaryComparator<INode<TValue>> {
+
         private final IBinaryComparator<TValue> valueComparator;
 
         /**

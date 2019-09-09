@@ -3,7 +3,6 @@ package base.core;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.ITwoDimensionalList;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -172,7 +171,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
     /**
      * The Comparator class implements a comparator of a generic two dimensional list.
      */
-    public static final class Comparator<T extends Comparable<T>> implements IBinaryComparator<ITwoDimensionalList<T>> {
+    public static final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<ITwoDimensionalList<T>> {
         private final IBinaryComparator<T> elementComparator;
 
         /**

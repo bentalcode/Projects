@@ -9,7 +9,7 @@ import java.util.Stack;
  */
 public final class BinaryTreePreorderIterator<TKey extends Comparable<TKey>, TValue> implements IIterator<IBinaryTreeNode<TKey, TValue>> {
     private final IBinaryTreeNode<TKey, TValue> root;
-    private final Stack<IBinaryTreeNode<TKey, TValue>> stack = new Stack<>();
+    private Stack<IBinaryTreeNode<TKey, TValue>> stack;
 
     /**
      * Creates a new preorder iterator of a binary tree.
@@ -60,6 +60,8 @@ public final class BinaryTreePreorderIterator<TKey extends Comparable<TKey>, TVa
      */
     @Override
     public void reset() {
+        this.stack = new Stack<>();
+
         if (this.root != null) {
             this.stack.push(this.root);
         }

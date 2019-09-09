@@ -5,7 +5,7 @@ import base.interfaces.IBinaryComparator;
 /**
  * The Comparator class implements a binary comparator for a generic object.
  */
-public final class Comparator<T extends Comparable<T>> implements IBinaryComparator<T> {
+public final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<T> {
     /**
      * Gets the default comparator.
      */

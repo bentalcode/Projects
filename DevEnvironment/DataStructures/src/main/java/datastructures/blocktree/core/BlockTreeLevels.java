@@ -1,5 +1,6 @@
 package datastructures.blocktree.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -114,7 +115,9 @@ public final class BlockTreeLevels<TKey extends Comparable<TKey>, TValue> implem
     /**
      * The Comparator class implements a comparator of levels of a block tree.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<IBlockTreeLevels<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        extends AbstractBinaryComparator<IBlockTreeLevels<TKey, TValue>> {
+
         private final IBinaryComparator<IBlockTreeLevel<TKey, TValue>> levelComparator;
 
         /**

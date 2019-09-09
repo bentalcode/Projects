@@ -1,5 +1,6 @@
 package datastructures.doublylinkedlist.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -406,7 +407,9 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     /**
      * The Comparator class implements a comparator of a doubly linked list.
      */
-    public static final class Comparator<TValue extends Comparable<TValue>> implements IBinaryComparator<IDoublyLinkedList<TValue>> {
+    public static final class Comparator<TValue extends Comparable<TValue>>
+        extends AbstractBinaryComparator<IDoublyLinkedList<TValue>> {
+
         private final IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator;
 
         /**

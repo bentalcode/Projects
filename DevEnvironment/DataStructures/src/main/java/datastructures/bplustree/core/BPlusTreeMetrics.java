@@ -1,5 +1,6 @@
 package datastructures.bplustree.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -189,7 +190,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
     /**
      * The Comparator class implements a comparator of metrics of a B+ tree.
      */
-    public static final class Comparator implements IBinaryComparator<IBPlusTreeMetrics> {
+    public static final class Comparator extends AbstractBinaryComparator<IBPlusTreeMetrics> {
         /**
          * The Comparator constructor.
          */

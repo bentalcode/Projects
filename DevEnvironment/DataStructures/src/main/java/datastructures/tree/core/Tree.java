@@ -1,5 +1,6 @@
 package datastructures.tree.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CollectionIterator;
 import base.core.Conditions;
@@ -142,7 +143,9 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
     /**
      * The Comparator class implements a comparator of a tree.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue> implements IBinaryComparator<ITree<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        extends AbstractBinaryComparator<ITree<TKey, TValue>> {
+
         private final IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator;
 
         /**

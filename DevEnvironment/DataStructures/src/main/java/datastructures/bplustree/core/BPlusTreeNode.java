@@ -1,5 +1,6 @@
 package datastructures.bplustree.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Arrays;
 import base.core.Casting;
 import base.core.CompareToBuilder;
@@ -413,7 +414,7 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
     /**
      * The Comparator class implements a binary comparator for a node of a B+ tree.
      */
-    private static final class Comparator<TKey extends Comparable<TKey>> implements IBinaryComparator<IBPlusTreeNode<TKey>> {
+    private static final class Comparator<TKey extends Comparable<TKey>> extends AbstractBinaryComparator<IBPlusTreeNode<TKey>> {
         private final IBinaryComparator<TKey> keyComparator;
 
         /**

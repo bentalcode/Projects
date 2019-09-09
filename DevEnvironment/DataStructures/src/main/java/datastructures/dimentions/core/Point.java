@@ -1,5 +1,6 @@
 package datastructures.dimentions.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.Conditions;
 import base.core.HashCodeBuilder;
@@ -179,7 +180,7 @@ public final class Point implements IPoint {
     /**
      * The Comparator class implements a comparator of a point.
      */
-    public static final class Comparator implements IBinaryComparator<IPoint> {
+    public static final class Comparator extends AbstractBinaryComparator<IPoint> {
         /**
          * The Comparator constructor.
          */

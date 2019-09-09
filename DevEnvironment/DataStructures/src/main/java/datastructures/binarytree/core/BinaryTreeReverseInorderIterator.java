@@ -9,7 +9,7 @@ import java.util.Stack;
  */
 public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey>, TValue> implements IReverseIterator<IBinaryTreeNode<TKey, TValue>> {
     private final IBinaryTreeNode<TKey, TValue> root;
-    private final Stack<IBinaryTreeNode<TKey, TValue>> stack = new Stack<>();
+    private Stack<IBinaryTreeNode<TKey, TValue>> stack;
 
     /**
      * Creates a new reverse inorder iterator of a binary tree.
@@ -56,6 +56,8 @@ public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey
      */
     @Override
     public void reset() {
+        this.stack = new Stack<>();
+
         if (this.root != null) {
             this.root.moveMaximumNode(this.stack);
         }

@@ -1,5 +1,6 @@
 package json.core;
 
+import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.EqualBuilder;
@@ -133,7 +134,7 @@ public final class Colors implements IColors {
     /**
      * The Comparator class implements a comparator of a fruit.
      */
-    public static final class Comparator implements IBinaryComparator<IColors> {
+    public static final class Comparator extends AbstractBinaryComparator<IColors> {
         /**
          * The Comparator constructor.
          */

@@ -170,7 +170,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
     /**
      * The Comparator class implements a comparator of a circular array.
      */
-    public static final class Comparator<T extends Comparable<T>> implements IBinaryComparator<ICircularArray<T>> {
+    public static final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<ICircularArray<T>> {
         private final IBinaryComparator<T> elementComparator;
 
         /**

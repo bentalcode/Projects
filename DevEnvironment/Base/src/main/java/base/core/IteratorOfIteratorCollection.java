@@ -13,7 +13,7 @@ import java.util.Queue;
  */
 public final class IteratorOfIteratorCollection<T> implements IIteratorOfIteratorCollection<T> {
     private final Collection<IIterator<T>> iterators;
-    private final Queue<IIterator<T>> iteratorsQueue = new LinkedList<>();
+    private Queue<IIterator<T>> iteratorsQueue;
 
     /**
      * The IteratorOfIteratorCollection constructor.
@@ -72,6 +72,8 @@ public final class IteratorOfIteratorCollection<T> implements IIteratorOfIterato
      */
     @Override
     public void reset() {
+        this.iteratorsQueue = new LinkedList<>();
+
         for (IIterator<T> iterator : this.iterators) {
             if (iterator.hasNext()) {
                 this.iteratorsQueue.offer(iterator);
