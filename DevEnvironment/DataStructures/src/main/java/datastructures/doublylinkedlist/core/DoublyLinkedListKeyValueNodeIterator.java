@@ -1,15 +1,15 @@
 package datastructures.doublylinkedlist.core;
 
 import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
 
 /**
  * The DoublyLinkedListKeyValueNodeIterator class implements an iterator of key-value nodes of a doubly linked list.
  */
 public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
-    implements IKeyValueNodeIterator<TKey, TValue> {
+    implements IIterator<IKeyValueNode<TKey, TValue>> {
 
     private final IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator;
 

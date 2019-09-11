@@ -3,6 +3,7 @@ package datastructures.bplustree.core;
 import base.core.Casting;
 import base.core.Conditions;
 import base.interfaces.ICalculator;
+import base.interfaces.IIterator;
 import base.interfaces.INullable;
 import datastructures.blocktree.core.BlockTreeLevel;
 import datastructures.blocktree.core.BlockTreeLevels;
@@ -14,9 +15,9 @@ import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.node.core.NodeKeyIterator;
-import datastructures.node.core.NodeValueIterator;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
+import datastructures.node.core.KeyValueNodeKeyIterator;
+import datastructures.node.core.KeyValueNodeValueIterator;
+import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 import java.util.LinkedList;
@@ -109,11 +110,20 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
     }
 
     /**
+     * Gets an iterator of data of a tree.
+     * Complexity: O(LogN)
+     */
+    @Override
+    public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
+        return BPlusTreeDataIterator.of(this.root);
+    }
+
+    /**
      * Gets an iterator of keys of a tree.
      * Complexity: O(LogN)
      */
     public IKeyIterator<TKey> getKeyIterator() {
-        return new NodeKeyIterator<>(this.getDataIterator());
+        return KeyValueNodeKeyIterator.of(this.getIterator());
     }
 
     /**
@@ -122,16 +132,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IValueIterator<TValue> getValueIterator() {
-        return new NodeValueIterator<>(this.getDataIterator());
-    }
-
-    /**
-     * Gets an iterator of data of a tree.
-     * Complexity: O(LogN)
-     */
-    @Override
-    public IKeyValueNodeIterator<TKey, TValue> getDataIterator() {
-        return new BPlusTreeDataIterator<>(this.root);
+        return KeyValueNodeValueIterator.of(this.getIterator());
     }
 
     /**

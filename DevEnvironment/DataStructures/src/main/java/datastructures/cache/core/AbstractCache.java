@@ -1,6 +1,7 @@
 package datastructures.cache.core;
 
 import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.cache.CacheException;
 import datastructures.cache.interfaces.ICache;
 import datastructures.cache.interfaces.ICacheProperties;
@@ -12,10 +13,9 @@ import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.node.core.KeyValueNode;
-import datastructures.node.core.NodeKeyIterator;
-import datastructures.node.core.NodeValueIterator;
+import datastructures.node.core.KeyValueNodeKeyIterator;
+import datastructures.node.core.KeyValueNodeValueIterator;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.HashMap;
@@ -152,7 +152,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
      * Complexity: O(1)
      */
     @Override
-    public IKeyValueNodeIterator<TKey, TValue> getIterator() {
+    public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
         IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator = this.data.usedList().getIterator();
         return new DoublyLinkedListKeyValueNodeIterator<>(iterator);
     }
@@ -162,7 +162,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
      * Complexity: O(1)
      */
     public IKeyIterator<TKey> getKeyIterator() {
-        return new NodeKeyIterator<>(this.getIterator());
+        return KeyValueNodeKeyIterator.of(this.getIterator());
     }
 
     /**
@@ -171,7 +171,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
      */
     @Override
     public IValueIterator<TValue> getValueIterator() {
-        return new NodeValueIterator<>(this.getIterator());
+        return KeyValueNodeValueIterator.of(this.getIterator());
     }
 
     /**

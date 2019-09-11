@@ -130,7 +130,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
             node,
             "The node to add.");
 
-        this.unlinkedNode(node);
+        node.unlinked();
 
         if (this.head == null) {
             assert(this.tail == null && this.empty());
@@ -156,7 +156,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
             node,
             "The node to add.");
 
-        this.unlinkedNode(node);
+        node.unlinked();
 
         if (this.tail == null) {
             assert(this.head == null && this.empty());
@@ -189,7 +189,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
             nodeToAdd,
             "The node to add.");
 
-        this.unlinkedNode(nodeToAdd);
+        nodeToAdd.unlinked();
 
         IDoublyLinkedListNode<TValue> nextNode = currNode.next();
 
@@ -219,7 +219,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
             nodeToAdd,
             "The node to add.");
 
-        this.unlinkedNode(nodeToAdd);
+        nodeToAdd.unlinked();
 
         IDoublyLinkedListNode<TValue> previousNode = currNode.previous();
 
@@ -499,18 +499,10 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     }
 
     /**
-     * Unlinked node.
-     */
-    private void unlinkedNode(IDoublyLinkedListNode<TValue> node) {
-        node.setNext(null);
-        node.setPrevious(null);
-    }
-
-    /**
      * Node removed.
      */
     private void nodeRemoved(IDoublyLinkedListNode<TValue> node) {
-        this.unlinkedNode(node);
+        node.unlinked();
 
         --this.size;
     }

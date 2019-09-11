@@ -1,23 +1,32 @@
 package datastructures.node.core;
 
 import base.core.Conditions;
+import base.interfaces.IReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeReverseIterator;
 import java.util.List;
 
 /**
  * The KeyValueNodeReverseIterator class implements a reverse iterator of generic key-value nodes.
  */
 public final class KeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TValue>
-    implements IKeyValueNodeReverseIterator<TKey, TValue> {
+    implements IReverseIterator<IKeyValueNode<TKey, TValue>> {
 
     private final List<IKeyValueNode<TKey, TValue>> nodes;
     private int currentIndex;
 
     /**
+     * Creates a new reverse iterator for a key-value node.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IKeyValueNode<TKey, TValue>> of(
+        List<IKeyValueNode<TKey, TValue>> nodes) {
+
+        return KeyValueNodeReverseIterator.of(nodes);
+    }
+
+    /**
      * The KeyValueNodeReverseIterator constructor.
      */
-    public KeyValueNodeReverseIterator(List<IKeyValueNode<TKey, TValue>> nodes) {
+    private KeyValueNodeReverseIterator(List<IKeyValueNode<TKey, TValue>> nodes) {
         Conditions.validateNotNull(
             nodes,
             "The list of nodes.");

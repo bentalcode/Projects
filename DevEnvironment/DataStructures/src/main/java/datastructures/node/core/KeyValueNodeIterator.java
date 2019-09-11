@@ -1,23 +1,32 @@
 package datastructures.node.core;
 
 import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
 import java.util.List;
 
 /**
  * The KeyValueNodeIterator class implements an iterator of generic key-value nodes.
  */
 public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
-    implements IKeyValueNodeIterator<TKey, TValue> {
+    implements IIterator<IKeyValueNode<TKey, TValue>> {
 
     private final List<IKeyValueNode<TKey, TValue>> nodes;
     private int currentIndex;
 
     /**
+     * Creates a new iterator for a key-value node.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> of(
+        List<IKeyValueNode<TKey, TValue>> nodes) {
+
+        return new KeyValueNodeIterator<>(nodes);
+    }
+
+    /**
      * The KeyValueNodeIterator constructor.
      */
-    public KeyValueNodeIterator(List<IKeyValueNode<TKey, TValue>> nodes) {
+    private KeyValueNodeIterator(List<IKeyValueNode<TKey, TValue>> nodes) {
         Conditions.validateNotNull(
             nodes,
             "The list of nodes.");

@@ -2,8 +2,8 @@ package datastructures.node.core;
 
 import base.core.Conditions;
 import base.interfaces.IBuilder;
+import base.interfaces.IIterator;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
 import datastructures.node.interfaces.IKeyValueNodes;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,8 @@ public final class KeyValueNodes<TKey extends Comparable<TKey>, TValue> implemen
      * Gets an iterator of a generic node.
      */
     @Override
-    public IKeyValueNodeIterator<TKey, TValue> getIterator() {
-        return new KeyValueNodeIterator<>(this.nodes);
+    public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
+        return KeyValueNodeIterator.of(this.nodes);
     }
 
     /**

@@ -1,5 +1,6 @@
 package datastructures.bplustree.core;
 
+import base.interfaces.IIterator;
 import base.interfaces.INullable;
 import base.interfaces.IPair;
 import base.interfaces.ITriple;
@@ -11,7 +12,6 @@ import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
 import datastructures.node.interfaces.IKeyValueNodes;
 import org.junit.After;
 import org.junit.Before;
@@ -144,8 +144,8 @@ public final class BPlusTreeTest {
         IBPlusTreeFactory<TKey, TValue> treeFactory = new BPlusTreeFactory<>(treeProperties);
         IBPlusTree<TKey, TValue> tree = treeFactory.create(treeData);
 
-        IKeyValueNodeIterator<TKey, TValue> currDataIterator = tree.getDataIterator();
-        IKeyValueNodeIterator<TKey, TValue> expectedDataIterator = treeData.getIterator();
+        IIterator<IKeyValueNode<TKey, TValue>> currDataIterator = tree.getIterator();
+        IIterator<IKeyValueNode<TKey, TValue>> expectedDataIterator = treeData.getIterator();
 
         while (currDataIterator.hasNext() && expectedDataIterator.hasNext()) {
             IKeyValueNode<TKey, TValue> currNodeData = currDataIterator.next();

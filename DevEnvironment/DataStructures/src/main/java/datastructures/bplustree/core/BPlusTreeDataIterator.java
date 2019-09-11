@@ -1,20 +1,19 @@
 package datastructures.bplustree.core;
 
-import base.interfaces.IIterable;
 import base.core.Casting;
 import base.core.Conditions;
+import base.interfaces.IIterator;
+import datastructures.bplustree.interfaces.IBPlusTreeInnerNode;
 import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
 
 /**
  * The BPlusTreeDataIterator class implements an iterator of data of a B+ Tree.
  */
 public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue> implements
-    IIterable<IKeyValueNode<TKey, TValue>>,
-    IKeyValueNodeIterator<TKey, TValue> {
+    IIterator<IKeyValueNode<TKey, TValue>> {
 
     private IBPlusTreeLeafNode<TKey, TValue> currentNode;
     private int currentInnerNodeIndex;
@@ -22,7 +21,16 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue> 
     /**
      * The BPlusTreeDataIterator constructor.
      */
-    public BPlusTreeDataIterator(IBPlusTreeNode<TKey> root) {
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> of(
+        IBPlusTreeNode<TKey> root) {
+
+        return new BPlusTreeDataIterator<>(root);
+    }
+
+    /**
+     * The BPlusTreeDataIterator constructor.
+     */
+    private BPlusTreeDataIterator(IBPlusTreeNode<TKey> root) {
         Conditions.validateNotNull(
             root,
             "The root of a B+ tree.");
@@ -31,22 +39,15 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue> 
 
         while (node.getNodeType() == TreeNodeType.InnerNode) {
             int firstNodeIndex = 0;
-            node = ((BPlusTreeInnerNode<TKey>)node).getChild(firstNodeIndex);
+
+            IBPlusTreeInnerNode innerNode = Casting.cast(node);
+
+            node = innerNode.getChild(firstNodeIndex);
         }
 
         this.currentNode = Casting.cast(node);
 
         this.reset();
-    }
-
-    /**
-     * Gets an iterator for iterating over data.
-     */
-    @Override
-    public IKeyValueNodeIterator<TKey, TValue> getIterator() {
-        this.reset();
-
-        return this;
     }
 
     /**

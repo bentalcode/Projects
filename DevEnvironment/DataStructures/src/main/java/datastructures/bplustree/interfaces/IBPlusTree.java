@@ -1,15 +1,17 @@
 package datastructures.bplustree.interfaces;
 
+import base.interfaces.IIterable;
+import base.interfaces.IIterator;
 import base.interfaces.INullable;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
-import datastructures.node.interfaces.IKeyValueNodeIterator;
+import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 
 /**
  * The IBPlusTree interface defines a B+ tree.
  */
-public interface IBPlusTree<TKey extends Comparable<TKey>, TValue> {
+public interface IBPlusTree<TKey extends Comparable<TKey>, TValue> extends IIterable<IKeyValueNode<TKey, TValue>> {
     /**
      * Gets the properties of the B+ tree.
      * Complexity: O(1)
@@ -35,6 +37,12 @@ public interface IBPlusTree<TKey extends Comparable<TKey>, TValue> {
     TValue search(TKey key);
 
     /**
+     * Gets an iterator of data of a tree.
+     * Complexity: O(LogN)
+     */
+    IIterator<IKeyValueNode<TKey, TValue>> getIterator();
+
+    /**
      * Gets an iterator of keys of a tree.
      * Complexity: O(LogN)
      */
@@ -45,12 +53,6 @@ public interface IBPlusTree<TKey extends Comparable<TKey>, TValue> {
      * Complexity: O(LogN)
      */
     IValueIterator<TValue> getValueIterator();
-
-    /**
-     * Gets an iterator of data of a tree.
-     * Complexity: O(LogN)
-     */
-    IKeyValueNodeIterator<TKey, TValue> getDataIterator();
 
     /**
      * Gets the height of a tree.

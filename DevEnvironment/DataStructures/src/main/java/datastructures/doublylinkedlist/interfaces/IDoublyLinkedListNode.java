@@ -35,4 +35,9 @@ public interface IDoublyLinkedListNode<TValue extends Comparable<TValue>> extend
      * Sets a previous node.
      */
     void setPrevious(IDoublyLinkedListNode<TValue> node);
+
+    /**
+     * Unlinked the node.
+     */
+    void unlinked();
 }

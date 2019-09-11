@@ -94,6 +94,15 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
     }
 
     /**
+     * Unlinked the node.
+     */
+    @Override
+    public void unlinked() {
+        this.next = null;
+        this.previous = null;
+    }
+
+    /**
      * Gets a hash code of this instance.
      */
     @Override
