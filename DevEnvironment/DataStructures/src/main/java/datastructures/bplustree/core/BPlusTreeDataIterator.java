@@ -39,9 +39,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue> 
 
         while (node.getNodeType() == TreeNodeType.InnerNode) {
             int firstNodeIndex = 0;
-
-            IBPlusTreeInnerNode innerNode = Casting.cast(node);
-
+            IBPlusTreeInnerNode<TKey> innerNode = Casting.cast(node);
             node = innerNode.getChild(firstNodeIndex);
         }
 
