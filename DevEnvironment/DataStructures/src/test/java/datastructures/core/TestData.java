@@ -11,6 +11,8 @@ import datastructures.doublylinkedlist.core.DoublyLinkedListTestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.graph.core.GraphTestData;
 import datastructures.graph.interfaces.IGraphTestData;
+import datastructures.hashmap.core.HashMapTestData;
+import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.interfaces.ITestData;
 
 /**
@@ -29,6 +31,14 @@ public final class TestData implements ITestData {
     @Override
     public IDoublyLinkedListTestData getDoublyLinkedListData() {
         return new DoublyLinkedListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a hash map.
+     */
+    @Override
+    public IHashMapTestData getHashMapData() {
+        return new HashMapTestData();
     }
 
     /**

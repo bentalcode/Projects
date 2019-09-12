@@ -22,8 +22,8 @@ import java.util.List;
  * The DoublyLinkedListTest class implements tests for a doubly linked list.
  */
 public final class DoublyLinkedListTest {
-    private final IAssertion assertion = new Assertion();
     private final ITestData testData = new TestData();
+    private final IAssertion assertion = new Assertion();
 
     /**
      * The DoublyLinkedListTest constructor.

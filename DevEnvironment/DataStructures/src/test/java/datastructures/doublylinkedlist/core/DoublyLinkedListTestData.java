@@ -22,7 +22,7 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     }
 
     /**
-     * Gets the data of the doubly linked list.
+     * Gets the data of doubly linked lists.
      */
     @Override
     public List<List<IDoublyLinkedListNode<Integer>>> getData() {

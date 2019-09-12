@@ -10,6 +10,7 @@ import base.core.Pair;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
+import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.hashmap.HashMapException;
@@ -447,10 +448,15 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue> implements IHa
      */
     private void addNode(TKey key, TValue value) {
         //
-        // Find the corresponding linked-list for this key...
+        // Find or create the corresponding linked-list for this key...
         //
         int index = this.indexOf(key);
         IDoublyLinkedList<IKeyValueNode<TKey, TValue>> currList = this.header.get(index);
+
+        if (currList == null) {
+            currList = new DoublyLinkedList<>();
+            this.header.set(index, currList);
+        }
 
         //
         // Create the new node and set it as the new head of the corresponding linked-list...
@@ -466,6 +472,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue> implements IHa
      */
     private void removeNode(int index, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node) {
         IDoublyLinkedList<IKeyValueNode<TKey, TValue>> currList = this.header.get(index);
+        assert (currList != null);
 
         currList.remove(node);
 

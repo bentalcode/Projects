@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface IDoublyLinkedListTestData {
     /**
-     * Gets the data of the doubly linked list.
+     * Gets the data of doubly linked lists.
      */
     List<List<IDoublyLinkedListNode<Integer>>> getData();
 
