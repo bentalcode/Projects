@@ -28,7 +28,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
     /**
      * The KeyValueNode constructor.
      */
-    public KeyValueNode(
+    private KeyValueNode(
         TKey key,
         TValue value) {
         this(

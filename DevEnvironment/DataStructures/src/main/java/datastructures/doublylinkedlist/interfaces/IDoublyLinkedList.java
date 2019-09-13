@@ -92,6 +92,11 @@ public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
     void remove(IDoublyLinkedListNode<TValue> nodeToRemove);
 
     /**
+     * Clears the list
+     */
+    void clear();
+
+    /**
      * Gets an iterator of values of a list.
      */
     IValueIterator<TValue> getValueIterator();

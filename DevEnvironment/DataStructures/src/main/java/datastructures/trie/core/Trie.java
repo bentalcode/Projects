@@ -1,4 +1,4 @@
-package trie.core;
+package datastructures.trie.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
@@ -10,9 +10,9 @@ import base.interfaces.IBuilder;
 import base.interfaces.IHashCodeBuilder;
 import base.interfaces.IIterator;
 import base.interfaces.IVisitor;
-import trie.interfaces.ITrie;
-import trie.interfaces.ITrieNode;
-import trie.interfaces.ITrieTraversal;
+import datastructures.trie.interfaces.ITrie;
+import datastructures.trie.interfaces.ITrieNode;
+import datastructures.trie.interfaces.ITrieTraversal;
 import java.util.Collection;
 
 /**

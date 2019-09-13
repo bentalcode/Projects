@@ -9,57 +9,65 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
+import datastructures.doublylinkedlist.core.DoublyLinkedList;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
-import datastructures.hashmap.interfaces.IHashMap;
 import datastructures.hashmap.interfaces.IHashMapConstants;
+import datastructures.hashmap.interfaces.ILinkedHashMap;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
- * The HashMap class implements a hash map.
+ * The LinkedHashMap class implements a linked hash map.
+ * The Hash Table and linked list implementation of the Map interface, with predictable iteration order.
+ * This implementation differs from HashMap in that it maintains a doubly-linked list running through all
+ * of its entries.
+ * This linked list defines the iteration ordering, which is normally the order in which keys were inserted
+ * into the map (insertion-order).
  *
  * Note:
  *  HashMap is implemented as a hash table, and there is no ordering on keys or values.
  *  TreeMap is implemented based on red-black tree structure, and it is ordered by the key.
  *  LinkedHashMap preserves the insertion order.
  */
-public final class HashMap<TKey extends Comparable<TKey>, TValue>
-    extends AbstractHashMap<TKey, TValue> implements IHashMap<TKey, TValue> {
+public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
+    extends AbstractHashMap<TKey, TValue> implements ILinkedHashMap<TKey, TValue> {
 
-    private final IBinaryComparator<IHashMap<TKey, TValue>> comparator;
+    private final IDoublyLinkedList<IKeyValueNode<TKey, TValue>> orderedNodes = new DoublyLinkedList<>();
+    private final IBinaryComparator<ILinkedHashMap<TKey, TValue>> comparator;
 
     /**
-     * The HashMap constructor.
+     * The LinkedHashMap constructor.
      */
-    public HashMap() {
+    public LinkedHashMap() {
         this(
             IHashMapConstants.DefaultCapacity,
             IHashMapConstants.DefaultLoadFactor,
-            HashMap.DefaultComparator(),
+            LinkedHashMap.DefaultComparator(),
             base.core.Comparator.DefaultComparator());
     }
 
     /**
-     * The HashMap constructor.
+     * The LinkedHashMap constructor.
      */
-    public HashMap(
+    public LinkedHashMap(
         int capacity,
         double loadFactor,
         IBinaryComparator<TKey> keyComparator) {
+
         this(
             capacity,
             loadFactor,
-            HashMap.DefaultComparator(),
+            LinkedHashMap.DefaultComparator(),
             keyComparator);
     }
-
     /**
-     * The HashMap constructor.
+     * The LinkedHashMap constructor.
      */
-    public HashMap(
+    public LinkedHashMap(
         int capacity,
         double loadFactor,
-        IBinaryComparator<IHashMap<TKey, TValue>> comparator,
+        IBinaryComparator<ILinkedHashMap<TKey, TValue>> comparator,
         IBinaryComparator<TKey> keyComparator) {
 
         super(
@@ -86,7 +94,18 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
         // Update or create a key-value node...
         //
         IPair<Boolean, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> result = this.setKeyValueNode(key, value);
-        return result.first();
+
+        boolean nodeAdded = result.first();
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node = result.second();
+
+        //
+        // If the node was added, then add it to the ordered list...
+        //
+        if (nodeAdded) {
+            this.orderedNodes.addToBack(node);
+        }
+
+        return nodeAdded;
     }
 
     /**
@@ -107,7 +126,21 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
             return null;
         }
 
+        //
+        // If the node was removed, then remove it to the ordered list...
+        //
+        this.orderedNodes.remove(removedNode);
+
         return removedNode.getValue();
+    }
+
+    /**
+     * Clears the map.
+     */
+    @Override
+    public void clear() {
+        super.clear();
+        this.orderedNodes.clear();
     }
 
     /**
@@ -115,7 +148,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
-        return this.getInternalIterator();
+        return this.orderedNodes.getValueIterator();
     }
 
     /**
@@ -150,7 +183,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IHashMap<TKey, TValue> other) {
+    public boolean isEqual(ILinkedHashMap<TKey, TValue> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -162,14 +195,14 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IHashMap<TKey, TValue> other) {
+    public int compareTo(ILinkedHashMap<TKey, TValue> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IHashMap<TKey, TValue>> DefaultComparator() {
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ILinkedHashMap<TKey, TValue>> DefaultComparator() {
         IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
         IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator = new KeyValueNode.Comparator<>(keyComparator);
 
@@ -179,10 +212,10 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
     }
 
     /**
-     * The Comparator class implements a comparator of a hash map.
+     * The Comparator class implements a comparator of a linked hash map.
      */
     public static final class Comparator<TKey extends Comparable<TKey>, TValue>
-        extends AbstractBinaryComparator<IHashMap<TKey, TValue>> {
+        extends AbstractBinaryComparator<ILinkedHashMap<TKey, TValue>> {
 
         private final IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator;
         private final IBinaryComparator<TKey> keyComparator;
@@ -210,7 +243,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IHashMap<TKey, TValue> obj) {
+        public int getHashCode(ILinkedHashMap<TKey, TValue> obj) {
             return new HashCodeBuilder(3, 5)
                 .withIterator(obj.getKeyIterator(), this.keyComparator)
                 .build();
@@ -219,7 +252,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(IHashMap<TKey, TValue> lhs, IHashMap<TKey, TValue> rhs) {
+        public boolean isEqual(ILinkedHashMap<TKey, TValue> lhs, ILinkedHashMap<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -241,7 +274,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IHashMap<TKey, TValue> lhs, IHashMap<TKey, TValue> rhs) {
+        public int compareTo(ILinkedHashMap<TKey, TValue> lhs, ILinkedHashMap<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }

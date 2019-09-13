@@ -217,7 +217,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
          * Adds a new node data by key and value.
          */
         public Builder<TKey, TValue> addNode(TKey nodeKey, TValue nodeValue) {
-            IKeyValueNode<TKey, TValue> nodeData = new KeyValueNode<>(nodeKey, nodeValue);
+            IKeyValueNode<TKey, TValue> nodeData = KeyValueNode.of(nodeKey, nodeValue);
             return this.addNode(nodeData);
         }
 

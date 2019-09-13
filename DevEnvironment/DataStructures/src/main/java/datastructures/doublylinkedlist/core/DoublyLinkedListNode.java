@@ -19,9 +19,28 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
     private int hashCode;
 
     /**
+     * Creates a new doubly linked list node.
+     */
+    public static <TValue extends Comparable<TValue>> IDoublyLinkedListNode<TValue> of(TValue value) {
+        return new DoublyLinkedListNode<>(value);
+    }
+
+    /**
+     * Creates a new doubly linked list node.
+     */
+    public static <TValue extends Comparable<TValue>> IDoublyLinkedListNode<TValue> of(
+        TValue value,
+        IDoublyLinkedListNode<TValue> previous,
+        IDoublyLinkedListNode<TValue> next,
+        IBinaryComparator<IDoublyLinkedListNode<TValue>> comparator) {
+
+        return new DoublyLinkedListNode<>(value, previous, next, comparator);
+    }
+
+    /**
      * The DoublyLinkedListNode constructor.
      */
-    public DoublyLinkedListNode(TValue value) {
+    private DoublyLinkedListNode(TValue value) {
         this(
             value,
             null,
@@ -32,7 +51,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
     /**
      * The DoublyLinkedListNode constructor.
      */
-    public DoublyLinkedListNode(
+    private DoublyLinkedListNode(
         TValue value,
         IDoublyLinkedListNode<TValue> previous,
         IDoublyLinkedListNode<TValue> next,

@@ -16,7 +16,7 @@ public final class HashMapInternalIterator<TKey extends Comparable<TKey>, TValue
     private IIteratorOfIteratorCollection<IKeyValueNode<TKey, TValue>> iterator;
 
     /**
-     * Creates a new internal iterator for a hash map.
+     * Creates a new iterator for a hash map.
      */
     public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> of(
         List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
@@ -25,7 +25,7 @@ public final class HashMapInternalIterator<TKey extends Comparable<TKey>, TValue
     }
 
     /**
-     * The HashMapInternalIterator constructor.
+     * The HashMapIterator constructor.
      */
     private HashMapInternalIterator(List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
         Conditions.validateNotNull(

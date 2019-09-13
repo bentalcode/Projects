@@ -67,7 +67,7 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
 
         for (int i = 0; i < size; ++i) {
             int value = i + 1;
-            data.add(new DoublyLinkedListNode<>(value));
+            data.add(DoublyLinkedListNode.of(value));
         }
 
         return data;

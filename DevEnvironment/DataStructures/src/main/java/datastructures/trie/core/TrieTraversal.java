@@ -1,4 +1,4 @@
-package trie.core;
+package datastructures.trie.core;
 
 import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
-import trie.interfaces.ITrieNode;
-import trie.interfaces.ITrieTraversal;
+import datastructures.trie.interfaces.ITrieNode;
+import datastructures.trie.interfaces.ITrieTraversal;
 
 /**
  * The TrieTraversal class implements various traversals of a trie.

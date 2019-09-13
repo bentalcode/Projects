@@ -84,7 +84,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue> 
             }
         }
 
-        IKeyValueNode<TKey, TValue> currNode = new KeyValueNode<>(currKey, currValue);
+        IKeyValueNode<TKey, TValue> currNode = KeyValueNode.of(currKey, currValue);
 
         return currNode;
     }

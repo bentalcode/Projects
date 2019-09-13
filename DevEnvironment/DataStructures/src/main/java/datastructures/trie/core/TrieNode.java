@@ -1,4 +1,4 @@
-package trie.core;
+package datastructures.trie.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
@@ -8,8 +8,8 @@ import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import trie.TrieException;
-import trie.interfaces.ITrieNode;
+import datastructures.trie.TrieException;
+import datastructures.trie.interfaces.ITrieNode;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 

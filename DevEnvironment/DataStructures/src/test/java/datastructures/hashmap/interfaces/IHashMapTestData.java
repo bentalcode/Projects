@@ -9,5 +9,10 @@ public interface IHashMapTestData {
     /**
      * Gets the data of hash maps.
      */
-    List<IMapData<Integer, String>> getData();
+    List<IMapData<Integer, String>> getHashMapData();
+
+    /**
+     * Gets the data of linked hash maps.
+     */
+    List<IMapData<Integer, String>> getLinkedHashMapData();
 }

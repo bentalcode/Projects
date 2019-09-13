@@ -5,30 +5,30 @@ import base.core.Lists;
 import datastructures.collections.core.CollectionEquatableComparator;
 import datastructures.collections.interfaces.ICollectionEquatableComparator;
 import datastructures.core.TestData;
-import datastructures.hashmap.interfaces.IHashMap;
-import datastructures.hashmap.interfaces.IHashMapBuilder;
+import datastructures.hashmap.interfaces.ILinkedHashMap;
+import datastructures.hashmap.interfaces.ILinkedHashMapBuilder;
 import datastructures.hashmap.interfaces.IMapData;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.List;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import java.util.List;
 
 /**
- * The HashMapTest class implements tests for a hash map.
+ * The LinkedHashMapTest class implements tests for a linked hash map.
  */
-public final class HashMapTest {
+public final class LinkedHashMapTest {
     private final ITestData testData = new TestData();
     private final ICollectionEquatableComparator comparator = new CollectionEquatableComparator();
     private final IAssertion assertion = new Assertion();
 
     /**
-     * The HashMapTest constructor.
+     * The LinkedHashMapTest constructor.
      */
-    public HashMapTest() {
+    public LinkedHashMapTest() {
     }
 
     /**
@@ -46,11 +46,11 @@ public final class HashMapTest {
     }
 
     /**
-     * Tests the creation logic of a hash map.
+     * Tests the creation logic of a linked hash map.
      */
     @Test
-    public void HashMapCreationTest() {
-        for (IMapData<Integer, String> mapData : this.testData.getHashMapData().getHashMapData()) {
+    public void LinkedHashMapCreationTest() {
+        for (IMapData<Integer, String> mapData : this.testData.getHashMapData().getLinkedHashMapData()) {
             this.testCreation(
                 mapData.getCreationData(),
                 mapData.getData());
@@ -58,11 +58,11 @@ public final class HashMapTest {
     }
 
     /**
-     * Tests the creation logic of a hash map.
+     * Tests the creation logic of a linked hash map.
      */
     @Test
-    public void HashMapCreationWithDeletionTest() {
-        for (IMapData<Integer, String> mapData : this.testData.getHashMapData().getHashMapData()) {
+    public void LinkedHashMapCreationWithDeletionTest() {
+        for (IMapData<Integer, String> mapData : this.testData.getHashMapData().getLinkedHashMapData()) {
             this.testCreationWithDeletion(
                 mapData.getCreationData(),
                 mapData.getData());
@@ -70,19 +70,19 @@ public final class HashMapTest {
     }
 
     /**
-     * Tests the creation logic of a hash-map.
+     * Tests the creation logic of a linked hash.
      */
-    private <TKey extends Comparable<TKey>, TValue> void testCreation(
+    private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testCreation(
         List<IKeyValueNode<TKey, TValue>> creationData,
         List<IKeyValueNode<TKey, TValue>> data) {
 
-        IHashMapBuilder<TKey, TValue> mapBuilder = new HashMapBuilder<>();
+        ILinkedHashMapBuilder<TKey, TValue> mapBuilder = new LinkedHashMapBuilder<>();
         mapBuilder.set(ListIterator.of(creationData));
-        IHashMap<TKey, TValue> map = mapBuilder.build();
+        ILinkedHashMap<TKey, TValue> map = mapBuilder.build();
 
         this.assertion.assertTrue(
             this.comparator.isEqual(map, data),
-            "Invalid creation logic of a hash map.");
+            "Invalid creation logic of a linked hash map.");
     }
 
     /**
@@ -92,13 +92,13 @@ public final class HashMapTest {
         List<IKeyValueNode<TKey, TValue>> creationData,
         List<IKeyValueNode<TKey, TValue>> data) {
 
-        IHashMapBuilder<TKey, TValue> mapBuilder = new HashMapBuilder<>();
+        ILinkedHashMapBuilder<TKey, TValue> mapBuilder = new LinkedHashMapBuilder<>();
         mapBuilder.set(ListIterator.of(creationData));
-        IHashMap<TKey, TValue> map = mapBuilder.build();
+        ILinkedHashMap<TKey, TValue> map = mapBuilder.build();
 
         this.assertion.assertTrue(
             this.comparator.isEqual(map, data),
-            "Invalid creation logic of a hash map.");
+            "Invalid creation logic of a linked hash map.");
 
         List<IKeyValueNode<TKey, TValue>> keyValueNodes = Lists.fromIterator(map.getIterator());
         int currSize = map.size();
@@ -109,16 +109,16 @@ public final class HashMapTest {
 
             this.assertion.assertTrue(
                 !map.containsKey(nodeToRemove.getKey()),
-                "Invalid remove logic of hash map: key was not removed.");
+                "Invalid remove logic of linked hash map: key was not removed.");
 
             this.assertion.assertEquals(
                 removedNode,
                 nodeToRemove,
-                "Invalid remove logic of hash map: invalid removed key-value node.");
+                "Invalid remove logic of linked hash map: invalid removed key-value node.");
 
             this.assertion.assertTrue(
                 map.size() == currSize,
-                "Invalid remove logic of hash map: invalid size.");
+                "Invalid remove logic of linked hash map: invalid size.");
         }
     }
 }

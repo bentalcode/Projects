@@ -70,7 +70,7 @@ public final class KeyValueNodes<TKey extends Comparable<TKey>, TValue> implemen
          * Adds a new node by a key and a value.
          */
         public Builder<TKey, TValue> addNode(TKey key, TValue value) {
-            IKeyValueNode<TKey, TValue> node = new KeyValueNode<>(key, value);
+            IKeyValueNode<TKey, TValue> node = KeyValueNode.of(key, value);
             return this.addNode(node);
         }
 

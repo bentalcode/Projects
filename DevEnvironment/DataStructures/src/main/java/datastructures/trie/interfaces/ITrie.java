@@ -1,4 +1,4 @@
-package trie.interfaces;
+package datastructures.trie.interfaces;
 
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IUnaryComparator;

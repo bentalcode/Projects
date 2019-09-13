@@ -84,7 +84,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
                     "The cache should have an available space.");
             }
 
-            currentNode = new DoublyLinkedListNode<>(new KeyValueNode<>(key, value));
+            currentNode = DoublyLinkedListNode.of(KeyValueNode.of(key, value));
 
             this.newItemAccessed(currentNode);
         }

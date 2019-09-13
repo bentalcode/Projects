@@ -1,7 +1,6 @@
 package datastructures.core;
 
 import datastructures.binarytree.core.BinaryTreeTestData;
-import datastructures.binarytree.interfaces.IBinaryTree;
 import datastructures.binarytree.interfaces.IBinaryTreeTestData;
 import datastructures.bplustree.core.BPlusTreeTestData;
 import datastructures.bplustree.interfaces.IBPlusTreeTestData;

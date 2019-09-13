@@ -254,10 +254,10 @@ public final class DoublyLinkedListTest {
         TValue item) {
 
         if (operation.equalsIgnoreCase("addToFront")) {
-            list.addToFront(new DoublyLinkedListNode<>(item));
+            list.addToFront(DoublyLinkedListNode.of(item));
         }
         else if (operation.equalsIgnoreCase("addToBack")) {
-            list.addToBack(new DoublyLinkedListNode<>(item));
+            list.addToBack(DoublyLinkedListNode.of(item));
         }
         else if (operation.equalsIgnoreCase("removeFromFront")) {
             list.removeFromFront();

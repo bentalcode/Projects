@@ -1,20 +1,22 @@
 package datastructures.hashmap.core;
 
 import base.interfaces.IIterator;
-import datastructures.hashmap.interfaces.IHashMap;
-import datastructures.hashmap.interfaces.IHashMapBuilder;
+import datastructures.hashmap.interfaces.ILinkedHashMap;
+import datastructures.hashmap.interfaces.ILinkedHashMapBuilder;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
- * The HashMapBuilder class implements a builder of a hash-map.
+ * The LinkedHashMapBuilder class implements a builder of a linked hash-map.
  */
-public final class HashMapBuilder<TKey extends Comparable<TKey>, TValue> implements IHashMapBuilder<TKey, TValue> {
-    private final IHashMap<TKey, TValue> map = new datastructures.hashmap.core.HashMap<>();
+public final class LinkedHashMapBuilder<TKey extends Comparable<TKey>, TValue>
+    implements ILinkedHashMapBuilder<TKey, TValue> {
+
+    private final ILinkedHashMap<TKey, TValue> map = new LinkedHashMap<>();
 
     /**
-     * The HashMapBuilder constructor.
+     * The LinkedHashMapBuilder constructor.
      */
-    public HashMapBuilder() {
+    public LinkedHashMapBuilder() {
     }
 
     /**
@@ -44,10 +46,10 @@ public final class HashMapBuilder<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Builds the hash-map.
+     * Builds the linked hash-map.
      */
     @Override
-    public IHashMap<TKey, TValue> build() {
+    public ILinkedHashMap<TKey, TValue> build() {
         return this.map;
     }
 }

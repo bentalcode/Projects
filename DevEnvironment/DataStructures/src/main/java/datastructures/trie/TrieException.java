@@ -1,4 +1,4 @@
-package trie;
+package datastructures.trie;
 
 import datastructures.DataStructureException;
 

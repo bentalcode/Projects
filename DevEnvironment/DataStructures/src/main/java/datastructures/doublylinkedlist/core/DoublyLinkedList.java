@@ -94,7 +94,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      */
     @Override
     public void addToFront(TValue value) {
-        this.addToFront(new DoublyLinkedListNode<>(value));
+        this.addToFront(DoublyLinkedListNode.of(value));
     }
 
     /**
@@ -102,7 +102,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      */
     @Override
     public void addToBack(TValue value) {
-        this.addToBack(new DoublyLinkedListNode<>(value));
+        this.addToBack(DoublyLinkedListNode.of(value));
     }
 
     /**
@@ -110,7 +110,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      */
     @Override
     public void addAfter(IDoublyLinkedListNode<TValue> currNode, TValue valueToAdd) {
-        this.addAfter(currNode, new DoublyLinkedListNode<>(valueToAdd));
+        this.addAfter(currNode, DoublyLinkedListNode.of(valueToAdd));
     }
 
     /**
@@ -118,7 +118,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      */
     @Override
     public void addBefore(IDoublyLinkedListNode<TValue> currNode, TValue nodeToAdd) {
-        this.addBefore(currNode, new DoublyLinkedListNode<>(nodeToAdd));
+        this.addBefore(currNode, DoublyLinkedListNode.of(nodeToAdd));
     }
 
     /**
@@ -291,6 +291,16 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
         }
 
         this.nodeRemoved(nodeToRemove);
+    }
+
+    /**
+     * Clears the list
+     */
+    @Override
+    public void clear() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
 
     /**

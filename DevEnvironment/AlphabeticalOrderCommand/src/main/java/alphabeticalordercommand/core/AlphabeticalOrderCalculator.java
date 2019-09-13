@@ -10,10 +10,10 @@ import datastructures.graph.interfaces.IGraphBuilder;
 import datastructures.graph.interfaces.IVertex;
 import java.util.Collection;
 import java.util.List;
-import trie.core.Trie;
-import trie.core.TrieNode;
-import trie.interfaces.ITrie;
-import trie.interfaces.ITrieNode;
+import datastructures.trie.core.Trie;
+import datastructures.trie.core.TrieNode;
+import datastructures.trie.interfaces.ITrie;
+import datastructures.trie.interfaces.ITrieNode;
 
 /**
  * The AlphabeticalOrderCalculator class implements an aggregation result of the data.

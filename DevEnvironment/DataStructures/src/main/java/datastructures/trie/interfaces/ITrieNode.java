@@ -1,10 +1,7 @@
-package trie.interfaces;
+package datastructures.trie.interfaces;
 
 import base.interfaces.IUnaryComparator;
-
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The ITrieNode interface defines a node in a trie.
