@@ -14,9 +14,39 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     private final int hashCode;
 
     /**
+     * Creates a new range.
+     */
+    public static <T extends Comparable<T>> IRange<T> of(T start, T end) {
+        return new Range<>(start, end);
+    }
+
+    /**
+     * Creates a new range.
+     */
+    public static <T extends Comparable<T>> IRange<T> of(
+        RangeType rangeType,
+        T start,
+        T end) {
+
+        return new Range<>(rangeType, start, end);
+    }
+
+    /**
+     * Creates a new range.
+     */
+    public static <T extends Comparable<T>> IRange of(
+        RangeType rangeType,
+        T start,
+        T end,
+        IBinaryComparator<IRange<T>> comparator) {
+
+        return new Range<>(rangeType, start, end, comparator);
+    }
+
+    /**
      * The Range constructor.
      */
-    public Range(
+    private Range(
         T start,
         T end) {
 
@@ -29,7 +59,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     /**
      * The Range constructor.
      */
-    public Range(
+    private Range(
         RangeType rangeType,
         T start,
         T end) {
@@ -44,7 +74,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     /**
      * The Range constructor.
      */
-    public Range(
+    private Range(
         RangeType rangeType,
         T start,
         T end,

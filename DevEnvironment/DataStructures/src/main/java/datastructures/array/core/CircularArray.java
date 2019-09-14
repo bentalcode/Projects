@@ -1,9 +1,15 @@
-package base.core;
+package datastructures.array.core;
 
+import base.core.AbstractBinaryComparator;
+import base.core.Casting;
+import base.core.CompareToBuilder;
+import base.core.Conditions;
+import base.core.EqualBuilder;
+import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import base.interfaces.ICircularArray;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
+import datastructures.array.interfaces.ICircularArray;
 
 /**
  * The CircularArray class implements a circular array.
@@ -75,15 +81,16 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
     @Override
     public T get(int index) {
         this.validateIndex(index);
-        int actualIndex = this.increment(this.startIndex, index);
+
+        int actualIndex = this.indexOf(index);
         return this.array[actualIndex];
     }
 
     /**
-     * Gets the length of an array.
+     * Gets the size of an array.
      */
     @Override
-    public int length() {
+    public int size() {
         return this.array.length;
     }
 
@@ -92,7 +99,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public boolean empty() {
-        return this.length() == 0;
+        return this.size() == 0;
     }
 
     /**
@@ -239,10 +246,10 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
     }
 
     /**
-     * Increments an index.
+     * Gets the actual index of an index.
      */
-    private int increment(int index, int size) {
-        int result = (index + size) % this.array.length;
+    private int indexOf(int index) {
+        int result = (this.startIndex + index) % this.array.length;
         return result;
     }
 

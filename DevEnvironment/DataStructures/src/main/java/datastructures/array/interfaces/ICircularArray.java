@@ -1,4 +1,8 @@
-package base.interfaces;
+package datastructures.array.interfaces;
+
+import base.interfaces.IIterable;
+import base.interfaces.IReverseIterable;
+import base.interfaces.IUnaryComparator;
 
 /**
  * The ICircularString interface defines a circular string.
@@ -19,9 +23,9 @@ public interface ICircularArray<T extends Comparable<T>> extends
     T get(int index);
 
     /**
-     * Gets the length of an array.
+     * Gets the size of an array.
      */
-    int length();
+    int size();
 
     /**
      * Checks whether an array is empty.

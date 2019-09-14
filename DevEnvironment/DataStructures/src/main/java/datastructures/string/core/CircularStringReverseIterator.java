@@ -1,7 +1,8 @@
-package base.core;
+package datastructures.string.core;
 
-import base.interfaces.ICircularString;
+import base.core.Conditions;
 import base.interfaces.IReverseIterator;
+import datastructures.string.interfaces.ICircularString;
 
 /**
  * The CircularStringReverseIterator class implements a reverse iterator of a circular string.
@@ -49,6 +50,6 @@ public final class CircularStringReverseIterator implements IReverseIterator<Cha
      */
     @Override
     public void reset() {
-        this.currIndex = this.circularString.length() - 1;
+        this.currIndex = this.circularString.size() - 1;
     }
 }

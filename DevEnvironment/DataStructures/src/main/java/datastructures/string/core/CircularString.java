@@ -1,9 +1,12 @@
-package base.core;
+package datastructures.string.core;
 
+import base.core.Casting;
+import base.core.Comparator;
+import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
-import base.interfaces.ICircularString;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
+import datastructures.string.interfaces.ICircularString;
 
 /**
  * The CircularString class implements a circular string.
@@ -12,7 +15,6 @@ public final class CircularString implements ICircularString {
     private final String value;
     private final int startIndex;
     private final IBinaryComparator<ICircularString> comparator;
-
     private final int hashCode;
 
     /**
@@ -81,10 +83,10 @@ public final class CircularString implements ICircularString {
     }
 
     /**
-     * Gets the length of a string.
+     * Gets the size of a string.
      */
     @Override
-    public int length() {
+    public int size() {
         return this.value.length();
     }
 
@@ -93,7 +95,7 @@ public final class CircularString implements ICircularString {
      */
     @Override
     public boolean empty() {
-        return this.length() == 0;
+        return this.size() == 0;
     }
 
     /**

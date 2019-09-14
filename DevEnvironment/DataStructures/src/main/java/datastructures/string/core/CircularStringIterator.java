@@ -1,7 +1,8 @@
-package base.core;
+package datastructures.string.core;
 
-import base.interfaces.ICircularString;
+import base.core.Conditions;
 import base.interfaces.IIterator;
+import datastructures.string.interfaces.ICircularString;
 
 /**
  * The CircularStringIterator class implements an iterator of a circular string.
@@ -28,7 +29,7 @@ public final class CircularStringIterator implements IIterator<Character> {
      */
     @Override
     public boolean hasNext() {
-        return this.currIndex < this.circularString.length();
+        return this.currIndex < this.circularString.size();
     }
 
     /**

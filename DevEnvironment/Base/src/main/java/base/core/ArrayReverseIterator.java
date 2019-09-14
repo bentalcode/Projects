@@ -1,28 +1,28 @@
 package base.core;
 
-import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 
 /**
- * The ArrayIterator class implements an iterator of an array.
+ * The ArrayReverseIterator class implements a reverse iterator of an array.
  */
-public class ArrayIterator<T> implements IIterator<T> {
+public class ArrayReverseIterator<T> implements IReverseIterator<T> {
     private final T[] array;
     private int position;
 
     /**
-     * Creates a new iterator for an array.
+     * Creates a new reverse iterator for an array.
      */
-    public static <T> IIterator<T> of(T[] array) {
-        return new ArrayIterator<>(array);
+    public static <T> IReverseIterator<T> of(T[] array) {
+        return new ArrayReverseIterator<>(array);
     }
 
     /**
-     * The ArrayIterator constructor.
+     * The ArrayReverseIterator constructor.
      */
-    private ArrayIterator(T[] array) {
+    private ArrayReverseIterator(T[] array) {
         Conditions.validateNotNull(
             array,
-            "The array to iterate.");
+            "The array to iterate in reverse.");
 
         this.array = array;
 
@@ -34,7 +34,7 @@ public class ArrayIterator<T> implements IIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.position < this.array.length;
+        return this.position >= 0;
     }
 
     /**
@@ -45,7 +45,7 @@ public class ArrayIterator<T> implements IIterator<T> {
         assert(this.hasNext());
 
         T currElement = this.array[this.position];
-        ++this.position;
+        --this.position;
 
         return currElement;
     }
@@ -55,6 +55,6 @@ public class ArrayIterator<T> implements IIterator<T> {
      */
     @Override
     public void reset() {
-        this.position = 0;
+        this.position = this.array.length - 1;
     }
 }

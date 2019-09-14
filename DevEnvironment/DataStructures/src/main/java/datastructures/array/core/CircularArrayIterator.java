@@ -1,19 +1,20 @@
-package base.core;
+package datastructures.array.core;
 
-import base.interfaces.ICircularArray;
-import base.interfaces.IReverseIterator;
+import base.core.Conditions;
+import base.interfaces.IIterator;
+import datastructures.array.interfaces.ICircularArray;
 
 /**
- * The CircularArrayReverseIterator class implements a reverse iterator of a circular array.
+ * The CircularArrayIterator class implements an iterator of a circular array.
  */
-public final class CircularArrayReverseIterator<T extends Comparable<T>> implements IReverseIterator<T> {
+public final class CircularArrayIterator<T extends Comparable<T>> implements IIterator<T> {
     private final ICircularArray<T> circularArray;
     private int currIndex;
 
     /**
-     * The CircularArrayReverseIterator constructor.
+     * The CircularArrayIterator constructor.
      */
-    public CircularArrayReverseIterator(ICircularArray<T> circularArray) {
+    public CircularArrayIterator(ICircularArray<T> circularArray) {
         Conditions.validateNotNull(
             circularArray,
             "The circular array.");
@@ -28,7 +29,7 @@ public final class CircularArrayReverseIterator<T extends Comparable<T>> impleme
      */
     @Override
     public boolean hasNext() {
-        return this.currIndex >= 0;
+        return this.currIndex < this.circularArray.size();
     }
 
     /**
@@ -39,7 +40,7 @@ public final class CircularArrayReverseIterator<T extends Comparable<T>> impleme
         assert(this.hasNext());
 
         T currElement = this.circularArray.get(this.currIndex);
-        --this.currIndex;
+        ++this.currIndex;
 
         return currElement;
     }
@@ -49,6 +50,6 @@ public final class CircularArrayReverseIterator<T extends Comparable<T>> impleme
      */
     @Override
     public void reset() {
-        this.currIndex = this.circularArray.length() - 1;
+        this.currIndex = 0;
     }
 }
