@@ -1,9 +1,9 @@
 package datastructures.hashmap.core;
 
 import base.core.Conditions;
-import base.core.IteratorOfIteratorCollection;
+import datastructures.collections.core.IteratorOfIteratorCollection;
 import base.interfaces.IIterator;
-import base.interfaces.IIteratorOfIteratorCollection;
+import datastructures.collections.interfaces.IIteratorOfIteratorCollection;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.node.interfaces.IKeyValueNode;
 import java.util.List;

@@ -1,8 +1,14 @@
-package base.core;
+package datastructures.list.core;
 
+import base.core.AbstractBinaryComparator;
+import base.core.Casting;
+import base.core.CompareToBuilder;
+import base.core.Conditions;
+import base.core.EqualBuilder;
+import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
-import base.interfaces.ITwoDimensionalList;
+import datastructures.list.interfaces.ITwoDimensionalList;
 import java.util.List;
 
 /**

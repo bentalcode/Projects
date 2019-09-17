@@ -1,5 +1,7 @@
-package base.interfaces;
+package datastructures.list.interfaces;
 
+import base.interfaces.IIterable;
+import base.interfaces.IUnaryComparator;
 import java.util.List;
 
 /**

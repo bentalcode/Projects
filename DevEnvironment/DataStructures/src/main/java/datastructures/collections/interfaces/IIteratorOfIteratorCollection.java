@@ -1,4 +1,6 @@
-package base.interfaces;
+package datastructures.collections.interfaces;
+
+import base.interfaces.IIterator;
 
 /**
  * The IIteratorOfIteratorCollection interface defines an iterator of a collection of iterators.

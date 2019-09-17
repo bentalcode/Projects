@@ -5,7 +5,7 @@ import base.interfaces.IIterator;
 /**
  * The TwoDimensionalArrayIterator class implements an iterator of a two dimensional array.
  */
-public class TwoDimensionalArrayIterator<T> implements IIterator<T> {
+public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     private final T[][] array;
     private final int rows;
     private int rowPosition;

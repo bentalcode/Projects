@@ -6,7 +6,6 @@ import base.interfaces.IDestructorHandler;
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.List;
-
 import base.interfaces.IIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

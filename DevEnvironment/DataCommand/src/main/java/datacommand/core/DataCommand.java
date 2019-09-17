@@ -78,7 +78,7 @@ public final class DataCommand implements IDataCommand {
     /**
      * Tries to parse data entry.
      */
-    IPair<String, String> tryParseDataEntry(String entry) {
+    private IPair<String, String> tryParseDataEntry(String entry) {
         //
         // Ignore spaces...
         //

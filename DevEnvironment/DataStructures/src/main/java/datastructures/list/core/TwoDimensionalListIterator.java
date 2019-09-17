@@ -1,5 +1,6 @@
-package base.core;
+package datastructures.list.core;
 
+import base.core.Conditions;
 import base.interfaces.IIterator;
 import java.util.List;
 

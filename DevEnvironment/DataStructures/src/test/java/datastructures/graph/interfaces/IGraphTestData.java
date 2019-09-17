@@ -1,7 +1,7 @@
 package datastructures.graph.interfaces;
 
 import base.interfaces.IPair;
-import base.interfaces.ITwoDimensionalList;
+import datastructures.list.interfaces.ITwoDimensionalList;
 import java.util.List;
 
 /**

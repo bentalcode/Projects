@@ -1,8 +1,9 @@
-package base.core;
+package datastructures.collections.core;
 
+import base.core.Conditions;
 import base.interfaces.IBuilder;
 import base.interfaces.IIterator;
-import base.interfaces.IIteratorOfIteratorCollection;
+import datastructures.collections.interfaces.IIteratorOfIteratorCollection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
