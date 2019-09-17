@@ -106,7 +106,7 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
     public T remove(int index) {
         T elementToRemove = this.get(index);
 
-        this.shiftLeft(index, 1);
+        this.shiftLeft(index + 1, 1);
 
         return elementToRemove;
     }
