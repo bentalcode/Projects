@@ -109,7 +109,7 @@ public final class HashMapTest {
 
             this.assertion.assertTrue(
                 !map.containsKey(nodeToRemove.getKey()),
-                "Invalid remove logic of hash map: key was not removed.");
+                "Invalid remove logic of hash map: key has not been removed.");
 
             this.assertion.assertEquals(
                 removedNode,

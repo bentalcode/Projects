@@ -1,6 +1,5 @@
 package datastructures.collections.core;
 
-import base.core.CollectionIterator;
 import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;

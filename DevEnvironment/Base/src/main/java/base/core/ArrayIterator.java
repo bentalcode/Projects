@@ -20,10 +20,6 @@ public class ArrayIterator<T> implements IIterator<T> {
      * The ArrayIterator constructor.
      */
     private ArrayIterator(T[] array) {
-        Conditions.validateNotNull(
-            array,
-            "The array to iterate.");
-
         this.array = array;
 
         this.reset();
@@ -34,7 +30,7 @@ public class ArrayIterator<T> implements IIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.position < this.array.length;
+        return this.array != null && this.position < this.array.length;
     }
 
     /**
@@ -55,6 +51,11 @@ public class ArrayIterator<T> implements IIterator<T> {
      */
     @Override
     public void reset() {
-        this.position = 0;
+        if (this.array != null) {
+            this.position = 0;
+        }
+        else {
+            this.position = -1;
+        }
     }
 }

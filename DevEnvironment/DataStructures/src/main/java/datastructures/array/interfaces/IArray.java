@@ -13,14 +13,14 @@ public interface IArray<T extends Comparable<T>> extends
     IReverseIterable<T> {
 
     /**
-     * Gets the value of an index.
+     * Sets the value of an index.
      */
-    T get(int index);
+    void set(int index, T element);
 
     /**
      * Gets the value of an index.
      */
-    void set(int index, T value);
+    T get(int index);
 
     /**
      * Gets the size of an array.

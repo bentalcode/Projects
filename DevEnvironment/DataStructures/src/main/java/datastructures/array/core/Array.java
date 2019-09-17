@@ -41,30 +41,34 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
         Conditions.validateNotNull(
             array,
             "The array.");
-        
+
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator of an array.");
+
         this.array = array;
         this.comparator = comparator;
         this.hashCode = this.comparator.getHashCode(this);
     }
     
     /**
-     * Gets the value of an index.
+     * Sets the element of an index.
      */
     @Override
-    public T get(int index) {
+    public void set(int index, T element) {
         this.validateIndex(index);
         
-        return this.array[index];
+        this.array[index] = element;
     }
 
     /**
      * Gets the value of an index.
      */
     @Override
-    public void set(int index, T value) {
+    public T get(int index) {
         this.validateIndex(index);
-        
-        this.array[index] = value;
+
+        return this.array[index];
     }
 
     /**

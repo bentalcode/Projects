@@ -2,10 +2,9 @@ package datastructures.tree.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
-import base.core.CollectionIterator;
+import datastructures.collections.core.CollectionIterator;
 import base.core.Conditions;
 import base.core.HashCodeBuilder;
-import base.core.ListIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import base.interfaces.IHashCodeBuilder;
@@ -16,7 +15,6 @@ import datastructures.tree.interfaces.ITreeNode;
 import datastructures.tree.interfaces.ITreeTraversal;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * The Tree class implements a generic tree.

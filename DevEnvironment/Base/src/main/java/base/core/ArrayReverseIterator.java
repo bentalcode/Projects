@@ -20,10 +20,6 @@ public class ArrayReverseIterator<T> implements IReverseIterator<T> {
      * The ArrayReverseIterator constructor.
      */
     private ArrayReverseIterator(T[] array) {
-        Conditions.validateNotNull(
-            array,
-            "The array to iterate in reverse.");
-
         this.array = array;
 
         this.reset();
@@ -34,7 +30,7 @@ public class ArrayReverseIterator<T> implements IReverseIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.position >= 0;
+        return this.array != null && this.position >= 0;
     }
 
     /**
@@ -55,6 +51,11 @@ public class ArrayReverseIterator<T> implements IReverseIterator<T> {
      */
     @Override
     public void reset() {
-        this.position = this.array.length - 1;
+        if (this.array != null) {
+            this.position = this.array.length - 1;
+        }
+        else {
+            this.position = -1;
+        }
     }
 }

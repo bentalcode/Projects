@@ -13,6 +13,8 @@ import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.core.HashMapTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.interfaces.ITestData;
+import datastructures.list.core.ListTestData;
+import datastructures.list.interfaces.IListTestData;
 
 /**
  * The TestData class implements the data of the tests.
@@ -22,6 +24,14 @@ public final class TestData implements ITestData {
      * The TestData constructor.
      */
     public TestData() {
+    }
+
+    /**
+     * Gets the data of tests of a list.
+     */
+    @Override
+    public IListTestData getListData() {
+        return new ListTestData();
     }
 
     /**

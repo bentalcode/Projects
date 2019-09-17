@@ -1,5 +1,6 @@
-package base.core;
+package datastructures.collections.core;
 
+import base.core.Conditions;
 import base.interfaces.IIterator;
 import java.util.Collection;
 

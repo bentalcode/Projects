@@ -2,7 +2,7 @@ package datastructures.trie.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
-import base.core.CollectionIterator;
+import datastructures.collections.core.CollectionIterator;
 import base.core.Conditions;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
