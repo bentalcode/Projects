@@ -60,6 +60,8 @@ public final class Directions implements IDirections {
      */
     @Override
     public IDirection next() {
+        assert(this.hasNext());
+
         IDirection currDirection = this.directions.get(this.index);
         ++this.index;
 

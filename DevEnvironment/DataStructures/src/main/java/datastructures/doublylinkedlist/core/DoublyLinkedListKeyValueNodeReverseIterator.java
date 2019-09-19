@@ -42,9 +42,7 @@ public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comp
      */
     @Override
     public IKeyValueNode<TKey, TValue> next() {
-        Conditions.validate(
-            this.hasNext(),
-            "The reverse iterator has already reached the start of list.");
+        assert(this.hasNext());
 
         IKeyValueNode<TKey, TValue> node = this.iterator.next().getValue();
 

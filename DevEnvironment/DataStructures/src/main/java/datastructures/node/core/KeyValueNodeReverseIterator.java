@@ -49,9 +49,7 @@ public final class KeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TV
      */
     @Override
     public IKeyValueNode<TKey, TValue> next() {
-        Conditions.validate(
-            this.hasNext(),
-            "The iterator has already reached the start of list.");
+        assert(this.hasNext());
 
         IKeyValueNode<TKey, TValue> currNodeData = this.nodes.get(this.currentIndex);
         --this.currentIndex;

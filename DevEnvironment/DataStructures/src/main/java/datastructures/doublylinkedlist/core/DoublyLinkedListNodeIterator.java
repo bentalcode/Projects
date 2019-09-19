@@ -44,9 +44,7 @@ public final class DoublyLinkedListNodeIterator<TValue extends Comparable<TValue
      */
     @Override
     public IDoublyLinkedListNode<TValue> next() {
-        Conditions.validate(
-            this.hasNext(),
-            "The iterator has already reached the end of list.");
+        assert(this.hasNext());
 
 
         IDoublyLinkedListNode<TValue> currentNode = this.currentNode;

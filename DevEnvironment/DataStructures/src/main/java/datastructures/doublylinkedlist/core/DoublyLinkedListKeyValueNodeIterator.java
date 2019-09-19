@@ -39,9 +39,7 @@ public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<
      */
     @Override
     public IKeyValueNode<TKey, TValue> next() {
-        Conditions.validate(
-            this.hasNext(),
-            "The iterator has already reached the end of list.");
+        assert(this.hasNext());
 
         IKeyValueNode<TKey, TValue> node = this.iterator.next().getValue();
 

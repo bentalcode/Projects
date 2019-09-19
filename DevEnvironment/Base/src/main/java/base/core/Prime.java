@@ -151,6 +151,8 @@ public final class Prime implements IPrime {
      */
     @Override
     public Integer next() {
+        assert(this.hasNext());
+
         int nextPrime = this.getNextPrime(this.currPrime);
         this.currPrime = nextPrime;
         return nextPrime;

@@ -46,6 +46,8 @@ public final class KeyValueNodeValueIterator<TKey extends Comparable<TKey>, TVal
      */
     @Override
     public TValue next() {
+        assert(this.hasNext());
+
         return this.iterator.next().getValue();
     }
 

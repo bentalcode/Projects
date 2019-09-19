@@ -33,9 +33,7 @@ public final class DoublyLinkedListNodeReverseIterator<TValue extends Comparable
      */
     @Override
     public IDoublyLinkedListNode<TValue> next() {
-        Conditions.validate(
-            this.hasNext(),
-            "The reverse iterator has already reached the start of list.");
+        assert(this.hasNext());
 
         IDoublyLinkedListNode<TValue> currentNode = this.currentNode;
         this.currentNode = this.currentNode.previous();

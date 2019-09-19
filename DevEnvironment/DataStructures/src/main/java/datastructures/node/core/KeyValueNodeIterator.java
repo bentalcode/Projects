@@ -49,9 +49,7 @@ public final class KeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
      */
     @Override
     public IKeyValueNode<TKey, TValue> next() {
-        Conditions.validate(
-            this.hasNext(),
-            "The iterator has already reached the end of nodes.");
+        assert(this.hasNext());
 
         IKeyValueNode<TKey, TValue> currNodeData = this.nodes.get(this.currentIndex);
         ++this.currentIndex;

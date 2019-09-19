@@ -63,9 +63,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue> 
      */
     @Override
     public IKeyValueNode<TKey, TValue> next() {
-        Conditions.validate(
-            this.hasNext(),
-            "The iterator has already reached the end of data of a B+ tree.");
+        assert(this.hasNext());
 
         TKey currKey = this.currentNode.getKey(this.currentInnerNodeIndex);
         TValue currValue = this.currentNode.getValue(this.currentInnerNodeIndex);
