@@ -39,7 +39,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
             value,
             null,
             null,
-            BinaryTreeNode.DefaultComparator());
+            BinaryTreeNode.defaultComparator());
     }
 
     /**
@@ -266,8 +266,8 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBinaryTreeNode<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBinaryTreeNode<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(keyComparator);
     }
 
@@ -301,6 +301,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IBinaryTreeNode<TKey, TValue> lhs, IBinaryTreeNode<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

@@ -9,7 +9,7 @@ import java.util.Stack;
  * The BinaryTreeEndNode class implements an internal end nodes of a binary tree, which is used for serialization.
  */
 public final class BinaryTreeEndNode<TKey extends Comparable<TKey>, TValue> implements IBinaryTreeNode<TKey, TValue> {
-    private final IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator = BinaryTreeNode.DefaultComparator();
+    private final IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator = BinaryTreeNode.defaultComparator();
 
     /**
      * The BinaryTreeEndNode constructor.

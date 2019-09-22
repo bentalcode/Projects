@@ -9,6 +9,7 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
+import datastructures.collections.core.Collections;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.hashmap.interfaces.IHashMap;
 import datastructures.hashmap.interfaces.IHashMapConstants;
@@ -35,8 +36,8 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
         this(
             IHashMapConstants.DefaultCapacity,
             IHashMapConstants.DefaultLoadFactor,
-            HashMap.DefaultComparator(),
-            base.core.Comparator.DefaultComparator());
+            HashMap.defaultComparator(),
+            base.core.Comparator.defaultComparator());
     }
 
     /**
@@ -49,7 +50,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
         this(
             capacity,
             loadFactor,
-            HashMap.DefaultComparator(),
+            HashMap.defaultComparator(),
             keyComparator);
     }
 
@@ -119,6 +120,14 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
     }
 
     /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getIterator());
+    }
+
+    /**
      * Gets the hash code.
      */
     @Override
@@ -169,8 +178,8 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IHashMap<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IHashMap<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator = new KeyValueNode.Comparator<>(keyComparator);
 
         return new Comparator<>(
@@ -219,6 +228,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IHashMap<TKey, TValue> lhs, IHashMap<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

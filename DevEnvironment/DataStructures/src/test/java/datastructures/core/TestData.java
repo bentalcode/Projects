@@ -15,6 +15,9 @@ import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.interfaces.ITestData;
 import datastructures.list.core.ListTestData;
 import datastructures.list.interfaces.IListTestData;
+import datastructures.priorityqueue.core.PriorityQueueTestData;
+import datastructures.priorityqueue.interfaces.IPriorityQueueData;
+import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 
 /**
  * The TestData class implements the data of the tests.
@@ -40,6 +43,14 @@ public final class TestData implements ITestData {
     @Override
     public IDoublyLinkedListTestData getDoublyLinkedListData() {
         return new DoublyLinkedListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a priority queue.
+     */
+    @Override
+    public IPriorityQueueTestData getPriorityQueueData() {
+        return new PriorityQueueTestData();
     }
 
     /**

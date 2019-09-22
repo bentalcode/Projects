@@ -31,7 +31,7 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
         this(
             keys,
             values,
-            BlockTreeNodeData.DefaultComparator());
+            BlockTreeNodeData.defaultComparator());
     }
 
     /**
@@ -123,8 +123,8 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBlockTreeNodeData<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBlockTreeNodeData<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(keyComparator);
     }
 
@@ -160,6 +160,7 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IBlockTreeNodeData<TKey, TValue> lhs, IBlockTreeNodeData<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -242,7 +243,7 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
             IBlockTreeNodeData<TKey, TValue> treeData = new BlockTreeNodeData<>(
                 this.keys,
                 this.values,
-                BlockTreeNodeData.DefaultComparator());
+                BlockTreeNodeData.defaultComparator());
 
             return treeData;
         }

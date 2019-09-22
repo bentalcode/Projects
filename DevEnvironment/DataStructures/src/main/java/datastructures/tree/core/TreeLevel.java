@@ -28,7 +28,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
     public TreeLevel(List<IKeyValueNode<TKey, TValue>> nodesData) {
         this(
             nodesData,
-            TreeLevel.DefaultComparator());
+            TreeLevel.defaultComparator());
     }
 
     /**
@@ -110,8 +110,8 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeLevel<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<IKeyValueNode<TKey, TValue>> nodeComparator = KeyValueNode.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeLevel<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<IKeyValueNode<TKey, TValue>> nodeComparator = KeyValueNode.defaultComparator();
         return new Comparator<>(nodeComparator);
     }
 
@@ -147,6 +147,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ITreeLevel<TKey, TValue> lhs, ITreeLevel<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -235,7 +236,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
         public ITreeLevel<TKey, TValue> build() {
             ITreeLevel<TKey, TValue> level = new TreeLevel<>(
                 this.nodesData,
-                TreeLevel.DefaultComparator());
+                TreeLevel.defaultComparator());
 
             return level;
         }

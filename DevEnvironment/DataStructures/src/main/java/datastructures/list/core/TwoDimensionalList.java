@@ -26,7 +26,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
     public TwoDimensionalList(List<List<T>> elements) {
         this(
             elements,
-            TwoDimensionalList.DefaultComparator());
+            TwoDimensionalList.defaultComparator());
     }
 
     /**
@@ -169,8 +169,8 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
     /**
      * Gets the default comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<ITwoDimensionalList<T>> DefaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.DefaultComparator();
+    public static <T extends Comparable<T>> IBinaryComparator<ITwoDimensionalList<T>> defaultComparator() {
+        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(elementComparator);
     }
 
@@ -204,6 +204,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ITwoDimensionalList<T> lhs, ITwoDimensionalList<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

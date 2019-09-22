@@ -206,7 +206,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
         IAdjacencyMatrix<TKey, TValue> adjacencyMatrix = new AdjacencyMatrix<>(this.connections);
 
         if (this.comparator == null) {
-            this.comparator = Graph.DefaultComparator();
+            this.comparator = Graph.defaultComparator();
         }
 
         return new Graph<>(

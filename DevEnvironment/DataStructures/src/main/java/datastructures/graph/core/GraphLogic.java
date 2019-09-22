@@ -115,7 +115,9 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
                 continue;
             }
 
-            this.detectLoop(nextVertex, visitedVertices, searchVertices);
+            if (this.detectLoop(nextVertex, visitedVertices, searchVertices)) {
+                return true;
+            }
         }
 
         searchVertices.remove(vertex);
@@ -148,7 +150,9 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
                 continue;
             }
 
-            this.topologicalSearch(nextVertex, visitedVertices, searchVertices, resultStack);
+            if (!this.topologicalSearch(nextVertex, visitedVertices, searchVertices, resultStack)) {
+                return false;
+            }
         }
 
         searchVertices.remove(vertex);

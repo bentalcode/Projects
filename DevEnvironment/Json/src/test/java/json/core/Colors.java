@@ -28,7 +28,7 @@ public final class Colors implements IColors {
      * The Colors constructor.
      */
     public Colors(String category, List<IColor> colors) {
-        this(category, colors, Colors.DefaultComparator());
+        this(category, colors, Colors.defaultComparator());
     }
 
     /**
@@ -127,7 +127,7 @@ public final class Colors implements IColors {
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IColors> DefaultComparator() {
+    public static IBinaryComparator<IColors> defaultComparator() {
         return new Colors.Comparator();
     }
 
@@ -148,13 +148,14 @@ public final class Colors implements IColors {
         public int getHashCode(IColors obj) {
             return new HashCodeBuilder(3, 5)
                 .withString(obj.getCategory())
-                .withCollection(obj.getColors(), Color.DefaultComparator())
+                .withCollection(obj.getColors(), Color.defaultComparator())
                 .build();
         }
 
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IColors lhs, IColors rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -166,7 +167,7 @@ public final class Colors implements IColors {
 
             return new EqualBuilder()
                 .withString(lhs.getCategory(), rhs.getCategory())
-                .withCollection(lhs.getColors(), rhs.getColors(), Color.DefaultComparator())
+                .withCollection(lhs.getColors(), rhs.getColors(), Color.defaultComparator())
                 .build();
         }
 
@@ -193,7 +194,7 @@ public final class Colors implements IColors {
 
             return new CompareToBuilder()
                 .withString(lhs.getCategory(), rhs.getCategory())
-                .withCollection(lhs.getColors(), rhs.getColors(), Color.DefaultComparator())
+                .withCollection(lhs.getColors(), rhs.getColors(), Color.defaultComparator())
                 .build();
         }
     }

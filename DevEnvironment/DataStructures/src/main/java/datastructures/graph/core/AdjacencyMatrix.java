@@ -30,7 +30,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
     public AdjacencyMatrix(Map<IVertex<TKey, TValue>, Set<IVertex<TKey, TValue>>> connections) {
         this(
             connections,
-            AdjacencyMatrix.DefaultComparator());
+            AdjacencyMatrix.defaultComparator());
     }
 
     /**
@@ -132,8 +132,8 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = Vertex.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = Vertex.defaultComparator();
         return new Comparator<>(vertexComparator);
     }
 
@@ -174,6 +174,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IAdjacencyMatrix<TKey, TValue> lhs, IAdjacencyMatrix<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

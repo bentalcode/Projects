@@ -9,5 +9,5 @@ public interface IListTestData {
     /**
      * Gets data of the tests of a list.
      */
-    List<IListData<Integer>> getListData();
+    List<IListData<Integer>> getData();
 }

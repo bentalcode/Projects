@@ -39,7 +39,7 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
         this(
             key,
             value,
-            Vertex.DefaultComparator());
+            Vertex.defaultComparator());
     }
 
     /**
@@ -149,8 +149,8 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IVertex<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IVertex<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(keyComparator);
     }
 
@@ -184,6 +184,7 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IVertex<TKey, TValue> lhs, IVertex<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -262,7 +263,7 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
             IVertex<TKey, TValue> vertex = new Vertex<>(
                 this.key,
                 this.value,
-                Vertex.DefaultComparator());
+                Vertex.defaultComparator());
 
             return vertex;
         }

@@ -27,7 +27,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
     public TreeLevels(List<ITreeLevel<TKey, TValue>> levels) {
         this(
             levels,
-            TreeLevels.DefaultComparator());
+            TreeLevels.defaultComparator());
     }
 
     /**
@@ -89,6 +89,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
     /**
      * Checks whether the instances are equals.
      */
+    @Override
     public boolean isEqual(ITreeLevels<TKey, TValue> other) {
         return this.comparator.isEqual(this, other);
     }
@@ -100,6 +101,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
+    @Override
     public int compareTo(ITreeLevels<TKey, TValue> other) {
         return this.comparator.compareTo(this, other);
     }
@@ -107,8 +109,8 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeLevels<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<ITreeLevel<TKey, TValue>> levelComparator = TreeLevel.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeLevels<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<ITreeLevel<TKey, TValue>> levelComparator = TreeLevel.defaultComparator();
         return new Comparator<>(levelComparator);
     }
 
@@ -144,6 +146,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ITreeLevels<TKey, TValue> lhs, ITreeLevels<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -236,7 +239,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
         public ITreeLevels<TKey, TValue> build() {
             ITreeLevels<TKey, TValue> levels = new TreeLevels<>(
                 this.levels,
-                TreeLevels.DefaultComparator());
+                TreeLevels.defaultComparator());
 
             return levels;
         }

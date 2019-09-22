@@ -135,6 +135,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(INode<TValue> lhs, INode<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -203,7 +204,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
         public INode<TValue> build() {
             INode<TValue> node = new Node<>(
                 this.value,
-                base.core.Comparator.DefaultComparator());
+                base.core.Comparator.defaultComparator());
 
             return node;
         }

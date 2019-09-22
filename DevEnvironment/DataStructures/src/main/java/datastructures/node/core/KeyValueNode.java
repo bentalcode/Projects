@@ -7,6 +7,7 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import datastructures.collections.core.Collections;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
@@ -34,7 +35,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         this(
             key,
             value,
-            KeyValueNode.DefaultComparator());
+            KeyValueNode.defaultComparator());
     }
 
     /**
@@ -81,6 +82,14 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
     @Override
     public void setValue(TValue value) {
         this.value = value;
+    }
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return "[Key = " + this.key + ", Value = " + this.value + "]";
     }
 
     /**
@@ -134,8 +143,8 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IKeyValueNode<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IKeyValueNode<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(keyComparator);
     }
 
@@ -169,6 +178,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IKeyValueNode<TKey, TValue> lhs, IKeyValueNode<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -251,7 +261,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
             IKeyValueNode<TKey, TValue> node = new KeyValueNode<>(
                 this.key,
                 this.value,
-                KeyValueNode.DefaultComparator());
+                KeyValueNode.defaultComparator());
 
             return node;
         }

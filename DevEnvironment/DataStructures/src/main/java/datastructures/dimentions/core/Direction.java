@@ -22,14 +22,14 @@ public final class Direction implements IDirection {
      * The Direction constructor.
      */
     public Direction() {
-        this(0, Direction.DefaultComparator());
+        this(0, Direction.defaultComparator());
     }
 
     /**
      * The Direction constructor.
      */
     public Direction(double angle) {
-        this(angle, Direction.DefaultComparator());
+        this(angle, Direction.defaultComparator());
     }
 
     /**
@@ -108,7 +108,7 @@ public final class Direction implements IDirection {
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IDirection> DefaultComparator() {
+    public static IBinaryComparator<IDirection> defaultComparator() {
         return new Comparator();
     }
 
@@ -135,6 +135,7 @@ public final class Direction implements IDirection {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IDirection lhs, IDirection rhs) {
             if (lhs == null && rhs == null) {
                 return true;

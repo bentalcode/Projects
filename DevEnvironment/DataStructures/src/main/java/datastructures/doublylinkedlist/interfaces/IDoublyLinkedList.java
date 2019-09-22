@@ -92,7 +92,7 @@ public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
     void remove(IDoublyLinkedListNode<TValue> nodeToRemove);
 
     /**
-     * Clears the list
+     * Clears the list.
      */
     void clear();
 

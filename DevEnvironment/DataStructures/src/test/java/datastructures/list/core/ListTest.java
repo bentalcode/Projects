@@ -2,13 +2,15 @@ package datastructures.list.core;
 
 import base.core.ArrayIterator;
 import base.core.Lists;
-import datastructures.collections.core.CollectionEquatableComparator;
-import datastructures.collections.interfaces.ICollectionEquatableComparator;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.list.interfaces.IList;
 import datastructures.list.interfaces.IListData;
 import java.util.List;
+
+import datastructures.priorityqueue.core.Heap;
+import datastructures.priorityqueue.interfaces.IPriorityQueue;
+import datastructures.priorityqueue.interfaces.IPriorityQueueData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +22,6 @@ import testbase.interfaces.IAssertion;
  */
 public final class ListTest {
     private final ITestData testData = new TestData();
-    private final ICollectionEquatableComparator comparator = new CollectionEquatableComparator();
     private final IAssertion assertion = new Assertion();
 
     /**
@@ -48,8 +49,8 @@ public final class ListTest {
      */
     @Test
     public void ListCreationTest() {
-        for (IListData<Integer> listData : this.testData.getListData().getListData()) {
-            this.testCreation(listData);
+        for (IListData<Integer> data : this.testData.getListData().getData()) {
+            this.testCreation(data);
         }
     }
 
@@ -58,26 +59,20 @@ public final class ListTest {
      */
     @Test
     public void ListCreationAndRemovalTest() {
-        for (IListData<Integer> listData : this.testData.getListData().getListData()) {
-            this.testCreationWithRemoval(listData);
+        for (IListData<Integer> data : this.testData.getListData().getData()) {
+            this.testCreationWithRemoval(data);
         }
     }
 
     /**
      * Tests the creation logic of a list.
      */
-    private <TValue extends Comparable<TValue>> void testCreation(IListData<TValue> listData) {
-        List<TValue> creationData = listData.getCreationData();
-
-        IList<TValue> list = new ArrayList<>(listData.getClassType());
-
-        for (TValue item : creationData) {
-            list.add(item);
-        }
+    private <TValue extends Comparable<TValue>> void testCreation(IListData<TValue> data) {
+        IList<TValue> list = this.createList(data);
 
         this.assertion.assertEquals(
             list.getIterator(),
-            base.core.ListIterator.of(listData.getData()),
+            base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a list.");
 
         this.assertion.assertEquals(
@@ -89,19 +84,12 @@ public final class ListTest {
     /**
      * Tests the creation and removal logic of a list.
      */
-    private <TValue extends Comparable<TValue>> void testCreationWithRemoval(IListData<TValue> listData) {
-
-        List<TValue> creationData = listData.getCreationData();
-
-        IList<TValue> list = new ArrayList<>(listData.getClassType());
-
-        for (TValue item : creationData) {
-            list.add(item);
-        }
+    private <TValue extends Comparable<TValue>> void testCreationWithRemoval(IListData<TValue> data) {
+        IList<TValue> list = this.createList(data);
 
         this.assertion.assertEquals(
             list.getIterator(),
-            base.core.ListIterator.of(listData.getData()),
+            base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a list.");
 
         List<TValue> values = Lists.fromIterator(list.getIterator());
@@ -113,10 +101,6 @@ public final class ListTest {
             TValue removedValue = list.remove(index);
             --currSize;
 
-            this.assertion.assertTrue(
-                !list.contains(valueToRemove),
-                "Invalid remove logic of list: value has not been removed.");
-
             this.assertion.assertEquals(
                 removedValue,
                 valueToRemove,
@@ -126,5 +110,18 @@ public final class ListTest {
                 list.size() == currSize,
                 "Invalid remove logic of list: invalid size.");
         }
+    }
+
+    /**
+     * Creates a list.
+     */
+    private <TValue extends Comparable<TValue>> IList<TValue> createList(IListData<TValue> data) {
+        IList<TValue> list = new ArrayList<>(data.getClassType());
+
+        for (TValue item : data.getCreationData()) {
+            list.add(item);
+        }
+
+        return list;
     }
 }

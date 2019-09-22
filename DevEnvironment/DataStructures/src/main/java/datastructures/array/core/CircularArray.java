@@ -10,6 +10,7 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.array.interfaces.ICircularArray;
+import datastructures.collections.core.Collections;
 
 /**
  * The CircularArray class implements a circular array.
@@ -27,7 +28,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
         this(
             array,
             0,
-            CircularArray.DefaultComparator());
+            CircularArray.defaultComparator());
     }
 
     /**
@@ -40,7 +41,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
         this(
             array,
             startIndex,
-            CircularArray.DefaultComparator());
+            CircularArray.defaultComparator());
     }
 
     /**
@@ -119,6 +120,14 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
     }
 
     /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getIterator());
+    }
+
+    /**
      * Gets the hash code.
      */
     @Override
@@ -169,8 +178,8 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
     /**
      * Gets the default comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<ICircularArray<T>> DefaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.DefaultComparator();
+    public static <T extends Comparable<T>> IBinaryComparator<ICircularArray<T>> defaultComparator() {
+        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(elementComparator);
     }
 
@@ -204,6 +213,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ICircularArray<T> lhs, ICircularArray<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

@@ -9,8 +9,23 @@ public final class Comparator<T extends Comparable<T>> extends AbstractBinaryCom
     /**
      * Gets the default comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<T> DefaultComparator() {
+    public static <T extends Comparable<T>> IBinaryComparator<T> defaultComparator() {
         return new Comparator<>();
+    }
+
+    /**
+     * Gets the default invert comparator.
+     */
+    public static <T extends Comparable<T>> IBinaryComparator<T> defaultInvertComparator() {
+        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+        return Comparator.invertComparator(comparator);
+    }
+
+    /**
+     * Gets the invert comparator.
+     */
+    public static <T extends Comparable<T>> IBinaryComparator<T> invertComparator(IBinaryComparator<T> comparator) {
+        return new InvertComparator<>(comparator);
     }
 
     /**
@@ -34,6 +49,7 @@ public final class Comparator<T extends Comparable<T>> extends AbstractBinaryCom
     /**
      * Checks whether two instances are equals.
      */
+    @Override
     public boolean isEqual(T lhs, T rhs) {
         if (lhs == null && rhs == null) {
             return true;

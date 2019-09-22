@@ -109,7 +109,7 @@ public final class DoublyLinkedListTest {
         this.assertion.assertEquals(
             list.getIterator(),
             dataIterator,
-            DoublyLinkedListNode.DefaultComparator(),
+            DoublyLinkedListNode.defaultComparator(),
             "Invalid creation logic of a doubly linked list.");
     }
 

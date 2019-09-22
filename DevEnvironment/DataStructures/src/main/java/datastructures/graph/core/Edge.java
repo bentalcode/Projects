@@ -28,7 +28,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
         IVertex<TKey, TValue> source,
         IVertex<TKey, TValue> destination) {
 
-        return new Edge<>(source, destination, false, Edge.DefaultComparator());
+        return new Edge<>(source, destination, false, Edge.defaultComparator());
     }
 
     /**
@@ -38,7 +38,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
         IVertex<TKey, TValue> source,
         IVertex<TKey, TValue> destination) {
 
-        return new Edge<>(source, destination, true, Edge.DefaultComparator());
+        return new Edge<>(source, destination, true, Edge.defaultComparator());
     }
 
     /**
@@ -167,8 +167,8 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IEdge<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = Vertex.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IEdge<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = Vertex.defaultComparator();
         return new Comparator<>(vertexComparator);
     }
 
@@ -206,6 +206,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IEdge<TKey, TValue> lhs, IEdge<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -309,7 +310,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
                 this.source,
                 this.destination,
                 this.directed,
-                Edge.DefaultComparator());
+                Edge.defaultComparator());
 
             return edge;
         }

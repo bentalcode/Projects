@@ -40,7 +40,7 @@ public final class Assertion implements IAssertion {
         T rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.DefaultComparator();
+        IBinaryComparator<T> comparator = Comparator.defaultComparator();
 
         this.assertEquals(
             lhs,
@@ -78,7 +78,7 @@ public final class Assertion implements IAssertion {
         T[] rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.DefaultComparator();
+        IBinaryComparator<T> comparator = Comparator.defaultComparator();
 
         this.assertEquals(
             lhs,
@@ -116,7 +116,7 @@ public final class Assertion implements IAssertion {
         IIterator<T> rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.DefaultComparator();
+        IBinaryComparator<T> comparator = Comparator.defaultComparator();
 
         this.assertEquals(
             lhs,

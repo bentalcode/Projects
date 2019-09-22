@@ -6,6 +6,7 @@ import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
+import datastructures.collections.core.Collections;
 import datastructures.string.interfaces.ICircularString;
 
 /**
@@ -24,7 +25,7 @@ public final class CircularString implements ICircularString {
         this(
             value,
             0,
-            Comparator.DefaultComparator());
+            Comparator.defaultComparator());
     }
 
     /**
@@ -37,7 +38,7 @@ public final class CircularString implements ICircularString {
         this(
             value,
             startIndex,
-            Comparator.DefaultComparator());
+            Comparator.defaultComparator());
     }
 
     /**
@@ -99,14 +100,6 @@ public final class CircularString implements ICircularString {
     }
 
     /**
-     * Gets the string representation of this instance.
-     */
-    @Override
-    public String toString() {
-        return this.value;
-    }
-
-    /**
      * Gets the iterator.
      */
     @Override
@@ -120,6 +113,14 @@ public final class CircularString implements ICircularString {
     @Override
     public IReverseIterator<Character> getReverseIterator() {
         return new CircularStringReverseIterator(this);
+    }
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getIterator());
     }
 
     /**

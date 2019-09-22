@@ -35,7 +35,7 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
      * Creates a new trie node.
      */
     public static <TKey extends Comparable<TKey>, TValue> ITrieNode<TKey, TValue> create(TKey key, TValue value) {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return TrieNode.create(key, value, keyComparator);
     }
 
@@ -203,8 +203,8 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITrieNode<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITrieNode<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(keyComparator);
     }
 
@@ -238,6 +238,7 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ITrieNode<TKey, TValue> lhs, ITrieNode<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

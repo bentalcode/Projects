@@ -43,8 +43,8 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
         this(
             IHashMapConstants.DefaultCapacity,
             IHashMapConstants.DefaultLoadFactor,
-            LinkedHashMap.DefaultComparator(),
-            base.core.Comparator.DefaultComparator());
+            LinkedHashMap.defaultComparator(),
+            base.core.Comparator.defaultComparator());
     }
 
     /**
@@ -58,7 +58,7 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
         this(
             capacity,
             loadFactor,
-            LinkedHashMap.DefaultComparator(),
+            LinkedHashMap.defaultComparator(),
             keyComparator);
     }
     /**
@@ -202,8 +202,8 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ILinkedHashMap<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ILinkedHashMap<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator = new KeyValueNode.Comparator<>(keyComparator);
 
         return new Comparator<>(
@@ -252,6 +252,7 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ILinkedHashMap<TKey, TValue> lhs, ILinkedHashMap<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

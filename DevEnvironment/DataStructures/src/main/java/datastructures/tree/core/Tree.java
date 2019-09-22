@@ -27,7 +27,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
      * The Tree constructor.
      */
     public Tree() {
-        this(null, Tree.DefaultComparator());
+        this(null, Tree.defaultComparator());
     }
 
     /**
@@ -73,7 +73,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
      */
     @Override
     public ITreeTraversal<TKey , TValue> getTreeTraversal() {
-        return this.getTreeTraversal(TreeNode.DefaultComparator());
+        return this.getTreeTraversal(TreeNode.defaultComparator());
     }
 
     /**
@@ -115,6 +115,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
     /**
      * Checks whether the instances are equals.
      */
+    @Override
     public boolean isEqual(ITree<TKey, TValue> other) {
         return this.comparator.isEqual(this, other);
     }
@@ -126,6 +127,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
+    @Override
     public int compareTo(ITree<TKey, TValue> other) {
         return this.comparator.compareTo(this, other);
     }
@@ -133,8 +135,8 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITree<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator = TreeNode.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITree<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator = TreeNode.defaultComparator();
         return new Tree.Comparator<>(nodeComparator);
     }
 
@@ -180,6 +182,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ITree<TKey, TValue> lhsTree, ITree<TKey, TValue> rhsTree) {
             if (lhsTree == null && rhsTree == null) {
                 return true;
@@ -195,7 +198,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(ITreeNode<TKey, TValue> lhsRoot, ITreeNode<TKey, TValue> rhsRoot) {
+        private boolean isEqual(ITreeNode<TKey, TValue> lhsRoot, ITreeNode<TKey, TValue> rhsRoot) {
             if (lhsRoot == null && rhsRoot == null) {
                 return true;
             }
@@ -263,7 +266,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
          * Returns 0 if the left hand side value is equal to the right hand side value.
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
-        public int compareTo(ITreeNode<TKey, TValue> lhsRoot, ITreeNode<TKey, TValue> rhsRoot) {
+        private int compareTo(ITreeNode<TKey, TValue> lhsRoot, ITreeNode<TKey, TValue> rhsRoot) {
             if (lhsRoot == null && rhsRoot == null) {
                 return 0;
             }
@@ -378,7 +381,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
         @Override
         public ITree<TKey, TValue> build() {
             if (this.comparator == null) {
-                this.comparator = Tree.DefaultComparator();
+                this.comparator = Tree.defaultComparator();
             }
 
             return new Tree<>(this.root, this.comparator);

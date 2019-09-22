@@ -29,7 +29,7 @@ public final class CollectionEquatableComparator implements ICollectionEquatable
         IHashMap<TKey, TValue> lhs,
         List<IKeyValueNode<TKey, TValue>> rhs) {
 
-        return this.isEqual(lhs, rhs, KeyValueNode.DefaultComparator());
+        return this.isEqual(lhs, rhs, KeyValueNode.defaultComparator());
     }
 
     /**
@@ -75,7 +75,7 @@ public final class CollectionEquatableComparator implements ICollectionEquatable
         ILinkedHashMap<TKey, TValue> lhs,
         List<IKeyValueNode<TKey, TValue>> rhs) {
 
-        return this.isEqual(lhs, rhs, KeyValueNode.DefaultComparator());
+        return this.isEqual(lhs, rhs, KeyValueNode.defaultComparator());
     }
 
     /**

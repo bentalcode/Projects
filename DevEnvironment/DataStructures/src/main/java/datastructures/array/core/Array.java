@@ -13,6 +13,7 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.array.interfaces.IArray;
+import datastructures.collections.core.Collections;
 
 /**
  * The Array class implements an array.
@@ -28,7 +29,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
     public Array(T[] array) {
         this(
             array,
-            Array.DefaultComparator());
+            Array.defaultComparator());
     }
 
     /**
@@ -110,7 +111,15 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
     public T[] toArray() {
         return this.array;
     }
-    
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getIterator());
+    }
+
     /**
      * Gets the hash code.
      */
@@ -162,8 +171,8 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
     /**
      * Gets the default comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<IArray<T>> DefaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.DefaultComparator();
+    public static <T extends Comparable<T>> IBinaryComparator<IArray<T>> defaultComparator() {
+        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
         return new Array.Comparator<>(elementComparator);
     }
 
@@ -197,6 +206,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IArray<T> lhs, IArray<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

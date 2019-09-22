@@ -37,7 +37,7 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
             vertices,
             edges,
             adjacencyMatrix,
-            Graph.DefaultComparator());
+            Graph.defaultComparator());
     }
 
     /**
@@ -183,10 +183,10 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IGraph<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = Vertex.DefaultComparator();
-        IBinaryComparator<IEdge<TKey, TValue>> edgeComparator = Edge.DefaultComparator();
-        IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> adjacencyMatrixComparator = AdjacencyMatrix.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IGraph<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = Vertex.defaultComparator();
+        IBinaryComparator<IEdge<TKey, TValue>> edgeComparator = Edge.defaultComparator();
+        IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> adjacencyMatrixComparator = AdjacencyMatrix.defaultComparator();
 
         return new Comparator<>(
             vertexComparator,
@@ -244,6 +244,7 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IGraph<TKey, TValue> lhs, IGraph<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

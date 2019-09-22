@@ -28,8 +28,8 @@ public final class Line implements ILine {
         this(
             start,
             end,
-            Line.DefaultComparator(),
-            Point.DefaultComparator());
+            Line.defaultComparator(),
+            Point.defaultComparator());
     }
 
     /**
@@ -184,8 +184,8 @@ public final class Line implements ILine {
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<ILine> DefaultComparator() {
-        IBinaryComparator<IPoint> pointComparator = Point.DefaultComparator();
+    public static IBinaryComparator<ILine> defaultComparator() {
+        IBinaryComparator<IPoint> pointComparator = Point.defaultComparator();
         return new Comparator(pointComparator);
     }
 
@@ -220,6 +220,7 @@ public final class Line implements ILine {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ILine lhs, ILine rhs) {
             if (lhs == null && rhs == null) {
                 return true;

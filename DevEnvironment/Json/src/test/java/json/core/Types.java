@@ -86,7 +86,7 @@ public final class Types implements ITypes {
             doubleArray,
             stringArray,
             blob,
-            Types.DefaultComparator());
+            Types.defaultComparator());
     }
     /**
      * The Color constructor.
@@ -361,7 +361,7 @@ public final class Types implements ITypes {
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<ITypes> DefaultComparator() {
+    public static IBinaryComparator<ITypes> defaultComparator() {
         return new Comparator();
     }
 
@@ -402,6 +402,7 @@ public final class Types implements ITypes {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ITypes lhs, ITypes rhs) {
             if (lhs == null && rhs == null) {
                 return true;

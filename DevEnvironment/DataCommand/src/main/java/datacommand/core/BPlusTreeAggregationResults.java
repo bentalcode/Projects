@@ -29,8 +29,8 @@ public final class BPlusTreeAggregationResults extends AbstractAggregationResult
     public BPlusTreeAggregationResults(IAggregationResultsProperties properties) {
         super(properties);
 
-        IBinaryComparator<String> keyComparator = Comparator.DefaultComparator();
-        IBinaryComparator<IBPlusTreeNode<String>> nodeComparator = BPlusTreeNode.DefaultComparator(keyComparator);
+        IBinaryComparator<String> keyComparator = Comparator.defaultComparator();
+        IBinaryComparator<IBPlusTreeNode<String>> nodeComparator = BPlusTreeNode.defaultComparator(keyComparator);
 
         IBPlusTreeProperties<String, IAggregationResult> treeProperties =
             new BPlusTreeProperties.Builder<String, IAggregationResult>()

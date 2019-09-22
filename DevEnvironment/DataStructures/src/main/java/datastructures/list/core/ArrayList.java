@@ -31,7 +31,7 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
         this(
             classType,
             ArrayList.DefaultCapacity,
-            ArrayList.DefaultComparator());
+            ArrayList.defaultComparator());
     }
 
     /**
@@ -254,8 +254,8 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
     /**
      * Gets the default comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<IList<T>> DefaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.DefaultComparator();
+    public static <T extends Comparable<T>> IBinaryComparator<IList<T>> defaultComparator() {
+        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
         return new ArrayList.Comparator<>(elementComparator);
     }
 
@@ -289,6 +289,7 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IList<T> lhs, IList<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

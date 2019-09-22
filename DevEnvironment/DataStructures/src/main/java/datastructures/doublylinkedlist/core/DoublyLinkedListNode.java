@@ -45,7 +45,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
             value,
             null,
             null,
-            DoublyLinkedListNode.DefaultComparator());
+            DoublyLinkedListNode.defaultComparator());
     }
 
     /**
@@ -168,8 +168,8 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>> IBinaryComparator<IDoublyLinkedListNode<TKey>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>> IBinaryComparator<IDoublyLinkedListNode<TKey>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return new DoublyLinkedListNode.Comparator<>(keyComparator);
     }
 
@@ -203,6 +203,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IDoublyLinkedListNode<TValue> lhs, IDoublyLinkedListNode<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

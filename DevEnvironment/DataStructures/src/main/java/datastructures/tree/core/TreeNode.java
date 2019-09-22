@@ -30,7 +30,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
      * Creates a new tree node.
      */
     public static <TKey extends Comparable<TKey>, TValue> ITreeNode<TKey, TValue> create(TKey key, TValue value) {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return TreeNode.create(key, value, keyComparator);
     }
 
@@ -177,8 +177,8 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeNode<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeNode<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(keyComparator);
     }
 
@@ -212,6 +212,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ITreeNode<TKey, TValue> lhs, ITreeNode<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;

@@ -22,7 +22,7 @@ public final class Color implements IColor {
     private final String hex;
     private final String rgb;
     
-    private final IBinaryComparator<IColor> comparator = Color.DefaultComparator();
+    private final IBinaryComparator<IColor> comparator = Color.defaultComparator();
     private final int hashCode;
 
     /**
@@ -138,7 +138,7 @@ public final class Color implements IColor {
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IColor> DefaultComparator() {
+    public static IBinaryComparator<IColor> defaultComparator() {
         return new Comparator();
     }
 
@@ -167,6 +167,7 @@ public final class Color implements IColor {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IColor lhs, IColor rhs) {
             if (lhs == null && rhs == null) {
                 return true;

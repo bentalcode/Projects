@@ -35,7 +35,7 @@ public final class Fruit implements IFruit {
         String color,
         double price) {
 
-        this(kind, size, color, price, Fruit.DefaultComparator());
+        this(kind, size, color, price, Fruit.defaultComparator());
     }
 
     /**
@@ -166,7 +166,7 @@ public final class Fruit implements IFruit {
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IFruit> DefaultComparator() {
+    public static IBinaryComparator<IFruit> defaultComparator() {
         return new Comparator();
     }
 
@@ -196,6 +196,7 @@ public final class Fruit implements IFruit {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IFruit lhs, IFruit rhs) {
             if (lhs == null && rhs == null) {
                 return true;

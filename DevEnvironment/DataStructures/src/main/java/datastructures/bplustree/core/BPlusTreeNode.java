@@ -405,7 +405,7 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
     /**
      * Gets the default comparator of a node of a tree.
      */
-    public static <TKey extends Comparable<TKey>> IBinaryComparator<IBPlusTreeNode<TKey>> DefaultComparator(
+    public static <TKey extends Comparable<TKey>> IBinaryComparator<IBPlusTreeNode<TKey>> defaultComparator(
         IBinaryComparator<TKey> keyComparator) {
 
         return new BPlusTreeNode.Comparator<>(keyComparator);
@@ -455,6 +455,7 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
          * Returns 0 if the left hand side value is equal to the right hand side value.
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
+        @Override
         public int compareTo(IBPlusTreeNode<TKey> lhs, IBPlusTreeNode<TKey> rhs) {
             return new CompareToBuilder()
                 .withCollection(lhs.getKeys(), rhs.getKeys(), this.keyComparator)

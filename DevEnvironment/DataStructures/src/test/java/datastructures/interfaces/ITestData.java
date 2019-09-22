@@ -7,6 +7,7 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.list.interfaces.IListTestData;
+import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 
 /**
  * The ITestData interface defines the data of the tests.
@@ -21,6 +22,11 @@ public interface ITestData {
      * Gets the data of tests of a doubly linked list.
      */
     IDoublyLinkedListTestData getDoublyLinkedListData();
+
+    /**
+     * Gets the data of tests of a priority queue.
+     */
+    IPriorityQueueTestData getPriorityQueueData();
 
     /**
      * Gets the data of tests of a hash map.

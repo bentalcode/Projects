@@ -26,7 +26,7 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
      * The Trie constructor.
      */
     public Trie() {
-        this(null, Trie.DefaultComparator());
+        this(null, Trie.defaultComparator());
     }
 
     /**
@@ -72,7 +72,7 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
      */
     @Override
     public ITrieTraversal<TKey , TValue> getTrieTraversal() {
-        return this.getTrieTraversal(TrieNode.DefaultComparator());
+        return this.getTrieTraversal(TrieNode.defaultComparator());
     }
 
     /**
@@ -114,6 +114,7 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
     /**
      * Checks whether the instances are equals.
      */
+    @Override
     public boolean isEqual(ITrie<TKey, TValue> other) {
         return this.comparator.isEqual(this, other);
     }
@@ -132,8 +133,8 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITrie<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator = TrieNode.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITrie<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator = TrieNode.defaultComparator();
         return new Trie.Comparator<>(nodeComparator);
     }
 
@@ -179,6 +180,7 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(ITrie<TKey, TValue> lhsTrie, ITrie<TKey, TValue> rhsTrie) {
             if (lhsTrie == null && rhsTrie == null) {
                 return true;
@@ -194,7 +196,7 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
         /**
          * Checks whether two instances are equals.
          */
-        public boolean isEqual(ITrieNode<TKey, TValue> lhsRoot, ITrieNode<TKey, TValue> rhsRoot) {
+        private boolean isEqual(ITrieNode<TKey, TValue> lhsRoot, ITrieNode<TKey, TValue> rhsRoot) {
             if (lhsRoot == null && rhsRoot == null) {
                 return true;
             }
@@ -262,7 +264,7 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
          * Returns 0 if the left hand side value is equal to the right hand side value.
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
-        public int compareTo(ITrieNode<TKey, TValue> lhsRoot, ITrieNode<TKey, TValue> rhsRoot) {
+        private int compareTo(ITrieNode<TKey, TValue> lhsRoot, ITrieNode<TKey, TValue> rhsRoot) {
             if (lhsRoot == null && rhsRoot == null) {
                 return 0;
             }
@@ -377,7 +379,7 @@ public final class Trie<TKey extends Comparable<TKey>, TValue> implements ITrie<
         @Override
         public ITrie<TKey, TValue> build() {
             if (this.comparator == null) {
-                this.comparator = Trie.DefaultComparator();
+                this.comparator = Trie.defaultComparator();
             }
 
             return new Trie<>(this.root, this.comparator);

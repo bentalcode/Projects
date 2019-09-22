@@ -42,7 +42,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
             numberOfLeafNodes,
             sizeInBytes,
             capacityInBytes,
-            BPlusTreeMetrics.DefaultComparator());
+            BPlusTreeMetrics.defaultComparator());
     }
 
     /**
@@ -158,6 +158,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
     /**
      * Checks whether the instances are equals.
      */
+    @Override
     public boolean isEqual(IBPlusTreeMetrics other) {
         return this.comparator.isEqual(this, other);
     }
@@ -169,6 +170,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
+    @Override
     public int compareTo(IBPlusTreeMetrics other) {
         return this.comparator.compareTo(this, other);
     }
@@ -183,7 +185,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IBPlusTreeMetrics> DefaultComparator() {
+    public static IBinaryComparator<IBPlusTreeMetrics> defaultComparator() {
         return new Comparator();
     }
 
@@ -215,6 +217,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IBPlusTreeMetrics lhs, IBPlusTreeMetrics rhs) {
             if (lhs == null && rhs == null) {
                 return true;

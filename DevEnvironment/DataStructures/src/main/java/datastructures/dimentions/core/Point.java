@@ -20,14 +20,14 @@ public final class Point implements IPoint {
      * The Point constructor.
      */
     public Point() {
-        this(0.0, 0.0, Point.DefaultComparator());
+        this(0.0, 0.0, Point.defaultComparator());
     }
 
     /**
      * The Point constructor.
      */
     public Point(double x, double y) {
-        this(x, y, Point.DefaultComparator());
+        this(x, y, Point.defaultComparator());
     }
 
     /**
@@ -173,7 +173,7 @@ public final class Point implements IPoint {
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IPoint> DefaultComparator() {
+    public static IBinaryComparator<IPoint> defaultComparator() {
         return new Comparator();
     }
 
@@ -201,6 +201,7 @@ public final class Point implements IPoint {
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IPoint lhs, IPoint rhs) {
             if (lhs == null && rhs == null) {
                 return true;

@@ -20,7 +20,7 @@ public final class ListTestData implements IListTestData {
      * Gets data of the tests of a list.
      */
     @Override
-    public List<IListData<Integer>> getListData() {
+    public List<IListData<Integer>> getData() {
         IListData<Integer> data1 = this.getListData1();
         IListData<Integer> data2 = this.getListData2();
         IListData<Integer> data3 = this.getListData3();

@@ -27,7 +27,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
     public BlockTreeLevel(List<IBlockTreeNodeData<TKey, TValue>> nodesData) {
         this(
             nodesData,
-            BlockTreeLevel.DefaultComparator());
+            BlockTreeLevel.defaultComparator());
     }
 
     /**
@@ -109,8 +109,8 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBlockTreeLevel<TKey, TValue>> DefaultComparator() {
-        IBinaryComparator<IBlockTreeNodeData<TKey, TValue>> nodeComparator = BlockTreeNodeData.DefaultComparator();
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBlockTreeLevel<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<IBlockTreeNodeData<TKey, TValue>> nodeComparator = BlockTreeNodeData.defaultComparator();
         return new Comparator<>(nodeComparator);
     }
 
@@ -146,6 +146,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IBlockTreeLevel<TKey, TValue> lhs, IBlockTreeLevel<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -234,7 +235,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
         public IBlockTreeLevel<TKey, TValue> build() {
             IBlockTreeLevel<TKey, TValue> level = new BlockTreeLevel<>(
                 this.nodesData,
-                BlockTreeLevel.DefaultComparator());
+                BlockTreeLevel.defaultComparator());
 
             return level;
         }

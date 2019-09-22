@@ -36,8 +36,8 @@ public final class BPlusTreeTestData implements IBPlusTreeTestData {
      */
     @Override
     public IBPlusTreeProperties<Integer, String> getTreeProperties() {
-        IBinaryComparator<Integer> keyComparator = Comparator.DefaultComparator();
-        IBinaryComparator<IBPlusTreeNode<Integer>> nodeComparator = BPlusTreeNode.DefaultComparator(keyComparator);
+        IBinaryComparator<Integer> keyComparator = Comparator.defaultComparator();
+        IBinaryComparator<IBPlusTreeNode<Integer>> nodeComparator = BPlusTreeNode.defaultComparator(keyComparator);
 
         IBPlusTreeProperties<Integer, String> properties = new BPlusTreeProperties.Builder<Integer, String>()
                 .withDegree(4)

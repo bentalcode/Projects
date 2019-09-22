@@ -34,16 +34,16 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     /**
      * The DoublyLinkedList constructor.
      */
-    public DoublyLinkedList(IDoublyLinkedListNode<TValue> head) {
+    private DoublyLinkedList(IDoublyLinkedListNode<TValue> head) {
         this(
             head,
-            DoublyLinkedList.DefaultComparator());
+            DoublyLinkedList.defaultComparator());
     }
 
     /**
      * The DoublyLinkedList constructor.
      */
-    public DoublyLinkedList(
+    private DoublyLinkedList(
         IDoublyLinkedListNode<TValue> head,
         IBinaryComparator<IDoublyLinkedList<TValue>> comparator) {
 
@@ -294,7 +294,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     }
 
     /**
-     * Clears the list
+     * Clears the list.
      */
     @Override
     public void clear() {
@@ -361,6 +361,14 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     }
 
     /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getValueIterator());
+    }
+
+    /**
      * Gets the hash code.
      */
     @Override
@@ -391,6 +399,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     /**
      * Checks whether the instances are equals.
      */
+    @Override
     public boolean isEqual(IDoublyLinkedList<TValue> other) {
         return this.comparator.isEqual(this, other);
     }
@@ -402,6 +411,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
+    @Override
     public int compareTo(IDoublyLinkedList<TValue> other) {
         return this.comparator.compareTo(this, other);
     }
@@ -409,8 +419,8 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     /**
      * Gets the default comparator.
      */
-    public static <TValue extends Comparable<TValue>> IBinaryComparator<IDoublyLinkedList<TValue>> DefaultComparator() {
-        IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator = DoublyLinkedListNode.DefaultComparator();
+    public static <TValue extends Comparable<TValue>> IBinaryComparator<IDoublyLinkedList<TValue>> defaultComparator() {
+        IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator = DoublyLinkedListNode.defaultComparator();
         return new DoublyLinkedList.Comparator<>(nodeComparator);
     }
 
@@ -446,6 +456,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
         /**
          * Checks whether two instances are equals.
          */
+        @Override
         public boolean isEqual(IDoublyLinkedList<TValue> lhs, IDoublyLinkedList<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
@@ -485,14 +496,6 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.nodeComparator)
                 .build();
         }
-    }
-
-    /**
-     * Gets string representation of this instance.
-     */
-    @Override
-    public String toString() {
-        return Collections.toString(this.getValueIterator());
     }
 
     /**
