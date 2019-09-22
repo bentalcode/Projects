@@ -41,7 +41,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
     private IPriorityQueueData<Integer> getPriorityQueueData1() {
         List<Integer> data = new ArrayList<>();
 
-        return new PriorityQueueData(
+        return new PriorityQueueData<>(
             Integer.class,
             base.core.Comparator.defaultComparator(),
             data,
@@ -58,7 +58,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
         List<Integer> expectedData = ArrayLists.of(
             1, 2, 3, 6, 9, 10, 5, 14);
 
-        return new PriorityQueueData(
+        return new PriorityQueueData<>(
             Integer.class,
             base.core.Comparator.defaultComparator(),
             creationData,
@@ -75,7 +75,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
         List<Integer> expectedData = ArrayLists.of(
             1, 5, 2, 10, 9, 6, 3, 14);
 
-        return new PriorityQueueData(
+        return new PriorityQueueData<>(
             Integer.class,
             base.core.Comparator.defaultComparator(),
             creationData,
@@ -92,7 +92,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
         List<Integer> expectedData = ArrayLists.of(
             50, 30, 20, 20, 19, 5, 15, 2);
 
-        return new PriorityQueueData(
+        return new PriorityQueueData<>(
             Integer.class,
             base.core.Comparator.defaultInvertComparator(),
             creationData,
@@ -109,7 +109,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
         List<Integer> expectedData = ArrayLists.of(
             9, 6, 4, 5, 1, 0, 3, -7, -3, -1);
 
-        return new PriorityQueueData(
+        return new PriorityQueueData<>(
             Integer.class,
             base.core.Comparator.defaultInvertComparator(),
             creationData,

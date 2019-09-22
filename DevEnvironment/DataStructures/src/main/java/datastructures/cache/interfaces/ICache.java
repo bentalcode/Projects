@@ -1,6 +1,8 @@
 package datastructures.cache.interfaces;
 
 import base.interfaces.IIterable;
+import base.interfaces.IReverseIterable;
+import base.interfaces.IUnaryComparator;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.node.interfaces.IKeyValueNode;
@@ -8,7 +10,11 @@ import datastructures.node.interfaces.IKeyValueNode;
 /**
  * The ICache interface defines a cache.
  */
-public interface ICache<TKey extends Comparable<TKey>, TValue> extends IIterable<IKeyValueNode<TKey, TValue>> {
+public interface ICache<TKey extends Comparable<TKey>, TValue> extends
+    IUnaryComparator<ICache<TKey, TValue>>,
+    IIterable<IKeyValueNode<TKey, TValue>>,
+    IReverseIterable<IKeyValueNode<TKey, TValue>> {
+
     /**
      * Gets properties of a cache.
      */

@@ -1,17 +1,25 @@
 package datastructures.cache.core;
 
+import base.core.AbstractBinaryComparator;
+import base.core.Casting;
+import base.core.CompareToBuilder;
 import base.core.Conditions;
+import base.core.EqualBuilder;
+import base.core.HashCodeBuilder;
+import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import datastructures.cache.CacheException;
 import datastructures.cache.interfaces.ICache;
 import datastructures.cache.interfaces.ICacheProperties;
+import datastructures.collections.core.Collections;
 import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeIterator;
+import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeReverseIterator;
 import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.core.KeyValueNodeKeyIterator;
 import datastructures.node.core.KeyValueNodeValueIterator;
@@ -27,18 +35,27 @@ import java.util.Map;
 public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> implements ICache<TKey, TValue> {
     private final ICacheProperties properties;
     private final CacheData<TKey, TValue> data = new CacheData<>();
+    private final IBinaryComparator<ICache<TKey, TValue>> comparator;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The AbstractCache constructor.
      */
-    protected AbstractCache(ICacheProperties properties) {
+    protected AbstractCache(
+        ICacheProperties properties,
+        IBinaryComparator<ICache<TKey, TValue>> comparator) {
+
         Conditions.validateNotNull(
             properties,
             "The properties of a cache.");
 
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator of a cache.");
+
         this.properties = properties;
+        this.comparator = comparator;
     }
 
     /**
@@ -149,17 +166,24 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
 
     /**
      * Gets an iterator of data of a cache.
-     * Complexity: O(1)
      */
     @Override
     public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
-        IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator = this.data.usedList().getIterator();
-        return new DoublyLinkedListKeyValueNodeIterator<>(iterator);
+        IIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator = this.data.usedList().getIterator();
+        return DoublyLinkedListKeyValueNodeIterator.of(iterator);
+    }
+
+    /**
+     * Gets a reverse iterator of data of a cache.
+     */
+    @Override
+    public IReverseIterator<IKeyValueNode<TKey, TValue>> getReverseIterator() {
+        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator = this.data.usedList().getReverseIterator();
+        return DoublyLinkedListKeyValueNodeReverseIterator.of(iterator);
     }
 
     /**
      * Gets an iterator of keys of a cache.
-     * Complexity: O(1)
      */
     public IKeyIterator<TKey> getKeyIterator() {
         return KeyValueNodeKeyIterator.of(this.getIterator());
@@ -167,7 +191,6 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
 
     /**
      * Gets an iterator of values of a cache.
-     * Complexity: O(1)
      */
     @Override
     public IValueIterator<TValue> getValueIterator() {
@@ -188,6 +211,157 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public boolean empty() {
         return this.size() == 0;
+    }
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getIterator());
+    }
+
+    /**
+     * Gets the hash code.
+     */
+    @Override
+    public int hashCode() {
+        return this.comparator.getHashCode(this);
+    }
+
+    /**
+     * Checks whether the instances are equals.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+
+        if (this == other) {
+            return true;
+        }
+
+        if (!this.getClass().isInstance(other)) {
+            return false;
+        }
+
+        return this.isEqual(Casting.cast(other));
+    }
+
+    /**
+     * Checks whether the instances are equals.
+     */
+    @Override
+    public boolean isEqual(ICache<TKey, TValue> other) {
+        return this.comparator.isEqual(this, other);
+    }
+
+    /**
+     * Determines the relative order of two instances.
+     *
+     * Returns -1 if the left hand side value is less than the right hand side value.
+     * Returns 0 if the left hand side value is equal to the right hand side value.
+     * Returns 1 if the left hand side value is greater than the right hand side value.
+     */
+    @Override
+    public int compareTo(ICache<TKey, TValue> other) {
+        return this.comparator.compareTo(this, other);
+    }
+
+    /**
+     * Gets the default comparator.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ICache<TKey, TValue>> defaultComparator() {
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator = new KeyValueNode.Comparator<>(keyComparator);
+
+        return new Comparator<>(
+            comparator,
+            keyComparator);
+    }
+
+    /**
+     * The Comparator class implements a comparator of a cache.
+     */
+    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
+        extends AbstractBinaryComparator<ICache<TKey, TValue>> {
+
+        private final IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator;
+        private final IBinaryComparator<TKey> keyComparator;
+
+        /**
+         * The Comparator constructor.
+         */
+        public Comparator(
+            IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator,
+            IBinaryComparator<TKey> keyComparator) {
+
+            Conditions.validateNotNull(
+                comparator,
+                "The comparator of a key-value node.");
+
+            Conditions.validateNotNull(
+                keyComparator,
+                "The comparator of a key.");
+
+            this.comparator = comparator;
+            this.keyComparator = keyComparator;
+        }
+
+        /**
+         * Gets a hash code of this instance.
+         */
+        @Override
+        public int getHashCode(ICache<TKey, TValue> obj) {
+            return new HashCodeBuilder(3, 5)
+                .withIterator(obj.getKeyIterator(), this.keyComparator)
+                .build();
+        }
+
+        /**
+         * Checks whether two instances are equals.
+         */
+        @Override
+        public boolean isEqual(ICache<TKey, TValue> lhs, ICache<TKey, TValue> rhs) {
+            if (lhs == null && rhs == null) {
+                return true;
+            }
+
+            if (lhs == null || rhs == null) {
+                return false;
+            }
+
+            return new EqualBuilder()
+                .withIterator(lhs.getIterator(), rhs.getIterator(), this.comparator)
+                .build();
+        }
+
+        /**
+         * Determines the relative order of two instances.
+         *
+         * Returns -1 if the left hand side value is less than the right hand side value.
+         * Returns 0 if the left hand side value is equal to the right hand side value.
+         * Returns 1 if the left hand side value is greater than the right hand side value.
+         */
+        @Override
+        public int compareTo(ICache<TKey, TValue> lhs, ICache<TKey, TValue> rhs) {
+            if (lhs == null && rhs == null) {
+                return 0;
+            }
+
+            if (lhs == null) {
+                return -1;
+            }
+
+            if (rhs == null) {
+                return 1;
+            }
+
+            return new CompareToBuilder()
+                .withIterator(lhs.getIterator(), rhs.getIterator(), this.comparator)
+                .build();
+        }
     }
 
     /**
@@ -245,8 +419,8 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
      * The CacheData class captures the internal data of a cache.
      */
     protected final class CacheData<TKey extends Comparable<TKey>, TValue> {
-        private Map<TKey, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup = new HashMap<>();
-        private DoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList = new DoublyLinkedList<>();
+        private final Map<TKey, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup = new HashMap<>();
+        private final DoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList = new DoublyLinkedList<>();
 
         /**
          * The CacheData constructor.

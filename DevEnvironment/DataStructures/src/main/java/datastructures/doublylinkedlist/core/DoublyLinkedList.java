@@ -7,13 +7,13 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
+import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import datastructures.collections.core.Collections;
 import datastructures.collections.interfaces.IValueIterator;
 import datastructures.collections.interfaces.IValueReverseIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
 
 /**
  * The DoublyLinkedList class implements a doubly linked list.
@@ -307,7 +307,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Gets an iterator of nodes of a list.
      */
     @Override
-    public IDoublyLinkedListNodeIterator<TValue> getIterator() {
+    public IIterator<IDoublyLinkedListNode<TValue>> getIterator() {
         return new DoublyLinkedListNodeIterator<>(this.head);
     }
 
@@ -323,7 +323,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Gets a reverse iterator of nodes of a list.
      */
     @Override
-    public IDoublyLinkedListNodeReverseIterator<TValue> getReverseIterator() {
+    public IReverseIterator<IDoublyLinkedListNode<TValue>> getReverseIterator() {
         return new DoublyLinkedListNodeReverseIterator<>(this.tail);
     }
 

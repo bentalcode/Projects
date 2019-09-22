@@ -2,27 +2,36 @@ package datastructures.doublylinkedlist.core;
 
 import base.core.Conditions;
 import base.interfaces.IIterator;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
+import base.interfaces.IReverseIterator;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
- * The DoublyLinkedListKeyValueNodeReverseIterator class implements a reverse iterator
- * of key-value nodes of a doubly linked list.
+ * The DoublyLinkedListKeyValueNodeReverseIterator class implements an iterator of key-value nodes of a doubly linked list.
  */
 public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TValue>
-    implements IIterator<IKeyValueNode<TKey, TValue>> {
+    implements IReverseIterator<IKeyValueNode<TKey, TValue>> {
 
-    private final IDoublyLinkedListNodeReverseIterator<IKeyValueNode<TKey, TValue>> iterator;
+    private final IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator;
 
     /**
-     * The DoublyLinkedListNodeIterator constructor.
+     * Creates a reverse iterator of a key-value node.
      */
-    public DoublyLinkedListKeyValueNodeReverseIterator(
-        IDoublyLinkedListNodeReverseIterator<IKeyValueNode<TKey, TValue>> iterator) {
+    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IKeyValueNode<TKey, TValue>> of(
+        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
+
+        return new DoublyLinkedListKeyValueNodeReverseIterator<>(iterator);
+    }
+
+    /**
+     * The DoublyLinkedListKeyValueNodeReverseIterator constructor.
+     */
+    private DoublyLinkedListKeyValueNodeReverseIterator(
+        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
 
         Conditions.validateNotNull(
             iterator,
-            "The reverse iterator of a key-value node of a doubly linked list.");
+            "The reverse iterator of a doubly linked list node of a key-value node.");
 
         this.iterator = iterator;
 

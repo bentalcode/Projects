@@ -2,7 +2,7 @@ package datastructures.doublylinkedlist.core;
 
 import base.core.Conditions;
 import base.interfaces.IIterator;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
@@ -11,15 +11,24 @@ import datastructures.node.interfaces.IKeyValueNode;
 public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<TKey>, TValue>
     implements IIterator<IKeyValueNode<TKey, TValue>> {
 
-    private final IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator;
+    private final IIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator;
 
     /**
-     * The DoublyLinkedListNodeIterator constructor.
+     * Creates an iterator of a key-value node.
      */
-    public DoublyLinkedListKeyValueNodeIterator(IDoublyLinkedListNodeIterator<IKeyValueNode<TKey, TValue>> iterator) {
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> of(
+        IIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
+
+        return new DoublyLinkedListKeyValueNodeIterator<>(iterator);
+    }
+
+    /**
+     * The DoublyLinkedListKeyValueNodeIterator constructor.
+     */
+    private DoublyLinkedListKeyValueNodeIterator(IIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
         Conditions.validateNotNull(
             iterator,
-            "The iterator of a key-value node of doubly linked list.");
+            "The iterator of a doubly linked list node of a key-value node.");
 
         this.iterator = iterator;
 

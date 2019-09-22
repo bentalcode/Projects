@@ -1,13 +1,14 @@
 package datastructures.doublylinkedlist.core;
 
-import base.core.Conditions;
+import base.interfaces.IReverseIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeReverseIterator;
 
 /**
  * The DoublyLinkedListNodeReverseIterator class implements a reverse iterator of nodes of a doubly linked list.
  */
-public final class DoublyLinkedListNodeReverseIterator<TValue extends Comparable<TValue>> implements IDoublyLinkedListNodeReverseIterator<TValue> {
+public final class DoublyLinkedListNodeReverseIterator<TValue extends Comparable<TValue>> implements
+    IReverseIterator<IDoublyLinkedListNode<TValue>> {
+
     private final IDoublyLinkedListNode<TValue> tailNode;
     private IDoublyLinkedListNode<TValue> currentNode;
 

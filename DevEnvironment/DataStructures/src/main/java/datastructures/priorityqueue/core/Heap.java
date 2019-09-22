@@ -3,8 +3,6 @@ package datastructures.priorityqueue.core;
 import base.interfaces.IBinaryComparator;
 import datastructures.priorityqueue.interfaces.IPriorityQueue;
 
-import java.util.PriorityQueue;
-
 /**
  * The Heap class implements a heap.
  *
@@ -23,7 +21,7 @@ public final class Heap<TValue extends Comparable<TValue>> extends AbstractHeap<
      * Creates a min heap.
      */
     public static <TValue extends Comparable<TValue>> IPriorityQueue<TValue> createMinHeap(Class<TValue> classType) {
-        return new Heap(
+        return new Heap<>(
             classType,
             AbstractHeap.defaultComparator(),
             base.core.Comparator.defaultComparator());
@@ -36,7 +34,7 @@ public final class Heap<TValue extends Comparable<TValue>> extends AbstractHeap<
         Class<TValue> classType,
         IBinaryComparator<IPriorityQueue<TValue>> comparator) {
 
-        return new Heap(
+        return new Heap<>(
             classType,
             comparator,
             base.core.Comparator.defaultComparator());
@@ -48,9 +46,9 @@ public final class Heap<TValue extends Comparable<TValue>> extends AbstractHeap<
     public static <TValue extends Comparable<TValue>> IPriorityQueue<TValue> createMinHeap(
         Class<TValue> classType,
         IBinaryComparator<IPriorityQueue<TValue>> comparator,
-        IBinaryComparator<IPriorityQueue<TValue>> elementComparator) {
+        IBinaryComparator<TValue> elementComparator) {
 
-        return new Heap(
+        return new Heap<>(
             classType,
             comparator,
             elementComparator);
@@ -60,7 +58,7 @@ public final class Heap<TValue extends Comparable<TValue>> extends AbstractHeap<
      * Creates a max heap by using the default invert comparator of an element.
      */
     public static <TValue extends Comparable<TValue>> IPriorityQueue<TValue> createMaxHeap(Class<TValue> classType) {
-        return new Heap(
+        return new Heap<>(
             classType,
             AbstractHeap.defaultComparator(),
             base.core.Comparator.defaultInvertComparator());
@@ -73,10 +71,10 @@ public final class Heap<TValue extends Comparable<TValue>> extends AbstractHeap<
         Class<TValue> classType,
         IBinaryComparator<IPriorityQueue<TValue>> comparator) {
 
-        return new Heap(
-                classType,
-                comparator,
-                base.core.Comparator.defaultInvertComparator());
+        return new Heap<>(
+            classType,
+            comparator,
+            base.core.Comparator.defaultInvertComparator());
     }
 
     /**
@@ -85,9 +83,9 @@ public final class Heap<TValue extends Comparable<TValue>> extends AbstractHeap<
     public static <TValue extends Comparable<TValue>> IPriorityQueue<TValue> createMaxHeap(
         Class<TValue> classType,
         IBinaryComparator<IPriorityQueue<TValue>> comparator,
-        IBinaryComparator<IPriorityQueue<TValue>> elementComparator) {
+        IBinaryComparator<TValue> elementComparator) {
 
-        return new Heap(
+        return new Heap<>(
             classType,
             comparator,
             base.core.Comparator.invertComparator(elementComparator));

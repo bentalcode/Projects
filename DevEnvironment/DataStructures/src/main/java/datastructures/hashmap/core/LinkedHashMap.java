@@ -269,7 +269,7 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
 
         /**
          * Determines the relative order of two instances.
-         * <p>
+         *
          * Returns -1 if the left hand side value is less than the right hand side value.
          * Returns 0 if the left hand side value is equal to the right hand side value.
          * Returns 1 if the left hand side value is greater than the right hand side value.

@@ -3,6 +3,7 @@ package datastructures.cache.core;
 import datastructures.cache.interfaces.ICacheProperties;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.node.interfaces.IKeyValueNode;
+import datastructures.priorityqueue.core.AbstractHeap;
 
 /**
  * The MRUCache class implements a most recently used cache.
@@ -13,7 +14,9 @@ public final class MRUCache<TKey extends Comparable<TKey>, TValue> extends Abstr
      * The MRUCache constructor.
      */
     public MRUCache(ICacheProperties properties) {
-        super(properties);
+        super(
+            properties,
+            AbstractCache.defaultComparator());
     }
 
     /**

@@ -1,14 +1,13 @@
 package datastructures.doublylinkedlist.core;
 
-import base.core.Conditions;
+import base.interfaces.IIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNodeIterator;
 
 /**
  * The DoublyLinkedListNodeIterator class implements an iterator of nodes of a doubly linked list.
  */
 public final class DoublyLinkedListNodeIterator<TValue extends Comparable<TValue>>
-    implements IDoublyLinkedListNodeIterator<TValue> {
+    implements IIterator<IDoublyLinkedListNode<TValue>> {
 
     private final IDoublyLinkedListNode<TValue> headNode;
     private IDoublyLinkedListNode<TValue> currentNode;
@@ -16,9 +15,7 @@ public final class DoublyLinkedListNodeIterator<TValue extends Comparable<TValue
     /**
      * Creates a new iterator of a list.
      */
-    public static <TValue extends Comparable<TValue>> IDoublyLinkedListNodeIterator<TValue> of(
-        IDoublyLinkedListNode<TValue> headNode) {
-
+    public static <TValue extends Comparable<TValue>> IIterator<IDoublyLinkedListNode<TValue>> of(IDoublyLinkedListNode<TValue> headNode) {
         return new DoublyLinkedListNodeIterator<>(headNode);
     }
 
