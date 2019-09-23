@@ -2,20 +2,18 @@ package datastructures.doublylinkedlist.core;
 
 import base.core.Iterator;
 import base.core.ListIterator;
-import base.core.ListReverseIterator;
-import base.interfaces.IBuilder;
-import base.interfaces.IIterator;
-import base.interfaces.IReverseIterator;
 import base.interfaces.ITriple;
 import datastructures.core.TestData;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
+import datastructures.doublylinkedlist.interfaces.IListData;
 import testbase.core.Assertion;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
+import testbase.interfaces.IIterationTest;
 import java.util.List;
 
 /**
@@ -46,16 +44,14 @@ public final class DoublyLinkedListTest {
     }
 
     /**
-     * Tests the creation logic of a binary tree.
+     * Tests the creation logic of a doubly linked list.
      */
     @Test
     public void DoublyLinkedListCreationTest() {
-        List<List<IDoublyLinkedListNode<Integer>>> data = this.testData.getDoublyLinkedListData().getData();
+        List<IListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
 
-        for (List<IDoublyLinkedListNode<Integer>> listData : data) {
-            IIterator<IDoublyLinkedListNode<Integer>> dataIterator = ListIterator.of(listData);
-
-            this.testCreation(dataIterator);
+        for (IListData<Integer> listData : data) {
+            this.testCreation(listData);
         }
     }
 
@@ -64,15 +60,10 @@ public final class DoublyLinkedListTest {
      */
     @Test
     public void DoublyLinkedListIterationTest() {
-        List<List<IDoublyLinkedListNode<Integer>>> data = this.testData.getDoublyLinkedListData().getData();
+        List<IListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
 
-        for (List<IDoublyLinkedListNode<Integer>> listData : data) {
-            IIterator<IDoublyLinkedListNode<Integer>> dataIterator = ListIterator.of(listData);
-            IReverseIterator<IDoublyLinkedListNode<Integer>> reverseDataIterator = ListReverseIterator.of(listData);
-
-            this.testIteration(
-                dataIterator,
-                reverseDataIterator);
+        for (IListData<Integer> listData : data) {
+            this.testIteration(listData);
         }
     }
 
@@ -92,124 +83,71 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the creation logic of a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> void testCreation(
-        IIterator<IDoublyLinkedListNode<TValue>> dataIterator) {
+    private <TValue extends Comparable<TValue>> void testCreation(IListData<TValue> data) {
+        //
+        // Create the container...
+        //
+        IDoublyLinkedList<TValue> container = this.createDoublyLinkedList(data.getCreationData());
 
         //
-        // Create the list...
-        //
-        IBuilder<IDoublyLinkedList<TValue>> builder = new DoublyLinkedListStreamBuilder<>(dataIterator);
-        IDoublyLinkedList<TValue> list = builder.build();
-
-        dataIterator.reset();
-
-        //
-        // Test the data of the list...
+        // Test the data of the container...
         //
         this.assertion.assertEquals(
-            list.getIterator(),
-            dataIterator,
-            DoublyLinkedListNode.defaultComparator(),
+            container.getValueIterator(),
+            ListIterator.of(data.getData()),
             "Invalid creation logic of a doubly linked list.");
     }
 
     /**
      * Tests the iteration logic of a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> void testIteration(
-        IIterator<IDoublyLinkedListNode<TValue>> dataIterator,
-        IReverseIterator<IDoublyLinkedListNode<TValue>> reverseDataIterator) {
-
+    private <TValue extends Comparable<TValue>> void testIteration(IListData<TValue> data) {
         //
-        // Create the list...
+        // Create the container...
         //
-        IBuilder<IDoublyLinkedList<TValue>> builder = new DoublyLinkedListStreamBuilder<>(dataIterator);
-        IDoublyLinkedList<TValue> list = builder.build();
-
-        dataIterator.reset();
+        IDoublyLinkedList<TValue> container = this.createDoublyLinkedList(data.getCreationData());
+        IDoublyLinkedList<TValue> expectedContainer = this.createDoublyLinkedList(data.getCreationData());
 
         //
         // Test the default iterator of the container...
         //
-        for (IDoublyLinkedListNode<TValue> currNode : list) {
-
-            IDoublyLinkedListNode<TValue> dataNode = dataIterator.next();
-
-            this.assertion.assertEquals(
-                currNode,
-                dataNode,
-                "Invalid logic of default forward iteration.");
-        }
-
-        dataIterator.reset();
+        IIterationTest iterationTest = new IterationTest();
+        iterationTest.testIteration(
+            container,
+            expectedContainer,
+            "List");
 
         //
-        // Test the forward iterator of the container for nodes...
+        // Test the forward iterator of the container...
         //
-        IIterator<IDoublyLinkedListNode<TValue>> iterator = list.getIterator();
-
-        while (iterator.hasNext() && dataIterator.hasNext()) {
-            IDoublyLinkedListNode<TValue> currNode = iterator.next();
-            IDoublyLinkedListNode<TValue> dataNode = dataIterator.next();
-
-            this.assertion.assertEquals(
-                currNode,
-                dataNode,
-                "Invalid logic of forward iterator.");
-        }
-
-        dataIterator.reset();
+        iterationTest.testForwardIteration(
+            container,
+            expectedContainer,
+            "List");
 
         //
-        // Test the forward iterator of the container for values...
+        // Test the reverse iterator of the container...
         //
-        IIterator<TValue> valueIterator = list.getValueIterator();
-
-        while (iterator.hasNext() && dataIterator.hasNext()) {
-            TValue currNode = valueIterator.next();
-            TValue dataNode = dataIterator.next().getValue();
-
-            this.assertion.assertEquals(
-                currNode,
-                dataNode,
-                "Invalid logic of forward iterator.");
-        }
-
-        valueIterator.reset();
+        iterationTest.testReverseIteration(
+            container,
+            expectedContainer,
+            "List");
 
         //
-        // Test the reverse iterator of the container for nodes...
+        // Test the value iterator of the container...
         //
-        IIterator<IDoublyLinkedListNode<TValue>> reverseIterator = list.getReverseIterator();
-
-        while (reverseIterator.hasNext() && reverseDataIterator.hasNext()) {
-            IDoublyLinkedListNode<TValue> currNode = reverseIterator.next();
-            IDoublyLinkedListNode<TValue> dataNode = reverseDataIterator.next();
-
-            this.assertion.assertEquals(
-                currNode,
-                dataNode,
-                "Invalid logic of reverse iterator.");
-        }
-
-        reverseDataIterator.reset();
+        iterationTest.testValueIteration(
+            container,
+            expectedContainer,
+            "List");
 
         //
-        // Test the reverse iterator of the container for values...
+        // Test the value reverse iterator of the container...
         //
-        IReverseIterator<TValue> reverseValueIterator = list.getValueReverseIterator();
-
-        while (reverseIterator.hasNext() && reverseValueIterator.hasNext()) {
-            TValue currValue = reverseValueIterator.next();
-            TValue dataValue = reverseDataIterator.next().getValue();
-
-            this.assertion.assertEquals(
-                currValue,
-                dataValue,
-                "Invalid logic of reverse iterator.");
-        }
-
-        reverseDataIterator.reset();
+        iterationTest.testValueReverseIteration(
+            container,
+            expectedContainer,
+            "List");
     }
 
     /**
@@ -243,6 +181,19 @@ public final class DoublyLinkedListTest {
             list.getValueIterator(),
             Iterator.of(expectedContent),
             "Invalid updation logic of a doubly linked list.");
+    }
+
+    /**
+     * Creates a doubly linked list.
+     */
+    private <TValue extends Comparable<TValue>> IDoublyLinkedList<TValue> createDoublyLinkedList(List<TValue> data) {
+        IDoublyLinkedList<TValue> result = new DoublyLinkedList<>();
+
+        for (TValue element : data) {
+            result.addToBack(element);
+        }
+
+        return result;
     }
 
     /**

@@ -1,13 +1,12 @@
 package datastructures.doublylinkedlist.core;
 
 import base.core.ArrayLists;
+import base.core.RandomGenerator;
 import base.core.Triple;
+import base.interfaces.IRandomGenerator;
 import base.interfaces.ITriple;
-import datastructures.binarytree.core.BinaryTreeEndNode;
-import datastructures.binarytree.core.BinaryTreeNode;
-import datastructures.binarytree.interfaces.IBinaryTreeNode;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
+import datastructures.doublylinkedlist.interfaces.IListData;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,12 @@ import java.util.List;
  * The DoublyLinkedListTestData class implements data of tests of a doubly linked list.
  */
 public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData {
+    private static int RandomCollectionsSize = 10;
+    private static int RandomMinCollectionSize = 100;
+    private static int RandomMaxCollectionSize = 1000;
+
+    private final IRandomGenerator randomGenerator = new RandomGenerator();
+
     /**
      * The DoublyLinkedListTestData constructor.
      */
@@ -25,20 +30,22 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
      * Gets the data of doubly linked lists.
      */
     @Override
-    public List<List<IDoublyLinkedListNode<Integer>>> getData() {
-        List<List<IDoublyLinkedListNode<Integer>>> data = new ArrayList<>();
+    public List<IListData<Integer>> getData() {
+        List<IListData<Integer>> data = new ArrayList<>();
 
-        data.add(this.getData(0));
-        data.add(this.getData(1));
-        data.add(this.getData(3));
-        data.add(this.getData(100));
-        data.add(this.getData(1000000));
+        data.add(this.getListData1());
+        data.add(this.getListData2());
+        data.add(this.getListData3());
+
+        for (int i = 0; i < RandomCollectionsSize; ++i) {
+            data.add(this.getRandomListData(RandomMinCollectionSize, RandomMaxCollectionSize));
+        }
 
         return data;
     }
 
     /**
-     * Gets the updation data.
+     * Gets the updation data of a doubly linked list.
      */
     @Override
     public List<ITriple<String, Integer, List<Integer>>> getUpdationData() {
@@ -60,16 +67,58 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     }
 
     /**
+     * Gets the data of list1.
+     */
+    private IListData<Integer> getListData1() {
+        List<Integer> creationData = this.getData(0);
+        List<Integer> data = creationData;
+
+        return new ListData<>(creationData, data);
+    }
+
+    /**
+     * Gets the data of list2.
+     */
+    private IListData<Integer> getListData2() {
+        List<Integer> creationData = this.getData(50);
+        List<Integer> data = creationData;
+
+        return new ListData<>(creationData, data);
+    }
+
+    /**
+     * Gets the data of list3.
+     */
+    private IListData<Integer> getListData3() {
+        List<Integer> creationData = this.getData(100);
+        List<Integer> data = creationData;
+
+        return new ListData<>(creationData, data);
+    }
+
+    /**
      * Gets the data of a doubly linked list.
      */
-    private List<IDoublyLinkedListNode<Integer>> getData(int size) {
-        List<IDoublyLinkedListNode<Integer>> data = new ArrayList<>();
+    private List<Integer> getData(int size) {
+        List<Integer> result = new ArrayList<>();
 
         for (int i = 0; i < size; ++i) {
             int value = i + 1;
-            data.add(DoublyLinkedListNode.of(value));
+            result.add(value);
         }
 
-        return data;
+        return result;
+    }
+
+    /**
+     * Gets the random data of list.
+     */
+    private IListData<Integer> getRandomListData(int fromSize, int toSize) {
+        int size = this.randomGenerator.nextInteger(fromSize, toSize);
+        List<Integer> data = this.getData(size);
+
+        return new ListData<>(
+            data,
+            data);
     }
 }

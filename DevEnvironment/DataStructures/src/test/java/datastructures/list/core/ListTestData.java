@@ -1,6 +1,7 @@
 package datastructures.list.core;
 
-import base.core.ArrayLists;
+import base.core.RandomGenerator;
+import base.interfaces.IRandomGenerator;
 import datastructures.list.interfaces.IListData;
 import datastructures.list.interfaces.IListTestData;
 import java.util.ArrayList;
@@ -10,6 +11,12 @@ import java.util.List;
  * The ListTestData class implements data of tests for a list.
  */
 public final class ListTestData implements IListTestData {
+    private static int RandomCollectionsSize = 10;
+    private static int RandomMinCollectionSize = 100;
+    private static int RandomMaxCollectionSize = 1000;
+
+    private final IRandomGenerator randomGenerator = new RandomGenerator();
+
     /**
      * The ListTestData constructor.
      */
@@ -21,14 +28,17 @@ public final class ListTestData implements IListTestData {
      */
     @Override
     public List<IListData<Integer>> getData() {
-        IListData<Integer> data1 = this.getListData1();
-        IListData<Integer> data2 = this.getListData2();
-        IListData<Integer> data3 = this.getListData3();
+        List<IListData<Integer>> data = new ArrayList<>();
 
-        return ArrayLists.of(
-            data1,
-            data2,
-            data3);
+        data.add(this.getListData1());
+        data.add(this.getListData2());
+        data.add(this.getListData3());
+
+        for (int i = 0; i < RandomCollectionsSize; ++i) {
+            data.add(this.getRandomListData(RandomMinCollectionSize, RandomMaxCollectionSize));
+        }
+
+        return data;
     }
 
     /**
@@ -60,6 +70,19 @@ public final class ListTestData implements IListTestData {
      */
     private IListData<Integer> getListData3() {
         List<Integer> data = this.createList(100);
+
+        return new ListData<>(
+            Integer.class,
+            data,
+            data);
+    }
+
+    /**
+     * Gets the random data of list.
+     */
+    private IListData<Integer> getRandomListData(int fromSize, int toSize) {
+        int size = this.randomGenerator.nextInteger(fromSize, toSize);
+        List<Integer> data = this.createList(size);
 
         return new ListData<>(
             Integer.class,

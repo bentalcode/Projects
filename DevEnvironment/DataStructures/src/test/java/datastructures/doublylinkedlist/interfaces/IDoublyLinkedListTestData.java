@@ -10,10 +10,10 @@ public interface IDoublyLinkedListTestData {
     /**
      * Gets the data of doubly linked lists.
      */
-    List<List<IDoublyLinkedListNode<Integer>>> getData();
+    List<IListData<Integer>> getData();
 
     /**
-     * Gets the updation data.
+     * Gets the updation data of a doubly linked list.
      */
     List<ITriple<String, Integer, List<Integer>>> getUpdationData();
 }

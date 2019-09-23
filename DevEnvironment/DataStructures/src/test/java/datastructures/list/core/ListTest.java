@@ -7,10 +7,6 @@ import datastructures.interfaces.ITestData;
 import datastructures.list.interfaces.IList;
 import datastructures.list.interfaces.IListData;
 import java.util.List;
-
-import datastructures.priorityqueue.core.Heap;
-import datastructures.priorityqueue.interfaces.IPriorityQueue;
-import datastructures.priorityqueue.interfaces.IPriorityQueueData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
