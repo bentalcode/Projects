@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * The ListData class implements the data of a list.
  */
-public final class ListData<TValue extends Comparable<TValue>> implements IListData {
+public final class ListData<TValue extends Comparable<TValue>> implements IListData<TValue> {
     private final List<TValue> creationData;
     private final List<TValue> data;
 
