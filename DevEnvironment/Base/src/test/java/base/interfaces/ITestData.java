@@ -1,6 +1,5 @@
 package base.interfaces;
 
-import base.core.Pair;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -17,4 +16,9 @@ public interface ITestData {
      * Gets values of integer-string.
      */
     List<IPair<Integer, String>> getIntegerStrings();
+
+    /**
+     * Gets all sequence sub strings of a string.
+     */
+    List<IPair<String, List<List<String>>>> getAllSequenceSubStringsOfString();
 }

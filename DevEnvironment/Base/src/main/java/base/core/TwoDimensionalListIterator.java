@@ -1,12 +1,13 @@
 package base.core;
 
 import base.interfaces.IIterator;
+import java.util.List;
 
 /**
- * The TwoDimensionalArrayIterator class implements an iterator of a two dimensional array.
+ * The TwoDimensionalListIterator class implements an iterator of a two dimensional list.
  */
-public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
-    private final T[][] array;
+public final class TwoDimensionalListIterator<T> implements IIterator<T> {
+    private final List<List<T>> data;
     private final int rows;
     private int rowIndex;
     private int columnIndex;
@@ -14,20 +15,20 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     /**
      * Creates a new iterator of an array.
      */
-    public static <T> IIterator<T> of(T[][] array) {
-        return new TwoDimensionalArrayIterator<>(array);
+    public static <T> IIterator<T> of(List<List<T>> data) {
+        return new TwoDimensionalListIterator<>(data);
     }
 
     /**
      * The TwoDimensionalArrayIterator constructor.
      */
-    private TwoDimensionalArrayIterator(T[][] array) {
+    private TwoDimensionalListIterator(List<List<T>> data) {
         Conditions.validateNotNull(
-            array,
-            "The array to iterate.");
+            data,
+            "The two dimensional list to iterate.");
 
-        this.array = array;
-        this.rows = array.length;
+        this.data = data;
+        this.rows = data.size();
 
         this.reset();
     }
@@ -80,18 +81,18 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
      * Gets the size of a specific row.
      */
     private int rowSize(int rowIndex) {
-        return this.array[rowIndex].length;
+        return this.data.get(rowIndex).size();
     }
 
     /**
-     * Gets a value of a specific position.
+     * Gets a value od a specific position.
      */
     private T get(int rowIndex, int columnIndex) {
         assert(rowIndex >= 0 && rowIndex < this.rows);
-        assert(columnIndex >= 0 && columnIndex < this.array[rowIndex].length);
+        assert(columnIndex >= 0 && columnIndex < this.rowSize(rowIndex));
 
-        T value = this.array[rowIndex][columnIndex];
+        List<T> row = this.data.get(rowIndex);
 
-        return value;
+        return row.get(columnIndex);
     }
 }
