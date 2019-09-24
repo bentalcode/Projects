@@ -6,6 +6,8 @@ import datastructures.bplustree.core.BPlusTreeTestData;
 import datastructures.bplustree.interfaces.IBPlusTreeTestData;
 import datastructures.cache.core.CacheTestData;
 import datastructures.cache.interfaces.ICacheTestData;
+import datastructures.collections.core.CollectionTestData;
+import datastructures.collections.interfaces.ICollectionTestData;
 import datastructures.doublylinkedlist.core.DoublyLinkedListTestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.graph.core.GraphTestData;
@@ -27,6 +29,14 @@ public final class TestData implements ITestData {
      * The TestData constructor.
      */
     public TestData() {
+    }
+
+    /**
+     * Gets the data of tests of a collection.
+     */
+    @Override
+    public ICollectionTestData getCollectionData() {
+        return new CollectionTestData();
     }
 
     /**

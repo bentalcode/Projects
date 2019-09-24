@@ -3,6 +3,7 @@ package datastructures.interfaces;
 import datastructures.binarytree.interfaces.IBinaryTreeTestData;
 import datastructures.bplustree.interfaces.IBPlusTreeTestData;
 import datastructures.cache.interfaces.ICacheTestData;
+import datastructures.collections.interfaces.ICollectionTestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
@@ -13,6 +14,11 @@ import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
  * The ITestData interface defines the data of the tests.
  */
 public interface ITestData {
+    /**
+     * Gets the data of tests of a collection.
+     */
+    ICollectionTestData getCollectionData();
+
     /**
      * Gets the data of tests of a list.
      */

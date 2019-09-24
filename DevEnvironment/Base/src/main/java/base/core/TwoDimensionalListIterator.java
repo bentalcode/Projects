@@ -13,14 +13,14 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
     private int columnIndex;
 
     /**
-     * Creates a new iterator of an array.
+     * Creates a new iterator of a two dimensional list.
      */
     public static <T> IIterator<T> of(List<List<T>> data) {
         return new TwoDimensionalListIterator<>(data);
     }
 
     /**
-     * The TwoDimensionalArrayIterator constructor.
+     * The TwoDimensionalListIterator constructor.
      */
     private TwoDimensionalListIterator(List<List<T>> data) {
         Conditions.validateNotNull(
@@ -38,7 +38,7 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.rowIndex < this.rows && this.columnIndex < this.rowSize(this.rowIndex);
+        return this.rowIndex < this.rows && this.columnIndex < this.columnSize(this.rowIndex);
     }
 
     /**
@@ -68,7 +68,7 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
      * Moves to the next element.
      */
     private void moveNext() {
-        if (this.columnIndex < this.rowSize(this.rowIndex) - 1) {
+        if (this.columnIndex < this.columnSize(this.rowIndex) - 1) {
             ++this.columnIndex;
         }
         else {
@@ -78,9 +78,9 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
     }
 
     /**
-     * Gets the size of a specific row.
+     * Gets the column size of a specific row.
      */
-    private int rowSize(int rowIndex) {
+    private int columnSize(int rowIndex) {
         return this.data.get(rowIndex).size();
     }
 
@@ -89,10 +89,8 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
      */
     private T get(int rowIndex, int columnIndex) {
         assert(rowIndex >= 0 && rowIndex < this.rows);
-        assert(columnIndex >= 0 && columnIndex < this.rowSize(rowIndex));
+        assert(columnIndex >= 0 && columnIndex < this.columnSize(rowIndex));
 
-        List<T> row = this.data.get(rowIndex);
-
-        return row.get(columnIndex);
+        return this.data.get(rowIndex).get(columnIndex);
     }
 }

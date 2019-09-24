@@ -1,6 +1,5 @@
 package base.core;
 
-import base.interfaces.IPair;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,76 +15,20 @@ public final class Strings {
     }
 
     /**
-     * Calculates all possible sequences of sub strings of a string.
+     * Converts the string to a list of characters.
      */
-    public static List<List<String>> calculateSequenceSubStringsOfString(String str) {
+    public static List<Character> toList(String str) {
         Conditions.validateNotNull(
             str,
-            "The input string.");
+            "The input string for converting to a list.");
 
-        List<List<String>> result = new ArrayList<>();
+        List<Character> result = new ArrayList<>();
 
-        if (str.isEmpty()) {
-            return result;
-        }
-
-        List<IPair<List<String>, Integer>> sequences = new ArrayList<>();
-        Strings.calculateSequenceSubStringsOfString(
-            str,
-            sequences);
-
-        for (IPair<List<String>, Integer> sequence : sequences) {
-            List<String> currSequenceResult = sequence.first();
-            int currSequenceSize = sequence.second();
-
-            if (currSequenceSize == str.length()) {
-                result.add(currSequenceResult);
-            }
+        for (int i = 0; i < str.length(); ++i) {
+            result.add(str.charAt(i));
         }
 
         return result;
-    }
-
-    /**
-     * Calculates all possible sequences of sub strings of a string.
-     */
-    private static void calculateSequenceSubStringsOfString(
-        String str,
-        List<IPair<List<String>, Integer>> result) {
-
-        for (int startIndex = 0; startIndex < str.length(); ++startIndex) {
-            for (int endIndex = startIndex; endIndex < str.length(); ++endIndex) {
-
-                int currSubStringSize = endIndex - startIndex + 1;
-                String currSubString = str.substring(startIndex, startIndex + currSubStringSize);
-
-                if (startIndex == 0) {
-                    List<String> newSequenceResult = new ArrayList<>();
-                    newSequenceResult.add(currSubString);
-                    int newSequenceSize = currSubString.length();
-
-                    result.add(Pair.of(newSequenceResult, newSequenceSize));
-                }
-                else {
-                    int currNumberOfResults = result.size();
-
-                    for (int i = 0; i < currNumberOfResults; ++i) {
-                        IPair<List<String>, Integer> currResult = result.get(i);
-
-                        List<String> currSequenceResult = currResult.first();
-                        int currSequenceSize = currResult.second();
-
-                        if (startIndex == currSequenceSize) {
-                            List<String> newSequenceResult = new ArrayList<>(currSequenceResult);
-                            newSequenceResult.add(currSubString);
-                            int newSequenceSize = currSequenceSize + currSubString.length();
-
-                            result.add(Pair.of(newSequenceResult, newSequenceSize));
-                        }
-                    }
-                }
-            }
-        }
     }
 
     /**

@@ -6,28 +6,28 @@ import base.interfaces.IIterator;
  * The TwoDimensionalArrayIterator class implements an iterator of a two dimensional array.
  */
 public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
-    private final T[][] array;
+    private final T[][] data;
     private final int rows;
     private int rowIndex;
     private int columnIndex;
 
     /**
-     * Creates a new iterator of an array.
+     * Creates a new iterator of a two dimensional array.
      */
-    public static <T> IIterator<T> of(T[][] array) {
-        return new TwoDimensionalArrayIterator<>(array);
+    public static <T> IIterator<T> of(T[][] data) {
+        return new TwoDimensionalArrayIterator<>(data);
     }
 
     /**
      * The TwoDimensionalArrayIterator constructor.
      */
-    private TwoDimensionalArrayIterator(T[][] array) {
+    private TwoDimensionalArrayIterator(T[][] data) {
         Conditions.validateNotNull(
-            array,
+            data,
             "The array to iterate.");
 
-        this.array = array;
-        this.rows = array.length;
+        this.data = data;
+        this.rows = data.length;
 
         this.reset();
     }
@@ -37,7 +37,7 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.rowIndex < this.rows && this.columnIndex < this.rowSize(this.rowIndex);
+        return this.rowIndex < this.rows && this.columnIndex < this.columnSize(this.rowIndex);
     }
 
     /**
@@ -67,7 +67,7 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
      * Moves to the next element.
      */
     private void moveNext() {
-        if (this.columnIndex < this.rowSize(this.rowIndex) - 1) {
+        if (this.columnIndex < this.columnSize(this.rowIndex) - 1) {
             ++this.columnIndex;
         }
         else {
@@ -77,10 +77,10 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     }
 
     /**
-     * Gets the size of a specific row.
+     * Gets the column size of a specific row.
      */
-    private int rowSize(int rowIndex) {
-        return this.array[rowIndex].length;
+    private int columnSize(int rowIndex) {
+        return this.data[rowIndex].length;
     }
 
     /**
@@ -88,10 +88,8 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
      */
     private T get(int rowIndex, int columnIndex) {
         assert(rowIndex >= 0 && rowIndex < this.rows);
-        assert(columnIndex >= 0 && columnIndex < this.array[rowIndex].length);
+        assert(columnIndex >= 0 && columnIndex < this.data[rowIndex].length);
 
-        T value = this.array[rowIndex][columnIndex];
-
-        return value;
+        return this.data[rowIndex][columnIndex];
     }
 }
