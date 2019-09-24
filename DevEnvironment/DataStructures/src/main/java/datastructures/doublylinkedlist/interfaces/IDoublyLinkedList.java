@@ -1,12 +1,12 @@
 package datastructures.doublylinkedlist.interfaces;
 
 import base.interfaces.IIterable;
+import base.interfaces.IIterator;
 import base.interfaces.IReverseIterable;
+import base.interfaces.IReverseIterator;
 import base.interfaces.IUnaryComparator;
 import datastructures.collections.interfaces.IValueIterable;
-import datastructures.collections.interfaces.IValueIterator;
 import datastructures.collections.interfaces.IValueReverseIterable;
-import datastructures.collections.interfaces.IValueReverseIterator;
 
 /**
  * The IDoublyLinkedList interface defines a doubly linked list.
@@ -103,12 +103,12 @@ public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
     /**
      * Gets an iterator of values of a list.
      */
-    IValueIterator<TValue> getValueIterator();
+    IIterator<TValue> getValueIterator();
 
     /**
      * Gets a reverse iterator of values of a list.
      */
-    IValueReverseIterator<TValue> getValueReverseIterator();
+    IReverseIterator<TValue> getValueReverseIterator();
 
     /**
      * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]

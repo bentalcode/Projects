@@ -13,8 +13,6 @@ import datastructures.cache.CacheException;
 import datastructures.cache.interfaces.ICache;
 import datastructures.cache.interfaces.ICacheProperties;
 import datastructures.collections.core.Collections;
-import datastructures.collections.interfaces.IKeyIterator;
-import datastructures.collections.interfaces.IValueIterator;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeIterator;
 import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeReverseIterator;
@@ -22,7 +20,9 @@ import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.core.KeyValueNodeKeyIterator;
+import datastructures.node.core.KeyValueNodeKeyReverseIterator;
 import datastructures.node.core.KeyValueNodeValueIterator;
+import datastructures.node.core.KeyValueNodeValueReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -178,23 +178,44 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
      */
     @Override
     public IReverseIterator<IKeyValueNode<TKey, TValue>> getReverseIterator() {
-        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator = this.data.usedList().getReverseIterator();
-        return DoublyLinkedListKeyValueNodeReverseIterator.of(iterator);
+        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> reverseIterator = this.data.usedList().getReverseIterator();
+        return DoublyLinkedListKeyValueNodeReverseIterator.of(reverseIterator);
     }
 
     /**
      * Gets an iterator of keys of a cache.
      */
-    public IKeyIterator<TKey> getKeyIterator() {
-        return KeyValueNodeKeyIterator.of(this.getIterator());
+    @Override
+    public IIterator<TKey> getKeyIterator() {
+        IIterator<IKeyValueNode<TKey, TValue>> iterator = this.getIterator();
+        return KeyValueNodeKeyIterator.of(iterator);
+    }
+
+    /**
+     * Gets a reverse iterator of keys of a cache.
+     */
+    @Override
+    public IReverseIterator<TKey> getKeyReverseIterator() {
+        IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator = this.getReverseIterator();
+        return KeyValueNodeKeyReverseIterator.of(reverseIterator);
     }
 
     /**
      * Gets an iterator of values of a cache.
      */
     @Override
-    public IValueIterator<TValue> getValueIterator() {
-        return KeyValueNodeValueIterator.of(this.getIterator());
+    public IIterator<TValue> getValueIterator() {
+        IIterator<IKeyValueNode<TKey, TValue>> iterator = this.getIterator();
+        return KeyValueNodeValueIterator.of(iterator);
+    }
+
+    /**
+     * Gets a reverse iterator of values of a cache.
+     */
+    @Override
+    public IReverseIterator<TValue> getValueReverseIterator() {
+        IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator = this.getReverseIterator();
+        return KeyValueNodeValueReverseIterator.of(reverseIterator);
     }
 
     /**

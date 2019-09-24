@@ -2,20 +2,18 @@ package datastructures.node.core;
 
 import base.core.Conditions;
 import base.interfaces.IIterator;
-import datastructures.collections.interfaces.IKeyIterator;
-import datastructures.collections.interfaces.IValueIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
  * The KeyValueNodeKeyIterator class implements an iterator of keys of key-value nodes.
  */
-public final class KeyValueNodeKeyIterator<TKey extends Comparable<TKey>, TValue> implements IKeyIterator<TKey> {
+public final class KeyValueNodeKeyIterator<TKey extends Comparable<TKey>, TValue> implements IIterator<TKey> {
     private final IIterator<IKeyValueNode<TKey, TValue>> iterator;
 
     /**
      * Creates a new key iterator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IKeyIterator<TKey> of(
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<TKey> of(
         IIterator<IKeyValueNode<TKey, TValue>> iterator) {
 
         return new KeyValueNodeKeyIterator<>(iterator);

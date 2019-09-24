@@ -4,8 +4,6 @@ import base.core.Iterator;
 import base.interfaces.IIterator;
 import base.interfaces.ITriple;
 import datastructures.cache.interfaces.ICache;
-import datastructures.collections.interfaces.IKeyIterator;
-import datastructures.collections.interfaces.IValueIterator;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
@@ -166,7 +164,7 @@ public final class LRUCacheTest {
         //
         // Test the forward iteration over keys...
         //
-        IKeyIterator<TKey> keyIterator = cache.getKeyIterator();
+        IIterator<TKey> keyIterator = cache.getKeyIterator();
         index = 0;
 
         while (keyIterator.hasNext()) {
@@ -183,7 +181,7 @@ public final class LRUCacheTest {
         //
         // Test the forward iteration over values...
         //
-        IValueIterator<TValue> valueIterator = cache.getValueIterator();
+        IIterator<TValue> valueIterator = cache.getValueIterator();
         index = 0;
 
         while (valueIterator.hasNext()) {

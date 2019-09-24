@@ -7,13 +7,9 @@ import base.interfaces.IIterator;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IReverseIterator;
 import datastructures.collections.interfaces.IKeyIterable;
-import datastructures.collections.interfaces.IKeyIterator;
 import datastructures.collections.interfaces.IKeyReverseIterable;
-import datastructures.collections.interfaces.IKeyReverseIterator;
 import datastructures.collections.interfaces.IValueIterable;
-import datastructures.collections.interfaces.IValueIterator;
 import datastructures.collections.interfaces.IValueReverseIterable;
-import datastructures.collections.interfaces.IValueReverseIterator;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
 
@@ -247,8 +243,8 @@ public final class IterationTest implements IIterationTest {
             comparator,
             "The comparator of an element.");
 
-        IKeyIterator<TValue> iterator = container.getKeyIterator();
-        IKeyIterator<TValue> expectedIterator = expectedContainer.getKeyIterator();
+        IIterator<TValue> iterator = container.getKeyIterator();
+        IIterator<TValue> expectedIterator = expectedContainer.getKeyIterator();
 
         int index = 0;
 
@@ -308,8 +304,8 @@ public final class IterationTest implements IIterationTest {
             comparator,
             "The comparator of an element.");
 
-        IKeyReverseIterator<TValue> iterator = container.getKeyReverseIterator();
-        IKeyReverseIterator<TValue> expectedIterator = expectedContainer.getKeyReverseIterator();
+        IReverseIterator<TValue> iterator = container.getKeyReverseIterator();
+        IReverseIterator<TValue> expectedIterator = expectedContainer.getKeyReverseIterator();
 
         int index = 0;
 
@@ -369,8 +365,8 @@ public final class IterationTest implements IIterationTest {
             comparator,
             "The comparator of an element.");
 
-        IValueIterator<TValue> iterator = container.getValueIterator();
-        IValueIterator<TValue> expectedIterator = expectedContainer.getValueIterator();
+        IIterator<TValue> iterator = container.getValueIterator();
+        IIterator<TValue> expectedIterator = expectedContainer.getValueIterator();
 
         int index = 0;
 
@@ -430,8 +426,8 @@ public final class IterationTest implements IIterationTest {
             comparator,
             "The comparator of an element.");
 
-        IValueReverseIterator<TValue> iterator = container.getValueReverseIterator();
-        IValueReverseIterator<TValue> expectedIterator = expectedContainer.getValueReverseIterator();
+        IReverseIterator<TValue> iterator = container.getValueReverseIterator();
+        IReverseIterator<TValue> expectedIterator = expectedContainer.getValueReverseIterator();
 
         int index = 0;
 

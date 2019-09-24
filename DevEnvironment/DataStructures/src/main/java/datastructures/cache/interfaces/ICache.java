@@ -3,8 +3,10 @@ package datastructures.cache.interfaces;
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.IKeyIterator;
-import datastructures.collections.interfaces.IValueIterator;
+import datastructures.collections.interfaces.IKeyIterable;
+import datastructures.collections.interfaces.IKeyReverseIterable;
+import datastructures.collections.interfaces.IValueIterable;
+import datastructures.collections.interfaces.IValueReverseIterable;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
@@ -13,7 +15,11 @@ import datastructures.node.interfaces.IKeyValueNode;
 public interface ICache<TKey extends Comparable<TKey>, TValue> extends
     IUnaryComparator<ICache<TKey, TValue>>,
     IIterable<IKeyValueNode<TKey, TValue>>,
-    IReverseIterable<IKeyValueNode<TKey, TValue>> {
+    IReverseIterable<IKeyValueNode<TKey, TValue>>,
+    IKeyIterable<TKey>,
+    IKeyReverseIterable<TKey>,
+    IValueIterable<TValue>,
+    IValueReverseIterable<TValue> {
 
     /**
      * Gets properties of a cache.
@@ -47,18 +53,6 @@ public interface ICache<TKey extends Comparable<TKey>, TValue> extends
      * Complexity: O(1)
      */
     boolean has(TKey key);
-
-    /**
-     * Gets an iterator of keys of a cache.
-     * Complexity: O(1)
-     */
-    IKeyIterator<TKey> getKeyIterator();
-
-    /**
-     * Gets an iterator of values of a cache.
-     * Complexity: O(1)
-     */
-    IValueIterator<TValue> getValueIterator();
 
     /**
      * Gets the size of a cache.

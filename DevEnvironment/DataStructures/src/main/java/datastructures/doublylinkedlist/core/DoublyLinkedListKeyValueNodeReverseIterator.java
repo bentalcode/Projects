@@ -1,39 +1,39 @@
 package datastructures.doublylinkedlist.core;
 
 import base.core.Conditions;
-import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
- * The DoublyLinkedListKeyValueNodeReverseIterator class implements an iterator of key-value nodes of a doubly linked list.
+ * The DoublyLinkedListKeyValueNodeReverseIterator class implements a reverse iterator of key-value nodes
+ * of a doubly linked list.
  */
 public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TValue>
     implements IReverseIterator<IKeyValueNode<TKey, TValue>> {
 
-    private final IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator;
+    private final IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> reverseIterator;
 
     /**
      * Creates a reverse iterator of a key-value node.
      */
     public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IKeyValueNode<TKey, TValue>> of(
-        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
+        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> reverseIterator) {
 
-        return new DoublyLinkedListKeyValueNodeReverseIterator<>(iterator);
+        return new DoublyLinkedListKeyValueNodeReverseIterator<>(reverseIterator);
     }
 
     /**
      * The DoublyLinkedListKeyValueNodeReverseIterator constructor.
      */
     private DoublyLinkedListKeyValueNodeReverseIterator(
-        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
+        IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> reverseIterator) {
 
         Conditions.validateNotNull(
-            iterator,
-            "The reverse iterator of a doubly linked list node of a key-value node.");
+            reverseIterator,
+            "The reverse iterator of key-value nodes of a doubly linked list.");
 
-        this.iterator = iterator;
+        this.reverseIterator = reverseIterator;
 
         this.reset();
     }
@@ -43,7 +43,7 @@ public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comp
      */
     @Override
     public boolean hasNext() {
-        return this.iterator.hasNext();
+        return this.reverseIterator.hasNext();
     }
 
     /**
@@ -53,7 +53,7 @@ public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comp
     public IKeyValueNode<TKey, TValue> next() {
         assert(this.hasNext());
 
-        IKeyValueNode<TKey, TValue> node = this.iterator.next().getValue();
+        IKeyValueNode<TKey, TValue> node = this.reverseIterator.next().getValue();
 
         return node;
     }
@@ -63,6 +63,6 @@ public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comp
      */
     @Override
     public void reset() {
-        this.iterator.reset();
+        this.reverseIterator.reset();
     }
 }

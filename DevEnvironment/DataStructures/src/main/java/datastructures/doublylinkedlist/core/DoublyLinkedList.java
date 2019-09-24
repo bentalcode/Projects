@@ -10,8 +10,6 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.collections.core.Collections;
-import datastructures.collections.interfaces.IValueIterator;
-import datastructures.collections.interfaces.IValueReverseIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 
@@ -304,7 +302,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     }
 
     /**
-     * Gets an iterator of nodes of a list.
+     * Gets an iterator of nodes.
      */
     @Override
     public IIterator<IDoublyLinkedListNode<TValue>> getIterator() {
@@ -312,15 +310,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     }
 
     /**
-     * Gets an iterator of values of a list.
-     */
-    @Override
-    public IValueIterator<TValue> getValueIterator() {
-        return new DoublyLinkedListNodeValueIterator<>(this.getIterator());
-    }
-
-    /**
-     * Gets a reverse iterator of nodes of a list.
+     * Gets a reverse iterator of nodes.
      */
     @Override
     public IReverseIterator<IDoublyLinkedListNode<TValue>> getReverseIterator() {
@@ -328,10 +318,18 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     }
 
     /**
-     * Gets a reverse iterator of values of a list.
+     * Gets an iterator of values.
      */
     @Override
-    public IValueReverseIterator<TValue> getValueReverseIterator() {
+    public IIterator<TValue> getValueIterator() {
+        return new DoublyLinkedListNodeValueIterator<>(this.getIterator());
+    }
+
+    /**
+     * Gets a reverse iterator of values.
+     */
+    @Override
+    public IReverseIterator<TValue> getValueReverseIterator() {
         return new DoublyLinkedListNodeValueReverseIterator<>(this.getReverseIterator());
     }
 
