@@ -43,7 +43,7 @@ public final class ThreeDimensionalListIterator<T extends Comparable<T>> impleme
         return
             this.rowIndex < this.rows &&
             this.columnIndex < this.columnSize(this.rowIndex) &&
-            this.depthIndex < this.depthSize(this.rowIndex, this.depthIndex);
+            this.depthIndex < this.depthSize(this.rowIndex, this.columnIndex);
     }
 
     /**

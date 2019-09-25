@@ -10,8 +10,8 @@ import datastructures.list.interfaces.IList;
 public class TwoDimensionalListIterator<T extends Comparable<T>> implements IIterator<T> {
     private final IList<IList<T>> data;
     private final int rows;
-    private int rowPosition;
-    private int columnPosition;
+    private int rowIndex;
+    private int columnIndex;
 
     /**
      * Creates a new iterator of a two dimensional list.
@@ -39,7 +39,7 @@ public class TwoDimensionalListIterator<T extends Comparable<T>> implements IIte
      */
     @Override
     public boolean hasNext() {
-        return this.rowPosition < this.rows && this.columnPosition < this.rowSize(this.rowPosition);
+        return this.rowIndex < this.rows && this.columnIndex < this.columnSize(this.rowIndex);
     }
 
     /**
@@ -49,7 +49,7 @@ public class TwoDimensionalListIterator<T extends Comparable<T>> implements IIte
     public T next() {
         assert(this.hasNext());
 
-        T currElement = this.data.get(this.rowPosition).get(this.columnPosition);
+        T currElement = this.get(this.rowIndex, this.columnIndex);
 
         this.moveNext();
 
@@ -61,27 +61,37 @@ public class TwoDimensionalListIterator<T extends Comparable<T>> implements IIte
      */
     @Override
     public void reset() {
-        this.rowPosition = 0;
-        this.columnPosition = 0;
+        this.rowIndex = 0;
+        this.columnIndex = 0;
     }
 
     /**
      * Moves to the next element.
      */
     private void moveNext() {
-        if (this.columnPosition < this.rowSize(this.rowPosition) - 1) {
-            ++this.columnPosition;
+        if (this.columnIndex < this.columnSize(this.rowIndex) - 1) {
+            ++this.columnIndex;
         }
         else {
-            this.columnPosition = 0;
-            ++this.rowPosition;
+            this.columnIndex = 0;
+            ++this.rowIndex;
         }
     }
 
     /**
-     * Gets the size of a specific row.
+     * Gets the size of a specific column.
      */
-    private int rowSize(int rowIndex) {
+    private int columnSize(int rowIndex) {
         return this.data.get(rowIndex).size();
+    }
+
+    /**
+     * Gets a value od a specific position.
+     */
+    private T get(int rowIndex, int columnIndex) {
+        assert(rowIndex >= 0 && rowIndex < this.rows);
+        assert(columnIndex >= 0 && columnIndex < this.columnSize(rowIndex));
+
+        return this.data.get(rowIndex).get(columnIndex);
     }
 }
