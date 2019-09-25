@@ -1,29 +1,24 @@
-package datastructures.list.core;
+package base.core;
 
-import base.core.AbstractBinaryComparator;
-import base.core.Casting;
-import base.core.CompareToBuilder;
-import base.core.Conditions;
-import base.core.EqualBuilder;
-import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
-import datastructures.list.interfaces.IList;
-import datastructures.list.interfaces.ITwoDimensionalList;
+import base.interfaces.ITwoDimensionalList;
+
+import java.util.List;
 
 /**
  * The TwoDimensionalList class implements a generic two dimensional list.
  * The dimensional of a list can contains different sizes.
  */
 public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDimensionalList<T> {
-    private final IList<IList<T>> data;
+    private final List<List<T>> data;
     private final IBinaryComparator<ITwoDimensionalList<T>> comparator;
     private final int hashCode;
     
     /**
      * The TwoDimensionalList constructor.
      */
-    public TwoDimensionalList(IList<IList<T>> data) {
+    public TwoDimensionalList(List<List<T>> data) {
         this(
             data,
             TwoDimensionalList.defaultComparator());
@@ -33,7 +28,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
      * The TwoDimensionalList constructor.
      */
     public TwoDimensionalList(
-        IList<IList<T>> data,
+        List<List<T>> data,
         IBinaryComparator<ITwoDimensionalList<T>> comparator) {
 
         Conditions.validateNotNull(
@@ -82,7 +77,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
      * Gets elements of a specified row.
      */
     @Override
-    public IList<T> getRow(int rowIndex) {
+    public List<T> getRow(int rowIndex) {
         this.validateRowIndex(rowIndex);
         
         return this.data.get(rowIndex);
@@ -93,7 +88,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
      */
     @Override
     public boolean empty() {
-        return this.data.empty();
+        return this.data.isEmpty();
     }
     
     /**
@@ -103,7 +98,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
     public int size() {
         int size = 0;
         
-        for (IList<T> row : this.data) {
+        for (List<T> row : this.data) {
             size += row.size();
         }
         

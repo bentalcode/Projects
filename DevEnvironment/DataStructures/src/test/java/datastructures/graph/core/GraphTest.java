@@ -2,7 +2,7 @@ package datastructures.graph.core;
 
 import base.core.ListIterator;
 import base.interfaces.IPair;
-import datastructures.list.interfaces.ITwoDimensionalList;
+import base.interfaces.ITwoDimensionalList;
 import datastructures.core.TestData;
 import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IVertex;

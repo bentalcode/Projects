@@ -1,13 +1,14 @@
-package base.core;
+package datastructures.list.core;
 
+import base.core.Conditions;
 import base.interfaces.IIterator;
-import java.util.List;
+import datastructures.list.interfaces.IList;
 
 /**
  * The ThreeDimensionalListIterator class implements an iterator of a tree dimensional list.
  */
 public final class ThreeDimensionalListIterator<T extends Comparable<T>> implements IIterator<T> {
-    private final List<List<List<T>>> data;
+    private final IList<IList<IList<T>>> data;
     private final int rows;
     private int rowIndex;
     private int columnIndex;
@@ -16,14 +17,14 @@ public final class ThreeDimensionalListIterator<T extends Comparable<T>> impleme
     /**
      * Creates a new iterator of a tree dimensional list.
      */
-    public static <T extends Comparable<T>> IIterator<T> of(List<List<List<T>>> data) {
+    public static <T extends Comparable<T>> IIterator<T> of(IList<IList<IList<T>>> data) {
         return new ThreeDimensionalListIterator<>(data);
     }
 
     /**
      * The ThreeDimensionalListIterator constructor.
      */
-    private ThreeDimensionalListIterator(List<List<List<T>>> data) {
+    private ThreeDimensionalListIterator(IList<IList<IList<T>>> data) {
         Conditions.validateNotNull(
             data,
             "The tree dimensional list to iterate.");

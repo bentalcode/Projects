@@ -1,7 +1,6 @@
-package datastructures.list.interfaces;
+package base.interfaces;
 
-import base.interfaces.IIterable;
-import base.interfaces.IUnaryComparator;
+import java.util.List;
 
 /**
  * The ITwoDimensionalList interface defines a generic two dimensional list.
@@ -26,7 +25,7 @@ public interface ITwoDimensionalList<T extends Comparable<T>> extends IIterable<
     /**
      * Gets elements of a specified row.
      */
-    IList<T> getRow(int rowIndex);
+    List<T> getRow(int rowIndex);
 
     /**
      * Returns whether the collection is empty.

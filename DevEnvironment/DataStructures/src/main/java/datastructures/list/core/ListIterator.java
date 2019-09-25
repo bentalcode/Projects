@@ -9,7 +9,7 @@ import datastructures.list.interfaces.IList;
  */
 public class ListIterator<T extends Comparable<T>> implements IIterator<T> {
     private final IList<T> list;
-    private int position;
+    private int index;
 
     /**
      * Creates a new iterator of a list.
@@ -36,7 +36,7 @@ public class ListIterator<T extends Comparable<T>> implements IIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.position < this.list.size();
+        return this.index < this.list.size();
     }
 
     /**
@@ -46,8 +46,8 @@ public class ListIterator<T extends Comparable<T>> implements IIterator<T> {
     public T next() {
         assert(this.hasNext());
 
-        T currElement = this.list.get(this.position);
-        ++this.position;
+        T currElement = this.list.get(this.index);
+        ++this.index;
 
         return currElement;
     }
@@ -57,6 +57,6 @@ public class ListIterator<T extends Comparable<T>> implements IIterator<T> {
      */
     @Override
     public void reset() {
-        this.position = 0;
+        this.index = 0;
     }
 }
