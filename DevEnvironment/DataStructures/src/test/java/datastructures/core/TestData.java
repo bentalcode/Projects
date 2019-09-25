@@ -15,10 +15,11 @@ import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.core.HashMapTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.interfaces.ITestData;
+import datastructures.linkedlist.core.LinkedListTestData;
+import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.core.ListTestData;
 import datastructures.list.interfaces.IListTestData;
 import datastructures.priorityqueue.core.PriorityQueueTestData;
-import datastructures.priorityqueue.interfaces.IPriorityQueueData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 
 /**
@@ -45,6 +46,14 @@ public final class TestData implements ITestData {
     @Override
     public IListTestData getListData() {
         return new ListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a linked list.
+     */
+    @Override
+    public ILinkedListTestData getLinkedListData() {
+        return new LinkedListTestData();
     }
 
     /**

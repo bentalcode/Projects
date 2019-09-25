@@ -13,7 +13,7 @@ public final class DoublyLinkedListNodeIterator<TValue extends Comparable<TValue
     private IDoublyLinkedListNode<TValue> currentNode;
 
     /**
-     * Creates a new iterator of a list.
+     * Creates a new iterator of a doubly linked list.
      */
     public static <TValue extends Comparable<TValue>> IIterator<IDoublyLinkedListNode<TValue>> of(IDoublyLinkedListNode<TValue> headNode) {
         return new DoublyLinkedListNodeIterator<>(headNode);

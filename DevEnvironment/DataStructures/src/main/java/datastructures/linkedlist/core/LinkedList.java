@@ -1,4 +1,4 @@
-package datastructures.doublylinkedlist.core;
+package datastructures.linkedlist.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
@@ -8,47 +8,45 @@ import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
-import base.interfaces.IReverseIterator;
-import base.interfaces.IUnaryComparator;
 import datastructures.collections.core.Collections;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
+import datastructures.linkedlist.interfaces.ILinkedList;
+import datastructures.linkedlist.interfaces.ILinkedListNode;
 
 /**
- * The DoublyLinkedList class implements a doubly linked list.
+ * The LinkedList class implements a linked list.
  */
-public final class DoublyLinkedList<TValue extends Comparable<TValue>> implements IDoublyLinkedList<TValue> {
-    private IDoublyLinkedListNode<TValue> head;
-    private IDoublyLinkedListNode<TValue> tail;
+public final class LinkedList<TValue extends Comparable<TValue>> implements ILinkedList<TValue> {
+    private ILinkedListNode<TValue> head;
+    private ILinkedListNode<TValue> tail;
     private int size;
-    private final IBinaryComparator<IDoublyLinkedList<TValue>> comparator;
+    private final IBinaryComparator<ILinkedList<TValue>> comparator;
 
     /**
-     * The DoublyLinkedList constructor.
+     * The LinkedList constructor.
      */
-    public DoublyLinkedList() {
+    public LinkedList() {
         this(null);
     }
 
     /**
-     * The DoublyLinkedList constructor.
+     * The LinkedList constructor.
      */
-    private DoublyLinkedList(IDoublyLinkedListNode<TValue> head) {
+    private LinkedList(ILinkedListNode<TValue> head) {
         this(
             head,
-            DoublyLinkedList.defaultComparator());
+            LinkedList.defaultComparator());
     }
 
     /**
-     * The DoublyLinkedList constructor.
+     * The LinkedList constructor.
      */
-    private DoublyLinkedList(
-        IDoublyLinkedListNode<TValue> head,
-        IBinaryComparator<IDoublyLinkedList<TValue>> comparator) {
+    private LinkedList(
+        ILinkedListNode<TValue> head,
+        IBinaryComparator<ILinkedList<TValue>> comparator) {
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a doubly linked list.");
+            "The comparator of a linked list.");
 
         if (head != null) {
             this.addToFront(head);
@@ -61,7 +59,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Gets the head node of the list.
      */
     @Override
-    public IDoublyLinkedListNode<TValue> getHead() {
+    public ILinkedListNode<TValue> getHead() {
         return this.head;
     }
 
@@ -69,7 +67,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Gets the tail node of the list.
      */
     @Override
-    public IDoublyLinkedListNode<TValue> getTail() {
+    public ILinkedListNode<TValue> getTail() {
         return this.tail;
     }
 
@@ -93,7 +91,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      */
     @Override
     public void addToFront(TValue value) {
-        this.addToFront(DoublyLinkedListNode.of(value));
+        this.addToFront(LinkedListNode.of(value));
     }
 
     /**
@@ -101,30 +99,22 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      */
     @Override
     public void addToBack(TValue value) {
-        this.addToBack(DoublyLinkedListNode.of(value));
+        this.addToBack(LinkedListNode.of(value));
     }
 
     /**
      * Adds a new value after a specific node of the list.
      */
     @Override
-    public void addAfter(IDoublyLinkedListNode<TValue> currNode, TValue valueToAdd) {
-        this.addAfter(currNode, DoublyLinkedListNode.of(valueToAdd));
-    }
-
-    /**
-     * Adds a new value before a specific node of the list.
-     */
-    @Override
-    public void addBefore(IDoublyLinkedListNode<TValue> currNode, TValue nodeToAdd) {
-        this.addBefore(currNode, DoublyLinkedListNode.of(nodeToAdd));
+    public void addAfter(ILinkedListNode<TValue> currNode, TValue valueToAdd) {
+        this.addAfter(currNode, LinkedListNode.of(valueToAdd));
     }
 
     /**
      * Adds a new node to the front of the list.
      */
     @Override
-    public void addToFront(IDoublyLinkedListNode<TValue> node) {
+    public void addToFront(ILinkedListNode<TValue> node) {
         Conditions.validateNotNull(
             node,
             "The node to add.");
@@ -150,7 +140,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Adds a new node to the back of the list.
      */
     @Override
-    public void addToBack(IDoublyLinkedListNode<TValue> node) {
+    public void addToBack(ILinkedListNode<TValue> node) {
         Conditions.validateNotNull(
             node,
             "The node to add.");
@@ -177,8 +167,8 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      */
     @Override
     public void addAfter(
-        IDoublyLinkedListNode<TValue> currNode,
-        IDoublyLinkedListNode<TValue> nodeToAdd) {
+        ILinkedListNode<TValue> currNode,
+        ILinkedListNode<TValue> nodeToAdd) {
 
         Conditions.validateNotNull(
             currNode,
@@ -190,7 +180,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
 
         nodeToAdd.unlinked();
 
-        IDoublyLinkedListNode<TValue> nextNode = currNode.next();
+        ILinkedListNode<TValue> nextNode = currNode.next();
 
         this.linkedNodes(currNode, nodeToAdd);
         this.linkedNodes(nodeToAdd, nextNode);
@@ -203,90 +193,50 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     }
 
     /**
-     * Adds a new node before a specific node of the list.
-     */
-    @Override
-    public void addBefore(
-        IDoublyLinkedListNode<TValue> currNode,
-        IDoublyLinkedListNode<TValue> nodeToAdd) {
-
-        Conditions.validateNotNull(
-            currNode,
-            "The exiting node to add before.");
-
-        Conditions.validateNotNull(
-            nodeToAdd,
-            "The node to add.");
-
-        nodeToAdd.unlinked();
-
-        IDoublyLinkedListNode<TValue> previousNode = currNode.previous();
-
-        this.linkedNodes(previousNode, nodeToAdd);
-        this.linkedNodes(nodeToAdd, currNode);
-
-        if (this.head == currNode) {
-            this.head = nodeToAdd;
-        }
-
-        this.nodeAdded();
-    }
-
-    /**
      * Removes the front node from the list.
      * Returns the removed node or null if the list is empty.
      */
     @Override
-    public IDoublyLinkedListNode<TValue> removeFromFront() {
+    public ILinkedListNode<TValue> removeFromFront() {
         if (this.head == null) {
             assert(this.tail == null && this.empty());
             return null;
         }
 
-        IDoublyLinkedListNode<TValue> nodeToRemove = this.head;
-        this.remove(nodeToRemove);
+        ILinkedListNode<TValue> nodeToRemove = this.head;
+        ILinkedListNode<TValue> nextNode = nodeToRemove.next();
 
-        return nodeToRemove;
-    }
+        this.head = nextNode;
 
-    /**
-     * Removes the back node from the list.
-     * Returns the removed node or null if the list is empty.
-     */
-    @Override
-    public IDoublyLinkedListNode<TValue> removeFromBack() {
-        if (this.tail == null) {
-            assert(this.head == null && this.empty());
-            return null;
+        if (this.head == null) {
+            this.tail = null;
         }
 
-        IDoublyLinkedListNode<TValue> nodeToRemove = this.tail;
-
-        this.remove(nodeToRemove);
+        this.nodeRemoved(nodeToRemove);
 
         return nodeToRemove;
     }
 
     /**
-     * Removes the a node from the list.
+     * Removes a node after a specific node of the list.
      */
     @Override
-    public void remove(IDoublyLinkedListNode<TValue> nodeToRemove) {
+    public void removeAfter(ILinkedListNode<TValue> currNode) {
         Conditions.validateNotNull(
-            nodeToRemove,
-            "The node to remove.");
+            currNode,
+            "The exiting node to remove after.");
 
-        IDoublyLinkedListNode<TValue> previousNode = nodeToRemove.previous();
-        IDoublyLinkedListNode<TValue> nextNode = nodeToRemove.next();
+        ILinkedListNode<TValue> nodeToRemove = currNode.next();
 
-        this.linkedNodes(previousNode, nextNode);
-
-        if (previousNode == null) {
-            this.head = nextNode;
+        if (nodeToRemove == null) {
+            return;
         }
+
+        ILinkedListNode<TValue> nextNode = nodeToRemove.next();
+        this.linkedNodes(currNode, nextNode);
 
         if (nextNode == null) {
-            this.tail = previousNode;
+            this.tail = currNode;
         }
 
         this.nodeRemoved(nodeToRemove);
@@ -306,16 +256,8 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Gets an iterator of nodes.
      */
     @Override
-    public IIterator<IDoublyLinkedListNode<TValue>> getIterator() {
-        return new DoublyLinkedListNodeIterator<>(this.head);
-    }
-
-    /**
-     * Gets a reverse iterator of nodes.
-     */
-    @Override
-    public IReverseIterator<IDoublyLinkedListNode<TValue>> getReverseIterator() {
-        return new DoublyLinkedListNodeReverseIterator<>(this.tail);
+    public IIterator<ILinkedListNode<TValue>> getIterator() {
+        return new LinkedListNodeIterator<>(this.head);
     }
 
     /**
@@ -323,27 +265,19 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      */
     @Override
     public IIterator<TValue> getValueIterator() {
-        return new DoublyLinkedListNodeValueIterator<>(this.getIterator());
-    }
-
-    /**
-     * Gets a reverse iterator of values.
-     */
-    @Override
-    public IReverseIterator<TValue> getValueReverseIterator() {
-        return new DoublyLinkedListNodeValueReverseIterator<>(this.getReverseIterator());
+        return new LinkedListNodeValueIterator<>(this.getIterator());
     }
 
     /**
      * Gets a specific node by index. [0, 1, 2, ... , size -1]
      */
     @Override
-    public IDoublyLinkedListNode<TValue> getNode(int index) {
+    public ILinkedListNode<TValue> getNode(int index) {
         Conditions.validate(
             index >= 0 && index < this.size(),
             "Invalid index.");
 
-        IDoublyLinkedListNode<TValue> currNode = this.head;
+        ILinkedListNode<TValue> currNode = this.head;
 
         int currIndex = 0;
 
@@ -399,7 +333,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IDoublyLinkedList<TValue> other) {
+    public boolean isEqual(ILinkedList<TValue> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -411,33 +345,33 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IDoublyLinkedList<TValue> other) {
+    public int compareTo(ILinkedList<TValue> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <TValue extends Comparable<TValue>> IBinaryComparator<IDoublyLinkedList<TValue>> defaultComparator() {
-        IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator = DoublyLinkedListNode.defaultComparator();
-        return new DoublyLinkedList.Comparator<>(nodeComparator);
+    public static <TValue extends Comparable<TValue>> IBinaryComparator<ILinkedList<TValue>> defaultComparator() {
+        IBinaryComparator<ILinkedListNode<TValue>> nodeComparator = LinkedListNode.defaultComparator();
+        return new LinkedList.Comparator<>(nodeComparator);
     }
 
     /**
-     * The Comparator class implements a comparator of a doubly linked list.
+     * The Comparator class implements a comparator of a linked list.
      */
     public static final class Comparator<TValue extends Comparable<TValue>>
-        extends AbstractBinaryComparator<IDoublyLinkedList<TValue>> {
+        extends AbstractBinaryComparator<ILinkedList<TValue>> {
 
-        private final IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator;
+        private final IBinaryComparator<ILinkedListNode<TValue>> nodeComparator;
 
         /**
          * The Comparator constructor.
          */
-        public Comparator(IBinaryComparator<IDoublyLinkedListNode<TValue>> nodeComparator) {
+        public Comparator(IBinaryComparator<ILinkedListNode<TValue>> nodeComparator) {
             Conditions.validateNotNull(
                 nodeComparator,
-                "The comparator of a node of a doubly linked list.");
+                "The comparator of a node of a linked list.");
 
             this.nodeComparator = nodeComparator;
         }
@@ -446,7 +380,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IDoublyLinkedList<TValue> obj) {
+        public int getHashCode(ILinkedList<TValue> obj) {
             return new HashCodeBuilder(3, 5)
                 .withIterator(obj.getIterator(), this.nodeComparator)
                 .build();
@@ -456,7 +390,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(IDoublyLinkedList<TValue> lhs, IDoublyLinkedList<TValue> rhs) {
+        public boolean isEqual(ILinkedList<TValue> lhs, ILinkedList<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -478,7 +412,7 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IDoublyLinkedList<TValue> lhs, IDoublyLinkedList<TValue> rhs) {
+        public int compareTo(ILinkedList<TValue> lhs, ILinkedList<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -500,20 +434,16 @@ public final class DoublyLinkedList<TValue extends Comparable<TValue>> implement
     /**
      * Linked nodes.
      */
-    private void linkedNodes(IDoublyLinkedListNode<TValue> left, IDoublyLinkedListNode<TValue> right) {
+    private void linkedNodes(ILinkedListNode<TValue> left, ILinkedListNode<TValue> right) {
         if (left != null) {
             left.setNext(right);
-        }
-
-        if (right != null) {
-            right.setPrevious(left);
         }
     }
 
     /**
      * Node removed.
      */
-    private void nodeRemoved(IDoublyLinkedListNode<TValue> node) {
+    private void nodeRemoved(ILinkedListNode<TValue> node) {
         node.unlinked();
 
         --this.size;

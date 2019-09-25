@@ -1,4 +1,4 @@
-package datastructures.doublylinkedlist.core;
+package datastructures.linkedlist.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
@@ -6,59 +6,54 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
+import datastructures.linkedlist.interfaces.ILinkedListNode;
 
 /**
- * The DoublyLinkedListNode class implements a node of a doubly linked list.
+ * The LinkedListNode class implements a node of a linked list.
  */
-public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> implements IDoublyLinkedListNode<TValue> {
+public final class LinkedListNode<TValue extends Comparable<TValue>> implements ILinkedListNode<TValue> {
     private TValue value;
-    private IDoublyLinkedListNode<TValue> previous;
-    private IDoublyLinkedListNode<TValue> next;
-    private IBinaryComparator<IDoublyLinkedListNode<TValue>> comparator;
+    private ILinkedListNode<TValue> next;
+    private IBinaryComparator<ILinkedListNode<TValue>> comparator;
     private int hashCode;
 
     /**
-     * Creates a new doubly linked list node.
+     * Creates a new linked list node.
      */
-    public static <TValue extends Comparable<TValue>> IDoublyLinkedListNode<TValue> of(TValue value) {
-        return new DoublyLinkedListNode<>(value);
+    public static <TValue extends Comparable<TValue>> ILinkedListNode<TValue> of(TValue value) {
+        return new LinkedListNode<>(value);
     }
 
     /**
-     * Creates a new doubly linked list node.
+     * Creates a new linked list node.
      */
-    public static <TValue extends Comparable<TValue>> IDoublyLinkedListNode<TValue> of(
+    public static <TValue extends Comparable<TValue>> ILinkedListNode<TValue> of(
         TValue value,
-        IDoublyLinkedListNode<TValue> previous,
-        IDoublyLinkedListNode<TValue> next,
-        IBinaryComparator<IDoublyLinkedListNode<TValue>> comparator) {
+        ILinkedListNode<TValue> next,
+        IBinaryComparator<ILinkedListNode<TValue>> comparator) {
 
-        return new DoublyLinkedListNode<>(value, previous, next, comparator);
+        return new LinkedListNode<>(value, next, comparator);
     }
 
     /**
-     * The DoublyLinkedListNode constructor.
+     * The LinkedListNode constructor.
      */
-    private DoublyLinkedListNode(TValue value) {
+    private LinkedListNode(TValue value) {
         this(
             value,
             null,
-            null,
-            DoublyLinkedListNode.defaultComparator());
+            LinkedListNode.defaultComparator());
     }
 
     /**
-     * The DoublyLinkedListNode constructor.
+     * The LinkedListNode constructor.
      */
-    private DoublyLinkedListNode(
+    private LinkedListNode(
         TValue value,
-        IDoublyLinkedListNode<TValue> previous,
-        IDoublyLinkedListNode<TValue> next,
-        IBinaryComparator<IDoublyLinkedListNode<TValue>> comparator) {
+        ILinkedListNode<TValue> next,
+        IBinaryComparator<ILinkedListNode<TValue>> comparator) {
 
         this.value = value;
-        this.previous = previous;
         this.next = next;
         this.comparator = comparator;
         this.hashCode = comparator.getHashCode(this);
@@ -81,26 +76,10 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
     }
 
     /**
-     * Gets a previous node.
-     */
-    @Override
-    public IDoublyLinkedListNode<TValue> previous() {
-        return this.previous;
-    }
-
-    /**
-     * Sets a previous node.
-     */
-    @Override
-    public void setPrevious(IDoublyLinkedListNode<TValue> node) {
-        this.previous = node;
-    }
-
-    /**
      * Gets a next node.
      */
     @Override
-    public IDoublyLinkedListNode<TValue> next() {
+    public ILinkedListNode<TValue> next() {
         return this.next;
     }
 
@@ -108,7 +87,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
      * Sets a next node.
      */
     @Override
-    public void setNext(IDoublyLinkedListNode<TValue> node) {
+    public void setNext(ILinkedListNode<TValue> node) {
         this.next = node;
     }
 
@@ -118,7 +97,6 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
     @Override
     public void unlinked() {
         this.next = null;
-        this.previous = null;
     }
 
     /**
@@ -130,7 +108,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
     }
 
     /**
-     * Gets the hash code of a node of a doubly linked list.
+     * Gets the hash code of a node of a linked list.
      */
     @Override
     public boolean equals(Object obj) {
@@ -149,7 +127,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IDoublyLinkedListNode<TValue> other) {
+    public boolean isEqual(ILinkedListNode<TValue> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -161,23 +139,23 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IDoublyLinkedListNode<TValue> other) {
+    public int compareTo(ILinkedListNode<TValue> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>> IBinaryComparator<IDoublyLinkedListNode<TKey>> defaultComparator() {
+    public static <TKey extends Comparable<TKey>> IBinaryComparator<ILinkedListNode<TKey>> defaultComparator() {
         IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
-        return new DoublyLinkedListNode.Comparator<>(keyComparator);
+        return new LinkedListNode.Comparator<>(keyComparator);
     }
 
     /**
-     * The Comparator class implements a comparator of a doubly linked list.
+     * The Comparator class implements a comparator of a linked list.
      */
     public static final class Comparator<TValue extends Comparable<TValue>>
-        extends AbstractBinaryComparator<IDoublyLinkedListNode<TValue>> {
+        extends AbstractBinaryComparator<ILinkedListNode<TValue>> {
 
         private final IBinaryComparator<TValue> valueComparator;
 
@@ -187,7 +165,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
         public Comparator(IBinaryComparator<TValue> valueComparator) {
             Conditions.validateNotNull(
                 valueComparator,
-                "The comparator of a value of a doubly linked list node.");
+                "The comparator of a value of a linked list node.");
 
             this.valueComparator = valueComparator;
         }
@@ -196,7 +174,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IDoublyLinkedListNode<TValue> obj) {
+        public int getHashCode(ILinkedListNode<TValue> obj) {
             return this.valueComparator.getHashCode(obj.getValue());
         }
 
@@ -204,7 +182,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(IDoublyLinkedListNode<TValue> lhs, IDoublyLinkedListNode<TValue> rhs) {
+        public boolean isEqual(ILinkedListNode<TValue> lhs, ILinkedListNode<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -226,7 +204,7 @@ public final class DoublyLinkedListNode<TValue extends Comparable<TValue>> imple
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IDoublyLinkedListNode<TValue> lhs, IDoublyLinkedListNode<TValue> rhs) {
+        public int compareTo(ILinkedListNode<TValue> lhs, ILinkedListNode<TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }

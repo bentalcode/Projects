@@ -1,12 +1,13 @@
-package datastructures.doublylinkedlist.core;
+package datastructures.linkedlist.core;
 
 import base.core.Iterator;
 import base.core.ListIterator;
 import base.interfaces.ITriple;
 import datastructures.core.TestData;
-import datastructures.doublylinkedlist.interfaces.IListData;
+import datastructures.linkedlist.interfaces.ILinkedList;
+import datastructures.linkedlist.interfaces.ILinkedListNode;
+import datastructures.linkedlist.interfaces.IListData;
 import testbase.core.Assertion;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
@@ -17,16 +18,16 @@ import testbase.interfaces.IIterationTest;
 import java.util.List;
 
 /**
- * The DoublyLinkedListTest class implements tests for a doubly linked list.
+ * The LinkedListTest class implements tests for a linked list.
  */
-public final class DoublyLinkedListTest {
+public final class LinkedListTest {
     private final ITestData testData = new TestData();
     private final IAssertion assertion = new Assertion();
 
     /**
-     * The DoublyLinkedListTest constructor.
+     * The LinkedListTest constructor.
      */
-    public DoublyLinkedListTest() {
+    public LinkedListTest() {
     }
 
     /**
@@ -44,11 +45,11 @@ public final class DoublyLinkedListTest {
     }
 
     /**
-     * Tests the creation logic of a doubly linked list.
+     * Tests the creation logic of a linked list.
      */
     @Test
-    public void DoublyLinkedListCreationTest() {
-        List<IListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
+    public void LinkedListCreationTest() {
+        List<IListData<Integer>> data = this.testData.getLinkedListData().getData();
 
         for (IListData<Integer> listData : data) {
             this.testCreation(listData);
@@ -56,11 +57,11 @@ public final class DoublyLinkedListTest {
     }
 
     /**
-     * Tests the iteration logic of a doubly linked list.
+     * Tests the iteration logic of a linked list.
      */
     @Test
-    public void DoublyLinkedListIterationTest() {
-        List<IListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
+    public void LinkedListIterationTest() {
+        List<IListData<Integer>> data = this.testData.getLinkedListData().getData();
 
         for (IListData<Integer> listData : data) {
             this.testIteration(listData);
@@ -68,26 +69,26 @@ public final class DoublyLinkedListTest {
     }
 
     /**
-     * Tests the updation logic of a doubly linked list.
+     * Tests the updation logic of a linked list.
      */
     @Test
-    public void DoublyLinkedListUpdationTest() {
-        IDoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+    public void LinkedListUpdationTest() {
+        ILinkedList<Integer> list = new LinkedList<>();
 
         List<ITriple<String, Integer, List<Integer>>> data =
-            this.testData.getDoublyLinkedListData().getUpdationData();
+            this.testData.getLinkedListData().getUpdationData();
 
         this.testUpdation(list, data);
     }
 
     /**
-     * Tests the creation logic of a doubly linked list.
+     * Tests the creation logic of a linked list.
      */
     private <TValue extends Comparable<TValue>> void testCreation(IListData<TValue> data) {
         //
         // Create the container...
         //
-        IDoublyLinkedList<TValue> container = this.createDoublyLinkedList(data.getCreationData());
+        ILinkedList<TValue> container = this.createLinkedList(data.getCreationData());
 
         //
         // Test the data of the container...
@@ -95,18 +96,18 @@ public final class DoublyLinkedListTest {
         this.assertion.assertEquals(
             container.getValueIterator(),
             ListIterator.of(data.getData()),
-            "Invalid creation logic of a doubly linked list.");
+            "Invalid creation logic of a linked list.");
     }
 
     /**
-     * Tests the iteration logic of a doubly linked list.
+     * Tests the iteration logic of a linked list.
      */
     private <TValue extends Comparable<TValue>> void testIteration(IListData<TValue> data) {
         //
         // Create the container...
         //
-        IDoublyLinkedList<TValue> container = this.createDoublyLinkedList(data.getCreationData());
-        IDoublyLinkedList<TValue> expectedContainer = this.createDoublyLinkedList(data.getCreationData());
+        ILinkedList<TValue> container = this.createLinkedList(data.getCreationData());
+        ILinkedList<TValue> expectedContainer = this.createLinkedList(data.getCreationData());
 
         //
         // Test the default iterator of the container...
@@ -115,7 +116,7 @@ public final class DoublyLinkedListTest {
         iterationTest.testIteration(
             container,
             expectedContainer,
-            "DoublyLinkedList");
+            "LinkedList");
 
         //
         // Test the forward iterator of the container...
@@ -123,15 +124,7 @@ public final class DoublyLinkedListTest {
         iterationTest.testForwardIteration(
             container,
             expectedContainer,
-            "DoublyLinkedList");
-
-        //
-        // Test the reverse iterator of the container...
-        //
-        iterationTest.testReverseIteration(
-            container,
-            expectedContainer,
-            "DoublyLinkedList");
+            "LinkedList");
 
         //
         // Test the value iterator of the container...
@@ -139,22 +132,14 @@ public final class DoublyLinkedListTest {
         iterationTest.testValueIteration(
             container,
             expectedContainer,
-            "DoublyLinkedList");
-
-        //
-        // Test the value reverse iterator of the container...
-        //
-        iterationTest.testValueReverseIteration(
-            container,
-            expectedContainer,
-            "DoublyLinkedList");
+            "LinkedList");
     }
 
     /**
-     * Tests the updation logic of a doubly linked list.
+     * Tests the updation logic of a linked list.
      */
     private <TValue extends Comparable<TValue>> void testUpdation(
-        IDoublyLinkedList<TValue> list,
+        ILinkedList<TValue> list,
         List<ITriple<String, TValue, List<TValue>>> data) {
 
         for (ITriple<String, TValue, List<TValue>> entry : data) {
@@ -167,10 +152,10 @@ public final class DoublyLinkedListTest {
     }
 
     /**
-     * Tests the updation logic of a doubly linked list.
+     * Tests the updation logic of a linked list.
      */
     private <TValue extends Comparable<TValue>> void testUpdation(
-        IDoublyLinkedList<TValue> list,
+        ILinkedList<TValue> list,
         String operation,
         TValue item,
         List<TValue> expectedContent) {
@@ -180,14 +165,14 @@ public final class DoublyLinkedListTest {
         this.assertion.assertEquals(
             list.getValueIterator(),
             Iterator.of(expectedContent),
-            "Invalid updation logic of a doubly linked list.");
+            "Invalid updation logic of a linked list.");
     }
 
     /**
-     * Creates a doubly linked list.
+     * Creates a linked list.
      */
-    private <TValue extends Comparable<TValue>> IDoublyLinkedList<TValue> createDoublyLinkedList(List<TValue> data) {
-        IDoublyLinkedList<TValue> result = new DoublyLinkedList<>();
+    private <TValue extends Comparable<TValue>> ILinkedList<TValue> createLinkedList(List<TValue> data) {
+        ILinkedList<TValue> result = new LinkedList<>();
 
         for (TValue element : data) {
             result.addToBack(element);
@@ -200,21 +185,22 @@ public final class DoublyLinkedListTest {
      * Updates the list.
      */
     private <TValue extends Comparable<TValue>> void updateList(
-        IDoublyLinkedList<TValue> list,
+        ILinkedList<TValue> list,
         String operation,
         TValue item) {
 
         if (operation.equalsIgnoreCase("addToFront")) {
-            list.addToFront(DoublyLinkedListNode.of(item));
+            list.addToFront(LinkedListNode.of(item));
         }
         else if (operation.equalsIgnoreCase("addToBack")) {
-            list.addToBack(DoublyLinkedListNode.of(item));
+            list.addToBack(LinkedListNode.of(item));
         }
         else if (operation.equalsIgnoreCase("removeFromFront")) {
             list.removeFromFront();
         }
-        else if (operation.equalsIgnoreCase("removeFromBack")) {
-            list.removeFromBack();
+        else if (operation.equalsIgnoreCase("removeAfter")) {
+            ILinkedListNode<TValue> currNode = list.getNode(0);
+            list.removeAfter(currNode);
         }
     }
 }
