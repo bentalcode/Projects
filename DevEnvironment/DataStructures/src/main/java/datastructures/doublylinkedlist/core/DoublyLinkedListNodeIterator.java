@@ -6,23 +6,23 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 /**
  * The DoublyLinkedListNodeIterator class implements an iterator of nodes of a doubly linked list.
  */
-public final class DoublyLinkedListNodeIterator<TValue extends Comparable<TValue>>
-    implements IIterator<IDoublyLinkedListNode<TValue>> {
+public final class DoublyLinkedListNodeIterator<T extends Comparable<T>>
+    implements IIterator<IDoublyLinkedListNode<T>> {
 
-    private final IDoublyLinkedListNode<TValue> headNode;
-    private IDoublyLinkedListNode<TValue> currentNode;
+    private final IDoublyLinkedListNode<T> headNode;
+    private IDoublyLinkedListNode<T> currentNode;
 
     /**
      * Creates a new iterator of a doubly linked list.
      */
-    public static <TValue extends Comparable<TValue>> IIterator<IDoublyLinkedListNode<TValue>> of(IDoublyLinkedListNode<TValue> headNode) {
+    public static <T extends Comparable<T>> IIterator<IDoublyLinkedListNode<T>> of(IDoublyLinkedListNode<T> headNode) {
         return new DoublyLinkedListNodeIterator<>(headNode);
     }
 
     /**
      * The DoublyLinkedListNodeIterator constructor.
      */
-    public DoublyLinkedListNodeIterator(IDoublyLinkedListNode<TValue> headNode) {
+    public DoublyLinkedListNodeIterator(IDoublyLinkedListNode<T> headNode) {
         this.headNode = headNode;
 
         this.reset();
@@ -40,11 +40,11 @@ public final class DoublyLinkedListNodeIterator<TValue extends Comparable<TValue
      * Gets the next node.
      */
     @Override
-    public IDoublyLinkedListNode<TValue> next() {
+    public IDoublyLinkedListNode<T> next() {
         assert(this.hasNext());
 
 
-        IDoublyLinkedListNode<TValue> currentNode = this.currentNode;
+        IDoublyLinkedListNode<T> currentNode = this.currentNode;
         this.currentNode = this.currentNode.next();
 
         return currentNode;

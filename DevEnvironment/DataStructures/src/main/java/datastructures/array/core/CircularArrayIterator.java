@@ -12,9 +12,16 @@ public final class CircularArrayIterator<T extends Comparable<T>> implements IIt
     private int currIndex;
 
     /**
+     * Creates an iterator of a circular array.
+     */
+    public static <T extends Comparable<T>> IIterator<T> of(ICircularArray<T> circularArray) {
+        return new CircularArrayIterator<>(circularArray);
+    }
+
+    /**
      * The CircularArrayIterator constructor.
      */
-    public CircularArrayIterator(ICircularArray<T> circularArray) {
+    private CircularArrayIterator(ICircularArray<T> circularArray) {
         Conditions.validateNotNull(
             circularArray,
             "The circular array.");

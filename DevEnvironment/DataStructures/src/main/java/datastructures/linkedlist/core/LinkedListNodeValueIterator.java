@@ -7,13 +7,13 @@ import datastructures.linkedlist.interfaces.ILinkedListNode;
 /**
  * The LinkedListNodeValueIterator class implements an iterator of values of a linked list.
  */
-public final class LinkedListNodeValueIterator<TValue extends Comparable<TValue>> implements IIterator<TValue> {
-    private final IIterator<ILinkedListNode<TValue>> iterator;
+public final class LinkedListNodeValueIterator<T extends Comparable<T>> implements IIterator<T> {
+    private final IIterator<ILinkedListNode<T>> iterator;
 
     /**
      * The NodeValueIterator constructor.
      */
-    public LinkedListNodeValueIterator(IIterator<ILinkedListNode<TValue>> iterator) {
+    public LinkedListNodeValueIterator(IIterator<ILinkedListNode<T>> iterator) {
         Conditions.validateNotNull(
             iterator,
             "The iterator of nodes of a linked list.");
@@ -35,7 +35,7 @@ public final class LinkedListNodeValueIterator<TValue extends Comparable<TValue>
      * Gets the next value.
      */
     @Override
-    public TValue next() {
+    public T next() {
         return this.iterator.next().getValue();
     }
 

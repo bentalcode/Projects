@@ -4,6 +4,8 @@ import base.core.Conditions;
 import base.core.Pair;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
+import base.interfaces.IRange;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,6 +144,34 @@ public final class Collections {
                 }
             }
         }
+    }
+
+    /**
+     * Validate index of a range.
+     */
+    public static void validateIndex(int index, IRange<Integer> range, String collectionName) {
+        Conditions.validateNotNull(
+            range,
+            "The range.");
+
+        Conditions.validate(
+            range.inRange(index),
+            "The index of collection: " + collectionName + " is out of range." +
+            " Index = " + index + ", Range = " + range);
+    }
+
+    /**
+     * Validate index of a range.
+     */
+    public static void validateIndex(int index, int startIndex, int endIndex, String collectionName) {
+        Conditions.validateNotNull(
+            startIndex <= endIndex,
+            "Invalid range of collection: " + collectionName);
+
+        Conditions.validateNotNull(
+            index >= startIndex && index <= endIndex,
+            "The index of collection: " + collectionName + " is out of range." +
+            " Index = " + index + ", Range = [" + startIndex + "-" + endIndex + "]");
     }
 
     /**

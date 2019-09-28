@@ -1,20 +1,20 @@
-package datastructures.list.core;
+package datastructures.stack.core;
 
-import datastructures.list.interfaces.IListData;
+import datastructures.stack.interfaces.IStackData;
 import java.util.List;
 
 /**
- * The ListData class implements the data of a list.
+ * The StackData class implements the data of a stack.
  */
-public final class ListData<T extends Comparable<T>> implements IListData<T> {
+public final class StackData<T extends Comparable<T>> implements IStackData<T> {
     private final Class<T> classType;
     private final List<T> creationData;
     private final List<T> data;
 
     /**
-     * The ListData constructor.
+     * The StackData constructor.
      */
-    public ListData(
+    public StackData(
         Class<T> classType,
         List<T> creationData,
         List<T> data) {
@@ -27,6 +27,7 @@ public final class ListData<T extends Comparable<T>> implements IListData<T> {
     /**
      * Gets the class type.
      */
+    @Override
     public Class<T> getClassType() {
         return this.classType;
     }
@@ -40,7 +41,7 @@ public final class ListData<T extends Comparable<T>> implements IListData<T> {
     }
 
     /**
-     * Gets the actual data of the list.
+     * Gets the actual data of the stack.
      */
     @Override
     public List<T> getData() {

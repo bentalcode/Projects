@@ -6,14 +6,14 @@ import java.util.List;
 /**
  * The ListData class implements the data of a list.
  */
-public final class ListData<TValue extends Comparable<TValue>> implements IListData<TValue> {
-    private final List<TValue> creationData;
-    private final List<TValue> data;
+public final class ListData<T extends Comparable<T>> implements IListData<T> {
+    private final List<T> creationData;
+    private final List<T> data;
 
     /**
      * The ListData constructor.
      */
-    public ListData(List<TValue> creationData, List<TValue> data) {
+    public ListData(List<T> creationData, List<T> data) {
         this.creationData = creationData;
         this.data = data;
     }
@@ -22,7 +22,7 @@ public final class ListData<TValue extends Comparable<TValue>> implements IListD
      * Gets the creation data.
      */
     @Override
-    public List<TValue> getCreationData() {
+    public List<T> getCreationData() {
         return this.creationData;
     }
 
@@ -30,7 +30,7 @@ public final class ListData<TValue extends Comparable<TValue>> implements IListD
      * Gets the actual data of the list.
      */
     @Override
-    public List<TValue> getData() {
+    public List<T> getData() {
         return this.data;
     }
 }

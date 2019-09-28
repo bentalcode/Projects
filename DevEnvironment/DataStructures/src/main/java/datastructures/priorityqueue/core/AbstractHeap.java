@@ -22,18 +22,18 @@ import datastructures.priorityqueue.interfaces.IPriorityQueue;
  * The right child of an element is located at index: 2*index+2.
  * The parent of an element is located at index: (index - 1) / 2.
  */
-public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements IPriorityQueue<TValue> {
-    private final IList<TValue> data;
-    private final IBinaryComparator<IPriorityQueue<TValue>> comparator;
-    private final IBinaryComparator<TValue> elementComparator;
+public abstract class AbstractHeap<T extends Comparable<T>> implements IPriorityQueue<T> {
+    private final IList<T> data;
+    private final IBinaryComparator<IPriorityQueue<T>> comparator;
+    private final IBinaryComparator<T> elementComparator;
 
     /**
      * The AbstractHeap constructor.
      */
     protected AbstractHeap(
-        Class<TValue> classType,
-        IBinaryComparator<IPriorityQueue<TValue>> comparator,
-        IBinaryComparator<TValue> elementComparator) {
+        Class<T> classType,
+        IBinaryComparator<IPriorityQueue<T>> comparator,
+        IBinaryComparator<T> elementComparator) {
 
         Conditions.validateNotNull(
             comparator,
@@ -55,7 +55,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
      * and performing heapifyUp() on the new added element for adjusting the heap.
      */
     @Override
-    public void offer(TValue element) {
+    public void offer(T element) {
         this.data.add(element);
 
         if (this.size() == 1) {
@@ -73,12 +73,12 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
      * and then performing heapifyDown() on the new swapped element in the root for adjusting the heap.
      */
     @Override
-    public TValue poll() {
+    public T poll() {
         Conditions.validate(
             !this.empty(),
             "The heap can not be empty.");
 
-        TValue currentElement = this.data.get(0);
+        T currentElement = this.data.get(0);
 
         this.swapValues(0, this.size() - 1);
         this.data.remove(this.size() - 1);
@@ -94,7 +94,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
      * Gets the peek element of the priority queue.
      */
     @Override
-    public TValue peek() {
+    public T peek() {
         return (this.empty()) ? null : this.data.get(0);
     }
 
@@ -126,11 +126,11 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
      * Checks whether the priority queue contains an element.
      */
     @Override
-    public boolean contains(TValue element) {
-        IIterator<TValue> iterator = this.getIterator();
+    public boolean contains(T element) {
+        IIterator<T> iterator = this.getIterator();
 
         while (iterator.hasNext()) {
-            TValue currElement = iterator.next();
+            T currElement = iterator.next();
 
             if (this.elementComparator.isEqual(currElement, element)) {
                 return true;
@@ -152,7 +152,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
      * Gets an iterator of the heap.
      */
     @Override
-    public IIterator<TValue> getIterator() {
+    public IIterator<T> getIterator() {
         return this.data.getIterator();
     }
 
@@ -160,7 +160,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
      * Gets a reverse iterator of the heap.
      */
     @Override
-    public IReverseIterator<TValue> getReverseIterator() {
+    public IReverseIterator<T> getReverseIterator() {
         return this.data.getReverseIterator();
     }
 
@@ -196,7 +196,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IPriorityQueue<TValue> other) {
+    public boolean isEqual(IPriorityQueue<T> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -208,30 +208,30 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IPriorityQueue<TValue> other) {
+    public int compareTo(IPriorityQueue<T> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <TValue extends Comparable<TValue>> IBinaryComparator<IPriorityQueue<TValue>> defaultComparator() {
-        IBinaryComparator<TValue> elementComparator = base.core.Comparator.defaultComparator();
+    public static <T extends Comparable<T>> IBinaryComparator<IPriorityQueue<T>> defaultComparator() {
+        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(elementComparator);
     }
 
     /**
      * The Comparator class implements a comparator of a priority queue.
      */
-    public static final class Comparator<TValue extends Comparable<TValue>>
-        extends AbstractBinaryComparator<IPriorityQueue<TValue>> {
+    public static final class Comparator<T extends Comparable<T>>
+        extends AbstractBinaryComparator<IPriorityQueue<T>> {
 
-        private final IBinaryComparator<TValue> elementComparator;
+        private final IBinaryComparator<T> elementComparator;
 
         /**
          * The Comparator constructor.
          */
-        public Comparator(IBinaryComparator<TValue> elementComparator) {
+        public Comparator(IBinaryComparator<T> elementComparator) {
             Conditions.validateNotNull(
                 elementComparator,
                 "The comparator of an element.");
@@ -243,7 +243,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IPriorityQueue<TValue> obj) {
+        public int getHashCode(IPriorityQueue<T> obj) {
             return new HashCodeBuilder(3, 5)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
@@ -253,7 +253,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(IPriorityQueue<TValue> lhs, IPriorityQueue<TValue> rhs) {
+        public boolean isEqual(IPriorityQueue<T> lhs, IPriorityQueue<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -275,7 +275,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IPriorityQueue<TValue> lhs, IPriorityQueue<TValue> rhs) {
+        public int compareTo(IPriorityQueue<T> lhs, IPriorityQueue<T> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -308,8 +308,8 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
         int currParentIndex = this.parentIndex(currChildIndex);
 
         while (currParentIndex != -1) {
-            TValue currParentValue = this.data.get(currParentIndex);
-            TValue currChildValue = this.data.get(currChildIndex);
+            T currParentValue = this.data.get(currParentIndex);
+            T currChildValue = this.data.get(currChildIndex);
 
             int compareStatus = this.elementComparator.compareTo(currParentValue, currChildValue);
 
@@ -337,15 +337,15 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
 
         while (!this.isLeaf(currParentIndex)) {
             int currChildIndex;
-            TValue currChildValue;
+            T currChildValue;
 
             int currLeftChildIndex = this.leftChildIndex(currParentIndex);
-            TValue currLeftChildValue = this.data.get(currLeftChildIndex);
+            T currLeftChildValue = this.data.get(currLeftChildIndex);
 
             int currRightChildIndex = this.rightChildIndex(currParentIndex);
 
             if (currRightChildIndex != -1) {
-                TValue currRightChildValue = this.data.get(currRightChildIndex);
+                T currRightChildValue = this.data.get(currRightChildIndex);
 
                 if (this.elementComparator.compareTo(currLeftChildValue, currRightChildValue) <= 0) {
                     currChildIndex = currLeftChildIndex;
@@ -361,7 +361,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
                 currChildValue = currLeftChildValue;
             }
 
-            TValue currParentValue = this.data.get(currParentIndex);
+            T currParentValue = this.data.get(currParentIndex);
 
             int compareStatus = this.elementComparator.compareTo(currParentValue, currChildValue);
 
@@ -389,7 +389,7 @@ public abstract class AbstractHeap<TValue extends Comparable<TValue>> implements
             return;
         }
 
-        TValue temp = this.data.get(leftIndex);
+        T temp = this.data.get(leftIndex);
         this.data.set(leftIndex, this.data.get(rightIndex));
         this.data.set(rightIndex, temp);
     }

@@ -63,8 +63,8 @@ public final class ListTest {
     /**
      * Tests the creation logic of a list.
      */
-    private <TValue extends Comparable<TValue>> void testCreation(IListData<TValue> data) {
-        IList<TValue> list = this.createList(data);
+    private <T extends Comparable<T>> void testCreation(IListData<T> data) {
+        IList<T> list = this.createList(data);
 
         this.assertion.assertEquals(
             list.getIterator(),
@@ -80,21 +80,21 @@ public final class ListTest {
     /**
      * Tests the creation and removal logic of a list.
      */
-    private <TValue extends Comparable<TValue>> void testCreationWithRemoval(IListData<TValue> data) {
-        IList<TValue> list = this.createList(data);
+    private <T extends Comparable<T>> void testCreationWithRemoval(IListData<T> data) {
+        IList<T> list = this.createList(data);
 
         this.assertion.assertEquals(
             list.getIterator(),
             base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a list.");
 
-        List<TValue> values = Lists.fromIterator(list.getIterator());
+        List<T> values = Lists.fromIterator(list.getIterator());
 
-        int index = 0;
+        int currIndex = 0;
         int currSize = values.size();
 
-        for (TValue valueToRemove : values) {
-            TValue removedValue = list.remove(index);
+        for (T valueToRemove : values) {
+            T removedValue = list.remove(currIndex);
             --currSize;
 
             this.assertion.assertEquals(
@@ -111,10 +111,10 @@ public final class ListTest {
     /**
      * Creates a list.
      */
-    private <TValue extends Comparable<TValue>> IList<TValue> createList(IListData<TValue> data) {
-        IList<TValue> list = new ArrayList<>(data.getClassType());
+    private <T extends Comparable<T>> IList<T> createList(IListData<T> data) {
+        IList<T> list = new ArrayList<>(data.getClassType());
 
-        for (TValue item : data.getCreationData()) {
+        for (T item : data.getCreationData()) {
             list.add(item);
         }
 

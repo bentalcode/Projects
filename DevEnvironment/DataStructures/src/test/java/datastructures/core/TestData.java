@@ -21,6 +21,8 @@ import datastructures.list.core.ListTestData;
 import datastructures.list.interfaces.IListTestData;
 import datastructures.priorityqueue.core.PriorityQueueTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
+import datastructures.stack.core.StackTestData;
+import datastructures.stack.interfaces.IStackTestData;
 
 /**
  * The TestData class implements the data of the tests.
@@ -46,6 +48,14 @@ public final class TestData implements ITestData {
     @Override
     public IListTestData getListData() {
         return new ListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a stack.
+     */
+    @Override
+    public IStackTestData getStackData() {
+        return new StackTestData();
     }
 
     /**

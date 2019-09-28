@@ -7,13 +7,13 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 /**
  * The DoublyLinkedListNodeValueIterator class implements an iterator of values of a doubly linked list.
  */
-public final class DoublyLinkedListNodeValueIterator<TValue extends Comparable<TValue>> implements IIterator<TValue> {
-    private final IIterator<IDoublyLinkedListNode<TValue>> iterator;
+public final class DoublyLinkedListNodeValueIterator<T extends Comparable<T>> implements IIterator<T> {
+    private final IIterator<IDoublyLinkedListNode<T>> iterator;
 
     /**
      * The NodeValueIterator constructor.
      */
-    public DoublyLinkedListNodeValueIterator(IIterator<IDoublyLinkedListNode<TValue>> iterator) {
+    public DoublyLinkedListNodeValueIterator(IIterator<IDoublyLinkedListNode<T>> iterator) {
         Conditions.validateNotNull(
             iterator,
             "The iterator of nodes of a doubly linked list.");
@@ -35,7 +35,7 @@ public final class DoublyLinkedListNodeValueIterator<TValue extends Comparable<T
      * Gets the next value.
      */
     @Override
-    public TValue next() {
+    public T next() {
         return this.iterator.next().getValue();
     }
 

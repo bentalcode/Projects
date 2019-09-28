@@ -1,4 +1,4 @@
-package datastructures.array.core;
+package datastructures.list.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
@@ -9,58 +9,59 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
-import datastructures.array.interfaces.ICircularArray;
 import datastructures.collections.core.Collections;
+import datastructures.list.interfaces.ICircularList;
+import datastructures.list.interfaces.IList;
 
 /**
- * The CircularArray class implements a circular array.
+ * The CircularList class implements a circular list.
  */
-public final class CircularArray<T extends Comparable<T>> implements ICircularArray<T> {
-    private final T[] data;
+public final class CircularList<T extends Comparable<T>> implements ICircularList<T> {
+    private final IList<T> data;
     private final int startIndex;
-    private final IBinaryComparator<ICircularArray<T>> comparator;
+    private final IBinaryComparator<ICircularList<T>> comparator;
     private final int hashCode;
 
     /**
-     * The CircularArray constructor.
+     * The CircularList constructor.
      */
-    public CircularArray(T[] data) {
+    public CircularList(IList<T> data) {
         this(
             data,
             0,
-            CircularArray.defaultComparator());
+            CircularList.defaultComparator());
     }
 
     /**
-     * The CircularArray constructor.
+     * The CircularList constructor.
      */
-    public CircularArray(
-        T[] data,
+    public CircularList(
+        IList<T> data,
         int startIndex) {
 
         this(
             data,
             startIndex,
-            CircularArray.defaultComparator());
+            CircularList.defaultComparator());
     }
 
     /**
-     * The CircularArray constructor.
+     * The CircularList constructor.
      */
-    public CircularArray(
-        T[] data,
+    public CircularList(
+        IList<T> data,
         int startIndex,
-        IBinaryComparator<ICircularArray<T>> comparator) {
+        IBinaryComparator<ICircularList<T>> comparator) {
 
         Conditions.validateNotNull(
             data,
             "The data.");
 
-        this.validateIndex(startIndex, 0, data.length - 1);
+        this.validateIndex(startIndex, 0, data.size() - 1);
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of an array.");
+            "The comparator of a circular list.");
 
         this.data = data;
         this.startIndex = startIndex;
@@ -84,15 +85,15 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
         this.validateIndex(index);
 
         int actualIndex = this.indexOf(index);
-        return this.data[actualIndex];
+        return this.data.get(actualIndex);
     }
 
     /**
-     * Gets the size of an array.
+     * Gets the size of the list.
      */
     @Override
     public int size() {
-        return this.data.length;
+        return this.data.size();
     }
 
     /**
@@ -108,7 +109,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public IIterator<T> getIterator() {
-        return CircularArrayIterator.of(this);
+        return CircularListIterator.of(this);
     }
 
     /**
@@ -116,7 +117,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return CircularArrayReverseIterator.of(this);
+        return CircularListReverseIterator.of(this);
     }
 
     /**
@@ -159,7 +160,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(ICircularArray<T> other) {
+    public boolean isEqual(ICircularList<T> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -171,14 +172,14 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(ICircularArray<T> other) {
+    public int compareTo(ICircularList<T> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<ICircularArray<T>> defaultComparator() {
+    public static <T extends Comparable<T>> IBinaryComparator<ICircularList<T>> defaultComparator() {
         IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(elementComparator);
     }
@@ -186,7 +187,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
     /**
      * The Comparator class implements a comparator of a circular array.
      */
-    public static final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<ICircularArray<T>> {
+    public static final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<ICircularList<T>> {
         private final IBinaryComparator<T> elementComparator;
 
         /**
@@ -204,7 +205,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ICircularArray<T> obj) {
+        public int getHashCode(ICircularList<T> obj) {
             return new HashCodeBuilder(3, 5)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
@@ -214,7 +215,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(ICircularArray<T> lhs, ICircularArray<T> rhs) {
+        public boolean isEqual(ICircularList<T> lhs, ICircularList<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -236,7 +237,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ICircularArray<T> lhs, ICircularArray<T> rhs) {
+        public int compareTo(ICircularList<T> lhs, ICircularList<T> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -259,7 +260,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      * Gets the actual index of an index.
      */
     private int indexOf(int index) {
-        int result = (this.startIndex + index) % this.data.length;
+        int result = (this.startIndex + index) % this.data.size();
         return result;
     }
 
@@ -267,13 +268,13 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      * Validates an index.
      */
     private void validateIndex(int index) {
-        this.validateIndex(index, 0, this.data.length - 1);
+        this.validateIndex(index, 0, this.data.size() - 1);
     }
 
     /**
      * Validates an index.
      */
     private void validateIndex(int index, int startIndex, int endIndex) {
-        Collections.validateIndex(startIndex, endIndex, index, "circular array");
+        Collections.validateIndex(startIndex, endIndex, index, "circular list");
     }
 }

@@ -12,9 +12,16 @@ public final class CircularArrayReverseIterator<T extends Comparable<T>> impleme
     private int currIndex;
 
     /**
+     * Creates a reverse iterator of a circular array.
+     */
+    public static <T extends Comparable<T>> IReverseIterator<T> of(ICircularArray<T> circularArray) {
+        return new CircularArrayReverseIterator<>(circularArray);
+    }
+
+    /**
      * The CircularArrayReverseIterator constructor.
      */
-    public CircularArrayReverseIterator(ICircularArray<T> circularArray) {
+    private CircularArrayReverseIterator(ICircularArray<T> circularArray) {
         Conditions.validateNotNull(
             circularArray,
             "The circular array.");

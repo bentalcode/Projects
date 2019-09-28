@@ -1,14 +1,14 @@
-package datastructures.array.interfaces;
+package datastructures.list.interfaces;
 
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
 
 /**
- * The ICircularString interface defines a circular array.
+ * The ICircularList interface defines a circular list.
  */
-public interface ICircularArray<T extends Comparable<T>> extends
-    IUnaryComparator<ICircularArray<T>>,
+public interface ICircularList<T extends Comparable<T>> extends
+    IUnaryComparator<ICircularList<T>>,
     IIterable<T>,
     IReverseIterable<T> {
 
@@ -23,12 +23,12 @@ public interface ICircularArray<T extends Comparable<T>> extends
     T get(int index);
 
     /**
-     * Gets the size of an array.
+     * Gets the size of the list.
      */
     int size();
 
     /**
-     * Checks whether an array is empty.
+     * Checks whether the list is empty.
      */
     boolean empty();
 }

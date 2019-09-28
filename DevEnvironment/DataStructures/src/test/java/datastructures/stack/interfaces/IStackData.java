@@ -1,11 +1,11 @@
-package datastructures.list.interfaces;
+package datastructures.stack.interfaces;
 
 import java.util.List;
 
 /**
- * The IListData interface defines the data of a list.
+ * The IStackData interface defines the data of a stack.
  */
-public interface IListData<T extends Comparable<T>> {
+public interface IStackData<T extends Comparable<T>> {
     /**
      * Gets the class type.
      */
@@ -17,7 +17,7 @@ public interface IListData<T extends Comparable<T>> {
     List<T> getCreationData();
 
     /**
-     * Gets the actual data of the list.
+     * Gets the actual data of the stack.
      */
     List<T> getData();
 }

@@ -5,14 +5,14 @@ import java.util.List;
 /**
  * The IListData interface defines the data of a list.
  */
-public interface IListData<TValue extends Comparable<TValue>> {
+public interface IListData<T extends Comparable<T>> {
     /**
      * Gets the creation data.
      */
-    List<TValue> getCreationData();
+    List<T> getCreationData();
 
     /**
      * Gets the actual data of the list.
      */
-    List<TValue> getData();
+    List<T> getData();
 }

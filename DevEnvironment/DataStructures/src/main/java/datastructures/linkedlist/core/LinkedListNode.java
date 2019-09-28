@@ -11,26 +11,26 @@ import datastructures.linkedlist.interfaces.ILinkedListNode;
 /**
  * The LinkedListNode class implements a node of a linked list.
  */
-public final class LinkedListNode<TValue extends Comparable<TValue>> implements ILinkedListNode<TValue> {
-    private TValue value;
-    private ILinkedListNode<TValue> next;
-    private IBinaryComparator<ILinkedListNode<TValue>> comparator;
-    private int hashCode;
+public final class LinkedListNode<T extends Comparable<T>> implements ILinkedListNode<T> {
+    private T value;
+    private ILinkedListNode<T> next;
+    private final IBinaryComparator<ILinkedListNode<T>> comparator;
+    private final int hashCode;
 
     /**
      * Creates a new linked list node.
      */
-    public static <TValue extends Comparable<TValue>> ILinkedListNode<TValue> of(TValue value) {
+    public static <T extends Comparable<T>> ILinkedListNode<T> of(T value) {
         return new LinkedListNode<>(value);
     }
 
     /**
      * Creates a new linked list node.
      */
-    public static <TValue extends Comparable<TValue>> ILinkedListNode<TValue> of(
-        TValue value,
-        ILinkedListNode<TValue> next,
-        IBinaryComparator<ILinkedListNode<TValue>> comparator) {
+    public static <T extends Comparable<T>> ILinkedListNode<T> of(
+        T value,
+        ILinkedListNode<T> next,
+        IBinaryComparator<ILinkedListNode<T>> comparator) {
 
         return new LinkedListNode<>(value, next, comparator);
     }
@@ -38,7 +38,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
     /**
      * The LinkedListNode constructor.
      */
-    private LinkedListNode(TValue value) {
+    private LinkedListNode(T value) {
         this(
             value,
             null,
@@ -49,9 +49,9 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
      * The LinkedListNode constructor.
      */
     private LinkedListNode(
-        TValue value,
-        ILinkedListNode<TValue> next,
-        IBinaryComparator<ILinkedListNode<TValue>> comparator) {
+        T value,
+        ILinkedListNode<T> next,
+        IBinaryComparator<ILinkedListNode<T>> comparator) {
 
         this.value = value;
         this.next = next;
@@ -63,7 +63,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
      * Gets a value of a node.
      */
     @Override
-    public TValue getValue() {
+    public T getValue() {
         return this.value;
     }
 
@@ -71,7 +71,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
      * Sets a value of a node.
      */
     @Override
-    public void setValue(TValue value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
@@ -79,7 +79,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
      * Gets a next node.
      */
     @Override
-    public ILinkedListNode<TValue> next() {
+    public ILinkedListNode<T> next() {
         return this.next;
     }
 
@@ -87,7 +87,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
      * Sets a next node.
      */
     @Override
-    public void setNext(ILinkedListNode<TValue> node) {
+    public void setNext(ILinkedListNode<T> node) {
         this.next = node;
     }
 
@@ -127,7 +127,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(ILinkedListNode<TValue> other) {
+    public boolean isEqual(ILinkedListNode<T> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -139,7 +139,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(ILinkedListNode<TValue> other) {
+    public int compareTo(ILinkedListNode<T> other) {
         return this.comparator.compareTo(this, other);
     }
 
@@ -154,15 +154,13 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
     /**
      * The Comparator class implements a comparator of a linked list.
      */
-    public static final class Comparator<TValue extends Comparable<TValue>>
-        extends AbstractBinaryComparator<ILinkedListNode<TValue>> {
-
-        private final IBinaryComparator<TValue> valueComparator;
+    public static final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<ILinkedListNode<T>> {
+        private final IBinaryComparator<T> valueComparator;
 
         /**
          * The Comparator constructor.
          */
-        public Comparator(IBinaryComparator<TValue> valueComparator) {
+        public Comparator(IBinaryComparator<T> valueComparator) {
             Conditions.validateNotNull(
                 valueComparator,
                 "The comparator of a value of a linked list node.");
@@ -174,7 +172,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ILinkedListNode<TValue> obj) {
+        public int getHashCode(ILinkedListNode<T> obj) {
             return this.valueComparator.getHashCode(obj.getValue());
         }
 
@@ -182,7 +180,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(ILinkedListNode<TValue> lhs, ILinkedListNode<TValue> rhs) {
+        public boolean isEqual(ILinkedListNode<T> lhs, ILinkedListNode<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -204,7 +202,7 @@ public final class LinkedListNode<TValue extends Comparable<TValue>> implements 
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ILinkedListNode<TValue> lhs, ILinkedListNode<TValue> rhs) {
+        public int compareTo(ILinkedListNode<T> lhs, ILinkedListNode<T> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }

@@ -7,25 +7,25 @@ import base.interfaces.IUnaryComparator;
 /**
  * The IPriorityQueue interface defines a priority queue.
  */
-public interface IPriorityQueue<TValue extends Comparable<TValue>> extends
-    IUnaryComparator<IPriorityQueue<TValue>>,
-    IIterable<TValue>,
-    IReverseIterable<TValue> {
+public interface IPriorityQueue<T extends Comparable<T>> extends
+    IUnaryComparator<IPriorityQueue<T>>,
+    IIterable<T>,
+    IReverseIterable<T> {
 
     /**
      * Offers an element to the priority queue.
      */
-    void offer(TValue element);
+    void offer(T element);
 
     /**
      * Polls the peek element from the priority queue.
      */
-    TValue poll();
+    T poll();
 
     /**
      * Gets the peek element of the priority queue.
      */
-    TValue peek();
+    T peek();
 
     /**
      * Gets the size of a priority queue.
@@ -45,5 +45,5 @@ public interface IPriorityQueue<TValue extends Comparable<TValue>> extends
     /**
      * Checks whether the priority queue contains an element.
      */
-    boolean contains(TValue element);
+    boolean contains(T element);
 }

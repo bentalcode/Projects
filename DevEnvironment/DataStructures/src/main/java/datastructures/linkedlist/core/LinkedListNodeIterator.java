@@ -6,23 +6,21 @@ import datastructures.linkedlist.interfaces.ILinkedListNode;
 /**
  * The LinkedListNodeIterator class implements an iterator of nodes of a linked list.
  */
-public final class LinkedListNodeIterator<TValue extends Comparable<TValue>>
-    implements IIterator<ILinkedListNode<TValue>> {
-
-    private final ILinkedListNode<TValue> headNode;
-    private ILinkedListNode<TValue> currentNode;
+public final class LinkedListNodeIterator<T extends Comparable<T>> implements IIterator<ILinkedListNode<T>> {
+    private final ILinkedListNode<T> headNode;
+    private ILinkedListNode<T> currentNode;
 
     /**
      * Creates a new iterator of a linked list.
      */
-    public static <TValue extends Comparable<TValue>> IIterator<ILinkedListNode<TValue>> of(ILinkedListNode<TValue> headNode) {
+    public static <T extends Comparable<T>> IIterator<ILinkedListNode<T>> of(ILinkedListNode<T> headNode) {
         return new LinkedListNodeIterator<>(headNode);
     }
 
     /**
      * The LinkedListNodeIterator constructor.
      */
-    public LinkedListNodeIterator(ILinkedListNode<TValue> headNode) {
+    public LinkedListNodeIterator(ILinkedListNode<T> headNode) {
         this.headNode = headNode;
 
         this.reset();
@@ -40,11 +38,11 @@ public final class LinkedListNodeIterator<TValue extends Comparable<TValue>>
      * Gets the next node.
      */
     @Override
-    public ILinkedListNode<TValue> next() {
+    public ILinkedListNode<T> next() {
         assert(this.hasNext());
 
 
-        ILinkedListNode<TValue> currentNode = this.currentNode;
+        ILinkedListNode<T> currentNode = this.currentNode;
         this.currentNode = this.currentNode.next();
 
         return currentNode;

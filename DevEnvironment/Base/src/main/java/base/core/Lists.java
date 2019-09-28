@@ -1,6 +1,7 @@
 package base.core;
 
 import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,36 @@ public final class Lists {
         while (iterator.hasNext()) {
             result.add(iterator.next());
         }
+
+        return result;
+    }
+
+    /**
+     * Creates a list from a reverse iterator.
+     */
+    public static <T> List<T> fromReverseIterator(IReverseIterator<T> reverseIterator) {
+        Conditions.validateNotNull(
+            reverseIterator,
+            "The reverse iterator for creating a list.");
+
+        List<T> result = new ArrayList<>();
+
+        while (reverseIterator.hasNext()) {
+            result.add(reverseIterator.next());
+        }
+
+        return result;
+    }
+
+    /**
+     * Reverses the list.
+     */
+    public static <T> List<T> reverse(List<T> list) {
+        Conditions.validateNotNull(
+            list,
+            "The list to reverse.");
+
+        List<T> result = Lists.fromReverseIterator(ListReverseIterator.of(list));
 
         return result;
     }

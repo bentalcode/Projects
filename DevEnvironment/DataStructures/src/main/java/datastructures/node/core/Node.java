@@ -12,16 +12,16 @@ import datastructures.node.interfaces.INode;
 /**
  * The Node class implements a generic node.
  */
-public final class Node<TValue extends Comparable<TValue>> implements INode<TValue> {
-    private TValue value;
-    private final IBinaryComparator<INode<TValue>> comparator;
+public final class Node<T extends Comparable<T>> implements INode<T> {
+    private T value;
+    private final IBinaryComparator<INode<T>> comparator;
 
     /**
      * Creates a new instance of a node.
      */
-    public static <TValue extends Comparable<TValue>> INode<TValue> of(
-        TValue value,
-        IBinaryComparator<INode<TValue>> comparator) {
+    public static <T extends Comparable<T>> INode<T> of(
+        T value,
+        IBinaryComparator<INode<T>> comparator) {
 
         return new Node<>(value, comparator);
     }
@@ -30,8 +30,8 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
      * The Node constructor.
      */
     private Node(
-        TValue value,
-        IBinaryComparator<INode<TValue>> comparator) {
+        T value,
+        IBinaryComparator<INode<T>> comparator) {
 
         Conditions.validateNotNull(
             comparator,
@@ -45,7 +45,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
      * Gets a value of a node.
      */
     @Override
-    public TValue getValue() {
+    public T getValue() {
         return this.value;
     }
 
@@ -53,7 +53,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
      * Sets a value of a node.
      */
     @Override
-    public void setValue(TValue value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
@@ -89,7 +89,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(INode<TValue> other) {
+    public boolean isEqual(INode<T> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -101,22 +101,22 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(INode<TValue> other) {
+    public int compareTo(INode<T> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * The Comparator class implements a comparator of a generic node.
      */
-    public static final class Comparator<TValue extends Comparable<TValue>>
-        extends AbstractBinaryComparator<INode<TValue>> {
+    public static final class Comparator<T extends Comparable<T>>
+        extends AbstractBinaryComparator<INode<T>> {
 
-        private final IBinaryComparator<TValue> valueComparator;
+        private final IBinaryComparator<T> valueComparator;
 
         /**
          * The Comparator constructor.
          */
-        public Comparator(IBinaryComparator<TValue> valueComparator) {
+        public Comparator(IBinaryComparator<T> valueComparator) {
             Conditions.validateNotNull(
                 valueComparator,
                 "The value comparator of a node.");
@@ -128,7 +128,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(INode<TValue> obj) {
+        public int getHashCode(INode<T> obj) {
             return this.valueComparator.getHashCode(obj.getValue());
         }
 
@@ -136,7 +136,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(INode<TValue> lhs, INode<TValue> rhs) {
+        public boolean isEqual(INode<T> lhs, INode<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -158,7 +158,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(INode<TValue> lhs, INode<TValue> rhs) {
+        public int compareTo(INode<T> lhs, INode<T> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -180,8 +180,8 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
     /**
      * The Builder class implements a builder for creating a node.
      */
-    public static final class Builder<TValue extends Comparable<TValue>> implements IBuilder<INode<TValue>> {
-        private TValue value;
+    public static final class Builder<T extends Comparable<T>> implements IBuilder<INode<T>> {
+        private T value;
 
         /**
          * The Builder constructor.
@@ -192,7 +192,7 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
         /**
          * Sets the value of a node.
          */
-        public Builder setValue(TValue value) {
+        public Builder setValue(T value) {
             this.value = value;
             return this;
         }
@@ -201,8 +201,8 @@ public final class Node<TValue extends Comparable<TValue>> implements INode<TVal
          * Builds a node.
          */
         @Override
-        public INode<TValue> build() {
-            INode<TValue> node = new Node<>(
+        public INode<T> build() {
+            INode<T> node = new Node<>(
                 this.value,
                 base.core.Comparator.defaultComparator());
 

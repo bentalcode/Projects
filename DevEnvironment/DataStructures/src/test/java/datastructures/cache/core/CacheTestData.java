@@ -28,23 +28,23 @@ public final class CacheTestData implements ICacheTestData {
 
         data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"))));
         data.add(Triple.of("set", KeyValueNode.of(2, "b"), ArrayLists.of(KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
-        //data.add(Triple.of("set", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
-        //data.add(Triple.of("set", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"))));
-        //data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
-       // data.add(Triple.of("set", KeyValueNode.of(2, "b"), ArrayLists.of(KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"), KeyValueNode.of(4, "d"))));
-        //data.add(Triple.of("set", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
-        //data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"), KeyValueNode.of(5, "e"), KeyValueNode.of(2, "b"))));
-        //data.add(Triple.of("set", KeyValueNode.of(2, "b"), ArrayLists.of(KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"), KeyValueNode.of(5, "e"))));
-        //data.add(Triple.of("set", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
-        //data.add(Triple.of("set", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"))));
-        //data.add(Triple.of("set", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
-        //data.add(Triple.of("get", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"))));
-        //data.add(Triple.of("get", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"))));
-        //data.add(Triple.of("get", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"))));
-        //data.add(Triple.of("get", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
-        //data.add(Triple.of("delete", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(3, "c"))));
-        //data.add(Triple.of("delete", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(5, "e"))));
-        //data.add(Triple.of("delete", KeyValueNode.of(5, "e"), new ArrayList<>()));
+        data.add(Triple.of("set", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
+        data.add(Triple.of("set", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"))));
+        data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
+        data.add(Triple.of("set", KeyValueNode.of(2, "b"), ArrayLists.of(KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"), KeyValueNode.of(4, "d"))));
+        data.add(Triple.of("set", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
+        data.add(Triple.of("set", KeyValueNode.of(1, "a"), ArrayLists.of(KeyValueNode.of(1, "a"), KeyValueNode.of(5, "e"), KeyValueNode.of(2, "b"))));
+        data.add(Triple.of("set", KeyValueNode.of(2, "b"), ArrayLists.of(KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"), KeyValueNode.of(5, "e"))));
+        data.add(Triple.of("set", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"), KeyValueNode.of(1, "a"))));
+        data.add(Triple.of("set", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(2, "b"))));
+        data.add(Triple.of("set", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
+        data.add(Triple.of("get", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"))));
+        data.add(Triple.of("get", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"))));
+        data.add(Triple.of("get", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"), KeyValueNode.of(5, "e"))));
+        data.add(Triple.of("get", KeyValueNode.of(5, "e"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(4, "d"), KeyValueNode.of(3, "c"))));
+        data.add(Triple.of("delete", KeyValueNode.of(4, "d"), ArrayLists.of(KeyValueNode.of(5, "e"), KeyValueNode.of(3, "c"))));
+        data.add(Triple.of("delete", KeyValueNode.of(3, "c"), ArrayLists.of(KeyValueNode.of(5, "e"))));
+        data.add(Triple.of("delete", KeyValueNode.of(5, "e"), new ArrayList<>()));
 
         return data;
     }

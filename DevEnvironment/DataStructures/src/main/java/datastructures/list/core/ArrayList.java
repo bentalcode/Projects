@@ -10,6 +10,7 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
+import datastructures.collections.core.Collections;
 import datastructures.list.interfaces.IList;
 
 /**
@@ -34,6 +35,18 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
             ArrayList.defaultComparator());
     }
 
+    /**
+     * The ArrayList constructor.
+     */
+    public ArrayList(
+        Class<T> classType,
+        int capacity) {
+
+        this(
+            classType,
+            capacity,
+            ArrayList.defaultComparator());
+    }
     /**
      * The ArrayList constructor.
      */
@@ -112,7 +125,7 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
     }
 
     /**
-     * Gets the size of an array.
+     * Gets the size of the list.
      */
     @Override
     public int size() {
@@ -201,6 +214,14 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
 
         T[] result = Arrays.copy(this.array, this.classType, 0, this.size - 1);
         return result;
+    }
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getIterator());
     }
 
     /**

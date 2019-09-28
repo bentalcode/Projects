@@ -11,22 +11,22 @@ import datastructures.collections.interfaces.IValueReverseIterable;
 /**
  * The IDoublyLinkedList interface defines a doubly linked list.
  */
-public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
-    IUnaryComparator<IDoublyLinkedList<TValue>>,
-    IIterable<IDoublyLinkedListNode<TValue>>,
-    IReverseIterable<IDoublyLinkedListNode<TValue>>,
-    IValueIterable<TValue>,
-    IValueReverseIterable<TValue> {
+public interface IDoublyLinkedList<T extends Comparable<T>> extends
+    IUnaryComparator<IDoublyLinkedList<T>>,
+    IIterable<IDoublyLinkedListNode<T>>,
+    IReverseIterable<IDoublyLinkedListNode<T>>,
+    IValueIterable<T>,
+    IValueReverseIterable<T> {
 
     /**
      * Gets the head node of the list.
      */
-    IDoublyLinkedListNode<TValue> getHead();
+    IDoublyLinkedListNode<T> getHead();
 
     /**
      * Gets the tail node of the list.
      */
-    IDoublyLinkedListNode<TValue> getTail();
+    IDoublyLinkedListNode<T> getTail();
 
     /**
      * Gets the size of the list.
@@ -41,59 +41,59 @@ public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
     /**
      * Adds a new value to the front of the list.
      */
-    void addToFront(TValue value);
+    void addToFront(T value);
 
     /**
      * Adds a new value to the back of the list.
      */
-    void addToBack(TValue value);
+    void addToBack(T value);
 
     /**
      * Adds a new value after a specific node of the list.
      */
-    void addAfter(IDoublyLinkedListNode<TValue> currNode, TValue valueToAdd);
+    void addAfter(IDoublyLinkedListNode<T> currNode, T valueToAdd);
 
     /**
      * Adds a new value before a specific node of the list.
      */
-    void addBefore(IDoublyLinkedListNode<TValue> currNode, TValue valueToAdd);
+    void addBefore(IDoublyLinkedListNode<T> currNode, T valueToAdd);
 
     /**
      * Adds a new node to the front of the list.
      */
-    void addToFront(IDoublyLinkedListNode<TValue> node);
+    void addToFront(IDoublyLinkedListNode<T> node);
 
     /**
      * Adds a new node to the back of the list.
      */
-    void addToBack(IDoublyLinkedListNode<TValue> node);
+    void addToBack(IDoublyLinkedListNode<T> node);
 
     /**
      * Adds a new node after a specific node of the list.
      */
-    void addAfter(IDoublyLinkedListNode<TValue> currNode, IDoublyLinkedListNode<TValue> nodeToAdd);
+    void addAfter(IDoublyLinkedListNode<T> currNode, IDoublyLinkedListNode<T> nodeToAdd);
 
     /**
      * Adds a new node before a specific node of the list.
      */
-    void addBefore(IDoublyLinkedListNode<TValue> currNode, IDoublyLinkedListNode<TValue> nodeToAdd);
+    void addBefore(IDoublyLinkedListNode<T> currNode, IDoublyLinkedListNode<T> nodeToAdd);
 
     /**
      * Removes the front node from the list.
      * Returns the removed node or null if the list is empty.
      */
-    IDoublyLinkedListNode<TValue> removeFromFront();
+    IDoublyLinkedListNode<T> removeFromFront();
 
     /**
      * Removes the back node from the list.
      * Returns the removed node or null if the list is empty.
      */
-    IDoublyLinkedListNode<TValue> removeFromBack();
+    IDoublyLinkedListNode<T> removeFromBack();
 
     /**
      * Removes the a node from the list.
      */
-    void remove(IDoublyLinkedListNode<TValue> nodeToRemove);
+    void remove(IDoublyLinkedListNode<T> nodeToRemove);
 
     /**
      * Clears the list.
@@ -103,15 +103,15 @@ public interface IDoublyLinkedList<TValue extends Comparable<TValue>> extends
     /**
      * Gets an iterator of values of a list.
      */
-    IIterator<TValue> getValueIterator();
+    IIterator<T> getValueIterator();
 
     /**
      * Gets a reverse iterator of values of a list.
      */
-    IReverseIterator<TValue> getValueReverseIterator();
+    IReverseIterator<T> getValueReverseIterator();
 
     /**
      * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
      */
-    IDoublyLinkedListNode<TValue> getNode(int index);
+    IDoublyLinkedListNode<T> getNode(int index);
 }

@@ -6,24 +6,24 @@ import java.util.List;
 /**
  * The IPriorityQueueData interface defines the data of a priority queue.
  */
-public interface IPriorityQueueData<TValue extends Comparable<TValue>> {
+public interface IPriorityQueueData<T extends Comparable<T>> {
     /**
      * Gets the class type.
      */
-    Class<TValue> getClassType();
+    Class<T> getClassType();
 
     /**
      * Gets the comparator of an element.
      */
-    IBinaryComparator<TValue> getElementComparator();
+    IBinaryComparator<T> getElementComparator();
 
     /**
      * Gets the creation data.
      */
-    List<TValue> getCreationData();
+    List<T> getCreationData();
 
     /**
      * Gets the actual data of the priority queue.
      */
-    List<TValue> getData();
+    List<T> getData();
 }

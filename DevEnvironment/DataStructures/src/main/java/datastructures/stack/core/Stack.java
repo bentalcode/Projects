@@ -1,4 +1,4 @@
-package datastructures.array.core;
+package datastructures.stack.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
@@ -6,101 +6,125 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.InvertIterator;
+import base.core.InvertReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
-import datastructures.array.interfaces.ICircularArray;
 import datastructures.collections.core.Collections;
+import datastructures.list.core.ArrayList;
+import datastructures.list.interfaces.IList;
+import datastructures.stack.StackException;
+import datastructures.stack.interfaces.IStack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * The CircularArray class implements a circular array.
+ * The Stack class implements a stack.
  */
-public final class CircularArray<T extends Comparable<T>> implements ICircularArray<T> {
-    private final T[] data;
-    private final int startIndex;
-    private final IBinaryComparator<ICircularArray<T>> comparator;
-    private final int hashCode;
+public final class Stack<T extends Comparable<T>> implements IStack<T> {
+    private static final int DefaultCapacity = 16;
+
+    private final IList<T> data;
+    private final IBinaryComparator<IStack<T>> comparator;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * The CircularArray constructor.
+     * The Stack constructor.
      */
-    public CircularArray(T[] data) {
+    public Stack(Class<T> classType) {
         this(
-            data,
-            0,
-            CircularArray.defaultComparator());
+            classType,
+            Stack.DefaultCapacity,
+            Stack.defaultComparator());
     }
 
     /**
-     * The CircularArray constructor.
+     * The Stack constructor.
      */
-    public CircularArray(
-        T[] data,
-        int startIndex) {
+    public Stack(
+        Class<T> classType,
+        int capacity) {
 
         this(
-            data,
-            startIndex,
-            CircularArray.defaultComparator());
+            classType,
+            capacity,
+            Stack.defaultComparator());
     }
-
     /**
-     * The CircularArray constructor.
+     * The Stack constructor.
      */
-    public CircularArray(
-        T[] data,
-        int startIndex,
-        IBinaryComparator<ICircularArray<T>> comparator) {
-
-        Conditions.validateNotNull(
-            data,
-            "The data.");
-
-        this.validateIndex(startIndex, 0, data.length - 1);
+    public Stack(
+        Class<T> classType,
+        int capacity,
+        IBinaryComparator<IStack<T>> comparator) {
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of an array.");
+            "The comparator of a stack.");
 
-        this.data = data;
-        this.startIndex = startIndex;
+        this.data = new ArrayList<>(classType, capacity);
         this.comparator = comparator;
-        this.hashCode = comparator.getHashCode(this);
     }
 
     /**
-     * Gets the start index.
+     * Pushes a new element to the stack.
      */
     @Override
-    public int getStartIndex() {
-        return this.startIndex;
+    public void push(T element) {
+        this.data.add(element);
     }
 
     /**
-     * Gets the value of an index.
+     * Pops the peak element from the stack.
      */
     @Override
-    public T get(int index) {
-        this.validateIndex(index);
+    public void pop() {
+        if (this.data.empty()) {
+            String errorMessage = "The stack is empty.";
 
-        int actualIndex = this.indexOf(index);
-        return this.data[actualIndex];
+            this.log.error(errorMessage);
+            throw new StackException(errorMessage);
+        }
+
+        this.data.remove(this.size() - 1);
     }
 
     /**
-     * Gets the size of an array.
+     * Gets the peek element of the stack.
+     */
+    @Override
+    public T peek() {
+        if (this.data.empty()) {
+            String errorMessage = "The stack is empty.";
+
+            this.log.error(errorMessage);
+            throw new StackException(errorMessage);
+        }
+
+        return this.data.get(this.size() - 1);
+    }
+
+    /**
+     * Gets the size of the stack.
      */
     @Override
     public int size() {
-        return this.data.length;
+        return this.data.size();
     }
 
     /**
-     * Checks whether an array is empty.
+     * Checks whether the stack is empty.
      */
-    @Override
     public boolean empty() {
-        return this.size() == 0;
+       return this.size() == 0;
+    }
+
+    /**
+     * Clears the stack.
+     */
+    public void clear() {
+        this.data.clear();
     }
 
     /**
@@ -108,7 +132,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public IIterator<T> getIterator() {
-        return CircularArrayIterator.of(this);
+        return InvertReverseIterator.of(this.data.getReverseIterator());
     }
 
     /**
@@ -116,7 +140,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return CircularArrayReverseIterator.of(this);
+        return InvertIterator.of(this.data.getIterator());
     }
 
     /**
@@ -132,7 +156,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public int hashCode() {
-        return this.hashCode;
+        return this.comparator.getHashCode(this);
     }
 
     /**
@@ -159,7 +183,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(ICircularArray<T> other) {
+    public boolean isEqual(IStack<T> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -171,22 +195,22 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(ICircularArray<T> other) {
+    public int compareTo(IStack<T> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<ICircularArray<T>> defaultComparator() {
+    public static <T extends Comparable<T>> IBinaryComparator<IStack<T>> defaultComparator() {
         IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(elementComparator);
     }
 
     /**
-     * The Comparator class implements a comparator of a circular array.
+     * The Comparator class implements a comparator of an array.
      */
-    public static final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<ICircularArray<T>> {
+    public static final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<IStack<T>> {
         private final IBinaryComparator<T> elementComparator;
 
         /**
@@ -204,7 +228,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ICircularArray<T> obj) {
+        public int getHashCode(IStack<T> obj) {
             return new HashCodeBuilder(3, 5)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
@@ -214,7 +238,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(ICircularArray<T> lhs, ICircularArray<T> rhs) {
+        public boolean isEqual(IStack<T> lhs, IStack<T> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -236,7 +260,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ICircularArray<T> lhs, ICircularArray<T> rhs) {
+        public int compareTo(IStack<T> lhs, IStack<T> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -253,27 +277,5 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.elementComparator)
                 .build();
         }
-    }
-
-    /**
-     * Gets the actual index of an index.
-     */
-    private int indexOf(int index) {
-        int result = (this.startIndex + index) % this.data.length;
-        return result;
-    }
-
-    /**
-     * Validates an index.
-     */
-    private void validateIndex(int index) {
-        this.validateIndex(index, 0, this.data.length - 1);
-    }
-
-    /**
-     * Validates an index.
-     */
-    private void validateIndex(int index, int startIndex, int endIndex) {
-        Collections.validateIndex(startIndex, endIndex, index, "circular array");
     }
 }

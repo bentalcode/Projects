@@ -7,20 +7,20 @@ import datastructures.collections.interfaces.IValueIterable;
 /**
  * The ILinkedList interface defines a linked list.
  */
-public interface ILinkedList<TValue extends Comparable<TValue>> extends
-    IUnaryComparator<ILinkedList<TValue>>,
-    IIterable<ILinkedListNode<TValue>>,
-    IValueIterable<TValue> {
+public interface ILinkedList<T extends Comparable<T>> extends
+    IUnaryComparator<ILinkedList<T>>,
+    IIterable<ILinkedListNode<T>>,
+    IValueIterable<T> {
 
     /**
      * Gets the head node of the list.
      */
-    ILinkedListNode<TValue> getHead();
+    ILinkedListNode<T> getHead();
 
     /**
      * Gets the tail node of the list.
      */
-    ILinkedListNode<TValue> getTail();
+    ILinkedListNode<T> getTail();
 
     /**
      * Gets the size of the list.
@@ -35,43 +35,43 @@ public interface ILinkedList<TValue extends Comparable<TValue>> extends
     /**
      * Adds a new value to the front of the list.
      */
-    void addToFront(TValue value);
+    void addToFront(T value);
 
     /**
      * Adds a new value to the back of the list.
      */
-    void addToBack(TValue value);
+    void addToBack(T value);
 
     /**
      * Adds a new value after a specific node of the list.
      */
-    void addAfter(ILinkedListNode<TValue> currNode, TValue valueToAdd);
+    void addAfter(ILinkedListNode<T> currNode, T valueToAdd);
 
     /**
      * Adds a new node to the front of the list.
      */
-    void addToFront(ILinkedListNode<TValue> node);
+    void addToFront(ILinkedListNode<T> node);
 
     /**
      * Adds a new node to the back of the list.
      */
-    void addToBack(ILinkedListNode<TValue> node);
+    void addToBack(ILinkedListNode<T> node);
 
     /**
      * Adds a new node after a specific node of the list.
      */
-    void addAfter(ILinkedListNode<TValue> currNode, ILinkedListNode<TValue> nodeToAdd);
+    void addAfter(ILinkedListNode<T> currNode, ILinkedListNode<T> nodeToAdd);
 
     /**
      * Removes the front node from the list.
      * Returns the removed node or null if the list is empty.
      */
-    ILinkedListNode<TValue> removeFromFront();
+    ILinkedListNode<T> removeFromFront();
 
     /**
      * Removes a node after a specific node of the list.
      */
-    void removeAfter(ILinkedListNode<TValue> currNode);
+    void removeAfter(ILinkedListNode<T> currNode);
 
     /**
      * Clears the list.
@@ -81,5 +81,5 @@ public interface ILinkedList<TValue extends Comparable<TValue>> extends
     /**
      * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
      */
-    ILinkedListNode<TValue> getNode(int index);
+    ILinkedListNode<T> getNode(int index);
 }

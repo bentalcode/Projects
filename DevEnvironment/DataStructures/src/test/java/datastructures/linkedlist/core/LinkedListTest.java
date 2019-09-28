@@ -75,20 +75,18 @@ public final class LinkedListTest {
     public void LinkedListUpdationTest() {
         ILinkedList<Integer> list = new LinkedList<>();
 
-        List<ITriple<String, Integer, List<Integer>>> data =
-            this.testData.getLinkedListData().getUpdationData();
-
+        List<ITriple<String, Integer, List<Integer>>> data = this.testData.getLinkedListData().getUpdationData();
         this.testUpdation(list, data);
     }
 
     /**
      * Tests the creation logic of a linked list.
      */
-    private <TValue extends Comparable<TValue>> void testCreation(IListData<TValue> data) {
+    private <T extends Comparable<T>> void testCreation(IListData<T> data) {
         //
         // Create the container...
         //
-        ILinkedList<TValue> container = this.createLinkedList(data.getCreationData());
+        ILinkedList<T> container = this.createLinkedList(data.getCreationData());
 
         //
         // Test the data of the container...
@@ -102,12 +100,12 @@ public final class LinkedListTest {
     /**
      * Tests the iteration logic of a linked list.
      */
-    private <TValue extends Comparable<TValue>> void testIteration(IListData<TValue> data) {
+    private <T extends Comparable<T>> void testIteration(IListData<T> data) {
         //
         // Create the container...
         //
-        ILinkedList<TValue> container = this.createLinkedList(data.getCreationData());
-        ILinkedList<TValue> expectedContainer = this.createLinkedList(data.getCreationData());
+        ILinkedList<T> container = this.createLinkedList(data.getCreationData());
+        ILinkedList<T> expectedContainer = this.createLinkedList(data.getCreationData());
 
         //
         // Test the default iterator of the container...
@@ -138,11 +136,11 @@ public final class LinkedListTest {
     /**
      * Tests the updation logic of a linked list.
      */
-    private <TValue extends Comparable<TValue>> void testUpdation(
-        ILinkedList<TValue> list,
-        List<ITriple<String, TValue, List<TValue>>> data) {
+    private <T extends Comparable<T>> void testUpdation(
+        ILinkedList<T> list,
+        List<ITriple<String, T, List<T>>> data) {
 
-        for (ITriple<String, TValue, List<TValue>> entry : data) {
+        for (ITriple<String, T, List<T>> entry : data) {
             this.testUpdation(
                 list,
                 entry.first(),
@@ -154,11 +152,11 @@ public final class LinkedListTest {
     /**
      * Tests the updation logic of a linked list.
      */
-    private <TValue extends Comparable<TValue>> void testUpdation(
-        ILinkedList<TValue> list,
+    private <T extends Comparable<T>> void testUpdation(
+        ILinkedList<T> list,
         String operation,
-        TValue item,
-        List<TValue> expectedContent) {
+        T item,
+        List<T> expectedContent) {
 
         this.updateList(list, operation, item);
 
@@ -171,10 +169,10 @@ public final class LinkedListTest {
     /**
      * Creates a linked list.
      */
-    private <TValue extends Comparable<TValue>> ILinkedList<TValue> createLinkedList(List<TValue> data) {
-        ILinkedList<TValue> result = new LinkedList<>();
+    private <T extends Comparable<T>> ILinkedList<T> createLinkedList(List<T> data) {
+        ILinkedList<T> result = new LinkedList<>();
 
-        for (TValue element : data) {
+        for (T element : data) {
             result.addToBack(element);
         }
 
@@ -184,10 +182,10 @@ public final class LinkedListTest {
     /**
      * Updates the list.
      */
-    private <TValue extends Comparable<TValue>> void updateList(
-        ILinkedList<TValue> list,
+    private <T extends Comparable<T>> void updateList(
+        ILinkedList<T> list,
         String operation,
-        TValue item) {
+        T item) {
 
         if (operation.equalsIgnoreCase("addToFront")) {
             list.addToFront(LinkedListNode.of(item));
@@ -199,7 +197,7 @@ public final class LinkedListTest {
             list.removeFromFront();
         }
         else if (operation.equalsIgnoreCase("removeAfter")) {
-            ILinkedListNode<TValue> currNode = list.getNode(0);
+            ILinkedListNode<T> currNode = list.getNode(0);
             list.removeAfter(currNode);
         }
     }

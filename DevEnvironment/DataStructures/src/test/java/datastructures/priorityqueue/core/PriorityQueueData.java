@@ -7,20 +7,20 @@ import java.util.List;
 /**
  * The PriorityQueueData class implements the data of a priority queue.
  */
-public final class PriorityQueueData<TValue extends Comparable<TValue>> implements IPriorityQueueData<TValue> {
-    private final Class<TValue> classType;
-    private final IBinaryComparator<TValue> elementComparator;
-    private final List<TValue> creationData;
-    private final List<TValue> data;
+public final class PriorityQueueData<T extends Comparable<T>> implements IPriorityQueueData<T> {
+    private final Class<T> classType;
+    private final IBinaryComparator<T> elementComparator;
+    private final List<T> creationData;
+    private final List<T> data;
 
     /**
      * The PriorityQueueData constructor.
      */
     public PriorityQueueData(
-        Class<TValue> classType,
-        IBinaryComparator<TValue> elementComparator,
-        List<TValue> creationData,
-        List<TValue> data) {
+        Class<T> classType,
+        IBinaryComparator<T> elementComparator,
+        List<T> creationData,
+        List<T> data) {
 
         this.classType = classType;
         this.elementComparator = elementComparator;
@@ -31,7 +31,7 @@ public final class PriorityQueueData<TValue extends Comparable<TValue>> implemen
     /**
      * Gets the class type.
      */
-    public Class<TValue> getClassType() {
+    public Class<T> getClassType() {
         return this.classType;
     }
 
@@ -39,7 +39,7 @@ public final class PriorityQueueData<TValue extends Comparable<TValue>> implemen
      * Gets the comparator of an element.
      */
     @Override
-    public IBinaryComparator<TValue> getElementComparator() {
+    public IBinaryComparator<T> getElementComparator() {
         return this.elementComparator;
     }
 
@@ -47,7 +47,7 @@ public final class PriorityQueueData<TValue extends Comparable<TValue>> implemen
      * Gets the creation data.
      */
     @Override
-    public List<TValue> getCreationData() {
+    public List<T> getCreationData() {
         return this.creationData;
     }
 
@@ -55,7 +55,7 @@ public final class PriorityQueueData<TValue extends Comparable<TValue>> implemen
      * Gets the actual data of the priority queue.
      */
     @Override
-    public List<TValue> getData() {
+    public List<T> getData() {
         return this.data;
     }
 }

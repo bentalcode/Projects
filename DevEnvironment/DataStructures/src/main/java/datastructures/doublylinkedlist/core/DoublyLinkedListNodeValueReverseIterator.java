@@ -8,13 +8,13 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
  * The DoublyLinkedListNodeValueReverseIterator class implements a reverse iterator
  * of values of a doubly linked list.
  */
-public final class DoublyLinkedListNodeValueReverseIterator<TValue extends Comparable<TValue>> implements IReverseIterator<TValue> {
-    private final IReverseIterator<IDoublyLinkedListNode<TValue>> reverseIterator;
+public final class DoublyLinkedListNodeValueReverseIterator<T extends Comparable<T>> implements IReverseIterator<T> {
+    private final IReverseIterator<IDoublyLinkedListNode<T>> reverseIterator;
 
     /**
      * The NodeValueIterator constructor.
      */
-    public DoublyLinkedListNodeValueReverseIterator(IReverseIterator<IDoublyLinkedListNode<TValue>> reverseIterator) {
+    public DoublyLinkedListNodeValueReverseIterator(IReverseIterator<IDoublyLinkedListNode<T>> reverseIterator) {
         Conditions.validateNotNull(
             reverseIterator,
             "The reverse iterator of nodes of a doubly linked list.");
@@ -36,7 +36,7 @@ public final class DoublyLinkedListNodeValueReverseIterator<TValue extends Compa
      * Gets the next value.
      */
     @Override
-    public TValue next() {
+    public T next() {
         return this.reverseIterator.next().getValue();
     }
 

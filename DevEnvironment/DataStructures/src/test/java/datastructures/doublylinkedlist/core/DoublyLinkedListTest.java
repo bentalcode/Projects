@@ -83,11 +83,11 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the creation logic of a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> void testCreation(IListData<TValue> data) {
+    private <T extends Comparable<T>> void testCreation(IListData<T> data) {
         //
         // Create the container...
         //
-        IDoublyLinkedList<TValue> container = this.createDoublyLinkedList(data.getCreationData());
+        IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getCreationData());
 
         //
         // Test the data of the container...
@@ -101,12 +101,12 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the iteration logic of a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> void testIteration(IListData<TValue> data) {
+    private <T extends Comparable<T>> void testIteration(IListData<T> data) {
         //
         // Create the container...
         //
-        IDoublyLinkedList<TValue> container = this.createDoublyLinkedList(data.getCreationData());
-        IDoublyLinkedList<TValue> expectedContainer = this.createDoublyLinkedList(data.getCreationData());
+        IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getCreationData());
+        IDoublyLinkedList<T> expectedContainer = this.createDoublyLinkedList(data.getCreationData());
 
         //
         // Test the default iterator of the container...
@@ -153,11 +153,11 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the updation logic of a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> void testUpdation(
-        IDoublyLinkedList<TValue> list,
-        List<ITriple<String, TValue, List<TValue>>> data) {
+    private <T extends Comparable<T>> void testUpdation(
+        IDoublyLinkedList<T> list,
+        List<ITriple<String, T, List<T>>> data) {
 
-        for (ITriple<String, TValue, List<TValue>> entry : data) {
+        for (ITriple<String, T, List<T>> entry : data) {
             this.testUpdation(
                 list,
                 entry.first(),
@@ -169,11 +169,11 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the updation logic of a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> void testUpdation(
-        IDoublyLinkedList<TValue> list,
+    private <T extends Comparable<T>> void testUpdation(
+        IDoublyLinkedList<T> list,
         String operation,
-        TValue item,
-        List<TValue> expectedContent) {
+        T item,
+        List<T> expectedContent) {
 
         this.updateList(list, operation, item);
 
@@ -186,10 +186,10 @@ public final class DoublyLinkedListTest {
     /**
      * Creates a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> IDoublyLinkedList<TValue> createDoublyLinkedList(List<TValue> data) {
-        IDoublyLinkedList<TValue> result = new DoublyLinkedList<>();
+    private <T extends Comparable<T>> IDoublyLinkedList<T> createDoublyLinkedList(List<T> data) {
+        IDoublyLinkedList<T> result = new DoublyLinkedList<>();
 
-        for (TValue element : data) {
+        for (T element : data) {
             result.addToBack(element);
         }
 
@@ -199,10 +199,10 @@ public final class DoublyLinkedListTest {
     /**
      * Updates the list.
      */
-    private <TValue extends Comparable<TValue>> void updateList(
-        IDoublyLinkedList<TValue> list,
+    private <T extends Comparable<T>> void updateList(
+        IDoublyLinkedList<T> list,
         String operation,
-        TValue item) {
+        T item) {
 
         if (operation.equalsIgnoreCase("addToFront")) {
             list.addToFront(DoublyLinkedListNode.of(item));

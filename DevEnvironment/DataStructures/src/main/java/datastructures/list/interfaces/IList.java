@@ -7,35 +7,35 @@ import base.interfaces.IUnaryComparator;
 /**
  * The IList interface defines a list.
  */
-public interface IList<TValue extends Comparable<TValue>> extends
-    IUnaryComparator<IList<TValue>>,
-    IIterable<TValue>,
-    IReverseIterable<TValue> {
+public interface IList<T extends Comparable<T>> extends 
+    IUnaryComparator<IList<T>>,
+    IIterable<T>,
+    IReverseIterable<T> {
 
     /**
      * Appends a specified element to the end of the list.
      */
-    void add(TValue element);
+    void add(T element);
 
     /**
      * Sets an element at the specified index.
      */
-    void set(int index, TValue element);
+    void set(int index, T element);
 
     /**
      * Gets an element at the specified index.
      */
-    TValue get(int index);
+    T get(int index);
 
     /**
      * Removes an element at specified index.
      * Shifts any subsequent elements to the left.
      * Returns the element that was removed from the list.
      */
-    TValue remove(int index);
+    T remove(int index);
 
     /**
-     * Gets the size of an array.
+     * Gets the size of the list.
      */
     int size();
 
@@ -52,13 +52,13 @@ public interface IList<TValue extends Comparable<TValue>> extends
     /**
      * Checks whether the list contains an element.
      */
-    boolean contains(TValue element);
+    boolean contains(T element);
 
     /**
      * Gets the corresponding index of the first element which is matching to the specified element.
      * Returns -1 if no element was found.
      */
-    int indexOf(TValue element);
+    int indexOf(T element);
 
     /**
      * Sorts the list.
@@ -68,5 +68,5 @@ public interface IList<TValue extends Comparable<TValue>> extends
     /**
      * Converts the list to a native array.
      */
-    TValue[] toArray();
+    T[] toArray();
 }

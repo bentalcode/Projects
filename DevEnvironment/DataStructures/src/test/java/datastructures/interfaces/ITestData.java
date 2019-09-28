@@ -10,6 +10,7 @@ import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.interfaces.IListTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
+import datastructures.stack.interfaces.IStackTestData;
 
 /**
  * The ITestData interface defines the data of the tests.
@@ -24,6 +25,11 @@ public interface ITestData {
      * Gets the data of tests of a list.
      */
     IListTestData getListData();
+
+    /**
+     * Gets the data of tests of a stack.
+     */
+    IStackTestData getStackData();
 
     /**
      * Gets the data of tests of a linked list.

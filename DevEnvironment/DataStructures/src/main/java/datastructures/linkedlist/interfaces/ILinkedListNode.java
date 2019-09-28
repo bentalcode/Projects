@@ -5,26 +5,26 @@ import base.interfaces.IUnaryComparator;
 /**
  * The ILinkedListNode interface defines a node of a linked list.
  */
-public interface ILinkedListNode<TValue extends Comparable<TValue>> extends IUnaryComparator<ILinkedListNode<TValue>> {
+public interface ILinkedListNode<T extends Comparable<T>> extends IUnaryComparator<ILinkedListNode<T>> {
     /**
      * Gets a value of a node.
      */
-    TValue getValue();
+    T getValue();
 
     /**
      * Sets a value of a node.
      */
-    void setValue(TValue value);
+    void setValue(T value);
 
     /**
      * Gets a next node.
      */
-    ILinkedListNode<TValue> next();
+    ILinkedListNode<T> next();
 
     /**
      * Sets a next node.
      */
-    void setNext(ILinkedListNode<TValue> node);
+    void setNext(ILinkedListNode<T> node);
 
     /**
      * Unlinked the node.
