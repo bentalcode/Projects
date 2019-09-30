@@ -9,5 +9,5 @@ public interface IBinaryTreeTestData {
     /**
      * Gets the data of trees.
      */
-    List<IBinaryTreeData<Integer, String>> getTreesData();
+    List<IBinaryTreeData<Integer, String>> getData();
 }

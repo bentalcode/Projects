@@ -9,6 +9,7 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
+import base.interfaces.IReverseIterator;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
@@ -16,6 +17,7 @@ import datastructures.hashmap.interfaces.IHashMapConstants;
 import datastructures.hashmap.interfaces.ILinkedHashMap;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
+import java.util.List;
 
 /**
  * The LinkedHashMap class implements a linked hash map.
@@ -144,11 +146,23 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
     }
 
     /**
-     * Gets an iterator of the hash map.
+     * Gets the internal iterator of a hash map.
      */
     @Override
-    public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
+    protected IIterator<IKeyValueNode<TKey, TValue>> getInternalIterator(
+        List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
+
         return this.orderedNodes.getValueIterator();
+    }
+
+    /**
+     * Gets the internal reverse iterator of a hash map.
+     */
+    @Override
+    protected IReverseIterator<IKeyValueNode<TKey, TValue>> getInternalReverseIterator(
+        List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
+
+        return this.orderedNodes.getValueReverseIterator();
     }
 
     /**

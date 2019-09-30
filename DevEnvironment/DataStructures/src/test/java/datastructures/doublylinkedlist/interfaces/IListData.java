@@ -14,5 +14,5 @@ public interface IListData<T extends Comparable<T>> {
     /**
      * Gets the actual data of the list.
      */
-    List<T> getData();
+     List<T> getData();
 }

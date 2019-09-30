@@ -9,12 +9,14 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
-import datastructures.collections.core.Collections;
+import base.interfaces.IReverseIterator;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.hashmap.interfaces.IHashMap;
 import datastructures.hashmap.interfaces.IHashMapConstants;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
+import java.util.List;
 
 /**
  * The HashMap class implements a hash map.
@@ -112,19 +114,23 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
     }
 
     /**
-     * Gets an iterator of the hash map.
+     * Gets the internal iterator of a hash map.
      */
     @Override
-    public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
-        return this.getInternalIterator();
+    protected IIterator<IKeyValueNode<TKey, TValue>> getInternalIterator(
+        List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
+
+        return HashMapInternalIterator.of(header);
     }
 
     /**
-     * Gets string representation of this instance.
+     * Gets the internal reverse iterator of a hash map.
      */
     @Override
-    public String toString() {
-        return Collections.toString(this.getIterator());
+    protected IReverseIterator<IKeyValueNode<TKey, TValue>> getInternalReverseIterator(
+        List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
+
+        return HashMapInternalReverseIterator.of(header);
     }
 
     /**

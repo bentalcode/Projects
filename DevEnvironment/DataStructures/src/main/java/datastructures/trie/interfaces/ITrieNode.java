@@ -1,41 +1,48 @@
 package datastructures.trie.interfaces;
 
+import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import base.interfaces.IUnaryComparator;
-import java.util.Collection;
+import java.util.List;
 
 /**
- * The ITrieNode interface defines a node in a trie.
+ * The ITrieNode interface defines a node of a trie.
  */
-public interface ITrieNode<TKey extends Comparable<TKey>, TValue> extends IUnaryComparator<ITrieNode<TKey, TValue>> {
+public interface ITrieNode<TKey extends Comparable<TKey>> extends IUnaryComparator<ITrieNode<TKey>> {
     /**
-     * Gets the key of the node.
+     * Gets a key of the node.
      */
     TKey getKey();
 
     /**
-     * Gets the value of the node.
+     * Returns whether this is an end node.
      */
-    TValue getValue();
+    boolean isEndNode();
 
     /**
-     * Sets the value of the node.
+     * Gets children of the node.
      */
-    void setValue(TValue value);
+    List<ITrieNode<TKey>> getChildren();
 
     /**
-     * Gets the children of the node.
+     * Gets an iterator of children of the node.
      */
-    Collection<ITrieNode<TKey, TValue>> getChildren();
+    IIterator<ITrieNode<TKey>> getChildrenIterator();
+
+    /**
+     * Gets a reverse iterator of children of the node.
+     */
+    IReverseIterator<ITrieNode<TKey>> getChildrenReverseIterator();
 
     /**
      * Adds a child to the node.
      */
-    void addChild(ITrieNode<TKey, TValue> child);
+    void addChild(ITrieNode<TKey> child);
 
     /**
-     * Adds a child of the node.
+     * Gets a specific child of the node.
      */
-    ITrieNode<TKey, TValue> getChild(TKey key);
+    ITrieNode<TKey> getChild(TKey key);
 
     /**
      * Checks whether a child exists.

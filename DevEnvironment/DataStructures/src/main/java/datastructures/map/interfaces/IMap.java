@@ -1,13 +1,25 @@
 package datastructures.map.interfaces;
 
 import base.interfaces.IIterable;
-import base.interfaces.IIterator;
+import base.interfaces.IReverseIterable;
+import datastructures.collections.interfaces.IKeyIterable;
+import datastructures.collections.interfaces.IKeyReverseIterable;
+import datastructures.collections.interfaces.IValueIterable;
+import datastructures.collections.interfaces.IValueReverseIterable;
 import datastructures.node.interfaces.IKeyValueNode;
+import java.util.List;
 
 /**
  * The IMap interface defines a map.
  */
-public interface IMap<TKey extends Comparable<TKey>, TValue> extends IIterable<IKeyValueNode<TKey, TValue>> {
+public interface IMap<TKey extends Comparable<TKey>, TValue> extends
+    IIterable<IKeyValueNode<TKey, TValue>>,
+    IReverseIterable<IKeyValueNode<TKey, TValue>>,
+    IKeyIterable<TKey>,
+    IKeyReverseIterable<TKey>,
+    IValueIterable<TValue>,
+    IValueReverseIterable<TValue> {
+
     /**
      * Gets the corresponding value of the specified key.
      */
@@ -44,6 +56,11 @@ public interface IMap<TKey extends Comparable<TKey>, TValue> extends IIterable<I
     boolean containsValue(TValue Value);
 
     /**
+     * Gets the values.
+     */
+    List<TValue> getValues();
+
+    /**
      * Clears the map.
      */
     void clear();
@@ -56,20 +73,5 @@ public interface IMap<TKey extends Comparable<TKey>, TValue> extends IIterable<I
     /**
      * Checks whether the map is empty.
      */
-    boolean isEmpty();
-
-    /**
-     * Gets an iterator of the hash map.
-     */
-    IIterator<IKeyValueNode<TKey, TValue>> getIterator();
-
-    /**
-     * Gets a key iterator of the hash map.
-     */
-    IIterator<TKey> getKeyIterator();
-
-    /**
-     * Gets a value iterator of the hash map.
-     */
-    IIterator<TValue> getValueIterator();
+    boolean empty();
 }

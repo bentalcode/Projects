@@ -23,6 +23,8 @@ import datastructures.priorityqueue.core.PriorityQueueTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 import datastructures.stack.core.StackTestData;
 import datastructures.stack.interfaces.IStackTestData;
+import datastructures.trie.core.TrieTestData;
+import datastructures.trie.interfaces.ITrieTestData;
 
 /**
  * The TestData class implements the data of the tests.
@@ -96,6 +98,14 @@ public final class TestData implements ITestData {
     @Override
     public IBinaryTreeTestData getBinaryTreeData() {
         return new BinaryTreeTestData();
+    }
+
+    /**
+     * Gets the data of tests of a trie.
+     */
+    @Override
+    public ITrieTestData getTrieData() {
+        return new TrieTestData();
     }
 
     /**

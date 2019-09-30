@@ -13,7 +13,6 @@ import base.interfaces.IVisitor;
 import datastructures.tree.interfaces.ITree;
 import datastructures.tree.interfaces.ITreeNode;
 import datastructures.tree.interfaces.ITreeTraversal;
-
 import java.util.Collection;
 
 /**
@@ -73,15 +72,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
      */
     @Override
     public ITreeTraversal<TKey , TValue> getTreeTraversal() {
-        return this.getTreeTraversal(TreeNode.defaultComparator());
-    }
-
-    /**
-     * Gets an interface of a tree traversal.
-     */
-    @Override
-    public ITreeTraversal<TKey , TValue> getTreeTraversal(IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator) {
-        return new TreeTraversal<>(nodeComparator);
+        return this.getTreeTraversal();
     }
 
     /**

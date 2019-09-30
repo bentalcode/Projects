@@ -10,12 +10,19 @@ public final class StringIterator implements IIterator<Character> {
     private int currIndex;
 
     /**
+     * Creates a new iterator of a string.
+     */
+    public static IIterator<Character> of(String string) {
+        return new StringIterator(string);
+    }
+
+    /**
      * The StringIterator constructor.
      */
-    public StringIterator(String string) {
+    private StringIterator(String string) {
         Conditions.validateNotNull(
             string,
-            "The string.");
+            "The string to iterate.");
 
         this.string = string;
 

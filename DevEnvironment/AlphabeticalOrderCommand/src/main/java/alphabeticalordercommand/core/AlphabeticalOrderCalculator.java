@@ -2,6 +2,7 @@ package alphabeticalordercommand.core;
 
 import alphabeticalordercommand.interfaces.IAlphabeticalOrderResults;
 import base.core.Conditions;
+import base.core.StringIterator;
 import base.interfaces.ICalculator;
 import datastructures.graph.core.GraphBuilder;
 import datastructures.graph.core.Vertex;
@@ -11,7 +12,6 @@ import datastructures.graph.interfaces.IVertex;
 import java.util.Collection;
 import java.util.List;
 import datastructures.trie.core.Trie;
-import datastructures.trie.core.TrieNode;
 import datastructures.trie.interfaces.ITrie;
 import datastructures.trie.interfaces.ITrieNode;
 
@@ -42,7 +42,7 @@ public final class AlphabeticalOrderCalculator implements ICalculator<IAlphabeti
         //
         // Create a trie from the words...
         //
-        ITrie<Character, Boolean> wordsTrie = this.createTrie();
+        ITrie<Character> wordsTrie = this.createTrie();
 
         //
         // Create a graph with the dependencies of the alphabet...
@@ -64,58 +64,29 @@ public final class AlphabeticalOrderCalculator implements ICalculator<IAlphabeti
     /**
      * Creates a trie from a list of words.
      */
-    private ITrie<Character, Boolean> createTrie() {
-        Trie.Builder<Character, Boolean> trieBuilder = new Trie.Builder<>();
-        ITrieNode<Character, Boolean> root = TrieNode.create(null, false);
-        trieBuilder.setRoot(root);
+    private ITrie<Character> createTrie() {
+        Trie.Builder<Character> trieBuilder = new Trie.Builder<>();
 
         for (String currWord : this.words) {
-            this.insertWord(root, trieBuilder, currWord);
+            trieBuilder.addSequence(StringIterator.of(currWord));
         }
 
         return trieBuilder.build();
     }
 
     /**
-     * Inserts a word into the trie.
-     */
-    private void insertWord(
-        ITrieNode<Character, Boolean> root,
-        Trie.Builder<Character, Boolean> trieBuilder,
-        String word) {
-
-        ITrieNode<Character, Boolean> currNode = root;
-
-        for (int i = 0; i < word.length(); ++i) {
-            char currCharacter = word.charAt(i);
-
-            if (currNode.hasChild(currCharacter)) {
-                currNode = currNode.getChild(currCharacter);
-            }
-            else {
-                ITrieNode<Character, Boolean> newChild = TrieNode.create(currCharacter, false);
-                trieBuilder.addNode(currNode, newChild);
-
-                currNode = newChild;
-            }
-        }
-
-        currNode.setValue(true);
-    }
-
-    /**
      * Creates an alphabetical order graph by using inorder search.
      */
-    private <TKey extends Comparable<TKey>, TTrieValue, TGraphValue> IGraph<TKey, TGraphValue> createAlphabeticalOrderGraph(
-        ITrie<TKey, TTrieValue> trie) {
+    private <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> createAlphabeticalOrderGraph(
+        ITrie<TKey> trie) {
 
-        IGraphBuilder<TKey, TGraphValue> graphBuilder = new GraphBuilder<>();
+        IGraphBuilder<TKey, TValue> graphBuilder = new GraphBuilder<>();
 
         if (trie.getRoot() == null) {
             return graphBuilder.build();
         }
 
-        ITrieNode<TKey, TTrieValue> currNode = trie.getRoot();
+        ITrieNode<TKey> currNode = trie.getRoot();
 
         this.updateAlphabeticalOrderGraph(currNode, graphBuilder);
 
@@ -125,26 +96,26 @@ public final class AlphabeticalOrderCalculator implements ICalculator<IAlphabeti
     /**
      * Updates the alphabetical order graph.
      */
-    private <TKey extends Comparable<TKey>, TTrieValue, TGraphValue> void updateAlphabeticalOrderGraph(
-        ITrieNode<TKey, TTrieValue> currNode,
-        IGraphBuilder<TKey, TGraphValue> graphBuilder) {
+    private <TKey extends Comparable<TKey>, TValue> void updateAlphabeticalOrderGraph(
+        ITrieNode<TKey> currNode,
+        IGraphBuilder<TKey, TValue> graphBuilder) {
 
         if (currNode == null) {
             return;
         }
 
-        Collection<ITrieNode<TKey, TTrieValue>> children = currNode.getChildren();
+        Collection<ITrieNode<TKey>> children = currNode.getChildren();
 
-        ITrieNode<TKey, TTrieValue> prevChild = null;
+        ITrieNode<TKey> prevChild = null;
 
         //
         // Update the alphabetical order graph for the current node...
         //
-        for (ITrieNode<TKey, TTrieValue> currChild : children) {
+        for (ITrieNode<TKey> currChild : children) {
             if (prevChild != null && !prevChild.getKey().equals(currChild.getKey())) {
 
-                IVertex<TKey, TGraphValue> sourceVertex = Vertex.of(prevChild.getKey());
-                IVertex<TKey, TGraphValue> destinationVertex = Vertex.of(currChild.getKey());
+                IVertex<TKey, TValue> sourceVertex = Vertex.of(prevChild.getKey());
+                IVertex<TKey, TValue> destinationVertex = Vertex.of(currChild.getKey());
 
                 graphBuilder.addDirectedEdge(sourceVertex, destinationVertex);
             }
@@ -155,7 +126,7 @@ public final class AlphabeticalOrderCalculator implements ICalculator<IAlphabeti
         //
         // Update the alphabetical order graph for each child...
         //
-        for (ITrieNode<TKey, TTrieValue> currChild : children) {
+        for (ITrieNode<TKey> currChild : children) {
             this.updateAlphabeticalOrderGraph(currChild, graphBuilder);
         }
     }

@@ -1,7 +1,6 @@
 package datastructures.trie.core;
 
 import base.core.Conditions;
-import base.interfaces.IBinaryComparator;
 import base.interfaces.IVisitor;
 import java.util.Collection;
 import java.util.HashSet;
@@ -14,18 +13,11 @@ import datastructures.trie.interfaces.ITrieTraversal;
 /**
  * The TrieTraversal class implements various traversals of a trie.
  */
-public final class TrieTraversal<TKey extends Comparable<TKey>, TValue> implements ITrieTraversal<TKey, TValue> {
-    private final IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator;
-
+public final class TrieTraversal<TKey extends Comparable<TKey>> implements ITrieTraversal<TKey> {
     /**
      * The TrieTraversal constructor.
      */
-    public TrieTraversal(IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator) {
-        Conditions.validateNotNull(
-            nodeComparator,
-            "The comparator of a node in tree.");
-
-        this.nodeComparator = nodeComparator;
+    public TrieTraversal() {
     }
 
     /**
@@ -33,8 +25,8 @@ public final class TrieTraversal<TKey extends Comparable<TKey>, TValue> implemen
      */
     @Override
     public void breadthFirstSearch(
-        ITrieNode<TKey, TValue> root,
-        IVisitor<ITrieNode<TKey, TValue>> visitor) {
+        ITrieNode<TKey> root,
+        IVisitor<ITrieNode<TKey>> visitor) {
 
         this.validate(visitor);
 
@@ -42,15 +34,15 @@ public final class TrieTraversal<TKey extends Comparable<TKey>, TValue> implemen
             return;
         }
 
-        Queue<ITrieNode<TKey, TValue>> queue = new LinkedList<>();
+        Queue<ITrieNode<TKey>> queue = new LinkedList<>();
         queue.offer(root);
 
         while (!queue.isEmpty()) {
-            ITrieNode<TKey, TValue> currNode = queue.poll();
+            ITrieNode<TKey> currNode = queue.poll();
 
             visitor.visit(currNode);
 
-            for (ITrieNode<TKey, TValue> child : currNode.getChildren()) {
+            for (ITrieNode<TKey> child : currNode.getChildren()) {
                 assert(child != null);
 
                 queue.offer(child);
@@ -63,8 +55,8 @@ public final class TrieTraversal<TKey extends Comparable<TKey>, TValue> implemen
      */
     @Override
     public void depthFirstSearch(
-        ITrieNode<TKey, TValue> root,
-        IVisitor<ITrieNode<TKey, TValue>> visitor) {
+        ITrieNode<TKey> root,
+        IVisitor<ITrieNode<TKey>> visitor) {
 
         this.validate(visitor);
 
@@ -72,14 +64,14 @@ public final class TrieTraversal<TKey extends Comparable<TKey>, TValue> implemen
             return;
         }
 
-        Set<ITrieNode<TKey, TValue>> visited = new HashSet<>();
+        Set<ITrieNode<TKey>> visited = new HashSet<>();
 
         visitor.visit(root);
         visited.add(root);
 
-        Collection<ITrieNode<TKey, TValue>> children = root.getChildren();
+        Collection<ITrieNode<TKey>> children = root.getChildren();
 
-        for (ITrieNode<TKey, TValue> child : children) {
+        for (ITrieNode<TKey> child : children) {
             assert(child != null);
 
             if (!visited.contains(child)) {
@@ -91,7 +83,7 @@ public final class TrieTraversal<TKey extends Comparable<TKey>, TValue> implemen
     /**
      * Validates a visitor of a trie node.
      */
-    private void validate(IVisitor<ITrieNode<TKey, TValue>> visitor) {
+    private void validate(IVisitor<ITrieNode<TKey>> visitor) {
         Conditions.validateNotNull(
             visitor,
             "The visitor of a trie node.");

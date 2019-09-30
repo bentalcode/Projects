@@ -1,15 +1,15 @@
 package datastructures.stack.interfaces;
 
-import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ICollection;
 
 /**
  * The IStack interface defines a stack.
  */
 public interface IStack<T extends Comparable<T>> extends
+    ICollection<T>,
     IUnaryComparator<IStack<T>>,
-    IIterable<T>,
     IReverseIterable<T> {
 
     /**
@@ -26,19 +26,4 @@ public interface IStack<T extends Comparable<T>> extends
      * Gets the peek element of the stack.
      */
     T peek();
-
-    /**
-     * Gets the size of the stack.
-     */
-    int size();
-
-    /**
-     * Checks whether the stack is empty.
-     */
-    boolean empty();
-
-    /**
-     * Clears the stack.
-     */
-    void clear();
 }

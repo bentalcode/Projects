@@ -1,10 +1,13 @@
 package datastructures.hashmap.core;
 
 import base.core.Conditions;
+import base.core.Lists;
 import base.core.Pair;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
+import base.interfaces.IReverseIterator;
+import datastructures.collections.core.Collections;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
@@ -13,7 +16,9 @@ import datastructures.hashmap.HashMapException;
 import datastructures.map.interfaces.IMap;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.core.KeyValueNodeKeyIterator;
+import datastructures.node.core.KeyValueNodeKeyReverseIterator;
 import datastructures.node.core.KeyValueNodeValueIterator;
+import datastructures.node.core.KeyValueNodeValueReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,6 +121,15 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
     }
 
     /**
+     * Gets the values.
+     */
+    @Override
+    public List<TValue> getValues() {
+        List<TValue> values = Lists.fromIterator(this.getValueIterator());
+        return values;
+    }
+
+    /**
      * Returns a size of the map.
      */
     @Override
@@ -127,12 +141,28 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      * Checks whether the map is empty.
      */
     @Override
-    public boolean isEmpty() {
+    public boolean empty() {
         return this.size() == 0;
     }
 
     /**
-     * Gets a key iterator of the hash map.
+     * Gets an iterator of the key-value nodes of the hash map.
+     */
+    @Override
+    public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
+        return this.getInternalIterator(this.header);
+    }
+
+    /**
+     * Gets a reverse iterator of the key-value nodes of the hash map.
+     */
+    @Override
+    public IReverseIterator<IKeyValueNode<TKey, TValue>> getReverseIterator() {
+        return this.getInternalReverseIterator(this.header);
+    }
+
+    /**
+     * Gets an iterator of the keys of the hash map.
      */
     @Override
     public IIterator<TKey> getKeyIterator() {
@@ -140,7 +170,15 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
     }
 
     /**
-     * Gets a value iterator of the hash map.
+     * Gets a reverse iterator of the keys of the hash map.
+     */
+    @Override
+    public IReverseIterator<TKey> getKeyReverseIterator() {
+        return KeyValueNodeKeyReverseIterator.of(this.getReverseIterator());
+    }
+
+    /**
+     * Gets an iterator of the values of the hash map.
      */
     @Override
     public IIterator<TValue> getValueIterator() {
@@ -148,10 +186,31 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
     }
 
     /**
+     * Gets a reverse iterator of the values of the hash map.
+     */
+    @Override
+    public IReverseIterator<TValue> getValueReverseIterator() {
+        return KeyValueNodeValueReverseIterator.of(this.getReverseIterator());
+    }
+
+    /**
      * Gets the internal iterator of a hash map.
      */
-    protected IIterator<IKeyValueNode<TKey, TValue>> getInternalIterator() {
-        return HashMapInternalIterator.of(this.header);
+    protected abstract IIterator<IKeyValueNode<TKey, TValue>> getInternalIterator(
+        List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header);
+
+    /**
+     * Gets the internal reverse iterator of a hash map.
+     */
+    protected abstract IReverseIterator<IKeyValueNode<TKey, TValue>> getInternalReverseIterator(
+        List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header);
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(this.getIterator());
     }
 
     /**

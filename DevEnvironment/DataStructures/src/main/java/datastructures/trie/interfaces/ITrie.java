@@ -1,29 +1,27 @@
 package datastructures.trie.interfaces;
 
-import base.interfaces.IBinaryComparator;
+import base.interfaces.IIterable;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.IAbstractCollection;
+import datastructures.node.interfaces.IKeyValueNode;
 
 /**
  * The ITrie interface defines a trie.
+ * A trie is a tree like data-structure where in the nodes of the sore the entire
+ * alphabet, and strings/words can be retrieved by traversing down a branch path of the tree.
  */
-public interface ITrie<TKey extends Comparable<TKey>, TValue> extends IUnaryComparator<ITrie<TKey, TValue>> {
+public interface ITrie<TKey extends Comparable<TKey>> extends
+    IAbstractCollection,
+    IUnaryComparator<ITrie<TKey>>,
+    IIterable<IKeyValueNode<TKey, Boolean>> {
+
     /**
      * Gets a root of a trie.
      */
-    ITrieNode<TKey, TValue> getRoot();
-
-    /**
-     * Sets a root of a trie.
-     */
-    void setRoot(ITrieNode<TKey, TValue> root);
+    ITrieNode<TKey> getRoot();
 
     /**
      * Gets an interface of a trie traversal.
      */
-    ITrieTraversal<TKey, TValue> getTrieTraversal();
-
-    /**
-     * Gets an interface of a trie traversal.
-     */
-    ITrieTraversal<TKey , TValue> getTrieTraversal(IBinaryComparator<ITrieNode<TKey, TValue>> nodeComparator);
+    ITrieTraversal<TKey> getTrieTraversal();
 }

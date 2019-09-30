@@ -21,7 +21,7 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
      * Gets the data of the trees.
      */
     @Override
-    public List<IBinaryTreeData<Integer, String>> getTreesData() {
+    public List<IBinaryTreeData<Integer, String>> getData() {
         List<IBinaryTreeData<Integer, String>> data = new ArrayList<>();
 
         data.add(this.getTreeData1());

@@ -1,15 +1,12 @@
 package datastructures.tree.core;
 
 import base.core.Conditions;
-import base.interfaces.IBinaryComparator;
 import base.interfaces.IVisitor;
 import datastructures.tree.interfaces.ITreeNode;
 import datastructures.tree.interfaces.ITreeTraversal;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
@@ -17,17 +14,10 @@ import java.util.Set;
  * The TreeTraversal class implements various traversals of a tree.
  */
 public final class TreeTraversal<TKey extends Comparable<TKey>, TValue> implements ITreeTraversal<TKey, TValue> {
-    private final IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator;
-
     /**
      * The TreeTraversal constructor.
      */
-    public TreeTraversal(IBinaryComparator<ITreeNode<TKey, TValue>> nodeComparator) {
-        Conditions.validateNotNull(
-            nodeComparator,
-            "The comparator of a node in tree.");
-
-        this.nodeComparator = nodeComparator;
+    public TreeTraversal() {
     }
 
     /**

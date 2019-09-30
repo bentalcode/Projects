@@ -49,7 +49,7 @@ public final class BinaryTreeTest {
      */
     @Test
     public void BinaryTreeCreationTest() {
-        List<IBinaryTreeData<Integer, String>> data = this.testData.getBinaryTreeData().getTreesData();
+        List<IBinaryTreeData<Integer, String>> data = this.testData.getBinaryTreeData().getData();
 
         for (IBinaryTreeData<Integer, String> treeData : data) {
             this.testCreation(treeData);
@@ -61,7 +61,7 @@ public final class BinaryTreeTest {
      */
     @Test
     public void BinaryTreeIterationTest() {
-        List<IBinaryTreeData<Integer, String>> data = this.testData.getBinaryTreeData().getTreesData();
+        List<IBinaryTreeData<Integer, String>> data = this.testData.getBinaryTreeData().getData();
 
         for (IBinaryTreeData<Integer, String> treeData : data) {
             this.testIteration(treeData);

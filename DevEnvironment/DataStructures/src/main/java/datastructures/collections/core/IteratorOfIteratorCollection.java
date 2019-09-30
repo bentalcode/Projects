@@ -2,24 +2,49 @@ package datastructures.collections.core;
 
 import base.core.Conditions;
 import base.interfaces.IBuilder;
+import base.interfaces.IIterable;
 import base.interfaces.IIterator;
-import datastructures.collections.interfaces.IIteratorOfIteratorCollection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
  * The IteratorOfIteratorCollection class implements an iterator of a collection of iterators.
  */
-public final class IteratorOfIteratorCollection<T> implements IIteratorOfIteratorCollection<T> {
+public final class IteratorOfIteratorCollection<T> implements IIterator<T> {
     private final Collection<IIterator<T>> iterators;
     private Queue<IIterator<T>> iteratorsQueue;
 
     /**
+     * Creates a new iterator from a collection of iterators.
+     */
+    public static <T> IIterator<T> of(Collection<IIterator<T>> iterators) {
+        return new IteratorOfIteratorCollection<>(iterators);
+    }
+
+    /**
+     * Creates a new iterator from a collection of iterables.
+     */
+    public static <T extends IIterable<T>> IIterator<T> ofIterables(Collection<T> iterables) {
+        Conditions.validateNotNull(
+            iterables,
+            "The collection of iterable objects.");
+
+        List<IIterator<T>> iterators = new ArrayList<>();
+
+        for (T iterable : iterables) {
+            iterators.add(iterable.getIterator());
+        }
+
+        return new IteratorOfIteratorCollection<>(iterators);
+    }
+
+    /**
      * The IteratorOfIteratorCollection constructor.
      */
-    public IteratorOfIteratorCollection(Collection<IIterator<T>> iterators) {
+    private IteratorOfIteratorCollection(Collection<IIterator<T>> iterators) {
         Conditions.validateNotNull(
             iterators,
             "The iterators.");
@@ -27,20 +52,6 @@ public final class IteratorOfIteratorCollection<T> implements IIteratorOfIterato
         this.iterators = iterators;
 
         this.reset();
-    }
-
-    /**
-     * Gets the size of a collection.
-     */
-    public int size() {
-        return this.iteratorsQueue.size();
-    }
-
-    /**
-     * Checks whether a collection is empty.
-     */
-    public boolean isEmpty() {
-        return this.iterators.isEmpty();
     }
 
     /**
@@ -83,10 +94,10 @@ public final class IteratorOfIteratorCollection<T> implements IIteratorOfIterato
     }
 
     /**
-     * The Builder class implements a builder for creating a collection of iterators.
+     * The Builder class implements a builder for creating an iterator of a collection of iterators.
      */
-    public static final class Builder<T> implements IBuilder<IIteratorOfIteratorCollection<T>> {
-        private final Collection<IIterator<T>> iterators = new ArrayList<>();
+    public static final class Builder<T> implements IBuilder<IIterator<T>> {
+        private final List<IIterator<T>> iterators = new ArrayList<>();
 
         /**
          * The Builder constructor.
@@ -111,8 +122,8 @@ public final class IteratorOfIteratorCollection<T> implements IIteratorOfIterato
          * Builds an iterator of a collection of iterators.
          */
         @Override
-        public IIteratorOfIteratorCollection<T> build() {
-            return new IteratorOfIteratorCollection<>(this.iterators);
+        public IIterator<T> build() {
+            return IteratorOfIteratorCollection.of(this.iterators);
         }
     }
 }

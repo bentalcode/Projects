@@ -11,6 +11,7 @@ import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.interfaces.IListTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 import datastructures.stack.interfaces.IStackTestData;
+import datastructures.trie.interfaces.ITrieTestData;
 
 /**
  * The ITestData interface defines the data of the tests.
@@ -55,6 +56,11 @@ public interface ITestData {
      * Gets the data of tests of a binary tree.
      */
     IBinaryTreeTestData getBinaryTreeData();
+
+    /**
+     * Gets the data of tests of a trie.
+     */
+    ITrieTestData getTrieData();
 
     /**
      * Gets the data of tests of a graph.

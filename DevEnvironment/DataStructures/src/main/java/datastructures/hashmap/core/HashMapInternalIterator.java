@@ -3,7 +3,6 @@ package datastructures.hashmap.core;
 import base.core.Conditions;
 import datastructures.collections.core.IteratorOfIteratorCollection;
 import base.interfaces.IIterator;
-import datastructures.collections.interfaces.IIteratorOfIteratorCollection;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.node.interfaces.IKeyValueNode;
 import java.util.List;
@@ -11,9 +10,11 @@ import java.util.List;
 /**
  * The HashMapInternalIterator class implements an internal iterator of a hash map.
  */
-public final class HashMapInternalIterator<TKey extends Comparable<TKey>, TValue> implements IIterator<IKeyValueNode<TKey, TValue>> {
+public final class HashMapInternalIterator<TKey extends Comparable<TKey>, TValue>
+    implements IIterator<IKeyValueNode<TKey, TValue>> {
+
     private final List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header;
-    private IIteratorOfIteratorCollection<IKeyValueNode<TKey, TValue>> iterator;
+    private IIterator<IKeyValueNode<TKey, TValue>> iterator;
 
     /**
      * Creates a new iterator for a hash map.

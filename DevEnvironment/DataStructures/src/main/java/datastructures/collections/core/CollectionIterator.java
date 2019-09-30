@@ -12,7 +12,7 @@ public class CollectionIterator<T> implements IIterator<T> {
     private java.util.Iterator<T> iterator;
 
     /**
-     * Creates a new iterator of a list.
+     * Creates a new iterator of a collection.
      */
     public static <T> IIterator<T> of(Collection<T> collection) {
         return new CollectionIterator<>(collection);

@@ -5,61 +5,38 @@ import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
+import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
+import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
+import datastructures.hashmap.core.HashMap;
+import datastructures.map.interfaces.IMap;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import datastructures.trie.TrieException;
 import datastructures.trie.interfaces.ITrieNode;
-import java.util.Collection;
-import java.util.LinkedHashMap;
 
 /**
  * The TrieNode class implements a node in a trie.
  */
-public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements ITrieNode<TKey, TValue> {
-    private final TKey key;
-    private TValue value;
-    private final LinkedHashMap<TKey, ITrieNode<TKey, TValue>> children = new LinkedHashMap<>();
-    private final IBinaryComparator<TKey> keyComparator;
+public final class TrieNode<TKey extends Comparable<TKey>> implements ITrieNode<TKey> {
+    private TKey key;
+    private boolean isEndNode;
+    private final IMap<TKey, ITrieNode<TKey>> children = new HashMap<>();
+    private final IBinaryComparator<ITrieNode<TKey>> comparator;
+    private final int hashCode;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * Creates a new trie node.
-     */
-    public static <TKey extends Comparable<TKey>, TValue> ITrieNode<TKey, TValue> create(TKey key) {
-        return TrieNode.create(key, null);
-    }
-
-    /**
-     * Creates a new trie node.
-     */
-    public static <TKey extends Comparable<TKey>, TValue> ITrieNode<TKey, TValue> create(TKey key, TValue value) {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
-        return TrieNode.create(key, value, keyComparator);
-    }
-
-    /**
-     * Creates a new trie node.
-     */
-    public static <TKey extends Comparable<TKey>, TValue> ITrieNode<TKey, TValue> create(
-        TKey key,
-        TValue value,
-        IBinaryComparator<TKey> keyComparator) {
-
-        return new TrieNode<>(key, value, keyComparator);
-    }
-
-    /**
      * The TrieNode constructor.
      */
-    private TrieNode(
-        TKey key,
-        IBinaryComparator<TKey> keyComparator) {
+    public TrieNode() {
         this(
-            key,
             null,
-            keyComparator);
+            false,
+            TrieNode.defaultComparator());
     }
 
     /**
@@ -67,20 +44,34 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
      */
     public TrieNode(
         TKey key,
-        TValue value,
-        IBinaryComparator<TKey> keyComparator) {
+        boolean isEndNode) {
 
-        Conditions.validateNotNull(
-            keyComparator,
-            "The comparator of a key of a node of a trie.");
-
-        this.key = key;
-        this.value = value;
-        this.keyComparator = keyComparator;
+        this(
+            key,
+            isEndNode,
+            TrieNode.defaultComparator());
     }
 
     /**
-     * Gets the key of the node.
+     * The TrieNode constructor.
+     */
+    public TrieNode(
+        TKey key,
+        boolean isEndNode,
+        IBinaryComparator<ITrieNode<TKey>> comparator) {
+
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator of a trie node.");
+
+        this.key = key;
+        this.isEndNode = isEndNode;
+        this.comparator = comparator;
+        this.hashCode = comparator.getHashCode(this);
+    }
+
+    /**
+     * Gets a key of the node.
      */
     @Override
     public TKey getKey() {
@@ -88,47 +79,55 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
     }
 
     /**
-     * Gets the value of the node.
+     * Returns whether this is an end node.
      */
     @Override
-    public TValue getValue() {
-        return this.value;
+    public boolean isEndNode() {
+        return this.isEndNode;
     }
 
     /**
-     * Sets the value of the node.
+     * Gets children of the node.
      */
     @Override
-    public void setValue(TValue value) {
-        this.value = value;
+    public List<ITrieNode<TKey>> getChildren() {
+        return this.children.getValues();
     }
 
     /**
-     * Gets the children the node.
+     * Gets an iterator of children of the node.
      */
     @Override
-    public Collection<ITrieNode<TKey, TValue>> getChildren() {
-        return this.children.values();
+    public IIterator<ITrieNode<TKey>> getChildrenIterator() {
+        return this.children.getValueIterator();
+    }
+
+    /**
+     * Gets a reverse iterator of children of the node.
+     */
+    @Override
+    public IReverseIterator<ITrieNode<TKey>> getChildrenReverseIterator() {
+        return this.children.getValueReverseIterator();
     }
 
     /**
      * Adds a child to the node.
      */
     @Override
-    public void addChild(ITrieNode<TKey, TValue> child) {
+    public void addChild(ITrieNode<TKey> child) {
         Conditions.validateNotNull(
             child,
-            "The child.");
+            "The child for adding.");
 
-        this.children.put(child.getKey(), child);
+        this.children.set(child.getKey(), child);
     }
 
     /**
-     * Adds a child of the node.
+     * Adds a specific child of the node.
      */
     @Override
-    public ITrieNode<TKey, TValue> getChild(TKey key) {
-        ITrieNode<TKey, TValue> child = this.children.get(key);
+    public ITrieNode<TKey> getChild(TKey key) {
+        ITrieNode<TKey> child = this.children.get(key);
 
         if (child == null) {
             String errorMessage = "The child with key: " + key + " does not exist in the trie.";
@@ -153,7 +152,7 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
      */
     @Override
     public int hashCode() {
-        return this.keyComparator.getHashCode(this.getKey());
+        return this.hashCode;
     }
 
     /**
@@ -176,12 +175,8 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(ITrieNode<TKey, TValue> other) {
-        boolean status = new EqualBuilder()
-            .withObject(this.getKey(), other.getKey(), this.keyComparator)
-            .build();
-
-        return status;
+    public boolean isEqual(ITrieNode<TKey> other) {
+        return this.comparator.isEqual(this, other);
     }
 
     /**
@@ -192,18 +187,14 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(ITrieNode<TKey, TValue> other) {
-        int status = new CompareToBuilder()
-            .withObject(this.getKey(), other.getKey(), this.keyComparator)
-            .build();
-
-        return status;
+    public int compareTo(ITrieNode<TKey> other) {
+        return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITrieNode<TKey, TValue>> defaultComparator() {
+    public static <TKey extends Comparable<TKey>> IBinaryComparator<ITrieNode<TKey>> defaultComparator() {
         IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
         return new Comparator<>(keyComparator);
     }
@@ -211,8 +202,8 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
     /**
      * The Comparator class implements a comparator of a node of a trie.
      */
-    public static final class Comparator<TKey extends Comparable<TKey>, TValue>
-        extends AbstractBinaryComparator<ITrieNode<TKey, TValue>> {
+    public static final class Comparator<TKey extends Comparable<TKey>>
+        extends AbstractBinaryComparator<ITrieNode<TKey>> {
 
         private final IBinaryComparator<TKey> keyComparator;
 
@@ -231,15 +222,18 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ITrieNode<TKey, TValue> obj) {
-            return this.keyComparator.getHashCode(obj.getKey());
+        public int getHashCode(ITrieNode<TKey> obj) {
+            return new HashCodeBuilder(3, 5)
+                .withObject(obj.getKey(), this.keyComparator)
+                .withBoolean(obj.isEndNode())
+                .build();
         }
 
         /**
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(ITrieNode<TKey, TValue> lhs, ITrieNode<TKey, TValue> rhs) {
+        public boolean isEqual(ITrieNode<TKey> lhs, ITrieNode<TKey> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -250,6 +244,7 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
 
             return new EqualBuilder()
                 .withObject(lhs.getKey(), rhs.getKey(), this.keyComparator)
+                .withBoolean(lhs.isEndNode(), rhs.isEndNode())
                 .build();
         }
 
@@ -261,7 +256,7 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ITrieNode<TKey, TValue> lhs, ITrieNode<TKey, TValue> rhs) {
+        public int compareTo(ITrieNode<TKey> lhs, ITrieNode<TKey> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -276,6 +271,7 @@ public final class TrieNode<TKey extends Comparable<TKey>, TValue> implements IT
 
             return new CompareToBuilder()
                 .withObject(lhs.getKey(), rhs.getKey(), this.keyComparator)
+                .withBoolean(lhs.isEndNode(), rhs.isEndNode())
                 .build();
         }
     }
