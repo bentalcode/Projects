@@ -1,9 +1,8 @@
 package datastructures.hashmap.core;
 
 import base.core.ListIterator;
+import base.core.ListReverseIterator;
 import base.core.Lists;
-import datastructures.collections.core.CollectionEquatableComparator;
-import datastructures.collections.interfaces.ICollectionEquatableComparator;
 import datastructures.core.TestData;
 import datastructures.hashmap.interfaces.ILinkedHashMap;
 import datastructures.hashmap.interfaces.ILinkedHashMapBuilder;
@@ -14,7 +13,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
+import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
+import testbase.interfaces.IIterationTest;
 import java.util.List;
 
 /**
@@ -22,7 +23,6 @@ import java.util.List;
  */
 public final class LinkedHashMapTest {
     private final ITestData testData = new TestData();
-    private final ICollectionEquatableComparator comparator = new CollectionEquatableComparator();
     private final IAssertion assertion = new Assertion();
 
     /**
@@ -50,54 +50,56 @@ public final class LinkedHashMapTest {
      */
     @Test
     public void LinkedHashMapCreationTest() {
-        for (IMapData<Integer, String> mapData : this.testData.getHashMapData().getLinkedHashMapData()) {
-            this.testCreation(
-                mapData.getCreationData(),
-                mapData.getData());
+        for (IMapData<Integer, String> data : this.testData.getHashMapData().getLinkedHashMapData()) {
+            this.testCreation(data);
+        }
+    }
+
+    /**
+     * Tests the creation with deletion logic of a linked hash map.
+     */
+    @Test
+    public void LinkedHashMapCreationWithDeletionTest() {
+        for (IMapData<Integer, String> data : this.testData.getHashMapData().getLinkedHashMapData()) {
+            this.testCreationWithDeletion(data);
+        }
+    }
+
+    /**
+     * Tests the iteration logic of a hash map.
+     */
+    @Test
+    public void LinkedHashMapIterationTest() {
+        for (IMapData<Integer, String> data : this.testData.getHashMapData().getLinkedHashMapData()) {
+            this.testIteration(data);
         }
     }
 
     /**
      * Tests the creation logic of a linked hash map.
      */
-    @Test
-    public void LinkedHashMapCreationWithDeletionTest() {
-        for (IMapData<Integer, String> mapData : this.testData.getHashMapData().getLinkedHashMapData()) {
-            this.testCreationWithDeletion(
-                mapData.getCreationData(),
-                mapData.getData());
-        }
-    }
-
-    /**
-     * Tests the creation logic of a linked hash.
-     */
     private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testCreation(
-        List<IKeyValueNode<TKey, TValue>> creationData,
-        List<IKeyValueNode<TKey, TValue>> data) {
+        IMapData<TKey, TValue> data) {
 
-        ILinkedHashMapBuilder<TKey, TValue> mapBuilder = new LinkedHashMapBuilder<>();
-        mapBuilder.set(ListIterator.of(creationData));
-        ILinkedHashMap<TKey, TValue> map = mapBuilder.build();
+        ILinkedHashMap<TKey, TValue> map = this.createLinkedHashMap(data);
 
-        this.assertion.assertTrue(
-            this.comparator.isEqual(map, data),
+        this.assertion.assertEquals(
+            map.getIterator(),
+            ListIterator.of(data.getData()),
             "Invalid creation logic of a linked hash map.");
     }
 
     /**
-     * Tests the creation with deletion logic of a hash-map.
+     * Tests the creation with deletion logic of a linked hash-map.
      */
     private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testCreationWithDeletion(
-        List<IKeyValueNode<TKey, TValue>> creationData,
-        List<IKeyValueNode<TKey, TValue>> data) {
+        IMapData<TKey, TValue> data) {
 
-        ILinkedHashMapBuilder<TKey, TValue> mapBuilder = new LinkedHashMapBuilder<>();
-        mapBuilder.set(ListIterator.of(creationData));
-        ILinkedHashMap<TKey, TValue> map = mapBuilder.build();
+        ILinkedHashMap<TKey, TValue> map = this.createLinkedHashMap(data);
 
-        this.assertion.assertTrue(
-            this.comparator.isEqual(map, data),
+        this.assertion.assertEquals(
+            map.getIterator(),
+            ListIterator.of(data.getData()),
             "Invalid creation logic of a linked hash map.");
 
         List<IKeyValueNode<TKey, TValue>> keyValueNodes = Lists.fromIterator(map.getIterator());
@@ -120,5 +122,87 @@ public final class LinkedHashMapTest {
                 map.size() == currSize,
                 "Invalid remove logic of linked hash map: invalid size.");
         }
+    }
+
+    /**
+     * Tests the iteration logic of a linked hash map.
+     */
+    private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testIteration(
+        IMapData<TKey, TValue> data) {
+
+        //
+        // Create the container...
+        //
+        ILinkedHashMap<TKey, TValue> container = this.createLinkedHashMap(data);
+
+        //
+        // Test the default iterator of the container...
+        //
+        IIterationTest iterationTest = new IterationTest();
+        iterationTest.testIteration(
+            container,
+            ListIterator.of(data.getData()),
+            "LinkedHashMap");
+
+        //
+        // Test the forward iterator of the container...
+        //
+        iterationTest.testForwardIteration(
+            container,
+            ListIterator.of(data.getData()),
+            "LinkedHashMap");
+
+        //
+        // Test the reverse iterator of the container...
+        //
+        iterationTest.testReverseIteration(
+            container,
+            ListReverseIterator.of(data.getData()),
+            "LinkedHashMap");
+
+        //
+        // Test the key iterator of the container...
+        //
+        iterationTest.testKeyIteration(
+            container,
+            ListIterator.of(data.getKeys()),
+            "LinkedHashMap");
+
+        //
+        // Test the key reverse iterator of the container...
+        //
+        iterationTest.testKeyReverseIteration(
+            container,
+            ListReverseIterator.of(data.getKeys()),
+            "LinkedHashMap");
+
+        //
+        // Test the value iterator of the container...
+        //
+        iterationTest.testValueIteration(
+            container,
+            ListIterator.of(data.getValues()),
+            "LinkedHashMap");
+
+        //
+        // Test the value reverse iterator of the container...
+        //
+        iterationTest.testValueReverseIteration(
+            container,
+            ListReverseIterator.of(data.getValues()),
+            "LinkedHashMap");
+    }
+
+    /**
+     * Creates a linked hash map.
+     */
+    private <TKey extends Comparable<TKey>, TValue> ILinkedHashMap<TKey, TValue> createLinkedHashMap(
+        IMapData<TKey, TValue> data) {
+
+        ILinkedHashMapBuilder<TKey, TValue> mapBuilder = new LinkedHashMapBuilder<>();
+        mapBuilder.set(ListIterator.of(data.getCreationData()));
+        ILinkedHashMap<TKey, TValue> map = mapBuilder.build();
+
+        return map;
     }
 }

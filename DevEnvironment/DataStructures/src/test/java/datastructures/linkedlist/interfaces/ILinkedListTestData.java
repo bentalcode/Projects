@@ -10,7 +10,7 @@ public interface ILinkedListTestData {
     /**
      * Gets the data of linked lists.
      */
-    List<IListData<Integer>> getData();
+    List<ILinkedListData<Integer>> getData();
 
     /**
      * Gets the updation data of a linked list.

@@ -31,12 +31,12 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testIteration(
         IIterable<TValue> container,
-        IIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         String containerName) {
 
         this.testIteration(
             container,
-            expectedContainer,
+            containerIterator,
             base.core.Comparator.defaultComparator(),
             containerName);
     }
@@ -47,7 +47,7 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testIteration(
         IIterable<TValue> container,
-        IIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         IBinaryComparator<TValue> comparator,
         String containerName) {
 
@@ -56,18 +56,18 @@ public final class IterationTest implements IIterationTest {
             "The container.");
 
         Conditions.validateNotNull(
-            expectedContainer,
-            "The expected container.");
+            containerIterator,
+            "The iterator of the container.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
 
-        IIterator<TValue> dataIterator = expectedContainer.getIterator();
+        IIterator<TValue> expectedIterator = containerIterator;
         int index = 0;
 
         for (TValue element : container) {
-            TValue expectedElement = dataIterator.next();
+            TValue expectedElement = expectedIterator.next();
 
             String errorMessage =
                 "The default iteration logic of " + containerName + " is invalid." +
@@ -89,12 +89,12 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testForwardIteration(
         IIterable<TValue> container,
-        IIterable<TValue> dataContainer,
+        IIterator<TValue> containerIterator,
         String containerName) {
 
         this.testForwardIteration(
             container,
-            dataContainer,
+            containerIterator,
             base.core.Comparator.defaultComparator(),
             containerName);
     }
@@ -105,7 +105,7 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testForwardIteration(
         IIterable<TValue> container,
-        IIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         IBinaryComparator<TValue> comparator,
         String containerName) {
 
@@ -114,15 +114,15 @@ public final class IterationTest implements IIterationTest {
             "The container.");
 
         Conditions.validateNotNull(
-            expectedContainer,
-            "The expected container.");
+            containerIterator,
+            "The iterator of the container.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
 
         IIterator<TValue> iterator = container.getIterator();
-        IIterator<TValue> expectedIterator = expectedContainer.getIterator();
+        IIterator<TValue> expectedIterator = containerIterator;
 
         int index = 0;
 
@@ -150,12 +150,12 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testReverseIteration(
         IReverseIterable<TValue> container,
-        IReverseIterable<TValue> dataContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         String containerName) {
 
         this.testReverseIteration(
             container,
-            dataContainer,
+            containerReverseIterator,
             base.core.Comparator.defaultComparator(),
             containerName);
     }
@@ -166,7 +166,7 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testReverseIteration(
         IReverseIterable<TValue> container,
-        IReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         IBinaryComparator<TValue> comparator,
         String containerName) {
 
@@ -175,21 +175,21 @@ public final class IterationTest implements IIterationTest {
             "The container.");
 
         Conditions.validateNotNull(
-            expectedContainer,
-            "The expected container.");
+            containerReverseIterator,
+            "The reverse iterator of the container.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
 
-        IReverseIterator<TValue> iterator = container.getReverseIterator();
-        IReverseIterator<TValue> expectedIterator = expectedContainer.getReverseIterator();
+        IReverseIterator<TValue> reverseIterator = container.getReverseIterator();
+        IReverseIterator<TValue> expectedReverseIterator = containerReverseIterator;
 
         int index = 0;
 
-        while (iterator.hasNext() && expectedIterator.hasNext()) {
-            TValue element = iterator.next();
-            TValue expectedElement = expectedIterator.next();
+        while (reverseIterator.hasNext() && expectedReverseIterator.hasNext()) {
+            TValue element = reverseIterator.next();
+            TValue expectedElement = expectedReverseIterator.next();
 
             String errorMessage =
                 "The reverse iteration logic of " + containerName + " is invalid." +
@@ -211,12 +211,12 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testKeyIteration(
         IKeyIterable<TValue> container,
-        IKeyIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         String containerName) {
 
         this.testKeyIteration(
             container,
-            expectedContainer,
+            containerIterator,
             base.core.Comparator.defaultComparator(),
             containerName);
     }
@@ -227,7 +227,7 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testKeyIteration(
         IKeyIterable<TValue> container,
-        IKeyIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         IBinaryComparator<TValue> comparator,
         String containerName) {
 
@@ -236,15 +236,15 @@ public final class IterationTest implements IIterationTest {
             "The container.");
 
         Conditions.validateNotNull(
-            expectedContainer,
-            "The expected container.");
+            containerIterator,
+            "The iterator of keys of the container.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
 
         IIterator<TValue> iterator = container.getKeyIterator();
-        IIterator<TValue> expectedIterator = expectedContainer.getKeyIterator();
+        IIterator<TValue> expectedIterator = containerIterator;
 
         int index = 0;
 
@@ -272,12 +272,12 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testKeyReverseIteration(
         IKeyReverseIterable<TValue> container,
-        IKeyReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         String containerName) {
 
         this.testKeyReverseIteration(
             container,
-            expectedContainer,
+            containerReverseIterator,
             base.core.Comparator.defaultComparator(),
             containerName);
     }
@@ -288,7 +288,7 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testKeyReverseIteration(
         IKeyReverseIterable<TValue> container,
-        IKeyReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         IBinaryComparator<TValue> comparator,
         String containerName) {
 
@@ -297,21 +297,21 @@ public final class IterationTest implements IIterationTest {
             "The container.");
 
         Conditions.validateNotNull(
-            expectedContainer,
-            "The expected container.");
+            containerReverseIterator,
+            "The reverse iterator of keys of the container.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
 
-        IReverseIterator<TValue> iterator = container.getKeyReverseIterator();
-        IReverseIterator<TValue> expectedIterator = expectedContainer.getKeyReverseIterator();
+        IReverseIterator<TValue> reverseIterator = container.getKeyReverseIterator();
+        IReverseIterator<TValue> expectedReverseIterator = containerReverseIterator;
 
         int index = 0;
 
-        while (iterator.hasNext() && expectedIterator.hasNext()) {
-            TValue element = iterator.next();
-            TValue expectedElement = expectedIterator.next();
+        while (reverseIterator.hasNext() && expectedReverseIterator.hasNext()) {
+            TValue element = reverseIterator.next();
+            TValue expectedElement = expectedReverseIterator.next();
 
             String errorMessage =
                 "The key reverse iteration logic of " + containerName + " is invalid." +
@@ -333,12 +333,12 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testValueIteration(
         IValueIterable<TValue> container,
-        IValueIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         String containerName) {
 
         this.testValueIteration(
             container,
-            expectedContainer,
+            containerIterator,
             base.core.Comparator.defaultComparator(),
             containerName);
     }
@@ -349,7 +349,7 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testValueIteration(
         IValueIterable<TValue> container,
-        IValueIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         IBinaryComparator<TValue> comparator,
         String containerName) {
 
@@ -358,15 +358,15 @@ public final class IterationTest implements IIterationTest {
             "The container.");
 
         Conditions.validateNotNull(
-            expectedContainer,
-            "The expected container.");
+            containerIterator,
+            "The iterator of values of the container.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
 
         IIterator<TValue> iterator = container.getValueIterator();
-        IIterator<TValue> expectedIterator = expectedContainer.getValueIterator();
+        IIterator<TValue> expectedIterator = containerIterator;
 
         int index = 0;
 
@@ -394,12 +394,12 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testValueReverseIteration(
         IValueReverseIterable<TValue> container,
-        IValueReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         String containerName) {
 
         this.testValueReverseIteration(
             container,
-            expectedContainer,
+            containerReverseIterator,
             base.core.Comparator.defaultComparator(),
             containerName);
     }
@@ -410,7 +410,7 @@ public final class IterationTest implements IIterationTest {
     @Override
     public <TValue extends Comparable<TValue>> void testValueReverseIteration(
         IValueReverseIterable<TValue> container,
-        IValueReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         IBinaryComparator<TValue> comparator,
         String containerName) {
 
@@ -419,21 +419,21 @@ public final class IterationTest implements IIterationTest {
             "The container.");
 
         Conditions.validateNotNull(
-            expectedContainer,
-            "The expected container.");
+            containerReverseIterator,
+            "The reverse iterator of values of the container.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of an element.");
 
-        IReverseIterator<TValue> iterator = container.getValueReverseIterator();
-        IReverseIterator<TValue> expectedIterator = expectedContainer.getValueReverseIterator();
+        IReverseIterator<TValue> reverseIterator = container.getValueReverseIterator();
+        IReverseIterator<TValue> expectedReverseIterator = containerReverseIterator;
 
         int index = 0;
 
-        while (iterator.hasNext() && expectedIterator.hasNext()) {
-            TValue element = iterator.next();
-            TValue expectedElement = expectedIterator.next();
+        while (reverseIterator.hasNext() && expectedReverseIterator.hasNext()) {
+            TValue element = reverseIterator.next();
+            TValue expectedElement = expectedReverseIterator.next();
 
             String errorMessage =
                 "The value reverse iteration logic of " + containerName + " is invalid." +

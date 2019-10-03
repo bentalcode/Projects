@@ -2,7 +2,9 @@ package testbase.interfaces;
 
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterable;
+import base.interfaces.IIterator;
 import base.interfaces.IReverseIterable;
+import base.interfaces.IReverseIterator;
 import datastructures.collections.interfaces.IKeyIterable;
 import datastructures.collections.interfaces.IKeyReverseIterable;
 import datastructures.collections.interfaces.IValueIterable;
@@ -17,7 +19,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testIteration(
         IIterable<TValue> container,
-        IIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         String containerName);
 
     /**
@@ -25,7 +27,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testIteration(
         IIterable<TValue> container,
-        IIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         IBinaryComparator<TValue> comparator,
         String containerName);
 
@@ -34,7 +36,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testForwardIteration(
         IIterable<TValue> container,
-        IIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         String containerName);
 
     /**
@@ -42,7 +44,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testForwardIteration(
         IIterable<TValue> container,
-        IIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         IBinaryComparator<TValue> comparator,
         String containerName);
 
@@ -51,7 +53,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testReverseIteration(
         IReverseIterable<TValue> container,
-        IReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         String containerName);
 
     /**
@@ -59,7 +61,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testReverseIteration(
         IReverseIterable<TValue> container,
-        IReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         IBinaryComparator<TValue> comparator,
         String containerName);
 
@@ -68,7 +70,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testKeyIteration(
         IKeyIterable<TValue> container,
-        IKeyIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         String containerName);
 
     /**
@@ -76,7 +78,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testKeyIteration(
         IKeyIterable<TValue> container,
-        IKeyIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         IBinaryComparator<TValue> comparator,
         String containerName);
 
@@ -85,7 +87,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testKeyReverseIteration(
         IKeyReverseIterable<TValue> container,
-        IKeyReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         String containerName);
 
     /**
@@ -93,7 +95,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testKeyReverseIteration(
         IKeyReverseIterable<TValue> container,
-        IKeyReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         IBinaryComparator<TValue> comparator,
         String containerName);
 
@@ -102,7 +104,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testValueIteration(
         IValueIterable<TValue> container,
-        IValueIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         String containerName);
 
     /**
@@ -110,7 +112,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testValueIteration(
         IValueIterable<TValue> container,
-        IValueIterable<TValue> expectedContainer,
+        IIterator<TValue> containerIterator,
         IBinaryComparator<TValue> comparator,
         String containerName);
 
@@ -119,7 +121,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testValueReverseIteration(
         IValueReverseIterable<TValue> container,
-        IValueReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         String containerName);
 
     /**
@@ -127,7 +129,7 @@ public interface IIterationTest {
      */
     <TValue extends Comparable<TValue>> void testValueReverseIteration(
         IValueReverseIterable<TValue> container,
-        IValueReverseIterable<TValue> expectedContainer,
+        IReverseIterator<TValue> containerReverseIterator,
         IBinaryComparator<TValue> comparator,
         String containerName);
 }

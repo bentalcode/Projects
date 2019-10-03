@@ -2,9 +2,10 @@ package datastructures.doublylinkedlist.core;
 
 import base.core.Iterator;
 import base.core.ListIterator;
+import base.core.ListReverseIterator;
 import base.interfaces.ITriple;
 import datastructures.core.TestData;
-import datastructures.doublylinkedlist.interfaces.IListData;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListData;
 import testbase.core.Assertion;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.interfaces.ITestData;
@@ -48,9 +49,9 @@ public final class DoublyLinkedListTest {
      */
     @Test
     public void DoublyLinkedListCreationTest() {
-        List<IListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
+        List<IDoublyLinkedListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
 
-        for (IListData<Integer> listData : data) {
+        for (IDoublyLinkedListData<Integer> listData : data) {
             this.testCreation(listData);
         }
     }
@@ -60,9 +61,9 @@ public final class DoublyLinkedListTest {
      */
     @Test
     public void DoublyLinkedListIterationTest() {
-        List<IListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
+        List<IDoublyLinkedListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
 
-        for (IListData<Integer> listData : data) {
+        for (IDoublyLinkedListData<Integer> listData : data) {
             this.testIteration(listData);
         }
     }
@@ -83,7 +84,7 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the creation logic of a doubly linked list.
      */
-    private <T extends Comparable<T>> void testCreation(IListData<T> data) {
+    private <T extends Comparable<T>> void testCreation(IDoublyLinkedListData<T> data) {
         //
         // Create the container...
         //
@@ -93,7 +94,7 @@ public final class DoublyLinkedListTest {
         // Test the data of the container...
         //
         this.assertion.assertEquals(
-            container.getValueIterator(),
+            container.getIterator(),
             ListIterator.of(data.getData()),
             "Invalid creation logic of a doubly linked list.");
     }
@@ -101,12 +102,11 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the iteration logic of a doubly linked list.
      */
-    private <T extends Comparable<T>> void testIteration(IListData<T> data) {
+    private <T extends Comparable<T>> void testIteration(IDoublyLinkedListData<T> data) {
         //
         // Create the container...
         //
         IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getCreationData());
-        IDoublyLinkedList<T> expectedContainer = this.createDoublyLinkedList(data.getCreationData());
 
         //
         // Test the default iterator of the container...
@@ -114,7 +114,7 @@ public final class DoublyLinkedListTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            expectedContainer,
+            ListIterator.of(data.getData()),
             "DoublyLinkedList");
 
         //
@@ -122,7 +122,7 @@ public final class DoublyLinkedListTest {
         //
         iterationTest.testForwardIteration(
             container,
-            expectedContainer,
+            ListIterator.of(data.getData()),
             "DoublyLinkedList");
 
         //
@@ -130,7 +130,7 @@ public final class DoublyLinkedListTest {
         //
         iterationTest.testReverseIteration(
             container,
-            expectedContainer,
+            ListReverseIterator.of(data.getData()),
             "DoublyLinkedList");
 
         //
@@ -138,7 +138,7 @@ public final class DoublyLinkedListTest {
         //
         iterationTest.testValueIteration(
             container,
-            expectedContainer,
+            ListIterator.of(data.getValues()),
             "DoublyLinkedList");
 
         //
@@ -146,7 +146,7 @@ public final class DoublyLinkedListTest {
         //
         iterationTest.testValueReverseIteration(
             container,
-            expectedContainer,
+            ListReverseIterator.of(data.getValues()),
             "DoublyLinkedList");
     }
 

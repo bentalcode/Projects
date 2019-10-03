@@ -6,7 +6,7 @@ import base.interfaces.ITriple;
 import datastructures.core.TestData;
 import datastructures.linkedlist.interfaces.ILinkedList;
 import datastructures.linkedlist.interfaces.ILinkedListNode;
-import datastructures.linkedlist.interfaces.IListData;
+import datastructures.linkedlist.interfaces.ILinkedListData;
 import testbase.core.Assertion;
 import datastructures.interfaces.ITestData;
 import org.junit.After;
@@ -49,9 +49,9 @@ public final class LinkedListTest {
      */
     @Test
     public void LinkedListCreationTest() {
-        List<IListData<Integer>> data = this.testData.getLinkedListData().getData();
+        List<ILinkedListData<Integer>> data = this.testData.getLinkedListData().getData();
 
-        for (IListData<Integer> listData : data) {
+        for (ILinkedListData<Integer> listData : data) {
             this.testCreation(listData);
         }
     }
@@ -61,9 +61,9 @@ public final class LinkedListTest {
      */
     @Test
     public void LinkedListIterationTest() {
-        List<IListData<Integer>> data = this.testData.getLinkedListData().getData();
+        List<ILinkedListData<Integer>> data = this.testData.getLinkedListData().getData();
 
-        for (IListData<Integer> listData : data) {
+        for (ILinkedListData<Integer> listData : data) {
             this.testIteration(listData);
         }
     }
@@ -82,7 +82,7 @@ public final class LinkedListTest {
     /**
      * Tests the creation logic of a linked list.
      */
-    private <T extends Comparable<T>> void testCreation(IListData<T> data) {
+    private <T extends Comparable<T>> void testCreation(ILinkedListData<T> data) {
         //
         // Create the container...
         //
@@ -92,7 +92,7 @@ public final class LinkedListTest {
         // Test the data of the container...
         //
         this.assertion.assertEquals(
-            container.getValueIterator(),
+            container.getIterator(),
             ListIterator.of(data.getData()),
             "Invalid creation logic of a linked list.");
     }
@@ -100,12 +100,11 @@ public final class LinkedListTest {
     /**
      * Tests the iteration logic of a linked list.
      */
-    private <T extends Comparable<T>> void testIteration(IListData<T> data) {
+    private <T extends Comparable<T>> void testIteration(ILinkedListData<T> data) {
         //
         // Create the container...
         //
         ILinkedList<T> container = this.createLinkedList(data.getCreationData());
-        ILinkedList<T> expectedContainer = this.createLinkedList(data.getCreationData());
 
         //
         // Test the default iterator of the container...
@@ -113,7 +112,7 @@ public final class LinkedListTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            expectedContainer,
+            ListIterator.of(data.getData()),
             "LinkedList");
 
         //
@@ -121,7 +120,7 @@ public final class LinkedListTest {
         //
         iterationTest.testForwardIteration(
             container,
-            expectedContainer,
+            ListIterator.of(data.getData()),
             "LinkedList");
 
         //
@@ -129,7 +128,7 @@ public final class LinkedListTest {
         //
         iterationTest.testValueIteration(
             container,
-            expectedContainer,
+            ListIterator.of(data.getValues()),
             "LinkedList");
     }
 

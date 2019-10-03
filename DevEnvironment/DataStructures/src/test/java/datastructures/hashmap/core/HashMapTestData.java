@@ -50,8 +50,14 @@ public final class HashMapTestData implements IHashMapTestData {
     private IMapData<Integer, String> getHashMapData1() {
         List<IKeyValueNode<Integer, String>> creationData = new ArrayList<>();
         List<IKeyValueNode<Integer, String>> data = new ArrayList<>();
+        List<Integer> keys = this.createKeys(data);
+        List<String> values = this.createValues(data);
 
-        return new MapData<>(creationData, data);
+        return new MapData<>(
+            creationData,
+            data,
+            keys,
+            values);
     }
 
     /**
@@ -73,7 +79,14 @@ public final class HashMapTestData implements IHashMapTestData {
             KeyValueNode.of(2, "b"),
             KeyValueNode.of(3, "c"));
 
-        return new MapData<>(creationData, data);
+        List<Integer> keys = this.createKeys(data);
+        List<String> values = this.createValues(data);
+
+        return new MapData<>(
+            creationData,
+            data,
+            keys,
+            values);
     }
 
     /**
@@ -82,8 +95,14 @@ public final class HashMapTestData implements IHashMapTestData {
     private IMapData<Integer, String> getLinkedHashMapData1() {
         List<IKeyValueNode<Integer, String>> creationData = new ArrayList<>();
         List<IKeyValueNode<Integer, String>> data = new ArrayList<>();
+        List<Integer> keys = this.createKeys(data);
+        List<String> values = this.createValues(data);
 
-        return new MapData<>(creationData, data);
+        return new MapData<>(
+            creationData,
+            data,
+            keys,
+            values);
     }
 
     /**
@@ -105,6 +124,39 @@ public final class HashMapTestData implements IHashMapTestData {
             KeyValueNode.of(2, "b"),
             KeyValueNode.of(1, "a"));
 
-        return new MapData<>(creationData, data);
+        List<Integer> keys = this.createKeys(data);
+        List<String> values = this.createValues(data);
+
+        return new MapData<>(
+            creationData,
+            data,
+            keys,
+            values);
+    }
+
+    /**
+     * Creates the keys of the map.
+     */
+    private <TKey extends Comparable<TKey>, TValue> List<TKey> createKeys(List<IKeyValueNode<TKey, TValue>> data) {
+        List<TKey> keys = new ArrayList<>();
+
+        for (IKeyValueNode<TKey, TValue> node : data) {
+            keys.add(node.getKey());
+        }
+
+        return keys;
+    }
+
+    /**
+     * Creates the values of the map.
+     */
+    private <TKey extends Comparable<TKey>, TValue> List<TValue> createValues(List<IKeyValueNode<TKey, TValue>> data) {
+        List<TValue> values = new ArrayList<>();
+
+        for (IKeyValueNode<TKey, TValue> node : data) {
+            values.add(node.getValue());
+        }
+
+        return values;
     }
 }

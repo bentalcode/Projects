@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface IMapData<TKey extends Comparable<TKey>, TValue> {
     /**
-     * Gets the creation data.
+     * Gets the creation data of the map.
      */
     List<IKeyValueNode<TKey, TValue>> getCreationData();
 
@@ -16,4 +16,14 @@ public interface IMapData<TKey extends Comparable<TKey>, TValue> {
      * Gets the actual data of the map.
      */
     List<IKeyValueNode<TKey, TValue>> getData();
+
+    /**
+     * Gets the actual keys of the map.
+     */
+    List<TKey> getKeys();
+
+    /**
+     * Gets the actual values of the map.
+     */
+    List<TValue> getValues();
 }

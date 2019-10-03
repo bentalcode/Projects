@@ -5,8 +5,9 @@ import base.core.RandomGenerator;
 import base.core.Triple;
 import base.interfaces.IRandomGenerator;
 import base.interfaces.ITriple;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
-import datastructures.doublylinkedlist.interfaces.IListData;
+import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListData;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
      * Gets the data of doubly linked lists.
      */
     @Override
-    public List<IListData<Integer>> getData() {
-        List<IListData<Integer>> data = new ArrayList<>();
+    public List<IDoublyLinkedListData<Integer>> getData() {
+        List<IDoublyLinkedListData<Integer>> data = new ArrayList<>();
 
         data.add(this.getListData1());
         data.add(this.getListData2());
@@ -69,31 +70,58 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     /**
      * Gets the data of list1.
      */
-    private IListData<Integer> getListData1() {
+    private IDoublyLinkedListData<Integer> getListData1() {
         List<Integer> creationData = this.getData(0);
-        List<Integer> data = creationData;
+        List<IDoublyLinkedListNode<Integer>> data = this.createData(creationData);
+        List<Integer> values = creationData;
 
-        return new ListData<>(creationData, data);
+        return new DoublyLinkedListData<>(
+            creationData,
+            data,
+            values);
     }
 
     /**
      * Gets the data of list2.
      */
-    private IListData<Integer> getListData2() {
+    private IDoublyLinkedListData<Integer> getListData2() {
         List<Integer> creationData = this.getData(50);
-        List<Integer> data = creationData;
+        List<IDoublyLinkedListNode<Integer>> data = this.createData(creationData);
+        List<Integer> values = creationData;
 
-        return new ListData<>(creationData, data);
+        return new DoublyLinkedListData<>(
+            creationData,
+            data,
+            values);
     }
 
     /**
      * Gets the data of list3.
      */
-    private IListData<Integer> getListData3() {
+    private IDoublyLinkedListData<Integer> getListData3() {
         List<Integer> creationData = this.getData(100);
-        List<Integer> data = creationData;
+        List<IDoublyLinkedListNode<Integer>> data = this.createData(creationData);
+        List<Integer> values = creationData;
 
-        return new ListData<>(creationData, data);
+        return new DoublyLinkedListData<>(
+            creationData,
+            data,
+            values);
+    }
+
+    /**
+     * Gets the random data of list.
+     */
+    private IDoublyLinkedListData<Integer> getRandomListData(int fromSize, int toSize) {
+        int size = this.randomGenerator.nextInteger(fromSize, toSize);
+        List<Integer> creationData = this.getData(size);
+        List<IDoublyLinkedListNode<Integer>> data = this.createData(creationData);
+        List<Integer> values = creationData;
+
+        return new DoublyLinkedListData<>(
+            creationData,
+            data,
+            values);
     }
 
     /**
@@ -111,14 +139,15 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     }
 
     /**
-     * Gets the random data of list.
+     * Creates the data of the list.
      */
-    private IListData<Integer> getRandomListData(int fromSize, int toSize) {
-        int size = this.randomGenerator.nextInteger(fromSize, toSize);
-        List<Integer> data = this.getData(size);
+    private <TValue extends Comparable<TValue>> List<IDoublyLinkedListNode<TValue>> createData(List<TValue> values) {
+        List<IDoublyLinkedListNode<TValue>> data = new ArrayList<>();
 
-        return new ListData<>(
-            data,
-            data);
+        for (TValue value : values) {
+            data.add(DoublyLinkedListNode.of(value));
+        }
+
+        return data;
     }
 }
