@@ -1,12 +1,12 @@
 package datastructures.node.interfaces;
 
 import base.interfaces.IIterable;
-import datastructures.collections.interfaces.IAbstractCollection;
+import datastructures.collections.interfaces.ISizableCollection;
 
 /**
  * The IKeyValueNodeCollection interface defines a collection.
  */
 public interface IKeyValueNodeCollection<TKey extends Comparable<TKey>, TValue> extends
-    IAbstractCollection,
+    ISizableCollection,
     IIterable<IKeyValueNode<TKey, TValue>> {
 }

@@ -76,6 +76,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
     /**
      * Gets the size of the list.
      */
+    @Override
     public int size() {
         return this.size;
     }

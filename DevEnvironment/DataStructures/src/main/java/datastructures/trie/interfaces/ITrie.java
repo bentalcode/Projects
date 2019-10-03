@@ -2,7 +2,7 @@ package datastructures.trie.interfaces;
 
 import base.interfaces.IIterable;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.IAbstractCollection;
+import datastructures.collections.interfaces.ICollection;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
@@ -11,7 +11,7 @@ import datastructures.node.interfaces.IKeyValueNode;
  * alphabet, and strings/words can be retrieved by traversing down a branch path of the tree.
  */
 public interface ITrie<TKey extends Comparable<TKey>> extends
-    IAbstractCollection,
+    ICollection,
     IUnaryComparator<ITrie<TKey>>,
     IIterable<IKeyValueNode<TKey, Boolean>> {
 

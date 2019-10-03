@@ -74,6 +74,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
     /**
      * Gets the size of the list.
      */
+    @Override
     public int size() {
         return this.size;
     }

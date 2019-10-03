@@ -1,11 +1,7 @@
 package datastructures.collections.interfaces;
 
-import base.interfaces.IIterable;
-
 /**
- * The ICollection interface defines a collection.
+ * The ICollection interface defines a abstract collection.
  */
-public interface ICollection<T extends Comparable<T>> extends
-    IAbstractCollection,
-    IIterable<T> {
+public interface ICollection {
 }

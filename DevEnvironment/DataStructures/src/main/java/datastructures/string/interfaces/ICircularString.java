@@ -3,14 +3,16 @@ package datastructures.string.interfaces;
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ISizableCollection;
 
 /**
  * The ICircularString interface defines a circular string.
  */
 public interface ICircularString extends
-    IUnaryComparator<ICircularString>,
+    ISizableCollection,
     IIterable<Character>,
-    IReverseIterable<Character> {
+    IReverseIterable<Character>,
+    IUnaryComparator<ICircularString> {
 
     /**
      * Gets the start index.

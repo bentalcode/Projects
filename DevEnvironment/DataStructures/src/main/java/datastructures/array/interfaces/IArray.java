@@ -3,14 +3,16 @@ package datastructures.array.interfaces;
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ISizableCollection;
 
 /**
  * The IArray interface defines an array.
  */
 public interface IArray<T extends Comparable<T>> extends
-    IUnaryComparator<IArray<T>>,
+    ISizableCollection,
     IIterable<T>,
-    IReverseIterable<T> {
+    IReverseIterable<T>,
+    IUnaryComparator<IArray<T>> {
 
     /**
      * Sets the value of an index.
@@ -21,16 +23,6 @@ public interface IArray<T extends Comparable<T>> extends
      * Gets the value of an index.
      */
     T get(int index);
-
-    /**
-     * Gets the size of an array.
-     */
-    int size();
-
-    /**
-     * Checks whether an array is empty.
-     */
-    boolean empty();
 
     /**
      * Converts the array to a native array.

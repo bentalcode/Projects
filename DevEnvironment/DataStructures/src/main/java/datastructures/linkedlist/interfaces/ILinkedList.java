@@ -2,15 +2,17 @@ package datastructures.linkedlist.interfaces;
 
 import base.interfaces.IIterable;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ISizableCollection;
 import datastructures.collections.interfaces.IValueIterable;
 
 /**
  * The ILinkedList interface defines a linked list.
  */
 public interface ILinkedList<T extends Comparable<T>> extends
-    IUnaryComparator<ILinkedList<T>>,
+    ISizableCollection,
     IIterable<ILinkedListNode<T>>,
-    IValueIterable<T> {
+    IValueIterable<T>,
+    IUnaryComparator<ILinkedList<T>> {
 
     /**
      * Gets the head node of the list.
@@ -21,16 +23,6 @@ public interface ILinkedList<T extends Comparable<T>> extends
      * Gets the tail node of the list.
      */
     ILinkedListNode<T> getTail();
-
-    /**
-     * Gets the size of the list.
-     */
-    int size();
-
-    /**
-     * Checks whether the list is empty.
-     */
-    boolean empty();
 
     /**
      * Adds a new value to the front of the list.

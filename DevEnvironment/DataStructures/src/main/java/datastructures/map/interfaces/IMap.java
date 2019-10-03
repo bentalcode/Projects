@@ -4,6 +4,7 @@ import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import datastructures.collections.interfaces.IKeyIterable;
 import datastructures.collections.interfaces.IKeyReverseIterable;
+import datastructures.collections.interfaces.ISizableCollection;
 import datastructures.collections.interfaces.IValueIterable;
 import datastructures.collections.interfaces.IValueReverseIterable;
 import datastructures.node.interfaces.IKeyValueNode;
@@ -13,6 +14,7 @@ import java.util.List;
  * The IMap interface defines a map.
  */
 public interface IMap<TKey extends Comparable<TKey>, TValue> extends
+    ISizableCollection,
     IIterable<IKeyValueNode<TKey, TValue>>,
     IReverseIterable<IKeyValueNode<TKey, TValue>>,
     IKeyIterable<TKey>,
@@ -64,14 +66,4 @@ public interface IMap<TKey extends Comparable<TKey>, TValue> extends
      * Clears the map.
      */
     void clear();
-
-    /**
-     * Returns a size of the map.
-     */
-    int size();
-
-    /**
-     * Checks whether the map is empty.
-     */
-    boolean empty();
 }

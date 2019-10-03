@@ -4,14 +4,16 @@ import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ICollection;
 
 /**
  * The IBinaryTree interface defines a binary tree.
  */
 public interface IBinaryTree<TKey extends Comparable<TKey>, TValue> extends
-    IUnaryComparator<IBinaryTree<TKey, TValue>>,
+    ICollection,
     IIterable<IBinaryTreeNode<TKey, TValue>>,
-    IReverseIterable<IBinaryTreeNode<TKey, TValue>> {
+    IReverseIterable<IBinaryTreeNode<TKey, TValue>>,
+    IUnaryComparator<IBinaryTree<TKey, TValue>> {
 
     /**
      * Gets a root of a tree.

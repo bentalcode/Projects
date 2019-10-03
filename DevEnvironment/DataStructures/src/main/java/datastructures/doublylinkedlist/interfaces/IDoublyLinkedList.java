@@ -5,6 +5,7 @@ import base.interfaces.IIterator;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IReverseIterator;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ISizableCollection;
 import datastructures.collections.interfaces.IValueIterable;
 import datastructures.collections.interfaces.IValueReverseIterable;
 
@@ -12,11 +13,12 @@ import datastructures.collections.interfaces.IValueReverseIterable;
  * The IDoublyLinkedList interface defines a doubly linked list.
  */
 public interface IDoublyLinkedList<T extends Comparable<T>> extends
-    IUnaryComparator<IDoublyLinkedList<T>>,
+    ISizableCollection,
     IIterable<IDoublyLinkedListNode<T>>,
     IReverseIterable<IDoublyLinkedListNode<T>>,
     IValueIterable<T>,
-    IValueReverseIterable<T> {
+    IValueReverseIterable<T>,
+    IUnaryComparator<IDoublyLinkedList<T>> {
 
     /**
      * Gets the head node of the list.
@@ -27,16 +29,6 @@ public interface IDoublyLinkedList<T extends Comparable<T>> extends
      * Gets the tail node of the list.
      */
     IDoublyLinkedListNode<T> getTail();
-
-    /**
-     * Gets the size of the list.
-     */
-    int size();
-
-    /**
-     * Checks whether the list is empty.
-     */
-    boolean empty();
 
     /**
      * Adds a new value to the front of the list.

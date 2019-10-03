@@ -65,22 +65,6 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
     }
 
     /**
-     * Gets the size of the trie.
-     */
-    @Override
-    public int size() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Checks whether the trie is empty.
-     */
-    @Override
-    public boolean empty() {
-        return this.size() == 0;
-    }
-
-    /**
      * Gets string representation of this instance.
      */
     @Override

@@ -3,14 +3,16 @@ package datastructures.list.interfaces;
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ISizableCollection;
 
 /**
  * The IList interface defines a list.
  */
-public interface IList<T extends Comparable<T>> extends 
-    IUnaryComparator<IList<T>>,
+public interface IList<T extends Comparable<T>> extends
+    ISizableCollection,
     IIterable<T>,
-    IReverseIterable<T> {
+    IReverseIterable<T>,
+    IUnaryComparator<IList<T>> {
 
     /**
      * Appends a specified element to the end of the list.
@@ -33,16 +35,6 @@ public interface IList<T extends Comparable<T>> extends
      * Returns the element that was removed from the list.
      */
     T remove(int index);
-
-    /**
-     * Gets the size of the list.
-     */
-    int size();
-
-    /**
-     * Checks whether the list is empty.
-     */
-    boolean empty();
 
     /**
      * Clears the elements of the list.

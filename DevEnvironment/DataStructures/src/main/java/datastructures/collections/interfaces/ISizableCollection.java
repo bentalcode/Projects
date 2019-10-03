@@ -1,9 +1,9 @@
 package datastructures.collections.interfaces;
 
 /**
- * The IAbstractCollection interface defines an abstract collection.
+ * The ISizableCollection interface defines a sizable collection.
  */
-public interface IAbstractCollection {
+public interface ISizableCollection extends ICollection {
     /**
      * Gets the size of the collection.
      */

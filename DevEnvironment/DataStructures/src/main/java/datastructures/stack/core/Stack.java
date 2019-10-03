@@ -116,6 +116,7 @@ public final class Stack<T extends Comparable<T>> implements IStack<T> {
     /**
      * Checks whether the stack is empty.
      */
+    @Override
     public boolean empty() {
        return this.size() == 0;
     }

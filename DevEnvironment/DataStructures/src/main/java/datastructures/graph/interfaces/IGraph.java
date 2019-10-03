@@ -1,12 +1,16 @@
 package datastructures.graph.interfaces;
 
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ICollection;
 import java.util.Set;
 
 /**
  * The IGraph interface defines a graph.
  */
-public interface IGraph<TKey extends Comparable<TKey>, TValue> extends IUnaryComparator<IGraph<TKey, TValue>> {
+public interface IGraph<TKey extends Comparable<TKey>, TValue> extends
+    ICollection,
+    IUnaryComparator<IGraph<TKey, TValue>> {
+
     /**
      * Gets the vertices of the graph.
      */
