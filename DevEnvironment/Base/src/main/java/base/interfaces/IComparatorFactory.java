@@ -30,6 +30,11 @@ public interface IComparatorFactory {
     <T> IIteratorComparator<T> createIteratorComparator();
 
     /**
+     * Create an iterable comparator.
+     */
+    <T> IIterableComparator<T> createIterableComparator();
+
+    /**
      * Creates a map comparator.
      */
     <TKey, TValue> IMapComparator<TKey, TValue> createMapComparator();

@@ -189,6 +189,11 @@ public interface IHashCodeBuilder {
     <T> IHashCodeBuilder withIterator(IIterator<T> iterator, IHashCodeProvider<T> comparator);
 
     /**
+     * With a generic iterable.
+     */
+    <T> IHashCodeBuilder withIterable(IIterable<T> iterable, IHashCodeProvider<T> comparator);
+
+    /**
      * With a generic map.
      */
     <TKey, TValue> IHashCodeBuilder withMap(

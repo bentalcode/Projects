@@ -57,7 +57,7 @@ public final class TrieTest {
     private void testCreation(ITrieData<Character> trieData) {
         ITrie<Character> trie = this.createTrie(trieData);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             trie.getIterator(),
             ListIterator.of(trieData.getData()),
             "Invalid creation logic of a trie.");

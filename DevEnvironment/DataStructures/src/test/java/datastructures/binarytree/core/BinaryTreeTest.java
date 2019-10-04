@@ -87,7 +87,7 @@ public final class BinaryTreeTest {
         IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> preOrderIterator =
             BinaryTreeNodeListIterator.of(treeData.getPreorder());
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             tree.getPreorderIterator(),
             preOrderIterator,
             "Invalid creation logic of a binary tree.");

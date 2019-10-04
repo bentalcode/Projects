@@ -5,6 +5,8 @@ import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparableComparator;
 import base.interfaces.IComparatorFactory;
 import base.interfaces.ICompareToBuilder;
+import base.interfaces.IIterable;
+import base.interfaces.IIterableComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
@@ -1126,8 +1128,23 @@ public final class CompareToBuilder implements ICompareToBuilder {
             return this;
         }
 
-        IIteratorComparator<T> collectionComparator = this.comparatorFactory.createIteratorComparator();
-        this.compareStatus = collectionComparator.compareTo(lhs, rhs, comparator);
+        IIteratorComparator<T> iteratorComparator = this.comparatorFactory.createIteratorComparator();
+        this.compareStatus = iteratorComparator.compareTo(lhs, rhs, comparator);
+
+        return this;
+    }
+
+    /**
+     * With a generic iterable.
+     */
+    @Override
+    public <T> ICompareToBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs, IComparableComparator<T> comparator) {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        IIterableComparator<T> iterableComparator = this.comparatorFactory.createIterableComparator();
+        this.compareStatus = iterableComparator.compareTo(lhs, rhs, comparator);
 
         return this;
     }

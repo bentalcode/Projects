@@ -189,6 +189,11 @@ public interface ICompareToBuilder {
     <T> ICompareToBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IComparableComparator<T> comparator);
 
     /**
+     * With a generic iterable.
+     */
+    <T> ICompareToBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs, IComparableComparator<T> comparator);
+
+    /**
      * With a generic map.
      */
     <TKey, TValue> ICompareToBuilder withMap(

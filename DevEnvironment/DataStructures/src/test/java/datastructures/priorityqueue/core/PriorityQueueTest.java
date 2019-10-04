@@ -63,7 +63,7 @@ public final class PriorityQueueTest {
     private <TValue extends Comparable<TValue>> void testCreation(IPriorityQueueData<TValue> data) {
         IPriorityQueue<TValue> priorityQueue = this.createPriorityQueue(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             priorityQueue.getIterator(),
             base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a priority queue.");
@@ -75,7 +75,7 @@ public final class PriorityQueueTest {
     private <TValue extends Comparable<TValue>> void testCreationWithRemoval(IPriorityQueueData<TValue> data) {
         IPriorityQueue<TValue> priorityQueue = this.createPriorityQueue(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             priorityQueue.getIterator(),
             base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a priority queue.");

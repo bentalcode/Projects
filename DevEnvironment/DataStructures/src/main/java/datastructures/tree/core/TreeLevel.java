@@ -6,8 +6,12 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.ListIterator;
+import base.core.ListReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.tree.interfaces.ITreeLevel;
@@ -57,6 +61,38 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
     @Override
     public List<IKeyValueNode<TKey, TValue>> getNodesData() {
         return this.nodesData;
+    }
+
+    /**
+     * Gets the size of the level.
+     */
+    @Override
+    public int size() {
+        return this.nodesData.size();
+    }
+
+    /**
+     * Checks whether the level is empty.
+     */
+    @Override
+    public boolean empty() {
+        return this.size() == 0;
+    }
+
+    /**
+     * Gets the iterator.
+     */
+    @Override
+    public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
+        return ListIterator.of(this.nodesData);
+    }
+
+    /**
+     * Gets the reverse iterator.
+     */
+    @Override
+    public IReverseIterator<IKeyValueNode<TKey, TValue>> getReverseIterator() {
+        return ListReverseIterator.of(this.nodesData);
     }
 
     /**
@@ -140,7 +176,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
         @Override
         public int getHashCode(ITreeLevel<TKey, TValue> obj) {
             return new HashCodeBuilder(3, 5)
-                .withCollection(obj.getNodesData(), this.nodeComparator)
+                .withIterable(obj, this.nodeComparator)
                 .build();
         }
 
@@ -158,7 +194,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
             }
 
             return new EqualBuilder()
-                .withCollection(lhs.getNodesData(), rhs.getNodesData(), this.nodeComparator)
+                .withIterable(lhs, rhs, this.nodeComparator)
                 .build();
         }
 
@@ -184,7 +220,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
             }
 
             return new CompareToBuilder()
-                .withCollection(lhs.getNodesData(), rhs.getNodesData(), this.nodeComparator)
+                .withIterable(lhs, rhs, this.nodeComparator)
                 .build();
         }
     }

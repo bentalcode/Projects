@@ -83,7 +83,7 @@ public final class LinkedHashMapTest {
 
         ILinkedHashMap<TKey, TValue> map = this.createLinkedHashMap(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             map.getIterator(),
             ListIterator.of(data.getData()),
             "Invalid creation logic of a linked hash map.");
@@ -97,7 +97,7 @@ public final class LinkedHashMapTest {
 
         ILinkedHashMap<TKey, TValue> map = this.createLinkedHashMap(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             map.getIterator(),
             ListIterator.of(data.getData()),
             "Invalid creation logic of a linked hash map.");

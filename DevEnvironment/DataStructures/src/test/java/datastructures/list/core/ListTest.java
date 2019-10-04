@@ -66,12 +66,12 @@ public final class ListTest {
     private <T extends Comparable<T>> void testCreation(IListData<T> data) {
         IList<T> list = this.createList(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             list.getIterator(),
             base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a list.");
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             list.getIterator(),
             ArrayIterator.of(list.toArray()),
             "Invalid creation logic of a list.");
@@ -83,7 +83,7 @@ public final class ListTest {
     private <T extends Comparable<T>> void testCreationWithRemoval(IListData<T> data) {
         IList<T> list = this.createList(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             list.getIterator(),
             base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a list.");

@@ -61,7 +61,7 @@ public final class AlphabeticalOrderTest {
         ICalculator<IAlphabeticalOrderResults> calculator = new AlphabeticalOrderCalculator(data);
         IAlphabeticalOrderResults results = calculator.calculate();
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             ListIterator.of(characters),
             results.getIterator(),
             "Invalid alphabetical order");

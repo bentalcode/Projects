@@ -89,7 +89,7 @@ public final class GraphTest {
 
         List<IVertex<Integer, String>> result = graph.getGraphLogic().topologicalSearch();
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             ListIterator.of(result),
             expectedResult.getIterator(),
             "Invalid logic of a topological search in a graph.");

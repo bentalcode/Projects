@@ -4,6 +4,7 @@ import base.interfaces.IArrayComparator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparatorFactory;
+import base.interfaces.IIterableComparator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
@@ -56,6 +57,14 @@ public final class ComparatorFactory implements IComparatorFactory {
     @Override
     public <T> IIteratorComparator<T> createIteratorComparator() {
         return new IteratorComparator<>();
+    }
+
+    /**
+     * Create an iterable comparator.
+     */
+    @Override
+    public <T> IIterableComparator<T> createIterableComparator() {
+        return new IterableComparator<>();
     }
 
     /**

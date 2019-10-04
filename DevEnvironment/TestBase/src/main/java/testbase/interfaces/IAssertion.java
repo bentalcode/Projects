@@ -1,6 +1,7 @@
 package testbase.interfaces;
 
 import base.interfaces.IEquatableComparator;
+import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 
 /**
@@ -51,7 +52,7 @@ public interface IAssertion {
     /**
      * Asserts equality with iterators.
      */
-    <T extends Comparable<T>> void assertEquals(
+    <T extends Comparable<T>> void assertEqualsWithIterators(
         IIterator<T> lhs,
         IIterator<T> rhs,
         String message);
@@ -59,9 +60,26 @@ public interface IAssertion {
     /**
      * Asserts equality with iterators.
      */
-    <T> void assertEquals(
+    <T> void assertEqualsWithIterators(
         IIterator<T> lhs,
         IIterator<T> rhs,
+        IEquatableComparator<T> comparator,
+        String message);
+
+    /**
+     * Asserts equality with iterables.
+     */
+    <T extends Comparable<T>> void assertEqualsWithIterables(
+        IIterable<T> lhs,
+        IIterable<T> rhs,
+        String message);
+
+    /**
+     * Asserts equality with iterables.
+     */
+    <T> void assertEqualsWithIterables(
+        IIterable<T> lhs,
+        IIterable<T> rhs,
         IEquatableComparator<T> comparator,
         String message);
 }

@@ -4,6 +4,7 @@ import base.core.Comparator;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IEquatableComparator;
+import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import org.junit.Assert;
 import testbase.interfaces.IAssertion;
@@ -111,14 +112,14 @@ public final class Assertion implements IAssertion {
      * Asserts equality with iterators.
      */
     @Override
-    public <T extends Comparable<T>> void assertEquals(
+    public <T extends Comparable<T>> void assertEqualsWithIterators(
         IIterator<T> lhs,
         IIterator<T> rhs,
         String message) {
 
         IBinaryComparator<T> comparator = Comparator.defaultComparator();
 
-        this.assertEquals(
+        this.assertEqualsWithIterators(
             lhs,
             rhs,
             comparator,
@@ -129,13 +130,51 @@ public final class Assertion implements IAssertion {
      * Asserts equality with iterators.
      */
     @Override
-    public <T> void assertEquals(
+    public <T> void assertEqualsWithIterators(
         IIterator<T> lhs,
         IIterator<T> rhs,
         IEquatableComparator<T> comparator,
         String message) {
 
         boolean status = new EqualBuilder().withIterator(
+            lhs,
+            rhs,
+            comparator).build();
+
+        this.assertTrue(
+            status,
+            message);
+    }
+
+    /**
+     * Asserts equality with iterables.
+     */
+    @Override
+    public <T extends Comparable<T>> void assertEqualsWithIterables(
+        IIterable<T> lhs,
+        IIterable<T> rhs,
+        String message) {
+
+        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+
+        this.assertEqualsWithIterables(
+            lhs,
+            rhs,
+            comparator,
+            message);
+    }
+
+    /**
+     * Asserts equality with iterables.
+     */
+    @Override
+    public <T> void assertEqualsWithIterables(
+        IIterable<T> lhs,
+        IIterable<T> rhs,
+        IEquatableComparator<T> comparator,
+        String message) {
+
+        boolean status = new EqualBuilder().withIterable(
             lhs,
             rhs,
             comparator).build();

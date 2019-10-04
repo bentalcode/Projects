@@ -93,7 +93,7 @@ public final class DoublyLinkedListTest {
         //
         // Test the data of the container...
         //
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             container.getIterator(),
             ListIterator.of(data.getData()),
             "Invalid creation logic of a doubly linked list.");
@@ -177,7 +177,7 @@ public final class DoublyLinkedListTest {
 
         this.updateList(list, operation, item);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             list.getValueIterator(),
             Iterator.of(expectedContent),
             "Invalid updation logic of a doubly linked list.");

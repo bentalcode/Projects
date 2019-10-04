@@ -91,7 +91,7 @@ public final class LinkedListTest {
         //
         // Test the data of the container...
         //
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             container.getIterator(),
             ListIterator.of(data.getData()),
             "Invalid creation logic of a linked list.");
@@ -159,7 +159,7 @@ public final class LinkedListTest {
 
         this.updateList(list, operation, item);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             list.getValueIterator(),
             Iterator.of(expectedContent),
             "Invalid updation logic of a linked list.");

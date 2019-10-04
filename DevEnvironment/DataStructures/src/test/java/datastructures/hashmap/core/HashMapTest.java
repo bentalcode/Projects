@@ -81,7 +81,7 @@ public final class HashMapTest {
     private <TKey extends Comparable<TKey>, TValue> void testCreation(IMapData<TKey, TValue> data) {
         IHashMap<TKey, TValue> map = this.createHashMap(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             map.getIterator(),
             ListIterator.of(data.getData()),
             "Invalid creation logic of a hash map.");
@@ -93,7 +93,7 @@ public final class HashMapTest {
     private <TKey extends Comparable<TKey>, TValue> void testCreationWithDeletion(IMapData<TKey, TValue> data) {
         IHashMap<TKey, TValue> map = this.createHashMap(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             map.getIterator(),
             ListIterator.of(data.getData()),
             "Invalid creation logic of a hash map.");

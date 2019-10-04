@@ -2,6 +2,7 @@ package base.core;
 
 import base.interfaces.IHashCodeBuilder;
 import base.interfaces.IHashCodeProvider;
+import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import base.interfaces.IPrimitiveSize;
 
@@ -508,6 +509,14 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
         }
 
         return this;
+    }
+
+    /**
+     * With a generic iterable.
+     */
+    @Override
+    public <T> IHashCodeBuilder withIterable(IIterable<T> iterable, IHashCodeProvider<T> comparator) {
+        return this.withIterator(iterable.getIterator(), comparator);
     }
 
     /**

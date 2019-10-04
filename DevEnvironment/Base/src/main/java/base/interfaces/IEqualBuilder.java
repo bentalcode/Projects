@@ -189,6 +189,11 @@ public interface IEqualBuilder {
     <T> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator);
 
     /**
+     * With a generic iterable.
+     */
+    <T> IEqualBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs, IEquatableComparator<T> comparator);
+
+    /**
      * With a generic map.
      */
     <TKey, TValue> IEqualBuilder withMap(

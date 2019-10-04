@@ -127,10 +127,9 @@ public final class BPlusTreeTest {
             currTreeLevels = tree.getTreeLevels();
         }
 
-        boolean status = currTreeLevels.equals(expectedTreeLevels);
-
-        this.assertion.assertTrue(
-            status,
+        this.assertion.assertEquals(
+            currTreeLevels,
+            expectedTreeLevels,
             "The creation logic of the B+ tree is invalid.");
     }
 

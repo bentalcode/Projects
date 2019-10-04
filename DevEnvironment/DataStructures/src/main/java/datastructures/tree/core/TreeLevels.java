@@ -6,8 +6,12 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.ListIterator;
+import base.core.ListReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import datastructures.tree.interfaces.ITreeLevel;
 import datastructures.tree.interfaces.ITreeLevels;
 import java.util.ArrayList;
@@ -56,6 +60,38 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
     @Override
     public List<ITreeLevel<TKey, TValue>> getLevels() {
         return this.levels;
+    }
+
+    /**
+     * Gets the iterator of levels.
+     */
+    @Override
+    public IIterator<ITreeLevel<TKey, TValue>> getIterator() {
+        return ListIterator.of(this.levels);
+    }
+
+    /**
+     * Gets the reverse iterator of levels.
+     */
+    @Override
+    public IReverseIterator<ITreeLevel<TKey, TValue>> getReverseIterator() {
+        return ListReverseIterator.of(this.levels);
+    }
+
+    /**
+     * Gets the size of the levels.
+     */
+    @Override
+    public int size() {
+        return this.levels.size();
+    }
+
+    /**
+     * Checks whether the levels are empty.
+     */
+    @Override
+    public boolean empty() {
+        return this.size() == 0;
     }
 
     /**

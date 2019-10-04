@@ -68,7 +68,7 @@ public final class StackTest {
     private <T extends Comparable<T>> void testCreation(IStackData<T> data) {
         IStack<T> stack = this.createStack(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             stack.getIterator(),
             base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a stack.");
@@ -80,7 +80,7 @@ public final class StackTest {
     private <T extends Comparable<T>> void testCreationWithRemoval(IStackData<T> data) {
         IStack<T> stack = this.createStack(data);
 
-        this.assertion.assertEquals(
+        this.assertion.assertEqualsWithIterators(
             stack.getIterator(),
             base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a stack.");

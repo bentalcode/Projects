@@ -5,6 +5,8 @@ import base.interfaces.ICollectionComparator;
 import base.interfaces.IComparatorFactory;
 import base.interfaces.IEqualBuilder;
 import base.interfaces.IEquatableComparator;
+import base.interfaces.IIterable;
+import base.interfaces.IIterableComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
@@ -938,6 +940,21 @@ public final class EqualBuilder implements IEqualBuilder {
 
         IIteratorComparator<T> iteratorComparator = this.comparatorFactory.createIteratorComparator();
         this.equalityStatus = iteratorComparator.isEqual(lhs, rhs, comparator);
+
+        return this;
+    }
+
+    /**
+     * With a generic iterable.
+     */
+    @Override
+    public <T> IEqualBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs, IEquatableComparator<T> comparator) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        IIterableComparator<T> iterableComparator = this.comparatorFactory.createIterableComparator();
+        this.equalityStatus = iterableComparator.isEqual(lhs, rhs, comparator);
 
         return this;
     }
