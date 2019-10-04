@@ -6,8 +6,12 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.ListIterator;
+import base.core.ListReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import datastructures.blocktree.interfaces.IBlockTreeLevel;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
 import java.util.ArrayList;
@@ -56,6 +60,38 @@ public final class BlockTreeLevels<TKey extends Comparable<TKey>, TValue> implem
     @Override
     public List<IBlockTreeLevel<TKey, TValue>> getLevels() {
         return this.levels;
+    }
+
+    /**
+     * Gets the iterator of levels of a block tree.
+     */
+    @Override
+    public IIterator<IBlockTreeLevel<TKey, TValue>> getIterator() {
+        return ListIterator.of(this.levels);
+    }
+
+    /**
+     * Gets the reverse iterator of levels of a block tree.
+     */
+    @Override
+    public IReverseIterator<IBlockTreeLevel<TKey, TValue>> getReverseIterator() {
+        return ListReverseIterator.of(this.levels);
+    }
+
+    /**
+     * Gets the size of the levels of a block tree.
+     */
+    @Override
+    public int size() {
+        return this.levels.size();
+    }
+
+    /**
+     * Checks whether the levels a block tree are empty.
+     */
+    @Override
+    public boolean empty() {
+        return this.size() == 0;
     }
 
     /**
