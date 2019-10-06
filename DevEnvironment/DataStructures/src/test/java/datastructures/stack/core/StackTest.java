@@ -1,13 +1,10 @@
 package datastructures.stack.core;
 
-import base.core.ArrayIterator;
-import base.core.Lists;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
-import datastructures.list.interfaces.IList;
 import datastructures.stack.interfaces.IStack;
 import datastructures.stack.interfaces.IStackData;
-import java.util.ArrayList;
+
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;

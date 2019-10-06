@@ -15,6 +15,8 @@ import base.interfaces.IReverseIterator;
 import datastructures.array.interfaces.IArray;
 import datastructures.collections.core.Collections;
 
+import java.util.ArrayList;
+
 /**
  * The Array class implements an array.
  */

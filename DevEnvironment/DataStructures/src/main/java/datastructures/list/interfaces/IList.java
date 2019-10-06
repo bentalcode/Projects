@@ -6,7 +6,9 @@ import base.interfaces.IUnaryComparator;
 import datastructures.collections.interfaces.ISizableCollection;
 
 /**
- * The IList interface defines a list.
+ * The IList interface defines an ordered collection.
+ * A list or sequence is an abstract data type that represents a countable number of ordered values,
+ * where the same value may occur more than once.
  */
 public interface IList<T extends Comparable<T>> extends
     ISizableCollection,

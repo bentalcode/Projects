@@ -4,9 +4,9 @@ import base.core.ArrayIterator;
 import base.core.Lists;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
+import datastructures.list.interfaces.IArrayList;
 import datastructures.list.interfaces.IList;
 import datastructures.list.interfaces.IListData;
-import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,16 +14,16 @@ import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 
 /**
- * The ListTest class implements tests for a hash map.
+ * The ArrayListTest class implements tests for an array list.
  */
-public final class ListTest {
+public final class ArrayListTest {
     private final ITestData testData = new TestData();
     private final IAssertion assertion = new Assertion();
 
     /**
-     * The ListTest constructor.
+     * The ArrayListTest constructor.
      */
-    public ListTest() {
+    public ArrayListTest() {
     }
 
     /**
@@ -64,7 +64,7 @@ public final class ListTest {
      * Tests the creation logic of a list.
      */
     private <T extends Comparable<T>> void testCreation(IListData<T> data) {
-        IList<T> list = this.createList(data);
+        IList<T> list = this.createArrayList(data);
 
         this.assertion.assertEqualsWithIterators(
             list.getIterator(),
@@ -81,14 +81,14 @@ public final class ListTest {
      * Tests the creation and removal logic of a list.
      */
     private <T extends Comparable<T>> void testCreationWithRemoval(IListData<T> data) {
-        IList<T> list = this.createList(data);
+        IList<T> list = this.createArrayList(data);
 
         this.assertion.assertEqualsWithIterators(
             list.getIterator(),
             base.core.ListIterator.of(data.getData()),
             "Invalid creation logic of a list.");
 
-        List<T> values = Lists.fromIterator(list.getIterator());
+        java.util.List<T> values = Lists.fromIterator(list.getIterator());
 
         int currIndex = 0;
         int currSize = values.size();
@@ -109,10 +109,10 @@ public final class ListTest {
     }
 
     /**
-     * Creates a list.
+     * Creates an array list.
      */
-    private <T extends Comparable<T>> IList<T> createList(IListData<T> data) {
-        IList<T> list = new ArrayList<>(data.getClassType());
+    private <T extends Comparable<T>> IArrayList<T> createArrayList(IListData<T> data) {
+        IArrayList<T> list = new ArrayList<>(data.getClassType());
 
         for (T item : data.getCreationData()) {
             list.add(item);

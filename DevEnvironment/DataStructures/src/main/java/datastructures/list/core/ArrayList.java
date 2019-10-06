@@ -11,12 +11,13 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.collections.core.Collections;
+import datastructures.list.interfaces.IArrayList;
 import datastructures.list.interfaces.IList;
 
 /**
- * The ArrayList class implements an array list.
+ * The ArrayList class implements a dynamic array (resizable array).
  */
-public final class ArrayList<T extends Comparable<T>> implements IList<T> {
+public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
     private static final int DefaultCapacity = 16;
 
     private final Class<T> classType;
@@ -107,7 +108,7 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
     public T get(int index) {
         this.validateIndex(index);
 
-        return Casting.cast(this.array[index]);
+        return this.array[index];
     }
 
     /**
@@ -180,6 +181,34 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
     }
 
     /**
+     * Trims to size.
+     */
+    @Override
+    public void trimToSize() {
+        assert(this.size <= this.array.length);
+
+        if (this.size == this.array.length) {
+            return;
+        }
+
+        int newCapacity = this.size;
+        this.resize(newCapacity);
+    }
+
+    /**
+     * Converts the array to a native array.
+     */
+    @Override
+    public T[] toArray() {
+        if (this.empty()) {
+            return null;
+        }
+
+        T[] result = Arrays.copy(this.array, this.classType, 0, this.size - 1);
+        return result;
+    }
+
+    /**
      * Sorts the list.
      */
     @Override
@@ -201,19 +230,6 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
     @Override
     public IReverseIterator<T> getReverseIterator() {
         return ListReverseIterator.of(this);
-    }
-
-    /**
-     * Converts the array to a native array.
-     */
-    @Override
-    public T[] toArray() {
-        if (this.empty()) {
-            return null;
-        }
-
-        T[] result = Arrays.copy(this.array, this.classType, 0, this.size - 1);
-        return result;
     }
 
     /**
@@ -375,6 +391,15 @@ public final class ArrayList<T extends Comparable<T>> implements IList<T> {
         assert(this.size <= this.array.length);
 
         int newCapacity = this.size * 2;
+        this.resize(newCapacity);
+    }
+
+    /**
+     * Resizes the array to a specific size.
+     */
+    private void resize(int newCapacity) {
+        assert(newCapacity >= this.size);
+
         T[] newArray = Arrays.newInstance(this.classType, newCapacity);
 
         int startIndex = 0;
