@@ -10,9 +10,7 @@ public final class Arrays {
      * Creates a new instance of an array.
      */
     public static <T> T[] newInstance(Class<?> classType, int size) {
-        Conditions.validateNotNull(
-            classType,
-            "The class type for creating an array.");
+        Arrays.validateClassType(classType);
 
         Conditions.validate(
             size > 0,
@@ -27,13 +25,33 @@ public final class Arrays {
     /**
      * Copies an instance of an array.
      */
-    public static <T> T[] copy(
+    public static <T, TClass extends T> T[] copy(
         T[] arr,
-        Class<T> classType,
+        Class<TClass> classType) {
+
+        Arrays.validateArray(arr);
+
+        int startIndex = 0;
+        int endIndex = arr.length - 1;
+
+        return Arrays.copy(
+            arr,
+            classType,
+            startIndex,
+            endIndex);
+    }
+
+    /**
+     * Copies an instance of an array.
+     */
+    public static <T, TClass extends T> T[] copy(
+        T[] arr,
+        Class<TClass> classType,
         int startIndex,
         int endIndex) {
 
         Arrays.validateArray(arr);
+        Arrays.validateClassType(classType);
         Arrays.validateRange(arr, startIndex, endIndex);
 
         int length = endIndex - startIndex + 1;
@@ -43,6 +61,7 @@ public final class Arrays {
 
         for (int i = startIndex; i <= endIndex; ++i) {
             result[insertIndex] = arr[i];
+
             ++insertIndex;
         }
 
@@ -129,6 +148,15 @@ public final class Arrays {
         Conditions.validateNotNull(
             array,
             "The array.");
+    }
+
+    /**
+     * Validates an class type.
+     */
+    private static void validateClassType(Class<?> classType) {
+        Conditions.validateNotNull(
+            classType,
+            "The class type.");
     }
 
     /**

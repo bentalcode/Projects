@@ -48,7 +48,7 @@ public final class DoublyLinkedListTest {
      * Tests the creation logic of a doubly linked list.
      */
     @Test
-    public void DoublyLinkedListCreationTest() {
+    public void doublyLinkedListCreationTest() {
         List<IDoublyLinkedListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
 
         for (IDoublyLinkedListData<Integer> listData : data) {
@@ -60,7 +60,7 @@ public final class DoublyLinkedListTest {
      * Tests the iteration logic of a doubly linked list.
      */
     @Test
-    public void DoublyLinkedListIterationTest() {
+    public void doublyLinkedListIterationTest() {
         List<IDoublyLinkedListData<Integer>> data = this.testData.getDoublyLinkedListData().getData();
 
         for (IDoublyLinkedListData<Integer> listData : data) {
@@ -72,7 +72,7 @@ public final class DoublyLinkedListTest {
      * Tests the updation logic of a doubly linked list.
      */
     @Test
-    public void DoublyLinkedListUpdationTest() {
+    public void doublyLinkedListUpdationTest() {
         IDoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
         List<ITriple<String, Integer, List<Integer>>> data =

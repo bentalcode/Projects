@@ -3,34 +3,32 @@ package datastructures.array.core;
 import base.core.AbstractBinaryComparator;
 import base.core.ArrayIterator;
 import base.core.ArrayReverseIterator;
+import base.core.Arrays;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
-import base.core.Range;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.array.interfaces.IArray;
 import datastructures.collections.core.Collections;
 
-import java.util.ArrayList;
-
 /**
  * The Array class implements an array.
  */
 public final class Array<T extends Comparable<T>> implements IArray<T> {
-    private final T[] array;
+    private final T[] data;
     private final IBinaryComparator<IArray<T>> comparator;
     private final int hashCode;
 
     /**
      * The Array constructor.
      */
-    public Array(T[] array) {
+    public Array(T[] data) {
         this(
-            array,
+            data,
             Array.defaultComparator());
     }
 
@@ -38,18 +36,18 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      * The Array constructor.
      */
     public Array(
-        T[] array,
+        T[] data,
         IBinaryComparator<IArray<T>> comparator) {
         
         Conditions.validateNotNull(
-            array,
-            "The array.");
+            data,
+            "The data of an array.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of an array.");
 
-        this.array = array;
+        this.data = data;
         this.comparator = comparator;
         this.hashCode = this.comparator.getHashCode(this);
     }
@@ -61,7 +59,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
     public void set(int index, T element) {
         this.validateIndex(index);
         
-        this.array[index] = element;
+        this.data[index] = element;
     }
 
     /**
@@ -71,7 +69,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
     public T get(int index) {
         this.validateIndex(index);
 
-        return this.array[index];
+        return this.data[index];
     }
 
     /**
@@ -79,7 +77,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      */
     @Override
     public int size() {
-        return this.array.length;
+        return this.data.length;
     }
 
     /**
@@ -95,7 +93,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      */
     @Override
     public IIterator<T> getIterator() {
-        return ArrayIterator.of(this.array);
+        return ArrayIterator.of(this.data);
     }
 
     /**
@@ -103,7 +101,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return ArrayReverseIterator.of(this.array);
+        return ArrayReverseIterator.of(this.data);
     }
 
     /**
@@ -111,7 +109,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      */
     @Override
     public T[] toArray() {
-        return this.array;
+        return this.data;
     }
 
     /**
@@ -254,15 +252,6 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      * Validates an index.
      */
     private void validateIndex(int index) {
-        this.validateIndex(index, this.array.length);
-    }
-
-    /**
-     * Validates an index.
-     */
-    private void validateIndex(int index, int length) {
-        Conditions.validate(
-            index >= 0 && index < length,
-            "The index is out of range. Index: " + index + ", Range: " + Range.of(0, length - 1));
+        Arrays.validateIndex(this.data, index);
     }
 }

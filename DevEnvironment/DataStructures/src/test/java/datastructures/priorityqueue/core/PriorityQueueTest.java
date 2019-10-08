@@ -41,7 +41,7 @@ public final class PriorityQueueTest {
      * Tests the creation logic of a priority queue.
      */
     @Test
-    public void PriorityQueueCreationTest() {
+    public void priorityQueueCreationTest() {
         for (IPriorityQueueData<Integer> data : this.testData.getPriorityQueueData().getData()) {
             this.testCreation(data);
         }
@@ -51,7 +51,7 @@ public final class PriorityQueueTest {
      * Tests the creation and removal logic of a priority queue.
      */
     @Test
-    public void ListCreationAndRemovalTest() {
+    public void listCreationAndRemovalTest() {
         for (IPriorityQueueData<Integer> data : this.testData.getPriorityQueueData().getData()) {
             this.testCreationWithRemoval(data);
         }

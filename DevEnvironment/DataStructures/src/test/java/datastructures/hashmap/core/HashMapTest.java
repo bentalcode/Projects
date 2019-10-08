@@ -49,7 +49,7 @@ public final class HashMapTest {
      * Tests the creation logic of a hash map.
      */
     @Test
-    public void HashMapCreationTest() {
+    public void hashMapCreationTest() {
         for (IMapData<Integer, String> data : this.testData.getHashMapData().getHashMapData()) {
             this.testCreation(data);
         }
@@ -59,7 +59,7 @@ public final class HashMapTest {
      * Tests the creation with deletion logic of a hash map.
      */
     @Test
-    public void HashMapCreationWithDeletionTest() {
+    public void hashMapCreationWithDeletionTest() {
         for (IMapData<Integer, String> data : this.testData.getHashMapData().getHashMapData()) {
             this.testCreationWithDeletion(data);
         }
@@ -69,7 +69,7 @@ public final class HashMapTest {
      * Tests the iteration logic of a hash map.
      */
     @Test
-    public void HashMapIterationTest() {
+    public void hashMapIterationTest() {
         for (IMapData<Integer, String> data : this.testData.getHashMapData().getHashMapData()) {
             this.testIteration(data);
         }

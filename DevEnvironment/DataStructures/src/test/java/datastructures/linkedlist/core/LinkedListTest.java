@@ -48,7 +48,7 @@ public final class LinkedListTest {
      * Tests the creation logic of a linked list.
      */
     @Test
-    public void LinkedListCreationTest() {
+    public void linkedListCreationTest() {
         List<ILinkedListData<Integer>> data = this.testData.getLinkedListData().getData();
 
         for (ILinkedListData<Integer> listData : data) {
@@ -60,7 +60,7 @@ public final class LinkedListTest {
      * Tests the iteration logic of a linked list.
      */
     @Test
-    public void LinkedListIterationTest() {
+    public void linkedListIterationTest() {
         List<ILinkedListData<Integer>> data = this.testData.getLinkedListData().getData();
 
         for (ILinkedListData<Integer> listData : data) {
@@ -72,7 +72,7 @@ public final class LinkedListTest {
      * Tests the updation logic of a linked list.
      */
     @Test
-    public void LinkedListUpdationTest() {
+    public void linkedListUpdationTest() {
         ILinkedList<Integer> list = new LinkedList<>();
 
         List<ITriple<String, Integer, List<Integer>>> data = this.testData.getLinkedListData().getUpdationData();

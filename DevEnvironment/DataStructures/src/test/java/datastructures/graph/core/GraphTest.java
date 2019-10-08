@@ -45,7 +45,7 @@ public final class GraphTest {
      * Tests whether a graph has a loop.
      */
     @Test
-    public void loopDetectionTest() {
+    public void graphLoopDetectionTest() {
         for (IGraph<Integer, String> graph : this.testData.getGraphData().getGraphs()) {
             this.testLoopDetection(graph, false);
         }
@@ -59,7 +59,7 @@ public final class GraphTest {
      * Tests topological search of a graph.
      */
     @Test
-    public void topologicalSearchTest() {
+    public void graphTopologicalSearchTest() {
         for (IPair<IGraph<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>> data : this.testData.getGraphData().getTopologicalSearchData()) {
             this.testTopologicalSearch(data.first(), data.second());
         }

@@ -44,7 +44,7 @@ public final class ArrayListTest {
      * Tests the creation logic of a list.
      */
     @Test
-    public void ListCreationTest() {
+    public void listCreationTest() {
         for (IListData<Integer> data : this.testData.getListData().getData()) {
             this.testCreation(data);
         }
@@ -54,7 +54,7 @@ public final class ArrayListTest {
      * Tests the creation and removal logic of a list.
      */
     @Test
-    public void ListCreationAndRemovalTest() {
+    public void listCreationAndRemovalTest() {
         for (IListData<Integer> data : this.testData.getListData().getData()) {
             this.testCreationWithRemoval(data);
         }

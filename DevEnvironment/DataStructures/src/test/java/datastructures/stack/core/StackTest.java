@@ -1,10 +1,10 @@
 package datastructures.stack.core;
 
+import base.core.ListIterator;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.stack.interfaces.IStack;
 import datastructures.stack.interfaces.IStackData;
-
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -43,7 +43,7 @@ public final class StackTest {
      * Tests the creation logic of a stack.
      */
     @Test
-    public void StackCreationTest() {
+    public void stackCreationTest() {
         for (IStackData<Integer> data : this.testData.getStackData().getData()) {
             this.testCreation(data);
         }
@@ -53,7 +53,7 @@ public final class StackTest {
      * Tests the creation and removal logic of a stack.
      */
     @Test
-    public void ListCreationAndRemovalTest() {
+    public void listCreationAndRemovalTest() {
         for (IStackData<Integer> data : this.testData.getStackData().getData()) {
             this.testCreationWithRemoval(data);
         }
@@ -67,7 +67,7 @@ public final class StackTest {
 
         this.assertion.assertEqualsWithIterators(
             stack.getIterator(),
-            base.core.ListIterator.of(data.getData()),
+            ListIterator.of(data.getData()),
             "Invalid creation logic of a stack.");
     }
 
@@ -79,7 +79,7 @@ public final class StackTest {
 
         this.assertion.assertEqualsWithIterators(
             stack.getIterator(),
-            base.core.ListIterator.of(data.getData()),
+            ListIterator.of(data.getData()),
             "Invalid creation logic of a stack.");
 
         List<T> expectedData = data.getData();

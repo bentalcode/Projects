@@ -45,7 +45,7 @@ public final class LRUCacheTest {
      * Tests the updation logic of a cache.
      */
     @Test
-    public void LRUCacheUpdationTest() {
+    public void lruCacheUpdationTest() {
         ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
@@ -58,7 +58,7 @@ public final class LRUCacheTest {
      * Tests the iteration logic of a cache.
      */
     @Test
-    public void LRUCacheIterationTest() {
+    public void lruCacheIterationTest() {
         ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =

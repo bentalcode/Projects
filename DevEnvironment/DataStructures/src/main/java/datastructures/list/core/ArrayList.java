@@ -13,6 +13,7 @@ import base.interfaces.IReverseIterator;
 import datastructures.collections.core.Collections;
 import datastructures.list.interfaces.IArrayList;
 import datastructures.list.interfaces.IList;
+import java.util.BitSet;
 
 /**
  * The ArrayList class implements a dynamic array (resizable array).
@@ -121,7 +122,6 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
         T elementToRemove = this.get(index);
 
         this.shiftLeft(index + 1, 1);
-
         return elementToRemove;
     }
 

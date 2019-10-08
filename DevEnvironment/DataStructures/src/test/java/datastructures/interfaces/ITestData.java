@@ -1,6 +1,7 @@
 package datastructures.interfaces;
 
 import datastructures.binarytree.interfaces.IBinaryTreeTestData;
+import datastructures.bitarray.interfaces.IBitArrayTestData;
 import datastructures.bplustree.interfaces.IBPlusTreeTestData;
 import datastructures.cache.interfaces.ICacheTestData;
 import datastructures.collections.interfaces.ICollectionTestData;
@@ -21,6 +22,11 @@ public interface ITestData {
      * Gets the data of tests of a collection.
      */
     ICollectionTestData getCollectionData();
+
+    /**
+     * Gets the data of tests of a bit array.
+     */
+    IBitArrayTestData getBitArrayData();
 
     /**
      * Gets the data of tests of a list.

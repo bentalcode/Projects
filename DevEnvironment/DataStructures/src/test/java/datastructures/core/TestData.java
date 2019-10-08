@@ -2,6 +2,8 @@ package datastructures.core;
 
 import datastructures.binarytree.core.BinaryTreeTestData;
 import datastructures.binarytree.interfaces.IBinaryTreeTestData;
+import datastructures.bitarray.core.BitArrayTestData;
+import datastructures.bitarray.interfaces.IBitArrayTestData;
 import datastructures.bplustree.core.BPlusTreeTestData;
 import datastructures.bplustree.interfaces.IBPlusTreeTestData;
 import datastructures.cache.core.CacheTestData;
@@ -42,6 +44,14 @@ public final class TestData implements ITestData {
     @Override
     public ICollectionTestData getCollectionData() {
         return new CollectionTestData();
+    }
+
+    /**
+     * Gets the data of tests of a bit array.
+     */
+    @Override
+    public IBitArrayTestData getBitArrayData() {
+        return new BitArrayTestData();
     }
 
     /**

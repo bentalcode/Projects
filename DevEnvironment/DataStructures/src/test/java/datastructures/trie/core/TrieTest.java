@@ -43,7 +43,7 @@ public final class TrieTest {
      * Tests the creation logic of a trie.
      */
     @Test
-    public void TrieCreationTest() {
+    public void trieCreationTest() {
         List<ITrieData<Character>> data = this.testData.getTrieData().getData();
 
         for (ITrieData<Character> trieData : data) {

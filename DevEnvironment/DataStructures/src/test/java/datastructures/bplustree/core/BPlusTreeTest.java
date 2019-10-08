@@ -51,7 +51,7 @@ public final class BPlusTreeTest {
      * Tests the creation logic of a B+ tree.
      */
     @Test
-    public void createTreeTest() {
+    public void bplusTreeCreationTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getBPlusData().getTreeProperties();
 
         List<IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
@@ -72,7 +72,7 @@ public final class BPlusTreeTest {
      * Tests the iteration logic of a B+ tree.
      */
     @Test
-    public void iterateTreeTest() {
+    public void bplusTreeIterationTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getBPlusData().getTreeProperties();
 
         List<IPair<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>>> creationData =
@@ -91,7 +91,7 @@ public final class BPlusTreeTest {
      * Tests the calculation of metrics of a B+ tree.
      */
     @Test
-    public void calculateTreeMetricsTest() {
+    public void bplusTreeCalculateMetricsTest() {
         IBPlusTreeProperties<Integer, String> treeProperties = this.testData.getBPlusData().getTreeProperties();
 
         List<ITriple<IKeyValueNodes<Integer, String>, IBlockTreeLevels<Integer, INullable>, IBPlusTreeMetrics>> data =

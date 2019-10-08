@@ -49,7 +49,7 @@ public final class LinkedHashMapTest {
      * Tests the creation logic of a linked hash map.
      */
     @Test
-    public void LinkedHashMapCreationTest() {
+    public void linkedHashMapCreationTest() {
         for (IMapData<Integer, String> data : this.testData.getHashMapData().getLinkedHashMapData()) {
             this.testCreation(data);
         }
@@ -59,7 +59,7 @@ public final class LinkedHashMapTest {
      * Tests the creation with deletion logic of a linked hash map.
      */
     @Test
-    public void LinkedHashMapCreationWithDeletionTest() {
+    public void linkedHashMapCreationWithDeletionTest() {
         for (IMapData<Integer, String> data : this.testData.getHashMapData().getLinkedHashMapData()) {
             this.testCreationWithDeletion(data);
         }
@@ -69,7 +69,7 @@ public final class LinkedHashMapTest {
      * Tests the iteration logic of a hash map.
      */
     @Test
-    public void LinkedHashMapIterationTest() {
+    public void linkedHashMapIterationTest() {
         for (IMapData<Integer, String> data : this.testData.getHashMapData().getLinkedHashMapData()) {
             this.testIteration(data);
         }
