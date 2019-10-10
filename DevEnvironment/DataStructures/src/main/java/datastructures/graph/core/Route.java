@@ -7,64 +7,53 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import base.interfaces.IBuilder;
-import datastructures.graph.interfaces.IEdge;
+import datastructures.graph.interfaces.IRoute;
 import datastructures.graph.interfaces.IVertex;
 
 /**
- * The Edge class implements an edge of a graph.
+ * The Route class implements a way or course taken in getting
+ * from a starting vertex to a destination vertex in a graph.
  */
-public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<TKey, TValue> {
+public final class Route<TKey extends Comparable<TKey>, TValue> implements IRoute<TKey, TValue> {
     private final IVertex<TKey, TValue> source;
     private final IVertex<TKey, TValue> destination;
-    private final boolean directed;
-    private final IBinaryComparator<IEdge<TKey, TValue>> comparator;
+    private final IBinaryComparator<IRoute<TKey, TValue>> comparator;
     private final int hashCode;
 
     /**
-     * Creates a new instance of an edge.
+     * Creates a new instance of a route.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IEdge<TKey, TValue> newEdge(
+    public static <TKey extends Comparable<TKey>, TValue> IRoute<TKey, TValue> of(
         IVertex<TKey, TValue> source,
         IVertex<TKey, TValue> destination) {
 
-        return new Edge<>(source, destination, false, Edge.defaultComparator());
+        return new Route<>(
+            source,
+            destination,
+            Route.defaultComparator());
     }
 
     /**
-     * Creates a new instance of a directed edge.
+     * Copies a route.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IEdge<TKey, TValue> newDirectedEdge(
-        IVertex<TKey, TValue> source,
-        IVertex<TKey, TValue> destination) {
-
-        return new Edge<>(source, destination, true, Edge.defaultComparator());
-    }
-
-    /**
-     * Creates a new instance of a directed edge.
-     */
-    public static <TKey extends Comparable<TKey>, TValue> IEdge<TKey, TValue> copy(IEdge<TKey, TValue> other) {
+    public static <TKey extends Comparable<TKey>, TValue> IRoute<TKey, TValue> copy(IRoute<TKey, TValue> route) {
         Conditions.validateNotNull(
-            other,
-            "The edge for copying.");
+            route,
+            "The route for copying.");
 
-        Vertex.copy(other.source());
-        return new Edge<>(
-            Vertex.copy(other.source()),
-            Vertex.copy(other.destination()),
-            other.directed(),
-            other.getComparator());
+        return new Route<>(
+            Vertex.copy(route.source()),
+            Vertex.copy(route.destination()),
+            Route.defaultComparator());
     }
 
     /**
-     * The Edge constructor.
+     * The Route constructor.
      */
-    private Edge(
+    private Route(
         IVertex<TKey, TValue> source,
         IVertex<TKey, TValue> destination,
-        boolean directed,
-        IBinaryComparator<IEdge<TKey, TValue>> comparator) {
+        IBinaryComparator<IRoute<TKey, TValue>> comparator) {
 
         Conditions.validateNotNull(
             source,
@@ -76,11 +65,10 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of an edge.");
+            "The comparator of a route.");
 
         this.source = source;
         this.destination = destination;
-        this.directed = directed;
         this.comparator = comparator;
         this.hashCode = comparator.getHashCode(this);
     }
@@ -102,17 +90,9 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
     }
 
     /**
-     * Returns whether an edge is directed.
-     */
-    @Override
-    public boolean directed() {
-        return this.directed;
-    }
-
-    /**
      * Gets the comparator.
      */
-    public IBinaryComparator<IEdge<TKey, TValue>> getComparator() {
+    public IBinaryComparator<IRoute<TKey, TValue>> getComparator() {
         return this.comparator;
     }
 
@@ -156,7 +136,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IEdge<TKey, TValue> other) {
+    public boolean isEqual(IRoute<TKey, TValue> other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -168,23 +148,23 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IEdge<TKey, TValue> other) {
+    public int compareTo(IRoute<TKey, TValue> other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IEdge<TKey, TValue>> defaultComparator() {
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IRoute<TKey, TValue>> defaultComparator() {
         IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = Vertex.defaultComparator();
         return new Comparator<>(vertexComparator);
     }
 
     /**
-     * The Comparator class implements a comparator of an edge.
+     * The Comparator class implements a comparator of a route.
      */
     public static final class Comparator<TKey extends Comparable<TKey>, TValue>
-        extends AbstractBinaryComparator<IEdge<TKey, TValue>> {
+        extends AbstractBinaryComparator<IRoute<TKey, TValue>> {
 
         private final IBinaryComparator<IVertex<TKey, TValue>> vertexComparator;
 
@@ -203,11 +183,10 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IEdge<TKey, TValue> obj) {
+        public int getHashCode(IRoute<TKey, TValue> obj) {
             return new HashCodeBuilder(3, 5)
                 .withObject(obj.source(), this.vertexComparator)
                 .withObject(obj.destination(), this.vertexComparator)
-                .withBoolean(obj.directed())
                 .build();
         }
 
@@ -215,7 +194,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(IEdge<TKey, TValue> lhs, IEdge<TKey, TValue> rhs) {
+        public boolean isEqual(IRoute<TKey, TValue> lhs, IRoute<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -227,7 +206,6 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
             return new EqualBuilder()
                 .withObject(lhs.source(), rhs.source(), this.vertexComparator)
                 .withObject(lhs.destination(), rhs.destination(), this.vertexComparator)
-                .withBoolean(lhs.directed(), rhs.directed())
                 .build();
         }
 
@@ -239,7 +217,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IEdge<TKey, TValue> lhs, IEdge<TKey, TValue> rhs) {
+        public int compareTo(IRoute<TKey, TValue> lhs, IRoute<TKey, TValue> rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -255,72 +233,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
             return new CompareToBuilder()
                 .withObject(lhs.source(), rhs.source(), this.vertexComparator)
                 .withObject(lhs.destination(), rhs.destination(), this.vertexComparator)
-                .withBoolean(lhs.directed(), rhs.directed())
                 .build();
-        }
-    }
-
-    /**
-     * The Builder class implements a builder for creating an edge.
-     */
-    public static final class Builder<TKey extends Comparable<TKey>, TValue> implements IBuilder<IEdge<TKey, TValue>> {
-        private IVertex<TKey, TValue> source;
-        private IVertex<TKey, TValue> destination;
-        private boolean directed;
-
-        /**
-         * The Builder constructor.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Sets the source vertex.
-         */
-        public Builder setSourceVertex(IVertex<TKey, TValue> source) {
-            Conditions.validateNotNull(
-                source,
-                "The source vertex.");
-
-            this.source = source;
-
-            return this;
-        }
-
-        /**
-         * Sets the destination vertex.
-         */
-        public Builder setDestinationVertex(IVertex<TKey, TValue> destination) {
-            Conditions.validateNotNull(
-                destination,
-                "The destination vertex.");
-
-            this.destination = destination;
-
-            return this;
-        }
-
-        /**
-         * Sets a directed edge.
-         */
-        public Builder setDirected() {
-            this.directed = true;
-
-            return this;
-        }
-
-        /**
-         * Builds an edge.
-         */
-        @Override
-        public IEdge<TKey, TValue> build() {
-            IEdge<TKey, TValue> edge = new Edge<>(
-                this.source,
-                this.destination,
-                this.directed,
-                Edge.defaultComparator());
-
-            return edge;
         }
     }
 }

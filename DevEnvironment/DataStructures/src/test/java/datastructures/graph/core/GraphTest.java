@@ -1,11 +1,16 @@
 package datastructures.graph.core;
 
 import base.core.ListIterator;
+import base.core.Lists;
 import base.interfaces.IPair;
 import base.interfaces.ITwoDimensionalList;
 import datastructures.core.TestData;
 import datastructures.graph.interfaces.IGraph;
+import datastructures.graph.interfaces.IGraphData;
+import datastructures.graph.interfaces.IGraphDefinition;
+import datastructures.graph.interfaces.IRoute;
 import datastructures.graph.interfaces.IVertex;
+import datastructures.graph.interfaces.IWalk;
 import datastructures.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
@@ -46,12 +51,12 @@ public final class GraphTest {
      */
     @Test
     public void graphLoopDetectionTest() {
-        for (IGraph<Integer, String> graph : this.testData.getGraphData().getGraphs()) {
-            this.testLoopDetection(graph, false);
+        for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
+            this.testLoopDetection(data, false);
         }
 
-        for (IGraph<Integer, String> graph : this.testData.getGraphData().getGraphsWithLoops()) {
-            this.testLoopDetection(graph, true);
+        for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsDataWithLoops()) {
+            this.testLoopDetection(data, true);
         }
     }
 
@@ -60,15 +65,44 @@ public final class GraphTest {
      */
     @Test
     public void graphTopologicalSearchTest() {
-        for (IPair<IGraph<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>> data : this.testData.getGraphData().getTopologicalSearchData()) {
-            this.testTopologicalSearch(data.first(), data.second());
+        for (IPair<IGraphData<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>> data :
+            this.testData.getGraphData().getTopologicalSearchData()) {
+
+            this.testTopologicalSearch(
+                data.first(),
+                data.second());
+        }
+    }
+
+    /**
+     * Tests the logic of finding paths in a graph by performing a Breadth-First search.
+     */
+    @Test
+    public void graphFindPathsWithBreadthFirstSearchTest() {
+        for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
+            this.testFindPathsWithBreadthFirstSearch(data);
+        }
+    }
+
+    /**
+     * Tests the logic of finding paths in a graph by performing a Depth-First search.
+     */
+    @Test
+    public void graphFindPathsWithDepthFirstSearchTest() {
+        for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
+            this.testFindPathsWithDepthFirstSearch(data);
         }
     }
 
     /**
      * Tests the logic of a loop detection of a graph.
      */
-    private void testLoopDetection(IGraph<Integer, String> graph, boolean expectedStatus) {
+    private <TKey extends Comparable<TKey>, TValue> void testLoopDetection(
+        IGraphData<TKey, TValue> data,
+        boolean expectedStatus) {
+
+        IGraph<TKey, TValue> graph = this.createGraph(data);
+
         boolean status = graph.getGraphLogic().detectLoop();
 
         this.assertion.assertEquals(
@@ -80,18 +114,78 @@ public final class GraphTest {
     /**
      * Tests the logic of a topological search of a graph.
      */
-    private void testTopologicalSearch(IGraph<Integer, String> graph, ITwoDimensionalList<IVertex<Integer, String>> expectedResult) {
+    private <TKey extends Comparable<TKey>, TValue> void testTopologicalSearch(
+        IGraphData<TKey, TValue> data,
+        ITwoDimensionalList<IVertex<TKey, TValue>> expectedResult) {
+
+        IGraph<TKey, TValue> graph = this.createGraph(data);
+
         boolean hasLoop = graph.getGraphLogic().detectLoop();
         this.assertion.assertEquals(
             hasLoop,
             false,
             "Invalid graph. The graph contains a loop. Topological search is impossible.");
 
-        List<IVertex<Integer, String>> result = graph.getGraphLogic().topologicalSearch();
+        List<IVertex<TKey, TValue>> result = graph.getGraphLogic().topologicalSearch();
 
         this.assertion.assertEqualsWithIterators(
             ListIterator.of(result),
             expectedResult.getIterator(),
             "Invalid logic of a topological search in a graph.");
+    }
+
+    /**
+     * Tests the logic of finding paths in a graph by performing a Breadth-First search.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void testFindPathsWithBreadthFirstSearch(IGraphData<TKey, TValue> data) {
+        IGraph<TKey, TValue> graph = this.createGraph(data);
+
+        List<IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>>> routesData = data.getPaths();
+
+        for (IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>> routeData : routesData) {
+            IRoute<TKey, TValue> route = routeData.first();
+            List<IWalk<TKey, TValue>> expectedPaths = routeData.second();
+
+            List<IWalk<TKey, TValue>> paths = graph.getGraphLogic().findPathsWithBreadthFirstSearch(route);
+
+            Lists.sort(paths, Walk.defaultComparator());
+
+            this.assertion.assertEqualsWithIterators(
+                ListIterator.of(paths),
+                ListIterator.of(expectedPaths),
+                "Invalid logic of finding paths with a Breadth-First search in a graph.");
+        }
+    }
+
+    /**
+     * Tests the logic of finding paths in a graph by performing a Depth-First search.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void testFindPathsWithDepthFirstSearch(IGraphData<TKey, TValue> data) {
+        IGraph<TKey, TValue> graph = this.createGraph(data);
+
+        List<IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>>> routesData = data.getPaths();
+
+        for (IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>> routeData : routesData) {
+            IRoute<TKey, TValue> route = routeData.first();
+            List<IWalk<TKey, TValue>> expectedPaths = routeData.second();
+
+            List<IWalk<TKey, TValue>> paths = graph.getGraphLogic().findPathsWithDepthFirstSearch(route);
+
+            Lists.sort(paths, Walk.defaultComparator());
+
+            this.assertion.assertEqualsWithIterators(
+                ListIterator.of(paths),
+                ListIterator.of(expectedPaths),
+                "Invalid logic of finding paths with a Depth-First search in a graph.");
+        }
+    }
+
+    /**
+     * Creates a graph.
+     */
+    private <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> createGraph(IGraphData<TKey, TValue> data) {
+        IGraphDefinition<TKey, TValue> graphDefinition = GraphDefinition.of(data.vertices(), data.edges());
+        IGraph<TKey, TValue> graph = GraphBuilder.create(graphDefinition);
+        return graph;
     }
 }

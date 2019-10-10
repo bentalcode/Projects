@@ -9,16 +9,6 @@ import java.util.List;
  */
 public interface IGraphTestData {
     /**
-     * Gets graphs.
-     */
-    List<IGraph<Integer, String>> getGraphs();
-
-    /**
-     * Gets graphs.
-     */
-    List<IGraph<Integer, String>> getGraphsWithLoops();
-
-    /**
      * Gets data of graphs.
      */
     List<IGraphData<Integer, String>> getGraphsData();
@@ -31,7 +21,7 @@ public interface IGraphTestData {
     /**
      * Gets data of topological search of graphs.
      */
-    List<IPair<IGraph<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> getTopologicalSearchData();
+    List<IPair<IGraphData<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> getTopologicalSearchData();
 
     /**
      * Generates a random vertex by integer.

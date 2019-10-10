@@ -2,11 +2,13 @@ package datastructures.graph.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
+import base.core.CollectionIterator;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
+import datastructures.collections.core.Collections;
 import datastructures.graph.interfaces.IAdjacencyMatrix;
 import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IGraph;
@@ -130,6 +132,14 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
     @Override
     public IGraphLogic<TKey, TValue> getGraphLogic() {
         return new GraphLogic<>(this);
+    }
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return Collections.toString(CollectionIterator.of(this.edges));
     }
 
     /**

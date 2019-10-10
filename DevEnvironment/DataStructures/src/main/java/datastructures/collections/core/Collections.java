@@ -2,11 +2,14 @@ package datastructures.collections.core;
 
 import base.core.Conditions;
 import base.core.Pair;
+import base.interfaces.IBinaryComparator;
+import base.interfaces.IComparableComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
 import base.interfaces.IRange;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**

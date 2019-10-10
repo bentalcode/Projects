@@ -55,7 +55,7 @@ public final class JsonObject extends JsonElement implements IJsonObject {
     public void setPropertyValue(String name, IJsonValue value) {
         Conditions.validateNotNull(
             name,
-            "The name of a property can not be null.");
+            "The name of a property.");
 
         this.properties.put(name, value);
     }

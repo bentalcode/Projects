@@ -1,15 +1,31 @@
 package base.core;
 
+import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * The Lists class implements complementary APIs for lists.
  */
 public final class Lists {
+    /**
+     * Sorts a collection.
+     */
+    public static <T> void sort(List<T> list, IBinaryComparator<T> comparator) {
+        Conditions.validateNotNull(
+            list,
+            "The list for sorting.");
+
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator.");
+
+        Collections.sort(list, comparator.toComparator());
+    }
+
     /**
      * Creates a list from an array.
      */

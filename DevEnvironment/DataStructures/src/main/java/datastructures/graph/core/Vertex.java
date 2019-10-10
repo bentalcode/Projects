@@ -7,6 +7,7 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
+import datastructures.collections.core.Collections;
 import datastructures.graph.interfaces.IVertex;
 
 /**
@@ -96,6 +97,14 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
      */
     public IBinaryComparator<IVertex<TKey, TValue>> getComparator() {
         return this.comparator;
+    }
+
+    /**
+     * Gets string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return "[Key = " + this.key + ", Value = " + this.value + "]";
     }
 
     /**

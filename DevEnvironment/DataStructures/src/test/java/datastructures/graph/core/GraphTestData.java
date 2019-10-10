@@ -1,6 +1,6 @@
 package datastructures.graph.core;
 
-import base.core.ListIterator;
+import base.core.ArrayLists;
 import base.core.Pair;
 import base.core.RandomGenerator;
 import base.core.TwoDimensionalList;
@@ -8,10 +8,11 @@ import base.interfaces.IPair;
 import base.interfaces.IRandomGenerator;
 import base.interfaces.ITwoDimensionalList;
 import datastructures.graph.interfaces.IEdge;
-import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphData;
 import datastructures.graph.interfaces.IGraphTestData;
+import datastructures.graph.interfaces.IRoute;
 import datastructures.graph.interfaces.IVertex;
+import datastructures.graph.interfaces.IWalk;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,24 +26,6 @@ public final class GraphTestData implements IGraphTestData {
      * The GraphTestData constructor.
      */
     public GraphTestData() {
-    }
-
-    /**
-     * Gets graphs.
-     */
-    @Override
-    public List<IGraph<Integer, String>> getGraphs() {
-        List<IGraph<Integer, String>> graphs = GraphBuilder.create(ListIterator.of(this.getGraphsData()));
-        return graphs;
-    }
-
-    /**
-     * Gets graphs with loops.
-     */
-    @Override
-    public List<IGraph<Integer, String>> getGraphsWithLoops() {
-        List<IGraph<Integer, String>> graphs = GraphBuilder.create(ListIterator.of(this.getGraphsDataWithLoops()));
-        return graphs;
     }
 
     /**
@@ -74,13 +57,13 @@ public final class GraphTestData implements IGraphTestData {
      * Gets data of topological search of graphs.
      */
     @Override
-    public List<IPair<IGraph<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> getTopologicalSearchData() {
-        List<IPair<IGraph<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> data = new ArrayList<>();
+    public List<IPair<IGraphData<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> getTopologicalSearchData() {
+        List<IPair<IGraphData<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> data = new ArrayList<>();
 
-        IGraph<Integer, String> graph1 = GraphBuilder.create(this.getGraphData1());
-        ITwoDimensionalList<IVertex<Integer, String>> topologicalSearchData1 = this.getGraph1TopologicalSearchData();
+        IGraphData<Integer, String> graphData = this.getGraphData1();
+        ITwoDimensionalList<IVertex<Integer, String>> topologicalSearchData = this.getGraph1TopologicalSearchData();
 
-        data.add(Pair.of(graph1, topologicalSearchData1));
+        data.add(Pair.of(graphData, topologicalSearchData));
 
         return data;
     }
@@ -203,12 +186,53 @@ public final class GraphTestData implements IGraphTestData {
         List<IEdge<Integer, String>> edges = new ArrayList<>();
         edges.add(Edge.newDirectedEdge(vertex1, vertex2));
         edges.add(Edge.newDirectedEdge(vertex1, vertex3));
-
         edges.add(Edge.newDirectedEdge(vertex2, vertex3));
-
         edges.add(Edge.newDirectedEdge(vertex3, vertex4));
 
-        return GraphData.of(ListIterator.of(vertices), ListIterator.of(edges));
+        List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = new ArrayList<>();
+
+        IRoute<Integer, String> route12 = Route.of(vertex1, vertex2);
+        List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex1, vertex2))
+        );
+        paths.add(Pair.of(route12, walks12));
+
+        IRoute<Integer, String> route13 = Route.of(vertex1, vertex3);
+        List<IWalk<Integer, String>> walks13 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex1, vertex2, vertex3),
+            ArrayLists.of(vertex1, vertex3))
+        );
+        paths.add(Pair.of(route13, walks13));
+
+        IRoute<Integer, String> route14 = Route.of(vertex1, vertex4);
+        List<IWalk<Integer, String>> walks14 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex1, vertex2, vertex3, vertex4),
+            ArrayLists.of(vertex1, vertex3, vertex4))
+        );
+        paths.add(Pair.of(route14, walks14));
+
+        IRoute<Integer, String> route23 = Route.of(vertex2, vertex3);
+        List<IWalk<Integer, String>> walks23 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex2, vertex3))
+        );
+        paths.add(Pair.of(route23, walks23));
+
+        IRoute<Integer, String> route24 = Route.of(vertex2, vertex4);
+        List<IWalk<Integer, String>> walks24 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex2, vertex3, vertex4))
+        );
+        paths.add(Pair.of(route24, walks24));
+
+        IRoute<Integer, String> route34 = Route.of(vertex3, vertex4);
+        List<IWalk<Integer, String>> walks34 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex3, vertex4))
+        );
+        paths.add(Pair.of(route34, walks34));
+
+        return new GraphData<>(
+            vertices,
+            edges,
+            paths);
     }
 
     /**
@@ -225,17 +249,59 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex6 = Vertex.of(6, "f");
 
         List<IEdge<Integer, String>> edges = new ArrayList<>();
-        edges.add(Edge.newDirectedEdge(vertex3, vertex4));
+        edges.add(Edge.newDirectedEdge(vertex1, vertex2));
+        edges.add(Edge.newDirectedEdge(vertex1, vertex3));
+        edges.add(Edge.newDirectedEdge(vertex2, vertex4));
+        edges.add(Edge.newDirectedEdge(vertex3, vertex2));
+        edges.add(Edge.newDirectedEdge(vertex3, vertex5));
+        edges.add(Edge.newDirectedEdge(vertex4, vertex5));
+        edges.add(Edge.newDirectedEdge(vertex4, vertex6));
+        edges.add(Edge.newDirectedEdge(vertex5, vertex6));
 
-        edges.add(Edge.newDirectedEdge(vertex4, vertex2));
+        List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = new ArrayList<>();
 
-        edges.add(Edge.newDirectedEdge(vertex5, vertex1));
-        edges.add(Edge.newDirectedEdge(vertex5, vertex2));
+        IRoute<Integer, String> route12 = Route.of(vertex1, vertex2);
+        List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex1, vertex2),
+            ArrayLists.of(vertex1, vertex3, vertex2))
+        );
+        paths.add(Pair.of(route12, walks12));
 
-        edges.add(Edge.newDirectedEdge(vertex6, vertex1));
-        edges.add(Edge.newDirectedEdge(vertex6, vertex3));
+        IRoute<Integer, String> route13 = Route.of(vertex1, vertex3);
+        List<IWalk<Integer, String>> walks13 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex1, vertex3))
+        );
+        paths.add(Pair.of(route13, walks13));
 
-        return GraphData.of(ListIterator.of(vertices), ListIterator.of(edges));
+        IRoute<Integer, String> route14 = Route.of(vertex1, vertex4);
+        List<IWalk<Integer, String>> walks14 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex1, vertex2, vertex4),
+            ArrayLists.of(vertex1, vertex3, vertex2, vertex4))
+        );
+        paths.add(Pair.of(route14, walks14));
+
+        IRoute<Integer, String> route15 = Route.of(vertex1, vertex5);
+        List<IWalk<Integer, String>> walks15 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex1, vertex2, vertex4, vertex5),
+            ArrayLists.of(vertex1, vertex3, vertex2, vertex4, vertex5),
+            ArrayLists.of(vertex1, vertex3, vertex5))
+        );
+        paths.add(Pair.of(route15, walks15));
+
+        IRoute<Integer, String> route16 = Route.of(vertex1, vertex6);
+        List<IWalk<Integer, String>> walks16 = Walk.createWalks(ArrayLists.of(
+            ArrayLists.of(vertex1, vertex2, vertex4, vertex5, vertex6),
+            ArrayLists.of(vertex1, vertex2, vertex4, vertex6),
+            ArrayLists.of(vertex1, vertex3, vertex2, vertex4, vertex5, vertex6),
+            ArrayLists.of(vertex1, vertex3, vertex2, vertex4, vertex6),
+            ArrayLists.of(vertex1, vertex3, vertex5, vertex6))
+        );
+        paths.add(Pair.of(route16, walks16));
+
+        return new GraphData<>(
+            vertices,
+            edges,
+            paths);
     }
 
     /**
@@ -260,7 +326,10 @@ public final class GraphTestData implements IGraphTestData {
 
         edges.add(Edge.newDirectedEdge(vertex4, vertex4));
 
-        return GraphData.of(ListIterator.of(vertices), ListIterator.of(edges));
+        return new GraphData<>(
+            vertices,
+            edges,
+            new ArrayList<>());
     }
 
     /**

@@ -15,4 +15,14 @@ public interface IGraphLogic<TKey extends Comparable<TKey>, TValue> {
      * Performs a topological search of a graph.
      */
     List<IVertex<TKey, TValue>> topologicalSearch();
+
+    /**
+     * Find paths by performing a Breadth-First search.
+     */
+    List<IWalk<TKey, TValue>> findPathsWithBreadthFirstSearch(IRoute<TKey, TValue> route);
+
+    /**
+     * Find paths by performing a Depth-First search.
+     */
+    List<IWalk<TKey, TValue>> findPathsWithDepthFirstSearch(IRoute<TKey, TValue> route);
 }
