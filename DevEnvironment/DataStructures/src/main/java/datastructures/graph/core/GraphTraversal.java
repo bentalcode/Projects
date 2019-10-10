@@ -94,5 +94,7 @@ public final class GraphTraversal<TKey extends Comparable<TKey>, TValue> impleme
 
             this.depthFirstSearch(nextVertex, visitor);
         }
+
+        visited.remove(vertex);
     }
 }
