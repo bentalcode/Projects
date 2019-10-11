@@ -14,25 +14,25 @@ endif()
 
 include_directories(
     .
-    Interface
-    Core
+    interfaces
+    core
     ${BOOT_ROOT})
 
 set(INCLUDES
-    Interface/IMemoryAllocator.h
-    Interface/IMemoryPool.h
-    Interface/IObjectPool.h
-    Interface/MemoryPool.h
-    Interface/ObjectPool.h
-    Core/MemoryAllocator.h
-    Core/FixedMemoryPool.h
-    Core/PreCompiled.h
+    interfaces/IMemoryAllocator.h
+    interfaces/IMemoryPool.h
+    interfaces/IObjectPool.h
+    interfaces/MemoryPool.h
+    interfaces/ObjectPool.h
+    core/MemoryAllocator.h
+    core/FixedMemoryPool.h
+    core/PreCompiled.h
     MemoryManagementException.h)
 
 set(SOURCES
-    Core/MemoryAllocator.cpp
-    Core/FixedMemoryPool.cpp
-    Core/MemoryPool.cpp
-    Core/PreCompiled.cpp)
+    core/MemoryAllocator.cpp
+    core/FixedMemoryPool.cpp
+    core/MemoryPool.cpp
+    core/PreCompiled.cpp)
 
 add_library(MemoryManagement ${SOURCES} ${INCLUDES})
