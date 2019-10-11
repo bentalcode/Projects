@@ -54,21 +54,6 @@ public final class GraphTestData implements IGraphTestData {
     }
 
     /**
-     * Gets data of topological search of graphs.
-     */
-    @Override
-    public List<IPair<IGraphData<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> getTopologicalSearchData() {
-        List<IPair<IGraphData<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> data = new ArrayList<>();
-
-        IGraphData<Integer, String> graphData = this.getGraphData1();
-        ITwoDimensionalList<IVertex<Integer, String>> topologicalSearchData = this.getGraph1TopologicalSearchData();
-
-        data.add(Pair.of(graphData, topologicalSearchData));
-
-        return data;
-    }
-
-    /**
      * Generates a random vertex by integer.
      */
     @Override
@@ -176,20 +161,113 @@ public final class GraphTestData implements IGraphTestData {
      * Gets data of graph1.
      */
     private IGraphData<Integer, String> getGraphData1() {
-        List<IVertex<Integer, String>> vertices = new ArrayList<>();
-
         IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
         IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
         IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
         IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
 
-        List<IEdge<Integer, String>> edges = new ArrayList<>();
-        edges.add(Edge.newDirectedEdge(vertex1, vertex2));
-        edges.add(Edge.newDirectedEdge(vertex1, vertex3));
-        edges.add(Edge.newDirectedEdge(vertex2, vertex3));
-        edges.add(Edge.newDirectedEdge(vertex3, vertex4));
+        List<IVertex<Integer, String>> vertices = ArrayLists.of(
+            vertex1,
+            vertex2,
+            vertex3,
+            vertex4);
+
+        List<IEdge<Integer, String>> edges = ArrayLists.of(
+            Edge.newDirectedEdge(vertex1, vertex2),
+            Edge.newDirectedEdge(vertex1, vertex3),
+            Edge.newDirectedEdge(vertex2, vertex3),
+            Edge.newDirectedEdge(vertex3, vertex4));
+
+        List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = this.getGraphPathsData1(vertices);
+        ITwoDimensionalList<IVertex<Integer, String>> topologicalSearch = this.getGraphTopologicalSearchData1(vertices);
+
+        return new GraphData<>(
+            vertices,
+            edges,
+            paths,
+            topologicalSearch);
+    }
+
+    /**
+     * Gets data of graph2.
+     */
+    private IGraphData<Integer, String> getGraphData2() {
+        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
+        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
+        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
+        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
+        IVertex<Integer, String> vertex5 = Vertex.of(5, "e");
+        IVertex<Integer, String> vertex6 = Vertex.of(6, "f");
+
+        List<IVertex<Integer, String>> vertices = ArrayLists.of(
+            vertex1,
+            vertex2,
+            vertex3,
+            vertex4,
+            vertex5,
+            vertex6);
+
+        List<IEdge<Integer, String>> edges = ArrayLists.of(
+            Edge.newDirectedEdge(vertex1, vertex2),
+            Edge.newDirectedEdge(vertex1, vertex3),
+            Edge.newDirectedEdge(vertex2, vertex4),
+            Edge.newDirectedEdge(vertex3, vertex2),
+            Edge.newDirectedEdge(vertex3, vertex5),
+            Edge.newDirectedEdge(vertex4, vertex5),
+            Edge.newDirectedEdge(vertex4, vertex6),
+            Edge.newDirectedEdge(vertex5, vertex6));
+
+        List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = this.getGraphPathsData2(vertices);
+        ITwoDimensionalList<IVertex<Integer, String>> topologicalSearch = this.getGraphTopologicalSearchData2(vertices);
+
+        return new GraphData<>(
+            vertices,
+            edges,
+            paths,
+            topologicalSearch);
+    }
+
+    /**
+     * Gets data of graph1.
+     */
+    private IGraphData<Integer, String> getGraphDataWithLoop1() {
+        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
+        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
+        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
+        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
+
+        List<IVertex<Integer, String>> vertices = ArrayLists.of(
+            vertex1,
+            vertex2,
+            vertex3,
+            vertex4);
+
+        List<IEdge<Integer, String>> edges = ArrayLists.of(
+            Edge.newDirectedEdge(vertex1, vertex2),
+            Edge.newDirectedEdge(vertex1, vertex3),
+            Edge.newDirectedEdge(vertex2, vertex3),
+            Edge.newDirectedEdge(vertex3, vertex1),
+            Edge.newDirectedEdge(vertex3, vertex4),
+            Edge.newDirectedEdge(vertex4, vertex4));
+
+        return new GraphData<>(
+            vertices,
+            edges);
+    }
+
+    /**
+     * Gets the paths data of graph1.
+     */
+    private List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> getGraphPathsData1(
+        List<IVertex<Integer, String>> vertices) {
 
         List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = new ArrayList<>();
+
+        assert(vertices.size() == 4);
+        IVertex<Integer, String> vertex1 = vertices.get(0);
+        IVertex<Integer, String> vertex2 = vertices.get(1);
+        IVertex<Integer, String> vertex3 = vertices.get(2);
+        IVertex<Integer, String> vertex4 = vertices.get(3);
 
         IRoute<Integer, String> route12 = Route.of(vertex1, vertex2);
         List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.of(
@@ -229,36 +307,24 @@ public final class GraphTestData implements IGraphTestData {
         );
         paths.add(Pair.of(route34, walks34));
 
-        return new GraphData<>(
-            vertices,
-            edges,
-            paths);
+        return paths;
     }
 
     /**
-     * Gets data of graph2.
+     * Gets the paths data of graph2.
      */
-    private IGraphData<Integer, String> getGraphData2() {
-        List<IVertex<Integer, String>> vertices = new ArrayList<>();
-
-        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
-        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
-        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
-        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
-        IVertex<Integer, String> vertex5 = Vertex.of(5, "e");
-        IVertex<Integer, String> vertex6 = Vertex.of(6, "f");
-
-        List<IEdge<Integer, String>> edges = new ArrayList<>();
-        edges.add(Edge.newDirectedEdge(vertex1, vertex2));
-        edges.add(Edge.newDirectedEdge(vertex1, vertex3));
-        edges.add(Edge.newDirectedEdge(vertex2, vertex4));
-        edges.add(Edge.newDirectedEdge(vertex3, vertex2));
-        edges.add(Edge.newDirectedEdge(vertex3, vertex5));
-        edges.add(Edge.newDirectedEdge(vertex4, vertex5));
-        edges.add(Edge.newDirectedEdge(vertex4, vertex6));
-        edges.add(Edge.newDirectedEdge(vertex5, vertex6));
+    private List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> getGraphPathsData2(
+        List<IVertex<Integer, String>> vertices) {
 
         List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = new ArrayList<>();
+
+        assert(vertices.size() == 6);
+        IVertex<Integer, String> vertex1 = vertices.get(0);
+        IVertex<Integer, String> vertex2 = vertices.get(1);
+        IVertex<Integer, String> vertex3 = vertices.get(2);
+        IVertex<Integer, String> vertex4 = vertices.get(3);
+        IVertex<Integer, String> vertex5 = vertices.get(4);
+        IVertex<Integer, String> vertex6 = vertices.get(5);
 
         IRoute<Integer, String> route12 = Route.of(vertex1, vertex2);
         List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.of(
@@ -298,59 +364,51 @@ public final class GraphTestData implements IGraphTestData {
         );
         paths.add(Pair.of(route16, walks16));
 
-        return new GraphData<>(
-            vertices,
-            edges,
-            paths);
-    }
-
-    /**
-     * Gets data of graph2.
-     */
-    private IGraphData<Integer, String> getGraphDataWithLoop1() {
-        List<IVertex<Integer, String>> vertices = new ArrayList<>();
-
-        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
-        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
-        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
-        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
-
-        List<IEdge<Integer, String>> edges = new ArrayList<>();
-        edges.add(Edge.newDirectedEdge(vertex1, vertex2));
-        edges.add(Edge.newDirectedEdge(vertex1, vertex3));
-
-        edges.add(Edge.newDirectedEdge(vertex2, vertex3));
-
-        edges.add(Edge.newDirectedEdge(vertex3, vertex1));
-        edges.add(Edge.newDirectedEdge(vertex3, vertex4));
-
-        edges.add(Edge.newDirectedEdge(vertex4, vertex4));
-
-        return new GraphData<>(
-            vertices,
-            edges,
-            new ArrayList<>());
+        return paths;
     }
 
     /**
      * Gets the topological search data of graph1.
      */
-    private ITwoDimensionalList<IVertex<Integer, String>> getGraph1TopologicalSearchData() {
+    private ITwoDimensionalList<IVertex<Integer, String>> getGraphTopologicalSearchData1(
+        List<IVertex<Integer, String>> vertices) {
+
+        assert(vertices.size() == 4);
         IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
         IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
         IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
         IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
 
-        List<List<IVertex<Integer, String>>> data = new ArrayList<>();
-        List<IVertex<Integer, String>> level1 = List.of(vertex1);
-        List<IVertex<Integer, String>> level2 = List.of(vertex2);
-        List<IVertex<Integer, String>> level3 = List.of(vertex3);
-        List<IVertex<Integer, String>> level4 = List.of(vertex4);
+        List<List<IVertex<Integer, String>>> data = ArrayLists.of(
+            List.of(vertex1),
+            List.of(vertex2),
+            List.of(vertex3),
+            List.of(vertex4));
 
-        data.add(level1);
-        data.add(level2);
-        data.add(level3);
-        data.add(level4);
+        return new TwoDimensionalList<>(data);
+    }
+
+    /**
+     * Gets the topological search data of graph2.
+     */
+    private ITwoDimensionalList<IVertex<Integer, String>> getGraphTopologicalSearchData2(
+        List<IVertex<Integer, String>> vertices) {
+
+        assert(vertices.size() == 6);
+        IVertex<Integer, String> vertex1 = vertices.get(0);
+        IVertex<Integer, String> vertex2 = vertices.get(1);
+        IVertex<Integer, String> vertex3 = vertices.get(2);
+        IVertex<Integer, String> vertex4 = vertices.get(3);
+        IVertex<Integer, String> vertex5 = vertices.get(4);
+        IVertex<Integer, String> vertex6 = vertices.get(5);
+
+        List<List<IVertex<Integer, String>>> data = ArrayLists.of(
+            List.of(vertex1),
+            List.of(vertex3),
+            List.of(vertex2),
+            List.of(vertex4),
+            List.of(vertex5),
+            List.of(vertex6));
 
         return new TwoDimensionalList<>(data);
     }

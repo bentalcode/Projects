@@ -3,7 +3,6 @@ package datastructures.graph.core;
 import base.core.ListIterator;
 import base.core.Lists;
 import base.interfaces.IPair;
-import base.interfaces.ITwoDimensionalList;
 import datastructures.core.TestData;
 import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphData;
@@ -65,12 +64,8 @@ public final class GraphTest {
      */
     @Test
     public void graphTopologicalSearchTest() {
-        for (IPair<IGraphData<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>> data :
-            this.testData.getGraphData().getTopologicalSearchData()) {
-
-            this.testTopologicalSearch(
-                data.first(),
-                data.second());
+        for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
+            this.testTopologicalSearch(data);
         }
     }
 
@@ -114,10 +109,7 @@ public final class GraphTest {
     /**
      * Tests the logic of a topological search of a graph.
      */
-    private <TKey extends Comparable<TKey>, TValue> void testTopologicalSearch(
-        IGraphData<TKey, TValue> data,
-        ITwoDimensionalList<IVertex<TKey, TValue>> expectedResult) {
-
+    private <TKey extends Comparable<TKey>, TValue> void testTopologicalSearch(IGraphData<TKey, TValue> data) {
         IGraph<TKey, TValue> graph = this.createGraph(data);
 
         boolean hasLoop = graph.getGraphLogic().detectLoop();
@@ -130,7 +122,7 @@ public final class GraphTest {
 
         this.assertion.assertEqualsWithIterators(
             ListIterator.of(result),
-            expectedResult.getIterator(),
+            data.getTopologicalSearch().getIterator(),
             "Invalid logic of a topological search in a graph.");
     }
 

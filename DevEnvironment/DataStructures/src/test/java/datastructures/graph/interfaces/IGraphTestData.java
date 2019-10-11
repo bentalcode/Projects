@@ -1,7 +1,5 @@
 package datastructures.graph.interfaces;
 
-import base.interfaces.IPair;
-import base.interfaces.ITwoDimensionalList;
 import java.util.List;
 
 /**
@@ -17,11 +15,6 @@ public interface IGraphTestData {
      * Gets data of graphs with loops.
      */
     List<IGraphData<Integer, String>> getGraphsDataWithLoops();
-
-    /**
-     * Gets data of topological search of graphs.
-     */
-    List<IPair<IGraphData<Integer, String>, ITwoDimensionalList<IVertex<Integer, String>>>> getTopologicalSearchData();
 
     /**
      * Generates a random vertex by integer.
