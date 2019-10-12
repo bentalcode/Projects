@@ -20,6 +20,9 @@ include_directories(
 
 set(INCLUDES
     interfaces/SharedPtr.h
+    interfaces/Pair.h
+    core/ReferenceCountHolder.h
+    core/ReferenceCount.h
     core/PreCompiled.h
     BaseException.h)
 
