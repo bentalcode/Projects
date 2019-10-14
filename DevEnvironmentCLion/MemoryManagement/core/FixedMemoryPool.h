@@ -75,6 +75,11 @@ namespace memory_management
          */
         virtual std::size_t size() const;
 
+        /**
+         * Gets the information of the pool.
+         */
+        void getPoolInformation(std::ostream& stream) const;
+
     private:
         /**
          * Allocates the pool.
@@ -95,7 +100,7 @@ namespace memory_management
         void updateElementsCounters(bool acquired);
 
         // The mutex of the pool.
-        mutable std::mutex m_mutex;
+        mutable std::recursive_mutex m_mutex;
 
         // The number of supported elements in the pool.
         std::size_t m_numberOfElements;
@@ -108,6 +113,9 @@ namespace memory_management
 
         // The size of an allocated element in the pool in bytes.
         std::size_t m_elementAllocationSizeInBytes;
+
+        // The size of the pool in bytes.
+        std::size_t m_poolSizeInBytes;
 
         // The number of acquired elements in the pool.
         std::size_t m_numberOfAcquiredElements;

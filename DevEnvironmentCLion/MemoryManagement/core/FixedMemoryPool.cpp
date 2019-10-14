@@ -38,7 +38,7 @@ IMemoryPool::MemoryAddress FixedMemoryPool::acquireElement()
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     //
     // Validate that the pool has not reached it's maximum capacity...
@@ -68,6 +68,8 @@ IMemoryPool::MemoryAddress FixedMemoryPool::acquireElement()
     bool acquired = true;
     updateElementsCounters(acquired);
 
+    assert(numberOfAvailableElements() == m_freeMemoryBlockList.size());
+
     return currElement;
 }
 
@@ -85,7 +87,7 @@ void FixedMemoryPool::releaseElement(MemoryAddress elementPtr)
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     //
     // Clear the memory of the returned element...
@@ -112,7 +114,7 @@ bool FixedMemoryPool::overCapacity() const
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     return m_numberOfAvailableElements == 0;
 }
@@ -133,7 +135,7 @@ std::size_t FixedMemoryPool::numberOfAcquiredElements() const
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     return m_numberOfAcquiredElements;
 }
@@ -146,7 +148,7 @@ std::size_t FixedMemoryPool::numberOfAvailableElements() const
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     return m_numberOfAvailableElements;
 }
@@ -175,12 +177,12 @@ std::size_t FixedMemoryPool::size() const
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     //
     // Include the size of the pool...
     //
-    size_t size = m_numberOfAcquiredElements * m_elementAllocationSizeInBytes;
+    size_t size = m_poolSizeInBytes;
 
     //
     // Include the size of the free list...
@@ -195,6 +197,7 @@ std::size_t FixedMemoryPool::size() const
     size += sizeof(m_elementSizeInBytes);
     size += sizeof(m_alignment);
     size += sizeof(m_elementAllocationSizeInBytes);
+    size += sizeof(m_poolSizeInBytes);
     size += sizeof(m_numberOfAcquiredElements);
     size += sizeof(m_numberOfAvailableElements);
     size += sizeof(m_memoryPtr);
@@ -214,40 +217,41 @@ void FixedMemoryPool::allocate(
     //
     // Calculate the pad size of each element...
     //
-    std::size_t unalignedSize = 0;
+    std::size_t padSize = 0;
 
     if (elementSizeInBytes > alignment)
     {
-        unalignedSize = elementSizeInBytes % alignment;
+        std::size_t unalignedSize = elementSizeInBytes % alignment;
+        padSize = alignment - unalignedSize;
     }
     else if (elementSizeInBytes < alignment)
     {
-        unalignedSize = alignment - elementSizeInBytes;
-
+        padSize = alignment - elementSizeInBytes;
     }
 
-    std::size_t padSize = alignment - unalignedSize;
     m_elementAllocationSizeInBytes = elementSizeInBytes + padSize;
 
     //
     // Allocate the required size of the memory pool...
     //
-    std::size_t poolSizeInBytes = m_elementAllocationSizeInBytes * numberOfElements;
-    m_memoryPtr.reset(MemoryAllocator::allocateAlignedMemory(poolSizeInBytes, alignment));
+    m_poolSizeInBytes = m_elementAllocationSizeInBytes * numberOfElements;
+    m_memoryPtr.reset(MemoryAllocator::allocateAlignedMemory(m_poolSizeInBytes, alignment));
 
     //
     // Get the address of the end of the memory block...
     //
     MemoryRawAddress startRawAddress = reinterpret_cast<MemoryRawAddress>(m_memoryPtr.get());
-    MemoryRawAddress endRawAddress = startRawAddress + poolSizeInBytes;
+    MemoryRawAddress endRawAddress = startRawAddress + m_poolSizeInBytes - 1;
 
     //
     // Initialize the free list for each element...
     //
     for (std::size_t i = 0; i < numberOfElements; ++i) {
-
         MemoryRawAddress elementRawAddress = startRawAddress + (i * m_elementAllocationSizeInBytes);
-        assert(elementRawAddress < endRawAddress);
+
+        assert(
+            elementRawAddress >= startRawAddress &&
+            elementRawAddress + m_elementAllocationSizeInBytes - 1 <= endRawAddress);
 
         MemoryAddress elementAddress = reinterpret_cast<MemoryAddress>(elementRawAddress);
 
@@ -282,20 +286,33 @@ void FixedMemoryPool::updateElementsCounters(bool acquired)
         ++m_numberOfAvailableElements;
     }
 
-    assert(m_numberOfAvailableElements == m_freeMemoryBlockList.size());
-    assert(m_numberOfAvailableElements + m_numberOfAcquiredElements == m_numberOfElements);
+    assert(m_numberOfAcquiredElements + m_numberOfAvailableElements == m_numberOfElements);
 }
 
+/**
+ * Gets the information of the pool.
+ */
+void FixedMemoryPool::getPoolInformation(std::ostream& stream) const
+{
+    //
+    // Acquire a lock...
+    //
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
+
+    stream
+        << "NumberOfElements: " << m_numberOfElements << std::endl
+        << "NumberOfAcquiredElements: " << m_numberOfAcquiredElements << std::endl
+        << "NumberOfAvailableElements: " << m_numberOfAvailableElements << std::endl
+        << "ElementSizeInBytes: " << m_elementSizeInBytes << std::endl
+        << "ElementAllocationSizeInBytes: " << m_elementAllocationSizeInBytes << std::endl
+        << "PoolSizeInBytes: " << size() << std::endl;
+}
+
+/**
+ * Gets the information of the pool.
+ */
 std::ostream& memory_management::operator<<(std::ostream& stream, const FixedMemoryPool& memoryPool)
 {
-    stream
-        << "OverCapacity: " << memoryPool.overCapacity() << std::endl
-        << "NumberOfElements: " << memoryPool.numberOfElements() << std::endl
-        << "NumberOfAcquiredElements: " << memoryPool.numberOfAcquiredElements() << std::endl
-        << "NumberOfAvailableElements: " << memoryPool.numberOfAvailableElements() << std::endl
-        << "ElementSizeInBytes: " << memoryPool.elementSize() << std::endl
-        << "ElementAllocationSizeInBytes: " << memoryPool.elementAllocationSize() << std::endl
-        << "PoolSizeInBytes: " << memoryPool.size() << std::endl;
-
+    memoryPool.getPoolInformation(stream);
     return stream;
 }

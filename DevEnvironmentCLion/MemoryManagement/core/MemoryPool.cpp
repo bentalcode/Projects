@@ -34,7 +34,7 @@ void* MemoryPool::acquireElement()
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     //
     // First, try to find a pool with an available element...
@@ -80,7 +80,7 @@ void MemoryPool::releaseElement(MemoryAddress elementPtr)
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     FixedMemoryPoolPtr elementPool = getElementPool(elementPtr);
 
@@ -96,9 +96,17 @@ std::size_t MemoryPool::numberOfAcquiredElements() const
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     return m_elementToPoolMap.size();
+}
+
+/**
+ * Gets the initial number of elements.
+ */
+std::size_t MemoryPool::initialNumberOfElements() const
+{
+    return m_initialNumberOfElements;
 }
 
 /**
@@ -117,25 +125,17 @@ std::size_t MemoryPool::size() const
     //
     // Acquire a lock...
     //
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
     size_t size = 0;
 
     //
-    // Include the size of the pools...
+    // Include the size of each pool...
     //
     for (MemoryPoolList::const_iterator i = m_poolList.begin(); i != m_poolList.end(); ++i)
     {
         size += (*i)->size();
     }
-
-    //
-    // Include the size of the pool...
-    //
-    size_t poolMapEntry = sizeof(MemoryRawAddress) + sizeof(FixedMemoryPoolPtr);
-    size_t poolMapSize = m_elementToPoolMap.size() * poolMapEntry;
-
-    size += poolMapSize;
 
     //
     // Include the size of the data members...
@@ -147,6 +147,20 @@ std::size_t MemoryPool::size() const
     size += sizeof(m_alignment);
     size += sizeof(m_poolList);
     size += sizeof(m_elementToPoolMap);
+
+    //
+    // Include the size of the pool list...
+    //
+    size_t poolListSize = m_poolList.size() * sizeof(FixedMemoryPoolPtr);
+    size += sizeof(poolListSize);
+
+    //
+    // Include the size of the element-pool lookup...
+    //
+    size_t poolMapEntry = sizeof(MemoryRawAddress) + sizeof(FixedMemoryPoolPtr);
+    size_t poolMapSize = m_elementToPoolMap.size() * poolMapEntry;
+
+    size += poolMapSize;
 
     return size;
 }
@@ -212,12 +226,41 @@ void MemoryPool::removeElementPool(MemoryAddress elementPtr)
     m_elementToPoolMap.erase(elementRawPtr);
 }
 
+/**
+ * Gets the information of the pool.
+ */
+void MemoryPool::getPoolInformation(std::ostream& stream) const
+{
+    //
+    // Acquire a lock...
+    //
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
+
+    stream
+        << "NumberOfAcquiredElements: " << numberOfAcquiredElements() << std::endl
+        << "initialNumberOfElements: " << initialNumberOfElements() << std::endl
+        << "ElementSizeInBytes: " << elementSize() << std::endl
+        << "PoolSizeInBytes: " << size() << std::endl;
+
+    stream << std::endl << "Sub Pools:" << std::endl;
+
+    int index = 0;
+    for (MemoryPoolList::const_iterator i = m_poolList.begin(); i != m_poolList.end(); ++i)
+    {
+        ++index;
+
+        stream << std::endl << "Pool" << index << std::endl;
+        FixedMemoryPoolPtr poolPtr = *i;
+        stream << *poolPtr;
+        stream << std::endl;
+    }
+}
+
+/**
+ * Gets the information of the pool.
+ */
 std::ostream& memory_management::operator<<(std::ostream& stream, const MemoryPool& memoryPool)
 {
-    stream
-        << "NumberOfAcquiredElements: " << memoryPool.numberOfAcquiredElements() << std::endl
-        << "ElementSizeInBytes: " << memoryPool.elementSize() << std::endl
-        << "PoolSizeInBytes: " << memoryPool.size() << std::endl;
-
+    memoryPool.getPoolInformation(stream);
     return stream;
 }

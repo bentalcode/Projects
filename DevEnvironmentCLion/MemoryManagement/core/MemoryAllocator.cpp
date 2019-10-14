@@ -104,6 +104,7 @@ void* MemoryAllocator::allocateAligned(std::size_t size, const std::size_t align
 
     std::uintptr_t rawAddress = reinterpret_cast<std::uintptr_t>(allocatedAddress);
     std::uintptr_t alignedRawAddress = (rawAddress + offset) & (~(alignment - 1));
+    assert(alignedRawAddress % alignment == 0);
 
     void* returnedAddress = reinterpret_cast<void*>(alignedRawAddress);
     void** pReturnedAddress = &returnedAddress;

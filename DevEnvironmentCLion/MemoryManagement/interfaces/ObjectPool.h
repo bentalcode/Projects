@@ -48,6 +48,11 @@ namespace memory_management
          */
         virtual std::size_t size() const;
 
+        /**
+         * Gets the allocation information of the pool.
+         */
+        void getPoolAllocationInformation(std::ostream& stream) const;
+
     private:
         // The mutex of the pool.
         mutable std::mutex m_mutex;
@@ -181,6 +186,15 @@ namespace memory_management
         size += sizeof(m_memoryPoolPtr);
 
         return size;
+    }
+
+    /**
+     * Gets the allocation information of the pool.
+     */
+    template <typename T>
+    void ObjectPool<T>::getPoolAllocationInformation(std::ostream& stream) const
+    {
+        stream << *m_memoryPoolPtr;
     }
 
     template <typename T>

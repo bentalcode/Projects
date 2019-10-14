@@ -44,6 +44,11 @@ namespace memory_management
         virtual std::size_t numberOfAcquiredElements() const;
 
         /**
+         * Gets the initial number of elements.
+         */
+        std::size_t initialNumberOfElements() const;
+
+        /**
          * Gets a size of an element in bytes.
          */
         std::size_t elementSize() const;
@@ -52,6 +57,11 @@ namespace memory_management
          * Gets a size of a pool in bytes.
          */
         virtual std::size_t size() const;
+
+        /**
+         * Gets the information of the pool.
+         */
+        void getPoolInformation(std::ostream& stream) const;
 
     private:
         /**
@@ -80,7 +90,7 @@ namespace memory_management
         void removeElementPool(MemoryAddress elementPtr);
 
         // The mutex of the pool.
-        mutable std::mutex m_mutex;
+        mutable std::recursive_mutex m_mutex;
 
         // Enable a dynamic allocation.
         bool m_dynamicAllocation;
