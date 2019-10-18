@@ -35,15 +35,19 @@ namespace test_base {
         virtual void postRun();
 
         /**
-         * Sets the output stream.
+         * Sets the output streams.
          */
-        virtual void setOutputStream(std::ostream &stream);
+        virtual void setOutputStreams(
+            std::ostream& errorStream,
+            std::ostream& informationalStream,
+            std::ostream& warningStream,
+            std::ostream& debugStream);
 
     protected:
         /**
-         * Gets the informational stream.
+         * Gets the error stream.
          */
-        std::ostream& getInformationalStream() const;
+        std::ostream& getErrorStream() const;
 
         /**
          * Gets the warning stream.
@@ -51,13 +55,21 @@ namespace test_base {
         std::ostream& getWarningStream() const;
 
         /**
-         * Gets the error stream.
+         * Gets the informational stream.
          */
-        std::ostream& getErrorStream() const;
+        std::ostream& getInformationalStream() const;
+
+        /**
+         * Gets the debug stream.
+         */
+        std::ostream& getDebugStream() const;
 
     private:
         std::string m_name;
-        std::ostream* m_stream;
+        std::ostream* m_errorStream;
+        std::ostream* m_warningStream;
+        std::ostream* m_informationalStream;
+        std::ostream* m_debugStream;
     };
 }
 

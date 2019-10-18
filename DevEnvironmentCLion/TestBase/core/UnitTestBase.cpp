@@ -9,7 +9,10 @@ using namespace test_base;
  */
 UnitTestBase::UnitTestBase(const std::string& name) :
     m_name(name),
-    m_stream(nullptr)
+    m_errorStream(nullptr),
+    m_warningStream(nullptr),
+    m_informationalStream(nullptr),
+    m_debugStream(nullptr)
 {
 }
 
@@ -43,22 +46,29 @@ void UnitTestBase::postRun()
 }
 
 /**
- * Sets the output stream.
+ * Sets the output streams.
  */
-void UnitTestBase::setOutputStream(std::ostream& stream)
+void UnitTestBase::setOutputStreams(
+    std::ostream& errorStream,
+    std::ostream& warningStream,
+    std::ostream& informationalStream,
+    std::ostream& debugStream)
 {
-    m_stream = &stream;
+    m_errorStream = &errorStream;
+    m_warningStream = &warningStream;
+    m_informationalStream = &informationalStream;
+    m_debugStream = &debugStream;
 }
 
 /**
- * Gets the informational stream.
+ * Gets the error stream.
  */
-std::ostream& UnitTestBase::getInformationalStream() const {
-    if (m_stream == nullptr) {
+std::ostream& UnitTestBase::getErrorStream() const {
+    if (m_errorStream == nullptr) {
         return std::cout;
     }
     else {
-        return *m_stream;
+        return *m_errorStream;
     }
 }
 
@@ -66,22 +76,34 @@ std::ostream& UnitTestBase::getInformationalStream() const {
  * Gets the warning stream.
  */
 std::ostream& UnitTestBase::getWarningStream() const {
-    if (m_stream == nullptr) {
+    if (m_warningStream == nullptr) {
         return std::cout;
     }
     else {
-        return *m_stream;
+        return *m_warningStream;
     }
 }
 
 /**
- * Gets the error stream.
+ * Gets the informational stream.
  */
-std::ostream& UnitTestBase::getErrorStream() const {
-    if (m_stream == nullptr) {
+std::ostream& UnitTestBase::getInformationalStream() const {
+    if (m_informationalStream == nullptr) {
         return std::cout;
     }
     else {
-        return *m_stream;
+        return *m_informationalStream;
+    }
+}
+
+/**
+ * Gets the debug stream.
+ */
+std::ostream& UnitTestBase::getDebugStream() const {
+    if (m_debugStream == nullptr) {
+        return std::cout;
+    }
+    else {
+        return *m_debugStream;
     }
 }

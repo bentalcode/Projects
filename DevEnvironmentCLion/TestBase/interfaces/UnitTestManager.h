@@ -3,6 +3,7 @@
 
 #include "IUnitTest.h"
 #include "IUnitTestManager.h"
+#include "UnitTestRunningResults.h"
 
 namespace test_base
 {
@@ -12,7 +13,23 @@ namespace test_base
     class UnitTestManager : public IUnitTestManager
     {
     public :
+        /**
+         * The UnitTestManager constructor.
+         */
         UnitTestManager();
+
+        /**
+         * The UnitTestManager constructor.
+         */
+        UnitTestManager(
+            std::ostream& errorStream,
+            std::ostream& warningStream,
+            std::ostream& informationalStream,
+            std::ostream& debugStream);
+
+        /**
+         * The UnitTestManager destructor.
+         */
         virtual ~UnitTestManager();
 
         /**
@@ -32,13 +49,35 @@ namespace test_base
 
     private:
         /**
+         * Runs a test.
+         */
+        void runTest(IUnitTest& unitTest);
+
+        /**
+         * Sets a successful running result of a unit test
+         */
+        void setSuccessfulRunningResult(IUnitTest& unitTest);
+
+        /**
+         * Sets a failed running result of a unit test
+        */
+        void setFailedRunningResult(IUnitTest& unitTest, const std::string& errorMessage);
+
+        /**
          * Disables the constructor and the assignment operator.
          */
         UnitTestManager(const UnitTestManager& rhs);
         UnitTestManager& operator=(const UnitTestManager& rhs);
 
+        std::ostream& m_errorStream;
+        std::ostream& m_warningStream;
+        std::ostream& m_informationalStream;
+        std::ostream& m_debugStream;
+
         typedef std::list<IUnitTestPtr> UnitTestList;
         UnitTestList m_unitTests;
+
+        UnitTestRunningResults m_unitTestRunningResults;
     };
 }
 

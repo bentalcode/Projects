@@ -20,15 +20,20 @@ include_directories(
 
 set(INCLUDES
     interfaces/IUnitTest.h
+    interfaces/IUnitTestManager.h
     interfaces/UnitTestBase.h
+    interfaces/UnitTestException.h
     interfaces/UnitTestManager.h
-    core/UnitTestBase.cpp
-    core/UnitTestManager.cpp
-    core/PreCompiled.cpp
+    interfaces/UnitTestRunningResult.h
+    interfaces/UnitTestRunningResults.h
     core/PreCompiled.h
     TestBaseException.h)
 
 set(SOURCES
-    core/PreCompiled.cpp)
+    core/PreCompiled.cpp
+    core/UnitTestManager.cpp
+    core/UnitTestBase.cpp
+    core/UnitTestRunningResult.cpp
+    core/UnitTestRunningResults.cpp)
 
 add_library(TestBase ${SOURCES} ${INCLUDES})

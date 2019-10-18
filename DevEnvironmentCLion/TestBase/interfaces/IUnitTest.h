@@ -36,9 +36,13 @@ namespace test_base
         virtual void postRun() = 0;
 
         /**
-         * Sets the output stream.
+         * Sets the output streams.
          */
-        virtual void setOutputStream(std::ostream &stream) = 0;
+        virtual void setOutputStreams(
+            std::ostream& errorStream,
+            std::ostream& warningStream,
+            std::ostream& informationalStream,
+            std::ostream& debugStream) = 0;
 
     private:
         /**

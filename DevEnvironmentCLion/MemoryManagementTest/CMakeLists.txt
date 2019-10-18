@@ -59,11 +59,16 @@ add_library(TestBase STATIC
     ../TestBase/interfaces/IUnitTest.h
     ../TestBase/interfaces/IUnitTestManager.h
     ../TestBase/interfaces/UnitTestBase.h
+    ../TestBase/interfaces/UnitTestException.h
     ../TestBase/interfaces/UnitTestManager.h
+    ../TestBase/interfaces/UnitTestRunningResult.h
+    ../TestBase/interfaces/UnitTestRunningResults.h
+    ../TestBase/core/PreCompiled.cpp
+    ../TestBase/core/PreCompiled.h
     ../TestBase/core/UnitTestBase.cpp
     ../TestBase/core/UnitTestManager.cpp
-    ../TestBase/core/PreCompiled.h
-    ../TestBase/core/PreCompiled.cpp)
+    ../TestBase/core/UnitTestRunningResult.cpp
+    ../TestBase/core/UnitTestRunningResults.cpp)
 
 add_library(MemoryManagement STATIC
     ../MemoryManagement/interfaces/IMemoryAllocator.h

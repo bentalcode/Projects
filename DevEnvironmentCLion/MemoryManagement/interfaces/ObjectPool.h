@@ -49,6 +49,11 @@ namespace memory_management
         virtual std::size_t size() const;
 
         /**
+         * Gets the information of the pool.
+         */
+        void getPoolInformation(std::ostream& stream) const;
+
+        /**
          * Gets the allocation information of the pool.
          */
         void getPoolAllocationInformation(std::ostream& stream) const;
@@ -189,6 +194,17 @@ namespace memory_management
     }
 
     /**
+     * Gets the information of the pool.
+     */
+    template <typename T>
+    void ObjectPool<T>::getPoolInformation(std::ostream& stream) const
+    {
+        stream
+            << "NumberOfAcquiredElements: " << numberOfAcquiredElements() << std::endl
+            << "PoolSizeInBytes: " << size() << std::endl;
+    }
+
+    /**
      * Gets the allocation information of the pool.
      */
     template <typename T>
@@ -200,10 +216,7 @@ namespace memory_management
     template <typename T>
     std::ostream& operator<<(std::ostream& stream, const ObjectPool<T>& objectPool)
     {
-        stream
-            << "NumberOfAcquiredElements: " << objectPool.numberOfAcquiredElements() << std::endl
-            << "PoolSizeInBytes: " << objectPool.size() << std::endl;
-
+        objectPool.getPoolInformation(stream);
         return stream;
     }
 }
