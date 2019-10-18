@@ -14,7 +14,7 @@ namespace base
         Pair(const Pair& rhs);
         ~Pair();
 
-        Pair& operator==(const Pair& rhs);
+        Pair& operator=(const Pair& rhs);
 
         const Type1& getFirst() const;
         const Type2& getSecond() const;
@@ -44,7 +44,7 @@ namespace base
     }
 
     template<typename Type1, typename Type2>
-    Pair<Type1, Type2>& Pair<Type1, Type2>::operator==(const Pair& rhs)
+    Pair<Type1, Type2>& Pair<Type1, Type2>::operator=(const Pair& rhs)
     {
         if (this == rhs)
         {

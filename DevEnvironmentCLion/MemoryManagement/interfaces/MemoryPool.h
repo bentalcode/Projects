@@ -1,9 +1,9 @@
-#ifndef MEMORY_POOL_H
-#define MEMORY_POOL_H
+#ifndef MEMORY_POOL_H_5d086ed8_a6b2_48ad_a5cd_4c7799217ce8
+#define MEMORY_POOL_H_5d086ed8_a6b2_48ad_a5cd_4c7799217ce8
 
-#include "PreCompiled.h"
 #include "IMemoryPool.h"
 #include "FixedMemoryPool.h"
+#include <map>
 #include <mutex>
 
 namespace memory_management
@@ -116,4 +116,4 @@ namespace memory_management
     std::ostream& operator<<(std::ostream& stream, const MemoryPool& memoryPool);
 }
 
-#endif /* MEMORY_POOL_H */
+#endif /* MEMORY_POOL_H_5d086ed8_a6b2_48ad_a5cd_4c7799217ce8 */

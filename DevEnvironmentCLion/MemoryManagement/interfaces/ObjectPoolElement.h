@@ -1,7 +1,6 @@
-#ifndef OBJECT_POOL_ELEMENT_H
-#define OBJECT_POOL_ELEMENT_H
+#ifndef OBJECT_POOL_ELEMENT_H_82329007_9a10_410b_9bc9_5dbb022ea998
+#define OBJECT_POOL_ELEMENT_H_82329007_9a10_410b_9bc9_5dbb022ea998
 
-#include "PreCompiled.h"
 #include "ObjectPool.h"
 #include "boost/core/noncopyable.hpp"
 
@@ -70,4 +69,4 @@ namespace memory_management
     }
 }
 
-#endif /* OBJECT_POOL_ELEMENT_H */
+#endif /* OBJECT_POOL_ELEMENT_H_82329007_9a10_410b_9bc9_5dbb022ea998 */

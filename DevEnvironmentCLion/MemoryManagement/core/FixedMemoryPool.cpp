@@ -1,3 +1,5 @@
+#include "PreCompiled.h"
+
 #include "FixedMemoryPool.h"
 #include "MemoryManagementException.h"
 

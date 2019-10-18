@@ -1,4 +1,6 @@
-#include <MemoryManagementException.h>
+#include "PreCompiled.h"
+
+#include "MemoryManagementException.h"
 #include "MemoryAllocator.h"
 
 using namespace memory_management;

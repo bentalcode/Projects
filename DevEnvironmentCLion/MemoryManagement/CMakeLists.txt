@@ -16,9 +16,13 @@ include_directories(
     .
     interfaces
     core
+    ../Base
+    ../Base/Interfaces
+    ../Base/Core
     ${BOOT_ROOT})
 
 set(INCLUDES
+    ../Base/Core/BaseDependencies.h
     interfaces/IMemoryAllocator.h
     interfaces/IMemoryPool.h
     interfaces/IObjectPool.h
@@ -30,9 +34,9 @@ set(INCLUDES
     MemoryManagementException.h)
 
 set(SOURCES
+    core/PreCompiled.cpp
     core/MemoryAllocator.cpp
     core/FixedMemoryPool.cpp
-    core/MemoryPool.cpp
-    core/PreCompiled.cpp)
+    core/MemoryPool.cpp)
 
 add_library(MemoryManagement ${SOURCES} ${INCLUDES})

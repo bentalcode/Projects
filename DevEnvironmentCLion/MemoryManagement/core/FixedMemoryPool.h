@@ -1,9 +1,9 @@
 #ifndef FIXED_MEMORY_POOL_H_7c51d85d_ed9a_42f7_978b_13cebf9eefe5
 #define FIXED_MEMORY_POOL_H_7c51d85d_ed9a_42f7_978b_13cebf9eefe5
 
-#include "PreCompiled.h"
 #include "IMemoryPool.h"
 #include "MemoryAllocator.h"
+#include <list>
 #include <mutex>
 
 namespace memory_management

@@ -18,7 +18,7 @@ namespace base
         SharedPtr(const SharedPtr& rhs);
         ~SharedPtr();
 
-        SharedPtr& operator==(const SharedPtr& rhs);
+        SharedPtr& operator=(const SharedPtr& rhs);
 
         T* operator->();
         const T* operator->() const;
@@ -73,7 +73,7 @@ namespace base
     }
 
     template<class T>
-    SharedPtr<T>& SharedPtr<T>::operator==(const SharedPtr& rhs)
+    SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr& rhs)
     {
         if (this == rhs)
         {

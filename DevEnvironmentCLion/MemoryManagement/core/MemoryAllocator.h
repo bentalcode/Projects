@@ -1,8 +1,8 @@
 #ifndef MEMORY_ALLOCATOR_H_7059c4fc_d7b8_4a6a_81d8_5849edfed11a
 #define MEMORY_ALLOCATOR_H_7059c4fc_d7b8_4a6a_81d8_5849edfed11a
 
-#include "PreCompiled.h"
 #include "IMemoryAllocator.h"
+#include <memory>
 
 namespace memory_management
 {

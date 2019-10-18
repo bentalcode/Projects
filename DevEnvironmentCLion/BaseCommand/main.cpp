@@ -1,4 +1,4 @@
-#include <iostream>
+#include "PreCompiled.h"
 #include "Pair.h"
 #include "Triple.h"
 #include "SharedPtr.h"
@@ -13,5 +13,6 @@ int main() {
         SharedPtr<Triple<int, int, int>> ptr3(new Triple<int, int, int>(1, 2, 3));
         SharedPtr<Triple<int, int, int>> ptr4(ptr3);
     }
+
     return 0;
 }

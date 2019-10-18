@@ -1,7 +1,5 @@
-#ifndef I_MEMORY_ALLOCATOR_H
-#define I_MEMORY_ALLOCATOR_H
-
-#include <iostream>
+#ifndef I_MEMORY_ALLOCATOR_H_9a678253_ac7f_46b1_928f_124cde37a2ab
+#define I_MEMORY_ALLOCATOR_H_9a678253_ac7f_46b1_928f_124cde37a2ab
 
 namespace memory_management
 {
@@ -40,4 +38,4 @@ namespace memory_management
     };
 }
 
-#endif // I_MEMORY_ALLOCATOR_H
+#endif // I_MEMORY_ALLOCATOR_H_9a678253_ac7f_46b1_928f_124cde37a2ab

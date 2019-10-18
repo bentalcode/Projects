@@ -1,5 +1,5 @@
-#ifndef I_OBJECT_POOL_H
-#define I_OBJECT_POOL_H
+#ifndef I_OBJECT_POOL_H_1398b81a_2b89_4410_957b_1ca9fe8f1fc7
+#define I_OBJECT_POOL_H_1398b81a_2b89_4410_957b_1ca9fe8f1fc7
 
 #include "boost/core/noncopyable.hpp"
 
@@ -37,4 +37,4 @@ namespace memory_management
 }
 
 
-#endif // I_OBJECT_POOL_H
+#endif // I_OBJECT_POOL_H_1398b81a_2b89_4410_957b_1ca9fe8f1fc7

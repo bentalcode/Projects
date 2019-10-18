@@ -32,9 +32,11 @@ include_directories(
     ../Base/core
     ${BOOT_ROOT})
 
-set(INCLUDES)
+set(INCLUDES
+    core/PreCompiled.h)
 
 set(SOURCES
+    core/PreCompiled.cpp
     main.cpp)
 
 # This is a "default" library, and will match the *** variable setting.
@@ -42,7 +44,8 @@ set(SOURCES
 # Including header files here helps IDEs but is not required.
 # Output libname matches target name, with the usual extensions on your system
 add_library(Base STATIC
-    ../Base/interfaces/SharedPtr.h
+        ../Base/interfaces/SharedPtr.h
+    ../Base/core/BaseDependencies.h
     ../Base/core/PreCompiled.h
     ../Base/core/PreCompiled.cpp
     ../Base/BaseException.h)

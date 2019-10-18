@@ -14,7 +14,7 @@ namespace base
         Triple(const Triple& rhs);
         ~Triple();
 
-        Triple& operator==(const Triple& rhs);
+        Triple& operator=(const Triple& rhs);
 
         const Type1& getFirst() const;
         const Type2& getSecond() const;
@@ -48,7 +48,7 @@ namespace base
     }
 
     template<typename Type1, typename Type2, typename Type3>
-    Triple<Type1, Type2, Type3>& Triple<Type1, Type2, Type3>::operator==(const Triple& rhs)
+    Triple<Type1, Type2, Type3>& Triple<Type1, Type2, Type3>::operator=(const Triple& rhs)
     {
         if (this == rhs)
         {

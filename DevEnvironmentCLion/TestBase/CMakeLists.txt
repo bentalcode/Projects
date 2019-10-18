@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(Base VERSION 1.0)
+project(TestBase VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -19,15 +19,16 @@ include_directories(
     ${BOOT_ROOT})
 
 set(INCLUDES
-        interfaces/SharedPtr.h
-    interfaces/Pair.h
-    core/ReferenceCountHolder.h
-    core/ReferenceCount.h
-    core/BaseDependencies.h
+    interfaces/IUnitTest.h
+    interfaces/UnitTestBase.h
+    interfaces/UnitTestManager.h
+    core/UnitTestBase.cpp
+    core/UnitTestManager.cpp
+    core/PreCompiled.cpp
     core/PreCompiled.h
-    BaseException.h)
+    TestBaseException.h)
 
 set(SOURCES
     core/PreCompiled.cpp)
 
-add_library(Base ${SOURCES} ${INCLUDES})
+add_library(TestBase ${SOURCES} ${INCLUDES})

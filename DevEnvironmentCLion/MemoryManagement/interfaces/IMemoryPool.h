@@ -1,5 +1,5 @@
-#ifndef I_MEMORY_POOL_H
-#define I_MEMORY_POOL_H
+#ifndef I_MEMORY_POOL_H_38718567_52c4_4d42_9e0d_05d1c17041a0
+#define I_MEMORY_POOL_H_38718567_52c4_4d42_9e0d_05d1c17041a0
 
 namespace memory_management
 {
@@ -36,4 +36,4 @@ namespace memory_management
     };
 }
 
-#endif // I_MEMORY_POOL_H
+#endif // I_MEMORY_POOL_H_38718567_52c4_4d42_9e0d_05d1c17041a0

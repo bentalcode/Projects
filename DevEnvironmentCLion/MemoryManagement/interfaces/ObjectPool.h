@@ -1,9 +1,9 @@
-#ifndef OBJECT_POOL_H
-#define OBJECT_POOL_H
+#ifndef OBJECT_POOL_H_7476f899_450e_452a_acc1_fc79727a915b
+#define OBJECT_POOL_H_7476f899_450e_452a_acc1_fc79727a915b
 
-#include "PreCompiled.h"
 #include "IObjectPool.h"
 #include "MemoryPool.h"
+#include <map>
 #include <mutex>
 
 namespace memory_management
@@ -208,4 +208,4 @@ namespace memory_management
     }
 }
 
-#endif /* OBJECT_POOL_H */
+#endif /* OBJECT_POOL_H_7476f899_450e_452a_acc1_fc79727a915b */
