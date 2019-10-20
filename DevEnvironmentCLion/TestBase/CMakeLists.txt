@@ -18,22 +18,15 @@ include_directories(
     core
     ${BOOT_ROOT})
 
-set(INCLUDES
-    interfaces/IUnitTest.h
-    interfaces/IUnitTestManager.h
-    interfaces/UnitTestBase.h
-    interfaces/UnitTestException.h
-    interfaces/UnitTestManager.h
-    interfaces/UnitTestRunningResult.h
-    interfaces/UnitTestRunningResults.h
+set(TEST_BASE_INCLUDES_FILES
     core/PreCompiled.h
     TestBaseException.h)
 
-set(SOURCES
-    core/PreCompiled.cpp
-    core/UnitTestManager.cpp
-    core/UnitTestBase.cpp
-    core/UnitTestRunningResult.cpp
-    core/UnitTestRunningResults.cpp)
+set(TEST_BASE_SOURCES_FILES
+    core/PreCompiled.cpp)
 
-add_library(TestBase ${SOURCES} ${INCLUDES})
+set(TEST_BASE_SOURCES
+    ${TEST_BASE_INCLUDES_FILES}
+    ${TEST_BASE_SOURCES_FILES})
+
+add_library(TestBase ${TEST_BASE_SOURCES})

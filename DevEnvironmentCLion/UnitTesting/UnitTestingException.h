@@ -1,21 +1,21 @@
-#ifndef TEST_BASE_EXCEPTION_H_8d5f6aba_62e6_4a69_a29a_a7550e21128c
-#define TEST_BASE_EXCEPTION_H_8d5f6aba_62e6_4a69_a29a_a7550e21128c
+#ifndef UNIT_TESTING_EXCEPTION_H_6c21aecf_7ad2_474c_b0b2_802b26447ae0
+#define UNIT_TESTING_EXCEPTION_H_6c21aecf_7ad2_474c_b0b2_802b26447ae0
 
 #include <exception>
 
 /**
- * The TestBaseException captured errors in the test module.
+ * The UnitTestingException captured errors in the test module.
  */
-class TestBaseException : public std::runtime_error
+class UnitTestingException : public std::runtime_error
 {
 public:
-    explicit TestBaseException(const std::string& errorMessage) :
+    explicit UnitTestingException(const std::string& errorMessage) :
         std::runtime_error(errorMessage),
         m_innerExceptionPtr(nullptr)
     {
     }
 
-    explicit TestBaseException(
+    explicit UnitTestingException(
         const std::string& errorMessage,
         std::exception& innerException) :
         std::runtime_error(errorMessage),
@@ -43,4 +43,4 @@ private:
     std::exception_ptr m_innerExceptionPtr;
 };
 
-#endif // TEST_BASE_EXCEPTION_H_8d5f6aba_62e6_4a69_a29a_a7550e21128c
+#endif // UNIT_TESTING_EXCEPTION_H_6c21aecf_7ad2_474c_b0b2_802b26447ae0

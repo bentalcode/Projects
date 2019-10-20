@@ -54,21 +54,11 @@ set(BASE_INCLUDES
 # Test Base Library...
 #
 set(TEST_BASE_INCLUDES_FILES
-    ../TestBase/interfaces/IUnitTest.h
-    ../TestBase/interfaces/IUnitTestManager.h
-    ../TestBase/interfaces/UnitTestBase.h
-    ../TestBase/interfaces/UnitTestException.h
-    ../TestBase/interfaces/UnitTestManager.h
-    ../TestBase/interfaces/UnitTestRunningResult.h
-    ../TestBase/interfaces/UnitTestRunningResults.h
-    ../TestBase/core/PreCompiled.h)
+    ../TestBase/core/PreCompiled.h
+    ../TestBase/TestBaseException.h)
 
 set(TEST_BASE_SOURCES_FILES
-    ../TestBase/core/PreCompiled.cpp
-    ../TestBase/core/UnitTestBase.cpp
-    ../TestBase/core/UnitTestManager.cpp
-    ../TestBase/core/UnitTestRunningResult.cpp
-    ../TestBase/core/UnitTestRunningResults.cpp)
+    ../TestBase/core/PreCompiled.cpp)
 
 set(TEST_BASE_SOURCES
     ${TEST_BASE_INCLUDES_FILES}
@@ -78,6 +68,37 @@ set(TEST_BASE_INCLUDES
     ../TestBase
     ../TestBase/interfaces
     ../TestBase/core)
+
+#
+# Unit Testing Library...
+#
+set(UNIT_TESTING_INCLUDES_FILES
+    ../UnitTesting/interfaces/IUnitTest.h
+    ../UnitTesting/interfaces/IUnitTestManager.h
+    ../UnitTesting/interfaces/UnitTestBase.h
+    ../UnitTesting/interfaces/UnitTestException.h
+    ../UnitTesting/interfaces/UnitTestManager.h
+    ../UnitTesting/interfaces/UnitTestRunningResult.h
+    ../UnitTesting/interfaces/UnitTestRunningResults.h
+    ../UnitTesting/core/PreCompiled.h
+    ../UnitTesting/UnitTestingException.h)
+
+set(UNIT_TESTING_SOURCES_FILES
+    ../UnitTesting/core/PreCompiled.cpp
+    ../UnitTesting/core/UnitTestBase.cpp
+    ../UnitTesting/core/UnitTestManager.cpp
+    ../UnitTesting/core/UnitTestRunningResult.cpp
+    ../UnitTesting/core/UnitTestRunningResults.cpp)
+
+set(UNIT_TESTING_SOURCES
+    ${BASE_SOURCES}
+    ${UNIT_TESTING_INCLUDES_FILES}
+    ${UNIT_TESTING_SOURCES_FILES})
+
+set(UNIT_TESTING_INCLUDES
+    ../UnitTesting
+    ../UnitTesting/interfaces
+    ../UnitTesting/core)
 
 #
 # Memory Management Library...
@@ -138,6 +159,7 @@ include_directories(
     ${MEMORY_MANAGEMENT_TEST_INCLUDES}
     ${BASE_INCLUDES}
     ${TEST_BASE_INCLUDES}
+    ${UNIT_TESTING_INCLUDES}
     ${MEMORY_MANAGEMENT_INCLUDES}
     ${BOOT_ROOT})
 
@@ -145,8 +167,10 @@ add_library(Base STATIC
     ${BASE_SOURCES})
 
 add_library(TestBase STATIC
-    ${BASE_SOURCES}
     ${TEST_BASE_SOURCES})
+
+add_library(UnitTesting STATIC
+    ${UNIT_TESTING_SOURCES})
 
 add_library(MemoryManagement STATIC
     ${MEMORY_MANAGEMENT_SOURCES})
@@ -156,4 +180,4 @@ add_executable(MemoryManagementTest ${MEMORY_MANAGEMENT_TEST_SOURCES})
 
 # Make sure you link your targets with this command. It can also link libraries and
 # even flags, so linking a target that does not exist will not give a configure-time error.
-target_link_libraries(MemoryManagementTest PRIVATE Base TestBase MemoryManagement)
+target_link_libraries(MemoryManagementTest PRIVATE Base TestBase UnitTesting MemoryManagement)

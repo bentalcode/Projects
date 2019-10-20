@@ -1,8 +1,8 @@
 #include "PreCompiled.h"
 
 #include "UnitTestManager.h"
+#include "UnitTestingException.h"
 #include "UnitTestException.h"
-#include "TestBaseException.h"
 
 using namespace test_base;
 
@@ -37,7 +37,7 @@ UnitTestManager::UnitTestManager(base::LogStreamWriterPtr logStreamWriter)
 {
     if (!logStreamWriter) {
         std::string errorMessage = "The Log Stream Writer has not been set.";
-        throw TestBaseException(errorMessage);
+        throw UnitTestingException(errorMessage);
     }
 
     m_logStreamWriter = logStreamWriter;

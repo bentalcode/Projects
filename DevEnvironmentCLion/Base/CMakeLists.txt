@@ -16,28 +16,28 @@ endif()
 # Base Library...
 #
 set(BASE_INCLUDES_FILES
-    ../Base/interfaces/LogStreamWriter.h
-    ../Base/interfaces/Pair.h
-    ../Base/interfaces/SharedPtr.h
-    ../Base/interfaces/Triple.h
-    ../Base/core/BaseDependencies.h
-    ../Base/core/PreCompiled.h
-    ../Base/core/ReferenceCount.h
-    ../Base/core/ReferenceCountHolder.h
-    ../Base/BaseException.h)
+    interfaces/LogStreamWriter.h
+    interfaces/Pair.h
+    interfaces/SharedPtr.h
+    interfaces/Triple.h
+    core/BaseDependencies.h
+    core/PreCompiled.h
+    core/ReferenceCount.h
+    core/ReferenceCountHolder.h
+    BaseException.h)
 
 set(BASE_SOURCES_FILES
-    ../Base/core/LogStreamWriter.cpp
-    ../Base/core/PreCompiled.cpp)
+    core/LogStreamWriter.cpp
+    core/PreCompiled.cpp)
 
 set(BASE_SOURCES
     ${BASE_INCLUDES_FILES}
     ${BASE_SOURCES_FILES})
 
 set(BASE_INCLUDES
-    ../Base
-    ../Base/interfaces
-    ../Base/core)
+    .
+    interfaces
+    core)
 
 include_directories(
     ${BASE_INCLUDES}
