@@ -23,35 +23,66 @@ else()
     set(BOOT_ROOT "c:\\Boost\\boost_1_70_0")
 endif()
 
-include_directories(
-    .
-    interfaces
-    core
+#
+# Base Library...
+#
+set(BASE_INCLUDES_FILES
+    ../Base/interfaces/LogStreamWriter.h
+    ../Base/interfaces/Pair.h
+    ../Base/interfaces/SharedPtr.h
+    ../Base/interfaces/Triple.h
+    ../Base/core/BaseDependencies.h
+    ../Base/core/PreCompiled.h
+    ../Base/core/ReferenceCount.h
+    ../Base/core/ReferenceCountHolder.h
+    ../Base/BaseException.h)
+
+set(BASE_SOURCES_FILES
+    ../Base/core/LogStreamWriter.cpp
+    ../Base/core/PreCompiled.cpp)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES})
+
+set(BASE_INCLUDES
     ../Base
     ../Base/interfaces
-    ../Base/core
-    ${BOOT_ROOT})
+    ../Base/core)
 
-set(INCLUDES
+#
+# Base Command Test...
+#
+set(BASE_COMMAND_INCLUDES_FILES
     core/PreCompiled.h)
 
-set(SOURCES
-    core/PreCompiled.cpp
-    main.cpp)
+set(BASE_COMMAND_SOURCES_FILES
+    main.cpp
+    core/PreCompiled.cpp)
+
+set(BASE_COMMAND_SOURCES
+    ${BASE_COMMAND_INCLUDES_FILES}
+    ${BASE_COMMAND_SOURCES_FILES})
+
+set(BASE_COMMAND_INCLUDES
+    .
+    ./interfaces
+    ./core)
 
 # This is a "default" library, and will match the *** variable setting.
 # Other common choices are STATIC, SHARED, and MODULE
 # Including header files here helps IDEs but is not required.
 # Output libname matches target name, with the usual extensions on your system
+include_directories(
+    ${BASE_INCLUDES}
+    ${BASE_COMMAND_INCLUDES}
+    ${BOOT_ROOT})
+
 add_library(Base STATIC
-        ../Base/interfaces/SharedPtr.h
-    ../Base/core/BaseDependencies.h
-    ../Base/core/PreCompiled.h
-    ../Base/core/PreCompiled.cpp
-    ../Base/BaseException.h)
+    ${BASE_SOURCES})
 
 # Adding something we can run - Output name matches target name
-add_executable(BaseCommand ${SOURCES} ${INCLUDES})
+add_executable(BaseCommand ${BASE_COMMAND_SOURCES})
 
 # Make sure you link your targets with this command. It can also link libraries and
 # even flags, so linking a target that does not exist will not give a configure-time error.

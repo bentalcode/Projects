@@ -23,39 +23,37 @@ else()
     set(BOOT_ROOT "c:\\Boost\\boost_1_70_0")
 endif()
 
-include_directories(
-    .
-    ./interfaces
-    ./core
-    ../Base
-    ../Base/interfaces
-    ../Base/core
-    ../TestBase
-    ../TestBase/interfaces
-    ../TestBase/core
-    ../MemoryManagement
-    ../MemoryManagement/interfaces
-    ../MemoryManagement/core
-    ${BOOT_ROOT})
-
-set(INCLUDES)
-
-set(SOURCES
-    main.cpp
-    interfaces/ObjectPoolUnitTest.h
-    core/ObjectPoolUnitTest.cpp)
-
-# This is a "default" library, and will match the *** variable setting.
-# Other common choices are STATIC, SHARED, and MODULE
-# Including header files here helps IDEs but is not required.
-# Output libname matches target name, with the usual extensions on your system
-add_library(Base STATIC
+#
+# Base Library...
+#
+set(BASE_INCLUDES_FILES
+    ../Base/interfaces/LogStreamWriter.h
+    ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
+    ../Base/interfaces/Triple.h
+    ../Base/core/BaseDependencies.h
     ../Base/core/PreCompiled.h
-    ../Base/core/PreCompiled.cpp
+    ../Base/core/ReferenceCount.h
+    ../Base/core/ReferenceCountHolder.h
     ../Base/BaseException.h)
 
-add_library(TestBase STATIC
+set(BASE_SOURCES_FILES
+    ../Base/core/LogStreamWriter.cpp
+    ../Base/core/PreCompiled.cpp)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES})
+
+set(BASE_INCLUDES
+    ../Base
+    ../Base/interfaces
+    ../Base/core)
+
+#
+# Test Base Library...
+#
+set(TEST_BASE_INCLUDES_FILES
     ../TestBase/interfaces/IUnitTest.h
     ../TestBase/interfaces/IUnitTestManager.h
     ../TestBase/interfaces/UnitTestBase.h
@@ -63,30 +61,98 @@ add_library(TestBase STATIC
     ../TestBase/interfaces/UnitTestManager.h
     ../TestBase/interfaces/UnitTestRunningResult.h
     ../TestBase/interfaces/UnitTestRunningResults.h
+    ../TestBase/core/PreCompiled.h)
+
+set(TEST_BASE_SOURCES_FILES
     ../TestBase/core/PreCompiled.cpp
-    ../TestBase/core/PreCompiled.h
     ../TestBase/core/UnitTestBase.cpp
     ../TestBase/core/UnitTestManager.cpp
     ../TestBase/core/UnitTestRunningResult.cpp
     ../TestBase/core/UnitTestRunningResults.cpp)
 
-add_library(MemoryManagement STATIC
+set(TEST_BASE_SOURCES
+    ${TEST_BASE_INCLUDES_FILES}
+    ${TEST_BASE_SOURCES_FILES})
+
+set(TEST_BASE_INCLUDES
+    ../TestBase
+    ../TestBase/interfaces
+    ../TestBase/core)
+
+#
+# Memory Management Library...
+#
+set(MEMORY_MANAGEMENT_INCLUDES_FILES
     ../MemoryManagement/interfaces/IMemoryAllocator.h
     ../MemoryManagement/interfaces/IMemoryPool.h
     ../MemoryManagement/interfaces/IObjectPool.h
     ../MemoryManagement/interfaces/MemoryPool.h
     ../MemoryManagement/interfaces/ObjectPool.h
-    ../MemoryManagement/core/MemoryAllocator.h
+    ../MemoryManagement/interfaces/ObjectPoolElement.h
     ../MemoryManagement/core/FixedMemoryPool.h
+    ../MemoryManagement/core/MemoryAllocator.h
     ../MemoryManagement/core/PreCompiled.h
-    ../MemoryManagement/core/MemoryAllocator.cpp
-    ../MemoryManagement/core/FixedMemoryPool.cpp
-    ../MemoryManagement/core/MemoryPool.cpp
-    ../MemoryManagement/core/PreCompiled.cpp
     ../MemoryManagement/MemoryManagementException.h)
 
+set(MEMORY_MANAGEMENT_SOURCES_FILES
+    ../MemoryManagement/core/FixedMemoryPool.cpp
+    ../MemoryManagement/core/MemoryAllocator.cpp
+    ../MemoryManagement/core/MemoryPool.cpp
+    ../MemoryManagement/core/PreCompiled.cpp)
+
+set(MEMORY_MANAGEMENT_SOURCES
+    ${MEMORY_MANAGEMENT_INCLUDES_FILES}
+    ${MEMORY_MANAGEMENT_SOURCES_FILES})
+
+set(MEMORY_MANAGEMENT_INCLUDES
+    ../MemoryManagement
+    ../MemoryManagement/interfaces
+    ../MemoryManagement/core)
+
+#
+# Memory Management Test...
+#
+set(MEMORY_MANAGEMENT_TEST_INCLUDES_FILES
+    interfaces/ObjectPoolUnitTest.h
+    core/PreCompiled.h)
+
+set(MEMORY_MANAGEMENT_TEST_SOURCES_FILES
+    main.cpp
+    core/ObjectPoolUnitTest.cpp
+    core/PreCompiled.cpp)
+
+set(MEMORY_MANAGEMENT_TEST_SOURCES
+    ${MEMORY_MANAGEMENT_TEST_INCLUDES_FILES}
+    ${MEMORY_MANAGEMENT_TEST_SOURCES_FILES})
+
+set(MEMORY_MANAGEMENT_TEST_INCLUDES
+    .
+    ./interfaces
+    ./core)
+
+# This is a "default" library, and will match the *** variable setting.
+# Other common choices are STATIC, SHARED, and MODULE
+# Including header files here helps IDEs but is not required.
+# Output libname matches target name, with the usual extensions on your system
+include_directories(
+    ${MEMORY_MANAGEMENT_TEST_INCLUDES}
+    ${BASE_INCLUDES}
+    ${TEST_BASE_INCLUDES}
+    ${MEMORY_MANAGEMENT_INCLUDES}
+    ${BOOT_ROOT})
+
+add_library(Base STATIC
+    ${BASE_SOURCES})
+
+add_library(TestBase STATIC
+    ${BASE_SOURCES}
+    ${TEST_BASE_SOURCES})
+
+add_library(MemoryManagement STATIC
+    ${MEMORY_MANAGEMENT_SOURCES})
+
 # Adding something we can run - Output name matches target name
-add_executable(MemoryManagementTest ${SOURCES} ${INCLUDES})
+add_executable(MemoryManagementTest ${MEMORY_MANAGEMENT_TEST_SOURCES})
 
 # Make sure you link your targets with this command. It can also link libraries and
 # even flags, so linking a target that does not exist will not give a configure-time error.
