@@ -1,6 +1,8 @@
 #ifndef I_UNIT_TEST_H_eaebb607_7774_468b_a819_7e49bd38e777
 #define I_UNIT_TEST_H_eaebb607_7774_468b_a819_7e49bd38e777
 
+#include "LogStreamWriter.h"
+
 namespace test_base
 {
     class IUnitTest;
@@ -36,13 +38,9 @@ namespace test_base
         virtual void postRun() = 0;
 
         /**
-         * Sets the output streams.
+         * Sets the log stream writer.
          */
-        virtual void setOutputStreams(
-            std::ostream& errorStream,
-            std::ostream& warningStream,
-            std::ostream& informationalStream,
-            std::ostream& debugStream) = 0;
+        virtual void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter) = 0;
 
     private:
         /**

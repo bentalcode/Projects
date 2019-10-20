@@ -1,6 +1,7 @@
 #include "PreCompiled.h"
 
 #include "UnitTestBase.h"
+#include "TestBaseException.h"
 
 using namespace test_base;
 
@@ -8,11 +9,7 @@ using namespace test_base;
  * The UnitTestBase constructor.
  */
 UnitTestBase::UnitTestBase(const std::string& name) :
-    m_name(name),
-    m_errorStream(nullptr),
-    m_warningStream(nullptr),
-    m_informationalStream(nullptr),
-    m_debugStream(nullptr)
+    m_name(name)
 {
 }
 
@@ -46,64 +43,23 @@ void UnitTestBase::postRun()
 }
 
 /**
- * Sets the output streams.
+ * Sets the log stream writer.
  */
-void UnitTestBase::setOutputStreams(
-    std::ostream& errorStream,
-    std::ostream& warningStream,
-    std::ostream& informationalStream,
-    std::ostream& debugStream)
+void UnitTestBase::setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter)
 {
-    m_errorStream = &errorStream;
-    m_warningStream = &warningStream;
-    m_informationalStream = &informationalStream;
-    m_debugStream = &debugStream;
+    if (!logStreamWriter)
+    {
+        std::string errorMessage = "The Log Stream Writer has not been set.";
+        throw TestBaseException(errorMessage);
+    }
+
+    m_logStreamWriter = logStreamWriter;
 }
 
 /**
- * Gets the error stream.
+ * Gets the log stream writer.
  */
-std::ostream& UnitTestBase::getErrorStream() const {
-    if (m_errorStream == nullptr) {
-        return std::cout;
-    }
-    else {
-        return *m_errorStream;
-    }
-}
-
-/**
- * Gets the warning stream.
- */
-std::ostream& UnitTestBase::getWarningStream() const {
-    if (m_warningStream == nullptr) {
-        return std::cout;
-    }
-    else {
-        return *m_warningStream;
-    }
-}
-
-/**
- * Gets the informational stream.
- */
-std::ostream& UnitTestBase::getInformationalStream() const {
-    if (m_informationalStream == nullptr) {
-        return std::cout;
-    }
-    else {
-        return *m_informationalStream;
-    }
-}
-
-/**
- * Gets the debug stream.
- */
-std::ostream& UnitTestBase::getDebugStream() const {
-    if (m_debugStream == nullptr) {
-        return std::cout;
-    }
-    else {
-        return *m_debugStream;
-    }
+base::LogStreamWriter& UnitTestBase::getLogStreamWriter()
+{
+    return *m_logStreamWriter;
 }

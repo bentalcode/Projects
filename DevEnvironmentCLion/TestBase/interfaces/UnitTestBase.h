@@ -3,6 +3,7 @@
 
 #include "IUnitTest.h"
 
+
 namespace test_base {
     /**
      * The UnitTestBase class implements a unit test.
@@ -35,41 +36,19 @@ namespace test_base {
         virtual void postRun();
 
         /**
-         * Sets the output streams.
+         * Sets the log stream writer.
          */
-        virtual void setOutputStreams(
-            std::ostream& errorStream,
-            std::ostream& informationalStream,
-            std::ostream& warningStream,
-            std::ostream& debugStream);
+        virtual void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter);
 
     protected:
         /**
-         * Gets the error stream.
+         * Gets the log stream writer.
          */
-        std::ostream& getErrorStream() const;
-
-        /**
-         * Gets the warning stream.
-         */
-        std::ostream& getWarningStream() const;
-
-        /**
-         * Gets the informational stream.
-         */
-        std::ostream& getInformationalStream() const;
-
-        /**
-         * Gets the debug stream.
-         */
-        std::ostream& getDebugStream() const;
+        base::LogStreamWriter& getLogStreamWriter();
 
     private:
         std::string m_name;
-        std::ostream* m_errorStream;
-        std::ostream* m_warningStream;
-        std::ostream* m_informationalStream;
-        std::ostream* m_debugStream;
+        base::LogStreamWriterPtr m_logStreamWriter;
     };
 }
 

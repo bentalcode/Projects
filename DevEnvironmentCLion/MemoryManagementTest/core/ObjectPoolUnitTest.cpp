@@ -35,7 +35,7 @@ void ObjectPoolUnitTest::processObjectPool(int numberOfElements) {
 
     ObjectPool<int> objectPool1(numberOfElements);
 
-    std::ostream& stream = getInformationalStream();
+    std::ostream& stream = getLogStreamWriter().getInformationalStream();
     stream << "Acquiring " << numberOfElements << " objects from the Object Pool:";
 
     for (int i = 0; i < numberOfElements; ++i) {

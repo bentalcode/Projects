@@ -14,18 +14,14 @@ namespace test_base
     {
     public :
         /**
-         * The UnitTestManager constructor.
+         * The UnitTestManager default constructor.
          */
         UnitTestManager();
 
         /**
          * The UnitTestManager constructor.
          */
-        UnitTestManager(
-            std::ostream& errorStream,
-            std::ostream& warningStream,
-            std::ostream& informationalStream,
-            std::ostream& debugStream);
+        explicit UnitTestManager(base::LogStreamWriterPtr logStreamWriter);
 
         /**
          * The UnitTestManager destructor.
@@ -69,10 +65,7 @@ namespace test_base
         UnitTestManager(const UnitTestManager& rhs);
         UnitTestManager& operator=(const UnitTestManager& rhs);
 
-        std::ostream& m_errorStream;
-        std::ostream& m_warningStream;
-        std::ostream& m_informationalStream;
-        std::ostream& m_debugStream;
+        base::LogStreamWriterPtr m_logStreamWriter;
 
         typedef std::list<IUnitTestPtr> UnitTestList;
         UnitTestList m_unitTests;

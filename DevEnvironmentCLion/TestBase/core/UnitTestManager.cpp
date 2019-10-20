@@ -2,6 +2,7 @@
 
 #include "UnitTestManager.h"
 #include "UnitTestException.h"
+#include "TestBaseException.h"
 
 using namespace test_base;
 
@@ -22,29 +23,24 @@ private:
 };
 
 /**
- * The UnitTestManager constructor.
+ * The UnitTestManager default constructor.
  */
 UnitTestManager::UnitTestManager() :
-    m_errorStream(std::cout),
-    m_warningStream(std::cout),
-    m_informationalStream(std::cout),
-    m_debugStream(std::cout)
+    m_logStreamWriter(new base::LogStreamWriter)
 {
 }
 
 /**
  * The UnitTestManager constructor.
  */
-UnitTestManager::UnitTestManager(
-    std::ostream& errorStream,
-    std::ostream& warningStream,
-    std::ostream& informationalStream,
-    std::ostream& debugStream) :
-    m_errorStream(errorStream),
-    m_warningStream(warningStream),
-    m_informationalStream(informationalStream),
-    m_debugStream(debugStream)
+UnitTestManager::UnitTestManager(base::LogStreamWriterPtr logStreamWriter)
 {
+    if (!logStreamWriter) {
+        std::string errorMessage = "The Log Stream Writer has not been set.";
+        throw TestBaseException(errorMessage);
+    }
+
+    m_logStreamWriter = logStreamWriter;
 }
 
 /**
@@ -59,12 +55,7 @@ UnitTestManager::~UnitTestManager()
  */
 void UnitTestManager::registerTest(IUnitTestPtr unitTest)
 {
-    unitTest->setOutputStreams(
-        m_errorStream,
-        m_warningStream,
-        m_informationalStream,
-        m_debugStream);
-
+    unitTest->setLogStreamWriter(m_logStreamWriter);
     m_unitTests.push_back(unitTest);
 }
 
@@ -90,7 +81,7 @@ void UnitTestManager::run()
         runTest(*unitTest);
     }
 
-    m_informationalStream << m_unitTestRunningResults;
+    m_logStreamWriter->getInformationalStream() << m_unitTestRunningResults;
 }
 
 /**
@@ -115,7 +106,7 @@ void UnitTestManager::runTest(IUnitTest& unitTest)
 
         std::string errorMessage = errorMessageStream.str();
 
-        m_errorStream << std::endl << errorMessage << std::endl;
+        m_logStreamWriter->getErrorStream() << std::endl << errorMessage << std::endl;
 
         setFailedRunningResult(
             unitTest,
@@ -142,7 +133,7 @@ void UnitTestManager::runTest(IUnitTest& unitTest)
 void UnitTestManager::setSuccessfulRunningResult(IUnitTest& unitTest)
 {
     m_unitTestRunningResults.setSuccessfulRunningResult(unitTest);
-    m_informationalStream << "Unit Test: " << unitTest.getName() << " Passed." << std::endl;
+    m_logStreamWriter->getInformationalStream() << "Unit Test: " << unitTest.getName() << " Passed." << std::endl;
 }
 
 /**
@@ -151,6 +142,6 @@ void UnitTestManager::setSuccessfulRunningResult(IUnitTest& unitTest)
 void UnitTestManager::setFailedRunningResult(IUnitTest& unitTest, const std::string& errorMessage)
 {
     m_unitTestRunningResults.setFailedRunningResult(unitTest, errorMessage);
-    m_informationalStream << "Unit Test: " << unitTest.getName() << " Failed." << std::endl;
+    m_logStreamWriter->getInformationalStream() << "Unit Test: " << unitTest.getName() << " Failed." << std::endl;
 }
 
