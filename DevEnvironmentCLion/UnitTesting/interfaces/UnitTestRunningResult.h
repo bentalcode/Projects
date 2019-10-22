@@ -1,13 +1,13 @@
 #ifndef UNIT_TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
 #define UNIT_TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
 
-namespace test_base
+namespace unit_testing
 {
     class UnitTestRunningResult;
     typedef std::shared_ptr<UnitTestRunningResult> UnitTestRunningResultPtr;
 
     /**
-     * The UnitTestRunningResult implements a running results of a unit test.
+     * The UnitTestRunningResult implements running result of a single unit test.
      */
     class UnitTestRunningResult
     {

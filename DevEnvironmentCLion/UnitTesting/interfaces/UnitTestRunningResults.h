@@ -3,7 +3,7 @@
 
 #include "UnitTestRunningResult.h"
 
-namespace test_base
+namespace unit_testing
 {
     class IUnitTest;
 

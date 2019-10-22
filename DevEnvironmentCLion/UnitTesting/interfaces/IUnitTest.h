@@ -1,9 +1,10 @@
 #ifndef I_UNIT_TEST_H_eaebb607_7774_468b_a819_7e49bd38e777
 #define I_UNIT_TEST_H_eaebb607_7774_468b_a819_7e49bd38e777
 
+#include "ITestRegistration.h"
 #include "LogStreamWriter.h"
 
-namespace test_base
+namespace unit_testing
 {
     class IUnitTest;
     typedef std::shared_ptr<IUnitTest> IUnitTestPtr;
@@ -23,14 +24,14 @@ namespace test_base
         virtual const std::string& getName() const = 0;
 
         /**
+         * Registers the tests.
+         */
+        virtual void registerTests(ITestRegistration& registration) = 0;
+
+        /**
          * Runs the logic of pre-running the test.
          */
         virtual void preRun() = 0;
-
-        /**
-         * Runs the logic of the test.
-         */
-        virtual void run() = 0;
 
         /**
          * Runs the logic post running the test.

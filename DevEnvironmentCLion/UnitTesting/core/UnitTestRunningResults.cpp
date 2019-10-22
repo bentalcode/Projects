@@ -3,7 +3,7 @@
 #include "UnitTestRunningResults.h"
 #include "IUnitTest.h"
 
-using namespace test_base;
+using namespace unit_testing;
 
 /**
  * The UnitTestRunningResults constructor.
@@ -79,7 +79,7 @@ void UnitTestRunningResults::getRunningResultsInformation(std::ostream& stream) 
 /**
  * Gets the information of the running results.
  */
-std::ostream& test_base::operator<<(std::ostream& stream, const UnitTestRunningResults& runningResults)
+std::ostream& unit_testing::operator<<(std::ostream& stream, const UnitTestRunningResults& runningResults)
 {
     runningResults.getRunningResultsInformation(stream);
     return stream;

@@ -3,44 +3,42 @@
 
 #include <exception>
 
-/**
- * The UnitTestException captured errors in the unit test.
- */
-class UnitTestException : public std::runtime_error
-{
-public:
-    explicit UnitTestException(const std::string& errorMessage) :
-        std::runtime_error(errorMessage),
-        m_innerExceptionPtr(nullptr)
-    {
-    }
-
-    explicit UnitTestException(
-        const std::string& errorMessage,
-        std::exception& innerException) :
-        std::runtime_error(errorMessage),
-        m_innerExceptionPtr(std::make_exception_ptr(innerException))
-    {
-    }
+namespace unit_testing {
 
     /**
-     * Gets the error message of an exception.
+     * The UnitTestException captured errors in the unit test module.
      */
-    inline std::string getErrorMessage()
-    {
-        return this->what();
-    }
+    class UnitTestException : public std::runtime_error {
+    public:
+        explicit UnitTestException(const std::string &errorMessage) :
+            std::runtime_error(errorMessage),
+            m_innerExceptionPtr(nullptr) {
+        }
 
-    /**
-     * Gets the inner exception.
-     */
-    inline std::exception_ptr getInnerException()
-    {
-        return m_innerExceptionPtr;
-    }
+        explicit UnitTestException(
+            const std::string &errorMessage,
+            std::exception &innerException) :
+            std::runtime_error(errorMessage),
+            m_innerExceptionPtr(std::make_exception_ptr(innerException)) {
+        }
 
-private:
-    std::exception_ptr m_innerExceptionPtr;
-};
+        /**
+         * Gets the error message of an exception.
+         */
+        inline std::string getErrorMessage() {
+            return this->what();
+        }
+
+        /**
+         * Gets the inner exception.
+         */
+        inline std::exception_ptr getInnerException() {
+            return m_innerExceptionPtr;
+        }
+
+    private:
+        std::exception_ptr m_innerExceptionPtr;
+    };
+}
 
 #endif // UNIT_TEST_EXCEPTION_H_7de2081c_b47c_4fb1_86ce_3efa10febec5

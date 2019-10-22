@@ -1,10 +1,11 @@
 #include "PreCompiled.h"
 
 #include "UnitTestManager.h"
+#include "UnitTestHandler.h"
 #include "UnitTestingException.h"
 #include "UnitTestException.h"
 
-using namespace test_base;
+using namespace unit_testing;
 
 class UnitTestPredicate //: public unary_function<IUnitTestPtr, bool>
 {
@@ -91,9 +92,8 @@ void UnitTestManager::runTest(IUnitTest& unitTest)
 {
     try
     {
-        unitTest.preRun();
-        unitTest.run();
-        unitTest.postRun();
+        UnitTestHandler unitTestHandler(unitTest, *m_logStreamWriter);
+        unitTestHandler.run();
 
         setSuccessfulRunningResult(unitTest);
     }

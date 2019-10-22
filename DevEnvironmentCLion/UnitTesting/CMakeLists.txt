@@ -16,19 +16,24 @@ endif()
 # Unit Testing Library...
 #
 set(UNIT_TESTING_INCLUDES_FILES
+    interfaces/ITestFunction.h
+    interfaces/ITestRegistration.h
     interfaces/IUnitTest.h
+    interfaces/IUnitTestHandler.h
     interfaces/IUnitTestManager.h
     interfaces/UnitTestBase.h
     interfaces/UnitTestException.h
-    interfaces/UnitTestManager.h
     interfaces/UnitTestRunningResult.h
     interfaces/UnitTestRunningResults.h
     core/PreCompiled.h
+    core/UnitTestManager.h
+    core/UnitTestHandler.h
     UnitTestingException.h)
 
 set(UNIT_TESTING_SOURCES_FILES
     core/PreCompiled.cpp
     core/UnitTestBase.cpp
+    core/UnitTestHandler.cpp
     core/UnitTestManager.cpp
     core/UnitTestRunningResult.cpp
     core/UnitTestRunningResults.cpp)

@@ -3,7 +3,7 @@
 #include "UnitTestBase.h"
 #include "UnitTestingException.h"
 
-using namespace test_base;
+using namespace unit_testing;
 
 /**
  * The UnitTestBase constructor.

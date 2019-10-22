@@ -5,14 +5,14 @@
 #include "IUnitTestManager.h"
 #include "UnitTestRunningResults.h"
 
-namespace test_base
+namespace unit_testing
 {
     /**
      * The UnitTestManager class implements a unit test manager.
      */
-    class UnitTestManager : public IUnitTestManager
+    class UnitTestManager: public IUnitTestManager
     {
-    public :
+    public:
         /**
          * The UnitTestManager default constructor.
          */

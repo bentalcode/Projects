@@ -1,10 +1,10 @@
 #ifndef I_UNIT_TEST_MANAGER_H_aeec5f3c_e414_42d4_8fd3_6638bbbdca28
 #define I_UNIT_TEST_MANAGER_H_aeec5f3c_e414_42d4_8fd3_6638bbbdca28
 
-namespace test_base
+namespace unit_testing
 {
     /**
-     * The IUnitTestManager defines an interface of a unit test manager.
+     * The IUnitTestManager interface defines a unit test manager.
      */
     class IUnitTestManager
     {

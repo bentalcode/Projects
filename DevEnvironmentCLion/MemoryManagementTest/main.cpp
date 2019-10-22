@@ -2,7 +2,7 @@
 #include "UnitTestManager.h"
 
 using namespace memory_management;
-using namespace test_base;
+using namespace unit_testing;
 
 int main() {
     UnitTestManager testManager;

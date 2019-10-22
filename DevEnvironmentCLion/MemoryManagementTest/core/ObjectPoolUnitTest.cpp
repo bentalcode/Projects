@@ -2,8 +2,30 @@
 
 #include "ObjectPoolUnitTest.h"
 #include "ObjectPool.h"
+#include "ITestFunction.h"
 
 using namespace memory_management;
+
+class UnitTestFunction : public unit_testing::ITestFunction
+{
+public:
+    explicit UnitTestFunction(ObjectPoolUnitTest& unitTest) :
+        m_unitTest(unitTest)
+    {
+    }
+
+    virtual ~UnitTestFunction()
+    {
+    }
+
+    void operator()()
+    {
+        m_unitTest.testObjectPool();
+    }
+
+private:
+    ObjectPoolUnitTest& m_unitTest;
+};
 
 /**
  * The ObjectPoolUnitTest constructor.
@@ -21,9 +43,17 @@ ObjectPoolUnitTest::~ObjectPoolUnitTest()
 }
 
 /**
+ * Registers the tests.
+ */
+void ObjectPoolUnitTest::registerTests(unit_testing::ITestRegistration& registration)
+{
+    registration.registerTest(unit_testing::ITestFunctionPtr(new UnitTestFunction(*this)));
+}
+
+/**
  * Runs the logic the test.
  */
-void ObjectPoolUnitTest::run()
+void ObjectPoolUnitTest::testObjectPool()
 {
     int numberOfElements = 100;
     processObjectPool(numberOfElements);

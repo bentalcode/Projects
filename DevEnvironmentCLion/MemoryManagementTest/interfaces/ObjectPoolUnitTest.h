@@ -9,7 +9,7 @@ namespace memory_management {
     /**
      * The ObjectPoolUnitTest class implements a unit test for an object pool.
      */
-    class ObjectPoolUnitTest : public test_base::UnitTestBase
+    class ObjectPoolUnitTest : public unit_testing::UnitTestBase
     {
     public:
         /**
@@ -23,9 +23,14 @@ namespace memory_management {
         virtual ~ObjectPoolUnitTest();
 
         /**
-         * Runs the logic the test.
+         * Registers the tests.
          */
-        virtual void run();
+        virtual void registerTests(unit_testing::ITestRegistration& registration);
+
+        /**
+         * Test the object pool.
+         */
+        void testObjectPool();
 
     private:
         /**

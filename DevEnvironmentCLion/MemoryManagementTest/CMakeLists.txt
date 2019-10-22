@@ -73,19 +73,24 @@ set(TEST_BASE_INCLUDES
 # Unit Testing Library...
 #
 set(UNIT_TESTING_INCLUDES_FILES
+    ../UnitTesting/interfaces/ITestFunction.h
+    ../UnitTesting/interfaces/ITestRegistration.h
     ../UnitTesting/interfaces/IUnitTest.h
+    ../UnitTesting/interfaces/IUnitTestHandler.h
     ../UnitTesting/interfaces/IUnitTestManager.h
     ../UnitTesting/interfaces/UnitTestBase.h
     ../UnitTesting/interfaces/UnitTestException.h
-    ../UnitTesting/interfaces/UnitTestManager.h
     ../UnitTesting/interfaces/UnitTestRunningResult.h
     ../UnitTesting/interfaces/UnitTestRunningResults.h
     ../UnitTesting/core/PreCompiled.h
+    ../UnitTesting/core/UnitTestManager.h
+    ../UnitTesting/core/UnitTestHandler.h
     ../UnitTesting/UnitTestingException.h)
 
 set(UNIT_TESTING_SOURCES_FILES
     ../UnitTesting/core/PreCompiled.cpp
     ../UnitTesting/core/UnitTestBase.cpp
+    ../UnitTesting/core/UnitTestHandler.cpp
     ../UnitTesting/core/UnitTestManager.cpp
     ../UnitTesting/core/UnitTestRunningResult.cpp
     ../UnitTesting/core/UnitTestRunningResults.cpp)

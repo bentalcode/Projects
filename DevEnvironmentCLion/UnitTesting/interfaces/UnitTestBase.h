@@ -3,8 +3,7 @@
 
 #include "IUnitTest.h"
 
-
-namespace test_base {
+namespace unit_testing {
     /**
      * The UnitTestBase class implements a unit test.
      */
