@@ -78,13 +78,16 @@ set(UNIT_TESTING_INCLUDES_FILES
     ../UnitTesting/interfaces/IUnitTest.h
     ../UnitTesting/interfaces/IUnitTestHandler.h
     ../UnitTesting/interfaces/IUnitTestManager.h
+    ../UnitTesting/interfaces/IUnitTestRunningResult.h
+    ../UnitTesting/interfaces/IUnitTestRunningResults.h
     ../UnitTesting/interfaces/UnitTestBase.h
     ../UnitTesting/interfaces/UnitTestException.h
-    ../UnitTesting/interfaces/UnitTestRunningResult.h
-    ../UnitTesting/interfaces/UnitTestRunningResults.h
     ../UnitTesting/core/PreCompiled.h
-    ../UnitTesting/core/UnitTestManager.h
+    ../UnitTesting/core/UnitTestFunction.h
     ../UnitTesting/core/UnitTestHandler.h
+    ../UnitTesting/core/UnitTestManager.h
+    ../UnitTesting/core/UnitTestRunningResult.h
+    ../UnitTesting/core/UnitTestRunningResults.h
     ../UnitTesting/UnitTestingException.h)
 
 set(UNIT_TESTING_SOURCES_FILES

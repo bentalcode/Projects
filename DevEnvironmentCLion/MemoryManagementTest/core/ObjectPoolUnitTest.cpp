@@ -2,29 +2,24 @@
 
 #include "ObjectPoolUnitTest.h"
 #include "ObjectPool.h"
-#include "ITestFunction.h"
+#include "UnitTestFunction.h"
 
 using namespace memory_management;
 
-class UnitTestFunction : public unit_testing::ITestFunction
-{
+class TestPoolFunction : public unit_testing::UnitTestFunction<ObjectPoolUnitTest> {
 public:
-    explicit UnitTestFunction(ObjectPoolUnitTest& unitTest) :
-        m_unitTest(unitTest)
-    {
+    TestPoolFunction(
+        const std::string &name,
+        ObjectPoolUnitTest &unitTest) :
+        UnitTestFunction(name, unitTest) {
     }
 
-    virtual ~UnitTestFunction()
-    {
+    virtual ~TestPoolFunction() {
     }
 
-    void operator()()
-    {
-        m_unitTest.testObjectPool();
+    virtual void operator()() {
+        getUnitTest().testObjectPool();
     }
-
-private:
-    ObjectPoolUnitTest& m_unitTest;
 };
 
 /**
@@ -43,11 +38,12 @@ ObjectPoolUnitTest::~ObjectPoolUnitTest()
 }
 
 /**
- * Registers the tests.
+ * Registers tests of the unit test.
  */
 void ObjectPoolUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new UnitTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(
+        new TestPoolFunction("TestObjectPool", *this)));
 }
 
 /**

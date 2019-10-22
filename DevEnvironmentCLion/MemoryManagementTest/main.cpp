@@ -6,7 +6,7 @@ using namespace unit_testing;
 
 int main() {
     UnitTestManager testManager;
-    IUnitTestPtr objectPoolUnitTest(new ObjectPoolUnitTest("Object Pool"));
+    IUnitTestPtr objectPoolUnitTest(new ObjectPoolUnitTest("ObjectPool"));
     testManager.registerTest(objectPoolUnitTest);
 
     testManager.run();

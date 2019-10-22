@@ -21,7 +21,7 @@ UnitTestBase::~UnitTestBase()
 }
 
 /**
-  * Gets the name of the test.
+  * Gets the name of the unit test.
   */
 const std::string& UnitTestBase::getName() const
 {
@@ -29,14 +29,14 @@ const std::string& UnitTestBase::getName() const
 }
 
 /**
- * Runs the logic pre-running the test.
+ * Runs the logic pre-running the tests.
  */
 void UnitTestBase::preRun()
 {
 }
 
 /**
- * Runs the logic post running the test.
+ * Runs the logic post running the tests.
  */
 void UnitTestBase::postRun()
 {

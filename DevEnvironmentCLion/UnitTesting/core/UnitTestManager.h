@@ -45,19 +45,9 @@ namespace unit_testing
 
     private:
         /**
-         * Runs a test.
+         * Runs a unit test.
          */
-        void runTest(IUnitTest& unitTest);
-
-        /**
-         * Sets a successful running result of a unit test
-         */
-        void setSuccessfulRunningResult(IUnitTest& unitTest);
-
-        /**
-         * Sets a failed running result of a unit test
-        */
-        void setFailedRunningResult(IUnitTest& unitTest, const std::string& errorMessage);
+        void runUnitTest(IUnitTest& unitTest);
 
         /**
          * Disables the constructor and the assignment operator.

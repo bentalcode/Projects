@@ -43,11 +43,17 @@ void UnitTestRunningResult::getRunningResultInformation(std::ostream& stream) co
     stream << std::endl;
 }
 
-/**
- * Gets the information of the running result.
- */
-std::ostream& unit_testing::operator<<(std::ostream& stream, const UnitTestRunningResult& runningResult)
+const std::string& UnitTestRunningResult::getName() const
 {
-    runningResult.getRunningResultInformation(stream);
-    return stream;
+    return m_name;
+}
+
+bool UnitTestRunningResult::getResultStatus() const
+{
+    return m_resultStatus;
+}
+
+const std::string& UnitTestRunningResult::getErrorMessage() const
+{
+    return m_errorMessage;
 }

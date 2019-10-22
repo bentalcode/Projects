@@ -34,23 +34,23 @@ namespace unit_testing
         /**
          * Runs the unit test.
          */
-        virtual void run();
+        virtual const IUnitTestRunningResults& run();
 
     private:
         /**
          * Runs a test.
          */
-        void runTest(IUnitTest& unitTest, ITestFunction& unitTestFunction);
+        void runTest(ITestFunction& unitTestFunction);
 
         /**
          * Sets a successful running result of a unit test
          */
-        void setSuccessfulRunningResult(IUnitTest& unitTest);
+        void setSuccessfulRunningResult(ITestFunction& unitTestFunction);
 
         /**
          * Sets a failed running result of a unit test
         */
-        void setFailedRunningResult(IUnitTest& unitTest, const std::string& errorMessage);
+        void setFailedRunningResult(ITestFunction& unitTestFunction, const std::string& errorMessage);
 
         /**
          * Disables the constructor and the assignment operator.

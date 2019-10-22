@@ -1,7 +1,7 @@
 #ifndef UNIT_TEST_RUNNING_RESULTS_H_452435c5_7474_4592_849a_149cb8effe70
 #define UNIT_TEST_RUNNING_RESULTS_H_452435c5_7474_4592_849a_149cb8effe70
 
-#include "UnitTestRunningResult.h"
+#include "IUnitTestRunningResults.h"
 
 namespace unit_testing
 {
@@ -10,39 +10,43 @@ namespace unit_testing
     /**
      * The UnitTestRunningResults implements running results of unit tests.
      */
-    class UnitTestRunningResults
+    class UnitTestRunningResults : public IUnitTestRunningResults
     {
     public :
         UnitTestRunningResults();
-        ~UnitTestRunningResults();
+        virtual ~UnitTestRunningResults();
 
         /**
          * Sets a successful running result of a unit test.
          */
-        void setSuccessfulRunningResult(IUnitTest& unitTest);
+        void setSuccessfulRunningResult(const std::string& testName);
 
         /**
          * Sets a failed running result of a unit test
          */
-        void setFailedRunningResult(IUnitTest& unitTest, const std::string& errorMessage);
+        void setFailedRunningResult(const std::string& testName, const std::string& errorMessage);
+
+        /**
+         * Gets the results.
+         */
+        virtual const IUnitTestRunningResultList& getResults() const;
 
         /**
          * Gets the information of the running results.
          */
-        void getRunningResultsInformation(std::ostream& stream) const;
+        virtual void getRunningResultsInformation(std::ostream& stream) const;
+
+        /**
+         * Adds new running results.
+         */
+        void add(const IUnitTestRunningResults& results);
 
     private:
         int m_numberOfSuccessfulTests;
         int m_numberOfFailedTests;
 
-        typedef std::list<UnitTestRunningResultPtr> UnitTestRunningResultList;
-        UnitTestRunningResultList m_runningResults;
+        IUnitTestRunningResultList m_runningResults;
     };
-
-    /**
-     * Gets the information of the running results.
-     */
-    std::ostream& operator<<(std::ostream& stream, const UnitTestRunningResults& runningResults);
 }
 
 #endif // UNIT_TEST_RUNNING_RESULTS_H_452435c5_7474_4592_849a_149cb8effe70

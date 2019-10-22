@@ -56,6 +56,11 @@ UnitTestManager::~UnitTestManager()
  */
 void UnitTestManager::registerTest(IUnitTestPtr unitTest)
 {
+    if (!unitTest) {
+        std::string errorMessage = "The Unit Test has not been set.";
+        throw UnitTestingException(errorMessage);
+    }
+
     unitTest->setLogStreamWriter(m_logStreamWriter);
     m_unitTests.push_back(unitTest);
 }
@@ -65,6 +70,11 @@ void UnitTestManager::registerTest(IUnitTestPtr unitTest)
  */
 void UnitTestManager::unregisterTest(IUnitTestPtr unitTest)
 {
+    if (!unitTest) {
+        std::string errorMessage = "The Unit Test has not been set.";
+        throw UnitTestingException(errorMessage);
+    }
+
     UnitTestPredicate unitTestPredicate(unitTest->getName());
     m_unitTests.erase(
         remove_if(m_unitTests.begin(), m_unitTests.end(), unitTestPredicate),
@@ -79,69 +89,21 @@ void UnitTestManager::run()
     for (UnitTestList::const_iterator i = m_unitTests.begin(); i != m_unitTests.end(); ++i) {
         IUnitTestPtr unitTest = *i;
 
-        runTest(*unitTest);
+        runUnitTest(*unitTest);
     }
 
     m_logStreamWriter->getInformationalStream() << m_unitTestRunningResults;
 }
 
 /**
- * Runs a test.
+ * Runs a unit test.
  */
-void UnitTestManager::runTest(IUnitTest& unitTest)
+void UnitTestManager::runUnitTest(IUnitTest& unitTest)
 {
-    try
-    {
-        UnitTestHandler unitTestHandler(unitTest, *m_logStreamWriter);
-        unitTestHandler.run();
+    UnitTestHandler unitTestHandler(unitTest, *m_logStreamWriter);
+    const IUnitTestRunningResults& runningResults = unitTestHandler.run();
 
-        setSuccessfulRunningResult(unitTest);
-    }
-    catch (UnitTestException& e)
-    {
-        std::stringstream errorMessageStream;
-        errorMessageStream
-            << "The unit test: " << unitTest.getName() << " failed due to the following error: "
-            << e.getErrorMessage();
+    m_logStreamWriter->getInformationalStream() << runningResults;
 
-        std::string errorMessage = errorMessageStream.str();
-
-        m_logStreamWriter->getErrorStream() << std::endl << errorMessage << std::endl;
-
-        setFailedRunningResult(
-            unitTest,
-            errorMessage);
-    }
-    catch (std::exception& e)
-    {
-        std::stringstream errorMessageStream;
-        errorMessageStream
-            << "The unit test: " << unitTest.getName() << " failed due to an expected exception: "
-            << e.what();
-
-        std::string errorMessage = errorMessageStream.str();
-
-        setFailedRunningResult(
-            unitTest,
-            errorMessage);
-    }
+    m_unitTestRunningResults.add(runningResults);
 }
-
-/**
- * Sets a successful running result of a unit test
- */
-void UnitTestManager::setSuccessfulRunningResult(IUnitTest& unitTest)
-{
-    m_unitTestRunningResults.setSuccessfulRunningResult(unitTest);
-    m_logStreamWriter->getInformationalStream() << "Unit Test: " << unitTest.getName() << " Passed." << std::endl;
-}
-
-/**
- * Sets a failed running result of a unit test
- */
-void UnitTestManager::setFailedRunningResult(IUnitTest& unitTest, const std::string& errorMessage)
-{
-    m_unitTestRunningResults.setFailedRunningResult(unitTest, errorMessage);
-    m_logStreamWriter->getInformationalStream() << "Unit Test: " << unitTest.getName() << " Failed." << std::endl;
-}
-

@@ -21,13 +21,16 @@ set(UNIT_TESTING_INCLUDES_FILES
     interfaces/IUnitTest.h
     interfaces/IUnitTestHandler.h
     interfaces/IUnitTestManager.h
+    interfaces/IUnitTestRunningResult.h
+    interfaces/IUnitTestRunningResults.h
     interfaces/UnitTestBase.h
     interfaces/UnitTestException.h
-    interfaces/UnitTestRunningResult.h
-    interfaces/UnitTestRunningResults.h
     core/PreCompiled.h
-    core/UnitTestManager.h
+    core/UnitTestFunction.h
     core/UnitTestHandler.h
+    core/UnitTestManager.h
+    core/UnitTestRunningResult.h
+    core/UnitTestRunningResults.h
     UnitTestingException.h)
 
 set(UNIT_TESTING_SOURCES_FILES

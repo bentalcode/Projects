@@ -19,22 +19,22 @@ namespace unit_testing
         virtual ~IUnitTest();
 
         /**
-         * Gets the name of the test.
+         * Gets the name of the unit test.
          */
         virtual const std::string& getName() const = 0;
 
         /**
-         * Registers the tests.
+         * Registers tests of the unit test.
          */
         virtual void registerTests(ITestRegistration& registration) = 0;
 
         /**
-         * Runs the logic of pre-running the test.
+         * Runs the logic of pre-running the tests.
          */
         virtual void preRun() = 0;
 
         /**
-         * Runs the logic post running the test.
+         * Runs the logic post running the tests.
          */
         virtual void postRun() = 0;
 

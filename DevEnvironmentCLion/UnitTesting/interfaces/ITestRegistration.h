@@ -11,7 +11,14 @@ namespace unit_testing
     class ITestRegistration
     {
     public:
+        /**
+         * The ITestRegistration constructor.
+         */
         ITestRegistration();
+
+        /**
+         * The ITestRegistration destructor.
+         */
         virtual ~ITestRegistration();
 
         /**

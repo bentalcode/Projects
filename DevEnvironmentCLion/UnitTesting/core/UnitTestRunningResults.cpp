@@ -1,6 +1,7 @@
 #include "PreCompiled.h"
 
 #include "UnitTestRunningResults.h"
+#include "UnitTestRunningResult.h"
 #include "IUnitTest.h"
 
 using namespace unit_testing;
@@ -24,10 +25,10 @@ UnitTestRunningResults::~UnitTestRunningResults()
 /**
  * Sets a successful running result of a unit test.
  */
-void UnitTestRunningResults::setSuccessfulRunningResult(IUnitTest& unitTest)
+void UnitTestRunningResults::setSuccessfulRunningResult(const std::string& testName)
 {
-    UnitTestRunningResultPtr runningResultPtr(new UnitTestRunningResult(
-        unitTest.getName(),
+    IUnitTestRunningResultPtr runningResultPtr(new UnitTestRunningResult(
+        testName,
         true,
         ""));
 
@@ -40,17 +41,25 @@ void UnitTestRunningResults::setSuccessfulRunningResult(IUnitTest& unitTest)
  * Sets a failed running result of a unit test.
  */
 void UnitTestRunningResults::setFailedRunningResult(
-    IUnitTest& unitTest,
+    const std::string& testName,
     const std::string& errorMessage)
 {
-    UnitTestRunningResultPtr runningResultPtr(new UnitTestRunningResult(
-        unitTest.getName(),
+    IUnitTestRunningResultPtr runningResultPtr(new UnitTestRunningResult(
+        testName,
         false,
         errorMessage));
 
     m_runningResults.push_back(runningResultPtr);
 
     ++m_numberOfFailedTests;
+}
+
+/**
+ * Gets the results.
+ */
+const IUnitTestRunningResultList& UnitTestRunningResults::getResults() const
+{
+    return m_runningResults;
 }
 
 /**
@@ -62,10 +71,10 @@ void UnitTestRunningResults::getRunningResultsInformation(std::ostream& stream) 
 
     int index = 0;
 
-    for (UnitTestRunningResultList::const_iterator i = m_runningResults.begin(); i != m_runningResults.end(); ++i)
+    for (IUnitTestRunningResultList::const_iterator i = m_runningResults.begin(); i != m_runningResults.end(); ++i)
     {
         ++index;
-        UnitTestRunningResultPtr runningResultPtr = *i;
+        IUnitTestRunningResultPtr runningResultPtr = *i;
         stream << "[" << index << "] " << *runningResultPtr << std::endl;
     }
 
@@ -77,11 +86,10 @@ void UnitTestRunningResults::getRunningResultsInformation(std::ostream& stream) 
 }
 
 /**
- * Gets the information of the running results.
+ * Adds new running results.
  */
-std::ostream& unit_testing::operator<<(std::ostream& stream, const UnitTestRunningResults& runningResults)
+void UnitTestRunningResults::add(const IUnitTestRunningResults& results)
 {
-    runningResults.getRunningResultsInformation(stream);
-    return stream;
+    const IUnitTestRunningResultList& runningResults = results.getResults();
+    m_runningResults.insert(m_runningResults.end(), runningResults.begin(), runningResults.end());
 }
-

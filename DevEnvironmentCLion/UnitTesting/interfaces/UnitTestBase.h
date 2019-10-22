@@ -20,17 +20,17 @@ namespace unit_testing {
         virtual ~UnitTestBase();
 
         /**
-         * Gets the name of the test.
+         * Gets the name of the unit test.
          */
         virtual const std::string& getName() const;
 
         /**
-         * Runs the logic pre-running the test.
+         * Runs the logic pre-running the tests.
          */
         virtual void preRun();
 
         /**
-         * Runs the logic post running the test.
+         * Runs the logic post running the tests.
          */
         virtual void postRun();
 

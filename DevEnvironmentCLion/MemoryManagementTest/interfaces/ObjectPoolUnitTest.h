@@ -23,7 +23,7 @@ namespace memory_management {
         virtual ~ObjectPoolUnitTest();
 
         /**
-         * Registers the tests.
+         * Registers tests of the unit test.
          */
         virtual void registerTests(unit_testing::ITestRegistration& registration);
 
