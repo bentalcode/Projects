@@ -1,6 +1,8 @@
 #ifndef I_TEST_FUNCTION_H_fad4afe5_1383_4250_931e_0454b5f93fb5
 #define I_TEST_FUNCTION_H_fad4afe5_1383_4250_931e_0454b5f93fb5
 
+#include "BaseDependencies.h"
+
 namespace unit_testing {
 
     class ITestFunction;

@@ -142,11 +142,13 @@ set(MEMORY_MANAGEMENT_INCLUDES
 # Memory Management Test...
 #
 set(MEMORY_MANAGEMENT_TEST_INCLUDES_FILES
+    interfaces/MemoryAllocatorUnitTest.h
     interfaces/ObjectPoolUnitTest.h
     core/PreCompiled.h)
 
 set(MEMORY_MANAGEMENT_TEST_SOURCES_FILES
     main.cpp
+    core/MemoryAllocatorUnitTest.cpp
     core/ObjectPoolUnitTest.cpp
     core/PreCompiled.cpp)
 

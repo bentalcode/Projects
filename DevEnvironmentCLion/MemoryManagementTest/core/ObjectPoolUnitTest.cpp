@@ -18,7 +18,7 @@ public:
     }
 
     virtual void operator()() {
-        getUnitTest().testObjectPool();
+        getUnitTest().objectPoolTest();
     }
 };
 
@@ -47,15 +47,18 @@ void ObjectPoolUnitTest::registerTests(unit_testing::ITestRegistration& registra
 }
 
 /**
- * Runs the logic the test.
+ * Tests the object pool.
  */
-void ObjectPoolUnitTest::testObjectPool()
+void ObjectPoolUnitTest::objectPoolTest()
 {
     int numberOfElements = 100;
-    processObjectPool(numberOfElements);
+    testObjectPool(numberOfElements);
 }
 
-void ObjectPoolUnitTest::processObjectPool(int numberOfElements) {
+/**
+ * Tests the object pool.
+ */
+void ObjectPoolUnitTest::testObjectPool(int numberOfElements) {
     std::vector<int*> elements;
     elements.reserve(numberOfElements);
 

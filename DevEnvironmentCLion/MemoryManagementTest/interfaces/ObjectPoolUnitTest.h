@@ -1,5 +1,5 @@
-#ifndef OBJECT_POOL_UNIT_BASE_H_177ca74f_61c2_4fe2_ab46_9b70c4eba730
-#define OBJECT_POOL_UNIT_BASE_H_177ca74f_61c2_4fe2_ab46_9b70c4eba730
+#ifndef OBJECT_POOL_UNIT_TEST_H_177ca74f_61c2_4fe2_ab46_9b70c4eba730
+#define OBJECT_POOL_UNIT_TEST_H_177ca74f_61c2_4fe2_ab46_9b70c4eba730
 
 #include "PreCompiled.h"
 #include "UnitTestBase.h"
@@ -28,16 +28,16 @@ namespace memory_management {
         virtual void registerTests(unit_testing::ITestRegistration& registration);
 
         /**
-         * Test the object pool.
+         * Tests the object pool.
          */
-        void testObjectPool();
+        void objectPoolTest();
 
     private:
         /**
-         * Processes the object pool.
+         * Tests the object pool.
          */
-        void processObjectPool(int numberOfElements);
+        void testObjectPool(int numberOfElements);
     };
 }
 
-#endif /* OBJECT_POOL_UNIT_BASE_H_177ca74f_61c2_4fe2_ab46_9b70c4eba730 */
+#endif /* OBJECT_POOL_UNIT_TEST_H_177ca74f_61c2_4fe2_ab46_9b70c4eba730 */
