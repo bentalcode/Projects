@@ -169,6 +169,22 @@ public final class Walk<TKey extends Comparable<TKey>, TValue> implements IWalk<
     }
 
     /**
+     * Gets the number of steps.
+     */
+    @Override
+    public int size() {
+        return this.vertices.size();
+    }
+
+    /**
+     * Checks whether a walk is empty.
+     */
+    @Override
+    public boolean empty() {
+        return this.size() == 0;
+    }
+
+    /**
      * Gets the iterator.
      */
     @Override

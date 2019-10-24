@@ -3,6 +3,8 @@ package datastructures.graph.interfaces;
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
+import datastructures.collections.interfaces.ISizableCollection;
+
 import java.util.List;
 
 /**
@@ -12,7 +14,8 @@ import java.util.List;
 public interface IWalk<TKey extends Comparable<TKey>, TValue> extends
     IIterable<IVertex<TKey, TValue>>,
     IReverseIterable<IVertex<TKey, TValue>>,
-    IUnaryComparator<IWalk<TKey, TValue>> {
+    IUnaryComparator<IWalk<TKey, TValue>>,
+    ISizableCollection {
 
     /**
      * Adds a vertex.

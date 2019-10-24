@@ -268,6 +268,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
 
         currPath.addVertex(curr);
         visited.add(curr);
+        assert(currPath.size() == visited.size());
 
         for (IVertex<TKey, TValue> next : this.graph.getAdjacencyMatrix().getAdjacentVertices(curr)) {
             if (visited.contains(next)) {
