@@ -16,6 +16,8 @@ endif()
 # Base Library...
 #
 set(BASE_INCLUDES_FILES
+    interfaces/DateTime.h
+    interfaces/Duration.h
     interfaces/LogStreamWriter.h
     interfaces/Pair.h
     interfaces/SharedPtr.h
@@ -27,6 +29,7 @@ set(BASE_INCLUDES_FILES
     BaseException.h)
 
 set(BASE_SOURCES_FILES
+    core/DateTime.cpp
     core/LogStreamWriter.cpp
     core/PreCompiled.cpp)
 

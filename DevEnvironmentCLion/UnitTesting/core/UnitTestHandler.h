@@ -4,7 +4,11 @@
 #include "IUnitTestHandler.h"
 #include "ITestRegistration.h"
 #include "IUnitTest.h"
-#include "UnitTestRunningResults.h"
+#include "TestRunningResults.h"
+
+namespace base {
+    class DateTime;
+}
 
 namespace unit_testing
 {
@@ -34,23 +38,18 @@ namespace unit_testing
         /**
          * Runs the unit test.
          */
-        virtual const IUnitTestRunningResults& run();
+        virtual const ITestRunningResults& run();
 
     private:
         /**
+         * Processes a test.
+         */
+        void processTest(ITestFunction& unitTestFunction);
+
+        /**
          * Runs a test.
          */
-        void runTest(ITestFunction& unitTestFunction);
-
-        /**
-         * Sets a successful running result of a unit test
-         */
-        void setSuccessfulRunningResult(ITestFunction& unitTestFunction);
-
-        /**
-         * Sets a failed running result of a unit test
-        */
-        void setFailedRunningResult(ITestFunction& unitTestFunction, const std::string& errorMessage);
+        bool runTest(ITestFunction& unitTestFunction, std::string& errorMessage);
 
         /**
          * Disables the constructor and the assignment operator.
@@ -65,7 +64,7 @@ namespace unit_testing
         typedef std::list<ITestFunctionPtr> TestList;
         TestList m_unitTests;
 
-        UnitTestRunningResults m_unitTestRunningResults;
+        TestRunningResults m_unitTestRunningResults;
     };
 }
 

@@ -1,33 +1,50 @@
-#ifndef UNIT_TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
-#define UNIT_TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
+#ifndef TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
+#define TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
 
-#include "IUnitTestRunningResult.h"
+#include "ITestRunningResult.h"
 
 namespace unit_testing
 {
     /**
-     * The UnitTestRunningResult implements running result of a single unit test.
+     * The TestRunningResult implements running result of a single test.
      */
-    class UnitTestRunningResult : public IUnitTestRunningResult
+    class TestRunningResult : public ITestRunningResult
     {
     public :
         /**
          * The UnitTestRunningResult constructor.
          */
-        UnitTestRunningResult(
+        TestRunningResult(
             const std::string& name,
+            const base::DateTime& startTime,
+            const base::DateTime& endTime,
             bool resultStatus,
             const std::string& errorMessage);
 
         /**
          * The UnitTestRunningResult destructor.
          */
-        virtual ~UnitTestRunningResult();
+        virtual ~TestRunningResult();
 
         /**
          * Gets the name of a unit test.
          */
         virtual const std::string& getName() const;
+
+        /**
+         * Gets the start time of a test.
+         */
+        virtual const base::DateTime& getStartTime() const;
+
+        /**
+         * Gets the end time of a test.
+         */
+        virtual const base::DateTime& getEndTime() const;
+
+        /**
+         * Gets the duration of a test.
+         */
+        virtual const Duration& getDuration() const;
 
         /**
          * Gets the result status of running a unit test.
@@ -46,9 +63,12 @@ namespace unit_testing
 
     private:
         std::string m_name;
+        base::DateTime m_startTime;
+        base::DateTime m_endTime;
+        Duration m_duration;
         bool m_resultStatus;
         std::string m_errorMessage;
     };
 }
 
-#endif // UNIT_TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
+#endif // TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b

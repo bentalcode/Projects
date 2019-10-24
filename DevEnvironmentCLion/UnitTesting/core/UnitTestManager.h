@@ -3,7 +3,7 @@
 
 #include "IUnitTest.h"
 #include "IUnitTestManager.h"
-#include "UnitTestRunningResults.h"
+#include "TestRunningResults.h"
 
 namespace unit_testing
 {
@@ -60,7 +60,7 @@ namespace unit_testing
         typedef std::list<IUnitTestPtr> UnitTestList;
         UnitTestList m_unitTests;
 
-        UnitTestRunningResults m_unitTestRunningResults;
+        TestRunningResults m_unitTestRunningResults;
     };
 }
 

@@ -27,6 +27,8 @@ endif()
 # Base Library...
 #
 set(BASE_INCLUDES_FILES
+    ../Base/interfaces/DateTime.h
+    ../Base/interfaces/Duration.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
@@ -38,6 +40,7 @@ set(BASE_INCLUDES_FILES
     ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES
+    ../Base/core/DateTime.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/PreCompiled.cpp)
 
@@ -78,16 +81,16 @@ set(UNIT_TESTING_INCLUDES_FILES
     ../UnitTesting/interfaces/IUnitTest.h
     ../UnitTesting/interfaces/IUnitTestHandler.h
     ../UnitTesting/interfaces/IUnitTestManager.h
-    ../UnitTesting/interfaces/IUnitTestRunningResult.h
-    ../UnitTesting/interfaces/IUnitTestRunningResults.h
+    ../UnitTesting/interfaces/ITestRunningResult.h
+    ../UnitTesting/interfaces/ITestRunningResults.h
     ../UnitTesting/interfaces/UnitTestBase.h
     ../UnitTesting/interfaces/UnitTestException.h
     ../UnitTesting/core/PreCompiled.h
     ../UnitTesting/core/UnitTestFunction.h
     ../UnitTesting/core/UnitTestHandler.h
     ../UnitTesting/core/UnitTestManager.h
-    ../UnitTesting/core/UnitTestRunningResult.h
-    ../UnitTesting/core/UnitTestRunningResults.h
+    ../UnitTesting/core/TestRunningResult.h
+    ../UnitTesting/core/TestRunningResults.h
     ../UnitTesting/UnitTestingException.h)
 
 set(UNIT_TESTING_SOURCES_FILES
@@ -95,8 +98,8 @@ set(UNIT_TESTING_SOURCES_FILES
     ../UnitTesting/core/UnitTestBase.cpp
     ../UnitTesting/core/UnitTestHandler.cpp
     ../UnitTesting/core/UnitTestManager.cpp
-    ../UnitTesting/core/UnitTestRunningResult.cpp
-    ../UnitTesting/core/UnitTestRunningResults.cpp)
+    ../UnitTesting/core/TestRunningResult.cpp
+    ../UnitTesting/core/TestRunningResults.cpp)
 
 set(UNIT_TESTING_SOURCES
     ${BASE_SOURCES}

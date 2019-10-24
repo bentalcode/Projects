@@ -1,7 +1,7 @@
 #ifndef I_UNIT_TEST_HANDLER_H_468be4fa_4f37_478b_8e29_79004d0ad18a
 #define I_UNIT_TEST_HANDLER_H_468be4fa_4f37_478b_8e29_79004d0ad18a
 
-#include "IUnitTestRunningResults.h"
+#include "ITestRunningResults.h"
 
 namespace unit_testing
 {
@@ -17,7 +17,7 @@ namespace unit_testing
         /**
          * Runs the unit test.
          */
-        virtual const IUnitTestRunningResults& run() = 0;
+        virtual const ITestRunningResults& run() = 0;
 
     private:
         /**

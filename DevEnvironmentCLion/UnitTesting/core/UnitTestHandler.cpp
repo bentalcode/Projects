@@ -1,9 +1,10 @@
 #include "PreCompiled.h"
 
 #include "UnitTestHandler.h"
-#include "UnitTestRunningResults.h"
+#include "TestRunningResults.h"
 #include "UnitTestingException.h"
 #include "UnitTestException.h"
+#include "DateTime.h"
 
 using namespace unit_testing;
 
@@ -42,7 +43,7 @@ void UnitTestHandler::registerTest(ITestFunctionPtr testFunction)
 /**
  * Runs the registered tests.
  */
-const IUnitTestRunningResults& UnitTestHandler::run()
+const ITestRunningResults& UnitTestHandler::run()
 {
     //
     // Registers the tests...
@@ -50,29 +51,70 @@ const IUnitTestRunningResults& UnitTestHandler::run()
     m_unitTest.registerTests(*this);
 
     //
-    // Run each test...
+    // process the tests...
     //
+    m_unitTestRunningResults.getStartTime();
+
     for (TestList::const_iterator i = m_unitTests.begin(); i != m_unitTests.end(); ++i)
     {
         ITestFunctionPtr unitTestFunction = *i;
-        runTest(*unitTestFunction);
+        processTest(*unitTestFunction);
     }
+
+    m_unitTestRunningResults.setEndTime();
 
     return m_unitTestRunningResults;
 }
 
 /**
+ * Processes a test.
+ */
+void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
+{
+    base::DateTime startTime = base::DateTime::now();
+
+    std::string errorMessage;
+    bool resultStatus = runTest(unitTestFunction, errorMessage);
+
+    base::DateTime endTime = base::DateTime::now();
+
+    if (resultStatus)
+    {
+        m_unitTestRunningResults.setSuccessfulRunningResult(
+            unitTestFunction.getName(),
+            startTime,
+            endTime);
+
+        m_logStreamWriter.getInformationalStream()
+            << "Unit Test: " << unitTestFunction.getName() << ", Passed." << std::endl;
+    }
+    else
+    {
+        m_unitTestRunningResults.setFailedRunningResult(
+            unitTestFunction.getName(),
+            startTime,
+            endTime,
+            errorMessage);
+
+        m_logStreamWriter.getErrorStream()
+            << "Unit Test: "
+                << unitTestFunction.getName() << ", Failed. ErrorMessage: " << errorMessage << std::endl;
+    }
+}
+
+/**
  * Runs a test.
  */
-void UnitTestHandler::runTest(ITestFunction& unitTestFunction)
+bool UnitTestHandler::runTest(ITestFunction& unitTestFunction, std::string& errorMessage)
 {
+    bool resultStatus = false;
+
     try
     {
         m_unitTest.preRun();
         unitTestFunction();
         m_unitTest.postRun();
-
-        setSuccessfulRunningResult(unitTestFunction);
+        resultStatus = true;
     }
     catch (UnitTestException& e)
     {
@@ -81,13 +123,7 @@ void UnitTestHandler::runTest(ITestFunction& unitTestFunction)
             << "The unit test: " << unitTestFunction.getName() << " failed due to the following error: "
             << e.getErrorMessage();
 
-        std::string errorMessage = errorMessageStream.str();
-
-        m_logStreamWriter.getErrorStream() << std::endl << errorMessage << std::endl;
-
-        setFailedRunningResult(
-            unitTestFunction,
-            errorMessage);
+        errorMessage = errorMessageStream.str();
     }
     catch (std::exception& e)
     {
@@ -96,29 +132,8 @@ void UnitTestHandler::runTest(ITestFunction& unitTestFunction)
             << "The unit test: " << unitTestFunction.getName() << " failed due to an expected exception: "
             << e.what();
 
-        std::string errorMessage = errorMessageStream.str();
-
-        setFailedRunningResult(
-            unitTestFunction,
-            errorMessage);
+        errorMessage = errorMessageStream.str();
     }
-}
 
-/**
- * Sets a successful running result of a unit test
- */
-void UnitTestHandler::setSuccessfulRunningResult(ITestFunction& unitTestFunction)
-{
-    m_unitTestRunningResults.setSuccessfulRunningResult(unitTestFunction.getName());
-    m_logStreamWriter.getInformationalStream() << "Unit Test: " << unitTestFunction.getName() << ", Passed." << std::endl;
+    return resultStatus;
 }
-
-/**
- * Sets a failed running result of a unit test
- */
-void UnitTestHandler::setFailedRunningResult(ITestFunction& unitTestFunction, const std::string& errorMessage)
-{
-    m_unitTestRunningResults.setFailedRunningResult(unitTestFunction.getName(), errorMessage);
-    m_logStreamWriter.getInformationalStream() << "Unit Test: " << unitTestFunction.getName() << ", Failed." << std::endl;
-}
-

@@ -3,11 +3,10 @@
 #include "UnitTestManager.h"
 #include "UnitTestHandler.h"
 #include "UnitTestingException.h"
-#include "UnitTestException.h"
 
 using namespace unit_testing;
 
-class UnitTestPredicate //: public unary_function<IUnitTestPtr, bool>
+class UnitTestPredicate : public std::unary_function<IUnitTestPtr, bool>
 {
 public:
     UnitTestPredicate(const std::string& name) :
@@ -86,11 +85,15 @@ void UnitTestManager::unregisterTest(IUnitTestPtr unitTest)
  */
 void UnitTestManager::run()
 {
+    m_unitTestRunningResults.setStartTime();
+
     for (UnitTestList::const_iterator i = m_unitTests.begin(); i != m_unitTests.end(); ++i) {
         IUnitTestPtr unitTest = *i;
 
         runUnitTest(*unitTest);
     }
+
+    m_unitTestRunningResults.setEndTime();
 
     m_logStreamWriter->getInformationalStream() << m_unitTestRunningResults;
 }
@@ -101,7 +104,7 @@ void UnitTestManager::run()
 void UnitTestManager::runUnitTest(IUnitTest& unitTest)
 {
     UnitTestHandler unitTestHandler(unitTest, *m_logStreamWriter);
-    const IUnitTestRunningResults& runningResults = unitTestHandler.run();
+    const ITestRunningResults& runningResults = unitTestHandler.run();
 
     m_logStreamWriter->getInformationalStream() << runningResults;
 
