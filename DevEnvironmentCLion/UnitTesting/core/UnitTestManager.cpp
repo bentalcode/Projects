@@ -87,9 +87,7 @@ void UnitTestManager::run()
 {
     m_unitTestRunningResults.setStartTime();
 
-    for (UnitTestList::const_iterator i = m_unitTests.begin(); i != m_unitTests.end(); ++i) {
-        IUnitTestPtr unitTest = *i;
-
+    for (IUnitTestPtr unitTest : m_unitTests) {
         runUnitTest(*unitTest);
     }
 

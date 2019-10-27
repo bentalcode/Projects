@@ -14,39 +14,24 @@ namespace unit_testing
         /**
          * The ITestRegistration constructor.
          */
-        ITestRegistration();
+        ITestRegistration() = default;
 
         /**
          * The ITestRegistration destructor.
          */
-        virtual ~ITestRegistration();
+        virtual ~ITestRegistration() = default;
+
+        /**
+         * Disables the copy constructor and assignment operator.
+         */
+        ITestRegistration(const ITestRegistration& rhs) = delete;
+        ITestRegistration& operator=(const ITestRegistration& rhs) = delete;
 
         /**
          * Registers a test.
          */
         virtual void registerTest(ITestFunctionPtr testFunction) = 0;
-
-    private:
-        /**
-         * Disables the constructor and the assignment operator.
-         */
-        ITestRegistration(const ITestRegistration& rhs);
-        ITestRegistration& operator=(const ITestRegistration& rhs);
     };
-
-    /**
-     * The ITestRegistration constructor.
-     */
-    inline ITestRegistration::ITestRegistration()
-    {
-    }
-
-    /**
-     * The ITestRegistration destructor.
-     */
-    inline ITestRegistration::~ITestRegistration()
-    {
-    }
 }
 
 #endif // I_TEST_REGISTRATION_H_c0ed3a41_f212_4b3a_81e0_8ddb907c399d

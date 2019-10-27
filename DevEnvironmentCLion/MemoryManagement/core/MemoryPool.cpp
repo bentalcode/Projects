@@ -43,13 +43,11 @@ void* MemoryPool::acquireElement()
     //
     FixedMemoryPoolPtr availablePool;
 
-    for (MemoryPoolList::iterator i = m_poolList.begin(); i != m_poolList.end(); ++i)
+    for (FixedMemoryPoolPtr pool : m_poolList)
     {
-        FixedMemoryPoolPtr currPool = *i;
-
-        if (!currPool->overCapacity())
+        if (!pool->overCapacity())
         {
-            availablePool = currPool;
+            availablePool = pool;
             break;
         }
     }
@@ -134,9 +132,9 @@ std::size_t MemoryPool::size() const
     //
     // Include the size of each pool...
     //
-    for (MemoryPoolList::const_iterator i = m_poolList.begin(); i != m_poolList.end(); ++i)
+    for (FixedMemoryPoolPtr pool : m_poolList)
     {
-        size += (*i)->size();
+        size += pool->size();
     }
 
     //
@@ -247,13 +245,12 @@ void MemoryPool::getPoolInformation(std::ostream& stream) const
     stream << std::endl << "Sub Pools:" << std::endl;
 
     int index = 0;
-    for (MemoryPoolList::const_iterator i = m_poolList.begin(); i != m_poolList.end(); ++i)
+    for (FixedMemoryPoolPtr pool : m_poolList)
     {
         ++index;
 
         stream << std::endl << "Pool" << index << std::endl;
-        FixedMemoryPoolPtr poolPtr = *i;
-        stream << *poolPtr;
+        stream << *pool;
         stream << std::endl;
     }
 }

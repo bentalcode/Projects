@@ -24,7 +24,7 @@ namespace unit_testing {
         /**
          * Gets the name of the test.
          */
-        virtual const std::string& getName() const;
+        virtual const std::string& getName() const override;
 
         /**
          * Gets the unit test.

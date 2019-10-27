@@ -22,22 +22,22 @@ namespace unit_testing {
         /**
          * Gets the name of the unit test.
          */
-        virtual const std::string& getName() const;
+        virtual const std::string& getName() const override;
 
         /**
          * Runs the logic pre-running the tests.
          */
-        virtual void preRun();
+        virtual void preRun() override;
 
         /**
          * Runs the logic post running the tests.
          */
-        virtual void postRun();
+        virtual void postRun() override;
 
         /**
          * Sets the log stream writer.
          */
-        virtual void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter);
+        virtual void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter) override;
 
     protected:
         /**

@@ -9,7 +9,7 @@ namespace memory_management {
     /**
      * The MemoryAllocatorUnitTest class implements a unit test for a memory allocator.
      */
-    class MemoryAllocatorUnitTest : public unit_testing::UnitTestBase
+    class MemoryAllocatorUnitTest final : public unit_testing::UnitTestBase
     {
     public:
         /**

@@ -8,7 +8,7 @@ namespace unit_testing
     /**
      * The TestRunningResults implements running results of tests.
      */
-    class TestRunningResults : public ITestRunningResults
+    class TestRunningResults final : public ITestRunningResults
     {
     public :
         TestRunningResults();
@@ -17,47 +17,47 @@ namespace unit_testing
         /**
          * Gets the number of successful tests.
          */
-        virtual int numberOfSuccessfulTests() const;
+        virtual int numberOfSuccessfulTests() const override;
 
         /**
          * Gets the number of failed tests.
          */
-        virtual int numberOfFailedTests() const;
-
-        /**
-         * Sets the start time of the tests.
-         */
-        virtual void setStartTime();
-
-        /**
-        * Sets the end time of the tests.
-        */
-        virtual void setEndTime();
+        virtual int numberOfFailedTests() const override;
 
         /**
          * Gets the start time of the tests.
          */
-        virtual base::DateTimePtr getStartTime() const;
+        virtual base::DateTimePtr getStartTime() const override;
 
         /**
          * Gets the end time of the tests.
          */
-        virtual base::DateTimePtr getEndTime() const;
+        virtual base::DateTimePtr getEndTime() const override;
 
         /**
          * Gets the duration of the tests.
          */
-        virtual DurationPtr getDuration() const;
+        virtual DurationPtr getDuration() const override;
 
         /**
          * Gets the results.
          */
-        virtual const ITestRunningResultList& getResults() const;
+        virtual const ITestRunningResultList& getResults() const override;
 
         /**
          * Gets the information of the running results.
          */
-        virtual void getRunningResultsInformation(std::ostream& stream) const;
+        virtual void getRunningResultsInformation(std::ostream& stream) const override;
+
+        /**
+         * Sets the start time of the tests.
+         */
+        void setStartTime();
+
+        /**
+        * Sets the end time of the tests.
+        */
+        void setEndTime();
 
         /**
          * Sets a successful running result of a test.

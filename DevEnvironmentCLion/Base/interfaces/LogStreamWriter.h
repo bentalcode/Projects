@@ -9,7 +9,7 @@ namespace base
     /**
      * The LogStreamWriter class implements a writer to a log stream.
      */
-    class LogStreamWriter : public std::basic_ostream<char, std::char_traits<char>>
+    class LogStreamWriter final : public std::basic_ostream<char, std::char_traits<char>>
     {
     public:
         /**

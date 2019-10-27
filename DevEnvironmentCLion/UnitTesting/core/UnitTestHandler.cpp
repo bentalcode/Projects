@@ -55,9 +55,8 @@ const ITestRunningResults& UnitTestHandler::run()
     //
     m_unitTestRunningResults.getStartTime();
 
-    for (TestList::const_iterator i = m_unitTests.begin(); i != m_unitTests.end(); ++i)
+    for (ITestFunctionPtr unitTestFunction : m_unitTests)
     {
-        ITestFunctionPtr unitTestFunction = *i;
         processTest(*unitTestFunction);
     }
 
@@ -98,7 +97,7 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
 
         m_logStreamWriter.getErrorStream()
             << "Unit Test: "
-                << unitTestFunction.getName() << ", Failed. ErrorMessage: " << errorMessage << std::endl;
+            << unitTestFunction.getName() << ", Failed. ErrorMessage: " << errorMessage << std::endl;
     }
 }
 

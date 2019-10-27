@@ -6,7 +6,7 @@
 
 using namespace memory_management;
 
-class TestMemoryAllocatorFunction : public unit_testing::UnitTestFunction<MemoryAllocatorUnitTest> {
+class TestMemoryAllocatorFunction final : public unit_testing::UnitTestFunction<MemoryAllocatorUnitTest> {
 public:
     explicit TestMemoryAllocatorFunction(MemoryAllocatorUnitTest &unitTest) :
         UnitTestFunction("testMemoryAllocator", unitTest) {
@@ -15,12 +15,12 @@ public:
     virtual ~TestMemoryAllocatorFunction() {
     }
 
-    virtual void operator()() {
+    virtual void operator()() override {
         getUnitTest().memoryAllocatorTest();
     }
 };
 
-class TestAlignedMemoryAllocatorFunction : public unit_testing::UnitTestFunction<MemoryAllocatorUnitTest> {
+class TestAlignedMemoryAllocatorFunction final : public unit_testing::UnitTestFunction<MemoryAllocatorUnitTest> {
 public:
     explicit TestAlignedMemoryAllocatorFunction(MemoryAllocatorUnitTest &unitTest) :
         UnitTestFunction("testAlignedMemoryAllocator", unitTest) {
@@ -29,7 +29,7 @@ public:
     virtual ~TestAlignedMemoryAllocatorFunction() {
     }
 
-    virtual void operator()() {
+    virtual void operator()() override {
         getUnitTest().alignedMemoryAllocatorTest();
     }
 };

@@ -12,7 +12,7 @@ namespace memory_management
      * The ObjectPool class implements an object pool.
      */
     template <typename T>
-    class ObjectPool : public IObjectPool<T>
+    class ObjectPool final : public IObjectPool<T>
     {
     public:
         /**
@@ -31,22 +31,22 @@ namespace memory_management
         /**
          * Acquires an element from the pool.
          */
-        virtual T* acquireElement();
+        virtual T* acquireElement() override;
 
         /**
          * Releases an element and returns it to the pool.
          */
-        virtual void releaseElement(T* elementPtr);
+        virtual void releaseElement(T* elementPtr) override;
 
         /**
          * Gets number of acquired elements.
          */
-        virtual std::size_t numberOfAcquiredElements() const;
+        virtual std::size_t numberOfAcquiredElements() const override;
 
         /**
          * Gets size of the pool in bytes.
          */
-        virtual std::size_t size() const;
+        virtual std::size_t size() const override;
 
         /**
          * Gets the information of the pool.

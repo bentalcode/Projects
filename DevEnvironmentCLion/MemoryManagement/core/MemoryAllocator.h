@@ -9,7 +9,7 @@ namespace memory_management
     /**
      * The MemoryAllocator class implements a memory allocator.
      */
-    class MemoryAllocator : public IMemoryAllocator
+    class MemoryAllocator final : public IMemoryAllocator
     {
     public:
         /**
@@ -50,27 +50,27 @@ namespace memory_management
         /**
          * Allocates memory.
          */
-        virtual void* allocate(const std::size_t size);
+        virtual void* allocate(const std::size_t size) override;
 
         /**
          * Releases memory.
          */
-        virtual void release(void* memoryPtr);
+        virtual void release(void* memoryPtr) override;
 
         /**
          * Allocates aligned memory.
          */
-        virtual void* allocateAligned(std::size_t size, const std::size_t alignment);
+        virtual void* allocateAligned(std::size_t size, const std::size_t alignment) override;
 
         /**
          * Allocates aligned memory.
          */
-        virtual void releaseAligned(void* memoryPtr);
+        virtual void releaseAligned(void* memoryPtr) override;
 
         /**
          * Clears the allocated memory.
          */
-        virtual void clear(void* memoryPtr, std::size_t size);
+        virtual void clear(void* memoryPtr, std::size_t size) override;
 
     private:
         static bool isAlignmentValid(size_t alignment);

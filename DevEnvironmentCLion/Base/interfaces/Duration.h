@@ -9,7 +9,7 @@ namespace base
      * The Duration class implements a duration.
      */
     template<typename ArithmeticType, typename PeriodType = std::ratio<1>>
-    class Duration
+    class Duration final
     {
     public:
         explicit Duration(const std::chrono::duration<ArithmeticType, PeriodType>& duration);

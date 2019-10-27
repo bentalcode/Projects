@@ -7,14 +7,12 @@ namespace base
      * The Triple class template implements a triple.
      */
     template<typename Type1, typename Type2, typename Type3>
-    class Triple
+    class Triple final
     {
     public:
-        explicit Triple(const Type1& first, const Type2& second, const Type3& third);
+        Triple(const Type1& first, const Type2& second, const Type3& third);
         Triple(const Triple& rhs);
         ~Triple();
-
-        Triple& operator=(const Triple& rhs);
 
         const Type1& getFirst() const;
         const Type2& getSecond() const;
@@ -45,21 +43,6 @@ namespace base
     template<typename Type1, typename Type2, typename Type3>
     Triple<Type1, Type2, Type3>::~Triple()
     {
-    }
-
-    template<typename Type1, typename Type2, typename Type3>
-    Triple<Type1, Type2, Type3>& Triple<Type1, Type2, Type3>::operator=(const Triple& rhs)
-    {
-        if (this == rhs)
-        {
-            return *this;
-        }
-
-        m_first = rhs.m_first;
-        m_second = rhs.m_second;
-        m_third = rhs.m_third;
-
-        return *this;
     }
 
     template<typename Type1, typename Type2, typename Type3>

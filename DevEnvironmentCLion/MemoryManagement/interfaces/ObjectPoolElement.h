@@ -10,7 +10,7 @@ namespace memory_management
      * The ObjectPoolElement class implements an element of a pool.
      */
     template <typename T>
-    class ObjectPoolElement : private boost::noncopyable
+    class ObjectPoolElement final : private boost::noncopyable
     {
     public:
         /**

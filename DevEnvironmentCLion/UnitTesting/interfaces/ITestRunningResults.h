@@ -16,8 +16,8 @@ namespace unit_testing
     class ITestRunningResults
     {
     public :
-        ITestRunningResults();
-        virtual ~ITestRunningResults();
+        ITestRunningResults() = default;
+        virtual ~ITestRunningResults() = default;
 
         /**
          * Gets the number of successful tests.
@@ -54,20 +54,6 @@ namespace unit_testing
          */
         virtual void getRunningResultsInformation(std::ostream& stream) const = 0;
     };
-
-    /**
-     * The ITestRunningResults constructor.
-     */
-    inline ITestRunningResults::ITestRunningResults()
-    {
-    }
-
-    /**
-     * The ITestRunningResults destructor.
-     */
-    inline ITestRunningResults::~ITestRunningResults()
-    {
-    }
 
     /**
      * Gets the information of the running results.

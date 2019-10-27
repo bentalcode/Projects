@@ -15,8 +15,14 @@ namespace unit_testing
     class IUnitTest
     {
     public :
-        IUnitTest();
-        virtual ~IUnitTest();
+        IUnitTest() = default;
+        virtual ~IUnitTest() = default;
+
+        /**
+         * Disables the copy constructor and assignment operator.
+         */
+        IUnitTest(const IUnitTest& rhs) = delete;
+        IUnitTest& operator=(const IUnitTest& rhs) = delete;
 
         /**
          * Gets the name of the unit test.
@@ -42,28 +48,7 @@ namespace unit_testing
          * Sets the log stream writer.
          */
         virtual void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter) = 0;
-
-    private:
-        /**
-         * Disables the constructor and the assignment operator.
-         */
-        IUnitTest(const IUnitTest& rhs);
-        IUnitTest& operator=(const IUnitTest& rhs);
     };
-
-    /**
-     * The IUnitTest constructor.
-     */
-    inline IUnitTest::IUnitTest()
-    {
-    }
-
-    /**
-     * The IUnitTest destructor.
-     */
-    inline IUnitTest::~IUnitTest()
-    {
-    }
 }
 
 #endif // I_UNIT_TEST_H_eaebb607_7774_468b_a819_7e49bd38e777

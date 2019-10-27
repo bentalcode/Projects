@@ -18,8 +18,8 @@ void MemoryAllocator::releaseMemory(void* memoryPtr)
 }
 
 void* MemoryAllocator::allocateAlignedMemory(
-        std::size_t size,
-        const std::size_t alignment)
+    std::size_t size,
+    const std::size_t alignment)
 {
     MemoryAllocator allocator;
     return allocator.allocateAligned(size, alignment);

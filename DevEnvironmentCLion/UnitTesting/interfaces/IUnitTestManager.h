@@ -9,8 +9,13 @@ namespace unit_testing
     class IUnitTestManager
     {
     public :
-        IUnitTestManager() {};
-        virtual ~IUnitTestManager() {};
+        IUnitTestManager() = default;
+        virtual ~IUnitTestManager() = default;
+        /**
+         * Disables the copy constructor and assignment operator.
+         */
+        IUnitTestManager(const IUnitTestManager& rhs) = delete;
+        IUnitTestManager& operator=(const IUnitTestManager& rhs) = delete;
 
         /**
          * Registers a test.
@@ -26,13 +31,6 @@ namespace unit_testing
          * Runs the registered tests.
          */
         virtual void run() = 0;
-
-    private:
-        /**
-         * Disables the constructor and the assignment operator.
-         */
-        IUnitTestManager(const IUnitTestManager& rhs);
-        IUnitTestManager& operator=(const IUnitTestManager& rhs);
     };
 }
 

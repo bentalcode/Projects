@@ -11,7 +11,7 @@ namespace memory_management
     /**
      * The MemoryPool class implements a memory pool.
      */
-    class MemoryPool : public IMemoryPool
+    class MemoryPool final : public IMemoryPool
     {
     public:
         /**
@@ -31,17 +31,17 @@ namespace memory_management
         /**
          * Acquires an element from the pool.
          */
-        virtual MemoryAddress acquireElement();
+        virtual MemoryAddress acquireElement() override;
 
         /**
          * Releases an element and returns it to the pool.
          */
-        virtual void releaseElement(MemoryAddress elementPtr);
+        virtual void releaseElement(MemoryAddress elementPtr) override;
 
         /**
          * Gets number of acquired elements.
          */
-        virtual std::size_t numberOfAcquiredElements() const;
+        virtual std::size_t numberOfAcquiredElements() const override;
 
         /**
          * Gets the initial number of elements.
@@ -56,7 +56,7 @@ namespace memory_management
         /**
          * Gets a size of a pool in bytes.
          */
-        virtual std::size_t size() const;
+        virtual std::size_t size() const override;
 
         /**
          * Gets the information of the pool.

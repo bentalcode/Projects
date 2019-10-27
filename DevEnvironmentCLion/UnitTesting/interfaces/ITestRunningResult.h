@@ -18,9 +18,14 @@ namespace unit_testing
     {
     public :
         /**
+         * The ITestRunningResult constructor.
+         */
+        ITestRunningResult() = default;
+
+        /**
          * The ITestRunningResult destructor.
          */
-        virtual ~ITestRunningResult();
+        virtual ~ITestRunningResult() = default;
 
         /**
          * Gets the name of a test.
@@ -57,13 +62,6 @@ namespace unit_testing
          */
         virtual void getRunningResultInformation(std::ostream& stream) const = 0;
     };
-
-    /**
-     * The ITestRunningResult destructor.
-     */
-    inline ITestRunningResult::~ITestRunningResult()
-    {
-    }
 
     /**
      * Gets the information of the running result.

@@ -7,14 +7,12 @@ namespace base
      * The Pair class template implements a pair.
      */
     template<typename Type1, typename Type2>
-    class Pair
+    class Pair final
     {
     public:
-        explicit Pair(const Type1& first, const Type2& second);
+        Pair(const Type1& first, const Type2& second);
         Pair(const Pair& rhs);
         ~Pair();
-
-        Pair& operator=(const Pair& rhs);
 
         const Type1& getFirst() const;
         const Type2& getSecond() const;
@@ -41,20 +39,6 @@ namespace base
     template<typename Type1, typename Type2>
     Pair<Type1, Type2>::~Pair()
     {
-    }
-
-    template<typename Type1, typename Type2>
-    Pair<Type1, Type2>& Pair<Type1, Type2>::operator=(const Pair& rhs)
-    {
-        if (this == rhs)
-        {
-            return *this;
-        }
-
-        m_first = rhs.m_first;
-        m_second = rhs.m_second;
-
-        return *this;
     }
 
     template<typename Type1, typename Type2>

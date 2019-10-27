@@ -15,7 +15,7 @@ namespace unit_testing
     /**
      * The UnitTestHandler class implements a handler for running a single unit test.
      */
-    class UnitTestHandler: public IUnitTestHandler, ITestRegistration
+    class UnitTestHandler final : public IUnitTestHandler, ITestRegistration
     {
     public:
         /**
@@ -31,14 +31,20 @@ namespace unit_testing
         virtual ~UnitTestHandler();
 
         /**
+         * Disables the constructor and the assignment operator.
+         */
+        UnitTestHandler(const UnitTestHandler& rhs) = delete;
+        UnitTestHandler& operator=(const UnitTestHandler& rhs) = delete;
+
+        /**
          * Registers a test.
          */
-        virtual void registerTest(ITestFunctionPtr testFunction);
+        virtual void registerTest(ITestFunctionPtr testFunction) override;
 
         /**
          * Runs the unit test.
          */
-        virtual const ITestRunningResults& run();
+        virtual const ITestRunningResults& run() override;
 
     private:
         /**
@@ -50,12 +56,6 @@ namespace unit_testing
          * Runs a test.
          */
         bool runTest(ITestFunction& unitTestFunction, std::string& errorMessage);
-
-        /**
-         * Disables the constructor and the assignment operator.
-         */
-        UnitTestHandler(const UnitTestHandler& rhs);
-        UnitTestHandler& operator=(const UnitTestHandler& rhs);
 
         IUnitTest& m_unitTest;
 

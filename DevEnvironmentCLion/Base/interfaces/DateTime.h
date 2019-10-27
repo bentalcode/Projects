@@ -11,7 +11,7 @@ namespace base
     /**
      * The DateTime class template implements a date time.
      */
-    class DateTime
+    class DateTime final
     {
     public:
         explicit DateTime(const std::chrono::system_clock::time_point& timePoint);

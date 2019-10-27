@@ -14,7 +14,7 @@ namespace memory_management
     /**
      * The FixedMemoryPool class implements a fixed memory pool.
      */
-    class FixedMemoryPool : public IMemoryPool
+    class FixedMemoryPool final : public IMemoryPool
     {
     public:
         /**
@@ -33,12 +33,12 @@ namespace memory_management
         /**
          * Acquires an element from the pool.
          */
-        virtual MemoryAddress acquireElement();
+        virtual MemoryAddress acquireElement() override;
 
         /**
          * Release an element and returns it to the pool.
          */
-        virtual void releaseElement(MemoryAddress elementPtr);
+        virtual void releaseElement(MemoryAddress elementPtr) override;
 
         /**
          * Determines whether the memory pool has reached it's capacity.
@@ -73,7 +73,7 @@ namespace memory_management
         /**
          * Gets a size of a pool in bytes.
          */
-        virtual std::size_t size() const;
+        virtual std::size_t size() const override;
 
         /**
          * Gets the information of the pool.

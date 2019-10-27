@@ -16,12 +16,18 @@ namespace unit_testing {
         /**
          * The ITestFunction constructor.
          */
-        ITestFunction();
+        ITestFunction() = default;
 
         /**
          * The ITestFunction destructor.
          */
-        virtual ~ITestFunction();
+        virtual ~ITestFunction() = default;
+
+        /**
+         * Disables the copy constructor and assignment operator.
+         */
+        ITestFunction(const ITestFunction& rhs) = delete;
+        ITestFunction& operator=(const ITestFunction& rhs) = delete;
 
         /**
          * Gets the name of the test.
@@ -33,20 +39,6 @@ namespace unit_testing {
          */
         virtual void operator()() = 0;
     };
-
-    /**
-     * The ITestFunction constructor.
-     */
-    inline ITestFunction::ITestFunction()
-    {
-    }
-
-    /**
-     * The ITestFunction destructor.
-     */
-    inline ITestFunction::~ITestFunction()
-    {
-    }
 }
 
 #endif /* I_TEST_FUNCTION_H_fad4afe5_1383_4250_931e_0454b5f93fb5 */

@@ -10,7 +10,7 @@ namespace unit_testing
     /**
      * The UnitTestManager class implements a unit test manager.
      */
-    class UnitTestManager: public IUnitTestManager
+    class UnitTestManager final : public IUnitTestManager
     {
     public:
         /**
@@ -29,31 +29,31 @@ namespace unit_testing
         virtual ~UnitTestManager();
 
         /**
+         * Disables the constructor and the assignment operator.
+         */
+        UnitTestManager(const UnitTestManager& rhs) = delete;
+        UnitTestManager& operator=(const UnitTestManager& rhs) = delete;
+
+        /**
          * Registers a test.
          */
-        virtual void registerTest(IUnitTestPtr unitTest);
+        virtual void registerTest(IUnitTestPtr unitTest) override;
 
         /**
          * Unregisters a test.
          */
-        virtual void unregisterTest(IUnitTestPtr unitTest);
+        virtual void unregisterTest(IUnitTestPtr unitTest) override;
 
         /**
          * Runs the registered tests.
          */
-        virtual void run();
+        virtual void run() override;
 
     private:
         /**
          * Runs a unit test.
          */
         void runUnitTest(IUnitTest& unitTest);
-
-        /**
-         * Disables the constructor and the assignment operator.
-         */
-        UnitTestManager(const UnitTestManager& rhs);
-        UnitTestManager& operator=(const UnitTestManager& rhs);
 
         base::LogStreamWriterPtr m_logStreamWriter;
 

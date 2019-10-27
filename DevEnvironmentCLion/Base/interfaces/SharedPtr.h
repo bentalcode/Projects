@@ -11,7 +11,7 @@ namespace base
      * The SharedPtr class template implements a shared ptr.
      */
     template<class T>
-    class SharedPtr
+    class SharedPtr final
     {
     public:
         explicit SharedPtr(T* pointer = nullptr);

@@ -12,7 +12,21 @@ namespace memory_management
         typedef void* MemoryAddress;
         typedef std::uintptr_t MemoryRawAddress;
 
-        virtual ~IMemoryPool() {};
+        /**
+         * The IMemoryPool constructor.
+         */
+        IMemoryPool() = default;
+
+        /**
+         * The IMemoryPool destructor.
+         */
+        virtual ~IMemoryPool()  = default;
+
+        /**
+         * Disables the copy constructor and assignment operator.
+         */
+        IMemoryPool(const IMemoryPool& rhs) = delete;
+        IMemoryPool& operator=(const IMemoryPool& rhs) = delete;
 
         /**
          * Acquires an element from the pool.

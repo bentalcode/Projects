@@ -12,7 +12,21 @@ namespace memory_management
     class IObjectPool : private boost::noncopyable
     {
     public:
-        virtual ~IObjectPool() {};
+        /**
+         * The IObjectPool constructor.
+         */
+        IObjectPool() = default;
+
+        /**
+         * The IObjectPool destructor.
+         */
+        virtual ~IObjectPool()  = default;
+
+        /**
+         * Disables the copy constructor and assignment operator.
+         */
+        IObjectPool(const IObjectPool& rhs) = delete;
+        IObjectPool& operator=(const IObjectPool& rhs) = delete;
 
         /**
          * Acquires an element from the pool.

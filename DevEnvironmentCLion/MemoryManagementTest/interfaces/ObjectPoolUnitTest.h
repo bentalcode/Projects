@@ -9,7 +9,7 @@ namespace memory_management {
     /**
      * The ObjectPoolUnitTest class implements a unit test for an object pool.
      */
-    class ObjectPoolUnitTest : public unit_testing::UnitTestBase
+    class ObjectPoolUnitTest final : public unit_testing::UnitTestBase
     {
     public:
         /**

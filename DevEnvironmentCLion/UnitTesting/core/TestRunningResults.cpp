@@ -38,22 +38,6 @@ int TestRunningResults::numberOfFailedTests() const
 }
 
 /**
- * Sets the start time of the tests.
- */
-void TestRunningResults::setStartTime()
-{
-    m_startTime.reset(new base::DateTime(base::DateTime::currentTimePoint()));
-}
-
-/**
- * Sets the end time of the tests.
- */
-void TestRunningResults::setEndTime()
-{
-    m_endTime.reset(new base::DateTime(base::DateTime::currentTimePoint()));
-}
-
-/**
  * Gets the start time of the tests.
  */
 base::DateTimePtr TestRunningResults::getStartTime() const
@@ -99,10 +83,9 @@ void TestRunningResults::getRunningResultsInformation(std::ostream& stream) cons
 
     int index = 0;
 
-    for (ITestRunningResultList::const_iterator i = m_runningResults.begin(); i != m_runningResults.end(); ++i)
+    for (ITestRunningResultPtr runningResultPtr : m_runningResults)
     {
         ++index;
-        ITestRunningResultPtr runningResultPtr = *i;
         stream << "[" << index << "] " << *runningResultPtr << std::endl;
     }
 
@@ -117,6 +100,22 @@ void TestRunningResults::getRunningResultsInformation(std::ostream& stream) cons
         stream << "End Time: " << *m_endTime << std::endl;
         stream << "Duration Time: " << *getDuration() << std::endl;
     }
+}
+
+/**
+ * Sets the start time of the tests.
+ */
+void TestRunningResults::setStartTime()
+{
+    m_startTime.reset(new base::DateTime(base::DateTime::currentTimePoint()));
+}
+
+/**
+ * Sets the end time of the tests.
+ */
+void TestRunningResults::setEndTime()
+{
+    m_endTime.reset(new base::DateTime(base::DateTime::currentTimePoint()));
 }
 
 /**
