@@ -1,6 +1,5 @@
 package base.core;
 
-import base.interfaces.IPair;
 import base.interfaces.ITriple;
 
 /**
@@ -19,7 +18,7 @@ public final class Triple<Type1, Type2, Type3> implements ITriple<Type1, Type2, 
     }
 
     /**
-     * The Pair constructor.
+     * The Triple constructor.
      */
     private Triple(Type1 first, Type2 second, Type3 third) {
         this.first = first;
