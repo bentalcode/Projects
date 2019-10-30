@@ -18,6 +18,11 @@ endif()
 set(BASE_INCLUDES_FILES
     interfaces/DateTime.h
     interfaces/Duration.h
+    interfaces/ICollection.h
+    interfaces/IIterable.h
+    interfaces/IIterator.h
+    interfaces/ISizebleCollection.h
+    interfaces/ITwoDimensionalList.h
     interfaces/LogStreamWriter.h
     interfaces/Pair.h
     interfaces/SharedPtr.h
@@ -26,6 +31,7 @@ set(BASE_INCLUDES_FILES
     core/PreCompiled.h
     core/ReferenceCount.h
     core/ReferenceCountHolder.h
+    core/TwoDimensionalList.h
     BaseException.h)
 
 set(BASE_SOURCES_FILES

@@ -2,7 +2,7 @@ package datastructures.list.interfaces;
 
 import base.interfaces.IIterable;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ISizableCollection;
+import base.interfaces.ISizableCollection;
 
 /**
  * The ITwoDimensionalList interface defines a generic two dimensional list.

@@ -1,4 +1,4 @@
-package datastructures.collections.interfaces;
+package base.interfaces;
 
 /**
  * The ISizableCollection interface defines a sizable collection.

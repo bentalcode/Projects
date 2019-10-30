@@ -4,7 +4,7 @@ import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ICollection;
+import base.interfaces.ICollection;
 
 /**
  * The IBinaryTree interface defines a binary tree.

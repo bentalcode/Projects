@@ -1,7 +1,7 @@
 package datastructures.tree.interfaces;
 
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ICollection;
+import base.interfaces.ICollection;
 
 /**
  * The ITreeNode interface defines a generic tree.

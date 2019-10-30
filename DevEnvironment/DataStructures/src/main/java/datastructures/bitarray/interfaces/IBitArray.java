@@ -3,7 +3,7 @@ package datastructures.bitarray.interfaces;
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ISizableCollection;
+import base.interfaces.ISizableCollection;
 
 /**
  * The IBitArray interface defines a bit array, which manages a compact array of bits.

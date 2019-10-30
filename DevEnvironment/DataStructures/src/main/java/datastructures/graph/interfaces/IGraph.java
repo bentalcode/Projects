@@ -1,7 +1,7 @@
 package datastructures.graph.interfaces;
 
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ICollection;
+import base.interfaces.ICollection;
 import java.util.Set;
 
 /**

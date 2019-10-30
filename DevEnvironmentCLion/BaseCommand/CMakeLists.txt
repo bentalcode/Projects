@@ -27,6 +27,13 @@ endif()
 # Base Library...
 #
 set(BASE_INCLUDES_FILES
+    ../Base/interfaces/DateTime.h
+    ../Base/interfaces/Duration.h
+    ../Base/interfaces/ICollection.h
+    ../Base/interfaces/IIterable.h
+    ../Base/interfaces/IIterator.h
+    ../Base/interfaces/ISizebleCollection.h
+    ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
@@ -35,6 +42,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/TwoDimensionalList.h
     ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES

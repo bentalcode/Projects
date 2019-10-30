@@ -3,7 +3,7 @@ package datastructures.bplustree.interfaces;
 import base.interfaces.IIterable;
 import base.interfaces.INullable;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
-import datastructures.collections.interfaces.ICollection;
+import base.interfaces.ICollection;
 import datastructures.collections.interfaces.IKeyIterable;
 import datastructures.collections.interfaces.IValueIterable;
 import datastructures.node.interfaces.IKeyValueNode;

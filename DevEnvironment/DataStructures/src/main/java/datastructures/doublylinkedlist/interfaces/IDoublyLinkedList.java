@@ -5,7 +5,7 @@ import base.interfaces.IIterator;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IReverseIterator;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ISizableCollection;
+import base.interfaces.ISizableCollection;
 import datastructures.collections.interfaces.IValueIterable;
 import datastructures.collections.interfaces.IValueReverseIterable;
 

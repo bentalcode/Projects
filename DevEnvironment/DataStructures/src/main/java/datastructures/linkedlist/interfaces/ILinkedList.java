@@ -2,7 +2,7 @@ package datastructures.linkedlist.interfaces;
 
 import base.interfaces.IIterable;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ISizableCollection;
+import base.interfaces.ISizableCollection;
 import datastructures.collections.interfaces.IValueIterable;
 
 /**

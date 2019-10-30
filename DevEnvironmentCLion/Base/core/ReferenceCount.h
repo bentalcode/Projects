@@ -17,7 +17,7 @@ namespace base
         void addReference();
         void removeReference();
 
-        inline int getCounter();
+        inline int getCounter() const;
 
     private:
         int m_counter;
@@ -42,7 +42,7 @@ namespace base
         --m_counter;
     }
 
-    int ReferenceCount::getCounter()
+    int ReferenceCount::getCounter() const
     {
         return m_counter;
     }

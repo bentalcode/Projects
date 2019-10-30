@@ -1,4 +1,4 @@
-package datastructures.collections.interfaces;
+package base.interfaces;
 
 /**
  * The ICollection interface defines a abstract collection.

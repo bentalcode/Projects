@@ -3,7 +3,7 @@ package datastructures.priorityqueue.interfaces;
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ISizableCollection;
+import base.interfaces.ISizableCollection;
 
 /**
  * The IPriorityQueue interface defines a priority queue.

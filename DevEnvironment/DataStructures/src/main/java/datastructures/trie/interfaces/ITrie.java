@@ -2,7 +2,7 @@ package datastructures.trie.interfaces;
 
 import base.interfaces.IIterable;
 import base.interfaces.IUnaryComparator;
-import datastructures.collections.interfaces.ICollection;
+import base.interfaces.ICollection;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
