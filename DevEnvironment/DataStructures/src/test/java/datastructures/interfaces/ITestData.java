@@ -10,6 +10,8 @@ import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.interfaces.IListTestData;
+import datastructures.list.interfaces.ITwoDimensionalList;
+import datastructures.list.interfaces.ITwoDimensionalListTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 import datastructures.stack.interfaces.IStackTestData;
 import datastructures.trie.interfaces.ITrieTestData;
@@ -32,6 +34,11 @@ public interface ITestData {
      * Gets the data of tests of a list.
      */
     IListTestData getListData();
+
+    /**
+     * Gets the data of tests of a two dimensional list.
+     */
+    ITwoDimensionalListTestData getTwoDimensionalListData();
 
     /**
      * Gets the data of tests of a stack.

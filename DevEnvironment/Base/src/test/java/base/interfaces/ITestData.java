@@ -16,4 +16,9 @@ public interface ITestData {
      * Gets values of integer-string.
      */
     List<IPair<Integer, String>> getIntegerStrings();
+
+    /**
+     * Gets data of two dimensional lists.
+     */
+    List<List<List<Integer>>> getTwoDimensionalListsData();
 }

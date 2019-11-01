@@ -21,6 +21,7 @@ set(BASE_INCLUDES_FILES
     interfaces/ICollection.h
     interfaces/IIterable.h
     interfaces/IIterator.h
+    interfaces/IList.h
     interfaces/ISizebleCollection.h
     interfaces/ITwoDimensionalList.h
     interfaces/LogStreamWriter.h
@@ -28,6 +29,8 @@ set(BASE_INCLUDES_FILES
     interfaces/SharedPtr.h
     interfaces/Triple.h
     core/BaseDependencies.h
+    core/List.h
+    core/ListIterator.h
     core/PreCompiled.h
     core/ReferenceCount.h
     core/ReferenceCountHolder.h

@@ -13,7 +13,6 @@ import base.interfaces.IReverseIterator;
 import datastructures.collections.core.Collections;
 import datastructures.list.interfaces.IArrayList;
 import datastructures.list.interfaces.IList;
-import java.util.BitSet;
 
 /**
  * The ArrayList class implements a dynamic array (resizable array).
@@ -21,7 +20,7 @@ import java.util.BitSet;
 public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
     private static final int DefaultCapacity = 16;
 
-    private final Class<T> classType;
+    private final Class<?> classType;
     private final int capacity;
     private final IBinaryComparator<IList<T>> comparator;
     private T[] array;
@@ -30,7 +29,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
     /**
      * The ArrayList constructor.
      */
-    public ArrayList(Class<T> classType) {
+    public ArrayList(Class<?> classType) {
         this(
             classType,
             ArrayList.DefaultCapacity,
@@ -41,7 +40,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
      * The ArrayList constructor.
      */
     public ArrayList(
-        Class<T> classType,
+        Class<?> classType,
         int capacity) {
 
         this(
@@ -53,7 +52,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
      * The ArrayList constructor.
      */
     public ArrayList(
-        Class<T> classType,
+        Class<?> classType,
         int capacity,
         IBinaryComparator<IList<T>> comparator) {
 

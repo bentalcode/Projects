@@ -20,7 +20,9 @@ import datastructures.interfaces.ITestData;
 import datastructures.linkedlist.core.LinkedListTestData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.core.ListTestData;
+import datastructures.list.core.TwoDimensionalListTestData;
 import datastructures.list.interfaces.IListTestData;
+import datastructures.list.interfaces.ITwoDimensionalListTestData;
 import datastructures.priorityqueue.core.PriorityQueueTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 import datastructures.stack.core.StackTestData;
@@ -60,6 +62,14 @@ public final class TestData implements ITestData {
     @Override
     public IListTestData getListData() {
         return new ListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a two dimensional list.
+     */
+    @Override
+    public ITwoDimensionalListTestData getTwoDimensionalListData() {
+        return new TwoDimensionalListTestData();
     }
 
     /**

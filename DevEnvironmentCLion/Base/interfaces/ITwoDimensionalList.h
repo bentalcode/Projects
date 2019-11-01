@@ -3,7 +3,6 @@
 
 #include "ISizebleCollection.h"
 #include "IIterable.h"
-#include <vector>
 
 namespace base
 {
@@ -28,27 +27,37 @@ namespace base
         /**
          * Gets the number of rows.
          */
-        virtual int rowsSize() const = 0;
+        virtual std::size_t rowsSize() const = 0;
 
         /**
          * Gets the number of columns in a specific row.
          */
-        virtual int columnSize(int rowIndex) const = 0;
+        virtual std::size_t columnSize(std::size_t rowIndex) const = 0;
 
         /**
          * Gets an element at a specified position.
          */
-        virtual const T& get(int rowIndex, int columnIndex) const = 0;
+        virtual const T& get(std::size_t rowIndex, std::size_t columnIndex) const = 0;
 
         /**
          * Gets elements of a specified row.
          */
-        virtual const std::vector<T>& getRow(int rowIndex) const = 0;
+        virtual const std::vector<T>& getRow(std::size_t rowIndex) const = 0;
 
         /**
          * Adds a new row.
          */
         virtual void addRow(const std::vector<T>& row) = 0;
+
+        /**
+         * Gets a const element at a specified position.
+         */
+        virtual const std::vector<T>& operator[](int index) const = 0;
+
+        /**
+         * Gets an element at a specified position.
+         */
+        virtual std::vector<T>& operator[](int index) = 0;
     };
 }
 

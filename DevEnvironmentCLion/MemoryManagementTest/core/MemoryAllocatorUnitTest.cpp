@@ -9,7 +9,7 @@ using namespace memory_management;
 class TestMemoryAllocatorFunction final : public unit_testing::UnitTestFunction<MemoryAllocatorUnitTest> {
 public:
     explicit TestMemoryAllocatorFunction(MemoryAllocatorUnitTest &unitTest) :
-        UnitTestFunction("testMemoryAllocator", unitTest) {
+        UnitTestFunction("memoryAllocatorTest", unitTest) {
     }
 
     virtual ~TestMemoryAllocatorFunction() {
@@ -23,7 +23,7 @@ public:
 class TestAlignedMemoryAllocatorFunction final : public unit_testing::UnitTestFunction<MemoryAllocatorUnitTest> {
 public:
     explicit TestAlignedMemoryAllocatorFunction(MemoryAllocatorUnitTest &unitTest) :
-        UnitTestFunction("testAlignedMemoryAllocator", unitTest) {
+        UnitTestFunction("alignedMemoryAllocatorTest", unitTest) {
     }
 
     virtual ~TestAlignedMemoryAllocatorFunction() {

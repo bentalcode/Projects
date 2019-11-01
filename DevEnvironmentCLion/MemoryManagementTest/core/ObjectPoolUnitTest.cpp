@@ -8,10 +8,8 @@ using namespace memory_management;
 
 class TestPoolFunction : public unit_testing::UnitTestFunction<ObjectPoolUnitTest> {
 public:
-    TestPoolFunction(
-        const std::string &name,
-        ObjectPoolUnitTest &unitTest) :
-        UnitTestFunction(name, unitTest) {
+    TestPoolFunction(ObjectPoolUnitTest& unitTest) :
+        UnitTestFunction("objectPoolTest", unitTest) {
     }
 
     virtual ~TestPoolFunction() {
@@ -42,8 +40,7 @@ ObjectPoolUnitTest::~ObjectPoolUnitTest()
  */
 void ObjectPoolUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(
-        new TestPoolFunction("TestObjectPool", *this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TestPoolFunction(*this)));
 }
 
 /**

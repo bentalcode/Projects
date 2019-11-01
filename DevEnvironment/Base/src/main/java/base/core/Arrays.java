@@ -44,9 +44,9 @@ public final class Arrays {
     /**
      * Copies an instance of an array.
      */
-    public static <T, TClass extends T> T[] copy(
+    public static <T> T[] copy(
         T[] arr,
-        Class<TClass> classType,
+        Class<?> classType,
         int startIndex,
         int endIndex) {
 

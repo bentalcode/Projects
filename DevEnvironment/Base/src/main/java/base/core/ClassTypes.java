@@ -1,5 +1,7 @@
 package base.core;
 
+import java.lang.reflect.Type;
+
 /**
  * The ClassTypes class implements complementary APIs for class types.
  */
@@ -24,6 +26,19 @@ public final class ClassTypes {
             "The type of a class.");
 
         return classType.getSimpleName();
+    }
+
+    /**
+     * Gets the generic interfaces of a class.
+     */
+    public static <T> Type[] getGenericInterfaces(Class<T> classType) {
+        Conditions.validateNotNull(
+            classType,
+            "The type of a class.");
+
+        Type[] genericInterfaces = classType.getGenericInterfaces();
+
+        return genericInterfaces;
     }
 
     /**

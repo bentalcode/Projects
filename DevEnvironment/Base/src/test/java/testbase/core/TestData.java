@@ -53,6 +53,26 @@ public final class TestData implements ITestData {
     }
 
     /**
+     * Gets data of two dimensional lists.
+     */
+    @Override
+    public List<List<List<Integer>>> getTwoDimensionalListsData() {
+        List<List<List<Integer>>> data = new ArrayList<>();
+
+        int numberOfRows = 10;
+        int numberOfColumns = 20;
+
+        for (int row = 0; row < numberOfRows; ++row) {
+            for (int column = 0; column < numberOfColumns; ++column) {
+                List<List<Integer>> listData = this.createTwoDimensionalListData(row, column);
+                data.add(listData);
+            }
+        }
+
+        return data;
+    }
+
+    /**
      * Creates a path of a resource.
      */
     private Path createResourcePath(
@@ -67,5 +87,28 @@ public final class TestData implements ITestData {
             .build();
 
         return Paths.create(path);
+    }
+
+    /**
+     * Creates data of a two dimensional list.
+     */
+    private List<List<Integer>> createTwoDimensionalListData(int rows, int columns)
+    {
+        List<List<Integer>> data = new ArrayList<>();
+
+        int value = 0;
+        for (int row = 0; row < rows; ++row) {
+            List<Integer> rowData = new ArrayList<>();
+
+            for (int column = 0; column < columns; ++column) {
+                ++value;
+
+                rowData.add(value);
+            }
+
+            data.add(rowData);
+        }
+
+        return data;
     }
 }

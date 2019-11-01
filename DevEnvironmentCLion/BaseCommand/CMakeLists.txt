@@ -46,6 +46,7 @@ set(BASE_INCLUDES_FILES
     ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES
+    ../Base/core/DateTime.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/PreCompiled.cpp)
 
