@@ -75,7 +75,7 @@ void MemoryAllocatorUnitTest::memoryAllocatorTest()
 void MemoryAllocatorUnitTest::alignedMemoryAllocatorTest()
 {
     int alignment = 4;
-    for (int i = 0; i < 100; ++i)
+    for (unsigned int i = 0; i < 100; ++i)
     {
         testAlignedMemoryAllocator(i, alignment);
     }
@@ -84,11 +84,25 @@ void MemoryAllocatorUnitTest::alignedMemoryAllocatorTest()
 /**
  * Tests the memory allocator.
  */
-void MemoryAllocatorUnitTest::testMemoryAllocator(int size) {
+void MemoryAllocatorUnitTest::testMemoryAllocator(unsigned int size) {
     MemoryAllocator memoryAllocator;
     void* memory = nullptr;
     {
         MemoryPtr memory(memoryAllocator.allocate(size));
+
+        if (size == 0)
+        {
+            getAssertion().assertTrue(
+                memory.get() == nullptr,
+                "Invalid allocated memory.");
+        }
+        else
+        {
+            getAssertion().assertTrue(
+                memory.get() != nullptr,
+                "Invalid allocated memory.");
+        }
+
     }
 }
 
@@ -101,7 +115,10 @@ void MemoryAllocatorUnitTest::testAlignedMemoryAllocator(int size, int alignment
         AlignedMemoryPtr memory(memoryAllocator.allocateAligned(size, alignment));
         void* memoryPtr = memory.get();
         std::uintptr_t rawMemoryAddress = reinterpret_cast<std::uintptr_t>(memoryPtr);
-        assert(rawMemoryAddress % alignment == 0);
+
+        getAssertion().assertTrue(
+            rawMemoryAddress % alignment == 0,
+            "Invalid alignment allocation logic.");
     }
 }
 

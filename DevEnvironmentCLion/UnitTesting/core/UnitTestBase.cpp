@@ -9,7 +9,8 @@ using namespace unit_testing;
  * The UnitTestBase constructor.
  */
 UnitTestBase::UnitTestBase(const std::string& name) :
-    m_name(name)
+    m_name(name),
+    m_assertion(m_logStreamWriter)
 {
 }
 
@@ -54,6 +55,7 @@ void UnitTestBase::setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter)
     }
 
     m_logStreamWriter = logStreamWriter;
+    m_assertion.setLogStreamWriter(m_logStreamWriter);
 }
 
 /**

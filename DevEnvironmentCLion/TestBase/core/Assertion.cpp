@@ -1,13 +1,23 @@
 #include "PreCompiled.h"
 
 #include "Assertion.h"
+#include "TestBaseException.h"
 
 using namespace test_base;
 
 /**
  * The Assertion constructor.
  */
-Assertion::Assertion()
+Assertion::Assertion() :
+    m_logStreamWriter(new base::LogStreamWriter())
+{
+}
+
+/**
+ * The Assertion constructor.
+ */
+Assertion::Assertion(base::LogStreamWriterPtr logStreamWriter) :
+    m_logStreamWriter(logStreamWriter)
 {
 }
 
@@ -25,5 +35,25 @@ void Assertion::assertTrue(
     bool expression,
     const std::string& message)
 {
+    if (m_logStreamWriter && !expression)
+    {
+        m_logStreamWriter->getErrorStream() << message << std::endl;
+    }
+
     assert(expression);
 }
+
+/**
+ * Sets the log stream writer.
+ */
+void Assertion::setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter)
+{
+    if (!logStreamWriter)
+    {
+        std::string errorMessage = "The Log Stream Writer has not been set.";
+        throw TestBaseException(errorMessage);
+    }
+
+    m_logStreamWriter = logStreamWriter;
+}
+

@@ -41,7 +41,7 @@ namespace memory_management {
         /**
          * Test the memory allocator.
          */
-        void testMemoryAllocator(int size);
+        void testMemoryAllocator(unsigned int size);
 
         /**
          * Test the aligned memory allocator.

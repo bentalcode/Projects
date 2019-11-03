@@ -43,19 +43,19 @@ namespace unit_testing {
 
     protected:
         /**
-         * Gets the assertion.
-         */
-        test_base::Assertion& getAssertion();
-
-        /**
          * Gets the log stream writer.
          */
         base::LogStreamWriter& getLogStreamWriter();
 
+        /**
+         * Gets the assertion.
+         */
+        test_base::Assertion& getAssertion();
+
     private:
         std::string m_name;
-        test_base::Assertion m_assertion;
         base::LogStreamWriterPtr m_logStreamWriter;
+        test_base::Assertion m_assertion;
     };
 }
 

@@ -17,6 +17,7 @@ endif()
 #
 set(BASE_INCLUDES_FILES
     ./interfaces/ComparatorFactory.h
+    ./interfaces/CompareToBuilder.h
     ./interfaces/DateTime.h
     ./interfaces/Duration.h
     ./interfaces/EqualBuilder.h
@@ -36,6 +37,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/SharedPtr.h
     ./interfaces/Triple.h
     ./core/BaseDependencies.h
+    ./core/ComparableComparator.h
     ./core/EquatableComparator.h
     ./core/PreCompiled.h
     ./core/ReferenceCount.h
@@ -44,6 +46,7 @@ set(BASE_INCLUDES_FILES
     ./BaseException.h)
 
 set(BASE_SOURCES_FILES
+    ./core/CompareToBuilder.cpp
     ./core/DateTime.cpp
     ./core/EqualBuilder.cpp
     ./core/LogStreamWriter.cpp

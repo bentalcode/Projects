@@ -28,6 +28,7 @@ endif()
 #
 set(BASE_INCLUDES_FILES
     ../Base/interfaces/ComparatorFactory.h
+    ../Base/interfaces/CompareToBuilder.h
     ../Base/interfaces/DateTime.h
     ../Base/interfaces/Duration.h
     ../Base/interfaces/EqualBuilder.h
@@ -56,6 +57,7 @@ set(BASE_INCLUDES_FILES
 
 set(BASE_SOURCES_FILES
     ../Base/core/DateTime.cpp
+    ../Base/core/CompareToBuilder.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/PreCompiled.cpp)

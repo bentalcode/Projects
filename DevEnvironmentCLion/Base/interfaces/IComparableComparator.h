@@ -28,7 +28,7 @@ namespace base {
          * Returns 0 if the left hand side value is equal to the right hand side value.
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
-        virtual int compareTo(const T& lhs, const T& rhs) = 0;
+        virtual int compareTo(const T& lhs, const T& rhs) const = 0;
     };
 }
 

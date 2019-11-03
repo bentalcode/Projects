@@ -1170,7 +1170,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * Builds the resultant equality status.
+     * Builds the resultant compare status.
      * In this case, simply return the calculated compare status.
      */
     public int build() {

@@ -1,38 +1,37 @@
-#ifndef EQUAL_BUILDER_H_cb95b744_a4ab_4d91_a19c_b7907b0b8a18
-#define EQUAL_BUILDER_H_cb95b744_a4ab_4d91_a19c_b7907b0b8a18
+#ifndef COMPARE_TO_BUILDER_H_3a054bf4_c435_449e_8065_dd2bcd19298e
+#define COMPARE_TO_BUILDER_H_3a054bf4_c435_449e_8065_dd2bcd19298e
 
 #include "ComparatorFactory.h"
-#include "EquatableComparator.h"
-#include "IteratorComparator.h"
+#include "ComparableComparator.h"
 
 namespace base {
 
     /**
-     * The EqualBuilder class implements an equal builder.
+     * The CompareToBuilder class implements a compare to builder.
      */
-    class EqualBuilder final
+    class CompareToBuilder final
     {
     public:
         /**
-         * The EqualBuilder constructor.
+         * The CompareToBuilder constructor.
          */
-        EqualBuilder();
+        CompareToBuilder();
 
         /**
-         * The EqualBuilder destructor.
+         * The CompareToBuilder destructor.
          */
-        ~EqualBuilder();
+        ~CompareToBuilder();
 
         /**
-         * With an equality status.
+         * With a compare status.
          */
-        EqualBuilder& withStatus(bool status);
+        CompareToBuilder& withStatus(int status);
 
         /**
          * With a generic element.
          */
         template <typename T>
-        EqualBuilder& withElement(
+        CompareToBuilder& withElement(
             const T& lhs,
             const T& rhs);
 
@@ -40,16 +39,16 @@ namespace base {
          * With a generic element and a comparator.
          */
         template <typename T>
-        EqualBuilder& withElement(
+        CompareToBuilder& withElement(
             const T& lhs,
             const T& rhs,
-            const IEquatableComparator<T>& comparator);
+            const IComparableComparator<T>& comparator);
 
         /**
          * With a generic iterator.
          */
         template <typename T>
-        EqualBuilder& withIterator(
+        CompareToBuilder& withIterator(
             IIterator<T>& lhs,
             IIterator<T>& rhs);
 
@@ -57,16 +56,16 @@ namespace base {
          * With a generic iterator and a comparator.
          */
         template <typename T>
-        EqualBuilder& withIterator(
+        CompareToBuilder& withIterator(
             IIterator<T>& lhs,
             IIterator<T>& rhs,
-            const IEquatableComparator<T>& comparator);
+            const IComparableComparator<T>& comparator);
 
         /**
          * With a generic iterable.
          */
         template <typename T>
-        EqualBuilder& withIterable(
+        CompareToBuilder& withIterable(
             IIterable<T>& lhs,
             IIterable<T>& rhs);
 
@@ -74,28 +73,28 @@ namespace base {
          * With a generic iterable and a comparator.
          */
         template <typename T>
-        EqualBuilder& withIterable(
+        CompareToBuilder& withIterable(
             IIterable<T>& lhs,
             IIterable<T>& rhs,
-            const IEquatableComparator<T>& comparator);
+            const IComparableComparator<T>& comparator);
 
         /**
-         * Builds the resultant equality status.
+         * Builds the resultant compare status.
          */
-        bool build();
+        int build();
 
     private:
         ComparatorFactory m_comparatorFactory;
-        bool m_equalityStatus;
+        int m_compareStatus;
     };
 
     /**
      * With a generic element.
      */
     template <typename T>
-    EqualBuilder& EqualBuilder::withElement(const T& lhs, const T& rhs)
+    CompareToBuilder& CompareToBuilder::withElement(const T& lhs, const T& rhs)
     {
-        EquatableComparator<T> comparator;
+        ComparableComparator<T> comparator;
         return withElement(lhs, rhs, comparator);
     }
 
@@ -103,17 +102,17 @@ namespace base {
      * With a generic element and a comparator.
      */
     template <typename T>
-    EqualBuilder& EqualBuilder::withElement(
+    CompareToBuilder& CompareToBuilder::withElement(
         const T& lhs,
         const T& rhs,
-        const IEquatableComparator<T>& comparator)
+        const IComparableComparator<T>& comparator)
     {
-        if (!m_equalityStatus)
+        if (m_compareStatus != 0)
         {
             return *this;
         }
 
-        m_equalityStatus = comparator.isEqual(lhs, rhs);
+        m_compareStatus = comparator.compareTo(lhs, rhs);
 
         return *this;
     }
@@ -122,11 +121,11 @@ namespace base {
      * With a generic iterator.
      */
     template <typename T>
-    EqualBuilder& EqualBuilder::withIterator(
+    CompareToBuilder& CompareToBuilder::withIterator(
         IIterator<T>& lhs,
         IIterator<T>& rhs)
     {
-        EquatableComparator<T> comparator;
+        ComparableComparator<T> comparator;
         return withIterator(lhs, rhs, comparator);
     }
 
@@ -134,18 +133,18 @@ namespace base {
      * With a generic iterator and a comparator.
      */
     template <typename T>
-    EqualBuilder& EqualBuilder::withIterator(
+    CompareToBuilder& CompareToBuilder::withIterator(
         IIterator<T>& lhs,
         IIterator<T>& rhs,
-        const IEquatableComparator<T>& comparator)
+        const IComparableComparator<T>& comparator)
     {
-        if (!m_equalityStatus)
+        if (m_compareStatus != 0)
         {
             return *this;
         }
 
         IteratorComparatorPtr<T> iteratorComparator(new IteratorComparator<T>());
-        m_equalityStatus = iteratorComparator->isEqual(lhs, rhs, comparator);
+        m_compareStatus = iteratorComparator->compareTo(lhs, rhs, comparator);
 
         return *this;
     }
@@ -154,11 +153,11 @@ namespace base {
      * With a generic iterable.
      */
     template <typename T>
-    EqualBuilder& EqualBuilder::withIterable(
+    CompareToBuilder& CompareToBuilder::withIterable(
         IIterable<T>& lhs,
         IIterable<T>& rhs)
     {
-        EquatableComparator<T> comparator;
+        ComparableComparator<T> comparator;
         return withIterable(lhs, rhs, comparator);
     }
 
@@ -166,21 +165,21 @@ namespace base {
      * With a generic iterable and a comparator.
      */
     template <typename T>
-    EqualBuilder& EqualBuilder::withIterable(
+    CompareToBuilder& CompareToBuilder::withIterable(
         IIterable<T>& lhs,
         IIterable<T>& rhs,
-        const IEquatableComparator<T>& comparator)
+        const IComparableComparator<T>& comparator)
     {
-        if (!m_equalityStatus)
+        if (m_compareStatus != 0)
         {
             return *this;
         }
 
-        IterableComparatorPtr<T> iterableComparator = new IterableComparator<T>();;
-        m_equalityStatus = iterableComparator->isEqual(lhs, rhs, comparator);
+        IterableComparatorPtr<T> iterableComparator = new IterableComparator<T>();
+        m_compareStatus = iterableComparator->compareTo(lhs, rhs, comparator);
 
         return *this;
     }
 }
 
-#endif // EQUAL_BUILDER_H_cb95b744_a4ab_4d91_a19c_b7907b0b8a18
+#endif // COMPARE_TO_BUILDER_H_3a054bf4_c435_449e_8065_dd2bcd19298e

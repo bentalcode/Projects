@@ -3,6 +3,7 @@
 
 #include "EqualBuilder.h"
 #include "EquatableComparator.h"
+#include "LogStreamWriter.h"
 
 namespace test_base {
 
@@ -16,6 +17,11 @@ namespace test_base {
          * The Assertion constructor.
          */
         Assertion();
+
+        /**
+         * The Assertion constructor.
+         */
+        explicit Assertion(base::LogStreamWriterPtr logStreamWriter);
 
         /**
          * The Assertion destructor.
@@ -75,6 +81,14 @@ namespace test_base {
             base::IIterable<T>& rhs,
             const base::IEquatableComparator<T>& comparator,
             const std::string& message);
+
+        /**
+         * Sets the log stream writer.
+         */
+        void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter);
+
+    private:
+        base::LogStreamWriterPtr m_logStreamWriter;
     };
 
     /**

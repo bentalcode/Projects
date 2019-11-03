@@ -2,7 +2,6 @@
 #include "MemoryAllocatorUnitTest.h"
 #include "ObjectPoolUnitTest.h"
 
-
 using namespace memory_management;
 using namespace unit_testing;
 
