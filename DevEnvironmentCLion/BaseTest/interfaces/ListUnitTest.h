@@ -4,7 +4,7 @@
 #include "PreCompiled.h"
 #include "UnitTestBase.h"
 
-namespace base {
+namespace base_test {
 
     /**
      * The ListUnitTest class implements a unit test for a list.

@@ -57,6 +57,14 @@ void UnitTestBase::setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter)
 }
 
 /**
+ * Gets the assertion.
+ */
+test_base::Assertion& UnitTestBase::getAssertion()
+{
+    return m_assertion;
+}
+
+/**
  * Gets the log stream writer.
  */
 base::LogStreamWriter& UnitTestBase::getLogStreamWriter()

@@ -11,7 +11,8 @@ namespace unit_testing {
     /**
      * The ITestFunction interface defines a test function.
      */
-    class ITestFunction {
+    class ITestFunction
+    {
     public:
         /**
          * The ITestFunction constructor.

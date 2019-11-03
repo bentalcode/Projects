@@ -27,18 +27,27 @@ endif()
 # Base Library...
 #
 set(BASE_INCLUDES_FILES
+    ../Base/interfaces/ComparatorFactory.h
     ../Base/interfaces/DateTime.h
     ../Base/interfaces/Duration.h
+    ../Base/interfaces/EqualBuilder.h
+    ../Base/interfaces/IBinaryComparator.h
     ../Base/interfaces/ICollection.h
+    ../Base/interfaces/IComparableComparator.h
+    ../Base/interfaces/IEquatableComparator.h
+    ../Base/interfaces/IHashCodeProvider.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/ISizebleCollection.h
+    ../Base/interfaces/IterableComparator.h
+    ../Base/interfaces/IteratorComparator.h
     ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
+    ../Base/core/EquatableComparator.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
@@ -47,6 +56,7 @@ set(BASE_INCLUDES_FILES
 
 set(BASE_SOURCES_FILES
     ../Base/core/DateTime.cpp
+    ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/PreCompiled.cpp)
 
@@ -63,10 +73,12 @@ set(BASE_INCLUDES
 # Test Base Library...
 #
 set(TEST_BASE_INCLUDES_FILES
+    ../TestBase/interfaces/Assertion.h
     ../TestBase/core/PreCompiled.h
     ../TestBase/TestBaseException.h)
 
 set(TEST_BASE_SOURCES_FILES
+    ../TestBase/core/Assertion.cpp
     ../TestBase/core/PreCompiled.cpp)
 
 set(TEST_BASE_SOURCES
@@ -109,6 +121,7 @@ set(UNIT_TESTING_SOURCES_FILES
 
 set(UNIT_TESTING_SOURCES
     ${BASE_SOURCES}
+    ${TEST_BASE_SOURCES}
     ${UNIT_TESTING_INCLUDES_FILES}
     ${UNIT_TESTING_SOURCES_FILES})
 
@@ -122,12 +135,14 @@ set(UNIT_TESTING_INCLUDES
 #
 set(BASE_TEST_INCLUDES_FILES
     interfaces/ListUnitTest.h
+    interfaces/TestData.h
     interfaces/TwoDimensionalListUnitTest.h
     core/PreCompiled.h)
 
 set(BASE_TEST_SOURCES_FILES
     main.cpp
     core/ListUnitTest.cpp
+    core/TestData.cpp
     core/TwoDimensionalListUnitTest.cpp
     core/PreCompiled.cpp)
 

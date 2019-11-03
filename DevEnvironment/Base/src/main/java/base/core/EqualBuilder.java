@@ -11,7 +11,6 @@ import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
-
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;

@@ -1,10 +1,11 @@
 #ifndef TWO_DIMENSIONAL_LIST_UNIT_TEST_H_e15d9eec_6c6e_45a6_847f_dd8bed89328a
 #define TWO_DIMENSIONAL_LIST_UNIT_TEST_H_e15d9eec_6c6e_45a6_847f_dd8bed89328a
 
-#include "PreCompiled.h"
 #include "UnitTestBase.h"
+#include "TwoDimensionalList.h"
+#include "TestData.h"
 
-namespace base {
+namespace base_test {
 
     /**
      * The TwoDimensionalListUnitTest class implements a unit test for a two dimensional list.
@@ -28,15 +29,27 @@ namespace base {
         virtual void registerTests(unit_testing::ITestRegistration& registration);
 
         /**
-         * Tests the two dimensional list.
+         * Tests the creation logic of a two dimensional list.
          */
-        void twoDimensionalListTest();
+        void twoDimensionalListCreationTest();
+
+        /**
+         * Tests the iteration logic of a two dimensional list.
+         */
+        void twoDimensionalListIterationTest();
 
     private:
         /**
-         * Tests the two dimensional list.
+         * Tests the creation logic of a two dimensional list.
          */
-        void testTwoDimensionalList(int rows, int columns);
+        void testTwoDimensionalListCreation(const std::vector<std::vector<int>>& data);
+
+        /**
+         * Tests the iteration logic of a two dimensional list.
+         */
+        void testTwoDimensionalListIteration(const std::vector<std::vector<int>>& data);
+
+        TestData m_testData;
     };
 }
 

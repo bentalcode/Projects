@@ -1,22 +1,37 @@
 #include "PreCompiled.h"
 
 #include "TwoDimensionalListUnitTest.h"
-#include "TwoDimensionalList.h"
 #include "UnitTestFunction.h"
+#include "TwoDimensionalList.h"
+#include "TwoDimensionalListIterator.h"
 
-using namespace base;
+using namespace base_test;
 
-class TestTwoDimensionalListFunction final : public unit_testing::UnitTestFunction<TwoDimensionalListUnitTest> {
+class TestTwoDimensionalListCreationFunction final : public unit_testing::UnitTestFunction<TwoDimensionalListUnitTest> {
 public:
-    explicit TestTwoDimensionalListFunction(TwoDimensionalListUnitTest &unitTest) :
-        UnitTestFunction("twoDimensionalListTest", unitTest) {
+    explicit TestTwoDimensionalListCreationFunction(TwoDimensionalListUnitTest &unitTest) :
+        UnitTestFunction("twoDimensionalListCreationTest", unitTest) {
     }
 
-    virtual ~TestTwoDimensionalListFunction() {
+    virtual ~TestTwoDimensionalListCreationFunction() {
     }
 
     virtual void operator()() override {
-        getUnitTest().twoDimensionalListTest();
+        getUnitTest().twoDimensionalListCreationTest();
+    }
+};
+
+class TestTwoDimensionalListIterationFunction final : public unit_testing::UnitTestFunction<TwoDimensionalListUnitTest> {
+public:
+    explicit TestTwoDimensionalListIterationFunction(TwoDimensionalListUnitTest &unitTest) :
+        UnitTestFunction("twoDimensionalListIterationTest", unitTest) {
+    }
+
+    virtual ~TestTwoDimensionalListIterationFunction() {
+    }
+
+    virtual void operator()() override {
+        getUnitTest().twoDimensionalListIterationTest();
     }
 };
 
@@ -40,58 +55,72 @@ TwoDimensionalListUnitTest::~TwoDimensionalListUnitTest()
  */
 void TwoDimensionalListUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestTwoDimensionalListFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TestTwoDimensionalListCreationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TestTwoDimensionalListIterationFunction(*this)));
 }
 
 /**
- * Tests the two dimensional list.
+ * Tests the creation logic of a two dimensional list.
  */
-void TwoDimensionalListUnitTest::twoDimensionalListTest()
+void TwoDimensionalListUnitTest::twoDimensionalListCreationTest()
 {
     for (int row = 1; row <= 100; ++row)
     {
         for (int column = 1; column <= 100; ++column)
         {
-            testTwoDimensionalList(row, column);
+            std::shared_ptr<std::vector<std::vector<int>>> data = m_testData.createTwoDimensionalVector(row, column, 1);
+            testTwoDimensionalListCreation(*data);
         }
     }
 }
 
 /**
- * Tests the two dimensional list.
+ * Tests the iteration logic of a two dimensional list.
  */
-void TwoDimensionalListUnitTest::testTwoDimensionalList(int rows, int columns)
+void TwoDimensionalListUnitTest::twoDimensionalListIterationTest()
 {
-    TwoDimensionalList<int> list(rows, columns);
-
-    int value = 0;
-    for (int row = 0; row < rows; ++row)
+    for (int row = 1; row <= 100; ++row)
     {
-        for (int column = 0; column < columns; ++column)
+        for (int column = 1; column <= 100; ++column)
         {
-            ++value;
-            list[row][column] = value;
-
-            int currentValue = list[row][column];
-            int expectedValue = value;
-
-            assert(currentValue == expectedValue);
+            std::shared_ptr<std::vector<std::vector<int>>> data = m_testData.createTwoDimensionalVector(row, column, 1);
+            testTwoDimensionalListIteration(*data);
         }
     }
+}
 
-    int index = 0;
+/**
+ * Tests the creation logic of a two dimensional list.
+ */
+void TwoDimensionalListUnitTest::testTwoDimensionalListCreation(const std::vector<std::vector<int>>& data)
+{
+    base::TwoDimensionalList<int> list(data);
 
-    IIteratorPtr<int> iterator = list.getIterator();
-    while (iterator->hasNext())
+    for (int row = 0; row < data.size(); ++row)
     {
-        int rowIndex = index / columns;
-        int columnIndex = index % columns;
+        for (int column = 0; column < data[row].size(); ++column)
+        {
+            int currentValue = list[row][column];
+            int expectedValue = data[row][column];
 
-        int currentValue = iterator->next();
-        int expectedValue = list.get(rowIndex, columnIndex);
-
-        assert(currentValue == expectedValue);
-
-        ++index;
+            getAssertion().assertEquals(
+                currentValue,
+                expectedValue,
+                "Invalid creation logic.");
+        }
     }
+}
+
+/**
+ * Tests the iteration logic of a two dimensional list.
+ */
+void TwoDimensionalListUnitTest::testTwoDimensionalListIteration(const std::vector<std::vector<int>>& data)
+{
+    base::TwoDimensionalList<int> list(data);
+    base::TwoDimensionalListIterator<int> dataIterator(data);
+
+    this->getAssertion().assertEqualsWithIterators(
+        *(list.getIterator()),
+        dataIterator,
+        "Invalid iteration logic.");
 }

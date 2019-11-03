@@ -47,7 +47,12 @@ namespace base
         /**
          * Gets an element at a specified position.
          */
-        virtual const T& get(std::size_t rowIndex, std::size_t columnIndex) const override;
+        virtual const T& getElement(std::size_t rowIndex, std::size_t columnIndex) const override;
+
+        /**
+         * Gets all elements.
+         */
+        virtual const std::vector<std::vector<T>>& getElements() const override;
 
         /**
          * Gets elements of a specified row.
@@ -129,10 +134,16 @@ namespace base
     }
 
     template <typename T>
-    const T& TwoDimensionalList<T>::get(std::size_t rowIndex, std::size_t columnIndex) const
+    const T& TwoDimensionalList<T>::getElement(std::size_t rowIndex, std::size_t columnIndex) const
     {
         const std::vector<T>& row = m_data[rowIndex];
         return row[columnIndex];
+    }
+
+    template <typename T>
+    const std::vector<std::vector<T>>& TwoDimensionalList<T>::getElements() const
+    {
+        return m_data;
     }
 
     template <typename T>

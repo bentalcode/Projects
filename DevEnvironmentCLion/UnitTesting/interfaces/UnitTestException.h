@@ -8,7 +8,8 @@ namespace unit_testing {
     /**
      * The UnitTestException captured errors in the unit test module.
      */
-    class UnitTestException : public std::runtime_error {
+    class UnitTestException : public std::runtime_error
+    {
     public:
         explicit UnitTestException(const std::string &errorMessage) :
             std::runtime_error(errorMessage),

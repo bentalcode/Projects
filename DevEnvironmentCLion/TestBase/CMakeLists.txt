@@ -19,11 +19,13 @@ include_directories(
     ${BOOT_ROOT})
 
 set(TEST_BASE_INCLUDES_FILES
-    core/PreCompiled.h
-    TestBaseException.h)
+    ./interfaces/Assertion.h
+    ./core/PreCompiled.h
+    ./TestBaseException.h)
 
 set(TEST_BASE_SOURCES_FILES
-    core/PreCompiled.cpp)
+    ./core/Assertion.cpp
+    ./core/PreCompiled.cpp)
 
 set(TEST_BASE_SOURCES
     ${TEST_BASE_INCLUDES_FILES}

@@ -4,7 +4,7 @@
 #include "List.h"
 #include "UnitTestFunction.h"
 
-using namespace base;
+using namespace base_test;
 
 class TestListFunction : public unit_testing::UnitTestFunction<ListUnitTest> {
 public:
@@ -59,7 +59,7 @@ void ListUnitTest::listTest()
  */
 void ListUnitTest::testList(int size)
 {
-    List<int> list(size);
+    base::List<int> list(size);
 
     int value = 0;
     for (int i = 0; i < size; ++i)
@@ -72,7 +72,7 @@ void ListUnitTest::testList(int size)
 
     int index = 0;
 
-    IIteratorPtr<int> iterator = list.getIterator();
+    base::IIteratorPtr<int> iterator = list.getIterator();
     while (iterator->hasNext())
     {
         int currentValue = iterator->next();

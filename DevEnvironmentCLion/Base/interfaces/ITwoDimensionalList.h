@@ -37,7 +37,12 @@ namespace base
         /**
          * Gets an element at a specified position.
          */
-        virtual const T& get(std::size_t rowIndex, std::size_t columnIndex) const = 0;
+        virtual const T& getElement(std::size_t rowIndex, std::size_t columnIndex) const = 0;
+
+        /**
+         * Gets all elements.
+         */
+        virtual const std::vector<std::vector<T>>& getElements() const = 0;
 
         /**
          * Gets elements of a specified row.
@@ -59,6 +64,9 @@ namespace base
          */
         virtual std::vector<T>& operator[](int index) = 0;
     };
+
+    template <typename T>
+    using ITwoDimensionalListPtr = boost::shared_ptr<ITwoDimensionalList<T>>;
 }
 
 #endif // I_TWO_DIMENSIONAL_LIST_H_12d475a8_c364_4b4d_9b96_c23535316c43

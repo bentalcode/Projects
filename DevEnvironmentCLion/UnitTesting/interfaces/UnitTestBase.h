@@ -2,12 +2,14 @@
 #define UNIT_TEST_BASE_H_9d7b131d_8eec_47f4_bdfd_07b981f91491
 
 #include "IUnitTest.h"
+#include "Assertion.h"
 
 namespace unit_testing {
     /**
      * The UnitTestBase class implements a unit test.
      */
-    class UnitTestBase : public IUnitTest {
+    class UnitTestBase : public IUnitTest
+    {
     public:
         /**
          * The UnitTestBase constructor.
@@ -41,12 +43,18 @@ namespace unit_testing {
 
     protected:
         /**
+         * Gets the assertion.
+         */
+        test_base::Assertion& getAssertion();
+
+        /**
          * Gets the log stream writer.
          */
         base::LogStreamWriter& getLogStreamWriter();
 
     private:
         std::string m_name;
+        test_base::Assertion m_assertion;
         base::LogStreamWriterPtr m_logStreamWriter;
     };
 }

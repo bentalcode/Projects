@@ -16,31 +16,38 @@ endif()
 # Base Library...
 #
 set(BASE_INCLUDES_FILES
-    interfaces/DateTime.h
-    interfaces/Duration.h
-    interfaces/ICollection.h
-    interfaces/IIterable.h
-    interfaces/IIterator.h
-    interfaces/IList.h
-    interfaces/ISizebleCollection.h
-    interfaces/ITwoDimensionalList.h
-    interfaces/LogStreamWriter.h
-    interfaces/Pair.h
-    interfaces/SharedPtr.h
-    interfaces/Triple.h
-    core/BaseDependencies.h
-    core/List.h
-    core/ListIterator.h
-    core/PreCompiled.h
-    core/ReferenceCount.h
-    core/ReferenceCountHolder.h
-    core/TwoDimensionalList.h
-    BaseException.h)
+    ./interfaces/ComparatorFactory.h
+    ./interfaces/DateTime.h
+    ./interfaces/Duration.h
+    ./interfaces/EqualBuilder.h
+    ./interfaces/IBinaryComparator.h
+    ./interfaces/ICollection.h
+    ./interfaces/IComparableComparator.h
+    ./interfaces/IEquatableComparator.h
+    ./interfaces/IHashCodeProvider.h
+    ./interfaces/IIterable.h
+    ./interfaces/IIterator.h
+    ./interfaces/ISizebleCollection.h
+    ./interfaces/IterableComparator.h
+    ./interfaces/IteratorComparator.h
+    ./interfaces/ITwoDimensionalList.h
+    ./interfaces/LogStreamWriter.h
+    ./interfaces/Pair.h
+    ./interfaces/SharedPtr.h
+    ./interfaces/Triple.h
+    ./core/BaseDependencies.h
+    ./core/EquatableComparator.h
+    ./core/PreCompiled.h
+    ./core/ReferenceCount.h
+    ./core/ReferenceCountHolder.h
+    ./core/TwoDimensionalList.h
+    ./BaseException.h)
 
 set(BASE_SOURCES_FILES
-    core/DateTime.cpp
-    core/LogStreamWriter.cpp
-    core/PreCompiled.cpp)
+    ./core/DateTime.cpp
+    ./core/EqualBuilder.cpp
+    ./core/LogStreamWriter.cpp
+    ./core/PreCompiled.cpp)
 
 set(BASE_SOURCES
     ${BASE_INCLUDES_FILES}

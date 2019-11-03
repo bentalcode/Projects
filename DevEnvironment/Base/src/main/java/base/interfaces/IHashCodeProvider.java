@@ -1,7 +1,7 @@
 package base.interfaces;
 
 /**
- * The IHashCodeProvider interface defines a provider for an hash code.
+ * The IHashCodeProvider interface defines a provider for a hash code.
  */
 public interface IHashCodeProvider<T> {
     /**
