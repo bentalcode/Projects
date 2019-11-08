@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(BaseTest VERSION 1.0)
+project(DataStructuresTest VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -49,6 +49,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
     ../Base/core/EquatableComparator.h
+    ../Base/core/ListIterator.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
@@ -134,26 +135,24 @@ set(UNIT_TESTING_INCLUDES
     ../UnitTesting/core)
 
 #
-# Base Test...
+# Data Structures Test...
 #
-set(BASE_TEST_INCLUDES_FILES
-    interfaces/ListUnitTest.h
+set(DATA_STRUCTURES_TEST_INCLUDES_FILES
+    interfaces/IteratorOfIteratorCollectionUnitTest.h
     interfaces/TestData.h
-    interfaces/TwoDimensionalListUnitTest.h
     core/PreCompiled.h)
 
-set(BASE_TEST_SOURCES_FILES
+set(DATA_STRUCTURES_TEST_SOURCES_FILES
     main.cpp
-    core/ListUnitTest.cpp
+    core/IteratorOfIteratorCollectionUnitTest.cpp
     core/TestData.cpp
-    core/TwoDimensionalListUnitTest.cpp
     core/PreCompiled.cpp)
 
-set(BASE_TEST_SOURCES
-    ${BASE_TEST_INCLUDES_FILES}
-    ${BASE_TEST_SOURCES_FILES})
+set(DATA_STRUCTURES_TEST_SOURCES
+    ${DATA_STRUCTURES_TEST_INCLUDES_FILES}
+    ${DATA_STRUCTURES_TEST_SOURCES_FILES})
 
-set(BASE_TEST_INCLUDES
+set(DATA_STRUCTURES_TEST_INCLUDES
     .
     ./interfaces
     ./core)
@@ -166,7 +165,7 @@ include_directories(
     ${BASE_INCLUDES}
     ${TEST_BASE_INCLUDES}
     ${UNIT_TESTING_INCLUDES}
-    ${BASE_TEST_INCLUDES}
+    ${DATA_STRUCTURES_TEST_INCLUDES}
     ${BOOT_ROOT})
 
 add_library(Base STATIC
@@ -179,8 +178,8 @@ add_library(UnitTesting STATIC
     ${UNIT_TESTING_SOURCES})
 
 # Adding something we can run - Output name matches target name
-add_executable(BaseTest ${BASE_TEST_SOURCES})
+add_executable(DataStructuresTest ${DATA_STRUCTURES_TEST_SOURCES})
 
 # Make sure you link your targets with this command. It can also link libraries and
 # even flags, so linking a target that does not exist will not give a configure-time error.
-target_link_libraries(BaseTest PRIVATE Base TestBase UnitTesting)
+target_link_libraries(DataStructuresTest PRIVATE Base TestBase UnitTesting)
