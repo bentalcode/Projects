@@ -135,6 +135,26 @@ set(UNIT_TESTING_INCLUDES
     ../UnitTesting/core)
 
 #
+# Data Structures...
+#
+set(DATA_STRUCTURES_INCLUDES_FILES
+    ../DataStructures
+    ../DataStructures/interfaces/IteratorOfIteratorCollection.h
+    ../DataStructures/core/PreCompiled.h)
+
+set(DATA_STRUCTURES_SOURCES_FILES
+    ../DataStructures/core/PreCompiled.cpp)
+
+set(DATA_STRUCTURES_SOURCES
+    ${DATA_STRUCTURES_INCLUDES_FILES}
+    ${DATA_STRUCTURES_SOURCES_FILES})
+
+set(DATA_STRUCTURES_INCLUDES
+    ../DataStructures
+    ../DataStructures/interfaces
+    ../DataStructures/core)
+
+#
 # Data Structures Test...
 #
 set(DATA_STRUCTURES_TEST_INCLUDES_FILES
@@ -165,6 +185,7 @@ include_directories(
     ${BASE_INCLUDES}
     ${TEST_BASE_INCLUDES}
     ${UNIT_TESTING_INCLUDES}
+    ${DATA_STRUCTURES_INCLUDES}
     ${DATA_STRUCTURES_TEST_INCLUDES}
     ${BOOT_ROOT})
 
@@ -177,9 +198,12 @@ add_library(TestBase STATIC
 add_library(UnitTesting STATIC
     ${UNIT_TESTING_SOURCES})
 
+add_library(DataStructures STATIC
+    ${DATA_STRUCTURES_SOURCES})
+
 # Adding something we can run - Output name matches target name
 add_executable(DataStructuresTest ${DATA_STRUCTURES_TEST_SOURCES})
 
 # Make sure you link your targets with this command. It can also link libraries and
 # even flags, so linking a target that does not exist will not give a configure-time error.
-target_link_libraries(DataStructuresTest PRIVATE Base TestBase UnitTesting)
+target_link_libraries(DataStructuresTest PRIVATE Base TestBase UnitTesting DataStructures)

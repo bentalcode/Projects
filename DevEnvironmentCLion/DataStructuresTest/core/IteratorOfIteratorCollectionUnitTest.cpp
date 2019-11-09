@@ -2,7 +2,6 @@
 
 #include "IteratorOfIteratorCollectionUnitTest.h"
 #include "UnitTestFunction.h"
-#include "IteratorOfIteratorCollectionUnitTest.h"
 
 using namespace data_structures_test;
 
@@ -48,12 +47,10 @@ void IteratorOfIteratorCollectionUnitTest::registerTests(unit_testing::ITestRegi
  */
 void IteratorOfIteratorCollectionUnitTest::iteratorOfIteratorCollectionTest()
 {
-    testIteratorOfIteratorCollection();
-}
+    std::shared_ptr<std::vector<int>> oneDimensionalArray = m_testData.createVector<>(10, 1);
+    std::shared_ptr<std::vector<std::vector<int>>> twoDimensionalArray = m_testData.createTwoDimensionalVector(10, 20, 1);
 
-/**
- * Tests the iterator of a collection of iterators.
- */
-void IteratorOfIteratorCollectionUnitTest::testIteratorOfIteratorCollection()
-{
+    testIteratorOfIteratorCollection(
+        *oneDimensionalArray,
+        *twoDimensionalArray);
 }

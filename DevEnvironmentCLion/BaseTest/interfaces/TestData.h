@@ -23,7 +23,7 @@ namespace base_test {
         ~TestData();
 
         /**
-         * Creates a two dimensional list.
+         * Creates a two dimensional vector.
          */
         template <typename T>
         std::shared_ptr<std::vector<std::vector<T>>> createTwoDimensionalVector(

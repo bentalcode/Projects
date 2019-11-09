@@ -69,11 +69,11 @@ public final class IteratorOfIteratorCollection<T> implements IIterator<T> {
     public T next() {
         assert(this.hasNext());
 
-        IIterator<T> currIterator = this.iteratorsQueue.poll();
+        IIterator<T> currIterator = this.iteratorsQueue.peek();
         T currElement = currIterator.next();
 
-        if (currIterator.hasNext()) {
-            this.iteratorsQueue.offer(currIterator);
+        if (!currIterator.hasNext()) {
+            this.iteratorsQueue.poll();
         }
 
         return currElement;

@@ -16,7 +16,8 @@ endif()
 # Data Structures Library...
 #
 set(DATA_STRUCTURES_INCLUDES_FILES
-    ./core/IteratorOfIteratorCollection.h
+    ./interfaces/IteratorOfIteratorCollection.h
+    ./core/PreCompiled.h
     ./DataStructureExcpeption.h)
 
 set(DATA_STRUCTURES_SOURCES_FILES

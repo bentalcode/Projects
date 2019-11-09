@@ -6,6 +6,7 @@
 #include <list>
 #include <vector>
 #include <map>
+#include <queue>
 #include <cassert>
 #include <sstream>
 #include <boost/smart_ptr/shared_ptr.hpp>

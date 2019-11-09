@@ -20,6 +20,9 @@ namespace base
          */
         virtual IIteratorPtr<T> getIterator() const = 0;
     };
+
+    template <typename T>
+    using IIterablePtr = boost::shared_ptr<IIterable<T>>;
 }
 
 #endif // I_ITERABLE_H_8d34b6b1_99e6_4c78_94b5_5c1666e2ce9f
