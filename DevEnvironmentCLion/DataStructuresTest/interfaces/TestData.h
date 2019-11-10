@@ -44,8 +44,7 @@ namespace data_structures_test {
         int size,
         const T& initialValue) const
     {
-
-        std::shared_ptr<std::vector<T>> vector(new std::vector<T>(size));
+        std::shared_ptr<std::vector<T>> vector = std::make_shared<std::vector<T>>(size);
 
         T currValue = initialValue;
 
@@ -63,7 +62,7 @@ namespace data_structures_test {
         int columns,
         const T& initialValue) const
     {
-        std::shared_ptr<std::vector<std::vector<T>>> vector(new std::vector<std::vector<T>>(rows));
+        std::shared_ptr<std::vector<std::vector<T>>> vector = std::make_shared<std::vector<std::vector<T>>>(rows);
 
         for (int row = 0; row < rows; ++row) {
             std::vector<T> rowData(columns);

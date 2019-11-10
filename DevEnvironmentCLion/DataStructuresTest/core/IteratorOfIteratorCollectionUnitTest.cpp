@@ -48,7 +48,7 @@ void IteratorOfIteratorCollectionUnitTest::registerTests(unit_testing::ITestRegi
 void IteratorOfIteratorCollectionUnitTest::iteratorOfIteratorCollectionTest()
 {
     std::shared_ptr<std::vector<int>> oneDimensionalArray = m_testData.createVector<>(10, 1);
-    std::shared_ptr<std::vector<std::vector<int>>> twoDimensionalArray = m_testData.createTwoDimensionalVector(10, 20, 1);
+    std::shared_ptr<std::vector<std::vector<int>>> twoDimensionalArray = m_testData.createTwoDimensionalVector(10, 20, 11);
 
     testIteratorOfIteratorCollection(
         *oneDimensionalArray,

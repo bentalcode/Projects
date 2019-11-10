@@ -40,7 +40,7 @@ namespace base_test {
         int columns,
         T initialValue) const
     {
-        std::shared_ptr<std::vector<std::vector<T>>> vector(new std::vector<std::vector<T>>(rows));
+        std::shared_ptr<std::vector<std::vector<T>>> vector = std::make_shared<std::vector<std::vector<T>>>(rows);
 
         for (int row = 0; row < rows; ++row) {
             std::vector<T> rowData(columns);
