@@ -1,4 +1,4 @@
-package base.core;
+package base;
 
 /**
  * The BaseException class implements an exception for capturing errors in the base module.

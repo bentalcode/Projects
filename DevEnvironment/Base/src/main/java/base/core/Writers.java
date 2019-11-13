@@ -1,5 +1,6 @@
 package base.core;
 
+import base.BaseException;
 import base.interfaces.IConstants;
 import java.io.BufferedWriter;
 import java.io.File;

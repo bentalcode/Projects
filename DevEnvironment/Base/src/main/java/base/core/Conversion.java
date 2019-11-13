@@ -1,5 +1,6 @@
 package base.core;
 
+import base.BaseException;
 import base.interfaces.IBigIntegerConversion;
 import base.interfaces.IDoubleConversion;
 import base.interfaces.IIntegerConversion;

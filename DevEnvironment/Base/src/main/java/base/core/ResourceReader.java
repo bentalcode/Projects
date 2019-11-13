@@ -1,5 +1,6 @@
 package base.core;
 
+import base.BaseException;
 import base.interfaces.ICloseable;
 import base.interfaces.IResourceReader;
 import org.slf4j.Logger;

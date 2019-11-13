@@ -1,5 +1,6 @@
 package base.core;
 
+import base.BaseException;
 import base.interfaces.IPair;
 import base.interfaces.IRegexMatcher;
 import java.util.List;

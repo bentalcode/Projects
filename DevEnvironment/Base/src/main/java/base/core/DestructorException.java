@@ -1,5 +1,7 @@
 package base.core;
 
+import base.BaseException;
+
 /**
  * The DestructorException class implements an exception for capturing errors during a destruction of objects.
  */

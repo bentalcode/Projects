@@ -1,5 +1,6 @@
 package base.core;
 
+import base.BaseException;
 import base.interfaces.IConverter;
 import java.util.HashMap;
 import java.util.Map;

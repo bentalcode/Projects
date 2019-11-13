@@ -1,5 +1,7 @@
 package base.core;
 
+import base.BaseException;
+
 /**
  * The ArithmeticOperators class implements complementary APIs for arithmetic operators.
  */

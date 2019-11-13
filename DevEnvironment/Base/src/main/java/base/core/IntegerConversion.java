@@ -1,5 +1,6 @@
 package base.core;
 
+import base.BaseException;
 import base.interfaces.IIntegerConversion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
