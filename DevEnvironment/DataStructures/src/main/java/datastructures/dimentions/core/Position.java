@@ -5,38 +5,38 @@ import base.core.Casting;
 import base.core.Conditions;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import datastructures.dimentions.interfaces.IPoint;
+import datastructures.dimentions.interfaces.IPosition;
 import java.util.List;
 
 /**
- * The Point class implements a 2D point.
+ * The Position class implements a 2D position.
  */
-public final class Point implements IPoint {
-    private double x;
-    private double y;
-    private final IBinaryComparator<IPoint> comparator;
+public final class Position implements IPosition {
+    private int x;
+    private int y;
+    private final IBinaryComparator<IPosition> comparator;
 
     /**
-     * The Point constructor.
+     * The Position constructor.
      */
-    public Point() {
-        this(0.0, 0.0, Point.defaultComparator());
+    public Position() {
+        this(0, 0, Position.defaultComparator());
+    }
+
+    /**
+     * The Position constructor.
+     */
+    public Position(int x, int y) {
+        this(x, y, Position.defaultComparator());
     }
 
     /**
      * The Point constructor.
      */
-    public Point(double x, double y) {
-        this(x, y, Point.defaultComparator());
-    }
-
-    /**
-     * The Point constructor.
-     */
-    public Point(double x, double y, IBinaryComparator<IPoint> comparator) {
+    public Position(int x, int y, IBinaryComparator<IPosition> comparator) {
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a point.");
+            "The comparator of a position.");
 
         this.x = x;
         this.y = y;
@@ -47,7 +47,7 @@ public final class Point implements IPoint {
      * Gets the X coordinate.
      */
     @Override
-    public double getX() {
+    public int getX() {
         return this.x;
     }
 
@@ -55,68 +55,68 @@ public final class Point implements IPoint {
      * Gets the Y coordinate.
      */
     @Override
-    public double getY() {
+    public int getY() {
         return this.y;
     }
 
     /**
-     * Adds a new point.
+     * Adds a new position.
      */
     @Override
-    public IPoint add(IPoint point) {
+    public IPosition add(IPosition position) {
         Conditions.validateNotNull(
-            point,
-            "The point for adding.");
+            position,
+            "The position for adding.");
 
-        this.x += point.getX();
-        this.y += point.getY();
+        this.x += position.getX();
+        this.y += position.getY();
 
         return this;
     }
 
     /**
-     * Subtracts from a point.
+     * Subtracts from a position.
      */
     @Override
-    public IPoint subtract(IPoint point) {
+    public IPosition subtract(IPosition position) {
         Conditions.validateNotNull(
-            point,
-            "The point for subtracting.");
+            position,
+            "The position for subtracting.");
 
-        this.x -= point.getX();
-        this.y -= point.getY();
+        this.x -= position.getX();
+        this.y -= position.getY();
 
         return this;
     }
 
     /**
-     * Adds new points.
+     * Adds new positions.
      */
     @Override
-    public IPoint add(List<IPoint> points) {
+    public IPosition add(List<IPosition> positions) {
         Conditions.validateNotNull(
-            points,
-            "The list of point for adding.");
+                positions,
+            "The list of positions for adding.");
 
-        for (IPoint point : points) {
-            this.x += point.getX();
-            this.y += point.getY();
+        for (IPosition position : positions) {
+            this.x += position.getX();
+            this.y += position.getY();
         }
 
         return this;
     }
 
     /**
-     * Subtracts points.
+     * Subtracts positions.
      */
-    public IPoint subtract(List<IPoint> points) {
+    public IPosition subtract(List<IPosition> positions) {
         Conditions.validateNotNull(
-            points,
-            "The list of point for subtracting.");
+            positions,
+            "The list of positions for subtracting.");
 
-        for (IPoint point : points) {
-            this.x -= point.getX();
-            this.y -= point.getY();
+        for (IPosition position : positions) {
+            this.x -= position.getX();
+            this.y -= position.getY();
         }
 
         return this;
@@ -154,7 +154,7 @@ public final class Point implements IPoint {
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(IPoint other) {
+    public boolean isEqual(IPosition other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -166,21 +166,21 @@ public final class Point implements IPoint {
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(IPoint other) {
+    public int compareTo(IPosition other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<IPoint> defaultComparator() {
+    public static IBinaryComparator<IPosition> defaultComparator() {
         return new Comparator();
     }
 
     /**
-     * The Comparator class implements a comparator of a point.
+     * The Comparator class implements a comparator of a position.
      */
-    public static final class Comparator extends AbstractBinaryComparator<IPoint> {
+    public static final class Comparator extends AbstractBinaryComparator<IPosition> {
         /**
          * The Comparator constructor.
          */
@@ -191,10 +191,10 @@ public final class Point implements IPoint {
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(IPoint point) {
+        public int getHashCode(IPosition position) {
             return new HashCodeBuilder(3, 5)
-                .withDouble(point.getX())
-                .withDouble(point.getY())
+                .withInteger(position.getX())
+                .withInteger(position.getY())
                 .build();
         }
 
@@ -202,7 +202,7 @@ public final class Point implements IPoint {
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(IPoint lhs, IPoint rhs) {
+        public boolean isEqual(IPosition lhs, IPosition rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -222,7 +222,7 @@ public final class Point implements IPoint {
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(IPoint lhs, IPoint rhs) {
+        public int compareTo(IPosition lhs, IPosition rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }

@@ -33,7 +33,7 @@ public interface IPoint extends IUnaryComparator<IPoint> {
     IPoint add(List<IPoint> points);
 
     /**
-     * Subtracts from points.
+     * Subtracts points.
      */
     IPoint subtract(List<IPoint> points);
 }
