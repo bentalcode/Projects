@@ -12,6 +12,7 @@ import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.interfaces.IListTestData;
 import datastructures.list.interfaces.ITwoDimensionalList;
 import datastructures.list.interfaces.ITwoDimensionalListTestData;
+import datastructures.matrix.interfaces.IMatrixTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 import datastructures.stack.interfaces.IStackTestData;
 import datastructures.trie.interfaces.ITrieTestData;
@@ -89,4 +90,9 @@ public interface ITestData {
      * Gets the data of tests of a cache.
      */
     ICacheTestData getCacheData();
+
+    /**
+     * Gets the data of tests of a matrix.
+     */
+    IMatrixTestData getMatrixData();
 }

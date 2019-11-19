@@ -6,8 +6,6 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
-import base.core.TwoDimensionalListIterator;
-import base.core.TwoDimensionalListReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
@@ -16,69 +14,45 @@ import datastructures.dimentions.core.Position;
 import datastructures.dimentions.core.RectanglePositions;
 import datastructures.dimentions.interfaces.IPosition;
 import datastructures.dimentions.interfaces.IRectanglePositions;
+import datastructures.matrix.MatrixException;
 import datastructures.matrix.interfaces.IMatrix;
-import java.util.List;
 
 /**
- * The Matrix class implements a matrix.
- * A matrix is a rectangular array of numbers or other mathematical objects for which operations such as addition
- * and multiplication are defined.
+ * The SubMatrix class implements a sub matrix.
  */
-public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
-    private final List<List<T>> data;
+public final class SubMatrix<T extends Comparable<T>> implements IMatrix<T> {
+    private final IMatrix<T> data;
+    private final IPosition bottomLeftPosition;
     private final int xSize;
     private final int ySize;
     private final IBinaryComparator<IMatrix<T>> comparator;
     private final int hashCode;
 
     /**
-     * Validates the data of a matrix.
+     * The SubMatrix constructor.
      */
-    public static <T extends Comparable<T>> void validate(List<List<T>> data) {
-        Conditions.validateNotNull(
+    public SubMatrix(
+        IMatrix<T> data,
+        IPosition bottomLeftPosition,
+        int xSize,
+        int ySize) {
+
+        this(
             data,
-            "The data of a matrix.");
-
-        Conditions.validate(
-            data.size() > 0,
-            "The number of rows has to be positive.");
-
-        int columnsSize = data.get(0).size();
-
-        Conditions.validate(
-            columnsSize > 0,
-            "The number of columns has to be positive.");
-
-        for (List<T> row : data) {
-            Conditions.validateNotNull(
-                row,
-                "The row of a matrix.");
-
-            Conditions.validate(
-                row.size() == columnsSize,
-                "The matrix is not a rectangle.");
-        }
+            bottomLeftPosition,
+            xSize,
+            ySize,
+            Matrix.defaultComparator());
     }
 
     /**
-     * Creates a new matrix.
+     * The SubMatrix constructor.
      */
-    public static <T extends Comparable<T>> IMatrix<T> create(List<List<T>> data) {
-        return new Matrix(data);
-    }
-
-    /**
-     * The Matrix constructor.
-     */
-    public Matrix(List<List<T>> data) {
-        this(data, Matrix.defaultComparator());
-    }
-
-    /**
-     * The Matrix constructor.
-     */
-    public Matrix(
-        List<List<T>> data,
+    public SubMatrix(
+        IMatrix<T> data,
+        IPosition bottomLeftPosition,
+        int xSize,
+        int ySize,
         IBinaryComparator<IMatrix<T>> comparator) {
 
         Conditions.validateNotNull(
@@ -86,22 +60,27 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
             "The data of a matrix.");
 
         Conditions.validateNotNull(
+            bottomLeftPosition,
+            "The bottom left position of a sub matrix.");
+
+        Conditions.validate(
+            xSize >= 0,
+            "The xSize of a sub matrix has to be positive.");
+
+        Conditions.validate(
+            ySize >= 0,
+            "The ySize of a sub matrix has to be positive.");
+
+        Conditions.validateNotNull(
             comparator,
             "The comparator of a matrix.");
 
+        SubMatrix.validateSubMatrix(data, bottomLeftPosition, xSize, ySize);
+
         this.data = data;
-
-        Conditions.validate(
-            data.size() > 0,
-            "The number of rows has to be positive.");
-
-        Conditions.validate(
-            data.get(0).size() > 0,
-            "The number of columns has to be positive.");
-
-        this.xSize = data.get(0).size();
-        this.ySize = data.size();
-
+        this.bottomLeftPosition = bottomLeftPosition;
+        this.xSize = xSize;
+        this.ySize = ySize;
         this.comparator = comparator;
         this.hashCode = comparator.getHashCode(this);
     }
@@ -127,10 +106,10 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IRectanglePositions getFrame() {
-        IPosition upperLeftPosition = new Position(0, this.ySize - 1);
-        IPosition upperRightPosition = new Position(this.xSize - 1, this.ySize - 1);
-        IPosition bottomLeftPosition = new Position(0, 0);
-        IPosition bottomRightPosition = new Position(this.xSize - 1, 0);
+        IPosition upperLeftPosition = Position.add(this.bottomLeftPosition, 0, this.ySize - 1);
+        IPosition upperRightPosition = Position.add(this.bottomLeftPosition, this.xSize - 1, this.ySize - 1);
+        IPosition bottomLeftPosition = this.bottomLeftPosition;
+        IPosition bottomRightPosition = Position.add(this.bottomLeftPosition, this.xSize - 1, 0);
 
         return new RectanglePositions(
             upperLeftPosition,
@@ -144,6 +123,14 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IMatrix getSubMatrix(IPosition bottomLeftPosition, IPosition upperRightPosition) {
+        Conditions.validateNotNull(
+            bottomLeftPosition,
+            "The bottom left position of a sub matrix.");
+
+        Conditions.validateNotNull(
+            upperRightPosition,
+            "The upper right position of a sub matrix.");
+
         int xSize = upperRightPosition.getX() - bottomLeftPosition.getX() + 1;
         int ySize = upperRightPosition.getY() - bottomLeftPosition.getY() + 1;
 
@@ -155,7 +142,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IMatrix getSubMatrix(IPosition bottomLeftPosition, int xSize, int ySize) {
-        return new SubMatrix(this, bottomLeftPosition, xSize, ySize);
+        return new SubMatrix(this.data, bottomLeftPosition, xSize, ySize);
     }
 
     /**
@@ -179,7 +166,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IIterator<T> getIterator() {
-        return TwoDimensionalListIterator.of(this.data);
+        return null;
     }
 
     /**
@@ -187,7 +174,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return TwoDimensionalListReverseIterator.of(this.data);
+        return null;
     }
 
     /**
@@ -295,7 +282,6 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
             }
 
             return new EqualBuilder()
-                .withInteger(lhs.size(), rhs.size())
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.elementComparator)
                 .build();
         }
@@ -322,7 +308,6 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
             }
 
             return new CompareToBuilder()
-                .withInteger(lhs.size(), rhs.size())
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.elementComparator)
                 .build();
         }
@@ -343,10 +328,46 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
     public boolean contains(IPosition position) {
         Conditions.validateNotNull(
             position,
-            "The position in the matrix.");
+            "The position.");
 
         return
-            (position.getX() >= 0 && position.getX() < this.xSize) &&
-            (position.getY() >= 0 && position.getY() < this.ySize);
+            (position.getX() >= this.bottomLeftPosition.getX() && position.getX() < this.bottomLeftPosition.getX() + this.xSize) &&
+            (position.getY() >= this.bottomLeftPosition.getY() && position.getY() < this.bottomLeftPosition.getY() + this.ySize);
+    }
+
+    /**
+     * Validates that the root matrix contains the specified sub matrix.
+     */
+    private static void validateSubMatrix(
+        IMatrix matrix,
+        IPosition bottomLeftPosition,
+        int xSize,
+        int ySize) {
+
+        if (!SubMatrix.contains(matrix, bottomLeftPosition, xSize, ySize)) {
+            IRectanglePositions matrixFrame = matrix.getFrame();
+            IRectanglePositions subMatrixFrame = RectanglePositions.create(bottomLeftPosition, xSize, ySize);
+
+            String errorMessage = "The matrix: " + matrixFrame + " does not contain sub matrix: " + subMatrixFrame;
+            throw new MatrixException(errorMessage);
+        }
+    }
+
+    /**
+     * Checks whether the root matrix contains the specified sub matrix.
+     */
+    private static boolean contains(
+        IMatrix matrix,
+        IPosition bottomLeftPosition,
+        int xSize,
+        int ySize) {
+
+        if (!matrix.contains(bottomLeftPosition)) {
+            return false;
+        }
+
+        IPosition upperRightPosition = Position.add(bottomLeftPosition, xSize - 1, ySize - 1);
+
+        return matrix.contains(upperRightPosition);
     }
 }

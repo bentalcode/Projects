@@ -19,7 +19,7 @@ public interface IPosition extends IUnaryComparator<IPosition> {
     int getY();
 
     /**
-     * Adds a new position.
+     * Adds to a position.
      */
     IPosition add(IPosition position);
 
@@ -29,12 +29,12 @@ public interface IPosition extends IUnaryComparator<IPosition> {
     IPosition subtract(IPosition position);
 
     /**
-     * Adds new positions.
+     * Adds to a position.
      */
-    IPosition add(List<IPosition> positions);
+    IPosition add(int xSize, int ySize);
 
     /**
-     * Subtracts positions.
+     * Subtracts from a position.
      */
-    IPosition subtract(List<IPosition> positions);
+    IPosition subtract(int xSize, int ySize);
 }

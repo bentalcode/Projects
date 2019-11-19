@@ -6,7 +6,6 @@ import base.core.Conditions;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import datastructures.dimentions.interfaces.IPosition;
-import java.util.List;
 
 /**
  * The Position class implements a 2D position.
@@ -31,7 +30,7 @@ public final class Position implements IPosition {
     }
 
     /**
-     * The Point constructor.
+     * The Position constructor.
      */
     public Position(int x, int y, IBinaryComparator<IPosition> comparator) {
         Conditions.validateNotNull(
@@ -60,7 +59,7 @@ public final class Position implements IPosition {
     }
 
     /**
-     * Adds a new position.
+     * Adds to a position.
      */
     @Override
     public IPosition add(IPosition position) {
@@ -68,10 +67,7 @@ public final class Position implements IPosition {
             position,
             "The position for adding.");
 
-        this.x += position.getX();
-        this.y += position.getY();
-
-        return this;
+        return this.add(position.getX(), position.getY());
     }
 
     /**
@@ -83,41 +79,27 @@ public final class Position implements IPosition {
             position,
             "The position for subtracting.");
 
-        this.x -= position.getX();
-        this.y -= position.getY();
-
-        return this;
+        return this.subtract(position.getX(), position.getY());
     }
 
     /**
-     * Adds new positions.
+     * Adds to a position.
      */
     @Override
-    public IPosition add(List<IPosition> positions) {
-        Conditions.validateNotNull(
-                positions,
-            "The list of positions for adding.");
-
-        for (IPosition position : positions) {
-            this.x += position.getX();
-            this.y += position.getY();
-        }
+    public IPosition add(int xSize, int ySize) {
+        this.x += xSize;
+        this.y += ySize;
 
         return this;
     }
 
     /**
-     * Subtracts positions.
+     * Subtracts from a position.
      */
-    public IPosition subtract(List<IPosition> positions) {
-        Conditions.validateNotNull(
-            positions,
-            "The list of positions for subtracting.");
-
-        for (IPosition position : positions) {
-            this.x -= position.getX();
-            this.y -= position.getY();
-        }
+    @Override
+    public IPosition subtract(int xSize, int ySize) {
+        this.x -= xSize;
+        this.y -= ySize;
 
         return this;
     }
@@ -253,5 +235,57 @@ public final class Position implements IPosition {
 
             return 0;
         }
+    }
+
+    /**
+     * Adds positions.
+     */
+    public static IPosition add(IPosition leftPosition, IPosition rightPosition) {
+        Conditions.validateNotNull(
+            leftPosition,
+            "The left position.");
+
+        Conditions.validateNotNull(
+            rightPosition,
+            "The right position.");
+
+        return new Position(leftPosition.getX() + rightPosition.getX(), leftPosition.getY() + rightPosition.getY());
+    }
+
+    /**
+     * Subtracts positions.
+     */
+    public static IPosition subtract(IPosition leftPosition, IPosition rightPosition) {
+        Conditions.validateNotNull(
+            leftPosition,
+            "The left position.");
+
+        Conditions.validateNotNull(
+            rightPosition,
+            "The right position.");
+
+        return new Position(leftPosition.getX() - rightPosition.getX(), leftPosition.getY() - rightPosition.getY());
+    }
+
+    /**
+     * Adds to a position.
+     */
+    public static IPosition add(IPosition position, int x, int y) {
+        Conditions.validateNotNull(
+            position,
+            "The origin position.");
+
+        return new Position(position.getX() + x, position.getY() + y);
+    }
+
+    /**
+     * Subtracts from a position.
+     */
+    public static IPosition subtract(IPosition position, int x, int y) {
+        Conditions.validateNotNull(
+            position,
+            "The origin position.");
+
+        return new Position(position.getX() - x, position.getY() - y);
     }
 }

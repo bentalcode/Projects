@@ -23,6 +23,8 @@ import datastructures.list.core.ListTestData;
 import datastructures.list.core.TwoDimensionalListTestData;
 import datastructures.list.interfaces.IListTestData;
 import datastructures.list.interfaces.ITwoDimensionalListTestData;
+import datastructures.matrix.core.MatrixTestData;
+import datastructures.matrix.interfaces.IMatrixTestData;
 import datastructures.priorityqueue.core.PriorityQueueTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 import datastructures.stack.core.StackTestData;
@@ -150,5 +152,13 @@ public final class TestData implements ITestData {
     @Override
     public ICacheTestData getCacheData() {
         return new CacheTestData();
+    }
+
+    /**
+     * Gets the data of tests of a matrix.
+     */
+    @Override
+    public IMatrixTestData getMatrixData() {
+        return new MatrixTestData();
     }
 }

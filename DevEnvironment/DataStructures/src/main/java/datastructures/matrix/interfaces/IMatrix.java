@@ -5,6 +5,7 @@ import base.interfaces.IReverseIterable;
 import base.interfaces.ISizableCollection;
 import base.interfaces.IUnaryComparator;
 import datastructures.dimentions.interfaces.IPosition;
+import datastructures.dimentions.interfaces.IRectanglePositions;
 
 /**
  * The IMatrix interface defines a matrix.
@@ -26,7 +27,12 @@ public interface IMatrix<T extends Comparable<T>> extends
     int ySize();
 
     /**
-     * Gets a sub-matrix.
+     * Gets a frame of the matrix.
+     */
+    IRectanglePositions getFrame();
+
+    /**
+     * Gets a sub-matrix of the matrix.
      */
     IMatrix getSubMatrix(IPosition bottomLeftPosition, IPosition upperRightPosition);
 
@@ -36,7 +42,12 @@ public interface IMatrix<T extends Comparable<T>> extends
     IMatrix getSubMatrix(IPosition bottomLeftPosition, int xSize, int ySize);
 
     /**
-     * Converts the list to a native array.
+     * Converts the matrix to a native array.
      */
     T[][] toArray();
+
+    /**
+     * Checks whether the matrix contains a specific position.
+     */
+    boolean contains(IPosition position);
 }
