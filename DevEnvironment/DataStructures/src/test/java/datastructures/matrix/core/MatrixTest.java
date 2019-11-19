@@ -7,7 +7,6 @@ import datastructures.dimentions.interfaces.IPosition;
 import datastructures.interfaces.ITestData;
 import datastructures.matrix.interfaces.IMatrixData;
 import datastructures.matrix.interfaces.IMatrix;
-import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,7 +53,6 @@ public final class MatrixTest {
     /**
      * Tests the logic of a creating a sub matrix.
      */
-    @Test
     public void subMatrixCreationTest() {
         for (IMatrixData<Integer> data : this.testData.getMatrixData().getData()) {
             this.testSubMatrixCreation(data);
