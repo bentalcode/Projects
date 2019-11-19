@@ -16,6 +16,7 @@ import datastructures.dimentions.interfaces.IPosition;
 import datastructures.dimentions.interfaces.IRectanglePositions;
 import datastructures.matrix.MatrixException;
 import datastructures.matrix.interfaces.IMatrix;
+import java.util.List;
 
 /**
  * The SubMatrix class implements a sub matrix.
@@ -178,6 +179,36 @@ public final class SubMatrix<T extends Comparable<T>> implements IMatrix<T> {
     }
 
     /**
+     * Checks whether the matrix contains a specific position.
+     */
+    @Override
+    public boolean contains(IPosition position) {
+        Conditions.validateNotNull(
+                position,
+                "The position.");
+
+        return
+            (position.getX() >= this.bottomLeftPosition.getX() && position.getX() < this.bottomLeftPosition.getX() + this.xSize) &&
+            (position.getY() >= this.bottomLeftPosition.getY() && position.getY() < this.bottomLeftPosition.getY() + this.ySize);
+    }
+
+    /**
+     * Gets the data of the matrix.
+     */
+    @Override
+    public List<List<T>> getData() {
+        return this.data.getData();
+    }
+
+    /**
+     * Converts the array to a native array.
+     */
+    @Override
+    public T[][] toArray() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * Gets string representation of this instance.
      */
     @Override
@@ -311,28 +342,6 @@ public final class SubMatrix<T extends Comparable<T>> implements IMatrix<T> {
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.elementComparator)
                 .build();
         }
-    }
-
-    /**
-     * Converts the array to a native array.
-     */
-    @Override
-    public T[][] toArray() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Checks whether the matrix contains a specific position.
-     */
-    @Override
-    public boolean contains(IPosition position) {
-        Conditions.validateNotNull(
-            position,
-            "The position.");
-
-        return
-            (position.getX() >= this.bottomLeftPosition.getX() && position.getX() < this.bottomLeftPosition.getX() + this.xSize) &&
-            (position.getY() >= this.bottomLeftPosition.getY() && position.getY() < this.bottomLeftPosition.getY() + this.ySize);
     }
 
     /**

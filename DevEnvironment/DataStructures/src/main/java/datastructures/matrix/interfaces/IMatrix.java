@@ -6,6 +6,7 @@ import base.interfaces.ISizableCollection;
 import base.interfaces.IUnaryComparator;
 import datastructures.dimentions.interfaces.IPosition;
 import datastructures.dimentions.interfaces.IRectanglePositions;
+import java.util.List;
 
 /**
  * The IMatrix interface defines a matrix.
@@ -42,12 +43,17 @@ public interface IMatrix<T extends Comparable<T>> extends
     IMatrix getSubMatrix(IPosition bottomLeftPosition, int xSize, int ySize);
 
     /**
-     * Converts the matrix to a native array.
-     */
-    T[][] toArray();
-
-    /**
      * Checks whether the matrix contains a specific position.
      */
     boolean contains(IPosition position);
+
+    /**
+     * Gets the data of the matrix.
+     */
+    List<List<T>> getData();
+
+    /**
+     * Converts the matrix to a native array.
+     */
+    T[][] toArray();
 }

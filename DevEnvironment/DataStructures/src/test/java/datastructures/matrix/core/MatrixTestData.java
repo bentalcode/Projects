@@ -32,7 +32,6 @@ public final class MatrixTestData implements IMatrixTestData {
     public List<IMatrixData<Integer>> getData() {
         List<IMatrixData<Integer>> data = new ArrayList<>();
         data.add(this.getMatrixData1());
-        data.add(this.getMatrixData1());
         data.add(this.getMatrixData2());
         data.add(this.getMatrixData3());
         data.add(this.getMatrixData4());
@@ -49,7 +48,7 @@ public final class MatrixTestData implements IMatrixTestData {
     }
 
     /**
-     * Gets the data of a matrix2.
+     * Gets the data of a matrix1.
      */
     private IMatrixData<Integer> getMatrixData1() {
         List<List<Integer>> creationData = this.createMatrix(1, 1);
@@ -58,7 +57,7 @@ public final class MatrixTestData implements IMatrixTestData {
     }
 
     /**
-     * Gets the data of a matrix3.
+     * Gets the data of a matrix2.
      */
     private IMatrixData<Integer> getMatrixData2() {
         List<List<Integer>> creationData = this.createMatrix(1, 2);
@@ -67,7 +66,7 @@ public final class MatrixTestData implements IMatrixTestData {
     }
 
     /**
-     * Gets the data of a matrix4.
+     * Gets the data of a matrix3.
      */
     private IMatrixData<Integer> getMatrixData3() {
         List<List<Integer>> creationData = this.createMatrix(10, 20);
@@ -76,7 +75,7 @@ public final class MatrixTestData implements IMatrixTestData {
     }
 
     /**
-     * Gets the data of a matrix5.
+     * Gets the data of a matrix4.
      */
     private IMatrixData<Integer> getMatrixData4() {
         List<List<Integer>> creationData = this.createMatrix(100, 200);

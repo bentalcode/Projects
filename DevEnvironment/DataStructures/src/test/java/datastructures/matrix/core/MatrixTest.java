@@ -86,14 +86,14 @@ public final class MatrixTest {
             for (int y = 0; y < matrix.ySize(); ++y) {
                 IPosition bottomLowerPosition = new Position(x, y);
 
-                int subXSize = matrix.xSize() - x;
-                int subYSize = matrix.ySize() - y;
+                int subMatrixMaxXSize = matrix.xSize() - x;
+                int subMatrixMaxYSize = matrix.ySize() - y;
 
-                for (int subX = 0; subX <= subXSize; ++subX) {
-                    for (int subY = 0; subY <= subYSize; ++subY) {
-                        IMatrix<T> subMatrix = matrix.getSubMatrix(bottomLowerPosition, subX, subY);
+                for (int subMatrixXSize = 1; subMatrixXSize <= subMatrixMaxXSize; ++subMatrixXSize) {
+                    for (int subMatrixYSize = 1; subMatrixYSize <= subMatrixMaxYSize; ++subMatrixYSize) {
+                        IMatrix<T> subMatrix = matrix.getSubMatrix(bottomLowerPosition, subMatrixXSize, subMatrixYSize);
 
-                        int subMatrixSize = subXSize * subYSize;
+                        int subMatrixSize = subMatrixXSize * subMatrixYSize;
 
                         this.assertion.assertTrue(
                             subMatrixSize == subMatrix.size(),

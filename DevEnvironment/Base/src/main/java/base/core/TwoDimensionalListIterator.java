@@ -8,7 +8,7 @@ import java.util.List;
  */
 public final class TwoDimensionalListIterator<T> implements IIterator<T> {
     private final List<List<T>> data;
-    private final int rows;
+    private final int rowsSize;
     private int rowIndex;
     private int columnIndex;
 
@@ -28,7 +28,7 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
             "The two dimensional list to iterate.");
 
         this.data = data;
-        this.rows = data.size();
+        this.rowsSize = data.size();
 
         this.reset();
     }
@@ -38,7 +38,7 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.rowIndex < this.rows && this.columnIndex < this.columnSize(this.rowIndex);
+        return this.rowIndex < this.rowsSize && this.columnIndex < this.columnSize(this.rowIndex);
     }
 
     /**
@@ -88,7 +88,7 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
      * Gets a value od a specific position.
      */
     private T get(int rowIndex, int columnIndex) {
-        assert(rowIndex >= 0 && rowIndex < this.rows);
+        assert(rowIndex >= 0 && rowIndex < this.rowsSize);
         assert(columnIndex >= 0 && columnIndex < this.columnSize(rowIndex));
 
         return this.data.get(rowIndex).get(columnIndex);
