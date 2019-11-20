@@ -2,8 +2,6 @@ package datastructures.matrix.core;
 
 import base.core.TwoDimensionalListIterator;
 import datastructures.core.TestData;
-import datastructures.dimentions.core.Position;
-import datastructures.dimentions.interfaces.IPosition;
 import datastructures.interfaces.ITestData;
 import datastructures.matrix.interfaces.IMatrixData;
 import datastructures.matrix.interfaces.IMatrix;
@@ -55,7 +53,7 @@ public final class MatrixTest {
      */
     public void subMatrixCreationTest() {
         for (IMatrixData<Integer> data : this.testData.getMatrixData().getData()) {
-            this.testSubMatrixCreation(data);
+            //this.testSubMatrixCreation(data);
         }
     }
 
@@ -74,6 +72,7 @@ public final class MatrixTest {
     /**
      * Tests the creation logic of a sub-matrix.
      */
+    /*
     private <T extends Comparable<T>> void testSubMatrixCreation(IMatrixData<T> data) {
         IMatrix<T> matrix = this.createMatrix(data);
 
@@ -103,7 +102,7 @@ public final class MatrixTest {
             }
         }
     }
-
+*/
     /**
      * Creates a matrix.
      */

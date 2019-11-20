@@ -6,7 +6,6 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
-import base.core.TwoDimensionalListIterator;
 import base.core.TwoDimensionalListReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
@@ -140,25 +139,6 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
     }
 
     /**
-     * Gets a sub-matrix.
-     */
-    @Override
-    public IMatrix getSubMatrix(IPosition bottomLeftPosition, IPosition upperRightPosition) {
-        int xSize = upperRightPosition.getX() - bottomLeftPosition.getX() + 1;
-        int ySize = upperRightPosition.getY() - bottomLeftPosition.getY() + 1;
-
-        return this.getSubMatrix(bottomLeftPosition, xSize, ySize);
-    }
-
-    /**
-     * Gets a sub-matrix.
-     */
-    @Override
-    public IMatrix getSubMatrix(IPosition bottomLeftPosition, int xSize, int ySize) {
-        return new SubMatrix(this, bottomLeftPosition, xSize, ySize);
-    }
-
-    /**
      * Gets the size of the matrix.
      */
     @Override
@@ -179,7 +159,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IIterator<T> getIterator() {
-        return TwoDimensionalListIterator.of(this.data);
+        return MatrixIterator.of(this);
     }
 
     /**
@@ -187,7 +167,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return TwoDimensionalListReverseIterator.of(this.data);
+        return MatrixReverseIterator.of(this);
     }
 
     /**
@@ -202,6 +182,22 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
         return
             (position.getX() >= 0 && position.getX() < this.xSize) &&
             (position.getY() >= 0 && position.getY() < this.ySize);
+    }
+
+    /**
+     * Gets the element of a specific position in a matrix.
+     */
+    @Override
+    public T get(IPosition position) {
+        Conditions.validateNotNull(
+            position,
+            "The position.");
+
+        assert(this.contains(position));
+
+        T element = this.data.get(position.getY()).get(position.getX());
+
+        return element;
     }
 
     /**

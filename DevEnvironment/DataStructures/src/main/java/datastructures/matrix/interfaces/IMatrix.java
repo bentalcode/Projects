@@ -33,19 +33,14 @@ public interface IMatrix<T extends Comparable<T>> extends
     IRectanglePositions getFrame();
 
     /**
-     * Gets a sub-matrix of the matrix.
-     */
-    IMatrix getSubMatrix(IPosition bottomLeftPosition, IPosition upperRightPosition);
-
-    /**
-     * Gets a sub-matrix.
-     */
-    IMatrix getSubMatrix(IPosition bottomLeftPosition, int xSize, int ySize);
-
-    /**
      * Checks whether the matrix contains a specific position.
      */
     boolean contains(IPosition position);
+
+    /**
+     * Gets the element of a specific position in a matrix.
+     */
+    T get(IPosition position);
 
     /**
      * Gets the data of the matrix.

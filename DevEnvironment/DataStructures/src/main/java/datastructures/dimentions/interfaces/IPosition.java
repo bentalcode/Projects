@@ -19,6 +19,26 @@ public interface IPosition extends IUnaryComparator<IPosition> {
     int getY();
 
     /**
+     * Moves left.
+     */
+    void moveLeft();
+
+    /**
+     * Moves right.
+     */
+    void moveRight();
+
+    /**
+     * Moves up.
+     */
+    void moveUp();
+
+    /**
+     * Moves up.
+     */
+    void moveDown();
+
+    /**
      * Adds to a position.
      */
     IPosition add(IPosition position);

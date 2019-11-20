@@ -59,6 +59,38 @@ public final class Position implements IPosition {
     }
 
     /**
+     * Moves left.
+     */
+    @Override
+    public void moveLeft() {
+        --this.x;
+    }
+
+    /**
+     * Moves right.
+     */
+    @Override
+    public void moveRight() {
+        ++this.x;
+    }
+
+    /**
+     * Moves up.
+     */
+    @Override
+    public void moveUp() {
+        ++this.y;
+    }
+
+    /**
+     * Moves up.
+     */
+    @Override
+    public void moveDown() {
+        --this.y;
+    }
+
+    /**
      * Adds to a position.
      */
     @Override
