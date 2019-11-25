@@ -254,4 +254,83 @@ public final class Point implements IPoint {
             return 0;
         }
     }
+
+    /**
+     * Checks whether this point is before the specified one.
+     */
+    @Override
+    public boolean isBefore(IPoint point) {
+        Conditions.validateNotNull(
+            point,
+            "The point.");
+
+        return this.getX() < point.getX();
+    }
+
+    /**
+     * Checks whether this point is after the specified one.
+     */
+    @Override
+    public boolean isAfter(IPoint point) {
+        Conditions.validateNotNull(
+            point,
+            "The point.");
+
+        return this.getX() > point.getX();
+    }
+
+    /**
+     * Checks whether this point is above the specified one.
+     */
+    @Override
+    public boolean isAbove(IPoint point) {
+        Conditions.validateNotNull(
+            point,
+            "The point.");
+
+        return this.getY() > point.getY();
+    }
+
+    /**
+     * Checks whether this point is bellow the specified one.
+     */
+    @Override
+    public boolean isBelow(IPoint point) {
+        Conditions.validateNotNull(
+            point,
+            "The point.");
+
+        return this.getY() < point.getY();
+    }
+
+    /**
+     * Checks whether a point is between two points.
+     */
+    @Override
+    public boolean between(IPoint point1, IPoint point2) {
+        Conditions.validateNotNull(
+            point1,
+            "The first point.");
+
+        Conditions.validateNotNull(
+            point2,
+            "The second point.");
+
+        IPoint bottomLeftPoint;
+        IPoint upperRightPoint;
+
+        int compareStatus = this.comparator.compareTo(point1, point2);
+
+        if (compareStatus <= 0) {
+            bottomLeftPoint = point1;
+            upperRightPoint = point2;
+        }
+        else {
+            bottomLeftPoint = point2;
+            upperRightPoint = point1;
+        }
+        return
+            this.getX() >= bottomLeftPoint.getX() && this.getX() <= upperRightPoint.getX() ||
+            this.getY() >= bottomLeftPoint.getY() && this.getY() <= upperRightPoint.getY();
+    }
 }

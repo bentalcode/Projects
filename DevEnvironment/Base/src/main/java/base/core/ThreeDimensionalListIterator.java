@@ -8,7 +8,7 @@ import java.util.List;
  */
 public final class ThreeDimensionalListIterator<T extends Comparable<T>> implements IIterator<T> {
     private final List<List<List<T>>> data;
-    private final int rows;
+    private final int rowsSize;
     private int rowIndex;
     private int columnIndex;
     private int depthIndex;
@@ -29,7 +29,7 @@ public final class ThreeDimensionalListIterator<T extends Comparable<T>> impleme
             "The tree dimensional list to iterate.");
 
         this.data = data;
-        this.rows = data.size();
+        this.rowsSize = data.size();
 
         this.reset();
     }
@@ -40,7 +40,7 @@ public final class ThreeDimensionalListIterator<T extends Comparable<T>> impleme
     @Override
     public boolean hasNext() {
         return
-            this.rowIndex < this.rows &&
+            this.rowIndex < this.rowsSize &&
             this.columnIndex < this.columnSize(this.rowIndex) &&
             this.depthIndex < this.depthSize(this.rowIndex, this.columnIndex);
     }
@@ -104,7 +104,7 @@ public final class ThreeDimensionalListIterator<T extends Comparable<T>> impleme
      * Gets a value of a specific position.
      */
     private T get(int rowIndex, int columnIndex, int deptIndex) {
-        assert(rowIndex >= 0 && rowIndex < this.rows);
+        assert(rowIndex >= 0 && rowIndex < this.rowsSize);
         assert(columnIndex >= 0 && columnIndex < this.columnSize(rowIndex));
         assert(deptIndex >= 0 && deptIndex < this.depthSize(rowIndex, columnIndex));
 

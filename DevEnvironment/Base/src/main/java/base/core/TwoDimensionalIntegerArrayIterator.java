@@ -3,25 +3,26 @@ package base.core;
 import base.interfaces.IIterator;
 
 /**
- * The TwoDimensionalArrayIterator class implements an iterator of a two dimensional array.
+ * The TwoDimensionalIntegerArrayIterator class implements an iterator
+ * of a two dimensional array of integers.
  */
-public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
-    private final T[][] data;
+public final class TwoDimensionalIntegerArrayIterator implements IIterator<Integer> {
+    private final int[][] data;
     private final int rowsSize;
     private int rowIndex;
     private int columnIndex;
 
     /**
-     * Creates a new iterator of a two dimensional array.
+     * Creates a new iterator of a two dimensional array of integers.
      */
-    public static <T> IIterator<T> of(T[][] data) {
-        return new TwoDimensionalArrayIterator<>(data);
+    public static IIterator<Integer> of(int[][] data) {
+        return new TwoDimensionalIntegerArrayIterator(data);
     }
 
     /**
-     * The TwoDimensionalArrayIterator constructor.
+     * The TwoDimensionalCharacterArrayIterator constructor.
      */
-    private TwoDimensionalArrayIterator(T[][] data) {
+    private TwoDimensionalIntegerArrayIterator(int[][] data) {
         Conditions.validateNotNull(
             data,
             "The array to iterate.");
@@ -44,10 +45,10 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
      * Gets the next element.
      */
     @Override
-    public T next() {
+    public Integer next() {
         assert(this.hasNext());
 
-        T currElement = this.get(this.rowIndex, this.columnIndex);
+        int currElement = this.get(this.rowIndex, this.columnIndex);
 
         this.moveNext();
 
@@ -86,7 +87,7 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     /**
      * Gets a value of a specific position.
      */
-    private T get(int rowIndex, int columnIndex) {
+    private int get(int rowIndex, int columnIndex) {
         assert(rowIndex >= 0 && rowIndex < this.rowsSize);
         assert(columnIndex >= 0 && columnIndex < this.data[rowIndex].length);
 

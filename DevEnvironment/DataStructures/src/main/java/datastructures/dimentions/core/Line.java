@@ -276,4 +276,79 @@ public final class Line implements ILine {
             return 0;
         }
     }
+
+    /**
+     * Checks the intersection of two lines.
+     */
+    @Override
+    public IPoint intersection(ILine line1, ILine line2) {
+        Conditions.validateNotNull(
+            line1,
+            "The first line.");
+
+        Conditions.validateNotNull(
+            line2,
+            "The second line.");
+
+        if (line1.vertical() && line2.vertical()) {
+            if (line1.getStart().getX() != line2.getStart().getX()) {
+                return null;
+            }
+            else {
+                return this.intersectionOfContinuesLines(line1, line2);
+            }
+        }
+
+        if (line1.getSlope() == line2.getSlope()) {
+            if (line1.getYIntercept() != line2.getYIntercept()) {
+                return null;
+            }
+            else {
+                return this.intersectionOfContinuesLines(line1, line2);
+            }
+        }
+
+        double xIntersection;
+
+        if (line1.vertical() || line2.vertical()) {
+            xIntersection = line1.vertical() ? line1.getStart().getX() : line2.getStart().getX();
+        }
+        else {
+            xIntersection = line2.getYIntercept() - line1.getYIntercept() / line1.getSlope() - line2.getSlope();
+        }
+
+        double yIntersection = line1.vertical() ? line2.getYFromX(xIntersection) : line1.getYFromX(xIntersection);
+
+        Point intersection = new Point(xIntersection, yIntersection);
+
+        if (intersection.between(line1.getStart(), line1.getEnd()) &&
+            intersection.between(line2.getStart(), line2.getEnd())) {
+
+            return intersection;
+        }
+        else {
+            return null;
+        }
+    }
+
+    /**
+     * Gets the intersection of continues lines.
+     */
+    private IPoint intersectionOfContinuesLines(ILine line1, ILine line2) {
+        if (line1.getStart().between(line2.getStart(), line2.getEnd())) {
+            return line1.getStart();
+        }
+        else if (line1.getEnd().between(line2.getStart(), line2.getEnd())) {
+            return line1.getEnd();
+        }
+        if (line2.getStart().between(line1.getStart(), line1.getEnd())) {
+            return line2.getStart();
+        }
+        else if (line2.getEnd().between(line1.getStart(), line1.getEnd())) {
+            return line2.getEnd();
+        }
+        else {
+            return null;
+        }
+    }
 }

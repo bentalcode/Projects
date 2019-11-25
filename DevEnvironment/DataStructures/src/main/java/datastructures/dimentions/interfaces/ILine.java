@@ -35,4 +35,9 @@ public interface ILine extends IUnaryComparator<ILine> {
      * Gets Y value from X.
      */
     double getYFromX(double x);
+
+    /**
+     * Checks the intersection of two lines.
+     */
+    IPoint intersection(ILine line1, ILine line2);
 }

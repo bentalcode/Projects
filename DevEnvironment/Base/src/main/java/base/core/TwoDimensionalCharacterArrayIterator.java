@@ -8,7 +8,7 @@ import base.interfaces.IIterator;
  */
 public final class TwoDimensionalCharacterArrayIterator implements IIterator<Character> {
     private final char[][] data;
-    private final int rows;
+    private final int rowsSize;
     private int rowIndex;
     private int columnIndex;
 
@@ -28,7 +28,7 @@ public final class TwoDimensionalCharacterArrayIterator implements IIterator<Cha
             "The array to iterate.");
 
         this.data = data;
-        this.rows = data.length;
+        this.rowsSize = data.length;
 
         this.reset();
     }
@@ -38,7 +38,7 @@ public final class TwoDimensionalCharacterArrayIterator implements IIterator<Cha
      */
     @Override
     public boolean hasNext() {
-        return this.rowIndex < this.rows && this.columnIndex < this.columnSize(this.rowIndex);
+        return this.rowIndex < this.rowsSize && this.columnIndex < this.columnSize(this.rowIndex);
     }
 
     /**
@@ -88,7 +88,7 @@ public final class TwoDimensionalCharacterArrayIterator implements IIterator<Cha
      * Gets a value of a specific position.
      */
     private char get(int rowIndex, int columnIndex) {
-        assert(rowIndex >= 0 && rowIndex < this.rows);
+        assert(rowIndex >= 0 && rowIndex < this.rowsSize);
         assert(columnIndex >= 0 && columnIndex < this.data[rowIndex].length);
 
         return this.data[rowIndex][columnIndex];

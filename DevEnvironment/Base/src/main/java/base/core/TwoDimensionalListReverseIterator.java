@@ -8,7 +8,7 @@ import java.util.List;
  */
 public final class TwoDimensionalListReverseIterator<T> implements IReverseIterator<T> {
     private final List<List<T>> data;
-    private final int rows;
+    private final int rowsSize;
     private int rowIndex;
     private int columnIndex;
 
@@ -28,7 +28,7 @@ public final class TwoDimensionalListReverseIterator<T> implements IReverseItera
             "The two dimensional list to iterate in reverse.");
 
         this.data = data;
-        this.rows = data.size();
+        this.rowsSize = data.size();
 
         this.reset();
     }
@@ -60,7 +60,7 @@ public final class TwoDimensionalListReverseIterator<T> implements IReverseItera
      */
     @Override
     public void reset() {
-        int currRowIndex = this.rows - 1;
+        int currRowIndex = this.rowsSize - 1;
 
         while (currRowIndex >= 0) {
 
@@ -102,7 +102,7 @@ public final class TwoDimensionalListReverseIterator<T> implements IReverseItera
      * Gets a value od a specific position.
      */
     private T get(int rowIndex, int columnIndex) {
-        assert(rowIndex >= 0 && rowIndex < this.rows);
+        assert(rowIndex >= 0 && rowIndex < this.rowsSize);
         assert(columnIndex >= 0 && columnIndex < this.columnSize(rowIndex));
 
         return this.data.get(rowIndex).get(columnIndex);
