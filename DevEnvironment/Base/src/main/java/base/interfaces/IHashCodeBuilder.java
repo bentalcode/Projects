@@ -166,35 +166,70 @@ public interface IHashCodeBuilder {
     /**
      * With a generic object.
      */
+    <T extends Comparable<T>> IHashCodeBuilder withObject(T obj);
+
+    /**
+     * With a generic object and a provider.
+     */
     <T> IHashCodeBuilder withObject(T obj, IHashCodeProvider<T> provider);
 
     /**
      * With a generic array.
+     */
+    <T extends Comparable<T>> IHashCodeBuilder withArray(T[] array);
+
+    /**
+     * With a generic array and a provider.
      */
     <T> IHashCodeBuilder withArray(T[] array, IHashCodeProvider<T> provider);
 
     /**
      * With a generic two dimensional array.
      */
+    <T extends Comparable<T>> IHashCodeBuilder withArray(T[][] array);
+
+    /**
+     * With a generic two dimensional array and a provider.
+     */
     <T> IHashCodeBuilder withArray(T[][] array, IHashCodeProvider<T> provider);
 
     /**
      * With a generic collection.
+     */
+    <T extends Comparable<T>> IHashCodeBuilder withCollection(Collection<T> collection);
+
+    /**
+     * With a generic collection and a provider.
      */
     <T> IHashCodeBuilder withCollection(Collection<T> collection, IHashCodeProvider<T> provider);
 
     /**
      * With a generic iterator.
      */
-    <T> IHashCodeBuilder withIterator(IIterator<T> iterator, IHashCodeProvider<T> comparator);
+    <T extends Comparable<T>> IHashCodeBuilder withIterator(IIterator<T> iterator);
+
+    /**
+     * With a generic iterator and a provider.
+     */
+    <T> IHashCodeBuilder withIterator(IIterator<T> iterator, IHashCodeProvider<T> provider);
 
     /**
      * With a generic iterable.
      */
-    <T> IHashCodeBuilder withIterable(IIterable<T> iterable, IHashCodeProvider<T> comparator);
+    <T extends Comparable<T>> IHashCodeBuilder withIterable(IIterable<T> iterable);
+
+    /**
+     * With a generic iterable and a provider.
+     */
+    <T> IHashCodeBuilder withIterable(IIterable<T> iterable, IHashCodeProvider<T> provider);
 
     /**
      * With a generic map.
+     */
+    <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> IHashCodeBuilder withMap(Map<TKey, TValue> map);
+
+    /**
+     * With a generic map and providers.
      */
     <TKey, TValue> IHashCodeBuilder withMap(
         Map<TKey, TValue> map,

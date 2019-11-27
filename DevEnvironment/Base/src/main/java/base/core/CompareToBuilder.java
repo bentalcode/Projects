@@ -1062,7 +1062,16 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a generic.
+     * With a generic object.
+     */
+    @Override
+    public <T extends Comparable<T>> ICompareToBuilder withObject(T lhs, T rhs) {
+        IComparableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withObject(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic object and a comparator.
      */
     @Override
     public <T> ICompareToBuilder withObject(T lhs, T rhs, IComparableComparator<T> comparator) {
@@ -1077,6 +1086,15 @@ public final class CompareToBuilder implements ICompareToBuilder {
 
     /**
      * With a generic array.
+     */
+    @Override
+    public <T extends Comparable<T>> ICompareToBuilder withArray(T[] lhs, T[] rhs) {
+        IComparableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic array and a comparator.
      */
     @Override
     public <T> ICompareToBuilder withArray(T[] lhs, T[] rhs, IComparableComparator<T> comparator) {
@@ -1094,6 +1112,15 @@ public final class CompareToBuilder implements ICompareToBuilder {
      * With a generic two dimensional array.
      */
     @Override
+    public <T extends Comparable<T>> ICompareToBuilder withArray(T[][] lhs, T[][] rhs) {
+        IComparableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic two dimensional array and a comparator.
+     */
+    @Override
     public <T> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator) {
         if (this.compareStatus != 0) {
             return this;
@@ -1108,6 +1135,15 @@ public final class CompareToBuilder implements ICompareToBuilder {
     /**
      * With a generic collection.
      */
+    @Override
+    public <T extends Comparable<T>> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs) {
+        IComparableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withCollection(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic collection and a comparator.
+     */
     public <T> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IComparableComparator<T> comparator) {
         if (this.compareStatus != 0) {
             return this;
@@ -1121,6 +1157,15 @@ public final class CompareToBuilder implements ICompareToBuilder {
 
     /**
      * With a generic iterator.
+     */
+    @Override
+    public <T extends Comparable<T>> ICompareToBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs) {
+        IComparableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withIterator(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic iterator and a comparator.
      */
     @Override
     public <T> ICompareToBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IComparableComparator<T> comparator) {
@@ -1138,6 +1183,15 @@ public final class CompareToBuilder implements ICompareToBuilder {
      * With a generic iterable.
      */
     @Override
+    public <T extends Comparable<T>> ICompareToBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs) {
+        IComparableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withIterable(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic iterable and a comparator.
+     */
+    @Override
     public <T> ICompareToBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs, IComparableComparator<T> comparator) {
         if (this.compareStatus != 0) {
             return this;
@@ -1151,6 +1205,24 @@ public final class CompareToBuilder implements ICompareToBuilder {
 
     /**
      * With a generic map.
+     */
+    @Override
+    public <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> ICompareToBuilder withMap(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs) {
+
+        IComparableComparator<TKey> keyComparator = this.comparatorFactory.createComparator();
+        IComparableComparator<TValue> valueComparator = this.comparatorFactory.createComparator();
+
+        return this.withMap(
+            lhs,
+            rhs,
+            keyComparator,
+            valueComparator);
+    }
+
+    /**
+     * With a generic map and comparators.
      */
     @Override
     public <TKey, TValue> ICompareToBuilder withMap(

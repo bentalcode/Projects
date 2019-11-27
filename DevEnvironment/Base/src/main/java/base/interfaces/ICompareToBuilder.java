@@ -166,35 +166,72 @@ public interface ICompareToBuilder {
     /**
      * With a generic object.
      */
+    <T extends Comparable<T>> ICompareToBuilder withObject(T lhs, T rhs);
+
+    /**
+     * With a generic object and a comparator.
+     */
     <T> ICompareToBuilder withObject(T lhs, T rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic array.
+     */
+    <T extends Comparable<T>> ICompareToBuilder withArray(T[] lhs, T[] rhs);
+
+    /**
+     * With a generic array and a comparator.
      */
     <T> ICompareToBuilder withArray(T[] lhs, T[] rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic two dimensional array.
      */
+    <T extends Comparable<T>> ICompareToBuilder withArray(T[][] lhs, T[][] rhs);
+
+    /**
+     * With a generic two dimensional array and a comparator.
+     */
     <T> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic collection.
+     */
+    <T extends Comparable<T>> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs);
+
+    /**
+     * With a generic collection and a comparator.
      */
     <T> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic iterator.
      */
+    <T extends Comparable<T>> ICompareToBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs);
+
+    /**
+     * With a generic iterator and a comparator.
+     */
     <T> ICompareToBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic iterable.
      */
+    <T extends Comparable<T>> ICompareToBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs);
+
+    /**
+     * With a generic iterable and a comparator.
+     */
     <T> ICompareToBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic map.
+     */
+    <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> ICompareToBuilder withMap(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs);
+
+    /**
+     * With a generic map and comparators.
      */
     <TKey, TValue> ICompareToBuilder withMap(
         Map<TKey, TValue> lhs,

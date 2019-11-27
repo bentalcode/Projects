@@ -401,16 +401,15 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
 
         T[] newArray = Arrays.newInstance(this.classType, newCapacity);
 
-        int startIndex = 0;
-        int endIndex = this.size - 1;
+        int sourceStartIndex = 0;
+        int destinationStartIndex = 0;
 
         Arrays.copy(
             this.array,
-            startIndex,
-            endIndex,
+            sourceStartIndex,
             newArray,
-            startIndex,
-            endIndex);
+            destinationStartIndex,
+            this.size);
 
         this.array = newArray;
     }

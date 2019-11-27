@@ -873,6 +873,15 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic object.
      */
     @Override
+    public <T extends Comparable<T>> IEqualBuilder withObject(T lhs, T rhs) {
+        IEquatableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withObject(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic object and a comparator.
+     */
+    @Override
     public <T> IEqualBuilder withObject(T lhs, T rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
@@ -885,6 +894,15 @@ public final class EqualBuilder implements IEqualBuilder {
 
     /**
      * With a generic array.
+     */
+    @Override
+    public <T extends Comparable<T>> IEqualBuilder withArray(T[] lhs, T[] rhs) {
+        IEquatableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic array and a comparator.
      */
     @Override
     public <T> IEqualBuilder withArray(T[] lhs, T[] rhs, IEquatableComparator<T> comparator) {
@@ -902,6 +920,15 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic two dimensional array.
      */
     @Override
+    public <T extends Comparable<T>> IEqualBuilder withArray(T[][] lhs, T[][] rhs) {
+        IEquatableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withArray(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic two dimensional array and a comparator.
+     */
+    @Override
     public <T> IEqualBuilder withArray(T[][] lhs, T[][] rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
@@ -915,6 +942,15 @@ public final class EqualBuilder implements IEqualBuilder {
 
     /**
      * With a generic collection.
+     */
+    @Override
+    public <T extends Comparable<T>> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs) {
+        IEquatableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withCollection(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic collection and a comparator.
      */
     @Override
     public <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IEquatableComparator<T> comparator) {
@@ -932,6 +968,15 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic iterator.
      */
     @Override
+    public <T extends Comparable<T>> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs) {
+        IEquatableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withIterator(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic iterator and a comparator.
+     */
+    @Override
     public <T> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
@@ -947,6 +992,15 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic iterable.
      */
     @Override
+    public <T extends Comparable<T>> IEqualBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs) {
+        IEquatableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withIterable(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic iterable and a comparator.
+     */
+    @Override
     public <T> IEqualBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
@@ -959,7 +1013,22 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a generic map.
+     * With a generic iterable.
+     */
+    @Override
+    public <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> IEqualBuilder withMap(Map<TKey, TValue> lhs, Map<TKey, TValue> rhs) {
+        IEquatableComparator<TKey> keyComparator = this.comparatorFactory.createComparator();
+        IEquatableComparator<TValue> valueComparator = this.comparatorFactory.createComparator();
+
+        return this.withMap(
+            lhs,
+            rhs,
+            keyComparator,
+            valueComparator);
+    }
+
+    /**
+     * With a generic map and comparators.
      */
     @Override
     public <TKey, TValue> IEqualBuilder withMap(

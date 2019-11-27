@@ -26,16 +26,16 @@ public final class Arrays {
      * Copies an instance of an array.
      */
     public static <T, TClass extends T> T[] copy(
-        T[] arr,
+        T[] array,
         Class<TClass> classType) {
 
-        Arrays.validateArray(arr);
+        Arrays.validateArray(array);
 
         int startIndex = 0;
-        int endIndex = arr.length - 1;
+        int endIndex = array.length - 1;
 
         return Arrays.copy(
-            arr,
+            array,
             classType,
             startIndex,
             endIndex);
@@ -74,22 +74,21 @@ public final class Arrays {
     public static <T> void copy(
         T[] sourceArray,
         int sourceStartIndex,
-        int sourceEndIndex,
         T[] destinationArray,
         int destinationStartIndex,
-        int destinationEndIndex) {
-
-        Arrays.validateArray(sourceArray);
-        Arrays.validateArray(destinationArray);
-        Arrays.validateRange(sourceArray, sourceStartIndex, sourceEndIndex);
-        Arrays.validateRange(destinationArray, destinationStartIndex, destinationEndIndex);
-
-        int sourceSize = sourceEndIndex - sourceStartIndex + 1;
-        int destinationSize = destinationEndIndex - destinationStartIndex + 1;
+        int size) {
 
         Conditions.validate(
-            sourceSize == destinationSize,
-            "The range of the destination array is not matching the corresponding of the source array.");
+            size > 0,
+            "The number of elements to copy has to be positive.");
+
+        Arrays.validateArray(sourceArray);
+        int sourceEndIndex = sourceStartIndex + size - 1;
+        Arrays.validateRange(sourceArray, sourceStartIndex, sourceEndIndex);
+
+        Arrays.validateArray(destinationArray);
+        int destinationEndIndex = destinationStartIndex + size - 1;
+        Arrays.validateRange(destinationArray, destinationStartIndex, destinationEndIndex);
 
         int sourceIndex = sourceStartIndex;
         int destinationIndex = destinationStartIndex;
@@ -105,28 +104,47 @@ public final class Arrays {
     /**
      * Swaps values of two elements in an array.
      */
-    public static <T> void swap(T[] arr, int lhsIndex, int rhsIndex) {
-        Arrays.validateArray(arr);
-        Arrays.validateIndex(arr, lhsIndex);
-        Arrays.validateIndex(arr, rhsIndex);
+    public static <T> void swap(T[] array, int leftIndex, int rightIndex) {
+        Arrays.validateArray(array);
+        Arrays.validateIndex(array, leftIndex);
+        Arrays.validateIndex(array, rightIndex);
 
-        T temp = arr[lhsIndex];
-        arr[lhsIndex] = arr[rhsIndex];
-        arr[rhsIndex] = temp;
+        T temp = array[leftIndex];
+        array[leftIndex] = array[rightIndex];
+        array[rightIndex] = temp;
+    }
+
+    /**
+     * Swaps values of two elements in an array.
+     */
+    public static void swap(int[] array, int leftIndex, int rightIndex) {
+        Conditions.validateNotNull(
+            array,
+            "The array.");
+
+        Arrays.validateIndex(leftIndex, 0, array.length - 1);
+        Arrays.validateIndex(rightIndex, 0, array.length - 1);
+
+        int temp = array[leftIndex];
+        array[leftIndex] = array[rightIndex];
+        array[rightIndex] = temp;
     }
 
     /**
      * Validates an index of an array.
      */
     public static <T> void validateIndex(T[] array, int index) {
-        Arrays.validateArrayIndex(index, 0, array.length - 1);
+        Arrays.validateIndex(index, 0, array.length - 1);
     }
 
     /**
      * Validates an index of an array.
      */
     public static void validateIndex(int index, int startIndex, int endIndex) {
-        Arrays.validateArrayIndex(index, startIndex, endIndex);
+        Conditions.validate(
+            index >= startIndex && index <= endIndex,
+            "The index of an array is out of bound." +
+            "Index = " + index + " , Range = " + Range.of(startIndex, endIndex));
     }
 
     /**
@@ -157,16 +175,6 @@ public final class Arrays {
         Conditions.validateNotNull(
             classType,
             "The class type.");
-    }
-
-    /**
-     * Validates an index of an array.
-     */
-    private static void validateArrayIndex(int index, int startIndex, int endIndex) {
-        Conditions.validate(
-            index >= startIndex && index <= endIndex,
-            "The index of an array is out of bound." +
-            "Index = " + index + " , Range = " + Range.of(startIndex, endIndex));
     }
 
     /**

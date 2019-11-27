@@ -1,23 +1,11 @@
 package problems.core;
 
-import base.core.ArrayLists;
-import base.core.CollectionIterator;
-import base.core.Conditions;
-import base.core.ListIterator;
-import base.core.Triplet;
-import base.interfaces.ITriplet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import problems.interfaces.IMatchingTriplets;
 import problems.interfaces.IMultiplication;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
 
 /**
  * The MultiplicationTest class implements tests for multiplication.

@@ -467,6 +467,15 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a generic object.
      */
     @Override
+    public <T extends Comparable<T>> IHashCodeBuilder withObject(T obj) {
+        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        return this.withObject(obj, provider);
+    }
+
+    /**
+     * With a generic object and a provider.
+     */
+    @Override
     public <T> IHashCodeBuilder withObject(T obj, IHashCodeProvider<T> provider) {
         int currentCode = provider.getHashCode(obj);
         this.updateCode(currentCode);
@@ -477,12 +486,30 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a generic array.
      */
     @Override
+    public <T extends Comparable<T>> IHashCodeBuilder withArray(T[] array) {
+        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        return this.withArray(array, provider);
+    }
+
+    /**
+     * With a generic array and a provider.
+     */
+    @Override
     public <T> IHashCodeBuilder withArray(T[] array, IHashCodeProvider<T> provider) {
         return this.withIterator(ArrayIterator.of(array), provider);
     }
 
     /**
      * With a generic two dimensional array.
+     */
+    @Override
+    public <T extends Comparable<T>> IHashCodeBuilder withArray(T[][] array) {
+        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        return this.withArray(array, provider);
+    }
+
+    /**
+     * With a generic two dimensional array and a provider.
      */
     @Override
     public <T> IHashCodeBuilder withArray(T[][] array, IHashCodeProvider<T> provider) {
@@ -493,6 +520,15 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a generic collection.
      */
     @Override
+    public <T extends Comparable<T>> IHashCodeBuilder withCollection(Collection<T> collection) {
+        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        return this.withCollection(collection, provider);
+    }
+
+    /**
+     * With a generic collection and a provider.
+     */
+    @Override
     public <T> IHashCodeBuilder withCollection(Collection<T> collection, IHashCodeProvider<T> provider) {
         return this.withIterator(Iterator.of(collection), provider);
     }
@@ -501,11 +537,20 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a generic iterator.
      */
     @Override
-    public <T> IHashCodeBuilder withIterator(IIterator<T> iterator, IHashCodeProvider<T> comparator) {
+    public <T extends Comparable<T>> IHashCodeBuilder withIterator(IIterator<T> iterator) {
+        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        return this.withIterator(iterator, provider);
+    }
+
+    /**
+     * With a generic iterator and a provider.
+     */
+    @Override
+    public <T> IHashCodeBuilder withIterator(IIterator<T> iterator, IHashCodeProvider<T> provider) {
         while (iterator.hasNext()) {
             T item = iterator.next();
 
-            this.withObject(item, comparator);
+            this.withObject(item, provider);
         }
 
         return this;
@@ -515,12 +560,31 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      * With a generic iterable.
      */
     @Override
-    public <T> IHashCodeBuilder withIterable(IIterable<T> iterable, IHashCodeProvider<T> comparator) {
-        return this.withIterator(iterable.getIterator(), comparator);
+    public <T extends Comparable<T>> IHashCodeBuilder withIterable(IIterable<T> iterable) {
+        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        return this.withIterator(iterable.getIterator(), provider);
+    }
+
+    /**
+     * With a generic iterable and a provider.
+     */
+    @Override
+    public <T> IHashCodeBuilder withIterable(IIterable<T> iterable, IHashCodeProvider<T> provider) {
+        return this.withIterator(iterable.getIterator(), provider);
     }
 
     /**
      * With a generic map.
+     */
+    @Override
+    public <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> IHashCodeBuilder withMap(Map<TKey, TValue> map) {
+        IHashCodeProvider<TKey> keyProvider = base.core.Comparator.defaultComparator();
+        IHashCodeProvider<TValue> valueProvider = base.core.Comparator.defaultComparator();
+        return this.withMap(map, keyProvider, valueProvider);
+    }
+
+    /**
+     * With a generic map and providers.
      */
     @Override
     public <TKey, TValue> IHashCodeBuilder withMap(

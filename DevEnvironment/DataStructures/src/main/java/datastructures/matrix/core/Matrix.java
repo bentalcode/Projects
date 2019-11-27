@@ -63,7 +63,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      * Creates a new matrix.
      */
     public static <T extends Comparable<T>> IMatrix<T> create(List<List<T>> data) {
-        return new Matrix(data);
+        return new Matrix<>(data);
     }
 
     /**

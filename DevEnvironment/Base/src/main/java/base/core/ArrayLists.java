@@ -225,7 +225,33 @@ public final class ArrayLists {
     }
 
     /**
-     * The HashMaps constructor - Disables the default constructor.
+     * Creates a new instance of a list.
+     */
+    public static <T> List<T> of(T[] values) {
+        List<T> list = new ArrayList<>(values.length);
+
+        for (T value : values) {
+            list.add(value);
+        }
+
+        return list;
+    }
+
+    /**
+     * Creates a new instance of a list.
+     */
+    public static List<Integer> of(int[] values) {
+        List<Integer> list = new ArrayList<>(values.length);
+
+        for (int value : values) {
+            list.add(value);
+        }
+
+        return list;
+    }
+
+    /**
+     * The ArrayLists constructor - Disables the default constructor.
      */
     private ArrayLists() {
     }
