@@ -1,11 +1,14 @@
 #ifndef I_MATCHING_TRIPLETS_H_ecadeedd_0413_4823_a1e6_2bfec8721330
 #define I_MATCHING_TRIPLETS_H_ecadeedd_0413_4823_a1e6_2bfec8721330
 
+#include "Triple.h"
+
 namespace problems
 {
     /**
      * The IMatchingTriplets interface defines a matching triplets problem.
      */
+    template <typename T>
     class IMatchingTriplets
     {
     public:
@@ -18,6 +21,21 @@ namespace problems
          * The IMatchingTriplets destructor.
          */
         virtual ~IMatchingTriplets() = default;
+
+        /**
+         * Gets the matching triplets values.
+         */
+        virtual std::set<base::Triple<T, T, T>> getMatchingTriplets(const std::vector<T>& values, T sum) = 0;
+
+        /**
+         * Gets the matching closest triplet.
+         */
+        virtual std::unique_ptr<base::Triple<T, T, T>> getMatchingClosestTriplet(const std::vector<T>& values, T sum) = 0;
+
+        /**
+         * Gets the matching triplets indexes.
+         */
+        virtual std::list<base::Triple<size_t, size_t, size_t>> getMatchingTripletsIndexes(const std::vector<T>& values, T sum) = 0;
     };
 
 }

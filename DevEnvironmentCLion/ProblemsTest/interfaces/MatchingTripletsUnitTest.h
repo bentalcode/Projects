@@ -37,6 +37,16 @@ namespace problems_test {
          */
         void matchingTripletsTest();
 
+        /**
+         * Tests the logic of matching closest triplet.
+         */
+        void matchingClosestTripletTest();
+
+        /**
+         * Tests the logic of matching triplets indexes.
+         */
+        void matchingTripletsIndexesTest();
+
     private:
         /**
          * Tests the logic of matching triplets.
@@ -46,6 +56,24 @@ namespace problems_test {
             const std::vector<T>& values,
             int sum,
             const std::set<base::Triple<T, T, T>>& expectedResults);
+
+        /**
+         * Tests the logic of matching closest triplet.
+         */
+        template <typename T>
+        void testMatchingClosestTriplet(
+            const std::vector<T>& values,
+            int sum,
+            const base::Triple<T, T, T>& expectedResult);
+
+        /**
+         * Tests the logic of matching triplets indexes.
+         */
+        template <typename T>
+        void testMatchingTripletsIndexes(
+            const std::vector<T>& values,
+            int sum,
+            const std::list<base::Triple<size_t, size_t, size_t>>& expectedResults);
 
         TestData m_testData;
         test_base::Assertion assertion;
@@ -60,13 +88,52 @@ namespace problems_test {
         int sum,
         const std::set<base::Triple<T, T, T>>& expectedResults)
     {
-        problems::MatchingTriplets matchingTriplets;
-        std::set<base::Triple<T, T, T>> results = matchingTriplets.getMatchingTriplets<T>(values, sum);
+        problems::MatchingTriplets<T> matchingTriplets;
+        std::set<base::Triple<T, T, T>> results = matchingTriplets.getMatchingTriplets(values, sum);
 
         assertion.assertEquals(
             results,
             expectedResults,
-            "Invalid logic for calculating matching triplets");
+            "Invalid logic for calculating matching triplets.");
+    }
+
+    /**
+     * Tests the logic of matching closest triplet.
+     */
+    template <typename T>
+    void MatchingTripletsUnitTest::testMatchingClosestTriplet(
+        const std::vector<T>& values,
+        int sum,
+        const base::Triple<T, T, T>& expectedResult)
+    {
+        problems::MatchingTriplets<T> matchingTriplets;
+        std::unique_ptr<base::Triple<T, T, T>> result = matchingTriplets.getMatchingClosestTriplet(values, sum);
+        assert(result.get() != nullptr);
+
+        assertion.assertEquals(
+            *result,
+            expectedResult,
+            "Invalid logic for calculating matching closest triplet.");
+    }
+
+    /**
+     * Tests the logic of matching triplets indexes.
+     */
+    template <typename T>
+    void MatchingTripletsUnitTest::testMatchingTripletsIndexes(
+        const std::vector<T>& values,
+        int sum,
+        const std::list<base::Triple<size_t, size_t, size_t>>& expectedResults)
+    {
+        problems::MatchingTriplets<T> matchingTriplets;
+        std::list<base::Triple<size_t, size_t, size_t>> results = matchingTriplets.getMatchingTripletsIndexes(values, sum);
+
+        results.sort();
+
+        assertion.assertEquals(
+            results,
+            expectedResults,
+            "Invalid logic for calculating matching triplets indexes.");
     }
 }
 

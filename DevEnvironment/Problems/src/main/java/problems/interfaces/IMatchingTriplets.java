@@ -21,5 +21,5 @@ public interface IMatchingTriplets {
     /**
      * Gets the closest matching triplet.
      */
-    ITriplet<Integer, Integer, Integer> getClosestMatchingTriplets(int[] values, int sum);
+    ITriplet<Integer, Integer, Integer> getClosestMatchingTriplet(int[] values, int sum);
 }

@@ -145,8 +145,7 @@ set(PROBLEMS_INCLUDES_FILES
     ../Problems/core/PreCompiled.h)
 
 set(PROBLEMS_SOURCES_FILES
-    ../Problems/core/MatchingTriplets.cpp
-    ../Problems/core/PreCompiled.cpp)
+        ../Problems/core/PreCompiled.cpp)
 
 set(PROBLEMS_SOURCES
     ${PROBLEMS_INCLUDES_FILES}

@@ -45,10 +45,13 @@ public final class MatchingTriplets implements IMatchingTriplets {
             int currValue = values[i];
             int matchingValue = sum - currValue;
 
+            int startIndex = i + 1;
+            int endIndex = values.length - 1;
+
             List<IDoublet<Integer, Integer>> matchingPairs = this.getMatchingDoubletsIndexes(
                 values,
-                i + 1,
-                values.length - 1,
+                startIndex,
+                endIndex,
                 matchingValue,
                 visitedIndexes);
 
@@ -79,10 +82,13 @@ public final class MatchingTriplets implements IMatchingTriplets {
             int currValue = values[i];
             int matchingValue = sum - currValue;
 
+            int startIndex = i + 1;
+            int endIndex = values.length - 1;
+
             Set<IDoublet<Integer, Integer>> matchingPairs = this.getMatchingDoublets(
                 values,
-                i + 1,
-                values.length - 1,
+                startIndex,
+                endIndex,
                 matchingValue);
 
             for (IDoublet<Integer, Integer> matchingPair : matchingPairs) {
@@ -98,7 +104,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
      * Gets the closest matching triplet.
      */
     @Override
-    public ITriplet<Integer, Integer, Integer> getClosestMatchingTriplets(int[] values, int sum) {
+    public ITriplet<Integer, Integer, Integer> getClosestMatchingTriplet(int[] values, int sum) {
         Conditions.validateNotNull(
             values,
             "The values can not be null.");
@@ -117,10 +123,13 @@ public final class MatchingTriplets implements IMatchingTriplets {
             int currValue = sortedValues[i];
             int matchingValue = sum - currValue;
 
+            int startIndex = i + 1;
+            int endIndex = sortedValues.length - 1;
+            
             IDoublet<Integer, Integer> closestPair = this.getClosestMatchingDoublet(
                 sortedValues,
-                i + 1,
-                sortedValues.length - 1,
+                startIndex,
+                endIndex,
                 matchingValue);
 
             int firstValue = currValue;
@@ -226,7 +235,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
     }
 
     /**
-     * Gets the closest values of matching doublets.
+     * Gets the closest values of matching doublet.
      */
     private IDoublet<Integer, Integer> getClosestMatchingDoublet(
         int[] values,

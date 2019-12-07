@@ -22,7 +22,6 @@ set(PROBLEMS_INCLUDES_FILES
     ./ProblemExcpeption.h)
 
 set(PROBLEMS_SOURCES_FILES
-    ./core/MatchingTriplets.cpp
     ./core/PreCompiled.cpp)
 
 set(PROBLEMS_SOURCES

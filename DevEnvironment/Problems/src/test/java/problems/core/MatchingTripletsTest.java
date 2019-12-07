@@ -92,7 +92,7 @@ public final class MatchingTripletsTest {
 
         ITriplet<Integer, Integer, Integer> result1 = Triplet.of(-1, 1, 2);
 
-        this.testMatchingClosestTriplets(values1, sum1, result1);
+        this.testMatchingClosestTriplet(values1, sum1, result1);
     }
 
     /**
@@ -135,19 +135,19 @@ public final class MatchingTripletsTest {
     }
 
     /**
-     * Tests the logic for calculating the closest values of matching triplets.
+     * Tests the logic for calculating the closest values of matching triplet.
      */
-    private void testMatchingClosestTriplets(
+    private void testMatchingClosestTriplet(
         int[] values,
         int sum,
         ITriplet<Integer, Integer, Integer> expectedResult) {
 
         IMatchingTriplets matchingTriplets = new MatchingTriplets();
-        ITriplet<Integer, Integer, Integer> result = matchingTriplets.getClosestMatchingTriplets(values, sum);
+        ITriplet<Integer, Integer, Integer> result = matchingTriplets.getClosestMatchingTriplet(values, sum);
 
         this.assertion.assertEquals(
             result,
             expectedResult,
-            "Invalid logic for calculating the closest values of matching triplets.");
+            "Invalid logic for calculating the closest values of matching triplet.");
     }
 }
