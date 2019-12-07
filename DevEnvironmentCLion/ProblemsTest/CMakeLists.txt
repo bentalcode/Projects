@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(MemoryManagementTest VERSION 1.0)
+project(ProblemsTest VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -49,17 +49,18 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
-    ../Base/core/ComparableComparator.h
     ../Base/core/EquatableComparator.h
+    ../Base/core/ListIterator.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/StringIterator.h
     ../Base/core/TwoDimensionalList.h
     ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES
-    ../Base/core/CompareToBuilder.cpp
     ../Base/core/DateTime.cpp
+    ../Base/core/CompareToBuilder.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/PreCompiled.cpp)
@@ -135,54 +136,46 @@ set(UNIT_TESTING_INCLUDES
     ../UnitTesting/core)
 
 #
-# Memory Management Library...
+# Problems...
 #
-set(MEMORY_MANAGEMENT_INCLUDES_FILES
-    ../MemoryManagement/interfaces/IMemoryAllocator.h
-    ../MemoryManagement/interfaces/IMemoryPool.h
-    ../MemoryManagement/interfaces/IObjectPool.h
-    ../MemoryManagement/interfaces/MemoryPool.h
-    ../MemoryManagement/interfaces/ObjectPool.h
-    ../MemoryManagement/interfaces/ObjectPoolElement.h
-    ../MemoryManagement/core/FixedMemoryPool.h
-    ../MemoryManagement/core/MemoryAllocator.h
-    ../MemoryManagement/core/PreCompiled.h
-    ../MemoryManagement/MemoryManagementException.h)
+set(PROBLEMS_INCLUDES_FILES
+    ../Problems
+    ../Problems/interfaces/IMatchingTriplets.h
+    ../Problems/core/MatchingTriplets.h
+    ../Problems/core/PreCompiled.h)
 
-set(MEMORY_MANAGEMENT_SOURCES_FILES
-    ../MemoryManagement/core/FixedMemoryPool.cpp
-    ../MemoryManagement/core/MemoryAllocator.cpp
-    ../MemoryManagement/core/MemoryPool.cpp
-    ../MemoryManagement/core/PreCompiled.cpp)
+set(PROBLEMS_SOURCES_FILES
+    ../Problems/core/MatchingTriplets.cpp
+    ../Problems/core/PreCompiled.cpp)
 
-set(MEMORY_MANAGEMENT_SOURCES
-    ${MEMORY_MANAGEMENT_INCLUDES_FILES}
-    ${MEMORY_MANAGEMENT_SOURCES_FILES})
+set(PROBLEMS_SOURCES
+    ${PROBLEMS_INCLUDES_FILES}
+    ${PROBLEMS_SOURCES_FILES})
 
-set(MEMORY_MANAGEMENT_INCLUDES
-    ../MemoryManagement
-    ../MemoryManagement/interfaces
-    ../MemoryManagement/core)
+set(PROBLEMS_INCLUDES
+    ../Problems
+    ../Problems/interfaces
+    ../Problems/core)
 
 #
-# Memory Management Test...
+# Data Structures Test...
 #
-set(MEMORY_MANAGEMENT_TEST_INCLUDES_FILES
-    interfaces/MemoryAllocatorUnitTest.h
-    interfaces/ObjectPoolUnitTest.h
+set(PROBLEMS_TEST_INCLUDES_FILES
+    interfaces/MatchingTripletsUnitTest.h
+    interfaces/TestData.h
     core/PreCompiled.h)
 
-set(MEMORY_MANAGEMENT_TEST_SOURCES_FILES
+set(PROBLEMS_TEST_SOURCES_FILES
     main.cpp
-    core/MemoryAllocatorUnitTest.cpp
-    core/ObjectPoolUnitTest.cpp
+    core/MatchingTripletsUnitTest.cpp
+    core/TestData.cpp
     core/PreCompiled.cpp)
 
-set(MEMORY_MANAGEMENT_TEST_SOURCES
-    ${MEMORY_MANAGEMENT_TEST_INCLUDES_FILES}
-    ${MEMORY_MANAGEMENT_TEST_SOURCES_FILES})
+set(PROBLEMS_TEST_SOURCES
+    ${PROBLEMS_TEST_INCLUDES_FILES}
+    ${PROBLEMS_TEST_SOURCES_FILES})
 
-set(MEMORY_MANAGEMENT_TEST_INCLUDES
+set(PROBLEMS_TEST_INCLUDES
     .
     ./interfaces
     ./core)
@@ -192,11 +185,11 @@ set(MEMORY_MANAGEMENT_TEST_INCLUDES
 # Including header files here helps IDEs but is not required.
 # Output libname matches target name, with the usual extensions on your system
 include_directories(
-    ${MEMORY_MANAGEMENT_TEST_INCLUDES}
     ${BASE_INCLUDES}
     ${TEST_BASE_INCLUDES}
     ${UNIT_TESTING_INCLUDES}
-    ${MEMORY_MANAGEMENT_INCLUDES}
+    ${PROBLEMS_INCLUDES}
+    ${PROBLEMS_TEST_INCLUDES}
     ${BOOT_ROOT})
 
 add_library(Base STATIC
@@ -208,12 +201,12 @@ add_library(TestBase STATIC
 add_library(UnitTesting STATIC
     ${UNIT_TESTING_SOURCES})
 
-add_library(MemoryManagement STATIC
-    ${MEMORY_MANAGEMENT_SOURCES})
+add_library(Problems STATIC
+    ${PROBLEMS_SOURCES})
 
 # Adding something we can run - Output name matches target name
-add_executable(MemoryManagementTest ${MEMORY_MANAGEMENT_TEST_SOURCES})
+add_executable(ProblemsTest ${PROBLEMS_TEST_SOURCES})
 
 # Make sure you link your targets with this command. It can also link libraries and
 # even flags, so linking a target that does not exist will not give a configure-time error.
-target_link_libraries(MemoryManagementTest PRIVATE Base TestBase UnitTesting MemoryManagement)
+target_link_libraries(ProblemsTest PRIVATE Base TestBase UnitTesting Problems)

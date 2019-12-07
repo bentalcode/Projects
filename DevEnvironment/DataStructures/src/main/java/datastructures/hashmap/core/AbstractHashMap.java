@@ -380,7 +380,6 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      * When the number of entries in the hash table exceeds the product of the load factor
      * and the current capacity, the hash table is rehashed (that is, internal data structures are rebuilt)
      * so that the hash table has approximately twice the number of buckets.
-     *
      */
     private boolean overCapacity() {
         return this.size() > this.header.size() * this.loadFactor;

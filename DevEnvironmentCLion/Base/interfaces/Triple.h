@@ -62,6 +62,27 @@ namespace base
     {
         return m_third;
     }
+
+    template<typename Type1, typename Type2, typename Type3>
+    bool operator<(const Triple<Type1, Type2, Type3>& left, const Triple<Type1, Type2, Type3>& right) {
+        if (left.getFirst() < right.getFirst()) {
+            return true;
+        }
+
+        if (left.getFirst() > right.getFirst()) {
+            return false;
+        }
+
+        if (left.getSecond() < right.getSecond()) {
+            return true;
+        }
+
+        if (left.getSecond() > right.getSecond()) {
+            return false;
+        }
+
+        return left.getThird() < right.getThird();
+    }
 }
 
 #endif // TRIPLE_H_46a00302_840a_4a69_89c0_7bb9880d1685

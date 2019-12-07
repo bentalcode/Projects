@@ -48,6 +48,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
+    ../Base/core/BaseLogic.h
     ../Base/core/EquatableComparator.h
     ../Base/core/ListIterator.h
     ../Base/core/PreCompiled.h

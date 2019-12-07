@@ -32,6 +32,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
+    ../Base/core/BaseLogic.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h

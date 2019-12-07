@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * The IMatchingFreeSum interface defines a matching triplets.
+ * The IMatchingTriplets interface defines a matching triplets.
  */
 public interface IMatchingTriplets {
     /**

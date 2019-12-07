@@ -1,8 +1,6 @@
 #ifndef TEST_DATA_H_2bc38c12_135d_42bb_8901_88aff3f32c5b
 #define TEST_DATA_H_2bc38c12_135d_42bb_8901_88aff3f32c5b
 
-#include "UnitTestBase.h"
-
 namespace data_structures_test {
 
     /**

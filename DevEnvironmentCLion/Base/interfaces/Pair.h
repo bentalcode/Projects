@@ -52,6 +52,19 @@ namespace base
     {
         return m_second;
     }
+
+    template<typename Type1, typename Type2>
+    bool operator<(const Pair<Type1, Type2>& left, const Pair<Type1, Type2>& right) {
+        if (left.getFirst() < right.getFirst()) {
+            return true;
+        }
+
+        if (left.getFirst() > right.getFirst()) {
+            return false;
+        }
+
+        return left.getSecond() < right.getSecond();
+    }
 }
 
 #endif // PAIR_H_b150619a_9f60_4a1a_8df9_d7ef0debe4ca
