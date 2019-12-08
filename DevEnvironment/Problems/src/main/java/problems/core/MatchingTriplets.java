@@ -39,7 +39,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
             return result;
         }
 
-        Map<Integer, Set<Integer>> visitedIndexes = new HashMap<>();
+        Map<Integer, List<Integer>> indexesMap = this.createIndexesMap(values);
 
         for (int i = 0; i < values.length - 2; ++i) {
             int currValue = values[i];
@@ -53,7 +53,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
                 startIndex,
                 endIndex,
                 matchingValue,
-                visitedIndexes);
+                indexesMap);
 
             for (IDoublet<Integer, Integer> matchingPair : matchingPairs) {
                 ITriplet<Integer, Integer, Integer> newResult = Triplet.of(i, matchingPair.first(), matchingPair.second());
@@ -125,7 +125,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
 
             int startIndex = i + 1;
             int endIndex = sortedValues.length - 1;
-            
+
             IDoublet<Integer, Integer> closestPair = this.getClosestMatchingDoublet(
                 sortedValues,
                 startIndex,
@@ -161,37 +161,25 @@ public final class MatchingTriplets implements IMatchingTriplets {
         int startIndex,
         int endIndex,
         int sum,
-        Map<Integer, Set<Integer>> visitedIndexes) {
+        Map<Integer, List<Integer>> indexesMap) {
 
         List<IDoublet<Integer, Integer>> result = new ArrayList<>();
 
-        for (int i = startIndex; i <= endIndex; ++i) {
+        for (int i = startIndex; i <= endIndex - 1; ++i) {
             int currValue = values[i];
             int matchingValue = sum - currValue;
 
-            if (visitedIndexes.containsKey(matchingValue)) {
-                int secondIndex = i;
+            if (indexesMap.containsKey(matchingValue)) {
+                int firstIndex = i;
 
-                for (Integer firstIndex : visitedIndexes.get(matchingValue)) {
-                    if (firstIndex >= startIndex && firstIndex < secondIndex) {
+                for (Integer secondIndex : indexesMap.get(matchingValue)) {
+                    if (secondIndex > firstIndex && secondIndex <= endIndex) {
                         IDoublet<Integer, Integer> newResult = Doublet.of(firstIndex, secondIndex);
 
                         result.add(newResult);
                     }
                 }
             }
-
-            Set<Integer> indexes;
-
-            if (visitedIndexes.containsKey(currValue)) {
-                indexes = visitedIndexes.get(currValue);
-            }
-            else {
-                indexes = new HashSet<>();
-                visitedIndexes.put(currValue, indexes);
-            }
-
-            indexes.add(i);
         }
 
         return result;
@@ -275,5 +263,30 @@ public final class MatchingTriplets implements IMatchingTriplets {
         }
 
         return result;
+    }
+
+    /**
+     * Creates the indexes map.
+     */
+    private Map<Integer, List<Integer>> createIndexesMap(int[] values) {
+        Map<Integer, List<Integer>> indexesMap = new HashMap<>();
+
+        for (int index = 0; index < values.length; ++index) {
+            int currValue = values[index];
+
+            List<Integer> indexes;
+
+            if (indexesMap.containsKey(currValue)) {
+                indexes = indexesMap.get(currValue);
+            }
+            else {
+                indexes = new ArrayList<>();
+                indexesMap.put(currValue, indexes);
+            }
+
+            indexes.add(index);
+        }
+
+        return indexesMap;
     }
 }

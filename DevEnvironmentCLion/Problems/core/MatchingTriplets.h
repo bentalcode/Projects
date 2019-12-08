@@ -7,6 +7,9 @@
 
 namespace problems
 {
+    typedef std::list<size_t> IndexList;
+    typedef std::shared_ptr<IndexList> IndexListPtr;
+
     /**
      * The MatchingTriplets class implements the matching triplets problem.
      */
@@ -40,6 +43,8 @@ namespace problems
         virtual std::list<base::Triple<size_t, size_t, size_t>> getMatchingTripletsIndexes(const std::vector<T>& values, T sum);
 
     private:
+        typedef std::map<T, IndexListPtr> ElementIndexesMap;
+
         /**
          * Gets the matching pairs values.
          */
@@ -57,7 +62,7 @@ namespace problems
             size_t startIndex,
             size_t endIndex,
             T sum,
-            std::map<T, std::set<size_t>> indexes);
+            const ElementIndexesMap& indexesMap);
 
         /**
          * Gets the matching closest pair.
@@ -67,6 +72,11 @@ namespace problems
             size_t startIndex,
             size_t endIndex,
             T sum);
+
+        /**
+         * Creates the mapping of the elements to their's indexes.
+         */
+        void createElementIndexesMap(const std::vector<T>& values, ElementIndexesMap& indexesMap);
     };
 
     /**
@@ -121,7 +131,9 @@ namespace problems
             return result;
         }
 
-        std::map<T, std::set<size_t>> indexes;
+
+        ElementIndexesMap indexesMap;
+        createElementIndexesMap(values, indexesMap);
 
         for (size_t i = 0; i < values.size() - 2; ++i)
         {
@@ -136,7 +148,7 @@ namespace problems
                 startIndex,
                 endIndex,
                 matchingValue,
-                indexes);
+                indexesMap);
 
             for (base::Pair<size_t, size_t> matchingPair : matchingPairs)
             {
@@ -258,42 +270,29 @@ namespace problems
         size_t startIndex,
         size_t endIndex,
         T sum,
-        std::map<T, std::set<size_t>> indexes)
+        const ElementIndexesMap& indexesMap)
     {
         std::list<base::Pair<size_t, size_t>> result;
 
-        for (size_t i = startIndex; i <= endIndex; ++i)
+        for (size_t i = startIndex; i <= endIndex - 1; ++i)
         {
             T currValue = values[i];
             T matchingValue = sum - currValue;
 
-            typename std::map<T, std::set<size_t>>::iterator matchingValueIterator = indexes.find(matchingValue);
+            typename ElementIndexesMap::const_iterator matchingValueIterator = indexesMap.find(matchingValue);
 
-            if (matchingValueIterator != indexes.end())
+            if (matchingValueIterator != indexesMap.end())
             {
-                std::set<size_t> matchingIndexes = matchingValueIterator->second;
+                IndexListPtr matchingIndexes = matchingValueIterator->second;
+                size_t firstIndex = i;
 
-                for (size_t matchingIndex : matchingIndexes) {
-                    size_t firstIndex = matchingIndex;
-                    size_t secondIndex = i;
-
-                    base::Pair<size_t, size_t> newResult(firstIndex, secondIndex);
-                    result.push_back(newResult);
+                for (size_t secondIndex : *matchingIndexes) {
+                    if (secondIndex > firstIndex && secondIndex <= endIndex)
+                    {
+                        base::Pair<size_t, size_t> newResult(firstIndex, secondIndex);
+                        result.push_back(newResult);
+                    }
                 }
-            }
-
-            typename std::map<T, std::set<size_t>>::iterator currValueIterator = indexes.find(currValue);
-
-            if (currValueIterator != indexes.end())
-            {
-                std::set<size_t>& currValueIndexes = currValueIterator->second;
-                currValueIndexes.insert(i);
-            }
-            else
-            {
-                std::set<size_t> currValueIndexes;
-                currValueIndexes.insert(i);
-                indexes.insert({currValue, currValueIndexes});
             }
         }
 
@@ -351,6 +350,34 @@ namespace problems
         }
 
         return result;
+    }
+
+    /**
+     * Creates the mapping of the elements to their's indexes.
+     */
+    template <typename T>
+    void MatchingTriplets<T>::createElementIndexesMap(const std::vector<T>& values, ElementIndexesMap& indexesMap)
+    {
+        for (size_t i = 0; i < values.size(); ++i)
+        {
+            T currValue = values[i];
+
+            IndexListPtr indexList;
+
+            typename ElementIndexesMap::iterator valueIterator = indexesMap.find(currValue);
+
+            if (valueIterator != indexesMap.end())
+            {
+                indexList = valueIterator->second;
+            }
+            else
+            {
+                indexList.reset(new IndexList);
+                indexesMap.insert({currValue, indexList});
+            }
+
+            indexList->push_back(i);
+        }
     }
 
 }
