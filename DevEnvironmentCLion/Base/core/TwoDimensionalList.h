@@ -90,7 +90,7 @@ namespace base
         virtual IIteratorPtr<T> getIterator() const override;
 
     private:
-        typedef std::vector<std::vector<T>> TwoDimensionalVector;
+        using TwoDimensionalVector = std::vector<std::vector<T>>;
         TwoDimensionalVector m_data;
     };
 

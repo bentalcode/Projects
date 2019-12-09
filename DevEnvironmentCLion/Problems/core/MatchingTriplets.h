@@ -7,14 +7,14 @@
 
 namespace problems
 {
-    typedef std::list<size_t> IndexList;
-    typedef std::shared_ptr<IndexList> IndexListPtr;
+    using IndexList = std::list<size_t>;
+    using IndexListPtr = std::shared_ptr<IndexList>;
 
     /**
      * The MatchingTriplets class implements the matching triplets problem.
      */
     template<typename T>
-    class MatchingTriplets : public IMatchingTriplets<T>
+    class MatchingTriplets final : public IMatchingTriplets<T>
     {
     public:
         /**
@@ -30,20 +30,20 @@ namespace problems
         /**
          * Gets the matching triplets values.
          */
-        virtual std::set<base::Triple<T, T, T>> getMatchingTriplets(const std::vector<T>& values, T sum);
+        virtual std::set<base::Triple<T, T, T>> getMatchingTriplets(const std::vector<T>& values, T sum) override;
 
         /**
          * Gets the matching closest triplet.
          */
-        virtual std::unique_ptr<base::Triple<T, T, T>> getMatchingClosestTriplet(const std::vector<T>& values, T sum);
+        virtual std::unique_ptr<base::Triple<T, T, T>> getMatchingClosestTriplet(const std::vector<T>& values, T sum) override;
 
         /**
          * Gets the matching triplets indexes.
          */
-        virtual std::list<base::Triple<size_t, size_t, size_t>> getMatchingTripletsIndexes(const std::vector<T>& values, T sum);
+        virtual std::list<base::Triple<size_t, size_t, size_t>> getMatchingTripletsIndexes(const std::vector<T>& values, T sum) override;
 
     private:
-        typedef std::map<T, IndexListPtr> ElementIndexesMap;
+        using ElementIndexesMap = std::map<T, IndexListPtr>;
 
         /**
          * Gets the matching pairs values.

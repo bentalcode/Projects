@@ -6,7 +6,7 @@
 namespace base
 {
     class DateTime;
-    typedef std::shared_ptr<DateTime> DateTimePtr;
+    using DateTimePtr = std::shared_ptr<DateTime>;
 
     /**
      * The DateTime class template implements a date time.

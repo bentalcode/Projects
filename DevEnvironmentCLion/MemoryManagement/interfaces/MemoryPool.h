@@ -105,11 +105,11 @@ namespace memory_management
         std::size_t m_alignment;
 
         // The list of fixed memory pools.
-        typedef std::list<FixedMemoryPoolPtr> MemoryPoolList;
+        using MemoryPoolList = std::list<FixedMemoryPoolPtr>;
         MemoryPoolList m_poolList;
 
         // The mapping of an element address to it's corresponding pool.
-        typedef std::map<MemoryRawAddress, FixedMemoryPoolPtr> ElementAddressToPoolMap;
+        using ElementAddressToPoolMap = std::map<MemoryRawAddress, FixedMemoryPoolPtr>;
         ElementAddressToPoolMap m_elementToPoolMap;
     };
 

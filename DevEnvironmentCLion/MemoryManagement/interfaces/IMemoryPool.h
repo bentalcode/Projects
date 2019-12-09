@@ -9,8 +9,8 @@ namespace memory_management
     class IMemoryPool
     {
     public:
-        typedef void* MemoryAddress;
-        typedef std::uintptr_t MemoryRawAddress;
+        using MemoryAddress = void*;
+        using MemoryRawAddress = std::uintptr_t;
 
         /**
          * The IMemoryPool constructor.

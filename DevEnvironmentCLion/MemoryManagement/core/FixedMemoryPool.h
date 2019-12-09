@@ -9,7 +9,7 @@
 namespace memory_management
 {
     class FixedMemoryPool;
-    typedef std::shared_ptr<FixedMemoryPool> FixedMemoryPoolPtr;
+    using FixedMemoryPoolPtr = std::shared_ptr<FixedMemoryPool>;
 
     /**
      * The FixedMemoryPool class implements a fixed memory pool.
@@ -127,7 +127,7 @@ namespace memory_management
         AlignedMemoryPtr m_memoryPtr;
 
         // The free memory block list.
-        typedef std::list<MemoryAddress> MemoryList;
+        using MemoryList = std::list<MemoryAddress>;
         MemoryList m_freeMemoryBlockList;
     };
 

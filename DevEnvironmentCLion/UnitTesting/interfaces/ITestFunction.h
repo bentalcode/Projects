@@ -6,7 +6,7 @@
 namespace unit_testing {
 
     class ITestFunction;
-    typedef std::shared_ptr<ITestFunction> ITestFunctionPtr;
+    using ITestFunctionPtr = std::shared_ptr<ITestFunction>;
 
     /**
      * The ITestFunction interface defines a test function.

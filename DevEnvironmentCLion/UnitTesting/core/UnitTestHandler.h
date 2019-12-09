@@ -61,7 +61,7 @@ namespace unit_testing
 
         base::LogStreamWriter& m_logStreamWriter;
 
-        typedef std::list<ITestFunctionPtr> TestList;
+        using TestList = std::list<ITestFunctionPtr>;
         TestList m_unitTests;
 
         TestRunningResults m_unitTestRunningResults;

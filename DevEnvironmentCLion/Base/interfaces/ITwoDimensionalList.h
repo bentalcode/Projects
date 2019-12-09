@@ -66,7 +66,7 @@ namespace base
     };
 
     template <typename T>
-    using ITwoDimensionalListPtr = boost::shared_ptr<ITwoDimensionalList<T>>;
+    using ITwoDimensionalListPtr = std::shared_ptr<ITwoDimensionalList<T>>;
 }
 
 #endif // I_TWO_DIMENSIONAL_LIST_H_12d475a8_c364_4b4d_9b96_c23535316c43

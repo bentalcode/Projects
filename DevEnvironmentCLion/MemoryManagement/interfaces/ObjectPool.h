@@ -72,7 +72,7 @@ namespace memory_management
         std::size_t m_alignment;
 
         // The memory pool.
-        typedef std::unique_ptr<MemoryPool> MemoryPoolPtr;
+        using MemoryPoolPtr = std::unique_ptr<MemoryPool>;
         MemoryPoolPtr m_memoryPoolPtr;
     };
 

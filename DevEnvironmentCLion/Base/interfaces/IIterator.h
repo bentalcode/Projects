@@ -30,7 +30,7 @@ namespace base
     };
 
     template <typename T>
-    using IIteratorPtr = boost::shared_ptr<IIterator<T>>;
+    using IIteratorPtr = std::shared_ptr<IIterator<T>>;
 }
 
 #endif // I_ITERATOR_H_fe3ae3b3_68f2_4548_aec1_c9fb8bf30fe2

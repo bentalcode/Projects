@@ -42,7 +42,7 @@ namespace base {
     };
 
     template <typename T>
-    using IterableComparatorPtr = boost::shared_ptr<IterableComparator<T>>;
+    using IterableComparatorPtr = std::shared_ptr<IterableComparator<T>>;
 
     /**
      * The IterableComparator constructor.

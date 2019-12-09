@@ -6,9 +6,9 @@
 namespace unit_testing
 {
     class ITestRunningResults;
-    typedef std::shared_ptr<ITestRunningResults> ITestRunningResultsPtr;
+    using ITestRunningResultsPtr = std::shared_ptr<ITestRunningResults>;
 
-    typedef std::list<ITestRunningResultPtr> ITestRunningResultList;
+    using ITestRunningResultList = std::list<ITestRunningResultPtr>;
 
     /**
      * The ITestRunningResults interface defines the results of tests.

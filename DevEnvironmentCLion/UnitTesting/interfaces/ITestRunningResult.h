@@ -6,10 +6,10 @@
 namespace unit_testing
 {
     class ITestRunningResult;
-    typedef std::shared_ptr<ITestRunningResult> ITestRunningResultPtr;
+    using ITestRunningResultPtr = std::shared_ptr<ITestRunningResult>;
 
-    typedef base::Duration<double> Duration;
-    typedef std::shared_ptr<Duration> DurationPtr;
+    using Duration = base::Duration<double>;
+    using DurationPtr = std::shared_ptr<Duration>;
 
     /**
      * The ITestRunningResult interface defines result of a single test.

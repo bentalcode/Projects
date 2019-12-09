@@ -7,7 +7,7 @@
 namespace unit_testing
 {
     class IUnitTest;
-    typedef std::shared_ptr<IUnitTest> IUnitTestPtr;
+    using IUnitTestPtr = std::shared_ptr<IUnitTest>;
 
     /**
      * The IUnitTest interface defines a unit test.

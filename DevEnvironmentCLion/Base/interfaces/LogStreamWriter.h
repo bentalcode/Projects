@@ -4,7 +4,7 @@
 namespace base
 {
     class LogStreamWriter;
-    typedef std::shared_ptr<LogStreamWriter> LogStreamWriterPtr;
+    using LogStreamWriterPtr = std::shared_ptr<LogStreamWriter>;
 
     /**
      * The LogStreamWriter class implements a writer to a log stream.

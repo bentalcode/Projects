@@ -98,8 +98,8 @@ namespace memory_management
         }
     };
 
-    typedef std::unique_ptr<void, MemoryReleaser> MemoryPtr;
-    typedef std::unique_ptr<void, AlignedMemoryReleaser> AlignedMemoryPtr;
+    using MemoryPtr = std::unique_ptr<void, MemoryReleaser>;
+    using AlignedMemoryPtr = std::unique_ptr<void, AlignedMemoryReleaser>;
 }
 
 #endif /* MEMORY_ALLOCATOR_H_7059c4fc_d7b8_4a6a_81d8_5849edfed11a */
