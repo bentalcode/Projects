@@ -12,7 +12,7 @@ public interface IComparatorFactory {
     /**
      * Create an array comparator.
      */
-    <T> IArrayComparator<T> createArrayComparator();
+    <T extends Comparable<T>> IArrayComparator<T> createArrayComparator();
 
     /**
      * Create a two dimensional array comparator.
@@ -22,7 +22,7 @@ public interface IComparatorFactory {
     /**
      * Create a collection comparator.
      */
-    <T> ICollectionComparator<T> createCollectionComparator();
+    <T extends Comparable<T>> ICollectionComparator<T> createCollectionComparator();
 
     /**
      * Create an iterator comparator.

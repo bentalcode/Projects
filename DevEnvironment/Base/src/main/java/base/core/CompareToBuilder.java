@@ -1097,7 +1097,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
      * With a generic array and a comparator.
      */
     @Override
-    public <T> ICompareToBuilder withArray(T[] lhs, T[] rhs, IComparableComparator<T> comparator) {
+    public <T extends Comparable<T>> ICompareToBuilder withArray(T[] lhs, T[] rhs, IComparableComparator<T> comparator) {
         if (this.compareStatus != 0) {
             return this;
         }
@@ -1121,7 +1121,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
      * With a generic two dimensional array and a comparator.
      */
     @Override
-    public <T> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator) {
+    public <T extends Comparable<T>> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator) {
         if (this.compareStatus != 0) {
             return this;
         }
@@ -1144,7 +1144,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     /**
      * With a generic collection and a comparator.
      */
-    public <T> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IComparableComparator<T> comparator) {
+    public <T extends Comparable<T>> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IComparableComparator<T> comparator) {
         if (this.compareStatus != 0) {
             return this;
         }

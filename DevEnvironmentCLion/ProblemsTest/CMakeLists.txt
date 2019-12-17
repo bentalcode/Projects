@@ -140,12 +140,14 @@ set(UNIT_TESTING_INCLUDES
 #
 set(PROBLEMS_INCLUDES_FILES
     ../Problems
+    ../Problems/interfaces/ICombinationSum.h
     ../Problems/interfaces/IMatchingTriplets.h
+    ../Problems/core/CombinationSum.h
     ../Problems/core/MatchingTriplets.h
     ../Problems/core/PreCompiled.h)
 
 set(PROBLEMS_SOURCES_FILES
-        ../Problems/core/PreCompiled.cpp)
+    ../Problems/core/PreCompiled.cpp)
 
 set(PROBLEMS_SOURCES
     ${PROBLEMS_INCLUDES_FILES}
@@ -160,12 +162,14 @@ set(PROBLEMS_INCLUDES
 # Data Structures Test...
 #
 set(PROBLEMS_TEST_INCLUDES_FILES
+    interfaces/CombinationSumUnitTest.h
     interfaces/MatchingTripletsUnitTest.h
     interfaces/TestData.h
     core/PreCompiled.h)
 
 set(PROBLEMS_TEST_SOURCES_FILES
     main.cpp
+    core/CombinationSumUnitTest.cpp
     core/MatchingTripletsUnitTest.cpp
     core/TestData.cpp
     core/PreCompiled.cpp)

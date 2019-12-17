@@ -1,15 +1,14 @@
 package problems.core;
 
 import base.core.Conditions;
-import base.core.EqualBuilder;
-import problems.ProblemsException;
+import base.core.ListComparator;
+import base.interfaces.IBinaryComparator;
 import problems.interfaces.ICombinationSum;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * The CombinationSum class implements a combination sum.
@@ -21,16 +20,15 @@ public final class CombinationSum implements ICombinationSum {
      * The result set must not contain duplicate combinations.
      */
     @Override
-    public List<List<Integer>> combinationSum(int[] values, int sum) {
+    public Set<List<Integer>> combinationSum(int[] values, int sum) {
         Conditions.validateNotNull(
             values,
             "The values.");
 
-        this.validateUniquePositives(values);
+        IBinaryComparator<List<Integer>> comparator = new ListComparator<>();
+        Set<List<Integer>> results = new TreeSet<>(comparator.toComparator());
 
-        List<List<Integer>> results = new ArrayList<>();
-
-        if (sum <= 0) {
+        if (values.length == 0) {
             return results;
         }
 
@@ -43,9 +41,9 @@ public final class CombinationSum implements ICombinationSum {
 
         this.combinationSum(
             sortedValues,
+            sum,
             currIndex,
             currSum,
-            sum,
             currResult,
             results);
 
@@ -59,50 +57,40 @@ public final class CombinationSum implements ICombinationSum {
      * The result set must not contain duplicate combinations.
      */
     @Override
-    public List<List<Integer>> singleCombinationSum(int[] values, int sum) {
+    public Set<List<Integer>> singleCombinationSum(int[] values, int sum) {
         Conditions.validateNotNull(
             values,
             "The values.");
 
-        this.validatePositives(values);
+        IBinaryComparator<List<Integer>> comparator = new ListComparator<>();
+        Set<List<Integer>> results = new TreeSet<>(comparator.toComparator());
 
-        List<List<Integer>> results = new ArrayList<>();
-
-        if (sum <= 0) {
+        if (values.length == 0) {
             return results;
         }
 
         int[] sortedValues = this.sort(values);
 
         List<Integer> currResult = new ArrayList<>();
+        int currIndex = 0;
         int currSum = 0;
 
-        for (int startIndex = 0; startIndex < values.length; ++startIndex) {
-            this.singleCombinationSum(
-                sortedValues,
-                startIndex,
-                currSum,
-                sum,
-                currResult,
-                results);
-
-            assert(currResult.isEmpty());
-        }
+        this.singleCombinationSum(sortedValues, sum, currIndex, currSum, currResult, results);
 
         return results;
     }
 
     private void combinationSum(
         int[] values,
+        int sum,
         int currIndex,
         int currSum,
-        int sum,
         List<Integer> currResult,
-        List<List<Integer>> results) {
+        Set<List<Integer>> results) {
 
-        assert(currIndex >= 0 && currIndex < values.length);
+        assert(currIndex >= 0 && currIndex <= values.length);
 
-        if (currIndex >= values.length) {
+        if (currIndex > values.length) {
             return;
         }
 
@@ -110,53 +98,64 @@ public final class CombinationSum implements ICombinationSum {
             return;
         }
 
+        if (currSum == sum) {
+            List<Integer> newResult = new ArrayList<>(currResult);
+            results.add(newResult);
+            return;
+        }
+
+        if (currIndex == values.length) {
+            return;
+        }
+
         int currValue = values[currIndex];
-        int numberOfOccurrences = (sum - currSum) / currValue;
+        int maxNumberOfInstances = (sum - currSum) / currValue;
 
-        for (int valueCount = 0; valueCount <= numberOfOccurrences; ++valueCount) {
-            int sumSoFar = currSum + currValue * valueCount;
-
+        for (int instanceCount = 0; instanceCount <= maxNumberOfInstances; ++instanceCount) {
+            int sumSoFar = currSum + (instanceCount * currValue);
             assert(sumSoFar <= sum);
 
-            for (int i = 0; i < valueCount; ++i) {
+            for (int i = 0; i < instanceCount; ++i) {
                 currResult.add(currValue);
             }
 
-            if (sumSoFar == sum) {
-                List<Integer> newResult = new ArrayList<>(currResult);
-                results.add(newResult);
-            }
-            else if (currIndex < values.length - 1){
-                this.combinationSum(values, currIndex + 1, sumSoFar, sum, currResult, results);
-            }
+            this.combinationSum(values, sum, currIndex + 1, sumSoFar, currResult, results);
 
-            for (int i = 0; i < valueCount; ++i) {
+            for (int i = 0; i < instanceCount; ++i) {
                 currResult.remove(currResult.size() - 1);
-            }
-
-            if (currSum == sum) {
-                break;
             }
         }
     }
 
     private void singleCombinationSum(
         int[] values,
+        int sum,
         int currIndex,
         int currSum,
-        int sum,
         List<Integer> currResult,
-        List<List<Integer>> results) {
+        Set<List<Integer>> results) {
 
-        assert(currIndex >= 0 && currIndex < values.length);
+        assert(currIndex >= 0 && currIndex <= values.length);
 
-        if (currIndex >= values.length) {
+        if (currIndex > values.length) {
             return;
         }
 
         if (currSum > sum) {
             return;
         }
+
+        if (currSum == sum) {
+            List<Integer> newResult = new ArrayList<>(currResult);
+            results.add(newResult);
+            return;
+        }
+
+        if (currIndex == values.length) {
+            return;
+        }
+
+        this.singleCombinationSum(values, sum, currIndex + 1, currSum, currResult, results);
 
         int currValue = values[currIndex];
         int sumSoFar = currSum + currValue;
@@ -166,40 +165,8 @@ public final class CombinationSum implements ICombinationSum {
         }
 
         currResult.add(currValue);
-
-        if (sumSoFar == sum) {
-            List<Integer> newResult = new ArrayList<>(currResult);
-            this.addResult(newResult, results);
-        }
-        else {
-            for (int index = currIndex + 1; index < values.length; ++index) {
-                this.singleCombinationSum(values, index, sumSoFar, sum, currResult, results);
-            }
-        }
-
+        this.singleCombinationSum(values, sum, currIndex + 1, sumSoFar, currResult, results);
         currResult.remove(currResult.size() - 1);
-    }
-
-    private void addResult(List<Integer> newResult, List<List<Integer>> results) {
-        Collections.sort(newResult);
-
-        if (!this.resultExists(results, newResult)) {
-            results.add(newResult);
-        }
-    }
-
-    private boolean resultExists(List<List<Integer>> results, List<Integer> newResult) {
-        for (List<Integer> currResult : results) {
-            boolean status = new EqualBuilder()
-                .withCollection(currResult, newResult, base.core.Comparator.defaultComparator())
-                .build();
-
-            if (status) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private int[] sort(int[] values) {
@@ -207,33 +174,5 @@ public final class CombinationSum implements ICombinationSum {
         Arrays.sort(sortedValues);
 
         return sortedValues;
-    }
-
-    private void validateUniquePositives(int[] values) {
-        this.validateUnique(values);
-        this.validatePositives(values);
-    }
-
-    private void validateUnique(int[] values) {
-        Set<Integer> visited = new HashSet<>();
-
-        for (int value : values) {
-
-            if (visited.contains(value)) {
-                String errorMessage = "The input values are not unique.";
-                throw new ProblemsException(errorMessage);
-            }
-
-            visited.add(value);
-        }
-    }
-
-    private void validatePositives(int[] values) {
-        for (int value : values) {
-            if (value <= 0) {
-                String errorMessage = "The input value: " + value + " is not positive.";
-                throw new ProblemsException(errorMessage);
-            }
-        }
     }
 }

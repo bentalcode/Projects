@@ -9,13 +9,42 @@ import java.util.Collection;
 /**
  * The CollectionComparator class implements a comparator for a collection.
  */
-public final class CollectionComparator<T> implements ICollectionComparator<T> {
+public final class CollectionComparator<T extends Comparable<T>> extends AbstractBinaryComparator<Collection<T>> implements ICollectionComparator<T> {
     private final IIteratorComparator<T> iteratorComparator = new IteratorComparator<>();
 
     /**
      * The CollectionComparator constructor.
      */
     public CollectionComparator() {
+    }
+
+    /**
+     * Gets the hash code of this instance.
+     */
+    @Override
+    public int getHashCode(Collection<T> obj) {
+        return new HashCodeBuilder(3, 5)
+            .withCollection(obj).build();
+    }
+
+    /**
+     * Checks whether two instances are equals.
+     */
+    @Override
+    public boolean isEqual(Collection<T> lhs, Collection<T> rhs) {
+        return this.isEqual(lhs, rhs, Comparator.defaultComparator());
+    }
+
+    /**
+     * Determines the relative order of two instances.
+     *
+     * Returns -1 if the left hand side value is less than the right hand side value.
+     * Returns 0 if the left hand side value is equal to the right hand side value.
+     * Returns 1 if the left hand side value is greater than the right hand side value.
+     */
+    @Override
+    public int compareTo(Collection<T> lhs, Collection<T> rhs) {
+        return this.compareTo(lhs, rhs, Comparator.defaultComparator());
     }
 
     /**

@@ -3,8 +3,7 @@ package base.interfaces;
 /**
  * The IArrayComparator interface defines a comparator for generic arrays.
  */
-public interface IArrayComparator<T> {
-
+public interface IArrayComparator<T> extends IBinaryComparator<T[]> {
     /**
      * Checks whether the arrays are equals with an element comparator.
      */

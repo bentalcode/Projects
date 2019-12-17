@@ -181,7 +181,7 @@ public interface IEqualBuilder {
     /**
      * With a generic array and a comparator.
      */
-    <T> IEqualBuilder withArray(T[] lhs, T[] rhs, IEquatableComparator<T> comparator);
+    <T extends Comparable<T>> IEqualBuilder withArray(T[] lhs, T[] rhs, IEquatableComparator<T> comparator);
 
     /**
      * With a generic two dimensional array.
@@ -201,7 +201,7 @@ public interface IEqualBuilder {
     /**
      * With a generic collection and a comparator.
      */
-    <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IEquatableComparator<T> comparator);
+    <T extends Comparable<T>> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IEquatableComparator<T> comparator);
 
     /**
      * With a generic iterator.
@@ -211,7 +211,7 @@ public interface IEqualBuilder {
     /**
      * With a generic iterator and a comparator.
      */
-    <T> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator);
+    <T extends Comparable<T>> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator);
 
     /**
      * With a generic iterable.

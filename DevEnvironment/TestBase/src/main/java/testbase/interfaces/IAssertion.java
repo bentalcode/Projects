@@ -43,7 +43,7 @@ public interface IAssertion {
     /**
      * Asserts equality with arrays.
      */
-    <T> void assertEquals(
+    <T extends Comparable<T>> void assertEquals(
         T[] lhs,
         T[] rhs,
         IEquatableComparator<T> comparator,
@@ -60,7 +60,7 @@ public interface IAssertion {
     /**
      * Asserts equality with iterators.
      */
-    <T> void assertEqualsWithIterators(
+    <T extends Comparable<T>> void assertEqualsWithIterators(
         IIterator<T> lhs,
         IIterator<T> rhs,
         IEquatableComparator<T> comparator,

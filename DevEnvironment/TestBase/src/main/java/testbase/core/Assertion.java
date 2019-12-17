@@ -92,7 +92,7 @@ public final class Assertion implements IAssertion {
      * Asserts equality with objects.
      */
     @Override
-    public <T> void assertEquals(
+    public <T extends Comparable<T>> void assertEquals(
         T[] lhs,
         T[] rhs,
         IEquatableComparator<T> comparator,
@@ -130,7 +130,7 @@ public final class Assertion implements IAssertion {
      * Asserts equality with iterators.
      */
     @Override
-    public <T> void assertEqualsWithIterators(
+    public <T extends Comparable<T>> void assertEqualsWithIterators(
         IIterator<T> lhs,
         IIterator<T> rhs,
         IEquatableComparator<T> comparator,

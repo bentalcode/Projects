@@ -905,7 +905,7 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic array and a comparator.
      */
     @Override
-    public <T> IEqualBuilder withArray(T[] lhs, T[] rhs, IEquatableComparator<T> comparator) {
+    public <T extends Comparable<T>> IEqualBuilder withArray(T[] lhs, T[] rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }
@@ -953,7 +953,7 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic collection and a comparator.
      */
     @Override
-    public <T> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IEquatableComparator<T> comparator) {
+    public <T extends Comparable<T>> IEqualBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }
@@ -977,7 +977,7 @@ public final class EqualBuilder implements IEqualBuilder {
      * With a generic iterator and a comparator.
      */
     @Override
-    public <T> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator) {
+    public <T extends Comparable<T>> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator) {
         if (!this.equalityStatus) {
             return this;
         }

@@ -31,7 +31,7 @@ public final class ComparatorFactory implements IComparatorFactory {
      * Creates an array comparator.
      */
     @Override
-    public <T> IArrayComparator<T> createArrayComparator() {
+    public <T extends Comparable<T>> IArrayComparator<T> createArrayComparator() {
         return new ArrayComparator<>();
     }
 
@@ -47,7 +47,7 @@ public final class ComparatorFactory implements IComparatorFactory {
      * Creates a collection comparator.
      */
     @Override
-    public <T> ICollectionComparator<T> createCollectionComparator() {
+    public <T extends Comparable<T>> ICollectionComparator<T> createCollectionComparator() {
         return new CollectionComparator<>();
     }
 

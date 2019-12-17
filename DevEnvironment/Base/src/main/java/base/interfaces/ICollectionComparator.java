@@ -5,7 +5,7 @@ import java.util.Collection;
 /**
  * The ICollectionComparator interface defines a comparator for generic collection.
  */
-public interface ICollectionComparator<T> {
+public interface ICollectionComparator<T> extends IBinaryComparator<Collection<T>> {
     /**
      * Checks whether the collections are equals with an element comparator.
      */

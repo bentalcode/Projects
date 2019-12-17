@@ -8,13 +8,43 @@ import base.interfaces.IIteratorComparator;
 /**
  * The ArrayComparator class implements a comparator for an array.
  */
-public final class ArrayComparator<T> implements IArrayComparator<T> {
+public final class ArrayComparator<T extends Comparable<T>> extends AbstractBinaryComparator<T[]> implements IArrayComparator<T> {
     private final IIteratorComparator<T> iteratorComparator = new IteratorComparator<>();
 
     /**
      * The ArrayComparator constructor.
      */
     public ArrayComparator() {
+    }
+
+    /**
+     * Gets the hash code of this instance.
+     */
+    @Override
+    public int getHashCode(T[] obj) {
+        return new HashCodeBuilder(3, 5)
+            .withArray(obj)
+            .build();
+    }
+
+    /**
+     * Checks whether two instances are equals.
+     */
+    @Override
+    public boolean isEqual(T[] lhs, T[] rhs) {
+        return this.isEqual(lhs, rhs, Comparator.defaultComparator());
+    }
+
+    /**
+     * Determines the relative order of two instances.
+     *
+     * Returns -1 if the left hand side value is less than the right hand side value.
+     * Returns 0 if the left hand side value is equal to the right hand side value.
+     * Returns 1 if the left hand side value is greater than the right hand side value.
+     */
+    @Override
+    public int compareTo(T[] lhs, T[] rhs) {
+        return this.compareTo(lhs, rhs, Comparator.defaultComparator());
     }
 
     /**

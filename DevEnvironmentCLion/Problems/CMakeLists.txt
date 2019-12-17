@@ -16,7 +16,9 @@ endif()
 # Problems Library...
 #
 set(PROBLEMS_INCLUDES_FILES
+    ./interfaces/ICombinationSum.h.h
     ./interfaces/IMatchingTriplets.h
+    ./core/CombinationSum.h.h
     ./core/MatchingTriplets.h
     ./core/PreCompiled.h
     ./ProblemExcpeption.h)

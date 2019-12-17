@@ -181,7 +181,7 @@ public interface ICompareToBuilder {
     /**
      * With a generic array and a comparator.
      */
-    <T> ICompareToBuilder withArray(T[] lhs, T[] rhs, IComparableComparator<T> comparator);
+    <T extends Comparable<T>> ICompareToBuilder withArray(T[] lhs, T[] rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic two dimensional array.
@@ -191,7 +191,7 @@ public interface ICompareToBuilder {
     /**
      * With a generic two dimensional array and a comparator.
      */
-    <T> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator);
+    <T extends Comparable<T>> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic collection.
@@ -201,7 +201,7 @@ public interface ICompareToBuilder {
     /**
      * With a generic collection and a comparator.
      */
-    <T> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IComparableComparator<T> comparator);
+    <T extends Comparable<T>> ICompareToBuilder withCollection(Collection<T> lhs, Collection<T> rhs, IComparableComparator<T> comparator);
 
     /**
      * With a generic iterator.

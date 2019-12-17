@@ -4,6 +4,7 @@ import base.core.Conditions;
 import base.interfaces.IBuilder;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
+import base.interfaces.IIteratorFactory;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -36,6 +37,31 @@ public final class IteratorOfIteratorCollection<T> implements IIterator<T> {
 
         for (T iterable : iterables) {
             iterators.add(iterable.getIterator());
+        }
+
+        return new IteratorOfIteratorCollection<>(iterators);
+    }
+
+    /**
+     * Creates a new iterator from a collection of objects.
+     */
+    public static <T, V> IIterator<T> ofObjects(
+        Collection<V> objects,
+        IIteratorFactory<T, V> iteratorFactory) {
+
+        Conditions.validateNotNull(
+            objects,
+            "The collection of objects.");
+
+        Conditions.validateNotNull(
+            iteratorFactory,
+            "The iterator factory.");
+
+        List<IIterator<T>> iterators = new ArrayList<>();
+
+        for (V object : objects) {
+            IIterator<T> iterator = iteratorFactory.create(object);
+            iterators.add(iterator);
         }
 
         return new IteratorOfIteratorCollection<>(iterators);
