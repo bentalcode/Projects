@@ -10,9 +10,28 @@ namespace unit_testing
      */
     class TestRunningResults final : public ITestRunningResults
     {
-    public :
+    public:
+        /**
+         * The constructor.
+         */
         TestRunningResults();
+
+        /**
+         * The destructor.
+         */
         virtual ~TestRunningResults();
+
+        /**
+         * The copy/move constructors.
+         */
+        TestRunningResults(const TestRunningResults&) = delete;
+        TestRunningResults(TestRunningResults&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        TestRunningResults& operator=(const TestRunningResults&) = delete;
+        TestRunningResults& operator=(TestRunningResults&&) = delete;
 
         /**
          * Gets the number of successful tests.

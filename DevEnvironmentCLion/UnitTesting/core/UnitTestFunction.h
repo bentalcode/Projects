@@ -12,14 +12,26 @@ namespace unit_testing {
     class UnitTestFunction : public ITestFunction {
     public:
         /**
-         * The UnitTestFunction constructor.
+         * The constructor.
          */
         UnitTestFunction(const std::string& testName, UnitTestType& unitTest);
 
         /**
-         * The UnitTestFunction destructor.
+         * The destructor.
          */
         virtual ~UnitTestFunction();
+
+        /**
+         * The copy/move constructors.
+         */
+        UnitTestFunction(const UnitTestFunction&) = delete;
+        UnitTestFunction(UnitTestFunction&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        UnitTestFunction& operator=(const UnitTestFunction&) = delete;
+        UnitTestFunction& operator=(UnitTestFunction&&) = delete;
 
         /**
          * Gets the name of the test.

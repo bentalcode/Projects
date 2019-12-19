@@ -9,13 +9,27 @@ namespace unit_testing
     class IUnitTestManager
     {
     public :
-        IUnitTestManager() = default;
-        virtual ~IUnitTestManager() = default;
         /**
-         * Disables the copy constructor and assignment operator.
+         * The constructor.
          */
-        IUnitTestManager(const IUnitTestManager& rhs) = delete;
-        IUnitTestManager& operator=(const IUnitTestManager& rhs) = delete;
+        IUnitTestManager() = default;
+
+        /**
+         * The destructor.
+         */
+        virtual ~IUnitTestManager() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        IUnitTestManager(const IUnitTestManager&) = delete;
+        IUnitTestManager(IUnitTestManager&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IUnitTestManager& operator=(const IUnitTestManager&) = delete;
+        IUnitTestManager& operator=(IUnitTestManager&&) = delete;
 
         /**
          * Registers a test.

@@ -21,6 +21,18 @@ namespace base {
         virtual ~IHashCodeProvider() = default;
 
         /**
+         * The copy/move constructors.
+         */
+        IHashCodeProvider(const IHashCodeProvider&) = delete;
+        IHashCodeProvider(IHashCodeProvider&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IHashCodeProvider& operator=(const IHashCodeProvider&) = delete;
+        IHashCodeProvider& operator=(IHashCodeProvider&&) = delete;
+
+        /**
          * Gets the hash code of this instance.
          */
         virtual int getHashCode(const T& obj) = 0;

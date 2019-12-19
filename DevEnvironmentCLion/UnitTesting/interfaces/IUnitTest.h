@@ -15,14 +15,27 @@ namespace unit_testing
     class IUnitTest
     {
     public :
+        /**
+         * The constructor.
+         */
         IUnitTest() = default;
+
+        /**
+         * The destructor.
+         */
         virtual ~IUnitTest() = default;
 
         /**
-         * Disables the copy constructor and assignment operator.
+         * The copy/move constructors.
          */
-        IUnitTest(const IUnitTest& rhs) = delete;
-        IUnitTest& operator=(const IUnitTest& rhs) = delete;
+        IUnitTest(const IUnitTest&) = delete;
+        IUnitTest(IUnitTest&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IUnitTest& operator=(const IUnitTest&) = delete;
+        IUnitTest& operator=(IUnitTest&&) = delete;
 
         /**
          * Gets the name of the unit test.

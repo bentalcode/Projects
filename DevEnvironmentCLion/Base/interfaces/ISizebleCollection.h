@@ -22,6 +22,18 @@ namespace base
         virtual ~ISizebleCollection() = default;
 
         /**
+         * The copy/move constructors.
+         */
+        ISizebleCollection(const ISizebleCollection&) = delete;
+        ISizebleCollection(ISizebleCollection&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ISizebleCollection& operator=(const ISizebleCollection&) = delete;
+        ISizebleCollection& operator=(ISizebleCollection&&) = delete;
+
+        /**
          * Gets the size of the collection.
          */
         virtual std::size_t size() const = 0;

@@ -22,6 +22,18 @@ namespace base {
         virtual ~IEquatableComparator() = default;
 
         /**
+         * The copy/move constructors.
+         */
+        IEquatableComparator(const IEquatableComparator&) = delete;
+        IEquatableComparator(IEquatableComparator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IEquatableComparator& operator=(const IEquatableComparator&) = delete;
+        IEquatableComparator& operator=(IEquatableComparator&&) = delete;
+
+        /**
          * Checks whether two instances are equals.
          */
         virtual bool isEqual(const T& lhs, const T& rhs) const = 0;

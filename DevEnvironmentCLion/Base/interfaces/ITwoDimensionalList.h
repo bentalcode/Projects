@@ -25,6 +25,18 @@ namespace base
         virtual ~ITwoDimensionalList() = default;
 
         /**
+         * The copy/move constructors.
+         */
+        ITwoDimensionalList(const ITwoDimensionalList&) = delete;
+        ITwoDimensionalList(ITwoDimensionalList&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ITwoDimensionalList& operator=(const ITwoDimensionalList&) = delete;
+        ITwoDimensionalList& operator=(ITwoDimensionalList&&) = delete;
+
+        /**
          * Gets the number of rows.
          */
         virtual std::size_t rowsSize() const = 0;

@@ -15,9 +15,6 @@ endif()
 #
 # Base Library...
 #
-#
-# Base Library...
-#
 set(BASE_INCLUDES_FILES
     ../Base/interfaces/ComparatorFactory.h
     ../Base/interfaces/CompareToBuilder.h

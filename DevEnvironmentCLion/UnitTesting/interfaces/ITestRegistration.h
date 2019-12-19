@@ -12,20 +12,26 @@ namespace unit_testing
     {
     public:
         /**
-         * The ITestRegistration constructor.
+         * The constructor.
          */
         ITestRegistration() = default;
 
         /**
-         * The ITestRegistration destructor.
+         * The destructor.
          */
         virtual ~ITestRegistration() = default;
 
         /**
-         * Disables the copy constructor and assignment operator.
+         * The copy/move constructors.
          */
-        ITestRegistration(const ITestRegistration& rhs) = delete;
-        ITestRegistration& operator=(const ITestRegistration& rhs) = delete;
+        ITestRegistration(const ITestRegistration&) = delete;
+        ITestRegistration(ITestRegistration&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ITestRegistration& operator=(const ITestRegistration&) = delete;
+        ITestRegistration& operator=(ITestRegistration&&) = delete;
 
         /**
          * Registers a test.

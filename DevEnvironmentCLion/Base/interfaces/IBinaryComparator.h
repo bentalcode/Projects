@@ -23,6 +23,18 @@ namespace base {
          * The destructor.
          */
         virtual ~IBinaryComparator() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        IBinaryComparator(const IBinaryComparator&) = delete;
+        IBinaryComparator(IBinaryComparator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IBinaryComparator& operator=(const IBinaryComparator&) = delete;
+        IBinaryComparator& operator=(IBinaryComparator&&) = delete;
     };
 }
 

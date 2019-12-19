@@ -22,6 +22,18 @@ namespace base {
         virtual ~IComparableComparator() = default;
 
         /**
+         * The copy/move constructors.
+         */
+        IComparableComparator(const IComparableComparator&) = delete;
+        IComparableComparator(IComparableComparator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IComparableComparator& operator=(const IComparableComparator&) = delete;
+        IComparableComparator& operator=(IComparableComparator&&) = delete;
+
+        /**
          * Determines the relative order of two instances.
          *
          * Returns -1 if the left hand side value is less than the right hand side value.

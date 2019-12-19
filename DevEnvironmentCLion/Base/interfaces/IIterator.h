@@ -21,6 +21,18 @@ namespace base
         virtual ~IIterator() = default;
 
         /**
+         * The copy/move constructors.
+         */
+        IIterator(const IIterator&) = delete;
+        IIterator(IIterator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IIterator& operator=(const IIterator&) = delete;
+        IIterator& operator=(IIterator&&) = delete;
+
+        /**
          * Checks whether there is a next element.
          */
         virtual bool hasNext() const = 0;

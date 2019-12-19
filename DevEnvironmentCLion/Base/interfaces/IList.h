@@ -25,6 +25,18 @@ namespace base
         virtual ~IList() = default;
 
         /**
+         * The copy/move constructors.
+         */
+        IList(const IIterator&) = delete;
+        IList(IIterator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IList& operator=(const IList&) = delete;
+        IList& operator=(IList&&) = delete;
+
+        /**
          * Gets an element at a specified position.
          */
         virtual const T& get(std::size_t index) const = 0;

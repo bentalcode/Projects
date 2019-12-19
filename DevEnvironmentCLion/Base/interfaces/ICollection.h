@@ -18,6 +18,18 @@ namespace base
          * The destructor.
          */
         virtual ~ICollection() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        ICollection(const ICollection&) = delete;
+        ICollection(ICollection&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ICollection& operator=(const ICollection&) = delete;
+        ICollection& operator=(ICollection&&) = delete;
     };
 }
 

@@ -18,14 +18,26 @@ namespace unit_testing
     {
     public :
         /**
-         * The ITestRunningResult constructor.
+         * The constructor.
          */
         ITestRunningResult() = default;
 
         /**
-         * The ITestRunningResult destructor.
+         * The destructor.
          */
         virtual ~ITestRunningResult() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        ITestRunningResult(const ITestRunningResult&) = delete;
+        ITestRunningResult(ITestRunningResult&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ITestRunningResult& operator=(const ITestRunningResult&) = delete;
+        ITestRunningResult& operator=(ITestRunningResult&&) = delete;
 
         /**
          * Gets the name of a test.

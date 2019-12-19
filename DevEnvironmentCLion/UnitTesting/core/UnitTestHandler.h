@@ -31,10 +31,16 @@ namespace unit_testing
         virtual ~UnitTestHandler();
 
         /**
-         * Disables the constructor and the assignment operator.
+         * The copy/move constructors.
          */
-        UnitTestHandler(const UnitTestHandler& rhs) = delete;
-        UnitTestHandler& operator=(const UnitTestHandler& rhs) = delete;
+        UnitTestHandler(const UnitTestHandler&) = delete;
+        UnitTestHandler(UnitTestHandler&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        UnitTestHandler& operator=(const UnitTestHandler&) = delete;
+        UnitTestHandler& operator=(UnitTestHandler&&) = delete;
 
         /**
          * Registers a test.

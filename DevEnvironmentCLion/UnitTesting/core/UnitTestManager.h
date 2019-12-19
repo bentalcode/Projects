@@ -14,25 +14,31 @@ namespace unit_testing
     {
     public:
         /**
-         * The UnitTestManager default constructor.
+         * The default constructor.
          */
         UnitTestManager();
 
         /**
-         * The UnitTestManager constructor.
+         * The constructor.
          */
         explicit UnitTestManager(base::LogStreamWriterPtr logStreamWriter);
 
         /**
-         * The UnitTestManager destructor.
+         * The destructor.
          */
         virtual ~UnitTestManager();
 
         /**
-         * Disables the constructor and the assignment operator.
+         * The copy/move constructors.
          */
-        UnitTestManager(const UnitTestManager& rhs) = delete;
-        UnitTestManager& operator=(const UnitTestManager& rhs) = delete;
+        UnitTestManager(const UnitTestManager&) = delete;
+        UnitTestManager(UnitTestManager&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        UnitTestManager& operator=(const UnitTestManager&) = delete;
+        UnitTestManager& operator=(UnitTestManager&&) = delete;
 
         /**
          * Registers a test.

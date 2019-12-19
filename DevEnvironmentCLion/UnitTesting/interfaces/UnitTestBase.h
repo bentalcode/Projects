@@ -12,14 +12,26 @@ namespace unit_testing {
     {
     public:
         /**
-         * The UnitTestBase constructor.
+         * The constructor.
          */
         explicit UnitTestBase(const std::string& name);
 
         /**
-         * The UnitTestBase destructor.
+         * The destructor.
          */
         virtual ~UnitTestBase();
+
+        /**
+         * The copy/move constructors.
+         */
+        UnitTestBase(const UnitTestBase&) = delete;
+        UnitTestBase(UnitTestBase&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        UnitTestBase& operator=(const UnitTestBase&) = delete;
+        UnitTestBase& operator=(UnitTestBase&&) = delete;
 
         /**
          * Gets the name of the unit test.

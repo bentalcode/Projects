@@ -12,7 +12,7 @@ namespace unit_testing
     {
     public :
         /**
-         * The UnitTestRunningResult constructor.
+         * The constructor.
          */
         TestRunningResult(
             const std::string& name,
@@ -22,9 +22,21 @@ namespace unit_testing
             const std::string& errorMessage);
 
         /**
-         * The UnitTestRunningResult destructor.
+         * The destructor.
          */
         virtual ~TestRunningResult();
+
+        /**
+         * The copy/move constructors.
+         */
+        TestRunningResult(const TestRunningResult&) = delete;
+        TestRunningResult(TestRunningResult&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        TestRunningResult& operator=(const TestRunningResult&) = delete;
+        TestRunningResult& operator=(TestRunningResult&&) = delete;
 
         /**
          * Gets the name of a unit test.

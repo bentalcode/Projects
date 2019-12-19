@@ -14,19 +14,31 @@ namespace test_base {
     {
     public:
         /**
-         * The Assertion constructor.
+         * The default constructor.
          */
         Assertion();
 
         /**
-         * The Assertion constructor.
+         * The constructor.
          */
         explicit Assertion(base::LogStreamWriterPtr logStreamWriter);
 
         /**
-         * The Assertion destructor.
+         * The destructor.
          */
         ~Assertion();
+
+        /**
+         * The copy/move constructors.
+         */
+        Assertion(const Assertion&) = delete;
+        Assertion(Assertion&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        Assertion& operator=(const Assertion&) = delete;
+        Assertion& operator=(Assertion&&) = delete;
 
         /**
          * Asserts true.

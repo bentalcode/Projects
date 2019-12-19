@@ -15,20 +15,26 @@ namespace unit_testing {
     {
     public:
         /**
-         * The ITestFunction constructor.
+         * The constructor.
          */
         ITestFunction() = default;
 
         /**
-         * The ITestFunction destructor.
+         * The destructor.
          */
         virtual ~ITestFunction() = default;
 
         /**
-         * Disables the copy constructor and assignment operator.
+         * The copy/move constructors.
          */
-        ITestFunction(const ITestFunction& rhs) = delete;
-        ITestFunction& operator=(const ITestFunction& rhs) = delete;
+        ITestFunction(const ITestFunction&) = delete;
+        ITestFunction(ITestFunction&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ITestFunction& operator=(const ITestFunction&) = delete;
+        ITestFunction& operator=(ITestFunction&&) = delete;
 
         /**
          * Gets the name of the test.

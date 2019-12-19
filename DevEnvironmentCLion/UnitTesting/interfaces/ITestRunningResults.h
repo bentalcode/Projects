@@ -20,6 +20,18 @@ namespace unit_testing
         virtual ~ITestRunningResults() = default;
 
         /**
+         * The copy/move constructors.
+         */
+        ITestRunningResults(const ITestRunningResults&) = delete;
+        ITestRunningResults(ITestRunningResults&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ITestRunningResults& operator=(const ITestRunningResults&) = delete;
+        ITestRunningResults& operator=(ITestRunningResults&&) = delete;
+
+        /**
          * Gets the number of successful tests.
          */
         virtual int numberOfSuccessfulTests() const = 0;
