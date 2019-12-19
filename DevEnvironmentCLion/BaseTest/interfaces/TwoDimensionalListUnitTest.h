@@ -14,14 +14,26 @@ namespace base_test {
     {
     public:
         /**
-         * The TwoDimensionalListUnitTest constructor.
+         * The constructor.
          */
         explicit TwoDimensionalListUnitTest(const std::string& name);
 
         /**
-         * The TwoDimensionalListUnitTest destructor.
+         * The destructor.
          */
         virtual ~TwoDimensionalListUnitTest();
+
+        /**
+         * The copy/move constructors.
+         */
+        TwoDimensionalListUnitTest(const TwoDimensionalListUnitTest&) = delete;
+        TwoDimensionalListUnitTest(TwoDimensionalListUnitTest&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        TwoDimensionalListUnitTest& operator=(const TwoDimensionalListUnitTest&) = delete;
+        TwoDimensionalListUnitTest& operator=(TwoDimensionalListUnitTest&&) = delete;
 
         /**
          * Registers tests of the unit test.

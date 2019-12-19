@@ -10,7 +10,7 @@ namespace data_structures
      * The IteratorOfIteratorCollection class implements an iterator of a collection of iterators.
      */
     template <typename T>
-class IteratorOfIteratorCollection final : public base::IIterator<T>
+    class IteratorOfIteratorCollection final : public base::IIterator<T>
     {
     public:
         /**
@@ -34,14 +34,26 @@ class IteratorOfIteratorCollection final : public base::IIterator<T>
         }
 
         /**
-         * The IteratorOfIteratorCollection constructor.
+         * The constructor.
          */
         explicit IteratorOfIteratorCollection(const std::vector<base::IIteratorPtr<T>>& iterators);
 
         /**
-         * The IteratorOfIteratorCollection destructor.
+         * The destructor.
          */
         virtual ~IteratorOfIteratorCollection();
+
+        /**
+         * The copy/move constructors.
+         */
+        IteratorOfIteratorCollection(const IteratorOfIteratorCollection&) = delete;
+        IteratorOfIteratorCollection(IteratorOfIteratorCollection&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IteratorOfIteratorCollection& operator=(const IteratorOfIteratorCollection&) = delete;
+        IteratorOfIteratorCollection& operator=(IteratorOfIteratorCollection&&) = delete;
 
         /**
          * Checks whether there is a next element.

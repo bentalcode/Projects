@@ -13,14 +13,26 @@ namespace base_test {
     {
     public:
         /**
-         * The ListUnitTest constructor.
+         * The constructor.
          */
         explicit ListUnitTest(const std::string& name);
 
         /**
-         * The ListUnitTest destructor.
+         * The destructor.
          */
         virtual ~ListUnitTest();
+
+        /**
+         * The copy/move constructors.
+         */
+        ListUnitTest(const ListUnitTest&) = delete;
+        ListUnitTest(ListUnitTest&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ListUnitTest& operator=(const ListUnitTest&) = delete;
+        ListUnitTest& operator=(ListUnitTest&&) = delete;
 
         /**
          * Registers tests of the unit test.
