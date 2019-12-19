@@ -14,8 +14,27 @@ namespace base
     class DateTime final
     {
     public:
+        /**
+         * The constructor.
+         */
         explicit DateTime(const std::chrono::system_clock::time_point& timePoint);
+
+        /**
+         * The destructor.
+         */
         ~DateTime();
+
+        /**
+         * The copy/move constructors.
+         */
+        DateTime(const DateTime&) = default;
+        DateTime(DateTime&&) = default;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        DateTime& operator=(const DateTime&) = default;
+        DateTime& operator=(DateTime&&) = default;
 
         /**
          * Gets the time point.

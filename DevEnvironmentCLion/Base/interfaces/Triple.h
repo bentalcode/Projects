@@ -10,12 +10,41 @@ namespace base
     class Triple final
     {
     public:
+        /**
+         * The constructor.
+         */
         Triple(const Type1& first, const Type2& second, const Type3& third);
-        Triple(const Triple& rhs);
+
+        /**
+         * The destructor.
+         */
         ~Triple();
 
+        /**
+         * The copy/move constructors.
+         */
+        Triple(const Triple&) = default;
+        Triple(Triple&&) = default;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        Triple& operator=(const Triple&) = default;
+        Triple& operator=(Triple&&) = default;
+
+        /**
+         * Gets the first element.
+         */
         const Type1& getFirst() const;
+
+        /**
+         * Gets the second element.
+         */
         const Type2& getSecond() const;
+
+        /**
+         * Gets the third element.
+         */
         const Type3& getThird() const;
 
     private:

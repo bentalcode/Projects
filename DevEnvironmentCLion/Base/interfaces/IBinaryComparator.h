@@ -15,12 +15,12 @@ namespace base {
     {
     public:
         /**
-         * The IBinaryComparator constructor.
+         * The constructor.
          */
         IBinaryComparator() = default;
 
         /**
-         * The IBinaryComparator destructor.
+         * The destructor.
          */
         virtual ~IBinaryComparator() = default;
     };

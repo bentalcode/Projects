@@ -15,12 +15,12 @@ namespace base
     {
     public:
         /**
-         * The IList constructor.
+         * The constructor.
          */
         IList() = default;
 
         /**
-         * The IList destructor.
+         * The destructor.
          */
         virtual ~IList() = default;
 

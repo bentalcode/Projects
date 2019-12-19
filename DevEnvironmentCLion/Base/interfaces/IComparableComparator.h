@@ -12,12 +12,12 @@ namespace base {
     {
     public:
         /**
-         * The IComparableComparator constructor.
+         * The constructor.
          */
         IComparableComparator() = default;
 
         /**
-         * The IComparableComparator destructor.
+         * The destructor.
          */
         virtual ~IComparableComparator() = default;
 

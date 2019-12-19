@@ -10,18 +10,30 @@ namespace base {
      * The IterableComparator class implements a comparator for iterables.
      */
     template <typename T>
-    class IterableComparator
+    class IterableComparator final
     {
     public:
         /**
-         * The IterableComparator constructor.
+         * The constructor.
          */
         IterableComparator();
 
         /**
-         * The IterableComparator destructor.
+         * The destructor.
          */
         ~IterableComparator();
+
+        /**
+         * The copy/move constructors.
+         */
+        IterableComparator(const IterableComparator&) = delete;
+        IterableComparator(IterableComparator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IterableComparator& operator=(const IterableComparator&) = delete;
+        IterableComparator& operator=(IterableComparator&&) = delete;
 
         /**
          * Checks whether the iterators are equals with an element comparator.

@@ -15,14 +15,26 @@ namespace base {
     {
     public:
         /**
-         * The IteratorComparator constructor.
+         * The constructor.
          */
         IteratorComparator();
 
         /**
-         * The IteratorComparator destructor.
+         * The destructor.
          */
         ~IteratorComparator();
+
+        /**
+         * The copy/move constructors.
+         */
+        IteratorComparator(const IteratorComparator&) = delete;
+        IteratorComparator(IteratorComparator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IteratorComparator& operator=(const IteratorComparator&) = delete;
+        IteratorComparator& operator=(IteratorComparator&&) = delete;
 
         /**
          * Checks whether the iterators are equals with an element comparator.

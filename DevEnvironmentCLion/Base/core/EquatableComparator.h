@@ -12,14 +12,26 @@ namespace base {
     {
     public:
         /**
-         * The EquatableComparator constructor.
+         * The constructor.
          */
         EquatableComparator();
 
         /**
-         * The EquatableComparator destructor.
+         * The destructor.
          */
         virtual ~EquatableComparator();
+
+        /**
+         * The copy/move constructors.
+         */
+        EquatableComparator(const EquatableComparator&) = delete;
+        EquatableComparator(EquatableComparator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        EquatableComparator& operator=(const EquatableComparator&) = delete;
+        EquatableComparator& operator=(EquatableComparator&&) = delete;
 
         /**
          * Checks whether two instances are equals.

@@ -14,14 +14,26 @@ namespace base {
     {
     public:
         /**
-         * The EqualBuilder constructor.
+         * The constructor.
          */
         EqualBuilder();
 
         /**
-         * The EqualBuilder destructor.
+         * The destructor.
          */
         ~EqualBuilder();
+
+        /**
+         * The copy/move constructors.
+         */
+        EqualBuilder(const EqualBuilder&) = delete;
+        EqualBuilder(EqualBuilder&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        EqualBuilder& operator=(const EqualBuilder&) = delete;
+        EqualBuilder& operator=(EqualBuilder&&) = delete;
 
         /**
          * With an equality status.

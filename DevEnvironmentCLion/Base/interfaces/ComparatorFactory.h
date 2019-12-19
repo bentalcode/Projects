@@ -13,14 +13,26 @@ namespace base {
     {
     public:
         /**
-         * The ComparatorFactory constructor.
+         * The default constructor.
          */
         ComparatorFactory() = default;
 
         /**
-         * The ComparatorFactory destructor.
+         * The destructor.
          */
         ~ComparatorFactory() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        ComparatorFactory(const ComparatorFactory&) = delete;
+        ComparatorFactory(ComparatorFactory&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ComparatorFactory& operator=(const ComparatorFactory&) = delete;
+        ComparatorFactory& operator=(ComparatorFactory&&) = delete;
 
         /**
          * Creates an iterator comparator.

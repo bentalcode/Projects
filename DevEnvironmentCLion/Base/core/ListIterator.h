@@ -14,14 +14,26 @@ namespace base
     {
     public:
         /**
-         * The ListIterator constructor.
+         * The constructor.
          */
         explicit ListIterator(const std::vector<T>& data);
 
         /**
-         * The ListIterator destructor.
+         * The destructor.
          */
         virtual ~ListIterator();
+
+        /**
+         * The copy/move constructors.
+         */
+        ListIterator(const ListIterator&) = delete;
+        ListIterator(ListIterator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ListIterator& operator=(const ListIterator&) = delete;
+        ListIterator& operator=(ListIterator&&) = delete;
 
         /**
          * Checks whether there is a next element.

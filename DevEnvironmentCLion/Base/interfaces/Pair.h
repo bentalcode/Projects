@@ -10,11 +10,36 @@ namespace base
     class Pair final
     {
     public:
+        /**
+         * The constructor.
+         */
         Pair(const Type1& first, const Type2& second);
-        Pair(const Pair& rhs);
+
+        /**
+         * The destructor.
+         */
         ~Pair();
 
+        /**
+         * The copy/move constructors.
+         */
+        Pair(const Pair& rhs) = default;
+        Pair(Pair&&) = default;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        Pair& operator=(const Pair&) = default;
+        Pair& operator=(Pair&&) = default;
+
+        /**
+         * Gets the first element.
+         */
         const Type1& getFirst() const;
+
+        /**
+         * Gets the second element.
+         */
         const Type2& getSecond() const;
 
     private:
@@ -26,13 +51,6 @@ namespace base
     Pair<Type1, Type2>::Pair(const Type1& first, const Type2& second) :
         m_first(first),
         m_second(second)
-    {
-    }
-
-    template<typename Type1, typename Type2>
-    Pair<Type1, Type2>::Pair(const Pair& rhs) :
-        m_first(rhs.m_first),
-        m_second(rhs.m_second)
     {
     }
 

@@ -13,14 +13,26 @@ namespace base
     {
     public:
         /**
-         * The StringIterator constructor.
+         * The constructor.
          */
         explicit StringIterator(const std::string<T>& data);
 
         /**
-         * The StringIterator destructor.
+         * The destructor.
          */
         virtual ~StringIterator();
+
+        /**
+         * The copy/move constructors.
+         */
+        StringIterator(const StringIterator&) = delete;
+        StringIterator(StringIterator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        StringIterator& operator=(const StringIterator&) = delete;
+        StringIterator& operator=(StringIterator&&) = delete;
 
         /**
          * Checks whether there is a next element.

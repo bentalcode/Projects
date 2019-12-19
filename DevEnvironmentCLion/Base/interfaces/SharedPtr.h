@@ -14,11 +14,31 @@ namespace base
     class SharedPtr final
     {
     public:
+        /**
+         * The constructor.
+         */
         explicit SharedPtr(T* pointer = nullptr);
+
+        /**
+         * The copy constructor.
+         */
         SharedPtr(const SharedPtr& rhs);
+
+        /**
+         * The destructor.
+         */
         ~SharedPtr();
 
+        /**
+         * The assignment operator.
+         */
         SharedPtr& operator=(const SharedPtr& rhs);
+
+        /**
+         * Disables the move constructor and assignment operator.
+         */
+        SharedPtr(const SharedPtr&&) = delete;
+        SharedPtr& operator=(SharedPtr&&) = delete;
 
         T* operator->();
         const T* operator->() const;

@@ -14,14 +14,26 @@ namespace base
     {
     public:
         /**
-         * The TwoDimensionalListIterator constructor.
+         * The constructor.
          */
         explicit TwoDimensionalListIterator(const std::vector<std::vector<T>>& data);
 
         /**
-         * The TwoDimensionalListIterator destructor.
+         * The destructor.
          */
         virtual ~TwoDimensionalListIterator();
+
+        /**
+         * The copy/move constructor.
+         */
+        TwoDimensionalListIterator(TwoDimensionalListIterator&) = delete;
+        TwoDimensionalListIterator(TwoDimensionalListIterator&&) = delete;
+
+        /**
+         * The copy/move assignment operator.
+         */
+        TwoDimensionalListIterator& operator=(TwoDimensionalListIterator&) = delete;
+        TwoDimensionalListIterator& operator=(TwoDimensionalListIterator&&) = delete;
 
         /**
          * Checks whether there is a next element.

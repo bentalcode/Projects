@@ -15,24 +15,31 @@ namespace base
     {
     public:
         /**
-         * The TwoDimensionalList constructor.
-         */
-        TwoDimensionalList();
-
-        /**
-         * The TwoDimensionalList constructor which creates a matrix of initialRowsSize x initialColumnsSize.
+         * The constructor, which creates a matrix of initialRowsSize x initialColumnsSize.
          */
         TwoDimensionalList(std::size_t initialRowsSize, std::size_t initialColumnsSize);
 
         /**
-         * The TwoDimensionalList constructor.
+         * The constructor, which takes a two dimensional vector.
          */
         explicit TwoDimensionalList(const std::vector<std::vector<T>>& data);
 
         /**
-         * The TwoDimensionalList destructor.
+         * The destructor.
          */
         virtual ~TwoDimensionalList();
+
+        /**
+         * The copy/move constructor.
+         */
+        TwoDimensionalList(TwoDimensionalList&) = default;
+        TwoDimensionalList(TwoDimensionalList&&) = default;
+
+        /**
+         * The copy/move assignment operator.
+         */
+        TwoDimensionalList& operator=(TwoDimensionalList&) = default;
+        TwoDimensionalList& operator=(TwoDimensionalList&&) = default;
 
         /**
          * Gets the number of rows.
@@ -93,11 +100,6 @@ namespace base
         using TwoDimensionalVector = std::vector<std::vector<T>>;
         TwoDimensionalVector m_data;
     };
-
-    template <typename T>
-    TwoDimensionalList<T>::TwoDimensionalList()
-    {
-    }
 
     template <typename T>
     TwoDimensionalList<T>::TwoDimensionalList(std::size_t initialRowsSize, std::size_t initialColumnsSize) :

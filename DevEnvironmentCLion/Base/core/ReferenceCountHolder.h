@@ -10,15 +10,44 @@ namespace base
      * The ReferenceCount class defines a generic reference count.
      */
     template <class T>
-    class ReferenceCountHolder
+    class ReferenceCountHolder final
     {
     public:
-        ReferenceCountHolder(T* pointee = nullptr);
+        /**
+         * The default constructor.
+         */
+        explicit ReferenceCountHolder(T* pointee = nullptr);
+
+        /**
+         * The destructor.
+         */
         ~ReferenceCountHolder();
 
+        /**
+         * The copy/move constructors.
+         */
+        ReferenceCountHolder(const ReferenceCountHolder&) = delete;
+        ReferenceCountHolder(ReferenceCountHolder&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ReferenceCountHolder& operator=(const ReferenceCountHolder&) = delete;
+        ReferenceCountHolder& operator=(ReferenceCountHolder&&) = delete;
+
+        /**
+         * Adds a reference.
+         */
         void addReference();
+
+        /**
+         * Removes a reference.
+         */
         void removeReference();
 
+        /**
+         * Gets the pointee.
+         */
         T* getPointee() const;
 
     private:

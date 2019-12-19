@@ -10,7 +10,14 @@ namespace base
     class IIterator
     {
     public:
+        /**
+         * The constructor.
+         */
         IIterator() = default;
+
+        /**
+         * The destructor.
+         */
         virtual ~IIterator() = default;
 
         /**

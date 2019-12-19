@@ -12,7 +12,14 @@ namespace base
     class IIterable
     {
     public:
+        /**
+         * The constructor.
+         */
         IIterable() = default;
+
+        /**
+         * The destructor.
+         */
         virtual ~IIterable() = default;
 
         /**

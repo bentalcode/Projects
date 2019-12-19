@@ -9,7 +9,14 @@ namespace base
     class ICollection
     {
     public:
+        /**
+         * The constructor.
+         */
         ICollection() = default;
+
+        /**
+         * The destructor.
+         */
         virtual ~ICollection() = default;
     };
 }

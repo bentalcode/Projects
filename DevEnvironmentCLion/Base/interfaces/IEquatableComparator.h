@@ -12,12 +12,12 @@ namespace base {
     {
     public:
         /**
-         * The IEquatableComparator constructor.
+         * The constructor.
          */
         IEquatableComparator() = default;
 
         /**
-         * The IEquatableComparator destructor.
+         * The destructor.
          */
         virtual ~IEquatableComparator() = default;
 

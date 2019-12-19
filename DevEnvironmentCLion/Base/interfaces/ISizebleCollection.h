@@ -11,7 +11,14 @@ namespace base
     class ISizebleCollection : public ICollection
     {
     public:
+        /**
+         * The constructor.
+         */
         ISizebleCollection() = default;
+
+        /**
+         * The destructor.
+         */
         virtual ~ISizebleCollection() = default;
 
         /**

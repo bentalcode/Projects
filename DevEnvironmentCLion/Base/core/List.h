@@ -14,19 +14,31 @@ namespace base
     {
     public:
         /**
-         * The List constructor.
+         * The default constructor.
          */
         List();
 
         /**
-         * The List constructor.
+         * The constructor.
          */
         explicit List(size_t initialSize);
 
         /**
-         * The List destructor.
+         * The destructor.
          */
         virtual ~List();
+
+        /**
+         * The copy/move constructors.
+         */
+        List(const List&) = default;
+        List(List&&) = default;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        List& operator=(const List&) = default;
+        List& operator=(List&&) = default;
 
         /**
          * Gets an element at a specified position.

@@ -11,12 +11,12 @@ namespace base {
     {
     public:
         /**
-         * The IHashCodeProvider constructor.
+         * The constructor.
          */
         IHashCodeProvider() = default;
 
         /**
-         * The IHashCodeProvider destructor.
+         * The destructor.
          */
         virtual ~IHashCodeProvider() = default;
 

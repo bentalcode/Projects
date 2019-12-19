@@ -14,14 +14,26 @@ namespace base {
     {
     public:
         /**
-         * The ComparableComparator constructor.
+         * The default constructor.
          */
         ComparableComparator();
 
         /**
-         * The ComparableComparator destructor.
+         * The destructor.
          */
         virtual ~ComparableComparator();
+
+        /**
+         * The copy/move constructors.
+         */
+        ComparableComparator(const ComparableComparator&) = delete;
+        ComparableComparator(ComparableComparator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ComparableComparator& operator=(const ComparableComparator&) = delete;
+        ComparableComparator& operator=(ComparableComparator&&) = delete;
 
         /**
          * Determines the relative order of two instances.

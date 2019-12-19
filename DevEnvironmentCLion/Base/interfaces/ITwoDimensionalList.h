@@ -15,12 +15,12 @@ namespace base
     {
     public:
         /**
-         * The ITwoDimensionalList constructor.
+         * The constructor.
          */
         ITwoDimensionalList() = default;
 
         /**
-         * The ITwoDimensionalList destructor.
+         * The destructor.
          */
         virtual ~ITwoDimensionalList() = default;
 

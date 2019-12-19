@@ -9,7 +9,7 @@ namespace base
     /**
      * The LogStreamWriter class implements a writer to a log stream.
      */
-    class LogStreamWriter final : public std::basic_ostream<char, std::char_traits<char>>
+    class LogStreamWriter final
     {
     public:
         /**
@@ -18,7 +18,7 @@ namespace base
         LogStreamWriter();
 
         /**
-         * The LogStreamWriter constructor.
+         * The constructor.
          */
         LogStreamWriter(
             std::ostream& errorStream,
@@ -27,9 +27,21 @@ namespace base
             std::ostream& debugStream);
 
         /**
-         * The LogStreamWriter destructor.
+         * The destructor.
          */
         ~LogStreamWriter();
+
+        /**
+         * The copy/move constructors.
+         */
+        LogStreamWriter(const LogStreamWriter&) = delete;
+        LogStreamWriter(LogStreamWriter&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        LogStreamWriter& operator=(const LogStreamWriter&) = delete;
+        LogStreamWriter& operator=(LogStreamWriter&&) = delete;
 
         /**
          * Gets an error stream.

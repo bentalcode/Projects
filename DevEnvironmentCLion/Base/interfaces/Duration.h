@@ -12,8 +12,27 @@ namespace base
     class Duration final
     {
     public:
+        /**
+         * The constructor.
+         */
         explicit Duration(const std::chrono::duration<ArithmeticType, PeriodType>& duration);
+
+        /**
+         * The destructor.
+         */
         ~Duration();
+
+        /**
+         * The copy/move constructors.
+         */
+        Duration(const Duration&) = delete;
+        Duration(Duration&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        Duration& operator=(const Duration&) = delete;
+        Duration& operator=(Duration&&) = delete;
 
         /**
          * Gets the duration.

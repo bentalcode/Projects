@@ -11,8 +11,27 @@ namespace base
     class ReferenceCount
     {
     public:
+        /**
+         * The default constructor.
+         */
         ReferenceCount();
+
+        /**
+         * The destructor.
+         */
         ~ReferenceCount();
+
+        /**
+         * The copy/move constructors.
+         */
+        ReferenceCount(const ReferenceCount&) = delete;
+        ReferenceCount(ReferenceCount&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ReferenceCount& operator=(const ReferenceCount&) = delete;
+        ReferenceCount& operator=(ReferenceCount&&) = delete;
 
         void addReference();
         void removeReference();

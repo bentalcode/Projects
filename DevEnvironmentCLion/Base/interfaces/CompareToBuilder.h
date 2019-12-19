@@ -13,14 +13,26 @@ namespace base {
     {
     public:
         /**
-         * The CompareToBuilder constructor.
+         * The constructor.
          */
         CompareToBuilder();
 
         /**
-         * The CompareToBuilder destructor.
+         * The destructor.
          */
         ~CompareToBuilder();
+
+        /**
+         * The copy/move constructors.
+         */
+        CompareToBuilder(const CompareToBuilder&) = delete;
+        CompareToBuilder(CompareToBuilder&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        CompareToBuilder& operator=(const CompareToBuilder&) = delete;
+        CompareToBuilder& operator=(CompareToBuilder&&) = delete;
 
         /**
          * With a compare status.
