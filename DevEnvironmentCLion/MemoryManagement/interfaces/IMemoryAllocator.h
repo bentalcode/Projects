@@ -10,20 +10,26 @@ namespace memory_management
     {
     public :
         /**
-         * The IMemoryAllocator constructor.
+         * The constructor.
          */
         IMemoryAllocator() = default;
 
         /**
-         * The IMemoryAllocator destructor.
+         * The destructor.
          */
         virtual ~IMemoryAllocator() = default;
 
         /**
-         * Disables the copy constructor and assignment operator.
+         * The copy/move constructors.
          */
-        IMemoryAllocator(const IMemoryAllocator& rhs) = delete;
-        IMemoryAllocator& operator=(const IMemoryAllocator& rhs) = delete;
+        IMemoryAllocator(const IMemoryAllocator&) = delete;
+        IMemoryAllocator(IMemoryAllocator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IMemoryAllocator& operator=(const IMemoryAllocator&) = delete;
+        IMemoryAllocator& operator=(IMemoryAllocator&&) = delete;
 
         /**
          * Allocates memory.

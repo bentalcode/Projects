@@ -27,18 +27,40 @@ endif()
 # Base Library...
 #
 set(BASE_INCLUDES_FILES
+    ../Base/interfaces/ComparatorFactory.h
+    ../Base/interfaces/CompareToBuilder.h
+    ../Base/interfaces/DateTime.h
+    ../Base/interfaces/Duration.h
+    ../Base/interfaces/EqualBuilder.h
+    ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/ICollection.h
+    ../Base/interfaces/IComparableComparator.h
+    ../Base/interfaces/IEquatableComparator.h
+    ../Base/interfaces/IHashCodeProvider.h
+    ../Base/interfaces/IIterable.h
+    ../Base/interfaces/IIterator.h
+    ../Base/interfaces/ISizebleCollection.h
+    ../Base/interfaces/IterableComparator.h
+    ../Base/interfaces/IteratorComparator.h
+    ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
+    ../Base/core/ComparableComparator.h
+    ../Base/core/EquatableComparator.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/TwoDimensionalList.h
     ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES
+    ../Base/core/CompareToBuilder.cpp
+    ../Base/core/DateTime.cpp
+    ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/PreCompiled.cpp)
 
@@ -55,22 +77,22 @@ set(BASE_INCLUDES
 # Memory Management Library...
 #
 set(MEMORY_MANAGEMENT_INCLUDES_FILES
-    interfaces/IMemoryAllocator.h
-    interfaces/IMemoryPool.h
-    interfaces/IObjectPool.h
-    interfaces/MemoryPool.h
-    interfaces/ObjectPool.h
-    interfaces/ObjectPoolElement.h
-    core/FixedMemoryPool.h
-    core/MemoryAllocator.h
-    core/PreCompiled.h
-    MemoryManagementException.h)
+    ../MemoryManagement/interfaces/IMemoryAllocator.h
+    ./interfaces/IMemoryPool.h
+    ./interfaces/IObjectPool.h
+    ./interfaces/MemoryPool.h
+    ./interfaces/ObjectPool.h
+    ./interfaces/ObjectPoolElement.h
+    ./core/FixedMemoryPool.h
+    ./core/MemoryAllocator.h
+    ./core/PreCompiled.h
+    ./MemoryManagementException.h)
 
 set(MEMORY_MANAGEMENT_SOURCES_FILES
-    core/FixedMemoryPool.cpp
-    core/MemoryAllocator.cpp
-    core/MemoryPool.cpp
-    core/PreCompiled.cpp)
+    ./core/FixedMemoryPool.cpp
+    ./core/MemoryAllocator.cpp
+    ./core/MemoryPool.cpp
+    ./core/PreCompiled.cpp)
 
 set(MEMORY_MANAGEMENT_SOURCES
     ${MEMORY_MANAGEMENT_INCLUDES_FILES}
@@ -78,22 +100,16 @@ set(MEMORY_MANAGEMENT_SOURCES
 
 set(MEMORY_MANAGEMENT_INCLUDES
     .
-    ../MemoryManagement/interfaces
-    ../MemoryManagement/core)
+    interfaces
+    core)
 
 # This is a "default" library, and will match the *** variable setting.
 # Other common choices are STATIC, SHARED, and MODULE
 # Including header files here helps IDEs but is not required.
 # Output libname matches target name, with the usual extensions on your system
 include_directories(
-    ${BASE_INCLUDES}
     ${MEMORY_MANAGEMENT_INCLUDES}
+    ${BASE_INCLUDES}
     ${BOOT_ROOT})
 
-add_library(Base STATIC
-    ${BASE_SOURCES})
-
-add_library(MemoryManagement STATIC
-    ${MEMORY_MANAGEMENT_SOURCES})
-
-add_library(MemoryManagement ${BASE_SOURCES} ${MEMORY_MANAGEMENT_SOURCES})
+add_library(MemoryManagement ${MEMORY_MANAGEMENT_SOURCES} ${BASE_SOURCES})

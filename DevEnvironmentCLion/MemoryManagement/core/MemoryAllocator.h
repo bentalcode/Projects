@@ -38,14 +38,26 @@ namespace memory_management
         static void clearMemory(void* memoryPtr, std::size_t size);
         
         /**
-         * The MemoryAllocator constructor.
+         * The constructor.
          */
         MemoryAllocator();
 
         /**
-         * The MemoryAllocator destructor.
+         * The destructor.
          */
         virtual ~MemoryAllocator();
+
+        /**
+         * The copy/move constructors.
+         */
+        MemoryAllocator(const MemoryAllocator&) = delete;
+        MemoryAllocator(MemoryAllocator&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        MemoryAllocator& operator=(const MemoryAllocator&) = delete;
+        MemoryAllocator& operator=(MemoryAllocator&&) = delete;
 
         /**
          * Allocates memory.

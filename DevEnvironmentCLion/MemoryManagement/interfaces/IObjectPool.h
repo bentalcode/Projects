@@ -13,20 +13,26 @@ namespace memory_management
     {
     public:
         /**
-         * The IObjectPool constructor.
+         * The constructor.
          */
         IObjectPool() = default;
 
         /**
-         * The IObjectPool destructor.
+         * The destructor.
          */
         virtual ~IObjectPool()  = default;
 
         /**
-         * Disables the copy constructor and assignment operator.
+         * The copy/move constructors.
          */
-        IObjectPool(const IObjectPool& rhs) = delete;
-        IObjectPool& operator=(const IObjectPool& rhs) = delete;
+        IObjectPool(const IObjectPool&) = delete;
+        IObjectPool(IObjectPool&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IObjectPool& operator=(const IObjectPool&) = delete;
+        IObjectPool& operator=(IObjectPool&&) = delete;
 
         /**
          * Acquires an element from the pool.

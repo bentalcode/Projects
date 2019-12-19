@@ -18,7 +18,7 @@ namespace memory_management
     {
     public:
         /**
-         * The FixedMemoryPool constructor.
+         * The constructor.
          */
         explicit FixedMemoryPool(
             std::size_t numberOfElements,
@@ -26,9 +26,21 @@ namespace memory_management
             std::size_t alignment);
 
         /**
-         * The FixedMemoryPool destructor.
+         * The destructor.
          */
         virtual ~FixedMemoryPool();
+
+        /**
+         * The copy/move constructors.
+         */
+        FixedMemoryPool(const FixedMemoryPool&) = delete;
+        FixedMemoryPool(FixedMemoryPool&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        FixedMemoryPool& operator=(const FixedMemoryPool&) = delete;
+        FixedMemoryPool& operator=(FixedMemoryPool&&) = delete;
 
         /**
          * Acquires an element from the pool.

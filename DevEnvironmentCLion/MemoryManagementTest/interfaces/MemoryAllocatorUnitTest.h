@@ -13,14 +13,26 @@ namespace memory_management {
     {
     public:
         /**
-         * The MemoryAllocatorUnitTest constructor.
+         * The constructor.
          */
         explicit MemoryAllocatorUnitTest(const std::string& name);
 
         /**
-         * The MemoryAllocatorUnitTest destructor.
+         * The destructor.
          */
         virtual ~MemoryAllocatorUnitTest();
+
+        /**
+         * The copy/move constructors.
+         */
+        MemoryAllocatorUnitTest(const MemoryAllocatorUnitTest&) = delete;
+        MemoryAllocatorUnitTest(MemoryAllocatorUnitTest&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        MemoryAllocatorUnitTest& operator=(const MemoryAllocatorUnitTest&) = delete;
+        MemoryAllocatorUnitTest& operator=(MemoryAllocatorUnitTest&&) = delete;
 
         /**
          * Registers tests of the unit test.

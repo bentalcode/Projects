@@ -13,20 +13,26 @@ namespace memory_management
         using MemoryRawAddress = std::uintptr_t;
 
         /**
-         * The IMemoryPool constructor.
+         * The constructor.
          */
         IMemoryPool() = default;
 
         /**
-         * The IMemoryPool destructor.
+         * The destructor.
          */
-        virtual ~IMemoryPool()  = default;
+        virtual ~IMemoryPool() = default;
 
         /**
-         * Disables the copy constructor and assignment operator.
+         * The copy/move constructors.
          */
-        IMemoryPool(const IMemoryPool& rhs) = delete;
-        IMemoryPool& operator=(const IMemoryPool& rhs) = delete;
+        IMemoryPool(const IMemoryPool&) = delete;
+        IMemoryPool(IMemoryPool&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IMemoryPool& operator=(const IMemoryPool&) = delete;
+        IMemoryPool& operator=(IMemoryPool&&) = delete;
 
         /**
          * Acquires an element from the pool.

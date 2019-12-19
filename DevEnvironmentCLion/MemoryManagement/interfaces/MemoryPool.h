@@ -15,7 +15,7 @@ namespace memory_management
     {
     public:
         /**
-         * The MemoryPool constructor.
+         * The constructor.
          */
         explicit MemoryPool(
             std::size_t initialNumberOfElements,
@@ -24,9 +24,21 @@ namespace memory_management
             bool dynamicAllocation = true);
 
         /**
-         * The MemoryPool destructor.
+         * The destructor.
          */
         virtual ~MemoryPool();
+
+        /**
+         * The copy/move constructors.
+         */
+        MemoryPool(const MemoryPool&) = delete;
+        MemoryPool(MemoryPool&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        MemoryPool& operator=(const MemoryPool&) = delete;
+        MemoryPool& operator=(MemoryPool&&) = delete;
 
         /**
          * Acquires an element from the pool.

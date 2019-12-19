@@ -2,7 +2,6 @@
 #define OBJECT_POOL_ELEMENT_H_82329007_9a10_410b_9bc9_5dbb022ea998
 
 #include "ObjectPool.h"
-#include "boost/core/noncopyable.hpp"
 
 namespace memory_management
 {
@@ -10,20 +9,32 @@ namespace memory_management
      * The ObjectPoolElement class implements an element of a pool.
      */
     template <typename T>
-    class ObjectPoolElement final : private boost::noncopyable
+    class ObjectPoolElement final
     {
     public:
         /**
-         * The ObjectPoolElement constructor.
+         * The constructor.
          */
         explicit ObjectPoolElement(
             T* element,
             ObjectPool<T>& pool);
 
         /**
-         * The ObjectPoolElement destructor.
+         * The destructor.
          */
         virtual ~ObjectPoolElement();
+
+        /**
+         * The copy/move constructors.
+         */
+        ObjectPoolElement(const ObjectPoolElement&) = delete;
+        ObjectPoolElement(ObjectPoolElement&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ObjectPoolElement& operator=(const ObjectPoolElement&) = delete;
+        ObjectPoolElement& operator=(ObjectPoolElement&&) = delete;
 
         /**
          * Gets an element of the pool.

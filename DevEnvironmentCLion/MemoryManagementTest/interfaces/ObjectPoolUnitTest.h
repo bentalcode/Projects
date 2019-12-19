@@ -13,14 +13,26 @@ namespace memory_management {
     {
     public:
         /**
-         * The ObjectPoolUnitTest constructor.
+         * The constructor.
          */
         explicit ObjectPoolUnitTest(const std::string& name);
 
         /**
-         * The ObjectPoolUnitTest destructor.
+         * The destructor.
          */
         virtual ~ObjectPoolUnitTest();
+
+        /**
+         * The copy/move constructors.
+         */
+        ObjectPoolUnitTest(const ObjectPoolUnitTest&) = delete;
+        ObjectPoolUnitTest(ObjectPoolUnitTest&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ObjectPoolUnitTest& operator=(const ObjectPoolUnitTest&) = delete;
+        ObjectPoolUnitTest& operator=(ObjectPoolUnitTest&&) = delete;
 
         /**
          * Registers tests of the unit test.
