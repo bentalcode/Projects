@@ -18,14 +18,26 @@ namespace problems
     {
     public:
         /**
-         * The MatchingTriplets constructor.
+         * The constructor.
          */
         MatchingTriplets() = default;
 
         /**
-         * The MatchingTriplets destructor.
+         * The destructor.
          */
         virtual ~MatchingTriplets() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        MatchingTriplets(const MatchingTriplets&) = delete;
+        MatchingTriplets(MatchingTriplets&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        MatchingTriplets& operator=(const MatchingTriplets&) = delete;
+        MatchingTriplets& operator=(MatchingTriplets&&) = delete;
 
         /**
          * Gets the matching triplets values.

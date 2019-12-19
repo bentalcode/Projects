@@ -13,14 +13,26 @@ namespace problems
     {
     public:
         /**
-         * The IMatchingTriplets constructor.
+         * The constructor.
          */
         IMatchingTriplets() = default;
 
         /**
-         * The IMatchingTriplets destructor.
+         * The destructor.
          */
         virtual ~IMatchingTriplets() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        IMatchingTriplets(const IMatchingTriplets&) = delete;
+        IMatchingTriplets(IMatchingTriplets&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        IMatchingTriplets& operator=(const IMatchingTriplets&) = delete;
+        IMatchingTriplets& operator=(IMatchingTriplets&&) = delete;
 
         /**
          * Gets the matching triplets values.

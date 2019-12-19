@@ -13,14 +13,26 @@ namespace problems
     {
     public:
         /**
-         * The ICombinationSum constructor.
+         * The constructor.
          */
         ICombinationSum() = default;
 
         /**
-         * The ICombinationSum destructor.
+         * The destructor.
          */
         virtual ~ICombinationSum() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        ICombinationSum(const ICombinationSum&) = delete;
+        ICombinationSum(ICombinationSum&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        ICombinationSum& operator=(const ICombinationSum&) = delete;
+        ICombinationSum& operator=(ICombinationSum&&) = delete;
 
         /**
          * Gets the combination sum.

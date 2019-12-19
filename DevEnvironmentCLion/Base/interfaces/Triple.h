@@ -62,14 +62,6 @@ namespace base
     }
 
     template<typename Type1, typename Type2, typename Type3>
-    Triple<Type1, Type2, Type3>::Triple(const Triple& rhs) :
-        m_first(rhs.m_first),
-        m_second(rhs.m_second),
-        m_third(rhs.m_third)
-    {
-    }
-
-    template<typename Type1, typename Type2, typename Type3>
     Triple<Type1, Type2, Type3>::~Triple()
     {
     }

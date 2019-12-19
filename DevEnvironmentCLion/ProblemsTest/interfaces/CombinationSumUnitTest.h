@@ -25,6 +25,18 @@ namespace problems_test {
         virtual ~CombinationSumUnitTest();
 
         /**
+         * The copy/move constructors.
+         */
+        CombinationSumUnitTest(const CombinationSumUnitTest&) = delete;
+        CombinationSumUnitTest(CombinationSumUnitTest&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        CombinationSumUnitTest& operator=(const CombinationSumUnitTest&) = delete;
+        CombinationSumUnitTest& operator=(CombinationSumUnitTest&&) = delete;
+
+        /**
          * Registers tests of the unit test.
          */
         virtual void registerTests(unit_testing::ITestRegistration& registration);

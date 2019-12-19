@@ -20,6 +20,18 @@ namespace problems_test {
         ~TestData();
 
         /**
+         * The copy/move constructors.
+         */
+        TestData(const TestData&) = delete;
+        TestData(TestData&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        TestData& operator=(const TestData&) = delete;
+        TestData& operator=(TestData&&) = delete;
+
+        /**
          * Creates a vector.
          */
         template <typename T>

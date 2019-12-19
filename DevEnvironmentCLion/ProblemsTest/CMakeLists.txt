@@ -139,7 +139,6 @@ set(UNIT_TESTING_INCLUDES
 # Problems...
 #
 set(PROBLEMS_INCLUDES_FILES
-    ../Problems
     ../Problems/interfaces/ICombinationSum.h
     ../Problems/interfaces/IMatchingTriplets.h
     ../Problems/core/CombinationSum.h

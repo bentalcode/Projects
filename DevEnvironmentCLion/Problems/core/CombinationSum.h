@@ -9,18 +9,30 @@ namespace problems
      * The CombinationSum class implements the combination sum problem.
      */
     template <typename T>
-    class CombinationSum
+    class CombinationSum final : public ICombinationSum<T>
     {
     public:
         /**
-         * The CombinationSum constructor.
+         * The constructor.
          */
         CombinationSum() = default;
 
         /**
-         * The CombinationSum destructor.
+         * The destructor.
          */
         virtual ~CombinationSum() = default;
+
+        /**
+         * The copy/move constructors.
+         */
+        CombinationSum(const CombinationSum&) = delete;
+        CombinationSum(CombinationSum&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        CombinationSum& operator=(const CombinationSum&) = delete;
+        CombinationSum& operator=(CombinationSum&&) = delete;
 
         /**
          * Gets the combination sum.

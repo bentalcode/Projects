@@ -28,6 +28,18 @@ namespace problems_test {
         virtual ~MatchingTripletsUnitTest();
 
         /**
+         * The copy/move constructors.
+         */
+        MatchingTripletsUnitTest(const MatchingTripletsUnitTest&) = delete;
+        MatchingTripletsUnitTest(MatchingTripletsUnitTest&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        MatchingTripletsUnitTest& operator=(const MatchingTripletsUnitTest&) = delete;
+        MatchingTripletsUnitTest& operator=(MatchingTripletsUnitTest&&) = delete;
+
+        /**
          * Registers tests of the unit test.
          */
         virtual void registerTests(unit_testing::ITestRegistration& registration);
