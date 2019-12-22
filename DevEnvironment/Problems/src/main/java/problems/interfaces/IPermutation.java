@@ -3,7 +3,7 @@ package problems.interfaces;
 import java.util.List;
 
 /**
- * The IPermutation interface defines an interface of a permutation.
+ * The IPermutation interface defines an interface of a permutation problem.
  */
 public interface IPermutation {
     /**

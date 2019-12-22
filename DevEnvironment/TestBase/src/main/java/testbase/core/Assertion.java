@@ -33,6 +33,78 @@ public final class Assertion implements IAssertion {
     }
 
     /**
+     * Asserts equality with booleans.
+     */
+    @Override
+    public void assertEquals(
+        boolean lhs,
+        boolean rhs,
+        String message) {
+
+        this.assertTrue(lhs == rhs, message);
+    }
+
+    /**
+     * Asserts equality with bytes.
+     */
+    @Override
+    public void assertEquals(
+        byte lhs,
+        byte rhs,
+        String message) {
+
+        this.assertTrue(lhs == rhs, message);
+    }
+
+    /**
+     * Asserts equality with shorts.
+     */
+    @Override
+    public void assertEquals(
+        short lhs,
+        short rhs,
+        String message) {
+
+        this.assertTrue(lhs == rhs, message);
+    }
+
+    /**
+     * Asserts equality with integers.
+     */
+    @Override
+    public void assertEquals(
+        int lhs,
+        int rhs,
+        String message) {
+
+        this.assertTrue(lhs == rhs, message);
+    }
+
+    /**
+     * Asserts equality with longs.
+     */
+    @Override
+    public void assertEquals(
+        long lhs,
+        long rhs,
+        String message) {
+
+        this.assertTrue(lhs == rhs, message);
+    }
+
+    /**
+     * Asserts equality with doubles.
+     */
+    @Override
+    public void assertEquals(
+        double lhs,
+        double rhs,
+        String message) {
+
+        this.assertTrue(lhs == rhs, message);
+    }
+
+    /**
      * Asserts equality with objects.
      */
     @Override

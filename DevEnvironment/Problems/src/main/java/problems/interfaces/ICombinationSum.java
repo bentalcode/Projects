@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * The ICombinationSum interface defines a combination sum.
+ * The ICombinationSum interface defines a combination sum problem.
  */
 public interface ICombinationSum {
     /**

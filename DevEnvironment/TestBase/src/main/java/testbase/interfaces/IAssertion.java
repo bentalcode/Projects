@@ -16,6 +16,54 @@ public interface IAssertion {
         String message);
 
     /**
+     * Asserts equality with booleans.
+     */
+    void assertEquals(
+        boolean lhs,
+        boolean rhs,
+        String message);
+
+    /**
+     * Asserts equality with bytes.
+     */
+    void assertEquals(
+        byte lhs,
+        byte rhs,
+        String message);
+
+    /**
+     * Asserts equality with shorts.
+     */
+    void assertEquals(
+        short lhs,
+        short rhs,
+        String message);
+
+    /**
+     * Asserts equality with integers.
+     */
+    void assertEquals(
+        int lhs,
+        int rhs,
+        String message);
+
+    /**
+     * Asserts equality with longs.
+     */
+    void assertEquals(
+        long lhs,
+        long rhs,
+        String message);
+
+    /**
+     * Asserts equality with doubles.
+     */
+    void assertEquals(
+        double lhs,
+        double rhs,
+        String message);
+
+    /**
      * Asserts equality with objects.
      */
     <T extends Comparable<T>> void assertEquals(

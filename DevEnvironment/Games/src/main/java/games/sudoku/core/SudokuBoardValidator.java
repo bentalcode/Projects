@@ -121,7 +121,7 @@ public final class SudokuBoardValidator implements IValidator {
 
         Integer digit = this.tryParseDigit(value);
 
-        if (digit == null) {
+        if (digit == null || digit == 0) {
             return false;
         }
 
@@ -138,7 +138,7 @@ public final class SudokuBoardValidator implements IValidator {
      * Tries to parse a digit.
      */
     private Integer tryParseDigit(char value) {
-        if (value < '1' || value > '9') {
+        if (value < '0' || value > '9') {
             return null;
         }
 
