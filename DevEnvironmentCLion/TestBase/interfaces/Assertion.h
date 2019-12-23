@@ -154,8 +154,10 @@ namespace test_base {
         base::IIterable<T>& rhs,
         const std::string& message)
     {
-        bool status = false;
-        assertTrue(status, message);
+        assertEqualsWithIterators<T>(
+            *lhs.getIterator(),
+            *rhs.getIterator(),
+            message);
     }
 }
 

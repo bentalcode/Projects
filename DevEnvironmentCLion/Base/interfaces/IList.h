@@ -27,8 +27,8 @@ namespace base
         /**
          * The copy/move constructors.
          */
-        IList(const IIterator&) = delete;
-        IList(IIterator&&) = delete;
+        IList(const IList&) = delete;
+        IList(IList&&) = delete;
 
         /**
          * The copy/move assignment operators.

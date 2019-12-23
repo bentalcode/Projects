@@ -68,12 +68,14 @@ set(BASE_INCLUDES
 set(PROBLEMS_INCLUDES_FILES
     ./interfaces/ICombinationSum.h
     ./interfaces/IMatchingTriplets.h
+    ./interface/IPositionQueens.h
     ./core/CombinationSum.h
     ./core/MatchingTriplets.h
     ./core/PreCompiled.h
     ./ProblemException.h)
 
 set(PROBLEMS_SOURCES_FILES
+    ./core/PositionQueens.cpp
     ./core/PreCompiled.cpp)
 
 set(PROBLEMS_SOURCES

@@ -142,10 +142,12 @@ set(PROBLEMS_INCLUDES_FILES
     ../Problems/interfaces/ICombinationSum.h
     ../Problems/interfaces/IMatchingTriplets.h
     ../Problems/core/CombinationSum.h
+    ../Problems/core/PositionQueens.h
     ../Problems/core/MatchingTriplets.h
     ../Problems/core/PreCompiled.h)
 
 set(PROBLEMS_SOURCES_FILES
+    ../Problems/core/PositionQueens.cpp
     ../Problems/core/PreCompiled.cpp)
 
 set(PROBLEMS_SOURCES
@@ -163,6 +165,7 @@ set(PROBLEMS_INCLUDES
 set(PROBLEMS_TEST_INCLUDES_FILES
     interfaces/CombinationSumUnitTest.h
     interfaces/MatchingTripletsUnitTest.h
+    interfaces/PositionQueensUnitTest.h
     interfaces/TestData.h
     core/PreCompiled.h)
 
@@ -170,6 +173,7 @@ set(PROBLEMS_TEST_SOURCES_FILES
     main.cpp
     core/CombinationSumUnitTest.cpp
     core/MatchingTripletsUnitTest.cpp
+    core/PositionQueensUnitTest.cpp
     core/TestData.cpp
     core/PreCompiled.cpp)
 
