@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * The CombinationSumTest class implements tests for combination sum.
+ * The CombinationSumTest class implements tests for the combination sum problem.
  */
 public final class CombinationSumTest {
     private final IAssertion assertion = new Assertion();

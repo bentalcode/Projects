@@ -8,6 +8,14 @@ import java.util.List;
  */
 public final class ArrayLists {
     /**
+     * Creates a new instance of an empty list.
+     */
+    public static <T> List<T> empty() {
+        List<T> list = new ArrayList<>();
+        return list;
+    }
+
+    /**
      * Creates a new instance of a list.
      */
     public static <T> List<T> of(T value) {

@@ -103,7 +103,7 @@ public final class GraphTest {
         this.assertion.assertEquals(
             status,
             expectedStatus,
-            "Invalid logic of a loop detection in a graph.");
+            "Incorrect logic of a loop detection in a graph.");
     }
 
     /**
@@ -123,7 +123,7 @@ public final class GraphTest {
         this.assertion.assertEqualsWithIterators(
             ListIterator.of(result),
             data.getTopologicalSearch().getIterator(),
-            "Invalid logic of a topological search in a graph.");
+            "Incorrect logic of a topological search in a graph.");
     }
 
     /**
@@ -145,7 +145,7 @@ public final class GraphTest {
             this.assertion.assertEqualsWithIterators(
                 ListIterator.of(paths),
                 ListIterator.of(expectedPaths),
-                "Invalid logic of finding paths with a Breadth-First search in a graph.");
+                "Incorrect logic of finding paths with a Breadth-First search in a graph.");
         }
     }
 
@@ -168,7 +168,7 @@ public final class GraphTest {
             this.assertion.assertEqualsWithIterators(
                 ListIterator.of(paths),
                 ListIterator.of(expectedPaths),
-                "Invalid logic of finding paths with a Depth-First search in a graph.");
+                "Incorrect logic of finding paths with a Depth-First search in a graph.");
         }
     }
 

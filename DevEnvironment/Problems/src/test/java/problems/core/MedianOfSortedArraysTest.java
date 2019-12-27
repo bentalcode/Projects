@@ -8,7 +8,7 @@ import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 
 /**
- * The MedianOfSortedArraysTest class implements tests for median of sorted arrays.
+ * The MedianOfSortedArraysTest class implements tests for the median of sorted arrays problem.
  */
 public final class MedianOfSortedArraysTest {
     private final IAssertion assertion = new Assertion();

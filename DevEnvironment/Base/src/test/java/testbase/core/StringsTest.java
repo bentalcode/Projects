@@ -61,6 +61,7 @@ public final class StringsTest {
 
         this.assertion.assertEquals(
             result,
-            expectedResult, "Invalid logic for determining whether a string is null or empty.");
+            expectedResult,
+            "Incorrect logic for determining whether a string is null or empty.");
     }
 }

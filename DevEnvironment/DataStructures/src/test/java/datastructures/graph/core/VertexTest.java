@@ -63,7 +63,7 @@ public final class VertexTest {
 
         this.assertion.assertTrue(
             vertices.size() == 1,
-            "Invalid logic of identifying vertices by an integer key.");
+            "Incorrect logic of identifying vertices by an integer key.");
     }
 
     /**
@@ -79,7 +79,7 @@ public final class VertexTest {
 
         this.assertion.assertTrue(
             vertices.size() == 1,
-            "Invalid logic of identifying vertices by a double key.");
+            "Incorrect logic of identifying vertices by a double key.");
     }
 
     /**
@@ -95,7 +95,7 @@ public final class VertexTest {
 
         this.assertion.assertTrue(
             vertices.size() == 1,
-            "Invalid logic of identifying vertices by a character key.");
+            "Incorrect logic of identifying vertices by a character key.");
     }
 
     /**
@@ -111,6 +111,6 @@ public final class VertexTest {
 
         this.assertion.assertTrue(
             vertices.size() == 1,
-            "Invalid logic of identifying vertices by a string key.");
+            "Incorrect logic of identifying vertices by a string key.");
     }
 }

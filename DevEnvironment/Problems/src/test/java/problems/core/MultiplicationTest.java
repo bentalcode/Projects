@@ -8,7 +8,7 @@ import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 
 /**
- * The MultiplicationTest class implements tests for multiplication.
+ * The MultiplicationTest class implements tests for the multiplication problem.
  */
 public final class MultiplicationTest {
     private final IAssertion assertion = new Assertion();
@@ -52,6 +52,6 @@ public final class MultiplicationTest {
         this.assertion.assertEquals(
             result,
             expectedResult,
-            "Invalid logic for multiplying strings.");
+            "Incorrect logic for multiplying strings.");
     }
 }

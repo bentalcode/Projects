@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * The MatchingTripletsTest class implements tests for matching triplets.
+ * The MatchingTripletsTest class implements tests for the matching triplets problem.
  */
 public final class MatchingTripletsTest {
     private final IAssertion assertion = new Assertion();
@@ -111,7 +111,7 @@ public final class MatchingTripletsTest {
         this.assertion.assertEqualsWithIterators(
             ListIterator.of(result),
             CollectionIterator.of(expectedResult),
-            "Invalid logic for calculating the indexes of matching triplets.");
+            "Incorrect logic for calculating the indexes of matching triplets.");
     }
 
     /**
@@ -131,7 +131,7 @@ public final class MatchingTripletsTest {
         this.assertion.assertEqualsWithIterators(
             CollectionIterator.of(sortedResult),
             CollectionIterator.of(expectedResult),
-            "Invalid logic for calculating the values of matching triplets.");
+            "Incorrect logic for calculating the values of matching triplets.");
     }
 
     /**
@@ -148,6 +148,6 @@ public final class MatchingTripletsTest {
         this.assertion.assertEquals(
             result,
             expectedResult,
-            "Invalid logic for calculating the closest values of matching triplet.");
+            "Incorrect logic for calculating the closest values of matching triplet.");
     }
 }

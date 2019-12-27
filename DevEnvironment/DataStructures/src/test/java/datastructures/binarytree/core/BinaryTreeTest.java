@@ -118,7 +118,7 @@ public final class BinaryTreeTest {
             this.assertion.assertEquals(
                 currNode,
                 dataNode,
-                "Invalid logic of default forward iteration.");
+                "Incorrect logic of default forward iteration.");
         }
 
         //
@@ -134,7 +134,7 @@ public final class BinaryTreeTest {
             this.assertion.assertEquals(
                 currNode,
                 dataNode,
-                "Invalid logic of forward iterator.");
+                "Incorrect logic of forward iterator.");
         }
 
         //
@@ -151,7 +151,7 @@ public final class BinaryTreeTest {
             this.assertion.assertEquals(
                 currNode,
                 dataNode,
-                "Invalid logic of reverse iterator.");
+                "Incorrect logic of reverse iterator.");
         }
 
         //
@@ -165,9 +165,9 @@ public final class BinaryTreeTest {
             IBinaryTreeNode<TKey, TValue> dataNode = dataIterator.next();
 
             this.assertion.assertEquals(
-                    currNode,
-                    dataNode,
-                    "Invalid logic of inorder iterator.");
+                currNode,
+                dataNode,
+                "Incorrect logic of inorder iterator.");
         }
 
         //
@@ -183,7 +183,7 @@ public final class BinaryTreeTest {
             this.assertion.assertEquals(
                 currNode,
                 dataNode,
-                "Invalid logic of preorder iterator.");
+                "Incorrect logic of preorder iterator.");
         }
 
         //
@@ -199,7 +199,7 @@ public final class BinaryTreeTest {
             this.assertion.assertEquals(
                 currNode,
                 dataNode,
-                "Invalid logic of postorder iterator.");
+                "Incorrect logic of postorder iterator.");
         }
     }
 }

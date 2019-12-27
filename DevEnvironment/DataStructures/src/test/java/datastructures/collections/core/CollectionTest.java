@@ -68,6 +68,6 @@ public final class CollectionTest {
         this.assertion.assertEqualsWithIterators(
             ThreeDimensionalListIterator.of(result),
             ThreeDimensionalListIterator.of(expectedResult),
-            "Invalid logic for calculating all possible sequences of sub collections of a collection.");
+            "Incorrect logic for calculating all possible sequences of sub collections of a collection.");
     }
 }

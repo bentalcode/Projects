@@ -84,7 +84,7 @@ bool PositionQueens::validatePosition(
 
     while (currColIndex >= 0)
     {
-        if (currPosition[currColIndex] == currRowIndex)
+        if (hasQueen(currPosition, currRowIndex, currColIndex))
         {
             return false;
         }
@@ -100,7 +100,7 @@ bool PositionQueens::validatePosition(
 
     while (currRowIndex < size && currColIndex >= 0)
     {
-        if (currPosition[currColIndex] == currRowIndex)
+        if (hasQueen(currPosition, currRowIndex, currColIndex))
         {
             return false;
         }
@@ -117,7 +117,7 @@ bool PositionQueens::validatePosition(
 
     while (currRowIndex >= 0 && currColIndex >= 0)
     {
-        if (currPosition[currColIndex] == currRowIndex)
+        if (hasQueen(currPosition, currRowIndex, currColIndex))
         {
             return false;
         }
@@ -148,6 +148,13 @@ void PositionQueens::unPositionQueen(
     int currColIndex)
 {
     currPosition[currColIndex] = -1;
+}
+
+/**
+ * Checks whether the specific position includes a queen.
+ */
+bool PositionQueens::hasQueen(std::vector<int>& position, int rowIndex, int columnIndex) {
+    return position[columnIndex] == rowIndex;
 }
 
 /**

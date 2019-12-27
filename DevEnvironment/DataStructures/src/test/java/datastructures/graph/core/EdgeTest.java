@@ -69,7 +69,7 @@ public final class EdgeTest {
 
         this.assertion.assertTrue(
             edges.size() == 1,
-            "Invalid logic of identifying edges by an integer key.");
+            "Incorrect logic of identifying edges by an integer key.");
     }
 
     /**
@@ -87,7 +87,7 @@ public final class EdgeTest {
 
         this.assertion.assertTrue(
             edges.size() == 1,
-            "Invalid logic of identifying edges by a double key.");
+            "Incorrect logic of identifying edges by a double key.");
     }
 
     /**
@@ -105,7 +105,7 @@ public final class EdgeTest {
 
         this.assertion.assertTrue(
             edges.size() == 1,
-            "Invalid logic of identifying edges by a character key.");
+            "Incorrect logic of identifying edges by a character key.");
     }
 
     /**
@@ -123,6 +123,6 @@ public final class EdgeTest {
 
         this.assertion.assertTrue(
             edges.size() == 1,
-            "Invalid logic of identifying edges by a string key.");
+            "Incorrect logic of identifying edges by a string key.");
     }
 }

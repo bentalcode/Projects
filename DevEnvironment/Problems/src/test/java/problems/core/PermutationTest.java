@@ -11,7 +11,7 @@ import testbase.interfaces.IAssertion;
 import java.util.List;
 
 /**
- * The PermutationTest class implements tests for permutations.
+ * The PermutationTest class implements tests for the permutations problem.
  */
 public final class PermutationTest {
     private final IAssertion assertion = new Assertion();
@@ -90,7 +90,7 @@ public final class PermutationTest {
         this.assertion.assertEqualsWithIterators(
             TwoDimensionalListIterator.of(result),
             TwoDimensionalArrayIterator.of(expectedResult),
-            "Invalid logic for calculating permutations.");
+            "Incorrect logic for calculating permutations.");
     }
 
     private <T extends Comparable<T>> void testUniquePermute(T[] values, T[][] expectedResult) {
@@ -100,6 +100,6 @@ public final class PermutationTest {
         this.assertion.assertEqualsWithIterators(
             TwoDimensionalListIterator.of(result),
             TwoDimensionalArrayIterator.of(expectedResult),
-            "Invalid logic for calculating unique permutations.");
+            "Incorrect logic for calculating unique permutations.");
     }
 }

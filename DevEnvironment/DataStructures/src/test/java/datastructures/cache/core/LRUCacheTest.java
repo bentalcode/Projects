@@ -139,7 +139,7 @@ public final class LRUCacheTest {
             this.assertion.assertEquals(
                 node,
                 expectedContent.get(index),
-                "Invalid logic of default forward iterator over nodes.");
+                "Incorrect logic of default forward iterator over nodes.");
 
             ++index;
         }
@@ -156,7 +156,7 @@ public final class LRUCacheTest {
             this.assertion.assertEquals(
                 node,
                 expectedContent.get(index),
-                "Invalid logic of forward iterator over nodes.");
+                "Incorrect logic of forward iterator over nodes.");
 
             ++index;
         }
@@ -173,7 +173,7 @@ public final class LRUCacheTest {
             this.assertion.assertEquals(
                 key,
                 expectedContent.get(index).getKey(),
-                "Invalid logic of forward iterator over keys.");
+                "Incorrect logic of forward iterator over keys.");
 
             ++index;
         }
@@ -190,7 +190,7 @@ public final class LRUCacheTest {
             this.assertion.assertEquals(
                 value,
                 expectedContent.get(index).getValue(),
-                "Invalid logic of forward iterator over values.");
+                "Incorrect logic of forward iterator over values.");
 
             ++index;
         }

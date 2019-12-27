@@ -73,6 +73,11 @@ namespace problems
             int currColIndex);
 
         /**
+         * Checks whether the specific position includes a queen.
+         */
+        bool hasQueen(std::vector<int>& position, int rowIndex, int columnIndex);
+
+        /**
          * Create results.
          */
         std::vector<std::vector<std::string>> createResults(const std::vector<std::vector<int>>& positions);
