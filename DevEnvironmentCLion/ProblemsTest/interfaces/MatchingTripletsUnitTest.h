@@ -1,18 +1,15 @@
 #ifndef MATCHING_TRIPLETS_UNIT_TEST_H_e253496f_a2df_4b02_af11_3ee6aaced780
 #define MATCHING_TRIPLETS_UNIT_TEST_H_e253496f_a2df_4b02_af11_3ee6aaced780
 
-#include "PreCompiled.h"
 #include "UnitTestBase.h"
-#include "TestData.h"
-#include "IMatchingTriplets.h"
-#include "triple.h"
-#include "Assertion.h"
 #include "MatchingTriplets.h"
+#include "TestData.h"
+#include "Assertion.h"
 
 namespace problems_test {
 
     /**
-     * The MatchingTripletsUnitTest class implements a unit test for matching triplets.
+     * The MatchingTripletsUnitTest class implements a unit test for matching triplets problem.
      */
     class MatchingTripletsUnitTest final : public unit_testing::UnitTestBase
     {

@@ -8,7 +8,7 @@ using namespace problems_test;
 class TestMatchingTripletsFunction : public unit_testing::UnitTestFunction<MatchingTripletsUnitTest>
 {
 public:
-    TestMatchingTripletsFunction(MatchingTripletsUnitTest &unitTest) :
+    TestMatchingTripletsFunction(MatchingTripletsUnitTest& unitTest) :
         UnitTestFunction("matchingTripletsTest", unitTest)
     {
     }

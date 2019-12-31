@@ -39,6 +39,9 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IHashCodeProvider.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
+    ../Base/interfaces/IList.h
+    ../Base/interfaces/Interval.h
+    ../Base/interfaces/Intervals.h
     ../Base/interfaces/ISizebleCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
@@ -49,6 +52,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
+    ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/EquatableComparator.h
     ../Base/core/ListIterator.h
     ../Base/core/PreCompiled.h
@@ -141,9 +145,11 @@ set(UNIT_TESTING_INCLUDES
 set(PROBLEMS_INCLUDES_FILES
     ../Problems/interfaces/ICombinationSum.h
     ../Problems/interfaces/IMatchingTriplets.h
+    ../Problems/interfaces/IMergingIntervals.h
     ../Problems/core/CombinationSum.h
     ../Problems/core/PositionQueens.h
     ../Problems/core/MatchingTriplets.h
+    ../Problems/core/MergingIntervals.h
     ../Problems/core/PreCompiled.h)
 
 set(PROBLEMS_SOURCES_FILES
@@ -165,6 +171,7 @@ set(PROBLEMS_INCLUDES
 set(PROBLEMS_TEST_INCLUDES_FILES
     interfaces/CombinationSumUnitTest.h
     interfaces/MatchingTripletsUnitTest.h
+    interfaces/MergingIntervalsUnitTest.h
     interfaces/PositionQueensUnitTest.h
     interfaces/TestData.h
     core/PreCompiled.h)
@@ -173,6 +180,7 @@ set(PROBLEMS_TEST_SOURCES_FILES
     main.cpp
     core/CombinationSumUnitTest.cpp
     core/MatchingTripletsUnitTest.cpp
+    core/MergingIntervalsUnitTest.cpp
     core/PositionQueensUnitTest.cpp
     core/TestData.cpp
     core/PreCompiled.cpp)

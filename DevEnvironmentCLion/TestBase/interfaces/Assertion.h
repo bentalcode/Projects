@@ -1,6 +1,7 @@
 #ifndef ASSERTION_H_3dbe3f51_2dc7_4d6e_81d3_349dca1dca60
 #define ASSERTION_H_3dbe3f51_2dc7_4d6e_81d3_349dca1dca60
 
+#include <core/DereferenceEquatableComparator.h>
 #include "EqualBuilder.h"
 #include "EquatableComparator.h"
 #include "LogStreamWriter.h"
@@ -66,6 +67,15 @@ namespace test_base {
             const std::string& message);
 
         /**
+         * Asserts equality with dereference iterators.
+         */
+        template <typename T>
+        void assertEqualsWithDereferenceIterators(
+            base::IIterator<T>& lhs,
+            base::IIterator<T>& rhs,
+            const std::string& message);
+
+        /**
          * Asserts equality with iterators.
          */
         template <typename T>
@@ -126,6 +136,19 @@ namespace test_base {
         const std::string& message)
     {
         base::EquatableComparator<T> comparator;
+        assertEqualsWithIterators(lhs, rhs, comparator, message);
+    }
+
+    /**
+     * Asserts equality with dereference iterators.
+     */
+    template <typename T>
+    void Assertion::assertEqualsWithDereferenceIterators(
+        base::IIterator<T>& lhs,
+        base::IIterator<T>& rhs,
+        const std::string& message)
+    {
+        base::DereferenceEquatableComparator<T> comparator;
         assertEqualsWithIterators(lhs, rhs, comparator, message);
     }
 

@@ -2,8 +2,8 @@
 #define POSITION_QUEEENS_UNIT_TEST_H_ffaae01b_57de_412b_a9e9_1b5457bf530b
 
 #include "UnitTestBase.h"
-#include "TestData.h"
 #include "PositionQueens.h"
+#include "TestData.h"
 #include "Assertion.h"
 
 namespace problems_test {

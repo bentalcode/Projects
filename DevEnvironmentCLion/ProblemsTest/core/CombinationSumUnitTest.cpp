@@ -8,7 +8,7 @@ using namespace problems_test;
 class TestCombinationSumFunction : public unit_testing::UnitTestFunction<CombinationSumUnitTest>
 {
 public:
-    TestCombinationSumFunction(CombinationSumUnitTest &unitTest) :
+    TestCombinationSumFunction(CombinationSumUnitTest& unitTest) :
         UnitTestFunction("combinationSumTest", unitTest)
     {
     }

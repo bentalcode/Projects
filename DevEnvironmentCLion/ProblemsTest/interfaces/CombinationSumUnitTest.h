@@ -2,8 +2,8 @@
 #define COMBINATION_SUM_UNIT_TEST_H_0677cad9_f859_447f_be24_eb6cccc112ee
 
 #include "UnitTestBase.h"
-#include "TestData.h"
 #include "CombinationSum.h"
+#include "TestData.h"
 #include "Assertion.h"
 
 namespace problems_test {

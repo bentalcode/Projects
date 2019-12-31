@@ -1,6 +1,7 @@
 #include "UnitTestManager.h"
 #include "CombinationSumUnitTest.h"
 #include "MatchingTripletsUnitTest.h"
+#include "MergingIntervalsUnitTest.h"
 #include "PositionQueensUnitTest.h"
 
 using namespace problems_test;
@@ -15,6 +16,9 @@ int main()
 
     IUnitTestPtr matchingTripletsUnitTest(new MatchingTripletsUnitTest("MatchingTriplets"));
     testManager.registerTest(matchingTripletsUnitTest);
+
+    IUnitTestPtr mergingIntervalsUnitTest(new MergingIntervalsUnitTest("MergingIntervals"));
+    testManager.registerTest(mergingIntervalsUnitTest);
 
     IUnitTestPtr positionQueensUnitTest(new PositionQueensUnitTest("PositionQueens"));
     testManager.registerTest(positionQueensUnitTest);

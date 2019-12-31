@@ -10,7 +10,7 @@ using namespace problems_test;
 class TestPositionQueensFunction : public unit_testing::UnitTestFunction<PositionQueensUnitTest>
 {
 public:
-    TestPositionQueensFunction(PositionQueensUnitTest &unitTest) :
+    TestPositionQueensFunction(PositionQueensUnitTest& unitTest) :
         UnitTestFunction("positionQueensTest", unitTest)
     {
     }

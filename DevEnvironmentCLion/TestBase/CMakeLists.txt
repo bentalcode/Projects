@@ -28,6 +28,9 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IHashCodeProvider.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
+    ../Base/interfaces/IList.h
+    ../Base/interfaces/Interval.h
+    ../Base/interfaces/Intervals.h
     ../Base/interfaces/ISizebleCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
@@ -38,11 +41,13 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
-    ../Base/core/ComparableComparator.h
+    ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/EquatableComparator.h
+    ../Base/core/ListIterator.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/StringIterator.h
     ../Base/core/TwoDimensionalList.h
     ../Base/BaseException.h)
 
