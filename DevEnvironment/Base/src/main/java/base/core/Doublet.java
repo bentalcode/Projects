@@ -15,7 +15,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
     private final int hashCode;
 
     /**
-     * Creates a new instance of a triplet.
+     * Creates a new instance of a doublet.
      */
     public static<Type1 extends Comparable<Type1>, Type2
         extends Comparable<Type2>> IDoublet<Type1, Type2> of(Type1 first, Type2 second) {
@@ -27,7 +27,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
     }
 
     /**
-     * The Triplet constructor.
+     * The Doublet constructor.
      */
     private Doublet(
         Type1 first,
@@ -36,7 +36,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
 
         Conditions.validateNotNull(
             comparator,
-            "The comparator of a triplet.");
+            "The comparator of a doublet.");
 
         this.first = first;
         this.second = second;
@@ -61,7 +61,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
     }
 
     /**
-     * Gets the string representation of a range.
+     * Gets the string representation of a doublet.
      */
     @Override
     public String toString() {
@@ -133,7 +133,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
     }
 
     /**
-     * The Comparator class implements a comparator of a triplet.
+     * The Comparator class implements a comparator of a doublet.
      */
     public static final class Comparator<Type1 extends Comparable<Type1>, Type2 extends Comparable<Type2>> extends AbstractBinaryComparator<IDoublet<Type1, Type2>> {
         private final IBinaryComparator<Type1> firstElementComparator;
