@@ -7,23 +7,23 @@ import java.nio.file.Path;
 import json.interfaces.IJsonSerialization;
 import json.interfaces.ITestData;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import testbase.interfaces.IJsonStreamingTest;
 
 /**
  * The JsonStreamTest class implements tests for reading writing from/to json streams.
  */
-public final class JsonStreamTest {
+public final class JsonStreamingTest {
     private final IAssertion assertion = new Assertion();
     private final ITestData testData = new TestData();
 
     /**
      * The JsonStreamTest constructor.
      */
-    public JsonStreamTest() {
+    public JsonStreamingTest() {
     }
 
     /**
@@ -45,9 +45,12 @@ public final class JsonStreamTest {
      */
     @Test
     public void jsonStreamingTest() {
+        IJsonStreamingTest test = new testbase.core.JsonStreamingTest();
+
         for (IPair<Path, Class<?>> resourceInformation : this.testData.getSimpleJsonResourcesInformation()) {
             String json = ResourceReader.loadString(resourceInformation.first());
-            this.testStreamingJson(json, Casting.cast(resourceInformation.second()));
+
+            test.testStreaming(json, Casting.cast(resourceInformation.second()));
         }
     }
 
@@ -55,12 +58,11 @@ public final class JsonStreamTest {
      * Tests streaming json.
      */
     private <T extends IJsonSerialization> void testStreamingJson(String json, Class<T> classType) {
-        JsonStream stream = new JsonStream();
-        T obj1 = stream.fromJson(json, classType);
+        T obj1 = JsonStream.deserialize(json, classType);
 
-        String json2 = stream.toJson(obj1);
+        String json2 = JsonStream.serialize(obj1);
 
-        T obj2 = stream.fromJson(json2, classType);
+        T obj2 = JsonStream.deserialize(json2, classType);
 
         this.assertion.assertTrue(
             obj1.equals(obj2),

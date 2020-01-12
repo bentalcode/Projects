@@ -4,6 +4,12 @@ import base.core.Conditions;
 import base.core.DestructorHandler;
 import base.interfaces.ICloseable;
 import java.io.IOException;
+import java.util.Collection;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.Period;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.PeriodFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -453,6 +459,29 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     }
 
     /**
+     * Writes a string collection.
+     */
+    @Override
+    public void writeStringCollection(Collection<String> collection) {
+        try {
+            this.generator.writeStartArray();
+
+            for (String value : collection) {
+                this.generator.writeString(value);
+            }
+
+            this.generator.writeEndArray();
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a string collection" +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+        }
+    }
+
+    /**
      * Writes a blob.
      */
     @Override
@@ -467,5 +496,34 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
 
             this.log.error(errorMessage, e);
         }
+    }
+
+    /**
+     * Writes a date-time.
+     */
+    @Override
+    public void writeDateTime(DateTime dateTime, DateTimeFormatter formatter) {
+        String value = dateTime.toString(formatter);
+
+        try {
+            this.generator.writeString(value);
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a date-time" +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+        }
+    }
+
+    /**
+     * Writes a duration.
+     */
+    @Override
+    public void writeDuration(Duration duration, PeriodFormatter formatter) {
+        Period period = duration.toPeriod();
+        String value = period.toString(formatter);
+        this.writeString(value);
     }
 }

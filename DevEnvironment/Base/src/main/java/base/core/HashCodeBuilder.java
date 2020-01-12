@@ -5,6 +5,8 @@ import base.interfaces.IHashCodeProvider;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import base.interfaces.IPrimitiveSize;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
 
 import java.math.BigInteger;
 import java.util.Collection;
@@ -170,6 +172,24 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
             this.withByte(byteValue);
         }
 
+        return this;
+    }
+
+    /**
+     * With a datetime.
+     */
+    @Override
+    public IHashCodeBuilder withDateTime(DateTime value) {
+        this.withLong(value.getMillis());
+        return this;
+    }
+
+    /**
+     * With a duration.
+     */
+    @Override
+    public IHashCodeBuilder withDuration(Duration value) {
+        this.withLong(value.getMillis());
         return this;
     }
 

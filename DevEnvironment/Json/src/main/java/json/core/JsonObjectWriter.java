@@ -1,8 +1,15 @@
 package json.core;
 
 import base.core.Conditions;
+import base.core.TimeConstants;
+import base.interfaces.IToString;
 import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.PeriodFormatter;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -235,6 +242,21 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
+     * Writes a string collection property.
+     */
+    @Override
+    public void writeStringCollectionProperty(String name, Collection<String> collection) {
+        this.validatePropertyName(name);
+
+        if (collection == null || collection.isEmpty()) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeStringCollection(collection);
+    }
+
+    /**
      * Writes a blob property.
      */
     @Override
@@ -247,6 +269,54 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
 
         this.generator.writePropertyName(name);
         this.generator.writeBlob(blob);
+    }
+
+    /**
+     * Writes a date-time property.
+     */
+    @Override
+    public void writeDateTimeProperty(String name, DateTime dataTime) {
+        DateTimeFormatter formatter = TimeConstants.defaultDateTimeFormatter();
+
+        this.writeDateTimeProperty(
+            name,
+            dataTime,
+            formatter);
+    }
+
+    /**
+     * Writes a date-time property.
+     */
+    @Override
+    public void writeDateTimeProperty(String name, DateTime dataTime, DateTimeFormatter formatter) {
+        this.validatePropertyName(name);
+
+        this.generator.writePropertyName(name);
+        this.generator.writeDateTime(dataTime, formatter);
+    }
+
+    /**
+     * Writes a duration property.
+     */
+    @Override
+    public void writeDurationProperty(String name, Duration duration) {
+        PeriodFormatter formatter = TimeConstants.defaultDurationFormatter();
+
+        this.writeDurationProperty(
+            name,
+            duration,
+            formatter);
+    }
+
+    /**
+     * Writes a duration property.
+     */
+    @Override
+    public void writeDurationProperty(String name, Duration duration, PeriodFormatter formatter) {
+        this.validatePropertyName(name);
+
+        this.generator.writePropertyName(name);
+        this.generator.writeDuration(duration, formatter);
     }
 
     /**
@@ -284,20 +354,42 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
-     * Writes a generic list property.
+     * Writes a generic collection property.
      */
     @Override
-    public <T extends IJsonSerialization> void writeListProperty(String name, List<T> list) {
+    public <T extends IJsonSerialization> void writeCollectionProperty(String name, List<T> collection) {
         this.validatePropertyName(name);
 
-        if (list == null) {
+        if (collection == null || collection.isEmpty()) {
             return;
         }
 
         this.generator.writePropertyName(name);
 
         IJsonValueWriter writer = new JsonValueWriter(this.generator);
-        writer.writeList(list);
+        writer.writeCollection(collection);
+    }
+
+    /**
+     * Writes a generic collection property with a transformer.
+     */
+    @Override
+    public <T> void writeCollectionProperty(
+        String name,
+        Collection<T> collection,
+        IToString<T> transformer) {
+
+        this.validatePropertyName(name);
+        this.validateTransformer(transformer);
+
+        if (collection == null || collection.isEmpty()) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+
+        IJsonValueWriter writer = new JsonValueWriter(this.generator);
+        writer.writeCollection(collection, transformer);
     }
 
     /**
@@ -307,5 +399,14 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
         Conditions.validateNotNull(
             name,
             "The name of a property.");
+    }
+
+    /**
+     * Validates a name of a property.
+     */
+    private <T> void validateTransformer(IToString<T> transformer) {
+        Conditions.validateNotNull(
+            transformer,
+            "The string transformer.");
     }
 }

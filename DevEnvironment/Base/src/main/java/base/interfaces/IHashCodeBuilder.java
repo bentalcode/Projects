@@ -1,5 +1,8 @@
 package base.interfaces;
 
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
@@ -62,6 +65,16 @@ public interface IHashCodeBuilder {
      * With a big integer.
      */
     IHashCodeBuilder withBigInteger(BigInteger value);
+
+    /**
+     * With a datetime.
+     */
+    IHashCodeBuilder withDateTime(DateTime value);
+
+    /**
+     * With a duration.
+     */
+    IHashCodeBuilder withDuration(Duration value);
 
     /**
      * With a boolean array.

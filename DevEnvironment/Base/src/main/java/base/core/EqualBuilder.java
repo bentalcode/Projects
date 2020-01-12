@@ -11,6 +11,8 @@ import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
@@ -170,6 +172,24 @@ public final class EqualBuilder implements IEqualBuilder {
     @Override
     public IEqualBuilder withBigInteger(BigInteger lhs, BigInteger rhs) {
         IEquatableComparator<BigInteger> comparator = this.comparatorFactory.createComparator();
+        return this.withObject(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a date-time.
+     */
+    @Override
+    public IEqualBuilder withDateTime(DateTime lhs, DateTime rhs) {
+        IEquatableComparator<DateTime> comparator = this.comparatorFactory.createDateTimeComparator();
+        return this.withObject(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a duration.
+     */
+    @Override
+    public IEqualBuilder withDuration(Duration lhs, Duration rhs) {
+        IEquatableComparator<Duration> comparator = this.comparatorFactory.createDurationComparator();
         return this.withObject(lhs, rhs, comparator);
     }
 

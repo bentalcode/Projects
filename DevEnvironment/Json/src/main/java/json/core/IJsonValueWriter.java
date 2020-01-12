@@ -1,7 +1,8 @@
 package json.core;
 
+import base.interfaces.IToString;
 import json.interfaces.IJsonSerialization;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * The IJsonValueWriter interface defines a writer of a json value.
@@ -93,7 +94,12 @@ public interface IJsonValueWriter {
     <T extends IJsonSerialization> void writeArray(T[] value);
 
     /**
-     * Writes a generic list.
+     * Writes a generic collection.
      */
-    <T extends IJsonSerialization> void writeList(List<T> value);
+    <T extends IJsonSerialization> void writeCollection(Collection<T> collection);
+
+    /**
+     * Writes a generic collection with a transformer.
+     */
+    <T> void writeCollection(Collection<T> collection, IToString<T> transformer);
 }

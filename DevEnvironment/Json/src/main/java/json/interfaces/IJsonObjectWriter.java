@@ -1,5 +1,11 @@
 package json.interfaces;
 
+import base.interfaces.IToString;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.PeriodFormatter;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -87,9 +93,34 @@ public interface IJsonObjectWriter {
     void writeStringArrayProperty(String name, String[] array);
 
     /**
+     * Writes a string collection property.
+     */
+    void writeStringCollectionProperty(String name, Collection<String> collection);
+
+    /**
      * Writes a blob property.
      */
     void writeBlobProperty(String name, byte[] blob);
+
+    /**
+     * Writes a date-time property.
+     */
+    void writeDateTimeProperty(String name, DateTime dataTime);
+
+    /**
+     * Writes a date-time property.
+     */
+    void writeDateTimeProperty(String name, DateTime dataTime, DateTimeFormatter formatter);
+
+    /**
+     * Writes a duration property.
+     */
+    void writeDurationProperty(String name, Duration dataTime);
+
+    /**
+     * Writes a duration property.
+     */
+    void writeDurationProperty(String name, Duration dataTime, PeriodFormatter formatter);
 
     /**
      * Writes a generic object property.
@@ -102,7 +133,15 @@ public interface IJsonObjectWriter {
     <T extends IJsonSerialization> void writeArrayProperty(String name, T[] array);
 
     /**
-     * Writes a generic list property.
+     * Writes a generic collection property.
      */
-    <T extends IJsonSerialization> void writeListProperty(String name, List<T> list);
+    <T extends IJsonSerialization> void writeCollectionProperty(String name, List<T> list);
+
+    /**
+     * Writes a generic collection property with a transformer.
+     */
+    <T> void writeCollectionProperty(
+        String name,
+        Collection<T> collection,
+        IToString<T> transformer);
 }

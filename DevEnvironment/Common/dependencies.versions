@@ -3,4 +3,5 @@ ext {
     slf4jApiVersion = '1.7.26'          // slf4j-api
     jacksonCoreVersion = '2.9.8'        // jackson-core
     junitVersion = '4.12'               // JUnit
+    jodaTimeVersion = '2.10.5'          // Joda-Time
 }

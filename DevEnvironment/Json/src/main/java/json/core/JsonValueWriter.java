@@ -4,9 +4,10 @@ import base.core.ArrayIterator;
 import base.core.Conditions;
 import base.core.Iterator;
 import base.interfaces.IIterator;
+import base.interfaces.IToString;
 import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * The JsonValueWriter class implements a writer of a json value.
@@ -203,15 +204,36 @@ public final class JsonValueWriter implements IJsonValueWriter {
     }
 
     /**
-     * Writes a generic list.
+     * Writes a generic collection.
      */
     @Override
-    public <T extends IJsonSerialization> void writeList(List<T> list) {
-        if (list == null) {
+    public <T extends IJsonSerialization> void writeCollection(Collection<T> collection) {
+        if (collection == null || collection.isEmpty()) {
             return;
         }
 
-        this.writeCollection(Iterator.of(list));
+        this.writeCollection(Iterator.of(collection));
+    }
+
+    /**
+     * Writes a generic collection.
+     */
+    @Override
+    public <T> void writeCollection(Collection<T> collection, IToString<T> transformer) {
+        if (collection == null || collection.isEmpty()) {
+            return;
+        }
+
+        String[] collectionToWrite = new String[collection.size()];
+
+        int insertIndex = 0;
+
+        for (T item : collection) {
+            collectionToWrite[insertIndex] = transformer.toString(item);
+            ++insertIndex;
+        }
+
+        this.writeStringArray(collectionToWrite);
     }
 
     /**

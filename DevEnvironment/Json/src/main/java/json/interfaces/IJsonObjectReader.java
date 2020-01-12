@@ -1,6 +1,13 @@
 package json.interfaces;
 
+import base.core.IFromString;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.PeriodFormatter;
+
 import java.util.List;
+import java.util.Set;
 
 /**
  * The IJsonObjectReader interface defines a reader of a json object.
@@ -77,9 +84,39 @@ public interface IJsonObjectReader {
     String[] readStringArrayProperty(String name);
 
     /**
+     * Reads a string list property.
+     */
+    List<String> readStringListProperty(String name);
+
+    /**
+     * Reads a string set property.
+     */
+    Set<String> readStringSetProperty(String name);
+
+    /**
      * Reads a blob property.
      */
     byte[] readBlobProperty(String name);
+
+    /**
+     * Reads a date-time property.
+     */
+    DateTime readDateTimeProperty(String name);
+
+    /**
+     * Reads a date-time property.
+     */
+    DateTime readDateTimeProperty(String name, DateTimeFormatter formatter);
+
+    /**
+     * Reads a duration property.
+     */
+    Duration readDurationProperty(String name);
+
+    /**
+     * Reads a duration property.
+     */
+    Duration readDurationProperty(String name, PeriodFormatter formatter);
 
     /**
      * Reads a generic object property.
@@ -95,4 +132,19 @@ public interface IJsonObjectReader {
      * Reads a generic list property.
      */
     <ResultType extends IJsonSerialization, ClassType extends ResultType> List<ResultType> readListProperty(String name, Class<ClassType> classType);
+
+    /**
+     * Reads a generic set property.
+     */
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> Set<ResultType> readSetProperty(String name, Class<ClassType> classType);
+
+    /**
+     * Reads a generic list property with a transformer.
+     */
+    <T> List<T> readListProperty(String name, IFromString<T> transformer);
+
+    /**
+     * Reads a generic set property with a transformer.
+     */
+    <T> Set<T> readSetProperty(String name, IFromString<T> transformer);
 }

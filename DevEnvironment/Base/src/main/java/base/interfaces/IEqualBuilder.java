@@ -1,5 +1,8 @@
 package base.interfaces;
 
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
@@ -62,6 +65,16 @@ public interface IEqualBuilder {
      * With a big integer.
      */
     IEqualBuilder withBigInteger(BigInteger lhs, BigInteger rhs);
+
+    /**
+     * With a date-time.
+     */
+    IEqualBuilder withDateTime(DateTime lhs, DateTime rhs);
+
+    /**
+     * With a duration.
+     */
+    IEqualBuilder withDuration(Duration lhs, Duration rhs);
 
     /**
      * With a boolean array.

@@ -16,6 +16,22 @@ public final class JsonStream implements IJsonStream {
     private final IJsonFactory factory = new JsonFactory();
 
     /**
+     * Serializes an object to a json string.
+     */
+    public static <T extends IJsonSerialization> String serialize(T obj) {
+        IJsonStream stream = new JsonStream();
+        return stream.toJson(obj);
+    }
+
+    /**
+     * De-Serializes an object from a json string.
+     */
+    public static <T extends IJsonSerialization> T deserialize(String json, Class<T> classType) {
+        IJsonStream stream = new JsonStream();
+        return stream.fromJson(json, classType);
+    }
+
+    /**
      * The JsonStream constructor.
      */
     public JsonStream() {
