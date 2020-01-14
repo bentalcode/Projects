@@ -8,6 +8,8 @@ import base.interfaces.IIterableComparator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
 
 /**
  * The ComparatorFactory class implements a factory for creating binary comparators.
@@ -73,5 +75,21 @@ public final class ComparatorFactory implements IComparatorFactory {
     @Override
     public <TKey, TValue> IMapComparator<TKey, TValue> createMapComparator() {
         return new MapComparator<>();
+    }
+
+    /**
+     * Creates a datetime comparator.
+     */
+    @Override
+    public IBinaryComparator<DateTime> createDateTimeComparator() {
+        return new DateTimeComparator();
+    }
+
+    /**
+     * Create a duration comparator.
+     */
+    @Override
+    public IBinaryComparator<Duration> createDurationComparator() {
+        return new DurationComparator();
     }
 }

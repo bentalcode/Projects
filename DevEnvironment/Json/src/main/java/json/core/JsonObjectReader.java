@@ -2,9 +2,19 @@ package json.core;
 
 import base.core.ClassTypes;
 import base.core.Conditions;
+import base.core.IFromString;
+import base.core.TimeConstants;
 import json.interfaces.IJsonObjectReader;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import json.interfaces.IJsonSerialization;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.Period;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.PeriodFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -209,6 +219,32 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
+     * Reads a string list property.
+     */
+    @Override
+    public List<String> readStringListProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        List<String> result = reader.readStringList();
+
+        return result;
+    }
+
+    /**
+     * Reads a string set property.
+     */
+    @Override
+    public Set<String> readStringSetProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        Set<String> result = reader.readStringSet();
+
+        return result;
+    }
+
+    /**
      * Reads a blob property.
      */
     @Override
@@ -218,6 +254,45 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValueReader reader = new JsonValueReader(value);
         byte[] result = reader.readBlob();
 
+        return result;
+    }
+
+    /**
+     * Reads a date-time property.
+     */
+    @Override
+    public DateTime readDateTimeProperty(String name) {
+        DateTimeFormatter formatter = TimeConstants.defaultDateTimeFormatter();
+        return this.readDateTimeProperty(name, formatter);
+    }
+
+    /**
+     * Reads a date-time property.
+     */
+    @Override
+    public DateTime readDateTimeProperty(String name, DateTimeFormatter formatter) {
+        String value = this.readStringProperty(name);
+        DateTime result = DateTime.parse(value, formatter);
+        return result;
+    }
+
+    /**
+     * Reads a duration property.
+     */
+    @Override
+    public Duration readDurationProperty(String name) {
+        PeriodFormatter formatter = TimeConstants.defaultDurationFormatter();
+        return this.readDurationProperty(name, formatter);
+    }
+
+    /**
+     * Reads a duration property.
+     */
+    @Override
+    public Duration readDurationProperty(String name, PeriodFormatter formatter) {
+        String value = this.readStringProperty(name);
+        Period period = formatter.parsePeriod(value);
+        Duration result = period.toStandardDuration();
         return result;
     }
 
@@ -265,6 +340,58 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValueReader reader = new JsonValueReader(value);
 
         List<ResultType> result = reader.readList(classType);
+
+        return result;
+    }
+
+    /**
+     * Reads a generic set property.
+     */
+    @Override
+    public <ResultType extends IJsonSerialization, ClassType extends ResultType> Set<ResultType> readSetProperty(
+        String name,
+        Class<ClassType> classType) {
+
+        IJsonValue value = this.getPropertyValue(name);
+        IJsonValueReader reader = new JsonValueReader(value);
+
+        Set<ResultType> result = reader.readSet(classType);
+
+        return result;
+    }
+
+    /**
+     * Reads a generic list property with a transformer.
+     */
+    @Override
+    public <T> List<T> readListProperty(String name, IFromString<T> transformer) {
+        IJsonValue value = this.getPropertyValue(name);
+        IJsonValueReader reader = new JsonValueReader(value);
+
+        String[] stringList = reader.readStringArray();
+        List<T> result = new ArrayList<>(stringList.length);
+
+        for (String item : stringList) {
+            result.add(transformer.fromString(item));
+        }
+
+        return result;
+    }
+
+    /**
+     * Reads a generic set property with a transformer.
+     */
+    @Override
+    public <T> Set<T> readSetProperty(String name, IFromString<T> transformer) {
+        IJsonValue value = this.getPropertyValue(name);
+        IJsonValueReader reader = new JsonValueReader(value);
+
+        String[] stringList = reader.readStringArray();
+        Set<T> result = new HashSet<>();
+
+        for (String item : stringList) {
+            result.add(transformer.fromString(item));
+        }
 
         return result;
     }

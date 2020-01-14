@@ -29,4 +29,10 @@ public final class Primes {
     public static BitSet calculatePrimes(int maxNumber) {
         return Prime.calculatePrimes(maxNumber);
     }
+
+    /**
+     * Disables the default constructor - This is a static class.
+     */
+    private Primes() {
+    }
 }

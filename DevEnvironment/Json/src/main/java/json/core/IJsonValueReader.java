@@ -2,6 +2,7 @@ package json.core;
 
 import json.interfaces.IJsonSerialization;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The IJsonValueReader interface defines a reader of a json value.
@@ -78,6 +79,16 @@ interface IJsonValueReader {
     String[] readStringArray();
 
     /**
+     * Reads a string list.
+     */
+    List<String> readStringList();
+
+    /**
+     * Reads a string set.
+     */
+    Set<String> readStringSet();
+
+    /**
      * Reads a blob.
      */
     byte[] readBlob();
@@ -96,4 +107,9 @@ interface IJsonValueReader {
      * Reads a generic list.
      */
     <ResultType extends IJsonSerialization, ClassType extends ResultType> List<ResultType> readList(Class<ClassType> classType);
+
+    /**
+     * Reads a generic set.
+     */
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> Set<ResultType> readSet(Class<ClassType> classType);
 }

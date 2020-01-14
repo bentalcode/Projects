@@ -1,5 +1,8 @@
 package base.interfaces;
 
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+
 /**
  * The IComparatorFactory interface defines a factory for creating comparators.
  */
@@ -38,4 +41,14 @@ public interface IComparatorFactory {
      * Creates a map comparator.
      */
     <TKey, TValue> IMapComparator<TKey, TValue> createMapComparator();
+
+    /**
+     * Create a date-time comparator.
+     */
+    IBinaryComparator<DateTime> createDateTimeComparator();
+
+    /**
+     * Create a duration comparator.
+     */
+    IBinaryComparator<Duration> createDurationComparator();
 }

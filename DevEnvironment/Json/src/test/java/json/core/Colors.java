@@ -61,7 +61,7 @@ public final class Colors implements IColors {
     @Override
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(Colors.PropertyCategory, this.category);
-        writer.writeListProperty(Colors.PropertyColors, this.colors);
+        writer.writeCollectionProperty(Colors.PropertyColors, this.colors);
     }
 
     /**

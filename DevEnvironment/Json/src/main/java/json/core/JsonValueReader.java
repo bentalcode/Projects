@@ -6,7 +6,9 @@ import base.core.Conversion;
 import base.core.ReflectionHandler;
 import json.interfaces.IJsonObjectReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import json.interfaces.IJsonSerialization;
 
 /**
@@ -249,6 +251,50 @@ public final class JsonValueReader implements IJsonValueReader {
     }
 
     /**
+     * Reads a string list.
+     */
+    @Override
+    public List<String> readStringList() {
+        IJsonArray array = this.jsonValue.getArray();
+
+        if (array.empty()) {
+            return null;
+        }
+
+        List<String> result = new ArrayList<>(array.size());
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result.add(valueReader.readString());
+        }
+
+        return result;
+    }
+
+    /**
+     * Reads a string set.
+     */
+    @Override
+    public Set<String> readStringSet() {
+        IJsonArray array = this.jsonValue.getArray();
+
+        if (array.empty()) {
+            return null;
+        }
+
+        Set<String> result = new HashSet<>();
+
+        for (int i = 0; i < array.size(); ++i) {
+            IJsonValueReader valueReader = new JsonValueReader(array.get(i));
+
+            result.add(valueReader.readString());
+        }
+
+        return result;
+    }
+
+    /**
      * Reads a blob.
      */
     @Override
@@ -310,6 +356,28 @@ public final class JsonValueReader implements IJsonValueReader {
         IJsonArray array = this.jsonValue.getArray();
 
         List<ResultType> result = new ArrayList<>();
+
+        for (IJsonValue currValue : array) {
+            IJsonValueReader currValueReader = new JsonValueReader(currValue);
+
+            ResultType currItem = currValueReader.readObject(classType);
+
+            result.add(currItem);
+        }
+
+        return result;
+    }
+
+    /**
+     * Reads a generic set.
+     */
+    @Override
+    public <ResultType extends IJsonSerialization, ClassType extends ResultType> Set<ResultType> readSet(Class<ClassType> classType) {
+        this.validateClassType(classType);
+
+        IJsonArray array = this.jsonValue.getArray();
+
+        Set<ResultType> result = new HashSet<>();
 
         for (IJsonValue currValue : array) {
             IJsonValueReader currValueReader = new JsonValueReader(currValue);
