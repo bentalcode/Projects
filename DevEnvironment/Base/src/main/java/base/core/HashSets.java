@@ -15,13 +15,7 @@ public final class HashSets {
             list,
             "The list to read from.");
 
-        HashSet<TKey> set = new HashSet<>();
-
-        for (TKey item : list) {
-            set.add(item);
-        }
-
-        return set;
+        return new HashSet<>(list);
     }
 
     /**

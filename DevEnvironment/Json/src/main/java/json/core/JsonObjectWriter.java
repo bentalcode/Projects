@@ -1,15 +1,13 @@
 package json.core;
 
 import base.core.Conditions;
-import base.core.TimeConstants;
 import base.interfaces.IToString;
 import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.PeriodFormatter;
+import java.text.DateFormat;
+import java.time.Duration;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -272,48 +270,74 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
-     * Writes a date-time property.
+     * Writes a date property.
      */
     @Override
-    public void writeDateTimeProperty(String name, DateTime dataTime) {
-        DateTimeFormatter formatter = TimeConstants.defaultDateTimeFormatter();
+    public void writeDateProperty(
+        String name,
+        Date date) {
 
-        this.writeDateTimeProperty(
-            name,
-            dataTime,
-            formatter);
-    }
-
-    /**
-     * Writes a date-time property.
-     */
-    @Override
-    public void writeDateTimeProperty(String name, DateTime dataTime, DateTimeFormatter formatter) {
         this.validatePropertyName(name);
+
+        if (date == null) {
+            return;
+        }
 
         this.generator.writePropertyName(name);
-        this.generator.writeDateTime(dataTime, formatter);
+        this.generator.writeDate(date);
     }
 
     /**
-     * Writes a duration property.
+     * Writes a date property with a formatter.
      */
     @Override
-    public void writeDurationProperty(String name, Duration duration) {
-        PeriodFormatter formatter = TimeConstants.defaultDurationFormatter();
+    public void writeDateProperty(
+        String name,
+        Date date,
+        DateFormat formatter) {
 
-        this.writeDurationProperty(
-            name,
-            duration,
-            formatter);
-    }
-
-    /**
-     * Writes a duration property.
-     */
-    @Override
-    public void writeDurationProperty(String name, Duration duration, PeriodFormatter formatter) {
         this.validatePropertyName(name);
+
+        if (date == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeDate(date, formatter);
+    }
+
+    /**
+     * Writes a duration property.
+     */
+    @Override
+    public void writeDurationProperty(
+        String name,
+        Duration duration) {
+
+        this.validatePropertyName(name);
+
+        if (duration == null) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+        this.generator.writeDuration(duration);
+    }
+
+    /**
+     * Writes a duration property with a formatter.
+     */
+    @Override
+    public void writeDurationProperty(
+        String name,
+        Duration duration,
+        String formatter) {
+
+        this.validatePropertyName(name);
+
+        if (duration == null) {
+            return;
+        }
 
         this.generator.writePropertyName(name);
         this.generator.writeDuration(duration, formatter);

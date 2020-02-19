@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  * The Conditions class implements validations for various conditions.
  */
 public final class Conditions {
-    private static Logger Log = LoggerFactory.getLogger(Casting.class);
+    private static Logger log = LoggerFactory.getLogger(Casting.class);
 
     /**
      * Validates a conditions.
@@ -19,7 +19,7 @@ public final class Conditions {
         if (!condition) {
             String message = "Condition.validate() failed due to the following error: " + errorMessage;
 
-            Conditions.Log.error(message);
+            Conditions.log.error(message);
             throw new BaseException(message);
         }
     }
@@ -31,7 +31,7 @@ public final class Conditions {
         if (obj == null) {
             String message = "The instance of an object can not be null. Parameter: " + name;
 
-            Conditions.Log.error(message);
+            Conditions.log.error(message);
             throw new BaseException(message);
         }
     }
@@ -43,7 +43,7 @@ public final class Conditions {
         if (Strings.isNullOrEmpty(str)) {
             String message = "The instance of a string can not be null or empty. Parameter: " + name;
 
-            Conditions.Log.error(message);
+            Conditions.log.error(message);
             throw new BaseException(message);
         }
     }
@@ -55,9 +55,19 @@ public final class Conditions {
         if (Paths.isNullOrEmpty(path)) {
             String message = "The instance of a path can not be null or empty. Parameter: " + name;
 
-            Conditions.Log.error(message);
+            Conditions.log.error(message);
             throw new BaseException(message);
         }
+    }
+
+    /**
+     * Validates a conditions.
+     */
+    public static void fail(String errorMessage) {
+        String message = "Condition failed due to the following error: " + errorMessage;
+
+        Conditions.log.error(message);
+        throw new BaseException(message);
     }
 
     /**

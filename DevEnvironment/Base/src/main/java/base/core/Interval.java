@@ -75,7 +75,7 @@ public final class Interval<Type extends Comparable<Type>> implements IInterval<
         List<IInterval<Type>> sortedIntervals = new ArrayList<>(intervals);
 
         IBinaryComparator<IInterval<Type>> comparator = Interval.defaultComparator();
-        Collections.sort(sortedIntervals, comparator.toComparator());
+        sortedIntervals.sort(comparator.toComparator());
 
         return sortedIntervals;
     }

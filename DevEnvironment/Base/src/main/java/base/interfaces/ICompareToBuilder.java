@@ -1,10 +1,10 @@
 package base.interfaces;
 
 import java.math.BigInteger;
+import java.time.Duration;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
 
 /**
  * The ICompareToBuilder interface defines a compare to builder.
@@ -66,9 +66,9 @@ public interface ICompareToBuilder {
     ICompareToBuilder withBigInteger(BigInteger lhs, BigInteger rhs);
 
     /**
-     * With a datetime.
+     * With a date.
      */
-    ICompareToBuilder withDateTime(DateTime lhs, DateTime rhs);
+    ICompareToBuilder withDate(Date lhs, Date rhs);
 
     /**
      * With a duration.

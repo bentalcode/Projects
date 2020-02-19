@@ -2,6 +2,7 @@ package json.core;
 
 import base.interfaces.IToString;
 import json.interfaces.IJsonSerialization;
+
 import java.util.Collection;
 
 /**

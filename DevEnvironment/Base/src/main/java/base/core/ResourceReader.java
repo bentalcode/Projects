@@ -5,7 +5,6 @@ import base.interfaces.ICloseable;
 import base.interfaces.IResourceReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.InputStream;
 import java.nio.file.Path;
 
@@ -43,8 +42,7 @@ public final class ResourceReader implements IResourceReader, ICloseable {
      * The stream will reach the end after this method is invoked.
      */
     public String readString() {
-        String result = Scanners.scanStream(this.stream);
-        return result;
+        return Scanners.scanStream(this.stream);
     }
 
     /**
@@ -52,6 +50,13 @@ public final class ResourceReader implements IResourceReader, ICloseable {
      */
     public void close() {
         Streams.closeQuietly(this.stream);
+    }
+
+    /**
+     * Loads a string.
+     */
+    public static String loadString(String path) {
+        return ResourceReader.loadString(Paths.create(path));
     }
 
     /**

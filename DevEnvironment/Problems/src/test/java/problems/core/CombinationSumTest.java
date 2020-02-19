@@ -1,8 +1,8 @@
 package problems.core;
 
+import base.core.IteratorOfIteratorCollection;
 import base.core.ListIterator;
 import base.core.TwoDimensionalIntegerArrayIterator;
-import datastructures.collections.core.IteratorOfIteratorCollection;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

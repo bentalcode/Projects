@@ -4,12 +4,12 @@ import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
+import base.interfaces.IKeyIterable;
+import base.interfaces.IKeyReverseIterable;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IReverseIterator;
-import datastructures.collections.interfaces.IKeyIterable;
-import datastructures.collections.interfaces.IKeyReverseIterable;
-import datastructures.collections.interfaces.IValueIterable;
-import datastructures.collections.interfaces.IValueReverseIterable;
+import base.interfaces.IValueIterable;
+import base.interfaces.IValueReverseIterable;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
 

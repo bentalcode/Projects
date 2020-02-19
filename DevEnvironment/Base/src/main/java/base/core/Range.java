@@ -34,7 +34,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     /**
      * Creates a new range.
      */
-    public static <T extends Comparable<T>> IRange of(
+    public static <T extends Comparable<T>> IRange<T> of(
         RangeType rangeType,
         T start,
         T end,

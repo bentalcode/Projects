@@ -130,7 +130,6 @@ public final class Triplet
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
-    @Override
     public int compareTo(ITriplet<Type1, Type2, Type3> other) {
         return this.comparator.compareTo(this, other);
     }

@@ -1,10 +1,9 @@
 package json.core;
 
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.PeriodFormatter;
+import java.text.DateFormat;
+import java.time.Duration;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * The IJsonGenerator interface defines a generator for json.
@@ -126,14 +125,24 @@ public interface IJsonGenerator {
     void writeBlob(byte[] blob);
 
     /**
-     * Writes a date-time.
+     * Writes a date.
      */
-    void writeDateTime(DateTime dateTime, DateTimeFormatter formatter);
+    void writeDate(Date date);
+
+    /**
+     * Writes a date with a formatter.
+     */
+    void writeDate(Date date, DateFormat formatter);
 
     /**
      * Writes a duration.
      */
-    void writeDuration(Duration duration, PeriodFormatter formatter);
+    void writeDuration(Duration duration);
+
+    /**
+     * Writes a duration with a formatter.
+     */
+    void writeDuration(Duration duration, String formatter);
 
     /**
      * Flushes the writer.

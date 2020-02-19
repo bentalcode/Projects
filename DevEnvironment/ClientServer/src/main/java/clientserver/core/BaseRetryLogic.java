@@ -1,10 +1,10 @@
 package clientserver.core;
 
+import base.core.ClassTypes;
 import base.core.Conditions;
 import clientserver.interfaces.IRetryLogic;
-import json.core.JsonStream;
+import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectWriter;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,8 +12,8 @@ import java.util.Set;
  * The BaseRetryLogic class implements a base retry logic.
  */
 public abstract class BaseRetryLogic implements IRetryLogic {
-    private static final String PropertyName = "name";
-    private static final String PropertyAbsorbedExceptions = "absorbedExceptions";
+    private static final String propertyName = "name";
+    private static final String propertyAbsorbedExceptions = "absorbedExceptions";
 
     private final String name;
     private final Set<Class<?>> absorbedExceptions;
@@ -65,7 +65,7 @@ public abstract class BaseRetryLogic implements IRetryLogic {
      * Gets string representation of this instance.
      */
     public String toString() {
-        return JsonStream.serialize(this);
+        return JsonObjectStream.serialize(this);
     }
 
     /**
@@ -73,11 +73,11 @@ public abstract class BaseRetryLogic implements IRetryLogic {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(BaseRetryLogic.PropertyName, this.name);
+        writer.writeStringProperty(BaseRetryLogic.propertyName, this.name);
 
         writer.writeCollectionProperty(
-            BaseRetryLogic.PropertyAbsorbedExceptions,
+            BaseRetryLogic.propertyAbsorbedExceptions,
             this.absorbedExceptions,
-            (Class<?> classType) -> classType.getSimpleName());
+            ClassTypes::getName);
     }
 }

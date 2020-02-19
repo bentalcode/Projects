@@ -1,7 +1,8 @@
 package clientserver;
 
 /**
- * The ClientServerException class implements an exception for capturing errors in the client-server module.
+ * The ClientServerException class implements an exception for capturing errors
+ * in the client-server module.
  */
 public class ClientServerException extends RuntimeException {
     /**

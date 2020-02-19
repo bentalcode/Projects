@@ -2,11 +2,11 @@ package datastructures.map.interfaces;
 
 import base.interfaces.IIterable;
 import base.interfaces.IReverseIterable;
-import datastructures.collections.interfaces.IKeyIterable;
-import datastructures.collections.interfaces.IKeyReverseIterable;
+import base.interfaces.IKeyIterable;
+import base.interfaces.IKeyReverseIterable;
 import base.interfaces.ISizableCollection;
-import datastructures.collections.interfaces.IValueIterable;
-import datastructures.collections.interfaces.IValueReverseIterable;
+import base.interfaces.IValueIterable;
+import base.interfaces.IValueReverseIterable;
 import datastructures.node.interfaces.IKeyValueNode;
 import java.util.List;
 

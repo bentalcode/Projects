@@ -1,42 +1,26 @@
 package base.core;
 
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.DateTimeFormatterBuilder;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
- * The TimeConstants class implements constants for time.
+ * The TimeConstants class implements constants for times.
  */
 public final class TimeConstants {
-    private static final String DateTimeDefaultPattern = "MM/dd/yyyy HH:mm:ss.SSS";
-    private static String DurationDefaultPattern = "HH:mm:ss.SSS";
+    private static final String dateDefaultPattern = "yyyy-mm-dd hh:mm:ss";
+    private static final String durationDefaultPattern = "hh:mm:ss.SSS";
 
     /**
      * Get the default date-time formatter.
      */
-    public static DateTimeFormatter defaultDateTimeFormatter() {
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-            .appendPattern(TimeConstants.DateTimeDefaultPattern)
-            .toFormatter();
-
-        return formatter;
+    public static DateFormat defaultDateTimeFormatter() {
+        return new SimpleDateFormat(TimeConstants.dateDefaultPattern);
     }
 
     /**
-     * Gets the default duration formatter.
+     * Get the default duration formatter.
      */
-    public static PeriodFormatter defaultDurationFormatter() {
-        PeriodFormatter formatter = new PeriodFormatterBuilder()
-            .appendHours()
-            .appendSuffix(":")
-            .appendMinutes()
-            .appendSuffix(":")
-            .appendSeconds()
-            .appendSuffix(".")
-            .appendMillis()
-            .toFormatter();
-
-        return formatter;
+    public static String defaultDurationFormatter() {
+        return TimeConstants.durationDefaultPattern;
     }
 }

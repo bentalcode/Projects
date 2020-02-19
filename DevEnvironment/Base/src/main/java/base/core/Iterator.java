@@ -48,9 +48,7 @@ public final class Iterator<T> implements IIterator<T> {
     public T next() {
         assert(this.hasNext());
 
-        T element = this.iterator.next();
-
-        return element;
+        return this.iterator.next();
     }
 
     /*

@@ -7,6 +7,8 @@ import base.interfaces.IStringConversion;
  * The StringConversion class implements conversions for a string.
  */
 public final class StringConversion implements IStringConversion {
+    private static final String separator = ",";
+
     /**
      * The StringConversion constructor.
      */
@@ -30,12 +32,19 @@ public final class StringConversion implements IStringConversion {
     }
 
     /**
+     * Converts a string to a long.
+     */
+    @Override
+    public long toLong(String value) {
+        return Long.parseLong(value);
+    }
+
+    /**
      * Converts a string to a string array.
      */
     @Override
     public String[] toArray(String value) {
-        String separator = String.valueOf(",");
-        return this.toArray(value, separator);
+        return this.toArray(value, StringConversion.separator);
     }
 
     /**
@@ -48,9 +57,7 @@ public final class StringConversion implements IStringConversion {
             "The array value.");
 
         String array = value.trim();
-        String[] result = array.split(separator);
-
-        return result;
+        return array.split(separator);
     }
 
     /**

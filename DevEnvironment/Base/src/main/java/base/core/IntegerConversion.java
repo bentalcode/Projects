@@ -79,7 +79,8 @@ public final class IntegerConversion implements IIntegerConversion {
             result = Integer.parseInt(value.trim());
         } catch (NumberFormatException e) {
             String errorMessage =
-                "Failed to convert a string to an integer due to the following error: " + e.getMessage();
+                "Failed to convert a string to an integer due to the following error: " +
+                e.getMessage();
 
             this.log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
@@ -98,6 +99,11 @@ public final class IntegerConversion implements IIntegerConversion {
         try {
             result = Integer.parseInt(value);
         } catch (NumberFormatException e) {
+            String warningMessage =
+                "Failed to convert a string to an integer due to the following error: " +
+                e.getMessage();
+
+            this.log.warn(warningMessage, e);
         }
 
         return result;

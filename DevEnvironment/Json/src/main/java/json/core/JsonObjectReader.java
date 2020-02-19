@@ -1,20 +1,20 @@
 package json.core;
 
+import base.core.ArrayLists;
 import base.core.ClassTypes;
 import base.core.Conditions;
+import base.core.Dates;
+import base.core.Durations;
 import base.core.IFromString;
-import base.core.TimeConstants;
 import json.interfaces.IJsonObjectReader;
+import java.text.DateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import json.interfaces.IJsonSerialization;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
-import org.joda.time.Period;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.PeriodFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +35,14 @@ public final class JsonObjectReader implements IJsonObjectReader {
 
         this.jsonObject = jsonObject;
     }
-    
+
+    /**
+     * Determines whether the property exists.
+     */
+    public boolean hasProperty(String name) {
+        return this.jsonObject.propertyExists(name);
+    }
+
     /**
      * Reads a boolean property.
      */
@@ -44,9 +51,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        boolean result = reader.readBoolean();
-
-        return result;
+        return reader.readBoolean();
     }
 
     /**
@@ -57,9 +62,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        short result = reader.readShort();
-
-        return result;
+        return reader.readShort();
     }
 
     /**
@@ -70,9 +73,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        int result = reader.readInteger();
-
-        return result;
+        return reader.readInteger();
     }
 
     /**
@@ -83,9 +84,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        long result = reader.readLong();
-
-        return result;
+        return reader.readLong();
     }
 
     /**
@@ -96,9 +95,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        float result = reader.readFloat();
-
-        return result;
+        return reader.readFloat();
     }
 
     /**
@@ -109,9 +106,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        double result = reader.readDouble();
-
-        return result;
+        return reader.readDouble();
     }
 
     /**
@@ -122,9 +117,16 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        String result = reader.readString();
+        return reader.readString();
+    }
 
-        return result;
+    /**
+     * Reads a generic property with a transformer.
+     */
+    @Override
+    public <T> T readProperty(String name, IFromString<T> transformer) {
+        String value = this.readStringProperty(name);
+        return transformer.fromString(value);
     }
 
     /**
@@ -135,9 +137,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        boolean[] result = reader.readBooleanArray();
-
-        return result;
+        return reader.readBooleanArray();
     }
 
     /**
@@ -148,9 +148,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        short[] result = reader.readShortArray();
-
-        return result;
+        return reader.readShortArray();
     }
 
     /**
@@ -161,9 +159,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        int[] result = reader.readIntegerArray();
-
-        return result;
+        return reader.readIntegerArray();
     }
 
     /**
@@ -174,9 +170,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        long[] result = reader.readLongArray();
-
-        return result;
+        return reader.readLongArray();
     }
 
     /**
@@ -187,9 +181,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        float[] result = reader.readFloatArray();
-
-        return result;
+        return reader.readFloatArray();
     }
 
     /**
@@ -200,9 +192,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        double[] result = reader.readDoubleArray();
-
-        return result;
+        return reader.readDoubleArray();
     }
 
     /**
@@ -213,9 +203,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        String[] result = reader.readStringArray();
-
-        return result;
+        return reader.readStringArray();
     }
 
     /**
@@ -226,9 +214,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        List<String> result = reader.readStringList();
-
-        return result;
+        return reader.readStringList();
     }
 
     /**
@@ -239,9 +225,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        Set<String> result = reader.readStringSet();
-
-        return result;
+        return reader.readStringSet();
     }
 
     /**
@@ -252,28 +236,25 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
 
         IJsonValueReader reader = new JsonValueReader(value);
-        byte[] result = reader.readBlob();
-
-        return result;
+        return reader.readBlob();
     }
 
     /**
-     * Reads a date-time property.
+     * Reads a date property.
      */
     @Override
-    public DateTime readDateTimeProperty(String name) {
-        DateTimeFormatter formatter = TimeConstants.defaultDateTimeFormatter();
-        return this.readDateTimeProperty(name, formatter);
-    }
-
-    /**
-     * Reads a date-time property.
-     */
-    @Override
-    public DateTime readDateTimeProperty(String name, DateTimeFormatter formatter) {
+    public Date readDateProperty(String name) {
         String value = this.readStringProperty(name);
-        DateTime result = DateTime.parse(value, formatter);
-        return result;
+        return Dates.parse(value);
+    }
+
+    /**
+     * Reads a date property.
+     */
+    @Override
+    public Date readDateProperty(String name, DateFormat formatter) {
+        String value = this.readStringProperty(name);
+        return Dates.parse(value, formatter);
     }
 
     /**
@@ -281,19 +262,17 @@ public final class JsonObjectReader implements IJsonObjectReader {
      */
     @Override
     public Duration readDurationProperty(String name) {
-        PeriodFormatter formatter = TimeConstants.defaultDurationFormatter();
-        return this.readDurationProperty(name, formatter);
+        String value = this.readStringProperty(name);
+        return Durations.parse(value);
     }
 
     /**
      * Reads a duration property.
      */
     @Override
-    public Duration readDurationProperty(String name, PeriodFormatter formatter) {
+    public Duration readDurationProperty(String name, String formatter) {
         String value = this.readStringProperty(name);
-        Period period = formatter.parsePeriod(value);
-        Duration result = period.toStandardDuration();
-        return result;
+        return Durations.parse(value, formatter);
     }
 
     /**
@@ -307,9 +286,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
         IJsonValueReader reader = new JsonValueReader(value);
 
-        ResultType result = reader.readObject(classType);
-
-        return result;
+        return reader.readObject(classType);
     }
 
     /**
@@ -323,9 +300,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
         IJsonValueReader reader = new JsonValueReader(value);
 
-        ResultType[] result = reader.readArray(classType);
-
-        return result;
+        return reader.readArray(classType);
     }
 
     /**
@@ -339,9 +314,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
         IJsonValueReader reader = new JsonValueReader(value);
 
-        List<ResultType> result = reader.readList(classType);
-
-        return result;
+        return reader.readList(classType);
     }
 
     /**
@@ -355,9 +328,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValue value = this.getPropertyValue(name);
         IJsonValueReader reader = new JsonValueReader(value);
 
-        Set<ResultType> result = reader.readSet(classType);
-
-        return result;
+        return reader.readSet(classType);
     }
 
     /**
@@ -369,6 +340,11 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValueReader reader = new JsonValueReader(value);
 
         String[] stringList = reader.readStringArray();
+
+        if (stringList == null) {
+            return ArrayLists.empty();
+        }
+
         List<T> result = new ArrayList<>(stringList.length);
 
         for (String item : stringList) {
@@ -387,7 +363,12 @@ public final class JsonObjectReader implements IJsonObjectReader {
         IJsonValueReader reader = new JsonValueReader(value);
 
         String[] stringList = reader.readStringArray();
+
         Set<T> result = new HashSet<>();
+
+        if (stringList == null) {
+            return result;
+        }
 
         for (String item : stringList) {
             result.add(transformer.fromString(item));
@@ -409,8 +390,6 @@ public final class JsonObjectReader implements IJsonObjectReader {
             throw new JsonException(errorMessage);
         }
 
-        IJsonValue value = this.jsonObject.getPropertyValue(name);
-
-        return value;
+        return this.jsonObject.getPropertyValue(name);
     }
 }

@@ -1,10 +1,7 @@
 package clientserver.core;
 
-import base.core.Pair;
-import base.core.Paths;
-import base.core.ResourcePathBuilder;
-import base.interfaces.IPair;
 import clientserver.interfaces.ITestData;
+import testbase.core.ResourcePaths;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +10,12 @@ import java.util.List;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String DataDirectoryName = "data";
-    private static final String JsonDirectoryName = "json";
+    private static final String dataDirectoryName = "data";
+    private static final String retryPolicyDirectoryName = "retryPolicy";
 
-    private static final List<IPair<String, Class<?>>> JsonResourcesInformation = new ArrayList<>();
-
-    static {
-        JsonResourcesInformation.add(Pair.of("retryPolicy.json", RetryPolicy.class));
-    }
+    private static final String[] retryPolicyResourceNames = {
+        "retryPolicy.json"
+    };
 
     /**
      * The TestData constructor.
@@ -29,46 +24,21 @@ public final class TestData implements ITestData {
     }
 
     /**
-     * Gets information of json resources.
+     * Gets paths of retry policies.
      */
     @Override
-    public List<IPair<Path, Class<?>>> getJsonResourcesInformation() {
-        List<IPair<Path, Class<?>>> information = new ArrayList<>();
+    public List<Path> getRetryPolicyPaths() {
+        List<Path> result = new ArrayList<>();
 
-        for (IPair<String, Class<?>> resourceInformation : TestData.JsonResourcesInformation) {
-            Path path = this.createJsonResourcePath(resourceInformation.first());
-            Class<?> classType = resourceInformation.second();
+        for (String path : TestData.retryPolicyResourceNames) {
+            Path requestPath = ResourcePaths.create(
+                TestData.dataDirectoryName,
+                TestData.retryPolicyDirectoryName,
+                path);
 
-            information.add(Pair.of(path, classType));
+            result.add(requestPath);
         }
 
-        return information;
-    }
-
-    /**
-     * Creates a path of a json resource.
-     */
-    private Path createJsonResourcePath(String resourceName) {
-        return this.createResourcePath(
-            TestData.DataDirectoryName,
-            TestData.JsonDirectoryName,
-            resourceName);
-    }
-
-    /**
-     * Creates a path of a resource.
-     */
-    private Path createResourcePath(
-        String rootDirectory,
-        String subDirectory,
-        String resourceName) {
-
-        String path = new ResourcePathBuilder()
-            .addComponent(rootDirectory)
-            .addComponent(subDirectory)
-            .addComponent(resourceName)
-            .build();
-
-        return Paths.create(path);
+        return result;
     }
 }

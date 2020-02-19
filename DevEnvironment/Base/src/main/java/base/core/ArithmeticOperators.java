@@ -9,7 +9,7 @@ public final class ArithmeticOperators {
     /**
      * Adds two number safely.
      */
-    public static int safeAdd(int lhs, int rhs) {;
+    public static int safeAdd(int lhs, int rhs) {
         int result = lhs + rhs;
 
         if (ArithmeticOperators.additionOverflow(lhs, rhs, result)) {

@@ -14,7 +14,7 @@ import java.util.Scanner;
  * The Scanners class implements complementary APIs for scanners.
  */
 public final class Scanners {
-    private static final Logger Log = LoggerFactory.getLogger(Scanners.class);
+    private static final Logger log = LoggerFactory.getLogger(Scanners.class);
 
     /**
      * Creates a scanner to a string.
@@ -40,7 +40,7 @@ public final class Scanners {
                     "The Scanner to a string failed to get created" +
                     " due to the following error: " + e.getMessage();
 
-                Scanners.Log.error(errorMessage, e);
+                Scanners.log.error(errorMessage, e);
                 throw new BaseException(errorMessage, e);
             }
         }
@@ -83,7 +83,7 @@ public final class Scanners {
                     "The Scanner to path: " + path +
                     " failed to get created due to the following error: " + e.getMessage();
 
-                Scanners.Log.error(errorMessage, e);
+                Scanners.log.error(errorMessage, e);
                 throw new BaseException(errorMessage, e);
             }
         }

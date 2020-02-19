@@ -1,6 +1,7 @@
 package json.core;
 
 import base.core.Conditions;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,12 +24,12 @@ public final class JsonObject extends JsonElement implements IJsonObject {
     @Override
     public void setValue(String name, IJsonValue value) {
         Conditions.validateNotNull(
-            name,
-            "The property name.");
+                name,
+                "The property name.");
 
         Conditions.validateNotNull(
-            value,
-            "The property value.");
+                value,
+                "The property value.");
 
         this.setPropertyValue(name, value);
     }
@@ -54,8 +55,8 @@ public final class JsonObject extends JsonElement implements IJsonObject {
     @Override
     public void setPropertyValue(String name, IJsonValue value) {
         Conditions.validateNotNull(
-            name,
-            "The name of a property.");
+                name,
+                "The name of a property.");
 
         this.properties.put(name, value);
     }
@@ -73,7 +74,7 @@ public final class JsonObject extends JsonElement implements IJsonObject {
      */
     private void validatePropertyName(String name) {
         Conditions.validateStringNotNullOrEmpty(
-            name,
-            "The name of a property.");
+                name,
+                "The name of a property.");
     }
 }

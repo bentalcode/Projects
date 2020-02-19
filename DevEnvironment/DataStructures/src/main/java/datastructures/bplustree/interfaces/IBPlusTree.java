@@ -4,8 +4,8 @@ import base.interfaces.IIterable;
 import base.interfaces.INullable;
 import datastructures.blocktree.interfaces.IBlockTreeLevels;
 import base.interfaces.ICollection;
-import datastructures.collections.interfaces.IKeyIterable;
-import datastructures.collections.interfaces.IValueIterable;
+import base.interfaces.IKeyIterable;
+import base.interfaces.IValueIterable;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**

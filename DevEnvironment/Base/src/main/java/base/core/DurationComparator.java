@@ -1,6 +1,6 @@
 package base.core;
 
-import org.joda.time.Duration;
+import java.time.Duration;
 
 /**
  * The DurationComparator class implements a comparator for a duration.

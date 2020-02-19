@@ -1,11 +1,9 @@
 package json.interfaces;
 
 import base.core.IFromString;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.PeriodFormatter;
-
+import java.text.DateFormat;
+import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +11,11 @@ import java.util.Set;
  * The IJsonObjectReader interface defines a reader of a json object.
  */
 public interface IJsonObjectReader {
+    /**
+     * Determines whether the property exists.
+     */
+    boolean hasProperty(String name);
+
     /**
      * Reads a boolean property.
      */
@@ -47,6 +50,11 @@ public interface IJsonObjectReader {
      * Reads a string property.
      */
     String readStringProperty(String name);
+
+    /**
+     * Reads a generic property with a transformer.
+     */
+    <T> T readProperty(String name, IFromString<T> transformer);
 
     /**
      * Reads a boolean array property.
@@ -99,14 +107,14 @@ public interface IJsonObjectReader {
     byte[] readBlobProperty(String name);
 
     /**
-     * Reads a date-time property.
+     * Reads a date property.
      */
-    DateTime readDateTimeProperty(String name);
+    Date readDateProperty(String name);
 
     /**
-     * Reads a date-time property.
+     * Reads a date property with a formatter.
      */
-    DateTime readDateTimeProperty(String name, DateTimeFormatter formatter);
+    Date readDateProperty(String name, DateFormat formatter);
 
     /**
      * Reads a duration property.
@@ -114,9 +122,9 @@ public interface IJsonObjectReader {
     Duration readDurationProperty(String name);
 
     /**
-     * Reads a duration property.
+     * Reads a duration property with a formatter.
      */
-    Duration readDurationProperty(String name, PeriodFormatter formatter);
+    Duration readDurationProperty(String name, String formatter);
 
     /**
      * Reads a generic object property.

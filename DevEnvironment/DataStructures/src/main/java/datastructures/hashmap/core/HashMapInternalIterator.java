@@ -1,7 +1,7 @@
 package datastructures.hashmap.core;
 
 import base.core.Conditions;
-import datastructures.collections.core.IteratorOfIteratorCollection;
+import base.core.IteratorOfIteratorCollection;
 import base.interfaces.IIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.node.interfaces.IKeyValueNode;

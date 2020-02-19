@@ -4,7 +4,6 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,18 +22,18 @@ public final class Lists {
             comparator,
             "The comparator.");
 
-        Collections.sort(list, comparator.toComparator());
+        list.sort(comparator.toComparator());
     }
 
     /**
      * Creates a list from an array.
      */
     public static <T> List<T> fromArray(T[] array) {
-        Conditions.validateNotNull(
-            array,
-            "The array for creating a list.");
+        if (array == null) {
+            return new ArrayList<>();
+        }
 
-        List<T> result = new ArrayList<>();
+        List<T> result = new ArrayList<>(array.length);
 
         for (T item : array) {
             result.add(item);
@@ -85,9 +84,7 @@ public final class Lists {
             list,
             "The list to reverse.");
 
-        List<T> result = Lists.fromReverseIterator(ListReverseIterator.of(list));
-
-        return result;
+        return Lists.fromReverseIterator(ListReverseIterator.of(list));
     }
 
     /**

@@ -63,6 +63,10 @@ public final class DoubleConversion implements IDoubleConversion {
         try {
             result = Double.parseDouble(value);
         } catch (NumberFormatException e) {
+            String warningMessage =
+                "Failed to convert a string to a double due to the following error: " + e.getMessage();
+
+            this.log.warn(warningMessage, e);
         }
 
         return result;

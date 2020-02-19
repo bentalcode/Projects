@@ -1,6 +1,7 @@
 package base.core;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -29,6 +30,30 @@ public final class Strings {
         }
 
         return result;
+    }
+
+    /**
+     * Creates a string from a collection of values and a separator.
+     */
+    public static String create(
+        Collection<String> values,
+        char separator) {
+
+        Conditions.validateNotNull(
+            values,
+            "The values.");
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String value : values) {
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(separator);
+            }
+
+            stringBuilder.append(value);
+        }
+
+        return stringBuilder.toString();
     }
 
     /**

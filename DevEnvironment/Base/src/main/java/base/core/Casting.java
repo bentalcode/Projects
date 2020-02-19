@@ -8,22 +8,21 @@ import org.slf4j.LoggerFactory;
  * The Casting class implements complementary APIs for casting.
  */
 public final class Casting {
-    private static Logger Log = LoggerFactory.getLogger(Casting.class);
+    private static Logger log = LoggerFactory.getLogger(Casting.class);
 
     /**
      * Casts the object to the requested type.
      */
     public static <TTo, TFrom> TTo cast(TFrom obj) {
         try {
-            TTo convertedType = Casting.unsafeCast(obj);
-            return convertedType;
+            return Casting.unsafeCast(obj);
         }
         catch (ClassCastException e) {
             String errorMessage =
                 "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                 " to the requested type due to the following error: " + e.getMessage();
 
-            Casting.Log.error(errorMessage, e);
+            Casting.log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
     }
@@ -40,7 +39,7 @@ public final class Casting {
                     "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                     " to the requested type: " + requestedType.getName();
 
-                Casting.Log.error(errorMessage);
+                Casting.log.error(errorMessage);
                 throw new BaseException(errorMessage);
             }
 
@@ -52,7 +51,7 @@ public final class Casting {
                 " to the requested type: " + requestedType.getName() +
                 " due to the following error: " + e.getMessage();
 
-            Casting.Log.error(errorMessage, e);
+            Casting.log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
     }

@@ -1,6 +1,5 @@
-package datastructures.collections.core;
+package base.core;
 
-import base.core.Conditions;
 import base.interfaces.IBuilder;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;

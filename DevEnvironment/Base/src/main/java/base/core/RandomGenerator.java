@@ -8,7 +8,7 @@ import java.util.Random;
  * The RandomGenerator class implements a random generator.
  */
 public final class RandomGenerator implements IRandomGenerator {
-    private static final int DefaultStringMaxLength = 1000;
+    private static final int defaultStringMaxLength = 1000;
 
     private final Random random = new Random();
 
@@ -146,7 +146,7 @@ public final class RandomGenerator implements IRandomGenerator {
     @Override
     public String nextString(StringCaseSensitiveType sensitiveType) {
         int fromLength = 0;
-        int toLength = RandomGenerator.DefaultStringMaxLength;
+        int toLength = RandomGenerator.defaultStringMaxLength;
 
         return this.nextString(
             fromLength,
@@ -213,7 +213,7 @@ public final class RandomGenerator implements IRandomGenerator {
     @Override
     public String nextString(char fromCharacter, char toCharacter) {
         int fromLength = 0;
-        int toLength = RandomGenerator.DefaultStringMaxLength;
+        int toLength = RandomGenerator.defaultStringMaxLength;
 
         return this.nextString(
             fromCharacter,

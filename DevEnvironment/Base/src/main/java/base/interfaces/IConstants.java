@@ -1,6 +1,7 @@
 package base.interfaces;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * The IConstants interface defines constants of the base library.
@@ -14,5 +15,5 @@ public interface IConstants {
   /**
    * The default encoding.
    */
-  Charset DefaultEncoding = Charset.forName("UTF-8");
+  Charset DefaultEncoding = StandardCharsets.UTF_8;
 }

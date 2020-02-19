@@ -17,9 +17,7 @@ public final class Arrays {
             "The size of an array for creating has to be positive.");
 
         Object objectArray = Array.newInstance(classType, size);
-        T[] result = Casting.cast(objectArray);
-
-        return result;
+        return Casting.cast(objectArray);
     }
 
     /**

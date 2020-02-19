@@ -57,7 +57,7 @@ public enum JsonToken {
      * of embedded Object that are not accessible as usual structure
      * (of starting with {@link #START_OBJECT}, having values, ending with
      * {@link #END_OBJECT}), but as "raw" objects.
-     *<p>
+     * <p>
      * Note: this token is never returned by regular JSON readers, but
      * only by readers that expose other kinds of source (like
      * <code>JsonNode</code>-based JSON trees, Maps, Lists and such).
@@ -84,9 +84,6 @@ public enum JsonToken {
     VALUE_NUMBER_DOUBLE,
 
     /**
-     * VALUE_TRUE is returned when encountering literal "true" in
-     * value context
-     *//**
      * VALUE_TRUE is returned when encountering literal "true" in
      * value context
      */

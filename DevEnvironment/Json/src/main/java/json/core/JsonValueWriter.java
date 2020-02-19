@@ -7,6 +7,7 @@ import base.interfaces.IIterator;
 import base.interfaces.IToString;
 import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
+
 import java.util.Collection;
 
 /**
@@ -20,8 +21,8 @@ public final class JsonValueWriter implements IJsonValueWriter {
      */
     public JsonValueWriter(IJsonGenerator generator) {
         Conditions.validateNotNull(
-            generator,
-            "The json generator to write into.");
+                generator,
+                "The json generator to write into.");
 
         this.generator = generator;
     }

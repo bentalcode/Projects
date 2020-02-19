@@ -10,6 +10,11 @@ public interface IStringConversion {
     char toCharacter(String value);
 
     /**
+     * Converts a string to a long.
+     */
+    long toLong(String value);
+
+    /**
      * Converts a string to a string array.
      */
     String[] toArray(String value);

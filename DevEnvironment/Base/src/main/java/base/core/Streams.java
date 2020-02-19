@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  * The Streams class implements complementary APIs for streams.
  */
 public final class Streams {
-    private static final Logger Log = LoggerFactory.getLogger(Streams.class);
+    private static final Logger log = LoggerFactory.getLogger(Streams.class);
 
     /**
      * Creates an input stream from a string.
@@ -36,9 +36,7 @@ public final class Streams {
           encoding,
           "The encoding.");
 
-        InputStream stream = new ByteArrayInputStream(content.getBytes(IConstants.DefaultEncoding));
-
-        return stream;
+        return new ByteArrayInputStream(content.getBytes(IConstants.DefaultEncoding));
     }
 
     /**
@@ -46,8 +44,7 @@ public final class Streams {
      */
     public static InputStream createInputStream(Path path) {
         File file = Files.createFile(path);
-        InputStream stream = Streams.createInputStream(file);
-        return stream;
+        return Streams.createInputStream(file);
     }
 
     /**
@@ -68,7 +65,7 @@ public final class Streams {
               ", due to the following error: " +
               e.getMessage();
 
-          Streams.Log.error(errorMessage, e);
+          Streams.log.error(errorMessage, e);
           throw new BaseException(errorMessage, e);
         }
 
@@ -80,8 +77,7 @@ public final class Streams {
      */
     public static OutputStream createOutputStream(Path path) {
         File file = Files.createFile(path);
-        OutputStream stream = Streams.createOutputStream(file);
-        return stream;
+        return Streams.createOutputStream(file);
     }
 
     /**
@@ -102,7 +98,7 @@ public final class Streams {
               ", due to the following error: " +
               e.getMessage();
 
-          Streams.Log.error(errorMessage, e);
+          Streams.log.error(errorMessage, e);
           throw new BaseException(errorMessage, e);
       }
 
@@ -138,7 +134,7 @@ public final class Streams {
               "The Streams class failed closing a stream due to the following error: " +
               e.getMessage();
 
-            Streams.Log.warn(warningMessage, e);
+            Streams.log.warn(warningMessage, e);
         }
     }
 

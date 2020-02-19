@@ -1,6 +1,7 @@
 package json.core;
 
 import base.core.Conditions;
+
 import java.io.Reader;
 import java.util.Stack;
 
@@ -28,12 +29,12 @@ public final class JsonParser implements IJsonParser, ICloseable {
      */
     public JsonParser(IJsonFactory factory, Reader reader) {
         Conditions.validateNotNull(
-            factory,
-            "The json factory.");
+                factory,
+                "The json factory.");
 
         Conditions.validateNotNull(
-            reader,
-            "The json reader.");
+                reader,
+                "The json reader.");
 
         this.tokenizer = factory.createTokenizer(reader);
     }
@@ -66,44 +67,34 @@ public final class JsonParser implements IJsonParser, ICloseable {
             if (token.equals(JsonToken.START_OBJECT)) {
                 this.startObject();
                 this.resetPropertyName();
-            }
-            else if (token.equals(JsonToken.END_OBJECT)) {
+            } else if (token.equals(JsonToken.END_OBJECT)) {
                 this.endObject();
             }
             if (token.equals(JsonToken.START_ARRAY)) {
                 this.startArray();
                 this.resetPropertyName();
-            }
-            else if (token.equals(JsonToken.END_ARRAY)) {
+            } else if (token.equals(JsonToken.END_ARRAY)) {
                 this.endArray();
-            }
-            else if (token.equals(JsonToken.FIELD_NAME)) {
+            } else if (token.equals(JsonToken.FIELD_NAME)) {
                 this.setPropertyName();
-            }
-            else if (token.equals(JsonToken.VALUE_EMBEDDED_OBJECT)) {
+            } else if (token.equals(JsonToken.VALUE_EMBEDDED_OBJECT)) {
                 this.unsupportedToken(JsonToken.VALUE_EMBEDDED_OBJECT);
-            }
-            else if (token.equals(JsonToken.VALUE_STRING)) {
+            } else if (token.equals(JsonToken.VALUE_STRING)) {
                 this.setStringValue();
                 this.resetPropertyName();
-            }
-            else if (token.equals(JsonToken.VALUE_NUMBER_INTEGER)) {
+            } else if (token.equals(JsonToken.VALUE_NUMBER_INTEGER)) {
                 this.setIntegerValue();
                 this.resetPropertyName();
-            }
-            else if (token.equals(JsonToken.VALUE_NUMBER_DOUBLE)) {
+            } else if (token.equals(JsonToken.VALUE_NUMBER_DOUBLE)) {
                 this.setDoubleValue();
                 this.resetPropertyName();
-            }
-            else if (token.equals(JsonToken.VALUE_TRUE)) {
-                 this.setTrueValue();
+            } else if (token.equals(JsonToken.VALUE_TRUE)) {
+                this.setTrueValue();
                 this.resetPropertyName();
-            }
-            else if (token.equals(JsonToken.VALUE_FALSE)) {
+            } else if (token.equals(JsonToken.VALUE_FALSE)) {
                 this.setFalseValue();
                 this.resetPropertyName();
-            }
-            else if (token.equals(JsonToken.VALUE_NULL)) {
+            } else if (token.equals(JsonToken.VALUE_NULL)) {
                 this.setNullValue();
                 this.resetPropertyName();
             }

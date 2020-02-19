@@ -1,22 +1,22 @@
 package base.core;
 
-import org.joda.time.DateTime;
+import java.util.Date;
 
 /**
- * The DateTimeComparator class implements a comparator for a datetime.
+ * The DateComparator class implements a comparator for a date.
  */
-public final class DateTimeComparator extends AbstractBinaryComparator<DateTime> {
+public final class DateComparator extends AbstractBinaryComparator<Date> {
     /**
-     * The DateTimeComparator constructor.
+     * The DateComparator constructor.
      */
-    public DateTimeComparator() {
+    public DateComparator() {
     }
 
     /**
      * Gets the hash code of this instance.
      */
     @Override
-    public int getHashCode(DateTime obj) {
+    public int getHashCode(Date obj) {
         return obj.hashCode();
     }
 
@@ -24,7 +24,7 @@ public final class DateTimeComparator extends AbstractBinaryComparator<DateTime>
      * Checks whether two instances are equals.
      */
     @Override
-    public boolean isEqual(DateTime lhs, DateTime rhs) {
+    public boolean isEqual(Date lhs, Date rhs) {
         if (lhs == null && rhs == null) {
             return true;
         }
@@ -44,7 +44,7 @@ public final class DateTimeComparator extends AbstractBinaryComparator<DateTime>
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(DateTime lhs, DateTime rhs) {
+    public int compareTo(Date lhs, Date rhs) {
         if (lhs == null && rhs == null) {
             return 0;
         }

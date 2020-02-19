@@ -2,6 +2,7 @@ package clientserver.interfaces;
 
 import base.interfaces.IRunnable;
 import json.interfaces.IJsonSerialization;
+
 import java.util.Set;
 
 /**

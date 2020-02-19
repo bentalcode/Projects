@@ -1,24 +1,20 @@
 package json.core;
 
+import base.BaseException;
+import base.core.ClassTypes;
 import base.core.Conditions;
-import base.core.DestructorHandler;
-import base.core.Readers;
-import java.io.Reader;
-import java.io.StringWriter;
-import base.core.Writers;
-import json.interfaces.IJsonSerialization;
-import json.interfaces.IJsonStream;
+import base.interfaces.IJsonStream;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 
 /**
  * The JsonStream class implements a json stream.
  */
 public final class JsonStream implements IJsonStream {
-    private final IJsonFactory factory = new JsonFactory();
-
     /**
      * Serializes an object to a json string.
      */
-    public static <T extends IJsonSerialization> String serialize(T obj) {
+    public static <T> String serialize(T obj) {
         IJsonStream stream = new JsonStream();
         return stream.toJson(obj);
     }
@@ -26,7 +22,7 @@ public final class JsonStream implements IJsonStream {
     /**
      * De-Serializes an object from a json string.
      */
-    public static <T extends IJsonSerialization> T deserialize(String json, Class<T> classType) {
+    public static <T> T deserialize(String json, Class<T> classType) {
         IJsonStream stream = new JsonStream();
         return stream.fromJson(json, classType);
     }
@@ -38,71 +34,64 @@ public final class JsonStream implements IJsonStream {
     }
 
     /**
-     * Serializes an object to a json string.
+     * Serialize an object to a json.
      */
-    public <T extends IJsonSerialization> String toJson(T obj) {
+    @Override
+    public <T> String toJson(T obj) {
         Conditions.validateNotNull(
             obj,
-            "The object for serializing to a json string.");
+            "The object to stream.");
 
-        String json;
+        ObjectMapper mapper = new ObjectMapper();
 
-        try (DestructorHandler destructorHandler = new DestructorHandler()) {
-            StringWriter writer = Writers.createStringWriter();
-            destructorHandler.register(writer);
+        String result;
 
-            JsonGenerator generator = this.factory.createGenerator(writer);
-            destructorHandler.register(generator);
+        try {
+            result = mapper.writeValueAsString(obj);
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "Failed serializing to json"  +
+                " object type: " + ClassTypes.getName(obj) +
+                ", due to the following error: " + e.getMessage();
 
-            IJsonValueWriter valueWriter = new JsonValueWriter(generator);
-            valueWriter.writeObject(obj);
-
-            generator.flush();
-            json = writer.toString();
+            throw new BaseException(errorMessage);
         }
 
-        return json;
+        return result;
     }
 
     /**
-     * De-Serializes an object from a json string.
+     * Deserializes an object from a json.
      */
-    public <T extends IJsonSerialization> T fromJson(String json, Class<T> classType) {
+    @Override
+    public <T> T fromJson(String json, Class<T> classType) {
         Conditions.validateNotNull(
             json,
-            "The json string for de-serializing an object.");
+            "The json to stream.");
 
         Conditions.validateNotNull(
             classType,
-            "The class type of an object.");
+            "The class type of the json.");
 
-        T instance;
+        ObjectMapper mapper = new ObjectMapper();
 
-        try (DestructorHandler destructorHandler = new DestructorHandler()) {
+        T result;
 
-            //
-            // Create a reader to the json stream...
-            //
-            Reader reader = Readers.createStringReader(json);
-            destructorHandler.register(reader);
+        try {
+            result = mapper.readValue(
+                json,
+                classType);
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "Failed de-serializing object from json: " + json +
+                " of class: " + classType.getSimpleName() +
+                ", due to the following error: " + e.getMessage();
 
-            //
-            // Parse the json stream into a json tree...
-            //
-            JsonParser parser = new JsonParser(this.factory, reader);
-            destructorHandler.register(parser);
-
-            IJsonTree tree = parser.parse();
-
-            //
-            // Read the corresponding object by using a reader...
-            //
-            IJsonValue value = new JsonObjectValue(tree.getRootObject());
-            IJsonValueReader valueReader = new JsonValueReader(value);
-
-            instance = valueReader.readObject(classType);
+            throw new BaseException(errorMessage);
         }
 
-        return instance;
+        return result;
     }
 }

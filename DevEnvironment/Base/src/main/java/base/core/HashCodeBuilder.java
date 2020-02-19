@@ -5,11 +5,10 @@ import base.interfaces.IHashCodeProvider;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import base.interfaces.IPrimitiveSize;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
-
 import java.math.BigInteger;
+import java.time.Duration;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -97,10 +96,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withInteger(int value) {
-        int currentCode = value;
-
-        this.updateCode(currentCode);
-
+        this.updateCode(value);
         return this;
     }
 
@@ -176,11 +172,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a datetime.
+     * With a date.
      */
     @Override
-    public IHashCodeBuilder withDateTime(DateTime value) {
-        this.withLong(value.getMillis());
+    public IHashCodeBuilder withDate(Date value) {
+        this.withLong(value.getTime());
         return this;
     }
 
@@ -189,7 +185,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withDuration(Duration value) {
-        this.withLong(value.getMillis());
+        this.withLong(value.toMillis());
         return this;
     }
 
@@ -198,8 +194,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withBooleanArray(boolean[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withBoolean(array[i]);
+        for (boolean item : array) {
+            this.withBoolean(item);
         }
 
         return this;
@@ -210,8 +206,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withByteArray(byte[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withByte(array[i]);
+        for (byte item : array) {
+            this.withByte(item);
         }
 
         return this;
@@ -222,8 +218,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withShortArray(short[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withShort(array[i]);
+        for (short item : array) {
+            this.withShort(item);
         }
 
         return this;
@@ -234,8 +230,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withIntegerArray(int[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withInteger(array[i]);
+        for (int item : array) {
+            this.withInteger(item);
         }
 
         return this;
@@ -246,8 +242,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withLongArray(long[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withLong(array[i]);
+        for (long item : array) {
+            this.withLong(item);
         }
 
         return this;
@@ -258,8 +254,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withFloatArray(float[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withFloat(array[i]);
+        for (float item : array) {
+            this.withFloat(item);
         }
 
         return this;
@@ -270,8 +266,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withDoubleArray(double[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withDouble(array[i]);
+        for (double item : array) {
+            this.withDouble(item);
         }
 
         return this;
@@ -282,8 +278,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withCharacterArray(char[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withCharacter(array[i]);
+        for (char item : array) {
+            this.withCharacter(item);
         }
 
         return this;
@@ -294,8 +290,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withStringArray(String[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withString(array[i]);
+        for (String item : array) {
+            this.withString(item);
         }
 
         return this;
@@ -306,8 +302,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withBigIntegerArray(BigInteger[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            this.withBigInteger(array[i]);
+        for (BigInteger item : array) {
+            this.withBigInteger(item);
         }
 
         return this;

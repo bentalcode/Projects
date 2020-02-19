@@ -13,8 +13,8 @@ public final class Stacks {
      */
     public static <T> List<T> toArray(Stack<T> stack) {
         Conditions.validateNotNull(
-                stack,
-                "The stack.");
+            stack,
+            "The stack.");
 
         List<T> result = new ArrayList<>();
 

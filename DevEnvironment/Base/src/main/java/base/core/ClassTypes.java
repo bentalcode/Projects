@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
  * The ClassTypes class implements complementary APIs for class types.
  */
 public final class ClassTypes {
-    private static Logger Log = LoggerFactory.getLogger(ClassTypes.class);
+    private static Logger log = LoggerFactory.getLogger(ClassTypes.class);
 
     /**
      * Gets a name of a class of an object.
@@ -46,7 +46,7 @@ public final class ClassTypes {
                 "The ClassTypes failed loading class name: " + className +
                 " due to the following error: " + e.getMessage();
 
-            Log.error(errorMessage);
+            log.error(errorMessage);
             throw new BaseException(errorMessage, e);
         }
 
@@ -61,9 +61,7 @@ public final class ClassTypes {
             classType,
             "The type of a class.");
 
-        Type[] genericInterfaces = classType.getGenericInterfaces();
-
-        return genericInterfaces;
+        return classType.getGenericInterfaces();
     }
 
     /**

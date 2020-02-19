@@ -1,15 +1,15 @@
 package json.core;
 
 import base.core.Conditions;
+import base.core.Dates;
 import base.core.DestructorHandler;
+import base.core.Durations;
 import base.interfaces.ICloseable;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.time.Duration;
 import java.util.Collection;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
-import org.joda.time.Period;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.PeriodFormatter;
+import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,8 +48,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void flush() {
         try {
             this.generator.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The Json generator failed flushing the written content" +
                 ", due to the following error: " + e.getMessage();
@@ -66,8 +65,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeStartObject() {
         try {
             this.generator.writeStartObject();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a start object" +
                 ", due to the following error: " + e.getMessage();
@@ -84,8 +82,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeEndObject() {
         try {
             this.generator.writeEndObject();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing an end object" +
                 ", due to the following error: " + e.getMessage();
@@ -102,8 +99,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeStartArray() {
         try {
             this.generator.writeStartArray();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a start array" +
                 ", due to the following error: " + e.getMessage();
@@ -120,8 +116,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeEndArray() {
         try {
             this.generator.writeEndArray();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing an end array" +
                 ", due to the following error: " + e.getMessage();
@@ -138,8 +133,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writePropertyName(String name) {
         try {
             this.generator.writeFieldName(name);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a property name: " + name +
                 ", due to the following error: " + e.getMessage();
@@ -156,8 +150,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeBoolean(boolean value) {
         try {
             this.generator.writeBoolean(value);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a boolean: " + value +
                 ", due to the following error: " + e.getMessage();
@@ -173,10 +166,8 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     @Override
     public void writeByte(byte value) {
         try {
-            short shortValue = value;
-            this.generator.writeNumber(shortValue);
-        }
-        catch (IOException e) {
+            this.generator.writeNumber(value);
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a byte: " + value +
                 ", due to the following error: " + e.getMessage();
@@ -193,8 +184,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeShort(short value) {
         try {
             this.generator.writeNumber(value);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a short: " + value +
                 ", due to the following error: " + e.getMessage();
@@ -211,8 +201,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeInteger(int value) {
         try {
             this.generator.writeNumber(value);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing an integer: " + value +
                 ", due to the following error: " + e.getMessage();
@@ -229,8 +218,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeLong(long value) {
         try {
             this.generator.writeNumber(value);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a long: " + value +
                 ", due to the following error: " + e.getMessage();
@@ -247,8 +235,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeFloat(float value) {
         try {
             this.generator.writeNumber(value);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a float: " + value +
                 ", due to the following error: " + e.getMessage();
@@ -265,8 +252,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeDouble(double value) {
         try {
             this.generator.writeNumber(value);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a double: " + value +
                 ", due to the following error: " + e.getMessage();
@@ -283,8 +269,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeString(String value) {
         try {
             this.generator.writeString(value);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a string: " + value +
                 ", due to the following error: " + e.getMessage();
@@ -307,8 +292,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
             }
 
             this.writeEndArray();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a boolean array" +
                 ", due to the following error: " + e.getMessage();
@@ -324,8 +308,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeByteArray(byte[] array) {
         try {
             this.generator.writeBinary(array);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a byte array" +
                 ", due to the following error: " + e.getMessage();
@@ -347,8 +330,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
             }
 
             this.writeEndArray();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a short array" +
                 ", due to the following error: " + e.getMessage();
@@ -364,8 +346,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeIntegerArray(int[] array) {
         try {
             this.generator.writeArray(array, 0, array.length);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing an integer array" +
                 ", due to the following error: " + e.getMessage();
@@ -382,8 +363,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeLongArray(long[] array) {
         try {
             this.generator.writeArray(array, 0, array.length);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a long array" +
                 ", due to the following error: " + e.getMessage();
@@ -406,8 +386,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
             }
 
             this.writeEndArray();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a float array" +
                 ", due to the following error: " + e.getMessage();
@@ -424,8 +403,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeDoubleArray(double[] array) {
         try {
             this.generator.writeArray(array, 0, array.length);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a double array" +
                 ", due to the following error: " + e.getMessage();
@@ -448,8 +426,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
             }
 
             this.generator.writeEndArray();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a string array" +
                 ", due to the following error: " + e.getMessage();
@@ -471,8 +448,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
             }
 
             this.generator.writeEndArray();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a string collection" +
                 ", due to the following error: " + e.getMessage();
@@ -488,8 +464,7 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     public void writeBlob(byte[] blob) {
         try {
             this.generator.writeBinary(blob);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
                 "The JsonGenerator failed writing a blob" +
                 ", due to the following error: " + e.getMessage();
@@ -499,18 +474,35 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
     }
 
     /**
-     * Writes a date-time.
+     * Writes a date.
      */
     @Override
-    public void writeDateTime(DateTime dateTime, DateTimeFormatter formatter) {
-        String value = dateTime.toString(formatter);
+    public void writeDate(Date date) {
+        String value = Dates.toString(date);
 
         try {
             this.generator.writeString(value);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
-                "The JsonGenerator failed writing a date-time" +
+                "The JsonGenerator failed writing a date" +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+        }
+    }
+
+    /**
+     * Writes a date with a formatter.
+     */
+    @Override
+    public void writeDate(Date date, DateFormat formatter) {
+        String value = Dates.toString(date, formatter);
+
+        try {
+            this.generator.writeString(value);
+        } catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a date with a formatter" +
                 ", due to the following error: " + e.getMessage();
 
             this.log.error(errorMessage, e);
@@ -521,9 +513,35 @@ public final class JsonGenerator implements IJsonGenerator, ICloseable {
      * Writes a duration.
      */
     @Override
-    public void writeDuration(Duration duration, PeriodFormatter formatter) {
-        Period period = duration.toPeriod();
-        String value = period.toString(formatter);
-        this.writeString(value);
+    public void writeDuration(Duration duration) {
+        String value = Durations.toString(duration);
+
+        try {
+            this.generator.writeString(value);
+        } catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a duration" +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+        }
+    }
+
+    /**
+     * Writes a duration with a formatter.
+     */
+    @Override
+    public void writeDuration(Duration duration, String formatter) {
+        String value = Durations.toString(duration, formatter);
+
+        try {
+            this.generator.writeString(value);
+        } catch (IOException e) {
+            String errorMessage =
+                "The JsonGenerator failed writing a duration with a formatter" +
+                ", due to the following error: " + e.getMessage();
+
+            this.log.error(errorMessage, e);
+        }
     }
 }

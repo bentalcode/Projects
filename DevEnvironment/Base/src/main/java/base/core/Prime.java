@@ -8,7 +8,7 @@ import java.util.BitSet;
  * The Prime class implements complementary APIs for a prime number.
  */
 public final class Prime implements IPrime {
-    private static int IterationStartNumber = 1;
+    private static int iterationStartNumber = 1;
 
     private final int primesLength;
     private final BitSet primes;
@@ -34,7 +34,7 @@ public final class Prime implements IPrime {
         //
         // Initialize prime iteration indexes...
         //
-        this.currPrime = Prime.IterationStartNumber;
+        this.currPrime = Prime.iterationStartNumber;
         this.maxPrime = this.maxPrime();
 
         this.reset();
@@ -163,7 +163,7 @@ public final class Prime implements IPrime {
      */
     @Override
     public void reset() {
-        this.currPrime = Prime.IterationStartNumber;
+        this.currPrime = Prime.iterationStartNumber;
     }
 
     /**

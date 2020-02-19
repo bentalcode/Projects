@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  * The Readers class implements complementary APIs for readers.
  */
 public final class Readers {
-    private static final Logger Log = LoggerFactory.getLogger(Files.class);
+    private static final Logger log = LoggerFactory.getLogger(Files.class);
 
     /**
      * Creates a string reader.
@@ -31,9 +31,7 @@ public final class Readers {
             content,
             "The content of a string.");
 
-        StringReader reader = new StringReader(content);
-
-        return reader;
+        return new StringReader(content);
     }
 
     /**
@@ -44,11 +42,9 @@ public final class Readers {
             stream,
             "The input stream for creating a reader.");
 
-        InputStreamReader reader = new InputStreamReader(
+        return new InputStreamReader(
             stream,
             IConstants.DefaultEncoding);
-
-        return reader;
     }
 
     /**
@@ -68,7 +64,7 @@ public final class Readers {
                 "The Readers class failed creating an input stream reader to resource: " + path +
                 ", due to the following error: " + e.getMessage();
 
-            Readers.Log.error(errorMessage, e);
+            Readers.log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -83,9 +79,7 @@ public final class Readers {
             path,
             "The path of a resource.");
 
-        LineNumberReader reader = new LineNumberReader(Readers.createInputStreamReader(path));
-
-        return reader;
+        return new LineNumberReader(Readers.createInputStreamReader(path));
     }
 
     /**
@@ -96,9 +90,7 @@ public final class Readers {
             path,
             "The path of a resource.");
 
-        BufferedReader bufferedReader = Readers.createBufferedReader(Readers.createInputStreamReader(path));
-
-        return bufferedReader;
+        return Readers.createBufferedReader(Readers.createInputStreamReader(path));
     }
 
     /**
@@ -109,9 +101,7 @@ public final class Readers {
             reader,
             "The reader of a resource");
 
-        BufferedReader bufferedReader = new BufferedReader(reader);
-
-        return bufferedReader;
+        return new BufferedReader(reader);
     }
 
     /**
@@ -132,7 +122,7 @@ public final class Readers {
                 "FileReader failed to be created from path: " + path +
                 ", due to the following error: " + e.getMessage();
 
-            Readers.Log.error(errorMessage, e);
+            Readers.log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -156,7 +146,7 @@ public final class Readers {
                 "The BufferedReader failed reading line due to the following error: " +
                 e.getMessage();
 
-            Readers.Log.error(errorMessage, e);
+            Readers.log.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -178,7 +168,7 @@ public final class Readers {
                 "The Readers class failed closing a reader due to the following error: " +
                 e.getMessage();
 
-            Readers.Log.warn(warningMessage);
+            Readers.log.warn(warningMessage);
         }
     }
 

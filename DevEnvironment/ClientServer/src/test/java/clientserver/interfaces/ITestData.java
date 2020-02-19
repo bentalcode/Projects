@@ -1,6 +1,5 @@
 package clientserver.interfaces;
 
-import base.interfaces.IPair;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import java.util.List;
  */
 public interface ITestData {
     /**
-     * Gets information of json resources.
+     * Gets paths of retry policies.
      */
-    List<IPair<Path, Class<?>>> getJsonResourcesInformation();
+    List<Path> getRetryPolicyPaths();
 }

@@ -1,17 +1,21 @@
 package clientserver.core;
 
 import base.core.ArrayLists;
+import base.core.ResourceReader;
 import clientserver.interfaces.IRetryHandler;
 import clientserver.interfaces.IRetryLogic;
 import clientserver.interfaces.IRetryLogicInformation;
+import clientserver.interfaces.ITestData;
 import clientserver.interfaces.RetryException;
-import org.joda.time.Duration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
+import testbase.core.JsonObjectStreamingTest;
 import testbase.interfaces.IAssertion;
-
+import testbase.interfaces.IJsonObjectStreamingTest;
+import java.nio.file.Path;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +24,8 @@ import java.util.Map;
  * The RetryHandlerTest class implements tests for a retry handler.
  */
 public final class RetryHandlerTest {
+    private final ITestData testData = new TestData();
+    private final IJsonObjectStreamingTest streamingTest = new JsonObjectStreamingTest();
     private final IAssertion assertion = new Assertion();
 
     /**
@@ -43,6 +49,18 @@ public final class RetryHandlerTest {
     }
 
     /**
+     * Tests the streaming of a retry handler.
+     */
+    @Test
+    public void testRetryPolicyStreaming() {
+        for (Path path : this.testData.getRetryPolicyPaths()) {
+            String json = ResourceReader.loadString(path);
+
+            this.streamingTest.testStreaming(json, RetryPolicy.class);
+        }
+    }
+
+    /**
      * Tests the retry handler logic.
      */
     @Test
@@ -63,7 +81,7 @@ public final class RetryHandlerTest {
         List<IRetryLogic> logicList,
         Map<String, RetryLogicInformation> retryLogicInformation) {
 
-        for(IRetryLogic logic : logicList) {
+        for (IRetryLogic logic : logicList) {
             this.testRetryHandler(logic, retryLogicInformation);
         }
     }
@@ -82,6 +100,7 @@ public final class RetryHandlerTest {
         retryHandler.retry(logic);
 
         IRetryLogicInformation logicInformation = retryLogicInformation.get(logic.name());
+
         this.assertion.assertEquals(
             logicInformation.getActualSuccessfulAttempt(),
             logicInformation.getExpectedSuccessfulAttempt(),

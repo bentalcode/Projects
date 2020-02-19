@@ -18,7 +18,8 @@ public abstract class AbstractJsonValue implements IJsonValue {
     @Override
     public boolean getBooleanValue() {
         String errorMessage =
-            "The Json Value class: " + ClassTypes.getName(this.getClass()) + " does not support a boolean.";
+                "The Json Value class: " + ClassTypes.getName(this.getClass()) +
+                        " does not support a boolean.";
 
         throw new JsonException(errorMessage);
     }
@@ -29,7 +30,8 @@ public abstract class AbstractJsonValue implements IJsonValue {
     @Override
     public long getLongValue() {
         String errorMessage =
-            "The Json Value class: " + ClassTypes.getName(this.getClass()) + " does not support a long.";
+                "The Json Value class: " + ClassTypes.getName(this.getClass()) +
+                        " does not support a long.";
 
         throw new JsonException(errorMessage);
     }
@@ -40,7 +42,8 @@ public abstract class AbstractJsonValue implements IJsonValue {
     @Override
     public double getDoubleValue() {
         String errorMessage =
-            "The Json Value class: " + ClassTypes.getName(this.getClass()) + " does not support a double.";
+                "The Json Value class: " + ClassTypes.getName(this.getClass()) +
+                        " does not support a double.";
 
         throw new JsonException(errorMessage);
     }
@@ -51,7 +54,8 @@ public abstract class AbstractJsonValue implements IJsonValue {
     @Override
     public String getStringValue() {
         String errorMessage =
-            "The Json Value class: " + ClassTypes.getName(this.getClass()) + " does not support a string.";
+                "The Json Value class: " + ClassTypes.getName(this.getClass()) +
+                        " does not support a string.";
 
         throw new JsonException(errorMessage);
     }
@@ -62,7 +66,8 @@ public abstract class AbstractJsonValue implements IJsonValue {
     @Override
     public IJsonObject getObject() {
         String errorMessage =
-            "The Json Value class: " + ClassTypes.getName(this.getClass()) + " does not support an object.";
+                "The Json Value class: " + ClassTypes.getName(this.getClass()) +
+                        " does not support an object.";
 
         throw new JsonException(errorMessage);
     }
@@ -73,7 +78,8 @@ public abstract class AbstractJsonValue implements IJsonValue {
     @Override
     public IJsonArray getArray() {
         String errorMessage =
-            "The Json Value class: " + ClassTypes.getName(this.getClass()) + " does not support an array.";
+                "The Json Value class: " + ClassTypes.getName(this.getClass()) +
+                        " does not support an array.";
 
         throw new JsonException(errorMessage);
     }

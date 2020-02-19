@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * The Files class implements complementary APIs for files.
  */
 public final class Files {
-    private static final Logger Log = LoggerFactory.getLogger(Files.class);
+    private static final Logger log = LoggerFactory.getLogger(Files.class);
 
     /**
      * Creates a new file from a path.
@@ -22,9 +22,7 @@ public final class Files {
             path,
             "The path of a file resource.");
 
-        File file = new File(path.toString());
-
-        return file;
+        return new File(path.toString());
     }
 
     /**
@@ -36,9 +34,7 @@ public final class Files {
             "The path of a file resource.");
 
         byte[] bytes = Files.readAllBytes(path);
-        String content = new String(bytes, IConstants.DefaultEncoding);
-
-        return content;
+        return new String(bytes, IConstants.DefaultEncoding);
     }
 
     /**
@@ -58,7 +54,7 @@ public final class Files {
                 "The Files class failed reading all the bytes from: " + path +
                 ", due to the following error: " + e.getMessage();
 
-          Files.Log.error(errorMessage, e);
+          Files.log.error(errorMessage, e);
           throw new BaseException(errorMessage, e);
         }
 

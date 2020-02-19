@@ -5,10 +5,12 @@ import base.core.Conditions;
 import base.core.Conversion;
 import base.core.ReflectionHandler;
 import json.interfaces.IJsonObjectReader;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import json.interfaces.IJsonSerialization;
 
 /**
@@ -22,12 +24,12 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     public JsonValueReader(IJsonValue jsonValue) {
         Conditions.validateNotNull(
-            jsonValue,
-            "The json value to read from.");
+                jsonValue,
+                "The json value to read from.");
 
         this.jsonValue = jsonValue;
     }
-    
+
     /**
      * Reads a boolean.
      */
@@ -42,10 +44,7 @@ public final class JsonValueReader implements IJsonValueReader {
     @Override
     public short readShort() {
         long value = this.readLong();
-
-        short result = Conversion.longConversion().toShort(value);
-
-        return result;
+        return Conversion.longConversion().toShort(value);
     }
 
     /**
@@ -54,10 +53,7 @@ public final class JsonValueReader implements IJsonValueReader {
     @Override
     public int readInteger() {
         long value = this.readLong();
-
-        int result = Conversion.longConversion().toInteger(value);
-
-        return result;
+        return Conversion.longConversion().toInteger(value);
     }
 
     /**
@@ -74,10 +70,7 @@ public final class JsonValueReader implements IJsonValueReader {
     @Override
     public float readFloat() {
         double value = this.jsonValue.getDoubleValue();
-
-        float result = Conversion.doubleConversion().toFloat(value);
-
-        return result;
+        return Conversion.doubleConversion().toFloat(value);
     }
 
     /**
@@ -300,10 +293,7 @@ public final class JsonValueReader implements IJsonValueReader {
     @Override
     public byte[] readBlob() {
         String value = this.readString();
-
-        byte[] result = Conversion.stringConversion().toBytes(value);
-
-        return result;
+        return Conversion.stringConversion().toBytes(value);
     }
 
     /**
@@ -314,12 +304,9 @@ public final class JsonValueReader implements IJsonValueReader {
         this.validateClassType(classType);
 
         IJsonObjectReader reader = new JsonObjectReader(this.jsonValue.getObject());
-
         ReflectionHandler reflectionHandler = new ReflectionHandler();
 
-        ResultType result = reflectionHandler.invoke(classType, "readJson", classType, IJsonObjectReader.class, reader);
-
-        return result;
+        return reflectionHandler.invoke(classType, "readJson", classType, IJsonObjectReader.class, reader);
     }
 
     /**
@@ -395,7 +382,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     private <T> void validateClassType(Class<T> classType) {
         Conditions.validateNotNull(
-            classType,
-            "The class type of an object to read from.");
+                classType,
+                "The class type of an object to read from.");
     }
 }

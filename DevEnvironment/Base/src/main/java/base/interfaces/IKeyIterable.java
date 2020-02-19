@@ -1,6 +1,4 @@
-package datastructures.collections.interfaces;
-
-import base.interfaces.IIterator;
+package base.interfaces;
 
 /**
  * The IKeyIterable interface defines an iterable of keys.

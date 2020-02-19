@@ -2,6 +2,7 @@ package json.core;
 
 import base.core.Conditions;
 import base.interfaces.IIterator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,7 @@ public final class JsonArray extends JsonElement implements IJsonArray {
      */
     @Override
     public IJsonValue get(int index) {
-        IJsonValue result = this.array.get(index);
-        return result;
+        return this.array.get(index);
     }
 
     /**
@@ -76,7 +76,7 @@ public final class JsonArray extends JsonElement implements IJsonArray {
      */
     @Override
     public IJsonValue next() {
-        assert(this.hasNext());
+        assert (this.hasNext());
 
         IJsonValue currElement = this.get(this.position);
         ++this.position;
@@ -90,8 +90,8 @@ public final class JsonArray extends JsonElement implements IJsonArray {
     @Override
     public void setValue(String name, IJsonValue value) {
         Conditions.validate(
-            name == null,
-            "A Json Array does not support properties.");
+                name == null,
+                "A Json Array does not support properties.");
 
         this.array.add(value);
     }

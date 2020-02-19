@@ -1,39 +1,39 @@
 package base.interfaces;
 
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
+import java.time.Duration;
+import java.util.Date;
 
 /**
  * The IComparatorFactory interface defines a factory for creating comparators.
  */
 public interface IComparatorFactory {
     /**
-     * Create a generic comparator.
+     * Creates a generic comparator.
      */
     <T extends Comparable<T>> IBinaryComparator<T> createComparator();
 
     /**
-     * Create an array comparator.
+     * Creates an array comparator.
      */
     <T extends Comparable<T>> IArrayComparator<T> createArrayComparator();
 
     /**
-     * Create a two dimensional array comparator.
+     * Creates a two dimensional array comparator.
      */
     <T> ITwoDimensionalArrayComparator<T> createTwoDimensionalArrayComparator();
 
     /**
-     * Create a collection comparator.
+     * Creates a collection comparator.
      */
     <T extends Comparable<T>> ICollectionComparator<T> createCollectionComparator();
 
     /**
-     * Create an iterator comparator.
+     * Creates an iterator comparator.
      */
     <T> IIteratorComparator<T> createIteratorComparator();
 
     /**
-     * Create an iterable comparator.
+     * Creates an iterable comparator.
      */
     <T> IIterableComparator<T> createIterableComparator();
 
@@ -43,12 +43,12 @@ public interface IComparatorFactory {
     <TKey, TValue> IMapComparator<TKey, TValue> createMapComparator();
 
     /**
-     * Create a date-time comparator.
+     * Creates a date comparator.
      */
-    IBinaryComparator<DateTime> createDateTimeComparator();
+    IBinaryComparator<Date> createDateComparator();
 
     /**
-     * Create a duration comparator.
+     * Creates a duration comparator.
      */
     IBinaryComparator<Duration> createDurationComparator();
 }

@@ -11,10 +11,10 @@ import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
 import java.math.BigInteger;
+import java.time.Duration;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -176,11 +176,11 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a date-time.
+     * With a date.
      */
     @Override
-    public IEqualBuilder withDateTime(DateTime lhs, DateTime rhs) {
-        IEquatableComparator<DateTime> comparator = this.comparatorFactory.createDateTimeComparator();
+    public IEqualBuilder withDate(Date lhs, Date rhs) {
+        IEquatableComparator<Date> comparator = this.comparatorFactory.createDateComparator();
         return this.withObject(lhs, rhs, comparator);
     }
 

@@ -2,7 +2,6 @@ package clientserver.core;
 
 import base.core.Conditions;
 import base.interfaces.IRunnable;
-import clientserver.ClientServerException;
 import clientserver.interfaces.IRetryLogic;
 import clientserver.interfaces.IRetryHandler;
 import clientserver.interfaces.IRetryPolicy;
@@ -40,8 +39,7 @@ public final class RetryHandler implements IRetryHandler {
 
         if (idleLogic != null) {
             this.idleLogic = idleLogic;
-        }
-        else {
+        } else {
             this.idleLogic = new IdleHandler(policy.getIntervalDuration());
         }
     }
@@ -77,8 +75,7 @@ public final class RetryHandler implements IRetryHandler {
                 this.log.info(informationalMessage);
 
                 return;
-            }
-            catch (RetryException e) {
+            } catch (RetryException e) {
                 String warningMessage = "Failed " + attemptInformation + ", with error: " + e.getMessage();
                 this.log.warn(warningMessage);
 
@@ -113,18 +110,15 @@ public final class RetryHandler implements IRetryHandler {
      * Gets the information of a retry logic.
      */
     private String getLogicInformation(IRetryLogic logic) {
-        String information = "Logic: " + logic + ", with Retry Policy: " + this.policy;
-        return information;
+        return "Logic: " + logic + ", with Retry Policy: " + this.policy;
     }
 
     /**
      * Gets the information of a retry attempt.
      */
     private String getRetryLogicAttemptInformation(IRetryLogic logic, int attemptIndex) {
-        String information =
+        return
             "Attempt: " + attemptIndex + "/" + this.policy.getNumberOfAttempts() +
             " of Logic: " + logic;
-
-        return information;
     }
 }

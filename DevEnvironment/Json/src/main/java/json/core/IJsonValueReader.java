@@ -1,6 +1,7 @@
 package json.core;
 
 import json.interfaces.IJsonSerialization;
+
 import java.util.List;
 import java.util.Set;
 

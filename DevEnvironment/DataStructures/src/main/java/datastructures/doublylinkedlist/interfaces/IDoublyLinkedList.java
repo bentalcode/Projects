@@ -6,8 +6,8 @@ import base.interfaces.IReverseIterable;
 import base.interfaces.IReverseIterator;
 import base.interfaces.IUnaryComparator;
 import base.interfaces.ISizableCollection;
-import datastructures.collections.interfaces.IValueIterable;
-import datastructures.collections.interfaces.IValueReverseIterable;
+import base.interfaces.IValueIterable;
+import base.interfaces.IValueReverseIterable;
 
 /**
  * The IDoublyLinkedList interface defines a doubly linked list.

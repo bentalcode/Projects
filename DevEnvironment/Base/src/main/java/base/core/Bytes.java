@@ -14,9 +14,7 @@ public final class Bytes {
             return null;
         }
 
-        byte[] result = Base64.getDecoder().decode(value);
-
-        return result;
+        return Base64.getDecoder().decode(value);
     }
 
     /**
@@ -27,9 +25,7 @@ public final class Bytes {
             return null;
         }
 
-        String result = Base64.getEncoder().encodeToString(value);
-
-        return result;
+        return Base64.getEncoder().encodeToString(value);
     }
 
     /**

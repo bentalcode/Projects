@@ -1,6 +1,4 @@
-package datastructures.collections.interfaces;
-
-import base.interfaces.IReverseIterator;
+package base.interfaces;
 
 /**
  * The IKeyReverseIterable interface defines a reverse iterable of keys.

@@ -3,6 +3,7 @@ package json.core;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,11 +29,10 @@ public final class JsonFactory implements IJsonFactory {
 
         try {
             parser = this.factory.createParser(reader);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
-                "The Json Factory failed creating a parser" +
-                ", due to the following error: " + e.getMessage();
+                    "The Json Factory failed creating a parser" +
+                            ", due to the following error: " + e.getMessage();
 
             this.log.error(errorMessage, e);
             throw new JsonException(errorMessage, e);
@@ -50,11 +50,10 @@ public final class JsonFactory implements IJsonFactory {
 
         try {
             generator = this.factory.createGenerator(writer);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             String errorMessage =
-                "The Json Factory failed creating a generator" +
-                ", due to the following error: " + e.getMessage();
+                    "The Json Factory failed creating a generator" +
+                            ", due to the following error: " + e.getMessage();
 
             this.log.error(errorMessage, e);
             throw new JsonException(errorMessage, e);

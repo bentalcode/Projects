@@ -8,8 +8,8 @@ import base.interfaces.IIterableComparator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
+import java.time.Duration;
+import java.util.Date;
 
 /**
  * The ComparatorFactory class implements a factory for creating binary comparators.
@@ -54,7 +54,7 @@ public final class ComparatorFactory implements IComparatorFactory {
     }
 
     /**
-     * Create an iterator comparator.
+     * Creates an iterator comparator.
      */
     @Override
     public <T> IIteratorComparator<T> createIteratorComparator() {
@@ -62,7 +62,7 @@ public final class ComparatorFactory implements IComparatorFactory {
     }
 
     /**
-     * Create an iterable comparator.
+     * Creates an iterable comparator.
      */
     @Override
     public <T> IIterableComparator<T> createIterableComparator() {
@@ -78,15 +78,15 @@ public final class ComparatorFactory implements IComparatorFactory {
     }
 
     /**
-     * Creates a datetime comparator.
+     * Creates a date comparator.
      */
     @Override
-    public IBinaryComparator<DateTime> createDateTimeComparator() {
-        return new DateTimeComparator();
+    public IBinaryComparator<Date> createDateComparator() {
+        return new DateComparator();
     }
 
     /**
-     * Create a duration comparator.
+     * Creates a duration comparator.
      */
     @Override
     public IBinaryComparator<Duration> createDurationComparator() {

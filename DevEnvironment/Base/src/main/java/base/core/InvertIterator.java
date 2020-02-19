@@ -49,9 +49,7 @@ public final class InvertIterator<T> implements IReverseIterator<T> {
     public T next() {
         assert(this.hasNext());
 
-        T element = this.iterator.next();
-
-        return element;
+        return this.iterator.next();
     }
 
     /*

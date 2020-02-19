@@ -45,9 +45,7 @@ public class CollectionIterator<T> implements IIterator<T> {
     public T next() {
         assert(this.hasNext());
 
-        T currElement = this.iterator.next();
-
-        return currElement;
+        return this.iterator.next();
     }
 
     /**
