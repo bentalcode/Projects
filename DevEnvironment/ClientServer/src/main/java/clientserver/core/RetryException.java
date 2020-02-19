@@ -1,4 +1,4 @@
-package clientserver.interfaces;
+package clientserver.core;
 
 import clientserver.ClientServerException;
 

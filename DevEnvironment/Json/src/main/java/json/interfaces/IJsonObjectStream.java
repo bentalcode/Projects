@@ -1,9 +1,9 @@
 package json.interfaces;
 
 /**
- * The IJsonStream interface defines a json stream.
+ * The IJsonObjectStream interface defines a json stream for an object.
  */
-public interface IJsonStream {
+public interface IJsonObjectStream {
     /**
      * Serializes an object to a json string.
      */

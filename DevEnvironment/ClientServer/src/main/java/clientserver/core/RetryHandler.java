@@ -5,7 +5,6 @@ import base.interfaces.IRunnable;
 import clientserver.interfaces.IRetryLogic;
 import clientserver.interfaces.IRetryHandler;
 import clientserver.interfaces.IRetryPolicy;
-import clientserver.interfaces.RetryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

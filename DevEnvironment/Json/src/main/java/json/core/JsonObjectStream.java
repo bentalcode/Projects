@@ -7,19 +7,19 @@ import java.io.Reader;
 import java.io.StringWriter;
 import base.core.Writers;
 import json.interfaces.IJsonSerialization;
-import json.interfaces.IJsonStream;
+import json.interfaces.IJsonObjectStream;
 
 /**
  * The JsonObjectStream class implements a json stream for an object.
  */
-public final class JsonObjectStream implements IJsonStream {
+public final class JsonObjectStream implements IJsonObjectStream {
     private final IJsonFactory factory = new JsonFactory();
 
     /**
      * Serializes an object to a json string.
      */
     public static <T extends IJsonSerialization> String serialize(T obj) {
-        IJsonStream stream = new JsonObjectStream();
+        IJsonObjectStream stream = new JsonObjectStream();
         return stream.toJson(obj);
     }
 
@@ -27,7 +27,7 @@ public final class JsonObjectStream implements IJsonStream {
      * De-Serializes an object from a json string.
      */
     public static <T extends IJsonSerialization> T deserialize(String json, Class<T> classType) {
-        IJsonStream stream = new JsonObjectStream();
+        IJsonObjectStream stream = new JsonObjectStream();
         return stream.fromJson(json, classType);
     }
 

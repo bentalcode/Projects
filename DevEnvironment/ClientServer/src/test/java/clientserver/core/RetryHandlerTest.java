@@ -6,7 +6,6 @@ import clientserver.interfaces.IRetryHandler;
 import clientserver.interfaces.IRetryLogic;
 import clientserver.interfaces.IRetryLogicInformation;
 import clientserver.interfaces.ITestData;
-import clientserver.interfaces.RetryException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

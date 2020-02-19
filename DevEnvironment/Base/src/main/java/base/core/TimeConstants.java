@@ -23,4 +23,10 @@ public final class TimeConstants {
     public static String defaultDurationFormatter() {
         return TimeConstants.durationDefaultPattern;
     }
+
+    /**
+     * The TimeConstants constructor - Disables the default constructor.
+     */
+    private TimeConstants() {
+    }
 }
