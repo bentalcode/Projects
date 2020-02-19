@@ -99,6 +99,46 @@ public final class MergingIntervalsTest {
         this.testMergingIntervals(intervals5, result5);
     }
 
+    /**
+     * Tests the logic for inserting an interval.
+     */
+    @Test
+    public void insertIntervalTest() {
+        List<IInterval<Integer>> intervals1 = ArrayLists.of(
+            Interval.of(1,3),
+            Interval.of(6,9)
+        );
+
+        IInterval<Integer> interval1 = Interval.of(2,5);
+
+        List<IInterval<Integer>> result1 = ArrayLists.of(
+            Interval.of(1,5),
+            Interval.of(6,9)
+        );
+
+        List<IInterval<Integer>> intervals2 = ArrayLists.of(
+            Interval.of(1,2),
+            Interval.of(3,5),
+            Interval.of(6,7),
+            Interval.of(8,10),
+            Interval.of(12,16)
+        );
+
+        IInterval<Integer> interval2 = Interval.of(4,8);
+
+        List<IInterval<Integer>> result2 = ArrayLists.of(
+            Interval.of(1,2),
+            Interval.of(3,10),
+            Interval.of(12,16)
+        );
+
+        this.testInsertInterval(intervals1, interval1, result1);
+        this.testInsertInterval(intervals2, interval2, result2);
+    }
+
+    /**
+     * Tests the logic for merging intervals.
+     */
     private <Type extends Comparable<Type>> void testMergingIntervals(
         List<IInterval<Type>> intervals,
         List<IInterval<Type>> expectedResult) {
@@ -110,5 +150,22 @@ public final class MergingIntervalsTest {
             ListIterator.of(result),
             ListIterator.of(expectedResult),
             "Incorrect logic for merging intervals.");
+    }
+
+    /**
+     * Tests the logic for inserting an interval.
+     */
+    private <Type extends Comparable<Type>> void testInsertInterval(
+        List<IInterval<Type>> intervals,
+        IInterval<Type> interval,
+        List<IInterval<Type>> expectedResult) {
+
+        IMergingIntervals<Type> mergingIntervals = new MergingIntervals<>();
+        List<IInterval<Type>> result = mergingIntervals.insert(intervals, interval);
+
+        this.assertion.assertEqualsWithIterators(
+            ListIterator.of(result),
+            ListIterator.of(expectedResult),
+            "Incorrect logic for inserting an interval.");
     }
 }
