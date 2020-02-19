@@ -9,7 +9,7 @@ public final class ExpressionTreeProperties implements IExpressionTreeProperties
     /**
      * Returns the default properties of an expression tree.
      */
-    public static IExpressionTreeProperties DefaultProperties() {
+    public static IExpressionTreeProperties defaultProperties() {
         return new ExpressionTreeProperties();
     }
 

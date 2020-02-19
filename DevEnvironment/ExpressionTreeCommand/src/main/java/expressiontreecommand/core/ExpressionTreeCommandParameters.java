@@ -17,7 +17,7 @@ public final class ExpressionTreeCommandParameters implements IExpressionTreeCom
     public ExpressionTreeCommandParameters(String path) {
         this(
             path,
-            ExpressionTreeProperties.DefaultProperties());
+            ExpressionTreeProperties.defaultProperties());
     }
 
     /**
