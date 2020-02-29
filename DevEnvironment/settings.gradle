@@ -10,3 +10,5 @@ include ':ExpressionTreeCommand'
 include ':Problems'
 include ':Games'
 include ':TestBase'
+include 'DataTransformationService'
+

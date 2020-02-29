@@ -1,0 +1,13 @@
+package com.datatransformation.DataTransformationService
+
+import org.junit.jupiter.api.Test
+import org.springframework.boot.test.context.SpringBootTest
+
+@SpringBootTest
+class DataTransformationServiceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
