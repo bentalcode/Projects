@@ -105,6 +105,22 @@ public final class Assertion implements IAssertion {
     }
 
     /**
+     * Asserts equality with integer arrays.
+     */
+    @Override
+    public void assertEquals(
+        int[] lhs,
+        int[] rhs,
+        String message) {
+
+        boolean status = new EqualBuilder()
+            .withIntegerArray(lhs, rhs)
+            .build();
+
+        this.assertTrue(status, message);
+    }
+
+    /**
      * Asserts equality with objects.
      */
     @Override

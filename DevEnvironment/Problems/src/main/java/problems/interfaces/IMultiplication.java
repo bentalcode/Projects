@@ -5,7 +5,7 @@ package problems.interfaces;
  */
 public interface IMultiplication {
     /**
-     * Multiply strings.
+     * Multiplies numbers.
      */
-    String multiply(String left, String right);
+    int[] multiply(int[] left, int[] right);
 }

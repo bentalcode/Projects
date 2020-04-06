@@ -64,6 +64,14 @@ public interface IAssertion {
         String message);
 
     /**
+     * Asserts equality with integer arrays.
+     */
+    void assertEquals(
+        int[] lhs,
+        int[] rhs,
+        String message);
+
+    /**
      * Asserts equality with objects.
      */
     <T extends Comparable<T>> void assertEquals(
