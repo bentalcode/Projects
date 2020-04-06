@@ -69,9 +69,6 @@ namespace problems_test {
             const std::vector<T>& values,
             int sum,
             const std::set<std::vector<T>>& expectedResults);
-
-        TestData m_testData;
-        test_base::Assertion assertion;
     };
 
     /**
@@ -86,7 +83,7 @@ namespace problems_test {
         problems::CombinationSum<T> combinationSum;
         std::set<std::vector<T>> results = combinationSum.combinationSum(values, sum);
 
-        assertion.assertEquals(
+        getAssertion().assertEquals(
             results,
             expectedResults,
             "Invalid logic for calculating combination sum.");
@@ -104,7 +101,7 @@ namespace problems_test {
         problems::CombinationSum<T> combinationSum;
         std::set<std::vector<T>> results = combinationSum.singleCombinationSum(values, sum);
 
-        assertion.assertEquals(
+        getAssertion().assertEquals(
             results,
             expectedResults,
             "Invalid logic for calculating single combination sum.");

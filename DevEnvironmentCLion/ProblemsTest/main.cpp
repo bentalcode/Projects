@@ -3,6 +3,7 @@
 #include "MatchingTripletsUnitTest.h"
 #include "MergingIntervalsUnitTest.h"
 #include "PositionQueensUnitTest.h"
+#include "NumberValidatorUnitTest.h"
 
 using namespace problems_test;
 using namespace unit_testing;
@@ -22,6 +23,9 @@ int main()
 
     IUnitTestPtr positionQueensUnitTest(new PositionQueensUnitTest("PositionQueens"));
     testManager.registerTest(positionQueensUnitTest);
+
+    IUnitTestPtr numberValidatorUnitTest(new NumberValidatorUnitTest("NumberValidator"));
+    testManager.registerTest(numberValidatorUnitTest);
 
     testManager.run();
 

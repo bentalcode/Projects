@@ -35,9 +35,11 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IterableComparator.h
     ./interfaces/IteratorComparator.h
     ./interfaces/ITwoDimensionalList.h
+    ./interfaces/IValidator.h
     ./interfaces/LogStreamWriter.h
     ./interfaces/Pair.h
     ./interfaces/SharedPtr.h
+    ./interfaces/Strings.h
     ./interfaces/Triple.h
     ./core/BaseDependencies.h
     ./core/BaseLogic.h

@@ -212,7 +212,7 @@ void PositionQueensUnitTest::testPositionQueens(
     base::TwoDimensionalList<std::string> resultTwoDimensionalList(result);
     base::TwoDimensionalList<std::string> expectedResultTwoDimensionalList(expectedResult);
 
-    m_assertion.assertEqualsWithIterables(
+    getAssertion().assertEqualsWithIterables(
        resultTwoDimensionalList,
        expectedResultTwoDimensionalList,
        "Invalid logic for position queens.");

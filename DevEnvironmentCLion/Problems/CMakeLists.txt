@@ -35,10 +35,12 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
     ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/IValidator.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/Triple.h
+    ../Base/interfaces/Strings.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
     ../Base/core/DereferenceEquatableComparator.h
@@ -73,13 +75,18 @@ set(BASE_INCLUDES
 set(PROBLEMS_INCLUDES_FILES
     ./interfaces/ICombinationSum.h
     ./interfaces/IMatchingTriplets.h
-    ./interface/IPositionQueens.h
+    ./interfaces/IMergingIntervals.h
+    ./interfaces/IPositionQueens.h
     ./core/CombinationSum.h
     ./core/MatchingTriplets.h
+    ./core/MergingIntervals.h
+    ./core/NumberValidator.h
+    ./core/PositionQueens.h
     ./core/PreCompiled.h
     ./ProblemException.h)
 
 set(PROBLEMS_SOURCES_FILES
+    ./core/NumberValidator.cpp
     ./core/PositionQueens.cpp
     ./core/PreCompiled.cpp)
 

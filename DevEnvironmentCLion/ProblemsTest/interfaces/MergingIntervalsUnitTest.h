@@ -55,9 +55,6 @@ namespace problems_test {
         void testMergingIntervals(
             const std::vector<base::IntervalPtr<T>>& intervals,
             const std::vector<base::IntervalPtr<T>>& expectedResult);
-
-        TestData m_testData;
-        test_base::Assertion assertion;
     };
 
     /**
@@ -74,7 +71,7 @@ namespace problems_test {
         base::ListIterator<base::IntervalPtr<T>> resultIterator(result);
         base::ListIterator<base::IntervalPtr<T>> expectedResultIterator(expectedResult);
 
-        assertion.assertEqualsWithDereferenceIterators(
+        getAssertion().assertEqualsWithDereferenceIterators(
            resultIterator,
            expectedResultIterator,
            "Invalid logic for merging intervals.");

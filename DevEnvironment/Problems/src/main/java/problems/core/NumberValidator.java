@@ -44,7 +44,7 @@ public final class NumberValidator implements IValidator {
             return false;
         }
 
-        int eIndex = -1;
+        int exponentIndex = -1;
 
         for (int i = startIndex; i <= endIndex; ++i) {
             char currValue = data[i];
@@ -53,43 +53,33 @@ public final class NumberValidator implements IValidator {
                 return false;
             }
 
-            if (currValue == 'e') {
-                if (eIndex != -1) {
+            if (this.isExponent(currValue)) {
+                if (exponentIndex != -1) {
                     return false;
                 }
 
-                eIndex = i;
+                exponentIndex = i;
             }
         }
 
-        boolean status;
-
-        if (eIndex != -1) {
-            int firstSectionStartIndex = startIndex;
-            int firstSectionEndIndex = eIndex - 1;
-
-            int secondSectionStartIndex = eIndex + 1;
-            int secondSectionEndIndex = endIndex;
-
-            status =
-                this.validateNumberSection(data, firstSectionStartIndex, firstSectionEndIndex, false) &&
-                this.validateNumberSection(data, secondSectionStartIndex, secondSectionEndIndex, true);
+        if (exponentIndex != -1) {
+            return
+                this.validateNumberComponent(data, startIndex, exponentIndex - 1, false) &&
+                this.validateNumberComponent(data, exponentIndex + 1, endIndex, true);
         }
         else {
-            status = this.validateNumberSection(data, startIndex, endIndex, false);
+            return this.validateNumberComponent(data, startIndex, endIndex, false);
         }
-
-        return status;
     }
 
     /**
-     * Checks whether a number section is valid.
+     * Checks whether a number component is valid.
      */
-    private boolean validateNumberSection(
+    private boolean validateNumberComponent(
         char[] data,
         int startIndex,
         int endIndex,
-        boolean sectionAfterExponent) {
+        boolean componentAfterExponent) {
 
         if (startIndex > endIndex) {
             return false;
@@ -105,13 +95,13 @@ public final class NumberValidator implements IValidator {
         for (int i = startIndex; i <= endIndex; ++i) {
             char currValue = data[i];
 
-            if (currValue == '+' || currValue == '-') {
+            if (this.isPlus(currValue) || this.isMinus(currValue)) {
                 if (i > startIndex) {
                     return false;
                 }
             }
-            else if (currValue == '.') {
-                if (foundDecimalPoint || i == endIndex || sectionAfterExponent) {
+            else if (this.isDecimalPoint(currValue)) {
+                if (foundDecimalPoint || i == endIndex || componentAfterExponent) {
                     return false;
                 }
 
@@ -132,11 +122,11 @@ public final class NumberValidator implements IValidator {
      */
     private boolean isValidCharacter(char value) {
         return
-            value == '.' ||
-            value == '+' ||
-            value == '-' ||
-            value == 'e' ||
-            this.isDigit(value);
+            this.isDigit(value) ||
+            this.isPlus(value) ||
+            this.isMinus(value) ||
+            this.isExponent(value) ||
+            this.isDecimalPoint(value);
     }
 
     /**
@@ -144,5 +134,33 @@ public final class NumberValidator implements IValidator {
      */
     private boolean isDigit(char value) {
         return value >= '0' && value <= '9';
+    }
+
+    /**
+     * Checks whether a character is a plus.
+     */
+    private boolean isPlus(char value) {
+        return value == '+';
+    }
+
+    /**
+     * Checks whether a character is a minus.
+     */
+    private boolean isMinus(char value) {
+        return value == '-';
+    }
+
+    /**
+     * Checks whether a character is an exponent.
+     */
+    private boolean isExponent(char value) {
+        return value == 'e';
+    }
+
+    /**
+     * Checks whether a character is a decimal point.
+     */
+    private boolean isDecimalPoint(char value) {
+        return value == '.';
     }
 }

@@ -83,9 +83,6 @@ namespace problems_test {
             const std::vector<T>& values,
             int sum,
             const std::list<base::Triple<size_t, size_t, size_t>>& expectedResults);
-
-        TestData m_testData;
-        test_base::Assertion assertion;
     };
 
     /**
@@ -100,7 +97,7 @@ namespace problems_test {
         problems::MatchingTriplets<T> matchingTriplets;
         std::set<base::Triple<T, T, T>> results = matchingTriplets.getMatchingTriplets(values, sum);
 
-        assertion.assertEquals(
+        getAssertion().assertEquals(
             results,
             expectedResults,
             "Invalid logic for calculating matching triplets.");
@@ -119,7 +116,7 @@ namespace problems_test {
         std::unique_ptr<base::Triple<T, T, T>> result = matchingTriplets.getMatchingClosestTriplet(values, sum);
         assert(result.get() != nullptr);
 
-        assertion.assertEquals(
+        getAssertion().assertEquals(
             *result,
             expectedResult,
             "Invalid logic for calculating matching closest triplet.");
@@ -139,7 +136,7 @@ namespace problems_test {
 
         results.sort();
 
-        assertion.assertEquals(
+        getAssertion().assertEquals(
             results,
             expectedResults,
             "Invalid logic for calculating matching triplets indexes.");

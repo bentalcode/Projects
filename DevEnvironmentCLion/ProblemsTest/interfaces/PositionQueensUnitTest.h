@@ -53,9 +53,6 @@ namespace problems_test {
         void testPositionQueens(
             int size,
             const std::vector<std::vector<std::string>>& expectedResults);
-
-        TestData m_testData;
-        test_base::Assertion m_assertion;
     };
 }
 
