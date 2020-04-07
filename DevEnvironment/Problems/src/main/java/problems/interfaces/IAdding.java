@@ -5,7 +5,12 @@ package problems.interfaces;
  */
 public interface IAdding {
     /**
-     * Adding numbers.
+     * Adding numbers with a specified base.
      */
-    int[] add(int[] left, int[] right);
+    int[] add(int[] left, int[] right, int base);
+
+    /**
+     * Adding string numbers with a specified base.
+     */
+    String addStringNumbers(String left, String right, int base);
 }
