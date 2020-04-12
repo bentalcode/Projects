@@ -4,6 +4,7 @@ import base.BaseException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,13 @@ import org.slf4j.LoggerFactory;
  */
 public final class Dates {
     private static final Logger log = LoggerFactory.getLogger(Dates.class);
+
+    /**
+     * Gets the current time.
+     */
+    public static Date now() {
+        return new Date();
+    }
 
     /**
      * Parses a date from string.
@@ -72,6 +80,32 @@ public final class Dates {
             "The formatter of a date.");
 
         return formatter.format(value);
+    }
+
+    /**
+     * Calculates the duration from the specified time to now.
+     */
+    public static Duration fromNow(Date time) {
+        Conditions.validateNotNull(
+            time,
+            "The time.");
+
+        return Duration.ofMillis(new Date().getTime() - time.getTime());
+    }
+
+    /**
+     * Calculates the duration between two specified times.
+     */
+    public static Duration minus(Date currTime, Date previousTime) {
+        Conditions.validateNotNull(
+            currTime,
+            "The current time.");
+
+        Conditions.validateNotNull(
+            previousTime,
+            "The previous time.");
+
+        return Duration.ofMillis(currTime.getTime() - previousTime.getTime());
     }
 
     /**

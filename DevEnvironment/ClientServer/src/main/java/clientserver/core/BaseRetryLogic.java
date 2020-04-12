@@ -11,11 +11,9 @@ import java.util.Set;
 /**
  * The BaseRetryLogic class implements a base retry logic.
  */
-public abstract class BaseRetryLogic implements IRetryLogic {
-    private static final String propertyName = "name";
+public abstract class BaseRetryLogic extends BaseLogic implements IRetryLogic {
     private static final String propertyAbsorbedExceptions = "absorbedExceptions";
 
-    private final String name;
     private final Set<Class<?>> absorbedExceptions;
 
     /**
@@ -29,28 +27,17 @@ public abstract class BaseRetryLogic implements IRetryLogic {
      * The BaseRetryLogic constructor.
      */
     protected BaseRetryLogic(String name, Set<Class<?>> absorbedExceptions) {
-        Conditions.validateStringNotNullOrEmpty(
-            name,
-            "The logic name");
+        super(name);
 
         Conditions.validateNotNull(
             absorbedExceptions,
-            "The absorbed exceptions");
+            "The absorbed exceptions.");
 
-        this.name = name;
         this.absorbedExceptions = absorbedExceptions;
 
         if (this.absorbedExceptions.isEmpty()) {
             this.absorbedExceptions.add(Exception.class);
         }
-    }
-
-    /**
-     * Gets the name of the logic.
-     */
-    @Override
-    public String name() {
-        return this.name;
     }
 
     /**
@@ -73,7 +60,7 @@ public abstract class BaseRetryLogic implements IRetryLogic {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(BaseRetryLogic.propertyName, this.name);
+        super.writeJson(writer);
 
         writer.writeCollectionProperty(
             BaseRetryLogic.propertyAbsorbedExceptions,

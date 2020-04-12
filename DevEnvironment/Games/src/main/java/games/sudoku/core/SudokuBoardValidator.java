@@ -23,7 +23,7 @@ public final class SudokuBoardValidator implements IValidator {
      * Validates a Sudoku board.
      */
     @Override
-    public boolean isValid() {
+    public boolean validate() {
         if (this.board == null || this.board.length != this.size) {
             return false;
         }

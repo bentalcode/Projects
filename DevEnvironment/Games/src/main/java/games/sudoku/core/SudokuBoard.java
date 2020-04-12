@@ -40,7 +40,7 @@ public final class SudokuBoard implements ISudokuBoard {
 
         IValidator validator = new SudokuBoardValidator(data, size, subSize);
 
-        if (!validator.isValid()) {
+        if (!validator.validate()) {
             throw new SudokuException("The board of Sudoku is not valid.");
         }
 
@@ -100,7 +100,7 @@ public final class SudokuBoard implements ISudokuBoard {
             for (int value = 1; value <= this.size; ++value) {
                 this.setPositionValue(row, column, value);
 
-                if (this.validator.isValid()) {
+                if (this.validator.validate()) {
                     boolean status = this.trySolve(nextRow, nextColumn);
 
                     if (status) {
