@@ -31,7 +31,49 @@ public final class MatchingTriplets implements IMatchingTriplets {
     public List<ITriplet<Integer, Integer, Integer>> getMatchingTripletsIndexes(int[] values, int sum) {
         Conditions.validateNotNull(
             values,
-            "The values can not be null.");
+            "The values.");
+
+        List<ITriplet<Integer, Integer, Integer>> result = new ArrayList<>();
+
+        if (values.length < 3) {
+            return result;
+        }
+
+        Map<Integer, List<Integer>> indexesMap = this.createIndexesMap(values);
+
+        for (int firstIndex = 0; firstIndex <= values.length - 3; ++firstIndex) {
+            int currValue1 = values[firstIndex];
+            int matchingValue1 = sum - currValue1;
+
+            for (int secondIndex = firstIndex + 1; secondIndex <= values.length - 2; ++secondIndex) {
+                int currValue2 = values[secondIndex];
+                int matchingValue2 = matchingValue1 - currValue2;
+
+                if (indexesMap.containsKey(matchingValue2)) {
+                    for (int thirdIndex : indexesMap.get(matchingValue2)) {
+                        if (thirdIndex > secondIndex) {
+                            ITriplet<Integer, Integer, Integer> newResult = Triplet.of(
+                                firstIndex,
+                                secondIndex,
+                                thirdIndex);
+
+                            result.add(newResult);
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the matching sum by indexes (Option 2).
+     */
+    public List<ITriplet<Integer, Integer, Integer>> getMatchingTripletsIndexesOption2(int[] values, int sum) {
+        Conditions.validateNotNull(
+                values,
+                "The values.");
 
         List<ITriplet<Integer, Integer, Integer>> result = new ArrayList<>();
 
@@ -67,26 +109,82 @@ public final class MatchingTriplets implements IMatchingTriplets {
     /**
      * Gets the values of matching triplets.
      */
-    @Override
     public Set<ITriplet<Integer, Integer, Integer>> getMatchingTriplets(int[] values, int sum) {
         Conditions.validateNotNull(
             values,
-            "The values can not be null.");
+            "The values.");
 
         Set<ITriplet<Integer, Integer, Integer>> result = new HashSet<>();
+
+        if (values.length < 3) {
+            return result;
+        }
 
         int[] sorted = values.clone();
         Arrays.sort(sorted);
 
-        for (int i = 0; i < values.length - 2; ++i) {
-            int currValue = values[i];
+        for (int firstIndex = 0; firstIndex < sorted.length - 2; ++firstIndex) {
+            int firstValue = sorted[firstIndex];
+            int matchingValue = sum - firstValue;
+
+            int leftIndex = firstIndex + 1;
+            int rightIndex = sorted.length - 1;
+
+            while (leftIndex < rightIndex) {
+                int secondValue = sorted[leftIndex];
+                int thirdValue = sorted[rightIndex];
+
+                int currSum = secondValue + thirdValue;
+
+                if (currSum == matchingValue) {
+                    ITriplet<Integer, Integer, Integer> newResult = Triplet.of(
+                        firstValue,
+                        secondValue,
+                        thirdValue);
+
+                    result.add(newResult);
+
+                    ++leftIndex;
+                    --rightIndex;
+                }
+                else if (currSum < matchingValue) {
+                    ++leftIndex;
+                }
+                else {
+                    --rightIndex;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the values of matching triplets (Option2).
+     */
+    public Set<ITriplet<Integer, Integer, Integer>> getMatchingTriplets2(int[] values, int sum) {
+        Conditions.validateNotNull(
+            values,
+            "The values.");
+
+        Set<ITriplet<Integer, Integer, Integer>> result = new HashSet<>();
+
+        if (values.length < 3) {
+            return result;
+        }
+
+        int[] sorted = values.clone();
+        Arrays.sort(sorted);
+
+        for (int i = 0; i < sorted.length - 2; ++i) {
+            int currValue = sorted[i];
             int matchingValue = sum - currValue;
 
             int startIndex = i + 1;
-            int endIndex = values.length - 1;
+            int endIndex = sorted.length - 1;
 
             Set<IDoublet<Integer, Integer>> matchingPairs = this.getMatchingDoublets(
-                values,
+                sorted,
                 startIndex,
                 endIndex,
                 matchingValue);
@@ -107,46 +205,54 @@ public final class MatchingTriplets implements IMatchingTriplets {
     public ITriplet<Integer, Integer, Integer> getClosestMatchingTriplet(int[] values, int sum) {
         Conditions.validateNotNull(
             values,
-            "The values can not be null.");
+            "The values.");
 
         if (values.length < 3) {
             return null;
         }
 
-        int[] sortedValues = values.clone();
-        Arrays.sort(sortedValues);
+        int[] sorted = values.clone();
+        Arrays.sort(sorted);
 
         ITriplet<Integer, Integer, Integer> closestTriplet = null;
         int minDiff = Integer.MAX_VALUE;
 
-        for (int i = 0; i < sortedValues.length - 2; ++i) {
-            int currValue = sortedValues[i];
-            int matchingValue = sum - currValue;
+        for (int firstIndex = 0; firstIndex < sorted.length - 2; ++firstIndex) {
+            int firstValue = sorted[firstIndex];
+            int matchingSum = sum - firstValue;
 
-            int startIndex = i + 1;
-            int endIndex = sortedValues.length - 1;
+            int leftIndex = firstIndex + 1;
+            int rightIndex = sorted.length - 1;
 
-            IDoublet<Integer, Integer> closestPair = this.getClosestMatchingDoublet(
-                sortedValues,
-                startIndex,
-                endIndex,
-                matchingValue);
+            while (leftIndex < rightIndex) {
+                int secondValue = sorted[leftIndex];
+                int thirdValue = sorted[rightIndex];
 
-            int firstValue = currValue;
-            int secondValue = closestPair.first();
-            int thirdValue = closestPair.second();
+                int currSum = secondValue + thirdValue;
 
-            int currSum = firstValue + secondValue + thirdValue;
+                if (currSum == matchingSum) {
+                    return Triplet.of(
+                        firstValue,
+                        secondValue,
+                        thirdValue);
+                }
 
-            if (currSum == sum) {
-                return Triplet.of(firstValue, secondValue, thirdValue);
-            }
+                int tripleSum = firstValue + secondValue + thirdValue;
+                int currDiff = Math.abs(sum - tripleSum);
 
-            int currDiff = Math.abs(sum - currSum);
+                if (closestTriplet == null || currDiff < minDiff) {
+                    closestTriplet = Triplet.of(
+                        firstValue,
+                        secondValue,
+                        thirdValue);
+                }
 
-            if (closestTriplet == null || currDiff < minDiff) {
-                closestTriplet = Triplet.of(firstValue, secondValue, thirdValue);
-                minDiff = currDiff;
+                if (currSum < sum) {
+                    ++leftIndex;
+                }
+                else {
+                    --rightIndex;
+                }
             }
         }
 
@@ -173,9 +279,9 @@ public final class MatchingTriplets implements IMatchingTriplets {
                 int firstIndex = i;
 
                 for (Integer secondIndex : indexesMap.get(matchingValue)) {
+
                     if (secondIndex > firstIndex && secondIndex <= endIndex) {
                         IDoublet<Integer, Integer> newResult = Doublet.of(firstIndex, secondIndex);
-
                         result.add(newResult);
                     }
                 }
@@ -206,55 +312,13 @@ public final class MatchingTriplets implements IMatchingTriplets {
             int currSum = leftValue + rightValue;
 
             if (currSum == sum) {
-                result.add(Doublet.of(leftValue, rightValue));
+                IDoublet<Integer, Integer> newResult = Doublet.of(leftValue, rightValue);
+                result.add(newResult);
 
                 ++leftIndex;
                 --rightIndex;
             }
             else if (currSum < sum) {
-                ++leftIndex;
-            }
-            else {
-                --rightIndex;
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Gets the closest values of matching doublet.
-     */
-    private IDoublet<Integer, Integer> getClosestMatchingDoublet(
-        int[] values,
-        int startIndex,
-        int endIndex,
-        int sum) {
-
-        IDoublet<Integer, Integer> result = null;
-        int minDiff = Integer.MAX_VALUE;
-
-        int leftIndex = startIndex;
-        int rightIndex = endIndex;
-
-        while (leftIndex < rightIndex) {
-            int leftValue = values[leftIndex];
-            int rightValue = values[rightIndex];
-
-            int currSum = leftValue + rightValue;
-
-            if (currSum == sum) {
-                return Doublet.of(leftValue, rightValue);
-            }
-
-            int currDiff = Math.abs(sum - currSum);
-
-            if (result == null || currDiff < minDiff) {
-                result = Doublet.of(leftValue, rightValue);
-                minDiff = currDiff;
-            }
-
-            if (currSum < sum) {
                 ++leftIndex;
             }
             else {

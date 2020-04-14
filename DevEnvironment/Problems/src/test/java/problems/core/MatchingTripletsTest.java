@@ -89,10 +89,19 @@ public final class MatchingTripletsTest {
     public void matchingClosestTripletsTest() {
         int[] values1 = {-1, 2, 1, -4};
         int sum1 = 1;
-
         ITriplet<Integer, Integer, Integer> result1 = Triplet.of(-1, 1, 2);
 
+        int[] values2 = {0, 1, 1, 1, 2, 2, 2};
+        int sum2 = 7;
+        ITriplet<Integer, Integer, Integer> result2 = Triplet.of(2, 2, 2);
+
+        int[] values3 = {6, 1, -1, 1, 2, 8, 2};
+        int sum3 = 1;
+        ITriplet<Integer, Integer, Integer> result3 = Triplet.of(-1, 1, 1);
+
         this.testMatchingClosestTriplet(values1, sum1, result1);
+        this.testMatchingClosestTriplet(values2, sum2, result2);
+        this.testMatchingClosestTriplet(values3, sum3, result3);
     }
 
     /**
