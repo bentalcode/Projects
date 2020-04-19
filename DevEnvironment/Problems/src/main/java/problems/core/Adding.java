@@ -113,7 +113,7 @@ public final class Adding implements IAdding {
         }
 
         if (resultLastIndex == -1) {
-            return String.valueOf("0");
+            return "0";
         }
 
         return this.getResultStringNumber(result, 0, resultLastIndex, base);

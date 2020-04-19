@@ -8,27 +8,37 @@ import java.util.List;
  * The AbstractPathBuilder base class implements an abstract builder of a path.
  */
 public abstract class AbstractPathBuilder implements IPathBuilder {
-    private final char separator;
+    private final String rootDirectory;
+    private final String directorySeparator;
     private final List<String> components = new ArrayList<>();
     private String extension;
 
     /**
      * The AbstractPathBuilder constructor.
      */
-    protected AbstractPathBuilder(char separator) {
+    protected AbstractPathBuilder(String initialComponent, String separator) {
         Conditions.validateNotNull(
             separator,
             "The separator of a path.");
 
-        this.separator = separator;
+        this.rootDirectory = initialComponent;
+        this.directorySeparator = separator;
     }
 
     /**
-     * Gets a separator of a path.
+     * Gets a root directory of a path.
      */
     @Override
-    public char getSeparator() {
-        return this.separator;
+    public String getRootDirectory() {
+        return this.rootDirectory;
+    }
+
+    /**
+     * Gets a directory separator of a path.
+     */
+    @Override
+    public String getDirectorySeparator() {
+        return this.directorySeparator;
     }
 
     /**
@@ -64,12 +74,18 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
     public String build() {
         StringBuilder result = new StringBuilder();
 
+        if (!Strings.isNullOrEmpty(this.rootDirectory)) {
+            result.append(this.rootDirectory);
+        }
+
+        boolean addDirectorySeparator = false;
         for (String component : this.components) {
-            if (result.length() > 0) {
-                result.append(this.separator);
+            if (addDirectorySeparator) {
+                result.append(this.directorySeparator);
             }
 
             result.append(component);
+            addDirectorySeparator = true;
         }
 
         if (!Strings.isNullOrEmpty(this.extension)) {

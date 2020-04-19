@@ -5,9 +5,14 @@ package base.interfaces;
  */
 public interface IPathBuilder extends IBuilder<String> {
     /**
-     * Gets a separator of a path.
+     * Gets a root directory.
      */
-    char getSeparator();
+    String getRootDirectory();
+
+    /**
+     * Gets a directory separator.
+     */
+    String getDirectorySeparator();
 
     /**
      * Adds a new component to a path.
