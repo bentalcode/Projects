@@ -82,17 +82,30 @@ public final class GraphTraversal<TKey extends Comparable<TKey>, TValue> impleme
             "The visitor to apply in the Depth-First search.");
 
         Set<IVertex<TKey, TValue>> visited = new HashSet<>();
+        this.depthFirstSearch(vertex, visited, visitor);
+    }
+
+    /**
+     * Performs a Depth-First search.
+     */
+    private void depthFirstSearch(
+        IVertex<TKey, TValue> vertex,
+        Set<IVertex<TKey, TValue>> visited,
+        IVisitor<IVertex<TKey, TValue>> visitor) {
+
+        if (visited.contains(vertex)) {
+            return;
+        }
 
         visitor.visit(vertex);
         visited.add(vertex);
 
         for (IVertex<TKey, TValue> nextVertex : this.graph.getAdjacencyMatrix().getAdjacentVertices(vertex)) {
-
             if (visited.contains(nextVertex)) {
                 continue;
             }
 
-            this.depthFirstSearch(nextVertex, visitor);
+            this.depthFirstSearch(nextVertex, visited, visitor);
         }
 
         visited.remove(vertex);
