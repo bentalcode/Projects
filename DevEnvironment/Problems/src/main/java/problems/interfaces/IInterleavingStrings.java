@@ -15,7 +15,7 @@ public interface IInterleavingStrings {
 
     /**
      * Checks whether the strings are interleaving with the following constraints:
-     * Runtime: O(2)^(A + B)
+     * Runtime: O((A + B)^2)
      * Memory: O(1)
      * C is said to be interleaving A and B, if it contains all characters of A and B,
      * and order of all characters in individual strings is preserved.

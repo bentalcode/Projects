@@ -155,14 +155,14 @@ public final class CombinationSum implements ICombinationSum {
             return;
         }
 
-        this.singleCombinationSum(values, sum, currIndex + 1, currSum, currResult, results);
-
         int currValue = values[currIndex];
         int sumSoFar = currSum + currValue;
 
         if (sumSoFar > sum) {
             return;
         }
+
+        this.singleCombinationSum(values, sum, currIndex + 1, currSum, currResult, results);
 
         currResult.add(currValue);
         this.singleCombinationSum(values, sum, currIndex + 1, sumSoFar, currResult, results);

@@ -4,7 +4,6 @@ import base.core.Base;
 import base.core.Conditions;
 import base.core.Interval;
 import base.core.Stacks;
-import base.interfaces.IBinaryComparator;
 import base.interfaces.IInterval;
 import problems.interfaces.IMergingIntervals;
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ import java.util.Stack;
  * The MergingIntervals class implements the merging intervals problem.
  */
 public final class MergingIntervals<Type extends Comparable<Type>> implements IMergingIntervals<Type> {
+
     /**
      * Merges intervals.
      */
@@ -24,10 +24,8 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
             intervals,
             "The intervals");
 
-        List<IInterval<Type>> result = new ArrayList<>();
-
-        if (intervals.isEmpty()) {
-            return result;
+        if (intervals.size() <= 1) {
+            return intervals;
         }
 
         List<IInterval<Type>> sortedIntervals = Interval.sort(intervals);
@@ -42,7 +40,7 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
             this.merge(prevInterval, currInterval, stack);
         }
 
-        result = Stacks.toArrayInReverseOrder(stack);
+        List<IInterval<Type>> result = Stacks.toArrayInReverseOrder(stack);
 
         return result;
     }
@@ -66,7 +64,7 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
         int insertIndex = this.findInsertIndex(sortedIntervals, interval);
 
         if (insertIndex == -1) {
-            List<IInterval<Type>> result = new ArrayList<>();
+            List<IInterval<Type>> result = new ArrayList<>(sortedIntervals.size() + 1);
 
             result.add(interval);
             result.addAll(sortedIntervals);
@@ -74,7 +72,7 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
             return result;
         }
         else if (insertIndex == sortedIntervals.size() - 1) {
-            List<IInterval<Type>> result = new ArrayList<>();
+            List<IInterval<Type>> result = new ArrayList<>(sortedIntervals.size() + 1);
 
             result.addAll(sortedIntervals);
             result.add(interval);
@@ -93,8 +91,8 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
             ++index;
         }
 
-        IInterval<Type> currInterval = interval;
         IInterval<Type> prevInterval = stack.pop();
+        IInterval<Type> currInterval = interval;
 
         this.merge(prevInterval, currInterval, stack);
 

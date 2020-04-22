@@ -31,12 +31,12 @@ public final class Multiplication implements IMultiplication {
         int leftInsertIndex = 0;
 
         for (int leftIndex = left.length - 1; leftIndex >= 0; --leftIndex) {
+            int leftDigit = left[leftIndex];
 
             int carry = 0;
             int rightInsertIndex = 0;
 
             for (int rightIndex = right.length - 1; rightIndex >= 0; --rightIndex) {
-                int leftDigit = left[leftIndex];
                 int rightDigit = right[rightIndex];
 
                 int totalValue = result[leftInsertIndex + rightInsertIndex] + (leftDigit * rightDigit) + carry;

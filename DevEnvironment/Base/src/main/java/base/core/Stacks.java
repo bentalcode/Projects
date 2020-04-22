@@ -33,19 +33,10 @@ public final class Stacks {
             stack,
             "The stack.");
 
-        int size = stack.size();
-        List<T> result = new ArrayList<>(size);
+        List<T> result = new ArrayList<>(stack.size());
 
-        for (int i = 0; i < size; ++i) {
-            result.add(null);
-        }
-
-        int insertIndex = size - 1;
-        while (!stack.empty() && insertIndex >= 0) {
-            result.set(insertIndex, stack.peek());
-
-            stack.pop();
-            --insertIndex;
+        for (T item : stack) {
+            result.add(item);
         }
 
         return result;
