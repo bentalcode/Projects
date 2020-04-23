@@ -24,10 +24,10 @@ public final class Line implements ILine {
     /**
      * The Line constructor.
      */
-    public Line(IPoint start, IPoint end) {
+    public Line(IPoint point1, IPoint point2) {
         this(
-            start,
-            end,
+            point1,
+            point2,
             Line.defaultComparator(),
             Point.defaultComparator());
     }
@@ -36,18 +36,18 @@ public final class Line implements ILine {
      * The Line constructor.
      */
     public Line(
-        IPoint start,
-        IPoint end,
+        IPoint point1,
+        IPoint point2,
         IBinaryComparator<ILine> lineComparator,
         IBinaryComparator<IPoint> pointComparator) {
 
         Conditions.validateNotNull(
-            start,
-            "The start point of a line.");
+            point1,
+            "The first point of a line.");
 
         Conditions.validateNotNull(
-            end,
-            "The end point of a line.");
+            point2,
+            "The second point of a line.");
 
         Conditions.validateNotNull(
             lineComparator,
@@ -57,15 +57,15 @@ public final class Line implements ILine {
             pointComparator,
             "The comparator of a point.");
 
-        int compareStatus = pointComparator.compareTo(start, end);
+        int compareStatus = pointComparator.compareTo(point1, point2);
 
         if (compareStatus <= 0) {
-            this.start = start;
-            this.end = end;
+            this.start = point1;
+            this.end = point2;
         }
         else {
-            this.start = end;
-            this.end = start;
+            this.start = point2;
+            this.end = point1;
         }
 
         this.lineComparator = lineComparator;
@@ -308,16 +308,23 @@ public final class Line implements ILine {
             }
         }
 
-        double xIntersection;
+        assert(!(line1.vertical() && line2.vertical()));
 
-        if (line1.vertical() || line2.vertical()) {
-            xIntersection = line1.vertical() ? line1.getStart().getX() : line2.getStart().getX();
+        double xIntersection;
+        double yIntersection;
+
+        if (line1.vertical()) {
+            xIntersection = line1.getStart().getX();
+            yIntersection = line2.getYFromX(xIntersection);
+        }
+        else if (line2.vertical()) {
+            xIntersection = line2.getStart().getX();
+            yIntersection = line1.getYFromX(xIntersection);
         }
         else {
             xIntersection = line2.getYIntercept() - line1.getYIntercept() / line1.getSlope() - line2.getSlope();
+            yIntersection = line1.getYFromX(xIntersection);
         }
-
-        double yIntersection = line1.vertical() ? line2.getYFromX(xIntersection) : line1.getYFromX(xIntersection);
 
         Point intersection = new Point(xIntersection, yIntersection);
 
