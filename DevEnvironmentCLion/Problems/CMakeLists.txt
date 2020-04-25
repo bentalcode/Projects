@@ -75,10 +75,12 @@ set(BASE_INCLUDES
 set(PROBLEMS_INCLUDES_FILES
     ./interfaces/ICombinationSum.h
     ./interfaces/IMatchingTriplets.h
+    ./interfaces/IMatrixFinder.h
     ./interfaces/IMergingIntervals.h
     ./interfaces/IPositionQueens.h
     ./core/CombinationSum.h
     ./core/MatchingTriplets.h
+    ./core/MatrixFinder.h
     ./core/MergingIntervals.h
     ./core/NumberValidator.h
     ./core/PositionQueens.h

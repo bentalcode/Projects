@@ -146,10 +146,12 @@ set(UNIT_TESTING_INCLUDES
 set(PROBLEMS_INCLUDES_FILES
     ../Problems/interfaces/ICombinationSum.h
     ../Problems/interfaces/IMatchingTriplets.h
+    ../Problems/interfaces/IMatrixFinder.h
     ../Problems/interfaces/IMergingIntervals.h
     ../Problems/interfaces/IPositionQueens.h
     ../Problems/core/CombinationSum.h
     ../Problems/core/MatchingTriplets.h
+    ../Problems/core/MatrixFinder.h
     ../Problems/core/MergingIntervals.h
     ../Problems/core/NumberValidator.h
     ../Problems/core/PositionQueens.h
@@ -176,6 +178,7 @@ set(PROBLEMS_INCLUDES
 set(PROBLEMS_TEST_INCLUDES_FILES
     interfaces/CombinationSumUnitTest.h
     interfaces/MatchingTripletsUnitTest.h
+    interfaces/MatrixFinderUnitTest.h
     interfaces/MergingIntervalsUnitTest.h
     interfaces/NumberValidatorUnitTest.h
     interfaces/PositionQueensUnitTest.h
@@ -186,6 +189,7 @@ set(PROBLEMS_TEST_SOURCES_FILES
     main.cpp
     core/CombinationSumUnitTest.cpp
     core/MatchingTripletsUnitTest.cpp
+    core/MatrixFinderUnitTest.cpp
     core/MergingIntervalsUnitTest.cpp
     core/NumberValidatorUnitTest.cpp
     core/PositionQueensUnitTest.cpp
