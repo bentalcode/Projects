@@ -1,7 +1,7 @@
 package problems.interfaces;
 
 /**
- * The IMultiplication interface defines an interface of a multiplication problem.
+ * The IMultiplication interface defines a multiplication problem.
  */
 public interface IMultiplication {
     /**

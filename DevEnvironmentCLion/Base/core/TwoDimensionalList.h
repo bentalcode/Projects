@@ -54,30 +54,30 @@ namespace base
         /**
          * Gets an element at a specified position.
          */
-        virtual const T& getElement(std::size_t rowIndex, std::size_t columnIndex) const override;
+        virtual const T& get(std::size_t rowIndex, std::size_t columnIndex) const override;
 
         /**
          * Gets all elements.
          */
-        virtual const std::vector<std::vector<T>>& getElements() const override;
+        virtual const std::vector<std::vector<T>>& getData() const override;
 
         /**
-         * Gets elements of a specified row.
+         * Gets a row.
          */
         virtual const std::vector<T>& getRow(std::size_t rowIndex) const override;
 
         /**
          * Adds a new row.
          */
-        virtual void addRow(const std::vector<T>& row) override;
+        virtual void addRow(const std::vector<T>& data) override;
 
         /**
-         * Gets a const element at a specified position.
+         * Gets a row.
          */
         virtual const std::vector<T>& operator[](int index) const override;
 
         /**
-         * Gets an element at a specified position.
+         * Gets a row.
          */
         virtual std::vector<T>& operator[](int index) override;
 
@@ -136,14 +136,14 @@ namespace base
     }
 
     template <typename T>
-    const T& TwoDimensionalList<T>::getElement(std::size_t rowIndex, std::size_t columnIndex) const
+    const T& TwoDimensionalList<T>::get(std::size_t rowIndex, std::size_t columnIndex) const
     {
         const std::vector<T>& row = m_data[rowIndex];
         return row[columnIndex];
     }
 
     template <typename T>
-    const std::vector<std::vector<T>>& TwoDimensionalList<T>::getElements() const
+    const std::vector<std::vector<T>>& TwoDimensionalList<T>::getData() const
     {
         return m_data;
     }

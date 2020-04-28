@@ -84,7 +84,39 @@ public final class Lists {
             list,
             "The list to reverse.");
 
-        return Lists.fromReverseIterator(ListReverseIterator.of(list));
+        List<T> result = new ArrayList<>(list.size());
+
+        int currIndex = list.size() - 1;
+
+        while (currIndex >= 0) {
+            T currValue = list.get(currIndex);
+            result.add(currValue);
+
+            --currIndex;
+        }
+
+        return result;
+    }
+
+    /**
+     * Reverses the list in place.
+     */
+    public static <T> void reverseInPlace(List<T> list) {
+        Conditions.validateNotNull(
+            list,
+            "The list to reverse.");
+
+        int startIndex = 0;
+        int endIndex = list.size() - 1;
+
+        while (startIndex < endIndex) {
+            T temp = list.get(startIndex);
+            list.set(startIndex, list.get(endIndex));
+            list.set(endIndex, temp);
+
+            ++startIndex;
+            --endIndex;
+        }
     }
 
     /**

@@ -1,7 +1,7 @@
 package problems.interfaces;
 
 /**
- * The IAdding interface defines an interface of an adding problem.
+ * The IAdding interface defines an adding problem.
  */
 public interface IAdding {
     /**

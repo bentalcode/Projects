@@ -1,40 +1,40 @@
-#ifndef I_TWO_DIMENSIONAL_LIST_H_12d475a8_c364_4b4d_9b96_c23535316c43
-#define I_TWO_DIMENSIONAL_LIST_H_12d475a8_c364_4b4d_9b96_c23535316c43
+#ifndef I_MATRIX_H_8b5476e0_941c_4469_93e2_495da05347fc
+#define I_MATRIX_H_8b5476e0_941c_4469_93e2_495da05347fc
 
 #include "ISizebleCollection.h"
 #include "IIterable.h"
+#include <vector>
 
 namespace base
 {
     /**
-     * The ITwoDimensionalList interface defines a generic two dimensional list.
-     * The list can contains rows with different sizes.
+     * The IMatrix interface defines a matrix.
      */
     template <typename T>
-    class ITwoDimensionalList : public ISizebleCollection, public IIterable<T>
+    class IMatrix : public ISizebleCollection, public IIterable<T>
     {
     public:
         /**
          * The constructor.
          */
-        ITwoDimensionalList() = default;
+        IMatrix(size_t rowSize, size_t colSize);
 
         /**
          * The destructor.
          */
-        virtual ~ITwoDimensionalList() = default;
+        virtual ~IMatrix() = default;
 
         /**
          * The copy/move constructors.
          */
-        ITwoDimensionalList(const ITwoDimensionalList&) = delete;
-        ITwoDimensionalList(ITwoDimensionalList&&) = delete;
+        IMatrix(const IMatrix&) = delete;
+        IMatrix(IMatrix&&) = delete;
 
         /**
          * The copy/move assignment operators.
          */
-        ITwoDimensionalList& operator=(const ITwoDimensionalList&) = delete;
-        ITwoDimensionalList& operator=(ITwoDimensionalList&&) = delete;
+        IMatrix& operator=(const IMatrix&) = delete;
+        IMatrix& operator=(IMatrix&&) = delete;
 
         /**
          * Gets the number of rows.
@@ -42,9 +42,9 @@ namespace base
         virtual std::size_t rowsSize() const = 0;
 
         /**
-         * Gets the number of columns in a specific row.
+         * Gets the number of columns.
          */
-        virtual std::size_t columnSize(std::size_t rowIndex) const = 0;
+        virtual std::size_t columnsSize() const = 0;
 
         /**
          * Gets an element at a specified position.
@@ -62,9 +62,9 @@ namespace base
         virtual const std::vector<T>& getRow(std::size_t rowIndex) const = 0;
 
         /**
-         * Adds a new row.
+         * Sets a row.
          */
-        virtual void addRow(const std::vector<T>& row) = 0;
+        virtual void setRow(std::size_t rowIndex, const std::vector<T>& data) = 0;
 
         /**
          * Gets a row.
@@ -76,9 +76,6 @@ namespace base
          */
         virtual std::vector<T>& operator[](int index) = 0;
     };
-
-    template <typename T>
-    using ITwoDimensionalListPtr = std::shared_ptr<ITwoDimensionalList<T>>;
 }
 
-#endif // I_TWO_DIMENSIONAL_LIST_H_12d475a8_c364_4b4d_9b96_c23535316c43
+#endif // I_MATRIX_H_8b5476e0_941c_4469_93e2_495da05347fc

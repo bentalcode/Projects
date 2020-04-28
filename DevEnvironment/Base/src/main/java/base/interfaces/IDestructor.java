@@ -1,7 +1,7 @@
 package base.interfaces;
 
 /**
- * The IDestructor interface defines an interface for implementing a destructor.
+ * The IDestructor interface defines a destructor.
  */
 public interface IDestructor {
     /**
