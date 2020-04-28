@@ -17,7 +17,7 @@ namespace base
         /**
          * The constructor.
          */
-        IMatrix(size_t rowSize, size_t colSize);
+        IMatrix() = default;
 
         /**
          * The destructor.
@@ -44,7 +44,7 @@ namespace base
         /**
          * Gets the number of columns.
          */
-        virtual std::size_t columnsSize() const = 0;
+        virtual std::size_t colsSize() const = 0;
 
         /**
          * Gets an element at a specified position.

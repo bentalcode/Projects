@@ -106,7 +106,7 @@ void TwoDimensionalListUnitTest::testTwoDimensionalListCreation(const std::vecto
             getAssertion().assertEquals(
                 currentValue,
                 expectedValue,
-                "Invalid creation logic.");
+                "Invalid creation logic a two dimensional list.");
         }
     }
 }
@@ -122,5 +122,5 @@ void TwoDimensionalListUnitTest::testTwoDimensionalListIteration(const std::vect
     this->getAssertion().assertEqualsWithIterators(
         *(list.getIterator()),
         dataIterator,
-        "Invalid iteration logic.");
+        "Invalid iteration logic of a two dimensional list.");
 }

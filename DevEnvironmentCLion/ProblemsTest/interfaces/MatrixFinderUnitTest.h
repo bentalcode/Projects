@@ -3,6 +3,7 @@
 
 #include "UnitTestBase.h"
 #include "MatrixFinder.h"
+#include "Matrix.h"
 #include "Assertion.h"
 
 namespace problems_test {
@@ -51,19 +52,19 @@ namespace problems_test {
          */
         template <typename T>
         void testMatrixFinder(
-            const std::vector<std::vector<T>>& matrix,
+            const base::Matrix<T>& matrix,
             const T& item,
             bool expectedResult);
     };
 
     template <typename T>
     void MatrixFinderUnitTest::testMatrixFinder(
-        const std::vector<std::vector<T>>& matrix,
+        const base::Matrix<T>& matrix,
         const T& item,
         bool expectedResult)
     {
         problems::MatrixFinder<T> matrixFinder;
-        bool result = matrixFinder.hasItem(matrix, item);
+        bool result = matrixFinder.hasItem(matrix.getData(), item);
 
         getAssertion().assertEquals(
            result,

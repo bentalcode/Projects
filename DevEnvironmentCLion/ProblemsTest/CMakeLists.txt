@@ -40,6 +40,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMatrix.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
     ../Base/interfaces/ISizebleCollection.h
@@ -50,17 +51,22 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
+    ../Base/interfaces/Strings.h
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
+    ../Base/core/ComparableComparator.h
     ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/EquatableComparator.h
+    ../Base/core/List.h
     ../Base/core/ListIterator.h
+    ../Base/core/Matrix.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
     ../Base/core/StringIterator.h
     ../Base/core/TwoDimensionalList.h
+    ../Base/core/TwoDimensionalListIterator.h
     ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES

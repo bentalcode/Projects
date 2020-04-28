@@ -40,31 +40,38 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMatrix.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
     ../Base/interfaces/ISizebleCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
     ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/IValidator.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
+    ../Base/interfaces/Strings.h
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
+    ../Base/core/ComparableComparator.h
     ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/EquatableComparator.h
+    ../Base/core/List.h
     ../Base/core/ListIterator.h
+    ../Base/core/Matrix.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
     ../Base/core/StringIterator.h
     ../Base/core/TwoDimensionalList.h
+    ../Base/core/TwoDimensionalListIterator.h
     ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES
-    ../Base/core/DateTime.cpp
     ../Base/core/CompareToBuilder.cpp
+    ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/PreCompiled.cpp)
@@ -144,6 +151,7 @@ set(UNIT_TESTING_INCLUDES
 #
 set(BASE_TEST_INCLUDES_FILES
     interfaces/ListUnitTest.h
+    interfaces/MatrixUnitTest.h
     interfaces/TestData.h
     interfaces/TwoDimensionalListUnitTest.h
     core/PreCompiled.h)
@@ -151,6 +159,7 @@ set(BASE_TEST_INCLUDES_FILES
 set(BASE_TEST_SOURCES_FILES
     main.cpp
     core/ListUnitTest.cpp
+    core/MatrixUnitTest.cpp
     core/TestData.cpp
     core/TwoDimensionalListUnitTest.cpp
     core/PreCompiled.cpp)

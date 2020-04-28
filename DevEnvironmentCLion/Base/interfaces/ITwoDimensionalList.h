@@ -44,7 +44,7 @@ namespace base
         /**
          * Gets the number of columns in a specific row.
          */
-        virtual std::size_t columnSize(std::size_t rowIndex) const = 0;
+        virtual std::size_t rowSize(std::size_t rowIndex) const = 0;
 
         /**
          * Gets an element at a specified position.

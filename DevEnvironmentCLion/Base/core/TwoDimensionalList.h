@@ -15,14 +15,19 @@ namespace base
     {
     public:
         /**
-         * The constructor, which creates a matrix of initialRowsSize x initialColumnsSize.
+         * The constructor, with an initial sizes: rowSize x colSize.
          */
-        TwoDimensionalList(std::size_t initialRowsSize, std::size_t initialColumnsSize);
+        TwoDimensionalList(std::size_t rowsSize, std::size_t colsSize);
 
         /**
-         * The constructor, which takes a two dimensional vector.
+         * The constructor, with a two dimensional vector.
          */
         explicit TwoDimensionalList(const std::vector<std::vector<T>>& data);
+
+        /**
+         * The constructor, with an initializer list.
+         */
+        TwoDimensionalList(const std::initializer_list<std::vector<T>>& list);
 
         /**
          * The destructor.
@@ -49,7 +54,7 @@ namespace base
         /**
          * Gets the number of columns in a specific row.
          */
-        virtual std::size_t columnSize(std::size_t rowIndex) const override;
+        virtual std::size_t rowSize(std::size_t rowIndex) const override;
 
         /**
          * Gets an element at a specified position.
@@ -102,12 +107,12 @@ namespace base
     };
 
     template <typename T>
-    TwoDimensionalList<T>::TwoDimensionalList(std::size_t initialRowsSize, std::size_t initialColumnsSize) :
-        m_data(initialRowsSize)
+    TwoDimensionalList<T>::TwoDimensionalList(std::size_t rowsSize, std::size_t colsSize) :
+        m_data(rowsSize)
     {
-        for (size_t i = 0; i < initialRowsSize; ++i)
+        for (size_t i = 0; i < rowsSize; ++i)
         {
-            std::vector<T> row(initialColumnsSize);
+            std::vector<T> row(colsSize);
             m_data[i] = row;
         }
     }
@@ -116,6 +121,18 @@ namespace base
     TwoDimensionalList<T>::TwoDimensionalList(const std::vector<std::vector<T>>& data) :
         m_data(data)
     {
+    }
+
+    template <typename T>
+    TwoDimensionalList<T>::TwoDimensionalList(const std::initializer_list<std::vector<T>>& data) :
+        m_data(data.size())
+    {
+        std::size_t rowIndex = 0;
+        for (const std::vector<T>& row : data)
+        {
+            m_data[rowIndex] = row;
+            ++rowIndex;
+        }
     }
 
     template <typename T>
@@ -130,7 +147,7 @@ namespace base
     }
 
     template <typename T>
-    std::size_t TwoDimensionalList<T>::columnSize(std::size_t rowIndex) const {
+    std::size_t TwoDimensionalList<T>::rowSize(std::size_t rowIndex) const {
         const std::vector<T>& row = m_data[rowIndex];
         return row.size();
     }

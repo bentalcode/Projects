@@ -2,6 +2,7 @@
 
 #include "MatrixFinderUnitTest.h"
 #include "UnitTestFunction.h"
+#include "Matrix.h"
 
 using namespace problems_test;
 
@@ -51,7 +52,8 @@ void MatrixFinderUnitTest::registerTests(unit_testing::ITestRegistration& regist
  */
 void MatrixFinderUnitTest::matrixFinderTest()
 {
-    std::vector<std::vector<int>> matrix = {
+    base::Matrix<int> matrix =
+    {
         {1, 2, 3},
         {4, 5, 6},
         {7, 8, 9}
