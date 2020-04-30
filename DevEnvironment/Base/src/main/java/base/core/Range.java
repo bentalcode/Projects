@@ -124,7 +124,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     }
 
     /**
-     * Gets the string representation of a range.
+     * Gets the string representation of this instance.
      */
     @Override
     public String toString() {

@@ -21,9 +21,32 @@ public class MutableInteger {
     }
 
     /**
+     * Increments the value of an integer.
+     */
+    public int increment() {
+        ++this.value;
+        return this.value;
+    }
+
+    /**
+     * Decrements the value of an integer.
+     */
+    public int decrement() {
+        --this.value;
+        return this.value;
+    }
+
+    /**
      * Gets the value of an integer.
      */
     public int get() {
         return this.value;
+    }
+
+    /**
+     * Gets the string representation of this instance.
+     */
+    public String toString() {
+        return String.valueOf(this.value);
     }
 }
