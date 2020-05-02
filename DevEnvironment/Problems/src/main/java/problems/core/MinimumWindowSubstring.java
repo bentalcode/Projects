@@ -106,7 +106,7 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
             char currValue = src[i];
 
             if (this.characters.contains(currValue)) {
-                this.updateValueCounterMap(valueCounterMap, currValue, 1);
+                MinimumWindowSubstring.updateValueCounterMap(valueCounterMap, currValue, 1);
 
                 if (valueCounterMap.size() == this.characters.size()) {
                     return i;
