@@ -39,25 +39,12 @@ public final class MergeSort<T> implements ISort<T> {
             arr,
             "The array to sort.");
 
-        this.sort(arr, 0, arr.length - 1);
-    }
-
-    /**
-     * Sorts an array.
-     */
-    private void sort(T[] arr, int startIndex, int endIndex) {
-        if (startIndex > endIndex) {
+        if (arr.length <= 1) {
             return;
         }
 
-        int length = endIndex - startIndex + 1;
-
-        if (length <= 1) {
-            return;
-        }
-
-        T[] buffer = Arrays.newInstance(this.classType, length);
-        this.mergeSort(arr, startIndex, endIndex, buffer);
+        T[] buffer = Arrays.newInstance(this.classType, arr.length);
+        this.mergeSort(arr, 0, arr.length - 1, buffer);
     }
 
     /**

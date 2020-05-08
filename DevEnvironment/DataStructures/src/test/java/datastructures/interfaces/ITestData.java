@@ -8,9 +8,9 @@ import datastructures.collections.interfaces.ICollectionTestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
+import datastructures.heap.interfaces.IHeapTestData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.interfaces.IListTestData;
-import datastructures.list.interfaces.ITwoDimensionalList;
 import datastructures.list.interfaces.ITwoDimensionalListTestData;
 import datastructures.matrix.interfaces.IMatrixTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
@@ -60,6 +60,11 @@ public interface ITestData {
      * Gets the data of tests of a priority queue.
      */
     IPriorityQueueTestData getPriorityQueueData();
+
+    /**
+     * Gets the data of tests of a heap.
+     */
+    IHeapTestData getHeapData();
 
     /**
      * Gets the data of tests of a hash map.

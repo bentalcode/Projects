@@ -15,37 +15,43 @@ import datastructures.list.interfaces.IList;
 import datastructures.priorityqueue.interfaces.IPriorityQueue;
 
 /**
- * The Heap class implements an abstract base class for a heap.
+ * The AbstractPriorityQueue class implements an abstract base class for a priority queue.
+ *
+ * The priority queue is implemented as a heap with a dynamic array.
  *
  * A complete binary tree can be uniquely represented by storing it's level order traversal in an array.
  * The left child of an element is located at index: 2*index+1.
  * The right child of an element is located at index: 2*index+2.
  * The parent of an element is located at index: (index - 1) / 2.
  */
-public abstract class AbstractHeap<T extends Comparable<T>> implements IPriorityQueue<T> {
+public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements IPriorityQueue<T> {
     private final IList<T> data;
-    private final IBinaryComparator<IPriorityQueue<T>> comparator;
     private final IBinaryComparator<T> elementComparator;
+    private final IBinaryComparator<IPriorityQueue<T>> comparator;
 
     /**
-     * The AbstractHeap constructor.
+     * The AbstractPriorityQueue constructor.
      */
-    protected AbstractHeap(
+    protected AbstractPriorityQueue(
         Class<T> classType,
-        IBinaryComparator<IPriorityQueue<T>> comparator,
-        IBinaryComparator<T> elementComparator) {
+        IBinaryComparator<T> elementComparator,
+        IBinaryComparator<IPriorityQueue<T>> comparator) {
 
         Conditions.validateNotNull(
-            comparator,
-            "The comparator of a priority queue.");
+            classType,
+            "The class type of an element.");
 
         Conditions.validateNotNull(
             elementComparator,
             "The comparator of an element.");
 
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator of a priority queue.");
+
         this.data = new ArrayList<>(classType);
-        this.comparator = comparator;
         this.elementComparator = elementComparator;
+        this.comparator = comparator;
     }
 
     /**
@@ -76,7 +82,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
     public T poll() {
         Conditions.validate(
             !this.empty(),
-            "The heap can not be empty.");
+            "The priority queue can not be empty.");
 
         T currentElement = this.data.get(0);
 
@@ -149,7 +155,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
     }
 
     /**
-     * Gets an iterator of the heap.
+     * Gets an iterator of the priority queue.
      */
     @Override
     public IIterator<T> getIterator() {
@@ -157,7 +163,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
     }
 
     /**
-     * Gets a reverse iterator of the heap.
+     * Gets a reverse iterator of the priority queue.
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
@@ -305,7 +311,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
         }
 
         int currChildIndex = index;
-        int currParentIndex = this.parentIndex(currChildIndex);
+        int currParentIndex = this.parentIndex(index);
 
         while (currParentIndex != -1) {
             T currParentValue = this.data.get(currParentIndex);
@@ -323,7 +329,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
             // Move one level up...
             //
             currChildIndex = currParentIndex;
-            currParentIndex = this.parentIndex(currChildIndex);
+            currParentIndex = this.parentIndex(currParentIndex);
         }
     }
 

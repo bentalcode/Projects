@@ -7,20 +7,31 @@ import base.interfaces.IIterator;
  */
 public class ArrayIterator<T> implements IIterator<T> {
     private final T[] array;
+    private final int startIndex;
+    private final int endIndex;
     private int position;
 
     /**
      * Creates a new iterator for an array.
      */
     public static <T> IIterator<T> of(T[] array) {
-        return new ArrayIterator<>(array);
+        return new ArrayIterator<>(array, 0, (array != null) ? array.length - 1 : -1);
+    }
+
+    /**
+     * Creates a new iterator for a sub array.
+     */
+    public static <T> IIterator<T> of(T[] array, int startIndex, int endIndex) {
+        return new ArrayIterator<>(array, startIndex, endIndex);
     }
 
     /**
      * The ArrayIterator constructor.
      */
-    private ArrayIterator(T[] array) {
+    private ArrayIterator(T[] array, int startIndex, int endIndex) {
         this.array = array;
+        this.startIndex = startIndex;
+        this.endIndex = endIndex;
 
         this.reset();
     }
@@ -30,7 +41,7 @@ public class ArrayIterator<T> implements IIterator<T> {
      */
     @Override
     public boolean hasNext() {
-        return this.array != null && this.position < this.array.length;
+        return this.position >= 0 && this.position <= this.endIndex;
     }
 
     /**
@@ -51,8 +62,8 @@ public class ArrayIterator<T> implements IIterator<T> {
      */
     @Override
     public void reset() {
-        if (this.array != null) {
-            this.position = 0;
+        if (this.array != null && startIndex <= endIndex) {
+            this.position = startIndex;
         }
         else {
             this.position = -1;

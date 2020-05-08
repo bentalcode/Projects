@@ -3,7 +3,6 @@ package datastructures.cache.core;
 import datastructures.cache.interfaces.ICacheProperties;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.node.interfaces.IKeyValueNode;
-import datastructures.priorityqueue.core.AbstractHeap;
 
 /**
  * The MRUCache class implements a most recently used cache.

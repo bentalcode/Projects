@@ -1,5 +1,6 @@
 package datastructures.priorityqueue.core;
 
+import base.core.ListIterator;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueue;
@@ -60,31 +61,31 @@ public final class PriorityQueueTest {
     /**
      * Tests the creation logic of a priority queue.
      */
-    private <TValue extends Comparable<TValue>> void testCreation(IPriorityQueueData<TValue> data) {
-        IPriorityQueue<TValue> priorityQueue = this.createPriorityQueue(data);
+    private <T extends Comparable<T>> void testCreation(IPriorityQueueData<T> data) {
+        IPriorityQueue<T> priorityQueue = this.createPriorityQueue(data);
 
         this.assertion.assertEqualsWithIterators(
             priorityQueue.getIterator(),
-            base.core.ListIterator.of(data.getData()),
+            ListIterator.of(data.getData()),
             "Invalid creation logic of a priority queue.");
     }
 
     /**
      * Tests the creation and removal logic of a priority queue.
      */
-    private <TValue extends Comparable<TValue>> void testCreationWithRemoval(IPriorityQueueData<TValue> data) {
-        IPriorityQueue<TValue> priorityQueue = this.createPriorityQueue(data);
+    private <T extends Comparable<T>> void testCreationWithRemoval(IPriorityQueueData<T> data) {
+        IPriorityQueue<T> priorityQueue = this.createPriorityQueue(data);
 
         this.assertion.assertEqualsWithIterators(
             priorityQueue.getIterator(),
-            base.core.ListIterator.of(data.getData()),
+            ListIterator.of(data.getData()),
             "Invalid creation logic of a priority queue.");
 
         int currSize = priorityQueue.size();
 
         while (!priorityQueue.empty()) {
-            TValue valueToRemove = priorityQueue.peek();
-            TValue removedValue = priorityQueue.poll();
+            T valueToRemove = priorityQueue.peek();
+            T removedValue = priorityQueue.poll();
             --currSize;
 
             this.assertion.assertEquals(
@@ -101,14 +102,14 @@ public final class PriorityQueueTest {
     /**
      * Creates a priority queue.
      */
-    private <TValue extends Comparable<TValue>> IPriorityQueue<TValue> createPriorityQueue(
-        IPriorityQueueData<TValue> data) {
+    private <T extends Comparable<T>> IPriorityQueue<T> createPriorityQueue(
+        IPriorityQueueData<T> data) {
 
-        IPriorityQueue<TValue> priorityQueue = new Heap<>(
+        IPriorityQueue<T> priorityQueue = new PriorityQueue<>(
             data.getClassType(),
             data.getElementComparator());
 
-        for (TValue item : data.getCreationData()) {
+        for (T item : data.getCreationData()) {
             priorityQueue.offer(item);
         }
 

@@ -52,11 +52,8 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
      * Gets the data of priority queue2.
      */
     private IPriorityQueueData<Integer> getPriorityQueueData2() {
-        List<Integer> creationData = ArrayLists.of(
-            14, 10, 5, 9, 6, 3, 2, 1);
-
-        List<Integer> expectedData = ArrayLists.of(
-            1, 2, 3, 6, 9, 10, 5, 14);
+        List<Integer> creationData = ArrayLists.of(14, 10, 5, 9, 6, 3, 2, 1);
+        List<Integer> expectedData = ArrayLists.of(1, 2, 3, 6, 9, 10, 5, 14);
 
         return new PriorityQueueData<>(
             Integer.class,
@@ -69,11 +66,8 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
      * Gets the data of priority queue3.
      */
     private IPriorityQueueData<Integer> getPriorityQueueData3() {
-        List<Integer> creationData = ArrayLists.of(
-            14, 6, 5, 9, 1, 3, 2, 10);
-
-        List<Integer> expectedData = ArrayLists.of(
-            1, 5, 2, 10, 9, 6, 3, 14);
+        List<Integer> creationData = ArrayLists.of(14, 6, 5, 9, 1, 3, 2, 10);
+        List<Integer> expectedData = ArrayLists.of(1, 5, 2, 10, 9, 6, 3, 14);
 
         return new PriorityQueueData<>(
             Integer.class,
@@ -86,11 +80,8 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
      * Gets the data of priority queue4.
      */
     private IPriorityQueueData<Integer> getPriorityQueueData4() {
-        List<Integer> creationData = ArrayLists.of(
-            2, 20, 5, 20, 19, 15, 50, 30);
-
-        List<Integer> expectedData = ArrayLists.of(
-            50, 30, 20, 20, 19, 5, 15, 2);
+        List<Integer> creationData = ArrayLists.of(2, 20, 5, 20, 19, 15, 50, 30);
+        List<Integer> expectedData = ArrayLists.of(50, 30, 20, 20, 19, 5, 15, 2);
 
         return new PriorityQueueData<>(
             Integer.class,
@@ -103,11 +94,8 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
      * Gets the data of priority queue5.
      */
     private IPriorityQueueData<Integer> getPriorityQueueData5() {
-        List<Integer> creationData = ArrayLists.of(
-            -7, 6, 0, 9, 1, 3, 4, -3, 5, -1);
-
-        List<Integer> expectedData = ArrayLists.of(
-            9, 6, 4, 5, 1, 0, 3, -7, -3, -1);
+        List<Integer> creationData = ArrayLists.of(-7, 6, 0, 9, 1, 3, 4, -3, 5, -1);
+        List<Integer> expectedData = ArrayLists.of(9, 6, 4, 5, 1, 0, 3, -7, -3, -1);
 
         return new PriorityQueueData<>(
             Integer.class,

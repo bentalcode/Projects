@@ -16,6 +16,8 @@ import datastructures.graph.core.GraphTestData;
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.core.HashMapTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
+import datastructures.heap.core.HeapTestData;
+import datastructures.heap.interfaces.IHeapTestData;
 import datastructures.interfaces.ITestData;
 import datastructures.linkedlist.core.LinkedListTestData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
@@ -104,6 +106,14 @@ public final class TestData implements ITestData {
     @Override
     public IPriorityQueueTestData getPriorityQueueData() {
         return new PriorityQueueTestData();
+    }
+
+    /**
+     * Gets the data of tests of a heap.
+     */
+    @Override
+    public IHeapTestData getHeapData() {
+        return new HeapTestData();
     }
 
     /**
