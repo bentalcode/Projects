@@ -63,6 +63,36 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
     }
 
     /**
+     * The AbstractHeap constructor.
+     */
+    protected AbstractHeap(
+        T[] data,
+        IBinaryComparator<T> elementComparator,
+        IBinaryComparator<IPriorityQueue<T>> comparator) {
+
+        Conditions.validate(
+            data != null && data.length > 0,
+            "The initial data of the heap is not defined.");
+
+        Conditions.validateNotNull(
+            elementComparator,
+            "The comparator of an element.");
+
+        Conditions.validateNotNull(
+            comparator,
+            "The comparator of a heap.");
+
+        this.data = data;
+        this.elementComparator = elementComparator;
+        this.comparator = comparator;
+
+        for (int i = 0; i < data.length; ++i) {
+            T currValue = data[i];
+            this.offer(currValue);
+        }
+    }
+
+    /**
      * Offers an element to the priority queue.
      *
      * The new element is initially appended to the end of the heap (after the last element of the array),

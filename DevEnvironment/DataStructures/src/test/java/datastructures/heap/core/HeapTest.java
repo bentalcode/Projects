@@ -103,13 +103,18 @@ public final class HeapTest {
      * Creates a heap.
      */
     private <T extends Comparable<T>> IPriorityQueue<T> createHeap(IHeapData<T> data) {
-        IPriorityQueue<T> heap = new Heap<>(
-            data.getClassType(),
-            data.getCapacity(),
-            data.getElementComparator());
+        IPriorityQueue<T> heap;
 
-        for (T item : data.getCreationData()) {
-            heap.offer(item);
+        if (data.getCreationData().length == 0) {
+            heap = new Heap<>(
+                data.getClassType(),
+                data.getCapacity(),
+                data.getElementComparator());
+        }
+        else {
+            heap = new Heap<>(
+                data.getCreationData(),
+                data.getElementComparator());
         }
 
         return heap;
