@@ -3,6 +3,7 @@
 #include "MatchingTripletsUnitTest.h"
 #include "MatrixFinderUnitTest.h"
 #include "MergingIntervalsUnitTest.h"
+#include "MinimumWindowSubstringUnitTest.h"
 #include "PositionQueensUnitTest.h"
 #include "NumberValidatorUnitTest.h"
 
@@ -24,6 +25,9 @@ int main()
 
     IUnitTestPtr mergingIntervalsUnitTest(new MergingIntervalsUnitTest("MergingIntervals"));
     testManager.registerTest(mergingIntervalsUnitTest);
+
+    IUnitTestPtr minimumWindowSubstringUnitTest(new MinimumWindowSubstringUnitTest("minimumWindowSubstring"));
+    testManager.registerTest(minimumWindowSubstringUnitTest);
 
     IUnitTestPtr positionQueensUnitTest(new PositionQueensUnitTest("PositionQueens"));
     testManager.registerTest(positionQueensUnitTest);

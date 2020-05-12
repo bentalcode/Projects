@@ -40,23 +40,23 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
             return null;
         }
 
-        Map<Character, Integer> valueCounterMap = new HashMap<>();
+        Map<Character, Integer> characterCounter = new HashMap<>();
 
         int endIndex = this.coverSourceString(
             this.src,
             0,
             this.src.length - 1,
-            valueCounterMap);
+            characterCounter);
 
         if (endIndex == -1) {
             return null;
         }
 
-        int startIndex = this.tryShrinkSubString(
+        int startIndex = this.shrinkSubString(
             this.src,
             0,
             endIndex,
-            valueCounterMap);
+            characterCounter);
 
         int minStartIndex = startIndex;
         int minEndIndex = endIndex;
@@ -69,16 +69,16 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
                 continue;
             }
 
-            MinimumWindowSubstring.updateValueCounterMap(
-                valueCounterMap,
+            MinimumWindowSubstring.updateCharacterCounter(
+                characterCounter,
                 currValue,
                 1);
 
-            startIndex = this.tryShrinkSubString(
+            startIndex = this.shrinkSubString(
                 this.src,
                 startIndex,
                 currIndex,
-                valueCounterMap);
+                characterCounter);
 
             int currLength = currIndex - startIndex + 1;
 
@@ -100,15 +100,15 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
         char[] src,
         int startIndex,
         int endIndex,
-        Map<Character, Integer> valueCounterMap) {
+        Map<Character, Integer> characterCounter) {
 
         for (int i = startIndex; i <= endIndex; ++i) {
             char currValue = src[i];
 
             if (this.characters.contains(currValue)) {
-                MinimumWindowSubstring.updateValueCounterMap(valueCounterMap, currValue, 1);
+                MinimumWindowSubstring.updateCharacterCounter(characterCounter, currValue, 1);
 
-                if (valueCounterMap.size() == this.characters.size()) {
+                if (characterCounter.size() == this.characters.size()) {
                     return i;
                 }
             }
@@ -118,13 +118,13 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
     }
 
     /**
-     * Tries to shrink the sub-string.
+     * Shrinks a sub-string.
      */
-    private int tryShrinkSubString(
+    private int shrinkSubString(
         char[] src,
         int startIndex,
         int endIndex,
-        Map<Character, Integer> valueCounterMap) {
+        Map<Character, Integer> characterCounter) {
 
         int currIndex = startIndex;
 
@@ -132,14 +132,14 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
             char currValue = src[currIndex];
 
             if (this.characters.contains(currValue)) {
-                int currValueCount = valueCounterMap.get(currValue);
+                int currValueCount = characterCounter.get(currValue);
                 assert(currValueCount >= 1);
 
                 if (currValueCount == 1) {
                     break;
                 }
 
-                valueCounterMap.put(currValue, currValueCount - 1);
+                characterCounter.put(currValue, currValueCount - 1);
             }
 
             ++currIndex;
@@ -149,16 +149,16 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
     }
 
     /**
-     * Updates the value counter map.
+     * Updates the character counter.
      */
-    private static void updateValueCounterMap(
-        Map<Character, Integer> map,
+    private static void updateCharacterCounter(
+        Map<Character, Integer> characterCounter,
         char value,
         int delta) {
 
-        int currCount = map.getOrDefault(value, 0);
+        int currCount = characterCounter.getOrDefault(value, 0);
         currCount += delta;
-        map.put(value, currCount);
+        characterCounter.put(value, currCount);
     }
 
     /**

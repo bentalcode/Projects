@@ -22,6 +22,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Duration.h
     ../Base/interfaces/EqualBuilder.h
     ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/ICalculator.h
     ../Base/interfaces/ICollection.h
     ../Base/interfaces/IComparableComparator.h
     ../Base/interfaces/IEquatableComparator.h
@@ -77,11 +78,16 @@ set(PROBLEMS_INCLUDES_FILES
     ./interfaces/IMatchingTriplets.h
     ./interfaces/IMatrixFinder.h
     ./interfaces/IMergingIntervals.h
+    ./interfaces/IMinimumWindowSubstring.h
     ./interfaces/IPositionQueens.h
     ./core/CombinationSum.h
     ./core/MatchingTriplets.h
     ./core/MatrixFinder.h
     ./core/MergingIntervals.h
+    ./core/MinimumWindowSubstring.cpp
+    ./core/MinimumWindowSubstring.h
+    ./core/MinimumWindowSubstring.cpp
+    ./core/MinimumWindowSubstring.h
     ./core/NumberValidator.h
     ./core/PositionQueens.h
     ./core/PreCompiled.h

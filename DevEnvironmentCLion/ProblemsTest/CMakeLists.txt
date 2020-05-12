@@ -33,6 +33,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Duration.h
     ../Base/interfaces/EqualBuilder.h
     ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/ICalculator.h
     ../Base/interfaces/ICollection.h
     ../Base/interfaces/IComparableComparator.h
     ../Base/interfaces/IEquatableComparator.h
@@ -154,17 +155,20 @@ set(PROBLEMS_INCLUDES_FILES
     ../Problems/interfaces/IMatchingTriplets.h
     ../Problems/interfaces/IMatrixFinder.h
     ../Problems/interfaces/IMergingIntervals.h
+    ../Problems/interfaces/IMinimumWindowSubstring.h
     ../Problems/interfaces/IPositionQueens.h
     ../Problems/core/CombinationSum.h
     ../Problems/core/MatchingTriplets.h
     ../Problems/core/MatrixFinder.h
     ../Problems/core/MergingIntervals.h
+    ../Problems/core/MinimumWindowSubstring.h
     ../Problems/core/NumberValidator.h
     ../Problems/core/PositionQueens.h
     ../Problems/core/PreCompiled.h
     ../Problems/ProblemException.h)
 
 set(PROBLEMS_SOURCES_FILES
+    ../Problems/core/MinimumWindowSubstring.cpp
     ../Problems/core/NumberValidator.cpp
     ../Problems/core/PositionQueens.cpp
     ../Problems/core/PreCompiled.cpp)
@@ -186,6 +190,7 @@ set(PROBLEMS_TEST_INCLUDES_FILES
     interfaces/MatchingTripletsUnitTest.h
     interfaces/MatrixFinderUnitTest.h
     interfaces/MergingIntervalsUnitTest.h
+    interfaces/MinimumWindowSubstringUnitTest.h
     interfaces/NumberValidatorUnitTest.h
     interfaces/PositionQueensUnitTest.h
     interfaces/TestData.h
@@ -197,6 +202,7 @@ set(PROBLEMS_TEST_SOURCES_FILES
     core/MatchingTripletsUnitTest.cpp
     core/MatrixFinderUnitTest.cpp
     core/MergingIntervalsUnitTest.cpp
+    core/MinimumWindowSubstringUnitTest.cpp
     core/NumberValidatorUnitTest.cpp
     core/PositionQueensUnitTest.cpp
     core/TestData.cpp

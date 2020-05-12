@@ -33,6 +33,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Duration.h
     ../Base/interfaces/EqualBuilder.h
     ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/ICalculator.h
     ../Base/interfaces/ICollection.h
     ../Base/interfaces/IComparableComparator.h
     ../Base/interfaces/IEquatableComparator.h

@@ -22,6 +22,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/Duration.h
     ./interfaces/EqualBuilder.h
     ./interfaces/IBinaryComparator.h
+    ./interfaces/ICalculator.h
     ./interfaces/ICollection.h
     ./interfaces/IComparableComparator.h
     ./interfaces/IEquatableComparator.h
