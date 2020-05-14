@@ -62,6 +62,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/List.h
     ../Base/core/ListIterator.h
     ../Base/core/Matrix.h
+    ../Base/core/Position.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
@@ -75,6 +76,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
+    ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp)
 
 set(BASE_SOURCES

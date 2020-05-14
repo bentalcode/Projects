@@ -26,6 +26,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ICollection.h
     ./interfaces/IComparableComparator.h
     ./interfaces/IEquatableComparator.h
+    ./interfaces/IFinder.h
     ./interfaces/IHashCodeProvider.h
     ./interfaces/IIterable.h
     ./interfaces/IIterator.h
@@ -51,6 +52,7 @@ set(BASE_INCLUDES_FILES
     ./core/List.h
     ./core/ListIterator.h
     ./core/Matrix.h
+    ./core/Position.h
     ./core/PreCompiled.h
     ./core/ReferenceCount.h
     ./core/ReferenceCountHolder.h
@@ -64,6 +66,7 @@ set(BASE_SOURCES_FILES
     ./core/DateTime.cpp
     ./core/EqualBuilder.cpp
     ./core/LogStreamWriter.cpp
+    ./core/Position.cpp
     ./core/PreCompiled.cpp)
 
 set(BASE_SOURCES

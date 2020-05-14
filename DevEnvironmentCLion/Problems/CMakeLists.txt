@@ -47,6 +47,8 @@ set(BASE_INCLUDES_FILES
     ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/EquatableComparator.h
     ../Base/core/ListIterator.h
+    ../Base/core/Matrix.h
+    ../Base/core/Position.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
@@ -59,6 +61,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
+    ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp)
 
 set(BASE_SOURCES
@@ -76,7 +79,6 @@ set(BASE_INCLUDES
 set(PROBLEMS_INCLUDES_FILES
     ./interfaces/ICombinationSum.h
     ./interfaces/IMatchingTriplets.h
-    ./interfaces/IMatrixFinder.h
     ./interfaces/IMergingIntervals.h
     ./interfaces/IMinimumWindowSubstring.h
     ./interfaces/IPositionQueens.h
@@ -91,12 +93,14 @@ set(PROBLEMS_INCLUDES_FILES
     ./core/NumberValidator.h
     ./core/PositionQueens.h
     ./core/PreCompiled.h
+    ./core/WordFinder.h
     ./ProblemException.h)
 
 set(PROBLEMS_SOURCES_FILES
     ./core/NumberValidator.cpp
     ./core/PositionQueens.cpp
-    ./core/PreCompiled.cpp)
+    ./core/PreCompiled.cpp
+    ./core/WordFinder.cpp)
 
 set(PROBLEMS_SOURCES
     ${PROBLEMS_INCLUDES_FILES}

@@ -25,6 +25,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ICollection.h
     ../Base/interfaces/IComparableComparator.h
     ../Base/interfaces/IEquatableComparator.h
+    ../Base/interfaces/IFinder.h
     ../Base/interfaces/IHashCodeProvider.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h

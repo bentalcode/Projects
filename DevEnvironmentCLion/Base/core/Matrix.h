@@ -3,6 +3,7 @@
 
 #include "IMatrix.h"
 #include "TwoDimensionalListIterator.h"
+#include "Position.h"
 
 namespace base
 {
@@ -84,6 +85,16 @@ namespace base
          * Gets a row.
          */
         virtual std::vector<T>& operator[](int index) override;
+
+        /**
+         * Checks if a specific position is inbound.
+         */
+        virtual bool inbound(long row, long col) const override;
+
+        /**
+         * Checks if a specific position is inbound.
+         */
+        virtual bool inbound(const Position& position) const override;
 
         /**
          * Checks whether a collection is empty.
@@ -270,6 +281,18 @@ namespace base
             std::string errorMessage = "The matrix is not valid.";
             throw BaseException(errorMessage);
         }
+    }
+
+    template <typename T>
+    bool Matrix<T>::inbound(long row, long col) const
+    {
+        return row >= 0 && row < m_rows && col >= 0 && col < m_cols;
+    }
+
+    template <typename T>
+    bool Matrix<T>::inbound(const Position& position) const
+    {
+        return inbound(position.getRow(), position.getColumn());
     }
 
     template <typename T>

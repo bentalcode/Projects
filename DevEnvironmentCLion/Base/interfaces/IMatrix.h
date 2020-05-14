@@ -7,6 +7,8 @@
 
 namespace base
 {
+    class Position;
+
     /**
      * The IMatrix interface defines a matrix.
      */
@@ -75,6 +77,16 @@ namespace base
          * Gets a row.
          */
         virtual std::vector<T>& operator[](int index) = 0;
+
+        /**
+         * Checks if a specific position is inbound.
+         */
+        virtual bool inbound(long row, long col) const = 0;
+
+        /**
+         * Checks if a specific position is inbound.
+         */
+        virtual bool inbound(const Position& position) const = 0;
     };
 }
 

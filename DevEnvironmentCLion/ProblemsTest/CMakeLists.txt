@@ -62,6 +62,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/List.h
     ../Base/core/ListIterator.h
     ../Base/core/Matrix.h
+    ../Base/core/Position.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
@@ -75,6 +76,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
+    ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp)
 
 set(BASE_SOURCES
@@ -164,6 +166,7 @@ set(PROBLEMS_INCLUDES_FILES
     ../Problems/core/MinimumWindowSubstring.h
     ../Problems/core/NumberValidator.h
     ../Problems/core/PositionQueens.h
+    ../Problems/core/WordFinder.h
     ../Problems/core/PreCompiled.h
     ../Problems/ProblemException.h)
 
@@ -171,7 +174,8 @@ set(PROBLEMS_SOURCES_FILES
     ../Problems/core/MinimumWindowSubstring.cpp
     ../Problems/core/NumberValidator.cpp
     ../Problems/core/PositionQueens.cpp
-    ../Problems/core/PreCompiled.cpp)
+    ../Problems/core/PreCompiled.cpp
+    ../Problems/core/WordFinder.cpp)
 
 set(PROBLEMS_SOURCES
     ${PROBLEMS_INCLUDES_FILES}
@@ -194,6 +198,7 @@ set(PROBLEMS_TEST_INCLUDES_FILES
     interfaces/NumberValidatorUnitTest.h
     interfaces/PositionQueensUnitTest.h
     interfaces/TestData.h
+    interfaces/WordFinderUnitTest.h
     core/PreCompiled.h)
 
 set(PROBLEMS_TEST_SOURCES_FILES
@@ -205,8 +210,9 @@ set(PROBLEMS_TEST_SOURCES_FILES
     core/MinimumWindowSubstringUnitTest.cpp
     core/NumberValidatorUnitTest.cpp
     core/PositionQueensUnitTest.cpp
+    core/PreCompiled.cpp
     core/TestData.cpp
-    core/PreCompiled.cpp)
+    core/WordFinderUnitTest.cpp)
 
 set(PROBLEMS_TEST_SOURCES
     ${PROBLEMS_TEST_INCLUDES_FILES}
