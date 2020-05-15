@@ -29,12 +29,12 @@ public final class JsonParser implements IJsonParser, ICloseable {
      */
     public JsonParser(IJsonFactory factory, Reader reader) {
         Conditions.validateNotNull(
-                factory,
-                "The json factory.");
+            factory,
+            "The json factory.");
 
         Conditions.validateNotNull(
-                reader,
-                "The json reader.");
+            reader,
+            "The json reader.");
 
         this.tokenizer = factory.createTokenizer(reader);
     }

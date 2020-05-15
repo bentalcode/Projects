@@ -1,0 +1,16 @@
+{
+    "name": "DevEnvironmentCLion",
+    "rootPath": "c:\\repositories\\Projects\\DevEnvironmentCLion",
+    "modules": [
+        {
+            "name": "Base"
+        },
+        {
+            "name": "BaseTest",
+            "path": "BaseTest",
+            "cmakeListsPath": "CMakeLists.txt",
+            "headerFileExtensions": ["h", "hpp"],
+            "sourceFileExtensions": ["c", "cpp"]
+        }
+    ]
+}

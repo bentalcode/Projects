@@ -1,10 +1,9 @@
 package json.core;
 
 import base.core.Pair;
-import base.core.Paths;
-import base.core.ResourcePathBuilder;
 import base.interfaces.IPair;
 import json.interfaces.ITestData;
+import testbase.core.ResourcePaths;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +37,11 @@ public final class TestData implements ITestData {
         List<IPair<Path, Class<?>>> information = new ArrayList<>();
 
         for (IPair<String, Class<?>> resourceInformation : TestData.SimpleJsonResourcesInformation) {
-            Path path = this.createSimpleJsonResourcePath(resourceInformation.first());
+            Path path = ResourcePaths.create(
+                TestData.DataDirectoryName,
+                TestData.SimpleJsonResourcesDirectoryName,
+                resourceInformation.first());
+
             Class<?> classType = resourceInformation.second();
 
             information.add(Pair.of(path, classType));
@@ -47,30 +50,4 @@ public final class TestData implements ITestData {
         return information;
     }
 
-    /**
-     * Creates a path of a simple json resource.
-     */
-    private Path createSimpleJsonResourcePath(String resourceName) {
-        return this.createResourcePath(
-            TestData.DataDirectoryName,
-            TestData.SimpleJsonResourcesDirectoryName,
-            resourceName);
-    }
-
-    /**
-     * Creates a path of a resource.
-     */
-    private Path createResourcePath(
-        String rootDirectory,
-        String subDirectory,
-        String resourceName) {
-
-        String path = new ResourcePathBuilder()
-            .addComponent(rootDirectory)
-            .addComponent(subDirectory)
-            .addComponent(resourceName)
-            .build();
-
-        return Paths.create(path);
-    }
 }
