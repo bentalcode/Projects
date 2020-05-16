@@ -47,4 +47,16 @@ public final class JsonStreamingTest {
             this.streamingTest.testStreaming(json, CLionProjectManifest.class);
         }
     }
+
+    /**
+     * Tests streaming json for the CMakeListsManifest class.
+     */
+    @Test
+    public void CMakeListsManifestStreamingTest() {
+        for (Path path : this.testData.getCMakeListsManifestsResources()) {
+            String json = ResourceReader.loadString(path);
+
+            this.streamingTest.testStreaming(json, CMakeListsManifest.class);
+        }
+    }
 }

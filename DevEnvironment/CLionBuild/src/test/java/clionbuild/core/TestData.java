@@ -13,9 +13,13 @@ import java.util.List;
 public final class TestData implements ITestData {
     private static final String dataDirectoryName = "data";
     private static final String projectManifestsDirectoryName = "projectManifests";
+    private static final String cmakeListsManifestsDirectoryName = "cmakeListsManifests";
 
     private static final List<String> projectManifests = ArrayLists.of(
         "projectManifest1.json");
+
+    private static final List<String> cmakeListsManifests = ArrayLists.of(
+        "cmakeListsManifest1.json");
 
     /**
      * The TestData constructor.
@@ -35,6 +39,25 @@ public final class TestData implements ITestData {
                 dataDirectoryName,
                 projectManifestsDirectoryName,
                 projectManifest);
+
+            result.add(path);
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the resources of CMakeLists manifests.
+     */
+    @Override
+    public List<Path> getCMakeListsManifestsResources() {
+        List<Path> result = new ArrayList<>();
+
+        for (String cmakeListsManifest : cmakeListsManifests) {
+            Path path = ResourcePaths.create(
+                dataDirectoryName,
+                cmakeListsManifestsDirectoryName,
+                cmakeListsManifest);
 
             result.add(path);
         }

@@ -1,0 +1,11 @@
+{
+    "name": "Base",
+    "cmakeVersion": "3.13",
+    "projectVersion": "1.0",
+    "presetPath": "cmakeListsPreset1.txt",
+    "postsetPath": "cmakeListsPostset1.txt",
+    "includesFilesProperty": "INCLUDES_FILES",
+    "sourcesFilesProperty": "SOURCES_FILES",
+    "includesProperty": "INCLUDES",
+    "sourcesProperty": "SOURCES"
+}

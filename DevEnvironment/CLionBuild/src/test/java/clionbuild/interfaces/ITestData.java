@@ -11,4 +11,9 @@ public interface ITestData {
      * Gets the resources of project manifests.
      */
     List<Path> getProjectManifestsResources();
+
+    /**
+     * Gets the resources of CMakeLists manifests.
+     */
+    List<Path> getCMakeListsManifestsResources();
 }
