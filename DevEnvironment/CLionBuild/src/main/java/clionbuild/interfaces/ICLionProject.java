@@ -1,12 +1,14 @@
 package clionbuild.interfaces;
 
+import base.interfaces.IUnaryComparator;
+import json.interfaces.IJsonSerialization;
 import java.nio.file.Path;
 import java.util.List;
 
 /**
  * The ICLionProject interface defines a CLion project.
  */
-public interface ICLionProject {
+public interface ICLionProject extends IUnaryComparator<ICLionProject>, IJsonSerialization {
     /**
      * Gets the name of the project.
      */

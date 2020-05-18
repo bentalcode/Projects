@@ -17,9 +17,9 @@ import java.util.List;
  * The CLionProjectManifest class implements a manifest of a CLion project.
  */
 public final class CLionProjectManifest implements ICLionProjectManifest {
-    private static final String PropertyName = "name";
-    private static final String PropertyRootPath = "rootPath";
-    private static final String PropertyModules = "modules";
+    private static final String propertyName = "name";
+    private static final String propertyRootPath = "rootPath";
+    private static final String propertyModules = "modules";
 
     private final String name;
     private final String rootPath;
@@ -85,18 +85,18 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(PropertyName, this.name);
-        writer.writeStringProperty(PropertyRootPath, this.rootPath);
-        writer.writeCollectionProperty(PropertyModules, this.modules);
+        writer.writeStringProperty(propertyName, this.name);
+        writer.writeStringProperty(propertyRootPath, this.rootPath);
+        writer.writeCollectionProperty(propertyModules, this.modules);
     }
 
     /**
      * Reads a json.
      */
     public static ICLionProjectManifest readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(PropertyName);
-        String rootPath = reader.readStringProperty(PropertyRootPath);
-        List<ICLionModuleManifest> modules = reader.readListProperty(PropertyModules, CLionModuleManifest.class);
+        String name = reader.readStringProperty(propertyName);
+        String rootPath = reader.readStringProperty(propertyRootPath);
+        List<ICLionModuleManifest> modules = reader.readListProperty(propertyModules, CLionModuleManifest.class);
 
         return new CLionProjectManifest(
             name,

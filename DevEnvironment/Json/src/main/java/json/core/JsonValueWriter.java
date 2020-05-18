@@ -9,6 +9,7 @@ import json.interfaces.IJsonObjectWriter;
 import json.interfaces.IJsonSerialization;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * The JsonValueWriter class implements a writer of a json value.
@@ -21,8 +22,8 @@ public final class JsonValueWriter implements IJsonValueWriter {
      */
     public JsonValueWriter(IJsonGenerator generator) {
         Conditions.validateNotNull(
-                generator,
-                "The json generator to write into.");
+            generator,
+            "The json generator to write into.");
 
         this.generator = generator;
     }
@@ -235,6 +236,54 @@ public final class JsonValueWriter implements IJsonValueWriter {
         }
 
         this.writeStringArray(collectionToWrite);
+    }
+
+    /**
+     * Writes a map.
+     */
+    @Override
+    public void writeMapProperty(Map<String, String> map) {
+        if (map == null || map.isEmpty()) {
+            return;
+        }
+
+        this.generator.writeStartObject();
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            this.generator.writePropertyName(key);
+            this.generator.writeString(value);
+        }
+
+        this.generator.writeEndObject();
+    }
+
+    /**
+     * Writes a map property with key and value transformers.
+     */
+    @Override
+    public <TKey, TValue> void writeMapProperty(
+        Map<TKey, TValue> map,
+        IToString<TKey> keyTransformer,
+        IToString<TValue> valueTransformer) {
+
+        if (map == null || map.isEmpty()) {
+            return;
+        }
+
+        this.generator.writeStartObject();
+
+        for (Map.Entry<TKey, TValue> entry : map.entrySet()) {
+            String key = keyTransformer.toString(entry.getKey());
+            String value = valueTransformer.toString(entry.getValue());
+
+            this.generator.writePropertyName(key);
+            this.generator.writeString(value);
+        }
+
+        this.generator.writeEndObject();
     }
 
     /**

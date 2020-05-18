@@ -4,6 +4,7 @@ import base.interfaces.IToString;
 import json.interfaces.IJsonSerialization;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * The IJsonValueWriter interface defines a writer of a json value.
@@ -103,4 +104,17 @@ public interface IJsonValueWriter {
      * Writes a generic collection with a transformer.
      */
     <T> void writeCollection(Collection<T> collection, IToString<T> transformer);
+
+    /**
+     * Writes a map.
+     */
+    void writeMapProperty(Map<String, String> map);
+
+    /**
+     * Writes a map property with key and value transformers.
+     */
+    <TKey, TValue> void writeMapProperty(
+        Map<TKey, TValue> map,
+        IToString<TKey> keyTransformer,
+        IToString<TValue> valueTransformer);
 }

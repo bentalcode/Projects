@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The IJsonObjectWriter interface defines a writer of a json object.
@@ -140,7 +141,21 @@ public interface IJsonObjectWriter {
      * Writes a generic collection property with a transformer.
      */
     <T> void writeCollectionProperty(
-            String name,
-            Collection<T> collection,
-            IToString<T> transformer);
+        String name,
+        Collection<T> collection,
+        IToString<T> transformer);
+
+    /**
+     * Writes a map property.
+     */
+    void writeMapProperty(String name, Map<String, String> map);
+
+    /**
+     * Writes a map property with key and value transformers.
+     */
+    <TKey, TValue> void writeMapProperty(
+        String name,
+        Map<TKey, TValue> map,
+        IToString<TKey> keyTransformer,
+        IToString<TValue> valueTransformer);
 }

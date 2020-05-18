@@ -40,8 +40,8 @@ public final class JsonStreamingTest {
      * Tests streaming json for the CLionProjectManifest class.
      */
     @Test
-    public void CLionProjectManifestStreamingTest() {
-        for (Path path : this.testData.getProjectManifestsResources()) {
+    public void clionProjectManifestStreamingTest() {
+        for (Path path : this.testData.getProjectManifestResources()) {
             String json = ResourceReader.loadString(path);
 
             this.streamingTest.testStreaming(json, CLionProjectManifest.class);
@@ -49,14 +49,62 @@ public final class JsonStreamingTest {
     }
 
     /**
+     * Tests streaming json for the CLionModuleManifest class.
+     */
+    @Test
+    public void clionModuleManifestStreamingTest() {
+        for (Path path : this.testData.getModuleManifestResources()) {
+            String json = ResourceReader.loadString(path);
+
+            this.streamingTest.testStreaming(json, CLionModuleManifest.class);
+        }
+    }
+
+    /**
      * Tests streaming json for the CMakeListsManifest class.
      */
     @Test
-    public void CMakeListsManifestStreamingTest() {
-        for (Path path : this.testData.getCMakeListsManifestsResources()) {
+    public void cmakeListsManifestStreamingTest() {
+        for (Path path : this.testData.getCMakeListsManifestResources()) {
             String json = ResourceReader.loadString(path);
 
             this.streamingTest.testStreaming(json, CMakeListsManifest.class);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CLionProject class.
+     */
+    @Test
+    public void clionProjectStreamingTest() {
+        for (Path path : this.testData.getProjectResources()) {
+            String json = ResourceReader.loadString(path);
+
+            this.streamingTest.testStreaming(json, CLionProject.class);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CLionModule class.
+     */
+    @Test
+    public void clionModuleStreamingTest() {
+        for (Path path : this.testData.getModuleResources()) {
+            String json = ResourceReader.loadString(path);
+
+            this.streamingTest.testStreaming(json, CLionModule.class);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CLionProjectDeploymentResult class.
+     */
+    @Test
+    public void clionProjectDeploymentResultStreamingTest() {
+        for (Path path : this.testData.getProjectDeploymentResultResources()) {
+            String json = ResourceReader.loadString(path);
+
+            this.streamingTest.testStreaming(json, CLionProjectDeploymentResult.class);
         }
     }
 }

@@ -164,8 +164,17 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
         String name = reader.readStringProperty(PropertyName);
         String cmakeVersion = reader.readStringProperty(PropertyCMakeVersion);
         String projectVersion = reader.readStringProperty(PropertyProjectVersion);
-        String presetPath = reader.readStringProperty(PropertyPresetPath);
-        String postsetPath = reader.readStringProperty(PropertyPostsetPath);
+        String presetPath = null;
+
+        if (reader.hasProperty(PropertyPresetPath)) {
+            presetPath = reader.readStringProperty(PropertyPresetPath);
+        }
+
+        String postsetPath = null;
+
+        if (reader.hasProperty(PropertyPostsetPath)) {
+            postsetPath = reader.readStringProperty(PropertyPostsetPath);
+        }
 
         String includesFilesProperty = reader.hasProperty(PropertyIncludesFilesProperty) ?
             reader.readStringProperty(PropertyIncludesFilesProperty) :

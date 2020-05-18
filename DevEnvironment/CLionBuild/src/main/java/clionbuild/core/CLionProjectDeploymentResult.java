@@ -3,70 +3,66 @@ package clionbuild.core;
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
+import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
-import base.core.Paths;
 import base.interfaces.IBinaryComparator;
-import clionbuild.interfaces.ICLionModule;
 import clionbuild.interfaces.ICLionProject;
+import clionbuild.interfaces.ICLionProjectDeploymentResult;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
-import java.nio.file.Path;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * The CLionProject implements a CLion project.
+ * The CLionProjectDeploymentResult class implements a deployment result of a CLion project.
  */
-public final class CLionProject implements ICLionProject {
-    private static final String propertyName = "name";
-    private static final String propertyRootPath = "rootPath";
-    private static final String propertyModules = "modules";
+public final class CLionProjectDeploymentResult implements ICLionProjectDeploymentResult {
+    private static final String propertyProject = "propertyProject";
+    private static final String propertyDeploymentData = "deploymentData";
 
-    private final String name;
-    private final Path rootPath;
-    private final List<ICLionModule> modules;
+    private final ICLionProject project;
+    private final Map<String, String> deploymentData;
 
-    private final IBinaryComparator<ICLionProject> comparator = defaultComparator();
+    private final IBinaryComparator<ICLionProjectDeploymentResult> comparator = defaultComparator();
     private final int hashCode;
 
     /**
-     * The CLionProject constructor.
+     * Gets the project.
      */
-    public CLionProject(
-        String name,
-        Path rootPath,
-        List<ICLionModule> modules) {
+    public CLionProjectDeploymentResult(
+        ICLionProject project,
+        Map<String, String> deploymentData) {
 
-        this.name = name;
-        this.rootPath = rootPath;
-        this.modules = modules;
+        Conditions.validateNotNull(
+            project,
+            "The project of a CLion build.");
+
+        Conditions.validateNotNull(
+            deploymentData,
+            "The data of deployment.");
+
+        this.project = project;
+        this.deploymentData = deploymentData;
 
         this.hashCode = this.comparator.hashCode();
     }
 
     /**
-     * Gets the name of the project.
+     * Gets the project.
      */
     @Override
-    public String getName() {
-        return this.name;
+    public ICLionProject getProject() {
+        return this.project;
     }
 
     /**
-     * Gets the path of the root of the project.
+     * Gets the data of the deployment.
      */
     @Override
-    public Path getRootPath() {
-        return this.rootPath;
-    }
-
-    /**
-     * Gets the list of the modules.
-     */
-    @Override
-    public List<ICLionModule> getModules() {
-        return this.modules;
+    public Map<String, String> getDeploymentData() {
+        return this.deploymentData;
     }
 
     /**
@@ -78,27 +74,31 @@ public final class CLionProject implements ICLionProject {
     }
 
     /**
+     * Serializes an object from a json.
+     */
+    public static ICLionProjectDeploymentResult fromJson(String json) {
+        return JsonObjectStream.deserialize(json, CLionProjectDeploymentResult.class);
+    }
+
+    /**
      * Writes an object to a json writer.
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyName, this.name);
-        writer.writeStringProperty(propertyRootPath, this.rootPath.toString());
-        writer.writeCollectionProperty(propertyModules, this.modules);
+        writer.writeObjectProperty(propertyProject, this.project);
+        writer.writeMapProperty(propertyDeploymentData, this.deploymentData);
     }
 
     /**
      * Reads a json.
      */
-    public static ICLionProject readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(propertyName);
-        Path rootPath = reader.readProperty(propertyRootPath, value -> { return Paths.create(value); });
-        List<ICLionModule> modules = reader.readListProperty(propertyModules, CLionModule.class);
+    public static ICLionProjectDeploymentResult readJson(IJsonObjectReader reader) {
+        ICLionProject project = reader.readObjectProperty(propertyProject, CLionProject.class);
+        Map<String, String> deploymentData = new HashMap<>();
 
-        return new CLionProject(
-            name,
-            rootPath,
-            modules);
+        return new CLionProjectDeploymentResult(
+            project,
+            deploymentData);
     }
 
     /**
@@ -133,7 +133,7 @@ public final class CLionProject implements ICLionProject {
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(ICLionProject other) {
+    public boolean isEqual(ICLionProjectDeploymentResult other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -145,21 +145,21 @@ public final class CLionProject implements ICLionProject {
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(ICLionProject other) {
+    public int compareTo(ICLionProjectDeploymentResult other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<ICLionProject> defaultComparator() {
+    public static IBinaryComparator<ICLionProjectDeploymentResult> defaultComparator() {
         return new Comparator();
     }
 
     /**
-     * The Comparator class implements a comparator of a clion module manifest.
+     * The Comparator class implements a comparator of a fruit.
      */
-    public static final class Comparator extends AbstractBinaryComparator<ICLionProject> {
+    public static final class Comparator extends AbstractBinaryComparator<ICLionProjectDeploymentResult> {
         /**
          * The Comparator constructor.
          */
@@ -170,11 +170,10 @@ public final class CLionProject implements ICLionProject {
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ICLionProject obj) {
+        public int getHashCode(ICLionProjectDeploymentResult obj) {
             return new HashCodeBuilder(3, 5)
-                .withString(obj.getName())
-                .withString(obj.getRootPath().toString())
-                .withCollection(obj.getModules())
+                .withObject(obj.getProject())
+                //.withCollection(obj.getDeploymentData())
                 .build();
         }
 
@@ -182,7 +181,7 @@ public final class CLionProject implements ICLionProject {
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(ICLionProject lhs, ICLionProject rhs) {
+        public boolean isEqual(ICLionProjectDeploymentResult lhs, ICLionProjectDeploymentResult rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -192,9 +191,7 @@ public final class CLionProject implements ICLionProject {
             }
 
             return new EqualBuilder()
-                .withString(lhs.getName(), rhs.getName())
-                .withObject(lhs.getRootPath(), rhs.getRootPath())
-                .withCollection(lhs.getModules(), rhs.getModules())
+                .withObject(lhs.getProject(), rhs.getProject())
                 .build();
         }
 
@@ -206,7 +203,7 @@ public final class CLionProject implements ICLionProject {
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ICLionProject lhs, ICLionProject rhs) {
+        public int compareTo(ICLionProjectDeploymentResult lhs, ICLionProjectDeploymentResult rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -220,9 +217,7 @@ public final class CLionProject implements ICLionProject {
             }
 
             return new CompareToBuilder()
-                .withString(lhs.getName(), rhs.getName())
-                .withObject(lhs.getRootPath(), rhs.getRootPath())
-                .withCollection(lhs.getModules(), rhs.getModules())
+                .withObject(lhs.getProject(), rhs.getProject())
                 .build();
         }
     }

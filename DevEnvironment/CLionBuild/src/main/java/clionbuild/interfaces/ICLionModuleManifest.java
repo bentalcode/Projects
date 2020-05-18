@@ -2,7 +2,6 @@ package clionbuild.interfaces;
 
 import base.interfaces.IUnaryComparator;
 import json.interfaces.IJsonSerialization;
-
 import java.util.List;
 
 /**
@@ -15,9 +14,9 @@ public interface ICLionModuleManifest extends IUnaryComparator<ICLionModuleManif
     String getName();
 
     /**
-     * Gets the root path of the module.
+     * Gets the path of the module.
      */
-    String getRootPath();
+    String getPath();
 
     /**
      * Gets the path of the CMakeLists file.
@@ -38,4 +37,9 @@ public interface ICLionModuleManifest extends IUnaryComparator<ICLionModuleManif
      * Gets the extensions of a CMakeLists file.
      */
     List<String> getCMakeListsFileExtensions();
+
+    /**
+     * Gets the manifest of a CMakeLists file.
+     */
+    ICMakeListsManifest getCMakeListsManifest();
 }

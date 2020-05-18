@@ -9,6 +9,7 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The JsonObjectWriter class implements a writer of a json object.
@@ -414,6 +415,49 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
 
         IJsonValueWriter writer = new JsonValueWriter(this.generator);
         writer.writeCollection(collection, transformer);
+    }
+
+    /**
+     * Writes a map property.
+     */
+    @Override
+    public void writeMapProperty(String name, Map<String, String> map) {
+        this.validatePropertyName(name);
+
+        if (map == null || map.isEmpty()) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+
+        IJsonValueWriter writer = new JsonValueWriter(this.generator);
+        writer.writeMapProperty(map);
+    }
+
+    /**
+     * Writes a map property with key and value transformers.
+     */
+    @Override
+    public <TKey, TValue> void writeMapProperty(
+        String name,
+        Map<TKey, TValue> map,
+        IToString<TKey> keyTransformer,
+        IToString<TValue> valueTransformer) {
+
+        this.validatePropertyName(name);
+
+        if (map == null || map.isEmpty()) {
+            return;
+        }
+
+        this.generator.writePropertyName(name);
+
+        IJsonValueWriter writer = new JsonValueWriter(this.generator);
+
+        writer.writeMapProperty(
+            map,
+            keyTransformer,
+            valueTransformer);
     }
 
     /**

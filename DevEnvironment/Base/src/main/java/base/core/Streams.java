@@ -3,6 +3,7 @@ package base.core;
 import base.BaseException;
 import base.interfaces.IConstants;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
@@ -103,6 +104,14 @@ public final class Streams {
       }
 
       return stream;
+    }
+
+    /**
+     * Creates a byte array output stream.
+     */
+    public static ByteArrayOutputStream createByteArrayOutputStream() {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        return stream;
     }
 
     /**

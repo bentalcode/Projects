@@ -151,7 +151,7 @@ public final class CLionProjectScanner implements IScanner<ICLionProject> {
      * Calculates path of the module.
      */
     private Path calculateModulePath(ICLionModuleManifest moduleManifest) {
-        String modulePath = moduleManifest.getRootPath();
+        String modulePath = moduleManifest.getPath();
 
         if (modulePath == null) {
             modulePath = moduleManifest.getName();

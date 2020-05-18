@@ -8,6 +8,8 @@ import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import clionbuild.interfaces.ICLionModuleManifest;
+import clionbuild.interfaces.ICMakeListsManifest;
+import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
 import java.util.List;
@@ -16,12 +18,13 @@ import java.util.List;
  * The CLionModuleManifest class implements a CLion module.
  */
 public final class CLionModuleManifest implements ICLionModuleManifest {
-    private static final String PropertyName = "name";
-    private static final String PropertyRootPath = "rootPath";
-    private static final String PropertyCmakeListsFilePath = "cmakeListsFilePath";
-    private static final String PropertyHeaderFileExtensions = "headerFileExtensions";
-    private static final String PropertySourceFileExtensions = "sourceFileExtensions";
-    private static final String PropertyCMakeListsFileExtensions = "cmakeListsFileExtensions";
+    private static final String propertyName = "name";
+    private static final String propertyPath = "path";
+    private static final String propertyCmakeListsFilePath = "cmakeListsFilePath";
+    private static final String propertyHeaderFileExtensions = "headerFileExtensions";
+    private static final String propertySourceFileExtensions = "sourceFileExtensions";
+    private static final String propertyCMakeListsFileExtensions = "cmakeListsFileExtensions";
+    private static final String propertyCMakeListsManifest = "cmakeListsManifest";
 
     private static final String defaultCmakeListsFilePath = "CMakeLists.txt";
     private static final List<String> defaultHeaderFileExtensions = ArrayLists.of("h");
@@ -29,11 +32,12 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
     private static final List<String> defaultCMakeListsFileExtensions = ArrayLists.of("CMakeLists.txt");
 
     private final String name;
-    private final String rootPath;
+    private final String path;
     private final String cmakeListsFilePath;
     private final List<String> headerFileExtensions;
     private final List<String> sourceFileExtensions;
     private final List<String> cmakeListsFileExtensions;
+    private final ICMakeListsManifest cmakeListsManifest;
     private final IBinaryComparator<ICLionModuleManifest> comparator = defaultComparator();
     private final int hashCode;
 
@@ -42,18 +46,20 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
      */
     CLionModuleManifest(
         String name,
-        String rootPath,
+        String path,
         String cmakeListsFilePath,
         List<String> headerFileExtensions,
         List<String> sourceFileExtensions,
-        List<String> cmakeListsFileExtensions) {
+        List<String> cmakeListsFileExtensions,
+        ICMakeListsManifest cmakeListsManifest) {
 
         this.name = name;
-        this.rootPath = rootPath;
+        this.path = path;
         this.cmakeListsFilePath = cmakeListsFilePath;
         this.headerFileExtensions = headerFileExtensions;
         this.sourceFileExtensions = sourceFileExtensions;
         this.cmakeListsFileExtensions = cmakeListsFileExtensions;
+        this.cmakeListsManifest = cmakeListsManifest;
 
         this.hashCode = this.comparator.hashCode();
     }
@@ -67,11 +73,11 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
     }
 
     /**
-     * Gets the path of the root of the module.
+     * Gets the path of the module.
      */
     @Override
-    public String getRootPath() {
-        return this.rootPath;
+    public String getPath() {
+        return this.path;
     }
 
     /**
@@ -107,53 +113,75 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
     }
 
     /**
+     * Gets the manifest of a CMakeLists file.
+     */
+    @Override
+    public ICMakeListsManifest getCMakeListsManifest() {
+        return this.cmakeListsManifest;
+    }
+
+    /**
+     * Gets the string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return JsonObjectStream.serialize(this);
+    }
+
+    /**
      * Writes an object to a json writer.
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(PropertyName, this.name);
-        writer.writeStringProperty(PropertyRootPath, this.rootPath);
-        writer.writeStringProperty(PropertyCmakeListsFilePath, this.cmakeListsFilePath);
-        writer.writeStringCollectionProperty(PropertyHeaderFileExtensions, this.headerFileExtensions);
-        writer.writeStringCollectionProperty(PropertySourceFileExtensions, this.sourceFileExtensions);
-        writer.writeStringCollectionProperty(PropertyCMakeListsFileExtensions, this.cmakeListsFileExtensions);
+        writer.writeStringProperty(propertyName, this.name);
+        writer.writeStringProperty(propertyPath, this.path);
+        writer.writeStringProperty(propertyCmakeListsFilePath, this.cmakeListsFilePath);
+        writer.writeStringCollectionProperty(propertyHeaderFileExtensions, this.headerFileExtensions);
+        writer.writeStringCollectionProperty(propertySourceFileExtensions, this.sourceFileExtensions);
+        writer.writeStringCollectionProperty(propertyCMakeListsFileExtensions, this.cmakeListsFileExtensions);
+        writer.writeObjectProperty(propertyCMakeListsManifest, this.cmakeListsManifest);
     }
 
     /**
      * Reads a json.
      */
     public static ICLionModuleManifest readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(PropertyName);
+        String name = reader.readStringProperty(propertyName);
 
-        String rootPath = null;
+        String path = null;
 
-        if (reader.hasProperty(PropertyRootPath)) {
-            rootPath = reader.readStringProperty(PropertyRootPath);
+        if (reader.hasProperty(propertyPath)) {
+            path = reader.readStringProperty(propertyPath);
         }
 
-        String cmakeListsFilePath = reader.hasProperty(PropertyCmakeListsFilePath) ?
-            reader.readStringProperty(PropertyCmakeListsFilePath) :
+        String cmakeListsFilePath = reader.hasProperty(propertyCmakeListsFilePath) ?
+            reader.readStringProperty(propertyCmakeListsFilePath) :
             defaultCmakeListsFilePath;
 
-        List<String> headerFileExtensions = reader.hasProperty(PropertyHeaderFileExtensions) ?
-            reader.readStringListProperty(PropertyHeaderFileExtensions) :
+        List<String> headerFileExtensions = reader.hasProperty(propertyHeaderFileExtensions) ?
+            reader.readStringListProperty(propertyHeaderFileExtensions) :
             defaultHeaderFileExtensions;
 
-        List<String> sourceFileExtensions = reader.hasProperty(PropertySourceFileExtensions) ?
-            reader.readStringListProperty(PropertySourceFileExtensions) :
+        List<String> sourceFileExtensions = reader.hasProperty(propertySourceFileExtensions) ?
+            reader.readStringListProperty(propertySourceFileExtensions) :
             defaultSourceFileExtensions;
 
-        List<String> cmakeListsFileExtensions = reader.hasProperty(PropertyCMakeListsFileExtensions) ?
-            reader.readStringListProperty(PropertyCMakeListsFileExtensions) :
+        List<String> cmakeListsFileExtensions = reader.hasProperty(propertyCMakeListsFileExtensions) ?
+            reader.readStringListProperty(propertyCMakeListsFileExtensions) :
             defaultCMakeListsFileExtensions;
+
+        ICMakeListsManifest cmakeListsManifest = reader.readObjectProperty(
+            propertyCMakeListsManifest,
+            CMakeListsManifest.class);
 
         return new CLionModuleManifest(
             name,
-            rootPath,
+            path,
             cmakeListsFilePath,
             headerFileExtensions,
             sourceFileExtensions,
-            cmakeListsFileExtensions);
+            cmakeListsFileExtensions,
+            cmakeListsManifest);
     }
 
     /**
@@ -228,11 +256,12 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
         public int getHashCode(ICLionModuleManifest obj) {
             return new HashCodeBuilder(3, 5)
                 .withString(obj.getName())
-                .withString(obj.getRootPath())
+                .withString(obj.getPath())
                 .withString(obj.getCMakeListsFilePath())
                 .withCollection(obj.getHeaderFileExtensions())
                 .withCollection(obj.getSourceFileExtensions())
                 .withCollection(obj.getCMakeListsFileExtensions())
+                .withObject(obj.getCMakeListsManifest())
                 .build();
         }
 
@@ -251,11 +280,12 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
 
             return new EqualBuilder()
                 .withString(lhs.getName(), rhs.getName())
-                .withString(lhs.getRootPath(), rhs.getRootPath())
+                .withString(lhs.getPath(), rhs.getPath())
                 .withString(lhs.getCMakeListsFilePath(), rhs.getCMakeListsFilePath())
                 .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
                 .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
                 .withCollection(lhs.getCMakeListsFileExtensions(), rhs.getCMakeListsFileExtensions())
+                .withObject(lhs.getCMakeListsManifest(), rhs.getCMakeListsManifest())
                 .build();
         }
 
@@ -282,11 +312,12 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
 
             return new CompareToBuilder()
                 .withString(lhs.getName(), rhs.getName())
-                .withString(lhs.getRootPath(), rhs.getRootPath())
+                .withString(lhs.getPath(), rhs.getPath())
                 .withString(lhs.getCMakeListsFilePath(), rhs.getCMakeListsFilePath())
                 .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
                 .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
                 .withCollection(lhs.getCMakeListsFileExtensions(), rhs.getCMakeListsFileExtensions())
+                .withObject(lhs.getCMakeListsManifest(), rhs.getCMakeListsManifest())
                 .build();
         }
     }

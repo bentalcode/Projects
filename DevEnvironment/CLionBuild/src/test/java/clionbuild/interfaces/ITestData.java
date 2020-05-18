@@ -10,10 +10,30 @@ public interface ITestData {
     /**
      * Gets the resources of project manifests.
      */
-    List<Path> getProjectManifestsResources();
+    List<Path> getProjectManifestResources();
+
+    /**
+     * Gets the resources of module manifests.
+     */
+    List<Path> getModuleManifestResources();
 
     /**
      * Gets the resources of CMakeLists manifests.
      */
-    List<Path> getCMakeListsManifestsResources();
+    List<Path> getCMakeListsManifestResources();
+
+    /**
+     * Gets the resources of projects.
+     */
+    List<Path> getProjectResources();
+
+    /**
+     * Gets the resources of modules.
+     */
+    List<Path> getModuleResources();
+
+    /**
+     * Gets the resources of project deployment results.
+     */
+    List<Path> getProjectDeploymentResultResources();
 }
