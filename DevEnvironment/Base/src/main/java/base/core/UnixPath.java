@@ -6,6 +6,8 @@ import java.util.Stack;
  * The UnixPath class implements a unix path.
  */
 public final class UnixPath extends AbstractPath {
+    public static final char separator = '/';
+
     public static final String rootDirectory = "/";
     public static final String directorySeparator = "/";
     public static final String currentDirectory = ".";
@@ -17,6 +19,13 @@ public final class UnixPath extends AbstractPath {
      */
     public UnixPath(String path) {
         super(path);
+    }
+
+    /**
+     * Gets the directory section of the path.
+     */
+    public static String getDirectory(String path) {
+        return Paths.getDirectory(path, UnixPath.directorySeparator);
     }
 
     /**

@@ -4,30 +4,14 @@
     "modules": [
         {
             "name": "Base",
-            "cmakeListsManifest":
-            {
-                "name": "Base",
-                "cmakeVersion": "3.13",
-                "projectVersion": "1.0"
-            }
-        },
-        {
-            "name": "BaseTest",
-            "path": "BaseTest",
-            "cmakeListsPath": "CMakeLists.txt",
-            "headerFileExtensions": ["h", "hpp"],
-            "sourceFileExtensions": ["c", "cpp"],
+            "cmakeListsTargetPath": "CMakeLists.txt",
             "cmakeListsManifest":
             {
                 "name": "Base",
                 "cmakeVersion": "3.13",
                 "projectVersion": "1.0",
-                "presetPath": "cmakeListsPreset1.txt",
-                "postsetPath": "cmakeListsPostset1.txt",
-                "includesFilesProperty": "INCLUDES_FILES",
-                "sourcesFilesProperty": "SOURCES_FILES",
-                "includesProperty": "INCLUDES",
-                "sourcesProperty": "SOURCES"
+                "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
+                "postsetPath": "data\\cmakeListsManifests\\cmakeListsPostset1.txt"
             }
         }
     ]

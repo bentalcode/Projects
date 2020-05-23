@@ -4,6 +4,7 @@ import base.BaseException;
 import base.interfaces.IConstants;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -24,6 +25,30 @@ public final class Writers {
      */
     public static StringWriter createStringWriter() {
         return new StringWriter();
+    }
+
+    /**
+     * Creates a file writer.
+     */
+    public static FileWriter createFileWriter(Path path) {
+        Conditions.validateNotNull(
+            path,
+            "The path of a file.");
+
+        FileWriter writer;
+
+        try {
+            writer = new FileWriter(path.toString());
+        }
+        catch (IOException e) {
+           String errorMessage =
+               "Failed creating a file writer to path: " + path +
+               ", due to the following error: " + e.getMessage();
+
+           throw new BaseException(errorMessage);
+        }
+
+        return writer;
     }
 
     /**

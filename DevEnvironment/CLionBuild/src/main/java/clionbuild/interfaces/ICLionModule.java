@@ -2,7 +2,6 @@ package clionbuild.interfaces;
 
 import base.interfaces.IUnaryComparator;
 import json.interfaces.IJsonSerialization;
-
 import java.nio.file.Path;
 import java.util.List;
 

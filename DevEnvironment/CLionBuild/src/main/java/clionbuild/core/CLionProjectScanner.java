@@ -3,7 +3,6 @@ package clionbuild.core;
 import base.core.Conditions;
 import base.core.PathBuilder;
 import base.core.Paths;
-import base.core.Strings;
 import base.interfaces.IScanner;
 import clionbuild.CLionBuildException;
 import clionbuild.interfaces.ICLionModule;
@@ -72,7 +71,7 @@ public final class CLionProjectScanner implements IScanner<ICLionProject> {
      */
     private ICLionModule scanModule(ICLionModuleManifest moduleManifest) {
         Path modulePath = this.calculateModulePath(moduleManifest);
-        Path cmakeListsFilePath = this.calculateCMakeListsFilePath(modulePath, moduleManifest.getCMakeListsFilePath());
+        Path cmakeListsTargetPath = this.calculateCMakeListsTargetPath(modulePath, moduleManifest.getCMakeListsTargetPath());
 
         List<Path> headerFilesPaths = new ArrayList<>();
         List<Path> sourceFilesPaths = new ArrayList<>();
@@ -87,14 +86,12 @@ public final class CLionProjectScanner implements IScanner<ICLionProject> {
             sourceFilesPaths,
             cmakeListsFilesPaths);
 
-        this.validateCMakeListsFile(cmakeListsFilePath, cmakeListsFilesPaths);
-
         ICLionModule module = new CLionModule(
             moduleManifest.getName(),
             modulePath,
             headerFilesPaths,
             sourceFilesPaths,
-            cmakeListsFilePath);
+            cmakeListsTargetPath);
 
         return module;
     }
@@ -166,9 +163,9 @@ public final class CLionProjectScanner implements IScanner<ICLionProject> {
     }
 
     /**
-     * Calculates path of the CMakeListsFile.
+     * Calculates target path of the CMakeListsFile.
      */
-    private Path calculateCMakeListsFilePath(
+    private Path calculateCMakeListsTargetPath(
         Path modulePath,
         String cmakeListsFilePath) {
 
@@ -178,23 +175,6 @@ public final class CLionProjectScanner implements IScanner<ICLionProject> {
             .build();
 
         return Path.of(path);
-    }
-
-    /**
-     * Validates the CMakeFileLists file.
-     */
-    private void validateCMakeListsFile(
-        Path cmakeListsPath,
-        List<Path> cmakeListsPaths) {
-
-        for (Path path : cmakeListsPaths) {
-            if (cmakeListsPath.equals(path)) {
-                return;
-            }
-        }
-
-        String errorMessage = "The configured CMakeListsFile: " + cmakeListsPath + " was not found.";
-        throw new CLionBuildException(errorMessage);
     }
 
     /**

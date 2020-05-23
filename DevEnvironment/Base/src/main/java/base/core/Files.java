@@ -73,6 +73,29 @@ public final class Files {
     }
 
     /**
+     * Creates a temporary file.
+     */
+    public static File createTemporaryFile(String prefix, String postfix) {
+        File file;
+
+        try {
+            file = File.createTempFile(prefix, postfix);
+
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "Failed to create a temporary file due to the following error: " +
+                e.getMessage();
+
+            throw new BaseException(errorMessage);
+        }
+
+        file.deleteOnExit();
+
+        return file;
+    }
+
+    /**
      * Disables the default constructor - This is a static class.
      */
     private Files() {

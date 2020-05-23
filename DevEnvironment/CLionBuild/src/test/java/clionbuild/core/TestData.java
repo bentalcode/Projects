@@ -18,6 +18,7 @@ public final class TestData implements ITestData {
     private static final String projectsDirectoryName = "projects";
     private static final String modulesDirectoryName = "modules";
     private static final String projectDeploymentResultsDirectoryName = "projectDeploymentResults";
+    private static final String projectManifestDevEnvironment = "projectManifest1.json";
 
     private static final List<String> projectManifests = ArrayLists.of(
         "projectManifest1.json");
@@ -41,6 +42,19 @@ public final class TestData implements ITestData {
      * The TestData constructor.
      */
     public TestData() {
+    }
+
+    /**
+     * Gets the resource of the project manifest of DevEnvironmentCLion project.
+     */
+    @Override
+    public Path getDevEnvironmentCLionProjectManifestResource() {
+        Path path = ResourcePaths.create(
+            dataDirectoryName,
+            projectManifestsDirectoryName,
+            projectManifestDevEnvironment);
+
+        return path;
     }
 
     /**

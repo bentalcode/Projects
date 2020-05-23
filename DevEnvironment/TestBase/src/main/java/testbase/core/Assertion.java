@@ -3,10 +3,12 @@ package testbase.core;
 import base.core.Comparator;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
+import base.interfaces.IEqualBuilder;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import org.junit.Assert;
+import java.util.Map;
 import testbase.interfaces.IAssertion;
 
 /**
@@ -30,6 +32,14 @@ public final class Assertion implements IAssertion {
         Assert.assertTrue(
             message,
             expression);
+    }
+
+    /**
+     * Fails a test with the given message.
+     */
+    @Override
+    public void fail(String message) {
+        Assert.fail(message);
     }
 
     /**
@@ -186,10 +196,47 @@ public final class Assertion implements IAssertion {
         IEquatableComparator<T> comparator,
         String message) {
 
-        boolean status = new EqualBuilder().withArray(
-            lhs,
-            rhs,
-            comparator).build();
+        boolean status = new EqualBuilder()
+            .withArray(lhs, rhs, comparator)
+            .build();
+
+        this.assertTrue(
+            status,
+            message);
+    }
+
+    /**
+     * Asserts equality with maps.
+     */
+    @Override
+    public <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void assertEquals(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs,
+        String message) {
+
+        boolean status = new EqualBuilder()
+            .withMap(lhs, rhs)
+            .build();
+
+        this.assertTrue(
+            status,
+            message);
+    }
+
+    /**
+     * Asserts equality with maps.
+     */
+    @Override
+    public <TKey extends Comparable<TKey>, TValue> void assertEquals(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs,
+        IEquatableComparator<TKey> keyComparator,
+        IEquatableComparator<TValue> valueComparator,
+        String message) {
+
+        boolean status = new EqualBuilder()
+            .withMap(lhs, rhs, keyComparator, valueComparator)
+            .build();
 
         this.assertTrue(
             status,
@@ -224,10 +271,9 @@ public final class Assertion implements IAssertion {
         IEquatableComparator<T> comparator,
         String message) {
 
-        boolean status = new EqualBuilder().withIterator(
-            lhs,
-            rhs,
-            comparator).build();
+        boolean status = new EqualBuilder()
+            .withIterator(lhs, rhs, comparator)
+            .build();
 
         this.assertTrue(
             status,
@@ -262,10 +308,9 @@ public final class Assertion implements IAssertion {
         IEquatableComparator<T> comparator,
         String message) {
 
-        boolean status = new EqualBuilder().withIterable(
-            lhs,
-            rhs,
-            comparator).build();
+        boolean status = new EqualBuilder()
+            .withIterable(lhs, rhs, comparator)
+            .build();
 
         this.assertTrue(
             status,

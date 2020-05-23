@@ -3,11 +3,14 @@ package clionbuild.core;
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
+import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import clionbuild.interfaces.ICLionModuleManifest;
 import clionbuild.interfaces.ICLionProjectManifest;
+import clionbuild.interfaces.IEditorSettings;
+import clionbuild.interfaces.IIgnoreRules;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
@@ -20,10 +23,15 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
     private static final String propertyName = "name";
     private static final String propertyRootPath = "rootPath";
     private static final String propertyModules = "modules";
+    private static final String propertyEditorSettings = "editorSettings";
+    private static final String propertyIgnoreRules = "ignoreRules";
 
     private final String name;
     private final String rootPath;
     private final List<ICLionModuleManifest> modules;
+    private final IEditorSettings editorSettings;
+    private final IIgnoreRules ignoreRules;
+
     private final IBinaryComparator<ICLionProjectManifest> comparator = defaultComparator();
     private final int hashCode;
 
@@ -33,11 +41,36 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
     CLionProjectManifest(
         String name,
         String rootPath,
-        List<ICLionModuleManifest> modules) {
+        List<ICLionModuleManifest> modules,
+        IEditorSettings editorSettings,
+        IIgnoreRules ignoreRules) {
+
+        Conditions.validateStringNotNullOrEmpty(
+            name,
+            "The name of a project.");
+
+        Conditions.validateStringNotNullOrEmpty(
+            rootPath,
+            "The path of the root of a project.");
+
+        Conditions.validateNotNull(
+            modules,
+            "The modules of a project.");
+
+        Conditions.validateNotNull(
+            editorSettings,
+            "The settings of an editor.");
+
+        Conditions.validateNotNull(
+            ignoreRules,
+            "The ignore rules.");
 
         this.name = name;
         this.rootPath = rootPath;
         this.modules = modules;
+        this.editorSettings = editorSettings;
+        this.ignoreRules = ignoreRules;
+
         this.hashCode = this.comparator.hashCode();
     }
 
@@ -66,6 +99,22 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
     }
 
     /**
+     * Gets settings of an editor.
+     */
+    @Override
+    public IEditorSettings getEditorSettings() {
+        return this.editorSettings;
+    }
+
+    /**
+     * Gets the ignore rules.
+     */
+    @Override
+    public IIgnoreRules getIgnoreRules() {
+        return this.ignoreRules;
+    }
+
+    /**
      * Gets the string representation of this instance.
      */
     @Override
@@ -88,6 +137,8 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
         writer.writeStringProperty(propertyName, this.name);
         writer.writeStringProperty(propertyRootPath, this.rootPath);
         writer.writeCollectionProperty(propertyModules, this.modules);
+        writer.writeObjectProperty(propertyEditorSettings, this.editorSettings);
+        writer.writeObjectProperty(propertyIgnoreRules, this.ignoreRules);
     }
 
     /**
@@ -98,10 +149,20 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
         String rootPath = reader.readStringProperty(propertyRootPath);
         List<ICLionModuleManifest> modules = reader.readListProperty(propertyModules, CLionModuleManifest.class);
 
+        IEditorSettings editorSettings = reader.hasProperty(propertyEditorSettings) ?
+            reader.readObjectProperty(propertyEditorSettings, EditorSettings.class) :
+            EditorSettings.defaultEditorSettings();
+
+        IIgnoreRules ignoreRules = reader.hasProperty(propertyIgnoreRules) ?
+            reader.readObjectProperty(propertyIgnoreRules, IgnoreRules.class) :
+            IgnoreRules.defaultIgnoreRules();
+
         return new CLionProjectManifest(
             name,
             rootPath,
-            modules);
+            modules,
+            editorSettings,
+            ignoreRules);
     }
 
     /**
@@ -160,7 +221,7 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
     }
 
     /**
-     * The Comparator class implements a comparator of a fruit.
+     * The Comparator class implements a comparator of a project manifest.
      */
     public static final class Comparator extends AbstractBinaryComparator<ICLionProjectManifest> {
         /**
@@ -178,6 +239,8 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
                 .withString(obj.getName())
                 .withString(obj.getRootPath())
                 .withCollection(obj.getModulesManifests())
+                .withObject(obj.getEditorSettings())
+                .withObject(obj.getIgnoreRules())
                 .build();
         }
 
@@ -198,6 +261,8 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
                 .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getRootPath(), rhs.getRootPath())
                 .withCollection(lhs.getModulesManifests(), rhs.getModulesManifests())
+                .withObject(lhs.getEditorSettings(), rhs.getEditorSettings())
+                .withObject(lhs.getIgnoreRules(), rhs.getIgnoreRules())
                 .build();
         }
 
@@ -226,6 +291,8 @@ public final class CLionProjectManifest implements ICLionProjectManifest {
                 .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getRootPath(), rhs.getRootPath())
                 .withCollection(lhs.getModulesManifests(), rhs.getModulesManifests())
+                .withObject(lhs.getEditorSettings(), rhs.getEditorSettings())
+                .withObject(lhs.getIgnoreRules(), rhs.getIgnoreRules())
                 .build();
         }
     }

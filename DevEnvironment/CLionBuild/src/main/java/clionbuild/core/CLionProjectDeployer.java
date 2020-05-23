@@ -116,6 +116,8 @@ public final class CLionProjectDeployer implements ICLionProjectDeployer {
                     moduleManifest,
                     writer);
 
+                Writers.flush(writer);
+
                 String cmakeListsPath = module.getCMakeListsFilePath().toString();
                 String cmakeListsData = new String(stream.toByteArray());
 
@@ -138,6 +140,8 @@ public final class CLionProjectDeployer implements ICLionProjectDeployer {
 
         IWriter moduleWriter = new CLionModuleWriter(
             moduleManifest,
+            this.manifest.getEditorSettings(),
+            this.manifest.getIgnoreRules(),
             module);
 
         moduleWriter.write(writer);

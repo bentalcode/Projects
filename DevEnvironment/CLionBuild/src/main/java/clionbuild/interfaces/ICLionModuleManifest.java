@@ -19,9 +19,9 @@ public interface ICLionModuleManifest extends IUnaryComparator<ICLionModuleManif
     String getPath();
 
     /**
-     * Gets the path of the CMakeLists file.
+     * Gets the target path of the CMakeLists file.
      */
-    String getCMakeListsFilePath();
+    String getCMakeListsTargetPath();
 
     /**
      * Gets the extensions of a header files.

@@ -3,6 +3,7 @@ package testbase.interfaces;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
+import java.util.Map;
 
 /**
  * The IAssertion interface defines an assertion.
@@ -14,6 +15,11 @@ public interface IAssertion {
     void assertTrue(
         boolean expression,
         String message);
+
+    /**
+     * Fails a test with the given message.
+     */
+    void fail(String message);
 
     /**
      * Asserts equality with booleans.
@@ -103,6 +109,24 @@ public interface IAssertion {
         T[] lhs,
         T[] rhs,
         IEquatableComparator<T> comparator,
+        String message);
+
+    /**
+     * Asserts equality with maps.
+     */
+    <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void assertEquals(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs,
+        String message);
+
+    /**
+     * Asserts equality with maps.
+     */
+    <TKey extends Comparable<TKey>, TValue> void assertEquals(
+        Map<TKey, TValue> lhs,
+        Map<TKey, TValue> rhs,
+        IEquatableComparator<TKey> keyComparator,
+        IEquatableComparator<TValue> valueComparator,
         String message);
 
     /**

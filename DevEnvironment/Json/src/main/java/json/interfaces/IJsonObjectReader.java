@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -100,6 +101,11 @@ public interface IJsonObjectReader {
      * Reads a string set property.
      */
     Set<String> readStringSetProperty(String name);
+
+    /**
+     * Reads a string map property.
+     */
+    Map<String, String> readStringMapProperty(String name);
 
     /**
      * Reads a blob property.

@@ -1,8 +1,8 @@
 package json.core;
 
 import json.interfaces.IJsonSerialization;
-
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -88,6 +88,11 @@ interface IJsonValueReader {
      * Reads a string set.
      */
     Set<String> readStringSet();
+
+    /**
+     * Reads a string map.
+     */
+    Map<String, String> readStringMap();
 
     /**
      * Reads a blob.

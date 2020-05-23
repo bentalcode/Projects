@@ -22,4 +22,14 @@ public interface ICLionProjectManifest extends IUnaryComparator<ICLionProjectMan
      * Gets the list of the modules manifests.
      */
     List<ICLionModuleManifest> getModulesManifests();
+
+    /**
+     * Gets settings of an editor.
+     */
+    IEditorSettings getEditorSettings();
+
+    /**
+     * Gets the ignore rules.
+     */
+    IIgnoreRules getIgnoreRules();
 }

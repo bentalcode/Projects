@@ -3,65 +3,47 @@ package clionbuild.core;
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
-import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import clionbuild.interfaces.ICLionProject;
-import clionbuild.interfaces.ICLionProjectDeploymentResult;
+import clionbuild.interfaces.IEditorSettings;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
-import java.util.Map;
 
 /**
- * The CLionProjectDeploymentResult class implements a deployment result of a CLion project.
+ * The EditorSettings class implements settings of an editor.
  */
-public final class CLionProjectDeploymentResult implements ICLionProjectDeploymentResult {
-    private static final String propertyProject = "propertyProject";
-    private static final String propertyDeploymentData = "deploymentData";
+public final class EditorSettings implements IEditorSettings {
+    private static final String propertyTabSize = "tabSize";
+    private static final int defaultTabSize = 4;
 
-    private final ICLionProject project;
-    private final Map<String, String> deploymentData;
+    private final int tabSize;
 
-    private final IBinaryComparator<ICLionProjectDeploymentResult> comparator = defaultComparator();
+    private final IBinaryComparator<IEditorSettings> comparator = defaultComparator();
     private final int hashCode;
 
     /**
-     * Gets the project.
+     * Gets the default editor settings.
      */
-    public CLionProjectDeploymentResult(
-        ICLionProject project,
-        Map<String, String> deploymentData) {
+    public static IEditorSettings defaultEditorSettings() {
+        return new EditorSettings(defaultTabSize);
+    }
 
-        Conditions.validateNotNull(
-            project,
-            "The project of a CLion build.");
-
-        Conditions.validateNotNull(
-            deploymentData,
-            "The data of deployment.");
-
-        this.project = project;
-        this.deploymentData = deploymentData;
-
+    /**
+     * The EditorSettings constructor.
+     */
+    public EditorSettings(int tabSize) {
+        this.tabSize = tabSize;
         this.hashCode = this.comparator.hashCode();
     }
 
     /**
-     * Gets the project.
+     * Gets the size of a tab.
      */
     @Override
-    public ICLionProject getProject() {
-        return this.project;
-    }
-
-    /**
-     * Gets the data of the deployment.
-     */
-    @Override
-    public Map<String, String> getDeploymentData() {
-        return this.deploymentData;
+    public int getTabSize() {
+        return this.tabSize;
     }
 
     /**
@@ -75,8 +57,8 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
     /**
      * Serializes an object from a json.
      */
-    public static ICLionProjectDeploymentResult fromJson(String json) {
-        return JsonObjectStream.deserialize(json, CLionProjectDeploymentResult.class);
+    public static IEditorSettings fromJson(String json) {
+        return JsonObjectStream.deserialize(json, EditorSettings.class);
     }
 
     /**
@@ -84,20 +66,19 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeObjectProperty(propertyProject, this.project);
-        writer.writeMapProperty(propertyDeploymentData, this.deploymentData);
+        writer.writeIntegerProperty(propertyTabSize, this.tabSize);
     }
 
     /**
      * Reads a json.
      */
-    public static ICLionProjectDeploymentResult readJson(IJsonObjectReader reader) {
-        ICLionProject project = reader.readObjectProperty(propertyProject, CLionProject.class);
-        Map<String, String> deploymentData = reader.readStringMapProperty(propertyDeploymentData);
+    public static IEditorSettings readJson(IJsonObjectReader reader) {
+        int tabSize = reader.hasProperty(propertyTabSize) ?
+            reader.readIntegerProperty(propertyTabSize) :
+            defaultTabSize;
 
-        return new CLionProjectDeploymentResult(
-            project,
-            deploymentData);
+        return new EditorSettings(
+            tabSize);
     }
 
     /**
@@ -132,7 +113,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(ICLionProjectDeploymentResult other) {
+    public boolean isEqual(IEditorSettings other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -144,21 +125,21 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(ICLionProjectDeploymentResult other) {
+    public int compareTo(IEditorSettings other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<ICLionProjectDeploymentResult> defaultComparator() {
+    public static IBinaryComparator<IEditorSettings> defaultComparator() {
         return new Comparator();
     }
 
     /**
-     * The Comparator class implements a comparator of a deployment result.
+     * The Comparator class implements a comparator of an editor settings.
      */
-    public static final class Comparator extends AbstractBinaryComparator<ICLionProjectDeploymentResult> {
+    public static final class Comparator extends AbstractBinaryComparator<IEditorSettings> {
         /**
          * The Comparator constructor.
          */
@@ -169,10 +150,9 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ICLionProjectDeploymentResult obj) {
+        public int getHashCode(IEditorSettings obj) {
             return new HashCodeBuilder(3, 5)
-                .withObject(obj.getProject())
-                .withMap(obj.getDeploymentData())
+                .withInteger(obj.getTabSize())
                 .build();
         }
 
@@ -180,7 +160,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(ICLionProjectDeploymentResult lhs, ICLionProjectDeploymentResult rhs) {
+        public boolean isEqual(IEditorSettings lhs, IEditorSettings rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -190,8 +170,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
             }
 
             return new EqualBuilder()
-                .withObject(lhs.getProject(), rhs.getProject())
-                .withMap(lhs.getDeploymentData(), rhs.getDeploymentData())
+                .withInteger(lhs.getTabSize(), rhs.getTabSize())
                 .build();
         }
 
@@ -203,7 +182,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ICLionProjectDeploymentResult lhs, ICLionProjectDeploymentResult rhs) {
+        public int compareTo(IEditorSettings lhs, IEditorSettings rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -217,8 +196,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
             }
 
             return new CompareToBuilder()
-                .withObject(lhs.getProject(), rhs.getProject())
-                .withMap(lhs.getDeploymentData(), rhs.getDeploymentData())
+                .withInteger(lhs.getTabSize(), rhs.getTabSize())
                 .build();
         }
     }

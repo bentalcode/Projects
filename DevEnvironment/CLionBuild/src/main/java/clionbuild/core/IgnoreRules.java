@@ -1,67 +1,57 @@
 package clionbuild.core;
 
 import base.core.AbstractBinaryComparator;
+import base.core.ArrayLists;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import clionbuild.interfaces.ICLionProject;
-import clionbuild.interfaces.ICLionProjectDeploymentResult;
+import clionbuild.interfaces.IIgnoreRules;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
-import java.util.Map;
+import java.util.List;
 
 /**
- * The CLionProjectDeploymentResult class implements a deployment result of a CLion project.
+ * The IgnoreRules class implements ignore rules.
  */
-public final class CLionProjectDeploymentResult implements ICLionProjectDeploymentResult {
-    private static final String propertyProject = "propertyProject";
-    private static final String propertyDeploymentData = "deploymentData";
+public final class IgnoreRules implements IIgnoreRules {
+    private static final String propertyPathPatterns = "pathPatterns";
 
-    private final ICLionProject project;
-    private final Map<String, String> deploymentData;
+    private static final List<String> defaultPathPatterns = ArrayLists.of("glob:.\\\\build\\\\**");
+    
+    private final List<String> pathPatterns;
 
-    private final IBinaryComparator<ICLionProjectDeploymentResult> comparator = defaultComparator();
+    private final IBinaryComparator<IIgnoreRules> comparator = defaultComparator();
     private final int hashCode;
 
     /**
-     * Gets the project.
+     * Gets the default ignore rules.
      */
-    public CLionProjectDeploymentResult(
-        ICLionProject project,
-        Map<String, String> deploymentData) {
+    public static IIgnoreRules defaultIgnoreRules() {
+        return new IgnoreRules(defaultPathPatterns);
+    }
 
+    /**
+     * The IgnoreRules constructor.
+     */
+    public IgnoreRules(List<String> pathPatterns) {
         Conditions.validateNotNull(
-            project,
-            "The project of a CLion build.");
+            pathPatterns,
+            "The path patterns of the ignore rules.");
 
-        Conditions.validateNotNull(
-            deploymentData,
-            "The data of deployment.");
-
-        this.project = project;
-        this.deploymentData = deploymentData;
-
+        this.pathPatterns = pathPatterns;
         this.hashCode = this.comparator.hashCode();
     }
 
     /**
-     * Gets the project.
+     * Gets the path patterns.
      */
     @Override
-    public ICLionProject getProject() {
-        return this.project;
-    }
-
-    /**
-     * Gets the data of the deployment.
-     */
-    @Override
-    public Map<String, String> getDeploymentData() {
-        return this.deploymentData;
+    public List<String> getPathPatterns() {
+        return this.pathPatterns;
     }
 
     /**
@@ -75,8 +65,8 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
     /**
      * Serializes an object from a json.
      */
-    public static ICLionProjectDeploymentResult fromJson(String json) {
-        return JsonObjectStream.deserialize(json, CLionProjectDeploymentResult.class);
+    public static IIgnoreRules fromJson(String json) {
+        return JsonObjectStream.deserialize(json, IgnoreRules.class);
     }
 
     /**
@@ -84,20 +74,18 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeObjectProperty(propertyProject, this.project);
-        writer.writeMapProperty(propertyDeploymentData, this.deploymentData);
+        writer.writeStringCollectionProperty(propertyPathPatterns, this.pathPatterns);
     }
 
     /**
      * Reads a json.
      */
-    public static ICLionProjectDeploymentResult readJson(IJsonObjectReader reader) {
-        ICLionProject project = reader.readObjectProperty(propertyProject, CLionProject.class);
-        Map<String, String> deploymentData = reader.readStringMapProperty(propertyDeploymentData);
+    public static IIgnoreRules readJson(IJsonObjectReader reader) {
+        List<String> pathPatterns = reader.hasProperty(propertyPathPatterns) ?
+            reader.readStringListProperty(propertyPathPatterns) :
+            defaultPathPatterns;
 
-        return new CLionProjectDeploymentResult(
-            project,
-            deploymentData);
+        return new IgnoreRules(pathPatterns);
     }
 
     /**
@@ -132,7 +120,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(ICLionProjectDeploymentResult other) {
+    public boolean isEqual(IIgnoreRules other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -144,21 +132,21 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(ICLionProjectDeploymentResult other) {
+    public int compareTo(IIgnoreRules other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<ICLionProjectDeploymentResult> defaultComparator() {
+    public static IBinaryComparator<IIgnoreRules> defaultComparator() {
         return new Comparator();
     }
 
     /**
-     * The Comparator class implements a comparator of a deployment result.
+     * The Comparator class implements a comparator of an ignore rules.
      */
-    public static final class Comparator extends AbstractBinaryComparator<ICLionProjectDeploymentResult> {
+    public static final class Comparator extends AbstractBinaryComparator<IIgnoreRules> {
         /**
          * The Comparator constructor.
          */
@@ -169,10 +157,9 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ICLionProjectDeploymentResult obj) {
+        public int getHashCode(IIgnoreRules obj) {
             return new HashCodeBuilder(3, 5)
-                .withObject(obj.getProject())
-                .withMap(obj.getDeploymentData())
+                .withCollection(obj.getPathPatterns())
                 .build();
         }
 
@@ -180,7 +167,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(ICLionProjectDeploymentResult lhs, ICLionProjectDeploymentResult rhs) {
+        public boolean isEqual(IIgnoreRules lhs, IIgnoreRules rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -190,8 +177,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
             }
 
             return new EqualBuilder()
-                .withObject(lhs.getProject(), rhs.getProject())
-                .withMap(lhs.getDeploymentData(), rhs.getDeploymentData())
+                .withCollection(lhs.getPathPatterns(), rhs.getPathPatterns())
                 .build();
         }
 
@@ -203,7 +189,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ICLionProjectDeploymentResult lhs, ICLionProjectDeploymentResult rhs) {
+        public int compareTo(IIgnoreRules lhs, IIgnoreRules rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -217,8 +203,7 @@ public final class CLionProjectDeploymentResult implements ICLionProjectDeployme
             }
 
             return new CompareToBuilder()
-                .withObject(lhs.getProject(), rhs.getProject())
-                .withMap(lhs.getDeploymentData(), rhs.getDeploymentData())
+                .withCollection(lhs.getPathPatterns(), rhs.getPathPatterns())
                 .build();
         }
     }

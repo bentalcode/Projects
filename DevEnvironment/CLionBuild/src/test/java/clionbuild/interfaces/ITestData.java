@@ -8,6 +8,11 @@ import java.util.List;
  */
 public interface ITestData {
     /**
+     * Gets the resource of the project manifest of DevEnvironmentCLion project.
+     */
+    Path getDevEnvironmentCLionProjectManifestResource();
+
+    /**
      * Gets the resources of project manifests.
      */
     List<Path> getProjectManifestResources();

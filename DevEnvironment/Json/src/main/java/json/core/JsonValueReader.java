@@ -7,8 +7,10 @@ import base.core.ReflectionHandler;
 import json.interfaces.IJsonObjectReader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import json.interfaces.IJsonSerialization;
@@ -288,6 +290,27 @@ public final class JsonValueReader implements IJsonValueReader {
     }
 
     /**
+     * Reads a string map.
+     */
+    @Override
+    public Map<String, String> readStringMap() {
+        IJsonObject object = this.jsonValue.getObject();
+
+        Map<String, String> result = new HashMap<>();
+
+        for (Map.Entry<String, IJsonValue> property : object.getProperties().entrySet()) {
+            String propertyName = property.getKey();
+
+            IJsonValueReader valueReader = new JsonValueReader(property.getValue());
+            String propertyValue = valueReader.readString();
+
+            result.put(propertyName, propertyValue);
+        }
+
+        return result;
+    }
+
+    /**
      * Reads a blob.
      */
     @Override
@@ -382,7 +405,7 @@ public final class JsonValueReader implements IJsonValueReader {
      */
     private <T> void validateClassType(Class<T> classType) {
         Conditions.validateNotNull(
-                classType,
-                "The class type of an object to read from.");
+            classType,
+            "The class type of an object to read from.");
     }
 }

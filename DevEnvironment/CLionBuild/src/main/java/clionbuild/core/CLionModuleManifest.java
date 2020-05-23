@@ -20,20 +20,20 @@ import java.util.List;
 public final class CLionModuleManifest implements ICLionModuleManifest {
     private static final String propertyName = "name";
     private static final String propertyPath = "path";
-    private static final String propertyCmakeListsFilePath = "cmakeListsFilePath";
+    private static final String propertyCMakeListsTargetPath = "cmakeListsTargetPath";
     private static final String propertyHeaderFileExtensions = "headerFileExtensions";
     private static final String propertySourceFileExtensions = "sourceFileExtensions";
     private static final String propertyCMakeListsFileExtensions = "cmakeListsFileExtensions";
     private static final String propertyCMakeListsManifest = "cmakeListsManifest";
 
-    private static final String defaultCmakeListsFilePath = "CMakeLists.txt";
+    private static final String defaultCmakeListsTargetPath = "CMakeLists.txt";
     private static final List<String> defaultHeaderFileExtensions = ArrayLists.of("h");
     private static final List<String> defaultSourceFileExtensions = ArrayLists.of("cpp");
     private static final List<String> defaultCMakeListsFileExtensions = ArrayLists.of("CMakeLists.txt");
 
     private final String name;
     private final String path;
-    private final String cmakeListsFilePath;
+    private final String cmakeListsTargetPath;
     private final List<String> headerFileExtensions;
     private final List<String> sourceFileExtensions;
     private final List<String> cmakeListsFileExtensions;
@@ -47,7 +47,7 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
     CLionModuleManifest(
         String name,
         String path,
-        String cmakeListsFilePath,
+        String cmakeListsTargetPath,
         List<String> headerFileExtensions,
         List<String> sourceFileExtensions,
         List<String> cmakeListsFileExtensions,
@@ -55,7 +55,7 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
 
         this.name = name;
         this.path = path;
-        this.cmakeListsFilePath = cmakeListsFilePath;
+        this.cmakeListsTargetPath = cmakeListsTargetPath;
         this.headerFileExtensions = headerFileExtensions;
         this.sourceFileExtensions = sourceFileExtensions;
         this.cmakeListsFileExtensions = cmakeListsFileExtensions;
@@ -81,11 +81,11 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
     }
 
     /**
-     * Gets the path of the CMakeLists file.
+     * Gets the target path of the CMakeLists file.
      */
     @Override
-    public String getCMakeListsFilePath() {
-        return this.cmakeListsFilePath;
+    public String getCMakeListsTargetPath() {
+        return this.cmakeListsTargetPath;
     }
 
     /**
@@ -135,7 +135,7 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(propertyName, this.name);
         writer.writeStringProperty(propertyPath, this.path);
-        writer.writeStringProperty(propertyCmakeListsFilePath, this.cmakeListsFilePath);
+        writer.writeStringProperty(propertyCMakeListsTargetPath, this.cmakeListsTargetPath);
         writer.writeStringCollectionProperty(propertyHeaderFileExtensions, this.headerFileExtensions);
         writer.writeStringCollectionProperty(propertySourceFileExtensions, this.sourceFileExtensions);
         writer.writeStringCollectionProperty(propertyCMakeListsFileExtensions, this.cmakeListsFileExtensions);
@@ -154,9 +154,9 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
             path = reader.readStringProperty(propertyPath);
         }
 
-        String cmakeListsFilePath = reader.hasProperty(propertyCmakeListsFilePath) ?
-            reader.readStringProperty(propertyCmakeListsFilePath) :
-            defaultCmakeListsFilePath;
+        String cmakeListsTargetPath = reader.hasProperty(propertyCMakeListsTargetPath) ?
+            reader.readStringProperty(propertyCMakeListsTargetPath) :
+            defaultCmakeListsTargetPath;
 
         List<String> headerFileExtensions = reader.hasProperty(propertyHeaderFileExtensions) ?
             reader.readStringListProperty(propertyHeaderFileExtensions) :
@@ -177,7 +177,7 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
         return new CLionModuleManifest(
             name,
             path,
-            cmakeListsFilePath,
+            cmakeListsTargetPath,
             headerFileExtensions,
             sourceFileExtensions,
             cmakeListsFileExtensions,
@@ -257,7 +257,7 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
             return new HashCodeBuilder(3, 5)
                 .withString(obj.getName())
                 .withString(obj.getPath())
-                .withString(obj.getCMakeListsFilePath())
+                .withString(obj.getCMakeListsTargetPath())
                 .withCollection(obj.getHeaderFileExtensions())
                 .withCollection(obj.getSourceFileExtensions())
                 .withCollection(obj.getCMakeListsFileExtensions())
@@ -281,7 +281,7 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
             return new EqualBuilder()
                 .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getPath(), rhs.getPath())
-                .withString(lhs.getCMakeListsFilePath(), rhs.getCMakeListsFilePath())
+                .withString(lhs.getCMakeListsTargetPath(), rhs.getCMakeListsTargetPath())
                 .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
                 .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
                 .withCollection(lhs.getCMakeListsFileExtensions(), rhs.getCMakeListsFileExtensions())
@@ -313,7 +313,7 @@ public final class CLionModuleManifest implements ICLionModuleManifest {
             return new CompareToBuilder()
                 .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getPath(), rhs.getPath())
-                .withString(lhs.getCMakeListsFilePath(), rhs.getCMakeListsFilePath())
+                .withString(lhs.getCMakeListsTargetPath(), rhs.getCMakeListsTargetPath())
                 .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
                 .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
                 .withCollection(lhs.getCMakeListsFileExtensions(), rhs.getCMakeListsFileExtensions())

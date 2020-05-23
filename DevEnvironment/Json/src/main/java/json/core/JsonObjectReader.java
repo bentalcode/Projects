@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import json.interfaces.IJsonSerialization;
 import org.slf4j.Logger;
@@ -226,6 +227,17 @@ public final class JsonObjectReader implements IJsonObjectReader {
 
         IJsonValueReader reader = new JsonValueReader(value);
         return reader.readStringSet();
+    }
+
+    /**
+     * Reads a string map property.
+     */
+    @Override
+    public Map<String, String> readStringMapProperty(String name) {
+        IJsonValue value = this.getPropertyValue(name);
+
+        IJsonValueReader reader = new JsonValueReader(value);
+        return reader.readStringMap();
     }
 
     /**
