@@ -10,7 +10,7 @@ include ':AlphabeticalOrderCommand'
 include ':ExpressionTreeCommand'
 include ':Problems'
 include ':Games'
-include ':CLionBuild'
+include ':CMakeBuild'
 include ':TestBase'
 include ':DataTransformationService'
 
