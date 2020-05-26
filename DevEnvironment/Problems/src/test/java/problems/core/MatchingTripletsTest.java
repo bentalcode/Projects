@@ -3,7 +3,6 @@ package problems.core;
 import base.core.ArrayLists;
 import base.core.CollectionIterator;
 import base.core.ListIterator;
-import base.core.Triple;
 import base.core.Triplet;
 import base.interfaces.ITriplet;
 import org.junit.After;
@@ -12,11 +11,8 @@ import org.junit.Test;
 import problems.interfaces.IMatchingTriplets;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 /**
  * The MatchingTripletsTest class implements tests for the matching triplets problem.
@@ -45,7 +41,7 @@ public final class MatchingTripletsTest {
     }
 
     /**
-     * Tests the logic for calculating the indexes of matching triplets.
+     * Tests the logic for finding the indexes of matching triplets.
      */
     @Test
     public void matchingTripletsIndexesTest() {
@@ -68,7 +64,7 @@ public final class MatchingTripletsTest {
     }
 
     /**
-     * Tests the logic for calculating the values of matching triplets.
+     * Tests the logic for finding the values of matching triplets.
      */
     @Test
     public void matchingTripletsTest() {
@@ -83,7 +79,7 @@ public final class MatchingTripletsTest {
     }
 
     /**
-     * Tests the logic for calculating the closest values of matching triplets.
+     * Tests the logic for finding the closest values of matching triplets.
      */
     @Test
     public void matchingClosestTripletsTest() {
@@ -105,7 +101,22 @@ public final class MatchingTripletsTest {
     }
 
     /**
-     * Tests the logic for calculating the indexes of matching triplets.
+     * Tests the logic for finding triplets such that sum of two equals to third element.
+     */
+    @Test
+    public void findTripletsTest() {
+        int[] values1 = {0, 1, 1, 1, 2, 2, 2};
+
+        List<ITriplet<Integer, Integer, Integer>> result1 = ArrayLists.of(
+            Triplet.of(0, 1, 1),
+            Triplet.of(0, 2, 2),
+            Triplet.of(1, 1, 2));
+
+        this.testFindingTriplets(values1, result1);
+    }
+
+    /**
+     * Tests the logic for finding the indexes of matching triplets.
      */
     private void testMatchingTripletsIndexes(
         int[] values,
@@ -113,18 +124,18 @@ public final class MatchingTripletsTest {
         List<ITriplet<Integer, Integer, Integer>> expectedResult) {
 
         IMatchingTriplets matchingTriplets = new MatchingTriplets();
-        List<ITriplet<Integer, Integer, Integer>> result = matchingTriplets.getMatchingTripletsIndexes(values, sum);
+        List<ITriplet<Integer, Integer, Integer>> result = matchingTriplets.findMatchingTripletsIndexes(values, sum);
 
         Collections.sort(result);
 
         this.assertion.assertEqualsWithIterators(
             ListIterator.of(result),
             CollectionIterator.of(expectedResult),
-            "Incorrect logic for calculating the indexes of matching triplets.");
+            "Incorrect logic for finding the indexes of matching triplets.");
     }
 
     /**
-     * Tests the logic for calculating the values of matching triplets.
+     * Tests the logic for finding the values of matching triplets.
      */
     private void testMatchingTriplets(
         int[] values,
@@ -132,19 +143,17 @@ public final class MatchingTripletsTest {
         List<ITriplet<Integer, Integer, Integer>> expectedResult) {
 
         IMatchingTriplets matchingTriplets = new MatchingTriplets();
-        Set<ITriplet<Integer, Integer, Integer>> result = matchingTriplets.getMatchingTriplets(values, sum);
-
-        List<ITriplet<Integer, Integer, Integer>> sortedResult = new ArrayList<>(result);
-        Collections.sort(sortedResult);
+        List<ITriplet<Integer, Integer, Integer>> result = matchingTriplets.findMatchingTriplets(values, sum);
+        Collections.sort(result);
 
         this.assertion.assertEqualsWithIterators(
-            CollectionIterator.of(sortedResult),
+            CollectionIterator.of(result),
             CollectionIterator.of(expectedResult),
-            "Incorrect logic for calculating the values of matching triplets.");
+            "Incorrect logic for finding the values of matching triplets.");
     }
 
     /**
-     * Tests the logic for calculating the closest values of matching triplet.
+     * Tests the logic for finding the closest values of matching triplets.
      */
     private void testMatchingClosestTriplet(
         int[] values,
@@ -152,11 +161,28 @@ public final class MatchingTripletsTest {
         ITriplet<Integer, Integer, Integer> expectedResult) {
 
         IMatchingTriplets matchingTriplets = new MatchingTriplets();
-        ITriplet<Integer, Integer, Integer> result = matchingTriplets.getClosestMatchingTriplet(values, sum);
+        ITriplet<Integer, Integer, Integer> result = matchingTriplets.findClosestMatchingTriplet(values, sum);
 
         this.assertion.assertEquals(
             result,
             expectedResult,
-            "Incorrect logic for calculating the closest values of matching triplet.");
+            "Incorrect logic for finding the closest values of matching triplet.");
+    }
+
+    /**
+     * Tests the logic for finding triplets such that sum of two equals to third element.
+     */
+    private void testFindingTriplets(
+        int[] values,
+        List<ITriplet<Integer, Integer, Integer>> expectedResult) {
+
+        IMatchingTriplets matchingTriplets = new MatchingTriplets();
+        List<ITriplet<Integer, Integer, Integer>> result = matchingTriplets.findTriplets(values);
+        Collections.sort(result);
+
+        this.assertion.assertEqualsWithIterators(
+            ListIterator.of(result),
+            ListIterator.of(expectedResult),
+            "Incorrect logic for finding triplets such that sum of two equals to third element.");
     }
 }
