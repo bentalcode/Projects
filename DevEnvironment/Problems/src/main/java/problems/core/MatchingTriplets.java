@@ -41,13 +41,13 @@ public final class MatchingTriplets implements IMatchingTriplets {
 
         Map<Integer, List<Integer>> indexesMap = this.createIndexesMap(values);
 
-        for (int firstIndex = 0; firstIndex <= values.length - 3; ++firstIndex) {
-            int currValue1 = values[firstIndex];
-            int matchingValue1 = sum - currValue1;
+        for (int firstIndex = 0; firstIndex < values.length - 2; ++firstIndex) {
+            int first = values[firstIndex];
+            int matchingValue1 = sum - first;
 
-            for (int secondIndex = firstIndex + 1; secondIndex <= values.length - 2; ++secondIndex) {
-                int currValue2 = values[secondIndex];
-                int matchingValue2 = matchingValue1 - currValue2;
+            for (int secondIndex = firstIndex + 1; secondIndex < values.length - 1; ++secondIndex) {
+                int second = values[secondIndex];
+                int matchingValue2 = matchingValue1 - second;
 
                 if (indexesMap.containsKey(matchingValue2)) {
                     for (int thirdIndex : indexesMap.get(matchingValue2)) {
@@ -218,33 +218,33 @@ public final class MatchingTriplets implements IMatchingTriplets {
         int minDiff = Integer.MAX_VALUE;
 
         for (int firstIndex = 0; firstIndex < sorted.length - 2; ++firstIndex) {
-            int firstValue = sorted[firstIndex];
-            int matchingSum = sum - firstValue;
+            int first = sorted[firstIndex];
+            int matchingSum = sum - first;
 
             int leftIndex = firstIndex + 1;
             int rightIndex = sorted.length - 1;
 
             while (leftIndex < rightIndex) {
-                int secondValue = sorted[leftIndex];
-                int thirdValue = sorted[rightIndex];
+                int second = sorted[leftIndex];
+                int third = sorted[rightIndex];
 
-                int currSum = secondValue + thirdValue;
+                int currSum = second + third;
 
                 if (currSum == matchingSum) {
                     return Triplet.of(
-                        firstValue,
-                        secondValue,
-                        thirdValue);
+                        first,
+                        second,
+                        third);
                 }
 
-                int tripleSum = firstValue + secondValue + thirdValue;
+                int tripleSum = first + second + third;
                 int currDiff = Math.abs(sum - tripleSum);
 
                 if (closestTriplet == null || currDiff < minDiff) {
                     closestTriplet = Triplet.of(
-                        firstValue,
-                        secondValue,
-                        thirdValue);
+                        first,
+                        second,
+                        third);
                 }
 
                 if (currSum < sum) {

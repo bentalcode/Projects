@@ -95,7 +95,9 @@ include_directories(
     ${BASE_INCLUDES}
 )
 
-add_library(Base ${BASE_SOURCES})
+add_library(
+    Base ${BASE_SOURCES}
+)
 
 include_directories(
     ${BOOST_PATH}
