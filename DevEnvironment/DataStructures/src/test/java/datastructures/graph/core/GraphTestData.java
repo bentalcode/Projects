@@ -1,6 +1,7 @@
 package datastructures.graph.core;
 
 import base.core.ArrayLists;
+import base.core.HashMaps;
 import base.core.Pair;
 import base.core.RandomGenerator;
 import base.core.TwoDimensionalList;
@@ -14,7 +15,9 @@ import datastructures.graph.interfaces.IRoute;
 import datastructures.graph.interfaces.IVertex;
 import datastructures.graph.interfaces.IWalk;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The GraphTestData class implements the data of the tests of a graph.
@@ -173,20 +176,36 @@ public final class GraphTestData implements IGraphTestData {
             vertex3,
             vertex4);
 
+        IEdge<Integer, String> edge12 = Edge.newDirectedEdge(vertex1, vertex2);
+        IEdge<Integer, String> edge13 = Edge.newDirectedEdge(vertex1, vertex3);
+        IEdge<Integer, String> edge23 = Edge.newDirectedEdge(vertex2, vertex3);
+        IEdge<Integer, String> edge34 = Edge.newDirectedEdge(vertex3, vertex4);
+
         List<IEdge<Integer, String>> edges = ArrayLists.of(
-            Edge.newDirectedEdge(vertex1, vertex2),
-            Edge.newDirectedEdge(vertex1, vertex3),
-            Edge.newDirectedEdge(vertex2, vertex3),
-            Edge.newDirectedEdge(vertex3, vertex4));
+            edge12,
+            edge13,
+            edge23,
+            edge34);
+
+        Map<IEdge<Integer, String>, Integer> weights = HashMaps.of(
+            edge12, 5,
+            edge23, 2,
+            edge13, 6,
+            edge34, 4);
 
         List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = this.getGraphPathsData1(vertices);
         ITwoDimensionalList<IVertex<Integer, String>> topologicalSearch = this.getGraphTopologicalSearchData1(vertices);
 
+        Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths =
+            this.getGraphShortestPaths1(vertices);
+
         return new GraphData<>(
             vertices,
             edges,
+            weights,
             paths,
-            topologicalSearch);
+            topologicalSearch,
+            shortestPaths);
     }
 
     /**
@@ -208,24 +227,48 @@ public final class GraphTestData implements IGraphTestData {
             vertex5,
             vertex6);
 
+        IEdge<Integer, String> edge12 = Edge.newDirectedEdge(vertex1, vertex2);
+        IEdge<Integer, String> edge13 = Edge.newDirectedEdge(vertex1, vertex3);
+        IEdge<Integer, String> edge24 = Edge.newDirectedEdge(vertex2, vertex4);
+        IEdge<Integer, String> edge32 = Edge.newDirectedEdge(vertex3, vertex2);
+        IEdge<Integer, String> edge35 = Edge.newDirectedEdge(vertex3, vertex5);
+        IEdge<Integer, String> edge45 = Edge.newDirectedEdge(vertex4, vertex5);
+        IEdge<Integer, String> edge46 = Edge.newDirectedEdge(vertex4, vertex6);
+        IEdge<Integer, String> edge56 = Edge.newDirectedEdge(vertex5, vertex6);
+
         List<IEdge<Integer, String>> edges = ArrayLists.of(
-            Edge.newDirectedEdge(vertex1, vertex2),
-            Edge.newDirectedEdge(vertex1, vertex3),
-            Edge.newDirectedEdge(vertex2, vertex4),
-            Edge.newDirectedEdge(vertex3, vertex2),
-            Edge.newDirectedEdge(vertex3, vertex5),
-            Edge.newDirectedEdge(vertex4, vertex5),
-            Edge.newDirectedEdge(vertex4, vertex6),
-            Edge.newDirectedEdge(vertex5, vertex6));
+            edge12,
+            edge13,
+            edge24,
+            edge32,
+            edge35,
+            edge45,
+            edge46,
+            edge56);
+
+        Map<IEdge<Integer, String>, Integer> weights = new HashMap<>();
+        weights.put(edge12, 10);
+        weights.put(edge13, 8);
+        weights.put(edge24, 6);
+        weights.put(edge32, 4);
+        weights.put(edge35, 7);
+        weights.put(edge45, 9);
+        weights.put(edge46, 3);
+        weights.put(edge56, 2);
 
         List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = this.getGraphPathsData2(vertices);
         ITwoDimensionalList<IVertex<Integer, String>> topologicalSearch = this.getGraphTopologicalSearchData2(vertices);
 
+        Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths =
+            this.getGraphShortestPaths2(vertices);
+
         return new GraphData<>(
             vertices,
             edges,
+            weights,
             paths,
-            topologicalSearch);
+            topologicalSearch,
+            shortestPaths);
     }
 
     /**
@@ -245,21 +288,39 @@ public final class GraphTestData implements IGraphTestData {
             vertex4,
             vertex5);
 
+        IEdge<Integer, String> edge12 = Edge.newDirectedEdge(vertex1, vertex2);
+        IEdge<Integer, String> edge13 = Edge.newDirectedEdge(vertex1, vertex3);
+        IEdge<Integer, String> edge25 = Edge.newDirectedEdge(vertex2, vertex5);
+        IEdge<Integer, String> edge35 = Edge.newDirectedEdge(vertex3, vertex5);
+        IEdge<Integer, String> edge45 = Edge.newDirectedEdge(vertex4, vertex5);
+
         List<IEdge<Integer, String>> edges = ArrayLists.of(
-            Edge.newDirectedEdge(vertex1, vertex2),
-            Edge.newDirectedEdge(vertex1, vertex3),
-            Edge.newDirectedEdge(vertex2, vertex5),
-            Edge.newDirectedEdge(vertex3, vertex5),
-            Edge.newDirectedEdge(vertex4, vertex5));
+            edge12,
+            edge13,
+            edge25,
+            edge35,
+            edge45);
+
+        Map<IEdge<Integer, String>, Integer> weights = new HashMap<>();
+        weights.put(edge12, 7);
+        weights.put(edge13, 8);
+        weights.put(edge25, 13);
+        weights.put(edge35, 6);
+        weights.put(edge45, 2);
 
         List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> paths = this.getGraphPathsData3(vertices);
         ITwoDimensionalList<IVertex<Integer, String>> topologicalSearch = this.getGraphTopologicalSearchData3(vertices);
 
+        Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths =
+            this.getGraphShortestPaths3(vertices);
+
         return new GraphData<>(
             vertices,
             edges,
+            weights,
             paths,
-            topologicalSearch);
+            topologicalSearch,
+            shortestPaths);
     }
 
     /**
@@ -524,5 +585,181 @@ public final class GraphTestData implements IGraphTestData {
             List.of(vertex5));
 
         return new TwoDimensionalList<>(data);
+    }
+
+    /**
+     * Gets the shortest paths of graph1.
+     */
+    private Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> getGraphShortestPaths1(
+        List<IVertex<Integer, String>> vertices) {
+
+        assert(vertices.size() == 4);
+        IVertex<Integer, String> vertex1 = vertices.get(0);
+        IVertex<Integer, String> vertex2 = vertices.get(1);
+        IVertex<Integer, String> vertex3 = vertices.get(2);
+        IVertex<Integer, String> vertex4 = vertices.get(3);
+
+        Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths = new HashMap<>();
+        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.of(
+            vertex1, 0,
+            vertex2, 5,
+            vertex3, 6,
+            vertex4, 10);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, 0,
+            vertex3, 2,
+            vertex4, 6);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, Integer.MAX_VALUE,
+            vertex3, 0,
+            vertex4, 4);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, Integer.MAX_VALUE,
+            vertex3, Integer.MAX_VALUE,
+            vertex4, 0);
+
+        shortestPaths.put(vertex1, shortestPaths1);
+        shortestPaths.put(vertex2, shortestPaths2);
+        shortestPaths.put(vertex3, shortestPaths3);
+        shortestPaths.put(vertex4, shortestPaths4);
+
+        return shortestPaths;
+    }
+
+    /**
+     * Gets the shortest paths of graph2.
+     */
+    private Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> getGraphShortestPaths2(
+        List<IVertex<Integer, String>> vertices) {
+
+        assert(vertices.size() == 6);
+        IVertex<Integer, String> vertex1 = vertices.get(0);
+        IVertex<Integer, String> vertex2 = vertices.get(1);
+        IVertex<Integer, String> vertex3 = vertices.get(2);
+        IVertex<Integer, String> vertex4 = vertices.get(3);
+        IVertex<Integer, String> vertex5 = vertices.get(4);
+        IVertex<Integer, String> vertex6 = vertices.get(5);
+
+        Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths = new HashMap<>();
+        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.of(
+            vertex1, 0,
+            vertex2, 10,
+            vertex3, 8,
+            vertex4, 16,
+            vertex5, 15,
+            vertex6, 17);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, 0,
+            vertex3, Integer.MAX_VALUE,
+            vertex4, 6,
+            vertex5, 15,
+            vertex6, 9);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, 4,
+            vertex3, 0,
+            vertex4, 10,
+            vertex5, 7,
+            vertex6, 9);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, Integer.MAX_VALUE,
+            vertex3, Integer.MAX_VALUE,
+            vertex4, 0,
+            vertex5, 9,
+            vertex6, 3);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths5 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, Integer.MAX_VALUE,
+            vertex3, Integer.MAX_VALUE,
+            vertex4, Integer.MAX_VALUE,
+            vertex5, 0,
+            vertex6, 2);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths6 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, Integer.MAX_VALUE,
+            vertex3, Integer.MAX_VALUE,
+            vertex4, Integer.MAX_VALUE,
+            vertex5, Integer.MAX_VALUE,
+            vertex6, 0);
+
+        shortestPaths.put(vertex1, shortestPaths1);
+        shortestPaths.put(vertex2, shortestPaths2);
+        shortestPaths.put(vertex3, shortestPaths3);
+        shortestPaths.put(vertex4, shortestPaths4);
+        shortestPaths.put(vertex5, shortestPaths5);
+        shortestPaths.put(vertex6, shortestPaths6);
+
+        return shortestPaths;
+    }
+
+    /**
+     * Gets the shortest paths of graph3.
+     */
+    private Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> getGraphShortestPaths3(
+        List<IVertex<Integer, String>> vertices) {
+
+        assert(vertices.size() == 5);
+        IVertex<Integer, String> vertex1 = vertices.get(0);
+        IVertex<Integer, String> vertex2 = vertices.get(1);
+        IVertex<Integer, String> vertex3 = vertices.get(2);
+        IVertex<Integer, String> vertex4 = vertices.get(3);
+        IVertex<Integer, String> vertex5 = vertices.get(4);
+
+        Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths = new HashMap<>();
+        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.of(
+            vertex1, 0,
+            vertex2, 7,
+            vertex3, 8,
+            vertex4, Integer.MAX_VALUE,
+            vertex5, 14);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, 0,
+            vertex3, Integer.MAX_VALUE,
+            vertex4, Integer.MAX_VALUE,
+            vertex5, 13);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, Integer.MAX_VALUE,
+            vertex3, 0,
+            vertex4, Integer.MAX_VALUE,
+            vertex5, 6);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, Integer.MAX_VALUE,
+            vertex3, Integer.MAX_VALUE,
+            vertex4, 0,
+            vertex5, 2);
+
+        Map<IVertex<Integer, String>, Integer> shortestPaths5 = HashMaps.of(
+            vertex1, Integer.MAX_VALUE,
+            vertex2, Integer.MAX_VALUE,
+            vertex3, Integer.MAX_VALUE,
+            vertex4, Integer.MAX_VALUE,
+            vertex5, 0);
+
+        shortestPaths.put(vertex1, shortestPaths1);
+        shortestPaths.put(vertex2, shortestPaths2);
+        shortestPaths.put(vertex3, shortestPaths3);
+        shortestPaths.put(vertex4, shortestPaths4);
+        shortestPaths.put(vertex5, shortestPaths5);
+
+        return shortestPaths;
     }
 }

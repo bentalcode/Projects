@@ -11,7 +11,9 @@ import base.interfaces.IComparableComparator;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IHashCodeProvider;
 import datastructures.graph.interfaces.IAdjacencyMatrix;
+import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IVertex;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -79,6 +81,28 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
         this.validateVertex(vertex);
 
         return this.connections.get(vertex);
+    }
+
+    /**
+     * Gets the adjacent edges of a vertex.
+     */
+    @Override
+    public Set<IEdge<TKey, TValue>> getAdjacentEdges(IVertex<TKey, TValue> vertex) {
+        this.validateVertex(vertex);
+
+        Set<IVertex<TKey, TValue>> adjacentVertices = this.connections.get(vertex);
+
+        Set<IEdge<TKey, TValue>> edges = new HashSet<>();
+
+        for (IVertex<TKey, TValue> adjacentVertex : adjacentVertices) {
+            IEdge<TKey, TValue> edge = this.connected(adjacentVertex, vertex) ?
+                Edge.newEdge(vertex, adjacentVertex) :
+                Edge.newDirectedEdge(vertex, adjacentVertex);
+
+            edges.add(edge);
+        }
+
+        return edges;
     }
 
     /**

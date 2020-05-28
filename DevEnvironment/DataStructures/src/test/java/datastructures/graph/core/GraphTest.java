@@ -2,8 +2,10 @@ package datastructures.graph.core;
 
 import base.core.ListIterator;
 import base.core.Lists;
+import base.interfaces.IEquatableComparator;
 import base.interfaces.IPair;
 import datastructures.core.TestData;
+import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphData;
 import datastructures.graph.interfaces.IGraphDefinition;
@@ -17,6 +19,7 @@ import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The GraphTest class implements tests for a graph.
@@ -49,7 +52,7 @@ public final class GraphTest {
      * Tests whether a graph has a loop.
      */
     @Test
-    public void graphLoopDetectionTest() {
+    public void detectLoopTest() {
         for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
             this.testLoopDetection(data, false);
         }
@@ -63,7 +66,7 @@ public final class GraphTest {
      * Tests topological search of a graph.
      */
     @Test
-    public void graphTopologicalSearchTest() {
+    public void topologicalSearchTest() {
         for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
             this.testTopologicalSearch(data);
         }
@@ -73,7 +76,7 @@ public final class GraphTest {
      * Tests the logic of finding paths in a graph by performing a Breadth-First search.
      */
     @Test
-    public void graphFindPathsWithBreadthFirstSearchTest() {
+    public void findPathsWithBreadthFirstSearchTest() {
         for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
             this.testFindPathsWithBreadthFirstSearch(data);
         }
@@ -83,9 +86,19 @@ public final class GraphTest {
      * Tests the logic of finding paths in a graph by performing a Depth-First search.
      */
     @Test
-    public void graphFindPathsWithDepthFirstSearchTest() {
+    public void findPathsWithDepthFirstSearchTest() {
         for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
             this.testFindPathsWithDepthFirstSearch(data);
+        }
+    }
+
+    /**
+     * Tests the logic of finding shortest paths in a graph.
+     */
+    @Test
+    public void graphFindShortestPathsTest() {
+        for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
+            this.testFindShortestPaths(data);
         }
     }
 
@@ -169,6 +182,34 @@ public final class GraphTest {
                 ListIterator.of(paths),
                 ListIterator.of(expectedPaths),
                 "Incorrect logic of finding paths with a Depth-First search in a graph.");
+        }
+    }
+
+    /**
+     * Tests the logic of finding shortest paths in a graph.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void testFindShortestPaths(IGraphData<TKey, TValue> data) {
+        IGraph<TKey, TValue> graph = this.createGraph(data);
+
+        Map<IEdge<TKey, TValue>, Integer> weights = data.getWeights();
+        Map<IVertex<TKey, TValue>, Map<IVertex<TKey, TValue>, Integer>> allExpectedShortestPaths = data.getShortestPaths();
+
+        for (IVertex<TKey, TValue> vertex : data.vertices()) {
+            IVertex<TKey, TValue> src = vertex;
+
+            Map<IVertex<TKey, TValue>, Integer> shortestPaths = graph.getGraphLogic().findShortestPaths(src, weights);
+
+            Map<IVertex<TKey, TValue>, Integer> expectedShortestPaths = allExpectedShortestPaths.get(src);
+
+            IEquatableComparator<IVertex<TKey, TValue>> keyComparator = Vertex.defaultComparator();
+            IEquatableComparator<Integer> valueComparator = base.core.Comparator.defaultComparator();
+
+            this.assertion.assertEquals(
+                shortestPaths,
+                expectedShortestPaths,
+                keyComparator,
+                valueComparator,
+                "Incorrect logic of calculating shortest paths in a graph.");
         }
     }
 

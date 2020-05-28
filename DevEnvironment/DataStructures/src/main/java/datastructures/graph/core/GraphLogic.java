@@ -4,15 +4,20 @@ import base.core.Conditions;
 import base.core.Pair;
 import base.interfaces.IPair;
 import datastructures.graph.GraphException;
+import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphLogic;
 import datastructures.graph.interfaces.IRoute;
 import datastructures.graph.interfaces.IVertex;
 import datastructures.graph.interfaces.IWalk;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
@@ -98,8 +103,9 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
     }
 
     /**
-     * Find paths by performing a Breadth-First search.
+     * Finds paths by performing a Breadth-First search.
      */
+    @Override
     public List<IWalk<TKey, TValue>> findPathsWithBreadthFirstSearch(IRoute<TKey, TValue> route) {
         Conditions.validateNotNull(
             route,
@@ -116,7 +122,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
     }
 
     /**
-     * Find paths by performing a Depth-First search.
+     * Finds paths by performing a Depth-First search.
      */
     @Override
     public List<IWalk<TKey, TValue>> findPathsWithDepthFirstSearch(IRoute<TKey, TValue> route) {
@@ -136,6 +142,86 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
             paths);
 
         return paths;
+    }
+
+    /**
+     * Finds the shortest paths from the source vertex to all other vertices in a given graph.
+     */
+    @Override
+    public Map<IVertex<TKey, TValue>, Integer> findShortestPaths(
+        IVertex<TKey, TValue> src,
+        Map<IEdge<TKey, TValue>, Integer> weights) {
+
+        Conditions.validateNotNull(
+            src,
+            "The source vertex.");
+
+        Conditions.validateNotNull(
+            weights,
+            "The weights of edges.");
+
+        //
+        // Initializes the distances map...
+        //
+        Map<IVertex<TKey, TValue>, Integer> distances = new HashMap<>();
+
+        for (IVertex<TKey, TValue> vertex : this.graph.vertices()) {
+            int initializedDistance = vertex.equals(src) ? 0 : Integer.MAX_VALUE;
+            distances.put(vertex, initializedDistance);
+        }
+
+        //
+        // Create the priority queue based on minimum distance...
+        //
+        PriorityQueue<IPair<IVertex<TKey, TValue>, Integer>> queue = new PriorityQueue<>(
+            new Comparator<IPair<IVertex<TKey, TValue>, Integer>>() {
+                @Override
+                public int compare(
+                    IPair<IVertex<TKey, TValue>, Integer> left,
+                    IPair<IVertex<TKey, TValue>, Integer> right) {
+
+                    if (left == null && right == null) {
+                        return 0;
+                    }
+
+                    if (left == null) {
+                        return -1;
+                    }
+
+                    if (right == null) {
+                        return 1;
+                    }
+
+                    int leftDistance = left.second();
+                    int rightDistance = right.second();
+
+                    return Integer.compare(leftDistance, rightDistance);
+                }
+            }
+        );
+
+        queue.offer(Pair.of(src, 0));
+
+        while (!queue.isEmpty()) {
+            IPair<IVertex<TKey, TValue>, Integer> curr = queue.poll();
+
+            IVertex<TKey, TValue> currVertex = curr.first();
+            int currDistance = curr.second();
+
+            for (IEdge<TKey, TValue> edge : this.graph.getAdjacencyMatrix().getAdjacentEdges(currVertex)) {
+                IVertex<TKey, TValue> nextVertex = edge.destination();
+                int edgeWeight = weights.get(edge);
+
+                int nextDistance = currDistance + edgeWeight;
+
+                if (nextDistance < distances.get(nextVertex)) {
+                    queue.offer(Pair.of(nextVertex, nextDistance));
+                    distances.put(nextVertex, nextDistance);
+                }
+            }
+        }
+
+        return distances;
     }
 
     /**

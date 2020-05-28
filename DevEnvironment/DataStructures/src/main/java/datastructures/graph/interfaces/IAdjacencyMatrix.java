@@ -22,4 +22,9 @@ public interface IAdjacencyMatrix<TKey extends Comparable<TKey>, TValue> extends
      * Gets the adjacent vertices of a vertex.
      */
     Set<IVertex<TKey, TValue>> getAdjacentVertices(IVertex<TKey, TValue> vertex);
+
+    /**
+     * Gets the adjacent edges of a vertex.
+     */
+    Set<IEdge<TKey, TValue>> getAdjacentEdges(IVertex<TKey, TValue> vertex);
 }
