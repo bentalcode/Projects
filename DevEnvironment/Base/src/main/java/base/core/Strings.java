@@ -160,6 +160,96 @@ public final class Strings {
     }
 
     /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Return -1 if the subString is not found.
+     */
+    public static int findSubStringKmp(String str, String subString) {
+        if (str == null || str.isEmpty() ||
+            subString == null || subString.isEmpty() ||
+            str.length() < subString.length()) {
+
+            return -1;
+        }
+
+        return findSubStringKmp(
+            str.toCharArray(), 0, str.length() - 1,
+            subString.toCharArray(), 0, subString.length() - 1);
+    }
+
+    /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Return -1 if the subString is not found.
+     */
+    public static int findSubStringKmp(
+        String str, int strStartIndex, int strEndIndex,
+        String subString, int subStringStartIndex, int subStringEndIndex) {
+
+        if (str == null || str.isEmpty() || subString == null || subString.isEmpty()) {
+            return -1;
+        }
+
+        return findSubStringKmp(
+            str.toCharArray(), strStartIndex, strEndIndex,
+            subString.toCharArray(), subStringStartIndex, subStringEndIndex);
+    }
+
+    /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Return -1 if the subString is not found.
+     */
+    public static int findSubStringKmp(
+        char[] str, int strStartIndex, int strEndIndex,
+        char[] subString, int subStringStartIndex, int subStringEndIndex) {
+
+        assert(str != null);
+        assert(strStartIndex >= 0 && strStartIndex < str.length);
+        assert(strEndIndex >= strStartIndex && strEndIndex < str.length);
+        assert(subString != null);
+        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
+        assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
+
+        int strLength = strEndIndex - strStartIndex + 1;
+        int subStringLength = subStringEndIndex - subStringStartIndex + 1;
+
+        if (strLength < subStringLength) {
+            return -1;
+        }
+
+        //
+        // Create the longest prefix suffix...
+        //
+        int[] lps = createLongestPrefixSuffix(subString, subStringStartIndex, subStringEndIndex);
+
+        int strIndex = strStartIndex;
+        int subStringIndex = subStringStartIndex;
+
+        while (strIndex <= strEndIndex && subStringIndex <= subStringEndIndex) {
+            char strCharacter = str[strIndex];
+            char subStringCharacter = subString[subStringIndex];
+
+            if (strCharacter == subStringCharacter) {
+                if (subStringIndex == subStringEndIndex) {
+                    return strIndex - subStringLength + 1;
+                }
+
+                ++strIndex;
+                ++subStringIndex;
+            }
+            else {
+                if (subStringIndex == subStringStartIndex) {
+                    ++strIndex;
+                }
+                else {
+                    int lpsIndex = subStringIndex - subStringStartIndex;
+                    subStringIndex = subStringStartIndex + lps[lpsIndex - 1];
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    /**
      * Counts the number of instances of a substring.
      */
     public static int countSubString(
@@ -283,6 +373,54 @@ public final class Strings {
         }
 
         return strIndex == endIndex - counter;
+    }
+
+    /**
+     * Creates the longest prefix suffix (lps) of a string.
+     *
+     * For instance,
+     * String str = "AAACAAAAAC";
+     * Prefixes = {{}, {A}, {AA}, {AAA}, {AAAC}, {AAACA}, {AAACAA}, {AAACAAA}, {AAACAAAA}, {AAACAAAAA}, {AAACAAAAAC}};
+     * Postfixes = {{}, {C}, {AC}, {AAC}, {AAAC}, {AAAAC}, {AAAAAC}, {CAAAAAC}, {ACAAAAAC}, {AACAAAAAC}, {AAACAAAAAC}};
+     *
+     * In this case, Prefix{AAAC} == Postfix{AAAC}, Therefore, lps[9] = 4;
+     *
+     * lps = {0, 1, 2, 0, 1, 2, 3, 3, 3, 4}
+     */
+    private static int[] createLongestPrefixSuffix(char[] str, int startIndex, int endIndex) {
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length);
+        assert(endIndex >= startIndex && endIndex < str.length);
+
+        int strLength = endIndex - startIndex + 1;
+
+        int[] lps = new int[strLength];
+        lps[0] = 0;
+
+        int index = 1;
+        int length = 0;
+
+        while (index < strLength) {
+            char currCharacter = str[startIndex + index];
+            char patternCharacter = str[startIndex + length];
+
+            if (currCharacter == patternCharacter) {
+                ++length;
+                lps[index] = length;
+                ++index;
+            }
+            else {
+                if (length == 0) {
+                    lps[index] = 0;
+                    ++index;
+                }
+                else {
+                    length = lps[length - 1];
+                }
+            }
+        }
+
+        return lps;
     }
 
     /**
