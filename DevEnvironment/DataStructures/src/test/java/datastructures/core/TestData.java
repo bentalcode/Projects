@@ -33,6 +33,8 @@ import datastructures.stack.core.StackTestData;
 import datastructures.stack.interfaces.IStackTestData;
 import datastructures.trie.core.TrieTestData;
 import datastructures.trie.interfaces.ITrieTestData;
+import datastructures.multileveldoublylinkedlist.core.MultiLevelDoublyLinkedListTestData;
+import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListTestData;
 
 /**
  * The TestData class implements the data of the tests.
@@ -98,6 +100,14 @@ public final class TestData implements ITestData {
     @Override
     public IDoublyLinkedListTestData getDoublyLinkedListData() {
         return new DoublyLinkedListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a multi-level doubly linked list.
+     */
+    @Override
+    public IMultiLevelDoublyLinkedListTestData getMultiLevelDoublyLinkedListData() {
+        return new MultiLevelDoublyLinkedListTestData();
     }
 
     /**

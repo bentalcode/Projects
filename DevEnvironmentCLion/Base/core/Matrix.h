@@ -232,6 +232,12 @@ namespace base
     template <typename T>
     void Matrix<T>::setRow(std::size_t rowIndex, const std::vector<T>& row)
     {
+        if (row.size() != rowsSize())
+        {
+            std::string errorMessage = "The size of the row is not in the correct size.";
+            throw BaseException(errorMessage);
+        }
+
         std::vector<T>& currRow = m_data[rowIndex];
         currRow = row;
     }

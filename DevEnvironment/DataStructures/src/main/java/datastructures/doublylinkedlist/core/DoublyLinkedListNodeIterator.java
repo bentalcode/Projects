@@ -9,21 +9,21 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 public final class DoublyLinkedListNodeIterator<T extends Comparable<T>>
     implements IIterator<IDoublyLinkedListNode<T>> {
 
-    private final IDoublyLinkedListNode<T> headNode;
-    private IDoublyLinkedListNode<T> currentNode;
+    private final IDoublyLinkedListNode<T> head;
+    private IDoublyLinkedListNode<T> currNode;
 
     /**
      * Creates a new iterator of a doubly linked list.
      */
-    public static <T extends Comparable<T>> IIterator<IDoublyLinkedListNode<T>> of(IDoublyLinkedListNode<T> headNode) {
-        return new DoublyLinkedListNodeIterator<>(headNode);
+    public static <T extends Comparable<T>> IIterator<IDoublyLinkedListNode<T>> of(IDoublyLinkedListNode<T> head) {
+        return new DoublyLinkedListNodeIterator<>(head);
     }
 
     /**
      * The DoublyLinkedListNodeIterator constructor.
      */
-    public DoublyLinkedListNodeIterator(IDoublyLinkedListNode<T> headNode) {
-        this.headNode = headNode;
+    public DoublyLinkedListNodeIterator(IDoublyLinkedListNode<T> head) {
+        this.head = head;
 
         this.reset();
     }
@@ -33,7 +33,7 @@ public final class DoublyLinkedListNodeIterator<T extends Comparable<T>>
      */
     @Override
     public boolean hasNext() {
-        return this.currentNode != null;
+        return this.currNode != null;
     }
 
     /**
@@ -44,10 +44,10 @@ public final class DoublyLinkedListNodeIterator<T extends Comparable<T>>
         assert(this.hasNext());
 
 
-        IDoublyLinkedListNode<T> currentNode = this.currentNode;
-        this.currentNode = this.currentNode.next();
+        IDoublyLinkedListNode<T> currNode = this.currNode;
+        this.currNode = this.currNode.next();
 
-        return currentNode;
+        return currNode;
     }
 
     /**
@@ -55,6 +55,6 @@ public final class DoublyLinkedListNodeIterator<T extends Comparable<T>>
      */
     @Override
     public void reset() {
-        this.currentNode = this.headNode;
+        this.currNode = this.head;
     }
 }

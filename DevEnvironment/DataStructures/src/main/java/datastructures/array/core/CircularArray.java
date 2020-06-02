@@ -10,7 +10,7 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.array.interfaces.ICircularArray;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 
 /**
  * The CircularArray class implements a circular array.

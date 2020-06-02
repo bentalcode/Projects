@@ -7,7 +7,6 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
-import datastructures.collections.core.Collections;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**

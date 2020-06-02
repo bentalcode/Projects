@@ -1,32 +1,28 @@
-package datastructures.dimentions.interfaces;
-
-import base.interfaces.IUnaryComparator;
-
-import java.util.List;
+package base.interfaces;
 
 /**
- * The Position interface defines a position in 2D.
+ * The Position interface defines a 2D position.
  */
 public interface IPosition extends IUnaryComparator<IPosition> {
     /**
-     * Gets the X coordinate.
+     * Gets the index of a row.
      */
-    int getX();
+    int getRow();
 
     /**
-     * Gets the Y coordinate.
+     * Gets the index of a column.
      */
-    int getY();
+    int getColumn();
 
     /**
-     * Sets the X coordinate.
+     * Sets the index of a row.
      */
-    void setX(int x);
+    void setRow(int row);
 
     /**
-     * Sets the Y coordinate.
+     * Sets the index of a column.
      */
-    void setY(int y);
+    void setColumn(int col);
 
     /**
      * Moves left.

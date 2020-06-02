@@ -14,7 +14,7 @@ import base.interfaces.IReverseIterator;
 import datastructures.bitarray.interfaces.BinaryBitOperator;
 import datastructures.bitarray.interfaces.IBit32Array;
 import datastructures.bitarray.interfaces.UnaryBitOperator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 
 /**
  * The Bit32Array class implements a bit array of size 32.

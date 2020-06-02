@@ -14,7 +14,7 @@ import datastructures.bitarray.interfaces.BinaryBitOperator;
 import datastructures.bitarray.interfaces.IBit32Array;
 import datastructures.bitarray.interfaces.IBitArray;
 import datastructures.bitarray.interfaces.UnaryBitOperator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 
 /**
  * The BitArray class implements a bit array for managing a compact array of bits.

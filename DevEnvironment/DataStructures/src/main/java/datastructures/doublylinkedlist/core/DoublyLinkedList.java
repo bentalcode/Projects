@@ -9,8 +9,7 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
-import base.interfaces.IUnaryComparator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 
@@ -128,7 +127,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
     public void addToFront(IDoublyLinkedListNode<T> node) {
         Conditions.validateNotNull(
             node,
-            "The node to add.");
+            "The node for adding.");
 
         node.unlinked();
 
@@ -154,7 +153,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
     public void addToBack(IDoublyLinkedListNode<T> node) {
         Conditions.validateNotNull(
             node,
-            "The node to add.");
+            "The node for adding.");
 
         node.unlinked();
 
@@ -183,11 +182,11 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
 
         Conditions.validateNotNull(
             currNode,
-            "The exiting node to add after.");
+            "The exiting node for adding after.");
 
         Conditions.validateNotNull(
             nodeToAdd,
-            "The node to add.");
+            "The node for adding.");
 
         nodeToAdd.unlinked();
 
@@ -213,11 +212,11 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
 
         Conditions.validateNotNull(
             currNode,
-            "The exiting node to add before.");
+            "The exiting node for adding before.");
 
         Conditions.validateNotNull(
             nodeToAdd,
-            "The node to add.");
+            "The node for adding.");
 
         nodeToAdd.unlinked();
 
@@ -275,7 +274,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
     public void remove(IDoublyLinkedListNode<T> nodeToRemove) {
         Conditions.validateNotNull(
             nodeToRemove,
-            "The node to remove.");
+            "The node for removing.");
 
         IDoublyLinkedListNode<T> previousNode = nodeToRemove.previous();
         IDoublyLinkedListNode<T> nextNode = nodeToRemove.next();

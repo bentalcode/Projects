@@ -180,7 +180,7 @@ public final class DoublyLinkedListTest {
         this.assertion.assertEqualsWithIterators(
             list.getValueIterator(),
             Iterator.of(expectedContent),
-            "Invalid updation logic of a doubly linked list.");
+            "Invalid updating logic of a doubly linked list.");
     }
 
     /**

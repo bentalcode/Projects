@@ -1,17 +1,15 @@
-package datastructures.matrix.core;
+package base.core;
 
-import base.core.Conditions;
+import base.interfaces.IMatrix;
 import base.interfaces.IReverseIterator;
-import datastructures.dimentions.core.Position;
-import datastructures.dimentions.interfaces.IPosition;
-import datastructures.matrix.interfaces.IMatrix;
 
 /**
  * The MatrixReverseIterator class implements a reverse iterator of a matrix.
  */
 public final class MatrixReverseIterator<T extends Comparable<T>> implements IReverseIterator<T> {
     private final IMatrix<T> data;
-    private IPosition position;
+    private int currRow;
+    private int currCol;
 
     /**
      * Creates a new reverse iterator of a matrix.
@@ -38,7 +36,7 @@ public final class MatrixReverseIterator<T extends Comparable<T>> implements IRe
      */
     @Override
     public boolean hasNext() {
-        return this.data.inbound(this.position);
+        return this.currRow >= 0;
     }
 
     /**
@@ -48,7 +46,7 @@ public final class MatrixReverseIterator<T extends Comparable<T>> implements IRe
     public T next() {
         assert(this.hasNext());
 
-        T currElement = this.get(this.position);
+        T currElement = this.data.get(this.currRow, this.currCol);
         this.moveNext();
 
         return currElement;
@@ -59,25 +57,20 @@ public final class MatrixReverseIterator<T extends Comparable<T>> implements IRe
      */
     @Override
     public void reset() {
-        this.position = new Position(this.data.xSize() - 1, this.data.ySize() - 1);
+        this.currRow = this.data.rowsSize() - 1;
+        this.currCol = this.data.colsSize() - 1;
     }
 
     /**
      * Moves to the next element.
      */
     private void moveNext() {
-        if (this.position.getX() > 0) {
-            this.position.moveLeft();
+        if (this.currCol > 0) {
+            --this.currCol;
         }
         else {
-            this.position = new Position(this.data.xSize() - 1, this.position.getY() - 1);
+            --this.currRow;
+            this.currCol = this.data.colsSize() - 1;
         }
-    }
-
-    /**
-     * Gets a value od a specific position.
-     */
-    private T get(IPosition position) {
-        return this.data.get(position);
     }
 }

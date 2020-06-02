@@ -11,7 +11,7 @@ import base.core.ListReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 import datastructures.graph.interfaces.IVertex;
 import datastructures.graph.interfaces.IWalk;
 import java.util.ArrayList;

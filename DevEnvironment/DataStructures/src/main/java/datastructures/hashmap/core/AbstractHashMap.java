@@ -7,7 +7,7 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
 import base.interfaces.IReverseIterator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;

@@ -13,7 +13,7 @@ import base.interfaces.IReverseIterator;
 import datastructures.binarytree.interfaces.IBinaryTree;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeTraversal;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 
 /**
  * The BinaryTree class implements a binary tree.

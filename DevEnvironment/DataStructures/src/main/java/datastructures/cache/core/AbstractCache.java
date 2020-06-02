@@ -12,7 +12,7 @@ import base.interfaces.IReverseIterator;
 import datastructures.cache.CacheException;
 import datastructures.cache.interfaces.ICache;
 import datastructures.cache.interfaces.ICacheProperties;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeIterator;
 import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeReverseIterator;

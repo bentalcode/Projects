@@ -8,7 +8,7 @@ import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 import datastructures.linkedlist.interfaces.ILinkedList;
 import datastructures.linkedlist.interfaces.ILinkedListNode;
 

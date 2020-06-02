@@ -1,18 +1,14 @@
-package datastructures.dimentions.core;
+package base.core;
 
-import base.core.AbstractBinaryComparator;
-import base.core.Casting;
-import base.core.Conditions;
-import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import datastructures.dimentions.interfaces.IPosition;
+import base.interfaces.IPosition;
 
 /**
  * The Position class implements a 2D position.
  */
 public final class Position implements IPosition {
-    private int x;
-    private int y;
+    private int row;
+    private int col;
     private final IBinaryComparator<IPosition> comparator;
 
     /**
@@ -25,8 +21,8 @@ public final class Position implements IPosition {
     /**
      * Creates a position.
      */
-    public static IPosition of(int x, int y) {
-        return new Position(x, y);
+    public static IPosition of(int row, int col) {
+        return new Position(row, col);
     }
 
     /**
@@ -39,53 +35,53 @@ public final class Position implements IPosition {
     /**
      * The Position constructor.
      */
-    public Position(int x, int y) {
-        this(x, y, Position.defaultComparator());
+    public Position(int row, int col) {
+        this(row, col, Position.defaultComparator());
     }
 
     /**
      * The Position constructor.
      */
-    public Position(int x, int y, IBinaryComparator<IPosition> comparator) {
+    public Position(int row, int col, IBinaryComparator<IPosition> comparator) {
         Conditions.validateNotNull(
             comparator,
             "The comparator of a position.");
 
-        this.x = x;
-        this.y = y;
+        this.row = row;
+        this.col = col;
         this.comparator = comparator;
     }
 
     /**
-     * Gets the X coordinate.
+     * Gets the index of a row.
      */
     @Override
-    public int getX() {
-        return this.x;
+    public int getRow() {
+        return this.row;
     }
 
     /**
-     * Gets the Y coordinate.
+     * Gets the index of a column.
      */
     @Override
-    public int getY() {
-        return this.y;
+    public int getColumn() {
+        return this.col;
     }
 
     /**
-     * Sets the X coordinate.
+     * Sets the index of a row.
      */
     @Override
-    public void setX(int x) {
-        this.x = x;
+    public void setRow(int row) {
+        this.row = row;
     }
 
     /**
-     * Sets the Y coordinate.
+     * Sets the index of a column.
      */
     @Override
-    public void setY(int y) {
-        this.y = y;
+    public void setColumn(int col) {
+        this.col = col;
     }
 
     /**
@@ -93,7 +89,7 @@ public final class Position implements IPosition {
      */
     @Override
     public void moveLeft() {
-        --this.x;
+        --this.col;
     }
 
     /**
@@ -101,7 +97,7 @@ public final class Position implements IPosition {
      */
     @Override
     public void moveRight() {
-        ++this.x;
+        ++this.col;
     }
 
     /**
@@ -109,7 +105,7 @@ public final class Position implements IPosition {
      */
     @Override
     public void moveUp() {
-        ++this.y;
+        ++this.row;
     }
 
     /**
@@ -117,7 +113,7 @@ public final class Position implements IPosition {
      */
     @Override
     public void moveDown() {
-        --this.y;
+        --this.row;
     }
 
     /**
@@ -129,7 +125,7 @@ public final class Position implements IPosition {
             position,
             "The position for adding.");
 
-        return this.add(position.getX(), position.getY());
+        return this.add(position.getRow(), position.getColumn());
     }
 
     /**
@@ -141,16 +137,16 @@ public final class Position implements IPosition {
             position,
             "The position for subtracting.");
 
-        return this.subtract(position.getX(), position.getY());
+        return this.subtract(position.getRow(), position.getColumn());
     }
 
     /**
      * Adds to a position.
      */
     @Override
-    public IPosition add(int xSize, int ySize) {
-        this.x += xSize;
-        this.y += ySize;
+    public IPosition add(int rowSize, int colSize) {
+        this.row += rowSize;
+        this.col += colSize;
 
         return this;
     }
@@ -159,9 +155,9 @@ public final class Position implements IPosition {
      * Subtracts from a position.
      */
     @Override
-    public IPosition subtract(int xSize, int ySize) {
-        this.x -= xSize;
-        this.y -= ySize;
+    public IPosition subtract(int rowSize, int colSize) {
+        this.row -= rowSize;
+        this.col -= colSize;
 
         return this;
     }
@@ -237,8 +233,8 @@ public final class Position implements IPosition {
         @Override
         public int getHashCode(IPosition position) {
             return new HashCodeBuilder(3, 5)
-                .withInteger(position.getX())
-                .withInteger(position.getY())
+                .withInteger(position.getRow())
+                .withInteger(position.getColumn())
                 .build();
         }
 
@@ -255,7 +251,7 @@ public final class Position implements IPosition {
                 return false;
             }
 
-            return lhs.getX() == rhs.getX() && lhs.getY() == rhs.getY();
+            return lhs.getRow() == rhs.getRow() && lhs.getColumn() == rhs.getColumn();
         }
 
         /**
@@ -279,19 +275,19 @@ public final class Position implements IPosition {
                 return 1;
             }
 
-            if (lhs.getX() < rhs.getX()) {
+            if (lhs.getRow() < rhs.getRow()) {
                 return -1;
             }
 
-            if (lhs.getX() > rhs.getX()) {
+            if (lhs.getRow() > rhs.getRow()) {
                 return 1;
             }
 
-            if (lhs.getY() < rhs.getY()) {
+            if (lhs.getColumn() < rhs.getColumn()) {
                 return -1;
             }
 
-            if (lhs.getY() > rhs.getY()) {
+            if (lhs.getColumn() > rhs.getColumn()) {
                 return 1;
             }
 
@@ -312,8 +308,8 @@ public final class Position implements IPosition {
             "The right position.");
 
         return new Position(
-            leftPosition.getX() + rightPosition.getX(),
-            leftPosition.getY() + rightPosition.getY());
+            leftPosition.getRow() + rightPosition.getRow(),
+            leftPosition.getColumn() + rightPosition.getColumn());
     }
 
     /**
@@ -329,33 +325,33 @@ public final class Position implements IPosition {
             "The right position.");
 
         return new Position(
-            leftPosition.getX() - rightPosition.getX(),
-            leftPosition.getY() - rightPosition.getY());
+            leftPosition.getRow() - rightPosition.getRow(),
+            leftPosition.getColumn() - rightPosition.getColumn());
     }
 
     /**
      * Adds to a position.
      */
-    public static IPosition add(IPosition position, int x, int y) {
+    public static IPosition add(IPosition position, int row, int col) {
         Conditions.validateNotNull(
             position,
             "The origin position.");
 
         return new Position(
-            position.getX() + x,
-            position.getY() + y);
+            position.getRow() + row,
+            position.getColumn() + col);
     }
 
     /**
      * Subtracts from a position.
      */
-    public static IPosition subtract(IPosition position, int x, int y) {
+    public static IPosition subtract(IPosition position, int row, int col) {
         Conditions.validateNotNull(
             position,
             "The origin position.");
 
         return new Position(
-            position.getX() - x,
-            position.getY() - y);
+            position.getRow() - row,
+            position.getColumn() - col);
     }
 }

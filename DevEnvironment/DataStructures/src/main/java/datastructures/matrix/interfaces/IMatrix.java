@@ -5,7 +5,6 @@ import base.interfaces.IReverseIterable;
 import base.interfaces.ISizableCollection;
 import base.interfaces.IUnaryComparator;
 import datastructures.dimentions.interfaces.IPosition;
-import datastructures.dimentions.interfaces.IRectanglePositions;
 import java.util.List;
 
 /**
@@ -18,6 +17,11 @@ public interface IMatrix<T extends Comparable<T>> extends
     IUnaryComparator<IMatrix<T>> {
 
     /**
+     * Gets the origin.
+     */
+    T origin();
+
+    /**
      * Gets the x size.
      */
     int xSize();
@@ -28,27 +32,47 @@ public interface IMatrix<T extends Comparable<T>> extends
     int ySize();
 
     /**
-     * Gets a frame of the matrix.
+     * Gets an element at a specified position.
      */
-    IRectanglePositions getFrame();
+    T get(int x, int y);
 
     /**
-     * Checks whether the matrix contains a specific position.
+     * Sets an element at a specified position.
      */
-    boolean contains(IPosition position);
+    void set(int x, int y, T element);
 
     /**
-     * Gets the element of a specific position in a matrix.
+     * Gets an element at a specified position.
      */
     T get(IPosition position);
 
     /**
-     * Gets the data of the matrix.
+     * Sets an element at a specified position.
+     */
+    void set(IPosition position, T element);
+
+    /**
+     * Gets all elements.
      */
     List<List<T>> getData();
 
     /**
-     * Converts the matrix to a native array.
+     * Gets an X row.
      */
-    T[][] toArray();
+    List<T> getX(int y);
+
+    /**
+     * Sets an X row.
+     */
+    void setX(int y, List<T> data);
+
+    /**
+     * Checks if a specific position is inbound.
+     */
+    boolean inbound(int xIndex, int yIndex);
+
+    /**
+     * Checks if a specific position is inbound.
+     */
+    boolean inbound(IPosition position);
 }

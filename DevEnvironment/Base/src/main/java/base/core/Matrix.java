@@ -1,18 +1,10 @@
-package datastructures.matrix.core;
+package base.core;
 
 import base.BaseException;
-import base.core.AbstractBinaryComparator;
-import base.core.Casting;
-import base.core.Collections;
-import base.core.CompareToBuilder;
-import base.core.Conditions;
-import base.core.EqualBuilder;
-import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
+import base.interfaces.IMatrix;
 import base.interfaces.IReverseIterator;
-import datastructures.dimentions.interfaces.IPosition;
-import datastructures.matrix.interfaces.IMatrix;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +13,8 @@ import java.util.List;
  */
 public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
     private final List<List<T>> data;
-    private final int xSize;
-    private final int ySize;
+    private final int rows;
+    private final int cols;
 
     private final IBinaryComparator<IMatrix<T>> comparator;
     private final int hashCode;
@@ -45,17 +37,17 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
             return false;
         }
 
-        int ySize = data.size();
-        int xSize = data.get(0).size();
+        int rowsSize = data.size();
+        int colsSize = data.get(0).size();
 
-        if (xSize == 0) {
+        if (colsSize == 0) {
             return false;
         }
 
-        for (int y = 1; y < ySize; ++y) {
-            int currXSize = data.get(y).size();
+        for (int row = 1; row < rowsSize; ++row) {
+            int currRowSize = data.get(row).size();
 
-            if (currXSize != xSize) {
+            if (currRowSize != colsSize) {
                 return false;
             }
         }
@@ -64,10 +56,10 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
     }
 
     /**
-     * Creates a new matrix, with an initial sizes: xSize x ySize.
+     * Creates a new matrix, with an initial sizes: rowSize x colSize.
      */
-    public static <T extends Comparable<T>> IMatrix<T> create(int xSize, int ySize) {
-        return new Matrix<>(xSize, ySize);
+    public static <T extends Comparable<T>> IMatrix<T> create(int rowsSize, int colsSize) {
+        return new Matrix<>(rowsSize, colsSize);
     }
 
     /**
@@ -81,11 +73,11 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      * The Matrix constructor, with an initial sizes: rowSize x colSize.
      */
     public Matrix(
-        int xSize,
-        int ySize) {
+        int rowsSize,
+        int colsSize) {
         this(
-            xSize,
-            ySize,
+            rowsSize,
+            colsSize,
             Matrix.defaultComparator());
     }
 
@@ -93,36 +85,36 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      * The Matrix constructor, with an initial sizes: rowSize x colSize.
      */
     public Matrix(
-        int xSize,
-        int ySize,
+        int rowsSize,
+        int colsSize,
         IBinaryComparator<IMatrix<T>> comparator) {
 
         Conditions.validate(
-            xSize > 0,
-            "The size of X dimension of a matrix has to be positive.");
+            rowsSize > 0,
+            "The size of rows of a matrix has to be positive.");
 
         Conditions.validate(
-            ySize > 0,
-            "The size of Y dimension of a matrix has to be positive.");
+            colsSize > 0,
+            "The size of columns of a matrix has to be positive.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of a matrix.");
 
-        this.data = new ArrayList<>(ySize);
+        this.data = new ArrayList<>(rowsSize);
 
-        for (int y = 0; y < ySize; ++y) {
-            List<T> xRow = new ArrayList<>(xSize);
+        for (int rowIndex = 0; rowIndex < rowsSize; ++rowIndex) {
+            List<T> row = new ArrayList<>(colsSize);
 
-            for (int x = 0; x < xSize; ++x) {
-                xRow.add(null);
+            for (int colIndex = 0; colIndex < colsSize; ++colIndex) {
+                row.add(null);
             }
 
-            this.data.add(xRow);
+            this.data.add(row);
         }
 
-        this.xSize = xSize;
-        this.ySize = ySize;
+        this.rows = rowsSize;
+        this.cols = colsSize;
 
         this.comparator = comparator;
         this.hashCode = comparator.getHashCode(this);
@@ -148,11 +140,11 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
 
         Conditions.validate(
             data.size() > 0,
-            "The Y dimension of a matrix has to be positive.");
+            "The number of rows has to be positive.");
 
         Conditions.validate(
             data.get(0).size() > 0,
-            "The X dimension of a matrix has to be positive.");
+            "The number of columns has to be positive.");
 
         Conditions.validateNotNull(
             comparator,
@@ -161,8 +153,8 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
         assert(isValid(data));
 
         this.data = data;
-        this.xSize = data.get(0).size();
-        this.ySize = data.size();
+        this.rows = data.size();
+        this.cols = data.get(0).size();
 
         this.comparator = comparator;
         this.hashCode = comparator.getHashCode(this);
@@ -177,65 +169,41 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
     }
 
     /**
-     * Gets the X size.
+     * Gets the number of rows.
      */
     @Override
-    public int xSize() {
-        return this.xSize;
+    public int rowsSize() {
+        return this.rows;
     }
 
     /**
-     * Gets the Y size.
+     * Gets the number of columns.
      */
     @Override
-    public int ySize() {
-        return this.ySize;
-    }
-
-    /**
-     * Gets an element at a specified position.
-     */
-    @Override
-    public T get(int x, int y) {
-        this.validateXCoordinate(x);
-        this.validateYCoordinate(y);
-
-        return this.data.get(y).get(x);
-    }
-
-    /**
-     * Sets an element at a specified position.
-     */
-    @Override
-    public void set(int x, int y, T element) {
-        this.validateXCoordinate(x);
-        this.validateYCoordinate(y);
-
-        this.data.get(y).set(x, element);
+    public int colsSize() {
+        return this.cols;
     }
 
     /**
      * Gets an element at a specified position.
      */
     @Override
-    public T get(IPosition position) {
-        Conditions.validateNotNull(
-            position,
-            "The position.");
+    public T get(int rowIndex, int colIndex) {
+        this.validateRowIndex(rowIndex);
+        this.validateColumnIndex(colIndex);
 
-        return this.get(position.getX(), position.getY());
+        return this.data.get(rowIndex).get(colIndex);
     }
 
     /**
      * Sets an element at a specified position.
      */
     @Override
-    public void set(IPosition position, T element) {
-        Conditions.validateNotNull(
-            position,
-            "The position.");
+    public void set(int rowIndex, int colIndex, T element) {
+        this.validateRowIndex(rowIndex);
+        this.validateColumnIndex(colIndex);
 
-        this.set(position.getX(), position.getY(), element);
+        this.data.get(rowIndex).set(colIndex, element);
     }
 
     /**
@@ -247,47 +215,35 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
     }
 
     /**
-     * Gets an X row.
+     * Gets a row.
      */
     @Override
-    public List<T> getX(int y) {
-        this.validateYCoordinate(y);
+    public List<T> getRow(int rowIndex) {
+        this.validateRowIndex(rowIndex);
 
-        return this.data.get(y);
+        return this.data.get(rowIndex);
     }
 
     /**
-     * Sets an X row.
+     * Sets a row.
      */
     @Override
-    public void setX(int y, List<T> data) {
-        this.validateYCoordinate(y);
+    public void setRow(int rowIndex, List<T> data) {
+        this.validateRowIndex(rowIndex);
 
         Conditions.validate(
-            data != null && data.size() == this.xSize,
-            "The x dimension of a row is not in the correct size.");
+            data != null && data.size() == this.rows,
+            "The data of the row is not in the correct size.");
 
-        this.data.set(y, data);
+        this.data.set(rowIndex, data);
     }
 
     /**
      * Checks if a specific position is inbound.
      */
     @Override
-    public boolean inbound(int x, int y) {
-        return this.isXCoordinateValid(x) && this.isYCoordinateValid(y);
-    }
-
-    /**
-     * Checks if a specific position is inbound.
-     */
-    @Override
-    public boolean inbound(IPosition position) {
-        if(position == null) {
-            return false;
-        }
-
-        return this.inbound(position.getX(), position.getY());
+    public boolean inbound(int rowIndex, int colIndex) {
+        return this.isRowIndexValid(rowIndex) && this.isColumnIndexValid(colIndex);
     }
 
     /**
@@ -295,7 +251,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public int size() {
-        return this.xSize * this.ySize;
+        return this.rows * this.cols;
     }
 
     /**
@@ -427,8 +383,8 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
             }
 
             return new EqualBuilder()
-                .withInteger(lhs.xSize(), rhs.xSize())
-                .withInteger(lhs.ySize(), rhs.ySize())
+                .withInteger(lhs.rowsSize(), rhs.rowsSize())
+                .withInteger(lhs.colsSize(), rhs.colsSize())
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.elementComparator)
                 .build();
         }
@@ -455,44 +411,44 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
             }
 
             return new CompareToBuilder()
-                .withInteger(lhs.xSize(), rhs.xSize())
-                .withInteger(lhs.ySize(), rhs.ySize())
+                .withInteger(lhs.rowsSize(), rhs.rowsSize())
+                .withInteger(lhs.colsSize(), rhs.colsSize())
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.elementComparator)
                 .build();
         }
     }
 
     /**
-     * Validates an X coordinate.
+     * Validates a row index
      */
-    private void validateXCoordinate(int x) {
-        if (!this.isXCoordinateValid(x)) {
-            String errorMessage = "The X coordinate is out of bound.";
+    private void validateRowIndex(int index) {
+        if (!this.isRowIndexValid(index)) {
+            String errorMessage = "The index of a row is out of bound.";
             throw new BaseException(errorMessage);
         }
     }
 
     /**
-     * Validates a Y coordinate.
+     * Validates a column index
      */
-    private void validateYCoordinate(int y) {
-        if (!this.isYCoordinateValid(y)) {
-            String errorMessage = "The Y coordinate is out of bound.";
+    private void validateColumnIndex(int index) {
+        if (!this.isColumnIndexValid(index)) {
+            String errorMessage = "The index of a column is out of bound.";
             throw new BaseException(errorMessage);
         }
     }
 
     /**
-     * Checks if an X coordinate is valid
+     * Checks if an index of a row is valid
      */
-    private boolean isXCoordinateValid(int x) {
-        return x >= 0 && x < this.xSize;
+    private boolean isRowIndexValid(int index) {
+        return index >= 0 && index < this.rows;
     }
 
     /**
-     * Checks if a Y coordinate is valid
+     * Checks if an index of a column is valid
      */
-    private boolean isYCoordinateValid(int y) {
-        return y >= 0 && y < this.ySize;
+    private boolean isColumnIndexValid(int index) {
+        return index >= 0 && index < this.cols;
     }
 }

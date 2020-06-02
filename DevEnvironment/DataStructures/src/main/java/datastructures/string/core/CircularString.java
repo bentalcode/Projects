@@ -6,7 +6,7 @@ import base.core.Conditions;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 import datastructures.string.interfaces.ICircularString;
 
 /**

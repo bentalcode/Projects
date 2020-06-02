@@ -1,5 +1,6 @@
 package datastructures.collections.core;
 
+import base.core.Collections;
 import base.core.ThreeDimensionalListIterator;
 import base.interfaces.IPair;
 import datastructures.core.TestData;

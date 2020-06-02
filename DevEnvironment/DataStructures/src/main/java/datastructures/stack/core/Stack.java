@@ -11,7 +11,7 @@ import base.core.InvertReverseIterator;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 import datastructures.list.core.ArrayList;
 import datastructures.list.interfaces.IList;
 import datastructures.stack.StackException;

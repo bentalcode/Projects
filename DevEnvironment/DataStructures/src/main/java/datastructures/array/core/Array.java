@@ -13,7 +13,7 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.array.interfaces.IArray;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 
 /**
  * The Array class implements an array.

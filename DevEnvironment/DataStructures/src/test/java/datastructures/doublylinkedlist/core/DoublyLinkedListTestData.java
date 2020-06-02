@@ -15,9 +15,9 @@ import java.util.List;
  * The DoublyLinkedListTestData class implements data of tests of a doubly linked list.
  */
 public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData {
-    private static int RandomCollectionsSize = 10;
-    private static int RandomMinCollectionSize = 100;
-    private static int RandomMaxCollectionSize = 1000;
+    private static int randomCollectionsSize = 10;
+    private static int randomMinCollectionSize = 100;
+    private static int randomMaxCollectionSize = 1000;
 
     private final IRandomGenerator randomGenerator = new RandomGenerator();
 
@@ -38,8 +38,8 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
         data.add(this.getListData2());
         data.add(this.getListData3());
 
-        for (int i = 0; i < RandomCollectionsSize; ++i) {
-            data.add(this.getRandomListData(RandomMinCollectionSize, RandomMaxCollectionSize));
+        for (int i = 0; i < randomCollectionsSize; ++i) {
+            data.add(this.getRandomListData(randomMinCollectionSize, randomMaxCollectionSize));
         }
 
         return data;

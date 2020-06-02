@@ -1,17 +1,15 @@
-package datastructures.matrix.core;
+package base.core;
 
-import base.core.Conditions;
 import base.interfaces.IIterator;
-import datastructures.dimentions.core.Position;
-import datastructures.dimentions.interfaces.IPosition;
-import datastructures.matrix.interfaces.IMatrix;
+import base.interfaces.IMatrix;
 
 /**
  * The MatrixIterator class implements an iterator of a matrix.
  */
 public final class MatrixIterator<T extends Comparable<T>> implements IIterator<T> {
     private final IMatrix<T> data;
-    private IPosition position;
+    private int currRow;
+    private int currCol;
 
     /**
      * Creates a new iterator of a matrix.
@@ -38,7 +36,7 @@ public final class MatrixIterator<T extends Comparable<T>> implements IIterator<
      */
     @Override
     public boolean hasNext() {
-        return this.data.inbound(this.position);
+        return this.currRow < this.data.rowsSize();
     }
 
     /**
@@ -48,7 +46,7 @@ public final class MatrixIterator<T extends Comparable<T>> implements IIterator<
     public T next() {
         assert(this.hasNext());
 
-        T currElement = this.get(this.position);
+        T currElement = this.data.get(this.currRow, this.currCol);
         this.moveNext();
 
         return currElement;
@@ -59,25 +57,20 @@ public final class MatrixIterator<T extends Comparable<T>> implements IIterator<
      */
     @Override
     public void reset() {
-        this.position = new Position();
+        this.currRow = 0;
+        this.currCol = 0;
     }
 
     /**
      * Moves to the next element.
      */
     private void moveNext() {
-        if (this.position.getX() < this.data.xSize() - 1) {
-            this.position.moveRight();
+        if (this.currCol < this.data.colsSize() - 1) {
+            ++this.currCol;
         }
         else {
-            this.position = new Position(0, this.position.getY() + 1);
+            ++this.currRow;
+            this.currCol = 0;
         }
-    }
-
-    /**
-     * Gets a value of a specific position.
-     */
-    private T get(IPosition position) {
-        return this.data.get(position);
     }
 }

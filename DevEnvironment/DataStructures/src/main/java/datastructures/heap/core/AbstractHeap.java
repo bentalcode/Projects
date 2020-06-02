@@ -12,7 +12,7 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
-import datastructures.collections.core.Collections;
+import base.core.Collections;
 import datastructures.heap.HeapException;
 import datastructures.priorityqueue.interfaces.IPriorityQueue;
 

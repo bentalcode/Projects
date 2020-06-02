@@ -16,6 +16,7 @@ import datastructures.matrix.interfaces.IMatrixTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
 import datastructures.stack.interfaces.IStackTestData;
 import datastructures.trie.interfaces.ITrieTestData;
+import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListTestData;
 
 /**
  * The ITestData interface defines the data of the tests.
@@ -55,6 +56,11 @@ public interface ITestData {
      * Gets the data of tests of a doubly linked list.
      */
     IDoublyLinkedListTestData getDoublyLinkedListData();
+
+    /**
+     * Gets the data of tests of a multi-level doubly linked list.
+     */
+    IMultiLevelDoublyLinkedListTestData getMultiLevelDoublyLinkedListData();
 
     /**
      * Gets the data of tests of a priority queue.
