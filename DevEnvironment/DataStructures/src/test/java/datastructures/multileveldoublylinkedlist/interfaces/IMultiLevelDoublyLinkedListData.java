@@ -9,17 +9,27 @@ import java.util.List;
  */
 public interface IMultiLevelDoublyLinkedListData<T extends Comparable<T>> {
     /**
-     * Gets the creation data of the multi-level doubly linked list.
+     * Gets the creation data of a multi-level doubly linked list.
      */
     ITriple<IMatrix<T>, boolean[][], boolean[][]> getCreationData();
 
     /**
-     * Gets the actual data of the multi-level doubly linked list (By levels).
+     * Gets the actual data of a multi-level doubly linked list (By levels).
      */
     List<IMultiLevelDoublyLinkedListNode<T>> getData();
 
     /**
-     * Gets the actual values of the multi-level doubly linked list (By levels).
+     * Gets the actual values of a multi-level doubly linked list (By levels).
      */
     List<T> getValues();
+
+    /**
+     * Gets the levels of a multi-level doubly linked list.
+     */
+    List<List<T>> getLevels();
+
+    /**
+     * Gets the vertical levels of a multi-level doubly linked list.
+     */
+    List<List<T>> getVerticalLevels();
 }

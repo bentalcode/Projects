@@ -73,4 +73,9 @@ public interface IMultiLevelDoublyLinkedList<T extends Comparable<T>> extends
      * Clears the list.
      */
     void clear();
+
+    /**
+     * Gets the logic.
+     */
+    IMultiLevelDoublyLinkedListLogic<T> getLogic();
 }

@@ -13,6 +13,7 @@ import base.interfaces.IIterator;
 import base.interfaces.IMatrix;
 import base.interfaces.IPosition;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedList;
+import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListLogic;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListNode;
 
 /**
@@ -257,6 +258,14 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
     public void clear() {
         this.head = null;
         this.size = 0;
+    }
+
+    /**
+     * Gets the logic.
+     */
+    @Override
+    public IMultiLevelDoublyLinkedListLogic<T> getLogic() {
+        return new MultiLevelDoublyLinkedListLogic<>(this);
     }
 
     /**

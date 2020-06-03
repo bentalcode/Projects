@@ -23,7 +23,7 @@ import java.util.Set;
 import java.util.Stack;
 
 /**
- * The GraphLogic class implements detection logic of a graph.
+ * The GraphLogic class implements logic of a graph.
  */
 public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements IGraphLogic<TKey, TValue> {
     private final IGraph<TKey, TValue> graph;

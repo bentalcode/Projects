@@ -39,13 +39,17 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
      */
     private IMultiLevelDoublyLinkedListData<Integer> getData1() {
         ITriple<IMatrix<Integer>, boolean[][], boolean[][]> creationData = this.createCreationData1();
-        List<IMultiLevelDoublyLinkedListNode<Integer>> data = this.createData(creationData.first());
-        List<Integer> values = this.createValues(creationData.first());
+        List<IMultiLevelDoublyLinkedListNode<Integer>> data = this.getData(creationData.first());
+        List<Integer> values = this.getValues(creationData.first());
+        List<List<Integer>> levels = this.getLevels(creationData.first());
+        List<List<Integer>> verticalLevels = this.getVerticalLevels(creationData.first());
 
         return new MultiLevelDoublyLinkedListData<>(
             creationData,
             data,
-            values);
+            values,
+            levels,
+            verticalLevels);
     }
 
     /**
@@ -53,13 +57,17 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
      */
     private IMultiLevelDoublyLinkedListData<Integer> getData2() {
         ITriple<IMatrix<Integer>, boolean[][], boolean[][]> creationData = this.createCreationData2();
-        List<IMultiLevelDoublyLinkedListNode<Integer>> data = this.createData(creationData.first());
-        List<Integer> values = this.createValues(creationData.first());
+        List<IMultiLevelDoublyLinkedListNode<Integer>> data = this.getData(creationData.first());
+        List<Integer> values = this.getValues(creationData.first());
+        List<List<Integer>> levels = this.getLevels(creationData.first());
+        List<List<Integer>> verticalLevels = this.getVerticalLevels(creationData.first());
 
         return new MultiLevelDoublyLinkedListData<>(
             creationData,
             data,
-            values);
+            values,
+            levels,
+            verticalLevels);
     }
 
     /**
@@ -147,13 +155,14 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
     }
 
     /**
-     * Creates the data of the multi-level doubly linked list.
+     * Gets the data of the multi-level doubly linked list.
      */
-    private <T extends Comparable<T>> List<IMultiLevelDoublyLinkedListNode<T>> createData(IMatrix<T> matrix) {
-        List<IMultiLevelDoublyLinkedListNode<T>> result = new ArrayList<>();
-
+    private <T extends Comparable<T>> List<IMultiLevelDoublyLinkedListNode<T>> getData(IMatrix<T> matrix) {
         int rowsSize = matrix.rowsSize();
         int colsSize = matrix.colsSize();
+        int size = rowsSize * colsSize;
+
+        List<IMultiLevelDoublyLinkedListNode<T>> result = new ArrayList<>(size);
 
         for (int row = 0; row < rowsSize; ++row) {
             for (int col = 0; col < colsSize; ++col) {
@@ -169,13 +178,14 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
     }
 
     /**
-     * Creates the data of the multi-level doubly linked list.
+     * Gets the values of the multi-level doubly linked list.
      */
-    private <T extends Comparable<T>> List<T> createValues(IMatrix<T> matrix) {
-        List<T> result = new ArrayList<>();
-
+    private <T extends Comparable<T>> List<T> getValues(IMatrix<T> matrix) {
         int rowsSize = matrix.rowsSize();
         int colsSize = matrix.colsSize();
+
+        int size = rowsSize * colsSize;
+        List<T> result = new ArrayList<>(size);
 
         for (int row = 0; row < rowsSize; ++row) {
             for (int col = 0; col < colsSize; ++col) {
@@ -185,6 +195,58 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
                     result.add(item);
                 }
             }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the levels of a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> List<List<T>> getLevels(IMatrix<T> matrix) {
+        int rowsSize = matrix.rowsSize();
+        int colsSize = matrix.colsSize();
+
+        List<List<T>> result = new ArrayList<>(rowsSize);
+
+        for (int row = 0; row < rowsSize; ++row) {
+            List<T> level = new ArrayList<>();
+
+            for (int col = 0; col < colsSize; ++col) {
+                T item = matrix.get(row, col);
+
+                if (item != null) {
+                    level.add(item);
+                }
+            }
+
+            result.add(level);
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the vertical levels of a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> List<List<T>> getVerticalLevels(IMatrix<T> matrix) {
+        int rowsSize = matrix.rowsSize();
+        int colsSize = matrix.colsSize();
+
+        List<List<T>> result = new ArrayList<>(colsSize);
+
+        for (int col = 0; col < colsSize; ++col) {
+            List<T> level = new ArrayList<>();
+
+            for (int row = 0; row < rowsSize; ++row) {
+                T item = matrix.get(row, col);
+
+                if (item != null) {
+                    level.add(item);
+                }
+            }
+
+            result.add(level);
         }
 
         return result;

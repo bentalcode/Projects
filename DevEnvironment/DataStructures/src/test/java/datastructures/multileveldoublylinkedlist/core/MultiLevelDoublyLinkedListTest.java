@@ -2,12 +2,14 @@ package datastructures.multileveldoublylinkedlist.core;
 
 import base.core.ListIterator;
 import base.core.Matrix;
+import base.core.TwoDimensionalListIterator;
 import base.interfaces.IMatrix;
 import base.interfaces.ITriple;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedList;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListData;
+import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListLogic;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListNode;
 import org.junit.After;
 import org.junit.Before;
@@ -61,11 +63,41 @@ public final class MultiLevelDoublyLinkedListTest {
      * Tests the iteration logic of a multi-level doubly linked list.
      */
     @Test
-    public void doublyLinkedListIterationTest() {
+    public void multiLevelDoublyLinkedListIterationTest() {
         List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
 
         for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
             this.testIteration(listData);
+        }
+    }
+
+    /**
+     * Tests the logic of getting levels of a multi-level doubly linked list.
+     */
+    @Test
+    public void getLevelsTest() {
+        List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
+
+        for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
+            IMultiLevelDoublyLinkedList<Integer> list = this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+            List<List<Integer>> expectedLevels = listData.getLevels();
+
+            this.testGetLevels(list, expectedLevels);
+        }
+    }
+
+    /**
+     * Tests the logic of getting vertical levels of a multi-level doubly linked list.
+     */
+    @Test
+    public void getVerticalLevelsTest() {
+        List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
+
+        for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
+            IMultiLevelDoublyLinkedList<Integer> list = this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+            List<List<Integer>> expectedLevels = listData.getVerticalLevels();
+
+            this.testGetVerticalLevels(list, expectedLevels);
         }
     }
 
@@ -194,5 +226,37 @@ public final class MultiLevelDoublyLinkedListTest {
         }
 
         return result;
+    }
+
+    /**
+     * Tests the logic of getting levels of a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> void testGetLevels(
+        IMultiLevelDoublyLinkedList<T> list,
+        List<List<Integer>> expectedResult) {
+
+        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
+        List<List<Integer>> result = logic.getLevels();
+
+        this.assertion.assertEqualsWithIterators(
+            TwoDimensionalListIterator.of(result),
+            TwoDimensionalListIterator.of(expectedResult),
+            "Incorrect logic of getting levels of a multi-level doubly linked list.");
+    }
+
+    /**
+     * Tests the logic of getting vertical levels of a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> void testGetVerticalLevels(
+        IMultiLevelDoublyLinkedList<T> list,
+        List<List<Integer>> expectedResult) {
+
+        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
+        List<List<Integer>> result = logic.getVerticalLevels();
+
+        this.assertion.assertEqualsWithIterators(
+            TwoDimensionalListIterator.of(result),
+            TwoDimensionalListIterator.of(expectedResult),
+            "Incorrect logic of getting vertical levels of a multi-level doubly linked list.");
     }
 }

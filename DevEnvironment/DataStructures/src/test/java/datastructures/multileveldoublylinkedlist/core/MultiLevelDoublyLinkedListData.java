@@ -13,6 +13,8 @@ public final class MultiLevelDoublyLinkedListData<T extends Comparable<T>> imple
     private final ITriple<IMatrix<T>, boolean[][], boolean[][]> creationData;
     private final List<IMultiLevelDoublyLinkedListNode<T>> data;
     private final List<T> values;
+    private final List<List<T>> levels;
+    private final List<List<T>> verticalLevels;
 
     /**
      * The MultiLevelDoublyLinkedListData constructor.
@@ -20,15 +22,19 @@ public final class MultiLevelDoublyLinkedListData<T extends Comparable<T>> imple
     public MultiLevelDoublyLinkedListData(
         ITriple<IMatrix<T>, boolean[][], boolean[][]> creationData,
         List<IMultiLevelDoublyLinkedListNode<T>> data,
-        List<T> values) {
+        List<T> values,
+        List<List<T>> levels,
+        List<List<T>> verticalLevels) {
 
         this.creationData = creationData;
         this.data = data;
         this.values = values;
+        this.levels = levels;
+        this.verticalLevels = verticalLevels;
     }
 
     /**
-     * Gets the creation data of the multi-level doubly linked list.
+     * Gets the creation data of a multi-level doubly linked list.
      */
     @Override
     public ITriple<IMatrix<T>, boolean[][], boolean[][]> getCreationData() {
@@ -36,7 +42,7 @@ public final class MultiLevelDoublyLinkedListData<T extends Comparable<T>> imple
     }
 
     /**
-     * Gets the actual data of the multi-level doubly linked list (By levels).
+     * Gets the actual data of a multi-level doubly linked list (By levels).
      */
     @Override
     public List<IMultiLevelDoublyLinkedListNode<T>> getData() {
@@ -49,5 +55,21 @@ public final class MultiLevelDoublyLinkedListData<T extends Comparable<T>> imple
     @Override
     public List<T> getValues() {
         return this.values;
+    }
+
+    /**
+     * Gets the levels of a multi-level doubly linked list.
+     */
+    @Override
+    public List<List<T>> getLevels() {
+        return this.levels;
+    }
+
+    /**
+     * Gets the vertical levels of a multi-level doubly linked list.
+     */
+    @Override
+    public List<List<T>> getVerticalLevels() {
+        return this.verticalLevels;
     }
 }

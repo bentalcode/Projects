@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The IGraphLogic interface defines detection logic of a graph.
+ * The IGraphLogic interface defines logic of a graph.
  */
 public interface IGraphLogic<TKey extends Comparable<TKey>, TValue> {
     /**
