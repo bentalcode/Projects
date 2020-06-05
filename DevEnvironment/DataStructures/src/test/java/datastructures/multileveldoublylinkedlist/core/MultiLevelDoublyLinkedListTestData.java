@@ -43,8 +43,9 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
         List<Integer> values = getValues(creationData.first());
         List<List<Integer>> levels = getLevels(creationData.first());
         List<List<Integer>> verticalLevels = getVerticalLevels(creationData.first());
-        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevel = getNodeLists(levels);
-        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByVerticalLevel = getNodeLists(verticalLevels);
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevels = getNodeLists(levels);
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByVerticalLevels = getNodeLists(verticalLevels);
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByDepthLevels = getNodesByDepthLevels1();
 
         return new MultiLevelDoublyLinkedListData<>(
             creationData,
@@ -52,8 +53,9 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
             values,
             levels,
             verticalLevels,
-            nodesByLevel,
-            nodesByVerticalLevel);
+            nodesByLevels,
+            nodesByVerticalLevels,
+            nodesByDepthLevels);
     }
 
     /**
@@ -65,8 +67,9 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
         List<Integer> values = getValues(creationData.first());
         List<List<Integer>> levels = getLevels(creationData.first());
         List<List<Integer>> verticalLevels = getVerticalLevels(creationData.first());
-        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevel = getNodeLists(levels);
-        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByVerticalLevel = getNodeLists(verticalLevels);
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevels = getNodeLists(levels);
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByVerticalLevels = getNodeLists(verticalLevels);
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByDepthLevels = getNodesByDepthLevels2();
 
         return new MultiLevelDoublyLinkedListData<>(
             creationData,
@@ -74,12 +77,13 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
             values,
             levels,
             verticalLevels,
-            nodesByLevel,
-            nodesByVerticalLevel);
+            nodesByLevels,
+            nodesByVerticalLevels,
+            nodesByDepthLevels);
     }
 
     /**
-     * Gets the creation data of the multi-level doubly linked list1.
+     * Creates the creation data of the multi-level doubly linked list1.
      *
      * 1--2--3--4
      *    |
@@ -126,7 +130,7 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
     }
 
     /**
-     * Gets the creation data of the multi-level doubly linked list2.
+     * Creates the creation data of the multi-level doubly linked list2.
      *
      * 1--2--3--4--5
      * |     |
@@ -283,6 +287,86 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
         for (T value : list) {
             result.add(MultiLevelDoublyLinkedListNode.of(value));
         }
+
+        return result;
+    }
+
+    /**
+     * Gets the nodes by depth levels of multi-level doubly linked list1.
+     *
+     * 1--2--3--4
+     *    |
+     *    7--8--10--12
+     *    |  |   |
+     *    9  16 11
+     *    |
+     *   14--17--18--19--20
+     *    |              |
+     *   15--23          21
+     *       |
+     *       24
+     */
+    private static List<List<IMultiLevelDoublyLinkedListNode<Integer>>> getNodesByDepthLevels1() {
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> result = ArrayLists.of(
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(1)),
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(2),
+                MultiLevelDoublyLinkedListNode.of(7),
+                MultiLevelDoublyLinkedListNode.of(9),
+                MultiLevelDoublyLinkedListNode.of(14),
+                MultiLevelDoublyLinkedListNode.of(15),
+                MultiLevelDoublyLinkedListNode.of(23),
+                MultiLevelDoublyLinkedListNode.of(24)),
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(17),
+                MultiLevelDoublyLinkedListNode.of(18),
+                MultiLevelDoublyLinkedListNode.of(19),
+                MultiLevelDoublyLinkedListNode.of(20),
+                MultiLevelDoublyLinkedListNode.of(21)),
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(8),
+                MultiLevelDoublyLinkedListNode.of(16)),
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(10),
+                MultiLevelDoublyLinkedListNode.of(11)),
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(12)),
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(3),
+                MultiLevelDoublyLinkedListNode.of(4)));
+
+        return result;
+    }
+
+    /**
+     * Gets the nodes by depth levels of multi-level doubly linked list2.
+     *
+     * 1--2--3--4--5
+     * |     |
+     * 6--7  8--9
+     *    |
+     *   10--11
+     *       |
+     *       12
+     */
+    private static List<List<IMultiLevelDoublyLinkedListNode<Integer>>> getNodesByDepthLevels2() {
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> result = ArrayLists.of(
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(1),
+                MultiLevelDoublyLinkedListNode.of(6),
+                MultiLevelDoublyLinkedListNode.of(7),
+                MultiLevelDoublyLinkedListNode.of(10),
+                MultiLevelDoublyLinkedListNode.of(11),
+                MultiLevelDoublyLinkedListNode.of(12)),
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(2),
+                MultiLevelDoublyLinkedListNode.of(3),
+                MultiLevelDoublyLinkedListNode.of(8),
+                MultiLevelDoublyLinkedListNode.of(9)),
+            ArrayLists.of(
+                MultiLevelDoublyLinkedListNode.of(4),
+                MultiLevelDoublyLinkedListNode.of(5)));
 
         return result;
     }

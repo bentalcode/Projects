@@ -7,7 +7,10 @@ import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLin
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListLogic;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListNode;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * The MultiLevelDoublyLinkedListLogic class implements logic of a multi-level doubly linked list.
@@ -36,7 +39,7 @@ public final class MultiLevelDoublyLinkedListLogic<T extends Comparable<T>>
         List<List<T>> result = new ArrayList<>();
 
         List<IMultiLevelDoublyLinkedListNode<T>> currLevelHeads = new ArrayList<>();
-        currLevelHeads.add(list.getHead());
+        currLevelHeads.add(this.list.getHead());
 
         getLevels(currLevelHeads, result);
 
@@ -83,6 +86,52 @@ public final class MultiLevelDoublyLinkedListLogic<T extends Comparable<T>>
      */
     @Override
     public void flattenByVerticalLevels() {
+        IMultiLevelDoublyLinkedListNode<T> currNode = this.list.getHead();
+
+        Queue<IMultiLevelDoublyLinkedListNode<T>> queue = new LinkedList<>();
+
+        while (currNode != null) {
+            if (currNode.next() != null) {
+                queue.offer(currNode.next());
+            }
+
+            if (currNode.child() != null) {
+                connect(currNode, currNode.child());
+                currNode.setChild(null);
+            }
+            else if (!queue.isEmpty()) {
+                IMultiLevelDoublyLinkedListNode<T> nextNode = queue.poll();
+                connect(currNode, nextNode);
+            }
+
+            currNode = currNode.next();
+        }
+    }
+
+    /**
+     * Flatten a multi-level doubly linked list by depth levels.
+     */
+    public void flattenByDepthLevels() {
+        IMultiLevelDoublyLinkedListNode<T> currNode = this.list.getHead();
+
+        Stack<IMultiLevelDoublyLinkedListNode<T>> stack = new Stack<>();
+
+        while (currNode != null) {
+            if (currNode.child() != null) {
+                if (currNode.next() != null) {
+                    stack.push(currNode.next());
+                }
+
+                connect(currNode, currNode.child());
+                currNode.setChild(null);
+            }
+            else if (currNode.next() == null && !stack.empty()) {
+                IMultiLevelDoublyLinkedListNode<T> nextNode = stack.pop();
+                connect(currNode, nextNode);
+            }
+
+            currNode = currNode.next();
+        }
     }
 
     /**

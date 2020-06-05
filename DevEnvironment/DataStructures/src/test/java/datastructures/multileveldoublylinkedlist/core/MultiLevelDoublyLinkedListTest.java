@@ -122,7 +122,7 @@ public final class MultiLevelDoublyLinkedListTest {
     /**
      * Tests the logic of flattening by vertical levels a multi-level doubly linked list.
      */
-    //@Test
+    @Test
     public void flattenByVerticalLevelsTest() {
         List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
 
@@ -134,6 +134,24 @@ public final class MultiLevelDoublyLinkedListTest {
                 listData.getNodesByVerticalLevels();
 
             this.testFlatteningByVerticalLevels(list, nodesByLevels);
+        }
+    }
+
+    /**
+     * Tests the logic of flattening by depth levels a multi-level doubly linked list.
+     */
+    @Test
+    public void flattenByVerticalDepthTest() {
+        List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
+
+        for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
+            IMultiLevelDoublyLinkedList<Integer> list =
+                this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+
+            List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevels =
+                listData.getNodesByDepthLevels();
+
+            this.testFlatteningByDepthLevels(list, nodesByLevels);
         }
     }
 
@@ -252,6 +270,22 @@ public final class MultiLevelDoublyLinkedListTest {
             list.getIterator(),
             TwoDimensionalListIterator.of(nodesByLevels),
             "Incorrect logic of flattening by vertical levels a multi-level doubly linked list.");
+    }
+
+    /**
+     * Tests the logic of flattening by depth levels a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> void testFlatteningByDepthLevels(
+        IMultiLevelDoublyLinkedList<T> list,
+        List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByLevels) {
+
+        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
+        logic.flattenByDepthLevels();
+
+        this.assertion.assertEqualsWithIterators(
+            list.getIterator(),
+            TwoDimensionalListIterator.of(nodesByLevels),
+            "Incorrect logic of flattening by depth levels a multi-level doubly linked list.");
     }
 
     /**

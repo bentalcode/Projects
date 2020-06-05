@@ -2,6 +2,7 @@ package datastructures.multileveldoublylinkedlist.core;
 
 import base.interfaces.IMatrix;
 import base.interfaces.ITriple;
+import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedList;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListData;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListNode;
 import java.util.List;
@@ -17,6 +18,7 @@ public final class MultiLevelDoublyLinkedListData<T extends Comparable<T>> imple
     private final List<List<T>> verticalLevels;
     private final List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByLevels;
     private final List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByVerticalLevels;
+    private final List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByDepthLevels;
 
     /**
      * The MultiLevelDoublyLinkedListData constructor.
@@ -28,7 +30,8 @@ public final class MultiLevelDoublyLinkedListData<T extends Comparable<T>> imple
         List<List<T>> levels,
         List<List<T>> verticalLevels,
         List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByLevels,
-        List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByVerticalLevels) {
+        List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByVerticalLevels,
+        List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByDepthLevels) {
 
         this.creationData = creationData;
         this.data = data;
@@ -37,6 +40,7 @@ public final class MultiLevelDoublyLinkedListData<T extends Comparable<T>> imple
         this.verticalLevels = verticalLevels;
         this.nodesByLevels = nodesByLevels;
         this.nodesByVerticalLevels = nodesByVerticalLevels;
+        this.nodesByDepthLevels = nodesByDepthLevels;
     }
 
     /**
@@ -94,5 +98,13 @@ public final class MultiLevelDoublyLinkedListData<T extends Comparable<T>> imple
     @Override
     public List<List<IMultiLevelDoublyLinkedListNode<T>>> getNodesByVerticalLevels() {
         return this.nodesByVerticalLevels;
+    }
+
+    /**
+     * Gets the nodes by depth levels of a multi-level doubly linked list.
+     */
+    @Override
+    public List<List<IMultiLevelDoublyLinkedListNode<T>>> getNodesByDepthLevels() {
+        return this.nodesByDepthLevels;
     }
 }
