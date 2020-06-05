@@ -32,4 +32,14 @@ public interface IMultiLevelDoublyLinkedListData<T extends Comparable<T>> {
      * Gets the vertical levels of a multi-level doubly linked list.
      */
     List<List<T>> getVerticalLevels();
+
+    /**
+     * Gets the nodes by levels of a multi-level doubly linked list.
+     */
+    List<List<IMultiLevelDoublyLinkedListNode<T>>> getNodesByLevels();
+
+    /**
+     * Gets the nodes by vertical levels of a multi-level doubly linked list.
+     */
+    List<List<IMultiLevelDoublyLinkedListNode<T>>> getNodesByVerticalLevels();
 }

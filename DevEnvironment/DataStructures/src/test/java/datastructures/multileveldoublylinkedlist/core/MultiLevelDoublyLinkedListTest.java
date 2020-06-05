@@ -102,6 +102,42 @@ public final class MultiLevelDoublyLinkedListTest {
     }
 
     /**
+     * Tests the logic of flattening by levels a multi-level doubly linked list.
+     */
+    @Test
+    public void flattenByLevelsTest() {
+        List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
+
+        for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
+            IMultiLevelDoublyLinkedList<Integer> list =
+                this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+
+            List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevels =
+                listData.getNodesByLevels();
+
+            this.testFlatteningByLevels(list, nodesByLevels);
+        }
+    }
+
+    /**
+     * Tests the logic of flattening by vertical levels a multi-level doubly linked list.
+     */
+    //@Test
+    public void flattenByVerticalLevelsTest() {
+        List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
+
+        for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
+            IMultiLevelDoublyLinkedList<Integer> list =
+                this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+
+            List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevels =
+                listData.getNodesByVerticalLevels();
+
+            this.testFlatteningByVerticalLevels(list, nodesByLevels);
+        }
+    }
+
+    /**
      * Tests the creation logic of a multi-level doubly linked list.
      */
     private <T extends Comparable<T>> void testCreation(IMultiLevelDoublyLinkedListData<T> data) {
@@ -152,6 +188,70 @@ public final class MultiLevelDoublyLinkedListTest {
             container,
             ListIterator.of(data.getValues()),
             "MultiLevelDoublyLinkedList");
+    }
+
+    /**
+     * Tests the logic of getting levels of a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> void testGetLevels(
+        IMultiLevelDoublyLinkedList<T> list,
+        List<List<T>> expectedResult) {
+
+        IMultiLevelDoublyLinkedListLogic<T> logic = list.getLogic();
+        List<List<T>> result = logic.getLevels();
+
+        this.assertion.assertEqualsWithIterators(
+            TwoDimensionalListIterator.of(result),
+            TwoDimensionalListIterator.of(expectedResult),
+            "Incorrect logic of getting levels of a multi-level doubly linked list.");
+    }
+
+    /**
+     * Tests the logic of getting vertical levels of a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> void testGetVerticalLevels(
+        IMultiLevelDoublyLinkedList<T> list,
+        List<List<T>> expectedResult) {
+
+        IMultiLevelDoublyLinkedListLogic<T> logic = list.getLogic();
+        List<List<T>> result = logic.getVerticalLevels();
+
+        this.assertion.assertEqualsWithIterators(
+            TwoDimensionalListIterator.of(result),
+            TwoDimensionalListIterator.of(expectedResult),
+            "Incorrect logic of getting vertical levels of a multi-level doubly linked list.");
+    }
+
+    /**
+     * Tests the logic of flattening by levels a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> void testFlatteningByLevels(
+        IMultiLevelDoublyLinkedList<T> list,
+        List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByLevels) {
+
+        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
+        logic.flatten();
+
+        this.assertion.assertEqualsWithIterators(
+            list.getIterator(),
+            TwoDimensionalListIterator.of(nodesByLevels),
+            "Incorrect logic of flattening by levels a multi-level doubly linked list.");
+    }
+
+    /**
+     * Tests the logic of flattening by vertical levels a multi-level doubly linked list.
+     */
+    private <T extends Comparable<T>> void testFlatteningByVerticalLevels(
+        IMultiLevelDoublyLinkedList<T> list,
+        List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByLevels) {
+
+        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
+        logic.flattenByVerticalLevels();
+
+        this.assertion.assertEqualsWithIterators(
+            list.getIterator(),
+            TwoDimensionalListIterator.of(nodesByLevels),
+            "Incorrect logic of flattening by vertical levels a multi-level doubly linked list.");
     }
 
     /**
@@ -226,37 +326,5 @@ public final class MultiLevelDoublyLinkedListTest {
         }
 
         return result;
-    }
-
-    /**
-     * Tests the logic of getting levels of a multi-level doubly linked list.
-     */
-    private <T extends Comparable<T>> void testGetLevels(
-        IMultiLevelDoublyLinkedList<T> list,
-        List<List<Integer>> expectedResult) {
-
-        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
-        List<List<Integer>> result = logic.getLevels();
-
-        this.assertion.assertEqualsWithIterators(
-            TwoDimensionalListIterator.of(result),
-            TwoDimensionalListIterator.of(expectedResult),
-            "Incorrect logic of getting levels of a multi-level doubly linked list.");
-    }
-
-    /**
-     * Tests the logic of getting vertical levels of a multi-level doubly linked list.
-     */
-    private <T extends Comparable<T>> void testGetVerticalLevels(
-        IMultiLevelDoublyLinkedList<T> list,
-        List<List<Integer>> expectedResult) {
-
-        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
-        List<List<Integer>> result = logic.getVerticalLevels();
-
-        this.assertion.assertEqualsWithIterators(
-            TwoDimensionalListIterator.of(result),
-            TwoDimensionalListIterator.of(expectedResult),
-            "Incorrect logic of getting vertical levels of a multi-level doubly linked list.");
     }
 }

@@ -19,10 +19,10 @@ public interface IMultiLevelDoublyLinkedListLogic<T extends Comparable<T>> {
     /**
      * Flatten a multi-level doubly linked list by levels.
      */
-    IMultiLevelDoublyLinkedList<T> flatten();
+    void flatten();
 
     /**
      * Flatten a multi-level doubly linked list by vertical levels.
      */
-    IMultiLevelDoublyLinkedList<T> flattenByVerticalLevels();
+    void flattenByVerticalLevels();
 }

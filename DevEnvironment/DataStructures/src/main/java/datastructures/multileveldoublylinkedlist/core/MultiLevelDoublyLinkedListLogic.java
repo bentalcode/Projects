@@ -60,16 +60,29 @@ public final class MultiLevelDoublyLinkedListLogic<T extends Comparable<T>>
      * Flatten a multi-level doubly linked list by levels.
      */
     @Override
-    public IMultiLevelDoublyLinkedList<T> flatten() {
-        return null;
+    public void flatten() {
+        IMultiLevelDoublyLinkedListNode<T> currNode = this.list.getHead();
+
+        IMultiLevelDoublyLinkedListNode<T> tailNode = getTail(currNode);
+
+        while (currNode != null) {
+            if (currNode.child() != null) {
+                connect(tailNode, currNode.child());
+
+                currNode.setChild(null);
+
+                tailNode = getTail(tailNode);
+            }
+
+            currNode = currNode.next();
+        }
     }
 
     /**
      * Flatten a multi-level doubly linked list by vertical levels.
      */
     @Override
-    public IMultiLevelDoublyLinkedList<T> flattenByVerticalLevels() {
-        return null;
+    public void flattenByVerticalLevels() {
     }
 
     /**
@@ -145,6 +158,39 @@ public final class MultiLevelDoublyLinkedListLogic<T extends Comparable<T>>
                 currNode.child(),
                 bottomPosition,
                 result);
+        }
+    }
+
+    /**
+     * Gets the tail of a list.
+     */
+    private static <T extends Comparable<T>> IMultiLevelDoublyLinkedListNode<T> getTail(IMultiLevelDoublyLinkedListNode<T> node) {
+        if (node == null) {
+            return null;
+        }
+
+        IMultiLevelDoublyLinkedListNode<T> currNode = node;
+
+        while (currNode.next() != null) {
+            currNode = currNode.next();
+        }
+
+        return currNode;
+    }
+
+    /**
+     * Connects nodes.
+     */
+    private static <T extends Comparable<T>> void connect(
+        IMultiLevelDoublyLinkedListNode<T> left,
+        IMultiLevelDoublyLinkedListNode<T> right) {
+
+        if (left != null) {
+            left.setNext(right);
+        }
+
+        if (right != null) {
+            right.setPrevious(left);
         }
     }
 }
