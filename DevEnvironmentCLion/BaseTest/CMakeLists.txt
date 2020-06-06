@@ -43,6 +43,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatrix.h
     ../Base/interfaces/Interval.h
+    ../Base/interfaces/IntervalMap.h
     ../Base/interfaces/Intervals.h
     ../Base/interfaces/ISizebleCollection.h
     ../Base/interfaces/IterableComparator.h
@@ -153,6 +154,7 @@ set(UNIT_TESTING_INCLUDES
 # Base Test...
 #
 set(BASE_TEST_INCLUDES_FILES
+    interfaces/IntervalMapUnitTest.h
     interfaces/ListUnitTest.h
     interfaces/MatrixUnitTest.h
     interfaces/TestData.h
@@ -161,6 +163,7 @@ set(BASE_TEST_INCLUDES_FILES
 
 set(BASE_TEST_SOURCES_FILES
     main.cpp
+    core/IntervalMapUnitTest.cpp
     core/ListUnitTest.cpp
     core/MatrixUnitTest.cpp
     core/TestData.cpp
