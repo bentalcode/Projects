@@ -3,7 +3,7 @@
 
 #include "UnitTestBase.h"
 #include "IntervalMap.h"
-#include "Pair.h"
+#include "Interval.h"
 
 namespace base_test {
 
@@ -54,48 +54,53 @@ namespace base_test {
         /**
          * Tests the creation logic of an interval map.
          */
-        template<typename K, typename V>
+        template<typename Key, typename Value>
         void testIntervalMapCreation(
-            const V& initialValue,
-            const std::vector<base::Pair<base::Pair<K, K>, V>>& data);
+            const Value& initialValue,
+            const std::vector<base::Pair<base::Interval<Key>, Value>>& data);
 
         /**
          * Tests the iteration logic of an interval map.
          */
-        template<typename K, typename V>
-        void testIntervalMapIteration(const std::vector<base::Pair<K, V>>& data);
+        template<typename Key, typename Value>
+        void testIntervalMapIteration(
+            const Value& initialValue,
+            const std::vector<base::Pair<base::Interval<Key>, Value>>& data);
+
+        /**
+         * Creates data of an interval map.
+         */
+        base::Pair<std::string, std::vector<base::Pair<base::Interval<int>, std::string>>> createIntervalMapData();
     };
 
     /**
      * Tests the creation logic of an interval map.
      */
-    template<typename K, typename V>
+    template<typename Key, typename Value>
     void IntervalMapUnitTest::testIntervalMapCreation(
-        const V& initialValue,
-        const std::vector<base::Pair<base::Pair<K, K>, V>>& data) {
+        const Value& initialValue,
+        const std::vector<base::Pair<base::Interval<Key>, Value>>& data) {
 
-        base::IntervalMap<K, V> intervalMap(initialValue);
+        base::IntervalMap<Key, Value> intervalMap(initialValue);
 
-        for (base::Pair<base::Pair<K, K>, V> dataEntry : data) {
-            base::Pair<K, K> interval = dataEntry.getFirst();
-            V value = dataEntry.getSecond();
+        for (base::Pair<base::Interval<Key>, Value> dataEntry : data) {
+            base::Interval<Key> interval = dataEntry.getFirst();
+            Value value = dataEntry.getSecond();
 
-            intervalMap.assign(interval.getFirst(), interval.getSecond(), value);
+            intervalMap.assign(interval.getStart(), interval.getEnd(), value);
         }
 
-        for (base::Pair<base::Pair<K, K>, V> dataEntry : data) {
-            base::Pair<K, K> interval = dataEntry.getFirst();
-            K start = interval.getFirst();
-            K end = interval.getSecond();
-            V expectedValue = dataEntry.getSecond();
+        for (base::Pair<base::Interval<Key>, Value> dataEntry : data) {
+            base::Interval<Key> interval = dataEntry.getFirst();
+            Value expectedValue = dataEntry.getSecond();
 
-            for (int i = start; i < end; ++i) {
-                V value = intervalMap[i];
+            for (int i = interval.getStart(); i < interval.getEnd(); ++i) {
+                Value value = intervalMap[i];
 
                 this->getAssertion().assertEquals(
                     value,
                     expectedValue,
-                    "Incorrect logic of the Interval Map.");
+                    "Incorrect logic of creation an Interval Map.");
             }
         }
     }
@@ -103,8 +108,34 @@ namespace base_test {
     /**
      * Tests the iteration logic of an interval map.
      */
-    template<typename K, typename V>
-    void IntervalMapUnitTest::testIntervalMapIteration(const std::vector<base::Pair<K, V>>& data) {
+    template<typename Key, typename Value>
+    void IntervalMapUnitTest::testIntervalMapIteration(
+        const Value& initialValue,
+        const std::vector<base::Pair<base::Interval<Key>, Value>>& data) {
+
+        base::IntervalMap<Key, Value> intervalMap(initialValue);
+
+        for (base::Pair<base::Interval<Key>, Value> dataEntry : data) {
+            base::Interval<Key> interval = dataEntry.getFirst();
+            Value value = dataEntry.getSecond();
+
+            intervalMap.assign(interval.getStart(), interval.getEnd(), value);
+        }
+
+        base::IIteratorPtr<base::Pair<base::Interval<Key>, Value>> iterator = intervalMap.getIterator();
+
+        size_t index = 0;
+        while (iterator->hasNext()) {
+            base::Pair<base::Interval<Key>, Value> expectedIntervalData = data[index];
+            ++index;
+
+            base::Pair<base::Interval<Key>, Value> currIntervalData = iterator->next();
+
+            this->getAssertion().assertEquals(
+                expectedIntervalData,
+                currIntervalData,
+                "Incorrect logic of iteration of an Interval Map.");
+        }
     }
 }
 

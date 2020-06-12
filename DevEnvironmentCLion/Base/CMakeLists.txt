@@ -31,6 +31,8 @@ set(BASE_INCLUDES_FILES
     ./core/ComparableComparator.h
     ./core/DereferenceEquatableComparator.h
     ./core/EquatableComparator.h
+    ./core/IntervalMap.h
+    ./core/IntervalMapIterator.h
     ./core/List.h
     ./core/ListIterator.h
     ./core/Matrix.h
@@ -53,6 +55,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IEquatableComparator.h
     ./interfaces/IFinder.h
     ./interfaces/IHashCodeProvider.h
+    ./interfaces/IIntervalMap.h
     ./interfaces/IIterable.h
     ./interfaces/IIterator.h
     ./interfaces/IList.h

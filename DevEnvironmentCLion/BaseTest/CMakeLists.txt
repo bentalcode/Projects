@@ -38,12 +38,14 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IComparableComparator.h
     ../Base/interfaces/IEquatableComparator.h
     ../Base/interfaces/IHashCodeProvider.h
+    ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatrix.h
     ../Base/interfaces/Interval.h
-    ../Base/interfaces/IntervalMap.h
+    ../Base/core/IntervalMap.h
+    ../Base/core/IntervalMapIterator.h
     ../Base/interfaces/Intervals.h
     ../Base/interfaces/ISizebleCollection.h
     ../Base/interfaces/IterableComparator.h
@@ -60,6 +62,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ComparableComparator.h
     ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/EquatableComparator.h
+    ../Base/core/IntervalMapIterator.h
     ../Base/core/List.h
     ../Base/core/ListIterator.h
     ../Base/core/Matrix.h

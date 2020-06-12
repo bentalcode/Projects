@@ -7,14 +7,20 @@ namespace base
     /**
      * The Interval class template implements an interval.
      */
-    template <typename Type>
+    template <typename T>
     class Interval final
     {
     public:
         /**
+         * Creates an interval.
+         */
+        static Interval<T> make(const T& first, const T& second);
+
+
+        /**
          * The constructor.
          */
-        Interval(const Type& first, const Type& second);
+        Interval(const T& first, const T& second);
 
         /**
          * The destructor.
@@ -36,58 +42,64 @@ namespace base
         /**
          * Gets the start point of an interval.
          */
-        const Type& getStart() const;
+        const T& getStart() const;
 
         /**
          * Gets the end point of an interval.
          */
-        const Type& getEnd() const;
+        const T& getEnd() const;
 
         /**
          * Determines whether the sorted intervals overlap.
          */
-        static bool overlap(const base::Interval<Type>& left, const base::Interval<Type>& right);
+        static bool overlap(const base::Interval<T>& left, const base::Interval<T>& right);
 
     private:
         /**
          * Validates the interval start and end points.
          */
-        static void validate(Type start, Type end);
+        static void validate(T start, T end);
 
-        Type m_start;
-        Type m_end;
+        T m_start;
+        T m_end;
     };
 
     template <typename T>
     using IntervalPtr = std::shared_ptr<Interval<T>>;
 
-    template <typename Type>
-    Interval<Type>::Interval(const Type& start, const Type& end) :
+    template <typename T>
+    Interval<T> Interval<T>::make(const T& first, const T& second)
+    {
+        return Interval<T>(first, second);
+    }
+
+    template <typename T>
+    Interval<T>::Interval(const T& start, const T& end) :
         m_start(start),
         m_end(end)
     {
         validate(start, end);
     }
 
-    template <typename Type>
-    Interval<Type>::~Interval()
+    template <typename T>
+    Interval<T>::~Interval()
     {
     }
 
-    template <typename Type>
-    const Type& Interval<Type>::getStart() const
+    template <typename T>
+    const T& Interval<T>::getStart() const
     {
         return m_start;
     }
 
-    template <typename Type>
-    const Type& Interval<Type>::getEnd() const
+    template <typename T>
+    const T& Interval<T>::getEnd() const
     {
         return m_end;
     }
 
-    template <typename Type>
-    bool operator<(const Interval<Type>& left, const Interval<Type>& right)
+    template <typename T>
+    bool operator<(const Interval<T>& left, const Interval<T>& right)
     {
         if (left.getStart() < right.getStart())
         {
@@ -102,16 +114,16 @@ namespace base
         return left.getEnd() < right.getEnd();
     }
 
-    template <typename Type>
-    bool Interval<Type>::overlap(const base::Interval<Type>& left, const base::Interval<Type>& right)
+    template <typename T>
+    bool Interval<T>::overlap(const base::Interval<T>& left, const base::Interval<T>& right)
     {
         assert(left <= right);
 
         return (right.getStart() <= left.getEnd());
     }
 
-    template <typename Type>
-    void Interval<Type>::validate(Type start, Type end)
+    template <typename T>
+    void Interval<T>::validate(T start, T end)
     {
         if (start > end)
         {

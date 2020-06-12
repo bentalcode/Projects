@@ -2,7 +2,6 @@
 
 #include "IntervalMapUnitTest.h"
 #include "UnitTestFunction.h"
-#include "IntervalMap.h"
 
 using namespace base_test;
 
@@ -70,22 +69,14 @@ void IntervalMapUnitTest::registerTests(unit_testing::ITestRegistration& registr
  */
 void IntervalMapUnitTest::intervalMapCreationTest()
 {
-    std::string initialValue = "BellowZero";
+    base::Pair<std::string, std::vector<base::Pair<base::Interval<int>, std::string>>> data = createIntervalMapData();
 
-    std::vector<base::Pair<base::Pair<int, int>, std::string>> data = {
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(0, 2), "A"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(2, 7), "B"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(7, 10), "C"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(10, 12), "D"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(12, 15), "E"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(15, 18), "F"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(18, 20), "H"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(20, 22), "I"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(22, 23), "J"),
-        base::Pair<base::Pair<int, int>, std::string>(base::Pair<int, int>(23, 30), "K")
-    };
+    const std::string& initialValue = data.getFirst();
+    const std::vector<base::Pair<base::Interval<int>, std::string>>& intervalData = data.getSecond();
 
-    testIntervalMapCreation(initialValue, data);
+    testIntervalMapCreation(
+        initialValue,
+        intervalData);
 }
 
 /**
@@ -93,4 +84,65 @@ void IntervalMapUnitTest::intervalMapCreationTest()
  */
 void IntervalMapUnitTest::intervalMapIterationTest()
 {
+    base::Pair<std::string, std::vector<base::Pair<base::Interval<int>, std::string>>> data = createIntervalMapData();
+
+    const std::string& initialValue = data.getFirst();
+    const std::vector<base::Pair<base::Interval<int>, std::string>>& intervalsData = data.getSecond();
+
+    std::vector<base::Pair<base::Interval<int>, std::string>> intervals;
+
+    if (!intervalsData.empty())
+    {
+        base::Pair<base::Interval<int>, std::string> firstIntervalData = intervalsData.front();
+        base::Pair<base::Interval<int>, std::string> lastIntervalData = intervalsData.back();
+
+        if (firstIntervalData.getFirst().getStart() != std::numeric_limits<int>::lowest()) {
+            base::Pair<base::Interval<int>, std::string> preIntervalData(
+                base::Interval<int>(std::numeric_limits<int>::lowest(), firstIntervalData.getFirst().getStart()),
+                initialValue);
+
+            intervals.push_back(preIntervalData);
+        }
+
+        intervals.insert(intervals.end(), intervalsData.begin(), intervalsData.end());
+
+        if (lastIntervalData.getFirst().getEnd() != std::numeric_limits<int>::max()) {
+            base::Pair<base::Interval<int>, std::string> postIntervalData(
+                base::Interval<int>(lastIntervalData.getFirst().getEnd(), std::numeric_limits<int>::max()),
+                initialValue);
+
+            intervals.push_back(postIntervalData);
+        }
+    }
+
+    testIntervalMapIteration(
+        initialValue,
+        intervals);
+}
+
+/**
+ * Creates data of an interval map.
+ */
+base::Pair<std::string, std::vector<base::Pair<base::Interval<int>, std::string>>> IntervalMapUnitTest::createIntervalMapData()
+{
+    std::string initialValue = "BellowZero";
+
+    std::vector<base::Pair<base::Interval<int>, std::string>> intervalData = {
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(0, 2), "A"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(2, 7), "B"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(7, 10), "C"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(10, 12), "D"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(12, 15), "E"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(15, 18), "F"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(18, 20), "H"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(20, 22), "I"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(22, 23), "J"),
+        base::Pair<base::Interval<int>, std::string>(base::Interval<int>(23, 30), "K")
+    };
+
+    base::Pair<std::string, std::vector<base::Pair<base::Interval<int>, std::string>>> data(
+        initialValue,
+        intervalData);
+
+    return data;
 }
