@@ -79,6 +79,9 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
                     moduleManifest,
                     writer);
 
+                Writers.flush(writer);
+                Streams.closeQuietly(stream);
+
                 String cmakeListsPath = module.getCMakeListsFilePath().toString();
                 String cmakeListsData = null;
 

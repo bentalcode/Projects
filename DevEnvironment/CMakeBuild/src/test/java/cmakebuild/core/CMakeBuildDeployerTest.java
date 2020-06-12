@@ -61,6 +61,7 @@ public final class CMakeBuildDeployerTest {
         ICMakeBuildDeployer deployer = new CMakeBuildDeployer();
         deployer.deploy(manifest);
     }
+
     /**
      * Tests the logic of a CMake Build Deployer by using a simulation.
      */

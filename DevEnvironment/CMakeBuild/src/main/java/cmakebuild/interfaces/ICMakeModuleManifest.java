@@ -14,32 +14,17 @@ public interface ICMakeModuleManifest extends IUnaryComparator<ICMakeModuleManif
     String getName();
 
     /**
-     * Gets the path of the module.
+     * Gets the propertis of the module.
      */
-    String getPath();
-
-    /**
-     * Gets the target path of the CMakeLists file.
-     */
-    String getCMakeListsTargetPath();
-
-    /**
-     * Gets the extensions of a header files.
-     */
-    List<String> getHeaderFileExtensions();
-
-    /**
-     * Gets the extensions of a source file.
-     */
-    List<String> getSourceFileExtensions();
-
-    /**
-     * Gets the extensions of a CMakeLists file.
-     */
-    List<String> getCMakeListsFileExtensions();
+    ICMakeModuleProperties getProperties();
 
     /**
      * Gets the manifest of a CMakeLists file.
      */
     ICMakeListsManifest getCMakeListsManifest();
+
+    /**
+     * Gets the dependent modules.
+     */
+    List<String> getDependentModules();
 }

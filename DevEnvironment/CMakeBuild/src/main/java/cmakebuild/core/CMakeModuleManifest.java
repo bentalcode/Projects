@@ -1,7 +1,6 @@
 package cmakebuild.core;
 
 import base.core.AbstractBinaryComparator;
-import base.core.ArrayLists;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.EqualBuilder;
@@ -9,9 +8,11 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import cmakebuild.interfaces.ICMakeModuleManifest;
 import cmakebuild.interfaces.ICMakeListsManifest;
+import cmakebuild.interfaces.ICMakeModuleProperties;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,47 +20,31 @@ import java.util.List;
  */
 public final class CMakeModuleManifest implements ICMakeModuleManifest {
     private static final String propertyName = "name";
-    private static final String propertyPath = "path";
-    private static final String propertyCMakeListsTargetPath = "cmakeListsTargetPath";
-    private static final String propertyHeaderFileExtensions = "headerFileExtensions";
-    private static final String propertySourceFileExtensions = "sourceFileExtensions";
-    private static final String propertyCMakeListsFileExtensions = "cmakeListsFileExtensions";
+    private static final String propertyProperties = "properties";
     private static final String propertyCMakeListsManifest = "cmakeListsManifest";
-
-    private static final String defaultCmakeListsTargetPath = "CMakeLists.txt";
-    private static final List<String> defaultHeaderFileExtensions = ArrayLists.of("h");
-    private static final List<String> defaultSourceFileExtensions = ArrayLists.of("cpp");
-    private static final List<String> defaultCMakeListsFileExtensions = ArrayLists.of("CMakeLists.txt");
+    private static final String propertyDependentModules = "dependentModules";
 
     private final String name;
-    private final String path;
-    private final String cmakeListsTargetPath;
-    private final List<String> headerFileExtensions;
-    private final List<String> sourceFileExtensions;
-    private final List<String> cmakeListsFileExtensions;
+    private final ICMakeModuleProperties properties;
     private final ICMakeListsManifest cmakeListsManifest;
+    private final List<String> dependentModules;
+
     private final IBinaryComparator<ICMakeModuleManifest> comparator = defaultComparator();
     private final int hashCode;
 
     /**
      * The CMakeModuleManifest constructor.
      */
-    CMakeModuleManifest(
+    public CMakeModuleManifest(
         String name,
-        String path,
-        String cmakeListsTargetPath,
-        List<String> headerFileExtensions,
-        List<String> sourceFileExtensions,
-        List<String> cmakeListsFileExtensions,
-        ICMakeListsManifest cmakeListsManifest) {
+        ICMakeModuleProperties properties,
+        ICMakeListsManifest cmakeListsManifest,
+        List<String> dependentModules) {
 
         this.name = name;
-        this.path = path;
-        this.cmakeListsTargetPath = cmakeListsTargetPath;
-        this.headerFileExtensions = headerFileExtensions;
-        this.sourceFileExtensions = sourceFileExtensions;
-        this.cmakeListsFileExtensions = cmakeListsFileExtensions;
+        this.properties = properties;
         this.cmakeListsManifest = cmakeListsManifest;
+        this.dependentModules = dependentModules;
 
         this.hashCode = this.comparator.hashCode();
     }
@@ -73,43 +58,11 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     }
 
     /**
-     * Gets the path of the module.
+     * Gets the propertis of the module.
      */
     @Override
-    public String getPath() {
-        return this.path;
-    }
-
-    /**
-     * Gets the target path of the CMakeLists file.
-     */
-    @Override
-    public String getCMakeListsTargetPath() {
-        return this.cmakeListsTargetPath;
-    }
-
-    /**
-     * Gets the extensions of a header file.
-     */
-    @Override
-    public List<String> getHeaderFileExtensions() {
-        return this.headerFileExtensions;
-    }
-
-    /**
-     * Gets the extensions of a source file.
-     */
-    @Override
-    public List<String> getSourceFileExtensions() {
-        return this.sourceFileExtensions;
-    }
-
-    /**
-     * Gets the extensions of a CMakeLists file.
-     */
-    @Override
-    public List<String> getCMakeListsFileExtensions() {
-        return this.cmakeListsFileExtensions;
+    public ICMakeModuleProperties getProperties() {
+        return this.properties;
     }
 
     /**
@@ -118,6 +71,14 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     @Override
     public ICMakeListsManifest getCMakeListsManifest() {
         return this.cmakeListsManifest;
+    }
+
+    /**
+     * Gets the dependent modules.
+     */
+    @Override
+    public List<String> getDependentModules() {
+        return this.dependentModules;
     }
 
     /**
@@ -134,12 +95,9 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     @Override
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(propertyName, this.name);
-        writer.writeStringProperty(propertyPath, this.path);
-        writer.writeStringProperty(propertyCMakeListsTargetPath, this.cmakeListsTargetPath);
-        writer.writeStringCollectionProperty(propertyHeaderFileExtensions, this.headerFileExtensions);
-        writer.writeStringCollectionProperty(propertySourceFileExtensions, this.sourceFileExtensions);
-        writer.writeStringCollectionProperty(propertyCMakeListsFileExtensions, this.cmakeListsFileExtensions);
+        writer.writeObjectProperty(propertyProperties, this.properties);
         writer.writeObjectProperty(propertyCMakeListsManifest, this.cmakeListsManifest);
+        writer.writeStringCollectionProperty(propertyDependentModules, this.dependentModules);
     }
 
     /**
@@ -148,40 +106,25 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     public static ICMakeModuleManifest readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(propertyName);
 
-        String path = null;
-
-        if (reader.hasProperty(propertyPath)) {
-            path = reader.readStringProperty(propertyPath);
-        }
-
-        String cmakeListsTargetPath = reader.hasProperty(propertyCMakeListsTargetPath) ?
-            reader.readStringProperty(propertyCMakeListsTargetPath) :
-            defaultCmakeListsTargetPath;
-
-        List<String> headerFileExtensions = reader.hasProperty(propertyHeaderFileExtensions) ?
-            reader.readStringListProperty(propertyHeaderFileExtensions) :
-            defaultHeaderFileExtensions;
-
-        List<String> sourceFileExtensions = reader.hasProperty(propertySourceFileExtensions) ?
-            reader.readStringListProperty(propertySourceFileExtensions) :
-            defaultSourceFileExtensions;
-
-        List<String> cmakeListsFileExtensions = reader.hasProperty(propertyCMakeListsFileExtensions) ?
-            reader.readStringListProperty(propertyCMakeListsFileExtensions) :
-            defaultCMakeListsFileExtensions;
+        ICMakeModuleProperties properties = reader.hasProperty(propertyProperties) ?
+            reader.readObjectProperty(
+                propertyProperties,
+                CMakeModuleProperties.class) :
+            CMakeModuleProperties.defaultProperties();
 
         ICMakeListsManifest cmakeListsManifest = reader.readObjectProperty(
             propertyCMakeListsManifest,
             CMakeListsManifest.class);
 
+        List<String> dependentModules = reader.hasProperty(propertyDependentModules) ?
+            reader.readStringListProperty(propertyDependentModules) :
+            new ArrayList<>();
+
         return new CMakeModuleManifest(
             name,
-            path,
-            cmakeListsTargetPath,
-            headerFileExtensions,
-            sourceFileExtensions,
-            cmakeListsFileExtensions,
-            cmakeListsManifest);
+            properties,
+            cmakeListsManifest,
+            dependentModules);
     }
 
     /**
@@ -256,12 +199,9 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
         public int getHashCode(ICMakeModuleManifest obj) {
             return new HashCodeBuilder(3, 5)
                 .withString(obj.getName())
-                .withString(obj.getPath())
-                .withString(obj.getCMakeListsTargetPath())
-                .withCollection(obj.getHeaderFileExtensions())
-                .withCollection(obj.getSourceFileExtensions())
-                .withCollection(obj.getCMakeListsFileExtensions())
+                .withObject(obj.getProperties())
                 .withObject(obj.getCMakeListsManifest())
+                .withCollection(obj.getDependentModules())
                 .build();
         }
 
@@ -280,12 +220,9 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
 
             return new EqualBuilder()
                 .withString(lhs.getName(), rhs.getName())
-                .withString(lhs.getPath(), rhs.getPath())
-                .withString(lhs.getCMakeListsTargetPath(), rhs.getCMakeListsTargetPath())
-                .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
-                .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
-                .withCollection(lhs.getCMakeListsFileExtensions(), rhs.getCMakeListsFileExtensions())
+                .withObject(lhs.getProperties(), rhs.getProperties())
                 .withObject(lhs.getCMakeListsManifest(), rhs.getCMakeListsManifest())
+                .withCollection(lhs.getDependentModules(), rhs.getDependentModules())
                 .build();
         }
 
@@ -312,12 +249,9 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
 
             return new CompareToBuilder()
                 .withString(lhs.getName(), rhs.getName())
-                .withString(lhs.getPath(), rhs.getPath())
-                .withString(lhs.getCMakeListsTargetPath(), rhs.getCMakeListsTargetPath())
-                .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
-                .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
-                .withCollection(lhs.getCMakeListsFileExtensions(), rhs.getCMakeListsFileExtensions())
+                .withObject(lhs.getProperties(), rhs.getProperties())
                 .withObject(lhs.getCMakeListsManifest(), rhs.getCMakeListsManifest())
+                .withCollection(lhs.getDependentModules(), rhs.getDependentModules())
                 .build();
         }
     }

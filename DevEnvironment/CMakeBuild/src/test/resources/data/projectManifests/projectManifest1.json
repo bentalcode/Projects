@@ -4,7 +4,6 @@
     "modules": [
         {
             "name": "Base",
-            "cmakeListsTargetPath": "CMakeLists.txt",
             "cmakeListsManifest":
             {
                 "name": "Base",

@@ -71,7 +71,7 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
      */
     private ICMakeModule scanModule(ICMakeModuleManifest moduleManifest) {
         Path modulePath = this.calculateModulePath(moduleManifest);
-        Path cmakeListsTargetPath = this.calculateCMakeListsTargetPath(modulePath, moduleManifest.getCMakeListsTargetPath());
+        Path cmakeListsTargetPath = this.calculateCMakeListsTargetPath(modulePath, moduleManifest.getProperties().getCMakeListsTargetPath());
 
         List<Path> headerFilesPaths = new ArrayList<>();
         List<Path> sourceFilesPaths = new ArrayList<>();
@@ -79,9 +79,9 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
 
         this.processDirectory(
             modulePath,
-            moduleManifest.getHeaderFileExtensions(),
-            moduleManifest.getSourceFileExtensions(),
-            moduleManifest.getCMakeListsFileExtensions(),
+            moduleManifest.getProperties().getHeaderFileExtensions(),
+            moduleManifest.getProperties().getSourceFileExtensions(),
+            moduleManifest.getProperties().getCMakeListsFileExtensions(),
             headerFilesPaths,
             sourceFilesPaths,
             cmakeListsFilesPaths);
@@ -148,7 +148,7 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
      * Calculates path of the module.
      */
     private Path calculateModulePath(ICMakeModuleManifest moduleManifest) {
-        String modulePath = moduleManifest.getPath();
+        String modulePath = moduleManifest.getProperties().getPath();
 
         if (modulePath == null) {
             modulePath = moduleManifest.getName();
