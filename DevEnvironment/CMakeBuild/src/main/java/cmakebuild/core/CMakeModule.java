@@ -3,6 +3,7 @@ package cmakebuild.core;
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
+import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.core.Paths;
@@ -12,6 +13,7 @@ import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +25,14 @@ public final class CMakeModule implements ICMakeModule {
     private static final String propertyHeaderFilesPaths = "headerFilesPaths";
     private static final String propertySourceFilesPaths = "sourceFilesPaths";
     private static final String propertyCmakeListsFilePath = "cmakeListsFilePath";
+    private static final String propertyDependentModules = "dependentModules";
 
     private final String name;
     private final Path rootPath;
     private final List<Path> headerFilesPaths;
     private final List<Path> sourceFilesPaths;
     private final Path cmakeListsFilePath;
+    private final List<String> dependentModules;
 
     private final IBinaryComparator<ICMakeModule> comparator = defaultComparator();
     private final int hashCode;
@@ -41,13 +45,39 @@ public final class CMakeModule implements ICMakeModule {
         Path rootPath,
         List<Path> headerFilesPaths,
         List<Path> sourceFilesPaths,
-        Path cmakeListsFilePath) {
+        Path cmakeListsFilePath,
+        List<String> dependentModules) {
+
+        Conditions.validateStringNotNullOrEmpty(
+            name,
+            "The name of a module.");
+
+        Conditions.validatePathNotNullOrEmpty(
+            rootPath,
+            "The root path of a module.");
+
+        Conditions.validateNotNull(
+            headerFilesPaths,
+            "The paths of header files.");
+
+        Conditions.validateNotNull(
+            sourceFilesPaths,
+            "The paths of source files.");
+
+        Conditions.validateNotNull(
+            cmakeListsFilePath,
+            "The paths of cmakelists file.");
+
+        Conditions.validateNotNull(
+            dependentModules,
+            "The dependent modules.");
 
         this.name = name;
         this.rootPath = rootPath;
         this.headerFilesPaths = headerFilesPaths;
         this.sourceFilesPaths = sourceFilesPaths;
         this.cmakeListsFilePath = cmakeListsFilePath;
+        this.dependentModules = dependentModules;
 
         this.hashCode = comparator.hashCode();
     }
@@ -93,6 +123,14 @@ public final class CMakeModule implements ICMakeModule {
     }
 
     /**
+     * Gets the dependent modules.
+     */
+    @Override
+    public List<String> getDependentModules() {
+        return this.dependentModules;
+    }
+
+    /**
      * Gets the string representation of this instance.
      */
     @Override
@@ -110,6 +148,7 @@ public final class CMakeModule implements ICMakeModule {
         writer.writeCollectionProperty(propertyHeaderFilesPaths, this.headerFilesPaths, Path::toString);
         writer.writeCollectionProperty(propertySourceFilesPaths, this.sourceFilesPaths, Path::toString);
         writer.writeStringProperty(propertyCmakeListsFilePath, this.cmakeListsFilePath.toString());
+        writer.writeStringCollectionProperty(propertyDependentModules, this.dependentModules);
     }
 
     /**
@@ -121,13 +160,17 @@ public final class CMakeModule implements ICMakeModule {
         List<Path> headerFilesPaths = reader.readListProperty(propertyHeaderFilesPaths, value -> { return Paths.create(value); });
         List<Path> sourceFilesPaths = reader.readListProperty(propertySourceFilesPaths, value -> { return Paths.create(value); });
         Path cmakeListsFilePath = reader.readProperty(propertyCmakeListsFilePath, value -> { return Paths.create(value); });
+        List<String> dependentModules = reader.hasProperty(propertyDependentModules) ?
+            reader.readStringListProperty(propertyDependentModules) :
+            new ArrayList<>();
 
         return new CMakeModule(
             name,
             rootPath,
             headerFilesPaths,
             sourceFilesPaths,
-            cmakeListsFilePath);
+            cmakeListsFilePath,
+            dependentModules);
     }
 
     /**
@@ -206,6 +249,7 @@ public final class CMakeModule implements ICMakeModule {
                 .withCollection(obj.getHeaderFilesPaths())
                 .withCollection(obj.getSourceFilesPaths())
                 .withObject(obj.getCMakeListsFilePath())
+                .withCollection(obj.getDependentModules())
                 .build();
         }
 
@@ -228,6 +272,7 @@ public final class CMakeModule implements ICMakeModule {
                 .withCollection(lhs.getHeaderFilesPaths(), rhs.getHeaderFilesPaths(), (lhsPath, rhsPath) -> lhsPath.equals(rhsPath))
                 .withCollection(lhs.getSourceFilesPaths(), rhs.getSourceFilesPaths(), (lhsPath, rhsPath) -> lhsPath.equals(rhsPath))
                 .withObject(lhs.getCMakeListsFilePath(), rhs.getCMakeListsFilePath())
+                .withCollection(lhs.getDependentModules(), rhs.getDependentModules())
                 .build();
         }
 
@@ -258,6 +303,7 @@ public final class CMakeModule implements ICMakeModule {
                 .withCollection(lhs.getHeaderFilesPaths(), rhs.getHeaderFilesPaths(), (lhsPath, rhsPath) -> lhsPath.compareTo(rhsPath))
                 .withCollection(lhs.getSourceFilesPaths(), rhs.getSourceFilesPaths(), (lhsPath, rhsPath) -> lhsPath.compareTo(rhsPath))
                 .withObject(lhs.getCMakeListsFilePath(), rhs.getCMakeListsFilePath())
+                .withCollection(lhs.getDependentModules(), rhs.getDependentModules())
                 .build();
         }
     }

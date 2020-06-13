@@ -35,17 +35,17 @@ public final class CMakeModuleWriter implements IWriter {
             "The settings of an editor.");
 
         Conditions.validateNotNull(
-            module,
-            "The CMake module.");
-
-        Conditions.validateNotNull(
             ignoreRules,
             "The ignore rules.");
 
+        Conditions.validateNotNull(
+            module,
+            "The CMake module.");
+
         this.manifest = manifest;
         this.editorSettings = editorSettings;
-        this.module = module;
         this.ignoreRules = ignoreRules;
+        this.module = module;
     }
 
     /**

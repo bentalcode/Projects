@@ -1,6 +1,7 @@
 {
     "name": "DevEnvironmentCLion",
     "rootPath": "c:\\repositories\\Projects\\DevEnvironmentCLion",
+    "effectiveModules": ["Base"],
     "modules": [
         {
             "name": "Base",

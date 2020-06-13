@@ -19,6 +19,11 @@ public interface ICMakeProjectManifest extends IUnaryComparator<ICMakeProjectMan
     String getRootPath();
 
     /**
+     * Gets the effective modules.
+     */
+    List<String> getEffectiveModules();
+
+    /**
      * Gets the list of the modules manifests.
      */
     List<ICMakeModuleManifest> getModulesManifests();

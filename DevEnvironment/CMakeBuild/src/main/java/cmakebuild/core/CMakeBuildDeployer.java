@@ -5,6 +5,7 @@ import cmakebuild.interfaces.ICMakeBuildDeployer;
 import cmakebuild.interfaces.ICMakeProject;
 import cmakebuild.interfaces.ICMakeProjectDeploymentResult;
 import cmakebuild.interfaces.ICMakeProjectManifest;
+import cmakebuild.interfaces.IMakeProjectDeployer;
 
 /**
  * The CMakeBuildDeployer class implements a deployer of a CMake Build.
@@ -25,11 +26,7 @@ public final class CMakeBuildDeployer implements ICMakeBuildDeployer {
             manifest,
             "The manifest of a CMake project.");
 
-        ICMakeProject project = this.scanProject(manifest);
-
-        CMakeProjectDeployer projectDeployer = new CMakeProjectDeployer(
-            manifest,
-            project);
+        IMakeProjectDeployer projectDeployer = this.createProjectDeployer(manifest);
 
         return projectDeployer.deploy();
     }
@@ -43,13 +40,22 @@ public final class CMakeBuildDeployer implements ICMakeBuildDeployer {
             manifest,
             "The manifest of a CMake project.");
 
+        IMakeProjectDeployer projectDeployer = this.createProjectDeployer(manifest);
+
+        return projectDeployer.simulate();
+    }
+
+    /**
+     * Creates the project deployer.
+     */
+    private IMakeProjectDeployer createProjectDeployer(ICMakeProjectManifest manifest) {
         ICMakeProject project = this.scanProject(manifest);
 
-        CMakeProjectDeployer projectDeployer = new CMakeProjectDeployer(
+        IMakeProjectDeployer projectDeployer = new CMakeProjectDeployer(
             manifest,
             project);
 
-        return projectDeployer.simulate();
+        return projectDeployer;
     }
 
     /**

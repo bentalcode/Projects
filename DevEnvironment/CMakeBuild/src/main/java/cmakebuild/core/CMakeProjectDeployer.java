@@ -5,7 +5,6 @@ import base.core.DestructorHandler;
 import base.core.Streams;
 import base.core.Writers;
 import base.interfaces.IWriter;
-import cmakebuild.CMakeBuildException;
 import cmakebuild.interfaces.ICMakeModule;
 import cmakebuild.interfaces.ICMakeModuleManifest;
 import cmakebuild.interfaces.ICMakeProject;
@@ -16,9 +15,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Set;
 
 /**
  * The CMakeProjectDeployer class implements a deployer of a CMake project.
@@ -26,9 +26,6 @@ import org.slf4j.LoggerFactory;
 public final class CMakeProjectDeployer implements IMakeProjectDeployer {
     private final ICMakeProjectManifest manifest;
     private final ICMakeProject project;
-    private final Map<String, ICMakeModuleManifest> modulesManifests = new HashMap<>();
-
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The CMakeProjectDeployer constructor.
@@ -47,11 +44,6 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
 
         this.manifest = manifest;
         this.project = project;
-
-        //
-        // Create the mapping between modules and it's manifests...
-        //
-        this.createModulesManifestsMap();
     }
 
     /**
@@ -59,14 +51,12 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
      */
     @Override
     public ICMakeProjectDeploymentResult deploy() {
-        Map<String, String> deploymentData = new HashMap<>();
+        ICMakeProjectDeploymentData deploymentData = this.createDeploymentData();
 
         //
         // Deploy each module...
         //
         for (ICMakeModule module : this.project.getModules()) {
-            ICMakeModuleManifest moduleManifest = this.getModuleManifest(module.getName());
-
             try (DestructorHandler destructorHandler = new DestructorHandler()) {
                 OutputStream stream = Streams.createOutputStream(module.getCMakeListsFilePath());
                 destructorHandler.register(stream);
@@ -76,22 +66,21 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
 
                 this.deployModule(
                     module,
-                    moduleManifest,
+                    deploymentData,
                     writer);
-
-                Writers.flush(writer);
-                Streams.closeQuietly(stream);
 
                 String cmakeListsPath = module.getCMakeListsFilePath().toString();
                 String cmakeListsData = null;
 
-                deploymentData.put(cmakeListsPath, cmakeListsData);
+                Streams.closeQuietly(stream);
+
+                deploymentData.setModuleData(cmakeListsPath, cmakeListsData);
             }
         }
 
         return new CMakeProjectDeploymentResult(
             this.project,
-            deploymentData);
+            deploymentData.getData());
     }
 
     /**
@@ -99,14 +88,12 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
      */
     @Override
     public ICMakeProjectDeploymentResult simulate() {
-        Map<String, String> deploymentData = new HashMap<>();
+        ICMakeProjectDeploymentData deploymentData = this.createDeploymentData();
 
         //
         // Deploy each module...
         //
         for (ICMakeModule module : this.project.getModules()) {
-            ICMakeModuleManifest moduleManifest = this.getModuleManifest(module.getName());
-
             try (DestructorHandler destructorHandler = new DestructorHandler()) {
                 ByteArrayOutputStream stream = Streams.createByteArrayOutputStream();
                 destructorHandler.register(stream);
@@ -116,21 +103,19 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
 
                 this.deployModule(
                     module,
-                    moduleManifest,
+                    deploymentData,
                     writer);
-
-                Writers.flush(writer);
 
                 String cmakeListsPath = module.getCMakeListsFilePath().toString();
                 String cmakeListsData = new String(stream.toByteArray());
 
-                deploymentData.put(cmakeListsPath, cmakeListsData);
+                deploymentData.setModuleData(cmakeListsPath, cmakeListsData);
             }
         }
 
         return new CMakeProjectDeploymentResult(
             this.project,
-            deploymentData);
+            deploymentData.getData());
     }
 
     /**
@@ -138,47 +123,96 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
      */
     private void deployModule(
         ICMakeModule module,
-        ICMakeModuleManifest moduleManifest,
+        ICMakeProjectDeploymentData deploymentData,
         Writer writer) {
 
+        if (!deploymentData.moduleEffective(module.getName())) {
+            return;
+        }
+
+        ICMakeModuleManifest manifest = deploymentData.getModuleManifest(module.getName());
+
         IWriter moduleWriter = new CMakeModuleWriter(
-            moduleManifest,
+            manifest,
             this.manifest.getEditorSettings(),
             this.manifest.getIgnoreRules(),
             module);
 
         moduleWriter.write(writer);
+
+        Writers.flush(writer);
     }
 
     /**
-     * Gets a module manifest by name.
+     * Creates the deployment data.
      */
-    private ICMakeModuleManifest getModuleManifest(String name) {
-        if (!this.modulesManifests.containsKey(name)) {
-            String errorMessage = "The module: " + name + " is not defined in this project.";
+    private ICMakeProjectDeploymentData createDeploymentData() {
+        Map<String, ICMakeModule> modules = this.createModulesMap();
+        Map<String, ICMakeModuleManifest> modulesManifests = this.createModulesManifestsMap();
+        Map<String, List<ICMakeModule>> modulesDependencies = this.createModulesDependenciesMap(modules);
+        Set<String> effectiveModules = this.createEffectiveModulesSet(modules, this.manifest.getEffectiveModules());
 
-            this.log.error(errorMessage);
-            throw new CMakeBuildException(errorMessage);
+        ICMakeProjectDeploymentData deploymentData = new CMakeProjectDeploymentData(
+            modules,
+            modulesManifests,
+            modulesDependencies,
+            effectiveModules);
+
+        return deploymentData;
+    }
+
+    /**
+     * Creates the modules map.
+     */
+    private Map<String, ICMakeModule> createModulesMap() {
+        Map<String, ICMakeModule> modules = new HashMap<>();
+
+        for (ICMakeModule module : this.project.getModules()) {
+            modules.put(module.getName(), module);
         }
 
-        return this.modulesManifests.get(name);
+        return modules;
     }
 
     /**
-     * Creates a modules-manifests map.
+     * Creates the modules-manifests map.
      */
-    private void createModulesManifestsMap() {
+    private Map<String, ICMakeModuleManifest> createModulesManifestsMap() {
+        Map<String, ICMakeModuleManifest> modulesManifests = new HashMap<>();
+
         for (ICMakeModuleManifest manifest : this.manifest.getModulesManifests()) {
-            String name = manifest.getName();
-
-            if (this.modulesManifests.containsKey(name)) {
-                String errorMessage = "The module: " + name + " is already defined in this project.";
-
-                this.log.error(errorMessage);
-                throw new CMakeBuildException(errorMessage);
-            }
-
-            this.modulesManifests.put(manifest.getName(), manifest);
+            modulesManifests.put(manifest.getName(), manifest);
         }
+
+        return modulesManifests;
+    }
+
+    /**
+     * Creates the modules-dependencies map.
+     */
+    private Map<String, List<ICMakeModule>> createModulesDependenciesMap(Map<String, ICMakeModule> modules) {
+        ICMakeModuleDependencyManager dependencyManager = new CMakeModuleDependencyManager(modules);
+        return dependencyManager.resolveModulesDependencies();
+    }
+
+    /**
+     * Creates the effective-modules set.
+     */
+    private Set<String> createEffectiveModulesSet(
+        Map<String, ICMakeModule> modules,
+        List<String> effectiveModules) {
+
+        Set<String> result = new HashSet<>();
+
+        if (effectiveModules.isEmpty()) {
+            result.addAll(modules.keySet());
+        }
+        else {
+            for (String effectiveModule : effectiveModules) {
+                result.add(effectiveModule);
+            }
+        }
+
+        return result;
     }
 }

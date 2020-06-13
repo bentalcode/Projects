@@ -14,6 +14,7 @@ import cmakebuild.interfaces.IIgnoreRules;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,12 +23,14 @@ import java.util.List;
 public final class CMakeProjectManifest implements ICMakeProjectManifest {
     private static final String propertyName = "name";
     private static final String propertyRootPath = "rootPath";
+    private static final String propertyEffectiveModules = "effectiveModules";
     private static final String propertyModules = "modules";
     private static final String propertyEditorSettings = "editorSettings";
     private static final String propertyIgnoreRules = "ignoreRules";
 
     private final String name;
     private final String rootPath;
+    private final List<String> effectiveModules;
     private final List<ICMakeModuleManifest> modules;
     private final IEditorSettings editorSettings;
     private final IIgnoreRules ignoreRules;
@@ -41,6 +44,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     CMakeProjectManifest(
         String name,
         String rootPath,
+        List<String> effectiveModules,
         List<ICMakeModuleManifest> modules,
         IEditorSettings editorSettings,
         IIgnoreRules ignoreRules) {
@@ -52,6 +56,10 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
         Conditions.validateStringNotNullOrEmpty(
             rootPath,
             "The path of the root of a project.");
+
+        Conditions.validateNotNull(
+            effectiveModules,
+            "The effective modules.");
 
         Conditions.validateNotNull(
             modules,
@@ -67,6 +75,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
 
         this.name = name;
         this.rootPath = rootPath;
+        this.effectiveModules = effectiveModules;
         this.modules = modules;
         this.editorSettings = editorSettings;
         this.ignoreRules = ignoreRules;
@@ -88,6 +97,14 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     @Override
     public String getRootPath() {
         return this.rootPath;
+    }
+
+    /**
+     * Gets the effective modules.
+     */
+    @Override
+    public List<String> getEffectiveModules() {
+        return this.effectiveModules;
     }
 
     /**
@@ -136,6 +153,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(propertyName, this.name);
         writer.writeStringProperty(propertyRootPath, this.rootPath);
+        writer.writeStringCollectionProperty(propertyEffectiveModules, this.effectiveModules);
         writer.writeCollectionProperty(propertyModules, this.modules);
         writer.writeObjectProperty(propertyEditorSettings, this.editorSettings);
         writer.writeObjectProperty(propertyIgnoreRules, this.ignoreRules);
@@ -147,6 +165,11 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     public static ICMakeProjectManifest readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(propertyName);
         String rootPath = reader.readStringProperty(propertyRootPath);
+
+        List<String> effectiveModules = reader.hasProperty(propertyEffectiveModules) ?
+            reader.readStringListProperty(propertyEffectiveModules) :
+            new ArrayList<>();
+
         List<ICMakeModuleManifest> modules = reader.readListProperty(propertyModules, CMakeModuleManifest.class);
 
         IEditorSettings editorSettings = reader.hasProperty(propertyEditorSettings) ?
@@ -160,6 +183,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
         return new CMakeProjectManifest(
             name,
             rootPath,
+            effectiveModules,
             modules,
             editorSettings,
             ignoreRules);
@@ -238,6 +262,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
             return new HashCodeBuilder(3, 5)
                 .withString(obj.getName())
                 .withString(obj.getRootPath())
+                .withCollection(obj.getEffectiveModules())
                 .withCollection(obj.getModulesManifests())
                 .withObject(obj.getEditorSettings())
                 .withObject(obj.getIgnoreRules())

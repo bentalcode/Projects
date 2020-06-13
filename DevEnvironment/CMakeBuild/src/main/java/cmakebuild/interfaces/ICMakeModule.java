@@ -33,4 +33,9 @@ public interface ICMakeModule extends IUnaryComparator<ICMakeModule>, IJsonSeria
      * Gets the path of the CMakeLists file.
      */
     Path getCMakeListsFilePath();
+
+    /**
+     * Gets the dependent modules.
+     */
+    List<String> getDependentModules();
 }
