@@ -25,10 +25,17 @@ public final class CMakeVersion implements ICMakeBuildElement {
      * Compiles a CMake build.
      */
     @Override
-    public void compile(ICMakeWriter writer) {
+    public void compile(
+        ICMakeWriter writer,
+        ICMakeBuildContextData contextData) {
+
         Conditions.validateNotNull(
             writer,
             "The CMake writer.");
+
+        Conditions.validateNotNull(
+            contextData,
+            "The context data.");
 
         String line =
             ICMakeListsConstants.cmakeMinimumRequired +

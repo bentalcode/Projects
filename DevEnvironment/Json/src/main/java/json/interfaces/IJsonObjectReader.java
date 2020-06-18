@@ -53,6 +53,11 @@ public interface IJsonObjectReader {
     String readStringProperty(String name);
 
     /**
+     * Reads an enum property.
+     */
+    <T extends Enum<T>> T readEnumProperty(String name, IFromString<T> transformer);
+
+    /**
      * Reads a generic property with a transformer.
      */
     <T> T readProperty(String name, IFromString<T> transformer);

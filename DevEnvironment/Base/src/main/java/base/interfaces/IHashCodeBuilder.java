@@ -61,6 +61,11 @@ public interface IHashCodeBuilder {
     IHashCodeBuilder withString(String value);
 
     /**
+     * With an enum.
+     */
+    <T extends Enum<T>> IHashCodeBuilder withEnum(Enum<T> value);
+
+    /**
      * With a big integer.
      */
     IHashCodeBuilder withBigInteger(BigInteger value);

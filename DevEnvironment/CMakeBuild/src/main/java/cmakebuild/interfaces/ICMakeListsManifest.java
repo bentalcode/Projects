@@ -8,11 +8,6 @@ import json.interfaces.IJsonSerialization;
  */
 public interface ICMakeListsManifest extends IUnaryComparator<ICMakeListsManifest>, IJsonSerialization {
     /**
-     * Gets the name of the module.
-     */
-    String getName();
-
-    /**
      * Gets the version of cmake.
      */
     String getCMakeVersion();

@@ -160,6 +160,15 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
+     * With an enum.
+     */
+    @Override
+    public <T extends Enum<T>> IHashCodeBuilder withEnum(Enum<T> value) {
+        this.withInteger(value.hashCode());
+        return this;
+    }
+
+    /**
      * With a big integer.
      */
     @Override

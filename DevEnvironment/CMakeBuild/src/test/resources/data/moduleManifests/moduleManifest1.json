@@ -1,12 +1,12 @@
 {
     "name": "BaseTest",
+    "type": "executable",
     "path": "BaseTest",
     "cmakeListsTargetPath": "CMakeLists.txt",
     "headerFileExtensions": ["h", "hpp"],
     "sourceFileExtensions": ["c", "cpp"],
     "cmakeListsFileExtensions": ["CMakeLists.txt"],
     "cmakeListsManifest": {
-        "name": "Base",
         "cmakeVersion": "3.13",
         "projectVersion": "1.0",
         "presetPath": "cmakeListsPreset1.txt",

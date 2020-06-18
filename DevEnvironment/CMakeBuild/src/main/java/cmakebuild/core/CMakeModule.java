@@ -9,6 +9,7 @@ import base.core.HashCodeBuilder;
 import base.core.Paths;
 import base.interfaces.IBinaryComparator;
 import cmakebuild.interfaces.ICMakeModule;
+import cmakebuild.interfaces.ICMakeVariable;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
@@ -306,5 +307,49 @@ public final class CMakeModule implements ICMakeModule {
                 .withCollection(lhs.getDependentModules(), rhs.getDependentModules())
                 .build();
         }
+    }
+
+    /**
+     * Creates an includes variable of a module.
+     */
+    public static ICMakeVariable createIncludesVariable(ICMakeModuleContextData contextData) {
+        ICMakeVariable variable = CMakeVariable.createVariable(
+            contextData.getModule().getName(),
+            contextData.getManifest().getCMakeListsManifest().getIncludesProperty());
+
+        return variable;
+    }
+
+    /**
+     * Creates an includes variable name of a module.
+     */
+    public static String createIncludesVariableName(ICMakeModuleContextData contextData) {
+        String variableName = CMakeVariable.createVariableName(
+            contextData.getModule().getName(),
+            contextData.getManifest().getCMakeListsManifest().getIncludesProperty());
+
+        return variableName;
+    }
+
+    /**
+     * Creates a sources variable of a module.
+     */
+    public static ICMakeVariable createSourcesVariable(ICMakeModuleContextData contextData) {
+        ICMakeVariable variable = CMakeVariable.createVariable(
+            contextData.getModule().getName(),
+            contextData.getManifest().getCMakeListsManifest().getSourcesProperty());
+
+        return variable;
+    }
+
+    /**
+     * Creates a sources variable name of a module.
+     */
+    public static String createSourcesVariableName(ICMakeModuleContextData contextData) {
+        String variableName = CMakeVariable.createVariableName(
+            contextData.getModule().getName(),
+            contextData.getManifest().getCMakeListsManifest().getSourcesProperty());
+
+        return variableName;
     }
 }

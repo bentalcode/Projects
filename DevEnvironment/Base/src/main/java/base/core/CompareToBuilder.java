@@ -167,6 +167,14 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
+     * With an enum.
+     */
+    public <T extends Enum<T>> ICompareToBuilder withEnum(T lhs, T rhs) {
+        IComparableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withObject(lhs, rhs, comparator);
+    }
+
+    /**
      * With a big integer.
      */
     @Override

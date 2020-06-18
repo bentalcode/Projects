@@ -6,6 +6,7 @@ import base.core.CompareToBuilder;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
+import cmakebuild.interfaces.CMakeModuleType;
 import cmakebuild.interfaces.ICMakeModuleManifest;
 import cmakebuild.interfaces.ICMakeListsManifest;
 import cmakebuild.interfaces.ICMakeModuleProperties;
@@ -20,11 +21,13 @@ import java.util.List;
  */
 public final class CMakeModuleManifest implements ICMakeModuleManifest {
     private static final String propertyName = "name";
+    private static final String propertyType = "type";
     private static final String propertyProperties = "properties";
     private static final String propertyCMakeListsManifest = "cmakeListsManifest";
     private static final String propertyDependentModules = "dependentModules";
 
     private final String name;
+    private final CMakeModuleType type;
     private final ICMakeModuleProperties properties;
     private final ICMakeListsManifest cmakeListsManifest;
     private final List<String> dependentModules;
@@ -37,11 +40,13 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
      */
     public CMakeModuleManifest(
         String name,
+        CMakeModuleType type,
         ICMakeModuleProperties properties,
         ICMakeListsManifest cmakeListsManifest,
         List<String> dependentModules) {
 
         this.name = name;
+        this.type = type;
         this.properties = properties;
         this.cmakeListsManifest = cmakeListsManifest;
         this.dependentModules = dependentModules;
@@ -55,6 +60,14 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     @Override
     public String getName() {
         return this.name;
+    }
+
+    /**
+     * Gets the type of the module.
+     */
+    @Override
+    public CMakeModuleType getType() {
+        return this.type;
     }
 
     /**
@@ -95,6 +108,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     @Override
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(propertyName, this.name);
+        writer.writeEnumProperty(propertyType, this.type);
         writer.writeObjectProperty(propertyProperties, this.properties);
         writer.writeObjectProperty(propertyCMakeListsManifest, this.cmakeListsManifest);
         writer.writeStringCollectionProperty(propertyDependentModules, this.dependentModules);
@@ -105,6 +119,8 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
      */
     public static ICMakeModuleManifest readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(propertyName);
+
+        CMakeModuleType type = reader.readEnumProperty(propertyType, value -> { return CMakeModuleType.parse(value); });
 
         ICMakeModuleProperties properties = reader.hasProperty(propertyProperties) ?
             reader.readObjectProperty(
@@ -122,6 +138,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
 
         return new CMakeModuleManifest(
             name,
+            type,
             properties,
             cmakeListsManifest,
             dependentModules);
@@ -199,6 +216,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
         public int getHashCode(ICMakeModuleManifest obj) {
             return new HashCodeBuilder(3, 5)
                 .withString(obj.getName())
+                .withEnum(obj.getType())
                 .withObject(obj.getProperties())
                 .withObject(obj.getCMakeListsManifest())
                 .withCollection(obj.getDependentModules())
@@ -220,6 +238,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
 
             return new EqualBuilder()
                 .withString(lhs.getName(), rhs.getName())
+                .withEnum(lhs.getType(), rhs.getType())
                 .withObject(lhs.getProperties(), rhs.getProperties())
                 .withObject(lhs.getCMakeListsManifest(), rhs.getCMakeListsManifest())
                 .withCollection(lhs.getDependentModules(), rhs.getDependentModules())
@@ -249,6 +268,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
 
             return new CompareToBuilder()
                 .withString(lhs.getName(), rhs.getName())
+                .withEnum(lhs.getType(), rhs.getType())
                 .withObject(lhs.getProperties(), rhs.getProperties())
                 .withObject(lhs.getCMakeListsManifest(), rhs.getCMakeListsManifest())
                 .withCollection(lhs.getDependentModules(), rhs.getDependentModules())

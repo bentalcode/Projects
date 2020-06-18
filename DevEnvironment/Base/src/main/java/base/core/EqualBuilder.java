@@ -167,6 +167,15 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
+     * With an enum.
+     */
+    @Override
+    public <T extends Enum<T>> IEqualBuilder withEnum(T lhs, T rhs) {
+        IEquatableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withObject(lhs, rhs, comparator);
+    }
+
+    /**
      * With a big integer.
      */
     @Override

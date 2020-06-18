@@ -61,6 +61,11 @@ public interface ICompareToBuilder {
     ICompareToBuilder withString(String lhs, String rhs);
 
     /**
+     * With an enum.
+     */
+    <T extends Enum<T>> ICompareToBuilder withEnum(T lhs, T rhs);
+
+    /**
      * With a big integer.
      */
     ICompareToBuilder withBigInteger(BigInteger lhs, BigInteger rhs);

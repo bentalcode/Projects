@@ -208,8 +208,8 @@ public final class Strings {
         assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
         assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
 
-        int strLength = strEndIndex - strStartIndex + 1;
-        int subStringLength = subStringEndIndex - subStringStartIndex + 1;
+        int strLength = length(strStartIndex, strEndIndex);
+        int subStringLength = length(subStringStartIndex, subStringEndIndex);
 
         if (strLength < subStringLength) {
             return -1;
@@ -258,7 +258,8 @@ public final class Strings {
         int endIndex,
         char[] subString,
         int subStringStartIndex,
-        int subStringLength) {
+        int subStringLength,
+        boolean allowOverlapping) {
 
         assert(str != null);
         assert(startIndex >= 0 && startIndex < str.length);
@@ -266,24 +267,79 @@ public final class Strings {
 
         assert(subString != null);
         assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
-        assert(subStringLength >= 0 && subStringLength < subString.length);
+        assert(subStringLength >= 0);
         assert(subStringStartIndex + subStringLength - 1 < subString.length);
 
-        if (subStringLength <= 0) {
+        int stringLength = length(startIndex, endIndex);
+
+        if (subStringLength == 0 || subStringLength > stringLength) {
             return 0;
         }
 
         int counter = 0;
 
         int currIndex = startIndex;
-        int currIndexEnd = endIndex - subStringLength + 1;
+        int effectiveEndIndex = endIndex - subStringLength + 1;
 
-        while (currIndex <= currIndexEnd) {
+        while (currIndex <= effectiveEndIndex) {
             if (equals(str, currIndex, subString, subStringStartIndex, subStringLength)) {
                 ++counter;
-            }
 
-            ++currIndex;
+                currIndex = (allowOverlapping) ? currIndex + 1 : currIndex + subStringLength;
+            }
+            else {
+                ++currIndex;
+            }
+        }
+
+        return counter;
+    }
+
+    /**
+     * Counts the number of instances of a substring from end.
+     * Avoid overlapping.
+     */
+    public static int countSubStringFromEnd(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subString,
+        int subStringStartIndex,
+        int subStringLength,
+        boolean allowOverlapping) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length);
+        assert(endIndex >= startIndex && endIndex < str.length);
+
+        assert(subString != null);
+        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
+        assert(subStringLength >= 0);
+        assert(subStringStartIndex + subStringLength - 1 < subString.length);
+
+        int stringLength = length(startIndex, endIndex);
+
+        if (subStringLength == 0 || subStringLength > stringLength) {
+            return 0;
+        }
+
+        int counter = 0;
+
+        int currIndex = endIndex;
+        int effectiveStartIndex = startIndex + subStringLength - 1;
+
+        while (currIndex >= effectiveStartIndex) {
+            int currStrStartIndex = currIndex - subStringLength + 1;
+            int currSubStringStartIndex = 0;
+
+            if (equals(str, currStrStartIndex, subString, currSubStringStartIndex, subStringLength)) {
+                ++counter;
+
+                currIndex = (allowOverlapping) ? currIndex - 1 : currIndex - subStringLength;
+            }
+            else {
+                --currIndex;
+            }
         }
 
         return counter;
@@ -347,7 +403,7 @@ public final class Strings {
         assert(endIndex >= 0 && endIndex < str.length);
         assert(postfix != null);
 
-        int strLength = endIndex + 1;
+        int strLength = length(0, endIndex);
 
         if (strLength < postfix.length) {
             return false;
@@ -392,7 +448,7 @@ public final class Strings {
         assert(startIndex >= 0 && startIndex < str.length);
         assert(endIndex >= startIndex && endIndex < str.length);
 
-        int strLength = endIndex - startIndex + 1;
+        int strLength = length(startIndex, endIndex);
 
         int[] lps = new int[strLength];
         lps[0] = 0;
@@ -421,6 +477,48 @@ public final class Strings {
         }
 
         return lps;
+    }
+
+    /**
+     * Wraps a string.
+     */
+    public static String wrap(String str, char start, char end) {
+        return start + str + end;
+    }
+
+    /**
+     * Wraps a string.
+     */
+    public static String wrap(String str, String start, String end) {
+        return start + str + end;
+    }
+
+    /**
+     * Wraps a string with parentheses.
+     */
+    public static String wrapWithParentheses(String str) {
+        return '(' + str + ')';
+    }
+
+    /**
+     * Wraps a string with curly brackets.
+     */
+    public static String wrapWithCurlyBracket(String str) {
+        return '{' + str + '}';
+    }
+
+    /**
+     * Wraps a string with square brackets.
+     */
+    public static String wrapWithSquareBracket(String str) {
+        return '[' + str + ']';
+    }
+
+    /**
+     * Calculates length of a string.
+     */
+    private static int length(int startIndex, int endIndex) {
+        return startIndex <= endIndex ? endIndex - startIndex + 1 : 0;
     }
 
     /**

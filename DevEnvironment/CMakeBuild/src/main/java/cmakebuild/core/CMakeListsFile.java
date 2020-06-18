@@ -1,21 +1,20 @@
 package cmakebuild.core;
 
 import base.core.Conditions;
-import cmakebuild.interfaces.ICMakeBuildElement;
+import cmakebuild.interfaces.ICMakeBuildElementList;
 import cmakebuild.interfaces.ICMakeListsFile;
 import cmakebuild.interfaces.ICMakeWriter;
-import java.util.List;
 
 /**
  * The CMakeListsFile class implements a file of a CMakeLists.
  */
 public final class CMakeListsFile implements ICMakeListsFile {
-    private final List<ICMakeBuildElement> elements;
+    private final ICMakeBuildElementList elements;
 
     /**
      * The CMakeListsFile constructor.
      */
-    public CMakeListsFile(List<ICMakeBuildElement> elements) {
+    public CMakeListsFile(ICMakeBuildElementList elements) {
         Conditions.validateNotNull(
             elements,
             "The elements of a CMakeLists file.");
@@ -27,17 +26,21 @@ public final class CMakeListsFile implements ICMakeListsFile {
      * Compiles a CMake build.
      */
     @Override
-    public void compile(ICMakeWriter writer) {
+    public void compile(
+        ICMakeWriter writer,
+        ICMakeBuildContextData contextData) {
+
         Conditions.validateNotNull(
             writer,
             "The CMake writer.");
 
-        /**
-         * Writes the elements of a file...
-         */
-        for (ICMakeBuildElement element : this.elements) {
-            element.compile(writer);
-            writer.newLine();
-        }
+        Conditions.validateNotNull(
+            contextData,
+            "The context data.");
+
+        //
+        // Writes the elements of a file...
+        //
+        this.elements.compile(writer, contextData);
     }
 }

@@ -61,6 +61,11 @@ public interface IEqualBuilder {
     IEqualBuilder withString(String lhs, String rhs);
 
     /**
+     * With an enum.
+     */
+    <T extends Enum<T>> IEqualBuilder withEnum(T lhs, T rhs);
+
+    /**
      * With a big integer.
      */
     IEqualBuilder withBigInteger(BigInteger lhs, BigInteger rhs);

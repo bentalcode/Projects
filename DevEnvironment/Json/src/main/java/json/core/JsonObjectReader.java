@@ -6,6 +6,8 @@ import base.core.Conditions;
 import base.core.Dates;
 import base.core.Durations;
 import base.core.IFromString;
+import base.core.ReflectionHandler;
+import com.sun.jdi.ClassType;
 import json.interfaces.IJsonObjectReader;
 import java.text.DateFormat;
 import java.time.Duration;
@@ -119,6 +121,13 @@ public final class JsonObjectReader implements IJsonObjectReader {
 
         IJsonValueReader reader = new JsonValueReader(value);
         return reader.readString();
+    }
+
+    /**
+     * Reads an enum property.
+     */
+    public <T extends Enum<T>> T readEnumProperty(String name, IFromString<T> transformer) {
+        return this.readProperty(name, transformer);
     }
 
     /**

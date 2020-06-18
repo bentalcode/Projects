@@ -89,9 +89,9 @@ set(BASE_SOURCES
 )
 
 set(BASE_INCLUDES
+    .
     ./core
     ./interfaces
-    .
 )
 
 include_directories(
@@ -105,4 +105,3 @@ add_library(
 include_directories(
     ${BOOST_PATH}
 )
-

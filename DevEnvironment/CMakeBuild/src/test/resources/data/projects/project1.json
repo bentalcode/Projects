@@ -2,7 +2,7 @@
     "name": "DevEnvironmentCLion",
     "rootPath": "c:\\repositories\\Projects\\DevEnvironmentCLion",
     "ignoreRules" : {
-        "pathPatterns": ["glob:.\\\\build\\\\**"]
+        "pathPatterns": ["glob:**\\\\build\\\\**"]
     },
     "modules": [
         {

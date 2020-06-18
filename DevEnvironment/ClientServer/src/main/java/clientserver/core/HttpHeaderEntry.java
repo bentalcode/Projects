@@ -1,5 +1,6 @@
 package clientserver.core;
 
+import base.core.Collections;
 import base.core.Conditions;
 import base.core.Strings;
 import clientserver.interfaces.IHttpHeaderEntry;

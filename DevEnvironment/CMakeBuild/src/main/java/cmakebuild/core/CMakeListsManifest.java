@@ -14,7 +14,6 @@ import json.interfaces.IJsonObjectWriter;
  * The CMakeListsManifest class implements a manifest of a CMakeLists file.
  */
 public final class CMakeListsManifest implements ICMakeListsManifest {
-    private static final String PropertyName = "name";
     private static final String PropertyCMakeVersion = "cmakeVersion";
     private static final String PropertyProjectVersion = "projectVersion";
     private static final String PropertyPresetPath = "presetPath";
@@ -29,7 +28,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     private static final String defaultIncludesProperty = "INCLUDES";
     private static final String defaultSourcesProperty = "SOURCES";
 
-    private final String name;
     private final String cmakeVersion;
     private final String projectVersion;
     private final String presetPath;
@@ -46,7 +44,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
      * The CMakeListsManifest constructor.
      */
     CMakeListsManifest(
-        String name,
         String cmakeVersion,
         String projectVersion,
         String presetPath,
@@ -56,7 +53,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
         String includesProperty,
         String sourcesProperty) {
 
-        this.name = name;
         this.cmakeVersion = cmakeVersion;
         this.projectVersion = projectVersion;
         this.presetPath = presetPath;
@@ -67,14 +63,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
         this.sourcesProperty = sourcesProperty;
 
         this.hashCode = this.comparator.hashCode();
-    }
-
-    /**
-     * Gets the name of the module.
-     */
-    @Override
-    public String getName() {
-        return this.name;
     }
 
     /**
@@ -146,7 +134,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(PropertyName, this.name);
         writer.writeStringProperty(PropertyCMakeVersion, this.cmakeVersion);
         writer.writeStringProperty(PropertyProjectVersion, this.projectVersion);
         writer.writeStringProperty(PropertyPresetPath, this.presetPath);
@@ -161,7 +148,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
      * Reads a json.
      */
     public static ICMakeListsManifest readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(PropertyName);
         String cmakeVersion = reader.readStringProperty(PropertyCMakeVersion);
         String projectVersion = reader.readStringProperty(PropertyProjectVersion);
         String presetPath = null;
@@ -193,7 +179,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             defaultSourcesProperty;
 
         return new CMakeListsManifest(
-            name,
             cmakeVersion,
             projectVersion,
             presetPath,
@@ -275,7 +260,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
         @Override
         public int getHashCode(ICMakeListsManifest obj) {
             return new HashCodeBuilder(3, 5)
-                .withString(obj.getName())
                 .withString(obj.getCMakeVersion())
                 .withString(obj.getProjectVersion())
                 .withString(obj.getPresetPath())
@@ -301,7 +285,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             }
 
             return new EqualBuilder()
-                .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getCMakeVersion(), rhs.getCMakeVersion())
                 .withString(lhs.getProjectVersion(), rhs.getProjectVersion())
                 .withString(lhs.getPresetPath(), rhs.getPresetPath())
@@ -335,7 +318,6 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             }
 
             return new CompareToBuilder()
-                .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getCMakeVersion(), rhs.getCMakeVersion())
                 .withString(lhs.getProjectVersion(), rhs.getProjectVersion())
                 .withString(lhs.getPresetPath(), rhs.getPresetPath())

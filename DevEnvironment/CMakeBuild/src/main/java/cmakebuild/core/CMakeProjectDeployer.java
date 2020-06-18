@@ -2,7 +2,6 @@ package cmakebuild.core;
 
 import base.core.Conditions;
 import base.core.DestructorHandler;
-import base.core.Streams;
 import base.core.Writers;
 import base.interfaces.IWriter;
 import cmakebuild.interfaces.ICMakeModule;
@@ -11,7 +10,6 @@ import cmakebuild.interfaces.ICMakeProject;
 import cmakebuild.interfaces.IMakeProjectDeployer;
 import cmakebuild.interfaces.ICMakeProjectDeploymentResult;
 import cmakebuild.interfaces.ICMakeProjectManifest;
-import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.HashMap;
@@ -51,36 +49,7 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
      */
     @Override
     public ICMakeProjectDeploymentResult deploy() {
-        ICMakeProjectDeploymentData deploymentData = this.createDeploymentData();
-
-        //
-        // Deploy each module...
-        //
-        for (ICMakeModule module : this.project.getModules()) {
-            try (DestructorHandler destructorHandler = new DestructorHandler()) {
-                OutputStream stream = Streams.createOutputStream(module.getCMakeListsFilePath());
-                destructorHandler.register(stream);
-
-                Writer writer = Writers.createOutputStreamWriter(stream);
-                destructorHandler.register(writer);
-
-                this.deployModule(
-                    module,
-                    deploymentData,
-                    writer);
-
-                String cmakeListsPath = module.getCMakeListsFilePath().toString();
-                String cmakeListsData = null;
-
-                Streams.closeQuietly(stream);
-
-                deploymentData.setModuleData(cmakeListsPath, cmakeListsData);
-            }
-        }
-
-        return new CMakeProjectDeploymentResult(
-            this.project,
-            deploymentData.getData());
+        return this.deploy(DeploymentType.Deployment);
     }
 
     /**
@@ -88,34 +57,61 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
      */
     @Override
     public ICMakeProjectDeploymentResult simulate() {
-        ICMakeProjectDeploymentData deploymentData = this.createDeploymentData();
+        return this.deploy(DeploymentType.Simulation);
+    }
+
+    /**
+     * Deploys a project.
+     */
+    private ICMakeProjectDeploymentResult deploy(DeploymentType deploymentType) {
+        //
+        // Create the context data...
+        //
+        ICMakeBuildContextData contextData = this.createContextData();
 
         //
         // Deploy each module...
         //
         for (ICMakeModule module : this.project.getModules()) {
-            try (DestructorHandler destructorHandler = new DestructorHandler()) {
-                ByteArrayOutputStream stream = Streams.createByteArrayOutputStream();
-                destructorHandler.register(stream);
+            ICMakeModuleContextData moduleContextData = contextData.getModuleContextData(module.getName());
 
-                Writer writer = Writers.createOutputStreamWriter(stream);
-                destructorHandler.register(writer);
-
+            if (moduleContextData.effective()) {
                 this.deployModule(
+                    deploymentType,
                     module,
-                    deploymentData,
-                    writer);
-
-                String cmakeListsPath = module.getCMakeListsFilePath().toString();
-                String cmakeListsData = new String(stream.toByteArray());
-
-                deploymentData.setModuleData(cmakeListsPath, cmakeListsData);
+                    contextData);
             }
         }
 
         return new CMakeProjectDeploymentResult(
             this.project,
-            deploymentData.getData());
+            contextData.getData());
+    }
+
+    /**
+     * Deploys a module.
+     */
+    private void deployModule(
+        DeploymentType deploymentType,
+        ICMakeModule module,
+        ICMakeBuildContextData contextData) {
+
+        try (DestructorHandler destructorHandler = new DestructorHandler()) {
+            IModuleDeploymentLogic moduleDeploymentLogic = deploymentType.createModuleDeploymentLogic(module);
+            destructorHandler.register(moduleDeploymentLogic);
+
+            OutputStream stream = moduleDeploymentLogic.getOutputStream();
+
+            Writer writer = Writers.createOutputStreamWriter(stream);
+            destructorHandler.register(writer);
+
+            this.deployModule(
+                module,
+                contextData,
+                writer);
+
+            moduleDeploymentLogic.setDeploymentData(contextData);
+        }
     }
 
     /**
@@ -123,20 +119,17 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
      */
     private void deployModule(
         ICMakeModule module,
-        ICMakeProjectDeploymentData deploymentData,
+        ICMakeBuildContextData contextData,
         Writer writer) {
 
-        if (!deploymentData.moduleEffective(module.getName())) {
-            return;
-        }
-
-        ICMakeModuleManifest manifest = deploymentData.getModuleManifest(module.getName());
+        ICMakeModuleContextData moduleContextData = contextData.getModuleContextData(module.getName());
+        ICMakeModuleManifest moduleManifest = moduleContextData.getManifest();
 
         IWriter moduleWriter = new CMakeModuleWriter(
-            manifest,
-            this.manifest.getEditorSettings(),
-            this.manifest.getIgnoreRules(),
-            module);
+            this.manifest,
+            moduleManifest,
+            module,
+            contextData);
 
         moduleWriter.write(writer);
 
@@ -144,21 +137,21 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
     }
 
     /**
-     * Creates the deployment data.
+     * Creates the context data.
      */
-    private ICMakeProjectDeploymentData createDeploymentData() {
+    private ICMakeBuildContextData createContextData() {
         Map<String, ICMakeModule> modules = this.createModulesMap();
         Map<String, ICMakeModuleManifest> modulesManifests = this.createModulesManifestsMap();
         Map<String, List<ICMakeModule>> modulesDependencies = this.createModulesDependenciesMap(modules);
         Set<String> effectiveModules = this.createEffectiveModulesSet(modules, this.manifest.getEffectiveModules());
 
-        ICMakeProjectDeploymentData deploymentData = new CMakeProjectDeploymentData(
+        ICMakeBuildContextData contextData = new CMakeBuildContextData(
             modules,
             modulesManifests,
             modulesDependencies,
             effectiveModules);
 
-        return deploymentData;
+        return contextData;
     }
 
     /**

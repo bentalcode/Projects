@@ -4,48 +4,47 @@ import base.core.Conditions;
 import base.interfaces.IWriter;
 import cmakebuild.interfaces.ICMakeModule;
 import cmakebuild.interfaces.ICMakeModuleManifest;
-import cmakebuild.interfaces.IEditorSettings;
-import cmakebuild.interfaces.IIgnoreRules;
+import cmakebuild.interfaces.ICMakeProjectManifest;
 import java.io.Writer;
 
 /**
  * The CMakeModuleWriter class implements a writer of a CMake module.
  */
 public final class CMakeModuleWriter implements IWriter {
-    private final ICMakeModuleManifest manifest;
-    private final IEditorSettings editorSettings;
-    private final IIgnoreRules ignoreRules;
+    private final ICMakeProjectManifest projectManifest;
+    private final ICMakeModuleManifest moduleManifest;
     private final ICMakeModule module;
+    private final ICMakeBuildContextData contextData;
 
     /**
      * The CMakeModuleWriter constructor.
      */
     public CMakeModuleWriter(
-        ICMakeModuleManifest manifest,
-        IEditorSettings editorSettings,
-        IIgnoreRules ignoreRules,
-        ICMakeModule module) {
+        ICMakeProjectManifest projectManifest,
+        ICMakeModuleManifest moduleManifest,
+        ICMakeModule module,
+        ICMakeBuildContextData contextData) {
 
         Conditions.validateNotNull(
-            manifest,
-            "The manifest of a CMake module.");
+            projectManifest,
+            "The manifest of a project.");
 
         Conditions.validateNotNull(
-            editorSettings,
-            "The settings of an editor.");
-
-        Conditions.validateNotNull(
-            ignoreRules,
-            "The ignore rules.");
+            moduleManifest,
+            "The manifest of a module.");
 
         Conditions.validateNotNull(
             module,
             "The CMake module.");
 
-        this.manifest = manifest;
-        this.editorSettings = editorSettings;
-        this.ignoreRules = ignoreRules;
+        Conditions.validateNotNull(
+            contextData,
+            "The context data.");
+
+        this.projectManifest = projectManifest;
+        this.moduleManifest = moduleManifest;
         this.module = module;
+        this.contextData = contextData;
     }
 
     /**
@@ -54,10 +53,11 @@ public final class CMakeModuleWriter implements IWriter {
     @Override
     public void write(Writer writer) {
         IWriter cmakeListsWriter = new CMakeListsWriter(
-            this.manifest.getCMakeListsManifest(),
+            this.projectManifest.getEditorSettings(),
+            this.projectManifest.getIgnoreRules(),
+            this.moduleManifest,
             this.module,
-            this.editorSettings,
-            this.ignoreRules);
+            this.contextData);
 
         cmakeListsWriter.write(writer);
     }

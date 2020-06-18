@@ -53,6 +53,11 @@ public interface IJsonObjectWriter {
     void writeStringProperty(String name, String value);
 
     /**
+     * Writes an enum property.
+     */
+    <T extends Enum<T>> void writeEnumProperty(String name, T value);
+
+    /**
      * Writes a boolean array property.
      */
     void writeBooleanArrayProperty(String name, boolean[] array);

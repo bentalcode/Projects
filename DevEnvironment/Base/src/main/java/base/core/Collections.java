@@ -3,27 +3,27 @@ package base.core;
 import base.interfaces.IIterator;
 import base.interfaces.IPair;
 import base.interfaces.IRange;
-
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * The Collections class implements complementary APIs for collections.
  */
 public final class Collections {
-    private static final String DefaultPrefix = "{";
-    private static final String DefaultPostfix = "}";
-    private static final String DefaultDelimiter = ", ";
+    private static final String defaultPrefix = "{";
+    private static final String defaultPostfix = "}";
+    private static final String defaultDelimiter = ", ";
 
     /**
-     * Converts a collection of values into a string.
+     * Converts an iterator of items into a string.
      */
     public static <T> String toString(IIterator<T> iterator) {
-        String prefix = Collections.DefaultPrefix;
-        String postfix = Collections.DefaultPostfix;
-        String delimiter = Collections.DefaultDelimiter;
+        String prefix = defaultPrefix;
+        String postfix = defaultPostfix;
+        String delimiter = defaultDelimiter;
 
-        return Collections.toString(
+        return toString(
             prefix,
             postfix,
             iterator,
@@ -31,7 +31,23 @@ public final class Collections {
     }
 
     /**
-     * Converts a collection of values into a string.
+     * Converts an iterator of items into a string.
+     */
+    public static <T> String toString(
+        IIterator<T> iterator,
+        String delimiter) {
+        String prefix = "";
+        String postfix = "";
+
+        return toString(
+            prefix,
+            postfix,
+            iterator,
+            delimiter);
+    }
+
+    /**
+     * Converts an iterator of items into a string.
      */
     public static <T> String toString(
         String prefix,
@@ -41,7 +57,7 @@ public final class Collections {
 
         Conditions.validateNotNull(
             iterator,
-            "The iterator of values.");
+            "The iterator of items.");
 
         StringBuilder result = new StringBuilder();
 
@@ -56,9 +72,79 @@ public final class Collections {
                 result.append(delimiter);
             }
 
-            T value = iterator.next();
+            T item = iterator.next();
 
-            result.append(value);
+            result.append(item);
+
+            ++index;
+        }
+
+        if (postfix != null) {
+            result.append(postfix);
+        }
+
+        return result.toString();
+    }
+
+    /**
+     * Converts an iterator of items into a string.
+     */
+    public static <T> String toString(Collection<T> collection) {
+        String prefix = defaultPrefix;
+        String postfix = defaultPostfix;
+        String delimiter = defaultDelimiter;
+
+        return toString(
+            prefix,
+            postfix,
+            collection,
+            delimiter);
+    }
+
+    /**
+     * Converts an iterator of items into a string.
+     */
+    public static <T> String toString(
+        Collection<T> collection,
+        String delimiter) {
+
+        String prefix = "";
+        String postfix = "";
+
+        return toString(
+            prefix,
+            postfix,
+            collection,
+            delimiter);
+    }
+
+    /**
+     * Converts a collection of items into a string.
+     */
+    public static <T> String toString(
+        String prefix,
+        String postfix,
+        Collection<T> collection,
+        String delimiter) {
+
+        Conditions.validateNotNull(
+            collection,
+            "The collection of items.");
+
+        StringBuilder result = new StringBuilder();
+
+        if (prefix != null) {
+            result.append(prefix);
+        }
+
+        int index = 0;
+        for (T item : collection) {
+
+            if (delimiter != null && index > 0) {
+                result.append(delimiter);
+            }
+
+            result.append(item);
 
             ++index;
         }
@@ -85,7 +171,7 @@ public final class Collections {
         }
 
         List<IPair<List<List<T>>, Integer>> sequences = new ArrayList<>();
-        Collections.calculateSequenceSubCollectionsOfCollection(
+        calculateSequenceSubCollectionsOfCollection(
             collection,
             sequences);
 

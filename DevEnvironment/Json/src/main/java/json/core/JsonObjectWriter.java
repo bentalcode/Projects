@@ -121,6 +121,17 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     }
 
     /**
+     * Writes an enum property.
+     */
+    public <T extends Enum<T>> void writeEnumProperty(String name, T value) {
+        if (value == null) {
+            return;
+        }
+
+        this.writeStringProperty(name, value.toString());
+    }
+
+    /**
      * Writes a boolean array property.
      */
     @Override

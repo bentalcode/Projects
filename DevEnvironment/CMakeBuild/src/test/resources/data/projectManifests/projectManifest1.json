@@ -1,18 +1,61 @@
 {
     "name": "DevEnvironmentCLion",
     "rootPath": "c:\\repositories\\Projects\\DevEnvironmentCLion",
-    "effectiveModules": ["Base"],
+    "effectiveModules": ["BaseTest"],
     "modules": [
         {
             "name": "Base",
+            "type": "library",
             "cmakeListsManifest":
             {
-                "name": "Base",
                 "cmakeVersion": "3.13",
                 "projectVersion": "1.0",
                 "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
                 "postsetPath": "data\\cmakeListsManifests\\cmakeListsPostset1.txt"
             }
+        },
+        {
+            "name": "BaseTest",
+            "type": "executable",
+            "properties":
+            {
+                "cmakeListsTargetPath": "CMakeLists.txt",
+                "headerFileExtensions": ["h"],
+                "sourceFileExtensions": ["cpp"],
+                "cmakeListsFileExtensions": ["CMakeLists.txt"]
+            },
+            "cmakeListsManifest":
+            {
+                "cmakeVersion": "3.13",
+                "projectVersion": "1.0",
+                "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
+                "postsetPath": "data\\cmakeListsManifests\\cmakeListsPostset1.txt"
+            },
+            "dependentModules": ["Base", "TestBase", "UnitTesting"]
+        },
+        {
+            "name": "TestBase",
+            "type": "library",
+            "cmakeListsManifest":
+            {
+                "cmakeVersion": "3.13",
+                "projectVersion": "1.0",
+                "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
+                "postsetPath": "data\\cmakeListsManifests\\cmakeListsPostset1.txt"
+            },
+            "dependentModules": ["Base"]
+        },
+        {
+            "name": "UnitTesting",
+            "type": "library",
+            "cmakeListsManifest":
+            {
+                "cmakeVersion": "3.13",
+                "projectVersion": "1.0",
+                "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
+                "postsetPath": "data\\cmakeListsManifests\\cmakeListsPostset1.txt"
+            },
+            "dependentModules": ["Base", "TestBase", "UnitTesting"]
         }
     ]
 }
