@@ -1,13 +1,33 @@
 {
     "name": "DevEnvironmentCLion",
     "rootPath": "c:\\repositories\\Projects\\DevEnvironmentCLion",
-    "effectiveModules": ["BaseTest"],
+    "effectiveModules": [
+        "Base",
+        "DataStructures",
+        "MemoryManagement",
+        "Problems",
+        "BaseTest",
+        "DataStructuresTest",
+        "MemoryManagementTest",
+        "ProblemsTest"
+    ],
     "modules": [
         {
             "name": "Base",
             "type": "library",
-            "cmakeListsManifest":
-            {
+            "properties": {
+                "cmakeListsTargetPath": "CMakeLists.txt",
+                "headerFileExtensions": [
+                    "h"
+                ],
+                "sourceFileExtensions": [
+                    "cpp"
+                ],
+                "cmakeListsFileExtensions": [
+                    "CMakeLists.txt"
+                ]
+            },
+            "cmakeListsManifest": {
                 "cmakeVersion": "3.13",
                 "projectVersion": "1.0",
                 "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
@@ -15,47 +35,79 @@
             }
         },
         {
-            "name": "BaseTest",
-            "type": "executable",
-            "properties":
-            {
-                "cmakeListsTargetPath": "CMakeLists.txt",
-                "headerFileExtensions": ["h"],
-                "sourceFileExtensions": ["cpp"],
-                "cmakeListsFileExtensions": ["CMakeLists.txt"]
-            },
-            "cmakeListsManifest":
-            {
-                "cmakeVersion": "3.13",
-                "projectVersion": "1.0",
-                "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
-                "postsetPath": "data\\cmakeListsManifests\\cmakeListsPostset1.txt"
-            },
-            "dependentModules": ["Base", "TestBase", "UnitTesting"]
+            "name": "DataStructures",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ]
+        },
+        {
+            "name": "MemoryManagement",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ]
+        },
+        {
+            "name": "Problems",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ]
         },
         {
             "name": "TestBase",
             "type": "library",
-            "cmakeListsManifest":
-            {
-                "cmakeVersion": "3.13",
-                "projectVersion": "1.0",
-                "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
-                "postsetPath": "data\\cmakeListsManifests\\cmakeListsPostset1.txt"
-            },
-            "dependentModules": ["Base"]
+            "dependentModules": [
+                "Base"
+            ]
         },
         {
             "name": "UnitTesting",
             "type": "library",
-            "cmakeListsManifest":
-            {
-                "cmakeVersion": "3.13",
-                "projectVersion": "1.0",
-                "presetPath": "data\\cmakeListsManifests\\cmakeListsPreset1.txt",
-                "postsetPath": "data\\cmakeListsManifests\\cmakeListsPostset1.txt"
-            },
-            "dependentModules": ["Base", "TestBase", "UnitTesting"]
+            "dependentModules": [
+                "Base",
+                "TestBase"
+            ]
+        },
+        {
+            "name": "BaseTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting"
+            ]
+        },
+        {
+            "name": "DataStructuresTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting",
+                "DataStructures"
+            ]
+        },
+        {
+            "name": "MemoryManagementTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting",
+                "MemoryManagement"
+            ]
+        },
+        {
+            "name": "ProblemsTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting",
+                "Problems"
+            ]
         }
     ]
 }

@@ -197,7 +197,6 @@ add_library(UnitTesting STATIC
     ${BASE_SOURCES}
     ${TEST_BASE_SOURCES}
     ${UNIT_TESTING_SOURCES}
-    ${UNIT_TESTING_SOURCES}
 )
 
 include_directories(BaseTest

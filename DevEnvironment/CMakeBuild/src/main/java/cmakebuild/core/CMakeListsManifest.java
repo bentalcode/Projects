@@ -14,15 +14,19 @@ import json.interfaces.IJsonObjectWriter;
  * The CMakeListsManifest class implements a manifest of a CMakeLists file.
  */
 public final class CMakeListsManifest implements ICMakeListsManifest {
-    private static final String PropertyCMakeVersion = "cmakeVersion";
-    private static final String PropertyProjectVersion = "projectVersion";
-    private static final String PropertyPresetPath = "presetPath";
-    private static final String PropertyPostsetPath = "postsetPath";
-    private static final String PropertyIncludesFilesProperty = "includesFilesProperty";
-    private static final String PropertySourcesFilesProperty = "sourcesFilesProperty";
-    private static final String PropertyIncludesProperty = "includesProperty";
-    private static final String PropertySourcesProperty = "sourcesProperty";
+    private static final String propertyCMakeVersion = "cmakeVersion";
+    private static final String propertyProjectVersion = "projectVersion";
+    private static final String propertyPresetPath = "presetPath";
+    private static final String propertyPostsetPath = "postsetPath";
+    private static final String propertyIncludesFilesProperty = "includesFilesProperty";
+    private static final String propertySourcesFilesProperty = "sourcesFilesProperty";
+    private static final String propertyIncludesProperty = "includesProperty";
+    private static final String propertySourcesProperty = "sourcesProperty";
 
+    private static final String defaultCMakeVersion = "3.13";
+    private static final String defaultProjectVersion = "1.0";
+    private static final String defaultPresetPath = "manifests\\defaultCMakeListsPreset1.txt";
+    private static final String defaultPostsetPath = "manifests\\defaultCMakeListsPostset1.txt";
     private static final String defaultIncludesFilesProperty = "INCLUDES_FILES";
     private static final String defaultSourcesFilesProperty = "SOURCES_FILES";
     private static final String defaultIncludesProperty = "INCLUDES";
@@ -41,9 +45,24 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     private final int hashCode;
 
     /**
+     * Creates the default manifest of a CMakeLists.
+     */
+    public static ICMakeListsManifest defaultManifest() {
+        return new CMakeListsManifest(
+            defaultCMakeVersion,
+            defaultProjectVersion,
+            defaultPresetPath,
+            defaultPostsetPath,
+            defaultIncludesFilesProperty,
+            defaultSourcesFilesProperty,
+            defaultIncludesProperty,
+            defaultSourcesProperty);
+    }
+
+    /**
      * The CMakeListsManifest constructor.
      */
-    CMakeListsManifest(
+    public CMakeListsManifest(
         String cmakeVersion,
         String projectVersion,
         String presetPath,
@@ -134,48 +153,50 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(PropertyCMakeVersion, this.cmakeVersion);
-        writer.writeStringProperty(PropertyProjectVersion, this.projectVersion);
-        writer.writeStringProperty(PropertyPresetPath, this.presetPath);
-        writer.writeStringProperty(PropertyPostsetPath, this.postsetPath);
-        writer.writeStringProperty(PropertyIncludesFilesProperty, this.includesFilesProperty);
-        writer.writeStringProperty(PropertySourcesFilesProperty, this.sourcesFilesProperty);
-        writer.writeStringProperty(PropertyIncludesProperty, this.includesProperty);
-        writer.writeStringProperty(PropertySourcesProperty, this.sourcesProperty);
+        writer.writeStringProperty(propertyCMakeVersion, this.cmakeVersion);
+        writer.writeStringProperty(propertyProjectVersion, this.projectVersion);
+        writer.writeStringProperty(propertyPresetPath, this.presetPath);
+        writer.writeStringProperty(propertyPostsetPath, this.postsetPath);
+        writer.writeStringProperty(propertyIncludesFilesProperty, this.includesFilesProperty);
+        writer.writeStringProperty(propertySourcesFilesProperty, this.sourcesFilesProperty);
+        writer.writeStringProperty(propertyIncludesProperty, this.includesProperty);
+        writer.writeStringProperty(propertySourcesProperty, this.sourcesProperty);
     }
 
     /**
      * Reads a json.
      */
     public static ICMakeListsManifest readJson(IJsonObjectReader reader) {
-        String cmakeVersion = reader.readStringProperty(PropertyCMakeVersion);
-        String projectVersion = reader.readStringProperty(PropertyProjectVersion);
-        String presetPath = null;
+        String cmakeVersion = reader.hasProperty(propertyCMakeVersion) ?
+            reader.readStringProperty(propertyCMakeVersion) :
+            defaultCMakeVersion;
 
-        if (reader.hasProperty(PropertyPresetPath)) {
-            presetPath = reader.readStringProperty(PropertyPresetPath);
-        }
+        String projectVersion = reader.hasProperty(propertyProjectVersion) ?
+            reader.readStringProperty(propertyProjectVersion) :
+            defaultProjectVersion;
 
-        String postsetPath = null;
+        String presetPath = reader.hasProperty(propertyPresetPath) ?
+            reader.readStringProperty(propertyPresetPath) :
+            defaultPresetPath;
 
-        if (reader.hasProperty(PropertyPostsetPath)) {
-            postsetPath = reader.readStringProperty(PropertyPostsetPath);
-        }
+        String postsetPath = reader.hasProperty(propertyPostsetPath) ?
+            reader.readStringProperty(propertyPostsetPath) :
+                propertyPostsetPath;
 
-        String includesFilesProperty = reader.hasProperty(PropertyIncludesFilesProperty) ?
-            reader.readStringProperty(PropertyIncludesFilesProperty) :
+        String includesFilesProperty = reader.hasProperty(propertyIncludesFilesProperty) ?
+            reader.readStringProperty(propertyIncludesFilesProperty) :
             defaultIncludesFilesProperty;
 
-        String sourcesFilesProperty = reader.hasProperty(PropertySourcesFilesProperty) ?
-            reader.readStringProperty(PropertySourcesFilesProperty) :
+        String sourcesFilesProperty = reader.hasProperty(propertySourcesFilesProperty) ?
+            reader.readStringProperty(propertySourcesFilesProperty) :
             defaultSourcesFilesProperty;
 
-        String includesProperty = reader.hasProperty(PropertyIncludesProperty) ?
-            reader.readStringProperty(PropertyIncludesProperty) :
+        String includesProperty = reader.hasProperty(propertyIncludesProperty) ?
+            reader.readStringProperty(propertyIncludesProperty) :
             defaultIncludesProperty;
 
-        String sourcesProperty = reader.hasProperty(PropertySourcesProperty) ?
-            reader.readStringProperty(PropertySourcesProperty) :
+        String sourcesProperty = reader.hasProperty(propertySourcesProperty) ?
+            reader.readStringProperty(propertySourcesProperty) :
             defaultSourcesProperty;
 
         return new CMakeListsManifest(

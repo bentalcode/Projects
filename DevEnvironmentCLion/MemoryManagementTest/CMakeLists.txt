@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
+
 project(MemoryManagementTest VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -18,207 +19,236 @@ print_all_variables()
 # Configure boost library...
 #
 if (NOT $ENV{BOOST_ROOT})
-    set(BOOT_ROOT $ENV{BOOST_ROOT})
+    set(BOOST_PATH $ENV{BOOST_ROOT})
 else()
-    set(BOOT_ROOT "c:\\Boost\\boost_1_70_0")
+    set(BOOST_PATH "c:\\Boost\\boost_1_70_0")
 endif()
 
-#
-# Base Library...
-#
+set(MEMORY_MANAGEMENT_TEST_INCLUDES_FILES
+    ./core/PreCompiled.h
+    ./interfaces/MemoryAllocatorUnitTest.h
+    ./interfaces/ObjectPoolUnitTest.h
+)
+
+set(MEMORY_MANAGEMENT_TEST_SOURCES_FILES
+    ./core/MemoryAllocatorUnitTest.cpp
+    ./core/ObjectPoolUnitTest.cpp
+    ./core/PreCompiled.cpp
+    ./main.cpp
+)
+
+set(MEMORY_MANAGEMENT_TEST_SOURCES
+    ${MEMORY_MANAGEMENT_TEST_INCLUDES_FILES}
+    ${MEMORY_MANAGEMENT_TEST_SOURCES_FILES}
+)
+
+set(MEMORY_MANAGEMENT_TEST_INCLUDES
+    ./core
+    ./interfaces
+)
+
 set(BASE_INCLUDES_FILES
+    ../Base/BaseException.h
+    ../Base/core/BaseDependencies.h
+    ../Base/core/BaseLogic.h
+    ../Base/core/ComparableComparator.h
+    ../Base/core/DereferenceEquatableComparator.h
+    ../Base/core/EquatableComparator.h
+    ../Base/core/IntervalMap.h
+    ../Base/core/IntervalMapIterator.h
+    ../Base/core/List.h
+    ../Base/core/ListIterator.h
+    ../Base/core/Matrix.h
+    ../Base/core/Position.h
+    ../Base/core/PreCompiled.h
+    ../Base/core/ReferenceCount.h
+    ../Base/core/ReferenceCountHolder.h
+    ../Base/core/StringIterator.h
+    ../Base/core/TwoDimensionalList.h
+    ../Base/core/TwoDimensionalListIterator.h
     ../Base/interfaces/ComparatorFactory.h
     ../Base/interfaces/CompareToBuilder.h
     ../Base/interfaces/DateTime.h
     ../Base/interfaces/Duration.h
     ../Base/interfaces/EqualBuilder.h
     ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/ICalculator.h
     ../Base/interfaces/ICollection.h
     ../Base/interfaces/IComparableComparator.h
     ../Base/interfaces/IEquatableComparator.h
+    ../Base/interfaces/IFinder.h
     ../Base/interfaces/IHashCodeProvider.h
+    ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMatrix.h
+    ../Base/interfaces/ISizebleCollection.h
+    ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/IValidator.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
-    ../Base/interfaces/ISizebleCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
-    ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
+    ../Base/interfaces/Strings.h
     ../Base/interfaces/Triple.h
-    ../Base/core/BaseDependencies.h
-    ../Base/core/BaseLogic.h
-    ../Base/core/DereferenceEquatableComparator.h
-    ../Base/core/EquatableComparator.h
-    ../Base/core/ListIterator.h
-    ../Base/core/PreCompiled.h
-    ../Base/core/ReferenceCount.h
-    ../Base/core/ReferenceCountHolder.h
-    ../Base/core/StringIterator.h
-    ../Base/core/TwoDimensionalList.h
-    ../Base/BaseException.h)
+)
 
 set(BASE_SOURCES_FILES
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
-    ../Base/core/PreCompiled.cpp)
+    ../Base/core/Position.cpp
+    ../Base/core/PreCompiled.cpp
+)
 
 set(BASE_SOURCES
     ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES})
+    ${BASE_SOURCES_FILES}
+)
 
 set(BASE_INCLUDES
     ../Base
+    ../Base/core
     ../Base/interfaces
-    ../Base/core)
+)
 
-#
-# Test Base Library...
-#
+add_library(Base STATIC
+    ${BASE_SOURCES}
+)
+
 set(TEST_BASE_INCLUDES_FILES
-    ../TestBase/interfaces/Assertion.h
+    ../TestBase/TestBaseException.h
     ../TestBase/core/PreCompiled.h
-    ../TestBase/TestBaseException.h)
+    ../TestBase/interfaces/Assertion.h
+)
 
 set(TEST_BASE_SOURCES_FILES
     ../TestBase/core/Assertion.cpp
-    ../TestBase/core/PreCompiled.cpp)
+    ../TestBase/core/PreCompiled.cpp
+)
 
 set(TEST_BASE_SOURCES
     ${TEST_BASE_INCLUDES_FILES}
-    ${TEST_BASE_SOURCES_FILES})
+    ${TEST_BASE_SOURCES_FILES}
+)
 
 set(TEST_BASE_INCLUDES
     ../TestBase
+    ../TestBase/core
     ../TestBase/interfaces
-    ../TestBase/core)
+)
 
-#
-# Unit Testing Library...
-#
+add_library(TestBase STATIC
+    ${BASE_SOURCES}
+    ${TEST_BASE_SOURCES}
+)
+
 set(UNIT_TESTING_INCLUDES_FILES
-    ../UnitTesting/interfaces/ITestFunction.h
-    ../UnitTesting/interfaces/ITestRegistration.h
-    ../UnitTesting/interfaces/IUnitTest.h
-    ../UnitTesting/interfaces/IUnitTestHandler.h
-    ../UnitTesting/interfaces/IUnitTestManager.h
-    ../UnitTesting/interfaces/ITestRunningResult.h
-    ../UnitTesting/interfaces/ITestRunningResults.h
-    ../UnitTesting/interfaces/UnitTestBase.h
-    ../UnitTesting/interfaces/UnitTestException.h
+    ../UnitTesting/UnitTestingException.h
     ../UnitTesting/core/PreCompiled.h
+    ../UnitTesting/core/TestRunningResult.h
+    ../UnitTesting/core/TestRunningResults.h
     ../UnitTesting/core/UnitTestFunction.h
     ../UnitTesting/core/UnitTestHandler.h
     ../UnitTesting/core/UnitTestManager.h
-    ../UnitTesting/core/TestRunningResult.h
-    ../UnitTesting/core/TestRunningResults.h
-    ../UnitTesting/UnitTestingException.h)
+    ../UnitTesting/interfaces/ITestFunction.h
+    ../UnitTesting/interfaces/ITestRegistration.h
+    ../UnitTesting/interfaces/ITestRunningResult.h
+    ../UnitTesting/interfaces/ITestRunningResults.h
+    ../UnitTesting/interfaces/IUnitTest.h
+    ../UnitTesting/interfaces/IUnitTestHandler.h
+    ../UnitTesting/interfaces/IUnitTestManager.h
+    ../UnitTesting/interfaces/UnitTestBase.h
+    ../UnitTesting/interfaces/UnitTestException.h
+)
 
 set(UNIT_TESTING_SOURCES_FILES
     ../UnitTesting/core/PreCompiled.cpp
+    ../UnitTesting/core/TestRunningResult.cpp
+    ../UnitTesting/core/TestRunningResults.cpp
     ../UnitTesting/core/UnitTestBase.cpp
     ../UnitTesting/core/UnitTestHandler.cpp
     ../UnitTesting/core/UnitTestManager.cpp
-    ../UnitTesting/core/TestRunningResult.cpp
-    ../UnitTesting/core/TestRunningResults.cpp)
+)
 
 set(UNIT_TESTING_SOURCES
-    ${BASE_SOURCES}
-    ${TEST_BASE_SOURCES}
     ${UNIT_TESTING_INCLUDES_FILES}
-    ${UNIT_TESTING_SOURCES_FILES})
+    ${UNIT_TESTING_SOURCES_FILES}
+)
 
 set(UNIT_TESTING_INCLUDES
     ../UnitTesting
+    ../UnitTesting/core
     ../UnitTesting/interfaces
-    ../UnitTesting/core)
+)
 
-#
-# Memory Management Library...
-#
+add_library(UnitTesting STATIC
+    ${BASE_SOURCES}
+    ${TEST_BASE_SOURCES}
+    ${UNIT_TESTING_SOURCES}
+)
+
 set(MEMORY_MANAGEMENT_INCLUDES_FILES
+    ../MemoryManagement/MemoryManagementException.h
+    ../MemoryManagement/core/FixedMemoryPool.h
+    ../MemoryManagement/core/MemoryAllocator.h
+    ../MemoryManagement/core/PreCompiled.h
     ../MemoryManagement/interfaces/IMemoryAllocator.h
     ../MemoryManagement/interfaces/IMemoryPool.h
     ../MemoryManagement/interfaces/IObjectPool.h
     ../MemoryManagement/interfaces/MemoryPool.h
     ../MemoryManagement/interfaces/ObjectPool.h
     ../MemoryManagement/interfaces/ObjectPoolElement.h
-    ../MemoryManagement/core/FixedMemoryPool.h
-    ../MemoryManagement/core/MemoryAllocator.h
-    ../MemoryManagement/core/PreCompiled.h
-    ../MemoryManagement/MemoryManagementException.h)
+)
 
 set(MEMORY_MANAGEMENT_SOURCES_FILES
     ../MemoryManagement/core/FixedMemoryPool.cpp
     ../MemoryManagement/core/MemoryAllocator.cpp
     ../MemoryManagement/core/MemoryPool.cpp
-    ../MemoryManagement/core/PreCompiled.cpp)
+    ../MemoryManagement/core/PreCompiled.cpp
+)
 
 set(MEMORY_MANAGEMENT_SOURCES
     ${MEMORY_MANAGEMENT_INCLUDES_FILES}
-    ${MEMORY_MANAGEMENT_SOURCES_FILES})
+    ${MEMORY_MANAGEMENT_SOURCES_FILES}
+)
 
 set(MEMORY_MANAGEMENT_INCLUDES
     ../MemoryManagement
+    ../MemoryManagement/core
     ../MemoryManagement/interfaces
-    ../MemoryManagement/core)
-
-#
-# Memory Management Test...
-#
-set(MEMORY_MANAGEMENT_TEST_INCLUDES_FILES
-    interfaces/MemoryAllocatorUnitTest.h
-    interfaces/ObjectPoolUnitTest.h
-    core/PreCompiled.h)
-
-set(MEMORY_MANAGEMENT_TEST_SOURCES_FILES
-    main.cpp
-    core/MemoryAllocatorUnitTest.cpp
-    core/ObjectPoolUnitTest.cpp
-    core/PreCompiled.cpp)
-
-set(MEMORY_MANAGEMENT_TEST_SOURCES
-    ${MEMORY_MANAGEMENT_TEST_INCLUDES_FILES}
-    ${MEMORY_MANAGEMENT_TEST_SOURCES_FILES})
-
-set(MEMORY_MANAGEMENT_TEST_INCLUDES
-    .
-    ./interfaces
-    ./core)
-
-# This is a "default" library, and will match the *** variable setting.
-# Other common choices are STATIC, SHARED, and MODULE
-# Including header files here helps IDEs but is not required.
-# Output libname matches target name, with the usual extensions on your system
-include_directories(
-    ${MEMORY_MANAGEMENT_TEST_INCLUDES}
-    ${BASE_INCLUDES}
-    ${TEST_BASE_INCLUDES}
-    ${UNIT_TESTING_INCLUDES}
-    ${MEMORY_MANAGEMENT_INCLUDES}
-    ${BOOT_ROOT})
-
-add_library(Base STATIC
-    ${BASE_SOURCES})
-
-add_library(TestBase STATIC
-    ${TEST_BASE_SOURCES})
-
-add_library(UnitTesting STATIC
-    ${UNIT_TESTING_SOURCES})
+)
 
 add_library(MemoryManagement STATIC
-    ${MEMORY_MANAGEMENT_SOURCES})
+    ${BASE_SOURCES}
+    ${MEMORY_MANAGEMENT_SOURCES}
+)
 
-# Adding something we can run - Output name matches target name
-add_executable(MemoryManagementTest ${MEMORY_MANAGEMENT_TEST_SOURCES})
+include_directories(MemoryManagementTest
+    ${BASE_INCLUDES}
+    ${MEMORY_MANAGEMENT_INCLUDES}
+    ${MEMORY_MANAGEMENT_TEST_INCLUDES}
+    ${TEST_BASE_INCLUDES}
+    ${UNIT_TESTING_INCLUDES}
+)
 
-# Make sure you link your targets with this command. It can also link libraries and
-# even flags, so linking a target that does not exist will not give a configure-time error.
-target_link_libraries(MemoryManagementTest PRIVATE Base TestBase UnitTesting MemoryManagement)
+add_executable(MemoryManagementTest
+    ${BASE_SOURCES}
+    ${MEMORY_MANAGEMENT_SOURCES}
+    ${MEMORY_MANAGEMENT_TEST_SOURCES}
+    ${TEST_BASE_SOURCES}
+    ${UNIT_TESTING_SOURCES}
+)
+
+target_link_libraries(MemoryManagementTest
+    PRIVATE Base TestBase UnitTesting MemoryManagement
+)
+
+include_directories(
+    ${BOOST_PATH}
+)

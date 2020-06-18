@@ -1,95 +1,134 @@
 cmake_minimum_required(VERSION 3.13)
+
 project(DataStructures VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
+
+macro(print_all_variables)
+    message(STATUS "print_all_variables------------------------------------------{")
+    get_cmake_property(_variableNames VARIABLES)
+    foreach (_variableName ${_variableNames})
+        message(STATUS "${_variableName}=${${_variableName}}")
+    endforeach()
+    message(STATUS "print_all_variables------------------------------------------}")
+endmacro()
+
+print_all_variables()
 
 #
 # Configure boost library...
 #
 if (NOT $ENV{BOOST_ROOT})
-    set(BOOT_ROOT $ENV{BOOST_ROOT})
+    set(BOOST_PATH $ENV{BOOST_ROOT})
 else()
-    set(BOOT_ROOT "c:\\Boost\\boost_1_70_0")
+    set(BOOST_PATH "c:\\Boost\\boost_1_70_0")
 endif()
 
-#
-# Base Library...
-#
+set(DATA_STRUCTURES_INCLUDES_FILES
+    ./DataStructureExcpeption.h
+    ./core/PreCompiled.h
+    ./interfaces/IteratorOfIteratorCollection.h
+)
+
+set(DATA_STRUCTURES_SOURCES_FILES
+    ./core/PreCompiled.cpp
+)
+
+set(DATA_STRUCTURES_SOURCES
+    ${DATA_STRUCTURES_INCLUDES_FILES}
+    ${DATA_STRUCTURES_SOURCES_FILES}
+)
+
+set(DATA_STRUCTURES_INCLUDES
+    .
+    ./core
+    ./interfaces
+)
+
 set(BASE_INCLUDES_FILES
+    ../Base/BaseException.h
+    ../Base/core/BaseDependencies.h
+    ../Base/core/BaseLogic.h
+    ../Base/core/ComparableComparator.h
+    ../Base/core/DereferenceEquatableComparator.h
+    ../Base/core/EquatableComparator.h
+    ../Base/core/IntervalMap.h
+    ../Base/core/IntervalMapIterator.h
+    ../Base/core/List.h
+    ../Base/core/ListIterator.h
+    ../Base/core/Matrix.h
+    ../Base/core/Position.h
+    ../Base/core/PreCompiled.h
+    ../Base/core/ReferenceCount.h
+    ../Base/core/ReferenceCountHolder.h
+    ../Base/core/StringIterator.h
+    ../Base/core/TwoDimensionalList.h
+    ../Base/core/TwoDimensionalListIterator.h
     ../Base/interfaces/ComparatorFactory.h
     ../Base/interfaces/CompareToBuilder.h
     ../Base/interfaces/DateTime.h
     ../Base/interfaces/Duration.h
     ../Base/interfaces/EqualBuilder.h
     ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/ICalculator.h
     ../Base/interfaces/ICollection.h
     ../Base/interfaces/IComparableComparator.h
     ../Base/interfaces/IEquatableComparator.h
+    ../Base/interfaces/IFinder.h
     ../Base/interfaces/IHashCodeProvider.h
+    ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMatrix.h
+    ../Base/interfaces/ISizebleCollection.h
+    ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/IValidator.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
-    ../Base/interfaces/ISizebleCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
-    ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
+    ../Base/interfaces/Strings.h
     ../Base/interfaces/Triple.h
-    ../Base/core/BaseDependencies.h
-    ../Base/core/BaseLogic.h
-    ../Base/core/DereferenceEquatableComparator.h
-    ../Base/core/EquatableComparator.h
-    ../Base/core/ListIterator.h
-    ../Base/core/PreCompiled.h
-    ../Base/core/ReferenceCount.h
-    ../Base/core/ReferenceCountHolder.h
-    ../Base/core/StringIterator.h
-    ../Base/core/TwoDimensionalList.h
-    ../Base/BaseException.h)
+)
 
 set(BASE_SOURCES_FILES
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
-    ../Base/core/PreCompiled.cpp)
+    ../Base/core/Position.cpp
+    ../Base/core/PreCompiled.cpp
+)
 
 set(BASE_SOURCES
     ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES})
+    ${BASE_SOURCES_FILES}
+)
 
 set(BASE_INCLUDES
     ../Base
+    ../Base/core
     ../Base/interfaces
-    ../Base/core)
+)
 
-#
-# Data Structures Library...
-#
-set(DATA_STRUCTURES_INCLUDES_FILES
-    ./interfaces/IteratorOfIteratorCollection.h
-    ./core/PreCompiled.h
-    ./DataStructureExcpeption.h)
+add_library(Base STATIC
+    ${BASE_SOURCES}
+)
 
-set(DATA_STRUCTURES_SOURCES_FILES
-    ./core/PreCompiled.cpp)
+include_directories(DataStructures
+    ${BASE_INCLUDES}
+    ${DATA_STRUCTURES_INCLUDES}
+)
 
-set(DATA_STRUCTURES_SOURCES
-    ${DATA_STRUCTURES_INCLUDES_FILES}
-    ${DATA_STRUCTURES_SOURCES_FILES})
-
-set(DATA_STRUCTURES_INCLUDES
-    .
-    interfaces
-    core)
+add_library(DataStructures STATIC
+    ${BASE_SOURCES}
+    ${DATA_STRUCTURES_SOURCES}
+)
 
 include_directories(
-    ${DATA_STRUCTURES_INCLUDES}
-    ${BASE_INCLUDES}
-    ${BOOT_ROOT})
-
-add_library(DataStructures ${DATA_STRUCTURES_SOURCES} ${BASE_SOURCES})
+    ${BOOST_PATH}
+)

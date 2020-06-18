@@ -94,12 +94,12 @@ set(BASE_INCLUDES
     ./interfaces
 )
 
-include_directories(
+include_directories(Base
     ${BASE_INCLUDES}
 )
 
-add_library(
-    Base ${BASE_SOURCES}
+add_library(Base STATIC
+    ${BASE_SOURCES}
 )
 
 include_directories(

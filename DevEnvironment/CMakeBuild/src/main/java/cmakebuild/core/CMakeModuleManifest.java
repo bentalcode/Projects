@@ -123,14 +123,12 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
         CMakeModuleType type = reader.readEnumProperty(propertyType, value -> { return CMakeModuleType.parse(value); });
 
         ICMakeModuleProperties properties = reader.hasProperty(propertyProperties) ?
-            reader.readObjectProperty(
-                propertyProperties,
-                CMakeModuleProperties.class) :
+            reader.readObjectProperty(propertyProperties, CMakeModuleProperties.class) :
             CMakeModuleProperties.defaultProperties();
 
-        ICMakeListsManifest cmakeListsManifest = reader.readObjectProperty(
-            propertyCMakeListsManifest,
-            CMakeListsManifest.class);
+        ICMakeListsManifest cmakeListsManifest = reader.hasProperty(propertyCMakeListsManifest) ?
+            reader.readObjectProperty(propertyCMakeListsManifest, CMakeListsManifest.class) :
+            CMakeListsManifest.defaultManifest();
 
         List<String> dependentModules = reader.hasProperty(propertyDependentModules) ?
             reader.readStringListProperty(propertyDependentModules) :
