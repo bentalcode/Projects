@@ -62,6 +62,35 @@ public final class Strings {
     public static boolean equals(
         char[] left,
         int leftStartIndex,
+        int leftEndIndex,
+        char[] right,
+        int rightStartIndex,
+        int rightEndIndex) {
+
+        assert(left != null);
+        assert(left != null);
+        assert(leftStartIndex >= 0 && leftStartIndex < left.length);
+        assert(leftEndIndex >= leftStartIndex && leftEndIndex < left.length);
+        assert(rightStartIndex >= 0 && rightStartIndex < right.length);
+        assert(rightEndIndex >= rightStartIndex && rightEndIndex < right.length);
+
+        int leftLength = length(leftStartIndex, leftEndIndex);
+        int rightLength = length(rightStartIndex, rightEndIndex);
+
+        if (leftLength != rightLength) {
+            return false;
+        }
+
+        int length = leftLength;
+        return equals(left, leftStartIndex, right, rightStartIndex, length);
+    }
+
+    /**
+     * Checks whether strings are equals.
+     */
+    public static boolean equals(
+        char[] left,
+        int leftStartIndex,
         char[] right,
         int rightStartIndex,
         int length) {
@@ -517,7 +546,7 @@ public final class Strings {
     /**
      * Calculates length of a string.
      */
-    private static int length(int startIndex, int endIndex) {
+    public static int length(int startIndex, int endIndex) {
         return startIndex <= endIndex ? endIndex - startIndex + 1 : 0;
     }
 
