@@ -2,6 +2,7 @@ package datastructures.bitarray.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Arrays;
+import base.core.Bits;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -143,7 +144,7 @@ public final class Bit32Array implements IBit32Array {
 
         int mask = 1 << index;
 
-        if (Bits.isOne(value)) {
+        if (Bits.isOn(value)) {
             this.data |= mask;
         }
         else {

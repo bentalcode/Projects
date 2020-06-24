@@ -3,6 +3,7 @@ package algorithms.core;
 import algorithms.interfaces.ISort;
 import base.core.Arrays;
 import base.core.Conditions;
+import base.core.Dimensions;
 import base.interfaces.IBinaryComparator;
 
 /**
@@ -56,7 +57,7 @@ public final class MergeSort<T> implements ISort<T> {
         int endIndex,
         T[] buffer) {
 
-        int length = endIndex - startIndex + 1;
+        int length = Dimensions.length(startIndex, endIndex);
 
         if (length <= 1) {
             return;
@@ -80,18 +81,21 @@ public final class MergeSort<T> implements ISort<T> {
         int rightEndIndex,
         T[] buffer) {
 
+        assert(arr != null);
+
         assert(leftStartIndex >= 0 && leftStartIndex < arr.length);
         assert(leftEndIndex >= leftStartIndex && leftEndIndex < arr.length);
 
         assert(rightStartIndex >= 0 && rightStartIndex < arr.length);
         assert(rightEndIndex >= rightStartIndex && rightEndIndex < arr.length);
 
-        assert(arr.length == buffer.length);
+        assert(buffer != null);
+        assert(buffer.length == arr.length);
 
-        int leftLength = leftEndIndex - leftStartIndex + 1;
+        int leftLength = Dimensions.length(leftStartIndex, leftEndIndex);
         Arrays.copy(arr, leftStartIndex, buffer, leftStartIndex, leftLength);
 
-        int rightLength = rightEndIndex - rightStartIndex + 1;
+        int rightLength = Dimensions.length(rightStartIndex, rightEndIndex);
         Arrays.copy(arr, rightStartIndex, buffer, rightStartIndex, rightLength);
 
         int currLeftIndex = leftStartIndex;

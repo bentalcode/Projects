@@ -2,6 +2,7 @@ package datastructures.bitarray.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Arrays;
+import base.core.Bits;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -113,7 +114,7 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public boolean isOn(int index) {
-        return Bits.isOne(this.get(index));
+        return Bits.isOn(this.get(index));
     }
 
     /**
@@ -121,7 +122,7 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public boolean isOff(int index) {
-        return Bits.isZero(this.get(index));
+        return Bits.isOff(this.get(index));
     }
 
     /**
