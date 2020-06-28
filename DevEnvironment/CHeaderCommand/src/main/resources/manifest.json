@@ -1,0 +1,43 @@
+{
+    "name": "CHeader Command",
+    "description": "CHeader Command performs code updates on c/c++ headers.",
+    "parameterSets": [
+        {
+            "indexedParameters": [
+                {
+                    "name": "filePath",
+                    "description": "The path of a file."
+                }
+            ]
+        },
+        {
+            "namedParameters": [
+                {
+                    "name": "filePath",
+                    "shortName": "file",
+                    "longName": "file",
+                    "description": "The path of a file."
+                }
+            ]
+        },
+        {
+            "namedParameters": [
+                {
+                    "name": "directoryPath",
+                    "shortName": "dir",
+                    "longName": "directory",
+                    "description": "The path of a directory."
+                },
+                {
+                    "name": "recursive",
+                    "shortName": "r",
+                    "longName": "recurse",
+                    "description": "Whether to include sub directories recursively.",
+                    "optional": true
+                }
+            ]
+        }
+    ],
+    "helpMessage":
+        "CHeader <filePath> \n CHeader -file:=<filePath> \n CHeader -directory:=<dirPath> -recurse"
+}

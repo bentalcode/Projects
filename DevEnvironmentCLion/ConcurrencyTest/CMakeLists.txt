@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(MemoryManagementTest VERSION 1.0)
+project(ConcurrencyTest VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -24,25 +24,25 @@ else()
     set(BOOST_PATH "c:\\Boost\\boost_1_70_0")
 endif()
 
-set(MEMORY_MANAGEMENT_TEST_INCLUDES_FILES
+set(CONCURRENCY_TEST_INCLUDES_FILES
     ./core/PreCompiled.h
-    ./interfaces/MemoryAllocatorUnitTest.h
-    ./interfaces/ObjectPoolUnitTest.h
+    ./interfaces/ConcurrentQueueUnitTest.h
+    ./interfaces/TestData.h
 )
 
-set(MEMORY_MANAGEMENT_TEST_SOURCES_FILES
-    ./core/MemoryAllocatorUnitTest.cpp
-    ./core/ObjectPoolUnitTest.cpp
+set(CONCURRENCY_TEST_SOURCES_FILES
+    ./core/ConcurrentQueueUnitTest.cpp
     ./core/PreCompiled.cpp
+    ./core/TestData.cpp
     ./main.cpp
 )
 
-set(MEMORY_MANAGEMENT_TEST_SOURCES
-    ${MEMORY_MANAGEMENT_TEST_INCLUDES_FILES}
-    ${MEMORY_MANAGEMENT_TEST_SOURCES_FILES}
+set(CONCURRENCY_TEST_SOURCES
+    ${CONCURRENCY_TEST_INCLUDES_FILES}
+    ${CONCURRENCY_TEST_SOURCES_FILES}
 )
 
-set(MEMORY_MANAGEMENT_TEST_INCLUDES
+set(CONCURRENCY_TEST_INCLUDES
     ./core
     ./interfaces
 )
@@ -193,61 +193,50 @@ add_library(UnitTesting STATIC
     ${UNIT_TESTING_SOURCES}
 )
 
-set(MEMORY_MANAGEMENT_INCLUDES_FILES
-    ../MemoryManagement/MemoryManagementException.h
-    ../MemoryManagement/core/FixedMemoryPool.h
-    ../MemoryManagement/core/MemoryAllocator.h
-    ../MemoryManagement/core/PreCompiled.h
-    ../MemoryManagement/interfaces/IMemoryAllocator.h
-    ../MemoryManagement/interfaces/IMemoryPool.h
-    ../MemoryManagement/interfaces/IObjectPool.h
-    ../MemoryManagement/interfaces/MemoryPool.h
-    ../MemoryManagement/interfaces/ObjectPool.h
-    ../MemoryManagement/interfaces/ObjectPoolElement.h
+set(CONCURRENCY_INCLUDES_FILES
+    ../Concurrency/ConcurrencyException.h
+    ../Concurrency/core/PreCompiled.h
+    ../Concurrency/interfaces/ConcurrentQueue.h
 )
 
-set(MEMORY_MANAGEMENT_SOURCES_FILES
-    ../MemoryManagement/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/CMakeCXXCompilerId.cpp
-    ../MemoryManagement/core/FixedMemoryPool.cpp
-    ../MemoryManagement/core/MemoryAllocator.cpp
-    ../MemoryManagement/core/MemoryPool.cpp
-    ../MemoryManagement/core/PreCompiled.cpp
+set(CONCURRENCY_SOURCES_FILES
+    ../Concurrency/core/PreCompiled.cpp
 )
 
-set(MEMORY_MANAGEMENT_SOURCES
-    ${MEMORY_MANAGEMENT_INCLUDES_FILES}
-    ${MEMORY_MANAGEMENT_SOURCES_FILES}
+set(CONCURRENCY_SOURCES
+    ${CONCURRENCY_INCLUDES_FILES}
+    ${CONCURRENCY_SOURCES_FILES}
 )
 
-set(MEMORY_MANAGEMENT_INCLUDES
-    ../MemoryManagement
-    ../MemoryManagement/core
-    ../MemoryManagement/interfaces
+set(CONCURRENCY_INCLUDES
+    ../Concurrency
+    ../Concurrency/core
+    ../Concurrency/interfaces
 )
 
-add_library(MemoryManagement STATIC
+add_library(Concurrency STATIC
     ${BASE_SOURCES}
-    ${MEMORY_MANAGEMENT_SOURCES}
+    ${CONCURRENCY_SOURCES}
 )
 
-include_directories(MemoryManagementTest
+include_directories(ConcurrencyTest
     ${BASE_INCLUDES}
-    ${MEMORY_MANAGEMENT_INCLUDES}
-    ${MEMORY_MANAGEMENT_TEST_INCLUDES}
+    ${CONCURRENCY_INCLUDES}
+    ${CONCURRENCY_TEST_INCLUDES}
     ${TEST_BASE_INCLUDES}
     ${UNIT_TESTING_INCLUDES}
 )
 
-add_executable(MemoryManagementTest
+add_executable(ConcurrencyTest
     ${BASE_SOURCES}
-    ${MEMORY_MANAGEMENT_SOURCES}
-    ${MEMORY_MANAGEMENT_TEST_SOURCES}
+    ${CONCURRENCY_SOURCES}
+    ${CONCURRENCY_TEST_SOURCES}
     ${TEST_BASE_SOURCES}
     ${UNIT_TESTING_SOURCES}
 )
 
-target_link_libraries(MemoryManagementTest
-    PRIVATE Base TestBase UnitTesting MemoryManagement
+target_link_libraries(ConcurrencyTest
+    PRIVATE Base TestBase UnitTesting Concurrency
 )
 
 include_directories(

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(MemoryManagement VERSION 1.0)
+project(Concurrency VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -24,33 +24,22 @@ else()
     set(BOOST_PATH "c:\\Boost\\boost_1_70_0")
 endif()
 
-set(MEMORY_MANAGEMENT_INCLUDES_FILES
-    ./MemoryManagementException.h
-    ./core/FixedMemoryPool.h
-    ./core/MemoryAllocator.h
+set(CONCURRENCY_INCLUDES_FILES
+    ./ConcurrencyException.h
     ./core/PreCompiled.h
-    ./interfaces/IMemoryAllocator.h
-    ./interfaces/IMemoryPool.h
-    ./interfaces/IObjectPool.h
-    ./interfaces/MemoryPool.h
-    ./interfaces/ObjectPool.h
-    ./interfaces/ObjectPoolElement.h
+    ./interfaces/ConcurrentQueue.h
 )
 
-set(MEMORY_MANAGEMENT_SOURCES_FILES
-    ./cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/CMakeCXXCompilerId.cpp
-    ./core/FixedMemoryPool.cpp
-    ./core/MemoryAllocator.cpp
-    ./core/MemoryPool.cpp
+set(CONCURRENCY_SOURCES_FILES
     ./core/PreCompiled.cpp
 )
 
-set(MEMORY_MANAGEMENT_SOURCES
-    ${MEMORY_MANAGEMENT_INCLUDES_FILES}
-    ${MEMORY_MANAGEMENT_SOURCES_FILES}
+set(CONCURRENCY_SOURCES
+    ${CONCURRENCY_INCLUDES_FILES}
+    ${CONCURRENCY_SOURCES_FILES}
 )
 
-set(MEMORY_MANAGEMENT_INCLUDES
+set(CONCURRENCY_INCLUDES
     .
     ./core
     ./interfaces
@@ -130,14 +119,14 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
-include_directories(MemoryManagement
+include_directories(Concurrency
     ${BASE_INCLUDES}
-    ${MEMORY_MANAGEMENT_INCLUDES}
+    ${CONCURRENCY_INCLUDES}
 )
 
-add_library(MemoryManagement STATIC
+add_library(Concurrency STATIC
     ${BASE_SOURCES}
-    ${MEMORY_MANAGEMENT_SOURCES}
+    ${CONCURRENCY_SOURCES}
 )
 
 include_directories(

@@ -4,10 +4,12 @@
     "effectiveModules": [
         "Base",
         "DataStructures",
+        "Concurrency",
         "MemoryManagement",
         "Problems",
         "BaseTest",
         "DataStructuresTest",
+        "ConcurrencyTest",
         "MemoryManagementTest",
         "ProblemsTest"
     ],
@@ -36,6 +38,13 @@
         },
         {
             "name": "DataStructures",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ]
+        },
+        {
+            "name": "Concurrency",
             "type": "library",
             "dependentModules": [
                 "Base"
@@ -87,6 +96,16 @@
                 "TestBase",
                 "UnitTesting",
                 "DataStructures"
+            ]
+        },
+        {
+            "name": "ConcurrencyTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting",
+                "Concurrency"
             ]
         },
         {

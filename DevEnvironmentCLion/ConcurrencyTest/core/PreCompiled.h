@@ -1,0 +1,6 @@
+#ifndef PRE_COMPILED_HEADERS_H_21d08dc9_7dae_46c2_ae37_b6f76f9f5b2b
+#define PRE_COMPILED_HEADERS_H_21d08dc9_7dae_46c2_ae37_b6f76f9f5b2b
+
+#include "BaseDependencies.h"
+
+#endif /* PRE_COMPILED_HEADERS_H_21d08dc9_7dae_46c2_ae37_b6f76f9f5b2b */

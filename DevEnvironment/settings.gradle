@@ -13,4 +13,7 @@ include ':Games'
 include ':CMakeBuildSystem'
 include ':TestBase'
 include ':DataTransformationService'
+include ':Command'
+include ':CHeaderCommand'
+
 
