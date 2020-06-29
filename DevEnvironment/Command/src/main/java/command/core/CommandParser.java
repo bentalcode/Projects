@@ -146,9 +146,9 @@ public final class CommandParser implements IParser<String[], ICommandParameters
 
         for (IParameterSetMetadata parameterSetMetadata : this.manifest.getParameterSets()) {
             IParser<IInputParameters, IParameterSet> parameterSetParser = new ParameterSetParser(
-                    this.manifest.getName(),
-                    parameterSetIndex,
-                    parameterSetMetadata);
+                this.manifest.getName(),
+                parameterSetIndex,
+                parameterSetMetadata);
 
             IParsingResult<IParameterSet> parameterSetResult = parameterSetParser.parse(inputParameters);
 

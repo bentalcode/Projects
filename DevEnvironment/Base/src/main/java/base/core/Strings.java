@@ -120,6 +120,66 @@ public final class Strings {
      * Checks whether strings are equals.
      */
     public static boolean equals(
+        String left,
+        int leftStartIndex,
+        String right,
+        int rightStartIndex,
+        int length) {
+
+        return equals(
+            left, leftStartIndex,
+            right, rightStartIndex,
+            length,
+            false);
+    }
+
+    /**
+     * Checks whether strings are equals ignore case.
+     */
+    public static boolean equalsIgnoreCase(
+        String left,
+        int leftStartIndex,
+        String right,
+        int rightStartIndex,
+        int length) {
+
+        return equals(
+            left, leftStartIndex,
+            right, rightStartIndex,
+            length,
+            true);
+    }
+
+    /**
+     * Checks whether strings are equals.
+     */
+    private static boolean equals(
+        String left,
+        int leftStartIndex,
+        String right,
+        int rightStartIndex,
+        int length,
+        boolean ignoreCase) {
+
+        if (left == null && right == null) {
+            return true;
+        }
+
+        if (left == null || right == null) {
+            return false;
+        }
+
+        return equals(
+            left.toCharArray(), leftStartIndex,
+            right.toCharArray(), rightStartIndex,
+            length,
+            ignoreCase);
+    }
+
+    /**
+     * Checks whether strings are equals.
+     */
+    public static boolean equals(
         char[] left,
         int leftStartIndex,
         int leftEndIndex,
