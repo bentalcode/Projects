@@ -48,6 +48,14 @@ public final class Parameter implements IParameter {
     }
 
     /**
+     * Checks whether the value of the parameter is set.
+     */
+    @Override
+    public boolean isSet() {
+        return this.value != null;
+    }
+
+    /**
      * Gets a boolean value of a parameter.
      */
     @Override

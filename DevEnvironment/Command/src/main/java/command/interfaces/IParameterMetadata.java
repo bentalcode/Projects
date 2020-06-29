@@ -7,12 +7,12 @@ import json.interfaces.IJsonSerialization;
  */
 public interface IParameterMetadata extends IJsonSerialization {
     /**
-     * Gets a name of a parameter.
+     * Gets name of a parameter.
      */
     String getName();
 
     /**
-     * Gets a description of a parameter.
+     * Gets description of a parameter.
      */
     String getDescription();
 }

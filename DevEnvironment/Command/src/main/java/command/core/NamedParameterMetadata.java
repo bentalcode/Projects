@@ -39,7 +39,10 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
         String longName,
         String description,
         boolean optional) {
-        super(name, description);
+
+        super(
+            name,
+            description);
 
         Conditions.validate(
             !Strings.isNullOrEmpty(shortName) || !Strings.isNullOrEmpty(longName),
@@ -112,6 +115,8 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
+        super.writeJson(writer);
+
         if (this.shortName != null) {
             writer.writeStringProperty(propertyShortName, this.shortName);
         }
@@ -121,8 +126,6 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
         }
 
         writer.writeBooleanProperty(propertyOptional, this.optional);
-
-        super.writeJson(writer);
     }
 
     /**

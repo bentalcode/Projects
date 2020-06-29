@@ -3,10 +3,15 @@ package command.core;
 import base.core.CollectionIterator;
 import base.core.Conditions;
 import base.interfaces.IIterator;
+import command.CommandException;
 import command.interfaces.IParameter;
 import command.interfaces.IParameterSet;
 import command.interfaces.IParameterSetMetadata;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The ParameterSet class implements a parameter-set.
@@ -14,7 +19,8 @@ import java.util.List;
 public final class ParameterSet implements IParameterSet {
     private final int index;
     private final IParameterSetMetadata metadata;
-    private final List<IParameter> parameters;
+    private final Map<String, IParameter> parametersMap;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The ParameterSet constructor.
@@ -34,7 +40,7 @@ public final class ParameterSet implements IParameterSet {
 
         this.index = index;
         this.metadata = metadata;
-        this.parameters = parameters;
+        this.parametersMap = createParameterMap(parameters);
     }
 
     /**
@@ -57,8 +63,24 @@ public final class ParameterSet implements IParameterSet {
      * Gets parameters of a parameter-set.
      */
     @Override
-    public List<IParameter> getParameters() {
-        return this.parameters;
+    public Map<String, IParameter> getParameters() {
+        return this.parametersMap;
+    }
+
+    /**
+     * Gets a parameter by manifest id.
+     */
+    @Override
+    public IParameter getParameter(String name) {
+        return this.parametersMap.get(name);
+    }
+
+    /**
+     * Checks whether a parameter exists by manifest name.
+     */
+    @Override
+    public boolean hasParameter(String name) {
+        return this.parametersMap.containsKey(name);
     }
 
     /**
@@ -66,6 +88,19 @@ public final class ParameterSet implements IParameterSet {
      */
     @Override
     public IIterator<IParameter> getIterator() {
-        return CollectionIterator.of(this.parameters);
+        return CollectionIterator.of(this.parametersMap.values());
+    }
+
+    /**
+     * Creates the parameters map.
+     */
+    private static Map<String, IParameter> createParameterMap(List<IParameter> parameters) {
+        Map<String, IParameter> parametersMap = new HashMap<>();
+
+        for (IParameter parameter : parameters) {
+            parametersMap.put(parameter.getMetadata().getName(), parameter);
+        }
+
+        return parametersMap;
     }
 }

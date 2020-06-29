@@ -7,12 +7,17 @@ import java.nio.file.Path;
  */
 public interface ICHeaderCommandParameters {
     /**
-     * Gets a path of a directory.
+     * Gets the path of a directory.
      */
     Path getDirectoryPath();
 
     /**
-     * Gets a path of a file.
+     * Gets the path of a file.
      */
     Path getFilePath();
+
+    /**
+     * Gets the recursive flag.
+     */
+    boolean recurse();
 }

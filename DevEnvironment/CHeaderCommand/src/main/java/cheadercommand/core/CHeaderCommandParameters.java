@@ -1,25 +1,41 @@
 package cheadercommand.core;
 
+import base.core.Paths;
 import cheadercommand.interfaces.ICHeaderCommandParameters;
+import command.interfaces.ICommandParameters;
+import command.interfaces.IParameter;
 import java.nio.file.Path;
 
 /**
  * The CHeaderCommandParameters class implements parameters of a c-header command.
  */
 public final class CHeaderCommandParameters implements ICHeaderCommandParameters {
+    private final ICommandParameters parameters;
     private final Path directoryPath;
     private final Path filePath;
+    private final boolean recurse;
 
     /**
      * The CHeaderCommandParameters constructor.
      */
-    public CHeaderCommandParameters(Path directoryPath, Path filePath) {
-        this.directoryPath = directoryPath;
-        this.filePath = filePath;
+    public CHeaderCommandParameters(ICommandParameters parameters) {
+        this.parameters = parameters;
+
+        IParameter directoryPath = parameters.getParameterSet().getParameter("directoryPath");
+        this.directoryPath = directoryPath != null && directoryPath.isSet() ?
+            Paths.create(directoryPath.getStringValue()) : null;
+
+        IParameter filePath = parameters.getParameterSet().getParameter("filePath");
+        this.filePath = filePath != null && filePath.isSet() ?
+            Paths.create(filePath.getStringValue()) : null;
+
+        IParameter recurse = parameters.getParameterSet().getParameter("recurse");
+        this.recurse = recurse != null && recurse.isSet() ?
+            recurse.getBooleanValue() : false;
     }
 
     /**
-     * Gets a path of a directory.
+     * Gets the path of a directory.
      */
     @Override
     public Path getDirectoryPath() {
@@ -27,10 +43,18 @@ public final class CHeaderCommandParameters implements ICHeaderCommandParameters
     }
 
     /**
-     * Gets a path of a file.
+     * Gets the path of a file.
      */
     @Override
     public Path getFilePath() {
         return this.filePath;
+    }
+
+    /**
+     * Gets the recursive flag.
+     */
+    @Override
+    public boolean recurse() {
+        return this.recurse;
     }
 }

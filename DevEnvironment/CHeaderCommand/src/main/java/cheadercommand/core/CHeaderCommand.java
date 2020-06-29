@@ -1,5 +1,6 @@
 package cheadercommand.core;
 
+import cheadercommand.interfaces.ICHeaderCommandParameters;
 import command.core.AbstractCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,5 +22,6 @@ public final class CHeaderCommand extends AbstractCommand {
      */
     @Override
     public void run() {
+        ICHeaderCommandParameters parameters = new CHeaderCommandParameters(this.getInformation().getParameters());
     }
 }

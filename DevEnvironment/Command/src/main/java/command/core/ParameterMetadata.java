@@ -48,7 +48,7 @@ public abstract class ParameterMetadata implements IParameterMetadata {
     }
 
     /**
-     * Gets a name of a parameter.
+     * Gets name of a parameter.
      */
     @Override
     public String getName() {
@@ -56,7 +56,7 @@ public abstract class ParameterMetadata implements IParameterMetadata {
     }
 
     /**
-     * Gets a description of a parameter.
+     * Gets description of a parameter.
      */
     @Override
     public String getDescription() {

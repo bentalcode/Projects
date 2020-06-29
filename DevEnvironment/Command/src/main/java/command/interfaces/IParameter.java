@@ -15,6 +15,11 @@ public interface IParameter {
     IParameterMetadata getMetadata();
 
     /**
+     * Checks whether the value of the parameter is set.
+     */
+    boolean isSet();
+
+    /**
      * Gets a boolean value of a parameter.
      */
     boolean getBooleanValue();

@@ -1,7 +1,7 @@
 package command.interfaces;
 
 import base.interfaces.IIterable;
-import java.util.List;
+import java.util.Map;
 
 /**
  * The IParameterSet interface defines a parameter-set.
@@ -20,5 +20,16 @@ public interface IParameterSet extends IIterable<IParameter> {
     /**
      * Gets parameters of a parameter-set.
      */
-    List<IParameter> getParameters();
+    Map<String, IParameter> getParameters();
+
+    /**
+     * Gets a parameter by manifest name.
+     * The parameter can be null.
+     */
+    IParameter getParameter(String name);
+
+    /**
+     * Checks whether a parameter exists by manifest name.
+     */
+    boolean hasParameter(String name);
 }
