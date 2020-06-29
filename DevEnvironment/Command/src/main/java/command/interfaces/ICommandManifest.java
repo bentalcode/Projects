@@ -5,7 +5,7 @@ import json.interfaces.IJsonSerialization;
 import java.util.List;
 
 /**
- * The ICommandManifest interface defines manifest of a command.
+ * The ICommandManifest interface defines a manifest of a command.
  */
 public interface ICommandManifest extends
     IUnaryComparator<ICommandManifest>,
@@ -22,12 +22,12 @@ public interface ICommandManifest extends
     String getDescription();
 
     /**
-     * Gets help message of a command.
+     * Gets help metadata of a command.
      */
-    String getHelpMessage();
+    ICommandHelpMetadata getHelp();
 
     /**
-     * Gets parameter-sets of a command.
+     * Gets parameter-sets metadata of a command.
      */
     List<IParameterSetMetadata> getParameterSets();
 }

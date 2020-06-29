@@ -1,6 +1,5 @@
 package command.interfaces;
 
-import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -8,7 +7,7 @@ import java.util.List;
  */
 public interface ITestData {
     /**
-     * Gets the resources of commands manifests.
+     * Gets data of commands.
      */
-    List<Path> getCommandManifestResources();
+    List<ICommandData> getCommandsData();
 }

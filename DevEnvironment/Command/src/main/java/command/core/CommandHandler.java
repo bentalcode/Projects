@@ -2,13 +2,13 @@ package command.core;
 
 import base.core.Conditions;
 import base.core.ResourceReader;
+import base.interfaces.IParser;
 import command.interfaces.ICommand;
 import command.interfaces.ICommandHandler;
 import command.interfaces.ICommandManifest;
 import command.interfaces.ICommandMessageWriter;
 import command.interfaces.ICommandParameters;
-import command.interfaces.ICommandParser;
-import command.interfaces.IParsingResult;
+import base.interfaces.IParsingResult;
 import command.interfaces.IProcessInformation;
 import java.nio.file.Path;
 
@@ -79,7 +79,7 @@ public final class CommandHandler implements ICommandHandler {
      * Parses the parameters of a command.
      */
     private IParsingResult<ICommandParameters> parseParameters(String[] arguments) {
-        ICommandParser parser = new CommandParser(this.manifest);
+        IParser<String[], ICommandParameters> parser = new CommandParser(this.manifest);
 
         IParsingResult<ICommandParameters> result = parser.parse(arguments);
 

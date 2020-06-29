@@ -1,42 +1,31 @@
 package command.core;
 
-import base.core.CollectionIterator;
 import base.core.Conditions;
-import base.interfaces.IIterator;
 import command.interfaces.ICommandParameters;
-import command.interfaces.IParameter;
-import java.util.List;
+import command.interfaces.IParameterSet;
 
 /**
  * The CommandParameters class implements parameters of a command.
  */
 public final class CommandParameters implements ICommandParameters {
-    private final List<IParameter> parameters;
+    private final IParameterSet parameterSet;
 
     /**
      * The CommandParameters constructor.
      */
-    public CommandParameters(List<IParameter> parameters) {
+    public CommandParameters(IParameterSet parameterSet) {
         Conditions.validateNotNull(
-            parameters,
-            "The parameters of a command.");
+            parameterSet,
+            "The parameter-set of a command.");
 
-        this.parameters = parameters;
+        this.parameterSet = parameterSet;
     }
 
     /**
-     * Gets the parameters of the command.
+     * Gets the parameter-set of the command.
      */
     @Override
-    public List<IParameter> getParameters() {
-        return this.parameters;
-    }
-
-    /**
-     * Gets the iterator.
-     */
-    @Override
-    public IIterator<IParameter> getIterator() {
-        return CollectionIterator.of(this.parameters);
+    public IParameterSet getParameterSet() {
+        return this.parameterSet;
     }
 }

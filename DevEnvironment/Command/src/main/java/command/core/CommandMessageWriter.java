@@ -27,7 +27,7 @@ public final class CommandMessageWriter implements ICommandMessageWriter {
      */
     @Override
     public void writeUsageMessage() {
-        String usageMessage = this.manifest.getHelpMessage();
+        String usageMessage = this.manifest.getHelp().getUsageMessage();
         this.writeInformationalMessage(usageMessage);
     }
 

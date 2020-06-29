@@ -38,6 +38,8 @@
             ]
         }
     ],
-    "helpMessage":
-        "CHeader <filePath> \n CHeader -file:=<filePath> \n CHeader -directory:=<dirPath> -recurse"
+    "help":
+    {
+        "usageMessage": "CHeader <filePath> \n CHeader -file:=<filePath> \n CHeader -directory:=<dirPath> -recurse"
+    }
 }

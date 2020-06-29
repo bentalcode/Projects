@@ -6,26 +6,29 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.ResourceReader;
 import base.interfaces.IBinaryComparator;
+import command.interfaces.ICommandHelpMetadata;
 import command.interfaces.ICommandManifest;
 import command.interfaces.IParameterSetMetadata;
+import java.nio.file.Path;
+import java.util.List;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
-import java.util.List;
 
 /**
- * The CommandManifest class implements manifest of a command.
+ * The CommandManifest class implements a manifest of a command.
  */
 public final class CommandManifest implements ICommandManifest {
     private static final String propertyName = "name";
     private static final String propertyDescription = "description";
-    private static final String propertyHelpMessage = "helpMessage";
+    private static final String propertyHelp = "help";
     private static final String propertyParameterSets = "parameterSets";
 
     private final String name;
     private final String description;
-    private final String helpMessage;
+    private final ICommandHelpMetadata help;
     private final List<IParameterSetMetadata> parameterSets;
 
     private final IBinaryComparator<ICommandManifest> comparator = defaultComparator();
@@ -37,7 +40,7 @@ public final class CommandManifest implements ICommandManifest {
     public CommandManifest(
         String name,
         String description,
-        String helpMessage,
+        ICommandHelpMetadata help,
         List<IParameterSetMetadata> parameterSets) {
 
         Conditions.validateStringNotNullOrEmpty(
@@ -48,9 +51,9 @@ public final class CommandManifest implements ICommandManifest {
             description,
             "The description of a command.");
 
-        Conditions.validateStringNotNullOrEmpty(
-            helpMessage,
-            "The help message of a command.");
+        Conditions.validateNotNull(
+            help,
+            "The help metadata of a command.");
 
         Conditions.validateNotNull(
             parameterSets,
@@ -58,7 +61,7 @@ public final class CommandManifest implements ICommandManifest {
 
         this.name = name;
         this.description = description;
-        this.helpMessage = helpMessage;
+        this.help = help;
         this.parameterSets = parameterSets;
 
         this.hashCode = this.comparator.hashCode();
@@ -81,15 +84,15 @@ public final class CommandManifest implements ICommandManifest {
     }
 
     /**
-     * Gets help message of a command.
+     * Gets help metadata of a command.
      */
     @Override
-    public String getHelpMessage() {
-        return this.helpMessage;
+    public ICommandHelpMetadata getHelp() {
+        return this.help;
     }
 
     /**
-     * Gets parameter-sets of a command.
+     * Gets parameter-sets metadata of a command.
      */
     public List<IParameterSetMetadata> getParameterSets() {
         return this.parameterSets;
@@ -101,6 +104,14 @@ public final class CommandManifest implements ICommandManifest {
     @Override
     public String toString() {
         return JsonObjectStream.serialize(this);
+    }
+
+    /**
+     * Loads a manifest from a resource file.
+     */
+    public static ICommandManifest load(Path path) {
+        String json = ResourceReader.loadString(path);
+        return fromJson(json);
     }
 
     /**
@@ -117,7 +128,7 @@ public final class CommandManifest implements ICommandManifest {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(propertyName, this.name);
         writer.writeStringProperty(propertyDescription, this.description);
-        writer.writeStringProperty(propertyHelpMessage, this.helpMessage);
+        writer.writeObjectProperty(propertyHelp, this.help);
         writer.writeCollectionProperty(propertyParameterSets, this.parameterSets);
     }
 
@@ -127,7 +138,7 @@ public final class CommandManifest implements ICommandManifest {
     public static ICommandManifest readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(propertyName);
         String description = reader.readStringProperty(propertyDescription);
-        String helpMessage = reader.readStringProperty(propertyHelpMessage);
+        ICommandHelpMetadata help = reader.readObjectProperty(propertyHelp, CommandHelpMetadata.class);
 
         List<IParameterSetMetadata> parameterSets = reader.readListProperty(
             propertyParameterSets,
@@ -136,7 +147,7 @@ public final class CommandManifest implements ICommandManifest {
         return new CommandManifest(
             name,
             description,
-            helpMessage,
+            help,
             parameterSets);
     }
 
@@ -213,7 +224,7 @@ public final class CommandManifest implements ICommandManifest {
             return new HashCodeBuilder(3, 5)
                 .withString(obj.getName())
                 .withString(obj.getDescription())
-                .withString(obj.getHelpMessage())
+                .withObject(obj.getHelp())
                 .withCollection(obj.getParameterSets())
                 .build();
         }
@@ -234,7 +245,7 @@ public final class CommandManifest implements ICommandManifest {
             return new EqualBuilder()
                 .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getDescription(), rhs.getDescription())
-                .withString(lhs.getHelpMessage(), rhs.getHelpMessage())
+                .withObject(lhs.getHelp(), rhs.getHelp())
                 .withCollection(lhs.getParameterSets(), rhs.getParameterSets())
                 .build();
         }
@@ -263,7 +274,7 @@ public final class CommandManifest implements ICommandManifest {
             return new CompareToBuilder()
                 .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getDescription(), rhs.getDescription())
-                .withString(lhs.getHelpMessage(), rhs.getHelpMessage())
+                .withObject(lhs.getHelp(), rhs.getHelp())
                 .withCollection(lhs.getParameterSets(), rhs.getParameterSets())
                 .build();
         }

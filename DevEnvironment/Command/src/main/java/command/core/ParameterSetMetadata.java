@@ -1,6 +1,7 @@
 package command.core;
 
 import base.core.AbstractBinaryComparator;
+import base.core.ArrayLists;
 import base.core.Casting;
 import base.core.CollectionIterator;
 import base.core.CompareToBuilder;
@@ -32,6 +33,18 @@ public final class ParameterSetMetadata implements IParameterSetMetadata {
 
     private final IBinaryComparator<IParameterSetMetadata> comparator = defaultComparator();
     private final int hashCode;
+
+    /**
+     * Creates help parameter-set.
+     */
+    public static IParameterSetMetadata createHelpParameterSet() {
+        List<IIndexedParameterMetadata> indexedParameterMetadata = ArrayLists.empty();
+        List<INamedParameterMetadata> namedParameters = ArrayLists.of(ParameterMetadata.createHelpParameter());
+
+        return new ParameterSetMetadata(
+            indexedParameterMetadata,
+            namedParameters);
+    }
 
     /**
      * The ParameterSetMetadata constructor.

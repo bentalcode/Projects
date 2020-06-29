@@ -1,6 +1,7 @@
 package command.core;
 
 import base.core.Conditions;
+import command.interfaces.INamedParameterMetadata;
 import command.interfaces.IParameterMetadata;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectWriter;
@@ -16,6 +17,18 @@ public abstract class ParameterMetadata implements IParameterMetadata {
     private final String description;
 
     /**
+     * Creates meta-data of a help parameter.
+     */
+    public static INamedParameterMetadata createHelpParameter() {
+        return new NamedParameterMetadata(
+            "Help",
+            ICommandConstants.helpShortName,
+            ICommandConstants.helpLongName,
+            "The help of the command",
+            false);
+    }
+
+    /**
      * The ParameterMetadata constructor.
      */
     protected ParameterMetadata(
@@ -24,11 +37,11 @@ public abstract class ParameterMetadata implements IParameterMetadata {
 
         Conditions.validateStringNotNullOrEmpty(
             name,
-            "The name of a command.");
+            "The name of a parameter.");
 
         Conditions.validateStringNotNullOrEmpty(
             description,
-            "The description of a command.");
+            "The description of a parameter.");
 
         this.name = name;
         this.description = description;

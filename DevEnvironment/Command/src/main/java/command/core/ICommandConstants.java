@@ -15,4 +15,7 @@ public interface ICommandConstants {
     String namedParameterSeparator = ":=";
 
     String trueValue = "true";
+
+    String helpShortName = "h";
+    String helpLongName = "help";
 }

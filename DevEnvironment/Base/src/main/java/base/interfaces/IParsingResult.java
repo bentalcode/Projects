@@ -1,4 +1,4 @@
-package command.interfaces;
+package base.interfaces;
 
 /**
  * The IParsingResult interface defines a parsing result.

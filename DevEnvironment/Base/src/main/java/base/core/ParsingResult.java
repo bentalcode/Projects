@@ -1,6 +1,6 @@
-package command.core;
+package base.core;
 
-import command.interfaces.IParsingResult;
+import base.interfaces.IParsingResult;
 
 /**
  * The ParsingResult class implements a parsing result.

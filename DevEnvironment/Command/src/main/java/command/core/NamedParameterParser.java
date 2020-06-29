@@ -1,17 +1,16 @@
 package command.core;
 
 import base.core.Pair;
+import base.core.ParsingResult;
+import base.core.Strings;
 import base.interfaces.IPair;
-import command.interfaces.IParsingResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import base.interfaces.IParser;
+import base.interfaces.IParsingResult;
 
 /**
- * The NamedParameterParser class implements a named parameter parser.
+ * The NamedParameterParser class implements a parser of a named parameter.
  */
-public final class NamedParameterParser {
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
+public final class NamedParameterParser implements IParser<String, IPair<String, String>> {
     /**
      * The NamedParameterParser constructor.
      */
@@ -21,12 +20,37 @@ public final class NamedParameterParser {
     /**
      * Parses a named parameter.
      */
+    @Override
     public IParsingResult<IPair<String, String>> parse(String arg) {
         if (isShortNamedParameter(arg)) {
-            return this.parseNamedParameter(arg, ICommandConstants.shortNamedParameterPrefix);
+            if (Strings.equalsIgnoreCase(
+                    arg, ICommandConstants.shortNamedParameterPrefix.length(), arg.length() - 1,
+                    ICommandConstants.helpShortName, 0, ICommandConstants.helpShortName.length() - 1)) {
+
+                IPair<String, String> nameAndValue = Pair.of(
+                    ICommandConstants.helpShortName,
+                    ICommandConstants.trueValue);
+
+                return ParsingResult.successfulResult(nameAndValue);
+            }
+            else {
+                return this.parseNamedParameter(arg, ICommandConstants.shortNamedParameterPrefix);
+            }
         }
         else if (isLongNamedParameter(arg)) {
-            return this.parseNamedParameter(arg, ICommandConstants.longNamedParameterPrefix);
+            if (Strings.equalsIgnoreCase(
+                    arg, ICommandConstants.longNamedParameterPrefix.length(), arg.length() - 1,
+                    ICommandConstants.helpLongName, 0, ICommandConstants.helpLongName.length() - 1)) {
+
+                IPair<String, String> nameAndValue = Pair.of(
+                    ICommandConstants.helpLongName,
+                    ICommandConstants.trueValue);
+
+                return ParsingResult.successfulResult(nameAndValue);
+            }
+            else {
+                return this.parseNamedParameter(arg, ICommandConstants.longNamedParameterPrefix);
+            }
         }
         else {
             String errorMessage = "The argument: " + arg + " is not a named parameter.";
@@ -73,7 +97,10 @@ public final class NamedParameterParser {
      * Checks if a parameter is short named parameter.
      */
     public static boolean isShortNamedParameter(String arg) {
-        return arg != null && arg.startsWith(ICommandConstants.shortNamedParameterPrefix);
+        return
+            arg != null &&
+            arg.startsWith(ICommandConstants.shortNamedParameterPrefix) &&
+            !arg.startsWith(ICommandConstants.longNamedParameterPrefix);
     }
 
     /**

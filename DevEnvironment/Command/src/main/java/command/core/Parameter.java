@@ -3,6 +3,7 @@ package command.core;
 import base.core.Conditions;
 import base.core.Conversion;
 import base.core.IFromString;
+import command.interfaces.INamedParameterMetadata;
 import command.interfaces.IParameter;
 import command.interfaces.IParameterMetadata;
 import java.math.BigInteger;
@@ -15,6 +16,13 @@ import java.util.Date;
 public final class Parameter implements IParameter {
     private final IParameterMetadata metaData;
     private final String value;
+
+    /**
+     * Creates a help parameter.
+     */
+    public static IParameter createHelpParameter() {
+        return new Parameter(ParameterMetadata.createHelpParameter(), null);
+    }
 
     /**
      * The Parameter constructor.
