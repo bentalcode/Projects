@@ -16,4 +16,9 @@ public interface IConstants {
    * The default encoding.
    */
   Charset DefaultEncoding = StandardCharsets.UTF_8;
+
+  /**
+   * The guid regex.
+   */
+  String guidRegex = "[0-9a-fA-F]{8}[-_]{0,1}[0-9a-fA-F]{4}[-_]{0,1}[0-9a-fA-F]{4}[-_]{0,1}[0-9a-fA-F]{4}[-_]{0,1}[0-9a-fA-F]{12}";
 }

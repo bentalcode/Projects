@@ -1,8 +1,5 @@
-package testbase.core;
+package base.core;
 
-import base.core.Pair;
-import base.core.Paths;
-import base.core.ResourcePathBuilder;
 import base.interfaces.IPair;
 import base.interfaces.ITestData;
 import java.nio.file.Path;

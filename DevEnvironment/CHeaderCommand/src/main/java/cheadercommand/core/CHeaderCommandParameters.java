@@ -1,5 +1,6 @@
 package cheadercommand.core;
 
+import base.core.Conditions;
 import base.core.Paths;
 import cheadercommand.interfaces.ICHeaderCommandParameters;
 import command.interfaces.ICommandParameters;
@@ -19,6 +20,10 @@ public final class CHeaderCommandParameters implements ICHeaderCommandParameters
      * The CHeaderCommandParameters constructor.
      */
     public CHeaderCommandParameters(ICommandParameters parameters) {
+        Conditions.validateNotNull(
+            parameters,
+            "The parameters of the command.");
+
         this.parameters = parameters;
 
         IParameter directoryPath = parameters.getParameterSet().getParameter("directoryPath");

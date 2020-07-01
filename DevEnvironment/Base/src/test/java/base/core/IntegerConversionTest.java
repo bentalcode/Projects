@@ -1,11 +1,11 @@
-package testbase.core;
+package base.core;
 
-import base.core.Conversion;
 import base.interfaces.IPair;
 import base.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.util.List;
 

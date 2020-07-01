@@ -4,6 +4,4 @@ dependencies {
     compile project(':Base')
     compile project(':Json')
     compile group: 'org.apache.santuario', name: 'xmlsec', version: '2.1.4'
-    //compile group: 'org.apache.xml.security', name: 'xml-security', version: '1.4.1'
-    // compile group: 'org.apache.xml.security', name: 'xml-security', version: xmlSecurityVersion
 }

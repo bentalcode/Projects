@@ -1,13 +1,10 @@
-package testbase.core;
+package base.core;
 
-import base.core.DestructorHandler;
-import base.core.Prime;
-import base.core.ResourceReader;
-import base.core.Scanners;
 import base.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.nio.file.Path;
 import java.util.Scanner;

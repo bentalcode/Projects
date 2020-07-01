@@ -1,11 +1,10 @@
-package testbase.core;
+package base.core;
 
-import base.core.ArrayIterator;
-import base.core.Strings;
 import base.interfaces.IIterator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 
 /**

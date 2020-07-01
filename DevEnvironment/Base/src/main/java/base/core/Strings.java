@@ -370,6 +370,142 @@ public final class Strings {
     }
 
     /**
+     * Gets first index of a character.
+     * Returns -1 if the character is not found.
+     */
+    public static int firstIndexOf(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char character) {
+
+        if (startIndex > endIndex) {
+            return -1;
+        }
+
+        return firstIndexOf(str, startIndex, endIndex, character, false);
+    }
+
+    /**
+     * Gets first index of a character.
+     * Returns -1 if the character is not found.
+     */
+    public static int firstIndexOfIgnoreCase(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char character) {
+
+        if (startIndex > endIndex) {
+            return -1;
+        }
+
+        return firstIndexOf(str, startIndex, endIndex, character, true);
+    }
+
+    /**
+     * Gets last index of a character.
+     * Returns -1 if the character is not found.
+     */
+    public static int lastIndexOf(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char character) {
+
+        if (startIndex > endIndex) {
+            return -1;
+        }
+
+        return lastIndexOf(str, startIndex, endIndex, character, false);
+    }
+
+    /**
+     * Gets last index of a character.
+     * Returns -1 if the character is not found.
+     */
+    public static int lastIndexOfIgnoreCase(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char character) {
+
+        if (startIndex > endIndex) {
+            return -1;
+        }
+
+        return lastIndexOf(str, startIndex, endIndex, character, true);
+    }
+
+    /**
+     * Gets first index of a character.
+     * Returns -1 if the character is not found.
+     */
+    private static int firstIndexOf(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char character,
+        boolean ignoreCase) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length);
+        assert(endIndex >= startIndex && endIndex < str.length);
+
+        int currIndex = startIndex;
+
+        while (currIndex <= endIndex) {
+            char currCharacter = str[currIndex];
+
+            if (ignoreCase) {
+                currCharacter = Character.toLowerCase(currCharacter);
+            }
+
+            if (currCharacter == character) {
+                return currIndex;
+            }
+
+            ++currIndex;
+        }
+
+        return -1;
+    }
+
+    /**
+     * Gets end index of a character.
+     * Returns -1 if the character is not found.
+     */
+    private static int lastIndexOf(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char character,
+        boolean ignoreCase) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length);
+        assert(endIndex >= startIndex && endIndex < str.length);
+
+        int currIndex = endIndex;
+
+        while (currIndex >= startIndex) {
+            char currCharacter = str[currIndex];
+
+            if (ignoreCase) {
+                currCharacter = Character.toLowerCase(currCharacter);
+            }
+
+            if (currCharacter == character) {
+                return currIndex;
+            }
+
+            --currIndex;
+        }
+
+        return -1;
+    }
+
+    /**
      * Clones a string.
      */
     public static char[] clone(

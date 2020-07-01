@@ -1,12 +1,12 @@
-package testbase.core;
+package base.core;
 
-import base.core.TwoDimensionalList;
-import base.core.TwoDimensionalListIterator;
 import base.interfaces.ITestData;
 import base.interfaces.ITwoDimensionalList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import testbase.core.Assertion;
+import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
 import java.util.List;
