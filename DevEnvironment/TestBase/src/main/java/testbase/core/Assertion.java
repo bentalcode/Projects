@@ -7,6 +7,7 @@ import base.interfaces.IEqualBuilder;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
 import org.junit.Assert;
 import java.util.Map;
 import testbase.interfaces.IAssertion;
@@ -273,6 +274,43 @@ public final class Assertion implements IAssertion {
 
         boolean status = new EqualBuilder()
             .withIterator(lhs, rhs, comparator)
+            .build();
+
+        this.assertTrue(
+            status,
+            message);
+    }
+
+    /**
+     * Asserts equality with iterator and reverse iterator.
+     */
+    @Override
+    public <T extends Comparable<T>> void assertEqualsWithIteratorAndReverseIterator(
+        IIterator<T> lhs,
+        IReverseIterator<T> rhs,
+        String message) {
+
+        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+
+        this.assertEqualsWithIteratorAndReverseIterator(
+            lhs,
+            rhs,
+            comparator,
+            message);
+    }
+
+    /**
+     * Asserts equality with iterator and reverse iterator.
+     */
+    @Override
+    public <T extends Comparable<T>> void assertEqualsWithIteratorAndReverseIterator(
+        IIterator<T> lhs,
+        IReverseIterator<T> rhs,
+        IEquatableComparator<T> comparator,
+        String message) {
+
+        boolean status = new EqualBuilder()
+            .withIteratorAndReverseIterator(lhs, rhs, comparator)
             .build();
 
         this.assertTrue(

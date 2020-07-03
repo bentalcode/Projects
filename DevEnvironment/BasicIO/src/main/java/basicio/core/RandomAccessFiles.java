@@ -31,8 +31,7 @@ public final class RandomAccessFiles {
             return new RandomAccessFile(path.toFile(), mode);
         }
         catch (FileNotFoundException e) {
-            String errorMessage =
-                "Failed creating a random access file due to the following error: " + e;
+            String errorMessage = "Failed creating a random access file due to the following error: " + e;
 
             log.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
@@ -73,8 +72,45 @@ public final class RandomAccessFiles {
             return randomAccessFile.readLine();
         }
         catch (IOException e) {
-            String errorMessage =
-                "The RandomAccessFile failed reading a line due to the following error: " + e;
+            String errorMessage = "The RandomAccessFile failed reading a line due to the following error: " + e;
+
+            log.error(errorMessage, e);
+            throw new BasicIOException(errorMessage, e);
+        }
+    }
+
+    /**
+     * Reads a byte from a random access file.
+     */
+    public static byte readByte(RandomAccessFile randomAccessFile) {
+        Conditions.validateNotNull(
+            randomAccessFile,
+            "The random access file.");
+
+        try {
+            return randomAccessFile.readByte();
+        }
+        catch (IOException e) {
+            String errorMessage = "The RandomAccessFile failed reading a byte due to the following error: " + e;
+
+            log.error(errorMessage, e);
+            throw new BasicIOException(errorMessage, e);
+        }
+    }
+
+    /**
+     * Reads a character from a random access file.
+     */
+    public static char readCharacter(RandomAccessFile randomAccessFile) {
+        Conditions.validateNotNull(
+            randomAccessFile,
+            "The random access file.");
+
+        try {
+            return randomAccessFile.readChar();
+        }
+        catch (IOException e) {
+            String errorMessage = "The RandomAccessFile failed reading a character due to the following error: " + e;
 
             log.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
@@ -95,6 +131,26 @@ public final class RandomAccessFiles {
         catch (IOException e) {
             String errorMessage =
                 "The RandomAccessFile failed getting file pointer due to the following error: " + e;
+
+            log.error(errorMessage, e);
+            throw new BasicIOException(errorMessage, e);
+        }
+    }
+
+    /**
+     * Gets size in bytes.
+     */
+    public static long length(RandomAccessFile randomAccessFile) {
+        Conditions.validateNotNull(
+            randomAccessFile,
+            "The random access file.");
+
+        try {
+            return randomAccessFile.length();
+        }
+        catch (IOException e) {
+            String errorMessage =
+                "The RandomAccessFile failed getting it's length due to the following error: " + e;
 
             log.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);

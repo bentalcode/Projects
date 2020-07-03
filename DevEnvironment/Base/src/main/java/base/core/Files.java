@@ -3,6 +3,7 @@ package base.core;
 import base.BaseException;
 import base.interfaces.IConstants;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import org.slf4j.Logger;
@@ -75,18 +76,41 @@ public final class Files {
     /**
      * Creates a temporary file.
      */
-    public static File createTemporaryFile(String prefix, String postfix) {
+    public static File createTemporaryFile(String prefixName, String postfixName) {
         File file;
 
         try {
-            file = File.createTempFile(prefix, postfix);
-
+            file = File.createTempFile(prefixName, postfixName);
         }
         catch (IOException e) {
             String errorMessage =
                 "Failed to create a temporary file due to the following error: " +
                 e.getMessage();
 
+            throw new BaseException(errorMessage);
+        }
+
+        file.deleteOnExit();
+
+        return file;
+    }
+
+    /**
+     * Creates a temporary file.
+     */
+    public static File createTemporaryFile(
+        String prefixName,
+        String postfixName,
+        String content) {
+
+        File file = Files.createTemporaryFile(prefixName, postfixName);
+
+        try (FileWriter writer = Writers.createFileWriter(file.toPath())) {
+            Writers.write(writer, content);
+            Writers.flush(writer);
+        }
+        catch (IOException e) {
+            String errorMessage = "Failed to create a temporary file.";
             throw new BaseException(errorMessage);
         }
 

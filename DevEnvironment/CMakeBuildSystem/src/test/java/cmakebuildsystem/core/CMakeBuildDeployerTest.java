@@ -129,8 +129,8 @@ public final class CMakeBuildDeployerTest {
         String content,
         String expectedContent) {
 
-        File file = this.createTempFile(content);
-        File expectedFile = this.createTempFile(expectedContent);
+        File file = Files.createTemporaryFile("cmakeDeploymentResult", "cmakeDeployment.txt", content);
+        File expectedFile = Files.createTemporaryFile("cmakeDeploymentResult", "cmakeDeployment.txt", expectedContent);
 
         IComparableComparator<Path> comparator = new FileComparator();
         int status = comparator.compareTo(file.toPath(), expectedFile.toPath());
@@ -138,25 +138,5 @@ public final class CMakeBuildDeployerTest {
         this.assertion.assertTrue(
             status == 0,
             "Incorrect logic for creating a deployment file.");
-    }
-
-    /**
-     * Creates a temporary file.
-     */
-    private File createTempFile(String content) {
-        File file = Files.createTemporaryFile("cmakeDeploymentResult", "cmakeDeployment.txt");
-
-        try (FileWriter writer = Writers.createFileWriter(file.toPath())) {
-            Writers.write(writer, content);
-            Writers.flush(writer);
-        }
-        catch (IOException e) {
-            String errorMessage = "Failed to create a temporary file.";
-            throw new CMakeBuildException(errorMessage);
-        }
-
-        file.deleteOnExit();
-
-        return file;
     }
 }

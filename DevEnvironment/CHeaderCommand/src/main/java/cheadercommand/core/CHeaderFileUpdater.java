@@ -14,17 +14,12 @@ import cheadercommand.interfaces.IFileUpdater;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The CHeaderFileUpdater class implements an updater of a c-header.
  */
 public final class CHeaderFileUpdater implements IFileUpdater {
-
-
     private final Path path;
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The CHeaderFileUpdater constructor.
@@ -50,15 +45,15 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     private void updateFileHeader() {
         ILineUpdater lineUpdater = new FileLineUpdater(this.path);
 
-        String formattedFileName = this.getFormattedFileName();
+        String formattedFileName = this.formatFileName();
         String fileNameRegex = this.getFileNameRegex(formattedFileName);
         String newFileName = this.newFileName(formattedFileName);
 
         List<IUpdateRecord> startUpdateData = this.createHeaderStartUpdateData(fileNameRegex, newFileName);
         lineUpdater.update(startUpdateData, UpdatePolicyType.AllMatches);
 
-        List<IUpdateRecord> endUpdateData = this.createHeaderStartUpdateData(fileNameRegex, newFileName);
-        // lineUpdater.update(endUpdateData, UpdatePolicyType.AllMatches);
+        IUpdateRecord endUpdateData = this.createHeaderEndUpdateData(fileNameRegex, newFileName);
+        lineUpdater.updateFromEnd(endUpdateData, UpdatePolicyType.AllMatches);
     }
 
     /**
@@ -84,7 +79,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     /**
      * Creates end-update data for a header.
      */
-    private List<IUpdateRecord> createHeaderEndUpdateData(
+    private IUpdateRecord createHeaderEndUpdateData(
         String fileNameRegex,
         String newFileName) {
 
@@ -92,7 +87,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
         String endifData = "#endif" + " // " + newFileName;
         IUpdateRecord endifUpdateRecord = new UpdateRecord(endifRegex, endifData);
 
-        return ArrayLists.of(endifUpdateRecord);
+        return endifUpdateRecord;
     }
 
     /**
@@ -107,13 +102,14 @@ public final class CHeaderFileUpdater implements IFileUpdater {
      */
     private String newFileName(String formattedFileName) {
         String guid = UUID.randomUUID().toString();
+        guid = guid.replace('-', '_');
         return formattedFileName + FileNames.snakeCasedSeparator + guid;
     }
 
     /**
-     * Gets formatted file name.
+     * Formats a file name.
      */
-    private String getFormattedFileName() {
+    private String formatFileName() {
         String fileName = this.path.getFileName().toString();
         String extension = FileNames.getExtension(fileName);
 

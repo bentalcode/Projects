@@ -231,6 +231,16 @@ public interface IEqualBuilder {
     <T extends Comparable<T>> IEqualBuilder withIterator(IIterator<T> lhs, IIterator<T> rhs, IEquatableComparator<T> comparator);
 
     /**
+     * With a generic iterator and a reverse iterator.
+     */
+    <T extends Comparable<T>> IEqualBuilder withIteratorAndReverseIterator(IIterator<T> lhs, IReverseIterator<T> rhs);
+
+    /**
+     * With a generic iterator, a reverse iterator and a comparator.
+     */
+    <T extends Comparable<T>> IEqualBuilder withIteratorAndReverseIterator(IIterator<T> lhs, IReverseIterator<T> rhs, IEquatableComparator<T> comparator);
+
+    /**
      * With a generic iterable.
      */
     <T extends Comparable<T>> IEqualBuilder withIterable(IIterable<T> lhs, IIterable<T> rhs);

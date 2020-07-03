@@ -6,6 +6,7 @@ import base.core.DestructorHandler;
 import base.interfaces.ICloseable;
 import base.interfaces.IDestructorHandler;
 import basicio.BasicIOException;
+import basicio.interfaces.ILineReader;
 import basicio.interfaces.ILineUpdater;
 import basicio.interfaces.IUpdateRecord;
 import basicio.interfaces.UpdatePolicyType;
@@ -19,11 +20,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The FileLineUpdater class implements a reader of lines of a file.
+ * The FileLineUpdater class implements an updater of lines of a file.
  */
 public final class FileLineUpdater implements ILineUpdater, ICloseable {
-    private static final long endLineSeparatorSize = 2;
-
     private final RandomAccessFile randomAccessFile;
     private final IDestructorHandler destructorHandler = new DestructorHandler();
 
@@ -39,33 +38,47 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
     }
 
     /**
-     * Updates a line.
+     * Updates a line that matches an update record.
+     * The search direction is from top to bottom.
      */
     @Override
-    public boolean update(
-        IUpdateRecord updateRecord,
-        UpdatePolicyType policyType) {
-
+    public boolean update(IUpdateRecord updateRecord) {
         Conditions.validateNotNull(
             updateRecord,
             "The update record.");
-
-        Conditions.validateNotNull(
-            policyType,
-            "The update policy type.");
 
         List<IUpdateRecord> updateRecords = ArrayLists.of(updateRecord);
 
         int numberOfUpdates = this.update(
             updateRecords,
-            policyType);
+            UpdatePolicyType.FirstMatch);
 
         return numberOfUpdates > 0;
     }
 
     /**
-     * Updates lines.
-     * Returns the number of updates.
+     * Updates a line that matches an update record.
+     * The search direction is from bottom to top.
+     */
+    @Override
+    public boolean updateFromEnd(IUpdateRecord updateRecord) {
+
+        Conditions.validateNotNull(
+            updateRecord,
+            "The update record.");
+
+        List<IUpdateRecord> updateRecords = ArrayLists.of(updateRecord);
+
+        int numberOfUpdates = this.updateFromEnd(
+            updateRecords,
+            UpdatePolicyType.FirstMatch);
+
+        return numberOfUpdates > 0;
+    }
+
+    /**
+     * Updates lines that matches update records.
+     * The search direction is from top to bottom.
      */
     @Override
     public int update(
@@ -80,28 +93,86 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
             policyType,
             "The update policy type.");
 
-        List<Pattern> patterns = new ArrayList<>(updateRecords.size());
+        //
+        // Create the reader of lines...
+        //
+        FileLineReader reader = new FileLineReader(this.randomAccessFile);
+        this.destructorHandler.register(reader);
 
-        for (IUpdateRecord updateRecord : updateRecords) {
-            Pattern pattern = Pattern.compile(updateRecord.getMatchingRegex());
-            patterns.add(pattern);
-        }
+        //
+        // Updates the lines...
+        //
+        int numberOfMatches = this.update(reader, updateRecords, policyType);
 
+        return numberOfMatches;
+    }
+
+    /**
+     * Updates lines that matches update records.
+     * The search direction is from bottom to top.
+     */
+    public int updateFromEnd(
+        List<IUpdateRecord> updateRecords,
+        UpdatePolicyType policyType) {
+
+        Conditions.validateNotNull(
+            updateRecords,
+            "The update records.");
+
+        Conditions.validateNotNull(
+            policyType,
+            "The update policy type.");
+
+        //
+        // Create the reverse reader of lines...
+        //
+        FileLineReverseReader reader = new FileLineReverseReader(this.randomAccessFile);
+        this.destructorHandler.register(reader);
+
+        //
+        // Updates the lines...
+        //
+        int numberOfMatches = this.update(reader, updateRecords, policyType);
+
+        return numberOfMatches;
+    }
+
+    /**
+     * Closes this resource gracefully.
+     */
+    @Override
+    public void close() {
+        this.destructorHandler.close();
+    }
+
+    /**
+     * Updates lines.
+     */
+    private int update(
+        ILineReader reader,
+        List<IUpdateRecord> updateRecords,
+        UpdatePolicyType policyType) {
+
+        //
+        // Create the matching patterns...
+        //
+        List<Pattern> patterns = this.createMatchingPatterns(updateRecords);
+
+        //
+        // Process each line...
+        //
         int numberOfMatches = 0;
-        int lineIndex = 0;
 
-        while (true) {
-            long startLinePosition = RandomAccessFiles.getFilePointer(this.randomAccessFile);
+        while (reader.hasNext()) {
+            String line = reader.next();
 
-            String line = RandomAccessFiles.readLine(this.randomAccessFile);
+            long lineIndex = reader.currentLineNumber();
+            long startLinePosition = reader.currentLineStartPosition();
+            long endLinePosition = reader.currentLineEndPosition();
 
-            if (line == null) {
-                break;
-            }
-
-            long endLinePosition = RandomAccessFiles.getFilePointer(this.randomAccessFile);
-            ++lineIndex;
-
+            //
+            // Process the line...
+            //
             if (this.processLine(
                     line,
                     lineIndex,
@@ -121,14 +192,6 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         }
 
         return numberOfMatches;
-    }
-
-    /**
-     * Closes this resource gracefully.
-     */
-    @Override
-    public void close() {
-        this.destructorHandler.close();
     }
 
     /**
@@ -175,9 +238,9 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         long endLinePosition,
         IUpdateRecord updateRecord) {
 
-        long endUpdatePosition = startLinePosition + updateRecord.getNewContent().length();
+        long updateSize = updateRecord.getNewContent().length();
 
-        if (endUpdatePosition + endLineSeparatorSize > endLinePosition) {
+        if (updateSize > line.length()) {
             String errorMessage =
                 "The FileLineUpdater can not replace content of a line: " + lineIndex +
                 " since the new content is larger than the replaced content.";
@@ -189,5 +252,19 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         RandomAccessFiles.seek(this.randomAccessFile, startLinePosition);
         RandomAccessFiles.write(this.randomAccessFile, updateRecord.getNewContent());
         RandomAccessFiles.seek(this.randomAccessFile, endLinePosition);
+    }
+
+    /**
+     * Creates matching patterns.
+     */
+    private static List<Pattern> createMatchingPatterns(List<IUpdateRecord> updateRecords) {
+        List<Pattern> patterns = new ArrayList<>(updateRecords.size());
+
+        for (IUpdateRecord updateRecord : updateRecords) {
+            Pattern pattern = Pattern.compile(updateRecord.getMatchingRegex());
+            patterns.add(pattern);
+        }
+
+        return patterns;
     }
 }

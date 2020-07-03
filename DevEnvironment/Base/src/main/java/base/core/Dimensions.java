@@ -16,6 +16,17 @@ public final class Dimensions {
     }
 
     /**
+     * Gets the length of a dimension.
+     */
+    public static long length(long startIndex, long endIndex) {
+        if (startIndex > endIndex) {
+            return 0;
+        }
+
+        return endIndex - startIndex + 1;
+    }
+
+    /**
      * The Dimensions constructor - Disables the default constructor.
      */
     private Dimensions() {

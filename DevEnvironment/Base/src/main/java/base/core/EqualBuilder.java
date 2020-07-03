@@ -10,6 +10,7 @@ import base.interfaces.IIterableComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IIteratorComparator;
 import base.interfaces.IMapComparator;
+import base.interfaces.IReverseIterator;
 import base.interfaces.ITwoDimensionalArrayComparator;
 import java.math.BigInteger;
 import java.time.Duration;
@@ -1013,6 +1014,47 @@ public final class EqualBuilder implements IEqualBuilder {
 
         IIteratorComparator<T> iteratorComparator = this.comparatorFactory.createIteratorComparator();
         this.equalityStatus = iteratorComparator.isEqual(lhs, rhs, comparator);
+
+        return this;
+    }
+
+    /**
+     * With a generic iterator and a reverse iterator.
+     */
+    @Override
+    public <T extends Comparable<T>> IEqualBuilder withIteratorAndReverseIterator(
+        IIterator<T> lhs,
+        IReverseIterator<T> rhs) {
+
+        IEquatableComparator<T> comparator = this.comparatorFactory.createComparator();
+        return this.withIteratorAndReverseIterator(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic iterator, a reverse iterator and a comparator.
+     */
+    @Override
+    public <T extends Comparable<T>> IEqualBuilder withIteratorAndReverseIterator(
+        IIterator<T> lhs,
+        IReverseIterator<T> rhs,
+        IEquatableComparator<T> comparator) {
+
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        while (lhs.hasNext() && rhs.hasNext()) {
+            T lhsElement = lhs.next();
+            T rhsElement = rhs.next();
+
+            this.equalityStatus = comparator.isEqual(lhsElement, rhsElement);
+
+            if (!this.equalityStatus) {
+                return this;
+            }
+        }
+
+        this.equalityStatus = !lhs.hasNext() && !rhs.hasNext();
 
         return this;
     }

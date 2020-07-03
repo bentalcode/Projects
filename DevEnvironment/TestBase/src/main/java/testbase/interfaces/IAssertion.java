@@ -3,6 +3,8 @@ package testbase.interfaces;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
+import base.interfaces.IReverseIterator;
+
 import java.util.Map;
 
 /**
@@ -143,6 +145,23 @@ public interface IAssertion {
     <T extends Comparable<T>> void assertEqualsWithIterators(
         IIterator<T> lhs,
         IIterator<T> rhs,
+        IEquatableComparator<T> comparator,
+        String message);
+
+    /**
+     * Asserts equality with iterator and reverse iterator.
+     */
+    <T extends Comparable<T>> void assertEqualsWithIteratorAndReverseIterator(
+        IIterator<T> lhs,
+        IReverseIterator<T> rhs,
+        String message);
+
+    /**
+     * Asserts equality with iterator and reverse iterator.
+     */
+    <T extends Comparable<T>> void assertEqualsWithIteratorAndReverseIterator(
+        IIterator<T> lhs,
+        IReverseIterator<T> rhs,
         IEquatableComparator<T> comparator,
         String message);
 

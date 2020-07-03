@@ -1,28 +1,48 @@
 package basicio.core;
 
+import base.core.Conditions;
 import base.core.DestructorHandler;
-import base.core.Scanners;
 import base.interfaces.ICloseable;
 import base.interfaces.IDestructorHandler;
-import basicio.interfaces.ILineReader;
+import basicio.interfaces.ILineReverseReader;
+import java.io.RandomAccessFile;
 import java.nio.file.Path;
-import java.util.Scanner;
 
 /**
  * The FileLineReader class implements a reader of lines of a file.
  */
-public final class FileLineReader implements ILineReader, ICloseable {
-    private final Scanner scanner;
-    private long lineNumber;
+public final class FileLineReader implements ILineReverseReader, ICloseable {
+    private final RandomAccessFile randomAccessFile;
     private final IDestructorHandler destructorHandler = new DestructorHandler();
+    private long position;
+    private long length;
+    private long lineIndex;
+    private long currLineStartPosition;
+    private long currLineEndPosition;
 
     /**
      * The FileLineReader constructor.
      */
     public FileLineReader(Path path) {
-        Scanner scanner = Scanners.createFileScanner(path);
-        this.destructorHandler.register(scanner);
-        this.scanner = scanner;
+        RandomAccessFile randomAccessFile = RandomAccessFiles.create(path, "r");
+
+        this.destructorHandler.register(randomAccessFile);
+        this.randomAccessFile = randomAccessFile;
+
+        this.reset();
+    }
+
+    /**
+     * The FileLineReader constructor.
+     */
+    public FileLineReader(RandomAccessFile randomAccessFile) {
+        Conditions.validateNotNull(
+            randomAccessFile,
+            "The random access file.");
+
+        this.randomAccessFile = randomAccessFile;
+
+        this.reset();
     }
 
     /**
@@ -30,7 +50,7 @@ public final class FileLineReader implements ILineReader, ICloseable {
      */
     @Override
     public boolean hasNext() {
-        return this.scanner.hasNextLine();
+        return this.position < this.length;
     }
 
     /**
@@ -40,8 +60,7 @@ public final class FileLineReader implements ILineReader, ICloseable {
     public String next() {
         assert(this.hasNext());
 
-        String currLine = this.scanner.nextLine();
-        ++this.lineNumber;
+        String currLine = this.nextLine();
 
         return currLine;
     }
@@ -51,7 +70,23 @@ public final class FileLineReader implements ILineReader, ICloseable {
      */
     @Override
     public long currentLineNumber() {
-        return this.lineNumber;
+        return this.lineIndex;
+    }
+
+    /**
+     * Gets the start position of current line.
+     */
+    @Override
+    public long currentLineStartPosition() {
+        return this.currLineStartPosition;
+    }
+
+    /**
+     * Gets the end position of current line.
+     */
+    @Override
+    public long currentLineEndPosition() {
+        return this.currLineEndPosition;
     }
 
     /**
@@ -60,5 +95,38 @@ public final class FileLineReader implements ILineReader, ICloseable {
     @Override
     public void close() {
         this.destructorHandler.close();
+    }
+
+    /**
+     * Gets the next line.
+     */
+    private String nextLine() {
+        this.currLineStartPosition = RandomAccessFiles.getFilePointer(this.randomAccessFile);
+        String line = RandomAccessFiles.readLine(this.randomAccessFile);
+        this.currLineEndPosition = RandomAccessFiles.getFilePointer(this.randomAccessFile);
+
+        this.position = this.currLineEndPosition;
+
+        if (line != null) {
+            ++this.lineIndex;
+        }
+        else {
+            this.position = this.length;
+            this.currLineStartPosition = -1;
+            this.currLineEndPosition = -1;
+        }
+
+        return line;
+    }
+
+    /**
+     * Resets the reader.
+     */
+    void reset() {
+        this.position = 0;
+        this.length = RandomAccessFiles.length(this.randomAccessFile);
+        this.lineIndex = 0;
+        this.currLineStartPosition = -1;
+        this.currLineEndPosition = -1;
     }
 }
