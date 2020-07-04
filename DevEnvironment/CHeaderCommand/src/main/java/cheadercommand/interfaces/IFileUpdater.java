@@ -7,5 +7,5 @@ public interface IFileUpdater {
     /**
      * Updates a file.
      */
-    void update();
+    long update();
 }

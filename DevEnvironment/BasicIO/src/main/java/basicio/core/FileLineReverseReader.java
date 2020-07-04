@@ -15,6 +15,7 @@ import java.nio.file.Path;
 public final class FileLineReverseReader implements ILineReverseReader, ICloseable {
     private final RandomAccessFile randomAccessFile;
     private final IDestructorHandler destructorHandler = new DestructorHandler();
+    private long length;
     private long position;
     private long lineIndex;
     private long lineStartPosition;
@@ -142,7 +143,9 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
                 this.lineStartPosition = this.position + 2;
 
                 if (this.lineEndPosition == -1) {
-                    this.lineEndPosition = this.lineStartPosition;
+                    this.lineEndPosition = (this.lineStartPosition > this.length - 1) ?
+                        this.lineStartPosition :
+                        this.length - 1;
                 }
 
                 String separatorToken = lineSeparatorType.getToken();
@@ -150,7 +153,7 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
                 //
                 // Get the content of the current line...
                 //
-                line = this.processResultantLine();
+                line = this.processResultantLine(this.lineStartPosition, this.lineEndPosition);
 
                 if (separatorToken.length() == 1) {
                     this.previousCharacter();
@@ -180,13 +183,13 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
             }
         }
 
-        return this.processResultantLine();
+        return this.processResultantLine(0, this.lineEndPosition);
     }
 
     /**
      * Processes the resultant line.
      */
-    private String processResultantLine() {
+    private String processResultantLine(long lineStartPosition, long lineEndPosition) {
         this.lineBuilder.reverse();
         String line = this.lineBuilder.toString();
         this.lineBuilder = new StringBuilder();
@@ -215,7 +218,8 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
      * Reset the reader.
      */
     private void reset() {
-        this.position = RandomAccessFiles.length(this.randomAccessFile) - 1;;
+        this.length = RandomAccessFiles.length(this.randomAccessFile);
+        this.position = this.length - 1;
         this.lineIndex = 0;
         this.lineStartPosition = -1;
         this.lineEndPosition = -1;

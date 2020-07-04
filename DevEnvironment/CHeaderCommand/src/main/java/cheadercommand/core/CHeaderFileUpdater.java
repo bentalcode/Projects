@@ -35,14 +35,15 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     /**
      * Updates the file.
      */
-    public void update() {
-        this.updateFileHeader();
+    @Override
+    public long update() {
+        return this.updateFileHeader();
     }
 
     /**
      * Updates file header.
      */
-    private void updateFileHeader() {
+    private long updateFileHeader() {
         ILineUpdater lineUpdater = new FileLineUpdater(this.path);
 
         String formattedFileName = this.formatFileName();
@@ -50,10 +51,14 @@ public final class CHeaderFileUpdater implements IFileUpdater {
         String newFileName = this.newFileName(formattedFileName);
 
         List<IUpdateRecord> startUpdateData = this.createHeaderStartUpdateData(fileNameRegex, newFileName);
-        lineUpdater.update(startUpdateData, UpdatePolicyType.AllMatches);
+        long numberOfUpdates = lineUpdater.update(startUpdateData, UpdatePolicyType.AllMatches);
 
         IUpdateRecord endUpdateData = this.createHeaderEndUpdateData(fileNameRegex, newFileName);
-        lineUpdater.updateFromEnd(endUpdateData, UpdatePolicyType.AllMatches);
+        if (lineUpdater.updateFromEnd(endUpdateData)) {
+            ++numberOfUpdates;
+        }
+
+        return numberOfUpdates;
     }
 
     /**

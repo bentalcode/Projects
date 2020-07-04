@@ -62,7 +62,6 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
      */
     @Override
     public boolean updateFromEnd(IUpdateRecord updateRecord) {
-
         Conditions.validateNotNull(
             updateRecord,
             "The update record.");
@@ -182,12 +181,12 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
                     patterns)) {
 
                 ++numberOfMatches;
-            }
 
-            if (policyType == UpdatePolicyType.FirstMatch ||
-                policyType == UpdatePolicyType.AllMatches && numberOfMatches == updateRecords.size()) {
+                if (policyType == UpdatePolicyType.FirstMatch ||
+                    (policyType == UpdatePolicyType.AllMatches && numberOfMatches == updateRecords.size())) {
 
-                break;
+                    break;
+                }
             }
         }
 
