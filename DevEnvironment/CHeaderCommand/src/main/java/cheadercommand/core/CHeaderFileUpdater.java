@@ -2,24 +2,32 @@ package cheadercommand.core;
 
 import base.core.ArrayLists;
 import base.core.Conditions;
+import base.core.DestructorHandler;
+import basicio.core.FileLineUpdater;
+import basicio.core.LineMatcher;
+import basicio.core.LineReverseMatcher;
+import basicio.core.MatchingRecord;
 import basicio.interfaces.FileNameType;
 import basicio.core.FileNames;
 import base.interfaces.IConstants;
-import basicio.core.FileLineUpdater;
 import basicio.core.UpdateRecord;
-import basicio.interfaces.ILineUpdater;
+import basicio.interfaces.IMatchingRecord;
+import basicio.interfaces.IMatchingRecordResult;
 import basicio.interfaces.IUpdateRecord;
-import basicio.interfaces.UpdatePolicyType;
+import basicio.interfaces.MatchPolicyType;
 import cheadercommand.interfaces.IFileUpdater;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The CHeaderFileUpdater class implements an updater of a c-header.
  */
 public final class CHeaderFileUpdater implements IFileUpdater {
     private final Path path;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The CHeaderFileUpdater constructor.
@@ -37,25 +45,80 @@ public final class CHeaderFileUpdater implements IFileUpdater {
      */
     @Override
     public long update() {
+        if (!this.canUpdateFileHeader()) {
+            String warningMessage =
+                "The header of file: " + this.path + " can not get updated." +
+                "; Skipping the file header.";
+
+            this.log.warn(warningMessage);
+
+            return 0;
+        }
+
         return this.updateFileHeader();
+    }
+
+    /**
+     * Checks whether the file header can get updated.
+     */
+    private boolean canUpdateFileHeader() {
+        String formattedFileName = this.formatFileName();
+        String fileNameRegex = getFileNameRegex(formattedFileName);
+
+        String ifndefRegex = createIfndefRegex(fileNameRegex);
+        String defineRegex = createDefineRegex(fileNameRegex);
+        String endifRegex = createEndifRegex(fileNameRegex);
+
+        IMatchingRecord ifndefMatchingRecord = new MatchingRecord(ifndefRegex);
+        IMatchingRecord defineMatchingRecord = new MatchingRecord(defineRegex);
+        IMatchingRecord endifMatchingRecord = new MatchingRecord(endifRegex);
+
+        int numberOfMatchingRecords = 0;
+
+        try (DestructorHandler destructorHandler = new DestructorHandler()) {
+            LineMatcher lineMatcher = LineMatcher.createFileLineMatcher(this.path);
+            destructorHandler.register(lineMatcher);
+
+            LineReverseMatcher lineReverseMatcher = LineReverseMatcher.createFileLineReverseMatcher(this.path);
+            destructorHandler.register(lineReverseMatcher);
+
+            List<IMatchingRecordResult> result = lineMatcher.match(ArrayLists.of(
+                ifndefMatchingRecord,
+                defineMatchingRecord));
+
+            for (IMatchingRecordResult matchingRecordResult : result) {
+                numberOfMatchingRecords += matchingRecordResult.matchingLinesSize();
+            }
+
+            IMatchingRecordResult matchingRecordResult = lineReverseMatcher.match(endifMatchingRecord);
+
+            numberOfMatchingRecords += matchingRecordResult.matchingLinesSize();
+        }
+
+        return numberOfMatchingRecords == 3;
     }
 
     /**
      * Updates file header.
      */
     private long updateFileHeader() {
-        ILineUpdater lineUpdater = new FileLineUpdater(this.path);
+        long numberOfUpdates;
 
-        String formattedFileName = this.formatFileName();
-        String fileNameRegex = this.getFileNameRegex(formattedFileName);
-        String newFileName = this.newFileName(formattedFileName);
+        try (DestructorHandler destructorHandler = new DestructorHandler()) {
+            FileLineUpdater lineUpdater = new FileLineUpdater(this.path);
+            destructorHandler.register(lineUpdater);
 
-        List<IUpdateRecord> startUpdateData = this.createHeaderStartUpdateData(fileNameRegex, newFileName);
-        long numberOfUpdates = lineUpdater.update(startUpdateData, UpdatePolicyType.AllMatches);
+            String formattedFileName = this.formatFileName();
+            String fileNameRegex = getFileNameRegex(formattedFileName);
+            String newFileName = newFileName(formattedFileName);
 
-        IUpdateRecord endUpdateData = this.createHeaderEndUpdateData(fileNameRegex, newFileName);
-        if (lineUpdater.updateFromEnd(endUpdateData)) {
-            ++numberOfUpdates;
+            List<IUpdateRecord> startUpdateData = createHeaderStartUpdateData(fileNameRegex, newFileName);
+            numberOfUpdates = lineUpdater.update(startUpdateData, MatchPolicyType.AllMatches);
+
+            IUpdateRecord endUpdateData = createHeaderEndUpdateData(fileNameRegex, newFileName);
+            if (lineUpdater.updateFromEnd(endUpdateData)) {
+                ++numberOfUpdates;
+            }
         }
 
         return numberOfUpdates;
@@ -64,15 +127,15 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     /**
      * Creates start-update data for a header.
      */
-    private List<IUpdateRecord> createHeaderStartUpdateData(
+    private static List<IUpdateRecord> createHeaderStartUpdateData(
         String fileNameRegex,
         String newFileName) {
 
-        String ifndefRegex = "#ifndef " + fileNameRegex;
+        String ifndefRegex = createIfndefRegex(fileNameRegex);
         String ifndefData = "#ifndef " + newFileName;
         IUpdateRecord ifndefUpdateRecord = new UpdateRecord(ifndefRegex, ifndefData);
 
-        String defineRegex = "#define " + fileNameRegex;
+        String defineRegex = createDefineRegex(fileNameRegex);
         String defineData = "#define " + newFileName;
         IUpdateRecord defineUpdateRecord = new UpdateRecord(defineRegex, defineData);
 
@@ -84,11 +147,11 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     /**
      * Creates end-update data for a header.
      */
-    private IUpdateRecord createHeaderEndUpdateData(
+    private static IUpdateRecord createHeaderEndUpdateData(
         String fileNameRegex,
         String newFileName) {
 
-        String endifRegex = "#endif" + " // " + fileNameRegex;
+        String endifRegex = createEndifRegex(fileNameRegex);
         String endifData = "#endif" + " // " + newFileName;
         IUpdateRecord endifUpdateRecord = new UpdateRecord(endifRegex, endifData);
 
@@ -96,16 +159,37 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     }
 
     /**
+     * Creates ifndef regex.
+     */
+    private static String createIfndefRegex(String fileNameRegex) {
+        return "#ifndef " + fileNameRegex;
+    }
+
+    /**
+     * Creates define regex.
+     */
+    private static String createDefineRegex(String fileNameRegex) {
+        return "#define " + fileNameRegex;
+    }
+
+    /**
+     * Creates endif regex.
+     */
+    private static String createEndifRegex(String fileNameRegex) {
+        return "#endif" + " // " + fileNameRegex;
+    }
+
+    /**
      * Gets a regex of a file name.
      */
-    private String getFileNameRegex(String formattedFileName) {
+    private static String getFileNameRegex(String formattedFileName) {
         return formattedFileName + FileNames.snakeCasedSeparator + IConstants.guidRegex;
     }
 
     /**
      * Gets a new file name.
      */
-    private String newFileName(String formattedFileName) {
+    private static String newFileName(String formattedFileName) {
         String guid = UUID.randomUUID().toString();
         guid = guid.replace('-', '_');
         return formattedFileName + FileNames.snakeCasedSeparator + guid;

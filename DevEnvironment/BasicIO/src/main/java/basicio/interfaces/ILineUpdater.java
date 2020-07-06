@@ -24,7 +24,7 @@ public interface ILineUpdater {
      */
     int update(
         List<IUpdateRecord> updatesData,
-        UpdatePolicyType policyType);
+        MatchPolicyType policyType);
 
     /**
      * Updates lines that matches update records.
@@ -32,5 +32,5 @@ public interface ILineUpdater {
      */
     int updateFromEnd(
         List<IUpdateRecord> updateRecords,
-        UpdatePolicyType policyType);
+        MatchPolicyType policyType);
 }

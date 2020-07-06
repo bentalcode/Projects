@@ -1,5 +1,5 @@
-#ifndef DATE_TIME_H_cdfacc07_fdd0_4713_bf04_43317c1aa415
-#define DATE_TIME_H_cdfacc07_fdd0_4713_bf04_43317c1aa415
+#ifndef DATE_TIME_H_11d614ad_3281_46d4_85fc_7b46dabf37e2
+#define DATE_TIME_H_11d614ad_3281_46d4_85fc_7b46dabf37e2
 
 #include "Duration.h"
 
@@ -72,4 +72,4 @@ namespace base
     }
 }
 
-#endif // DATE_TIME_H_cdfacc07_fdd0_4713_bf04_43317c1aa415
+#endif // DATE_TIME_H_11d614ad_3281_46d4_85fc_7b46dabf37e2

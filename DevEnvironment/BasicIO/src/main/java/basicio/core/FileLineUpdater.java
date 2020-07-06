@@ -9,7 +9,7 @@ import basicio.BasicIOException;
 import basicio.interfaces.ILineReader;
 import basicio.interfaces.ILineUpdater;
 import basicio.interfaces.IUpdateRecord;
-import basicio.interfaces.UpdatePolicyType;
+import basicio.interfaces.MatchPolicyType;
 import java.io.RandomAccessFile;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
 
         int numberOfUpdates = this.update(
             updateRecords,
-            UpdatePolicyType.FirstMatch);
+            MatchPolicyType.FirstMatch);
 
         return numberOfUpdates > 0;
     }
@@ -70,7 +70,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
 
         int numberOfUpdates = this.updateFromEnd(
             updateRecords,
-            UpdatePolicyType.FirstMatch);
+            MatchPolicyType.FirstMatch);
 
         return numberOfUpdates > 0;
     }
@@ -82,7 +82,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
     @Override
     public int update(
         List<IUpdateRecord> updateRecords,
-        UpdatePolicyType policyType) {
+        MatchPolicyType policyType) {
 
         Conditions.validateNotNull(
             updateRecords,
@@ -112,7 +112,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
      */
     public int updateFromEnd(
         List<IUpdateRecord> updateRecords,
-        UpdatePolicyType policyType) {
+        MatchPolicyType policyType) {
 
         Conditions.validateNotNull(
             updateRecords,
@@ -150,7 +150,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
     private int update(
         ILineReader reader,
         List<IUpdateRecord> updateRecords,
-        UpdatePolicyType policyType) {
+        MatchPolicyType policyType) {
 
         //
         // Create the matching patterns...
@@ -182,8 +182,8 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
 
                 ++numberOfMatches;
 
-                if (policyType == UpdatePolicyType.FirstMatch ||
-                    (policyType == UpdatePolicyType.AllMatches && numberOfMatches == updateRecords.size())) {
+                if (policyType == MatchPolicyType.FirstMatch ||
+                    (policyType == MatchPolicyType.AllMatches && numberOfMatches == updateRecords.size())) {
 
                     break;
                 }
