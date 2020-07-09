@@ -1,5 +1,5 @@
-#ifndef CONCURRENCY_EXCEPTION_H_4422abf4_e8e4_4e39_9d12_8789c39ed71a
-#define CONCURRENCY_EXCEPTION_H_4422abf4_e8e4_4e39_9d12_8789c39ed71a
+#ifndef CONCURRENCY_EXCEPTION_H_d4e44e49_92db_4022_bd53_63d3dbb8c0cd
+#define CONCURRENCY_EXCEPTION_H_d4e44e49_92db_4022_bd53_63d3dbb8c0cd
 
 #include "PreCompiled.h"
 #include <exception>
@@ -44,4 +44,4 @@ private:
     std::exception_ptr m_innerExceptionPtr;
 };
 
-#endif // CONCURRENCY_EXCEPTION_H_4422abf4_e8e4_4e39_9d12_8789c39ed71a
+#endif // CONCURRENCY_EXCEPTION_H_d4e44e49_92db_4022_bd53_63d3dbb8c0cd
