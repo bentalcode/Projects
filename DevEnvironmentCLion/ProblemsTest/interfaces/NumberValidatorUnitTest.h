@@ -1,5 +1,5 @@
-#ifndef NUMBER_VALIDATOR_UNIT_TEST_H_e37c065d_6ff9_420e_8ace_267d0895229d
-#define NUMBER_VALIDATOR_UNIT_TEST_H_e37c065d_6ff9_420e_8ace_267d0895229d
+#ifndef NUMBER_VALIDATOR_UNIT_TEST_H_964bc38d_4c6b_4f8f_9007_1bc3d0b50ae2
+#define NUMBER_VALIDATOR_UNIT_TEST_H_964bc38d_4c6b_4f8f_9007_1bc3d0b50ae2
 
 #include "UnitTestBase.h"
 #include "NumberValidator.h"
@@ -52,4 +52,4 @@ namespace problems_test {
     };
 }
 
-#endif /* NUMBER_VALIDATOR_UNIT_TEST_H_e37c065d_6ff9_420e_8ace_267d0895229d */
+#endif // NUMBER_VALIDATOR_UNIT_TEST_H_964bc38d_4c6b_4f8f_9007_1bc3d0b50ae2

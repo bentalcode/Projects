@@ -1,5 +1,5 @@
-#ifndef MATRIX_FINDER_UNIT_TEST_H_5009ad59_237a_45b8_9d81_fcc9d84e6f5d
-#define MATRIX_FINDER_UNIT_TEST_H_5009ad59_237a_45b8_9d81_fcc9d84e6f5d
+#ifndef MATRIX_FINDER_UNIT_TEST_H_ba5a091f_6dbb_4715_8897_5f8ae72e8a06
+#define MATRIX_FINDER_UNIT_TEST_H_ba5a091f_6dbb_4715_8897_5f8ae72e8a06
 
 #include "UnitTestBase.h"
 #include "MatrixFinder.h"
@@ -73,4 +73,4 @@ namespace problems_test {
     }
 }
 
-#endif /* MATRIX_FINDER_UNIT_TEST_H_5009ad59_237a_45b8_9d81_fcc9d84e6f5d */
+#endif // MATRIX_FINDER_UNIT_TEST_H_ba5a091f_6dbb_4715_8897_5f8ae72e8a06

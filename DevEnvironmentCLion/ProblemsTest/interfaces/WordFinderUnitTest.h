@@ -1,5 +1,5 @@
-#ifndef WORD_FINDER_UNIT_TEST_H_b37b072c_3dd6_4041_8736_a32fb9715c9e
-#define WORD_FINDER_UNIT_TEST_H_b37b072c_3dd6_4041_8736_a32fb9715c9e
+#ifndef WORD_FINDER_UNIT_TEST_H_14a35f72_4e56_46b0_bed8_19e5df53e6d9
+#define WORD_FINDER_UNIT_TEST_H_14a35f72_4e56_46b0_bed8_19e5df53e6d9
 
 #include "UnitTestBase.h"
 #include "Matrix.h"
@@ -57,4 +57,4 @@ namespace problems_test {
 
 }
 
-#endif /* WORD_FINDER_UNIT_TEST_H_b37b072c_3dd6_4041_8736_a32fb9715c9e */
+#endif // WORD_FINDER_UNIT_TEST_H_14a35f72_4e56_46b0_bed8_19e5df53e6d9

@@ -1,5 +1,5 @@
-#ifndef MATCHING_TRIPLETS_UNIT_TEST_H_e253496f_a2df_4b02_af11_3ee6aaced780
-#define MATCHING_TRIPLETS_UNIT_TEST_H_e253496f_a2df_4b02_af11_3ee6aaced780
+#ifndef MATCHING_TRIPLETS_UNIT_TEST_H_a4a34226_db57_4b3f_b421_0941141b68c1
+#define MATCHING_TRIPLETS_UNIT_TEST_H_a4a34226_db57_4b3f_b421_0941141b68c1
 
 #include "UnitTestBase.h"
 #include "MatchingTriplets.h"
@@ -143,4 +143,4 @@ namespace problems_test {
     }
 }
 
-#endif /* MATCHING_TRIPLETS_UNIT_TEST_H_e253496f_a2df_4b02_af11_3ee6aaced780 */
+#endif // MATCHING_TRIPLETS_UNIT_TEST_H_a4a34226_db57_4b3f_b421_0941141b68c1
