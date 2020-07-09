@@ -194,7 +194,7 @@ add_library(UnitTesting STATIC
 )
 
 set(DATA_STRUCTURES_INCLUDES_FILES
-    ../DataStructures/DataStructureExcpeption.h
+    ../DataStructures/DataStructureException.h
     ../DataStructures/core/PreCompiled.h
     ../DataStructures/interfaces/IteratorOfIteratorCollection.h
 )

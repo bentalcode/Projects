@@ -25,7 +25,7 @@ else()
 endif()
 
 set(DATA_STRUCTURES_INCLUDES_FILES
-    ./DataStructureExcpeption.h
+    ./DataStructureException.h
     ./core/PreCompiled.h
     ./interfaces/IteratorOfIteratorCollection.h
 )
