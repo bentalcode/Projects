@@ -1,5 +1,5 @@
-#ifndef MATRIX_UNIT_TEST_H_0f0eb0f1_62ca_4b22_8c33_ce7057cfaab6
-#define MATRIX_UNIT_TEST_H_0f0eb0f1_62ca_4b22_8c33_ce7057cfaab6
+#ifndef MATRIX_UNIT_TEST_H_186b27af_b022_46d8_b9fc_23d8b081f426
+#define MATRIX_UNIT_TEST_H_186b27af_b022_46d8_b9fc_23d8b081f426
 
 #include "UnitTestBase.h"
 #include "Matrix.h"
@@ -65,4 +65,4 @@ namespace base_test {
     };
 }
 
-#endif /* MATRIX_UNIT_TEST_H_0f0eb0f1_62ca_4b22_8c33_ce7057cfaab6 */
+#endif // MATRIX_UNIT_TEST_H_186b27af_b022_46d8_b9fc_23d8b081f426
