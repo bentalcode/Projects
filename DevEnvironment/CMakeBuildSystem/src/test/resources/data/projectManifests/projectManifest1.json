@@ -8,6 +8,7 @@
         "MemoryManagement",
         "Problems",
         "BaseTest",
+        "UnitTesting",
         "DataStructuresTest",
         "ConcurrencyTest",
         "MemoryManagementTest",

@@ -190,20 +190,30 @@ public final class PathsTest {
     @Test
     public void pathMatcherTest() {
         String path1 = ".\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
-        String pattern1 = "glob:**\\\\build\\\\**";
+        String pattern1 = "glob:**\\\\*build*\\\\**";
         boolean status1 = true;
 
         String path2 = "..\\Base\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
-        String pattern2 = "glob:**\\\\build\\\\**";
+        String pattern2 = "glob:**\\\\*build*\\\\**";
         boolean status2 = true;
 
         String path3 = "..\\UnitTesting\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
-        String pattern3 = "glob:**\\\\build\\\\**";
+        String pattern3 = "glob:**\\\\*build*\\\\**";
         boolean status3 = true;
+
+        String path4 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
+        String pattern4 = "glob:**\\\\*build*\\\\**";
+        boolean status4 = true;
+
+        String path5 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\MemoryManagement\\cmake-build-debug\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
+        String pattern5 = "glob:**\\\\*build*\\\\**";
+        boolean status5 = true;
 
         this.testPathMatcher(path1, pattern1, status1);
         this.testPathMatcher(path2, pattern2, status2);
         this.testPathMatcher(path3, pattern3, status3);
+        this.testPathMatcher(path4, pattern4, status4);
+        this.testPathMatcher(path5, pattern5, status5);
     }
 
     /**

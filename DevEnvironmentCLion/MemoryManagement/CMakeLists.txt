@@ -38,7 +38,6 @@ set(MEMORY_MANAGEMENT_INCLUDES_FILES
 )
 
 set(MEMORY_MANAGEMENT_SOURCES_FILES
-    ./cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/CMakeCXXCompilerId.cpp
     ./core/FixedMemoryPool.cpp
     ./core/MemoryAllocator.cpp
     ./core/MemoryPool.cpp

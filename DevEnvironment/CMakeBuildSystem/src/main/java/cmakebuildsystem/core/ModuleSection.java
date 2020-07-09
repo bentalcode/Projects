@@ -227,6 +227,10 @@ public final class ModuleSection implements ICMakeBuildElement {
         Path currentPath = this.getRootPath();
 
         for (Path path : paths) {
+            if (ignoreMatcher.match(path.toString())) {
+                continue;
+            }
+
             String relativePath = Paths.getRelativePath(path.toString(), currentPath.toString());
 
             if (relativePath != null && !ignoreMatcher.match(relativePath)) {
