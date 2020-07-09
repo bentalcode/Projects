@@ -1,5 +1,5 @@
-#ifndef OBJECT_POOL_ELEMENT_H_82329007_9a10_410b_9bc9_5dbb022ea998
-#define OBJECT_POOL_ELEMENT_H_82329007_9a10_410b_9bc9_5dbb022ea998
+#ifndef OBJECT_POOL_ELEMENT_H_66703374_1ac2_456f_9bd1_dbd77564ecca
+#define OBJECT_POOL_ELEMENT_H_66703374_1ac2_456f_9bd1_dbd77564ecca
 
 #include "ObjectPool.h"
 
@@ -80,4 +80,4 @@ namespace memory_management
     }
 }
 
-#endif /* OBJECT_POOL_ELEMENT_H_82329007_9a10_410b_9bc9_5dbb022ea998 */
+#endif // OBJECT_POOL_ELEMENT_H_66703374_1ac2_456f_9bd1_dbd77564ecca

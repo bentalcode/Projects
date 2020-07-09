@@ -1,5 +1,5 @@
-#ifndef I_MEMORY_ALLOCATOR_H_9a678253_ac7f_46b1_928f_124cde37a2ab
-#define I_MEMORY_ALLOCATOR_H_9a678253_ac7f_46b1_928f_124cde37a2ab
+#ifndef I_MEMORY_ALLOCATOR_H_353367a6_e6bd_4406_8a02_581fe0c92f75
+#define I_MEMORY_ALLOCATOR_H_353367a6_e6bd_4406_8a02_581fe0c92f75
 
 namespace memory_management
 {
@@ -58,4 +58,4 @@ namespace memory_management
     };
 }
 
-#endif // I_MEMORY_ALLOCATOR_H_9a678253_ac7f_46b1_928f_124cde37a2ab
+#endif // I_MEMORY_ALLOCATOR_H_353367a6_e6bd_4406_8a02_581fe0c92f75
