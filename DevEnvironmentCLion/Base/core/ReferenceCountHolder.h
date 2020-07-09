@@ -1,5 +1,5 @@
-#ifndef REFERENCE_COUNT_HOLDER_H_b874cb33_569b_4f4a_8172_30d4ca521119
-#define REFERENCE_COUNT_HOLDER_H_b874cb33_569b_4f4a_8172_30d4ca521119
+#ifndef REFERENCE_COUNT_HOLDER_H_b58b3e20_f163_4d62_98dc_297b7068daa7
+#define REFERENCE_COUNT_HOLDER_H_b58b3e20_f163_4d62_98dc_297b7068daa7
 
 #include <iostream>
 #include "ReferenceCount.h"
@@ -91,4 +91,4 @@ namespace base
     }
 }
 
-#endif // REFERENCE_COUNT_HOLDER_H_b874cb33_569b_4f4a_8172_30d4ca521119
+#endif // REFERENCE_COUNT_HOLDER_H_b58b3e20_f163_4d62_98dc_297b7068daa7

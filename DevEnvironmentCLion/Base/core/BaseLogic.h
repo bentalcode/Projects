@@ -1,5 +1,5 @@
-#ifndef BASE_LOGIC_H_07043b6f_700b_48ad_b437_66214b8fe97f
-#define BASE_LOGIC_H_07043b6f_700b_48ad_b437_66214b8fe97f
+#ifndef BASE_LOGIC_H_c4a868dc_da0b_4927_ab53_fc88886932f3
+#define BASE_LOGIC_H_c4a868dc_da0b_4927_ab53_fc88886932f3
 
 #include "BaseException.h"
 
@@ -42,4 +42,4 @@ namespace base {
     };
 }
 
-#endif // BASE_LOGIC_H_07043b6f_700b_48ad_b437_66214b8fe97f
+#endif // BASE_LOGIC_H_c4a868dc_da0b_4927_ab53_fc88886932f3

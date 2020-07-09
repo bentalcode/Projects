@@ -1,5 +1,5 @@
-#ifndef I_INTERVAL_MAP_H_89203c46_db82_45b7_ab27_1511e68e7bfd
-#define I_INTERVAL_MAP_H_89203c46_db82_45b7_ab27_1511e68e7bfd
+#ifndef I_INTERVAL_MAP_H_9141bb26_830a_466a_8f05_d66388d7c125
+#define I_INTERVAL_MAP_H_9141bb26_830a_466a_8f05_d66388d7c125
 
 #include "ISizableCollection.h"
 #include "IIterable.h"
@@ -49,4 +49,4 @@ namespace base
     };
 }
 
-#endif // I_INTERVAL_MAP_H_89203c46_db82_45b7_ab27_1511e68e7bfd
+#endif // I_INTERVAL_MAP_H_9141bb26_830a_466a_8f05_d66388d7c125

@@ -1,5 +1,5 @@
-#ifndef TEST_BASE_EXCEPTION_H_cff8e346_6761_4e07_8fb9_a7644b7badd7
-#define TEST_BASE_EXCEPTION_H_cff8e346_6761_4e07_8fb9_a7644b7badd7
+#ifndef TEST_BASE_EXCEPTION_H_4cc67362_8400_476c_8436_8e5b96732e0d
+#define TEST_BASE_EXCEPTION_H_4cc67362_8400_476c_8436_8e5b96732e0d
 
 #include <exception>
 
@@ -43,4 +43,4 @@ private:
     std::exception_ptr m_innerExceptionPtr;
 };
 
-#endif // TEST_BASE_EXCEPTION_H_cff8e346_6761_4e07_8fb9_a7644b7badd7
+#endif // TEST_BASE_EXCEPTION_H_4cc67362_8400_476c_8436_8e5b96732e0d

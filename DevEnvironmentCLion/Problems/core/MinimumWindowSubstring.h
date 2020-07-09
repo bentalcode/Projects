@@ -1,5 +1,5 @@
-#ifndef MINIMUM_WINDOW_SUBSTRING_H_dd8f8fb7_c531_4223_902a_6cf63b98cdcf
-#define MINIMUM_WINDOW_SUBSTRING_H_dd8f8fb7_c531_4223_902a_6cf63b98cdcf
+#ifndef MINIMUM_WINDOW_SUBSTRING_H_fe2f3719_4d1d_487f_8bf5_47df3cb73cce
+#define MINIMUM_WINDOW_SUBSTRING_H_fe2f3719_4d1d_487f_8bf5_47df3cb73cce
 
 #include "IMinimumWindowSubstring.h"
 
@@ -80,4 +80,4 @@ namespace problems
     };
 }
 
-#endif // MINIMUM_WINDOW_SUBSTRING_H_dd8f8fb7_c531_4223_902a_6cf63b98cdcf
+#endif // MINIMUM_WINDOW_SUBSTRING_H_fe2f3719_4d1d_487f_8bf5_47df3cb73cce

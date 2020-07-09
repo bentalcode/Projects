@@ -1,5 +1,5 @@
-#ifndef I_ITERABLE_H_bfe765ed_92ef_4ada_b728_b9ab8f2a9b07
-#define I_ITERABLE_H_bfe765ed_92ef_4ada_b728_b9ab8f2a9b07
+#ifndef I_ITERABLE_H_52f0856c_086f_4bbf_a6d2_ab608d9e6ba1
+#define I_ITERABLE_H_52f0856c_086f_4bbf_a6d2_ab608d9e6ba1
 
 #include "IIterator.h"
 
@@ -44,4 +44,4 @@ namespace base
     using IIterablePtr = std::shared_ptr<IIterable<T>>;
 }
 
-#endif // I_ITERABLE_H_bfe765ed_92ef_4ada_b728_b9ab8f2a9b07
+#endif // I_ITERABLE_H_52f0856c_086f_4bbf_a6d2_ab608d9e6ba1

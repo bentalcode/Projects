@@ -1,5 +1,5 @@
-#ifndef ASSERTION_H_a0c6a15b_097f_43c7_a873_5024c3b40f3f
-#define ASSERTION_H_a0c6a15b_097f_43c7_a873_5024c3b40f3f
+#ifndef ASSERTION_H_d5cec444_dcab_450e_ba52_6e2ac44e787c
+#define ASSERTION_H_d5cec444_dcab_450e_ba52_6e2ac44e787c
 
 #include <core/DereferenceEquatableComparator.h>
 #include "EqualBuilder.h"
@@ -184,4 +184,4 @@ namespace test_base {
     }
 }
 
-#endif // ASSERTION_H_a0c6a15b_097f_43c7_a873_5024c3b40f3f
+#endif // ASSERTION_H_d5cec444_dcab_450e_ba52_6e2ac44e787c

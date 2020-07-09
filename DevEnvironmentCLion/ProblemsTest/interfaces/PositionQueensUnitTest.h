@@ -1,5 +1,5 @@
-#ifndef POSITION_QUEENS_UNIT_TEST_H_41f09464_32ea_454b_b0dc_93de14ff92c6
-#define POSITION_QUEENS_UNIT_TEST_H_41f09464_32ea_454b_b0dc_93de14ff92c6
+#ifndef POSITION_QUEENS_UNIT_TEST_H_0f2f88e6_2e88_4cd2_881d_1a428239f86c
+#define POSITION_QUEENS_UNIT_TEST_H_0f2f88e6_2e88_4cd2_881d_1a428239f86c
 
 #include "UnitTestBase.h"
 #include "PositionQueens.h"
@@ -56,4 +56,4 @@ namespace problems_test {
     };
 }
 
-#endif // POSITION_QUEENS_UNIT_TEST_H_41f09464_32ea_454b_b0dc_93de14ff92c6
+#endif // POSITION_QUEENS_UNIT_TEST_H_0f2f88e6_2e88_4cd2_881d_1a428239f86c

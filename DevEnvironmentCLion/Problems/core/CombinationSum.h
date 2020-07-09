@@ -1,5 +1,5 @@
-#ifndef COMBINATION_SUM_H_376c5988_8a60_4ccc_b929_bbc27d03463c
-#define COMBINATION_SUM_H_376c5988_8a60_4ccc_b929_bbc27d03463c
+#ifndef COMBINATION_SUM_H_3fe5c424_b764_4b7e_ad2d_9ea20db0416a
+#define COMBINATION_SUM_H_3fe5c424_b764_4b7e_ad2d_9ea20db0416a
 
 #include "ICombinationSum.h"
 
@@ -212,4 +212,4 @@ namespace problems
     }
 }
 
-#endif // COMBINATION_SUM_H_376c5988_8a60_4ccc_b929_bbc27d03463c
+#endif // COMBINATION_SUM_H_3fe5c424_b764_4b7e_ad2d_9ea20db0416a

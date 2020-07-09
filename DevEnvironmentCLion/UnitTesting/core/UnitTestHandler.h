@@ -1,5 +1,5 @@
-#ifndef UNIT_TEST_HANDLER_H_2086d3e4_1e3b_40ac_bb6b_388be533d172
-#define UNIT_TEST_HANDLER_H_2086d3e4_1e3b_40ac_bb6b_388be533d172
+#ifndef UNIT_TEST_HANDLER_H_e7a28f85_7473_4a7c_95de_1f89dbff797f
+#define UNIT_TEST_HANDLER_H_e7a28f85_7473_4a7c_95de_1f89dbff797f
 
 #include "IUnitTestHandler.h"
 #include "ITestRegistration.h"
@@ -74,4 +74,4 @@ namespace unit_testing
     };
 }
 
-#endif // UNIT_TEST_HANDLER_H_2086d3e4_1e3b_40ac_bb6b_388be533d172
+#endif // UNIT_TEST_HANDLER_H_e7a28f85_7473_4a7c_95de_1f89dbff797f

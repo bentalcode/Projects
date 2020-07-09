@@ -1,5 +1,5 @@
-#ifndef INTERVAL_MAP_H_6c4aff17_a75c_4359_a61e_16eae20cb9c8
-#define INTERVAL_MAP_H_6c4aff17_a75c_4359_a61e_16eae20cb9c8
+#ifndef INTERVAL_MAP_H_15461bcd_7d91_4092_badf_6c3e23f487c9
+#define INTERVAL_MAP_H_15461bcd_7d91_4092_badf_6c3e23f487c9
 
 #include <map>
 #include <limits>
@@ -226,4 +226,4 @@ namespace base {
     }
 }
 
-#endif // INTERVAL_MAP_H_6c4aff17_a75c_4359_a61e_16eae20cb9c8
+#endif // INTERVAL_MAP_H_15461bcd_7d91_4092_badf_6c3e23f487c9

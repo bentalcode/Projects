@@ -1,5 +1,5 @@
-#ifndef MERGING_INTERVALS_H_66825ce1_ff82_4847_8285_62703c8a1a64
-#define MERGING_INTERVALS_H_66825ce1_ff82_4847_8285_62703c8a1a64
+#ifndef MERGING_INTERVALS_H_f2c78749_ad4f_466d_8654_06cb81f98301
+#define MERGING_INTERVALS_H_f2c78749_ad4f_466d_8654_06cb81f98301
 
 #include "IMergingIntervals.h"
 #include "Intervals.h"
@@ -122,4 +122,4 @@ namespace problems
     }
 }
 
-#endif // MERGING_INTERVALS_H_66825ce1_ff82_4847_8285_62703c8a1a64
+#endif // MERGING_INTERVALS_H_f2c78749_ad4f_466d_8654_06cb81f98301

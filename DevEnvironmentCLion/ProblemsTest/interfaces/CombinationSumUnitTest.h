@@ -1,5 +1,5 @@
-#ifndef COMBINATION_SUM_UNIT_TEST_H_bea31f94_1fb7_48b2_8d77_8858adcc878c
-#define COMBINATION_SUM_UNIT_TEST_H_bea31f94_1fb7_48b2_8d77_8858adcc878c
+#ifndef COMBINATION_SUM_UNIT_TEST_H_61f7a22d_6c0b_41a7_bbab_d336d6391e9f
+#define COMBINATION_SUM_UNIT_TEST_H_61f7a22d_6c0b_41a7_bbab_d336d6391e9f
 
 #include "UnitTestBase.h"
 #include "CombinationSum.h"
@@ -109,4 +109,4 @@ namespace problems_test {
 
 }
 
-#endif // COMBINATION_SUM_UNIT_TEST_H_bea31f94_1fb7_48b2_8d77_8858adcc878c
+#endif // COMBINATION_SUM_UNIT_TEST_H_61f7a22d_6c0b_41a7_bbab_d336d6391e9f

@@ -1,5 +1,5 @@
-#ifndef LIST_ITERATOR_H_29419299_8129_471a_baf3_98312333a17c
-#define LIST_ITERATOR_H_29419299_8129_471a_baf3_98312333a17c
+#ifndef LIST_ITERATOR_H_9d18cf60_d223_4bab_b5fd_8841deb8eb1f
+#define LIST_ITERATOR_H_9d18cf60_d223_4bab_b5fd_8841deb8eb1f
 
 #include "IIterator.h"
 #include "IList.h"
@@ -91,4 +91,4 @@ namespace base
     }
 }
 
-#endif // LIST_ITERATOR_H_29419299_8129_471a_baf3_98312333a17c
+#endif // LIST_ITERATOR_H_9d18cf60_d223_4bab_b5fd_8841deb8eb1f

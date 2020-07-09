@@ -1,5 +1,5 @@
-#ifndef I_TEST_REGISTRATION_H_81822a01_32cd_49ca_bca1_533fa9955cab
-#define I_TEST_REGISTRATION_H_81822a01_32cd_49ca_bca1_533fa9955cab
+#ifndef I_TEST_REGISTRATION_H_f934f9a4_5f37_45bb_bc19_f7731eb5b394
+#define I_TEST_REGISTRATION_H_f934f9a4_5f37_45bb_bc19_f7731eb5b394
 
 #include "ITestFunction.h"
 
@@ -40,4 +40,4 @@ namespace unit_testing
     };
 }
 
-#endif // I_TEST_REGISTRATION_H_81822a01_32cd_49ca_bca1_533fa9955cab
+#endif // I_TEST_REGISTRATION_H_f934f9a4_5f37_45bb_bc19_f7731eb5b394

@@ -1,5 +1,5 @@
-#ifndef INTERVALS_H_6eff9b33_3d69_4c02_994c_2683fcba9eaf
-#define INTERVALS_H_6eff9b33_3d69_4c02_994c_2683fcba9eaf
+#ifndef INTERVALS_H_b153df21_923f_48cb_a222_e4fea8d5a001
+#define INTERVALS_H_b153df21_923f_48cb_a222_e4fea8d5a001
 
 #include "Interval.h"
 
@@ -59,4 +59,4 @@ namespace base
     }
 }
 
-#endif // INTERVALS_H_6eff9b33_3d69_4c02_994c_2683fcba9eaf
+#endif // INTERVALS_H_b153df21_923f_48cb_a222_e4fea8d5a001

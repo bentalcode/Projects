@@ -1,5 +1,5 @@
-#ifndef BASE_DEPENDENCIES_H_a0be4033_1223_467c_a930_e3b3e8715232
-#define BASE_DEPENDENCIES_H_a0be4033_1223_467c_a930_e3b3e8715232
+#ifndef BASE_DEPENDENCIES_H_bec73cd9_8f83_41a4_8da2_893f5eec55b2
+#define BASE_DEPENDENCIES_H_bec73cd9_8f83_41a4_8da2_893f5eec55b2
 
 #include <vector>
 #include <string>
@@ -16,4 +16,4 @@
 
 #include "BaseLogic.h"
 
-#endif // BASE_DEPENDENCIES_H_a0be4033_1223_467c_a930_e3b3e8715232
+#endif // BASE_DEPENDENCIES_H_bec73cd9_8f83_41a4_8da2_893f5eec55b2

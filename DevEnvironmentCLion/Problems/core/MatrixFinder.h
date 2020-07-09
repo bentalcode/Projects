@@ -1,5 +1,5 @@
-#ifndef MATRIX_FINDER_H_211da874_0257_45f5_b524_6bb190ca5cae
-#define MATRIX_FINDER_H_211da874_0257_45f5_b524_6bb190ca5cae
+#ifndef MATRIX_FINDER_H_aa77b54e_70af_4a5f_82ab_74d940d75125
+#define MATRIX_FINDER_H_aa77b54e_70af_4a5f_82ab_74d940d75125
 
 #include "IMatrixFinder.h"
 #include "ProblemException.h"
@@ -202,4 +202,4 @@ namespace problems
     }
 }
 
-#endif // MATRIX_FINDER_H_211da874_0257_45f5_b524_6bb190ca5cae
+#endif // MATRIX_FINDER_H_aa77b54e_70af_4a5f_82ab_74d940d75125

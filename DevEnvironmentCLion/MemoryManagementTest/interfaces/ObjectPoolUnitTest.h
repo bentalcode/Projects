@@ -1,5 +1,5 @@
-#ifndef OBJECT_POOL_UNIT_TEST_H_c9150fda_dfdf_4c6e_af5b_5a9f9bc8f184
-#define OBJECT_POOL_UNIT_TEST_H_c9150fda_dfdf_4c6e_af5b_5a9f9bc8f184
+#ifndef OBJECT_POOL_UNIT_TEST_H_062feb78_d531_48ab_99a0_409ece4efc4c
+#define OBJECT_POOL_UNIT_TEST_H_062feb78_d531_48ab_99a0_409ece4efc4c
 
 #include "PreCompiled.h"
 #include "UnitTestBase.h"
@@ -52,4 +52,4 @@ namespace memory_management {
     };
 }
 
-#endif // OBJECT_POOL_UNIT_TEST_H_c9150fda_dfdf_4c6e_af5b_5a9f9bc8f184
+#endif // OBJECT_POOL_UNIT_TEST_H_062feb78_d531_48ab_99a0_409ece4efc4c

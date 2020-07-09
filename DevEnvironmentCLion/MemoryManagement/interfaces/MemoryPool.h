@@ -1,5 +1,5 @@
-#ifndef MEMORY_POOL_H_87129580_2b46_46fc_a7dc_29d4528689f3
-#define MEMORY_POOL_H_87129580_2b46_46fc_a7dc_29d4528689f3
+#ifndef MEMORY_POOL_H_3551a6de_8407_4435_b4d6_2aecc018f16c
+#define MEMORY_POOL_H_3551a6de_8407_4435_b4d6_2aecc018f16c
 
 #include "IMemoryPool.h"
 #include "FixedMemoryPool.h"
@@ -128,4 +128,4 @@ namespace memory_management
     std::ostream& operator<<(std::ostream& stream, const MemoryPool& memoryPool);
 }
 
-#endif // MEMORY_POOL_H_87129580_2b46_46fc_a7dc_29d4528689f3
+#endif // MEMORY_POOL_H_3551a6de_8407_4435_b4d6_2aecc018f16c

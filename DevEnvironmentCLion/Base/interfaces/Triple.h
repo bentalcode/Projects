@@ -1,5 +1,5 @@
-#ifndef TRIPLE_H_4c6d7a66_4121_46d3_b014_31489f56a076
-#define TRIPLE_H_4c6d7a66_4121_46d3_b014_31489f56a076
+#ifndef TRIPLE_H_86e42877_5f0f_453b_8a96_63acc3db2f08
+#define TRIPLE_H_86e42877_5f0f_453b_8a96_63acc3db2f08
 
 namespace base
 {
@@ -106,4 +106,4 @@ namespace base
     }
 }
 
-#endif // TRIPLE_H_4c6d7a66_4121_46d3_b014_31489f56a076
+#endif // TRIPLE_H_86e42877_5f0f_453b_8a96_63acc3db2f08

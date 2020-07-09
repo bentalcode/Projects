@@ -1,5 +1,5 @@
-#ifndef MERGING_INTERVALS_UNIT_TEST_H_22db6c11_6ed2_4346_984e_fb86e55b47d9
-#define MERGING_INTERVALS_UNIT_TEST_H_22db6c11_6ed2_4346_984e_fb86e55b47d9
+#ifndef MERGING_INTERVALS_UNIT_TEST_H_9f66c6f9_de7b_40cb_b74e_eac57b0776df
+#define MERGING_INTERVALS_UNIT_TEST_H_9f66c6f9_de7b_40cb_b74e_eac57b0776df
 
 #include "UnitTestBase.h"
 #include "MergingIntervals.h"
@@ -78,4 +78,4 @@ namespace problems_test {
     }
 }
 
-#endif // MERGING_INTERVALS_UNIT_TEST_H_22db6c11_6ed2_4346_984e_fb86e55b47d9
+#endif // MERGING_INTERVALS_UNIT_TEST_H_9f66c6f9_de7b_40cb_b74e_eac57b0776df

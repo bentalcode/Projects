@@ -1,5 +1,5 @@
-#ifndef I_SIZABLE_COLLECTION_H_d1f02b02_4ea6_4180_b354_bef617ea97c9
-#define I_SIZABLE_COLLECTION_H_d1f02b02_4ea6_4180_b354_bef617ea97c9
+#ifndef I_SIZABLE_COLLECTION_H_800f841b_1439_43aa_b203_0a3e04b5906a
+#define I_SIZABLE_COLLECTION_H_800f841b_1439_43aa_b203_0a3e04b5906a
 
 #include "ICollection.h"
 
@@ -45,4 +45,4 @@ namespace base
     };
 }
 
-#endif // I_SIZABLE_COLLECTION_H_d1f02b02_4ea6_4180_b354_bef617ea97c9
+#endif // I_SIZABLE_COLLECTION_H_800f841b_1439_43aa_b203_0a3e04b5906a

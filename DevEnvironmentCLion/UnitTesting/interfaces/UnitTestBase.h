@@ -1,5 +1,5 @@
-#ifndef UNIT_TEST_BASE_H_1fa45159_00d5_4435_8830_4322a7531f06
-#define UNIT_TEST_BASE_H_1fa45159_00d5_4435_8830_4322a7531f06
+#ifndef UNIT_TEST_BASE_H_bd6c22df_f5b1_4659_8457_b44aec9d69b1
+#define UNIT_TEST_BASE_H_bd6c22df_f5b1_4659_8457_b44aec9d69b1
 
 #include "IUnitTest.h"
 #include "Assertion.h"
@@ -71,4 +71,4 @@ namespace unit_testing {
     };
 }
 
-#endif // UNIT_TEST_BASE_H_1fa45159_00d5_4435_8830_4322a7531f06
+#endif // UNIT_TEST_BASE_H_bd6c22df_f5b1_4659_8457_b44aec9d69b1

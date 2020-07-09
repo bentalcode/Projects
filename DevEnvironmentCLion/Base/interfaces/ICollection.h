@@ -1,5 +1,5 @@
-#ifndef I_COLLECTION_H_77e06e44_ddc5_4be3_8a80_6ddc4fd0ec4a
-#define I_COLLECTION_H_77e06e44_ddc5_4be3_8a80_6ddc4fd0ec4a
+#ifndef I_COLLECTION_H_c08c0b13_cda5_4791_a6ff_8d42e75f1fe6
+#define I_COLLECTION_H_c08c0b13_cda5_4791_a6ff_8d42e75f1fe6
 
 namespace base
 {
@@ -33,4 +33,4 @@ namespace base
     };
 }
 
-#endif // I_COLLECTION_H_77e06e44_ddc5_4be3_8a80_6ddc4fd0ec4a
+#endif // I_COLLECTION_H_c08c0b13_cda5_4791_a6ff_8d42e75f1fe6

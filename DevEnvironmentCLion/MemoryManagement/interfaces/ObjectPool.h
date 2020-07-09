@@ -1,5 +1,5 @@
-#ifndef OBJECT_POOL_H_2db548c3_4d03_4f26_b882_40e32ec07ed9
-#define OBJECT_POOL_H_2db548c3_4d03_4f26_b882_40e32ec07ed9
+#ifndef OBJECT_POOL_H_f9186315_a812_4408_bf78_dbf96059bf59
+#define OBJECT_POOL_H_f9186315_a812_4408_bf78_dbf96059bf59
 
 #include "IObjectPool.h"
 #include "MemoryPool.h"
@@ -233,4 +233,4 @@ namespace memory_management
     }
 }
 
-#endif // OBJECT_POOL_H_2db548c3_4d03_4f26_b882_40e32ec07ed9
+#endif // OBJECT_POOL_H_f9186315_a812_4408_bf78_dbf96059bf59

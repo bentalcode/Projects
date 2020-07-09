@@ -1,5 +1,5 @@
-#ifndef POSITION_QUEENS_H_2023a4f5_4457_47d4_ba40_75828a2f7976
-#define POSITION_QUEENS_H_2023a4f5_4457_47d4_ba40_75828a2f7976
+#ifndef POSITION_QUEENS_H_1ad3c029_67b7_4a3d_8b2e_e8b076ab0751
+#define POSITION_QUEENS_H_1ad3c029_67b7_4a3d_8b2e_e8b076ab0751
 
 #include "IPositionQueens.h"
 
@@ -94,4 +94,4 @@ namespace problems
     };
 }
 
-#endif // POSITION_QUEENS_H_2023a4f5_4457_47d4_ba40_75828a2f7976
+#endif // POSITION_QUEENS_H_1ad3c029_67b7_4a3d_8b2e_e8b076ab0751

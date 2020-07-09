@@ -1,5 +1,5 @@
-#ifndef ITERABLE_COMPARATOR_H_fd98250a_fb93_4c20_b90d_5c72cffcb3ad
-#define ITERABLE_COMPARATOR_H_fd98250a_fb93_4c20_b90d_5c72cffcb3ad
+#ifndef ITERABLE_COMPARATOR_H_48a33b1d_cef2_47db_b98c_731b16eacedf
+#define ITERABLE_COMPARATOR_H_48a33b1d_cef2_47db_b98c_731b16eacedf
 
 #include "IIterable.h"
 #include "IteratorComparator.h"
@@ -101,4 +101,4 @@ namespace base {
     }
 }
 
-#endif // ITERABLE_COMPARATOR_H_fd98250a_fb93_4c20_b90d_5c72cffcb3ad
+#endif // ITERABLE_COMPARATOR_H_48a33b1d_cef2_47db_b98c_731b16eacedf

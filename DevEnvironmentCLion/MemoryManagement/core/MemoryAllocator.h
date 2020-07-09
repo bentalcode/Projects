@@ -1,5 +1,5 @@
-#ifndef MEMORY_ALLOCATOR_H_cc81249c_d672_4cf6_be20_7c1f9d7e4d59
-#define MEMORY_ALLOCATOR_H_cc81249c_d672_4cf6_be20_7c1f9d7e4d59
+#ifndef MEMORY_ALLOCATOR_H_ed234889_dafa_4a99_ae93_d86b69156b54
+#define MEMORY_ALLOCATOR_H_ed234889_dafa_4a99_ae93_d86b69156b54
 
 #include "IMemoryAllocator.h"
 #include <memory>
@@ -114,4 +114,4 @@ namespace memory_management
     using AlignedMemoryPtr = std::unique_ptr<void, AlignedMemoryReleaser>;
 }
 
-#endif // MEMORY_ALLOCATOR_H_cc81249c_d672_4cf6_be20_7c1f9d7e4d59
+#endif // MEMORY_ALLOCATOR_H_ed234889_dafa_4a99_ae93_d86b69156b54

@@ -1,5 +1,5 @@
-#ifndef CONCURRENT_QUEUE_H_8b99ddae_5685_4ea7_8d89_7e06a66863ed
-#define CONCURRENT_QUEUE_H_8b99ddae_5685_4ea7_8d89_7e06a66863ed
+#ifndef CONCURRENT_QUEUE_H_bc494888_f01b_40ca_aab2_b23271283ee4
+#define CONCURRENT_QUEUE_H_bc494888_f01b_40ca_aab2_b23271283ee4
 
 #include <queue>
 #include <mutex>
@@ -160,4 +160,4 @@ namespace concurrency
     }
 }
 
-#endif // CONCURRENT_QUEUE_H_8b99ddae_5685_4ea7_8d89_7e06a66863ed
+#endif // CONCURRENT_QUEUE_H_bc494888_f01b_40ca_aab2_b23271283ee4

@@ -1,5 +1,5 @@
-#ifndef I_TEST_RUNNING_RESULT_H_1ddd4663_6014_4b1c_abca_2b77ecbac123
-#define I_TEST_RUNNING_RESULT_H_1ddd4663_6014_4b1c_abca_2b77ecbac123
+#ifndef I_TEST_RUNNING_RESULT_H_9621735a_bf67_40ac_8d24_ff90b1240e9f
+#define I_TEST_RUNNING_RESULT_H_9621735a_bf67_40ac_8d24_ff90b1240e9f
 
 #include "DateTime.h"
 
@@ -85,4 +85,4 @@ namespace unit_testing
     }
 }
 
-#endif // I_TEST_RUNNING_RESULT_H_1ddd4663_6014_4b1c_abca_2b77ecbac123
+#endif // I_TEST_RUNNING_RESULT_H_9621735a_bf67_40ac_8d24_ff90b1240e9f

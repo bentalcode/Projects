@@ -1,5 +1,5 @@
-#ifndef I_POSITION_QUEENS_H_ef889057_2648_4076_8c54_795efa76f5df
-#define I_POSITION_QUEENS_H_ef889057_2648_4076_8c54_795efa76f5df
+#ifndef I_POSITION_QUEENS_H_b91590fa_e0b3_4e6f_965c_95e281a3fdc1
+#define I_POSITION_QUEENS_H_b91590fa_e0b3_4e6f_965c_95e281a3fdc1
 
 #include "BaseDependencies.h"
 
@@ -41,4 +41,4 @@ namespace problems
 
 }
 
-#endif // I_POSITION_QUEENS_H_ef889057_2648_4076_8c54_795efa76f5df
+#endif // I_POSITION_QUEENS_H_b91590fa_e0b3_4e6f_965c_95e281a3fdc1

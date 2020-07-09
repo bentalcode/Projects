@@ -1,5 +1,5 @@
-#ifndef INTERVAL_MAP_UNIT_TEST_H_1223ccf8_bd98_4701_b966_717d2fe5d89a
-#define INTERVAL_MAP_UNIT_TEST_H_1223ccf8_bd98_4701_b966_717d2fe5d89a
+#ifndef INTERVAL_MAP_UNIT_TEST_H_f6d191f5_60be_4e5e_841f_867f77c76cc4
+#define INTERVAL_MAP_UNIT_TEST_H_f6d191f5_60be_4e5e_841f_867f77c76cc4
 
 #include "UnitTestBase.h"
 #include "IntervalMap.h"
@@ -139,4 +139,4 @@ namespace base_test {
     }
 }
 
-#endif // INTERVAL_MAP_UNIT_TEST_H_1223ccf8_bd98_4701_b966_717d2fe5d89a
+#endif // INTERVAL_MAP_UNIT_TEST_H_f6d191f5_60be_4e5e_841f_867f77c76cc4

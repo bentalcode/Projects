@@ -1,5 +1,5 @@
-#ifndef FIXED_MEMORY_POOL_H_955a41ec_c0d4_4fe7_ab07_38d2e5ffa7bc
-#define FIXED_MEMORY_POOL_H_955a41ec_c0d4_4fe7_ab07_38d2e5ffa7bc
+#ifndef FIXED_MEMORY_POOL_H_192be4e1_28ca_485e_b4da_083c37b39bb3
+#define FIXED_MEMORY_POOL_H_192be4e1_28ca_485e_b4da_083c37b39bb3
 
 #include "IMemoryPool.h"
 #include "MemoryAllocator.h"
@@ -146,4 +146,4 @@ namespace memory_management
     std::ostream& operator<<(std::ostream& stream, const FixedMemoryPool& memoryPool);
 }
 
-#endif // FIXED_MEMORY_POOL_H_955a41ec_c0d4_4fe7_ab07_38d2e5ffa7bc
+#endif // FIXED_MEMORY_POOL_H_192be4e1_28ca_485e_b4da_083c37b39bb3

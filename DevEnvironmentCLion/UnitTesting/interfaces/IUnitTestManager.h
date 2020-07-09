@@ -1,5 +1,5 @@
-#ifndef I_UNIT_TEST_MANAGER_H_0a3cf005_b7af_4579_9956_ceb39c60ffe8
-#define I_UNIT_TEST_MANAGER_H_0a3cf005_b7af_4579_9956_ceb39c60ffe8
+#ifndef I_UNIT_TEST_MANAGER_H_6212aaf5_a889_4733_94fd_d41b6193fbe0
+#define I_UNIT_TEST_MANAGER_H_6212aaf5_a889_4733_94fd_d41b6193fbe0
 
 namespace unit_testing
 {
@@ -48,4 +48,4 @@ namespace unit_testing
     };
 }
 
-#endif // I_UNIT_TEST_MANAGER_H_0a3cf005_b7af_4579_9956_ceb39c60ffe8
+#endif // I_UNIT_TEST_MANAGER_H_6212aaf5_a889_4733_94fd_d41b6193fbe0

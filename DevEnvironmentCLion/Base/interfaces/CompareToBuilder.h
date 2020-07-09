@@ -1,5 +1,5 @@
-#ifndef COMPARE_TO_BUILDER_H_fc557aff_40c4_4365_bee6_03654509d8ed
-#define COMPARE_TO_BUILDER_H_fc557aff_40c4_4365_bee6_03654509d8ed
+#ifndef COMPARE_TO_BUILDER_H_4ac94e55_8b47_4d46_94b4_16aba9563733
+#define COMPARE_TO_BUILDER_H_4ac94e55_8b47_4d46_94b4_16aba9563733
 
 #include "ComparatorFactory.h"
 #include "ComparableComparator.h"
@@ -194,4 +194,4 @@ namespace base {
     }
 }
 
-#endif // COMPARE_TO_BUILDER_H_fc557aff_40c4_4365_bee6_03654509d8ed
+#endif // COMPARE_TO_BUILDER_H_4ac94e55_8b47_4d46_94b4_16aba9563733

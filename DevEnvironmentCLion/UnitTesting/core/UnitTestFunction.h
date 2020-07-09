@@ -1,5 +1,5 @@
-#ifndef UNIT_TEST_FUNCTION_H_6fa3814d_f707_44ec_85b5_13220bdded39
-#define UNIT_TEST_FUNCTION_H_6fa3814d_f707_44ec_85b5_13220bdded39
+#ifndef UNIT_TEST_FUNCTION_H_242274fc_e743_4f6d_8866_8915102f69ab
+#define UNIT_TEST_FUNCTION_H_242274fc_e743_4f6d_8866_8915102f69ab
 
 #include "ITestFunction.h"
 
@@ -89,4 +89,4 @@ namespace unit_testing {
     }
 }
 
-#endif // UNIT_TEST_FUNCTION_H_6fa3814d_f707_44ec_85b5_13220bdded39
+#endif // UNIT_TEST_FUNCTION_H_242274fc_e743_4f6d_8866_8915102f69ab

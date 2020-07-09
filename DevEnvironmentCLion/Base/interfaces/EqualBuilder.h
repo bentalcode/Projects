@@ -1,5 +1,5 @@
-#ifndef EQUAL_BUILDER_H_5a0a043d_4aa1_4e17_a806_42a0f7e68ed8
-#define EQUAL_BUILDER_H_5a0a043d_4aa1_4e17_a806_42a0f7e68ed8
+#ifndef EQUAL_BUILDER_H_a25ba37a_70cb_42f9_a10f_d5cd0071837e
+#define EQUAL_BUILDER_H_a25ba37a_70cb_42f9_a10f_d5cd0071837e
 
 #include "ComparatorFactory.h"
 #include "EquatableComparator.h"
@@ -195,4 +195,4 @@ namespace base {
     }
 }
 
-#endif // EQUAL_BUILDER_H_5a0a043d_4aa1_4e17_a806_42a0f7e68ed8
+#endif // EQUAL_BUILDER_H_a25ba37a_70cb_42f9_a10f_d5cd0071837e

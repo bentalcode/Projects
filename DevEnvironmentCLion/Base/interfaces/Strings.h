@@ -1,5 +1,5 @@
-#ifndef STRINGS_H_32ffa825_24fe_40dd_bc38_c25abc0d98c5
-#define STRINGS_H_32ffa825_24fe_40dd_bc38_c25abc0d98c5
+#ifndef STRINGS_H_51629563_c6b5_4a79_9ddf_27072fa886cb
+#define STRINGS_H_51629563_c6b5_4a79_9ddf_27072fa886cb
 
 namespace base
 {
@@ -99,4 +99,4 @@ namespace base
     };
 }
 
-#endif // STRINGS_H_32ffa825_24fe_40dd_bc38_c25abc0d98c5
+#endif // STRINGS_H_51629563_c6b5_4a79_9ddf_27072fa886cb

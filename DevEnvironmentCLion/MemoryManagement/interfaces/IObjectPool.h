@@ -1,5 +1,5 @@
-#ifndef I_OBJECT_POOL_H_48af90c7_078a_43da_a504_2d0ff3e32817
-#define I_OBJECT_POOL_H_48af90c7_078a_43da_a504_2d0ff3e32817
+#ifndef I_OBJECT_POOL_H_96ed83fa_47cd_4197_a0f5_d17a23b678f0
+#define I_OBJECT_POOL_H_96ed83fa_47cd_4197_a0f5_d17a23b678f0
 
 #include "boost/core/noncopyable.hpp"
 
@@ -57,4 +57,4 @@ namespace memory_management
 }
 
 
-#endif // I_OBJECT_POOL_H_48af90c7_078a_43da_a504_2d0ff3e32817
+#endif // I_OBJECT_POOL_H_96ed83fa_47cd_4197_a0f5_d17a23b678f0

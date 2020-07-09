@@ -1,5 +1,5 @@
-#ifndef I_MATRIX_H_f5f60376_8ebc_4627_b475_3a03a81cf27c
-#define I_MATRIX_H_f5f60376_8ebc_4627_b475_3a03a81cf27c
+#ifndef I_MATRIX_H_dbf7224a_c9b8_4afb_91e6_f2a6c3e6fece
+#define I_MATRIX_H_dbf7224a_c9b8_4afb_91e6_f2a6c3e6fece
 
 #include "ISizableCollection.h"
 #include "IIterable.h"
@@ -90,4 +90,4 @@ namespace base
     };
 }
 
-#endif // I_MATRIX_H_f5f60376_8ebc_4627_b475_3a03a81cf27c
+#endif // I_MATRIX_H_dbf7224a_c9b8_4afb_91e6_f2a6c3e6fece

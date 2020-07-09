@@ -1,5 +1,5 @@
-#ifndef LOG_STREAM_WRITER_H_f19231c6_806b_4152_a0f3_f5c5549f71e6
-#define LOG_STREAM_WRITER_H_f19231c6_806b_4152_a0f3_f5c5549f71e6
+#ifndef LOG_STREAM_WRITER_H_d97f65d4_bba6_4424_85c5_12ba9b8b1210
+#define LOG_STREAM_WRITER_H_d97f65d4_bba6_4424_85c5_12ba9b8b1210
 
 namespace base
 {
@@ -103,4 +103,4 @@ namespace base
     }
 }
 
-#endif // LOG_STREAM_WRITER_H_f19231c6_806b_4152_a0f3_f5c5549f71e6
+#endif // LOG_STREAM_WRITER_H_d97f65d4_bba6_4424_85c5_12ba9b8b1210
