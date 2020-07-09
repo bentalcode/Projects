@@ -89,9 +89,9 @@ public final class CHeaderFileUpdater implements IFileUpdater {
 
             if (numberOfMatchingRecords != 2) {
                 String warningMessage =
-                    "The file: " + path + " does not include the following matching lines: " +
-                    "ifndefRegex = " + ifndefRegex +
-                    "defineRegex = " + defineRegex;
+                    "The file: " + path + " does not include the following matching lines:" +
+                    " ifndefRegex = " + ifndefRegex +
+                    ", defineRegex = " + defineRegex;
 
                 this.log.warn(warningMessage);
             }
@@ -104,8 +104,8 @@ public final class CHeaderFileUpdater implements IFileUpdater {
 
             if (numberOfMatchingRecords != 3) {
                 String warningMessage =
-                    "The file: " + path + " does not include the following matching line: " +
-                    "endifRegex = " + endifRegex;
+                    "The file: " + path + " does not include the following matching line:" +
+                    " endifRegex = " + endifRegex;
 
                 this.log.warn(warningMessage);
             }
