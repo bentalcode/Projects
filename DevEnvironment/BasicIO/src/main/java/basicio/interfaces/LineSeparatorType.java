@@ -1,9 +1,6 @@
 package basicio.interfaces;
 
-import base.core.Strings;
-import basicio.BasicIOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import base.core.Enums;
 
 /**
  * The LineSeparatorType enum defines a types of a line separator.
@@ -41,7 +38,6 @@ public enum LineSeparatorType {
     };
 
     private final String name;
-    private final static Logger log = LoggerFactory.getLogger(LineSeparatorType.class);
 
     /**
      * The LineSeparatorType constructor.
@@ -86,35 +82,15 @@ public enum LineSeparatorType {
     /**
      * Parses an enum string.
      */
-    public static LineSeparatorType parse(String value) {
-        LineSeparatorType type = tryParse(value);
-
-        if (type == null) {
-            String errorMessage =
-                "The string: " + value + " is not matching to any type of enum: LineSeparatorType.";
-
-            log.error(errorMessage);
-            throw new BasicIOException(errorMessage);
-        }
-
-        return type;
+    public static LineSeparatorType parse(String str) {
+        return Enums.parse(LineSeparatorType.class, str);
     }
 
     /**
      * Tries to parse an enum string.
      * Return null of the string value is not matching to a specific enum.
      */
-    public static LineSeparatorType tryParse(String value) {
-        if (Strings.isNullOrEmpty(value)) {
-            return null;
-        }
-
-        for (LineSeparatorType moduleType : LineSeparatorType.values()) {
-            if (moduleType.name.equalsIgnoreCase(value)) {
-                return moduleType;
-            }
-        }
-
-        return null;
+    public static LineSeparatorType tryParse(String str) {
+        return Enums.tryParse(LineSeparatorType.class, str);
     }
 }

@@ -1,7 +1,6 @@
 package cmakebuildsystem.core;
 
-import base.core.Strings;
-import cmakebuildsystem.CMakeBuildException;
+import base.core.Enums;
 import cmakebuildsystem.interfaces.ICMakeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,35 +54,15 @@ public enum DeploymentType {
     /**
      * Parses an enum string.
      */
-    public static DeploymentType parse(String value) {
-        DeploymentType type = tryParse(value);
-
-        if (type == null) {
-            String errorMessage =
-                "The string: " + value + " is not matching to any type of enum: DeploymentType.";
-
-            log.error(errorMessage);
-            throw new CMakeBuildException(errorMessage);
-        }
-
-        return type;
+    public static DeploymentType parse(String str) {
+        return Enums.parse(DeploymentType.class, str);
     }
 
     /**
      * Tries to parse an enum string.
      * Return null of the string value is not matching to a specific enum.
      */
-    public static DeploymentType tryParse(String value) {
-        if (Strings.isNullOrEmpty(value)) {
-            return null;
-        }
-
-        for (DeploymentType moduleType : DeploymentType.values()) {
-            if (moduleType.name.equalsIgnoreCase(value)) {
-                return moduleType;
-            }
-        }
-
-        return null;
+    public static DeploymentType tryParse(String str) {
+        return Enums.tryParse(DeploymentType.class, str);
     }
 }

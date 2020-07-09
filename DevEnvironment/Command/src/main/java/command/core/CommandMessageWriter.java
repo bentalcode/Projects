@@ -1,5 +1,6 @@
 package command.core;
 
+import base.core.ColorType;
 import base.core.Conditions;
 import command.interfaces.ICommandManifest;
 import command.interfaces.ICommandMessageWriter;
@@ -37,7 +38,7 @@ public final class CommandMessageWriter implements ICommandMessageWriter {
     @Override
     public void writeInformationalMessage(String message) {
         PrintStream outputStream = System.out;
-        writeMessage(message, outputStream);
+        writeMessage(ColorType.GREEN + message, outputStream);
     }
 
     /**
@@ -46,7 +47,7 @@ public final class CommandMessageWriter implements ICommandMessageWriter {
     @Override
     public void writeWarningMessage(String message) {
         PrintStream outputStream = System.err;
-        writeMessage(message, outputStream);
+        writeMessage(ColorType.YELLOW + message, outputStream);
     }
 
     /**
@@ -55,7 +56,7 @@ public final class CommandMessageWriter implements ICommandMessageWriter {
     @Override
     public void writeErrorMessage(String message) {
         PrintStream outputStream = System.err;
-        writeMessage(message, outputStream);
+        writeMessage(ColorType.RED + message, outputStream);
     }
 
     /**

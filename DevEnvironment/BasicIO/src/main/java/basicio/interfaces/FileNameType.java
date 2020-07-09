@@ -1,10 +1,7 @@
 package basicio.interfaces;
 
-import base.BaseException;
+import base.core.Enums;
 import basicio.core.FileNames;
-import base.core.Strings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The FileNameType enum defines types of files name.
@@ -47,7 +44,6 @@ public enum FileNameType {
     };
 
     private final String name;
-    private final static Logger log = LoggerFactory.getLogger(FileNameType.class);
 
     /**
      * The FileNameType constructor.
@@ -71,35 +67,15 @@ public enum FileNameType {
     /**
      * Parses an enum string.
      */
-    public static FileNameType parse(String value) {
-        FileNameType type = tryParse(value);
-
-        if (type == null) {
-            String errorMessage =
-                "The string: " + value + " is not matching to any type of enum: FileNameType.";
-
-            log.error(errorMessage);
-            throw new BaseException(errorMessage);
-        }
-
-        return type;
+    public static FileNameType parse(String str) {
+        return Enums.parse(FileNameType.class, str);
     }
 
     /**
      * Tries to parse an enum string.
      * Return null of the string value is not matching to a specific enum.
      */
-    public static FileNameType tryParse(String value) {
-        if (Strings.isNullOrEmpty(value)) {
-            return null;
-        }
-
-        for (FileNameType moduleType : FileNameType.values()) {
-            if (moduleType.name.equalsIgnoreCase(value)) {
-                return moduleType;
-            }
-        }
-
-        return null;
+    public static FileNameType tryParse(String str) {
+        return Enums.tryParse(FileNameType.class, str);
     }
 }

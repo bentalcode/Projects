@@ -1,14 +1,11 @@
 package cmakebuildsystem.interfaces;
 
 import base.core.ArrayLists;
-import base.core.Strings;
-import cmakebuildsystem.CMakeBuildException;
+import base.core.Enums;
 import cmakebuildsystem.core.AddExecutableCommand;
 import cmakebuildsystem.core.AddLibraryCommand;
 import cmakebuildsystem.core.TargetLinkLibrariesCommand;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The CMakeModuleType enum defines various types of cmake modules.
@@ -37,7 +34,6 @@ public enum CMakeModuleType {
     };
 
     private final String name;
-    private final static Logger log = LoggerFactory.getLogger(CMakeModuleType.class);
 
     /**
      * The CMakeModuleType constructor.
@@ -61,35 +57,15 @@ public enum CMakeModuleType {
     /**
      * Parses an enum string.
      */
-    public static CMakeModuleType parse(String value) {
-        CMakeModuleType type = tryParse(value);
-
-        if (type == null) {
-            String errorMessage =
-                "The string: " + value + " is not matching to any type of enum: CMakeModuleType.";
-
-            log.error(errorMessage);
-            throw new CMakeBuildException(errorMessage);
-        }
-
-        return type;
+    public static CMakeModuleType parse(String str) {
+        return Enums.parse(CMakeModuleType.class, str);
     }
 
     /**
      * Tries to parse an enum string.
      * Return null of the string value is not matching to a specific enum.
      */
-    public static CMakeModuleType tryParse(String value) {
-        if (Strings.isNullOrEmpty(value)) {
-            return null;
-        }
-
-        for (CMakeModuleType moduleType : CMakeModuleType.values()) {
-            if (moduleType.name.equalsIgnoreCase(value)) {
-                return moduleType;
-            }
-        }
-
-        return null;
+    public static CMakeModuleType tryParse(String str) {
+        return Enums.tryParse(CMakeModuleType.class, str);
     }
 }

@@ -1,6 +1,6 @@
 package clientserver.interfaces;
 
-import clientserver.ClientServerException;
+import base.core.Enums;
 
 /**
  * The TokenType defines a token type of a Http protocol.
@@ -29,27 +29,14 @@ public enum TokenType {
     /**
      * Parses this enum.
      */
-    public static TokenType parse(String name) {
-        TokenType tokenType = TokenType.tryParse(name);
-
-        if (tokenType == null) {
-            String errorMessage = "The name: " + name + " for enum TokenType is not supported.";
-            throw new ClientServerException(errorMessage);
-        }
-
-        return tokenType;
+    public static TokenType parse(String str) {
+        return Enums.parse(TokenType.class, str);
     }
 
     /**
      * Tries to parse this enum
      */
-    public static TokenType tryParse(String value) {
-        for (TokenType tokenType : TokenType.values()) {
-            if (tokenType.name().equalsIgnoreCase(value)) {
-                return tokenType;
-            }
-        }
-
-        return null;
+    public static TokenType tryParse(String str) {
+        return Enums.tryParse(TokenType.class, str);
     }
 }
