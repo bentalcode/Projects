@@ -1,5 +1,5 @@
-#ifndef CONCURRENT_QUEUE_UNIT_TEST_H_f2f1234f_816e_4f47_960b_bd02bbd732a6
-#define CONCURRENT_QUEUE_UNIT_TEST_H_f2f1234f_816e_4f47_960b_bd02bbd732a6
+#ifndef CONCURRENT_QUEUE_UNIT_TEST_H_02b74bad_d334_4d04_bc5b_84203984fffb
+#define CONCURRENT_QUEUE_UNIT_TEST_H_02b74bad_d334_4d04_bc5b_84203984fffb
 
 #include "PreCompiled.h"
 #include "UnitTestBase.h"
@@ -79,4 +79,4 @@ namespace concurrency_test {
     }
 }
 
-#endif /* CONCURRENT_QUEUE_UNIT_TEST_H_f2f1234f_816e_4f47_960b_bd02bbd732a6 */
+#endif // CONCURRENT_QUEUE_UNIT_TEST_H_02b74bad_d334_4d04_bc5b_84203984fffb
