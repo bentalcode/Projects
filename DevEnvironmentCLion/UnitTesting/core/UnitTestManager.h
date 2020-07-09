@@ -1,5 +1,5 @@
-#ifndef UNIT_TEST_MANAGER_H_7148c9a7_e860_42d9_83ed_9b3e22511389
-#define UNIT_TEST_MANAGER_H_7148c9a7_e860_42d9_83ed_9b3e22511389
+#ifndef UNIT_TEST_MANAGER_H_90356422_f463_4bad_ab12_f82a17216ee0
+#define UNIT_TEST_MANAGER_H_90356422_f463_4bad_ab12_f82a17216ee0
 
 #include "IUnitTest.h"
 #include "IUnitTestManager.h"
@@ -70,4 +70,4 @@ namespace unit_testing
     };
 }
 
-#endif // UNIT_TEST_MANAGER_H_7148c9a7_e860_42d9_83ed_9b3e22511389
+#endif // UNIT_TEST_MANAGER_H_90356422_f463_4bad_ab12_f82a17216ee0

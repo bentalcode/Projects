@@ -1,5 +1,5 @@
-#ifndef I_UNIT_TEST_H_eaebb607_7774_468b_a819_7e49bd38e777
-#define I_UNIT_TEST_H_eaebb607_7774_468b_a819_7e49bd38e777
+#ifndef I_UNIT_TEST_H_a9a8841c_f7e5_4510_889c_0f13fe2cdfa2
+#define I_UNIT_TEST_H_a9a8841c_f7e5_4510_889c_0f13fe2cdfa2
 
 #include "ITestRegistration.h"
 #include "LogStreamWriter.h"
@@ -64,4 +64,4 @@ namespace unit_testing
     };
 }
 
-#endif // I_UNIT_TEST_H_eaebb607_7774_468b_a819_7e49bd38e777
+#endif // I_UNIT_TEST_H_a9a8841c_f7e5_4510_889c_0f13fe2cdfa2

@@ -1,5 +1,5 @@
-#ifndef TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
-#define TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
+#ifndef TEST_RUNNING_RESULT_H_a01be0ae_f359_40b1_9ff1_85bf4e938996
+#define TEST_RUNNING_RESULT_H_a01be0ae_f359_40b1_9ff1_85bf4e938996
 
 #include "ITestRunningResult.h"
 
@@ -83,4 +83,4 @@ namespace unit_testing
     };
 }
 
-#endif // TEST_RUNNING_RESULT_H_4dd37c6f_ab71_4de8_b4e2_40f11822d03b
+#endif // TEST_RUNNING_RESULT_H_a01be0ae_f359_40b1_9ff1_85bf4e938996

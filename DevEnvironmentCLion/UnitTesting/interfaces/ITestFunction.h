@@ -1,5 +1,5 @@
-#ifndef I_TEST_FUNCTION_H_fad4afe5_1383_4250_931e_0454b5f93fb5
-#define I_TEST_FUNCTION_H_fad4afe5_1383_4250_931e_0454b5f93fb5
+#ifndef I_TEST_FUNCTION_H_faf9b76c_58fb_499b_9b8a_95e7fe27db54
+#define I_TEST_FUNCTION_H_faf9b76c_58fb_499b_9b8a_95e7fe27db54
 
 #include "BaseDependencies.h"
 
@@ -48,4 +48,4 @@ namespace unit_testing {
     };
 }
 
-#endif /* I_TEST_FUNCTION_H_fad4afe5_1383_4250_931e_0454b5f93fb5 */
+#endif // I_TEST_FUNCTION_H_faf9b76c_58fb_499b_9b8a_95e7fe27db54
