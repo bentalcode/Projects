@@ -42,27 +42,22 @@ public final class CHeaderFileUpdater implements IFileUpdater {
 
     /**
      * Updates the file.
+     * Return -1 if the file header can not get updated.
      */
     @Override
     public long update() {
-        if (!this.canUpdateFileHeader()) {
-            String warningMessage =
-                "The header of file: " + this.path + " can not get updated." +
-                "; Skipping the file header.";
+        if (this.canUpdateFileHeader(this.path)) {
 
-            this.log.warn(warningMessage);
-
-            return 0;
         }
 
-        return this.updateFileHeader();
+        return this.updateFileHeader(this.path);
     }
 
     /**
      * Checks whether the file header can get updated.
      */
-    private boolean canUpdateFileHeader() {
-        String formattedFileName = this.formatFileName();
+    private boolean canUpdateFileHeader(Path path) {
+        String formattedFileName = formatFileName(path);
         String fileNameRegex = getFileNameRegex(formattedFileName);
 
         String ifndefRegex = createIfndefRegex(fileNameRegex);
@@ -73,26 +68,47 @@ public final class CHeaderFileUpdater implements IFileUpdater {
         IMatchingRecord defineMatchingRecord = new MatchingRecord(defineRegex);
         IMatchingRecord endifMatchingRecord = new MatchingRecord(endifRegex);
 
+        List<IMatchingRecord> startHeaderMatchingRecord = ArrayLists.of(
+            ifndefMatchingRecord,
+            defineMatchingRecord);
+
         int numberOfMatchingRecords = 0;
 
         try (DestructorHandler destructorHandler = new DestructorHandler()) {
-            LineMatcher lineMatcher = LineMatcher.createFileLineMatcher(this.path);
+            //
+            // Update the header start...
+            //
+            LineMatcher lineMatcher = LineMatcher.createFileLineMatcher(path);
             destructorHandler.register(lineMatcher);
 
-            LineReverseMatcher lineReverseMatcher = LineReverseMatcher.createFileLineReverseMatcher(this.path);
-            destructorHandler.register(lineReverseMatcher);
-
-            List<IMatchingRecordResult> result = lineMatcher.match(ArrayLists.of(
-                ifndefMatchingRecord,
-                defineMatchingRecord));
+            List<IMatchingRecordResult> result = lineMatcher.match(startHeaderMatchingRecord);
 
             for (IMatchingRecordResult matchingRecordResult : result) {
                 numberOfMatchingRecords += matchingRecordResult.matchingLinesSize();
             }
 
-            IMatchingRecordResult matchingRecordResult = lineReverseMatcher.match(endifMatchingRecord);
+            if (numberOfMatchingRecords != 2) {
+                String warningMessage =
+                    "The file: " + path + " does not include the following matching lines: " +
+                    "ifndefRegex = " + ifndefRegex +
+                    "defineRegex = " + defineRegex;
 
+                this.log.warn(warningMessage);
+            }
+
+            LineReverseMatcher lineReverseMatcher = LineReverseMatcher.createFileLineReverseMatcher(path);
+            destructorHandler.register(lineReverseMatcher);
+
+            IMatchingRecordResult matchingRecordResult = lineReverseMatcher.match(endifMatchingRecord);
             numberOfMatchingRecords += matchingRecordResult.matchingLinesSize();
+
+            if (numberOfMatchingRecords != 3) {
+                String warningMessage =
+                    "The file: " + path + " does not include the following matching line: " +
+                    "endifRegex = " + endifRegex;
+
+                this.log.warn(warningMessage);
+            }
         }
 
         return numberOfMatchingRecords == 3;
@@ -101,14 +117,14 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     /**
      * Updates file header.
      */
-    private long updateFileHeader() {
+    private static long updateFileHeader(Path path) {
         long numberOfUpdates;
 
         try (DestructorHandler destructorHandler = new DestructorHandler()) {
-            FileLineUpdater lineUpdater = new FileLineUpdater(this.path);
+            FileLineUpdater lineUpdater = new FileLineUpdater(path);
             destructorHandler.register(lineUpdater);
 
-            String formattedFileName = this.formatFileName();
+            String formattedFileName = formatFileName(path);
             String fileNameRegex = getFileNameRegex(formattedFileName);
             String newFileName = newFileName(formattedFileName);
 
@@ -198,8 +214,8 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     /**
      * Formats a file name.
      */
-    private String formatFileName() {
-        String fileName = this.path.getFileName().toString();
+    private static String formatFileName(Path path) {
+        String fileName = path.getFileName().toString();
         String extension = FileNames.getExtension(fileName);
 
         FileNameType fileNameType = FileNames.getFileNameType(fileName);

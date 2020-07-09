@@ -1,5 +1,5 @@
-#ifndef SHARED_PTR_H_784d7ec2_a208_4b82_84d0_84b1fcfbf6dc
-#define SHARED_PTR_H_784d7ec2_a208_4b82_84d0_84b1fcfbf6dc
+#ifndef SHARED_PTR_H_5b971322_518f_447c_b518_94dedd393e64
+#define SHARED_PTR_H_5b971322_518f_447c_b518_94dedd393e64
 
 #include <iostream>
 #include "ReferenceCountHolder.h"
@@ -138,4 +138,4 @@ namespace base
     }
 }
 
-#endif // SHARED_PTR_H_784d7ec2_a208_4b82_84d0_84b1fcfbf6dc
+#endif // SHARED_PTR_H_5b971322_518f_447c_b518_94dedd393e64

@@ -1,5 +1,5 @@
-#ifndef I_HASH_CODE_PROVIDER_H_c3b10d16_4899_4877_a36b_e21c6d278b3d
-#define I_HASH_CODE_PROVIDER_H_c3b10d16_4899_4877_a36b_e21c6d278b3d
+#ifndef I_HASH_CODE_PROVIDER_H_6b685f61_da77_4c92_a6b2_c27ec8a7ddc4
+#define I_HASH_CODE_PROVIDER_H_6b685f61_da77_4c92_a6b2_c27ec8a7ddc4
 
 namespace base {
 
@@ -39,4 +39,4 @@ namespace base {
     };
 }
 
-#endif // I_HASH_CODE_PROVIDER_H_c3b10d16_4899_4877_a36b_e21c6d278b3d
+#endif // I_HASH_CODE_PROVIDER_H_6b685f61_da77_4c92_a6b2_c27ec8a7ddc4

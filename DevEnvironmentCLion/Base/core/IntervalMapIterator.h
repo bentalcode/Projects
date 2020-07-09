@@ -1,5 +1,5 @@
-#ifndef INTERVAL_MAP_ITERATOR_H_04fde63b_617a_4282_9bd6_82c4e0033e42
-#define INTERVAL_MAP_ITERATOR_H_04fde63b_617a_4282_9bd6_82c4e0033e42
+#ifndef INTERVAL_MAP_ITERATOR_H_bb41cf72_186d_4da6_b84e_61ce0741e937
+#define INTERVAL_MAP_ITERATOR_H_bb41cf72_186d_4da6_b84e_61ce0741e937
 
 #include "IIterator.h"
 #include "IIntervalMap.h"
@@ -110,4 +110,4 @@ namespace base
     }
 }
 
-#endif // INTERVAL_MAP_ITERATOR_H_04fde63b_617a_4282_9bd6_82c4e0033e42
+#endif // INTERVAL_MAP_ITERATOR_H_bb41cf72_186d_4da6_b84e_61ce0741e937

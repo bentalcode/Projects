@@ -1,5 +1,5 @@
-#ifndef REFERENCE_COUNT_H_8269acd0_e2db_4e53_a6e0_bd02196d8c57
-#define REFERENCE_COUNT_H_8269acd0_e2db_4e53_a6e0_bd02196d8c57
+#ifndef REFERENCE_COUNT_H_ef29564e_e3a6_4dc8_aa04_1f2f2ce76105
+#define REFERENCE_COUNT_H_ef29564e_e3a6_4dc8_aa04_1f2f2ce76105
 
 #include <iostream>
 
@@ -67,4 +67,4 @@ namespace base
     }
 }
 
-#endif // REFERENCE_COUNT_H_8269acd0_e2db_4e53_a6e0_bd02196d8c57
+#endif // REFERENCE_COUNT_H_ef29564e_e3a6_4dc8_aa04_1f2f2ce76105

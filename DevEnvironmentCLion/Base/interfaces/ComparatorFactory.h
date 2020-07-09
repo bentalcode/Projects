@@ -1,5 +1,5 @@
-#ifndef COMPARATOR_FACTORY_H_68e2e122_18a5_444d_8b46_5608699a1b71
-#define COMPARATOR_FACTORY_H_68e2e122_18a5_444d_8b46_5608699a1b71
+#ifndef COMPARATOR_FACTORY_H_5d7c016c_2ce8_4bbf_9ba9_29ac3b9b897b
+#define COMPARATOR_FACTORY_H_5d7c016c_2ce8_4bbf_9ba9_29ac3b9b897b
 
 #include "IteratorComparator.h"
 #include "IterableComparator.h"
@@ -67,4 +67,4 @@ namespace base {
     }
 }
 
-#endif // COMPARATOR_FACTORY_H_68e2e122_18a5_444d_8b46_5608699a1b71
+#endif // COMPARATOR_FACTORY_H_5d7c016c_2ce8_4bbf_9ba9_29ac3b9b897b

@@ -1,7 +1,7 @@
-#ifndef I_INTERVAL_MAP_H_d0c401b3_3c48_427c_840e_fefa4aab606c
-#define I_INTERVAL_MAP_H_d0c401b3_3c48_427c_840e_fefa4aab606c
+#ifndef I_INTERVAL_MAP_H_89203c46_db82_45b7_ab27_1511e68e7bfd
+#define I_INTERVAL_MAP_H_89203c46_db82_45b7_ab27_1511e68e7bfd
 
-#include "ISizebleCollection.h"
+#include "ISizableCollection.h"
 #include "IIterable.h"
 #include "Interval.h"
 #include "Pair.h"
@@ -12,7 +12,7 @@ namespace base
      * The IIntervalMap interface defines an interval map.
      */
     template <typename Key, typename Value>
-    class IIntervalMap : public ISizebleCollection, public IIterable<base::Pair<base::Interval<Key>, Value>>
+    class IIntervalMap : public ISizableCollection, public IIterable<base::Pair<base::Interval<Key>, Value>>
     {
     public:
         /**
@@ -49,4 +49,4 @@ namespace base
     };
 }
 
-#endif // I_INTERVAL_MAP_H_d0c401b3_3c48_427c_840e_fefa4aab606c
+#endif // I_INTERVAL_MAP_H_89203c46_db82_45b7_ab27_1511e68e7bfd

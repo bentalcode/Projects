@@ -1,5 +1,5 @@
-#ifndef I_FINDER_H_0a6a434d_8fb6_4acc_88b2_72708dad9acb
-#define I_FINDER_H_0a6a434d_8fb6_4acc_88b2_72708dad9acb
+#ifndef I_FINDER_H_46de70eb_e7cc_421e_af01_97942d8805de
+#define I_FINDER_H_46de70eb_e7cc_421e_af01_97942d8805de
 
 namespace base
 {
@@ -42,4 +42,4 @@ namespace base
     using IFinderPtr = std::shared_ptr<IFinder<T>>;
 }
 
-#endif // I_FINDER_H_0a6a434d_8fb6_4acc_88b2_72708dad9acb
+#endif // I_FINDER_H_46de70eb_e7cc_421e_af01_97942d8805de

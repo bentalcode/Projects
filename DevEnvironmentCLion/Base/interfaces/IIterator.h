@@ -1,5 +1,5 @@
-#ifndef I_ITERATOR_H_fe3ae3b3_68f2_4548_aec1_c9fb8bf30fe2
-#define I_ITERATOR_H_fe3ae3b3_68f2_4548_aec1_c9fb8bf30fe2
+#ifndef I_ITERATOR_H_42217343_c0f1_42c0_8331_4ab9b14bfd7f
+#define I_ITERATOR_H_42217343_c0f1_42c0_8331_4ab9b14bfd7f
 
 namespace base
 {
@@ -52,4 +52,4 @@ namespace base
     using IIteratorPtr = std::shared_ptr<IIterator<T>>;
 }
 
-#endif // I_ITERATOR_H_fe3ae3b3_68f2_4548_aec1_c9fb8bf30fe2
+#endif // I_ITERATOR_H_42217343_c0f1_42c0_8331_4ab9b14bfd7f

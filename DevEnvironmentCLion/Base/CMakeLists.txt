@@ -60,7 +60,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IIterator.h
     ./interfaces/IList.h
     ./interfaces/IMatrix.h
-    ./interfaces/ISizebleCollection.h
+    ./interfaces/ISizableCollection.h
     ./interfaces/ITwoDimensionalList.h
     ./interfaces/IValidator.h
     ./interfaces/Interval.h

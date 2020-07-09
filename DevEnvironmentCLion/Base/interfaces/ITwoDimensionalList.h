@@ -1,7 +1,7 @@
-#ifndef I_TWO_DIMENSIONAL_LIST_H_12d475a8_c364_4b4d_9b96_c23535316c43
-#define I_TWO_DIMENSIONAL_LIST_H_12d475a8_c364_4b4d_9b96_c23535316c43
+#ifndef I_TWO_DIMENSIONAL_LIST_H_e0387590_d1e0_4a66_b7b7_84c2117b0001
+#define I_TWO_DIMENSIONAL_LIST_H_e0387590_d1e0_4a66_b7b7_84c2117b0001
 
-#include "ISizebleCollection.h"
+#include "ISizableCollection.h"
 #include "IIterable.h"
 
 namespace base
@@ -11,7 +11,7 @@ namespace base
      * The list can contains rows with different sizes.
      */
     template <typename T>
-    class ITwoDimensionalList : public ISizebleCollection, public IIterable<T>
+    class ITwoDimensionalList : public ISizableCollection, public IIterable<T>
     {
     public:
         /**
@@ -81,4 +81,4 @@ namespace base
     using ITwoDimensionalListPtr = std::shared_ptr<ITwoDimensionalList<T>>;
 }
 
-#endif // I_TWO_DIMENSIONAL_LIST_H_12d475a8_c364_4b4d_9b96_c23535316c43
+#endif // I_TWO_DIMENSIONAL_LIST_H_e0387590_d1e0_4a66_b7b7_84c2117b0001

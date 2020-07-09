@@ -1,5 +1,5 @@
-#ifndef EQUATABLE_COMPARATOR_H_a5cb43ed_c6ac_4891_b82c_925a87f50a15
-#define EQUATABLE_COMPARATOR_H_a5cb43ed_c6ac_4891_b82c_925a87f50a15
+#ifndef EQUATABLE_COMPARATOR_H_e459c236_120f_4b22_b1fd_d8a604bd5699
+#define EQUATABLE_COMPARATOR_H_e459c236_120f_4b22_b1fd_d8a604bd5699
 
 namespace base {
 
@@ -56,4 +56,4 @@ namespace base {
     }
 }
 
-#endif // EQUATABLE_COMPARATOR_H_a5cb43ed_c6ac_4891_b82c_925a87f50a15
+#endif // EQUATABLE_COMPARATOR_H_e459c236_120f_4b22_b1fd_d8a604bd5699

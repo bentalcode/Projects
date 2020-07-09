@@ -1,7 +1,7 @@
-#ifndef I_MATRIX_H_8b5476e0_941c_4469_93e2_495da05347fc
-#define I_MATRIX_H_8b5476e0_941c_4469_93e2_495da05347fc
+#ifndef I_MATRIX_H_f5f60376_8ebc_4627_b475_3a03a81cf27c
+#define I_MATRIX_H_f5f60376_8ebc_4627_b475_3a03a81cf27c
 
-#include "ISizebleCollection.h"
+#include "ISizableCollection.h"
 #include "IIterable.h"
 #include <vector>
 
@@ -13,7 +13,7 @@ namespace base
      * The IMatrix interface defines a matrix.
      */
     template <typename T>
-    class IMatrix : public ISizebleCollection, public IIterable<T>
+    class IMatrix : public ISizableCollection, public IIterable<T>
     {
     public:
         /**
@@ -90,4 +90,4 @@ namespace base
     };
 }
 
-#endif // I_MATRIX_H_8b5476e0_941c_4469_93e2_495da05347fc
+#endif // I_MATRIX_H_f5f60376_8ebc_4627_b475_3a03a81cf27c

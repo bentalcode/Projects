@@ -1,5 +1,5 @@
-#ifndef POSITION_H_26b7ee00_0ae0_478e_89f7_1106f21335f2
-#define POSITION_H_26b7ee00_0ae0_478e_89f7_1106f21335f2
+#ifndef POSITION_H_1cbda6e2_5285_48a4_8cc7_acf8fc0f4c45
+#define POSITION_H_1cbda6e2_5285_48a4_8cc7_acf8fc0f4c45
 
 namespace base
 {
@@ -90,4 +90,4 @@ namespace base
     }
 }
 
-#endif // POSITION_H_26b7ee00_0ae0_478e_89f7_1106f21335f2
+#endif // POSITION_H_1cbda6e2_5285_48a4_8cc7_acf8fc0f4c45

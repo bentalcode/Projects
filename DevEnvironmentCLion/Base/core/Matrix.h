@@ -1,5 +1,5 @@
-#ifndef MATRIX_H_c557dfa0_f675_449f_ad74_8a3e843a25f7
-#define MATRIX_H_c557dfa0_f675_449f_ad74_8a3e843a25f7
+#ifndef MATRIX_H_bcd64900_5fe0_4c1f_bd5f_1ed53be8ac2c
+#define MATRIX_H_bcd64900_5fe0_4c1f_bd5f_1ed53be8ac2c
 
 #include "IMatrix.h"
 #include "TwoDimensionalListIterator.h"
@@ -368,4 +368,4 @@ namespace base
     }
 }
 
-#endif // MATRIX_H_c557dfa0_f675_449f_ad74_8a3e843a25f7
+#endif // MATRIX_H_bcd64900_5fe0_4c1f_bd5f_1ed53be8ac2c

@@ -1,5 +1,5 @@
-#ifndef I_CALCULATOR_H_a961ca1f_baa9_4758_b1b4_78c7d4044b7d
-#define I_CALCULATOR_H_a961ca1f_baa9_4758_b1b4_78c7d4044b7d
+#ifndef I_CALCULATOR_H_5886a100_53fb_4ebc_84fe_5bf86daaa448
+#define I_CALCULATOR_H_5886a100_53fb_4ebc_84fe_5bf86daaa448
 
 namespace base
 {
@@ -42,4 +42,4 @@ namespace base
     using ICalculatorPtr = std::shared_ptr<ICalculator<T>>;
 }
 
-#endif // I_CALCULATOR_H_a961ca1f_baa9_4758_b1b4_78c7d4044b7d
+#endif // I_CALCULATOR_H_5886a100_53fb_4ebc_84fe_5bf86daaa448

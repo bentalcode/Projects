@@ -1,5 +1,5 @@
-#ifndef I_VALIDATOR_H_2cd7456a_8634_4763_9c53_005d626e836c
-#define I_VALIDATOR_H_2cd7456a_8634_4763_9c53_005d626e836c
+#ifndef I_VALIDATOR_H_a24e6ee1_c433_4be3_a021_c084232d4aee
+#define I_VALIDATOR_H_a24e6ee1_c433_4be3_a021_c084232d4aee
 
 namespace base
 {
@@ -40,4 +40,4 @@ namespace base
     using IValidatorPtr = std::shared_ptr<IValidator>;
 }
 
-#endif // I_VALIDATOR_H_2cd7456a_8634_4763_9c53_005d626e836c
+#endif // I_VALIDATOR_H_a24e6ee1_c433_4be3_a021_c084232d4aee

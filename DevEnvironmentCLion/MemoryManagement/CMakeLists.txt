@@ -92,7 +92,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatrix.h
-    ../Base/interfaces/ISizebleCollection.h
+    ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/IValidator.h
     ../Base/interfaces/Interval.h

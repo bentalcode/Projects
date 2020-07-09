@@ -31,7 +31,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IList.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
-    ../Base/interfaces/ISizebleCollection.h
+        ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
     ../Base/interfaces/ITwoDimensionalList.h

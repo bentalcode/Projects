@@ -1,5 +1,5 @@
-#ifndef INTERVAL_H_33423945_ab47_4afe_adad_c4f5cb0557f9
-#define INTERVAL_H_33423945_ab47_4afe_adad_c4f5cb0557f9
+#ifndef INTERVAL_H_9879afbb_67d2_4bf2_a182_33c254c2aeea
+#define INTERVAL_H_9879afbb_67d2_4bf2_a182_33c254c2aeea
 
 namespace base
 {
@@ -133,4 +133,4 @@ namespace base
     }
 }
 
-#endif // INTERVAL_H_33423945_ab47_4afe_adad_c4f5cb0557f9
+#endif // INTERVAL_H_9879afbb_67d2_4bf2_a182_33c254c2aeea

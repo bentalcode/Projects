@@ -1,5 +1,5 @@
-#ifndef STRING_ITERATOR_H_656f997f_c2d5_4b1a_81de_2281c2625e03
-#define STRING_ITERATOR_H_656f997f_c2d5_4b1a_81de_2281c2625e03
+#ifndef STRING_ITERATOR_H_9f033aba_428f_49ab_abf0_9b0a4590d8bf
+#define STRING_ITERATOR_H_9f033aba_428f_49ab_abf0_9b0a4590d8bf
 
 #include "IIterator.h"
 
@@ -101,4 +101,4 @@ namespace base
     }
 }
 
-#endif // STRING_ITERATOR_H_656f997f_c2d5_4b1a_81de_2281c2625e03
+#endif // STRING_ITERATOR_H_9f033aba_428f_49ab_abf0_9b0a4590d8bf

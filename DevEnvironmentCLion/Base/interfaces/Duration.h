@@ -1,5 +1,5 @@
-#ifndef DURATION_H_ef5b7bbd_2bb7_498b_b8cc_6ee15f9ef3cc
-#define DURATION_H_ef5b7bbd_2bb7_498b_b8cc_6ee15f9ef3cc
+#ifndef DURATION_H_c4205a1e_4ef9_48b7_bbe0_3def0fca775a
+#define DURATION_H_c4205a1e_4ef9_48b7_bbe0_3def0fca775a
 
 #include <chrono>
 
@@ -82,4 +82,4 @@ namespace base
     }
 }
 
-#endif // DURATION_H_ef5b7bbd_2bb7_498b_b8cc_6ee15f9ef3cc
+#endif // DURATION_H_c4205a1e_4ef9_48b7_bbe0_3def0fca775a

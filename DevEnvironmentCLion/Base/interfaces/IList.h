@@ -1,7 +1,7 @@
-#ifndef I_LIST_H_f1e8f87d_6913_44a3_8d12_f084f71f7492
-#define I_LIST_H_f1e8f87d_6913_44a3_8d12_f084f71f7492
+#ifndef I_LIST_H_68c850c7_6fe5_47cc_b273_b36813e16854
+#define I_LIST_H_68c850c7_6fe5_47cc_b273_b36813e16854
 
-#include "ISizebleCollection.h"
+#include "ISizableCollection.h"
 #include "IIterable.h"
 #include <vector>
 
@@ -11,7 +11,7 @@ namespace base
      * The IList interface defines a generic list.
      */
     template <typename T>
-    class IList : public ISizebleCollection, public IIterable<T>
+    class IList : public ISizableCollection, public IIterable<T>
     {
     public:
         /**
@@ -63,4 +63,4 @@ namespace base
     };
 }
 
-#endif // I_LIST_H_f1e8f87d_6913_44a3_8d12_f084f71f7492
+#endif // I_LIST_H_68c850c7_6fe5_47cc_b273_b36813e16854

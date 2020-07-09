@@ -1,5 +1,5 @@
-#ifndef I_BINARY_COMPARATOR_H_f3d2a17d_a480_4e14_81d3_e8df7793b7f4
-#define I_BINARY_COMPARATOR_H_f3d2a17d_a480_4e14_81d3_e8df7793b7f4
+#ifndef I_BINARY_COMPARATOR_H_2ce77825_60fa_4a23_9859_22d635fa5f08
+#define I_BINARY_COMPARATOR_H_2ce77825_60fa_4a23_9859_22d635fa5f08
 
 #include "IHashCodeProvider.h"
 #include "IEquatableComparator.h"
@@ -38,4 +38,4 @@ namespace base {
     };
 }
 
-#endif // I_BINARY_COMPARATOR_H_f3d2a17d_a480_4e14_81d3_e8df7793b7f4
+#endif // I_BINARY_COMPARATOR_H_2ce77825_60fa_4a23_9859_22d635fa5f08

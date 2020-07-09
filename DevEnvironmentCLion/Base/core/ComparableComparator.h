@@ -1,5 +1,5 @@
-#ifndef COMPARABLE_COMPARATOR_H_a5cb43ed_c6ac_4891_b82c_925a87f50a15
-#define COMPARABLE_COMPARATOR_H_a5cb43ed_c6ac_4891_b82c_925a87f50a15
+#ifndef COMPARABLE_COMPARATOR_H_2d10f582_96b5_4d9c_90b7_3faefbc53ef2
+#define COMPARABLE_COMPARATOR_H_2d10f582_96b5_4d9c_90b7_3faefbc53ef2
 
 #include "IComparableComparator.h"
 
@@ -73,4 +73,4 @@ namespace base {
     }
 }
 
-#endif // COMPARABLE_COMPARATOR_H_a5cb43ed_c6ac_4891_b82c_925a87f50a15
+#endif // COMPARABLE_COMPARATOR_H_2d10f582_96b5_4d9c_90b7_3faefbc53ef2

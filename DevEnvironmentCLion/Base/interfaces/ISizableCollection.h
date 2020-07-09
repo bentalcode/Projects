@@ -1,5 +1,5 @@
-#ifndef I_SIZABLE_COLLECTION_H_23a3a9d8_08fa_4113_a784_9f7fb35f7132
-#define I_SIZABLE_COLLECTION_H_23a3a9d8_08fa_4113_a784_9f7fb35f7132
+#ifndef I_SIZABLE_COLLECTION_H_d1f02b02_4ea6_4180_b354_bef617ea97c9
+#define I_SIZABLE_COLLECTION_H_d1f02b02_4ea6_4180_b354_bef617ea97c9
 
 #include "ICollection.h"
 
@@ -8,30 +8,30 @@ namespace base
     /**
      * The ISizableCollection interface defines a sizable collection.
      */
-    class ISizebleCollection : public ICollection
+    class ISizableCollection : public ICollection
     {
     public:
         /**
          * The constructor.
          */
-        ISizebleCollection() = default;
+        ISizableCollection() = default;
 
         /**
          * The destructor.
          */
-        virtual ~ISizebleCollection() = default;
+        virtual ~ISizableCollection() = default;
 
         /**
          * The copy/move constructors.
          */
-        ISizebleCollection(const ISizebleCollection&) = delete;
-        ISizebleCollection(ISizebleCollection&&) = delete;
+        ISizableCollection(const ISizableCollection&) = delete;
+        ISizableCollection(ISizableCollection&&) = delete;
 
         /**
          * The copy/move assignment operators.
          */
-        ISizebleCollection& operator=(const ISizebleCollection&) = delete;
-        ISizebleCollection& operator=(ISizebleCollection&&) = delete;
+        ISizableCollection& operator=(const ISizableCollection&) = delete;
+        ISizableCollection& operator=(ISizableCollection&&) = delete;
 
         /**
          * Gets the size of the collection.
@@ -45,4 +45,4 @@ namespace base
     };
 }
 
-#endif // I_SIZABLE_COLLECTION_H_23a3a9d8_08fa_4113_a784_9f7fb35f7132
+#endif // I_SIZABLE_COLLECTION_H_d1f02b02_4ea6_4180_b354_bef617ea97c9
