@@ -1,5 +1,5 @@
-#ifndef MEMORY_ALLOCATOR_UNIT_TEST_H_7b182ae0_a34f_420d_b31b_347335a80d7b
-#define MEMORY_ALLOCATOR_UNIT_TEST_H_7b182ae0_a34f_420d_b31b_347335a80d7b
+#ifndef MEMORY_ALLOCATOR_UNIT_TEST_H_f6b511e5_efad_4b34_aef2_4e303687ca6b
+#define MEMORY_ALLOCATOR_UNIT_TEST_H_f6b511e5_efad_4b34_aef2_4e303687ca6b
 
 #include "PreCompiled.h"
 #include "UnitTestBase.h"
@@ -62,4 +62,4 @@ namespace memory_management {
     };
 }
 
-#endif /* MEMORY_ALLOCATOR_UNIT_TEST_H_7b182ae0_a34f_420d_b31b_347335a80d7b */
+#endif // MEMORY_ALLOCATOR_UNIT_TEST_H_f6b511e5_efad_4b34_aef2_4e303687ca6b
