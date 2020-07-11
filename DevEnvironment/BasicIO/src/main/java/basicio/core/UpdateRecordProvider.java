@@ -1,25 +1,26 @@
 package basicio.core;
 
 import base.core.Conditions;
+import basicio.interfaces.IContentProvider;
 import basicio.interfaces.IUpdateRecord;
 import basicio.interfaces.MatchPolicyType;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The UpdateRecord class implements an update record.
+ * The UpdateRecordProvider class implements an update record with a provider.
  */
-public final class UpdateRecord implements IUpdateRecord {
+public final class UpdateRecordProvider implements IUpdateRecord {
     private final Pattern matchingRegex;
-    private final String newContent;
+    private final IContentProvider newContentProvider;
     private final MatchPolicyType policyType;
 
     /**
-     * The UpdateData constructor.
+     * The UpdateRecordProvider constructor.
      */
-    public UpdateRecord(
+    public UpdateRecordProvider(
         String matchingRegex,
-        String newContent,
+        IContentProvider newContentProvider,
         MatchPolicyType policyType) {
 
         Conditions.validateNotNull(
@@ -27,11 +28,11 @@ public final class UpdateRecord implements IUpdateRecord {
             "The matching regex.");
 
         Conditions.validateNotNull(
-            newContent,
-            "The new content of the data.");
+            newContentProvider,
+            "The new content provider.");
 
         this.matchingRegex = Pattern.compile(matchingRegex);
-        this.newContent = newContent;
+        this.newContentProvider = newContentProvider;
         this.policyType = policyType;
     }
 
@@ -48,7 +49,7 @@ public final class UpdateRecord implements IUpdateRecord {
      */
     @Override
     public String getNewContent(String currContent, Matcher matcher) {
-        return this.newContent;
+        return this.newContentProvider.get(currContent, matcher);
     }
 
     /**

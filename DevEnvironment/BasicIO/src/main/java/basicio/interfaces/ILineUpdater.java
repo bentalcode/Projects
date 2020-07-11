@@ -7,30 +7,30 @@ import java.util.List;
  */
 public interface ILineUpdater {
     /**
-     * Updates a line that matches an update record.
+     * Updates lines that matches an update record.
      * The search direction is from top to bottom.
+     * Returns the number of lines which got updated.
      */
-    boolean update(IUpdateRecord updateData);
+    int update(IUpdateRecord updateData);
 
     /**
      * Updates a line that matches an update record.
      * The search direction is from bottom to top.
+     * Returns the number of lines which got updated.
      */
-    boolean updateFromEnd(IUpdateRecord updateData);
+    int updateFromEnd(IUpdateRecord updateData);
 
     /**
      * Updates lines that matches update records.
      * The search direction is from top to bottom.
+     * Returns the number of lines which got updated.
      */
-    int update(
-        List<IUpdateRecord> updatesData,
-        MatchPolicyType policyType);
+    int update(List<IUpdateRecord> updatesData);
 
     /**
      * Updates lines that matches update records.
      * The search direction is from bottom to top.
+     * Returns the number of lines which got updated.
      */
-    int updateFromEnd(
-        List<IUpdateRecord> updateRecords,
-        MatchPolicyType policyType);
+    int updateFromEnd(List<IUpdateRecord> updateRecords);
 }

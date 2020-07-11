@@ -1,0 +1,45 @@
+{
+    "name": "HashCode Command",
+    "description": "HashCode Command performs code updates on hash codes of java files.",
+    "parameterSets": [
+        {
+            "indexedParameters": [
+                {
+                    "name": "filePath",
+                    "description": "The path of a file."
+                }
+            ]
+        },
+        {
+            "namedParameters": [
+                {
+                    "name": "filePath",
+                    "shortName": "file",
+                    "longName": "file",
+                    "description": "The path of a file."
+                }
+            ]
+        },
+        {
+            "namedParameters": [
+                {
+                    "name": "directoryPath",
+                    "shortName": "dir",
+                    "longName": "directory",
+                    "description": "The path of a directory."
+                },
+                {
+                    "name": "recursive",
+                    "shortName": "r",
+                    "longName": "recurse",
+                    "description": "Whether to include sub directories recursively.",
+                    "optional": true
+                }
+            ]
+        }
+    ],
+    "help":
+    {
+        "usageMessage": "HashCodeCommand <filePath> \n CHeader -file:=<filePath> \n CHeader -directory:=<dirPath> -recurse"
+    }
+}

@@ -5,6 +5,7 @@ import base.core.Scanners;
 import base.interfaces.ICloseable;
 import base.interfaces.IDestructorHandler;
 import basicio.interfaces.ILineReader;
+import basicio.interfaces.LineSeparatorType;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -99,6 +100,14 @@ public final class LineReader implements ILineReader, ICloseable {
     @Override
     public long currentLineEndPosition() {
         return this.currLineEndPosition;
+    }
+
+    /**
+     * Gets the line separator of current line.
+     */
+    @Override
+    public LineSeparatorType currentLineSeparator() {
+        throw new UnsupportedOperationException();
     }
 
     /**

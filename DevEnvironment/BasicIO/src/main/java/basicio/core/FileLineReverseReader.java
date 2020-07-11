@@ -18,12 +18,11 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
     private long length;
     private long position;
     private long lineIndex;
-    private long lineStartPosition;
-    private long lineEndPosition;
+    private Character followingCharacter;
+    private LineSeparatorType prevLineSeparator;
     private long currLineStartPosition;
     private long currLineEndPosition;
-    private char followingCharacter;
-    private StringBuilder lineBuilder;
+    private LineSeparatorType currLineSeparator;
 
     /**
      * The FileLineReverseReader constructor.
@@ -94,6 +93,14 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
     }
 
     /**
+     * Gets the separator current line.
+     */
+    @Override
+    public LineSeparatorType currentLineSeparator() {
+        return this.currLineSeparator;
+    }
+
+    /**
      * Closes this resource gracefully.
      */
     @Override
@@ -105,68 +112,80 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
      * Reads the next line.
      */
     private String nextLine() {
-        String line;
+        StringBuilder lineBuilder = new StringBuilder();
 
         //
-        // Iterate over each character in the file in reverse order
-        // until reaching end of previous line or start of file...
+        // Iterate over each character in reverse order until
+        // reaching end of previous line or start of file...
         //
         while (this.position >= 0) {
             //
             // Read the current character...
             //
-            RandomAccessFiles.seek(this.randomAccessFile, this.position);
-            char currCharacter = (char)RandomAccessFiles.readByte(this.randomAccessFile);
+            char currCharacter;
+
+            if (this.followingCharacter == null) {
+                currCharacter = this.readCurrCharacter();
+            }
+            else {
+                currCharacter = this.followingCharacter;
+            }
 
             //
             // In case of a \n read the next one for having at least two characters
             // for detecting a separator...
             //
+            char prevCharacter = 0;
+
             if (currCharacter == '\n' && this.position > 0) {
                 this.nextCharacter();
-                RandomAccessFiles.seek(this.randomAccessFile, this.position);
 
-                this.followingCharacter = currCharacter;
-                currCharacter = (char)RandomAccessFiles.readByte(this.randomAccessFile);
+                prevCharacter = currCharacter;
+                currCharacter = this.readCurrCharacter();
             }
 
             //
             // Detect whether encountering a line separator...
             //
-            LineSeparatorType lineSeparatorType = LineSeparatorType.findLineSeparator(
+            LineSeparatorType lineSeparator = findLineSeparator(
                 currCharacter,
-                this.followingCharacter);
+                prevCharacter);
 
-            if (lineSeparatorType != null) {
+            if (lineSeparator != null) {
                 ++this.lineIndex;
 
-                this.lineStartPosition = this.position + 2;
+                long lineStartPosition = this.position + 2;
+                long lineEndPosition;
 
-                if (this.lineEndPosition == -1) {
-                    this.lineEndPosition = (this.lineStartPosition > this.length - 1) ?
-                        this.lineStartPosition :
+                if (this.currLineStartPosition == -1) {
+                    lineEndPosition = (lineStartPosition > this.length - 1) ?
+                        lineStartPosition :
                         this.length - 1;
                 }
-
-                String separatorToken = lineSeparatorType.getToken();
+                else {
+                    lineEndPosition = this.currLineStartPosition - 1;
+                }
 
                 //
                 // Get the content of the current line...
                 //
-                line = this.processResultantLine(this.lineStartPosition, this.lineEndPosition);
+                String line = this.processResultantLine(
+                    lineBuilder,
+                    lineStartPosition,
+                    lineEndPosition,
+                    this.prevLineSeparator);
+
+                this.prevLineSeparator = lineSeparator;
+
+                String separatorToken = lineSeparator.getToken();
 
                 if (separatorToken.length() == 1) {
                     this.previousCharacter();
-                    this.lineEndPosition = this.position;
+                    this.followingCharacter = currCharacter;
                 }
                 else {
-                    this.lineEndPosition = this.position - 1 + separatorToken.length();
+                    this.followingCharacter = null;
                 }
-
-                //
-                // Invalidate the second character of a line separator...
-                //
-                this.followingCharacter = 0;
 
                 //
                 // Move to the next character.
@@ -176,26 +195,39 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
                 return line;
             }
             else {
-                this.lineBuilder.append(currCharacter);
-                this.followingCharacter = currCharacter;
+                lineBuilder.append(currCharacter);
+                this.followingCharacter = null;
 
                 this.nextCharacter();
             }
         }
 
-        return this.processResultantLine(0, this.lineEndPosition);
+        long lineStartPosition = 0;
+        long lineEndPosition = this.currLineStartPosition - 1;
+        LineSeparatorType lineSeparator = this.prevLineSeparator;
+
+        return this.processResultantLine(
+            lineBuilder,
+            lineStartPosition,
+            lineEndPosition,
+            lineSeparator);
     }
 
     /**
      * Processes the resultant line.
      */
-    private String processResultantLine(long lineStartPosition, long lineEndPosition) {
-        this.lineBuilder.reverse();
-        String line = this.lineBuilder.toString();
-        this.lineBuilder = new StringBuilder();
+    private String processResultantLine(
+        StringBuilder lineBuilder,
+        long lineStartPosition,
+        long lineEndPosition,
+        LineSeparatorType lineSeparator) {
+
+        lineBuilder.reverse();
+        String line = lineBuilder.toString();
 
         this.currLineStartPosition = lineStartPosition;
         this.currLineEndPosition = lineEndPosition;
+        this.currLineSeparator = lineSeparator;
 
         return line;
     }
@@ -215,17 +247,43 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
     }
 
     /**
-     * Reset the reader.
+     * Resets the reader.
      */
     private void reset() {
         this.length = RandomAccessFiles.length(this.randomAccessFile);
         this.position = this.length - 1;
         this.lineIndex = 0;
-        this.lineStartPosition = -1;
-        this.lineEndPosition = -1;
         this.currLineStartPosition = -1;
         this.currLineEndPosition = -1;
-        this.followingCharacter = 0;
-        this.lineBuilder = new StringBuilder();
+        this.followingCharacter = null;
+    }
+
+    /**
+     * Reads the current character.
+     */
+    private char readCurrCharacter() {
+        RandomAccessFiles.seek(this.randomAccessFile, this.position);
+        return (char)RandomAccessFiles.readByte(this.randomAccessFile);
+    }
+
+    /**
+     * Finds the corresponding line separator.
+     * Returns null of no line separator is matching.
+     */
+    public static LineSeparatorType findLineSeparator(char first, char second) {
+        for (LineSeparatorType separatorType : LineSeparatorType.values()) {
+            String token = separatorType.getToken();
+
+            if (token.length() == 2 && token.charAt(0) == first && token.charAt(1) == second) {
+                return separatorType;
+            }
+            else if (token.length() == 1) {
+                if (token.charAt(0) == second) {
+                    return separatorType;
+                }
+            }
+        }
+
+        return null;
     }
 }

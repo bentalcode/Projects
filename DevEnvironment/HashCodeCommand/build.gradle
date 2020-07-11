@@ -1,0 +1,12 @@
+apply from: "${commonDir}/common.build.gradle"
+
+apply plugin: 'application'
+mainClassName = 'CHeaderCommand.Main'
+
+dependencies {
+    compile project(':Base')
+    compile project(':Command')
+    compile project(':BasicIO')
+    compile group: 'ch.qos.logback', name: 'logback-core', version: logBackVersion
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: logBackVersion
+}

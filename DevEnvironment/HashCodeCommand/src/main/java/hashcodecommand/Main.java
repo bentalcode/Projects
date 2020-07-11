@@ -1,6 +1,6 @@
-package cheadercommand;
+package hashcodecommand;
 
-import cheadercommand.core.CHeaderCommand;
+import hashcodecommand.core.HashCodeCommand;
 import command.core.CommandHandler;
 import command.interfaces.ICommand;
 import command.interfaces.ICommandHandler;
@@ -13,7 +13,7 @@ public final class Main {
      * The main entry.
      */
     public static void main(String[] args) {
-        ICommand command = new CHeaderCommand();
+        ICommand command = new HashCodeCommand();
 
         try {
             ICommandHandler commandHandler = new CommandHandler();
@@ -21,7 +21,7 @@ public final class Main {
         }
         catch(Exception e) {
             String errorMessage =
-                "The CHeaderCommand has failed to run due to an unexpected error: " + e.getMessage() +
+                "The HashCodeCommand has failed to run due to an unexpected error: " + e.getMessage() +
                 ", Exit Status: -1";
 
             command.getMessageWriter().writeErrorMessage(errorMessage);

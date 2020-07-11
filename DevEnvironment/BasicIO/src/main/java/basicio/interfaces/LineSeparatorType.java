@@ -59,27 +59,6 @@ public enum LineSeparatorType {
     public abstract String getToken();
 
     /**
-     * Finds the corresponding line separator.
-     * Returns null of no line separator is matching.
-     */
-    public static LineSeparatorType findLineSeparator(char first, char second) {
-        for (LineSeparatorType separatorType : LineSeparatorType.values()) {
-            String token = separatorType.getToken();
-
-            if (token.length() == 2 && token.charAt(0) == first && token.charAt(1) == second) {
-                return separatorType;
-            }
-            else if (token.length() == 1) {
-                if (token.charAt(0) == second) {
-                    return separatorType;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    /**
      * Parses an enum string.
      */
     public static LineSeparatorType parse(String str) {

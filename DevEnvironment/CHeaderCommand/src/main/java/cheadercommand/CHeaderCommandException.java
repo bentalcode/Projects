@@ -1,4 +1,4 @@
-package cheadercommand.core;
+package cheadercommand;
 
 /**
  * The CHeaderCommandException class captures errors in the cheader-command module.

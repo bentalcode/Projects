@@ -9,13 +9,14 @@ import basicio.BasicIOException;
 import basicio.interfaces.ILineReader;
 import basicio.interfaces.ILineUpdater;
 import basicio.interfaces.IUpdateRecord;
+import basicio.interfaces.LineSeparatorType;
 import basicio.interfaces.MatchPolicyType;
 import java.io.RandomAccessFile;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,57 +41,45 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
     /**
      * Updates a line that matches an update record.
      * The search direction is from top to bottom.
+     * Returns the number of lines which got updated.
      */
     @Override
-    public boolean update(IUpdateRecord updateRecord) {
+    public int update(IUpdateRecord updateRecord) {
         Conditions.validateNotNull(
             updateRecord,
             "The update record.");
 
         List<IUpdateRecord> updateRecords = ArrayLists.of(updateRecord);
 
-        int numberOfUpdates = this.update(
-            updateRecords,
-            MatchPolicyType.FirstMatch);
-
-        return numberOfUpdates > 0;
+        return this.update(updateRecords);
     }
 
     /**
      * Updates a line that matches an update record.
      * The search direction is from bottom to top.
+     * Returns the number of lines which got updated.
      */
     @Override
-    public boolean updateFromEnd(IUpdateRecord updateRecord) {
+    public int updateFromEnd(IUpdateRecord updateRecord) {
         Conditions.validateNotNull(
             updateRecord,
             "The update record.");
 
         List<IUpdateRecord> updateRecords = ArrayLists.of(updateRecord);
 
-        int numberOfUpdates = this.updateFromEnd(
-            updateRecords,
-            MatchPolicyType.FirstMatch);
-
-        return numberOfUpdates > 0;
+        return this.updateFromEnd(updateRecords);
     }
 
     /**
      * Updates lines that matches update records.
      * The search direction is from top to bottom.
+     * Returns the number of lines which got updated.
      */
     @Override
-    public int update(
-        List<IUpdateRecord> updateRecords,
-        MatchPolicyType policyType) {
-
+    public int update(List<IUpdateRecord> updateRecords) {
         Conditions.validateNotNull(
             updateRecords,
             "The update records.");
-
-        Conditions.validateNotNull(
-            policyType,
-            "The update policy type.");
 
         //
         // Create the reader of lines...
@@ -101,7 +90,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         //
         // Updates the lines...
         //
-        int numberOfMatches = this.update(reader, updateRecords, policyType);
+        int numberOfMatches = this.update(reader, updateRecords);
 
         return numberOfMatches;
     }
@@ -109,18 +98,13 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
     /**
      * Updates lines that matches update records.
      * The search direction is from bottom to top.
+     * Returns the number of lines which got updated.
      */
-    public int updateFromEnd(
-        List<IUpdateRecord> updateRecords,
-        MatchPolicyType policyType) {
-
+    @Override
+    public int updateFromEnd(List<IUpdateRecord> updateRecords) {
         Conditions.validateNotNull(
             updateRecords,
             "The update records.");
-
-        Conditions.validateNotNull(
-            policyType,
-            "The update policy type.");
 
         //
         // Create the reverse reader of lines...
@@ -131,7 +115,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         //
         // Updates the lines...
         //
-        int numberOfMatches = this.update(reader, updateRecords, policyType);
+        int numberOfMatches = this.update(reader, updateRecords);
 
         return numberOfMatches;
     }
@@ -149,25 +133,25 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
      */
     private int update(
         ILineReader reader,
-        List<IUpdateRecord> updateRecords,
-        MatchPolicyType policyType) {
+        List<IUpdateRecord> updateRecords) {
 
         //
-        // Create the matching patterns...
+        // Create the update queue...
         //
-        List<Pattern> patterns = this.createMatchingPatterns(updateRecords);
+        Queue<IUpdateRecord> queue = this.createUpdateQueue(updateRecords);
 
         //
         // Process each line...
         //
         int numberOfMatches = 0;
 
-        while (reader.hasNext()) {
+        while (reader.hasNext() && !queue.isEmpty()) {
             String line = reader.next();
 
             long lineIndex = reader.currentLineNumber();
             long startLinePosition = reader.currentLineStartPosition();
             long endLinePosition = reader.currentLineEndPosition();
+            LineSeparatorType lineSeparator = reader.currentLineSeparator();
 
             //
             // Process the line...
@@ -177,16 +161,10 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
                     lineIndex,
                     startLinePosition,
                     endLinePosition,
-                    updateRecords,
-                    patterns)) {
+                    lineSeparator,
+                    queue)) {
 
                 ++numberOfMatches;
-
-                if (policyType == MatchPolicyType.FirstMatch ||
-                    (policyType == MatchPolicyType.AllMatches && numberOfMatches == updateRecords.size())) {
-
-                    break;
-                }
             }
         }
 
@@ -201,16 +179,17 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         long lineIndex,
         long startLinePosition,
         long endLinePosition,
-        List<IUpdateRecord> updateRecords,
-        List<Pattern> patterns) {
+        LineSeparatorType lineSeparator,
+        Queue<IUpdateRecord> updateRecords) {
 
-        assert(updateRecords.size() == patterns.size());
+        boolean status = false;
 
-        for (int i = 0; i < updateRecords.size(); ++i) {
-            IUpdateRecord updateRecord = updateRecords.get(i);
-            Pattern pattern = patterns.get(i);
+        int numberOfUpdates = updateRecords.size();
 
-            Matcher matcher = pattern.matcher(line);
+        for (int i = 0; i < numberOfUpdates; ++i) {
+            IUpdateRecord updateRecord = updateRecords.poll();
+
+            Matcher matcher = updateRecord.getMatchingRegex().matcher(line);
 
             if (matcher.matches()) {
                 this.updateLine(
@@ -218,13 +197,22 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
                     lineIndex,
                     startLinePosition,
                     endLinePosition,
+                    lineSeparator,
+                    matcher,
                     updateRecord);
 
-                return true;
+                status = true;
+
+                if (updateRecord.getPolicyType() == MatchPolicyType.AllMatches) {
+                     updateRecords.offer(updateRecord);
+                }
+            }
+            else {
+                updateRecords.offer(updateRecord);
             }
         }
 
-        return false;
+        return status;
     }
 
     /**
@@ -235,9 +223,12 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         long lineIndex,
         long startLinePosition,
         long endLinePosition,
+        LineSeparatorType lineSeparator,
+        Matcher matcher,
         IUpdateRecord updateRecord) {
 
-        long updateSize = updateRecord.getNewContent().length();
+        String newContent = updateRecord.getNewContent(line, matcher);
+        long updateSize = newContent.length();
 
         if (updateSize > line.length()) {
             String errorMessage =
@@ -249,21 +240,20 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         }
 
         RandomAccessFiles.seek(this.randomAccessFile, startLinePosition);
-        RandomAccessFiles.write(this.randomAccessFile, updateRecord.getNewContent());
+        RandomAccessFiles.write(this.randomAccessFile, newContent);
         RandomAccessFiles.seek(this.randomAccessFile, endLinePosition);
     }
 
     /**
-     * Creates matching patterns.
+     * Creates an update queue.
      */
-    private static List<Pattern> createMatchingPatterns(List<IUpdateRecord> updateRecords) {
-        List<Pattern> patterns = new ArrayList<>(updateRecords.size());
+    private static Queue<IUpdateRecord> createUpdateQueue(List<IUpdateRecord> updateRecords) {
+        Queue<IUpdateRecord> queue = new LinkedList<>();
 
-        for (IUpdateRecord updateRecord : updateRecords) {
-            Pattern pattern = Pattern.compile(updateRecord.getMatchingRegex());
-            patterns.add(pattern);
+        for (IUpdateRecord record : updateRecords) {
+            queue.offer(record);
         }
 
-        return patterns;
+        return queue;
     }
 }

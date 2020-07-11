@@ -18,4 +18,9 @@ public interface ILineReader extends IReader<String> {
      * Gets the end position of current line.
      */
     long currentLineEndPosition();
+
+    /**
+     * Gets the separator of current line.
+     */
+    LineSeparatorType currentLineSeparator();
 }

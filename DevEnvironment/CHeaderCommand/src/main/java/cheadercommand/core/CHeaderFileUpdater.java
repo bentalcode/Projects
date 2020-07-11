@@ -46,8 +46,8 @@ public final class CHeaderFileUpdater implements IFileUpdater {
      */
     @Override
     public long update() {
-        if (this.canUpdateFileHeader(this.path)) {
-
+        if (!this.canUpdateFileHeader(this.path)) {
+            return -1;
         }
 
         return this.updateFileHeader(this.path);
@@ -129,12 +129,10 @@ public final class CHeaderFileUpdater implements IFileUpdater {
             String newFileName = newFileName(formattedFileName);
 
             List<IUpdateRecord> startUpdateData = createHeaderStartUpdateData(fileNameRegex, newFileName);
-            numberOfUpdates = lineUpdater.update(startUpdateData, MatchPolicyType.AllMatches);
+            numberOfUpdates = lineUpdater.update(startUpdateData);
 
             IUpdateRecord endUpdateData = createHeaderEndUpdateData(fileNameRegex, newFileName);
-            if (lineUpdater.updateFromEnd(endUpdateData)) {
-                ++numberOfUpdates;
-            }
+            numberOfUpdates += lineUpdater.updateFromEnd(endUpdateData);
         }
 
         return numberOfUpdates;
@@ -149,11 +147,11 @@ public final class CHeaderFileUpdater implements IFileUpdater {
 
         String ifndefRegex = createIfndefRegex(fileNameRegex);
         String ifndefData = "#ifndef " + newFileName;
-        IUpdateRecord ifndefUpdateRecord = new UpdateRecord(ifndefRegex, ifndefData);
+        IUpdateRecord ifndefUpdateRecord = new UpdateRecord(ifndefRegex, ifndefData, MatchPolicyType.FirstMatch);
 
         String defineRegex = createDefineRegex(fileNameRegex);
         String defineData = "#define " + newFileName;
-        IUpdateRecord defineUpdateRecord = new UpdateRecord(defineRegex, defineData);
+        IUpdateRecord defineUpdateRecord = new UpdateRecord(defineRegex, defineData, MatchPolicyType.FirstMatch);
 
         return ArrayLists.of(
             ifndefUpdateRecord,
@@ -169,7 +167,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
 
         String endifRegex = createEndifRegex(fileNameRegex);
         String endifData = "#endif" + " // " + newFileName;
-        IUpdateRecord endifUpdateRecord = new UpdateRecord(endifRegex, endifData);
+        IUpdateRecord endifUpdateRecord = new UpdateRecord(endifRegex, endifData, MatchPolicyType.FirstMatch);
 
         return endifUpdateRecord;
     }
