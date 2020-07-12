@@ -232,7 +232,7 @@ public final class Position implements IPosition {
          */
         @Override
         public int getHashCode(IPosition position) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(29, 31)
                 .withInteger(position.getRow())
                 .withInteger(position.getColumn())
                 .build();

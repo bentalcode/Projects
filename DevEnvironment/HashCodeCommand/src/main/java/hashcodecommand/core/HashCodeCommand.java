@@ -81,9 +81,10 @@ public final class HashCodeCommand extends AbstractCommand {
 
             return false;
         }
-
-        String informationalMessage = "The hash code of file: " + filePath + " got updated.";
-        this.log.info(informationalMessage);
+        else if (numberOfLinesUpdated >= 1) {
+            String informationalMessage = "The hash code of file: " + filePath + " got updated.";
+            this.log.info(informationalMessage);
+        }
 
         return true;
     }

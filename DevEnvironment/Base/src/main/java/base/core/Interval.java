@@ -167,7 +167,7 @@ public final class Interval<Type extends Comparable<Type>> implements IInterval<
          */
         @Override
         public int getHashCode(IInterval<Type> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(13, 17)
                 .withObject(obj.start(), this.elementComparator)
                 .withObject(obj.end(), this.elementComparator)
                 .build();

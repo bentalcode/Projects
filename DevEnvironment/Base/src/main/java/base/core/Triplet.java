@@ -197,7 +197,7 @@ public final class Triplet
          */
         @Override
         public int getHashCode(ITriplet<Type1, Type2, Type3> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(37, 41)
                 .withObject(obj.first(), this.firstElementComparator)
                 .withObject(obj.second(), this.secondElementComparator)
                 .withObject(obj.third(), this.thirdElementComparator)

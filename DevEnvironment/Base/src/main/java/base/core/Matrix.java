@@ -364,7 +364,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
          */
         @Override
         public int getHashCode(IMatrix<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(19, 23)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
         }
