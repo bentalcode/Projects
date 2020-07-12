@@ -1,9 +1,11 @@
 package testbase;
 
+import base.BaseException;
+
 /**
  * The TestBaseException class implements an exception for capturing errors in the test base module.
  */
-public class TestBaseException extends RuntimeException {
+public class TestBaseException extends BaseException {
     /**
      * The BaseException constructor.
      */

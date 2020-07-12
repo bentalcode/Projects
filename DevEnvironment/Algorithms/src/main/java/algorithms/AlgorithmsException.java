@@ -1,9 +1,11 @@
 package algorithms;
 
+import base.BaseException;
+
 /**
  * The AlgorithmsException class implements an exception for capturing errors in the algorithms module.
  */
-public class AlgorithmsException extends RuntimeException {
+public class AlgorithmsException extends BaseException {
     /**
      * The AlgorithmsException constructor.
      */

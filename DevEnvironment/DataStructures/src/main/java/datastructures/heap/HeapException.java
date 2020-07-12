@@ -1,9 +1,11 @@
 package datastructures.heap;
 
+import base.BaseException;
+
 /**
  * The HeapException class implements an exception for capturing errors in the heap module.
  */
-public class HeapException extends RuntimeException {
+public class HeapException extends BaseException {
     /**
      * The HeapException constructor.
      */

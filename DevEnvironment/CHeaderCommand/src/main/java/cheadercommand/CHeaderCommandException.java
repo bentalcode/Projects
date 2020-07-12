@@ -1,9 +1,11 @@
 package cheadercommand;
 
+import command.CommandException;
+
 /**
  * The CHeaderCommandException class captures errors in the cheader-command module.
  */
-public class CHeaderCommandException extends RuntimeException {
+public class CHeaderCommandException extends CommandException {
     /**
      * The CHeaderCommandException constructor.
      */

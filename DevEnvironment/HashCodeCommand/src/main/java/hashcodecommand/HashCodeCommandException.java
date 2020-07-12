@@ -1,9 +1,11 @@
 package hashcodecommand;
 
+import command.CommandException;
+
 /**
  * The HashCodeCommandException class captures errors in the hashcode-command module.
  */
-public class HashCodeCommandException extends RuntimeException {
+public class HashCodeCommandException extends CommandException {
     /**
      * The HashCodeCommandException constructor.
      */

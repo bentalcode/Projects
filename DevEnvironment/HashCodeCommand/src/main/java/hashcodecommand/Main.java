@@ -1,5 +1,6 @@
 package hashcodecommand;
 
+import base.BaseException;
 import hashcodecommand.core.HashCodeCommand;
 import command.core.CommandHandler;
 import command.interfaces.ICommand;
@@ -18,6 +19,14 @@ public final class Main {
         try {
             ICommandHandler commandHandler = new CommandHandler();
             commandHandler.run(command, args);
+        }
+        catch (BaseException e) {
+            String errorMessage =
+                "The HashCodeCommand has failed to run due to runtime error: " + e.getMessage() +
+                ", Exit Status: 0";
+
+            command.getMessageWriter().writeErrorMessage(errorMessage);
+            System.exit(0);
         }
         catch(Exception e) {
             String errorMessage =

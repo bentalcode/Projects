@@ -1,9 +1,11 @@
 package games;
 
+import base.BaseException;
+
 /**
  * The GamesException class implements an exception for capturing errors in the games module.
  */
-public class GamesException extends RuntimeException {
+public class GamesException extends BaseException {
     /**
      * The GamesException constructor.
      */

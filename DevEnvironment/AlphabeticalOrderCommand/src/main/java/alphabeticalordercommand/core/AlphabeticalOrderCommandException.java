@@ -1,9 +1,11 @@
 package alphabeticalordercommand.core;
 
+import base.BaseException;
+
 /**
  * The AlphabeticalOrderCommandException class captures errors in the command module.
  */
-public class AlphabeticalOrderCommandException extends RuntimeException {
+public class AlphabeticalOrderCommandException extends BaseException {
     /**
      * The AlphabeticalOrderCommandException constructor.
      */

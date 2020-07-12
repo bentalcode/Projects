@@ -1,9 +1,11 @@
 package cmakebuildsystem;
 
+import base.BaseException;
+
 /**
  * The CMakeBuildException class implements an exception for capturing errors in the CMakeBuild module.
  */
-public class CMakeBuildException extends RuntimeException {
+public class CMakeBuildException extends BaseException {
     /**
      * The CMakeBuildException constructor.
      */

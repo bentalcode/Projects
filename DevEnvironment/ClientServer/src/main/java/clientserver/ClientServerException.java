@@ -1,10 +1,12 @@
 package clientserver;
 
+import base.BaseException;
+
 /**
  * The ClientServerException class implements an exception for capturing errors
  * in the client-server module.
  */
-public class ClientServerException extends RuntimeException {
+public class ClientServerException extends BaseException {
     /**
      * The ClientServerException constructor.
      */

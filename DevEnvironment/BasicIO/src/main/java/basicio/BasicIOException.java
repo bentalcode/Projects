@@ -1,9 +1,11 @@
 package basicio;
 
+import base.BaseException;
+
 /**
  * The BasicIOException class implements an exception for capturing errors in the basic-io module.
  */
-public class BasicIOException extends RuntimeException {
+public class BasicIOException extends BaseException {
     /**
      * The BasicIOException constructor.
      */

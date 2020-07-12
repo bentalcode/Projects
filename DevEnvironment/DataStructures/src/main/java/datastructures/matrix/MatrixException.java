@@ -1,9 +1,11 @@
 package datastructures.matrix;
 
+import base.BaseException;
+
 /**
  * The MatrixException class implements an exception for capturing errors in the matrix module.
  */
-public class MatrixException extends RuntimeException {
+public class MatrixException extends BaseException {
     /**
      * The MatrixException constructor.
      */

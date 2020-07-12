@@ -1,9 +1,11 @@
 package datacommand.core;
 
+import base.BaseException;
+
 /**
  * The DataCommandException class captures errors in the data-command module.
  */
-public class DataCommandException extends RuntimeException {
+public class DataCommandException extends BaseException {
     /**
      * The DataCommandException constructor.
      */

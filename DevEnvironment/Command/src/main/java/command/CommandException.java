@@ -1,9 +1,11 @@
 package command;
 
+import base.BaseException;
+
 /**
  * The CommandException class implements an exception for capturing errors in the command module.
  */
-public class CommandException extends RuntimeException {
+public class CommandException extends BaseException {
     /**
      * The CommandException constructor.
      */
