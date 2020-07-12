@@ -12,7 +12,7 @@ public final class HashCodeProvider implements IContentProvider {
     private static final int preCalculatedPrimes = 10000;
 
     private final Prime prime;
-    private int currentPrime = 100;
+    private int currentPrime = 2;
 
     /**
      * The HashCodeProvider constructor.
@@ -34,14 +34,14 @@ public final class HashCodeProvider implements IContentProvider {
     @Override
     public String get(String currContent, Matcher matcher) {
         int hashCodeTokenStartIndex = matcher.start(3);
-        int hashCodeTokenEndIndex = matcher.end(3);
+        int hashCodeTokenEndIndex = matcher.end(3) - 1;
 
         int preTokenStartIndex = matcher.start(0);
         int preTokenEndIndex = hashCodeTokenStartIndex - 1;
         int preTokenLength = Strings.length(preTokenStartIndex, preTokenEndIndex);
 
         int postTokenStartIndex = hashCodeTokenEndIndex + 1;
-        int postTokenEndIndex = matcher.end(0);
+        int postTokenEndIndex = matcher.end(0) - 1;
         int postTokenLength = Strings.length(postTokenStartIndex, postTokenEndIndex);
 
         String newHashCodeToken = "(" + this.nextPrime() + ", " + this.nextPrime() + ")";
@@ -55,9 +55,12 @@ public final class HashCodeProvider implements IContentProvider {
 
         newContent.append(newHashCodeToken);
 
-        if (postTokenLength > 0) {
-            String postToken = currContent.substring(postTokenStartIndex, postTokenEndIndex + 1);
-            newContent.append(postToken);
+        if (currContent.length() > newContent.length()) {
+            int diff = currContent.length() - newContent.length();
+
+            for (int i = 0; i < diff; ++i) {
+                newContent.append(' ');
+            }
         }
 
         return newContent.toString();

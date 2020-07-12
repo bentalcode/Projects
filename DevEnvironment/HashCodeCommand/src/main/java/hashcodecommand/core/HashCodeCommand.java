@@ -32,35 +32,42 @@ public final class HashCodeCommand extends AbstractCommand {
     public void run() {
         this.initialize();
 
+        IContentProvider hashCodeProvider = new HashCodeProvider();
+
         if (this.parameters.getDirectoryPath() != null) {
             this.log.info("Processing files at directory: " + this.parameters.getDirectoryPath());
-            this.processDirectory(this.parameters.getDirectoryPath());
+            this.processDirectory(this.parameters.getDirectoryPath(), hashCodeProvider);
         }
         else if (this.parameters.getFilePath() != null) {
             this.log.info("Processing file: " + this.parameters.getFilePath());
-            this.processFile(this.parameters.getFilePath());
+            this.processFile(this.parameters.getFilePath(), hashCodeProvider);
         }
     }
 
     /**
      * Processes a directory.
      */
-    private void processDirectory(Path directory) {
+    private void processDirectory(
+        Path directory,
+        IContentProvider hashCodeProvider) {
+
         IFilePathScanner scanner = new FilePathScanner();
         List<String> extensions = ArrayLists.of("java");
 
         List<Path> filePaths = scanner.scan(directory, extensions);
 
         for (Path filePath : filePaths) {
-            processFile(filePath);
+            this.processFile(filePath, hashCodeProvider);
         }
     }
 
     /**
      * Processes a file.
      */
-    private boolean processFile(Path filePath) {
-        IContentProvider hashCodeProvider = new HashCodeProvider();
+    private boolean processFile(
+        Path filePath,
+        IContentProvider hashCodeProvider) {
+
         IHashCodeFileUpdater fileUpdater = new HashCodeFileUpdater(filePath, hashCodeProvider);
 
         long numberOfLinesUpdated = fileUpdater.update();
@@ -74,6 +81,9 @@ public final class HashCodeCommand extends AbstractCommand {
 
             return false;
         }
+
+        String informationalMessage = "The hash code of file: " + filePath + " got updated.";
+        this.log.info(informationalMessage);
 
         return true;
     }

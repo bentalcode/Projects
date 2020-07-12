@@ -228,12 +228,14 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         IUpdateRecord updateRecord) {
 
         String newContent = updateRecord.getNewContent(line, matcher);
-        long updateSize = newContent.length();
 
-        if (updateSize > line.length()) {
+        int currSize = line.length();
+        int updateSize = newContent.length();
+
+        if (updateSize != currSize) {
             String errorMessage =
                 "The FileLineUpdater can not replace content of a line: " + lineIndex +
-                " since the new content is larger than the replaced content.";
+                " since the length of the new content is different than the length of the original content.";
 
             this.log.error(errorMessage);
             throw new BasicIOException(errorMessage);
