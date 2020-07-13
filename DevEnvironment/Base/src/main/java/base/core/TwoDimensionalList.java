@@ -191,7 +191,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
          */
         @Override
         public int getHashCode(ITwoDimensionalList<T> obj) {
-            return new HashCodeBuilder(43, 47)
+            return new HashCodeBuilder(53, 59)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
         }

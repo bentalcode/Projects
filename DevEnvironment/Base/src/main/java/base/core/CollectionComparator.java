@@ -23,7 +23,7 @@ public final class CollectionComparator<T extends Comparable<T>> extends Abstrac
      */
     @Override
     public int getHashCode(Collection<T> obj) {
-        return new HashCodeBuilder(7, 11) 
+        return new HashCodeBuilder(7, 11)
             .withCollection(obj).build();
     }
 

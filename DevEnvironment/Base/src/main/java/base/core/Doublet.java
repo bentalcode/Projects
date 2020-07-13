@@ -163,7 +163,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
          */
         @Override
         public int getHashCode(IDoublet<Type1, Type2> obj) {
-            return new HashCodeBuilder(0, 0) 
+            return new HashCodeBuilder(13, 17)
                 .withObject(obj.first(), this.firstElementComparator)
                 .withObject(obj.second(), this.secondElementComparator)
                 .build();

@@ -35,11 +35,9 @@ public final class HashCodeCommand extends AbstractCommand {
         IContentProvider hashCodeProvider = new HashCodeProvider(this.parameters.getInitialPrime());
 
         if (this.parameters.getDirectoryPath() != null) {
-            this.log.info("Processing files at directory: " + this.parameters.getDirectoryPath());
             this.processDirectory(this.parameters.getDirectoryPath(), hashCodeProvider);
         }
         else if (this.parameters.getFilePath() != null) {
-            this.log.info("Processing file: " + this.parameters.getFilePath());
             this.processFile(this.parameters.getFilePath(), hashCodeProvider);
         }
     }
@@ -50,6 +48,8 @@ public final class HashCodeCommand extends AbstractCommand {
     private void processDirectory(
         Path directory,
         IContentProvider hashCodeProvider) {
+
+        this.log.info("Processing files at directory: " + directory);
 
         IFilePathScanner scanner = new FilePathScanner();
         List<String> extensions = ArrayLists.of("java");
@@ -67,6 +67,8 @@ public final class HashCodeCommand extends AbstractCommand {
     private boolean processFile(
         Path filePath,
         IContentProvider hashCodeProvider) {
+
+        this.log.info("Processing file: " + filePath);
 
         IHashCodeFileUpdater fileUpdater = new HashCodeFileUpdater(filePath, hashCodeProvider);
 
