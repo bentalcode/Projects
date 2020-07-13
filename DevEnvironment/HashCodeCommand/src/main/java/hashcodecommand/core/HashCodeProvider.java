@@ -17,15 +17,18 @@ public final class HashCodeProvider implements IContentProvider {
     /**
      * The HashCodeProvider constructor.
      */
-    public HashCodeProvider() {
-        this(preCalculatedPrimes);
+    public HashCodeProvider(int initialPrime) {
+        this(
+            preCalculatedPrimes,
+            initialPrime);
     }
 
     /**
      * The HashCodeProvider constructor.
      */
-    public HashCodeProvider(int preCalculatedPrimes) {
+    public HashCodeProvider(int preCalculatedPrimes, int initialPrime) {
         this.prime = new Prime(preCalculatedPrimes);
+        this.currentPrime = initialPrime;
     }
 
     /**

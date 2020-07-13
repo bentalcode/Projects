@@ -20,15 +20,54 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
     private static final String propertyShortName = "shortName";
     private static final String propertyLongName = "longName";
     private static final String propertyOptional = "optional";
+    private static final String propertyDefaultValue = "defaultValue";
 
     private static final boolean defaultOptionalValue = false;
 
     private final String shortName;
     private final String longName;
     private final boolean optional;
+    private String defaultValue;
 
     private final IBinaryComparator<INamedParameterMetadata> comparator = defaultComparator();
     private final int hashCode;
+
+    /**
+     * Creates a parameter meta-data.
+     */
+    public static INamedParameterMetadata create(
+        String name,
+        String shortName,
+        String longName,
+        String description) {
+
+        return new NamedParameterMetadata(
+            name,
+            shortName,
+            longName,
+            description,
+            false,
+            null);
+    }
+
+    /**
+     * Creates an optional parameter meta-data.
+     */
+    public static INamedParameterMetadata createOptional(
+        String name,
+        String shortName,
+        String longName,
+        String description,
+        String defaultValue) {
+
+        return new NamedParameterMetadata(
+            name,
+            shortName,
+            longName,
+            description,
+            true,
+            defaultValue);
+    }
 
     /**
      * The NamedParameterMetadata constructor.
@@ -38,7 +77,8 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
         String shortName,
         String longName,
         String description,
-        boolean optional) {
+        boolean optional,
+        String defaultValue) {
 
         super(
             name,
@@ -51,6 +91,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
         this.shortName = shortName;
         this.longName = longName;
         this.optional = optional;
+        this.defaultValue = defaultValue;
 
         this.hashCode = this.comparator.hashCode();
     }
@@ -96,6 +137,14 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
     }
 
     /**
+     * Gets the default value.
+     */
+    @Override
+    public String getDefaultValue() {
+        return this.defaultValue;
+    }
+
+    /**
      * Gets the string representation of this instance.
      */
     @Override
@@ -126,6 +175,10 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
         }
 
         writer.writeBooleanProperty(propertyOptional, this.optional);
+
+        if (this.defaultValue != null) {
+            writer.writeStringProperty(propertyDefaultValue, this.defaultValue);
+        }
     }
 
     /**
@@ -147,12 +200,17 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
         boolean optional = reader.hasProperty(propertyOptional) ?
             reader.readBooleanProperty(propertyOptional) : defaultOptionalValue;
 
+        String defaultValue = reader.hasProperty(propertyDefaultValue) ?
+            reader.readStringProperty(propertyDefaultValue) :
+            null;
+
         return new NamedParameterMetadata(
             name,
             shortName,
             longName,
             description,
-            optional);
+            optional,
+            defaultValue);
     }
 
     /**
@@ -231,6 +289,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
                 .withString(obj.getLongName())
                 .withString(obj.getDescription())
                 .withBoolean(obj.optional())
+                .withString(obj.getDefaultValue())
                 .build();
         }
 
@@ -253,6 +312,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
                 .withString(lhs.getLongName(), rhs.getLongName())
                 .withString(lhs.getDescription(), rhs.getDescription())
                 .withBoolean(lhs.optional(), rhs.optional())
+                .withString(lhs.getDefaultValue(), rhs.getDefaultValue())
                 .build();
         }
 
@@ -283,6 +343,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
                 .withString(lhs.getLongName(), rhs.getLongName())
                 .withString(lhs.getDescription(), rhs.getDescription())
                 .withBoolean(lhs.optional(), rhs.optional())
+                .withString(lhs.getDefaultValue(), rhs.getDefaultValue())
                 .build();
         }
     }

@@ -20,12 +20,11 @@ public abstract class ParameterMetadata implements IParameterMetadata {
      * Creates meta-data of a help parameter.
      */
     public static INamedParameterMetadata createHelpParameter() {
-        return new NamedParameterMetadata(
+        return NamedParameterMetadata.create(
             "Help",
             ICommandConstants.helpShortName,
             ICommandConstants.helpLongName,
-            "The help of the command",
-            false);
+            "The help of the command");
     }
 
     /**

@@ -17,6 +17,11 @@ public interface IHashCodeParameters {
     Path getFilePath();
 
     /**
+     * Gets the initial prime number.
+     */
+    int getInitialPrime();
+
+    /**
      * Gets the recursive flag.
      */
     boolean recurse();

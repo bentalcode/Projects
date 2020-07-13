@@ -32,7 +32,7 @@ public final class HashCodeCommand extends AbstractCommand {
     public void run() {
         this.initialize();
 
-        IContentProvider hashCodeProvider = new HashCodeProvider();
+        IContentProvider hashCodeProvider = new HashCodeProvider(this.parameters.getInitialPrime());
 
         if (this.parameters.getDirectoryPath() != null) {
             this.log.info("Processing files at directory: " + this.parameters.getDirectoryPath());

@@ -132,7 +132,7 @@ public final class ParameterSetParser implements IParser<IInputParameters, IPara
                 parameterValue = namedParameters.get(parameterMetadata.getLongName());
             }
             else if (parameterMetadata.optional()) {
-                parameterValue = null;
+                parameterValue = parameterMetadata.getDefaultValue();
             }
             else {
                 String errorMessage =

@@ -14,6 +14,7 @@ public final class HashCodeCommandParameters implements IHashCodeParameters {
     private final ICommandParameters parameters;
     private final Path directoryPath;
     private final Path filePath;
+    private final int initialPrime;
     private final boolean recurse;
 
     /**
@@ -34,6 +35,10 @@ public final class HashCodeCommandParameters implements IHashCodeParameters {
         this.filePath = filePath != null && filePath.isSet() ?
             Paths.create(filePath.getStringValue()) : null;
 
+        IParameter initialPrime = parameters.getParameterSet().getParameter("initialPrime");
+        this.initialPrime = initialPrime != null && initialPrime.isSet() ?
+            initialPrime.getIntegerValue() : 2;
+
         IParameter recurse = parameters.getParameterSet().getParameter("recurse");
         this.recurse = recurse != null && recurse.isSet() ?
             recurse.getBooleanValue() : false;
@@ -53,6 +58,14 @@ public final class HashCodeCommandParameters implements IHashCodeParameters {
     @Override
     public Path getFilePath() {
         return this.filePath;
+    }
+
+    /**
+     * Gets the initial prime number.
+     */
+    @Override
+    public int getInitialPrime() {
+        return this.initialPrime;
     }
 
     /**

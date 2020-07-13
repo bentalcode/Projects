@@ -33,4 +33,9 @@ public interface INamedParameterMetadata extends
      * Returns whether the parameter is optional.
      */
     boolean optional();
+
+    /**
+     * Gets the default value.
+     */
+    String getDefaultValue();
 }
