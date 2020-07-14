@@ -92,19 +92,21 @@ public final class PathsTest {
         String rootPath13 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\BaseTest";
         String result13 = "..\\Base\\BaseException.h";
 
-        this.testGetRelativePath(path1, rootPath1, result1);
-        this.testGetRelativePath(path2, rootPath2, result2);
-        this.testGetRelativePath(path3, rootPath3, result3);
-        this.testGetRelativePath(path4, rootPath4, result4);
-        this.testGetRelativePath(path5, rootPath5, result5);
-        this.testGetRelativePath(path6, rootPath6, result6);
-        this.testGetRelativePath(path7, rootPath7, result7);
-        this.testGetRelativePath(path8, rootPath8, result8);
-        this.testGetRelativePath(path9, rootPath9, result9);
-        this.testGetRelativePath(path10, rootPath10, result10);
-        this.testGetRelativePath(path11, rootPath11, result11);
-        this.testGetRelativePath(path12, rootPath12, result12);
-        this.testGetRelativePath(path13, rootPath13, result13);
+        String separator = String.valueOf(WindowsPath.separator);
+
+        this.testGetRelativePath(path1, rootPath1, separator, result1);
+        this.testGetRelativePath(path2, rootPath2, separator, result2);
+        this.testGetRelativePath(path3, rootPath3, separator, result3);
+        this.testGetRelativePath(path4, rootPath4, separator, result4);
+        this.testGetRelativePath(path5, rootPath5, separator, result5);
+        this.testGetRelativePath(path6, rootPath6, separator, result6);
+        this.testGetRelativePath(path7, rootPath7, separator, result7);
+        this.testGetRelativePath(path8, rootPath8, separator, result8);
+        this.testGetRelativePath(path9, rootPath9, separator, result9);
+        this.testGetRelativePath(path10, rootPath10, separator, result10);
+        this.testGetRelativePath(path11, rootPath11, separator, result11);
+        this.testGetRelativePath(path12, rootPath12, separator, result12);
+        this.testGetRelativePath(path13, rootPath13, separator, result13);
     }
 
     /**
@@ -152,16 +154,18 @@ public final class PathsTest {
         String pathB10 = "\\BaseTest";
         int result10 = -1;
 
-        this.testFindCommonRootPathEndIndex(pathA1, pathB1, result1);
-        this.testFindCommonRootPathEndIndex(pathA2, pathB2, result2);
-        this.testFindCommonRootPathEndIndex(pathA3, pathB3, result3);
-        this.testFindCommonRootPathEndIndex(pathA4, pathB4, result4);
-        this.testFindCommonRootPathEndIndex(pathA5, pathB5, result5);
-        this.testFindCommonRootPathEndIndex(pathA6, pathB6, result6);
-        this.testFindCommonRootPathEndIndex(pathA7, pathB7, result7);
-        this.testFindCommonRootPathEndIndex(pathA8, pathB8, result8);
-        this.testFindCommonRootPathEndIndex(pathA9, pathB9, result9);
-        this.testFindCommonRootPathEndIndex(pathA10, pathB10, result10);
+        String separator = String.valueOf(WindowsPath.separator);
+
+        this.testFindCommonRootPathEndIndex(pathA1, pathB1, separator, result1);
+        this.testFindCommonRootPathEndIndex(pathA2, pathB2, separator, result2);
+        this.testFindCommonRootPathEndIndex(pathA3, pathB3, separator, result3);
+        this.testFindCommonRootPathEndIndex(pathA4, pathB4, separator, result4);
+        this.testFindCommonRootPathEndIndex(pathA5, pathB5, separator, result5);
+        this.testFindCommonRootPathEndIndex(pathA6, pathB6, separator, result6);
+        this.testFindCommonRootPathEndIndex(pathA7, pathB7, separator, result7);
+        this.testFindCommonRootPathEndIndex(pathA8, pathB8, separator, result8);
+        this.testFindCommonRootPathEndIndex(pathA9, pathB9, separator, result9);
+        this.testFindCommonRootPathEndIndex(pathA10, pathB10, separator, result10);
     }
 
     /**
@@ -222,9 +226,10 @@ public final class PathsTest {
     private void testGetRelativePath(
         String path,
         String rootPath,
+        String separator,
         String expectedResult) {
 
-        String result = Paths.getRelativePath(path, rootPath);
+        String result = Paths.getRelativePath(path, rootPath, separator);
 
         this.assertion.assertEquals(
             result,
@@ -238,9 +243,10 @@ public final class PathsTest {
     private void testFindCommonRootPathEndIndex(
         String path1,
         String path2,
+        String separator,
         int expectedResult) {
 
-        int result = Paths.findCommonRootPathEndIndex(path1, path2);
+        int result = Paths.findCommonRootPathEndIndex(path1, path2, separator);
 
         this.assertion.assertEquals(
             result,
