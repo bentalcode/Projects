@@ -317,7 +317,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
          */
         @Override
         public int getHashCode(IList<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(593, 599)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
         }

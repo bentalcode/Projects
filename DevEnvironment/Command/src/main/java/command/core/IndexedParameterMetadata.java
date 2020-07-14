@@ -127,7 +127,7 @@ public final class IndexedParameterMetadata extends ParameterMetadata implements
          */
         @Override
         public int getHashCode(IIndexedParameterMetadata obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(223, 227)
                 .withString(obj.getDescription())
                 .build();
         }

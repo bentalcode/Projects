@@ -223,7 +223,7 @@ public final class TrieNode<TKey extends Comparable<TKey>> implements ITrieNode<
          */
         @Override
         public int getHashCode(ITrieNode<TKey> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(733, 739)
                 .withObject(obj.getKey(), this.keyComparator)
                 .withBoolean(obj.isEndNode())
                 .build();

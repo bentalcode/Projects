@@ -151,7 +151,7 @@ public final class EditorSettings implements IEditorSettings {
          */
         @Override
         public int getHashCode(IEditorSettings obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(173, 179)
                 .withInteger(obj.getTabSize())
                 .build();
         }

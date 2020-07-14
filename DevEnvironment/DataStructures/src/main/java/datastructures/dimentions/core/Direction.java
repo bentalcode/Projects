@@ -127,7 +127,7 @@ public final class Direction implements IDirection {
          */
         @Override
         public int getHashCode(IDirection direction) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(383, 389)
                 .withDouble(direction.getAngle())
                 .build();
         }

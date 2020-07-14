@@ -259,7 +259,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
          */
         @Override
         public int getHashCode(ICMakeProjectManifest obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(163, 167)
                 .withString(obj.getName())
                 .withString(obj.getRootPath())
                 .withCollection(obj.getEffectiveModules())

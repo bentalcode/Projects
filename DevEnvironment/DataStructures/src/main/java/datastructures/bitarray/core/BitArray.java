@@ -446,7 +446,7 @@ public final class BitArray implements IBitArray {
          */
         @Override
         public int getHashCode(IBitArray obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(293, 307)
                 .withIntegerArray(obj.toArray())
                 .build();
         }

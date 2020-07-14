@@ -159,7 +159,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
                 return 0;
             }
 
-            IHashCodeBuilder hashCodeBuilder = new HashCodeBuilder(3, 5);
+            IHashCodeBuilder hashCodeBuilder = new HashCodeBuilder(673, 677);
             IVisitor<ITreeNode<TKey, TValue>> visitor = new HashCodeVisitor<>(
                 hashCodeBuilder,
                 this.nodeComparator);

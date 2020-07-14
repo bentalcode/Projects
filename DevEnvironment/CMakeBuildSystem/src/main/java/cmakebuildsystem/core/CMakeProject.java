@@ -171,7 +171,7 @@ public final class CMakeProject implements ICMakeProject {
          */
         @Override
         public int getHashCode(ICMakeProject obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(139, 149)
                 .withString(obj.getName())
                 .withString(obj.getRootPath().toString())
                 .withCollection(obj.getModules())

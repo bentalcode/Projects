@@ -204,7 +204,7 @@ public final class BPlusTreeMetrics implements IBPlusTreeMetrics {
          */
         @Override
         public int getHashCode(IBPlusTreeMetrics metrics) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(349, 353)
                 .withInteger(metrics.getHeight())
                 .withInteger(metrics.getNumberOfNodes())
                 .withInteger(metrics.getNumberOfInnerNodes())

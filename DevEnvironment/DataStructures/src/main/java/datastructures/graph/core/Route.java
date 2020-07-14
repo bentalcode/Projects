@@ -184,7 +184,7 @@ public final class Route<TKey extends Comparable<TKey>, TValue> implements IRout
          */
         @Override
         public int getHashCode(IRoute<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(503, 509)
                 .withObject(obj.source(), this.vertexComparator)
                 .withObject(obj.destination(), this.vertexComparator)
                 .build();

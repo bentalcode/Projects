@@ -139,7 +139,7 @@ public final class OAuthCredentials implements IOAuthCredentials {
          */
         @Override
         public int getHashCode(IOAuthCredentials obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(79, 83)
                 .withString(obj.getUserName())
                 .withString(obj.getUserPassword())
                 .build();

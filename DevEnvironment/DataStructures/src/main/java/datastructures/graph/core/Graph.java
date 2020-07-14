@@ -244,7 +244,7 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
          */
         @Override
         public int getHashCode(IGraph<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(491, 499)
                 .withCollection(obj.vertices(), this.vertexComparator)
                 .withCollection(obj.edges(), this.edgeComparator)
                 .withObject(obj.getAdjacencyMatrix(), this.adjacencyMatrixComparator)

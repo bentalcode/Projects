@@ -157,7 +157,7 @@ public final class Color implements IColor {
          */
         @Override
         public int getHashCode(IColor obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(743, 751)
                 .withString(obj.getName())
                 .withString(obj.getHex())
                 .withString(obj.getRgb())

@@ -165,7 +165,7 @@ public final class EditInformation<T extends Comparable<T>> implements IEditInfo
          */
         @Override
         public int getHashCode(IEditInformation<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(809, 811)
                 .withObject(obj.getType())
                 .withObject(obj.getSrcValue())
                 .withObject(obj.getDestValue())

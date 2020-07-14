@@ -427,7 +427,7 @@ public final class Bit32Array implements IBit32Array {
          */
         @Override
         public int getHashCode(IBit32Array obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(281, 283)
                 .withInteger(obj.toInteger())
                 .build();
         }

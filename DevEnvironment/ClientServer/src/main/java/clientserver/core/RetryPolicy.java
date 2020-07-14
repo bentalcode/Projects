@@ -139,7 +139,7 @@ public final class RetryPolicy implements IRetryPolicy {
          */
         @Override
         public int getHashCode(IRetryPolicy obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(89, 97)
                 .withInteger(obj.getNumberOfAttempts())
                 .withDuration(obj.getIntervalDuration())
                 .build();

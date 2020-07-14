@@ -258,7 +258,7 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
          */
         @Override
         public int getHashCode(ILinkedHashMap<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(557, 563)
                 .withIterator(obj.getKeyIterator(), this.keyComparator)
                 .build();
         }

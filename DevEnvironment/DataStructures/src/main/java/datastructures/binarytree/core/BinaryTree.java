@@ -201,7 +201,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
          */
         @Override
         public int getHashCode(IBinaryTree<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(271, 277)
                 .withIterator(obj.getIterator(), this.nodeComparator)
                 .build();
         }

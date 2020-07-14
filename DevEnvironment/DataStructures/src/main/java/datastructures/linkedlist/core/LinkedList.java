@@ -382,7 +382,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
          */
         @Override
         public int getHashCode(ILinkedList<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(577, 587)
                 .withIterator(obj.getIterator(), this.nodeComparator)
                 .build();
         }

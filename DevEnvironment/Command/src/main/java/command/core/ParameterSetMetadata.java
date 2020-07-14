@@ -206,7 +206,7 @@ public final class ParameterSetMetadata implements IParameterSetMetadata {
          */
         @Override
         public int getHashCode(IParameterSetMetadata obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(239, 241)
                 .withCollection(obj.getIndexedParameters())
                 .withCollection(obj.getNamedParameters())
                 .build();

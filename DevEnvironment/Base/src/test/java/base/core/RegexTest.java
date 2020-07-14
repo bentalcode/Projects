@@ -39,9 +39,17 @@ public final class RegexTest {
      */
     @Test
     public void testRegex() {
-        String str = "        return new HashCodeBuilder(3, 5)";
-        String regex = "(.*)(return new HashCodeBuilder)(\\([1-9]{1}[0-9]*, [1-9]{1}[0-9]*\\))";
+        String str1 = "            return new HashCodeBuilder1(3, 5)";
+        String regex1 = "(.*)(new HashCodeBuilder1)(\\([0-9]*, [0-9]*\\))(.*)";
 
+        String str2 = "             IHashCodeBuilder hashCodeBuilder = new HashCodeBuilder1(3, 5);";
+        String regex2 = "(.*)(new HashCodeBuilder1)(\\([0-9]*, [0-9]*\\))(.*)";
+
+        this.testRegex(str1, regex1);
+        this.testRegex(str2, regex2);
+    }
+
+    private void testRegex(String str, String regex) {
         Pattern pattern = Pattern.compile(regex);
 
         Matcher matcher = pattern.matcher(str);

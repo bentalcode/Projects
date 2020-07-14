@@ -335,7 +335,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
          */
         @Override
         public int getHashCode(ICache<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(373, 379)
                 .withIterator(obj.getKeyIterator(), this.keyComparator)
                 .build();
         }

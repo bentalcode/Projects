@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class HashCodeFileUpdater implements IHashCodeFileUpdater {
     private static final String hashCodeRegex =
-        "(.*)(return new HashCodeBuilder)(\\([0-9]*, [0-9]*\\))(.*)";
+        "(.*)(new HashCodeBuilder)(\\([0-9]*, [0-9]*\\))(.*)";
 
     private final Path path;
     private final IContentProvider hashCodeProvider;

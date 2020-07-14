@@ -205,7 +205,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
          */
         @Override
         public int getHashCode(ICircularArray<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(263, 269)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
         }

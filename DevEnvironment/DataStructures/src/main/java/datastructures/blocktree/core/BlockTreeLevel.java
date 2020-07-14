@@ -174,7 +174,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
          */
         @Override
         public int getHashCode(IBlockTreeLevel<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(311, 313)
                 .withCollection(obj.getNodesData(), this.nodeComparator)
                 .build();
         }

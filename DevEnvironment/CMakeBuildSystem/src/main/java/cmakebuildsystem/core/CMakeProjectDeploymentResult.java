@@ -170,7 +170,7 @@ public final class CMakeProjectDeploymentResult implements ICMakeProjectDeployme
          */
         @Override
         public int getHashCode(ICMakeProjectDeploymentResult obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(151, 157)
                 .withObject(obj.getProject())
                 .withMap(obj.getDeploymentData())
                 .build();

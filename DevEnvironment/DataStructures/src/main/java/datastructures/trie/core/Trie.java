@@ -168,7 +168,7 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
                 return 0;
             }
 
-            IHashCodeBuilder hashCodeBuilder = new HashCodeBuilder(3, 5);
+            IHashCodeBuilder hashCodeBuilder = new HashCodeBuilder(719, 727);
             IVisitor<ITrieNode<TKey>> visitor = new HashCodeVisitor<>(
                 hashCodeBuilder,
                 this.nodeComparator);

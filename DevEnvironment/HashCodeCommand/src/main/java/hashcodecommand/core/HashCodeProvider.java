@@ -58,12 +58,9 @@ public final class HashCodeProvider implements IContentProvider {
 
         newContent.append(newHashCodeToken);
 
-        if (currContent.length() > newContent.length()) {
-            int diff = currContent.length() - newContent.length();
-
-            for (int i = 0; i < diff; ++i) {
-                newContent.append(' ');
-            }
+        if (postTokenLength > 0) {
+            String postToken = currContent.substring(postTokenStartIndex, postTokenEndIndex + 1);
+            newContent.append(postToken);
         }
 
         return newContent.toString();

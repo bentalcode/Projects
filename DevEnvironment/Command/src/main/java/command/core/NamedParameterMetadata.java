@@ -283,7 +283,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
          */
         @Override
         public int getHashCode(INamedParameterMetadata obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(229, 233)
                 .withString(obj.getName())
                 .withString(obj.getShortName())
                 .withString(obj.getLongName())

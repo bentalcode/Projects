@@ -447,7 +447,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
          */
         @Override
         public int getHashCode(IDoublyLinkedList<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(443, 449)
                 .withIterator(obj.getIterator(), this.nodeComparator)
                 .build();
         }

@@ -158,7 +158,7 @@ public final class IgnoreRules implements IIgnoreRules {
          */
         @Override
         public int getHashCode(IIgnoreRules obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(181, 191)
                 .withCollection(obj.getPathPatterns())
                 .build();
         }

@@ -199,7 +199,7 @@ public final class CommandHelpMetadata implements ICommandHelpMetadata {
          */
         @Override
         public int getHashCode(ICommandHelpMetadata obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(193, 197)
                 .withString(obj.getShortName())
                 .withString(obj.getLongName())
                 .withString(obj.getUsageMessage())

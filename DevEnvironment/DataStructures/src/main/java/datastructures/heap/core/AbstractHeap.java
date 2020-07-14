@@ -292,7 +292,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
          */
         @Override
         public int getHashCode(IPriorityQueue<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(569, 571)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
         }

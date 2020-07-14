@@ -146,7 +146,7 @@ public final class Colors implements IColors {
          */
         @Override
         public int getHashCode(IColors obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(757, 761)
                 .withString(obj.getCategory())
                 .withCollection(obj.getColors(), Color.defaultComparator())
                 .build();

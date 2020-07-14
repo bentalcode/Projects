@@ -230,7 +230,7 @@ public final class Stack<T extends Comparable<T>> implements IStack<T> {
          */
         @Override
         public int getHashCode(IStack<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(659, 661)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
         }

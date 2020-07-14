@@ -198,7 +198,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
          */
         @Override
         public int getHashCode(IArray<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(251, 257)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
         }

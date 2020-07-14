@@ -212,7 +212,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
          */
         @Override
         public int getHashCode(ICMakeModuleManifest obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(113, 127)
                 .withString(obj.getName())
                 .withEnum(obj.getType())
                 .withObject(obj.getProperties())

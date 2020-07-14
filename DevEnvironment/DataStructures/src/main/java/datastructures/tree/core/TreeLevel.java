@@ -175,7 +175,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
          */
         @Override
         public int getHashCode(ITreeLevel<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(683, 691)
                 .withIterable(obj, this.nodeComparator)
                 .build();
         }

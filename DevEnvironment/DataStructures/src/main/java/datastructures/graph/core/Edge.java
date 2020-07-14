@@ -204,7 +204,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
          */
         @Override
         public int getHashCode(IEdge<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(479, 487)
                 .withObject(obj.source(), this.vertexComparator)
                 .withObject(obj.destination(), this.vertexComparator)
                 .withBoolean(obj.directed())

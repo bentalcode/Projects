@@ -280,7 +280,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
          */
         @Override
         public int getHashCode(ICMakeListsManifest obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(101, 103)
                 .withString(obj.getCMakeVersion())
                 .withString(obj.getProjectVersion())
                 .withString(obj.getPresetPath())

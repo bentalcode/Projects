@@ -226,7 +226,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
          */
         @Override
         public int getHashCode(IHashMap<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(541, 547)
                 .withIterator(obj.getKeyIterator(), this.keyComparator)
                 .build();
         }

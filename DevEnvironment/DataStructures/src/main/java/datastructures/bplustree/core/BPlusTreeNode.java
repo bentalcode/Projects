@@ -433,7 +433,7 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
          */
         @Override
         public int getHashCode(IBPlusTreeNode<TKey> node) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(359, 367)
                 .withCollection(node.getKeys(), this.keyComparator)
                 .build();
         }

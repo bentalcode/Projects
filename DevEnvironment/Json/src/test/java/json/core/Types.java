@@ -380,7 +380,7 @@ public final class Types implements ITypes {
          */
         @Override
         public int getHashCode(ITypes obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(787, 797)
                 .withBoolean(obj.getBooleanValue())
                 .withShort(obj.getShortValue())
                 .withInteger(obj.getIntegerValue())

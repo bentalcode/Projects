@@ -221,7 +221,7 @@ public final class CommandManifest implements ICommandManifest {
          */
         @Override
         public int getHashCode(ICommandManifest obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(199, 211)
                 .withString(obj.getName())
                 .withString(obj.getDescription())
                 .withObject(obj.getHelp())

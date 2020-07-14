@@ -373,7 +373,7 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
          */
         @Override
         public int getHashCode(IMultiLevelDoublyLinkedList<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(641, 643)
                 .withIterator(obj.getIterator(), this.nodeComparator)
                 .build();
         }

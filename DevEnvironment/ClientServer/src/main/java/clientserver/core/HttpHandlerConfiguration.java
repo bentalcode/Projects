@@ -192,7 +192,7 @@ public final class HttpHandlerConfiguration implements IHttpHandlerConfiguration
          */
         @Override
         public int getHashCode(IHttpHandlerConfiguration obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(71, 73)
                 .withObject(obj.getRetryPolicy(), RetryPolicy.defaultComparator())
                 .withDuration(obj.getConnectTimeout())
                 .withDuration(obj.getWriteTimeout())

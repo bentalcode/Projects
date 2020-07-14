@@ -232,7 +232,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
          */
         @Override
         public int getHashCode(ICMakeModuleProperties obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(131, 137)
                 .withString(obj.getPath())
                 .withString(obj.getCMakeListsTargetPath())
                 .withCollection(obj.getHeaderFileExtensions())

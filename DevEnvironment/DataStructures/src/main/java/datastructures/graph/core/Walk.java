@@ -288,7 +288,7 @@ public final class Walk<TKey extends Comparable<TKey>, TValue> implements IWalk<
          */
         @Override
         public int getHashCode(IWalk<TKey, TValue> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(521, 523)
                 .withIterable(obj, this.vertexComparator)
                 .build();
         }

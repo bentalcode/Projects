@@ -185,7 +185,7 @@ public final class Fruit implements IFruit {
          */
         @Override
         public int getHashCode(IFruit obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(769, 773)
                 .withString(obj.getKind())
                 .withInteger(obj.getSize())
                 .withString(obj.getColor())

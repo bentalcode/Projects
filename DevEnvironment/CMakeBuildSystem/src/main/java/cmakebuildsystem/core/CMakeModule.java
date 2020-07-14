@@ -244,7 +244,7 @@ public final class CMakeModule implements ICMakeModule {
          */
         @Override
         public int getHashCode(ICMakeModule obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(107, 109)
                 .withString(obj.getName())
                 .withString(obj.getRootPath().toString())
                 .withCollection(obj.getHeaderFilesPaths())

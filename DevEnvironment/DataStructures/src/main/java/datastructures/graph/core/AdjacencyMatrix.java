@@ -185,9 +185,9 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
             IHashCodeProvider<IVertex<TKey, TValue>> keyProvider = this.vertexComparator;
 
             IHashCodeProvider<Set<IVertex<TKey, TValue>>> valueProvider =
-                (vertices) -> { return new HashCodeBuilder(3, 5).withCollection(vertices, this.vertexComparator).build(); };
+                (vertices) -> { return new HashCodeBuilder(457, 461).withCollection(vertices, this.vertexComparator).build(); };
 
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(463, 467)
                 .withMap(
                     obj.connections(),
                     keyProvider,

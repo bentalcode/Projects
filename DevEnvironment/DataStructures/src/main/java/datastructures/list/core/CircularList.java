@@ -206,7 +206,7 @@ public final class CircularList<T extends Comparable<T>> implements ICircularLis
          */
         @Override
         public int getHashCode(ICircularList<T> obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(601, 607)
                 .withIterator(obj.getIterator(), this.elementComparator)
                 .build();
         }

@@ -239,7 +239,7 @@ public final class RectanglePositions implements IRectanglePositions {
          */
         @Override
         public int getHashCode(IRectanglePositions obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(433, 439)
                 .withObject(obj.getUpperLeftPosition(), this.positionComparator)
                 .withObject(obj.getUpperRightPosition(), this.positionComparator)
                 .withObject(obj.getBottomLeftPosition(), this.positionComparator)

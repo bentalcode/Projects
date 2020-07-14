@@ -211,7 +211,7 @@ public final class Line implements ILine {
          */
         @Override
         public int getHashCode(ILine line) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(397, 401)
                 .withObject(line.getStart(), this.pointComparator)
                 .withObject(line.getEnd(), this.pointComparator)
                 .build();

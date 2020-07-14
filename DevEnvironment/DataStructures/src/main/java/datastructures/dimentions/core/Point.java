@@ -192,7 +192,7 @@ public final class Point implements IPoint {
          */
         @Override
         public int getHashCode(IPoint point) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(409, 419)
                 .withDouble(point.getX())
                 .withDouble(point.getY())
                 .build();

@@ -218,7 +218,7 @@ public final class CircuitBreakerPolicy implements ICircuitBreakerPolicy {
          */
         @Override
         public int getHashCode(ICircuitBreakerPolicy obj) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(61, 67)
                 .withInteger(obj.getFailureThreshold())
                 .withDuration(obj.getFailureThresholdTimeout())
                 .withInteger(obj.getSuccessThreshold())

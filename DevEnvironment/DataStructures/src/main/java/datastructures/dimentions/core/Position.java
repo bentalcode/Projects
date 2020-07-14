@@ -236,7 +236,7 @@ public final class Position implements IPosition {
          */
         @Override
         public int getHashCode(IPosition position) {
-            return new HashCodeBuilder(3, 5)
+            return new HashCodeBuilder(421, 431)
                 .withInteger(position.getX())
                 .withInteger(position.getY())
                 .build();
