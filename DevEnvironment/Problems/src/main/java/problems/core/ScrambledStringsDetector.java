@@ -1,6 +1,7 @@
 package problems.core;
 
-import base.core.Strings;
+import base.core.Dimensions;
+import base.core.StringEquality;
 import base.interfaces.IDetector;
 import java.util.HashMap;
 import java.util.Map;
@@ -109,8 +110,8 @@ public final class ScrambledStringsDetector implements IDetector {
         assert(startIndex2 >= 0 && startIndex2 < s2.length);
         assert(endIndex2 >= startIndex2 && endIndex2 < s2.length);
 
-        int length1 = Strings.length(startIndex1, endIndex1);
-        int length2 = Strings.length(startIndex2, endIndex2);
+        int length1 = Dimensions.length(startIndex1, endIndex1);
+        int length2 = Dimensions.length(startIndex2, endIndex2);
 
         if (length1 != length2) {
             return false;
@@ -119,7 +120,7 @@ public final class ScrambledStringsDetector implements IDetector {
         int length = length1;
         assert(length > 0);
 
-        if (Strings.equals(s1, startIndex1, s2, startIndex2, length)) {
+        if (StringEquality.equals(s1, startIndex1, s2, startIndex2, length)) {
             return true;
         }
 
@@ -194,8 +195,8 @@ public final class ScrambledStringsDetector implements IDetector {
             return false;
         }
 
-        int length1 = Strings.length(startIndex1, endIndex1);
-        int length2 = Strings.length(startIndex2, endIndex2);
+        int length1 = Dimensions.length(startIndex1, endIndex1);
+        int length2 = Dimensions.length(startIndex2, endIndex2);
 
         if (length1 != length2) {
             return false;

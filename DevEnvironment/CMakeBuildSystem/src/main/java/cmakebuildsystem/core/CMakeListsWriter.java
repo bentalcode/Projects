@@ -1,6 +1,8 @@
 package cmakebuildsystem.core;
 
 import base.core.Conditions;
+import base.core.Environment;
+import base.core.Paths;
 import base.interfaces.IWriter;
 import cmakebuildsystem.interfaces.ICMakeBuildElement;
 import cmakebuildsystem.interfaces.ICMakeBuildElementList;
@@ -12,6 +14,7 @@ import cmakebuildsystem.interfaces.ICMakeWriter;
 import cmakebuildsystem.interfaces.IEditorSettings;
 import cmakebuildsystem.interfaces.IIgnoreRules;
 import java.io.Writer;
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -105,7 +108,8 @@ public final class CMakeListsWriter implements IWriter {
         //
         // Add the preset section...
         //
-        ICMakeBuildElement presetSection = new CMakeResource(this.moduleManifest.getCMakeListsManifest().getPresetPath());
+        Path presetPath = resolveResourcePath(this.moduleManifest.getCMakeListsManifest().getPresetPath());
+        ICMakeBuildElement presetSection = new CMakeResource(presetPath);
         elements.add(presetSection);
 
         //
@@ -151,11 +155,20 @@ public final class CMakeListsWriter implements IWriter {
         //
         // Add section for the postset section...
         //
-        ICMakeBuildElement postsetSection = new CMakeResource(this.moduleManifest.getCMakeListsManifest().getPostsetPath());
+        Path postsetPath = resolveResourcePath(this.moduleManifest.getCMakeListsManifest().getPostsetPath());
+        ICMakeBuildElement postsetSection = new CMakeResource(postsetPath);
         elements.add(postsetSection);
 
         ICMakeListsFile file = new CMakeListsFile(elements);
 
         return file;
+    }
+
+    /**
+     * Resolves the path.
+     */
+    private static Path resolveResourcePath(String path) {
+        String resolvedPath = Environment.expandSystemProperties(path, Environment.operatingSystemTransformer());
+        return Paths.create(resolvedPath);
     }
 }

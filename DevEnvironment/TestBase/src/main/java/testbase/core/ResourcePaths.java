@@ -13,6 +13,21 @@ public final class ResourcePaths {
      */
     public static Path create(
         String rootDirectory,
+        String subDirectory) {
+
+        String path = new ResourcePathBuilder()
+            .addComponent(rootDirectory)
+            .addComponent(subDirectory)
+            .build();
+
+        return Paths.create(path);
+    }
+
+    /**
+     * Creates a path of a resource.
+     */
+    public static Path create(
+        String rootDirectory,
         String subDirectory,
         String resourceName) {
 

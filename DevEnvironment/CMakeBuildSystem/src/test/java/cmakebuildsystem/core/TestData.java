@@ -1,6 +1,8 @@
 package cmakebuildsystem.core;
 
 import base.core.ArrayLists;
+import base.core.Environment;
+import base.interfaces.OperatingSystemType;
 import cmakebuildsystem.interfaces.ITestData;
 import testbase.core.ResourcePaths;
 import java.nio.file.Path;
@@ -50,7 +52,7 @@ public final class TestData implements ITestData {
     @Override
     public Path getDevEnvironmentCMakeProjectManifestResource() {
         Path path = ResourcePaths.create(
-            dataDirectoryName,
+            dataDirectory(),
             projectManifestsDirectoryName,
             projectManifestDevEnvironment);
 
@@ -66,7 +68,7 @@ public final class TestData implements ITestData {
 
         for (String projectManifest : projectManifests) {
             Path path = ResourcePaths.create(
-                dataDirectoryName,
+                dataDirectory(),
                 projectManifestsDirectoryName,
                 projectManifest);
 
@@ -85,7 +87,7 @@ public final class TestData implements ITestData {
 
         for (String moduleManifest : moduleManifests) {
             Path path = ResourcePaths.create(
-                dataDirectoryName,
+                dataDirectory(),
                 moduleManifestsDirectoryName,
                 moduleManifest);
 
@@ -104,7 +106,7 @@ public final class TestData implements ITestData {
 
         for (String cmakeListsManifest : cmakeListsManifests) {
             Path path = ResourcePaths.create(
-                dataDirectoryName,
+                dataDirectory(),
                 cmakeListsManifestsDirectoryName,
                 cmakeListsManifest);
 
@@ -123,7 +125,7 @@ public final class TestData implements ITestData {
 
         for (String project : projects) {
             Path path = ResourcePaths.create(
-                dataDirectoryName,
+                dataDirectory(),
                 projectsDirectoryName,
                 project);
 
@@ -142,7 +144,7 @@ public final class TestData implements ITestData {
 
         for (String module : modules) {
             Path path = ResourcePaths.create(
-                dataDirectoryName,
+                dataDirectory(),
                 modulesDirectoryName,
                 module);
 
@@ -161,7 +163,7 @@ public final class TestData implements ITestData {
 
         for (String projectDeploymentResult : projectDeploymentResults) {
             Path path = ResourcePaths.create(
-                dataDirectoryName,
+                dataDirectory(),
                 projectDeploymentResultsDirectoryName,
                 projectDeploymentResult);
 
@@ -169,5 +171,14 @@ public final class TestData implements ITestData {
         }
 
         return result;
+    }
+
+    /**
+     * Gets the data directory.
+     */
+    private static String dataDirectory() {
+        OperatingSystemType operatingSystemType = Environment.getOperatingSystem();
+        String operatingSystemDirectory = operatingSystemType.toString().toLowerCase();
+        return ResourcePaths.create(operatingSystemDirectory, dataDirectoryName).toString();
     }
 }

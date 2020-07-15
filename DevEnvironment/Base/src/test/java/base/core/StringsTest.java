@@ -247,7 +247,7 @@ public final class StringsTest {
         String subString,
         int expectedResult) {
 
-        int result = Strings.findSubStringKmp(str, subString);
+        int result = StringSearch.findSubStringKmp(str, subString);
 
         this.assertion.assertEquals(
             result,
@@ -263,7 +263,7 @@ public final class StringsTest {
         String subString, int subStringStartIndex, int subStringEndIndex,
         int expectedResult) {
 
-        int result = Strings.findSubStringKmp(
+        int result = StringSearch.findSubStringKmp(
             str, strStartIndex, strEndIndex,
             subString, subStringStartIndex, subStringEndIndex);
 

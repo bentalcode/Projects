@@ -51,7 +51,7 @@ public final class Paths {
     /**
      * Checks whether paths are equivalent.
      */
-    private static boolean pathsEquivalent(
+    public static boolean pathsEquivalent(
         String path1,
         String path2) {
 
@@ -61,7 +61,7 @@ public final class Paths {
     /**
      * Checks whether paths are equivalent.
      */
-    private static boolean pathsEquivalent(
+    public static boolean pathsEquivalent(
         String path1,
         String path2,
         String separator) {
@@ -173,7 +173,7 @@ public final class Paths {
         int directoryEndIndex = -1;
 
         while (currIndex >= separator.length - 1) {
-            if (Strings.endsWith(path, currIndex, separator)) {
+            if (StringSearch.endsWith(path, currIndex, separator)) {
                 directoryEndIndex = currIndex - separator.length;
                 break;
             }
@@ -234,7 +234,9 @@ public final class Paths {
             return false;
         }
 
-        return Strings.equals(path1, 0, path2, 0, pathLength1);
+        int length = pathLength1;
+
+        return StringEquality.equals(path1, 0, path2, 0, length);
     }
 
     /**
@@ -286,8 +288,8 @@ public final class Paths {
         }
 
         Conditions.validate(
-            !Strings.endsWith(path, commonRootPathEndIndex, separator) &&
-            !Strings.endsWith(rootPath, commonRootPathEndIndex, separator),
+            !StringSearch.endsWith(path, commonRootPathEndIndex, separator) &&
+            !StringSearch.endsWith(rootPath, commonRootPathEndIndex, separator),
             "Failed finding the end index of the common root path." +
             " The common root path can not end with a separator.");
 
@@ -497,14 +499,14 @@ public final class Paths {
 
         if (commonEndIndex == effectiveEndIndex1 &&
             commonEndIndex + separator.length <= effectiveEndIndex2 &&
-            Strings.startsWith(path2, commonEndIndex + 1, separator)) {
+            StringSearch.startsWith(path2, commonEndIndex + 1, separator)) {
 
             return commonEndIndex;
         }
 
         if (commonEndIndex == effectiveEndIndex2 &&
             commonEndIndex + separator.length <= effectiveEndIndex1 &&
-            Strings.startsWith(path1, commonEndIndex + 1, separator)) {
+            StringSearch.startsWith(path1, commonEndIndex + 1, separator)) {
 
             return commonEndIndex;
         }
@@ -577,7 +579,7 @@ public final class Paths {
         int pathStartIndex = startIndex;
         int pathEndIndex = pathEffectiveEndIndex(path, endIndex, separator);
 
-        int counter = Strings.countSubStringFromEnd(
+        int counter = StringSearch.countSubStringFromEnd(
             path,
             pathStartIndex, pathEndIndex,
             separator, 0, separator.length,
@@ -624,7 +626,7 @@ public final class Paths {
         assert(startIndex >= 0 && startIndex < path.length);
         assert(separator != null);
 
-        return Strings.startsWith(path, startIndex, separator) ? startIndex + separator.length : startIndex;
+        return StringSearch.startsWith(path, startIndex, separator) ? startIndex + separator.length : startIndex;
     }
 
     /**
@@ -635,7 +637,7 @@ public final class Paths {
         assert(endIndex >= 0 && endIndex < path.length);
         assert(separator != null);
 
-        return Strings.endsWith(path, endIndex, separator) ? endIndex - separator.length : endIndex;
+        return StringSearch.endsWith(path, endIndex, separator) ? endIndex - separator.length : endIndex;
     }
 
     /**

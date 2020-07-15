@@ -4,17 +4,22 @@ import base.core.Conditions;
 import base.core.ResourceReader;
 import cmakebuildsystem.interfaces.ICMakeBuildElement;
 import cmakebuildsystem.interfaces.ICMakeWriter;
+import java.nio.file.Path;
 
 /**
  * The CMakeResource class implements a resource of a CMake.
  */
 public final class CMakeResource implements ICMakeBuildElement {
-    private final String path;
+    private final Path path;
 
     /**
      * The CMakeResource constructor.
      */
-    public CMakeResource(String path) {
+    public CMakeResource(Path path) {
+        Conditions.validatePathNotNullOrEmpty(
+            path,
+            "The path of a cmake resource.");
+
         this.path = path;
     }
 

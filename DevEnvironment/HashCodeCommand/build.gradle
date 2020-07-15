@@ -1,7 +1,10 @@
 apply from: "${commonDir}/common.build.gradle"
 
 apply plugin: 'application'
-mainClassName = 'CHeaderCommand.Main'
+
+mainClassName = 'hashcodecommand.Main'
+applicationName = 'HashCodeCommand'
+applicationDefaultJvmArgs = ["-Xms512m", "-Xmx1024m"]
 
 dependencies {
     compile project(':Base')

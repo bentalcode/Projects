@@ -2,6 +2,7 @@ package command.core;
 
 import base.core.Pair;
 import base.core.ParsingResult;
+import base.core.StringEquality;
 import base.core.Strings;
 import base.interfaces.IPair;
 import base.interfaces.IParser;
@@ -23,7 +24,7 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
     @Override
     public IParsingResult<IPair<String, String>> parse(String arg) {
         if (isShortNamedParameter(arg)) {
-            if (Strings.equalsIgnoreCase(
+            if (StringEquality.equalsIgnoreCase(
                     arg, ICommandConstants.shortNamedParameterPrefix.length(),
                     ICommandConstants.helpShortName, 0,
                     ICommandConstants.helpShortName.length())) {
@@ -39,7 +40,7 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
             }
         }
         else if (isLongNamedParameter(arg)) {
-            if (Strings.equalsIgnoreCase(
+            if (StringEquality.equalsIgnoreCase(
                     arg, ICommandConstants.longNamedParameterPrefix.length(),
                     ICommandConstants.helpLongName, 0,
                     ICommandConstants.helpLongName.length())) {

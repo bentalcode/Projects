@@ -3,7 +3,7 @@ package basicio.core;
 import base.BaseException;
 import base.core.Conditions;
 import base.core.HashSets;
-import base.core.Strings;
+import base.core.StringSearch;
 import basicio.interfaces.FileNameType;
 import java.util.Set;
 import org.slf4j.Logger;
@@ -347,7 +347,7 @@ public final class FileNames {
      */
     private static int getNameEndIndex(char[] fileName) {
         assert(fileName != null);
-        int endIndex = Strings.lastIndexOf(fileName, 0, fileName.length - 1, extensionSeparator);
+        int endIndex = StringSearch.lastIndexOf(fileName, 0, fileName.length - 1, extensionSeparator);
 
         if (endIndex == -1 || endIndex == 0) {
             return -1;
