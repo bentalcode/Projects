@@ -1,7 +1,9 @@
 package cmakebuildsystem.interfaces;
 
+import base.interfaces.IPath;
 import base.interfaces.IUnaryComparator;
 import json.interfaces.IJsonSerialization;
+
 import java.nio.file.Path;
 import java.util.List;
 

@@ -2,6 +2,11 @@ package base.interfaces;
 
 import base.BaseException;
 import base.core.Enums;
+import base.core.MacPathSettings;
+import base.core.OperatingSystemControlSettings;
+import base.core.PosixUnixPathSettings;
+import base.core.UnixPathSettings;
+import base.core.WindowsPathSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +19,15 @@ public enum OperatingSystemType {
          * Checks whether this is an operating system based on the system value.
          */
         public boolean isOperatingSystem(String value) {
-            return value.startsWith("win");
+            return value.contains("windows");
+        }
+
+        /**
+         * Creates control settings of an operating system.
+         */
+        public IOperatingSystemControlSettings createControlSettings() {
+            return new OperatingSystemControlSettings(
+                new WindowsPathSettings());
         }
     },
 
@@ -24,9 +37,20 @@ public enum OperatingSystemType {
          */
         public boolean isOperatingSystem(String value) {
             return
-                value.startsWith("nix") ||
-                value.startsWith("nux") ||
-                value.startsWith("aix");
+                value.contains("linux") ||
+                value.contains("unix") ||
+                value.contains("mpe/ix") ||
+                value.contains("freebsd") ||
+                value.contains("irix") ||
+                value.contains("digital unix");
+        }
+
+        /**
+         * Creates control settings of an operating system.
+         */
+        public IOperatingSystemControlSettings createControlSettings() {
+            return new OperatingSystemControlSettings(
+                new UnixPathSettings());
         }
     },
 
@@ -35,16 +59,37 @@ public enum OperatingSystemType {
          * Checks whether this is an operating system based on the system value.
          */
         public boolean isOperatingSystem(String value) {
-            return value.startsWith("mac");
+            return value.contains("mac os");
+        }
+
+        /**
+         * Creates control settings of an operating system.
+         */
+        public IOperatingSystemControlSettings createControlSettings() {
+            return new OperatingSystemControlSettings(
+                new MacPathSettings());
         }
     },
 
-    Solaris() {
+    POSIX_UNIX() {
         /**
          * Checks whether this is an operating system based on the system value.
          */
         public boolean isOperatingSystem(String value) {
-            return value.startsWith("sunos");
+            return
+                value.contains("sun os") ||
+                value.contains("sunos") ||
+                value.contains("solaris") ||
+                value.contains("hp-ux") ||
+                value.contains("aix");
+        }
+
+        /**
+         * Creates control settings of an operating system.
+         */
+        public IOperatingSystemControlSettings createControlSettings() {
+            return new OperatingSystemControlSettings(
+                new PosixUnixPathSettings());
         }
     };
 
@@ -76,8 +121,8 @@ public enum OperatingSystemType {
         else if (OperatingSystemType.Mac.isOperatingSystem(systemValue)) {
             return OperatingSystemType.Mac;
         }
-        else if (OperatingSystemType.Solaris.isOperatingSystem(systemValue)) {
-            return OperatingSystemType.Solaris;
+        else if (OperatingSystemType.POSIX_UNIX.isOperatingSystem(systemValue)) {
+            return OperatingSystemType.POSIX_UNIX;
         }
         else {
             String errorMessage = "The operating system: " + value + " is not supported.";
@@ -86,6 +131,11 @@ public enum OperatingSystemType {
             throw new BaseException(errorMessage);
         }
     }
+
+    /**
+     * Creates control settings of an operating system.
+     */
+    public abstract IOperatingSystemControlSettings createControlSettings();
 
     /**
      * Gets the string representation of this enum.

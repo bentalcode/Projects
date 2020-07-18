@@ -165,7 +165,7 @@ public final class CMakeListsWriter implements IWriter {
     }
 
     /**
-     * Resolves the path.
+     * Resolves the resource path.
      */
     private static Path resolveResourcePath(String path) {
         String resolvedPath = Environment.expandSystemProperties(path, Environment.operatingSystemTransformer());

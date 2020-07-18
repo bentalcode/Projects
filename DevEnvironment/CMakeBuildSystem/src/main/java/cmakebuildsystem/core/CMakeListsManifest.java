@@ -5,6 +5,7 @@ import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.ResourcePathBuilder;
 import base.interfaces.IBinaryComparator;
 import cmakebuildsystem.interfaces.ICMakeListsManifest;
 import json.interfaces.IJsonObjectReader;
@@ -25,8 +26,17 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
 
     private static final String defaultCMakeVersion = "3.13";
     private static final String defaultProjectVersion = "1.0";
-    private static final String defaultPresetPath = "manifests\\defaultCMakeListsPreset1.txt";
-    private static final String defaultPostsetPath = "manifests\\defaultCMakeListsPostset1.txt";
+
+    private static final String defaultPresetPath = new ResourcePathBuilder()
+        .addComponent("manifests")
+        .addComponent("defaultCMakeListsPreset1.txt")
+        .build();
+
+    private static final String defaultPostsetPath = new ResourcePathBuilder()
+        .addComponent("manifests")
+        .addComponent("defaultCMakeListsPostset1.txt")
+        .build();
+
     private static final String defaultIncludesFilesProperty = "INCLUDES_FILES";
     private static final String defaultSourcesFilesProperty = "SOURCES_FILES";
     private static final String defaultIncludesProperty = "INCLUDES";

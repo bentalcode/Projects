@@ -19,6 +19,15 @@ public final class PathBuilder extends AbstractPathBuilder {
     /**
      * The PathBuilder constructor.
      */
+    public PathBuilder(String separator) {
+        super(
+            PathBuilder.defaultInitialComponent,
+            separator);
+    }
+
+    /**
+     * The PathBuilder constructor.
+     */
     public PathBuilder(String initialComponent, String separator) {
         super(
             initialComponent,

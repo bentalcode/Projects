@@ -3,6 +3,7 @@ package cmakebuildsystem.core;
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
 import base.core.CompareToBuilder;
+import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.core.Paths;
@@ -37,6 +38,18 @@ public final class CMakeProject implements ICMakeProject {
         String name,
         Path rootPath,
         List<ICMakeModule> modules) {
+
+        Conditions.validateStringNotNullOrEmpty(
+            name,
+            "The name of the project.");
+
+        Conditions.validatePathNotNullOrEmpty(
+            rootPath,
+            "The root path of the cmake project.");
+
+        Conditions.validateNotNull(
+            modules,
+            "The modules of the cmake project.");
 
         this.name = name;
         this.rootPath = rootPath;

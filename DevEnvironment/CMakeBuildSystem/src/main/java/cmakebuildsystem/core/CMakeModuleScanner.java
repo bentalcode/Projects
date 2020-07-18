@@ -2,7 +2,8 @@ package cmakebuildsystem.core;
 
 import base.core.ArrayLists;
 import base.core.Conditions;
-import base.core.PathBuilder;
+import base.core.Environment;
+import base.core.Paths;
 import base.interfaces.IScanner;
 import basicio.core.FilePathScanner;
 import basicio.interfaces.IFilePathScanner;
@@ -75,11 +76,11 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
         Path modulePath,
         String cmakeListsFilePath) {
 
-        String path = new PathBuilder()
+        String path = Environment.getOperatingSystemControlSettings().pathSettings().createPathBuilder()
             .addComponent(modulePath.toString())
             .addComponent(cmakeListsFilePath)
             .build();
 
-        return Path.of(path);
+        return Paths.create(path);
     }
 }

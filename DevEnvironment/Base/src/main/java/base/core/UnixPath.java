@@ -1,4 +1,5 @@
 package base.core;
+
 import base.interfaces.IPathBuilder;
 import java.util.Stack;
 
@@ -9,7 +10,7 @@ public final class UnixPath extends AbstractPath {
     public static final char separator = '/';
 
     public static final String rootDirectory = "/";
-    public static final String directorySeparator = "/";
+    public static final String directorySeparator = String.valueOf(separator);
     public static final String currentDirectory = Paths.currentDirectory;
     public static final String parentDirectory = Paths.parentDirectory;
     public static final String homeDirectory = "~";
@@ -29,12 +30,11 @@ public final class UnixPath extends AbstractPath {
     }
 
     /**
-     * Resolves a path.
-     * To be implemented...
+     * Makes an absolute path.
      */
     @Override
-    protected String resolvePath(String path) {
-        return path;
+    protected String makeAbsolutePath(String path) {
+        return UnixPath.makeAbsolute(path);
     }
 
     /**
@@ -42,6 +42,59 @@ public final class UnixPath extends AbstractPath {
      */
     @Override
     protected String makeCanonicalPath(String path) {
+        return UnixPath.makeCanonical(path);
+    }
+
+    /**
+     * Validates a path.
+     */
+    @Override
+    protected void validatePath(String path) {
+        UnixPath.validate(path);
+    }
+
+    /**
+     * Validates a unix path.
+     */
+    public static void validate(String path) {
+        Conditions.validateStringNotNullOrEmpty(
+            path,
+            "The unix path.");
+    }
+
+    /**
+     * Makes an absolute path.
+     */
+    private static String makeAbsolute(String path) {
+        String homeDirectory;
+        String reminder;
+
+        if (path.startsWith(UnixPath.homeDirectory)) {
+            homeDirectory = System.getProperty("user.home");
+            reminder = path.substring(UnixPath.homeDirectory.length());
+        }
+        else {
+            homeDirectory = "";
+            reminder = path;
+        }
+
+        String canonicalPath = makeCanonical(reminder);
+
+        IPathBuilder pathBuilder = new UnixPathBuilder();
+
+        if (!homeDirectory.isEmpty()) {
+            pathBuilder.addComponent(homeDirectory);
+        }
+
+        pathBuilder.addComponent(canonicalPath);
+
+        return pathBuilder.build();
+    }
+
+    /**
+     * Makes a canonical path.
+     */
+    private static String makeCanonical(String path) {
         String[] components = path.split(UnixPath.directorySeparator);
 
         Stack<String> stack = new Stack<>();
@@ -60,35 +113,12 @@ public final class UnixPath extends AbstractPath {
             }
         }
 
-        IPathBuilder pathBuilder = new LinuxPathBuilder();
+        IPathBuilder pathBuilder = new UnixPathBuilder();
 
         for (String component : stack) {
             pathBuilder.addComponent(component);
         }
 
         return pathBuilder.build();
-    }
-
-    /**
-     * Validates a path.
-     */
-    @Override
-    protected void validatePath(String path) {
-        UnixPath.validate(path);
-    }
-
-    /**
-     * Validates a unix path.
-     */
-    public static void validate(String path) {
-        Conditions.validateStringNotNullOrEmpty(
-            path,
-            "The unix path.");
-
-        String initialComponent = String.valueOf(path.charAt(0));
-
-        Conditions.validate(
-            initialComponent.equals(UnixPath.directorySeparator),
-            "A unix path starts with an initial forward slash.");
     }
 }

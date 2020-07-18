@@ -1,8 +1,8 @@
 package cmakebuildsystem.core;
 
 import base.core.Conditions;
-import base.core.PathBuilder;
-import base.core.Paths;
+import base.core.Environment;
+import base.interfaces.IPath;
 import base.interfaces.IScanner;
 import cmakebuildsystem.interfaces.ICMakeModule;
 import cmakebuildsystem.interfaces.ICMakeModuleManifest;
@@ -35,12 +35,12 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
     @Override
     public ICMakeProject scan() {
         String name = this.manifest.getName();
-        Path rootPath = Paths.create(this.manifest.getRootPath());
-        List<ICMakeModule> modules = this.scanModules();
+        Path projectPath = this.calculateProjectPath(this.manifest);
+        List<ICMakeModule> modules = this.scanModules(projectPath);
 
         ICMakeProject project = new CMakeProject(
             name,
-            rootPath,
+            projectPath,
             modules);
 
         return project;
@@ -49,11 +49,11 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
     /**
      * Scans modules.
      */
-    private List<ICMakeModule> scanModules() {
+    private List<ICMakeModule> scanModules(Path projectPath) {
         List<ICMakeModule> modules = new ArrayList<>(this.manifest.getModulesManifests().size());
 
         for (ICMakeModuleManifest moduleManifest : this.manifest.getModulesManifests()) {
-            ICMakeModule module = this.scanModule(moduleManifest);
+            ICMakeModule module = this.scanModule(projectPath, moduleManifest);
             modules.add(module);
         }
 
@@ -63,8 +63,8 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
     /**
      * Scans a module.
      */
-    private ICMakeModule scanModule(ICMakeModuleManifest moduleManifest) {
-        Path modulePath = this.calculateModulePath(moduleManifest);
+    private ICMakeModule scanModule(Path projectPath, ICMakeModuleManifest moduleManifest) {
+        Path modulePath = this.calculateModulePath(projectPath, moduleManifest);
 
         IScanner<ICMakeModule> scanner = new CMakeModuleScanner(
             modulePath,
@@ -76,17 +76,30 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
     }
 
     /**
+     * Calculates a path of the project.
+     */
+    private Path calculateProjectPath(ICMakeProjectManifest manifest) {
+        IPath path = Environment.getOperatingSystemControlSettings().pathSettings().createPath(manifest.getRootPath());
+        String absolutePath = path.getAbsolutePath();
+
+        return Path.of(absolutePath);
+    }
+
+    /**
      * Calculates a path of the module.
      */
-    private Path calculateModulePath(ICMakeModuleManifest moduleManifest) {
+    private Path calculateModulePath(
+        Path projectPath,
+        ICMakeModuleManifest moduleManifest) {
+
         String modulePath = moduleManifest.getProperties().getPath();
 
         if (modulePath == null) {
             modulePath = moduleManifest.getName();
         }
 
-        String path = new PathBuilder()
-            .addComponent(this.manifest.getRootPath())
+        String path = Environment.getOperatingSystemControlSettings().pathSettings().createPathBuilder()
+            .addComponent(projectPath.toString())
             .addComponent(modulePath)
             .build();
 

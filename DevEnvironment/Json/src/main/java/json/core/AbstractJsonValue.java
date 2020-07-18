@@ -78,8 +78,8 @@ public abstract class AbstractJsonValue implements IJsonValue {
     @Override
     public IJsonArray getArray() {
         String errorMessage =
-                "The Json Value class: " + ClassTypes.getName(this.getClass()) +
-                        " does not support an array.";
+            "The Json Value class: " + ClassTypes.getName(this.getClass()) +
+            " does not support an array.";
 
         throw new JsonException(errorMessage);
     }

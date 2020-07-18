@@ -1,9 +1,6 @@
 package base.core;
 
 import base.interfaces.IPath;
-import base.interfaces.IPathBuilder;
-
-import java.util.Stack;
 
 /**
  * The AbstractPath class implements an abstract path.
@@ -25,7 +22,7 @@ public abstract class AbstractPath implements IPath {
      */
     @Override
     public String getAbsolutePath() {
-        return this.resolvePath(this.path);
+        return this.makeAbsolutePath(this.path);
     }
 
     /**
@@ -33,8 +30,7 @@ public abstract class AbstractPath implements IPath {
      */
     @Override
     public String getCanonicalPath() {
-        String absolutePath = this.getAbsolutePath();
-        return this.makeCanonicalPath(absolutePath);
+        return this.makeCanonicalPath(this.path);
     }
 
     /**
@@ -50,9 +46,9 @@ public abstract class AbstractPath implements IPath {
     protected abstract void validatePath(String path);
 
     /**
-     * Resolves a path.
+     * Makes an absolute path.
      */
-    protected abstract String resolvePath(String path);
+    protected abstract String makeAbsolutePath(String path);
 
     /**
      * Makes a canonical path.

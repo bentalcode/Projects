@@ -33,6 +33,17 @@ public final class UnixPathTest {
     }
 
     /**
+     * Tests the logic for getting an absolute unix path.
+     */
+    @Test
+    public void getAbsoluteUnixPathTest() {
+        String homeDirectory = System.getProperty("user.home");
+
+        this.testGetAbsoluteUnixPath("~/a/./b/../../c/", homeDirectory + "/c");
+        this.testGetAbsoluteUnixPath("~/a/../../b/../c//.//", homeDirectory + "/c");
+    }
+
+    /**
      * Tests the logic for getting a canonical unix path.
      */
     @Test
@@ -43,6 +54,19 @@ public final class UnixPathTest {
         this.testGetCanonicalUnixPath("/a/./b/../../c/", "/c");
         this.testGetCanonicalUnixPath("/a/../../b/../c//.//", "/c");
         this.testGetCanonicalUnixPath("/a//b////c/d//././/..", "/a/b/c");
+    }
+
+    /**
+     * Tests the logic for getting an absolute unix path.
+     */
+    private void testGetAbsoluteUnixPath(String path, String expectedResult) {
+        UnixPath unixPath = new UnixPath(path);
+        String result = unixPath.getAbsolutePath();
+
+        this.assertion.assertEquals(
+            result,
+            expectedResult,
+            "Invalid logic for getting an absolute unix path.");
     }
 
     /**

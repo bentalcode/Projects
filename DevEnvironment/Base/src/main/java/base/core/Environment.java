@@ -1,6 +1,7 @@
 package base.core;
 
 import base.BaseException;
+import base.interfaces.IOperatingSystemControlSettings;
 import base.interfaces.IStringTransformer;
 import base.interfaces.OperatingSystemType;
 import java.util.regex.Matcher;
@@ -13,7 +14,6 @@ import org.slf4j.LoggerFactory;
  */
 public final class Environment {
     private static final String variablePattern = "\\$\\{[A-Za-z0-9\\-\\_\\.]+\\}";
-
     private static final Logger log = LoggerFactory.getLogger(Enums.class);
 
     /**
@@ -29,6 +29,21 @@ public final class Environment {
     public static OperatingSystemType getOperatingSystem() {
         String value = System.getProperty("os.name");
         return OperatingSystemType.getOperatingSystem(value);
+    }
+
+    /**
+     * Gets the current control settings of the operating system.
+     */
+    public static IOperatingSystemControlSettings getOperatingSystemControlSettings() {
+        OperatingSystemType operatingSystemType = getOperatingSystem();
+        return getOperatingSystemControlSettings(operatingSystemType);
+    }
+
+    /**
+     * Gets the control settings of the operating system.
+     */
+    public static IOperatingSystemControlSettings getOperatingSystemControlSettings(OperatingSystemType operatingSystemType) {
+        return OperatingSystemControlSettingHolder.instance().getControlSettings(operatingSystemType);
     }
 
     /**

@@ -1,6 +1,6 @@
 {
     "name": "DevEnvironmentCLion",
-    "rootPath": "c:\\repositories\\Projects\\DevEnvironmentCLion",
+    "rootPath": "~/repositories/Projects/DevEnvironmentCLion",
     "effectiveModules": [
         "Base",
         "DataStructures",
@@ -33,8 +33,8 @@
             "cmakeListsManifest": {
                 "cmakeVersion": "3.13",
                 "projectVersion": "1.0",
-                "presetPath": "${os.name}\\data\\cmakeListsManifests\\cmakeListsPreset1.txt",
-                "postsetPath": "${os.name}\\data\\cmakeListsManifests\\cmakeListsPostset1.txt"
+                "presetPath": "${os.name}/data/cmakeListsManifests/cmakeListsPreset1.txt",
+                "postsetPath": "${os.name}/data/cmakeListsManifests/cmakeListsPostset1.txt"
             }
         },
         {
@@ -129,5 +129,8 @@
                 "Problems"
             ]
         }
-    ]
+    ],
+    "ignoreRules": {
+        "pathPatterns": ["glob:**/*build*/**"]
+    }
 }

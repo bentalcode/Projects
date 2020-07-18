@@ -50,7 +50,23 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
             component,
             "The component of a path.");
 
-        this.components.add(component);
+        int startIndex = 0;
+        int endIndex = component.length() - 1;
+
+        if (component.startsWith(this.directorySeparator)) {
+            startIndex += this.directorySeparator.length();
+        }
+
+        if (component.endsWith(this.directorySeparator)) {
+            endIndex -= this.directorySeparator.length();
+        }
+
+        int effectiveComponentLength = Dimensions.length(startIndex, endIndex);
+
+        if (effectiveComponentLength > 0) {
+            String effectiveComponent = component.substring(startIndex, endIndex + 1);
+            this.components.add(effectiveComponent);
+        }
 
         return this;
     }
