@@ -2,8 +2,11 @@ package base.core;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 import testbase.core.Assertion;
+import testbase.core.RunTestOnOperatingSystemRule;
 import testbase.interfaces.IAssertion;
 
 /**
@@ -17,6 +20,9 @@ public final class UnixPathTest {
      */
     public UnixPathTest() {
     }
+
+    @ClassRule
+    public static TestRule runTestOnUnixRule = RunTestOnOperatingSystemRule.runOnUnix();
 
     /**
      * Initialize the tests.

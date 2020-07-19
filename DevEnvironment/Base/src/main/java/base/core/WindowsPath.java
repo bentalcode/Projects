@@ -10,6 +10,7 @@ public final class WindowsPath extends AbstractPath {
     public static final char separator = '\\';
 
     public static final String directorySeparator = String.valueOf(separator);
+    public static final String directorySeparatorRegex = "\\\\";
     public static final String currentDirectory = Paths.currentDirectory;
     public static final String parentDirectory = Paths.parentDirectory;
 
@@ -71,7 +72,7 @@ public final class WindowsPath extends AbstractPath {
      * Makes a canonical path.
      */
     private static String makeCanonical(String path) {
-        String[] components = path.split(WindowsPath.directorySeparator);
+        String[] components = path.split(WindowsPath.directorySeparatorRegex);
 
         Stack<String> stack = new Stack<>();
 

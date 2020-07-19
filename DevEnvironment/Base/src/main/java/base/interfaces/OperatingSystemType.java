@@ -71,7 +71,7 @@ public enum OperatingSystemType {
         }
     },
 
-    POSIX_UNIX() {
+    PosixUnix() {
         /**
          * Checks whether this is an operating system based on the system value.
          */
@@ -121,8 +121,8 @@ public enum OperatingSystemType {
         else if (OperatingSystemType.Mac.isOperatingSystem(systemValue)) {
             return OperatingSystemType.Mac;
         }
-        else if (OperatingSystemType.POSIX_UNIX.isOperatingSystem(systemValue)) {
-            return OperatingSystemType.POSIX_UNIX;
+        else if (OperatingSystemType.PosixUnix.isOperatingSystem(systemValue)) {
+            return OperatingSystemType.PosixUnix;
         }
         else {
             String errorMessage = "The operating system: " + value + " is not supported.";
