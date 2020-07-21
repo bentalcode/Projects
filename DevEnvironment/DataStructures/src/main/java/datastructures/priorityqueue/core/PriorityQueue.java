@@ -1,6 +1,7 @@
 package datastructures.priorityqueue.core;
 
 import base.interfaces.IBinaryComparator;
+import datastructures.list.interfaces.IList;
 import datastructures.priorityqueue.interfaces.IPriorityQueue;
 
 /**
@@ -11,10 +12,8 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
     /**
      * Creates a min priority queue.
      */
-    public static <T extends Comparable<T>> IPriorityQueue<T> createMinPriorityQueue(
-        Class<T> classType) {
-
-        return new PriorityQueue<>(
+    public static <T extends Comparable<T>> IPriorityQueue<T> createMinPriorityQueue(Class<?> classType) {
+        return new PriorityQueue<T>(
             classType,
             base.core.Comparator.defaultComparator(),
             AbstractPriorityQueue.defaultComparator());
@@ -24,7 +23,7 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
      * Creates a min priority queue.
      */
     public static <T extends Comparable<T>> IPriorityQueue<T> createMinPriorityQueue(
-        Class<T> classType,
+        Class<?> classType,
         IBinaryComparator<T> elementComparator) {
 
         return new PriorityQueue<>(
@@ -37,7 +36,7 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
      * Creates a min priority queue.
      */
     public static <T extends Comparable<T>> IPriorityQueue<T> createMinPriorityQueue(
-        Class<T> classType,
+        Class<?> classType,
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {
 
@@ -50,10 +49,8 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
     /**
      * Creates a max priority queue by using the default invert comparator of an element.
      */
-    public static <T extends Comparable<T>> IPriorityQueue<T> createMaxPriorityQueue(
-        Class<T> classType) {
-
-        return new PriorityQueue<>(
+    public static <T extends Comparable<T>> IPriorityQueue<T> createMaxPriorityQueue(Class<?> classType) {
+        return new PriorityQueue<T>(
             classType,
             base.core.Comparator.defaultInvertComparator(),
             AbstractPriorityQueue.defaultComparator());
@@ -63,7 +60,7 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
      * Creates a max priority queue by using the default invert comparator of an element.
      */
     public static <T extends Comparable<T>> IPriorityQueue<T> createMaxPriorityQueue(
-        Class<T> classType,
+        Class<?> classType,
         IBinaryComparator<T> elementComparator) {
 
         return new PriorityQueue<>(
@@ -76,7 +73,7 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
      * Creates a max priority queue by inverting the specified comparator of an element.
      */
     public static <T extends Comparable<T>> IPriorityQueue<T> createMaxPriorityQueue(
-        Class<T> classType,
+        Class<?> classType,
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {
 
@@ -87,9 +84,83 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
     }
 
     /**
+     * Creates a min priority queue.
+     */
+    public static <T extends Comparable<T>> IPriorityQueue<T> createMinPriorityQueue(IList<T> data) {
+        return new PriorityQueue<>(
+            data,
+            base.core.Comparator.defaultComparator(),
+            AbstractPriorityQueue.defaultComparator());
+    }
+
+    /**
+     * Creates a min priority queue.
+     */
+    public static <T extends Comparable<T>> IPriorityQueue<T> createMinPriorityQueue(
+        IList<T> data,
+        IBinaryComparator<T> elementComparator) {
+
+        return new PriorityQueue<>(
+            data,
+            elementComparator,
+            AbstractPriorityQueue.defaultComparator());
+    }
+
+    /**
+     * Creates a min priority queue.
+     */
+    public static <T extends Comparable<T>> IPriorityQueue<T> createMinPriorityQueue(
+        IList<T> data,
+        IBinaryComparator<T> elementComparator,
+        IBinaryComparator<IPriorityQueue<T>> comparator) {
+
+        return new PriorityQueue<>(
+            data,
+            elementComparator,
+            comparator);
+    }
+
+    /**
+     * Creates a max priority queue by using the default invert comparator of an element.
+     */
+    public static <T extends Comparable<T>> IPriorityQueue<T> createMaxPriorityQueue(IList<T> data) {
+        return new PriorityQueue<>(
+            data,
+            base.core.Comparator.defaultInvertComparator(),
+            AbstractPriorityQueue.defaultComparator());
+    }
+
+    /**
+     * Creates a max priority queue by using the default invert comparator of an element.
+     */
+    public static <T extends Comparable<T>> IPriorityQueue<T> createMaxPriorityQueue(
+        IList<T> data,
+        IBinaryComparator<T> elementComparator) {
+
+        return new PriorityQueue<>(
+            data,
+            base.core.Comparator.invertComparator(elementComparator),
+            AbstractPriorityQueue.defaultComparator());
+    }
+
+    /**
+     * Creates a max priority queue by inverting the specified comparator of an element.
+     */
+    public static <T extends Comparable<T>> IPriorityQueue<T> createMaxPriorityQueue(
+        IList<T> data,
+        IBinaryComparator<T> elementComparator,
+        IBinaryComparator<IPriorityQueue<T>> comparator) {
+
+        return new PriorityQueue<>(
+            data,
+            base.core.Comparator.invertComparator(elementComparator),
+            comparator);
+    }
+
+    /**
      * The PriorityQueue constructor.
      */
-    public PriorityQueue(Class<T> classType) {
+    public PriorityQueue(Class<?> classType) {
         super(
             classType,
             base.core.Comparator.defaultComparator(),
@@ -100,7 +171,7 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
      * The PriorityQueue constructor.
      */
     public PriorityQueue(
-        Class<T> classType,
+        Class<?> classType,
         IBinaryComparator<T> elementComparator) {
 
         super(
@@ -113,7 +184,7 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
      * The PriorityQueue constructor.
      */
     public PriorityQueue(
-        Class<T> classType,
+        Class<?> classType,
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {
 
@@ -121,5 +192,53 @@ public final class PriorityQueue<T extends Comparable<T>> extends AbstractPriori
             classType,
             elementComparator,
             comparator);
+    }
+
+    /**
+     * The PriorityQueue constructor.
+     */
+    public PriorityQueue(IList<T> data) {
+        super(
+            data,
+            base.core.Comparator.defaultComparator(),
+            AbstractPriorityQueue.defaultComparator());
+    }
+
+    /**
+     * The PriorityQueue constructor.
+     */
+    public PriorityQueue(
+        IList<T> data,
+        IBinaryComparator<T> elementComparator) {
+
+        super(
+            data,
+            elementComparator,
+            AbstractPriorityQueue.defaultComparator());
+    }
+
+    /**
+     * The PriorityQueue constructor.
+     */
+    public PriorityQueue(
+        IList<T> data,
+        IBinaryComparator<T> elementComparator,
+        IBinaryComparator<IPriorityQueue<T>> comparator) {
+
+        super(
+            data,
+            elementComparator,
+            comparator);
+    }
+
+    /**
+     * Copies the priority queue.
+     */
+    @Override
+    public IPriorityQueue<T> copy() {
+        return new PriorityQueue<>(
+            this.getData(),
+            this.getElementComparator(),
+            this.getComparator());
     }
 }

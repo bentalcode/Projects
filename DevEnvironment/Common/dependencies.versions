@@ -5,4 +5,5 @@ ext {
     junitVersion = '4.12'               // JUnit
     jodaTimeVersion = '2.10.5'          // Joda-Time
     xmlSecurityVersion = '1.4.1'        // XmlSecurity
+    jsoupVersion = '1.13.1'             // Jsoup
 }

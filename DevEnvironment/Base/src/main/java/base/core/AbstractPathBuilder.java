@@ -75,12 +75,14 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
      * Sets an extension of a path.
      */
     @Override
-    public void setExtension(String extension) {
+    public IPathBuilder setExtension(String extension) {
         Conditions.validateNotNull(
             extension,
             "The extension of a path.");
 
         this.extension = extension;
+
+        return this;
     }
 
     /**
@@ -105,7 +107,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
         }
 
         if (!Strings.isNullOrEmpty(this.extension)) {
-            result.append(this.extension);
+            result.append("." + this.extension);
         }
 
         return result.toString();

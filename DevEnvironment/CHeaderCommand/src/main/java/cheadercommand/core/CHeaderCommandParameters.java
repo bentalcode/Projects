@@ -11,7 +11,6 @@ import java.nio.file.Path;
  * The CHeaderCommandParameters class implements parameters of a c-header command.
  */
 public final class CHeaderCommandParameters implements ICHeaderCommandParameters {
-    private final ICommandParameters parameters;
     private final Path directoryPath;
     private final Path filePath;
     private final boolean recurse;
@@ -23,8 +22,6 @@ public final class CHeaderCommandParameters implements ICHeaderCommandParameters
         Conditions.validateNotNull(
             parameters,
             "The parameters of the command.");
-
-        this.parameters = parameters;
 
         IParameter directoryPath = parameters.getParameterSet().getParameter("directoryPath");
         this.directoryPath = directoryPath != null && directoryPath.isSet() ?

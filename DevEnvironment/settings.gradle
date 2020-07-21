@@ -16,6 +16,7 @@ include ':TestBase'
 include ':DataTransformationService'
 include ':Command'
 include ':CHeaderCommand'
+include ':UriReaderCommand'
 include ':HashCodeCommand'
 
 

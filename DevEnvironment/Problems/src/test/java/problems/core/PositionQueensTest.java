@@ -42,13 +42,13 @@ public final class PositionQueensTest {
     @Test
     public void combinationSumTest() {
         int size1 = 1;
-        List<List<String>> result1 = ArrayLists.empty();
+        List<List<String>> result1 = ArrayLists.newList();
 
         int size2 = 2;
-        List<List<String>> result2 = ArrayLists.empty();
+        List<List<String>> result2 = ArrayLists.newList();
 
         int size3 = 3;
-        List<List<String>> result3 = ArrayLists.empty();
+        List<List<String>> result3 = ArrayLists.newList();
 
         int size4 = 4;
         List<List<String>> result4 = ArrayLists.of(

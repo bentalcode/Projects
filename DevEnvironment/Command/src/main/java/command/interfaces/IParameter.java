@@ -83,4 +83,9 @@ public interface IParameter {
      * Gets a duration value of a parameter.
      */
     Duration getDurationValue();
+
+    /**
+     * Gets a string array value of a parameter.
+     */
+    String[] getStringArrayValue();
 }

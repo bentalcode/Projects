@@ -22,7 +22,7 @@ public interface IPathBuilder extends IBuilder<String> {
     /**
      * Sets an extension of a path.
      */
-    void setExtension(String extension);
+    IPathBuilder setExtension(String extension);
 
     /**
      * Builds the path.

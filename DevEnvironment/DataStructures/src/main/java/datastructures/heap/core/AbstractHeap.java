@@ -11,6 +11,7 @@ import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
+import base.interfaces.IMatch;
 import base.interfaces.IReverseIterator;
 import base.core.Collections;
 import datastructures.heap.HeapException;
@@ -36,7 +37,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      * The AbstractHeap constructor.
      */
     protected AbstractHeap(
-        Class<T> classType,
+        Class<?> classType,
         int capacity,
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {
@@ -70,9 +71,29 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {
 
+        this(
+            data,
+            data != null ? data.length : 0,
+            elementComparator,
+            comparator);
+    }
+
+    /**
+     * The AbstractHeap constructor.
+     */
+    protected AbstractHeap(
+        T[] data,
+        int size,
+        IBinaryComparator<T> elementComparator,
+        IBinaryComparator<IPriorityQueue<T>> comparator) {
+
         Conditions.validate(
             data != null && data.length > 0,
             "The initial data of the heap is not defined.");
+
+        Conditions.validate(
+            size >= 0 && size <= data.length,
+            "The size of the heap.");
 
         Conditions.validateNotNull(
             elementComparator,
@@ -86,7 +107,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
         this.elementComparator = elementComparator;
         this.comparator = comparator;
 
-        for (int i = 0; i < data.length; ++i) {
+        for (int i = 0; i < size; ++i) {
             T currValue = data[i];
             this.offer(currValue);
         }
@@ -188,6 +209,64 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
         }
 
         return false;
+    }
+
+    /**
+     * Finds an element in a priority queue.
+     * Retruns -1 if the element does not exist.
+     */
+    @Override
+    public int find(T element) {
+        for (int index = 0; index < this.size; ++index) {
+            T currElement = this.data[index];
+
+            if (this.elementComparator.isEqual(currElement, element)) {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Finds an element in a priority queue by a match predicate.
+     * Retruns -1 if the element does not exist.
+     */
+    @Override
+    public int find(IMatch<T> match) {
+        if (match == null) {
+            return -1;
+        }
+
+        for (int index = 0; index < this.size; ++index) {
+            T currElement = this.data[index];
+
+            if (match.match(currElement)) {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Updates a value of a specific element and heapify it up.
+     */
+    @Override
+    public void updateAndHypifyUp(int index, T element) {
+        Arrays.validateIndex(index, 0, this.size - 1);
+        this.data[index] = element;
+        this.heapifyUp(index);
+    }
+
+    /**
+     * Updates a value of a specific element and heapify it down.
+     */
+    @Override
+    public void updateAndHypifyDown(int index, T element) {
+        Arrays.validateIndex(index, 0, this.size - 1);
+        this.data[index] = element;
+        this.heapifyDown(index);
     }
 
     /**
@@ -340,6 +419,27 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.elementComparator)
                 .build();
         }
+    }
+
+    /**
+     * Gets the data of the heap.
+     */
+    protected T[] getData() {
+        return this.data;
+    }
+
+    /**
+     * Gets the comparator of an element.
+     */
+    protected IBinaryComparator<T> getElementComparator() {
+        return this.elementComparator;
+    }
+
+    /**
+     * Gets the comparator of the heap.
+     */
+    protected IBinaryComparator<IPriorityQueue<T>> getComparator() {
+        return this.comparator;
     }
 
     /**

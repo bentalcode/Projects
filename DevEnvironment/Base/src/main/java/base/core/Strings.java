@@ -1,5 +1,6 @@
 package base.core;
 
+import base.interfaces.IPair;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -8,6 +9,15 @@ import java.util.List;
  * The Strings class implements complementary APIs for strings.
  */
 public final class Strings {
+    private static List<IPair<Character, Character>> parenthesesStartEndTokens = ArrayLists.of(
+        Pair.of('(', ')'),
+        Pair.of('[', ']'),
+        Pair.of('{', '}'));
+
+    private static List<IPair<Character, Character>> quotationStartEndTokens = ArrayLists.of(
+        Pair.of('\'', '\''),
+        Pair.of('\"', '\"'));
+
     /**
      * Determines whether a string is not null or empty.
      */
@@ -119,6 +129,137 @@ public final class Strings {
         }
 
         return numberOfCharactersWritten;
+    }
+
+    /**
+     * Removes outer parentheses from the string.
+     */
+    public static String removeParentheses(String str) {
+        return removeStartAndEndCharacters(str, parenthesesStartEndTokens);
+    }
+
+    /**
+     * Removes quotation marks.
+     */
+    public static String removeQuotationMarks(String str) {
+        return removeStartAndEndCharacters(str, quotationStartEndTokens);
+    }
+
+    /**
+     * Removes the first character of a string only if it is matching the specified character.
+     */
+    public static String removeFirstCharacter(String str, char characterToRemove) {
+        if (Strings.isNullOrEmpty(str)) {
+            return str;
+        }
+
+        char firstCharacter = str.charAt(0);
+
+        if (firstCharacter == characterToRemove) {
+            return str.substring(1);
+        }
+
+        return str;
+    }
+
+    /**
+     * Removes the last character of a string only if it is matching the specified character.
+     */
+    public static String removeLastCharacter(String str, char characterToRemove) {
+        if (Strings.isNullOrEmpty(str)) {
+            return str;
+        }
+
+        char lastCharacter = str.charAt(str.length() - 1);
+
+        if (lastCharacter == characterToRemove) {
+            return str.substring(0, str.length() - 1);
+        }
+
+        return str;
+    }
+
+    /**
+     * Removes the first character of a string only if it is matching one of the specified characters.
+     */
+    public static String removeFirstCharacter(String str, List<Character> charactersToRemove) {
+        if (Strings.isNullOrEmpty(str) || charactersToRemove.isEmpty()) {
+            return str;
+        }
+
+        char firstCharacter = str.charAt(0);
+
+        for (char characterToRemove : charactersToRemove) {
+            if (firstCharacter == characterToRemove) {
+                return str.substring(1);
+            }
+        }
+
+        return str;
+    }
+
+    /**
+     * Removes the last character of a string only if it is matching one of the specified characters.
+     */
+    public static String removeLastCharacter(String str, List<Character> charactersToRemove) {
+        if (Strings.isNullOrEmpty(str) || charactersToRemove.isEmpty()) {
+            return str;
+        }
+
+        char lastCharacter = str.charAt(str.length() - 1);
+
+        for (char characterToRemove : charactersToRemove) {
+            if (lastCharacter == characterToRemove) {
+                return str.substring(0, str.length() - 1);
+            }
+        }
+
+        return str;
+    }
+
+    /**
+     * Removes the start and end tokens correspondingly.
+     */
+    private static String removeStartAndEndCharacters(
+        String str,
+        List<IPair<Character, Character>> startEndTokens) {
+
+        if (str.length() < 2) {
+            return str;
+        }
+
+        int startIndex = 0;
+        int endIndex = str.length() - 1;
+
+        while (startIndex < endIndex) {
+            char firstCharacter = str.charAt(startIndex);
+            char lastCharacter = str.charAt(endIndex);
+
+            boolean foundStartEndTokens = false;
+
+            for (IPair<Character, Character> startEndToken : startEndTokens) {
+                char startToken = startEndToken.first();
+                char endToken = startEndToken.second();
+
+                if (firstCharacter == startToken && lastCharacter == endToken) {
+                    foundStartEndTokens = true;
+                    break;
+                }
+            }
+
+            if (foundStartEndTokens) {
+                ++startIndex;
+                --endIndex;
+            }
+            else {
+                break;
+            }
+        }
+
+        int length = Dimensions.length(startIndex, endIndex);
+        String result = length > 0 ? str.substring(startIndex, endIndex + 1) : "";
+
+        return result;
     }
 
     /**

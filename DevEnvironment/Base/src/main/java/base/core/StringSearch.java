@@ -234,6 +234,75 @@ public final class StringSearch {
      * Counts the number of instances of a substring.
      */
     public static int countSubString(
+        String str,
+        String subString) {
+
+        boolean allowOverlapping = true;
+        return countSubString(str, subString, allowOverlapping);
+    }
+
+    /**
+     * Counts the number of instances of a substring.
+     */
+    public static int countSubString(
+        String str,
+        String subString,
+        boolean allowOverlapping) {
+
+        if (str == null || str.isEmpty() || subString == null || subString.isEmpty()) {
+            return 0;
+        }
+
+        int startIndex = 0;
+        int endIndex = str.length() - 1;
+        int subStringStartIndex = 0;
+        int subStringLength = subString.length();
+
+        return countSubString(
+            str,
+            startIndex,
+            endIndex,
+            subString,
+            subStringStartIndex,
+            subStringLength,
+            allowOverlapping);
+    }
+
+    /**
+     * Counts the number of instances of a substring.
+     */
+    public static int countSubString(
+        String str,
+        int startIndex,
+        int endIndex,
+        String subString,
+        int subStringStartIndex,
+        int subStringLength,
+        boolean allowOverlapping) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length());
+        assert(endIndex >= startIndex && endIndex < str.length());
+
+        assert(subString != null);
+        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length());
+        assert(subStringLength >= 0);
+        assert(subStringStartIndex + subStringLength - 1 < subString.length());
+
+        return countSubString(
+            str.toCharArray(),
+            startIndex,
+            endIndex,
+            subString.toCharArray(),
+            subStringStartIndex,
+            subStringLength,
+            allowOverlapping);
+    }
+
+    /**
+     * Counts the number of instances of a substring.
+     */
+    public static int countSubString(
         char[] str,
         int startIndex,
         int endIndex,

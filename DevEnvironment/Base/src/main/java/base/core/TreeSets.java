@@ -1,5 +1,6 @@
 package base.core;
 
+import java.util.List;
 import java.util.TreeSet;
 
 /**
@@ -7,10 +8,44 @@ import java.util.TreeSet;
  */
 public final class TreeSets {
     /**
+     * Creates a new instance of tree-set.
+     */
+    public static <TKey> TreeSet<TKey> newSet() {
+        return new TreeSet<>();
+    }
+
+    /**
+     * Creates a new instance of a tree-set from a list.
+     */
+    public static <TKey> TreeSet<TKey> from(List<TKey> list) {
+        Conditions.validateNotNull(
+            list,
+            "The list.");
+
+        return new TreeSet<>(list);
+    }
+
+    /**
+     * Creates a new instance of a tree-set.
+     */
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(TKey[] keys) {
+        TreeSet<TKey> tree = new TreeSet<>();
+
+        if (keys == null) {
+            return tree;
+        }
+
+        for (TKey key : keys) {
+            tree.add(key);
+        }
+
+        return tree;
+    }
+
+    /**
      * Creates a new instance of a tree-set.
      */
     public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(TKey key) {
-
         TreeSet<TKey> tree = new TreeSet<>();
         tree.add(key);
 

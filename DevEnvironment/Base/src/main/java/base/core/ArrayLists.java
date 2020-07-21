@@ -10,7 +10,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of an empty list.
      */
-    public static <T> List<T> empty() {
+    public static <T> List<T> newList() {
         return new ArrayList<>();
     }
 

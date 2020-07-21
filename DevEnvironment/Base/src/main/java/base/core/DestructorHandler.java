@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class DestructorHandler implements IDestructorHandler {
     private final IDestructorFactory destructorFactory = new DestructorFactory();
-    private final List<IDestructor> destructors = new ArrayList<>();
+    private final List<IDestructor> destructors;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -24,6 +24,28 @@ public final class DestructorHandler implements IDestructorHandler {
      * The DestructorHandler constructor.
      */
     public DestructorHandler() {
+        this(ArrayLists.newList());
+    }
+
+    /**
+     * The DestructorHandler constructor.
+     */
+    private DestructorHandler(List<IDestructor> destructors) {
+        Conditions.validateNotNull(
+            destructors,
+            "The list of destructors.");
+
+        this.destructors = destructors;
+    }
+
+    /**
+     * Moves the destructors to a new destructor.
+     */
+    public IDestructorHandler move() {
+        List<IDestructor> destructors = new ArrayList<>(this.destructors);
+        IDestructorHandler destructorHandler = new DestructorHandler(destructors);
+        this.destructors.clear();
+        return destructorHandler;
     }
 
     /**

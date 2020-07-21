@@ -1,30 +1,47 @@
 package command.core;
 
 import base.core.Conditions;
+import base.core.DestructorHandler;
 import base.core.ResourceReader;
+import base.interfaces.IDestructorHandler;
 import base.interfaces.IParser;
+import base.interfaces.IParsingResult;
 import command.interfaces.ICommand;
 import command.interfaces.ICommandHandler;
 import command.interfaces.ICommandManifest;
 import command.interfaces.ICommandMessageWriter;
 import command.interfaces.ICommandParameters;
-import base.interfaces.IParsingResult;
 import command.interfaces.IProcessInformation;
+import java.io.Closeable;
 import java.nio.file.Path;
 
 /**
  * The CommandHandler class implements a command handler for running commands.
  */
-public final class CommandHandler implements ICommandHandler {
+public final class CommandHandler implements Closeable, ICommandHandler {
     private final ICommandManifest manifest;
     private final ICommandMessageWriter messageWriter;
+    private final IDestructorHandler destructorHandler = new DestructorHandler();
 
     /**
      * The CommandHandler constructor.
      */
     public CommandHandler() {
-        this.manifest = this.loadManifest();
-        this.messageWriter = new CommandMessageWriter(this.manifest);
+        ICommandManifest manifest = loadManifest();
+
+        CommandMessageWriter commandMessageWriter = new CommandMessageWriter(manifest);
+        this.destructorHandler.register(commandMessageWriter);
+
+        this.manifest = manifest;
+        this.messageWriter = commandMessageWriter;
+    }
+
+    /**
+     * Closes this resource.
+     */
+    @Override
+    public void close() {
+        this.destructorHandler.close();
     }
 
     /**
@@ -89,7 +106,7 @@ public final class CommandHandler implements ICommandHandler {
     /**
      * Loads the manifest of the command.
      */
-    private ICommandManifest loadManifest() {
+    private static ICommandManifest loadManifest() {
         Path path = ICommandConstants.defaultManifestPath;
         String json = ResourceReader.loadString(path);
         return CommandManifest.fromJson(json);

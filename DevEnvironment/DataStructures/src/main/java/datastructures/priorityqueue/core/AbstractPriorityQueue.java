@@ -1,6 +1,7 @@
 package datastructures.priorityqueue.core;
 
 import base.core.AbstractBinaryComparator;
+import base.core.Arrays;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -8,6 +9,7 @@ import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
+import base.interfaces.IMatch;
 import base.interfaces.IReverseIterator;
 import base.core.Collections;
 import datastructures.list.core.ArrayList;
@@ -33,13 +35,27 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
      * The AbstractPriorityQueue constructor.
      */
     protected AbstractPriorityQueue(
-        Class<T> classType,
+        Class<?> classType,
+        IBinaryComparator<T> elementComparator,
+        IBinaryComparator<IPriorityQueue<T>> comparator) {
+
+        this(
+            ArrayList.create(classType),
+            elementComparator,
+            comparator);
+    }
+
+    /**
+     * The AbstractPriorityQueue constructor.
+     */
+    protected AbstractPriorityQueue(
+        IList<T> data,
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {
 
         Conditions.validateNotNull(
-            classType,
-            "The class type of an element.");
+            data,
+            "The data of the priority queue.");
 
         Conditions.validateNotNull(
             elementComparator,
@@ -49,7 +65,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
             comparator,
             "The comparator of a priority queue.");
 
-        this.data = new ArrayList<>(classType);
+        this.data = data;
         this.elementComparator = elementComparator;
         this.comparator = comparator;
     }
@@ -133,17 +149,66 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
      */
     @Override
     public boolean contains(T element) {
-        IIterator<T> iterator = this.getIterator();
+        int index = this.find(element);
+        return index != -1;
+    }
 
-        while (iterator.hasNext()) {
-            T currElement = iterator.next();
+    /**
+     * Finds an element in a priority queue.
+     * Retruns -1 if the element does not exist.
+     */
+    @Override
+    public int find(T element) {
+        for (int index = 0; index < this.data.size(); ++index) {
+            T currElement = this.data.get(index);
 
             if (this.elementComparator.isEqual(currElement, element)) {
-                return true;
+                return index;
             }
         }
 
-        return false;
+        return -1;
+    }
+
+    /**
+     * Finds an element in a priority queue by a match predicate.
+     * Retruns -1 if the element does not exist.
+     */
+    @Override
+    public int find(IMatch<T> match) {
+        if (match == null) {
+            return -1;
+        }
+
+        for (int index = 0; index < this.data.size(); ++index) {
+            T currElement = this.data.get(index);
+
+            if (match.match(currElement)) {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Updates a value of a specific element and heapify it up.
+     */
+    @Override
+    public void updateAndHypifyUp(int index, T element) {
+        Arrays.validateIndex(index, 0, this.data.size() - 1);
+        this.data.set(index, element);
+        this.heapifyUp(index);
+    }
+
+    /**
+     * Updates a value of a specific element and heapify it down.
+     */
+    @Override
+    public void updateAndHypifyDown(int index, T element) {
+        Arrays.validateIndex(index, 0, this.data.size() - 1);
+        this.data.set(index, element);
+        this.heapifyDown(index);
     }
 
     /**
@@ -298,6 +363,27 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
                 .withIterator(lhs.getIterator(), rhs.getIterator(), this.elementComparator)
                 .build();
         }
+    }
+
+    /**
+     * Gets the data of the heap.
+     */
+    protected IList<T> getData() {
+        return this.data;
+    }
+
+    /**
+     * Gets the comparator of an element.
+     */
+    protected IBinaryComparator<T> getElementComparator() {
+        return this.elementComparator;
+    }
+
+    /**
+     * Gets the comparator of the heap.
+     */
+    protected IBinaryComparator<IPriorityQueue<T>> getComparator() {
+        return this.comparator;
     }
 
     /**

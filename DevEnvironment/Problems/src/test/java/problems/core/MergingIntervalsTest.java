@@ -43,8 +43,8 @@ public final class MergingIntervalsTest {
      */
     @Test
     public void mergingIntervalsTest() {
-        List<IInterval<Integer>> intervals1 = ArrayLists.empty();
-        List<IInterval<Integer>> result1 = ArrayLists.empty();
+        List<IInterval<Integer>> intervals1 = ArrayLists.newList();
+        List<IInterval<Integer>> result1 = ArrayLists.newList();
 
         List<IInterval<Integer>> intervals2 = ArrayLists.of(
             Interval.of(3, 5),

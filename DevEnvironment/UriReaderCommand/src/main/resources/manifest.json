@@ -1,0 +1,61 @@
+{
+    "name": "Uri Reader Command",
+    "description": "Uri Reader Command reads the content of a provided uri.",
+    "parameterSets": [
+        {
+            "indexedParameters": [
+                {
+                    "name": "uri",
+                    "description": "The uri of the page to read from."
+                }
+
+            ],
+            "namedParameters": [
+                {
+                    "name": "mostlyUsedWords",
+                    "shortName": "mostlyUsed",
+                    "longName": "mostlyUsedWords",
+                    "description": "The number of mostly used words.",
+                    "optional": true,
+                    "defaultValue": "10"
+                },
+                {
+                    "name": "excludedWords",
+                    "shortName": "excluded",
+                    "longName": "excludedWords",
+                    "description": "The array of excluded words.",
+                    "optional": true
+                }
+            ]
+        },
+        {
+            "namedParameters": [
+                {
+                    "name": "uri",
+                    "shortName": "uri",
+                    "longName": "uri",
+                    "description": "The uri of the page to read from."
+                },
+                {
+                    "name": "mostlyUsedWords",
+                    "shortName": "mostlyUsed",
+                    "longName": "mostlyUsedWords",
+                    "description": "The number of mostly used words.",
+                    "optional": true,
+                    "defaultValue": "10"
+                },
+                {
+                    "name": "excludedWords",
+                    "shortName": "excluded",
+                    "longName": "excludedWords",
+                    "description": "The array of excluded words.",
+                    "optional": true
+                }
+            ]
+        }
+    ],
+    "help":
+    {
+        "usageMessage": "UriReaderCommand <uri> \n UriReaderCommand -uri:=<uri> \n UriReaderCommand -uri:=<uri> -mostlyUsed:=<mostlyUsed> -excludedWords:=<word1, word2, ... wordN>"
+    }
+}

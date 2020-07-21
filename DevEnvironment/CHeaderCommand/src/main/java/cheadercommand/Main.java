@@ -4,7 +4,6 @@ import base.BaseException;
 import cheadercommand.core.CHeaderCommand;
 import command.core.CommandHandler;
 import command.interfaces.ICommand;
-import command.interfaces.ICommandHandler;
 
 /**
  * The main entry of the command.
@@ -16,8 +15,7 @@ public final class Main {
     public static void main(String[] args) {
         ICommand command = new CHeaderCommand();
 
-        try {
-            ICommandHandler commandHandler = new CommandHandler();
+        try (CommandHandler commandHandler = new CommandHandler()) {
             commandHandler.run(command, args);
         }
         catch (BaseException e) {

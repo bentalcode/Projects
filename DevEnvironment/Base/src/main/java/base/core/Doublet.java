@@ -65,7 +65,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
      */
     @Override
     public String toString() {
-        return "First: " + this.first + "Second: " + this.second;
+        return "First: " + this.first + ", " + "Second: " + this.second;
     }
 
     /**

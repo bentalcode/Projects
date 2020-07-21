@@ -11,4 +11,9 @@ public interface ITestData {
      * Gets paths of files in different formats.
      */
     List<Path> getFileFormatResourcePaths();
+
+    /**
+     * Gets paths of paragraphs.
+     */
+    List<Path> getParagraphResourcePaths();
 }

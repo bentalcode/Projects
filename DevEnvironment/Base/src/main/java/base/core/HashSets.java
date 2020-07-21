@@ -8,12 +8,19 @@ import java.util.List;
  */
 public final class HashSets {
     /**
+     * Creates a new instance of hash-set.
+     */
+    public static <TKey> HashSet<TKey> newSet() {
+        return new HashSet<>();
+    }
+
+    /**
      * Creates a new instance of a hash-set from a list.
      */
     public static <TKey> HashSet<TKey> from(List<TKey> list) {
         Conditions.validateNotNull(
             list,
-            "The list to read from.");
+            "The list.");
 
         return new HashSet<>(list);
     }

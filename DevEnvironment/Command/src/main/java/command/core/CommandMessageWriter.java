@@ -2,15 +2,22 @@ package command.core;
 
 import base.core.ColorType;
 import base.core.Conditions;
+import base.core.DestructorHandler;
+import base.interfaces.IDestructorHandler;
 import command.interfaces.ICommandManifest;
 import command.interfaces.ICommandMessageWriter;
-import java.io.PrintStream;
+import java.io.Closeable;
+import java.io.PrintWriter;
 
 /**
  * The CommandMessageWriter class implements a writer of a command message.
  */
-public final class CommandMessageWriter implements ICommandMessageWriter {
+public final class CommandMessageWriter implements Closeable, ICommandMessageWriter {
     private final ICommandManifest manifest;
+    private final PrintWriter informationalWriter;
+    private final PrintWriter warningWriter;
+    private final PrintWriter errorWriter;
+    private final IDestructorHandler destructorHandler;
 
     /**
      * The CommandMessageWriter constructor.
@@ -21,6 +28,29 @@ public final class CommandMessageWriter implements ICommandMessageWriter {
             "The manifest of a command.");
 
         this.manifest = manifest;
+
+        try (DestructorHandler destructorHandler = new DestructorHandler()) {
+            PrintWriter informationalWriter = new PrintWriter(System.out);
+            destructorHandler.register(informationalWriter);
+            PrintWriter warningWriter = new PrintWriter(System.err);
+            destructorHandler.register(warningWriter);
+            PrintWriter errorWriter = new PrintWriter(System.err);
+            destructorHandler.register(errorWriter);
+
+            this.destructorHandler = destructorHandler.move();
+
+            this.informationalWriter = informationalWriter;
+            this.warningWriter = warningWriter;
+            this.errorWriter = errorWriter;
+        }
+    }
+
+    /**
+     * Closes this resource.
+     */
+    @Override
+    public void close() {
+        this.destructorHandler.close();
     }
 
     /**
@@ -37,8 +67,9 @@ public final class CommandMessageWriter implements ICommandMessageWriter {
      */
     @Override
     public void writeInformationalMessage(String message) {
-        PrintStream outputStream = System.out;
-        writeMessage(ColorType.GREEN + message, outputStream);
+        this.writeMessage(
+            this.informationalWriter,
+            ColorType.GREEN + message);
     }
 
     /**
@@ -46,8 +77,9 @@ public final class CommandMessageWriter implements ICommandMessageWriter {
      */
     @Override
     public void writeWarningMessage(String message) {
-        PrintStream outputStream = System.err;
-        writeMessage(ColorType.YELLOW + message, outputStream);
+        this.writeMessage(
+            this.warningWriter,
+            ColorType.YELLOW + message);
     }
 
     /**
@@ -55,15 +87,40 @@ public final class CommandMessageWriter implements ICommandMessageWriter {
      */
     @Override
     public void writeErrorMessage(String message) {
-        PrintStream outputStream = System.err;
-        writeMessage(ColorType.RED + message, outputStream);
+        this.writeMessage(
+            this.errorWriter,
+            ColorType.RED + message);
+    }
+
+    /**
+     * Gets an error writer.
+     */
+    @Override
+    public PrintWriter getErrorWriter() {
+        return this.errorWriter;
+    }
+
+    /**
+     * Gets a warning writer.
+     */
+    @Override
+    public PrintWriter getWarningWriter() {
+        return this.warningWriter;
+    }
+
+    /**
+     * Gets an informational writer.
+     */
+    @Override
+    public PrintWriter getInformationalWriter() {
+        return this.informationalWriter;
     }
 
     /**
      * Writes a message to an output stream.
      */
-    private void writeMessage(String message, PrintStream outputStream) {
-        outputStream.println(message);
-        outputStream.flush();
+    private void writeMessage(PrintWriter writer, String message) {
+        writer.println(message);
+        writer.flush();
     }
 }

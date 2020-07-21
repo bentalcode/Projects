@@ -1,6 +1,7 @@
 package datastructures.priorityqueue.interfaces;
 
 import base.interfaces.IIterable;
+import base.interfaces.IMatch;
 import base.interfaces.IReverseIterable;
 import base.interfaces.IUnaryComparator;
 import base.interfaces.ISizableCollection;
@@ -38,4 +39,31 @@ public interface IPriorityQueue<T extends Comparable<T>> extends
      * Checks whether the priority queue contains an element.
      */
     boolean contains(T element);
+
+    /**
+     * Finds an element in a priority queue.
+     * Retruns -1 if the element does not exist.
+     */
+    int find(T element);
+
+    /**
+     * Finds an element in a priority queue by a match predicate.
+     * Retruns -1 if the element does not exist.
+     */
+    int find(IMatch<T> match);
+
+    /**
+     * Updates a value of a specific element and heapify it up.
+     */
+    void updateAndHypifyUp(int index, T element);
+
+    /**
+     * Updates a value of a specific element and heapify it down.
+     */
+    void updateAndHypifyDown(int index, T element);
+
+    /**
+     * Copies the priority queue.
+     */
+    IPriorityQueue<T> copy();
 }

@@ -3,7 +3,6 @@ package command.core;
 import base.core.Conditions;
 import base.core.Conversion;
 import base.core.IFromString;
-import command.interfaces.INamedParameterMetadata;
 import command.interfaces.IParameter;
 import command.interfaces.IParameterMetadata;
 import java.math.BigInteger;
@@ -157,5 +156,19 @@ public final class Parameter implements IParameter {
     @Override
     public Duration getDurationValue() {
         return Conversion.stringConversion().toDuration(this.value);
+    }
+
+    /**
+     * Gets a string array value of a parameter.
+     */
+    @Override
+    public String[] getStringArrayValue() {
+        String value = this.value;
+
+        if (value == null) {
+            return null;
+        }
+
+        return value.split(",");
     }
 }

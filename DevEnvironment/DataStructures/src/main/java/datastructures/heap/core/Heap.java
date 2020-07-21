@@ -12,10 +12,10 @@ public final class Heap<T extends Comparable<T>> extends AbstractHeap<T> {
      * Creates a min heap with an initial capacity.
      */
     public static <T extends Comparable<T>> IPriorityQueue<T> createMinHeap(
-        Class<T> classType,
+        Class<?> classType,
         int capacity) {
 
-        return new Heap<>(
+        return new Heap<T>(
             classType,
             capacity,
             base.core.Comparator.defaultComparator(),
@@ -26,7 +26,7 @@ public final class Heap<T extends Comparable<T>> extends AbstractHeap<T> {
      * Creates a min heap with an initial capacity.
      */
     public static <T extends Comparable<T>> IPriorityQueue<T> createMinHeap(
-        Class<T> classType,
+        Class<?> classType,
         int capacity,
         IBinaryComparator<T> elementComparator) {
 
@@ -41,7 +41,7 @@ public final class Heap<T extends Comparable<T>> extends AbstractHeap<T> {
      * Creates a min heap with an initial capacity.
      */
     public static <T extends Comparable<T>> IPriorityQueue<T> createMinHeap(
-        Class<T> classType,
+        Class<?> classType,
         int capacity,
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {
@@ -94,10 +94,10 @@ public final class Heap<T extends Comparable<T>> extends AbstractHeap<T> {
      * Creates a max heap with an initial capacity by using the default invert comparator of an element.
      */
     public static <T extends Comparable<T>> IPriorityQueue<T> createMaxHeap(
-        Class<T> classType,
+        Class<?> classType,
         int capacity) {
 
-        return new Heap<>(
+        return new Heap<T>(
             classType,
             capacity,
             base.core.Comparator.defaultInvertComparator(),
@@ -204,7 +204,7 @@ public final class Heap<T extends Comparable<T>> extends AbstractHeap<T> {
      * The Heap constructor with an initial capacity.
      */
     public Heap(
-        Class<T> classType,
+        Class<?> classType,
         int capacity,
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {
@@ -251,5 +251,33 @@ public final class Heap<T extends Comparable<T>> extends AbstractHeap<T> {
             data,
             elementComparator,
             comparator);
+    }
+
+    /**
+     * The Heap constructor with an initial data.
+     */
+    public Heap(
+        T[] data,
+        int size,
+        IBinaryComparator<T> elementComparator,
+        IBinaryComparator<IPriorityQueue<T>> comparator) {
+
+        super(
+            data,
+            size,
+            elementComparator,
+            comparator);
+    }
+
+    /**
+     * Copies the priority queue.
+     */
+    @Override
+    public IPriorityQueue<T> copy() {
+        return new Heap(
+            this.getData(),
+            this.size(),
+            this.getElementComparator(),
+            this.getComparator());
     }
 }

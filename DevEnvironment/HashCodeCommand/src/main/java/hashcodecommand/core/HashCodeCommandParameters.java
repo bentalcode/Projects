@@ -11,7 +11,6 @@ import java.nio.file.Path;
  * The HashCodeCommandParameters class implements parameters of a hashcode command.
  */
 public final class HashCodeCommandParameters implements IHashCodeParameters {
-    private final ICommandParameters parameters;
     private final Path directoryPath;
     private final Path filePath;
     private final int initialPrime;
@@ -24,8 +23,6 @@ public final class HashCodeCommandParameters implements IHashCodeParameters {
         Conditions.validateNotNull(
             parameters,
             "The parameters of the command.");
-
-        this.parameters = parameters;
 
         IParameter directoryPath = parameters.getParameterSet().getParameter("directoryPath");
         this.directoryPath = directoryPath != null && directoryPath.isSet() ?

@@ -8,7 +8,7 @@ public final class Dimensions {
      * Gets the length of a dimension.
      */
     public static int length(int startIndex, int endIndex) {
-        if (startIndex > endIndex) {
+        if (startIndex < 0 || endIndex < 0 || startIndex > endIndex) {
             return 0;
         }
 

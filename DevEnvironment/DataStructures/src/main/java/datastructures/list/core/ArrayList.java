@@ -27,6 +27,13 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
     private int size;
 
     /**
+     * Creates a new array list.
+     */
+    public static IArrayList create(Class<?> classType) {
+        return new ArrayList(classType);
+    }
+
+    /**
      * The ArrayList constructor.
      */
     public ArrayList(Class<?> classType) {

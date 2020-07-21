@@ -6,8 +6,6 @@ import base.core.Conditions;
 import base.core.Dates;
 import base.core.Durations;
 import base.core.IFromString;
-import base.core.ReflectionHandler;
-import com.sun.jdi.ClassType;
 import json.interfaces.IJsonObjectReader;
 import java.text.DateFormat;
 import java.time.Duration;
@@ -363,7 +361,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         String[] stringList = reader.readStringArray();
 
         if (stringList == null) {
-            return ArrayLists.empty();
+            return ArrayLists.newList();
         }
 
         List<T> result = new ArrayList<>(stringList.length);

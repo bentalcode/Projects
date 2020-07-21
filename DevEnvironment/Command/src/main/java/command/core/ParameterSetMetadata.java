@@ -38,7 +38,7 @@ public final class ParameterSetMetadata implements IParameterSetMetadata {
      * Creates help parameter-set.
      */
     public static IParameterSetMetadata createHelpParameterSet() {
-        List<IIndexedParameterMetadata> indexedParameterMetadata = ArrayLists.empty();
+        List<IIndexedParameterMetadata> indexedParameterMetadata = ArrayLists.newList();
         List<INamedParameterMetadata> namedParameters = ArrayLists.of(ParameterMetadata.createHelpParameter());
 
         return new ParameterSetMetadata(
