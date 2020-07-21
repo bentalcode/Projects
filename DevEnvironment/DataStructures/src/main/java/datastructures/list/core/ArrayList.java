@@ -29,8 +29,8 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
     /**
      * Creates a new array list.
      */
-    public static IArrayList create(Class<?> classType) {
-        return new ArrayList(classType);
+    public static <T extends Comparable<T>> IArrayList<T> create(Class<?> classType) {
+        return new ArrayList<>(classType);
     }
 
     /**

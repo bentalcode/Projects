@@ -274,7 +274,7 @@ public final class Heap<T extends Comparable<T>> extends AbstractHeap<T> {
      */
     @Override
     public IPriorityQueue<T> copy() {
-        return new Heap(
+        return new Heap<>(
             this.getData(),
             this.size(),
             this.getElementComparator(),
