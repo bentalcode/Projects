@@ -63,6 +63,21 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
     }
 
     /**
+     * Writes a usage message.
+     */
+    @Override
+    public void writeUsageMessage(boolean status) {
+        String usageMessage = this.manifest.getHelp().getUsageMessage();
+
+        if (status) {
+            this.writeInformationalMessage(usageMessage);
+        }
+        else {
+            this.writeErrorMessage(usageMessage);
+        }
+    }
+
+    /**
      * Writes an informational message.
      */
     @Override

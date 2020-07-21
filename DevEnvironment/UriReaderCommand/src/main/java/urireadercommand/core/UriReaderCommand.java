@@ -8,6 +8,7 @@ import base.interfaces.IPair;
 import base.interfaces.ITableWriter;
 import basicio.core.HtmlParagraphReader;
 import basicio.core.HtmlParagraphParser;
+import basicio.interfaces.IHtmlParagraphParser;
 import basicio.interfaces.IHtmlStatistics;
 import basicio.interfaces.IParagraphReader;
 import command.core.AbstractCommand;
@@ -58,7 +59,7 @@ public final class UriReaderCommand extends AbstractCommand {
         int mostlyUsedWords,
         Set<String> excludedWords) {
 
-        HtmlParagraphParser paragraphParser = new HtmlParagraphParser(
+        IHtmlParagraphParser paragraphParser = new HtmlParagraphParser(
             mostlyUsedWords,
             excludedWords);
 

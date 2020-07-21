@@ -25,9 +25,8 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
     public IParsingResult<IPair<String, String>> parse(String arg) {
         if (isShortNamedParameter(arg)) {
             if (StringEquality.equalsIgnoreCase(
-                    arg, ICommandConstants.shortNamedParameterPrefix.length(),
-                    ICommandConstants.helpShortName, 0,
-                    ICommandConstants.helpShortName.length())) {
+                    arg, ICommandConstants.shortNamedParameterPrefix.length(), arg.length() - 1,
+                    ICommandConstants.helpShortName, 0, ICommandConstants.helpShortName.length() - 1)) {
 
                 IPair<String, String> nameAndValue = Pair.of(
                     ICommandConstants.helpShortName,
@@ -41,9 +40,8 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
         }
         else if (isLongNamedParameter(arg)) {
             if (StringEquality.equalsIgnoreCase(
-                    arg, ICommandConstants.longNamedParameterPrefix.length(),
-                    ICommandConstants.helpLongName, 0,
-                    ICommandConstants.helpLongName.length())) {
+                    arg, ICommandConstants.longNamedParameterPrefix.length(), arg.length() - 1,
+                    ICommandConstants.helpLongName, 0, ICommandConstants.helpLongName.length() - 1)) {
 
                 IPair<String, String> nameAndValue = Pair.of(
                     ICommandConstants.helpLongName,

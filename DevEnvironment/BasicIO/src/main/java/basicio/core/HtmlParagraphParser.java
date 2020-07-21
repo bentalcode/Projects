@@ -36,8 +36,11 @@ import org.slf4j.LoggerFactory;
 public final class HtmlParagraphParser implements IHtmlParagraphParser {
     private static final int defaultMostlyUsedWordsCapacity = 10;
 
+    private static final String tokenSeparatorRegex = "[( )]";
     private static final String referenceRegex = "(\\[[0-9]+\\])";
     private static final Pattern referencePattern = Pattern.compile(referenceRegex);
+    private static final List<Character> sentenceSeparators = ArrayLists.of(',', '.', ';');
+    private static final char specialToken = 65533;
 
     private final int mostlyUsedWordsCapacity;
     private final Set<String> excludedWords;
@@ -147,8 +150,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             return;
         }
 
-        String separatorRegex = "[( )]";
-        String[] tokens = line.split(separatorRegex);
+        String[] tokens = line.split(tokenSeparatorRegex);
 
         for (String token : tokens) {
             this.processToken(token);
@@ -163,7 +165,6 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             return;
         }
 
-        char specialToken = 65533;
         String subTokenSeparator = "[" + "(" + specialToken + ")" + "]";
         String[] subTokens = token.split(subTokenSeparator);
 
@@ -197,6 +198,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
 
         //
         // Remove parentheses...
+        // Parentheses are: {(), [], {}}
         //
         String resultantToken = Strings.removeParentheses(token);
 
@@ -205,28 +207,20 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
         }
 
         //
-        // Remove end reference...
+        // Remove an end reference...
+        // A reference expression is: (\[[0-9]+\])
         //
-        resultantToken = removeReference(token);
+        resultantToken = removeReference(resultantToken);
 
         if (Strings.isNullOrEmpty(resultantToken)) {
             return null;
         }
 
         //
-        // Remove sentence separators from the front...
+        // Remove sentence separators from front and end...
+        // Sentence separators are: {',', '.', ';'}
         //
-        List<Character> sentenceSeparators = ArrayLists.of(',', '.', ';');
-        resultantToken = Strings.removeFirstCharacter(resultantToken, sentenceSeparators);
-
-        if (Strings.isNullOrEmpty(resultantToken)) {
-            return null;
-        }
-
-        //
-        // Remove sentence separators from the end...
-        //
-        resultantToken = Strings.removeLastCharacter(resultantToken, sentenceSeparators);
+        resultantToken = this.removeSentenceSeparators(resultantToken);
 
         if (Strings.isNullOrEmpty(resultantToken)) {
             return null;
@@ -234,6 +228,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
 
         //
         // Remove parentheses...
+        // Parentheses are: {(), [], {}}
         //
         resultantToken = Strings.removeParentheses(resultantToken);
 
@@ -243,6 +238,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
 
         //
         // Remove quotation marks...
+        // Quotation marks are: {', ""}
         //
         resultantToken = Strings.removeQuotationMarks(resultantToken);
 
@@ -293,6 +289,21 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
     }
 
     /**
+     * Removes sentence separators from front and end.
+     */
+    private String removeSentenceSeparators(String token) {
+        String resultantToken = Strings.removeFirstCharacter(token, sentenceSeparators);
+
+        if (Strings.isNullOrEmpty(resultantToken)) {
+            return null;
+        }
+
+        resultantToken = Strings.removeLastCharacter(resultantToken, sentenceSeparators);
+
+        return resultantToken;
+    }
+
+    /**
      * Processes a word.
      */
     private void processWord(String word) {
@@ -308,32 +319,65 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
         //
         // Update the word counter map...
         //
-        int wordCounter = this.wordCounterMap.getOrDefault(word, 0);
-        ++wordCounter;
-        this.wordCounterMap.put(word, wordCounter);
+        int wordCounter = this.updateWordCounter(word);
 
         //
         // Update the priority queue of mostly-used words...
         //
-        if (this.mostlyUsedWordsPriorityQueue.size() < this.mostlyUsedWordsCapacity ||
-            (!this.mostlyUsedWordsPriorityQueue.empty() &&
-             wordCounter > this.mostlyUsedWordsPriorityQueue.peek().second())) {
+        this.updateMostlyUsedWordsPriorityQueue(word, wordCounter);
+    }
 
-            IDoublet<String, Integer> newWordCounter = Doublet.of(word, wordCounter);
+    /**
+     * Updates the word counter.
+     */
+    private int updateWordCounter(String word) {
+        int wordCounter = this.wordCounterMap.getOrDefault(word, 0);
+        ++wordCounter;
+        this.wordCounterMap.put(word, wordCounter);
 
-            int index = this.mostlyUsedWordsPriorityQueue.find(element -> element.first().equals(word));
+        return wordCounter;
+    }
 
-            if (index == -1) {
-                if (this.mostlyUsedWordsPriorityQueue.size() >= this.mostlyUsedWordsCapacity) {
-                    this.mostlyUsedWordsPriorityQueue.poll();
-                }
+    /**
+     * Updates the priority queue of the mostly used words.
+     */
+    private void updateMostlyUsedWordsPriorityQueue(
+        String word,
+        int wordCounter) {
 
-                this.mostlyUsedWordsPriorityQueue.offer(newWordCounter);
-            }
-            else {
-                this.mostlyUsedWordsPriorityQueue.updateAndHypifyDown(index, newWordCounter);
-            }
+        //
+        // Check whether to update the priority queue of mostly used words...
+        //
+        if (!this.updateMostlyUsedWordsPriorityQueue(wordCounter)) {
+            return;
         }
+
+        //
+        // Update the priority queue of mostly used words...
+        //
+        IDoublet<String, Integer> newWordCounter = Doublet.of(word, wordCounter);
+
+        int index = this.mostlyUsedWordsPriorityQueue.find(element -> element.first().equals(word));
+
+        if (index == -1) {
+            if (this.mostlyUsedWordsPriorityQueue.size() >= this.mostlyUsedWordsCapacity) {
+                this.mostlyUsedWordsPriorityQueue.poll();
+            }
+
+            this.mostlyUsedWordsPriorityQueue.offer(newWordCounter);
+        }
+        else {
+            this.mostlyUsedWordsPriorityQueue.updateAndHypifyDown(index, newWordCounter);
+        }
+    }
+
+    /**
+     * Checks whether to update the priority queue of mostly used words.
+     */
+    private boolean updateMostlyUsedWordsPriorityQueue(int wordCounter) {
+        return
+            (this.mostlyUsedWordsPriorityQueue.size() < this.mostlyUsedWordsCapacity) ||
+            (!this.mostlyUsedWordsPriorityQueue.empty() && wordCounter > this.mostlyUsedWordsPriorityQueue.peek().second());
     }
 
     /**

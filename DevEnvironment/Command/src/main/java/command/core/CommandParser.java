@@ -185,7 +185,7 @@ public final class CommandParser implements IParser<String[], ICommandParameters
     private IParsingResult<ICommandParameters> createHelpCommandResult() {
         IParameterSetMetadata parameterSetMetadata = ParameterSetMetadata.createHelpParameterSet();
         List<IParameter> parameters = ArrayLists.of(Parameter.createHelpParameter());
-        IParameterSet parameterSet = new ParameterSet(-1, parameterSetMetadata, parameters);
+        IParameterSet parameterSet = new ParameterSet(CommandHelpMetadata.helpParameterSetIndex, parameterSetMetadata, parameters);
         return ParsingResult.successfulResult(new CommandParameters(parameterSet));
     }
 }

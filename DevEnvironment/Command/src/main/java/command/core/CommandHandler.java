@@ -70,9 +70,9 @@ public final class CommandHandler implements Closeable, ICommandHandler {
         //
         IParsingResult<ICommandParameters> parametersResult = this.parseParameters(arguments);
 
-        if (parametersResult.failed()) {
-            this.messageWriter.writeUsageMessage();
-            return false;
+        if (parametersResult.failed() || isHelpCommand(parametersResult.getResult())) {
+            this.messageWriter.writeUsageMessage(parametersResult.getStatus());
+            return parametersResult.getStatus();
         }
 
         //
@@ -110,5 +110,12 @@ public final class CommandHandler implements Closeable, ICommandHandler {
         Path path = ICommandConstants.defaultManifestPath;
         String json = ResourceReader.loadString(path);
         return CommandManifest.fromJson(json);
+    }
+
+    /**
+     * Checks whether this is a help command.
+     */
+    private static boolean isHelpCommand(ICommandParameters parameters) {
+        return parameters.getParameterSet().getIndex() == CommandHelpMetadata.helpParameterSetIndex;
     }
 }
