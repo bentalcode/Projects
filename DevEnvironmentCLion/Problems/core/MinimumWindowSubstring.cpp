@@ -1,6 +1,7 @@
 #include "PreCompiled.h"
 
 #include "MinimumWindowSubstring.h"
+#include "Dimensions.h"
 
 using namespace problems;
 
@@ -48,13 +49,13 @@ bool MinimumWindowSubstring::findMinimumWindow(std::string& result)
 
     std::size_t minStartIndex = startIndex;
     std::size_t minEndIndex = endIndex;
-    std::size_t minLength = minEndIndex - minStartIndex + 1;
 
     std::size_t currIndex = endIndex + 1;
 
     while (currIndex < m_src.size())
     {
         std::string::value_type currValue = srcStr[currIndex];
+        std::size_t endIndex = currIndex;
 
         if (m_characters.find(currValue) != m_characters.end())
         {
@@ -66,22 +67,23 @@ bool MinimumWindowSubstring::findMinimumWindow(std::string& result)
             startIndex = shrinkSubString(
                 srcStr,
                 startIndex,
-                currIndex,
+                endIndex,
                 characterCounter);
 
-            std::size_t currLength = currIndex - startIndex + 1;
+            std::size_t currLength = base::Dimensions::length(startIndex, endIndex);
+            std::size_t minLength = base::Dimensions::length(minStartIndex, minEndIndex);
 
             if (currLength < minLength)
             {
-                minLength = currLength;
                 minStartIndex = startIndex;
-                minEndIndex = currIndex;
+                minEndIndex = endIndex;
             }
         }
 
         ++currIndex;
     }
 
+    std::size_t minLength = base::Dimensions::length(minStartIndex, minEndIndex);
     result = m_src.substr(minStartIndex, minLength);
 
     return true;

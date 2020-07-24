@@ -46,6 +46,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ComparatorFactory.h
     ./interfaces/CompareToBuilder.h
     ./interfaces/DateTime.h
+    ./interfaces/Dimensions.h
     ./interfaces/Duration.h
     ./interfaces/EqualBuilder.h
     ./interfaces/IBinaryComparator.h

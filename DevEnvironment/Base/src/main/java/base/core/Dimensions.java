@@ -27,7 +27,7 @@ public final class Dimensions {
     }
 
     /**
-     * The Dimensions constructor - Disables the default constructor.
+     * This is a static class - Disables the default constructor.
      */
     private Dimensions() {
     }
