@@ -5,7 +5,7 @@ import java.util.BitSet;
 /**
  * The IPrime interface defines complimentary APIs for a prime number.
  */
-public interface IPrime extends Iterable<Integer>, IIterator<Integer> {
+public interface IPrime extends IIterable<Integer> {
     /**
      * Checks whether a number is a prime.
      */
@@ -22,7 +22,7 @@ public interface IPrime extends Iterable<Integer>, IIterator<Integer> {
     BitSet calculatePrimes(int maxNumber);
 
     /**
-     * Gets an iterator for iterating over a collection from a specific number.
+     * Gets an iterator from a specific number.
      */
-    IIterator<Integer> iterator(int fromNumber);
+    IIterator<Integer> getIterator(int fromNumber);
 }

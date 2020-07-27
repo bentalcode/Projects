@@ -3,10 +3,10 @@ package base.core;
 import base.BaseException;
 import base.interfaces.ICloseable;
 import base.interfaces.IResourceReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.io.InputStream;
 import java.nio.file.Path;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The ResourceReader implements a resource reader.
@@ -15,7 +15,7 @@ public final class ResourceReader implements IResourceReader, ICloseable {
     private final Path path;
     private final InputStream stream;
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private static Logger log = LoggerFactory.getLogger(ResourceReader.class);
 
     /**
      * The ResourceReader constructor.
@@ -76,14 +76,21 @@ public final class ResourceReader implements IResourceReader, ICloseable {
      * Opens a stream.
      */
     private InputStream open() {
-        ClassLoader classLoader = getClass().getClassLoader();
+        return open(this.path);
+    }
 
-        InputStream stream = classLoader.getResourceAsStream(this.path.toString());
+    /**
+     * Opens a stream.
+     */
+    public static InputStream open(Path path) {
+        ClassLoader classLoader = ResourceReader.class.getClassLoader();
+
+        InputStream stream = classLoader.getResourceAsStream(path.toString());
 
         if (stream == null) {
-            String errorMessage = "The resource: " + this.path + " failed to get opened as a stream.";
+            String errorMessage = "The resource: " + path + " failed to get opened as a stream.";
 
-            this.log.error(errorMessage);
+            log.error(errorMessage);
             throw new BaseException(errorMessage);
         }
 

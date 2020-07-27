@@ -8,12 +8,17 @@ import java.util.BitSet;
  * The Prime class implements complementary APIs for a prime number.
  */
 public final class Prime implements IPrime {
-    private static int iterationStartNumber = 1;
+    private static final int maxCachedNumber = 10000;
 
     private final int primesLength;
     private final BitSet primes;
-    private int currPrime;
-    private int maxPrime;
+
+    /**
+     * The Prime constructor.
+     */
+    public Prime() {
+        this(maxCachedNumber);
+    }
 
     /**
      * The Prime constructor.
@@ -30,14 +35,6 @@ public final class Prime implements IPrime {
         // Calculates the primes...
         //
         this.calculatePrimes(this.primes, this.primesLength);
-
-        //
-        // Initialize prime iteration indexes...
-        //
-        this.currPrime = Prime.iterationStartNumber;
-        this.maxPrime = this.maxPrime();
-
-        this.reset();
     }
 
     /**
@@ -121,49 +118,19 @@ public final class Prime implements IPrime {
     }
 
     /**
-     * Gets an iterator for iterating over a collection.
+     * Gets the iterator.
      */
     @Override
-    public IIterator<Integer> iterator() {
-        this.reset();
-        return this;
+    public IIterator<Integer> getIterator() {
+        return PrimeIterator.of(this);
     }
 
     /**
-     * Gets an iterator for iterating over a collection from a specific number.
+     * Gets an iterator from a specific number.
      */
     @Override
-    public IIterator<Integer> iterator(int fromNumber) {
-        this.currPrime = fromNumber;
-        return this;
-    }
-
-    /**
-     * Checks whether there is a next prime number.
-     */
-    @Override
-    public boolean hasNext() {
-        return this.currPrime < this.maxPrime;
-    }
-
-    /**
-     * Gets the next prime number.
-     */
-    @Override
-    public Integer next() {
-        assert(this.hasNext());
-
-        int nextPrime = this.getNextPrime(this.currPrime);
-        this.currPrime = nextPrime;
-        return nextPrime;
-    }
-
-    /**
-     * Resets the iterator.
-     */
-    @Override
-    public void reset() {
-        this.currPrime = Prime.iterationStartNumber;
+    public IIterator<Integer> getIterator(int fromNumber) {
+        return PrimeIterator.of(this, fromNumber);
     }
 
     /**
@@ -250,25 +217,5 @@ public final class Prime implements IPrime {
         }
 
         return null;
-    }
-
-    /**
-     * Calculates the max prime number for an integer.
-     */
-    private int maxPrime() {
-        int maxPrime = 2;
-
-        int currNumber = Integer.MAX_VALUE;
-
-        while (currNumber >= 2) {
-            if (this.isPrime(currNumber)) {
-                maxPrime = currNumber;
-                break;
-            }
-
-            --currNumber;
-        }
-
-        return maxPrime;
     }
 }

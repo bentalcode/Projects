@@ -8,6 +8,11 @@ import java.util.List;
  */
 public interface ITestData {
     /**
+     * Gets path of a is-prime resource.
+     */
+    Path getIsPrimeResourcePath();
+
+    /**
      * Gets path of a primes resource.
      */
     Path getPrimesResourcePath();

@@ -6,8 +6,7 @@ import java.util.BitSet;
  * The Prime class implements complementary APIs for primes.
  */
 public final class Primes {
-    private static final int maxCachedNumber = 10000;
-    private static final Prime prime = new Prime(Primes.maxCachedNumber);
+    private static final Prime prime = new Prime();
 
     /**
      * Checks whether a number is a prime number.

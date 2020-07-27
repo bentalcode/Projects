@@ -17,6 +17,17 @@ public final class Scanners {
     private static final Logger log = LoggerFactory.getLogger(Scanners.class);
 
     /**
+     * Creates a scanner from a stream.
+     */
+    public static Scanner createScanner(InputStream stream) {
+        Conditions.validateNotNull(
+            stream,
+            "The stream to scan.");
+
+        return new Scanner(stream);
+    }
+
+    /**
      * Creates a scanner to a string.
      */
     public static Scanner createStringScanner(String str) {

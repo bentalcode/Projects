@@ -108,53 +108,61 @@ public final class Writers {
         try {
             writer.write(data);
         } catch (IOException e) {
-          String errorMessage =
-              "The Writers class failed writing to a writer " +
-              ", due to the following error: " + e.getMessage();
+            String errorMessage =
+                "The Writers class failed writing to a writer " +
+                ", due to the following error: " + e.getMessage();
 
-          Writers.log.error(errorMessage, e);
-          throw new BaseException(errorMessage, e);
-      }
+            Writers.log.error(errorMessage, e);
+            throw new BaseException(errorMessage, e);
+        }
+    }
+
+    /**
+     * Writes line to a writer.
+     */
+    public static void writeLine(Writer writer, String data) {
+        String dataToWrite = data + "\n";
+        write(writer, dataToWrite);
     }
 
     /**
      * Flushes the written content of a writer.
      */
     public static void flush(Writer writer) {
-      Conditions.validateNotNull(
-          writer,
-          "The writer for flushing it's data.");
+        Conditions.validateNotNull(
+            writer,
+            "The writer for flushing it's data.");
 
-      try {
-          writer.flush();
-      } catch (IOException e) {
-          String errorMessage =
-              "The Writers class failed flushing written content of a writer" +
-              ", due to the following error: " + e.getMessage();
+        try {
+            writer.flush();
+        } catch (IOException e) {
+            String errorMessage =
+                "The Writers class failed flushing written content of a writer" +
+                ", due to the following error: " + e.getMessage();
 
-          Writers.log.error(errorMessage, e);
-          throw new BaseException(errorMessage, e);
-      }
+            Writers.log.error(errorMessage, e);
+            throw new BaseException(errorMessage, e);
+        }
     }
 
     /**
      * Closes a writer.
      */
     public static void close(Writer writer) {
-      if (writer == null) {
-          return;
-      }
+        if (writer == null) {
+            return;
+        }
 
-      try {
-          writer.close();
-      } catch (IOException e) {
-          String errorMessage =
-            "The Writers class failed closing a writer" +
-            ", due to the following error: " + e.getMessage();
+        try {
+            writer.close();
+        } catch (IOException e) {
+            String errorMessage =
+                "The Writers class failed closing a writer" +
+                ", due to the following error: " + e.getMessage();
 
-          Writers.log.error(errorMessage, e);
-          throw new BaseException(errorMessage, e);
-      }
+                Writers.log.error(errorMessage, e);
+                throw new BaseException(errorMessage, e);
+        }
     }
 
     /**
@@ -168,11 +176,11 @@ public final class Writers {
         try {
             writer.close();
         } catch (IOException e) {
-          String warningMessage =
-              "The Writers class failed closing a writer due to the following error: " +
-              e.getMessage();
+            String warningMessage =
+                "The Writers class failed closing a writer due to the following error: " +
+                e.getMessage();
 
-          Writers.log.warn(warningMessage);
+            Writers.log.warn(warningMessage);
         }
     }
 

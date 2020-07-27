@@ -21,6 +21,14 @@ public final class ArithmeticOperators {
     }
 
     /**
+     * Checks if an addition arithmetic operator ends with an overflow.
+     */
+    public static boolean additionOverflow(int lhs, int rhs) {
+        int result = lhs + rhs;
+        return ArithmeticOperators.additionOverflow(lhs, rhs, result);
+    }
+
+    /**
      * Detects whether an addition arithmetic operator ended with an overflow.
      */
     private static boolean additionOverflow(int lhs, int rhs, int result) {
