@@ -5,7 +5,7 @@ import base.interfaces.IPrime;
 import java.util.BitSet;
 
 /**
- * The Prime class implements complementary APIs for a prime number.
+ * The Prime class implements a prime number.
  */
 public final class Prime implements IPrime {
     private static final int maxCachedNumber = 10000;

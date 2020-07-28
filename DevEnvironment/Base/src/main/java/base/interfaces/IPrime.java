@@ -3,7 +3,7 @@ package base.interfaces;
 import java.util.BitSet;
 
 /**
- * The IPrime interface defines complimentary APIs for a prime number.
+ * The IPrime interface defines a prime number.
  */
 public interface IPrime extends IIterable<Integer> {
     /**

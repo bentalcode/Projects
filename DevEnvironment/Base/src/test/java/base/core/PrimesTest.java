@@ -1,15 +1,15 @@
 package base.core;
 
 import base.interfaces.IIterator;
+import base.interfaces.IPrime;
 import base.interfaces.ITestData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
+import testbase.core.FileDataReader;
 import testbase.interfaces.IAssertion;
-import java.io.InputStream;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -62,7 +62,7 @@ public final class PrimesTest {
     @Test
     public void primeIterationTest() {
         Path path = this.testData.getPrimesResourcePath();
-        List<Integer> primes = readPrimesFromResource(path);
+        List<Integer> primes = FileDataReader.readIntegers(path, ",");
         this.testPrimeIteration(primes);
     }
 
@@ -71,7 +71,7 @@ public final class PrimesTest {
      */
     private void testIsPrime(Scanner scanner) {
         int maxCachedNumber = 100;
-        Prime prime = new Prime(maxCachedNumber);
+        IPrime prime = new Prime(maxCachedNumber);
 
         int number = 0;
         while (scanner.hasNext()) {
@@ -92,7 +92,7 @@ public final class PrimesTest {
      * Tests logic of iteration of primes.
      */
     private void testPrimeIteration(List<Integer> expectedPrimes) {
-        Prime prime = new Prime();
+        IPrime prime = new Prime();
         IIterator<Integer> iterator = prime.getIterator();
 
         int currIndex = 0;
@@ -107,33 +107,5 @@ public final class PrimesTest {
 
             ++currIndex;
         }
-    }
-
-    /**
-     * Reads the prime numbers from a resource.
-     */
-    private static List<Integer> readPrimesFromResource(Path path) {
-        List<Integer> result = new ArrayList<>();
-
-        try (DestructorHandler destructorHandler = new DestructorHandler()) {
-            InputStream stream = ResourceReader.open(path);
-            destructorHandler.register(stream);
-            Scanner scanner = Scanners.createScanner(stream);
-            destructorHandler.register(scanner);
-
-            while (scanner.hasNext()) {
-                String currLine = scanner.nextLine();
-
-                String[] primesStrings = currLine.split(",");
-
-                for (String primeString : primesStrings) {
-                    primeString = primeString.trim();
-                    int prime = Integer.parseInt(primeString);
-                    result.add(prime);
-                }
-            }
-        }
-
-        return result;
     }
 }

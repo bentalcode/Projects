@@ -1,6 +1,7 @@
 package base.core;
 
 import base.interfaces.IIterator;
+import base.interfaces.IPrime;
 
 /**
  * The PrimeIterator class implements an iterator of a prime.
@@ -9,8 +10,8 @@ public final class PrimeIterator implements IIterator<Integer> {
     private static final int initialPrime = 1;
 
     private final Prime prime;
-    private int currPrime;
     private final int maxPrime;
+    private int currPrime;
 
     /**
      * Creates a new iterator of a prime.
@@ -43,8 +44,9 @@ public final class PrimeIterator implements IIterator<Integer> {
             prime,
             "The prime.");
 
+        this.maxPrime = maxPrime(prime);
         this.prime = prime;
-        this.maxPrime = this.maxPrime();
+
         this.reset(currPrime);
     }
 
@@ -86,13 +88,13 @@ public final class PrimeIterator implements IIterator<Integer> {
     /**
      * Calculates the max prime number for an integer.
      */
-    private int maxPrime() {
+    private static int maxPrime(IPrime prime) {
         int maxPrime = 2;
 
         int currNumber = Integer.MAX_VALUE;
 
         while (currNumber >= 2) {
-            if (this.prime.isPrime(currNumber)) {
+            if (prime.isPrime(currNumber)) {
                 maxPrime = currNumber;
                 break;
             }
