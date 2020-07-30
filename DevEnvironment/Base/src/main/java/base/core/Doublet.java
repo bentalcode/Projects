@@ -61,7 +61,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
     }
 
     /**
-     * Gets the string representation of a doublet.
+     * Gets the string representation of this instance.
      */
     @Override
     public String toString() {

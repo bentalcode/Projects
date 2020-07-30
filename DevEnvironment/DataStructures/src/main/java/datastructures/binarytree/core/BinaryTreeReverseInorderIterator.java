@@ -12,7 +12,7 @@ public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey
     private Stack<IBinaryTreeNode<TKey, TValue>> stack;
 
     /**
-     * Creates a new reverse inorder iterator of a binary tree.
+     * Creates a reverse inorder iterator of a binary tree.
      */
     public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IBinaryTreeNode<TKey, TValue>> of(IBinaryTreeNode<TKey, TValue> root) {
         return new BinaryTreeReverseInorderIterator<>(root);

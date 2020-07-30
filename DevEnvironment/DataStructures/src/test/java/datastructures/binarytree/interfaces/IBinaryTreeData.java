@@ -12,6 +12,11 @@ public interface IBinaryTreeData<TKey extends Comparable<TKey>, TValue> {
     List<IBinaryTreeNode<TKey, TValue>> getCreationData();
 
     /**
+     * Gets the level order nodes.
+     */
+    List<IBinaryTreeNode<TKey, TValue>> getLevelOrder();
+
+    /**
      * Gets the inorder nodes.
      */
     List<IBinaryTreeNode<TKey, TValue>> getInorder();

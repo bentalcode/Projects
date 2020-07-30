@@ -26,6 +26,13 @@ public final class BinaryTreeEndNode<TKey extends Comparable<TKey>, TValue> impl
     }
 
     /**
+     * Sets the key of the node.
+     */
+    @Override
+    public void setKey(TKey key) {
+    }
+
+    /**
      * Gets the value of the node.
      */
     @Override

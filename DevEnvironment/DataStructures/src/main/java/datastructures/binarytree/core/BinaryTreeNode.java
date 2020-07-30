@@ -14,19 +14,12 @@ import java.util.Stack;
  * The BinaryTreeNode class implements a node of a binary tree.
  */
 public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> implements IBinaryTreeNode<TKey, TValue> {
-    private final TKey key;
+    private TKey key;
     private TValue value;
     private IBinaryTreeNode<TKey, TValue> leftChild;
     private IBinaryTreeNode<TKey, TValue> rightChild;
     private final IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator;
-    private final int hashCode;
-
-    /**
-     * Creates a new binary tree node.
-     */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNode<TKey, TValue> of(TKey key, TValue value) {
-        return new BinaryTreeNode<>(key, value);
-    }
+    private int hashCode;
 
     /**
      * The BinaryTreeNode constructor.
@@ -92,6 +85,19 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
+     * Sets the key of the node.
+     */
+    @Override
+    public void setKey(TKey key) {
+        Conditions.validateNotNull(
+            key,
+            "The key of a binary node.");
+
+        this.key = key;
+        this.hashCode = this.comparator.getHashCode(this);
+    }
+
+    /**
      * Gets the value of the node.
      */
     @Override
@@ -116,19 +122,19 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Gets the node of a right child.
-     */
-    @Override
-    public IBinaryTreeNode<TKey, TValue> getRightChild() {
-        return this.rightChild;
-    }
-
-    /**
      * Sets the node of a left child.
      */
     @Override
     public void setLeftChild(IBinaryTreeNode<TKey, TValue> node) {
         this.leftChild = node;
+    }
+
+    /**
+     * Gets the node of a right child.
+     */
+    @Override
+    public IBinaryTreeNode<TKey, TValue> getRightChild() {
+        return this.rightChild;
     }
 
     /**
@@ -217,6 +223,21 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
 
             currNode = currNode.getRightChild();
         }
+    }
+
+    /**
+     * Gets the string representation of this instance.
+     */
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        result.append("{");
+        result.append("Key: ").append(this.key);
+        result.append(", Value: ").append(this.value);
+        result.append("}");
+
+        return result.toString();
     }
 
     /**

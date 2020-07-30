@@ -299,6 +299,8 @@ public final class ArrayLists {
         return list;
     }
 
+
+
     /**
      * Creates a new instance of a list.
      */

@@ -31,6 +31,11 @@ public interface IBinaryTree<TKey extends Comparable<TKey>, TValue> extends
     IBinaryTreeTraversal<TKey , TValue> getTreeTraversal();
 
     /**
+     * Gets a level order iterator of a tree.
+     */
+    IIterator<IBinaryTreeNode<TKey , TValue>> getLevelOrderIterator();
+
+    /**
      * Gets an inorder iterator of a tree.
      */
     IIterator<IBinaryTreeNode<TKey , TValue>> getInorderIterator();

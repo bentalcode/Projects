@@ -40,7 +40,7 @@ public final class TextAlignmentTest {
      * Tests the logic of a text alignment.
      */
     @Test
-    public void textAlignmentTest() {
+    public void alignmentTest() {
         String[] words1 = {"This", "is", "an", "example", "of", "text", "alignment."};
         int maxWidth1 = 16;
         List<String> result1 = ArrayLists.of(

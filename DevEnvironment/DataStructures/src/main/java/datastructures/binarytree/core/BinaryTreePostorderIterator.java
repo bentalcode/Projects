@@ -12,7 +12,7 @@ public final class BinaryTreePostorderIterator<TKey extends Comparable<TKey>, TV
     private Stack<IBinaryTreeNode<TKey, TValue>> stack;
 
     /**
-     * Creates a new postorder iterator of a binary tree.
+     * Creates a postorder iterator of a binary tree.
      */
     public static <TKey extends Comparable<TKey>, TValue> IIterator<IBinaryTreeNode<TKey, TValue>> of(IBinaryTreeNode<TKey, TValue> root) {
         return new BinaryTreePostorderIterator<>(root);

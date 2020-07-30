@@ -9,6 +9,7 @@ import java.util.List;
  */
 public final class BinaryTreeData<TKey extends Comparable<TKey>, TValue> implements IBinaryTreeData<TKey, TValue> {
     private final List<IBinaryTreeNode<TKey, TValue>> data;
+    private final List<IBinaryTreeNode<TKey, TValue>> levelOrder;
     private final List<IBinaryTreeNode<TKey, TValue>> inorder;
     private final List<IBinaryTreeNode<TKey, TValue>> preorder;
     private final List<IBinaryTreeNode<TKey, TValue>> postorder;
@@ -18,11 +19,13 @@ public final class BinaryTreeData<TKey extends Comparable<TKey>, TValue> impleme
      */
     public BinaryTreeData(
         List<IBinaryTreeNode<TKey, TValue>> data,
+        List<IBinaryTreeNode<TKey, TValue>> levelOrder,
         List<IBinaryTreeNode<TKey, TValue>> inorder,
         List<IBinaryTreeNode<TKey, TValue>> preorder,
         List<IBinaryTreeNode<TKey, TValue>> postorder) {
 
         this.data = data;
+        this.levelOrder = levelOrder;
         this.inorder = inorder;
         this.preorder = preorder;
         this.postorder = postorder;
@@ -34,6 +37,14 @@ public final class BinaryTreeData<TKey extends Comparable<TKey>, TValue> impleme
     @Override
     public List<IBinaryTreeNode<TKey, TValue>> getCreationData() {
         return this.data;
+    }
+
+    /**
+     * Gets the level order nodes.
+     */
+    @Override
+    public List<IBinaryTreeNode<TKey, TValue>> getLevelOrder() {
+        return this.levelOrder;
     }
 
     /**

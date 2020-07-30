@@ -6,6 +6,7 @@ import base.interfaces.IIterator;
 import datastructures.binarytree.interfaces.IBinaryTree;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeNodeIterator;
+import java.util.List;
 
 /**
  * The BinaryTreeStreamBuilder class implements a builder for a binary tree from a stream.
@@ -14,9 +15,22 @@ public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue
     private final IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> iterator;
 
     /**
+     * Builds a binary tree from a list of nodes.
+     */
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTree<TKey, TValue> build(
+        List<IBinaryTreeNode<TKey, TValue>> nodes) {
+
+        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> dataIterator = BinaryTreeNodeListIterator.of(nodes);
+        IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreeStreamBuilder<>(dataIterator);
+        IBinaryTree<TKey, TValue> tree = builder.build();
+
+        return tree;
+    }
+
+    /**
      * The BinaryTreeBuilder constructor.
      */
-    public BinaryTreeStreamBuilder(IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> iterator) {
+    private BinaryTreeStreamBuilder(IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> iterator) {
         Conditions.validateNotNull(
             iterator,
             "The iterator of binary nodes.");

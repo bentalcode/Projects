@@ -15,6 +15,11 @@ public interface IBinaryTreeNode<TKey extends Comparable<TKey>, TValue>
     TKey getKey();
 
     /**
+     * Sets the key of the node.
+     */
+    void setKey(TKey key);
+
+    /**
      * Gets the value of the node.
      */
     TValue getValue();
@@ -30,14 +35,14 @@ public interface IBinaryTreeNode<TKey extends Comparable<TKey>, TValue>
     IBinaryTreeNode<TKey, TValue> getLeftChild();
 
     /**
-     * Gets the node of a right child.
-     */
-    IBinaryTreeNode<TKey, TValue> getRightChild();
-
-    /**
      * Sets the node of a left child.
      */
     void setLeftChild(IBinaryTreeNode<TKey, TValue> node);
+
+    /**
+     * Gets the node of a right child.
+     */
+    IBinaryTreeNode<TKey, TValue> getRightChild();
 
     /**
      * Sets the node of a right child.
