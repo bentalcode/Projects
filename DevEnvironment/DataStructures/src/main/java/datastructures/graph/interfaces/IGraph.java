@@ -37,14 +37,4 @@ public interface IGraph<TKey extends Comparable<TKey>, TValue> extends
      * A vertex degree is the number of edges incident to a vertex. Notated as d(V).
      */
     int getDegree(IVertex<TKey, TValue> vertex);
-
-    /**
-     * Gets an interface of a graph traversal.
-     */
-    IGraphTraversal<TKey, TValue> getGraphTraversal();
-
-    /**
-     * Gets an interface of a graph logic.
-     */
-    IGraphLogic<TKey, TValue> getGraphLogic();
 }

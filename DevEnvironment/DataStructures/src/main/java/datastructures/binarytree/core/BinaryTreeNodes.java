@@ -9,7 +9,7 @@ public final class BinaryTreeNodes {
     /**
      * Creates a new binary tree node.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNode<TKey, TValue> of(TKey key, TValue value) {
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNode<TKey, TValue> node(TKey key, TValue value) {
         return new BinaryTreeNode<>(key, value);
     }
 
@@ -21,7 +21,7 @@ public final class BinaryTreeNodes {
     }
 
     /**
-     * The BinaryTreeNodes constructor - Disables the default constructor.
+     * Disables the default constructor, this is a static class.
      */
     private BinaryTreeNodes() {
     }

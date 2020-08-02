@@ -77,65 +77,65 @@ public final class BinaryTreeTest {
         List<IBinaryTreeNode<Integer, String>> tree1b = new ArrayList<>();
         boolean status1 = true;
 
-        List<IBinaryTreeNode<Integer, String>> tree2a = ArrayLists.of(BinaryTreeNodes.of(1, "a"));
-        List<IBinaryTreeNode<Integer, String>> tree2b = ArrayLists.of(BinaryTreeNodes.of(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> tree2a = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> tree2b = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
         boolean status2 = true;
 
-        List<IBinaryTreeNode<Integer, String>> tree3a = ArrayLists.of(BinaryTreeNodes.of(1, "a"));
-        List<IBinaryTreeNode<Integer, String>> tree3b = ArrayLists.of(BinaryTreeNodes.of(2, "b"));
+        List<IBinaryTreeNode<Integer, String>> tree3a = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> tree3b = ArrayLists.of(BinaryTreeNodes.node(2, "b"));
         boolean status3 = false;
 
         List<IBinaryTreeNode<Integer, String>> tree4a = new ArrayList<>(11);
-        tree4a.add(BinaryTreeNodes.of(1, "a"));
-        tree4a.add(BinaryTreeNodes.of(2, "b"));
-        tree4a.add(BinaryTreeNodes.of(4, "d"));
+        tree4a.add(BinaryTreeNodes.node(1, "a"));
+        tree4a.add(BinaryTreeNodes.node(2, "b"));
+        tree4a.add(BinaryTreeNodes.node(4, "d"));
         tree4a.add(BinaryTreeNodes.endNode());
         tree4a.add(BinaryTreeNodes.endNode());
-        tree4a.add(BinaryTreeNodes.of(5, "b"));
+        tree4a.add(BinaryTreeNodes.node(5, "b"));
         tree4a.add(BinaryTreeNodes.endNode());
         tree4a.add(BinaryTreeNodes.endNode());
-        tree4a.add(BinaryTreeNodes.of(3, "c"));
+        tree4a.add(BinaryTreeNodes.node(3, "c"));
         tree4a.add(BinaryTreeNodes.endNode());
         tree4a.add(BinaryTreeNodes.endNode());
 
         List<IBinaryTreeNode<Integer, String>> tree4b = new ArrayList<>(11);
-        tree4b.add(BinaryTreeNodes.of(1, "a"));
-        tree4b.add(BinaryTreeNodes.of(2, "b"));
-        tree4b.add(BinaryTreeNodes.of(4, "d"));
+        tree4b.add(BinaryTreeNodes.node(1, "a"));
+        tree4b.add(BinaryTreeNodes.node(2, "b"));
+        tree4b.add(BinaryTreeNodes.node(4, "d"));
         tree4b.add(BinaryTreeNodes.endNode());
         tree4b.add(BinaryTreeNodes.endNode());
-        tree4b.add(BinaryTreeNodes.of(5, "b"));
+        tree4b.add(BinaryTreeNodes.node(5, "b"));
         tree4b.add(BinaryTreeNodes.endNode());
         tree4b.add(BinaryTreeNodes.endNode());
-        tree4b.add(BinaryTreeNodes.of(3, "c"));
+        tree4b.add(BinaryTreeNodes.node(3, "c"));
         tree4b.add(BinaryTreeNodes.endNode());
         tree4b.add(BinaryTreeNodes.endNode());
 
         boolean status4 = true;
 
         List<IBinaryTreeNode<Integer, String>> tree5a = new ArrayList<>(11);
-        tree5a.add(BinaryTreeNodes.of(1, "a"));
-        tree5a.add(BinaryTreeNodes.of(2, "b"));
-        tree5a.add(BinaryTreeNodes.of(4, "d"));
+        tree5a.add(BinaryTreeNodes.node(1, "a"));
+        tree5a.add(BinaryTreeNodes.node(2, "b"));
+        tree5a.add(BinaryTreeNodes.node(4, "d"));
         tree5a.add(BinaryTreeNodes.endNode());
         tree5a.add(BinaryTreeNodes.endNode());
-        tree5a.add(BinaryTreeNodes.of(5, "b"));
+        tree5a.add(BinaryTreeNodes.node(5, "b"));
         tree5a.add(BinaryTreeNodes.endNode());
         tree5a.add(BinaryTreeNodes.endNode());
-        tree5a.add(BinaryTreeNodes.of(3, "c"));
+        tree5a.add(BinaryTreeNodes.node(3, "c"));
         tree5a.add(BinaryTreeNodes.endNode());
         tree5a.add(BinaryTreeNodes.endNode());
 
         List<IBinaryTreeNode<Integer, String>> tree5b = new ArrayList<>(11);
-        tree5b.add(BinaryTreeNodes.of(1, "a"));
-        tree5b.add(BinaryTreeNodes.of(2, "b"));
+        tree5b.add(BinaryTreeNodes.node(1, "a"));
+        tree5b.add(BinaryTreeNodes.node(2, "b"));
         tree5b.add(BinaryTreeNodes.endNode());
         tree5b.add(BinaryTreeNodes.endNode());
-        tree5b.add(BinaryTreeNodes.of(3, "c"));
-        tree5b.add(BinaryTreeNodes.of(4, "d"));
+        tree5b.add(BinaryTreeNodes.node(3, "c"));
+        tree5b.add(BinaryTreeNodes.node(4, "d"));
         tree5b.add(BinaryTreeNodes.endNode());
         tree5b.add(BinaryTreeNodes.endNode());
-        tree5b.add(BinaryTreeNodes.of(5, "e"));
+        tree5b.add(BinaryTreeNodes.node(5, "e"));
         tree5b.add(BinaryTreeNodes.endNode());
         tree5b.add(BinaryTreeNodes.endNode());
 

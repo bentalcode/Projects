@@ -3,7 +3,7 @@
 #include "IteratorOfIteratorCollectionUnitTest.h"
 #include "UnitTestFunction.h"
 
-using namespace data_structures_test;
+using namespace test::datastructures;
 
 class TestIteratorOfIteratorCollectionFunction : public unit_testing::UnitTestFunction<IteratorOfIteratorCollectionUnitTest> {
 public:

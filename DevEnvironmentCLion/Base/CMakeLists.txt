@@ -26,6 +26,7 @@ endif()
 
 set(BASE_INCLUDES_FILES
     ./BaseException.h
+    ./NotImplementedException.h
     ./core/BaseDependencies.h
     ./core/BaseLogic.h
     ./core/ComparableComparator.h

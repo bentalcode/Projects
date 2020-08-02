@@ -9,6 +9,7 @@ import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphData;
 import datastructures.graph.interfaces.IGraphDefinition;
+import datastructures.graph.interfaces.IGraphLogic;
 import datastructures.graph.interfaces.IRoute;
 import datastructures.graph.interfaces.IVertex;
 import datastructures.graph.interfaces.IWalk;
@@ -110,8 +111,8 @@ public final class GraphTest {
         boolean expectedStatus) {
 
         IGraph<TKey, TValue> graph = this.createGraph(data);
-
-        boolean status = graph.getGraphLogic().detectLoop();
+        IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
+        boolean status = graphLogic.detectLoop();
 
         this.assertion.assertEquals(
             status,
@@ -124,14 +125,15 @@ public final class GraphTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testTopologicalSearch(IGraphData<TKey, TValue> data) {
         IGraph<TKey, TValue> graph = this.createGraph(data);
+        IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
-        boolean hasLoop = graph.getGraphLogic().detectLoop();
+        boolean hasLoop = graphLogic.detectLoop();
         this.assertion.assertEquals(
             hasLoop,
             false,
             "Invalid graph. The graph contains a loop. Topological search is impossible.");
 
-        List<IVertex<TKey, TValue>> result = graph.getGraphLogic().topologicalSearch();
+        List<IVertex<TKey, TValue>> result = graphLogic.topologicalSearch();
 
         this.assertion.assertEqualsWithIterators(
             ListIterator.of(result),
@@ -144,6 +146,7 @@ public final class GraphTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testFindPathsWithBreadthFirstSearch(IGraphData<TKey, TValue> data) {
         IGraph<TKey, TValue> graph = this.createGraph(data);
+        IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
         List<IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>>> routesData = data.getPaths();
 
@@ -151,7 +154,7 @@ public final class GraphTest {
             IRoute<TKey, TValue> route = routeData.first();
             List<IWalk<TKey, TValue>> expectedPaths = routeData.second();
 
-            List<IWalk<TKey, TValue>> paths = graph.getGraphLogic().findPathsWithBreadthFirstSearch(route);
+            List<IWalk<TKey, TValue>> paths = graphLogic.findPathsWithBreadthFirstSearch(route);
 
             Lists.sort(paths, Walk.defaultComparator());
 
@@ -167,6 +170,7 @@ public final class GraphTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testFindPathsWithDepthFirstSearch(IGraphData<TKey, TValue> data) {
         IGraph<TKey, TValue> graph = this.createGraph(data);
+        IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
         List<IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>>> routesData = data.getPaths();
 
@@ -174,7 +178,7 @@ public final class GraphTest {
             IRoute<TKey, TValue> route = routeData.first();
             List<IWalk<TKey, TValue>> expectedPaths = routeData.second();
 
-            List<IWalk<TKey, TValue>> paths = graph.getGraphLogic().findPathsWithDepthFirstSearch(route);
+            List<IWalk<TKey, TValue>> paths = graphLogic.findPathsWithDepthFirstSearch(route);
 
             Lists.sort(paths, Walk.defaultComparator());
 
@@ -190,6 +194,7 @@ public final class GraphTest {
      */
     private <TKey extends Comparable<TKey>, TValue> void testFindShortestPaths(IGraphData<TKey, TValue> data) {
         IGraph<TKey, TValue> graph = this.createGraph(data);
+        IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
         Map<IEdge<TKey, TValue>, Integer> weights = data.getWeights();
         Map<IVertex<TKey, TValue>, Map<IVertex<TKey, TValue>, Integer>> allExpectedShortestPaths = data.getShortestPaths();
@@ -197,7 +202,7 @@ public final class GraphTest {
         for (IVertex<TKey, TValue> vertex : data.vertices()) {
             IVertex<TKey, TValue> src = vertex;
 
-            Map<IVertex<TKey, TValue>, Integer> shortestPaths = graph.getGraphLogic().findShortestPaths(src, weights);
+            Map<IVertex<TKey, TValue>, Integer> shortestPaths = graphLogic.findShortestPaths(src, weights);
 
             Map<IVertex<TKey, TValue>, Integer> expectedShortestPaths = allExpectedShortestPaths.get(src);
 

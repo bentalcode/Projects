@@ -8,74 +8,76 @@
 #include "TwoDimensionalListIterator.h"
 #include "IteratorOfIteratorCollection.h"
 
-namespace data_structures_test {
-
-    /**
-     * The IteratorOfIteratorCollectionUnitTest class implements a unit test
-     * for an iterator of a collection of iterators.
-     */
-    class IteratorOfIteratorCollectionUnitTest final : public unit_testing::UnitTestBase
-    {
-    public:
-        /**
-         * The IteratorOfIteratorCollectionUnitTest constructor.
-         */
-        explicit IteratorOfIteratorCollectionUnitTest(const std::string& name);
+namespace test {
+    namespace datastructures {
 
         /**
-         * The IteratorOfIteratorCollectionUnitTest destructor.
+         * The IteratorOfIteratorCollectionUnitTest class implements a unit test
+         * for an iterator of a collection of iterators.
          */
-        virtual ~IteratorOfIteratorCollectionUnitTest();
+        class IteratorOfIteratorCollectionUnitTest final : public unit_testing::UnitTestBase
+        {
+        public:
+            /**
+             * The IteratorOfIteratorCollectionUnitTest constructor.
+             */
+            explicit IteratorOfIteratorCollectionUnitTest(const std::string& name);
 
-        /**
-         * Registers tests of the unit test.
-         */
-        virtual void registerTests(unit_testing::ITestRegistration& registration);
+            /**
+             * The IteratorOfIteratorCollectionUnitTest destructor.
+             */
+            virtual ~IteratorOfIteratorCollectionUnitTest();
 
-        /**
-         * Tests the iterator of a collection of iterators.
-         */
-        void iteratorOfIteratorCollectionTest();
+            /**
+             * Registers tests of the unit test.
+             */
+            virtual void registerTests(unit_testing::ITestRegistration& registration);
 
-    private:
-        /**
-         * Tests the iterator of a collection of iterators.
-         */
+            /**
+             * Tests the iterator of a collection of iterators.
+             */
+            void iteratorOfIteratorCollectionTest();
+
+        private:
+            /**
+             * Tests the iterator of a collection of iterators.
+             */
+            template <typename T>
+            void testIteratorOfIteratorCollection(
+                const std::vector<T>& oneDimensionalArray,
+                const std::vector<std::vector<T>>& twoDimensionalArray);
+
+            TestData m_testData;
+        };
+
         template <typename T>
-        void testIteratorOfIteratorCollection(
+        void IteratorOfIteratorCollectionUnitTest::testIteratorOfIteratorCollection(
             const std::vector<T>& oneDimensionalArray,
-            const std::vector<std::vector<T>>& twoDimensionalArray);
+            const std::vector<std::vector<T>>& twoDimensionalArray)
+        {
+            base::IIteratorPtr<T> oneDimensionalArrayIterator(new base::ListIterator<T>(oneDimensionalArray));
+            base::IIteratorPtr<T> twoDimensionalArrayIterator(new base::TwoDimensionalListIterator<T>(twoDimensionalArray));
 
-        TestData m_testData;
-    };
+            std::vector<base::IIteratorPtr<T>> iterators;
+            iterators.push_back(oneDimensionalArrayIterator);
+            iterators.push_back(twoDimensionalArrayIterator);
 
-    template <typename T>
-    void IteratorOfIteratorCollectionUnitTest::testIteratorOfIteratorCollection(
-        const std::vector<T>& oneDimensionalArray,
-        const std::vector<std::vector<T>>& twoDimensionalArray)
-    {
-        base::IIteratorPtr<T> oneDimensionalArrayIterator(new base::ListIterator<T>(oneDimensionalArray));
-        base::IIteratorPtr<T> twoDimensionalArrayIterator(new base::TwoDimensionalListIterator<T>(twoDimensionalArray));
+            base::IIteratorPtr<int> iteratorOfIterators(new data_structures::IteratorOfIteratorCollection<int>(iterators));
 
-        std::vector<base::IIteratorPtr<T>> iterators;
-        iterators.push_back(oneDimensionalArrayIterator);
-        iterators.push_back(twoDimensionalArrayIterator);
+            std::vector<T> data;
+            data.insert(data.end(), oneDimensionalArray.begin(), oneDimensionalArray.end());
 
-        base::IIteratorPtr<int> iteratorOfIterators(new data_structures::IteratorOfIteratorCollection<int>(iterators));
+            for (const std::vector<T>& row : twoDimensionalArray) {
+                data.insert(data.end(), row.begin(), row.end());
+            }
 
-        std::vector<T> data;
-        data.insert(data.end(), oneDimensionalArray.begin(), oneDimensionalArray.end());
+            base::IIteratorPtr<T> dataIterator(new base::ListIterator<T>(data));
 
-        for (const std::vector<T>& row : twoDimensionalArray) {
-            data.insert(data.end(), row.begin(), row.end());
+            getAssertion().assertEqualsWithIterators(
+                *iteratorOfIterators,
+                *dataIterator,
+                "Invalid logic of an iterator collection.");
         }
-
-        base::IIteratorPtr<T> dataIterator(new base::ListIterator<T>(data));
-
-        getAssertion().assertEqualsWithIterators(
-            *iteratorOfIterators,
-            *dataIterator,
-            "Invalid logic of an iterator collection.");
     }
 }
 

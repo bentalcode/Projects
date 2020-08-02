@@ -26,11 +26,6 @@ public interface IBinaryTree<TKey extends Comparable<TKey>, TValue> extends
     void setRoot(IBinaryTreeNode<TKey, TValue> root);
 
     /**
-     * Gets an interface of a tree traversal.
-     */
-    IBinaryTreeTraversal<TKey , TValue> getTreeTraversal();
-
-    /**
      * Gets a level order iterator of a tree.
      */
     IIterator<IBinaryTreeNode<TKey , TValue>> getLevelOrderIterator();

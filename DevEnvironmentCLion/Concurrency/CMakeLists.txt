@@ -47,6 +47,7 @@ set(CONCURRENCY_INCLUDES
 
 set(BASE_INCLUDES_FILES
     ../Base/BaseException.h
+    ../Base/NotImplementedException.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
     ../Base/core/ComparableComparator.h

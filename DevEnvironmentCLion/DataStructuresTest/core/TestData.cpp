@@ -2,7 +2,7 @@
 
 #include "TestData.h"
 
-using namespace data_structures_test;
+using namespace test::datastructures;
 
 /**
  * The TestData constructor.

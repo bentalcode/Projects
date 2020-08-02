@@ -1,6 +1,7 @@
 package datastructures.binarytree.core;
 
 import base.interfaces.IIterator;
+import datastructures.binarytree.interfaces.IBinaryTreeLogic;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import java.util.Stack;
 
@@ -45,7 +46,8 @@ public final class BinaryTreeInorderIterator<TKey extends Comparable<TKey>, TVal
         IBinaryTreeNode<TKey, TValue> currElement = this.stack.pop();
 
         if (currElement.hasRightChild()) {
-            currElement.getRightChild().moveMinimumNode(this.stack);
+            IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
+            binaryTreeLogic.moveMinimumNode(currElement.getRightChild(), this.stack);
         }
 
         return currElement;
@@ -59,7 +61,8 @@ public final class BinaryTreeInorderIterator<TKey extends Comparable<TKey>, TVal
         this.stack = new Stack<>();
 
         if (this.root != null) {
-            this.root.moveMinimumNode(this.stack);
+            IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
+            binaryTreeLogic.moveMinimumNode(this.root, this.stack);
         }
     }
 }

@@ -67,14 +67,6 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
     }
 
     /**
-     * Gets an interface of a tree traversal.
-     */
-    @Override
-    public IBinaryTreeTraversal<TKey , TValue> getTreeTraversal() {
-        return new BinaryTreeTraversal<>();
-    }
-
-    /**
      * Gets an iterator of a tree.
      */
     @Override

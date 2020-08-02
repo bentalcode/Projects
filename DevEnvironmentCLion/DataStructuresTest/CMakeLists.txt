@@ -25,12 +25,17 @@ else()
 endif()
 
 set(DATA_STRUCTURES_TEST_INCLUDES_FILES
+    ./binarytree/interfaces/BinaryTreeData.h
+    ./binarytree/interfaces/BinaryTreeTestData.h
+    ./binarytree/interfaces/BinaryTreeUnitTest.h
     ./core/PreCompiled.h
     ./interfaces/IteratorOfIteratorCollectionUnitTest.h
     ./interfaces/TestData.h
 )
 
 set(DATA_STRUCTURES_TEST_SOURCES_FILES
+    ./binarytree/core/BinaryTreeTestData.cpp
+    ./binarytree/core/BinaryTreeUnitTest.cpp
     ./core/IteratorOfIteratorCollectionUnitTest.cpp
     ./core/PreCompiled.cpp
     ./core/TestData.cpp
@@ -43,12 +48,14 @@ set(DATA_STRUCTURES_TEST_SOURCES
 )
 
 set(DATA_STRUCTURES_TEST_INCLUDES
+    ./binarytree/interfaces
     ./core
     ./interfaces
 )
 
 set(BASE_INCLUDES_FILES
     ../Base/BaseException.h
+    ../Base/NotImplementedException.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
     ../Base/core/ComparableComparator.h
@@ -196,6 +203,12 @@ add_library(UnitTesting STATIC
 
 set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/DataStructureException.h
+    ../DataStructures/binarytree/core/BinaryTree.h
+    ../DataStructures/binarytree/core/BinaryTreeEndNode.h
+    ../DataStructures/binarytree/core/BinaryTreeNode.h
+    ../DataStructures/binarytree/core/BinaryTreeNodes.h
+    ../DataStructures/binarytree/interfaces/IBinaryTree.h
+    ../DataStructures/binarytree/interfaces/IBinaryTreeNode.h
     ../DataStructures/core/PreCompiled.h
     ../DataStructures/interfaces/IteratorOfIteratorCollection.h
 )
@@ -211,6 +224,8 @@ set(DATA_STRUCTURES_SOURCES
 
 set(DATA_STRUCTURES_INCLUDES
     ../DataStructures
+    ../DataStructures/binarytree/core
+    ../DataStructures/binarytree/interfaces
     ../DataStructures/core
     ../DataStructures/interfaces
 )

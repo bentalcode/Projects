@@ -5,21 +5,21 @@
 #include <exception>
 
 /**
- * The BaseException captured errors in the base module.
+ * The BaseException class captured errors in the base module.
  */
-class BaseException : public std::runtime_error
+class BaseException : public std::logic_error
 {
 public:
     explicit BaseException(const std::string& errorMessage) :
-        std::runtime_error(errorMessage),
+        std::logic_error(errorMessage),
         m_innerExceptionPtr(nullptr)
     {
     }
 
-    explicit BaseException(
+    BaseException(
         const std::string& errorMessage,
         std::exception& innerException) :
-        std::runtime_error(errorMessage),
+        std::logic_error(errorMessage),
         m_innerExceptionPtr(std::make_exception_ptr(innerException))
     {
     }

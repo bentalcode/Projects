@@ -8,7 +8,6 @@ import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IBuilder;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
-import java.util.Stack;
 
 /**
  * The BinaryTreeNode class implements a node of a binary tree.
@@ -159,70 +158,6 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
     @Override
     public boolean hasRightChild() {
         return this.rightChild != null;
-    }
-
-    /**
-     * Gets the minimum node.
-     */
-    @Override
-    public IBinaryTreeNode<TKey, TValue> getMinimumNode() {
-        IBinaryTreeNode<TKey, TValue> currNode  = this;
-
-        while (currNode != null && currNode.hasLeftChild()) {
-            currNode = currNode.getLeftChild();
-        }
-
-        return currNode;
-    }
-
-    /**
-     * Moves to the minimum node by storing the nodes in the stack.
-     */
-    @Override
-    public void moveMinimumNode(Stack<IBinaryTreeNode<TKey, TValue>> stack) {
-        Conditions.validateNotNull(
-            stack,
-            "The stack.");
-
-        IBinaryTreeNode<TKey, TValue> currNode  = this;
-
-        while (currNode != null) {
-            stack.push(currNode);
-
-            currNode = currNode.getLeftChild();
-        }
-    }
-
-    /**
-     * Gets the maximum node.
-     */
-    @Override
-    public IBinaryTreeNode<TKey, TValue> getMaximumNode() {
-        IBinaryTreeNode<TKey, TValue> currNode  = this;
-
-        while (currNode != null && currNode.hasRightChild()) {
-            currNode = currNode.getRightChild();
-        }
-
-        return currNode;
-    }
-
-    /**
-     * Moves to the maximum node by storing the nodes in the stack.
-     */
-    @Override
-    public void moveMaximumNode(Stack<IBinaryTreeNode<TKey, TValue>> stack) {
-        Conditions.validateNotNull(
-            stack,
-            "The stack.");
-
-        IBinaryTreeNode<TKey, TValue> currNode  = this;
-
-        while (currNode != null) {
-            stack.push(currNode);
-
-            currNode = currNode.getRightChild();
-        }
     }
 
     /**

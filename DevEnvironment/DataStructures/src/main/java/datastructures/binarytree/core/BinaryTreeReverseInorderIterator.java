@@ -1,6 +1,7 @@
 package datastructures.binarytree.core;
 
 import base.interfaces.IReverseIterator;
+import datastructures.binarytree.interfaces.IBinaryTreeLogic;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import java.util.Stack;
 
@@ -45,7 +46,8 @@ public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey
         IBinaryTreeNode<TKey, TValue> currElement = this.stack.pop();
 
         if (currElement.hasLeftChild()) {
-            currElement.getLeftChild().moveMaximumNode(this.stack);
+            IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
+            binaryTreeLogic.moveMaximumNode(currElement, this.stack);
         }
 
         return currElement;
@@ -59,7 +61,8 @@ public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey
         this.stack = new Stack<>();
 
         if (this.root != null) {
-            this.root.moveMaximumNode(this.stack);
+            IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
+            binaryTreeLogic.moveMaximumNode(this.root, this.stack);
         }
     }
 }

@@ -46,7 +46,7 @@ public final class BinaryTreeRecoveryTest {
     @Test
     public void binaryTreeRecoveryTest() {
         List<IBinaryTreeNode<Integer, String>> data1 = ArrayLists.of(
-            BinaryTreeNodes.of(3, "c"),
+            BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode());
 
@@ -55,12 +55,12 @@ public final class BinaryTreeRecoveryTest {
         List<IBinaryTreeNode<Integer, String>> result1 = data1;
 
         List<IBinaryTreeNode<Integer, String>> data2 = ArrayLists.of(
-            BinaryTreeNodes.of(3, "c"),
-            BinaryTreeNodes.of(1, "a"),
+            BinaryTreeNodes.node(3, "c"),
+            BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode(),
-            BinaryTreeNodes.of(4, "d"),
-            BinaryTreeNodes.of(2, "b"),
+            BinaryTreeNodes.node(4, "d"),
+            BinaryTreeNodes.node(2, "b"),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode());
@@ -68,49 +68,49 @@ public final class BinaryTreeRecoveryTest {
         boolean status2 = true;
 
         List<IBinaryTreeNode<Integer, String>> result2 = ArrayLists.of(
-            BinaryTreeNodes.of(2, "b"),
-            BinaryTreeNodes.of(1, "a"),
+            BinaryTreeNodes.node(2, "b"),
+            BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode(),
-            BinaryTreeNodes.of(4, "d"),
-            BinaryTreeNodes.of(3, "c"),
+            BinaryTreeNodes.node(4, "d"),
+            BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode());
 
         List<IBinaryTreeNode<Integer, String>> data3 = new ArrayList<>(15);
-        data3.add(BinaryTreeNodes.of(10, "d"));
-        data3.add(BinaryTreeNodes.of(15, "f"));
-        data3.add(BinaryTreeNodes.of(4, "a"));
+        data3.add(BinaryTreeNodes.node(10, "d"));
+        data3.add(BinaryTreeNodes.node(15, "f"));
+        data3.add(BinaryTreeNodes.node(4, "a"));
         data3.add(BinaryTreeNodes.endNode());
         data3.add(BinaryTreeNodes.endNode());
-        data3.add(BinaryTreeNodes.of(7, "c"));
+        data3.add(BinaryTreeNodes.node(7, "c"));
         data3.add(BinaryTreeNodes.endNode());
         data3.add(BinaryTreeNodes.endNode());
-        data3.add(BinaryTreeNodes.of(5, "b"));
-        data3.add(BinaryTreeNodes.of(14, "e"));
+        data3.add(BinaryTreeNodes.node(5, "b"));
+        data3.add(BinaryTreeNodes.node(14, "e"));
         data3.add(BinaryTreeNodes.endNode());
         data3.add(BinaryTreeNodes.endNode());
-        data3.add(BinaryTreeNodes.of(17, "g"));
+        data3.add(BinaryTreeNodes.node(17, "g"));
         data3.add(BinaryTreeNodes.endNode());
         data3.add(BinaryTreeNodes.endNode());
 
         boolean status3 = true;
 
         List<IBinaryTreeNode<Integer, String>> result3 = new ArrayList<>(15);
-        result3.add(BinaryTreeNodes.of(10, "d"));
-        result3.add(BinaryTreeNodes.of(5, "b"));
-        result3.add(BinaryTreeNodes.of(4, "a"));
+        result3.add(BinaryTreeNodes.node(10, "d"));
+        result3.add(BinaryTreeNodes.node(5, "b"));
+        result3.add(BinaryTreeNodes.node(4, "a"));
         result3.add(BinaryTreeNodes.endNode());
         result3.add(BinaryTreeNodes.endNode());
-        result3.add(BinaryTreeNodes.of(7, "c"));
+        result3.add(BinaryTreeNodes.node(7, "c"));
         result3.add(BinaryTreeNodes.endNode());
         result3.add(BinaryTreeNodes.endNode());
-        result3.add(BinaryTreeNodes.of(15, "f"));
-        result3.add(BinaryTreeNodes.of(14, "e"));
+        result3.add(BinaryTreeNodes.node(15, "f"));
+        result3.add(BinaryTreeNodes.node(14, "e"));
         result3.add(BinaryTreeNodes.endNode());
         result3.add(BinaryTreeNodes.endNode());
-        result3.add(BinaryTreeNodes.of(17, "g"));
+        result3.add(BinaryTreeNodes.node(17, "g"));
         result3.add(BinaryTreeNodes.endNode());
         result3.add(BinaryTreeNodes.endNode());
 

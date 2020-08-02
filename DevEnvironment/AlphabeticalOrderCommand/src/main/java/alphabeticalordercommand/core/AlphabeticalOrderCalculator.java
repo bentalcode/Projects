@@ -5,9 +5,11 @@ import base.core.Conditions;
 import base.core.StringIterator;
 import base.interfaces.ICalculator;
 import datastructures.graph.core.GraphBuilder;
+import datastructures.graph.core.GraphLogic;
 import datastructures.graph.core.Vertex;
 import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphBuilder;
+import datastructures.graph.interfaces.IGraphLogic;
 import datastructures.graph.interfaces.IVertex;
 import java.util.Collection;
 import java.util.List;
@@ -52,7 +54,8 @@ public final class AlphabeticalOrderCalculator implements ICalculator<IAlphabeti
         //
         // Calculate the alphabetical order by performing a topological search...
         //
-        List<IVertex<Character, Void>> alphabeticalOrder = alphabetGraph.getGraphLogic().topologicalSearch();
+        IGraphLogic<Character, Void> graphLogic = new GraphLogic<>(alphabetGraph);
+        List<IVertex<Character, Void>> alphabeticalOrder = graphLogic.topologicalSearch();
 
         for (IVertex<Character, Void> alphabetVertex : alphabeticalOrder) {
             result.add(alphabetVertex.getKey());

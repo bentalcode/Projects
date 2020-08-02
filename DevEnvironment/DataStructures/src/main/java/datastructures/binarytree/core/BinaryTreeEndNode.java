@@ -3,10 +3,10 @@ package datastructures.binarytree.core;
 import base.core.Casting;
 import base.interfaces.IBinaryComparator;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
-import java.util.Stack;
 
 /**
- * The BinaryTreeEndNode class implements an internal end nodes of a binary tree, which is used for serialization.
+ * The BinaryTreeEndNode class implements an internal end nodes of a binary tree,
+ * which is used for serialization.
  */
 public final class BinaryTreeEndNode<TKey extends Comparable<TKey>, TValue> implements IBinaryTreeNode<TKey, TValue> {
     private final IBinaryComparator<IBinaryTreeNode<TKey, TValue>> comparator = BinaryTreeNode.defaultComparator();
@@ -73,7 +73,7 @@ public final class BinaryTreeEndNode<TKey extends Comparable<TKey>, TValue> impl
     /**
      * Sets the node of a right child.
      */
-    @Deprecated
+    @Override
     public void setRightChild(IBinaryTreeNode<TKey, TValue> node) {
     }
 
@@ -91,36 +91,6 @@ public final class BinaryTreeEndNode<TKey extends Comparable<TKey>, TValue> impl
     @Override
     public boolean hasRightChild() {
         return false;
-    }
-
-    /**
-     * Gets the minimum node.
-     */
-    @Override
-    public IBinaryTreeNode<TKey, TValue> getMinimumNode() {
-        return null;
-    }
-
-    /**
-     * Moves to the minimum node by storing the nodes in the stack.
-     */
-    @Override
-    public void moveMinimumNode(Stack<IBinaryTreeNode<TKey, TValue>> stack) {
-    }
-
-    /**
-     * Gets the maximum node.
-     */
-    @Override
-    public IBinaryTreeNode<TKey, TValue> getMaximumNode() {
-        return null;
-    }
-
-    /**
-     * Moves to the maximum node by storing the nodes in the stack.
-     */
-    @Override
-    public void moveMaximumNode(Stack<IBinaryTreeNode<TKey, TValue>> stack) {
     }
 
     /**
