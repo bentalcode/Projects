@@ -11,6 +11,7 @@ import java.util.Stack;
 public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey>, TValue> implements IReverseIterator<IBinaryTreeNode<TKey, TValue>> {
     private final IBinaryTreeNode<TKey, TValue> root;
     private Stack<IBinaryTreeNode<TKey, TValue>> stack;
+    private final IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
 
     /**
      * Creates a reverse inorder iterator of a binary tree.
@@ -43,14 +44,13 @@ public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey
     public IBinaryTreeNode<TKey, TValue> next() {
         assert(this.hasNext());
 
-        IBinaryTreeNode<TKey, TValue> currElement = this.stack.pop();
+        IBinaryTreeNode<TKey, TValue> currNode = this.stack.pop();
 
-        if (currElement.hasLeftChild()) {
-            IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
-            binaryTreeLogic.moveMaximumNode(currElement, this.stack);
+        if (currNode.hasLeftChild()) {
+            this.binaryTreeLogic.moveMaximumNode(currNode.getLeftChild(), this.stack);
         }
 
-        return currElement;
+        return currNode;
     }
 
     /**

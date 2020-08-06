@@ -58,8 +58,12 @@ set(BASE_INCLUDES_FILES
     ../Base/NotImplementedException.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
+    ../Base/core/ClassType.h
     ../Base/core/ComparableComparator.h
+    ../Base/core/DereferenceComparableComparator.h
+    ../Base/core/DereferenceComparableComparator2.h
     ../Base/core/DereferenceEquatableComparator.h
+    ../Base/core/DereferenceEquatableComparator2.h
     ../Base/core/EquatableComparator.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
@@ -70,9 +74,11 @@ set(BASE_INCLUDES_FILES
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/SkipIterator.h
     ../Base/core/StringIterator.h
     ../Base/core/TwoDimensionalList.h
     ../Base/core/TwoDimensionalListIterator.h
+    ../Base/interfaces/ClassTypes.h
     ../Base/interfaces/ComparatorFactory.h
     ../Base/interfaces/CompareToBuilder.h
     ../Base/interfaces/DateTime.h
@@ -80,7 +86,9 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Duration.h
     ../Base/interfaces/EqualBuilder.h
     ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/IBuilder.h
     ../Base/interfaces/ICalculator.h
+    ../Base/interfaces/IClassType.h
     ../Base/interfaces/ICollection.h
     ../Base/interfaces/IComparableComparator.h
     ../Base/interfaces/IEquatableComparator.h
@@ -91,9 +99,12 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatrix.h
+    ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
+    ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/IValidator.h
+    ../Base/interfaces/IVisitor.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
     ../Base/interfaces/IterableComparator.h
@@ -101,17 +112,23 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
+    ../Base/interfaces/StringComparable.h
+    ../Base/interfaces/StringEquality.h
     ../Base/interfaces/Strings.h
     ../Base/interfaces/Triple.h
 )
 
 set(BASE_SOURCES_FILES
+    ../Base/core/ClassType.cpp
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp
+    ../Base/core/SkipIterator.cpp
+    ../Base/core/StringComparable.cpp
+    ../Base/core/StringEquality.cpp
 )
 
 set(BASE_SOURCES
@@ -205,10 +222,22 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/DataStructureException.h
     ../DataStructures/binarytree/core/BinaryTree.h
     ../DataStructures/binarytree/core/BinaryTreeEndNode.h
+    ../DataStructures/binarytree/core/BinaryTreeInorderIterator.h
+    ../DataStructures/binarytree/core/BinaryTreeLevelOrderIterator.h
+    ../DataStructures/binarytree/core/BinaryTreeLevelOrderWithEndNodesIterator.h
+    ../DataStructures/binarytree/core/BinaryTreeLogic.h
     ../DataStructures/binarytree/core/BinaryTreeNode.h
+    ../DataStructures/binarytree/core/BinaryTreeNodeListIterator.h
     ../DataStructures/binarytree/core/BinaryTreeNodes.h
+    ../DataStructures/binarytree/core/BinaryTreePostorderIterator.h
+    ../DataStructures/binarytree/core/BinaryTreePreorderIterator.h
+    ../DataStructures/binarytree/core/BinaryTreeStreamBuilder.h
     ../DataStructures/binarytree/interfaces/IBinaryTree.h
+    ../DataStructures/binarytree/interfaces/IBinaryTreeLogic.h
     ../DataStructures/binarytree/interfaces/IBinaryTreeNode.h
+    ../DataStructures/binarytree/interfaces/IBinaryTreeNodeIterator.h
+    ../DataStructures/binarytree/interfaces/IBinaryTreeNodeReverseIterator.h
+    ../DataStructures/binarytree/interfaces/IBinaryTreeTraversal.h
     ../DataStructures/core/PreCompiled.h
     ../DataStructures/interfaces/IteratorOfIteratorCollection.h
 )

@@ -17,3 +17,11 @@ TestData::TestData()
 TestData::~TestData()
 {
 }
+
+/**
+ * Gets the data of tests of a binary tree.
+ */
+BinaryTreeTestDataPtr TestData::getBinaryTreeData()
+{
+    return BinaryTreeTestDataPtr(new BinaryTreeTestData);
+}

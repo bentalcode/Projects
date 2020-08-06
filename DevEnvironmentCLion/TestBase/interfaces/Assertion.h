@@ -1,9 +1,10 @@
 #ifndef ASSERTION_H_d5cec444_dcab_450e_ba52_6e2ac44e787c
 #define ASSERTION_H_d5cec444_dcab_450e_ba52_6e2ac44e787c
 
-#include <core/DereferenceEquatableComparator.h>
 #include "EqualBuilder.h"
 #include "EquatableComparator.h"
+#include "DereferenceEquatableComparator.h"
+#include "DereferenceEquatableComparator2.h"
 #include "LogStreamWriter.h"
 
 namespace test_base {
@@ -67,6 +68,16 @@ namespace test_base {
             const std::string& message);
 
         /**
+         * Asserts equality with iterators.
+         */
+        template <typename T>
+        void assertEqualsWithIterators(
+            base::IIterator<T>& lhs,
+            base::IIterator<T>& rhs,
+            const base::IEquatableComparator<T>& comparator,
+            const std::string& message);
+
+        /**
          * Asserts equality with dereference iterators.
          */
         template <typename T>
@@ -76,13 +87,13 @@ namespace test_base {
             const std::string& message);
 
         /**
-         * Asserts equality with iterators.
+         * Asserts equality with dereference iterators and a comparator.
          */
-        template <typename T>
-        void assertEqualsWithIterators(
+        template <typename T, typename TComparator>
+        void assertEqualsWithDereferenceIterators(
             base::IIterator<T>& lhs,
             base::IIterator<T>& rhs,
-            const base::IEquatableComparator<T>& comparator,
+            const base::EquatableComparator<TComparator>& comparator,
             const std::string& message);
 
         /**
@@ -95,7 +106,7 @@ namespace test_base {
             const std::string& message);
 
         /**
-         * Asserts equality with iterables.
+         * Asserts equality with iterables and a comparator.
          */
         template <typename T>
         void assertEqualsWithIterables(
@@ -148,8 +159,22 @@ namespace test_base {
         base::IIterator<T>& rhs,
         const std::string& message)
     {
-        base::DereferenceEquatableComparator<T> comparator;
-        assertEqualsWithIterators(lhs, rhs, comparator, message);
+        base::DereferenceEquatableComparator<T> dereferenceComparator;
+        assertEqualsWithIterators(lhs, rhs, dereferenceComparator, message);
+    }
+
+    /**
+     * Asserts equality with dereference iterators and a comparator.
+     */
+    template <typename T, typename TComparator>
+    void Assertion::assertEqualsWithDereferenceIterators(
+        base::IIterator<T>& lhs,
+        base::IIterator<T>& rhs,
+        const base::EquatableComparator<TComparator>& comparator,
+        const std::string& message)
+    {
+        base::DereferenceEquatableComparator2<T, TComparator> dereferenceComparator(comparator);
+        assertEqualsWithIterators(lhs, rhs, dereferenceComparator, message);
     }
 
     /**
@@ -180,6 +205,23 @@ namespace test_base {
         assertEqualsWithIterators<T>(
             *lhs.getIterator(),
             *rhs.getIterator(),
+            message);
+    }
+
+    /**
+     * Asserts equality with iterables and a comparator.
+     */
+    template <typename T>
+    void Assertion::assertEqualsWithIterables(
+        base::IIterable<T>& lhs,
+        base::IIterable<T>& rhs,
+        const base::IEquatableComparator<T>& comparator,
+        const std::string& message)
+    {
+        assertEqualsWithIterators<T>(
+            *lhs.getIterator(),
+            *rhs.getIterator(),
+            comparator,
             message);
     }
 }

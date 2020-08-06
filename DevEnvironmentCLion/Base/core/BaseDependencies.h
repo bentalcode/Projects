@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <cassert>
 #include <sstream>
+#include <typeinfo>
 
 #include "BaseLogic.h"
 

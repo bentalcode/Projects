@@ -28,7 +28,7 @@ public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue
     }
 
     /**
-     * The BinaryTreeBuilder constructor.
+     * The BinaryTreeStreamBuilder constructor.
      */
     private BinaryTreeStreamBuilder(IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> iterator) {
         Conditions.validateNotNull(
@@ -43,9 +43,9 @@ public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue
      */
     @Override
     public IBinaryTree<TKey, TValue> build() {
-        boolean previousStatus = this.iterator.disableSkipElements();
+        boolean previousStatus = this.iterator.getSkipIterator().disableSkipElements();
         IBinaryTreeNode<TKey, TValue> rootNode = this.read(this.iterator);
-        this.iterator.setSkipElementsStatus(previousStatus);
+        this.iterator.getSkipIterator().setSkipElementsStatus(previousStatus);
 
         IBinaryTree<TKey, TValue> tree = new BinaryTree<>(rootNode);
 
@@ -55,14 +55,14 @@ public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue
     /**
      * Reads the tree from an input stream.
      */
-    private IBinaryTreeNode<TKey, TValue> read(IIterator<IBinaryTreeNode<TKey, TValue>> iterator) {
+    private IBinaryTreeNode<TKey, TValue> read(IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> iterator) {
         if (!iterator.hasNext()) {
             return null;
         }
 
         IBinaryTreeNode<TKey, TValue> rootNode = iterator.next();
 
-        if (this.iterator.isSkipElement(rootNode)) {
+        if (this.iterator.getSkipIterator().isSkipElement(rootNode)) {
             return null;
         }
 

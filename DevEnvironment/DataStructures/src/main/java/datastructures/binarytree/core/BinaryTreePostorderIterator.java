@@ -42,27 +42,25 @@ public final class BinaryTreePostorderIterator<TKey extends Comparable<TKey>, TV
     public IBinaryTreeNode<TKey, TValue> next() {
         assert(this.hasNext());
 
-        IBinaryTreeNode<TKey, TValue> currElement;
+        IBinaryTreeNode<TKey, TValue> currNode;
 
         while (true) {
-            IBinaryTreeNode<TKey, TValue> activeElement = this.stack.pop();
+            currNode = this.stack.pop();
 
-            if (activeElement.hasRightChild() &&
-                !this.stack.empty() && activeElement.getRightChild() == this.stack.peek()) {
+            if (currNode.hasRightChild() &&
+                !this.stack.empty() && currNode.getRightChild() == this.stack.peek()) {
 
-                IBinaryTreeNode<TKey, TValue> rightChildNode = this.stack.pop();
-                this.stack.push(activeElement);
-                activeElement = rightChildNode;
+                IBinaryTreeNode<TKey, TValue> nextNode = this.stack.pop();
 
-                this.moveMinimumNode(activeElement);
+                this.stack.push(currNode);
+                this.moveToMinimumNode(nextNode);
             }
             else {
-                currElement = activeElement;
                 break;
             }
         }
 
-        return currElement;
+        return currNode;
     }
 
     /**
@@ -71,13 +69,13 @@ public final class BinaryTreePostorderIterator<TKey extends Comparable<TKey>, TV
     @Override
     public void reset() {
         this.stack = new Stack<>();
-        this.moveMinimumNode(this.root);
+        this.moveToMinimumNode(this.root);
     }
 
     /**
      * Moves to the minimum node.
      */
-    private void moveMinimumNode(IBinaryTreeNode<TKey, TValue> node) {
+    private void moveToMinimumNode(IBinaryTreeNode<TKey, TValue> node) {
         IBinaryTreeNode<TKey, TValue> currNode = node;
 
         while (currNode != null) {

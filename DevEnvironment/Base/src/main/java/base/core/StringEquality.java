@@ -5,7 +5,7 @@ package base.core;
  */
 public final class StringEquality {
     /**
-     * Checks whether strings are equals.
+     * Checks whether strings are equals with start and end indexes.
      */
     public static boolean equals(
         String left,
@@ -22,7 +22,7 @@ public final class StringEquality {
     }
 
     /**
-     * Checks whether strings are equals ignore case.
+     * Checks whether strings are equals with start and end indexes. (Ignore case)
      */
     public static boolean equalsIgnoreCase(
         String left,
@@ -39,7 +39,155 @@ public final class StringEquality {
     }
 
     /**
-     * Checks whether strings are equals.
+     * Checks whether strings are equals with start index and length.
+     */
+    public static boolean equals(
+        String left,
+        int leftStartIndex,
+        String right,
+        int rightStartIndex,
+        int length) {
+
+        return equals(
+            left, leftStartIndex,
+            right, rightStartIndex,
+            length,
+            false);
+    }
+
+    /**
+     * Checks whether strings are equals with start index and length. (Ignore case)
+     */
+    public static boolean equalsIgnoreCase(
+        String left,
+        int leftStartIndex,
+        String right,
+        int rightStartIndex,
+        int length) {
+
+        return equals(
+            left, leftStartIndex,
+            right, rightStartIndex,
+            length,
+            true);
+    }
+
+    /**
+     * Checks whether buffer strings are equals with start and end indexes.
+     */
+    public static boolean equals(
+        char[] left,
+        int leftStartIndex,
+        int leftEndIndex,
+        char[] right,
+        int rightStartIndex,
+        int rightEndIndex) {
+
+        return equals(
+            left, leftStartIndex, leftEndIndex,
+            right, rightStartIndex, rightEndIndex,
+            false);
+    }
+
+    /**
+     * Checks whether buffer strings are equals with start and end indexes. (Ignore case)
+     */
+    public static boolean equalsIgnoreCase(
+        char[] left,
+        int leftStartIndex,
+        int leftEndIndex,
+        char[] right,
+        int rightStartIndex,
+        int rightEndIndex) {
+
+        return equals(
+            left, leftStartIndex, leftEndIndex,
+            right, rightStartIndex, rightEndIndex,
+            true);
+    }
+
+    /**
+     * Checks whether buffer strings are equals with start index.
+     */
+    public static boolean equals(
+        char[] left,
+        int leftStartIndex,
+        char[] right,
+        int rightStartIndex) {
+
+        assert(left != null);
+        assert(right != null);
+        assert(leftStartIndex >= 0 && leftStartIndex < left.length);
+        assert(rightStartIndex >= 0 && rightStartIndex < right.length);
+
+        int leftEndIndex = left.length - 1;
+        int rightEndIndex = right.length - 1;
+
+        return equals(
+            left, leftStartIndex, leftEndIndex,
+            right, rightStartIndex, rightEndIndex,
+            false);
+    }
+
+    /**
+     * Checks whether buffer strings are equals with start index. (Ignore case)
+     */
+    public static boolean equalsIgnoreCase(
+        char[] left,
+        int leftStartIndex,
+        char[] right,
+        int rightStartIndex) {
+
+        assert(left != null);
+        assert(right != null);
+        assert(leftStartIndex >= 0 && leftStartIndex < left.length);
+        assert(rightStartIndex >= 0 && rightStartIndex < right.length);
+
+        int leftEndIndex = left.length - 1;
+        int rightEndIndex = right.length - 1;
+
+        return equals(
+            left, leftStartIndex, leftEndIndex,
+            right, rightStartIndex, rightEndIndex,
+            true);
+    }
+
+    /**
+     * Checks whether buffer strings are equals with start index and length.
+     */
+    public static boolean equals(
+        char[] left,
+        int leftStartIndex,
+        char[] right,
+        int rightStartIndex,
+        int length) {
+
+        return equals(
+            left, leftStartIndex,
+            right, rightStartIndex,
+            length,
+            false);
+    }
+
+    /**
+     * Checks whether buffer strings are equals with start index and length. (Ignore case)
+     */
+    public static boolean equalsIgnoreCase(
+        char[] left,
+        int leftStartIndex,
+        char[] right,
+        int rightStartIndex,
+        int length) {
+
+        return equals(
+            left, leftStartIndex,
+            right, rightStartIndex,
+            length,
+            true);
+    }
+
+    /**
+     * Checks whether strings are equals with start and end indexes.
      */
     private static boolean equals(
         String left,
@@ -65,41 +213,7 @@ public final class StringEquality {
     }
 
     /**
-     * Checks whether strings are equals.
-     */
-    public static boolean equals(
-        String left,
-        int leftStartIndex,
-        String right,
-        int rightStartIndex,
-        int length) {
-
-        return equals(
-            left, leftStartIndex,
-            right, rightStartIndex,
-            length,
-            false);
-    }
-
-    /**
-     * Checks whether strings are equals ignore case.
-     */
-    public static boolean equalsIgnoreCase(
-        String left,
-        int leftStartIndex,
-        String right,
-        int rightStartIndex,
-        int length) {
-
-        return equals(
-            left, leftStartIndex,
-            right, rightStartIndex,
-            length,
-            true);
-    }
-
-    /**
-     * Checks whether strings are equals.
+     * Checks whether strings are equals with start index and length.
      */
     private static boolean equals(
         String left,
@@ -125,87 +239,7 @@ public final class StringEquality {
     }
 
     /**
-     * Checks whether strings are equals.
-     */
-    public static boolean equals(
-        char[] left,
-        int leftStartIndex,
-        int leftEndIndex,
-        char[] right,
-        int rightStartIndex,
-        int rightEndIndex) {
-
-        return equals(
-            left, leftStartIndex, leftEndIndex,
-            right, rightStartIndex, rightEndIndex,
-            false);
-    }
-
-    /**
-     * Checks whether strings are equals ignore case.
-     */
-    public static boolean equalsIgnoreCase(
-        char[] left,
-        int leftStartIndex,
-        int leftEndIndex,
-        char[] right,
-        int rightStartIndex,
-        int rightEndIndex) {
-
-        return equals(
-            left, leftStartIndex, leftEndIndex,
-            right, rightStartIndex, rightEndIndex,
-            true);
-    }
-
-    /**
-     * Checks whether strings are equals.
-     */
-    public static boolean equals(
-        char[] left,
-        int leftStartIndex,
-        char[] right,
-        int rightStartIndex) {
-
-        assert(left != null);
-        assert(right != null);
-        assert(leftStartIndex >= 0 && leftStartIndex < left.length);
-        assert(rightStartIndex >= 0 && rightStartIndex < right.length);
-
-        int leftEndIndex = left.length - 1;
-        int rightEndIndex = right.length - 1;
-
-        return equals(
-            left, leftStartIndex, leftEndIndex,
-            right, rightStartIndex, rightEndIndex,
-            false);
-    }
-
-    /**
-     * Checks whether strings are equals ignore case.
-     */
-    public static boolean equalsIgnoreCase(
-        char[] left,
-        int leftStartIndex,
-        char[] right,
-        int rightStartIndex) {
-
-        assert(left != null);
-        assert(right != null);
-        assert(leftStartIndex >= 0 && leftStartIndex < left.length);
-        assert(rightStartIndex >= 0 && rightStartIndex < right.length);
-
-        int leftEndIndex = left.length - 1;
-        int rightEndIndex = right.length - 1;
-
-        return equals(
-            left, leftStartIndex, leftEndIndex,
-            right, rightStartIndex, rightEndIndex,
-            true);
-    }
-
-    /**
-     * Checks whether strings are equals.
+     * Checks whether buffer strings are equals with start and end indexes.
      */
     private static boolean equals(
         char[] left,
@@ -240,41 +274,7 @@ public final class StringEquality {
     }
 
     /**
-     * Checks whether strings are equals.
-     */
-    public static boolean equals(
-        char[] left,
-        int leftStartIndex,
-        char[] right,
-        int rightStartIndex,
-        int length) {
-
-        return equals(
-            left, leftStartIndex,
-            right, rightStartIndex,
-            length,
-            false);
-    }
-
-    /**
-     * Checks whether strings are equals ignore case.
-     */
-    public static boolean equalsIgnoreCase(
-        char[] left,
-        int leftStartIndex,
-        char[] right,
-        int rightStartIndex,
-        int length) {
-
-        return equals(
-            left, leftStartIndex,
-            right, rightStartIndex,
-            length,
-            true);
-    }
-
-    /**
-     * Checks whether strings are equals.
+     * Checks whether buffer strings are equals with start index and length.
      */
     private static boolean equals(
         char[] left,

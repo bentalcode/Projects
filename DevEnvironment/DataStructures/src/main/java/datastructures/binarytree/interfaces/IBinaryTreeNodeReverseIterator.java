@@ -4,7 +4,11 @@ import base.interfaces.IReverseIterator;
 import base.interfaces.ISkipIterator;
 
 /**
- * The IBinaryTreeNodeIterator interface defines an iterator of binary nodes.
+ * The IBinaryTreeNodeReverseIterator interface defines a reverse iterator of binary nodes.
  */
-public interface IBinaryTreeNodeReverseIterator<T> extends IReverseIterator<T>, ISkipIterator<T> {
+public interface IBinaryTreeNodeReverseIterator<T> extends IReverseIterator<T> {
+    /**
+     * Gets the skip iterator.
+     */
+    ISkipIterator<T> getSkipIterator();
 }

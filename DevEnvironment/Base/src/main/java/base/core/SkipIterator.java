@@ -7,14 +7,14 @@ import java.util.List;
 /**
  * The SkipIterator class implements a skip iterator of elements.
  */
-public abstract class SkipIterator<TElement> implements ISkipIterator<TElement> {
+public final class SkipIterator<TElement> implements ISkipIterator<TElement> {
     private final List<Class<?>> elementsToSkip = new ArrayList<>();
     private boolean skipElements;
 
     /**
      * The SkipIterator constructor.
      */
-    protected SkipIterator() {
+    public SkipIterator() {
     }
 
     /*

@@ -26,7 +26,7 @@ BinaryTreeTestData::~BinaryTreeTestData()
  * Gets the data of the trees.
  */
 std::vector<BinaryTreeDataPtr<int, std::string>> BinaryTreeTestData::getData() const {
-    std::vector<BinaryTreeDataPtr<int, std::string>> data(4);
+    std::vector<BinaryTreeDataPtr<int, std::string>> data;
 
     data.push_back(getTreeData1());
     data.push_back(getTreeData2());

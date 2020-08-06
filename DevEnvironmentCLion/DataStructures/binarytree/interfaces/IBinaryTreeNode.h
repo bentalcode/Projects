@@ -56,22 +56,22 @@ namespace datastructures {
             /**
              * Gets the node of a left child.
              */
-            virtual const IBinaryTreeNode<TKey, TValue>* getLeftChild() const = 0;
+            virtual std::shared_ptr<IBinaryTreeNode<TKey, TValue>> getLeftChild() const = 0;
 
             /**
              * Sets the node of a left child.
              */
-            virtual void setLeftChild(IBinaryTreeNode<TKey, TValue>* node) = 0;
+            virtual void setLeftChild(std::shared_ptr<IBinaryTreeNode<TKey, TValue>> node) = 0;
 
             /**
              * Gets the node of a right child.
              */
-            virtual const IBinaryTreeNode<TKey, TValue>* getRightChild() const = 0;
+            virtual std::shared_ptr<IBinaryTreeNode<TKey, TValue>> getRightChild() const = 0;
 
             /**
              * Sets the node of a right child.
              */
-            virtual void setRightChild(IBinaryTreeNode<TKey, TValue>* node) = 0;
+            virtual void setRightChild(std::shared_ptr<IBinaryTreeNode<TKey, TValue>> node) = 0;
 
             /**
              * Checks whether there is a left child.
@@ -86,6 +86,20 @@ namespace datastructures {
 
         template <typename TKey, typename TValue>
         using IBinaryTreeNodePtr = std::shared_ptr<IBinaryTreeNode<TKey, TValue>>;
+
+        template <typename TKey, typename TValue>
+        bool operator<(const IBinaryTreeNode<TKey, TValue>& left, const IBinaryTreeNode<TKey, TValue>& right)
+        {
+            if (left.getKey() < right.getKey()) {
+                return true;
+            }
+
+            if (left.getKey() > right.getKey()) {
+                return false;
+            }
+
+            return left.getValue() < right.getValue();
+        }
     }
 }
 

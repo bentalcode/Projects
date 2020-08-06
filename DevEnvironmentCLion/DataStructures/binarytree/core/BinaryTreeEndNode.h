@@ -59,22 +59,22 @@ namespace datastructures {
             /**
              * Gets the node of a left child.
              */
-            virtual IBinaryTreeNode<TKey, TValue>* getLeftChild() const override;
+            virtual IBinaryTreeNodePtr<TKey, TValue> getLeftChild() const override;
 
             /**
              * Sets the node of a left child.
              */
-            virtual void setLeftChild(IBinaryTreeNode<TKey, TValue>* node) override;
+            virtual void setLeftChild(IBinaryTreeNodePtr<TKey, TValue> node) override;
 
             /**
              * Gets the node of a right child.
              */
-            virtual IBinaryTreeNode<TKey, TValue>* getRightChild() const override;
+            virtual IBinaryTreeNodePtr<TKey, TValue> getRightChild() const override;
 
             /**
              * Sets the node of a right child.
              */
-            virtual void setRightChild(IBinaryTreeNode<TKey, TValue>* node) override;
+            virtual void setRightChild(IBinaryTreeNodePtr<TKey, TValue> node) override;
 
             /**
              * Checks whether there is a left child.
@@ -143,7 +143,7 @@ namespace datastructures {
          * Gets the node of a left child.
          */
         template<typename TKey, typename TValue>
-        IBinaryTreeNode<TKey, TValue>* BinaryTreeEndNode<TKey, TValue>::getLeftChild() const
+        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeEndNode<TKey, TValue>::getLeftChild() const
         {
             throw NotImplementedException("BinaryTreeEndNode::getLeftChild()");
         }
@@ -152,7 +152,7 @@ namespace datastructures {
          * Sets the node of a left child.
          */
         template<typename TKey, typename TValue>
-        void BinaryTreeEndNode<TKey, TValue>::setLeftChild(IBinaryTreeNode<TKey, TValue>* child)
+        void BinaryTreeEndNode<TKey, TValue>::setLeftChild(IBinaryTreeNodePtr<TKey, TValue> child)
         {
             throw NotImplementedException("BinaryTreeEndNode::setLeftChild()");
         }
@@ -161,7 +161,7 @@ namespace datastructures {
          * Gets the node of a right child.
          */
         template<typename TKey, typename TValue>
-        IBinaryTreeNode<TKey, TValue>* BinaryTreeEndNode<TKey, TValue>::getRightChild() const
+        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeEndNode<TKey, TValue>::getRightChild() const
         {
             throw NotImplementedException("BinaryTreeEndNode::getRightChild()");
         }
@@ -170,7 +170,7 @@ namespace datastructures {
          * Sets the node of a right child.
          */
         template<typename TKey, typename TValue>
-        void BinaryTreeEndNode<TKey, TValue>::setRightChild(IBinaryTreeNode<TKey, TValue>* child)
+        void BinaryTreeEndNode<TKey, TValue>::setRightChild(IBinaryTreeNodePtr<TKey, TValue> child)
         {
             throw NotImplementedException("BinaryTreeEndNode::setRightChild()");
         }

@@ -3,6 +3,8 @@
 
 #include "ComparatorFactory.h"
 #include "ComparableComparator.h"
+#include "DereferenceComparableComparator.h"
+#include "DereferenceComparableComparator2.h"
 
 namespace base {
 
@@ -72,6 +74,23 @@ namespace base {
             IIterator<T>& lhs,
             IIterator<T>& rhs,
             const IComparableComparator<T>& comparator);
+
+        /**
+         * With a generic dereference iterator.
+         */
+        template <typename T>
+        CompareToBuilder& withDereferenceIterator(
+            IIterator<T>& lhs,
+            IIterator<T>& rhs);
+
+        /**
+         * With a generic dereference iterator and a comparator.
+         */
+        template <typename T, typename TComparator>
+        CompareToBuilder& withDereferenceIterator(
+            IIterator<T>& lhs,
+            IIterator<T>& rhs,
+            const IComparableComparator<TComparator>& comparator);
 
         /**
          * With a generic iterable.
@@ -159,6 +178,41 @@ namespace base {
         m_compareStatus = iteratorComparator->compareTo(lhs, rhs, comparator);
 
         return *this;
+    }
+
+    /**
+     * With a generic dereference iterator.
+     */
+    template <typename T>
+    CompareToBuilder& CompareToBuilder::withDereferenceIterator(
+        IIterator<T>& lhs,
+        IIterator<T>& rhs)
+    {
+        if (m_compareStatus != 0)
+        {
+            return *this;
+        }
+
+        ComparableComparator<T> comparator;
+        return withDereferenceIterator(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic dereference iterator and comparator.
+     */
+    template <typename T, typename TComparator>
+    CompareToBuilder& CompareToBuilder::withDereferenceIterator(
+        IIterator<T>& lhs,
+        IIterator<T>& rhs,
+        const IComparableComparator<TComparator>& comparator)
+    {
+        if (m_compareStatus != 0)
+        {
+            return *this;
+        }
+
+        DereferenceComparableComparator2<T, TComparator> dereferenceComparator(comparator);
+        return withIterator(lhs, rhs, dereferenceComparator);
     }
 
     /**

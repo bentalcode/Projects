@@ -24,10 +24,10 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
     public List<IBinaryTreeData<Integer, String>> getData() {
         List<IBinaryTreeData<Integer, String>> data = new ArrayList<>();
 
-        data.add(this.getTreeData1());
-        data.add(this.getTreeData2());
+        //data.add(this.getTreeData1());
+        //data.add(this.getTreeData2());
         data.add(this.getTreeData3());
-        data.add(this.getTreeData4());
+        //data.add(this.getTreeData4());
 
         return data;
     }

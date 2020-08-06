@@ -10,6 +10,7 @@ import java.util.Stack;
  */
 public final class BinaryTreeInorderIterator<TKey extends Comparable<TKey>, TValue> implements IIterator<IBinaryTreeNode<TKey, TValue>> {
     private final IBinaryTreeNode<TKey, TValue> root;
+    private final IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
     private Stack<IBinaryTreeNode<TKey, TValue>> stack;
 
     /**
@@ -43,14 +44,13 @@ public final class BinaryTreeInorderIterator<TKey extends Comparable<TKey>, TVal
     public IBinaryTreeNode<TKey, TValue> next() {
         assert(this.hasNext());
 
-        IBinaryTreeNode<TKey, TValue> currElement = this.stack.pop();
+        IBinaryTreeNode<TKey, TValue> currNode = this.stack.pop();
 
-        if (currElement.hasRightChild()) {
-            IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
-            binaryTreeLogic.moveMinimumNode(currElement.getRightChild(), this.stack);
+        if (currNode.hasRightChild()) {
+            this.binaryTreeLogic.moveMinimumNode(currNode.getRightChild(), this.stack);
         }
 
-        return currElement;
+        return currNode;
     }
 
     /**
@@ -61,8 +61,7 @@ public final class BinaryTreeInorderIterator<TKey extends Comparable<TKey>, TVal
         this.stack = new Stack<>();
 
         if (this.root != null) {
-            IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
-            binaryTreeLogic.moveMinimumNode(this.root, this.stack);
+            this.binaryTreeLogic.moveMinimumNode(this.root, this.stack);
         }
     }
 }

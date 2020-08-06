@@ -29,8 +29,12 @@ set(BASE_INCLUDES_FILES
     ./NotImplementedException.h
     ./core/BaseDependencies.h
     ./core/BaseLogic.h
+    ./core/ClassType.h
     ./core/ComparableComparator.h
+    ./core/DereferenceComparableComparator.h
+    ./core/DereferenceComparableComparator2.h
     ./core/DereferenceEquatableComparator.h
+    ./core/DereferenceEquatableComparator2.h
     ./core/EquatableComparator.h
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
@@ -41,9 +45,11 @@ set(BASE_INCLUDES_FILES
     ./core/PreCompiled.h
     ./core/ReferenceCount.h
     ./core/ReferenceCountHolder.h
+    ./core/SkipIterator.h
     ./core/StringIterator.h
     ./core/TwoDimensionalList.h
     ./core/TwoDimensionalListIterator.h
+    ./interfaces/ClassTypes.h
     ./interfaces/ComparatorFactory.h
     ./interfaces/CompareToBuilder.h
     ./interfaces/DateTime.h
@@ -51,7 +57,9 @@ set(BASE_INCLUDES_FILES
     ./interfaces/Duration.h
     ./interfaces/EqualBuilder.h
     ./interfaces/IBinaryComparator.h
+    ./interfaces/IBuilder.h
     ./interfaces/ICalculator.h
+    ./interfaces/IClassType.h
     ./interfaces/ICollection.h
     ./interfaces/IComparableComparator.h
     ./interfaces/IEquatableComparator.h
@@ -62,9 +70,12 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IIterator.h
     ./interfaces/IList.h
     ./interfaces/IMatrix.h
+    ./interfaces/IReverseIterator.h
     ./interfaces/ISizableCollection.h
+    ./interfaces/ISkipIterator.h
     ./interfaces/ITwoDimensionalList.h
     ./interfaces/IValidator.h
+    ./interfaces/IVisitor.h
     ./interfaces/Interval.h
     ./interfaces/Intervals.h
     ./interfaces/IterableComparator.h
@@ -72,17 +83,23 @@ set(BASE_INCLUDES_FILES
     ./interfaces/LogStreamWriter.h
     ./interfaces/Pair.h
     ./interfaces/SharedPtr.h
+    ./interfaces/StringComparable.h
+    ./interfaces/StringEquality.h
     ./interfaces/Strings.h
     ./interfaces/Triple.h
 )
 
 set(BASE_SOURCES_FILES
+    ./core/ClassType.cpp
     ./core/CompareToBuilder.cpp
     ./core/DateTime.cpp
     ./core/EqualBuilder.cpp
     ./core/LogStreamWriter.cpp
     ./core/Position.cpp
     ./core/PreCompiled.cpp
+    ./core/SkipIterator.cpp
+    ./core/StringComparable.cpp
+    ./core/StringEquality.cpp
 )
 
 set(BASE_SOURCES

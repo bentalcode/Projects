@@ -63,6 +63,8 @@ namespace test {
                  */
                 BinaryTreeDataPtr<int, std::string> getTreeData4() const;
             };
+
+            using BinaryTreeTestDataPtr = std::shared_ptr<BinaryTreeTestData>;
         }
     }
 }

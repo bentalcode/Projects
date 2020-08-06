@@ -3,6 +3,8 @@
 
 #include "IBinaryTreeNode.h"
 #include "IIterator.h"
+#include "BinaryTreeLevelOrderWithEndNodesIterator.h"
+#include "CompareToBuilder.h"
 
 namespace datastructures {
     namespace binarytree {
@@ -39,36 +41,53 @@ namespace datastructures {
             /**
              * Gets a root of a tree.
              */
-            virtual IBinaryTreeNode<TKey, TValue>* getRoot() const = 0;
+            virtual IBinaryTreeNodePtr<TKey, TValue> getRoot() const = 0;
 
             /**
              * Sets a root of a tree.
              */
-            virtual void setRoot(IBinaryTreeNode<TKey, TValue>* root) = 0;
+            virtual void setRoot(IBinaryTreeNodePtr<TKey, TValue> root) = 0;
 
             /**
              * Gets a level order iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNode<TKey , TValue>*> getLevelOrderIterator() const = 0;
+            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> getLevelOrderIterator() const = 0;
 
             /**
              * Gets an inorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNode<TKey , TValue>*> getInorderIterator() const = 0;
+            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> getInorderIterator() const = 0;
 
             /**
              * Gets a preorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNode<TKey , TValue>*> getPreorderIterator() const = 0;
+            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> getPreorderIterator() const = 0;
 
             /**
              * Gets a postorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNode<TKey , TValue>*> getPostorderIterator() const = 0;
+            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> getPostorderIterator() const = 0;
         };
 
         template <typename TKey, typename TValue>
         using IBinaryTreePtr = std::shared_ptr<IBinaryTree<TKey, TValue>>;
+
+        template <typename TKey, typename TValue>
+        bool operator<(const IBinaryTree<TKey, TValue>& left, const IBinaryTree<TKey, TValue>& right)
+        {
+            base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> lhsIterator =
+                BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(left.getRoot());
+
+            base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> rhsIterator =
+                BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(right.getRoot());
+
+            base::CompareToBuilder compareToBuilder;
+            bool status = compareToBuilder.withDereferenceIterator(
+                lhsIterator,
+                rhsIterator).build();
+
+            return status <= 1;
+        }
     }
 }
 

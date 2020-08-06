@@ -2,7 +2,6 @@
 
 #include "BinaryTreeUnitTest.h"
 #include "UnitTestFunction.h"
-#include "IBinaryTree.h"
 
 using namespace test::datastructures;
 using namespace test::datastructures::binarytree;
@@ -49,6 +48,9 @@ void BinaryTreeUnitTest::registerTests(unit_testing::ITestRegistration& registra
  */
 void BinaryTreeUnitTest::binaryTreeCreationTest()
 {
-    IBinaryTreePtr<int, std::string> treePtr = nullptr;
-    testCreation(treePtr);
+    std::vector<BinaryTreeDataPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
+
+    for (BinaryTreeDataPtr<int, std::string> treeData : data) {
+        testCreation(*treeData);
+    }
 }

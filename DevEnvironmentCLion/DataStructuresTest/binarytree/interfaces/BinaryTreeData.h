@@ -68,11 +68,11 @@ namespace test {
                 const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& getPostorder() const;
 
             private:
-                std::vector<IBinaryTreeNodePtr < TKey, TValue>> m_creationData;
-                std::vector<IBinaryTreeNodePtr < TKey, TValue>> m_levelOrder;
-                std::vector<IBinaryTreeNodePtr < TKey, TValue>> m_inorder;
-                std::vector<IBinaryTreeNodePtr < TKey, TValue>> m_preorder;
-                std::vector<IBinaryTreeNodePtr < TKey, TValue>> m_postorder;
+                std::vector<IBinaryTreeNodePtr<TKey, TValue>> m_creationData;
+                std::vector<IBinaryTreeNodePtr<TKey, TValue>> m_levelOrder;
+                std::vector<IBinaryTreeNodePtr<TKey, TValue>> m_inorder;
+                std::vector<IBinaryTreeNodePtr<TKey, TValue>> m_preorder;
+                std::vector<IBinaryTreeNodePtr<TKey, TValue>> m_postorder;
             };
 
             template<typename TKey, typename TValue>
@@ -84,10 +84,10 @@ namespace test {
             template<typename TKey, typename TValue>
             BinaryTreeData<TKey, TValue>::BinaryTreeData(
                 const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& creationData,
-                const std::vector<IBinaryTreeNodePtr < TKey, TValue>>& levelOrder,
-                const std::vector<IBinaryTreeNodePtr < TKey, TValue>>& inorder,
-                const std::vector<IBinaryTreeNodePtr < TKey, TValue>>& preorder,
-                const std::vector<IBinaryTreeNodePtr < TKey, TValue>>& postorder) :
+                const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& levelOrder,
+                const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& inorder,
+                const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& preorder,
+                const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& postorder) :
                 m_creationData (creationData),
                 m_levelOrder(levelOrder),
                 m_inorder(inorder),

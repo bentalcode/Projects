@@ -2,6 +2,7 @@ package datastructures.binarytree.core;
 
 import base.core.Conditions;
 import base.core.SkipIterator;
+import base.interfaces.ISkipIterator;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeNodeIterator;
 import java.util.List;
@@ -10,16 +11,18 @@ import java.util.List;
  * The BinaryTreeNodeListIterator class implements an iterator of a list of binary nodes.
  */
 public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TValue>
-    extends SkipIterator<IBinaryTreeNode<TKey, TValue>>
     implements IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> {
 
     private final List<IBinaryTreeNode<TKey, TValue>> nodes;
     private int position;
+    private final ISkipIterator<IBinaryTreeNode<TKey, TValue>> skipIterator = new SkipIterator<>();
 
     /**
-     * Creates a new iterator of a tree.
+     * Creates a new iterator of a list of binary nodes.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> of(List<IBinaryTreeNode<TKey, TValue>> nodes) {
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> of(
+        List<IBinaryTreeNode<TKey, TValue>> nodes) {
+
         return new BinaryTreeNodeListIterator<>(nodes);
     }
 
@@ -32,7 +35,7 @@ public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TVa
             "The nodes to iterate.");
 
         this.nodes = nodes;
-        this.registerGenericSkipElement(BinaryTreeEndNode.class);
+        this.skipIterator.registerGenericSkipElement(BinaryTreeEndNode.class);
 
         this.reset();
     }
@@ -63,8 +66,16 @@ public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TVa
      */
     @Override
     public void reset() {
-        this.enableSkipElements();
+        this.skipIterator.enableSkipElements();
         this.position = this.alignPosition(0);
+    }
+
+    /**
+     * Gets the skip iterator.
+     */
+    @Override
+    public ISkipIterator<IBinaryTreeNode<TKey, TValue>> getSkipIterator() {
+        return this.skipIterator;
     }
 
     /*
@@ -80,14 +91,14 @@ public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TVa
     private int alignPosition(int currPosition) {
         int position = currPosition;
 
-        if (!this.getSkipElementsStatus()) {
+        if (!this.skipIterator.getSkipElementsStatus()) {
             return position;
         }
 
         while (position < this.nodes.size()) {
             IBinaryTreeNode<TKey, TValue> currNode = this.nodes.get(position);
 
-            if (!this.isSkipElement(currNode)) {
+            if (!this.skipIterator.isSkipElement(currNode)) {
                 break;
             }
 
