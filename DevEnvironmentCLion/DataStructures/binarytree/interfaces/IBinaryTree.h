@@ -1,8 +1,8 @@
 #ifndef I_BINARY_TREE_H_80c4d24f_227c_411c_96d3_19fb108187fc
 #define I_BINARY_TREE_H_80c4d24f_227c_411c_96d3_19fb108187fc
 
-#include "IBinaryTreeNode.h"
-#include "IIterator.h"
+#include "IIterable.h"
+#include "IReverseIterable.h"
 #include "BinaryTreeLevelOrderWithEndNodesIterator.h"
 #include "CompareToBuilder.h"
 
@@ -13,7 +13,9 @@ namespace datastructures {
          * The IBinaryTree interface defines a binary tree.
          */
         template<typename TKey, typename TValue>
-        class IBinaryTree
+        class IBinaryTree : public
+            base::IIterable<IBinaryTreeNodePtr<TKey, TValue>>,
+            base::IReverseIterable<IBinaryTreeNodePtr<TKey, TValue>>
         {
         public:
             /**
@@ -47,6 +49,16 @@ namespace datastructures {
              * Sets a root of a tree.
              */
             virtual void setRoot(IBinaryTreeNodePtr<TKey, TValue> root) = 0;
+
+            /**
+             * Gets an iterator of a tree.
+             */
+            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getIterator() const = 0;
+
+            /**
+             * Gets a reverse iterator of a tree.
+             */
+            virtual base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getReverseIterator() const = 0;
 
             /**
              * Gets a level order iterator of a tree.

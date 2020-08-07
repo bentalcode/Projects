@@ -232,7 +232,7 @@ public final class BinaryTreeTest {
             this.assertion.assertEquals(
                 currNode,
                 dataNode,
-                "Incorrect logic of iteration.");
+                "Incorrect logic of default iteration.");
         }
     }
 

@@ -7,6 +7,7 @@
 #include "BinaryTreeInorderIterator.h"
 #include "BinaryTreePreorderIterator.h"
 #include "BinaryTreePostorderIterator.h"
+#include "BinaryTreeInorderReverseIterator.h"
 
 namespace datastructures {
     namespace binarytree {
@@ -15,7 +16,7 @@ namespace datastructures {
          * The BinaryTree class implements a binary tree.
          */
         template<typename TKey, typename TValue>
-        class BinaryTree : public IBinaryTree<TKey, TValue> {
+        class BinaryTree final : public IBinaryTree<TKey, TValue> {
         public:
             /**
              * The constructor.
@@ -48,6 +49,16 @@ namespace datastructures {
              * Sets a root of a tree.
              */
             virtual void setRoot(IBinaryTreeNodePtr<TKey, TValue> root) override;
+
+            /**
+             * Gets an iterator of a tree.
+             */
+            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getIterator() const override;
+
+            /**
+             * Gets a reverse iterator of a tree.
+             */
+            virtual base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getReverseIterator() const override;
 
             /**
              * Gets a level order iterator of a tree.
@@ -106,6 +117,24 @@ namespace datastructures {
         void BinaryTree<TKey, TValue>::setRoot(IBinaryTreeNodePtr<TKey, TValue> root)
         {
             m_root = root;
+        }
+
+        /**
+         * Gets an iterator of a tree.
+         */
+        template <typename TKey, typename TValue>
+        base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> BinaryTree<TKey, TValue>::getIterator() const
+        {
+            return std::make_shared<BinaryTreeInorderIterator<TKey, TValue>>(m_root);
+        }
+
+        /**
+         * Gets a reverse iterator of a tree.
+         */
+        template <typename TKey, typename TValue>
+        base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> BinaryTree<TKey, TValue>::getReverseIterator() const
+        {
+            return std::make_shared<BinaryTreeInorderReverseIterator<TKey, TValue>>(m_root);
         }
 
         /**

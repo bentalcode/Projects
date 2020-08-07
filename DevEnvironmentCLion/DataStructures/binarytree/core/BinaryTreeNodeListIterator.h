@@ -70,12 +70,12 @@ namespace datastructures {
             /*
              * Gets the next position.
              */
-            size_t nextPosition(size_t currPosition);
+            size_t nextPosition(size_t position);
 
             /*
              * Aligns the position.
              */
-            size_t alignPosition(size_t currPosition);
+            size_t alignPosition(size_t position);
 
             std::vector<IBinaryTreeNodePtr<TKey, TValue>> m_nodes;
             size_t m_position;
@@ -103,6 +103,7 @@ namespace datastructures {
             m_nodes(nodes),
             m_skipIterator(std::make_shared<base::SkipIterator>())
         {
+            m_skipIterator->enableSkipElements();
             m_skipIterator->registerGenericSkipElement(typeid(BinaryTreeEndNode<TKey, TValue>));
 
             reset();
@@ -145,7 +146,6 @@ namespace datastructures {
         template<typename TKey, typename TValue>
         void BinaryTreeNodeListIterator<TKey, TValue>::reset()
         {
-            m_skipIterator->enableSkipElements();
             m_position = alignPosition(0);
         }
 
@@ -162,37 +162,37 @@ namespace datastructures {
          * Gets the next position.
          */
         template<typename TKey, typename TValue>
-        size_t BinaryTreeNodeListIterator<TKey, TValue>::nextPosition(size_t currPosition)
+        size_t BinaryTreeNodeListIterator<TKey, TValue>::nextPosition(size_t position)
         {
-            return alignPosition(currPosition + 1);
+            return alignPosition(position + 1);
         }
 
         /*
          * Aligns the position.
          */
         template<typename TKey, typename TValue>
-        size_t BinaryTreeNodeListIterator<TKey, TValue>::alignPosition(size_t currPosition)
+        size_t BinaryTreeNodeListIterator<TKey, TValue>::alignPosition(size_t position)
         {
-            size_t position = currPosition;
+            size_t currPosition = position;
 
             if (!m_skipIterator->getSkipElementsStatus())
             {
-                return position;
+                return currPosition;
             }
 
-            while (position < m_nodes.size())
+            while (currPosition < m_nodes.size())
             {
-                IBinaryTreeNodePtr<TKey, TValue> currNode = m_nodes[position];
+                IBinaryTreeNodePtr<TKey, TValue> currNode = m_nodes[currPosition];
 
                 if (!m_skipIterator->isSkipElement(typeid(*currNode)))
                 {
                     break;
                 }
 
-                ++position;
+                ++currPosition;
             }
 
-            return position;
+            return currPosition;
         }
     }
 }

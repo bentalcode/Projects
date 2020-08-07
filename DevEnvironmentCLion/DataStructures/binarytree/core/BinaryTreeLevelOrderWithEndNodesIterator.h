@@ -65,9 +65,6 @@ namespace datastructures {
             std::unique_ptr<std::queue<IBinaryTreeNodePtr<TKey, TValue>>> m_queue;
         };
 
-        template <typename TKey, typename TValue>
-        using BinaryTreeLevelOrderWithEndNodesIteratorPtr = std::shared_ptr<BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>>;
-
         /**
          * The BinaryTreeLevelOrderWithEndNodesIterator constructor.
          */

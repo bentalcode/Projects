@@ -1,45 +1,47 @@
 #ifndef I_BINARY_TREE_NODE_REVERSE_ITERATOR_H_8b0a18de_29db_4442_b351_f2f582642e9f
 #define I_BINARY_TREE_NODE_REVERSE_ITERATOR_H_8b0a18de_29db_4442_b351_f2f582642e9f
 
-#include "IReverseIterator.h"
-#include "ISkipIterator.h"
+//#include "IReverseIterator.h"
 
 namespace datastructures {
     namespace binarytree {
 
         /**
-         * The IBinaryTreeBodeReverseIterator interface defines a reverse iterator of binary nodes.
+         * The IBinaryTreeNodeReverseIterator interface defines a reverse iterator of binary nodes.
          */
         template<typename T>
-        class IBinaryTreeBodeReverseIterator : public base::IReverseIterator<T> {
+        class IBinaryTreeNodeReverseIterator : public base::IReverseIterator<T> {
         public:
             /**
-             * The IBinaryTreeBodeReverseIterator constructor.
+             * The IBinaryTreeNodeReverseIterator constructor.
              */
-            IBinaryTreeBodeReverseIterator() = default;
+            IBinaryTreeNodeReverseIterator() = default;
 
             /**
-             * The IBinaryTreeBodeReverseIterator destructor.
+             * The IBinaryTreeNodeReverseIterator destructor.
              */
-            virtual ~IBinaryTreeBodeReverseIterator() = default;
+            virtual ~IBinaryTreeNodeReverseIterator() = default;
 
             /**
              * The copy/move constructors.
              */
-            IBinaryTreeBodeReverseIterator(const IBinaryTreeBodeReverseIterator&) = delete;
-            IBinaryTreeBodeReverseIterator(IBinaryTreeBodeReverseIterator&&) = delete;
+            IBinaryTreeNodeReverseIterator(const IBinaryTreeNodeReverseIterator&) = delete;
+            IBinaryTreeNodeReverseIterator(IBinaryTreeNodeReverseIterator&&) = delete;
 
             /**
              * The copy/move assignment operators.
              */
-            IBinaryTreeBodeReverseIterator& operator=(const IBinaryTreeBodeReverseIterator&) = delete;
-            IBinaryTreeBodeReverseIterator& operator=(IBinaryTreeBodeReverseIterator&&) = delete;
+            IBinaryTreeNodeReverseIterator& operator=(const IBinaryTreeNodeReverseIterator&) = delete;
+            IBinaryTreeNodeReverseIterator& operator=(IBinaryTreeNodeReverseIterator&&) = delete;
 
             /**
              * Gets the skip iterator.
              */
             virtual base::ISkipIteratorPtr getSkipIterator() const = 0;
         };
+
+        template <typename T>
+        using IBinaryTreeNodeReverseIteratorPtr = std::shared_ptr<IBinaryTreeNodeReverseIterator<T>>;
     }
 }
 

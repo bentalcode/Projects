@@ -6,9 +6,9 @@ import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import java.util.Stack;
 
 /**
- * The BinaryTreeReverseInorderIterator class implements a reverse inorder iterator of a binary tree.
+ * The BinaryTreeInorderReverseIterator class implements a reverse inorder iterator of a binary tree.
  */
-public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey>, TValue> implements IReverseIterator<IBinaryTreeNode<TKey, TValue>> {
+public final class BinaryTreeInorderReverseIterator<TKey extends Comparable<TKey>, TValue> implements IReverseIterator<IBinaryTreeNode<TKey, TValue>> {
     private final IBinaryTreeNode<TKey, TValue> root;
     private Stack<IBinaryTreeNode<TKey, TValue>> stack;
     private final IBinaryTreeLogic<TKey, TValue> binaryTreeLogic = new BinaryTreeLogic<>();
@@ -17,13 +17,13 @@ public final class BinaryTreeReverseInorderIterator<TKey extends Comparable<TKey
      * Creates a reverse inorder iterator of a binary tree.
      */
     public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IBinaryTreeNode<TKey, TValue>> of(IBinaryTreeNode<TKey, TValue> root) {
-        return new BinaryTreeReverseInorderIterator<>(root);
+        return new BinaryTreeInorderReverseIterator<>(root);
     }
 
     /**
-     * The BinaryTreeReverseInorderIterator constructor.
+     * The BinaryTreeInorderReverseIterator constructor.
      */
-    private BinaryTreeReverseInorderIterator(IBinaryTreeNode<TKey, TValue> root) {
+    private BinaryTreeInorderReverseIterator(IBinaryTreeNode<TKey, TValue> root) {
         this.root = root;
 
         this.reset();

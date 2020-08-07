@@ -18,7 +18,7 @@ public final class BinaryTreeNodeListReverseIterator<TKey extends Comparable<TKe
     private final ISkipIterator<IBinaryTreeNode<TKey, TValue>> skipIterator = new SkipIterator<>();
 
     /**
-     * Creates a new reverse iterator of a list.
+     * Creates a new reverse iterator of a list of binary nodes.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNodeReverseIterator<IBinaryTreeNode<TKey, TValue>> of(
         List<IBinaryTreeNode<TKey, TValue>> nodes) {
@@ -35,6 +35,7 @@ public final class BinaryTreeNodeListReverseIterator<TKey extends Comparable<TKe
             "The nodes to iterate.");
 
         this.nodes = nodes;
+        this.skipIterator.enableSkipElements();
         this.skipIterator.registerGenericSkipElement(BinaryTreeEndNode.class);
 
         this.reset();
@@ -66,7 +67,6 @@ public final class BinaryTreeNodeListReverseIterator<TKey extends Comparable<TKe
      */
     @Override
     public void reset() {
-        this.skipIterator.enableSkipElements();
         this.position = this.alignPosition(this.nodes.size() - 1);
     }
 

@@ -35,6 +35,7 @@ public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TVa
             "The nodes to iterate.");
 
         this.nodes = nodes;
+        this.skipIterator.enableSkipElements();
         this.skipIterator.registerGenericSkipElement(BinaryTreeEndNode.class);
 
         this.reset();
@@ -66,7 +67,6 @@ public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TVa
      */
     @Override
     public void reset() {
-        this.skipIterator.enableSkipElements();
         this.position = this.alignPosition(0);
     }
 
@@ -81,30 +81,30 @@ public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TVa
     /*
      * Gets the next position.
      */
-    private int nextPosition(int currPosition) {
-        return this.alignPosition(currPosition + 1);
+    private int nextPosition(int position) {
+        return this.alignPosition(position + 1);
     }
 
     /*
      * Aligns the position.
      */
-    private int alignPosition(int currPosition) {
-        int position = currPosition;
+    private int alignPosition(int position) {
+        int currPosition = position;
 
         if (!this.skipIterator.getSkipElementsStatus()) {
-            return position;
+            return currPosition;
         }
 
-        while (position < this.nodes.size()) {
-            IBinaryTreeNode<TKey, TValue> currNode = this.nodes.get(position);
+        while (currPosition < this.nodes.size()) {
+            IBinaryTreeNode<TKey, TValue> currNode = this.nodes.get(currPosition);
 
             if (!this.skipIterator.isSkipElement(currNode)) {
                 break;
             }
 
-            ++position;
+            ++currPosition;
         }
 
-        return position;
+        return currPosition;
     }
 }

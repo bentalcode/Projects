@@ -66,9 +66,6 @@ namespace datastructures {
             BinaryTreeLogic<TKey, TValue> m_logic;
         };
 
-        template <typename TKey, typename TValue>
-        using BinaryTreeInorderIteratorPtr = std::shared_ptr<BinaryTreeInorderIterator<TKey, TValue>>;
-
         /**
          * The BinaryTreeInorderIterator constructor.
          */

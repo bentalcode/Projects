@@ -12,7 +12,6 @@ import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.binarytree.interfaces.IBinaryTree;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
-import datastructures.binarytree.interfaces.IBinaryTreeTraversal;
 
 /**
  * The BinaryTree class implements a binary tree.
@@ -79,7 +78,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IReverseIterator<IBinaryTreeNode<TKey , TValue>> getReverseIterator() {
-        return BinaryTreeReverseInorderIterator.of(this.root);
+        return BinaryTreeInorderReverseIterator.of(this.root);
     }
 
     /**

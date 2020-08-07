@@ -38,6 +38,7 @@ set(BASE_INCLUDES_FILES
     ./core/EquatableComparator.h
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
+    ./core/IterableObject.h
     ./core/List.h
     ./core/ListIterator.h
     ./core/Matrix.h
@@ -70,6 +71,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IIterator.h
     ./interfaces/IList.h
     ./interfaces/IMatrix.h
+    ./interfaces/IReverseIterable.h
     ./interfaces/IReverseIterator.h
     ./interfaces/ISizableCollection.h
     ./interfaces/ISkipIterator.h

@@ -67,6 +67,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/EquatableComparator.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
+    ../Base/core/IterableObject.h
     ../Base/core/List.h
     ../Base/core/ListIterator.h
     ../Base/core/Matrix.h
@@ -99,6 +100,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatrix.h
+    ../Base/interfaces/IReverseIterable.h
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ISkipIterator.h
@@ -223,11 +225,13 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/binarytree/core/BinaryTree.h
     ../DataStructures/binarytree/core/BinaryTreeEndNode.h
     ../DataStructures/binarytree/core/BinaryTreeInorderIterator.h
+    ../DataStructures/binarytree/core/BinaryTreeInorderReverseIterator.h
     ../DataStructures/binarytree/core/BinaryTreeLevelOrderIterator.h
     ../DataStructures/binarytree/core/BinaryTreeLevelOrderWithEndNodesIterator.h
     ../DataStructures/binarytree/core/BinaryTreeLogic.h
     ../DataStructures/binarytree/core/BinaryTreeNode.h
     ../DataStructures/binarytree/core/BinaryTreeNodeListIterator.h
+    ../DataStructures/binarytree/core/BinaryTreeNodeListReverseIterator.h
     ../DataStructures/binarytree/core/BinaryTreeNodes.h
     ../DataStructures/binarytree/core/BinaryTreePostorderIterator.h
     ../DataStructures/binarytree/core/BinaryTreePreorderIterator.h

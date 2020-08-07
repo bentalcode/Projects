@@ -6,17 +6,39 @@
 using namespace test::datastructures;
 using namespace test::datastructures::binarytree;
 
-class TestBinaryTreeCreationFunction : public unit_testing::UnitTestFunction<BinaryTreeUnitTest> {
+class TestBinaryTreeCreationFunction : public unit_testing::UnitTestFunction<BinaryTreeUnitTest>
+{
 public:
-    TestBinaryTreeCreationFunction(BinaryTreeUnitTest &unitTest) :
-        UnitTestFunction("binaryTreeCreationTest", unitTest) {
+    TestBinaryTreeCreationFunction(BinaryTreeUnitTest& unitTest) :
+        UnitTestFunction("binaryTreeCreationTest", unitTest)
+    {
     }
 
-    virtual ~TestBinaryTreeCreationFunction() {
+    virtual ~TestBinaryTreeCreationFunction()
+    {
     }
 
-    virtual void operator()() {
+    virtual void operator()()
+    {
         getUnitTest().binaryTreeCreationTest();
+    }
+};
+
+class TestBinaryTreeIterationFunction : public unit_testing::UnitTestFunction<BinaryTreeUnitTest>
+{
+public:
+    TestBinaryTreeIterationFunction(BinaryTreeUnitTest& unitTest) :
+            UnitTestFunction("binaryTreeIterationTest", unitTest)
+    {
+    }
+
+    virtual ~TestBinaryTreeIterationFunction()
+    {
+    }
+
+    virtual void operator()()
+    {
+        getUnitTest().binaryTreeIterationTest();
     }
 };
 
@@ -41,6 +63,7 @@ BinaryTreeUnitTest::~BinaryTreeUnitTest()
 void BinaryTreeUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
     registration.registerTest(unit_testing::ITestFunctionPtr(new TestBinaryTreeCreationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBinaryTreeIterationFunction(*this)));
 }
 
 /**
@@ -50,7 +73,21 @@ void BinaryTreeUnitTest::binaryTreeCreationTest()
 {
     std::vector<BinaryTreeDataPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
 
-    for (BinaryTreeDataPtr<int, std::string> treeData : data) {
+    for (BinaryTreeDataPtr<int, std::string> treeData : data)
+    {
         testCreation(*treeData);
+    }
+}
+
+/**
+ * Tests the iteration logic of a binary tree.
+ */
+void BinaryTreeUnitTest::binaryTreeIterationTest()
+{
+    std::vector<BinaryTreeDataPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
+
+    for (BinaryTreeDataPtr<int, std::string> treeData : data)
+    {
+        testIteration(*treeData);
     }
 }

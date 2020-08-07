@@ -69,9 +69,6 @@ namespace datastructures {
             std::unique_ptr<std::stack<IBinaryTreeNodePtr<TKey, TValue>>> m_stack;
         };
 
-        template <typename TKey, typename TValue>
-        using BinaryTreePostorderIteratorPtr = std::shared_ptr<BinaryTreePostorderIterator<TKey, TValue>>;
-
         /**
          * The BinaryTreePostorderIterator constructor.
          */

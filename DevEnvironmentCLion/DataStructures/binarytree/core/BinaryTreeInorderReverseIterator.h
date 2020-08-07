@@ -1,7 +1,7 @@
-#ifndef BINARY_TREE_PREORDER_ITERATOR_H_01e217c9_6926_41eb_b00f_e1525f8050ba
-#define BINARY_TREE_PREORDER_ITERATOR_H_01e217c9_6926_41eb_b00f_e1525f8050ba
+#ifndef BINARY_TREE_INORDER_REVERSE_ITERATOR_H_a488af10_de19_4c4f_be26_5d02ee75c220
+#define BINARY_TREE_INORDER_REVERSE_ITERATOR_H_a488af10_de19_4c4f_be26_5d02ee75c220
 
-#include "IIterator.h"
+#include "IReverseIterator.h"
 #include "IBinaryTreeNode.h"
 #include "BinaryTreeLogic.h"
 
@@ -9,41 +9,41 @@ namespace datastructures {
     namespace binarytree {
 
         /**
-         * The BinaryTreePreorderIterator class implements an preorder iterator of a binary tree.
+         * The BinaryTreeInorderReverseIterator class implements an inorder reverse iterator of a binary tree.
          */
         template<typename TKey, typename TValue>
-        class BinaryTreePreorderIterator : public base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>
+        class BinaryTreeInorderReverseIterator : public base::IReverseIterator<IBinaryTreeNodePtr<TKey, TValue>>
         {
         public:
             /**
-             * Creates a preorder iterator of a binary tree.
+             * Creates an inorder reverse iterator of a binary tree.
              */
-            static base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> of(IBinaryTreeNodePtr<TKey, TValue> root)
+            static base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> of(IBinaryTreeNodePtr<TKey, TValue> root)
             {
-                return std::make_shared<BinaryTreePreorderIterator<TKey, TValue>>(root);
+                return std::make_shared<BinaryTreeInorderReverseIterator<TKey, TValue>>(root);
             }
 
             /**
-             * The BinaryTreePreorderIterator constructor.
+             * The BinaryTreeInorderReverseIterator constructor.
              */
-            explicit BinaryTreePreorderIterator(IBinaryTreeNodePtr<TKey, TValue> root);
+            explicit BinaryTreeInorderReverseIterator(IBinaryTreeNodePtr<TKey, TValue> root);
 
             /**
              * The destructor.
              */
-            virtual ~BinaryTreePreorderIterator();
+            virtual ~BinaryTreeInorderReverseIterator();
 
             /**
              * The copy/move constructors.
              */
-            BinaryTreePreorderIterator(const BinaryTreePreorderIterator&) = delete;
-            BinaryTreePreorderIterator(BinaryTreePreorderIterator&&) = delete;
+            BinaryTreeInorderReverseIterator(const BinaryTreeInorderReverseIterator&) = delete;
+            BinaryTreeInorderReverseIterator(BinaryTreeInorderReverseIterator&&) = delete;
 
             /**
              * The copy/move assignment operators.
              */
-            BinaryTreePreorderIterator& operator=(const BinaryTreePreorderIterator&) = delete;
-            BinaryTreePreorderIterator& operator=(BinaryTreePreorderIterator&&) = delete;
+            BinaryTreeInorderReverseIterator& operator=(const BinaryTreeInorderReverseIterator&) = delete;
+            BinaryTreeInorderReverseIterator& operator=(BinaryTreeInorderReverseIterator&&) = delete;
 
             /**
              * Checks whether there is a next element.
@@ -67,20 +67,20 @@ namespace datastructures {
         };
 
         /**
-         * The BinaryTreePreorderIterator constructor.
+         * The BinaryTreeInorderReverseIterator constructor.
          */
         template <typename TKey, typename TValue>
-        BinaryTreePreorderIterator<TKey, TValue>::BinaryTreePreorderIterator(IBinaryTreeNodePtr<TKey, TValue> root) :
+        BinaryTreeInorderReverseIterator<TKey, TValue>::BinaryTreeInorderReverseIterator(IBinaryTreeNodePtr<TKey, TValue> root) :
             m_root(root)
         {
             reset();
         }
 
         /**
-         * The BinaryTreePreorderIterator destructor.
+         * The BinaryTreeInorderReverseIterator destructor.
          */
         template <typename TKey, typename TValue>
-        BinaryTreePreorderIterator<TKey, TValue>::~BinaryTreePreorderIterator()
+        BinaryTreeInorderReverseIterator<TKey, TValue>::~BinaryTreeInorderReverseIterator()
         {
         }
 
@@ -88,7 +88,7 @@ namespace datastructures {
          * Checks whether there is a next element.
          */
         template <typename TKey, typename TValue>
-        bool BinaryTreePreorderIterator<TKey, TValue>::hasNext() const
+        bool BinaryTreeInorderReverseIterator<TKey, TValue>::hasNext() const
         {
             return !m_stack->empty();
         }
@@ -97,21 +97,15 @@ namespace datastructures {
          * Gets the next element.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreePreorderIterator<TKey, TValue>::next()
+        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeInorderReverseIterator<TKey, TValue>::next()
         {
             assert(hasNext());
-
             IBinaryTreeNodePtr<TKey, TValue> currNode = m_stack->top();
             m_stack->pop();
 
-            if (currNode->hasRightChild())
-            {
-                m_stack->push(currNode->getRightChild());
-            }
-
             if (currNode->hasLeftChild())
             {
-                m_stack->push(currNode->getLeftChild());
+                m_logic.moveMaximumNode(currNode->getLeftChild(), *m_stack);
             }
 
             return currNode;
@@ -121,16 +115,16 @@ namespace datastructures {
          * Resets the iterator.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreePreorderIterator<TKey, TValue>::reset()
+        void BinaryTreeInorderReverseIterator<TKey, TValue>::reset()
         {
             m_stack = std::make_unique<std::stack<IBinaryTreeNodePtr<TKey, TValue>>>();
 
             if (m_root.get() != nullptr)
             {
-                m_stack->push(m_root);
+                m_logic.moveMaximumNode(m_root, *m_stack);
             }
         }
     }
 }
 
-#endif // BINARY_TREE_PREORDER_ITERATOR_H_01e217c9_6926_41eb_b00f_e1525f8050ba
+#endif // BINARY_TREE_INORDER_REVERSE_ITERATOR_H_a488af10_de19_4c4f_be26_5d02ee75c220

@@ -61,6 +61,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/EquatableComparator.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
+    ../Base/core/IterableObject.h
     ../Base/core/List.h
     ../Base/core/ListIterator.h
     ../Base/core/Matrix.h
@@ -93,6 +94,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatrix.h
+    ../Base/interfaces/IReverseIterable.h
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ISkipIterator.h
