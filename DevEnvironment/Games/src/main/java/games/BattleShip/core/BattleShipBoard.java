@@ -65,7 +65,7 @@ public final class BattleShipBoard implements IBattleShipBoard {
      */
     @Override
     public void positionBattleShip(List<IPosition> positions) {
-        validateShipPositions(positions);
+        this.validateShipPositions(positions);
 
         ++this.currShipIndex;
 
@@ -86,8 +86,6 @@ public final class BattleShipBoard implements IBattleShipBoard {
      */
     @Override
     public BattleShipShootResultType shoot(IPosition position) {
-        this.validatePosition(position);
-
         if (this.shootHereBefore(position)) {
             String errorMessage = "This position has already been used in this game.";
             throw new GamesException(errorMessage);
@@ -184,7 +182,10 @@ public final class BattleShipBoard implements IBattleShipBoard {
         while (!queue.isEmpty()) {
             IPosition currPosition = queue.poll();
             visited.add(currPosition);
-            inputPositions.remove(currPosition);
+
+            if (!inputPositions.remove(currPosition)) {
+                return false;
+            }
 
             for (IPosition nextPosition : this.getAdjacentPositions(currPosition)) {
                 if (visited.contains(nextPosition)) {
