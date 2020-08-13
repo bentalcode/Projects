@@ -27,6 +27,7 @@ endif()
 set(PROBLEMS_INCLUDES_FILES
     ./ProblemException.h
     ./core/CombinationSum.h
+    ./core/FlightRoutePlanner.h
     ./core/MatchingTriplets.h
     ./core/MatrixFinder.h
     ./core/MergingIntervals.h
@@ -36,6 +37,7 @@ set(PROBLEMS_INCLUDES_FILES
     ./core/PreCompiled.h
     ./core/WordFinder.h
     ./interfaces/ICombinationSum.h
+    ./interfaces/IFlightRoutePlanner.h
     ./interfaces/IMatchingTriplets.h
     ./interfaces/IMatrixFinder.h
     ./interfaces/IMergingIntervals.h
@@ -44,6 +46,7 @@ set(PROBLEMS_INCLUDES_FILES
 )
 
 set(PROBLEMS_SOURCES_FILES
+    ./core/FlightRoutePlanner.cpp
     ./core/MinimumWindowSubstring.cpp
     ./core/NumberValidator.cpp
     ./core/PositionQueens.cpp

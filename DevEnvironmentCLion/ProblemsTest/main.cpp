@@ -7,6 +7,7 @@
 #include "NumberValidatorUnitTest.h"
 #include "PositionQueensUnitTest.h"
 #include "WordFinderUnitTest.h"
+#include "FlightRoutePlannerUnitTest.h"
 
 using namespace problems_test;
 using namespace unit_testing;
@@ -38,6 +39,9 @@ int main()
 
     IUnitTestPtr wordFinderUnitTest(new WordFinderUnitTest("WordFinder"));
     testManager.registerTest(wordFinderUnitTest);
+
+    IUnitTestPtr flightRoutePlannerUnitTest(new FlightRoutePlannerUnitTest("FlightRoutePlanner"));
+    testManager.registerTest(flightRoutePlannerUnitTest);
 
     testManager.run();
 

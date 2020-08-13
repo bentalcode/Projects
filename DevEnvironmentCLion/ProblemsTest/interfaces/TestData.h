@@ -38,6 +38,11 @@ namespace problems_test {
         std::shared_ptr<std::vector<T>> createVector(
             int size,
             const T& initialValue) const;
+
+        /**
+         * Gets flights information.
+         */
+        std::vector<std::tuple<std::string, std::string, double>> getFlightsInformation() const;
     };
 
     template <typename T>

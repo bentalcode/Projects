@@ -1,8 +1,6 @@
 #ifndef I_POSITION_QUEENS_H_b91590fa_e0b3_4e6f_965c_95e281a3fdc1
 #define I_POSITION_QUEENS_H_b91590fa_e0b3_4e6f_965c_95e281a3fdc1
 
-#include "BaseDependencies.h"
-
 namespace problems
 {
     /**

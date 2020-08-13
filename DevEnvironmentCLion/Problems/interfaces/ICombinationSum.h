@@ -1,8 +1,6 @@
 #ifndef I_COMBINATION_SUM_H_bce19e1c_9421_415f_b2a9_3540d3ef5544
 #define I_COMBINATION_SUM_H_bce19e1c_9421_415f_b2a9_3540d3ef5544
 
-#include "BaseDependencies.h"
-
 namespace problems
 {
     /**

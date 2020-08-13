@@ -27,6 +27,7 @@ endif()
 set(PROBLEMS_TEST_INCLUDES_FILES
     ./core/PreCompiled.h
     ./interfaces/CombinationSumUnitTest.h
+    ./interfaces/FlightRoutePlannerUnitTest.h
     ./interfaces/MatchingTripletsUnitTest.h
     ./interfaces/MatrixFinderUnitTest.h
     ./interfaces/MergingIntervalsUnitTest.h
@@ -39,6 +40,7 @@ set(PROBLEMS_TEST_INCLUDES_FILES
 
 set(PROBLEMS_TEST_SOURCES_FILES
     ./core/CombinationSumUnitTest.cpp
+    ./core/FlightRoutePlannerUnitTest.cpp
     ./core/MatchingTripletsUnitTest.cpp
     ./core/MatrixFinderUnitTest.cpp
     ./core/MergingIntervalsUnitTest.cpp
@@ -231,6 +233,7 @@ add_library(UnitTesting STATIC
 set(PROBLEMS_INCLUDES_FILES
     ../Problems/ProblemException.h
     ../Problems/core/CombinationSum.h
+    ../Problems/core/FlightRoutePlanner.h
     ../Problems/core/MatchingTriplets.h
     ../Problems/core/MatrixFinder.h
     ../Problems/core/MergingIntervals.h
@@ -240,6 +243,7 @@ set(PROBLEMS_INCLUDES_FILES
     ../Problems/core/PreCompiled.h
     ../Problems/core/WordFinder.h
     ../Problems/interfaces/ICombinationSum.h
+    ../Problems/interfaces/IFlightRoutePlanner.h
     ../Problems/interfaces/IMatchingTriplets.h
     ../Problems/interfaces/IMatrixFinder.h
     ../Problems/interfaces/IMergingIntervals.h
@@ -248,6 +252,7 @@ set(PROBLEMS_INCLUDES_FILES
 )
 
 set(PROBLEMS_SOURCES_FILES
+    ../Problems/core/FlightRoutePlanner.cpp
     ../Problems/core/MinimumWindowSubstring.cpp
     ../Problems/core/NumberValidator.cpp
     ../Problems/core/PositionQueens.cpp

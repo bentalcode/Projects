@@ -14,6 +14,7 @@
 #include <cassert>
 #include <sstream>
 #include <typeinfo>
+#include <tuple>
 
 #include "BaseLogic.h"
 

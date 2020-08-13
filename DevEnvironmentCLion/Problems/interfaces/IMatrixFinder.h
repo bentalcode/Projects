@@ -1,8 +1,6 @@
 #ifndef I_MATRIX_FINDER_H_575a4ed3_5bea_4a10_89e3_1175f194f121
 #define I_MATRIX_FINDER_H_575a4ed3_5bea_4a10_89e3_1175f194f121
 
-#include "BaseDependencies.h"
-
 namespace problems
 {
     /**
