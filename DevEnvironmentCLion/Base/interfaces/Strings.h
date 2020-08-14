@@ -40,27 +40,27 @@ namespace base
         static std::string trimCopy(const std::string& str);
 
         /**
-         * Splits a string with a character separator.
+         * Splits a string with a separator.
          */
         static void splitString(
             const std::string& str,
-            char separator,
+            const std::string& separator,
             std::vector<std::string>& result);
 
         /**
-         * Splits a string with a character separator.
+         * Splits a string with a separator.
          */
         static void splitString(
             const std::string& str,
             size_t startIndex,
             size_t endIndex,
-            char separator,
+            const std::string& separator,
             std::vector<std::string>& result);
 
         /**
          * Splits a string with a regex separator.
          */
-        static void splitString(
+        static void splitStringWithRegex(
             const std::string& str,
             const std::string& separatorRegex,
             std::vector<std::string>& result);
@@ -68,7 +68,7 @@ namespace base
         /**
          * Splits a string with a regex separator.
          */
-        static void splitString(
+        static void splitStringWithRegex(
             const std::string& str,
             size_t startIndex,
             size_t endIndex,
@@ -76,26 +76,6 @@ namespace base
             std::vector<std::string>& result);
 
     private:
-        /**
-         * Finds the start index of a token.
-         */
-        static bool findTokenStartIndex(
-            const std::string& str,
-            size_t startIndex,
-            size_t endIndex,
-            char characterToSplit,
-            size_t& result);
-
-        /**
-         * Finds the end index of a token.
-         */
-        static bool findTokenEndIndex(
-            const std::string& str,
-            size_t startIndex,
-            size_t endIndex,
-            char characterToSplit,
-            size_t& result);
-
         /**
          * This is a static class - Disables the default constructor and destructor.
          */

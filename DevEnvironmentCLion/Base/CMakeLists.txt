@@ -87,6 +87,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/SharedPtr.h
     ./interfaces/StringComparable.h
     ./interfaces/StringEquality.h
+    ./interfaces/StringSearch.h
     ./interfaces/Strings.h
     ./interfaces/Triple.h
 )
@@ -102,6 +103,7 @@ set(BASE_SOURCES_FILES
     ./core/SkipIterator.cpp
     ./core/StringComparable.cpp
     ./core/StringEquality.cpp
+    ./core/StringSearch.cpp
     ./core/Strings.cpp
 )
 

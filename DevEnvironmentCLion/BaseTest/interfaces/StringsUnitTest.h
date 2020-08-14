@@ -44,11 +44,24 @@ namespace base {
          */
         void splitStringTest();
 
+        /**
+         * Tests the logic of splitting a string with regex.
+         */
+        void splitStringWithRegexTest();
+
     private:
         /**
          * Tests the logic of splitting a string.
          */
         void testSplitString(
+            const std::string& str,
+            const std::string& separator,
+            const std::vector<std::string>& expectedTokens);
+
+        /**
+         * Tests the logic of splitting a string with regex.
+         */
+        void testSplitStringWithRegex(
             const std::string& str,
             const std::string& regexSeparator,
             const std::vector<std::string>& expectedTokens);

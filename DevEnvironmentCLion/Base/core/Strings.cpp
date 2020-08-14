@@ -73,11 +73,11 @@ std::string Strings::trimCopy(const std::string& str)
 }
 
 /**
- * Splits the string with a character separator.
+ * Splits the string with a separator.
  */
 void Strings::splitString(
     const std::string& str,
-    char separator,
+    const std::string& separator,
     std::vector<std::string>& result)
 {
     size_t startIndex = 0;
@@ -86,58 +86,63 @@ void Strings::splitString(
 }
 
 /**
- * Splits the string with a character separator.
+ * Splits the string with a separator.
  */
 void Strings::splitString(
     const std::string& str,
     size_t startIndex,
     size_t endIndex,
-    char separator,
+    const std::string& separator,
     std::vector<std::string>& result)
 {
     size_t currIndex = startIndex;
     while (currIndex <= endIndex)
     {
-        size_t tokenStartIndex = 0;
-        bool status = Strings::findTokenStartIndex(
-            str,
-            currIndex,
-            endIndex,
-            separator,
-            tokenStartIndex);
+        size_t currSeparatorStartIndex = str.find(separator, currIndex);
 
-        if (!status)
+        if (currSeparatorStartIndex == std::string::npos)
         {
-            return;
+            size_t tokenStartIndex = currIndex;
+            size_t tokenEndIndex = endIndex;
+            size_t tokenLength = Dimensions::length(tokenStartIndex, tokenEndIndex);
+
+            std::string token = str.substr(tokenStartIndex, tokenLength);
+
+            result.push_back(token);
+
+            break;
         }
 
-        size_t tokenEndIndex = 0;
-        status = Strings::findTokenEndIndex(
-            str,
-            tokenStartIndex,
-            endIndex,
-            separator,
-            tokenEndIndex);
+        std::string token;
 
-        if (!status)
+        if (currSeparatorStartIndex == 0)
         {
-            return;
+            token = "";
         }
-
-        assert(tokenEndIndex >= tokenStartIndex);
-        size_t tokenLength = tokenEndIndex - tokenStartIndex + 1;
-        std::string token = str.substr(tokenStartIndex, tokenLength);
+        else
+        {
+            size_t tokenStartIndex = currIndex;
+            size_t tokenEndIndex = currSeparatorStartIndex - 1;
+            size_t tokenLength = Dimensions::length(tokenStartIndex, tokenEndIndex);
+            token = str.substr(tokenStartIndex, tokenLength);
+        }
 
         result.push_back(token);
 
-        currIndex = tokenEndIndex + 2;
+        if (currSeparatorStartIndex + separator.size() - 1 == endIndex)
+        {
+            token = "";
+            result.push_back(token);
+        }
+
+        currIndex = currSeparatorStartIndex + separator.size();
     }
 }
 
 /**
  * Splits a string with a regex separator.
  */
-void Strings::splitString(
+void Strings::splitStringWithRegex(
     const std::string& str,
     const std::string& separatorRegex,
     std::vector<std::string>& result)
@@ -145,7 +150,7 @@ void Strings::splitString(
     size_t startIndex = 0;
     size_t endIndex = str.size() - 1;
 
-    splitString(
+    splitStringWithRegex(
         str,
         startIndex,
         endIndex,
@@ -156,7 +161,7 @@ void Strings::splitString(
 /**
  * Splits a string with a regex separator.
  */
-void Strings::splitString(
+void Strings::splitStringWithRegex(
     const std::string& str,
     size_t startIndex,
     size_t endIndex,
@@ -171,10 +176,10 @@ void Strings::splitString(
     {
         std::smatch match;
         bool status = regex_search(
-                str.begin() + currIndex,
-                str.end(),
-                match,
-                regexExpression);
+            str.begin() + currIndex,
+            str.end(),
+            match,
+            regexExpression);
 
         if (!status)
         {
@@ -208,7 +213,7 @@ void Strings::splitString(
 
         result.push_back(token);
 
-        if (currSeparatorStartIndex == endIndex)
+        if (currSeparatorStartIndex + currSeparatorLength - 1 == endIndex)
         {
             token = "";
             result.push_back(token);
@@ -216,62 +221,4 @@ void Strings::splitString(
 
         currIndex = currSeparatorStartIndex + currSeparatorLength;
     }
-}
-
-/**
- * Finds the start index of a token.
- */
-bool Strings::findTokenStartIndex(
-    const std::string& str,
-    size_t startIndex,
-    size_t endIndex,
-    char separator,
-    size_t& result)
-{
-    size_t currIndex = startIndex;
-
-    while (currIndex <= endIndex)
-    {
-        if (str[currIndex] != separator)
-        {
-            result = currIndex;
-            return true;
-        }
-
-        ++currIndex;
-    }
-
-    return false;
-}
-
-/**
- * Finds the end index of a token.
- */
-bool Strings::findTokenEndIndex(
-    const std::string& str,
-    size_t startIndex,
-    size_t endIndex,
-    char separator,
-    size_t& result)
-{
-    if (str[startIndex] == separator)
-    {
-        return false;
-    }
-
-    size_t currIndex = startIndex + 1;
-
-    while (currIndex <= endIndex)
-    {
-        if (str[currIndex] == separator)
-        {
-            result = currIndex - 1;
-            return true;
-        }
-
-        ++currIndex;
-    }
-
-    result = endIndex;
-    return true;
 }
