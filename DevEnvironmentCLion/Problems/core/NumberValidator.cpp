@@ -28,7 +28,7 @@ bool NumberValidator::validate() const
         return false;
     }
 
-    std::string data = base::Strings::trim_copy(m_str);
+    std::string data = base::Strings::trimCopy(m_str);
 
     std::string::size_type exponentPosition = std::string::npos;
 

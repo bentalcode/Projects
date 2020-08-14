@@ -4,7 +4,7 @@
 #include "List.h"
 #include "UnitTestFunction.h"
 
-using namespace base_test;
+using namespace base;
 
 class TestListFunction : public unit_testing::UnitTestFunction<ListUnitTest> {
 public:

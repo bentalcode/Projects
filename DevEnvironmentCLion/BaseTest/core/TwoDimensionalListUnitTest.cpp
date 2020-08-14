@@ -5,7 +5,7 @@
 #include "TwoDimensionalList.h"
 #include "TwoDimensionalListIterator.h"
 
-using namespace base_test;
+using namespace base;
 
 class TestTwoDimensionalListCreationFunction final : public unit_testing::UnitTestFunction<TwoDimensionalListUnitTest> {
 public:
@@ -64,9 +64,9 @@ void TwoDimensionalListUnitTest::registerTests(unit_testing::ITestRegistration& 
  */
 void TwoDimensionalListUnitTest::twoDimensionalListCreationTest()
 {
-    for (int row = 1; row <= 100; ++row)
+    for (int row = 1; row <= 10; ++row)
     {
-        for (int column = 1; column <= 100; ++column)
+        for (int column = 1; column <= 10; ++column)
         {
             std::shared_ptr<std::vector<std::vector<int>>> data = m_testData.createTwoDimensionalVector(row, column, 1);
             testTwoDimensionalListCreation(*data);
@@ -79,9 +79,9 @@ void TwoDimensionalListUnitTest::twoDimensionalListCreationTest()
  */
 void TwoDimensionalListUnitTest::twoDimensionalListIterationTest()
 {
-    for (int row = 1; row <= 100; ++row)
+    for (int row = 1; row <= 10; ++row)
     {
-        for (int column = 1; column <= 100; ++column)
+        for (int column = 1; column <= 10; ++column)
         {
             std::shared_ptr<std::vector<std::vector<int>>> data = m_testData.createTwoDimensionalVector(row, column, 1);
             testTwoDimensionalListIteration(*data);

@@ -102,6 +102,7 @@ set(BASE_SOURCES_FILES
     ./core/SkipIterator.cpp
     ./core/StringComparable.cpp
     ./core/StringEquality.cpp
+    ./core/Strings.cpp
 )
 
 set(BASE_SOURCES

@@ -5,7 +5,7 @@
 #include "IntervalMap.h"
 #include "Interval.h"
 
-namespace base_test {
+namespace base {
 
     /**
      * The IntervalMapUnitTest class implements a unit test for an interval map.

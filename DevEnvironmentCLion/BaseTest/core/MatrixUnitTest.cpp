@@ -5,7 +5,7 @@
 #include "Matrix.h"
 #include "TwoDimensionalListIterator.h"
 
-using namespace base_test;
+using namespace base;
 
 class TestMatrixFunction final : public unit_testing::UnitTestFunction<MatrixUnitTest> {
 public:

@@ -143,6 +143,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/SkipIterator.cpp
     ../Base/core/StringComparable.cpp
     ../Base/core/StringEquality.cpp
+    ../Base/core/Strings.cpp
 )
 
 set(BASE_SOURCES

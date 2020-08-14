@@ -3,7 +3,7 @@
 #include "IntervalMapUnitTest.h"
 #include "UnitTestFunction.h"
 
-using namespace base_test;
+using namespace base;
 
 class TestIntervalMapCreationFunction final : public unit_testing::UnitTestFunction<IntervalMapUnitTest> {
 public:

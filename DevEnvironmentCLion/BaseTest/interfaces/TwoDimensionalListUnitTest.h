@@ -5,7 +5,7 @@
 #include "TwoDimensionalList.h"
 #include "TestData.h"
 
-namespace base_test {
+namespace base {
 
     /**
      * The TwoDimensionalListUnitTest class implements a unit test for a two dimensional list.

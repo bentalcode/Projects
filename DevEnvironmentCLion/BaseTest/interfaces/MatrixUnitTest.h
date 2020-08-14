@@ -5,7 +5,7 @@
 #include "Matrix.h"
 #include "TestData.h"
 
-namespace base_test {
+namespace base {
 
     /**
      * The MatrixUnitTest class implements a unit test for a matrix.

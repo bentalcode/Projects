@@ -2,7 +2,7 @@
 
 #include "TestData.h"
 
-using namespace base_test;
+using namespace base;
 
 /**
  * The TestData constructor.

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import java.util.Arrays;
 
 /**
  * The StringsTest class implements tests for strings.
@@ -228,6 +229,18 @@ public final class StringsTest {
     }
 
     /**
+     * Tests the logic of splitting a string.
+     */
+    @Test
+    public void splitStringTest() {
+        String str1 = "///a/b///c//d///e";
+        String regexSeparator1 = "/";
+        String[] expectedTokens1 = {"", "", "", "a", "b", "", "", "c", "", "d", "", "", "e"};
+
+        testSplitString(str1, regexSeparator1, expectedTokens1);
+    }
+
+    /**
      * Tests the logic whether a string is null or empty.
      */
     private void testStringIsNullOrEmpty(String value, boolean expectedResult) {
@@ -271,5 +284,16 @@ public final class StringsTest {
             result,
             expectedResult,
             "Incorrect logic of finding sub string with KMP Algorithm.");
+    }
+
+    /**
+     * Tests the logic of splitting a string.
+     */
+    private void testSplitString(String value, String regexSeparator, String[] expectedResult) {
+        String[] result = value.split(regexSeparator);
+
+        this.assertion.assertTrue(
+            Arrays.deepEquals(result, expectedResult),
+            "Incorrect logic of splitting strings.");
     }
 }

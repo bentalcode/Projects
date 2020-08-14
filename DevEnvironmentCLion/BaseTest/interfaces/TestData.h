@@ -4,7 +4,7 @@
 #include "PreCompiled.h"
 #include "UnitTestBase.h"
 
-namespace base_test {
+namespace base {
 
     /**
      * The TestData class implements data of tests.

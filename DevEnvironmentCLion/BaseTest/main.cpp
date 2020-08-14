@@ -3,24 +3,28 @@
 #include "TwoDimensionalListUnitTest.h"
 #include "MatrixUnitTest.h"
 #include "IntervalMapUnitTest.h"
+#include "StringsUnitTest.h"
 
-using namespace base_test;
+using namespace base;
 using namespace unit_testing;
 
 int main()
 {
     UnitTestManager testManager;
     IUnitTestPtr listUnitTest(new ListUnitTest("List"));
-    //testManager.registerTest(listUnitTest);
+    testManager.registerTest(listUnitTest);
 
     IUnitTestPtr twoDimensionalListUnitTest(new TwoDimensionalListUnitTest("TwoDimensionalList"));
-    //testManager.registerTest(twoDimensionalListUnitTest);
+    testManager.registerTest(twoDimensionalListUnitTest);
 
     IUnitTestPtr matrixUnitTest(new MatrixUnitTest("Matrix"));
-    //testManager.registerTest(matrixUnitTest);
+    testManager.registerTest(matrixUnitTest);
 
     IUnitTestPtr intervalMapUnitTest(new IntervalMapUnitTest("intervalMap"));
     testManager.registerTest(intervalMapUnitTest);
+
+    IUnitTestPtr stringsUnitTest(new StringsUnitTest("strings"));
+    testManager.registerTest(stringsUnitTest);
 
     testManager.run();
 

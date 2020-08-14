@@ -10,92 +10,97 @@ namespace base
     {
     public:
         /**
-         * The constructor.
-         */
-        Strings() = delete;
-
-        /**
-         * The destructor.
-         */
-        ~Strings() = delete;
-
-        /**
-         * The copy/move constructors.
-         */
-        Strings(const Strings&) = delete;
-        Strings(Strings&&) = delete;
-
-        /**
-         * The copy/move assignment operators.
-         */
-        Strings& operator=(const Strings&) = delete;
-        Strings& operator=(Strings&&) = delete;
-
-        /**
          * Trims from start (in place).
          */
-        static inline void ltrim(std::string& str)
-        {
-            str.erase(
-                str.begin(),
-                std::find_if(str.begin(), str.end(), [](std::string::value_type ch)
-                {
-                    return !std::isspace(ch);
-                })
-            );
-        }
+        static void leftTrim(std::string& str);
 
         /**
          * Trims from end (in place).
          */
-        static inline void rtrim(std::string& str)
-        {
-            str.erase(
-                std::find_if(str.rbegin(), str.rend(), [](std::string::value_type ch)
-                {
-                    return !std::isspace(ch);
-                }).base(),
-                str.end());
-        }
+        static void rightTrim(std::string& str);
 
         /**
          * Trims from both ends (in place).
          */
-        static inline void trim(std::string& str)
-        {
-            ltrim(str);
-            rtrim(str);
-        }
+        static void trim(std::string& str);
 
         /**
          * Trims from start (copying).
          */
-        static inline std::string ltrim_copy(const std::string& str)
-        {
-            std::string copiedStr(str);
-            ltrim(copiedStr);
-            return copiedStr;
-        }
+        static std::string leftTrimCopy(const std::string& str);
 
         /**
          * Trims from end (copying).
          */
-        static inline std::string rtrim_copy(const std::string& str)
-        {
-            std::string copiedStr(str);
-            rtrim(copiedStr);
-            return copiedStr;
-        }
+        static std::string rightTrimCopy(const std::string& str);
 
         /**
          * Trims from both ends (copying).
          */
-        static inline std::string trim_copy(const std::string& str)
-        {
-            std::string copiedStr(str);
-            trim(copiedStr);
-            return copiedStr;
-        }
+        static std::string trimCopy(const std::string& str);
+
+        /**
+         * Splits a string with a character separator.
+         */
+        static void splitString(
+            const std::string& str,
+            char separator,
+            std::vector<std::string>& result);
+
+        /**
+         * Splits a string with a character separator.
+         */
+        static void splitString(
+            const std::string& str,
+            size_t startIndex,
+            size_t endIndex,
+            char separator,
+            std::vector<std::string>& result);
+
+        /**
+         * Splits a string with a regex separator.
+         */
+        static void splitString(
+            const std::string& str,
+            const std::string& separatorRegex,
+            std::vector<std::string>& result);
+
+        /**
+         * Splits a string with a regex separator.
+         */
+        static void splitString(
+            const std::string& str,
+            size_t startIndex,
+            size_t endIndex,
+            const std::string& separatorRegex,
+            std::vector<std::string>& result);
+
+    private:
+        /**
+         * Finds the start index of a token.
+         */
+        static bool findTokenStartIndex(
+            const std::string& str,
+            size_t startIndex,
+            size_t endIndex,
+            char characterToSplit,
+            size_t& result);
+
+        /**
+         * Finds the end index of a token.
+         */
+        static bool findTokenEndIndex(
+            const std::string& str,
+            size_t startIndex,
+            size_t endIndex,
+            char characterToSplit,
+            size_t& result);
+
+        /**
+         * This is a static class - Disables the default constructor and destructor.
+         */
+        Strings() = delete;
+        ~Strings() = delete;
     };
 }
 
