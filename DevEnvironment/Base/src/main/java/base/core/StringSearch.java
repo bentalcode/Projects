@@ -141,261 +141,6 @@ public final class StringSearch {
     }
 
     /**
-     * Finds an index of a substring in a string with KMP Algorithm.
-     * Return -1 if the subString is not found.
-     */
-    public static int findSubStringKmp(String str, String subString) {
-        if (str == null || str.isEmpty() ||
-            subString == null || subString.isEmpty() ||
-            str.length() < subString.length()) {
-
-            return -1;
-        }
-
-        return findSubStringKmp(
-            str.toCharArray(), 0, str.length() - 1,
-            subString.toCharArray(), 0, subString.length() - 1);
-    }
-
-    /**
-     * Finds an index of a substring in a string with KMP Algorithm.
-     * Return -1 if the subString is not found.
-     */
-    public static int findSubStringKmp(
-        String str, int strStartIndex, int strEndIndex,
-        String subString, int subStringStartIndex, int subStringEndIndex) {
-
-        if (str == null || str.isEmpty() || subString == null || subString.isEmpty()) {
-            return -1;
-        }
-
-        return findSubStringKmp(
-            str.toCharArray(), strStartIndex, strEndIndex,
-            subString.toCharArray(), subStringStartIndex, subStringEndIndex);
-    }
-
-    /**
-     * Finds an index of a substring in a string with KMP Algorithm.
-     * Return -1 if the subString is not found.
-     */
-    public static int findSubStringKmp(
-        char[] str, int strStartIndex, int strEndIndex,
-        char[] subString, int subStringStartIndex, int subStringEndIndex) {
-
-        assert(str != null);
-        assert(strStartIndex >= 0 && strStartIndex < str.length);
-        assert(strEndIndex >= strStartIndex && strEndIndex < str.length);
-        assert(subString != null);
-        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
-        assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
-
-        int strLength = Dimensions.length(strStartIndex, strEndIndex);
-        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
-
-        if (strLength < subStringLength) {
-            return -1;
-        }
-
-        //
-        // Create the longest prefix suffix...
-        //
-        int[] lps = createLongestPrefixSuffix(subString, subStringStartIndex, subStringEndIndex);
-
-        int strIndex = strStartIndex;
-        int subStringIndex = subStringStartIndex;
-
-        while (strIndex <= strEndIndex && subStringIndex <= subStringEndIndex) {
-            char strCharacter = str[strIndex];
-            char subStringCharacter = subString[subStringIndex];
-
-            if (strCharacter == subStringCharacter) {
-                if (subStringIndex == subStringEndIndex) {
-                    return strIndex - subStringLength + 1;
-                }
-
-                ++strIndex;
-                ++subStringIndex;
-            }
-            else {
-                if (subStringIndex == subStringStartIndex) {
-                    ++strIndex;
-                }
-                else {
-                    int lpsIndex = subStringIndex - subStringStartIndex;
-                    subStringIndex = subStringStartIndex + lps[lpsIndex - 1];
-                }
-            }
-        }
-
-        return -1;
-    }
-
-    /**
-     * Counts the number of instances of a substring.
-     */
-    public static int countSubString(
-        String str,
-        String subString) {
-
-        boolean allowOverlapping = true;
-        return countSubString(str, subString, allowOverlapping);
-    }
-
-    /**
-     * Counts the number of instances of a substring.
-     */
-    public static int countSubString(
-        String str,
-        String subString,
-        boolean allowOverlapping) {
-
-        if (str == null || str.isEmpty() || subString == null || subString.isEmpty()) {
-            return 0;
-        }
-
-        int startIndex = 0;
-        int endIndex = str.length() - 1;
-        int subStringStartIndex = 0;
-        int subStringLength = subString.length();
-
-        return countSubString(
-            str,
-            startIndex,
-            endIndex,
-            subString,
-            subStringStartIndex,
-            subStringLength,
-            allowOverlapping);
-    }
-
-    /**
-     * Counts the number of instances of a substring.
-     */
-    public static int countSubString(
-        String str,
-        int startIndex,
-        int endIndex,
-        String subString,
-        int subStringStartIndex,
-        int subStringLength,
-        boolean allowOverlapping) {
-
-        assert(str != null);
-        assert(startIndex >= 0 && startIndex < str.length());
-        assert(endIndex >= startIndex && endIndex < str.length());
-
-        assert(subString != null);
-        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length());
-        assert(subStringLength >= 0);
-        assert(subStringStartIndex + subStringLength - 1 < subString.length());
-
-        return countSubString(
-            str.toCharArray(),
-            startIndex,
-            endIndex,
-            subString.toCharArray(),
-            subStringStartIndex,
-            subStringLength,
-            allowOverlapping);
-    }
-
-    /**
-     * Counts the number of instances of a substring.
-     */
-    public static int countSubString(
-        char[] str,
-        int startIndex,
-        int endIndex,
-        char[] subString,
-        int subStringStartIndex,
-        int subStringLength,
-        boolean allowOverlapping) {
-
-        assert(str != null);
-        assert(startIndex >= 0 && startIndex < str.length);
-        assert(endIndex >= startIndex && endIndex < str.length);
-
-        assert(subString != null);
-        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
-        assert(subStringLength >= 0);
-        assert(subStringStartIndex + subStringLength - 1 < subString.length);
-
-        int stringLength = Dimensions.length(startIndex, endIndex);
-
-        if (subStringLength == 0 || subStringLength > stringLength) {
-            return 0;
-        }
-
-        int counter = 0;
-
-        int currIndex = startIndex;
-        int effectiveEndIndex = endIndex - subStringLength + 1;
-
-        while (currIndex <= effectiveEndIndex) {
-            if (StringEquality.equals(str, currIndex, subString, subStringStartIndex, subStringLength)) {
-                ++counter;
-
-                currIndex = (allowOverlapping) ? currIndex + 1 : currIndex + subStringLength;
-            }
-            else {
-                ++currIndex;
-            }
-        }
-
-        return counter;
-    }
-
-    /**
-     * Counts the number of instances of a substring from end.
-     * Avoid overlapping.
-     */
-    public static int countSubStringFromEnd(
-        char[] str,
-        int startIndex,
-        int endIndex,
-        char[] subString,
-        int subStringStartIndex,
-        int subStringLength,
-        boolean allowOverlapping) {
-
-        assert(str != null);
-        assert(startIndex >= 0 && startIndex < str.length);
-        assert(endIndex >= startIndex && endIndex < str.length);
-
-        assert(subString != null);
-        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
-        assert(subStringLength >= 0);
-        assert(subStringStartIndex + subStringLength - 1 < subString.length);
-
-        int stringLength = Dimensions.length(startIndex, endIndex);
-
-        if (subStringLength == 0 || subStringLength > stringLength) {
-            return 0;
-        }
-
-        int counter = 0;
-
-        int currIndex = endIndex;
-        int effectiveStartIndex = startIndex + subStringLength - 1;
-
-        while (currIndex >= effectiveStartIndex) {
-            int currStrStartIndex = currIndex - subStringLength + 1;
-            int currSubStringStartIndex = 0;
-
-            if (StringEquality.equals(str, currStrStartIndex, subString, currSubStringStartIndex, subStringLength)) {
-                ++counter;
-
-                currIndex = (allowOverlapping) ? currIndex - 1 : currIndex - subStringLength;
-            }
-            else {
-                --currIndex;
-            }
-        }
-
-        return counter;
-    }
-
-    /**
      * Checks whether a string starts with a prefix.
      */
     public static boolean startsWith(char[] str, char[] postfix) {
@@ -479,6 +224,256 @@ public final class StringSearch {
         }
 
         return strIndex == endIndex - counter;
+    }
+
+    /**
+     * Counts the number of instances of a substring.
+     */
+    public static int countSubString(
+        String str,
+        String subString) {
+
+        boolean allowOverlapping = true;
+        return countSubString(str, subString, allowOverlapping);
+    }
+
+    /**
+     * Counts the number of instances of a substring.
+     */
+    public static int countSubString(
+        String str,
+        String subString,
+        boolean allowOverlapping) {
+
+        if (str == null || str.isEmpty() || subString == null || subString.isEmpty()) {
+            return 0;
+        }
+
+        int startIndex = 0;
+        int endIndex = str.length() - 1;
+        int subStringStartIndex = 0;
+        int subStringEndIndex = subString.length() - 1;
+
+        return countSubString(
+            str,
+            startIndex,
+            endIndex,
+            subString,
+            subStringStartIndex,
+            subStringEndIndex,
+            allowOverlapping);
+    }
+
+    /**
+     * Counts the number of instances of a substring.
+     */
+    public static int countSubString(
+        String str,
+        int startIndex,
+        int endIndex,
+        String subString,
+        int subStringStartIndex,
+        int subStringEndIndex,
+        boolean allowOverlapping) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length());
+        assert(endIndex >= startIndex && endIndex < str.length());
+
+        assert(subString != null);
+        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length());
+        assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length());
+
+        return countSubString(
+            str.toCharArray(),
+            startIndex,
+            endIndex,
+            subString.toCharArray(),
+            subStringStartIndex,
+            subStringEndIndex,
+            allowOverlapping);
+    }
+
+    /**
+     * Counts the number of instances of a substring.
+     */
+    public static int countSubString(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subString,
+        int subStringStartIndex,
+        int subStringEndIndex,
+        boolean allowOverlapping) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length);
+        assert(endIndex >= startIndex && endIndex < str.length);
+
+        assert(subString != null);
+        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
+        assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
+
+        int stringLength = Dimensions.length(startIndex, endIndex);
+        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
+
+        if (subStringLength == 0 || subStringLength > stringLength) {
+            return 0;
+        }
+
+        int counter = 0;
+
+        int currIndex = startIndex;
+        int effectiveEndIndex = endIndex - subStringLength + 1;
+
+        while (currIndex <= effectiveEndIndex) {
+            if (StringEquality.equals(str, currIndex, subString, subStringStartIndex, subStringLength)) {
+                ++counter;
+
+                currIndex = (allowOverlapping) ? currIndex + 1 : currIndex + subStringLength;
+            }
+            else {
+                ++currIndex;
+            }
+        }
+
+        return counter;
+    }
+
+    /**
+     * Counts the number of instances of a substring from end.
+     * Avoid overlapping.
+     */
+    public static int countSubStringFromEnd(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subString,
+        int subStringStartIndex,
+        int subStringEndIndex,
+        boolean allowOverlapping) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length);
+        assert(endIndex >= startIndex && endIndex < str.length);
+
+        assert(subString != null);
+        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
+        assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
+
+        int stringLength = Dimensions.length(startIndex, endIndex);
+        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
+
+        if (subStringLength == 0 || subStringLength > stringLength) {
+            return 0;
+        }
+
+        int counter = 0;
+
+        int currIndex = endIndex - subStringLength + 1;
+
+        while (currIndex >= startIndex) {
+            if (StringEquality.equals(str, currIndex, subString, subStringStartIndex, subStringLength)) {
+                ++counter;
+
+                currIndex = (allowOverlapping) ? currIndex - 1 : currIndex - subStringLength;
+            }
+            else {
+                --currIndex;
+            }
+        }
+
+        return counter;
+    }
+
+    /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Return -1 if the subString is not found.
+     */
+    public static int findSubStringKmp(String str, String subString) {
+        if (str == null || str.isEmpty() ||
+                subString == null || subString.isEmpty() ||
+                str.length() < subString.length()) {
+
+            return -1;
+        }
+
+        return findSubStringKmp(
+            str.toCharArray(), 0, str.length() - 1,
+            subString.toCharArray(), 0, subString.length() - 1);
+    }
+
+    /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Return -1 if the subString is not found.
+     */
+    public static int findSubStringKmp(
+        String str, int strStartIndex, int strEndIndex,
+        String subString, int subStringStartIndex, int subStringEndIndex) {
+
+        if (str == null || str.isEmpty() || subString == null || subString.isEmpty()) {
+            return -1;
+        }
+
+        return findSubStringKmp(
+            str.toCharArray(), strStartIndex, strEndIndex,
+            subString.toCharArray(), subStringStartIndex, subStringEndIndex);
+    }
+
+    /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Return -1 if the subString is not found.
+     */
+    public static int findSubStringKmp(
+        char[] str, int strStartIndex, int strEndIndex,
+        char[] subString, int subStringStartIndex, int subStringEndIndex) {
+
+        assert(str != null);
+        assert(strStartIndex >= 0 && strStartIndex < str.length);
+        assert(strEndIndex >= strStartIndex && strEndIndex < str.length);
+        assert(subString != null);
+        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
+        assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
+
+        int strLength = Dimensions.length(strStartIndex, strEndIndex);
+        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
+
+        if (strLength < subStringLength) {
+            return -1;
+        }
+
+        //
+        // Create the longest prefix suffix...
+        //
+        int[] lps = createLongestPrefixSuffix(subString, subStringStartIndex, subStringEndIndex);
+
+        int strIndex = strStartIndex;
+        int subStringIndex = subStringStartIndex;
+
+        while (strIndex <= strEndIndex && subStringIndex <= subStringEndIndex) {
+            char strCharacter = str[strIndex];
+            char subStringCharacter = subString[subStringIndex];
+
+            if (strCharacter == subStringCharacter) {
+                if (subStringIndex == subStringEndIndex) {
+                    return strIndex - subStringLength + 1;
+                }
+
+                ++strIndex;
+                ++subStringIndex;
+            }
+            else {
+                if (subStringIndex == subStringStartIndex) {
+                    ++strIndex;
+                }
+                else {
+                    int lpsIndex = subStringIndex - subStringStartIndex;
+                    subStringIndex = subStringStartIndex + lps[lpsIndex - 1];
+                }
+            }
+        }
+
+        return -1;
     }
 
     /**

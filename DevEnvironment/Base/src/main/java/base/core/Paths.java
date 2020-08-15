@@ -582,7 +582,7 @@ public final class Paths {
         int counter = StringSearch.countSubStringFromEnd(
             path,
             pathStartIndex, pathEndIndex,
-            separator, 0, separator.length,
+            separator, 0, separator.length - 1,
             false);
 
         return counter;
