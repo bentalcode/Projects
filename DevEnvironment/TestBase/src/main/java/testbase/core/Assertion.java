@@ -9,6 +9,8 @@ import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import org.junit.Assert;
+
+import java.util.Collection;
 import java.util.Map;
 import testbase.interfaces.IAssertion;
 
@@ -170,7 +172,7 @@ public final class Assertion implements IAssertion {
     }
 
     /**
-     * Asserts equality with objects.
+     * Asserts equality with arrays.
      */
     @Override
     public <T extends Comparable<T>> void assertEquals(
@@ -188,7 +190,7 @@ public final class Assertion implements IAssertion {
     }
 
     /**
-     * Asserts equality with objects.
+     * Asserts equality with arrays.
      */
     @Override
     public <T extends Comparable<T>> void assertEquals(
@@ -199,6 +201,43 @@ public final class Assertion implements IAssertion {
 
         boolean status = new EqualBuilder()
             .withArray(lhs, rhs, comparator)
+            .build();
+
+        this.assertTrue(
+            status,
+            message);
+    }
+
+    /**
+     * Asserts equality with collections.
+     */
+    @Override
+    public <T extends Comparable<T>> void assertEquals(
+        Collection<T> lhs,
+        Collection<T> rhs,
+        String message) {
+
+        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+
+        this.assertEquals(
+            lhs,
+            rhs,
+            comparator,
+            message);
+    }
+
+    /**
+     * Asserts equality with collections.
+     */
+    @Override
+    public <T extends Comparable<T>> void assertEquals(
+        Collection<T> lhs,
+        Collection<T> rhs,
+        IEquatableComparator<T> comparator,
+        String message) {
+
+        boolean status = new EqualBuilder()
+            .withCollection(lhs, rhs, comparator)
             .build();
 
         this.assertTrue(

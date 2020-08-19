@@ -5,6 +5,7 @@ import base.interfaces.IIterable;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -110,6 +111,23 @@ public interface IAssertion {
     <T extends Comparable<T>> void assertEquals(
         T[] lhs,
         T[] rhs,
+        IEquatableComparator<T> comparator,
+        String message);
+
+    /**
+     * Asserts equality with collections.
+     */
+    <T extends Comparable<T>> void assertEquals(
+        Collection<T> lhs,
+        Collection<T> rhs,
+        String message);
+
+    /**
+     * Asserts equality with collections.
+     */
+    <T extends Comparable<T>> void assertEquals(
+        Collection<T> lhs,
+        Collection<T> rhs,
         IEquatableComparator<T> comparator,
         String message);
 

@@ -1,5 +1,8 @@
 package base.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The StringSearch class implements complementary APIs for string search.
  */
@@ -388,12 +391,11 @@ public final class StringSearch {
 
     /**
      * Finds an index of a substring in a string with KMP Algorithm.
-     * Return -1 if the subString is not found.
+     * Returns -1 if the subString is not found.
      */
     public static int findSubStringKmp(String str, String subString) {
         if (str == null || str.isEmpty() ||
-                subString == null || subString.isEmpty() ||
-                str.length() < subString.length()) {
+            subString == null || subString.isEmpty()) {
 
             return -1;
         }
@@ -405,7 +407,7 @@ public final class StringSearch {
 
     /**
      * Finds an index of a substring in a string with KMP Algorithm.
-     * Return -1 if the subString is not found.
+     * Returns -1 if the subString is not found.
      */
     public static int findSubStringKmp(
         String str, int strStartIndex, int strEndIndex,
@@ -416,6 +418,39 @@ public final class StringSearch {
         }
 
         return findSubStringKmp(
+            str.toCharArray(), strStartIndex, strEndIndex,
+            subString.toCharArray(), subStringStartIndex, subStringEndIndex);
+    }
+
+    /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Returns an empty array if the subString is not found.
+     */
+    public static List<Integer> findAllSubStringKmp(String str, String subString) {
+        if (str == null || str.isEmpty() ||
+            subString == null || subString.isEmpty()) {
+
+            return new ArrayList<>();
+        }
+
+        return findAllSubStringKmp(
+            str.toCharArray(), 0, str.length() - 1,
+            subString.toCharArray(), 0, subString.length() - 1);
+    }
+
+    /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Returns an empty array if the subString is not found.
+     */
+    public static List<Integer> findAllSubStringKmp(
+        String str, int strStartIndex, int strEndIndex,
+        String subString, int subStringStartIndex, int subStringEndIndex) {
+
+        if (str == null || str.isEmpty() || subString == null || subString.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return findAllSubStringKmp(
             str.toCharArray(), strStartIndex, strEndIndex,
             subString.toCharArray(), subStringStartIndex, subStringEndIndex);
     }
@@ -438,7 +473,7 @@ public final class StringSearch {
         int strLength = Dimensions.length(strStartIndex, strEndIndex);
         int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
 
-        if (strLength < subStringLength) {
+        if (subStringLength > strLength) {
             return -1;
         }
 
@@ -474,6 +509,70 @@ public final class StringSearch {
         }
 
         return -1;
+    }
+
+    /**
+     * Finds an index of a substring in a string with KMP Algorithm.
+     * Return an empty array if no sub string is found.
+     */
+    public static List<Integer> findAllSubStringKmp(
+        char[] str, int strStartIndex, int strEndIndex,
+        char[] subString, int subStringStartIndex, int subStringEndIndex) {
+
+        assert(str != null);
+        assert(strStartIndex >= 0 && strStartIndex < str.length);
+        assert(strEndIndex >= strStartIndex && strEndIndex < str.length);
+        assert(subString != null);
+        assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
+        assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
+
+        List<Integer> resultIndexes = new ArrayList<>();
+
+        int strLength = Dimensions.length(strStartIndex, strEndIndex);
+        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
+
+        if (subStringLength > strLength) {
+            return resultIndexes;
+        }
+
+        //
+        // Create the longest prefix suffix...
+        //
+        int[] lps = createLongestPrefixSuffix(subString, subStringStartIndex, subStringEndIndex);
+
+        int strIndex = strStartIndex;
+        int subStringIndex = subStringStartIndex;
+
+        while (strIndex <= strEndIndex && subStringIndex <= subStringEndIndex) {
+            char strCharacter = str[strIndex];
+            char subStringCharacter = subString[subStringIndex];
+
+            if (strCharacter == subStringCharacter) {
+                if (subStringIndex == subStringEndIndex) {
+                    int resultIndex = strIndex - subStringLength + 1;
+                    resultIndexes.add(resultIndex);
+
+                    int lpsIndex = subStringIndex - subStringStartIndex;
+                    subStringIndex = subStringStartIndex + lps[lpsIndex];
+                }
+                else {
+                    ++subStringIndex;
+                }
+
+                ++strIndex;
+            }
+            else {
+                if (subStringIndex == subStringStartIndex) {
+                    ++strIndex;
+                }
+                else {
+                    int lpsIndex = subStringIndex - subStringStartIndex;
+                    subStringIndex = subStringStartIndex + lps[lpsIndex - 1];
+                }
+            }
+        }
+
+        return resultIndexes;
     }
 
     /**
