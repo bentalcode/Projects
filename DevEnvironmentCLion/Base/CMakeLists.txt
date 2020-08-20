@@ -39,6 +39,7 @@ set(BASE_INCLUDES_FILES
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
     ./core/IterableObject.h
+    ./core/KmpStringSearch.h
     ./core/List.h
     ./core/ListIterator.h
     ./core/Matrix.h
@@ -97,6 +98,7 @@ set(BASE_SOURCES_FILES
     ./core/CompareToBuilder.cpp
     ./core/DateTime.cpp
     ./core/EqualBuilder.cpp
+    ./core/KmpStringSearch.cpp
     ./core/LogStreamWriter.cpp
     ./core/Position.cpp
     ./core/PreCompiled.cpp

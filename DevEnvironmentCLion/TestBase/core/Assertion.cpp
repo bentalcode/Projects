@@ -35,12 +35,15 @@ void Assertion::assertTrue(
     bool expression,
     const std::string& message)
 {
-    if (m_logStreamWriter && !expression)
+    if (!expression)
     {
-        m_logStreamWriter->getErrorStream() << message << std::endl;
-    }
+        if (m_logStreamWriter)
+        {
+            m_logStreamWriter->getErrorStream() << message << std::endl;
+        }
 
-    assert(expression);
+        throw TestBaseException(message);
+    }
 }
 
 /**

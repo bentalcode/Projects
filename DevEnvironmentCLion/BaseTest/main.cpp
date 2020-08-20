@@ -4,7 +4,7 @@
 #include "MatrixUnitTest.h"
 #include "IntervalMapUnitTest.h"
 #include "StringsUnitTest.h"
-
+#include "KmpStringSearchUnitTest.h"
 using namespace base;
 using namespace unit_testing;
 
@@ -20,11 +20,14 @@ int main()
     IUnitTestPtr matrixUnitTest(new MatrixUnitTest("Matrix"));
     testManager.registerTest(matrixUnitTest);
 
-    IUnitTestPtr intervalMapUnitTest(new IntervalMapUnitTest("intervalMap"));
+    IUnitTestPtr intervalMapUnitTest(new IntervalMapUnitTest("IntervalMap"));
     testManager.registerTest(intervalMapUnitTest);
 
-    IUnitTestPtr stringsUnitTest(new StringsUnitTest("strings"));
+    IUnitTestPtr stringsUnitTest(new StringsUnitTest("Strings"));
     testManager.registerTest(stringsUnitTest);
+
+    IUnitTestPtr kmpStringSearchUnitTest(new KmpStringSearchUnitTest("KmpStringSearch"));
+    testManager.registerTest(kmpStringSearchUnitTest);
 
     testManager.run();
 

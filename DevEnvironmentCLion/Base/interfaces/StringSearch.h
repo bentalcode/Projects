@@ -4,8 +4,8 @@
 namespace base
 {
     /**
- * The StringSearch class implements complementary APIs for string search.
- */
+     * The StringSearch class implements complementary APIs for string search.
+     */
     class StringSearch final
     {
     public:

@@ -59,13 +59,22 @@ namespace test_base {
             const std::string& message);
 
         /**
-         * Asserts equality with objects.
+         * Asserts equality with objects and a comparator.
          */
         template <typename T>
         void assertEquals(
             const T& lhs,
             const T& rhs,
             const base::IEquatableComparator<T>& comparator,
+            const std::string& message);
+
+        /**
+         * Asserts equality with vectors.
+         */
+        template <typename T>
+        void assertEquals(
+            const std::vector<T>& lhs,
+            const std::vector<T>& rhs,
             const std::string& message);
 
         /**
@@ -97,7 +106,7 @@ namespace test_base {
             const std::string& message);
 
         /**
-         * Asserts equality with iterators.
+         * Asserts equality with iterators and a comparator.
          */
         template <typename T>
         void assertEqualsWithIterators(
@@ -167,7 +176,7 @@ namespace test_base {
     }
 
     /**
-     * Asserts equality with objects.
+     * Asserts equality with objects and a comparator.
      */
     template <typename T>
     void Assertion::assertEquals(
@@ -177,6 +186,26 @@ namespace test_base {
         const std::string& message)
     {
         bool status = comparator.isEqual(lhs, rhs);
+        assertTrue(status, message);
+    }
+
+    /**
+     * Asserts equality with vectors.
+     */
+    template <typename T>
+    void Assertion::assertEquals(
+        const std::vector<T>& lhs,
+        const std::vector<T>& rhs,
+        const std::string& message)
+    {
+        bool status =
+            lhs.size() == rhs.size() &&
+            std::equal(lhs.begin(), lhs.end(), rhs.begin());
+
+        if (status == false)
+        {
+            int i = 5;
+        }
         assertTrue(status, message);
     }
 
@@ -248,7 +277,7 @@ namespace test_base {
     }
 
     /**
-     * Asserts equality with iterators.
+     * Asserts equality with iterators and a comparator.
      */
     template <typename T>
     void Assertion::assertEqualsWithIterators(

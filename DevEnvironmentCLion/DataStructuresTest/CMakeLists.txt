@@ -68,6 +68,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
     ../Base/core/IterableObject.h
+    ../Base/core/KmpStringSearch.h
     ../Base/core/List.h
     ../Base/core/ListIterator.h
     ../Base/core/Matrix.h
@@ -126,6 +127,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
+    ../Base/core/KmpStringSearch.cpp
     ../Base/core/LogStreamWriter.cpp
     ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp
