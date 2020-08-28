@@ -27,6 +27,11 @@ public interface IDoublyLinkedListNode<T extends Comparable<T>> extends IUnaryCo
     void setNext(IDoublyLinkedListNode<T> node);
 
     /**
+     * Checks whether there is a next node.
+     */
+    boolean hasNext();
+
+    /**
      * Gets a previous node.
      */
     IDoublyLinkedListNode<T> previous();
@@ -35,6 +40,11 @@ public interface IDoublyLinkedListNode<T extends Comparable<T>> extends IUnaryCo
      * Sets a previous node.
      */
     void setPrevious(IDoublyLinkedListNode<T> node);
+
+    /**
+     * Checks whether there is a previous node.
+     */
+    boolean hasPrevious();
 
     /**
      * Unlinked the node.

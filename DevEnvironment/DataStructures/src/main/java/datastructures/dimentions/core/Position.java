@@ -25,7 +25,7 @@ public final class Position implements IPosition {
     /**
      * Creates a position.
      */
-    public static IPosition of(int x, int y) {
+    public static IPosition make(int x, int y) {
         return new Position(x, y);
     }
 

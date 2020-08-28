@@ -166,7 +166,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public IIterator<TKey> getKeyIterator() {
-        return KeyValueNodeKeyIterator.of(this.getIterator());
+        return KeyValueNodeKeyIterator.make(this.getIterator());
     }
 
     /**
@@ -174,7 +174,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public IReverseIterator<TKey> getKeyReverseIterator() {
-        return KeyValueNodeKeyReverseIterator.of(this.getReverseIterator());
+        return KeyValueNodeKeyReverseIterator.make(this.getReverseIterator());
     }
 
     /**
@@ -182,7 +182,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public IIterator<TValue> getValueIterator() {
-        return KeyValueNodeValueIterator.of(this.getIterator());
+        return KeyValueNodeValueIterator.make(this.getIterator());
     }
 
     /**
@@ -190,7 +190,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public IReverseIterator<TValue> getValueReverseIterator() {
-        return KeyValueNodeValueReverseIterator.of(this.getReverseIterator());
+        return KeyValueNodeValueReverseIterator.make(this.getReverseIterator());
     }
 
     /**
@@ -233,7 +233,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
         //
         if (currNode != null) {
             currNode.getValue().setValue(value);
-            return Pair.of(false, currNode);
+            return Pair.make(false, currNode);
         }
 
         //
@@ -248,7 +248,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
         //
         IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> nodeAdded = this.addNode(key, value);
 
-        return Pair.of(true, nodeAdded);
+        return Pair.make(true, nodeAdded);
     }
 
     /**
@@ -317,7 +317,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
             currNode = currNode.next();
         }
 
-        return (currNode == null) ? null : Pair.of(index, currNode);
+        return (currNode == null) ? null : Pair.make(index, currNode);
     }
 
     /**
@@ -354,8 +354,8 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
         //
         // Create the new node and set it as the new head of the corresponding linked-list...
         //
-        IKeyValueNode<TKey, TValue> newNode = KeyValueNode.of(key, value);
-        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> newListNode = DoublyLinkedListNode.of(newNode);
+        IKeyValueNode<TKey, TValue> newNode = KeyValueNode.make(key, value);
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> newListNode = DoublyLinkedListNode.make(newNode);
         currList.addToFront(newListNode);
 
         ++this.size;

@@ -136,7 +136,7 @@ public final class GraphTest {
         List<IVertex<TKey, TValue>> result = graphLogic.topologicalSearch();
 
         this.assertion.assertEqualsWithIterators(
-            ListIterator.of(result),
+            ListIterator.make(result),
             data.getTopologicalSearch().getIterator(),
             "Incorrect logic of a topological search in a graph.");
     }
@@ -159,8 +159,8 @@ public final class GraphTest {
             Lists.sort(paths, Walk.defaultComparator());
 
             this.assertion.assertEqualsWithIterators(
-                ListIterator.of(paths),
-                ListIterator.of(expectedPaths),
+                ListIterator.make(paths),
+                ListIterator.make(expectedPaths),
                 "Incorrect logic of finding paths with a Breadth-First search in a graph.");
         }
     }
@@ -183,8 +183,8 @@ public final class GraphTest {
             Lists.sort(paths, Walk.defaultComparator());
 
             this.assertion.assertEqualsWithIterators(
-                ListIterator.of(paths),
-                ListIterator.of(expectedPaths),
+                ListIterator.make(paths),
+                ListIterator.make(expectedPaths),
                 "Incorrect logic of finding paths with a Depth-First search in a graph.");
         }
     }
@@ -222,7 +222,7 @@ public final class GraphTest {
      * Creates a graph.
      */
     private <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> createGraph(IGraphData<TKey, TValue> data) {
-        IGraphDefinition<TKey, TValue> graphDefinition = GraphDefinition.of(data.vertices(), data.edges());
+        IGraphDefinition<TKey, TValue> graphDefinition = GraphDefinition.make(data.vertices(), data.edges());
         IGraph<TKey, TValue> graph = GraphBuilder.create(graphDefinition);
         return graph;
     }

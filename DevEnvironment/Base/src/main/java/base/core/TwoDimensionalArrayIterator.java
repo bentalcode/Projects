@@ -14,7 +14,7 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     /**
      * Creates a new iterator of a two dimensional array.
      */
-    public static <T> IIterator<T> of(T[][] data) {
+    public static <T> IIterator<T> make(T[][] data) {
         return new TwoDimensionalArrayIterator<>(data);
     }
 

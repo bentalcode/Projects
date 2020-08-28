@@ -15,7 +15,7 @@ public final class BinaryTreeLevelOrderIterator<TKey extends Comparable<TKey>, T
     /**
      * Creates a level order iterator of a binary tree.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IIterator<IBinaryTreeNode<TKey, TValue>> of(IBinaryTreeNode<TKey, TValue> root) {
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IBinaryTreeNode<TKey, TValue>> make(IBinaryTreeNode<TKey, TValue> root) {
         return new BinaryTreeLevelOrderIterator<>(root);
     }
 

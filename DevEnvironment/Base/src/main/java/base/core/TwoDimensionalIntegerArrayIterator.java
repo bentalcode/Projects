@@ -15,7 +15,7 @@ public final class TwoDimensionalIntegerArrayIterator implements IIterator<Integ
     /**
      * Creates a new iterator of a two dimensional array of integers.
      */
-    public static IIterator<Integer> of(int[][] data) {
+    public static IIterator<Integer> make(int[][] data) {
         return new TwoDimensionalIntegerArrayIterator(data);
     }
 

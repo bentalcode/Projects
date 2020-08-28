@@ -338,7 +338,7 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public IIterator<Boolean> getIterator() {
-        return Bit32ArrayIterator.of(this);
+        return Bit32ArrayIterator.make(this);
     }
 
     /**
@@ -346,7 +346,7 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public IReverseIterator<Boolean> getReverseIterator() {
-        return Bit32ArrayReverseIterator.of(this);
+        return Bit32ArrayReverseIterator.make(this);
     }
 
     /**

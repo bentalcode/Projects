@@ -52,20 +52,20 @@ public final class LinkedListTestData implements ILinkedListTestData {
     public List<ITriple<String, Integer, List<Integer>>> getUpdationData() {
         List<ITriple<String, Integer, List<Integer>>> data = new ArrayList<>();
 
-        data.add(Triple.of("addToFront", 1, ArrayLists.of(1)));
-        data.add(Triple.of("addToFront", 2, ArrayLists.of(2, 1)));
-        data.add(Triple.of("addToFront", 3, ArrayLists.of(3, 2, 1)));
-        data.add(Triple.of("removeFromFront", null, ArrayLists.of(2, 1)));
-        data.add(Triple.of("removeFromFront", null, ArrayLists.of(1)));
-        data.add(Triple.of("addToBack", 2, ArrayLists.of(1, 2)));
-        data.add(Triple.of("addToBack", 3, ArrayLists.of(1, 2, 3)));
-        data.add(Triple.of("addToBack", 4, ArrayLists.of(1, 2, 3, 4)));
-        data.add(Triple.of("addToBack", 5, ArrayLists.of(1, 2, 3, 4, 5)));
-        data.add(Triple.of("removeAfter", null, ArrayLists.of(1, 3, 4, 5)));
-        data.add(Triple.of("removeAfter", null, ArrayLists.of(1, 4, 5)));
-        data.add(Triple.of("removeAfter", null, ArrayLists.of(1, 5)));
-        data.add(Triple.of("removeAfter", null, ArrayLists.of(1)));
-        data.add(Triple.of("removeFromFront", null, new ArrayList<>()));
+        data.add(Triple.make("addToFront", 1, ArrayLists.make(1)));
+        data.add(Triple.make("addToFront", 2, ArrayLists.make(2, 1)));
+        data.add(Triple.make("addToFront", 3, ArrayLists.make(3, 2, 1)));
+        data.add(Triple.make("removeFromFront", null, ArrayLists.make(2, 1)));
+        data.add(Triple.make("removeFromFront", null, ArrayLists.make(1)));
+        data.add(Triple.make("addToBack", 2, ArrayLists.make(1, 2)));
+        data.add(Triple.make("addToBack", 3, ArrayLists.make(1, 2, 3)));
+        data.add(Triple.make("addToBack", 4, ArrayLists.make(1, 2, 3, 4)));
+        data.add(Triple.make("addToBack", 5, ArrayLists.make(1, 2, 3, 4, 5)));
+        data.add(Triple.make("removeAfter", null, ArrayLists.make(1, 3, 4, 5)));
+        data.add(Triple.make("removeAfter", null, ArrayLists.make(1, 4, 5)));
+        data.add(Triple.make("removeAfter", null, ArrayLists.make(1, 5)));
+        data.add(Triple.make("removeAfter", null, ArrayLists.make(1)));
+        data.add(Triple.make("removeFromFront", null, new ArrayList<>()));
 
         return data;
     }
@@ -148,7 +148,7 @@ public final class LinkedListTestData implements ILinkedListTestData {
         List<ILinkedListNode<TValue>> data = new ArrayList<>();
 
         for (TValue value : values) {
-            data.add(LinkedListNode.of(value));
+            data.add(LinkedListNode.make(value));
         }
 
         return data;

@@ -48,7 +48,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
                 if (indexesMap.containsKey(matchingValue2)) {
                     for (int thirdIndex : indexesMap.get(matchingValue2)) {
                         if (thirdIndex > secondIndex) {
-                            ITriplet<Integer, Integer, Integer> newResult = Triplet.of(
+                            ITriplet<Integer, Integer, Integer> newResult = Triplet.make(
                                 firstIndex,
                                 secondIndex,
                                 thirdIndex);
@@ -94,7 +94,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
                 int currSum = secondValue + thirdValue;
 
                 if (currSum == matchingValue) {
-                    ITriplet<Integer, Integer, Integer> newResult = Triplet.of(
+                    ITriplet<Integer, Integer, Integer> newResult = Triplet.make(
                         firstValue,
                         secondValue,
                         thirdValue);
@@ -148,7 +148,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
                 int currSum = second + third;
 
                 if (currSum == matchingSum) {
-                    return Triplet.of(
+                    return Triplet.make(
                         first,
                         second,
                         third);
@@ -158,7 +158,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
                 int currDiff = Math.abs(sum - tripleSum);
 
                 if (closestTriplet == null || currDiff < minDiff) {
-                    closestTriplet = Triplet.of(
+                    closestTriplet = Triplet.make(
                         first,
                         second,
                         third);
@@ -207,7 +207,7 @@ public final class MatchingTriplets implements IMatchingTriplets {
                 int currSum = first + second;
 
                 if (currSum == matchingSum) {
-                    ITriplet<Integer, Integer, Integer> newResult = Triplet.of(first, second, third);
+                    ITriplet<Integer, Integer, Integer> newResult = Triplet.make(first, second, third);
                     this.addNewResult(newResult, results);
 
                     ++firstIndex;

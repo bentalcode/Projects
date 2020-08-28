@@ -56,8 +56,8 @@ public final class EdgeTest {
     private void testIdentifyingEdgesByIntegerKey() {
         IEdge<Integer, Integer> edge1 = this.testData.nextDirectedEdgeByInteger();
         IEdge<Integer, Integer> edge2 = Edge.newDirectedEdge(
-            Vertex.of(edge1.source().getKey()),
-            Vertex.of(edge1.destination().getKey()));
+            Vertex.make(edge1.source().getKey()),
+            Vertex.make(edge1.destination().getKey()));
 
         if (edge1.equals(edge2)) {
             assert(edge1.hashCode() == edge2.hashCode());
@@ -78,8 +78,8 @@ public final class EdgeTest {
     private void testIdentifyingEdgesByDoubleKey() {
         IEdge<Double, Double> edge1 = this.testData.nextDirectedEdgeByDouble();
         IEdge<Double, Double> edge2 = Edge.newDirectedEdge(
-            Vertex.of(edge1.source().getKey()),
-            Vertex.of(edge1.destination().getKey()));
+            Vertex.make(edge1.source().getKey()),
+            Vertex.make(edge1.destination().getKey()));
 
         Set<IEdge> edges = new HashSet<>();
         edges.add(edge1);
@@ -96,8 +96,8 @@ public final class EdgeTest {
     private void testIdentifyingEdgesByCharacterKey() {
         IEdge<Character, Character> edge1 = this.testData.nextDirectedEdgeByCharacter();
         IEdge<Character, Character> edge2 = Edge.newDirectedEdge(
-            Vertex.of(edge1.source().getKey()),
-            Vertex.of(edge1.destination().getKey()));
+            Vertex.make(edge1.source().getKey()),
+            Vertex.make(edge1.destination().getKey()));
 
         Set<IEdge> edges = new HashSet<>();
         edges.add(edge1);
@@ -114,8 +114,8 @@ public final class EdgeTest {
     private void testIdentifyingEdgesByStringKey() {
         IEdge<String, String> edge1 = this.testData.nextDirectedEdgeByString();
         IEdge<String, String> edge2 = Edge.newDirectedEdge(
-            Vertex.of(edge1.source().getKey()),
-            Vertex.of(edge1.destination().getKey()));
+            Vertex.make(edge1.source().getKey()),
+            Vertex.make(edge1.destination().getKey()));
 
         Set<IEdge> edges = new HashSet<>();
         edges.add(edge1);

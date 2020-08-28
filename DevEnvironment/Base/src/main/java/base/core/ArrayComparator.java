@@ -68,7 +68,7 @@ public final class ArrayComparator<T extends Comparable<T>> extends AbstractBina
             return false;
         }
 
-        return this.iteratorComparator.isEqual(ArrayIterator.of(lhs), ArrayIterator.of(rhs), comparator);
+        return this.iteratorComparator.isEqual(ArrayIterator.make(lhs), ArrayIterator.make(rhs), comparator);
     }
 
     /**
@@ -104,6 +104,6 @@ public final class ArrayComparator<T extends Comparable<T>> extends AbstractBina
             return 1;
         }
 
-        return this.iteratorComparator.compareTo(ArrayIterator.of(lhs), ArrayIterator.of(rhs), comparator);
+        return this.iteratorComparator.compareTo(ArrayIterator.make(lhs), ArrayIterator.make(rhs), comparator);
     }
 }

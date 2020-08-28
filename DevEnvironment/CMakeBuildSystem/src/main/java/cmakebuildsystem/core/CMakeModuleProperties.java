@@ -24,9 +24,9 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     private static final String propertyCMakeListsFileExtensions = "cmakeListsFileExtensions";
 
     private static final String defaultCmakeListsTargetPath = "CMakeLists.txt";
-    private static final List<String> defaultHeaderFileExtensions = ArrayLists.of("h");
-    private static final List<String> defaultSourceFileExtensions = ArrayLists.of("cpp");
-    private static final List<String> defaultCMakeListsFileExtensions = ArrayLists.of("CMakeLists.txt");
+    private static final List<String> defaultHeaderFileExtensions = ArrayLists.make("h");
+    private static final List<String> defaultSourceFileExtensions = ArrayLists.make("cpp");
+    private static final List<String> defaultCMakeListsFileExtensions = ArrayLists.make("CMakeLists.txt");
 
     private final String path;
     private final String cmakeListsTargetPath;

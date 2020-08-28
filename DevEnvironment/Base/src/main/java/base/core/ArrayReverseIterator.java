@@ -15,14 +15,14 @@ public class ArrayReverseIterator<T> implements IReverseIterator<T> {
     /**
      * Creates a new reverse iterator for an array.
      */
-    public static <T> IReverseIterator<T> of(T[] array) {
+    public static <T> IReverseIterator<T> make(T[] array) {
         return new ArrayReverseIterator<>(array, 0, (array != null) ? array.length - 1 : -1);
     }
 
     /**
      * Creates a new reverse iterator for a sub array.
      */
-    public static <T> IReverseIterator<T> of(T[] array, int startIndex, int endIndex) {
+    public static <T> IReverseIterator<T> make(T[] array, int startIndex, int endIndex) {
         return new ArrayReverseIterator<>(array, startIndex, endIndex);
     }
 

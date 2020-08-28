@@ -142,7 +142,7 @@ public final class Arrays {
         Conditions.validate(
             index >= startIndex && index <= endIndex,
             "The index of an array is out of bound." +
-            "Index = " + index + " , Range = " + Range.of(startIndex, endIndex));
+            "Index = " + index + " , Range = " + Range.make(startIndex, endIndex));
     }
 
     /**

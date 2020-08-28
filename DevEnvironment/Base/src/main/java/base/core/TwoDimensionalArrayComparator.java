@@ -39,8 +39,8 @@ public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalAr
         }
 
         return this.iteratorComparator.isEqual(
-            TwoDimensionalArrayIterator.of(lhs),
-            TwoDimensionalArrayIterator.of(rhs),
+            TwoDimensionalArrayIterator.make(lhs),
+            TwoDimensionalArrayIterator.make(rhs),
             comparator);
     }
 
@@ -78,8 +78,8 @@ public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalAr
         }
 
         return this.iteratorComparator.compareTo(
-            TwoDimensionalArrayIterator.of(lhs),
-            TwoDimensionalArrayIterator.of(rhs),
+            TwoDimensionalArrayIterator.make(lhs),
+            TwoDimensionalArrayIterator.make(rhs),
             comparator);
     }
 }

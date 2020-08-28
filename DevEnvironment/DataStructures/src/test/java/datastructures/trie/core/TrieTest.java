@@ -59,7 +59,7 @@ public final class TrieTest {
 
         this.assertion.assertEqualsWithIterators(
             trie.getIterator(),
-            ListIterator.of(trieData.getData()),
+            ListIterator.make(trieData.getData()),
             "Invalid creation logic of a trie.");
     }
 

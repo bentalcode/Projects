@@ -22,22 +22,22 @@ public final class TestData implements ITestData {
     private static final String projectDeploymentResultsDirectoryName = "projectDeploymentResults";
     private static final String projectManifestDevEnvironment = "projectManifest1.json";
 
-    private static final List<String> projectManifests = ArrayLists.of(
+    private static final List<String> projectManifests = ArrayLists.make(
         "projectManifest1.json");
 
-    private static final List<String> moduleManifests = ArrayLists.of(
+    private static final List<String> moduleManifests = ArrayLists.make(
         "moduleManifest1.json");
 
-    private static final List<String> cmakeListsManifests = ArrayLists.of(
+    private static final List<String> cmakeListsManifests = ArrayLists.make(
         "cmakeListsManifest1.json");
 
-    private static final List<String> projects = ArrayLists.of(
+    private static final List<String> projects = ArrayLists.make(
         "project1.json");
 
-    private static final List<String> modules = ArrayLists.of(
+    private static final List<String> modules = ArrayLists.make(
         "module1.json");
 
-    private static final List<String> projectDeploymentResults = ArrayLists.of(
+    private static final List<String> projectDeploymentResults = ArrayLists.make(
         "projectDeploymentResult1.json");
 
     /**

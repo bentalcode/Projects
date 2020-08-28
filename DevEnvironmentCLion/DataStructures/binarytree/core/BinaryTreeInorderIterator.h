@@ -11,17 +11,14 @@ namespace datastructures {
         /**
          * The BinaryTreeInorderIterator class implements an inorder iterator of a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeInorderIterator : public base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>
         {
         public:
             /**
              * Creates an inorder iterator of a binary tree.
              */
-            static base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> of(IBinaryTreeNodePtr<TKey, TValue> root)
-            {
-                return std::make_shared<BinaryTreeInorderIterator<TKey, TValue>>(root);
-            }
+            static base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
 
             /**
              * The BinaryTreeInorderIterator constructor.
@@ -65,6 +62,16 @@ namespace datastructures {
             std::unique_ptr<std::stack<IBinaryTreeNodePtr<TKey, TValue>>> m_stack;
             BinaryTreeLogic<TKey, TValue> m_logic;
         };
+
+        /**
+         * Creates an inorder iterator of a binary tree.
+         */
+        template <typename TKey, typename TValue>
+        base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeInorderIterator<TKey, TValue>::make(
+            IBinaryTreeNodePtr<TKey, TValue> root)
+        {
+            return std::make_shared<BinaryTreeInorderIterator<TKey, TValue>>(root);
+        }
 
         /**
          * The BinaryTreeInorderIterator constructor.

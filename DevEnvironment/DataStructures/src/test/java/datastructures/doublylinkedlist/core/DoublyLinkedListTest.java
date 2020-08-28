@@ -88,14 +88,14 @@ public final class DoublyLinkedListTest {
         //
         // Create the container...
         //
-        IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getCreationData());
+        IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getValues());
 
         //
         // Test the data of the container...
         //
         this.assertion.assertEqualsWithIterators(
             container.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getNodes()),
             "Invalid creation logic of a doubly linked list.");
     }
 
@@ -106,7 +106,7 @@ public final class DoublyLinkedListTest {
         //
         // Create the container...
         //
-        IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getCreationData());
+        IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getValues());
 
         //
         // Test the default iterator of the container...
@@ -114,7 +114,7 @@ public final class DoublyLinkedListTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getNodes()),
             "DoublyLinkedList");
 
         //
@@ -122,7 +122,7 @@ public final class DoublyLinkedListTest {
         //
         iterationTest.testForwardIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getNodes()),
             "DoublyLinkedList");
 
         //
@@ -130,7 +130,7 @@ public final class DoublyLinkedListTest {
         //
         iterationTest.testReverseIteration(
             container,
-            ListReverseIterator.of(data.getData()),
+            ListReverseIterator.make(data.getNodes()),
             "DoublyLinkedList");
 
         //
@@ -138,7 +138,7 @@ public final class DoublyLinkedListTest {
         //
         iterationTest.testValueIteration(
             container,
-            ListIterator.of(data.getValues()),
+            ListIterator.make(data.getValues()),
             "DoublyLinkedList");
 
         //
@@ -146,7 +146,7 @@ public final class DoublyLinkedListTest {
         //
         iterationTest.testValueReverseIteration(
             container,
-            ListReverseIterator.of(data.getValues()),
+            ListReverseIterator.make(data.getValues()),
             "DoublyLinkedList");
     }
 
@@ -179,7 +179,7 @@ public final class DoublyLinkedListTest {
 
         this.assertion.assertEqualsWithIterators(
             list.getValueIterator(),
-            Iterator.of(expectedContent),
+            Iterator.make(expectedContent),
             "Invalid updating logic of a doubly linked list.");
     }
 
@@ -205,10 +205,10 @@ public final class DoublyLinkedListTest {
         T item) {
 
         if (operation.equalsIgnoreCase("addToFront")) {
-            list.addToFront(DoublyLinkedListNode.of(item));
+            list.addToFront(DoublyLinkedListNode.make(item));
         }
         else if (operation.equalsIgnoreCase("addToBack")) {
-            list.addToBack(DoublyLinkedListNode.of(item));
+            list.addToBack(DoublyLinkedListNode.make(item));
         }
         else if (operation.equalsIgnoreCase("removeFromFront")) {
             list.removeFromFront();

@@ -14,7 +14,7 @@ public class ListIterator<T extends Comparable<T>> implements IIterator<T> {
     /**
      * Creates a new iterator of a list.
      */
-    public static <T extends Comparable<T>> IIterator<T> of(IList<T> list) {
+    public static <T extends Comparable<T>> IIterator<T> make(IList<T> list) {
         return new ListIterator<>(list);
     }
 

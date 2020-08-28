@@ -17,10 +17,7 @@ namespace datastructures {
             /**
              * Creates a preorder iterator of a binary tree.
              */
-            static base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> of(IBinaryTreeNodePtr<TKey, TValue> root)
-            {
-                return std::make_shared<BinaryTreePostorderIterator<TKey, TValue>>(root);
-            }
+            static base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
 
             /**
              * The BinaryTreePostorderIterator constructor.
@@ -68,6 +65,15 @@ namespace datastructures {
             IBinaryTreeNodePtr<TKey, TValue> m_root;
             std::unique_ptr<std::stack<IBinaryTreeNodePtr<TKey, TValue>>> m_stack;
         };
+
+        /**
+         * Creates a preorder iterator of a binary tree.
+         */
+        template <typename TKey, typename TValue>
+        base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreePostorderIterator<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
+        {
+            return std::make_shared<BinaryTreePostorderIterator<TKey, TValue>>(root);
+        }
 
         /**
          * The BinaryTreePostorderIterator constructor.

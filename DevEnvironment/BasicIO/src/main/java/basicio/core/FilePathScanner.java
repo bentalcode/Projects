@@ -29,7 +29,7 @@ public final class FilePathScanner implements IFilePathScanner {
      */
     @Override
     public List<Path> scan(Path directory, List<String> extensions) {
-        List<List<String>> extensionsCategories = ArrayLists.of(extensions);
+        List<List<String>> extensionsCategories = ArrayLists.make(extensions);
 
         List<List<Path>> result = this.scanByCategory(directory, extensionsCategories);
         assert(result.size() == 1);

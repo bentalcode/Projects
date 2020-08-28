@@ -169,7 +169,7 @@ public final class MultiLevelDoublyLinkedListTest {
         //
         this.assertion.assertEqualsWithIterators(
             container.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a doubly linked list.");
     }
 
@@ -188,7 +188,7 @@ public final class MultiLevelDoublyLinkedListTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "MultiLevelDoublyLinkedList");
 
         //
@@ -196,7 +196,7 @@ public final class MultiLevelDoublyLinkedListTest {
         //
         iterationTest.testForwardIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "MultiLevelDoublyLinkedList");
 
         //
@@ -204,7 +204,7 @@ public final class MultiLevelDoublyLinkedListTest {
         //
         iterationTest.testValueIteration(
             container,
-            ListIterator.of(data.getValues()),
+            ListIterator.make(data.getValues()),
             "MultiLevelDoublyLinkedList");
     }
 
@@ -219,8 +219,8 @@ public final class MultiLevelDoublyLinkedListTest {
         List<List<T>> result = logic.getLevels();
 
         this.assertion.assertEqualsWithIterators(
-            TwoDimensionalListIterator.of(result),
-            TwoDimensionalListIterator.of(expectedResult),
+            TwoDimensionalListIterator.make(result),
+            TwoDimensionalListIterator.make(expectedResult),
             "Incorrect logic of getting levels of a multi-level doubly linked list.");
     }
 
@@ -235,8 +235,8 @@ public final class MultiLevelDoublyLinkedListTest {
         List<List<T>> result = logic.getVerticalLevels();
 
         this.assertion.assertEqualsWithIterators(
-            TwoDimensionalListIterator.of(result),
-            TwoDimensionalListIterator.of(expectedResult),
+            TwoDimensionalListIterator.make(result),
+            TwoDimensionalListIterator.make(expectedResult),
             "Incorrect logic of getting vertical levels of a multi-level doubly linked list.");
     }
 
@@ -252,7 +252,7 @@ public final class MultiLevelDoublyLinkedListTest {
 
         this.assertion.assertEqualsWithIterators(
             list.getIterator(),
-            TwoDimensionalListIterator.of(nodesByLevels),
+            TwoDimensionalListIterator.make(nodesByLevels),
             "Incorrect logic of flattening by levels a multi-level doubly linked list.");
     }
 
@@ -268,7 +268,7 @@ public final class MultiLevelDoublyLinkedListTest {
 
         this.assertion.assertEqualsWithIterators(
             list.getIterator(),
-            TwoDimensionalListIterator.of(nodesByLevels),
+            TwoDimensionalListIterator.make(nodesByLevels),
             "Incorrect logic of flattening by vertical levels a multi-level doubly linked list.");
     }
 
@@ -284,7 +284,7 @@ public final class MultiLevelDoublyLinkedListTest {
 
         this.assertion.assertEqualsWithIterators(
             list.getIterator(),
-            TwoDimensionalListIterator.of(nodesByLevels),
+            TwoDimensionalListIterator.make(nodesByLevels),
             "Incorrect logic of flattening by depth levels a multi-level doubly linked list.");
     }
 
@@ -315,7 +315,7 @@ public final class MultiLevelDoublyLinkedListTest {
                 T nodeValue = matrix.get(row, col);
 
                 if (nodeValue != null) {
-                    nodes.set(row, col, MultiLevelDoublyLinkedListNode.of(nodeValue));
+                    nodes.set(row, col, MultiLevelDoublyLinkedListNode.make(nodeValue));
                 }
             }
         }

@@ -67,7 +67,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IIterator<ITreeLevel<TKey, TValue>> getIterator() {
-        return ListIterator.of(this.levels);
+        return ListIterator.make(this.levels);
     }
 
     /**
@@ -75,7 +75,7 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IReverseIterator<ITreeLevel<TKey, TValue>> getReverseIterator() {
-        return ListReverseIterator.of(this.levels);
+        return ListReverseIterator.make(this.levels);
     }
 
     /**

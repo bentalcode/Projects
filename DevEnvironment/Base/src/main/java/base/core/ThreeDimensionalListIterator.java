@@ -16,7 +16,7 @@ public final class ThreeDimensionalListIterator<T extends Comparable<T>> impleme
     /**
      * Creates a new iterator of a tree dimensional list.
      */
-    public static <T extends Comparable<T>> IIterator<T> of(List<List<List<T>>> data) {
+    public static <T extends Comparable<T>> IIterator<T> make(List<List<List<T>>> data) {
         return new ThreeDimensionalListIterator<>(data);
     }
 

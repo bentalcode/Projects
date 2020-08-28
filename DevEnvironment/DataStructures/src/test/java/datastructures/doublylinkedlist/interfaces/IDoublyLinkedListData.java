@@ -7,17 +7,12 @@ import java.util.List;
  */
 public interface IDoublyLinkedListData<T extends Comparable<T>> {
     /**
-     * Gets the creation data of the list.
-     */
-    List<T> getCreationData();
-
-    /**
-     * Gets the actual data of the list.
-     */
-     List<IDoublyLinkedListNode<T>> getData();
-
-    /**
-     * Gets the actual values of the list.
+     * Gets the values of the list.
      */
     List<T> getValues();
+
+    /**
+     * Gets the nodes of the list.
+     */
+    List<IDoublyLinkedListNode<T>> getNodes();
 }

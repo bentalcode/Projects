@@ -21,14 +21,14 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
     /**
      * Creates a new instance of a vertex.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IVertex<TKey, TValue> of(TKey key) {
+    public static <TKey extends Comparable<TKey>, TValue> IVertex<TKey, TValue> make(TKey key) {
         return new Vertex<>(key, null);
     }
 
     /**
      * Creates a new instance of a vertex.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IVertex<TKey, TValue> of(TKey key, TValue value) {
+    public static <TKey extends Comparable<TKey>, TValue> IVertex<TKey, TValue> make(TKey key, TValue value) {
         return new Vertex<>(key, value);
     }
 

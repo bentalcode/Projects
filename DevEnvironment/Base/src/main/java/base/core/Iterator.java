@@ -12,7 +12,7 @@ public final class Iterator<T> implements IIterator<T> {
     /**
      * Creates a new operator.
      */
-    public static <T> IIterator<T> of(Collection<T> collection) {
+    public static <T> IIterator<T> make(Collection<T> collection) {
         Conditions.validateNotNull(
             collection,
             "The collection.");

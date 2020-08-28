@@ -15,7 +15,7 @@ public final class TwoDimensionalListReverseIterator<T> implements IReverseItera
     /**
      * Creates a new reverse iterator of a two dimensional list.
      */
-    public static <T> IReverseIterator<T> of(List<List<T>> data) {
+    public static <T> IReverseIterator<T> make(List<List<T>> data) {
         return new TwoDimensionalListReverseIterator<>(data);
     }
 

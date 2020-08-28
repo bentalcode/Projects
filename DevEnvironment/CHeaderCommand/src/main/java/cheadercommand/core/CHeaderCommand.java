@@ -46,7 +46,7 @@ public final class CHeaderCommand extends AbstractCommand {
      */
     private void processDirectory(Path directory) {
         IFilePathScanner scanner = new FilePathScanner();
-        List<String> extensions = ArrayLists.of("h", "hpp");
+        List<String> extensions = ArrayLists.make("h", "hpp");
 
         List<Path> filePaths = scanner.scan(directory, extensions);
 

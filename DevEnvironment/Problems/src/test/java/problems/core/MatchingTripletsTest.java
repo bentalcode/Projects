@@ -48,17 +48,17 @@ public final class MatchingTripletsTest {
         int[] values1 = {0, 1, 1, 1, 2, 2, 2};
         int sum1 = 3;
 
-        List<ITriplet<Integer, Integer, Integer>> result1 = ArrayLists.of(
-            Triplet.of(0, 1, 4),
-            Triplet.of(0, 1, 5),
-            Triplet.of(0, 1, 6),
-            Triplet.of(0, 2, 4),
-            Triplet.of(0, 2, 5),
-            Triplet.of(0, 2, 6),
-            Triplet.of(0, 3, 4),
-            Triplet.of(0, 3, 5),
-            Triplet.of(0, 3, 6),
-            Triplet.of(1, 2, 3));
+        List<ITriplet<Integer, Integer, Integer>> result1 = ArrayLists.make(
+            Triplet.make(0, 1, 4),
+            Triplet.make(0, 1, 5),
+            Triplet.make(0, 1, 6),
+            Triplet.make(0, 2, 4),
+            Triplet.make(0, 2, 5),
+            Triplet.make(0, 2, 6),
+            Triplet.make(0, 3, 4),
+            Triplet.make(0, 3, 5),
+            Triplet.make(0, 3, 6),
+            Triplet.make(1, 2, 3));
 
         this.testMatchingTripletsIndexes(values1, sum1, result1);
     }
@@ -71,9 +71,9 @@ public final class MatchingTripletsTest {
         int[] values1 = {0, 1, 1, 1, 2, 2, 2};
         int sum1 = 3;
 
-        List<ITriplet<Integer, Integer, Integer>> result1 = ArrayLists.of(
-            Triplet.of(0, 1, 2),
-            Triplet.of(1, 1, 1));
+        List<ITriplet<Integer, Integer, Integer>> result1 = ArrayLists.make(
+            Triplet.make(0, 1, 2),
+            Triplet.make(1, 1, 1));
 
         this.testMatchingTriplets(values1, sum1, result1);
     }
@@ -85,15 +85,15 @@ public final class MatchingTripletsTest {
     public void matchingClosestTripletsTest() {
         int[] values1 = {-1, 2, 1, -4};
         int sum1 = 1;
-        ITriplet<Integer, Integer, Integer> result1 = Triplet.of(-1, 1, 2);
+        ITriplet<Integer, Integer, Integer> result1 = Triplet.make(-1, 1, 2);
 
         int[] values2 = {0, 1, 1, 1, 2, 2, 2};
         int sum2 = 7;
-        ITriplet<Integer, Integer, Integer> result2 = Triplet.of(2, 2, 2);
+        ITriplet<Integer, Integer, Integer> result2 = Triplet.make(2, 2, 2);
 
         int[] values3 = {6, 1, -1, 1, 2, 8, 2};
         int sum3 = 1;
-        ITriplet<Integer, Integer, Integer> result3 = Triplet.of(-1, 1, 1);
+        ITriplet<Integer, Integer, Integer> result3 = Triplet.make(-1, 1, 1);
 
         this.testMatchingClosestTriplet(values1, sum1, result1);
         this.testMatchingClosestTriplet(values2, sum2, result2);
@@ -107,10 +107,10 @@ public final class MatchingTripletsTest {
     public void findTripletsTest() {
         int[] values1 = {0, 1, 1, 1, 2, 2, 2};
 
-        List<ITriplet<Integer, Integer, Integer>> result1 = ArrayLists.of(
-            Triplet.of(0, 1, 1),
-            Triplet.of(0, 2, 2),
-            Triplet.of(1, 1, 2));
+        List<ITriplet<Integer, Integer, Integer>> result1 = ArrayLists.make(
+            Triplet.make(0, 1, 1),
+            Triplet.make(0, 2, 2),
+            Triplet.make(1, 1, 2));
 
         this.testFindingTriplets(values1, result1);
     }
@@ -129,8 +129,8 @@ public final class MatchingTripletsTest {
         Collections.sort(result);
 
         this.assertion.assertEqualsWithIterators(
-            ListIterator.of(result),
-            CollectionIterator.of(expectedResult),
+            ListIterator.make(result),
+            CollectionIterator.make(expectedResult),
             "Incorrect logic for finding the indexes of matching triplets.");
     }
 
@@ -147,8 +147,8 @@ public final class MatchingTripletsTest {
         Collections.sort(result);
 
         this.assertion.assertEqualsWithIterators(
-            CollectionIterator.of(result),
-            CollectionIterator.of(expectedResult),
+            CollectionIterator.make(result),
+            CollectionIterator.make(expectedResult),
             "Incorrect logic for finding the values of matching triplets.");
     }
 
@@ -181,8 +181,8 @@ public final class MatchingTripletsTest {
         Collections.sort(result);
 
         this.assertion.assertEqualsWithIterators(
-            ListIterator.of(result),
-            ListIterator.of(expectedResult),
+            ListIterator.make(result),
+            ListIterator.make(expectedResult),
             "Incorrect logic for finding triplets such that sum of two equals to third element.");
     }
 }

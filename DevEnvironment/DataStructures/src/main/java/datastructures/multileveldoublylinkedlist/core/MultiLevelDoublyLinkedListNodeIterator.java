@@ -18,7 +18,7 @@ public final class MultiLevelDoublyLinkedListNodeIterator<T extends Comparable<T
     /**
      * Creates a new iterator of a multi-level doubly linked list.
      */
-    public static <T extends Comparable<T>> IIterator<IMultiLevelDoublyLinkedListNode<T>> of(IMultiLevelDoublyLinkedListNode<T> headNode) {
+    public static <T extends Comparable<T>> IIterator<IMultiLevelDoublyLinkedListNode<T>> make(IMultiLevelDoublyLinkedListNode<T> headNode) {
         return new MultiLevelDoublyLinkedListNodeIterator<>(headNode);
     }
 

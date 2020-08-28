@@ -54,11 +54,11 @@ public final class TestData implements ITestData {
     public List<IPair<Integer, String>> getIntegerStrings() {
         List<IPair<Integer, String>> values = new ArrayList<>();
 
-        values.add(Pair.of(0, "0"));
-        values.add(Pair.of(101, "101"));
-        values.add(Pair.of(-2222, "-2222"));
-        values.add(Pair.of(2222, "2222"));
-        values.add(Pair.of(22222222, "22222222"));
+        values.add(Pair.make(0, "0"));
+        values.add(Pair.make(101, "101"));
+        values.add(Pair.make(-2222, "-2222"));
+        values.add(Pair.make(2222, "2222"));
+        values.add(Pair.make(22222222, "22222222"));
 
         return values;
     }

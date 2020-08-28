@@ -42,22 +42,22 @@ public final class PositionQueensTest {
     @Test
     public void combinationSumTest() {
         int size1 = 1;
-        List<List<String>> result1 = ArrayLists.newList();
+        List<List<String>> result1 = ArrayLists.make();
 
         int size2 = 2;
-        List<List<String>> result2 = ArrayLists.newList();
+        List<List<String>> result2 = ArrayLists.make();
 
         int size3 = 3;
-        List<List<String>> result3 = ArrayLists.newList();
+        List<List<String>> result3 = ArrayLists.make();
 
         int size4 = 4;
-        List<List<String>> result4 = ArrayLists.of(
-            ArrayLists.of(
+        List<List<String>> result4 = ArrayLists.make(
+            ArrayLists.make(
                 "..Q.",
                 "Q...",
                 "...Q",
                 ".Q.."),
-            ArrayLists.of(
+            ArrayLists.make(
                 ".Q..",
                 "...Q",
                 "Q...",
@@ -65,62 +65,62 @@ public final class PositionQueensTest {
         );
 
         int size5 = 5;
-        List<List<String>> result5 = ArrayLists.of(
-            ArrayLists.of(
+        List<List<String>> result5 = ArrayLists.make(
+            ArrayLists.make(
                 "Q....",
                 "...Q.",
                 ".Q...",
                 "....Q",
                 "..Q.."),
-            ArrayLists.of(
+            ArrayLists.make(
                 "Q....",
                 "..Q..",
                 "....Q",
                 ".Q...",
                 "...Q."),
-            ArrayLists.of(
+            ArrayLists.make(
                 "..Q..",
                 "Q....",
                 "...Q.",
                 ".Q...",
                 "....Q"),
-            ArrayLists.of(
+            ArrayLists.make(
                 "...Q.",
                 "Q....",
                 "..Q..",
                 "....Q",
                 ".Q..."),
-            ArrayLists.of(
+            ArrayLists.make(
                 ".Q...",
                 "...Q.",
                 "Q....",
                 "..Q..",
                 "....Q"),
-            ArrayLists.of(
+            ArrayLists.make(
                 "....Q",
                 "..Q..",
                 "Q....",
                 "...Q.",
                 ".Q..."),
-            ArrayLists.of(
+            ArrayLists.make(
                 ".Q...",
                 "....Q",
                 "..Q..",
                 "Q....",
                 "...Q."),
-            ArrayLists.of(
+            ArrayLists.make(
                 "....Q",
                 ".Q...",
                 "...Q.",
                 "Q....",
                 "..Q.."),
-            ArrayLists.of(
+            ArrayLists.make(
                 "...Q.",
                 ".Q...",
                 "....Q",
                 "..Q..",
                 "Q...."),
-            ArrayLists.of(
+            ArrayLists.make(
                 "..Q..",
                 "....Q",
                 ".Q...",
@@ -129,29 +129,29 @@ public final class PositionQueensTest {
         );
 
         int size6 = 6;
-        List<List<String>> result6 = ArrayLists.of(
-            ArrayLists.of(
+        List<List<String>> result6 = ArrayLists.make(
+            ArrayLists.make(
                 "...Q..",
                 "Q.....",
                 "....Q.",
                 ".Q....",
                 ".....Q",
                 "..Q..."),
-            ArrayLists.of(
+            ArrayLists.make(
                 "....Q.",
                 "..Q...",
                 "Q.....",
                 ".....Q",
                 "...Q..",
                 ".Q...."),
-            ArrayLists.of(
+            ArrayLists.make(
                 ".Q....",
                 "...Q..",
                 ".....Q",
                 "Q.....",
                 "..Q...",
                 "....Q."),
-            ArrayLists.of(
+            ArrayLists.make(
                 "..Q...",
                 ".....Q",
                 ".Q....",
@@ -179,8 +179,8 @@ public final class PositionQueensTest {
         List<List<String>> result = positionQueens.positionQueens(size);
 
         this.assertion.assertEqualsWithIterators(
-            TwoDimensionalListIterator.of(result),
-            TwoDimensionalListIterator.of(expectedResult),
+            TwoDimensionalListIterator.make(result),
+            TwoDimensionalListIterator.make(expectedResult),
             "Incorrect logic for position queens.");
     }
 }

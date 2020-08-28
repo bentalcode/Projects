@@ -206,7 +206,7 @@ public final class Collections {
                     newSequenceResult.add(currSubCollection);
                     int newSequenceSize = currSubCollection.size();
 
-                    result.add(Pair.of(newSequenceResult, newSequenceSize));
+                    result.add(Pair.make(newSequenceResult, newSequenceSize));
                 }
                 else {
                     int currNumberOfResults = result.size();
@@ -222,7 +222,7 @@ public final class Collections {
                             newSequenceResult.add(currSubCollection);
                             int newSequenceSize = currSequenceSize + currSubCollection.size();
 
-                            result.add(Pair.of(newSequenceResult, newSequenceSize));
+                            result.add(Pair.make(newSequenceResult, newSequenceSize));
                         }
                     }
                 }

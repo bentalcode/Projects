@@ -31,7 +31,7 @@ public final class UriReaderCommandParameters implements IUriReaderCommandParame
             mostlyUsedWordsParameter.getIntegerValue() : 10;
 
         IParameter excludedWordsParameter = parameters.getParameterSet().getParameter("excludedWords");
-        this.excludedWords = TreeSets.of(excludedWordsParameter != null && excludedWordsParameter.isSet() ?
+        this.excludedWords = TreeSets.make(excludedWordsParameter != null && excludedWordsParameter.isSet() ?
             excludedWordsParameter.getStringArrayValue() : null);
     }
 

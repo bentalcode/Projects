@@ -74,7 +74,7 @@ abstract class AbstractLineMatcher implements ILineMatcher {
 
         for (IMatchingRecord matchingRecord : matchingRecords) {
             IMatchingRecordResult matchingRecordResult = new MatchingRecordResult();
-            IPair<IMatchingRecord, IMatchingRecordResult> recordInformation = Pair.of(
+            IPair<IMatchingRecord, IMatchingRecordResult> recordInformation = Pair.make(
                 matchingRecord,
                 matchingRecordResult);
 

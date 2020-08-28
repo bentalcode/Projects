@@ -15,14 +15,14 @@ public final class DoublyLinkedListNodeIterator<T extends Comparable<T>>
     /**
      * Creates a new iterator of a doubly linked list.
      */
-    public static <T extends Comparable<T>> IIterator<IDoublyLinkedListNode<T>> of(IDoublyLinkedListNode<T> head) {
+    public static <T extends Comparable<T>> IIterator<IDoublyLinkedListNode<T>> make(IDoublyLinkedListNode<T> head) {
         return new DoublyLinkedListNodeIterator<>(head);
     }
 
     /**
      * The DoublyLinkedListNodeIterator constructor.
      */
-    public DoublyLinkedListNodeIterator(IDoublyLinkedListNode<T> head) {
+    private DoublyLinkedListNodeIterator(IDoublyLinkedListNode<T> head) {
         this.head = head;
 
         this.reset();
@@ -42,7 +42,6 @@ public final class DoublyLinkedListNodeIterator<T extends Comparable<T>>
     @Override
     public IDoublyLinkedListNode<T> next() {
         assert(this.hasNext());
-
 
         IDoublyLinkedListNode<T> currNode = this.currNode;
         this.currNode = this.currNode.next();

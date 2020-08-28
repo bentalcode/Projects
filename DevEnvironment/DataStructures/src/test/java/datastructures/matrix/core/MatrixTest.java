@@ -49,15 +49,6 @@ public final class MatrixTest {
     }
 
     /**
-     * Tests the logic of a creating a sub matrix.
-     */
-    public void subMatrixCreationTest() {
-        for (IMatrixData<Integer> data : this.testData.getMatrixData().getData()) {
-            //this.testSubMatrixCreation(data);
-        }
-    }
-
-    /**
      * Tests the creation logic of a matrix.
      */
     private <T extends Comparable<T>> void testCreation(IMatrixData<T> data) {
@@ -65,44 +56,10 @@ public final class MatrixTest {
 
         this.assertion.assertEqualsWithIterators(
             matrix.getIterator(),
-            TwoDimensionalListIterator.of(data.getData()),
+            TwoDimensionalListIterator.make(data.getData()),
             "Invalid creation logic of a matrix.");
     }
 
-    /**
-     * Tests the creation logic of a sub-matrix.
-     */
-    /*
-    private <T extends Comparable<T>> void testSubMatrixCreation(IMatrixData<T> data) {
-        IMatrix<T> matrix = this.createMatrix(data);
-
-        this.assertion.assertEqualsWithIterators(
-            matrix.getIterator(),
-            TwoDimensionalListIterator.of(data.getData()),
-            "Invalid creation logic of a matrix.");
-
-        for (int x = 0; x < matrix.xSize(); ++x) {
-            for (int y = 0; y < matrix.ySize(); ++y) {
-                IPosition bottomLowerPosition = new Position(x, y);
-
-                int subMatrixMaxXSize = matrix.xSize() - x;
-                int subMatrixMaxYSize = matrix.ySize() - y;
-
-                for (int subMatrixXSize = 1; subMatrixXSize <= subMatrixMaxXSize; ++subMatrixXSize) {
-                    for (int subMatrixYSize = 1; subMatrixYSize <= subMatrixMaxYSize; ++subMatrixYSize) {
-                        IMatrix<T> subMatrix = matrix.getSubMatrix(bottomLowerPosition, subMatrixXSize, subMatrixYSize);
-
-                        int subMatrixSize = subMatrixXSize * subMatrixYSize;
-
-                        this.assertion.assertTrue(
-                            subMatrixSize == subMatrix.size(),
-                            "Invalid creation logic of a sub-matrix.");
-                    }
-                }
-            }
-        }
-    }
-*/
     /**
      * Creates a matrix.
      */

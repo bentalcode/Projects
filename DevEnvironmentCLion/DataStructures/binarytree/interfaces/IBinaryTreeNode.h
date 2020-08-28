@@ -87,6 +87,9 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         using IBinaryTreeNodePtr = std::shared_ptr<IBinaryTreeNode<TKey, TValue>>;
 
+        /**
+         * Defines the equivalent operator.
+         */
         template <typename TKey, typename TValue>
         bool operator<(const IBinaryTreeNode<TKey, TValue>& left, const IBinaryTreeNode<TKey, TValue>& right)
         {

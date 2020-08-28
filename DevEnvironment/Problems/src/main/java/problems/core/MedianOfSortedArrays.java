@@ -253,7 +253,7 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
         int rightMidIndex = startIndex + (length / 2);
         int leftMidIndex = rightMidIndex - 1;
 
-        return Pair.of(values[leftMidIndex], values[rightMidIndex]);
+        return Pair.make(values[leftMidIndex], values[rightMidIndex]);
     }
 
     /**

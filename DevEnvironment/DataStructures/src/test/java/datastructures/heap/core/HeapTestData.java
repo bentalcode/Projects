@@ -26,7 +26,7 @@ public final class HeapTestData implements IHeapTestData {
         IHeapData<Integer> data4 = this.getHeapData4();
         IHeapData<Integer> data5 = this.getHeapData5();
 
-        return ArrayLists.of(
+        return ArrayLists.make(
             data1,
             data2,
             data3,

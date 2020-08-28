@@ -93,7 +93,7 @@ public final class LinkedListTest {
         //
         this.assertion.assertEqualsWithIterators(
             container.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a linked list.");
     }
 
@@ -112,7 +112,7 @@ public final class LinkedListTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "LinkedList");
 
         //
@@ -120,7 +120,7 @@ public final class LinkedListTest {
         //
         iterationTest.testForwardIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "LinkedList");
 
         //
@@ -128,7 +128,7 @@ public final class LinkedListTest {
         //
         iterationTest.testValueIteration(
             container,
-            ListIterator.of(data.getValues()),
+            ListIterator.make(data.getValues()),
             "LinkedList");
     }
 
@@ -161,7 +161,7 @@ public final class LinkedListTest {
 
         this.assertion.assertEqualsWithIterators(
             list.getValueIterator(),
-            Iterator.of(expectedContent),
+            Iterator.make(expectedContent),
             "Invalid updation logic of a linked list.");
     }
 
@@ -187,10 +187,10 @@ public final class LinkedListTest {
         T item) {
 
         if (operation.equalsIgnoreCase("addToFront")) {
-            list.addToFront(LinkedListNode.of(item));
+            list.addToFront(LinkedListNode.make(item));
         }
         else if (operation.equalsIgnoreCase("addToBack")) {
-            list.addToBack(LinkedListNode.of(item));
+            list.addToBack(LinkedListNode.make(item));
         }
         else if (operation.equalsIgnoreCase("removeFromFront")) {
             list.removeFromFront();

@@ -2,7 +2,6 @@ package datastructures.binarytree.core;
 
 import base.core.Conditions;
 import base.interfaces.IBuilder;
-import base.interfaces.IIterator;
 import datastructures.binarytree.interfaces.IBinaryTree;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeNodeIterator;
@@ -20,7 +19,7 @@ public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue
     public static <TKey extends Comparable<TKey>, TValue> IBinaryTree<TKey, TValue> build(
         List<IBinaryTreeNode<TKey, TValue>> nodes) {
 
-        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> dataIterator = BinaryTreeNodeListIterator.of(nodes);
+        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> dataIterator = BinaryTreeNodeListIterator.make(nodes);
         IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreeStreamBuilder<>(dataIterator);
         IBinaryTree<TKey, TValue> tree = builder.build();
 

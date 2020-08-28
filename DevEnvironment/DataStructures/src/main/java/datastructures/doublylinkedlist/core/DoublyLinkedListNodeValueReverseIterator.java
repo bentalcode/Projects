@@ -12,9 +12,18 @@ public final class DoublyLinkedListNodeValueReverseIterator<T extends Comparable
     private final IReverseIterator<IDoublyLinkedListNode<T>> reverseIterator;
 
     /**
-     * The NodeValueIterator constructor.
+     * Creates a new reverse iterator of values of a doubly linked list.
      */
-    public DoublyLinkedListNodeValueReverseIterator(IReverseIterator<IDoublyLinkedListNode<T>> reverseIterator) {
+    public static <T extends Comparable<T>> IReverseIterator<T> make(
+        IReverseIterator<IDoublyLinkedListNode<T>> reverseIterator) {
+
+        return new DoublyLinkedListNodeValueReverseIterator<>(reverseIterator);
+    }
+
+    /**
+     * The DoublyLinkedListNodeValueReverseIterator constructor.
+     */
+    private DoublyLinkedListNodeValueReverseIterator(IReverseIterator<IDoublyLinkedListNode<T>> reverseIterator) {
         Conditions.validateNotNull(
             reverseIterator,
             "The reverse iterator of nodes of a doubly linked list.");

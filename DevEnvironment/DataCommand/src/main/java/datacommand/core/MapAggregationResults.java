@@ -52,7 +52,7 @@ public final class MapAggregationResults extends AbstractAggregationResults {
      */
     @Override
     public IIterator<IAggregationResult> getIterator() {
-        return Iterator.of(this.results.values());
+        return Iterator.make(this.results.values());
     }
 
     /**

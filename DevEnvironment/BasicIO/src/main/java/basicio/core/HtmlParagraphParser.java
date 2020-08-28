@@ -39,7 +39,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
     private static final String tokenSeparatorRegex = "[( )]";
     private static final String referenceRegex = "(\\[[0-9]+\\])";
     private static final Pattern referencePattern = Pattern.compile(referenceRegex);
-    private static final List<Character> sentenceSeparators = ArrayLists.of(',', '.', ';');
+    private static final List<Character> sentenceSeparators = ArrayLists.make(',', '.', ';');
     private static final char specialToken = 65533;
 
     private final int mostlyUsedWordsCapacity;
@@ -56,7 +56,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
     public HtmlParagraphParser() {
         this(
             defaultMostlyUsedWordsCapacity,
-            HashSets.newSet());
+            HashSets.make());
     }
 
     /**
@@ -110,7 +110,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
         List<IPair<String, Integer>> mostlyUsedWords = new ArrayList<>(this.mostlyUsedWordsPriorityQueue.size());
 
         for (IDoublet<String, Integer> element : this.mostlyUsedWordsPriorityQueue) {
-            mostlyUsedWords.add(Pair.of(element.first(), element.second()));
+            mostlyUsedWords.add(Pair.make(element.first(), element.second()));
         }
 
         Collections.sort(mostlyUsedWords, new Comparator<IPair<String, Integer>>() {
@@ -355,7 +355,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
         //
         // Update the priority queue of mostly used words...
         //
-        IDoublet<String, Integer> newWordCounter = Doublet.of(word, wordCounter);
+        IDoublet<String, Integer> newWordCounter = Doublet.make(word, wordCounter);
 
         int index = this.mostlyUsedWordsPriorityQueue.find(element -> element.first().equals(word));
 

@@ -64,20 +64,20 @@ public final class HashMapTestData implements IHashMapTestData {
      * Gets the data of hash map2.
      */
     private IMapData<Integer, String> getHashMapData2() {
-        List<IKeyValueNode<Integer, String>> creationData = ArrayLists.of(
-            KeyValueNode.of(1, "a"),
-            KeyValueNode.of(1, "a"),
-            KeyValueNode.of(2, "b"),
-            KeyValueNode.of(2, "c"),
-            KeyValueNode.of(2, "b"),
-            KeyValueNode.of(3, "a"),
-            KeyValueNode.of(3, "b"),
-            KeyValueNode.of(3, "c"));
+        List<IKeyValueNode<Integer, String>> creationData = ArrayLists.make(
+            KeyValueNode.make(1, "a"),
+            KeyValueNode.make(1, "a"),
+            KeyValueNode.make(2, "b"),
+            KeyValueNode.make(2, "c"),
+            KeyValueNode.make(2, "b"),
+            KeyValueNode.make(3, "a"),
+            KeyValueNode.make(3, "b"),
+            KeyValueNode.make(3, "c"));
 
-        List<IKeyValueNode<Integer, String>> data = ArrayLists.of(
-            KeyValueNode.of(1, "a"),
-            KeyValueNode.of(2, "b"),
-            KeyValueNode.of(3, "c"));
+        List<IKeyValueNode<Integer, String>> data = ArrayLists.make(
+            KeyValueNode.make(1, "a"),
+            KeyValueNode.make(2, "b"),
+            KeyValueNode.make(3, "c"));
 
         List<Integer> keys = this.createKeys(data);
         List<String> values = this.createValues(data);
@@ -109,20 +109,20 @@ public final class HashMapTestData implements IHashMapTestData {
      * Gets the data of linked hash map2.
      */
     private IMapData<Integer, String> getLinkedHashMapData2() {
-        List<IKeyValueNode<Integer, String>> creationData = ArrayLists.of(
-            KeyValueNode.of(3, "c"),
-            KeyValueNode.of(3, "c"),
-            KeyValueNode.of(2, "b"),
-            KeyValueNode.of(2, "a"),
-            KeyValueNode.of(2, "b"),
-            KeyValueNode.of(1, "c"),
-            KeyValueNode.of(1, "b"),
-            KeyValueNode.of(1, "a"));
+        List<IKeyValueNode<Integer, String>> creationData = ArrayLists.make(
+            KeyValueNode.make(3, "c"),
+            KeyValueNode.make(3, "c"),
+            KeyValueNode.make(2, "b"),
+            KeyValueNode.make(2, "a"),
+            KeyValueNode.make(2, "b"),
+            KeyValueNode.make(1, "c"),
+            KeyValueNode.make(1, "b"),
+            KeyValueNode.make(1, "a"));
 
-        List<IKeyValueNode<Integer, String>> data = ArrayLists.of(
-            KeyValueNode.of(3, "c"),
-            KeyValueNode.of(2, "b"),
-            KeyValueNode.of(1, "a"));
+        List<IKeyValueNode<Integer, String>> data = ArrayLists.make(
+            KeyValueNode.make(3, "c"),
+            KeyValueNode.make(2, "b"),
+            KeyValueNode.make(1, "a"));
 
         List<Integer> keys = this.createKeys(data);
         List<String> values = this.createValues(data);

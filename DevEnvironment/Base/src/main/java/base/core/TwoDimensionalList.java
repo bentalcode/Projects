@@ -110,7 +110,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
      */
     @Override
     public IIterator<T> getIterator() {
-        return TwoDimensionalListIterator.of(this.data);
+        return TwoDimensionalListIterator.make(this.data);
     }
 
     /**

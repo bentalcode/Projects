@@ -12,7 +12,7 @@ public final class StringIterator implements IIterator<Character> {
     /**
      * Creates a new iterator of a string.
      */
-    public static IIterator<Character> of(String string) {
+    public static IIterator<Character> make(String string) {
         return new StringIterator(string);
     }
 

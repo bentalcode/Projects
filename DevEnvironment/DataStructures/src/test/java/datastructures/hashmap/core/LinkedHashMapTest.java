@@ -85,7 +85,7 @@ public final class LinkedHashMapTest {
 
         this.assertion.assertEqualsWithIterators(
             map.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a linked hash map.");
     }
 
@@ -99,7 +99,7 @@ public final class LinkedHashMapTest {
 
         this.assertion.assertEqualsWithIterators(
             map.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a linked hash map.");
 
         List<IKeyValueNode<TKey, TValue>> keyValueNodes = Lists.fromIterator(map.getIterator());
@@ -141,7 +141,7 @@ public final class LinkedHashMapTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "LinkedHashMap");
 
         //
@@ -149,7 +149,7 @@ public final class LinkedHashMapTest {
         //
         iterationTest.testForwardIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "LinkedHashMap");
 
         //
@@ -157,7 +157,7 @@ public final class LinkedHashMapTest {
         //
         iterationTest.testReverseIteration(
             container,
-            ListReverseIterator.of(data.getData()),
+            ListReverseIterator.make(data.getData()),
             "LinkedHashMap");
 
         //
@@ -165,7 +165,7 @@ public final class LinkedHashMapTest {
         //
         iterationTest.testKeyIteration(
             container,
-            ListIterator.of(data.getKeys()),
+            ListIterator.make(data.getKeys()),
             "LinkedHashMap");
 
         //
@@ -173,7 +173,7 @@ public final class LinkedHashMapTest {
         //
         iterationTest.testKeyReverseIteration(
             container,
-            ListReverseIterator.of(data.getKeys()),
+            ListReverseIterator.make(data.getKeys()),
             "LinkedHashMap");
 
         //
@@ -181,7 +181,7 @@ public final class LinkedHashMapTest {
         //
         iterationTest.testValueIteration(
             container,
-            ListIterator.of(data.getValues()),
+            ListIterator.make(data.getValues()),
             "LinkedHashMap");
 
         //
@@ -189,7 +189,7 @@ public final class LinkedHashMapTest {
         //
         iterationTest.testValueReverseIteration(
             container,
-            ListReverseIterator.of(data.getValues()),
+            ListReverseIterator.make(data.getValues()),
             "LinkedHashMap");
     }
 
@@ -200,7 +200,7 @@ public final class LinkedHashMapTest {
         IMapData<TKey, TValue> data) {
 
         ILinkedHashMapBuilder<TKey, TValue> mapBuilder = new LinkedHashMapBuilder<>();
-        mapBuilder.set(ListIterator.of(data.getCreationData()));
+        mapBuilder.set(ListIterator.make(data.getCreationData()));
         ILinkedHashMap<TKey, TValue> map = mapBuilder.build();
 
         return map;

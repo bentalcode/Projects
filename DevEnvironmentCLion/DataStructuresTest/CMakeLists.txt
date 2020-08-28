@@ -29,6 +29,9 @@ set(DATA_STRUCTURES_TEST_INCLUDES_FILES
     ./binarytree/interfaces/BinaryTreeTestData.h
     ./binarytree/interfaces/BinaryTreeUnitTest.h
     ./core/PreCompiled.h
+    ./doublylinkedlist/interfaces/DoublyLinkedListData.h
+    ./doublylinkedlist/interfaces/DoublyLinkedListTestData.h
+    ./doublylinkedlist/interfaces/DoublyLinkedListUnitTest.h
     ./interfaces/IteratorOfIteratorCollectionUnitTest.h
     ./interfaces/TestData.h
 )
@@ -39,6 +42,8 @@ set(DATA_STRUCTURES_TEST_SOURCES_FILES
     ./core/IteratorOfIteratorCollectionUnitTest.cpp
     ./core/PreCompiled.cpp
     ./core/TestData.cpp
+    ./doublylinkedlist/core/DoublyLinkedListTestData.cpp
+    ./doublylinkedlist/core/DoublyLinkedListUnitTest.cpp
     ./main.cpp
 )
 
@@ -50,6 +55,7 @@ set(DATA_STRUCTURES_TEST_SOURCES
 set(DATA_STRUCTURES_TEST_INCLUDES
     ./binarytree/interfaces
     ./core
+    ./doublylinkedlist/interfaces
     ./interfaces
 )
 
@@ -248,6 +254,15 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/binarytree/interfaces/IBinaryTreeNodeReverseIterator.h
     ../DataStructures/binarytree/interfaces/IBinaryTreeTraversal.h
     ../DataStructures/core/PreCompiled.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedList.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedListException.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedListNode.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeIterator.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeReverseIterator.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeValueIterator.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeValueReverseIterator.h
+    ../DataStructures/doublylinkedlist/interfaces/IDoublyLinkedList.h
+    ../DataStructures/doublylinkedlist/interfaces/IDoublyLinkedListNode.h
     ../DataStructures/interfaces/IteratorOfIteratorCollection.h
 )
 
@@ -265,6 +280,8 @@ set(DATA_STRUCTURES_INCLUDES
     ../DataStructures/binarytree/core
     ../DataStructures/binarytree/interfaces
     ../DataStructures/core
+    ../DataStructures/doublylinkedlist/core
+    ../DataStructures/doublylinkedlist/interfaces
     ../DataStructures/interfaces
 )
 

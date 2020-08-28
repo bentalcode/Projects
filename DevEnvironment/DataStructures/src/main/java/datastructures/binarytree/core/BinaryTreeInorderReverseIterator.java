@@ -16,7 +16,7 @@ public final class BinaryTreeInorderReverseIterator<TKey extends Comparable<TKey
     /**
      * Creates a reverse inorder iterator of a binary tree.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IBinaryTreeNode<TKey, TValue>> of(IBinaryTreeNode<TKey, TValue> root) {
+    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IBinaryTreeNode<TKey, TValue>> make(IBinaryTreeNode<TKey, TValue> root) {
         return new BinaryTreeInorderReverseIterator<>(root);
     }
 

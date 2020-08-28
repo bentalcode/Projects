@@ -28,7 +28,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(TKey[] keys) {
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(TKey[] keys) {
         TreeSet<TKey> tree = new TreeSet<>();
 
         if (keys == null) {
@@ -45,7 +45,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(TKey key) {
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(TKey key) {
         TreeSet<TKey> tree = new TreeSet<>();
         tree.add(key);
 
@@ -55,7 +55,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(
         TKey key1,
         TKey key2) {
 
@@ -69,7 +69,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3) {
@@ -85,7 +85,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -103,7 +103,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -123,7 +123,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -145,7 +145,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -169,7 +169,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -195,7 +195,7 @@ public final class TreeSets {
     /**
      * Creates a new instance of a tree-set.
      */
-    public static <TKey extends Comparable<TKey>> TreeSet<TKey> of(
+    public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,

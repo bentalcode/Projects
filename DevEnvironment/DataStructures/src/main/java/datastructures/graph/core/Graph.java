@@ -12,8 +12,6 @@ import base.core.Collections;
 import datastructures.graph.interfaces.IAdjacencyMatrix;
 import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IGraph;
-import datastructures.graph.interfaces.IGraphLogic;
-import datastructures.graph.interfaces.IGraphTraversal;
 import datastructures.graph.interfaces.IVertex;
 import java.util.Set;
 
@@ -123,7 +121,7 @@ public final class Graph<TKey extends Comparable<TKey>, TValue> implements IGrap
      */
     @Override
     public String toString() {
-        return Collections.toString(CollectionIterator.of(this.edges));
+        return Collections.toString(CollectionIterator.make(this.edges));
     }
 
     /**

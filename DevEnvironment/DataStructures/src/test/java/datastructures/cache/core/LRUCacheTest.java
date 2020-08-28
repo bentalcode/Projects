@@ -112,7 +112,7 @@ public final class LRUCacheTest {
 
         this.assertion.assertEqualsWithIterators(
             cache.getIterator(),
-            Iterator.of(expectedContent),
+            Iterator.make(expectedContent),
             "Invalid updation logic of a cache.");
     }
 

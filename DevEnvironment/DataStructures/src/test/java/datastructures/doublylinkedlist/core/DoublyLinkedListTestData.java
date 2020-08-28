@@ -52,17 +52,17 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     public List<ITriple<String, Integer, List<Integer>>> getUpdationData() {
         List<ITriple<String, Integer, List<Integer>>> data = new ArrayList<>();
 
-        data.add(Triple.of("addToFront", 1, ArrayLists.of(1)));
-        data.add(Triple.of("addToFront", 2, ArrayLists.of(2, 1)));
-        data.add(Triple.of("addToFront", 3, ArrayLists.of(3, 2, 1)));
-        data.add(Triple.of("removeFromFront", null, ArrayLists.of(2, 1)));
-        data.add(Triple.of("removeFromFront", null, ArrayLists.of(1)));
-        data.add(Triple.of("addToBack", 2, ArrayLists.of(1, 2)));
-        data.add(Triple.of("addToBack", 3, ArrayLists.of(1, 2, 3)));
-        data.add(Triple.of("addToBack", 4, ArrayLists.of(1, 2, 3, 4)));
-        data.add(Triple.of("addToBack", 5, ArrayLists.of(1, 2, 3, 4, 5)));
-        data.add(Triple.of("removeFromBack", null, ArrayLists.of(1, 2, 3, 4)));
-        data.add(Triple.of("removeFromBack", null, ArrayLists.of(1, 2, 3)));
+        data.add(Triple.make("addToFront", 1, ArrayLists.make(1)));
+        data.add(Triple.make("addToFront", 2, ArrayLists.make(2, 1)));
+        data.add(Triple.make("addToFront", 3, ArrayLists.make(3, 2, 1)));
+        data.add(Triple.make("removeFromFront", null, ArrayLists.make(2, 1)));
+        data.add(Triple.make("removeFromFront", null, ArrayLists.make(1)));
+        data.add(Triple.make("addToBack", 2, ArrayLists.make(1, 2)));
+        data.add(Triple.make("addToBack", 3, ArrayLists.make(1, 2, 3)));
+        data.add(Triple.make("addToBack", 4, ArrayLists.make(1, 2, 3, 4)));
+        data.add(Triple.make("addToBack", 5, ArrayLists.make(1, 2, 3, 4, 5)));
+        data.add(Triple.make("removeFromBack", null, ArrayLists.make(1, 2, 3, 4)));
+        data.add(Triple.make("removeFromBack", null, ArrayLists.make(1, 2, 3)));
 
         return data;
     }
@@ -71,42 +71,36 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
      * Gets the data of list1.
      */
     private IDoublyLinkedListData<Integer> getListData1() {
-        List<Integer> creationData = this.getData(0);
-        List<IDoublyLinkedListNode<Integer>> data = this.createData(creationData);
-        List<Integer> values = creationData;
+        List<Integer> values = this.createListValues(0);
+        List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
 
         return new DoublyLinkedListData<>(
-            creationData,
-            data,
-            values);
+            values,
+            nodes);
     }
 
     /**
      * Gets the data of list2.
      */
     private IDoublyLinkedListData<Integer> getListData2() {
-        List<Integer> creationData = this.getData(50);
-        List<IDoublyLinkedListNode<Integer>> data = this.createData(creationData);
-        List<Integer> values = creationData;
+        List<Integer> values = this.createListValues(50);
+        List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
 
         return new DoublyLinkedListData<>(
-            creationData,
-            data,
-            values);
+            values,
+            nodes);
     }
 
     /**
      * Gets the data of list3.
      */
     private IDoublyLinkedListData<Integer> getListData3() {
-        List<Integer> creationData = this.getData(100);
-        List<IDoublyLinkedListNode<Integer>> data = this.createData(creationData);
-        List<Integer> values = creationData;
+        List<Integer> values = this.createListValues(100);
+        List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
 
         return new DoublyLinkedListData<>(
-            creationData,
-            data,
-            values);
+            values,
+            nodes);
     }
 
     /**
@@ -114,20 +108,18 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
      */
     private IDoublyLinkedListData<Integer> getRandomListData(int fromSize, int toSize) {
         int size = this.randomGenerator.nextInteger(fromSize, toSize);
-        List<Integer> creationData = this.getData(size);
-        List<IDoublyLinkedListNode<Integer>> data = this.createData(creationData);
-        List<Integer> values = creationData;
+        List<Integer> values = this.createListValues(size);
+        List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
 
         return new DoublyLinkedListData<>(
-            creationData,
-            data,
-            values);
+            values,
+            nodes);
     }
 
     /**
-     * Gets the data of a doubly linked list.
+     * Creates values of a doubly linked list.
      */
-    private List<Integer> getData(int size) {
+    private List<Integer> createListValues(int size) {
         List<Integer> result = new ArrayList<>();
 
         for (int i = 0; i < size; ++i) {
@@ -139,15 +131,15 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     }
 
     /**
-     * Creates the data of the list.
+     * Creates nodes of a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> List<IDoublyLinkedListNode<TValue>> createData(List<TValue> values) {
-        List<IDoublyLinkedListNode<TValue>> data = new ArrayList<>();
+    private <TValue extends Comparable<TValue>> List<IDoublyLinkedListNode<TValue>> createListNodes(List<TValue> values) {
+        List<IDoublyLinkedListNode<TValue>> result = new ArrayList<>(values.size());
 
         for (TValue value : values) {
-            data.add(DoublyLinkedListNode.of(value));
+            result.add(DoublyLinkedListNode.make(value));
         }
 
-        return data;
+        return result;
     }
 }

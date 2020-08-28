@@ -42,8 +42,8 @@ public final class StringsTest {
         String[] strings = {"abc", "", null};
         Boolean[] expectedResults = {false, true, true};
 
-        IIterator<String> stringIterator = ArrayIterator.of(strings);
-        IIterator<Boolean> expectedResultIterator = ArrayIterator.of(expectedResults);
+        IIterator<String> stringIterator = ArrayIterator.make(strings);
+        IIterator<Boolean> expectedResultIterator = ArrayIterator.make(expectedResults);
 
         while (stringIterator.hasNext() && expectedResultIterator.hasNext()) {
             String value = stringIterator.next();

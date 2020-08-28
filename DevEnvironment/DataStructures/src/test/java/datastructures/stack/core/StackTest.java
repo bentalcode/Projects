@@ -67,7 +67,7 @@ public final class StackTest {
 
         this.assertion.assertEqualsWithIterators(
             stack.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a stack.");
     }
 
@@ -79,7 +79,7 @@ public final class StackTest {
 
         this.assertion.assertEqualsWithIterators(
             stack.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a stack.");
 
         List<T> expectedData = data.getData();

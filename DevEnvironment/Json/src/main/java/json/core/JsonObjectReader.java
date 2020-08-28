@@ -361,7 +361,7 @@ public final class JsonObjectReader implements IJsonObjectReader {
         String[] stringList = reader.readStringArray();
 
         if (stringList == null) {
-            return ArrayLists.newList();
+            return ArrayLists.make();
         }
 
         List<T> result = new ArrayList<>(stringList.length);

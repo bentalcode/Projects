@@ -87,7 +87,7 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
      */
     @Override
     public void addToFront(T value) {
-        this.addToFront(MultiLevelDoublyLinkedListNode.of(value));
+        this.addToFront(MultiLevelDoublyLinkedListNode.make(value));
     }
 
     /**
@@ -95,7 +95,7 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
      */
     @Override
     public void addAfter(IMultiLevelDoublyLinkedListNode<T> currNode, T valueToAdd) {
-        this.addAfter(currNode, MultiLevelDoublyLinkedListNode.of(valueToAdd));
+        this.addAfter(currNode, MultiLevelDoublyLinkedListNode.make(valueToAdd));
     }
 
     /**
@@ -103,7 +103,7 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
      */
     @Override
     public void addBefore(IMultiLevelDoublyLinkedListNode<T> currNode, T valueToAdd) {
-        this.addBefore(currNode, MultiLevelDoublyLinkedListNode.of(valueToAdd));
+        this.addBefore(currNode, MultiLevelDoublyLinkedListNode.make(valueToAdd));
     }
 
     /**
@@ -111,7 +111,7 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
      */
     @Override
     public void addBellow(IMultiLevelDoublyLinkedListNode<T> currNode, T valueToAdd) {
-        this.addBellow(currNode, MultiLevelDoublyLinkedListNode.of(valueToAdd));
+        this.addBellow(currNode, MultiLevelDoublyLinkedListNode.make(valueToAdd));
     }
 
     /**
@@ -119,7 +119,7 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
      */
     @Override
     public void addAbove(IMultiLevelDoublyLinkedListNode<T> currNode, T valueToAdd) {
-        this.addAbove(currNode, MultiLevelDoublyLinkedListNode.of(valueToAdd));
+        this.addAbove(currNode, MultiLevelDoublyLinkedListNode.make(valueToAdd));
     }
 
     /**

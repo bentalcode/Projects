@@ -69,7 +69,7 @@ public final class RetryHandlerTest {
         IRetryLogic retryLogic1 = new RetryLogic("RetryLogic1", 3, retryLogicInformation);
         IRetryLogic retryLogic2 = new RetryLogic("RetryLogic2", 5, retryLogicInformation);
 
-        List<IRetryLogic> logicList = ArrayLists.of(retryLogic1, retryLogic2);
+        List<IRetryLogic> logicList = ArrayLists.make(retryLogic1, retryLogic2);
         this.testRetryHandlers(logicList, retryLogicInformation);
     }
 

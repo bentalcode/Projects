@@ -14,7 +14,7 @@ public final class BitArrayIterator implements IIterator<Boolean> {
     /**
      * Creates an iterator of a bit array.
      */
-    public static IIterator<Boolean> of(IBitArray bitArray) {
+    public static IIterator<Boolean> make(IBitArray bitArray) {
         return new BitArrayIterator(bitArray);
     }
 

@@ -63,7 +63,7 @@ public final class StringTransformationTest {
     public void calculateEditsTest() {
         String src1 = "success";
         String dest1 = "access";
-        List<IEditInformation<Character>> result1 = ArrayLists.of(
+        List<IEditInformation<Character>> result1 = ArrayLists.make(
             EditInformation.createReplace('s', 'a'),
             EditInformation.createRemove('u'),
             null,
@@ -74,7 +74,7 @@ public final class StringTransformationTest {
 
         String src2 = "write";
         String dest2 = "read";
-        List<IEditInformation<Character>> result2 = ArrayLists.of(
+        List<IEditInformation<Character>> result2 = ArrayLists.make(
             EditInformation.createRemove('w'),
             null,
             EditInformation.createReplace('i', 'e'),
@@ -83,7 +83,7 @@ public final class StringTransformationTest {
 
         String src3 = "calculator";
         String dest3 = "computer";
-        List<IEditInformation<Character>> result3 = ArrayLists.of(
+        List<IEditInformation<Character>> result3 = ArrayLists.make(
             null,
             EditInformation.createReplace('a', 'o'),
             EditInformation.createReplace('l', 'm'),
@@ -133,8 +133,8 @@ public final class StringTransformationTest {
             dest);
 
         this.assertion.assertEqualsWithIterators(
-            ListIterator.of(edits),
-            ListIterator.of(expectedEdits),
+            ListIterator.make(edits),
+            ListIterator.make(expectedEdits),
             "Invalid logic of calculating edits.");
     }
 }

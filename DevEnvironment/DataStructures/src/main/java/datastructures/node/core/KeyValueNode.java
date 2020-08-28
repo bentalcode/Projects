@@ -21,7 +21,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
     /**
      * Creates a new instance of a key-value node.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IKeyValueNode<TKey, TValue> of(TKey key, TValue value) {
+    public static <TKey extends Comparable<TKey>, TValue> IKeyValueNode<TKey, TValue> make(TKey key, TValue value) {
         return new KeyValueNode<>(key, value);
     }
 

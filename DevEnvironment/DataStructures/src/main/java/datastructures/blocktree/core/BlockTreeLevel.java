@@ -67,7 +67,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
      */
     @Override
     public IIterator<IBlockTreeNodeData<TKey, TValue>> getIterator() {
-        return ListIterator.of(this.nodesData);
+        return ListIterator.make(this.nodesData);
     }
 
     /**
@@ -75,7 +75,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
      */
     @Override
     public IReverseIterator<IBlockTreeNodeData<TKey, TValue>> getReverseIterator() {
-        return ListReverseIterator.of(this.nodesData);
+        return ListReverseIterator.make(this.nodesData);
     }
 
     /**

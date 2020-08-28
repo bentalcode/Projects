@@ -77,12 +77,12 @@ public final class BinaryTreeTest {
         List<IBinaryTreeNode<Integer, String>> tree1b = new ArrayList<>();
         boolean status1 = true;
 
-        List<IBinaryTreeNode<Integer, String>> tree2a = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
-        List<IBinaryTreeNode<Integer, String>> tree2b = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> tree2a = ArrayLists.make(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> tree2b = ArrayLists.make(BinaryTreeNodes.node(1, "a"));
         boolean status2 = true;
 
-        List<IBinaryTreeNode<Integer, String>> tree3a = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
-        List<IBinaryTreeNode<Integer, String>> tree3b = ArrayLists.of(BinaryTreeNodes.node(2, "b"));
+        List<IBinaryTreeNode<Integer, String>> tree3a = ArrayLists.make(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> tree3b = ArrayLists.make(BinaryTreeNodes.node(2, "b"));
         boolean status3 = false;
 
         List<IBinaryTreeNode<Integer, String>> tree4a = new ArrayList<>(11);
@@ -161,7 +161,7 @@ public final class BinaryTreeTest {
         // Test the data of the tree...
         //
         IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> levelOrderIterator =
-            BinaryTreeNodeListIterator.of(treeData.getLevelOrder());
+            BinaryTreeNodeListIterator.make(treeData.getLevelOrder());
 
         this.assertion.assertEqualsWithIterators(
             tree.getLevelOrderIterator(),
@@ -181,41 +181,41 @@ public final class BinaryTreeTest {
         //
         // Test the logic of a default iteration...
         //
-        this.testDefaultIteration(tree, BinaryTreeNodeListIterator.of(treeData.getInorder()));
+        this.testDefaultIteration(tree, BinaryTreeNodeListIterator.make(treeData.getInorder()));
 
         //
         // Test the logic of a reverse iteration...
         //
         IReverseIterator<IBinaryTreeNode<TKey, TValue>> reverseIterator = tree.getReverseIterator();
-        IIterator<IBinaryTreeNode<TKey, TValue>> reverseDataIterator = BinaryTreeNodeListReverseIterator.of(treeData.getInorder());
+        IIterator<IBinaryTreeNode<TKey, TValue>> reverseDataIterator = BinaryTreeNodeListReverseIterator.make(treeData.getInorder());
         this.testIteration(reverseIterator, reverseDataIterator, "Reverse Iterator");
 
         //
         // Test the logic of a level order iteration...
         //
         IIterator<IBinaryTreeNode<TKey, TValue>> levelOrderIterator = tree.getLevelOrderIterator();
-        IIterator<IBinaryTreeNode<TKey, TValue>> levelOrderDataIterator = BinaryTreeNodeListIterator.of(treeData.getLevelOrder());
+        IIterator<IBinaryTreeNode<TKey, TValue>> levelOrderDataIterator = BinaryTreeNodeListIterator.make(treeData.getLevelOrder());
         this.testIteration(levelOrderIterator, levelOrderDataIterator, "Level Order Iterator");
 
         //
         // Test the logic of an inorder iteration...
         //
         IIterator<IBinaryTreeNode<TKey, TValue>> inorderIterator = tree.getInorderIterator();
-        IIterator<IBinaryTreeNode<TKey, TValue>> inorderDataIterator = BinaryTreeNodeListIterator.of(treeData.getInorder());
+        IIterator<IBinaryTreeNode<TKey, TValue>> inorderDataIterator = BinaryTreeNodeListIterator.make(treeData.getInorder());
         this.testIteration(inorderIterator, inorderDataIterator, "Inorder Iterator");
 
         //
         // Test the logic of a preorder iteration...
         //
         IIterator<IBinaryTreeNode<TKey, TValue>> preorderIterator = tree.getPreorderIterator();
-        IIterator<IBinaryTreeNode<TKey, TValue>> preorderDataIterator = BinaryTreeNodeListIterator.of(treeData.getPreorder());
+        IIterator<IBinaryTreeNode<TKey, TValue>> preorderDataIterator = BinaryTreeNodeListIterator.make(treeData.getPreorder());
         this.testIteration(preorderIterator, preorderDataIterator, "Preorder Iterator");
 
         //
         // Test the logic of a postorder iteration...
         //
         IIterator<IBinaryTreeNode<TKey, TValue>> postorderIterator = tree.getPostorderIterator();
-        IIterator<IBinaryTreeNode<TKey, TValue>> postorderDataIterator = BinaryTreeNodeListIterator.of(treeData.getPostorder());
+        IIterator<IBinaryTreeNode<TKey, TValue>> postorderDataIterator = BinaryTreeNodeListIterator.make(treeData.getPostorder());
         this.testIteration(postorderIterator, postorderDataIterator, "Postorder Iterator");
     }
 

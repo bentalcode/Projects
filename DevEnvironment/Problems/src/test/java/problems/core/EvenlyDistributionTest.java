@@ -45,7 +45,7 @@ public final class EvenlyDistributionTest {
         int[] set1 = {1, 3, 6};
         int[] set2 = {2, 4, 5};
 
-        this.testEvenlyDistributing(values1, Pair.of(set1, set2));
+        this.testEvenlyDistributing(values1, Pair.make(set1, set2));
     }
 
     /**
@@ -61,8 +61,8 @@ public final class EvenlyDistributionTest {
         int[] setA2 = {1, 3, 5};
         int[] setB2 = {2, 4, 6};
 
-        this.testEvenlyDistributingHeuristic(values1, Pair.of(setA1, setB1));
-        this.testEvenlyDistributingHeuristic(values2, Pair.of(setA2, setB2));
+        this.testEvenlyDistributingHeuristic(values1, Pair.make(setA1, setB1));
+        this.testEvenlyDistributingHeuristic(values2, Pair.make(setA2, setB2));
     }
 
     /**

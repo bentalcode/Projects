@@ -18,14 +18,14 @@ public final class CatalanNumberIterator implements IIterator<Long> {
     /**
      * Creates a new iterator of a catalan.
      */
-    public static IIterator<Long> of(ICatalanNumber catalanNumber) {
+    public static IIterator<Long> make(ICatalanNumber catalanNumber) {
         return new CatalanNumberIterator(catalanNumber, initialNumber);
     }
 
     /**
      * Creates a new iterator of a catalan.
      */
-    public static IIterator<Long> of(ICatalanNumber catalanNumber, int currNumber) {
+    public static IIterator<Long> make(ICatalanNumber catalanNumber, int currNumber) {
         return new CatalanNumberIterator(catalanNumber, currNumber);
     }
 

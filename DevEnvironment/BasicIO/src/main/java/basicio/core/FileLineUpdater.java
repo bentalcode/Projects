@@ -49,7 +49,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
             updateRecord,
             "The update record.");
 
-        List<IUpdateRecord> updateRecords = ArrayLists.of(updateRecord);
+        List<IUpdateRecord> updateRecords = ArrayLists.make(updateRecord);
 
         return this.update(updateRecords);
     }
@@ -65,7 +65,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
             updateRecord,
             "The update record.");
 
-        List<IUpdateRecord> updateRecords = ArrayLists.of(updateRecord);
+        List<IUpdateRecord> updateRecords = ArrayLists.make(updateRecord);
 
         return this.updateFromEnd(updateRecords);
     }

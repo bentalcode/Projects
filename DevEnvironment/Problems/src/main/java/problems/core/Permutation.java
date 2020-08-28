@@ -42,7 +42,7 @@ public final class Permutation implements IPermutation {
         }
 
         if (index == values.length) {
-            List<T> newResult = ArrayLists.of(values);
+            List<T> newResult = ArrayLists.make(values);
             results.add(newResult);
             return;
         }
@@ -65,7 +65,7 @@ public final class Permutation implements IPermutation {
         }
 
         if (index == values.length) {
-            List<T> newResult = ArrayLists.of(values);
+            List<T> newResult = ArrayLists.make(values);
             this.addUniqueResult(newResult, results);
             return;
         }

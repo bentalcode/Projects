@@ -16,7 +16,7 @@ public final class LinkedListKeyValueNodeIterator<TKey extends Comparable<TKey>,
     /**
      * Creates an iterator of a key-value node.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> of(
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> make(
         IIterator<ILinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
 
         return new LinkedListKeyValueNodeIterator<>(iterator);

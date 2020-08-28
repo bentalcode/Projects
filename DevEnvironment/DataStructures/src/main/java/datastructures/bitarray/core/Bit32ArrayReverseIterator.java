@@ -14,7 +14,7 @@ public final class Bit32ArrayReverseIterator implements IReverseIterator<Boolean
     /**
      * Creates an iterator of a bit 32 array.
      */
-    public static IReverseIterator<Boolean> of(IBit32Array bitArray) {
+    public static IReverseIterator<Boolean> make(IBit32Array bitArray) {
         return new Bit32ArrayReverseIterator(bitArray);
     }
 

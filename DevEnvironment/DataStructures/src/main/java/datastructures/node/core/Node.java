@@ -19,7 +19,7 @@ public final class Node<T extends Comparable<T>> implements INode<T> {
     /**
      * Creates a new instance of a node.
      */
-    public static <T extends Comparable<T>> INode<T> of(
+    public static <T extends Comparable<T>> INode<T> make(
         T value,
         IBinaryComparator<INode<T>> comparator) {
 

@@ -22,7 +22,7 @@ public final class RunTestOnOperatingSystemRule implements TestRule {
      */
     public static TestRule runOnUnix() {
         return new RunTestOnOperatingSystemRule(
-            ArrayLists.of(
+            ArrayLists.make(
                 OperatingSystemType.Unix,
                 OperatingSystemType.PosixUnix));
     }
@@ -31,14 +31,14 @@ public final class RunTestOnOperatingSystemRule implements TestRule {
      * Creates a rule for running tests on windows.
      */
     public static TestRule runOnWindowsRule() {
-        return new RunTestOnOperatingSystemRule(ArrayLists.of(OperatingSystemType.Windows));
+        return new RunTestOnOperatingSystemRule(ArrayLists.make(OperatingSystemType.Windows));
     }
 
     /**
      * Creates a rule for running tests on mac.
      */
     public static TestRule runOnMacRule() {
-        return new RunTestOnOperatingSystemRule(ArrayLists.of(OperatingSystemType.Mac));
+        return new RunTestOnOperatingSystemRule(ArrayLists.make(OperatingSystemType.Mac));
     }
 
     /**

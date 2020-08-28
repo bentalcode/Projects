@@ -142,7 +142,7 @@ public final class GrayCodeTest {
 
         this.assertion.assertEqualsWithIterators(
             grayCode.getIterator(),
-            IntegerArrayIterator.of(expectedResult),
+            IntegerArrayIterator.make(expectedResult),
             "Invalid logic for gray codes.");
     }
 }

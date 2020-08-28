@@ -20,7 +20,7 @@ public final class SubTwoDimensionalListIterator<T> implements IIterator<T> {
     /**
      * Creates a new iterator of a two dimensional list.
      */
-    public static <T> IIterator<T> of(
+    public static <T> IIterator<T> make(
         List<List<T>> data,
         int fromRowIndex,
         int fromColumnIndex,

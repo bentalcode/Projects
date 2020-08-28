@@ -13,7 +13,7 @@ public final class Triple<Type1, Type2, Type3> implements ITriple<Type1, Type2, 
     /**
      * Creates a new instance of a triple.
      */
-    public static <Type1, Type2, Type3> ITriple<Type1, Type2, Type3> of(Type1 first, Type2 second, Type3 third) {
+    public static <Type1, Type2, Type3> ITriple<Type1, Type2, Type3> make(Type1 first, Type2 second, Type3 third) {
         return new Triple<>(first, second, third);
     }
 

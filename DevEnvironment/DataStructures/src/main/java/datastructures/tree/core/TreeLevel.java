@@ -84,7 +84,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
-        return ListIterator.of(this.nodesData);
+        return ListIterator.make(this.nodesData);
     }
 
     /**
@@ -92,7 +92,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IReverseIterator<IKeyValueNode<TKey, TValue>> getReverseIterator() {
-        return ListReverseIterator.of(this.nodesData);
+        return ListReverseIterator.make(this.nodesData);
     }
 
     /**
@@ -254,7 +254,7 @@ public final class TreeLevel<TKey extends Comparable<TKey>, TValue> implements I
          * Adds a new node data by key and value.
          */
         public Builder<TKey, TValue> addNode(TKey nodeKey, TValue nodeValue) {
-            IKeyValueNode<TKey, TValue> nodeData = KeyValueNode.of(nodeKey, nodeValue);
+            IKeyValueNode<TKey, TValue> nodeData = KeyValueNode.make(nodeKey, nodeValue);
             return this.addNode(nodeData);
         }
 

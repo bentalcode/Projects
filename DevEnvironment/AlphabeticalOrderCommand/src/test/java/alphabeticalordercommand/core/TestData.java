@@ -40,7 +40,7 @@ public final class TestData implements ITestData {
 
         List<Character> alphabeticalOrder = List.of('b', 'a', 'c');
 
-        return Pair.of(alphabeticalStrings, alphabeticalOrder);
+        return Pair.make(alphabeticalStrings, alphabeticalOrder);
     }
 
     /**
@@ -55,7 +55,7 @@ public final class TestData implements ITestData {
 
         List<Character> alphabeticalOrder = List.of('a', 'b', 'c');
 
-        return Pair.of(alphabeticalStrings, alphabeticalOrder);
+        return Pair.make(alphabeticalStrings, alphabeticalOrder);
     }
 
     /**
@@ -74,6 +74,6 @@ public final class TestData implements ITestData {
 
         List<Character> alphabeticalOrder = List.of('a', 'b', 'c', 'd', 'e');
 
-        return Pair.of(alphabeticalStrings, alphabeticalOrder);
+        return Pair.make(alphabeticalStrings, alphabeticalOrder);
     }
 }

@@ -100,12 +100,12 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
     private static ITriple<IMatrix<Integer>, boolean[][], boolean[][]> createCreationData1() {
         List<List<Integer>> data = new ArrayList<>();
 
-        data.add(ArrayLists.of(   1,    2,    3,    4, null, null));
-        data.add(ArrayLists.of(null,    7,    8,   10,   12, null));
-        data.add(ArrayLists.of(null,    9,   16,   11, null, null));
-        data.add(ArrayLists.of(null,   14,   17,   18,   19,   20));
-        data.add(ArrayLists.of(null,   15,   23, null, null,   21));
-        data.add(ArrayLists.of(null, null,   24, null, null, null));
+        data.add(ArrayLists.make(   1,    2,    3,    4, null, null));
+        data.add(ArrayLists.make(null,    7,    8,   10,   12, null));
+        data.add(ArrayLists.make(null,    9,   16,   11, null, null));
+        data.add(ArrayLists.make(null,   14,   17,   18,   19,   20));
+        data.add(ArrayLists.make(null,   15,   23, null, null,   21));
+        data.add(ArrayLists.make(null, null,   24, null, null, null));
 
         boolean[][] horizonticalConnections = {
             {true, true, true, false, false},
@@ -126,7 +126,7 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
 
         IMatrix<Integer> matrix = new Matrix<>(data);
 
-        return Triple.of(matrix, horizonticalConnections, verticalConnections);
+        return Triple.make(matrix, horizonticalConnections, verticalConnections);
     }
 
     /**
@@ -143,10 +143,10 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
     private static ITriple<IMatrix<Integer>, boolean[][], boolean[][]> createCreationData2() {
         List<List<Integer>> data = new ArrayList<>();
 
-        data.add(ArrayLists.of(   1,    2,    3,    4,    5));
-        data.add(ArrayLists.of(   6,    7,    8,    9, null));
-        data.add(ArrayLists.of(null,   10,   11, null, null));
-        data.add(ArrayLists.of(null, null,   12, null, null));
+        data.add(ArrayLists.make(   1,    2,    3,    4,    5));
+        data.add(ArrayLists.make(   6,    7,    8,    9, null));
+        data.add(ArrayLists.make(null,   10,   11, null, null));
+        data.add(ArrayLists.make(null, null,   12, null, null));
 
         boolean[][] horizonticalConnections = {
             {true, true, true, true},
@@ -163,7 +163,7 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
 
         IMatrix<Integer> matrix = new Matrix<>(data);
 
-        return Triple.of(matrix, horizonticalConnections, verticalConnections);
+        return Triple.make(matrix, horizonticalConnections, verticalConnections);
     }
 
     /**
@@ -181,7 +181,7 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
                 T item = matrix.get(row, col);
 
                 if (item != null) {
-                    result.add(MultiLevelDoublyLinkedListNode.of(item));
+                    result.add(MultiLevelDoublyLinkedListNode.make(item));
                 }
             }
         }
@@ -285,7 +285,7 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
         List<IMultiLevelDoublyLinkedListNode<T>> result = new ArrayList<>(list.size());
 
         for (T value : list) {
-            result.add(MultiLevelDoublyLinkedListNode.of(value));
+            result.add(MultiLevelDoublyLinkedListNode.make(value));
         }
 
         return result;
@@ -307,34 +307,34 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
      *       24
      */
     private static List<List<IMultiLevelDoublyLinkedListNode<Integer>>> getNodesByDepthLevels1() {
-        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> result = ArrayLists.of(
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(1)),
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(2),
-                MultiLevelDoublyLinkedListNode.of(7),
-                MultiLevelDoublyLinkedListNode.of(9),
-                MultiLevelDoublyLinkedListNode.of(14),
-                MultiLevelDoublyLinkedListNode.of(15),
-                MultiLevelDoublyLinkedListNode.of(23),
-                MultiLevelDoublyLinkedListNode.of(24)),
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(17),
-                MultiLevelDoublyLinkedListNode.of(18),
-                MultiLevelDoublyLinkedListNode.of(19),
-                MultiLevelDoublyLinkedListNode.of(20),
-                MultiLevelDoublyLinkedListNode.of(21)),
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(8),
-                MultiLevelDoublyLinkedListNode.of(16)),
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(10),
-                MultiLevelDoublyLinkedListNode.of(11)),
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(12)),
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(3),
-                MultiLevelDoublyLinkedListNode.of(4)));
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> result = ArrayLists.make(
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(1)),
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(2),
+                MultiLevelDoublyLinkedListNode.make(7),
+                MultiLevelDoublyLinkedListNode.make(9),
+                MultiLevelDoublyLinkedListNode.make(14),
+                MultiLevelDoublyLinkedListNode.make(15),
+                MultiLevelDoublyLinkedListNode.make(23),
+                MultiLevelDoublyLinkedListNode.make(24)),
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(17),
+                MultiLevelDoublyLinkedListNode.make(18),
+                MultiLevelDoublyLinkedListNode.make(19),
+                MultiLevelDoublyLinkedListNode.make(20),
+                MultiLevelDoublyLinkedListNode.make(21)),
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(8),
+                MultiLevelDoublyLinkedListNode.make(16)),
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(10),
+                MultiLevelDoublyLinkedListNode.make(11)),
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(12)),
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(3),
+                MultiLevelDoublyLinkedListNode.make(4)));
 
         return result;
     }
@@ -351,22 +351,22 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
      *       12
      */
     private static List<List<IMultiLevelDoublyLinkedListNode<Integer>>> getNodesByDepthLevels2() {
-        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> result = ArrayLists.of(
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(1),
-                MultiLevelDoublyLinkedListNode.of(6),
-                MultiLevelDoublyLinkedListNode.of(7),
-                MultiLevelDoublyLinkedListNode.of(10),
-                MultiLevelDoublyLinkedListNode.of(11),
-                MultiLevelDoublyLinkedListNode.of(12)),
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(2),
-                MultiLevelDoublyLinkedListNode.of(3),
-                MultiLevelDoublyLinkedListNode.of(8),
-                MultiLevelDoublyLinkedListNode.of(9)),
-            ArrayLists.of(
-                MultiLevelDoublyLinkedListNode.of(4),
-                MultiLevelDoublyLinkedListNode.of(5)));
+        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> result = ArrayLists.make(
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(1),
+                MultiLevelDoublyLinkedListNode.make(6),
+                MultiLevelDoublyLinkedListNode.make(7),
+                MultiLevelDoublyLinkedListNode.make(10),
+                MultiLevelDoublyLinkedListNode.make(11),
+                MultiLevelDoublyLinkedListNode.make(12)),
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(2),
+                MultiLevelDoublyLinkedListNode.make(3),
+                MultiLevelDoublyLinkedListNode.make(8),
+                MultiLevelDoublyLinkedListNode.make(9)),
+            ArrayLists.make(
+                MultiLevelDoublyLinkedListNode.make(4),
+                MultiLevelDoublyLinkedListNode.make(5)));
 
         return result;
     }

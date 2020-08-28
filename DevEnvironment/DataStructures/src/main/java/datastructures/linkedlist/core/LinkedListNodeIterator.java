@@ -13,7 +13,7 @@ public final class LinkedListNodeIterator<T extends Comparable<T>> implements II
     /**
      * Creates a new iterator of a linked list.
      */
-    public static <T extends Comparable<T>> IIterator<ILinkedListNode<T>> of(ILinkedListNode<T> headNode) {
+    public static <T extends Comparable<T>> IIterator<ILinkedListNode<T>> make(ILinkedListNode<T> headNode) {
         return new LinkedListNodeIterator<>(headNode);
     }
 

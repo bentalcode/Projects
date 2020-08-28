@@ -10,14 +10,14 @@ public final class ArrayLists {
     /**
      * Creates a new instance of an empty list.
      */
-    public static <T> List<T> newList() {
+    public static <T> List<T> make() {
         return new ArrayList<>();
     }
 
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(T value) {
+    public static <T> List<T> make(T value) {
         List<T> list = new ArrayList<>();
         list.add(value);
 
@@ -27,7 +27,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2) {
 
@@ -42,7 +42,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3) {
@@ -59,7 +59,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -78,7 +78,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -99,7 +99,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -122,7 +122,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -147,7 +147,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -174,7 +174,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -203,7 +203,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -234,7 +234,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -267,7 +267,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(
+    public static <T> List<T> make(
         T value1,
         T value2,
         T value3,
@@ -304,7 +304,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static <T> List<T> of(T[] values) {
+    public static <T> List<T> make(T[] values) {
         List<T> list = new ArrayList<>(values.length);
 
         for (T value : values) {
@@ -317,7 +317,7 @@ public final class ArrayLists {
     /**
      * Creates a new instance of a list.
      */
-    public static List<Integer> of(int[] values) {
+    public static List<Integer> make(int[] values) {
         List<Integer> list = new ArrayList<>(values.length);
 
         for (int value : values) {

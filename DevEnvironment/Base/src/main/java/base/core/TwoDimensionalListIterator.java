@@ -15,7 +15,7 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
     /**
      * Creates a new iterator of a two dimensional list.
      */
-    public static <T> IIterator<T> of(List<List<T>> data) {
+    public static <T> IIterator<T> make(List<List<T>> data) {
         return new TwoDimensionalListIterator<>(data);
     }
 

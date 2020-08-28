@@ -68,7 +68,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
         IMatchingRecord defineMatchingRecord = new MatchingRecord(defineRegex);
         IMatchingRecord endifMatchingRecord = new MatchingRecord(endifRegex);
 
-        List<IMatchingRecord> startHeaderMatchingRecord = ArrayLists.of(
+        List<IMatchingRecord> startHeaderMatchingRecord = ArrayLists.make(
             ifndefMatchingRecord,
             defineMatchingRecord);
 
@@ -153,7 +153,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
         String defineData = "#define " + newFileName;
         IUpdateRecord defineUpdateRecord = new UpdateRecord(defineRegex, defineData, MatchPolicyType.FirstMatch);
 
-        return ArrayLists.of(
+        return ArrayLists.make(
             ifndefUpdateRecord,
             defineUpdateRecord);
     }

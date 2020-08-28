@@ -71,7 +71,7 @@ public final class AlphabeticalOrderCalculator implements ICalculator<IAlphabeti
         Trie.Builder<Character> trieBuilder = new Trie.Builder<>();
 
         for (String currWord : this.words) {
-            trieBuilder.addSequence(StringIterator.of(currWord));
+            trieBuilder.addSequence(StringIterator.make(currWord));
         }
 
         return trieBuilder.build();
@@ -117,8 +117,8 @@ public final class AlphabeticalOrderCalculator implements ICalculator<IAlphabeti
         for (ITrieNode<TKey> currChild : children) {
             if (prevChild != null && !prevChild.getKey().equals(currChild.getKey())) {
 
-                IVertex<TKey, TValue> sourceVertex = Vertex.of(prevChild.getKey());
-                IVertex<TKey, TValue> destinationVertex = Vertex.of(currChild.getKey());
+                IVertex<TKey, TValue> sourceVertex = Vertex.make(prevChild.getKey());
+                IVertex<TKey, TValue> destinationVertex = Vertex.make(currChild.getKey());
 
                 graphBuilder.addDirectedEdge(sourceVertex, destinationVertex);
             }

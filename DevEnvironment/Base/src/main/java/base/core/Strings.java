@@ -9,14 +9,14 @@ import java.util.List;
  * The Strings class implements complementary APIs for strings.
  */
 public final class Strings {
-    private static List<IPair<Character, Character>> parenthesesStartEndTokens = ArrayLists.of(
-        Pair.of('(', ')'),
-        Pair.of('[', ']'),
-        Pair.of('{', '}'));
+    private static List<IPair<Character, Character>> parenthesesStartEndTokens = ArrayLists.make(
+        Pair.make('(', ')'),
+        Pair.make('[', ']'),
+        Pair.make('{', '}'));
 
-    private static List<IPair<Character, Character>> quotationStartEndTokens = ArrayLists.of(
-        Pair.of('\'', '\''),
-        Pair.of('\"', '\"'));
+    private static List<IPair<Character, Character>> quotationStartEndTokens = ArrayLists.make(
+        Pair.make('\'', '\''),
+        Pair.make('\"', '\"'));
 
     /**
      * Determines whether a string is not null or empty.

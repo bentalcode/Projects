@@ -92,7 +92,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
      */
     @Override
     public void addToFront(T value) {
-        this.addToFront(LinkedListNode.of(value));
+        this.addToFront(LinkedListNode.make(value));
     }
 
     /**
@@ -100,7 +100,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
      */
     @Override
     public void addToBack(T value) {
-        this.addToBack(LinkedListNode.of(value));
+        this.addToBack(LinkedListNode.make(value));
     }
 
     /**
@@ -108,7 +108,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
      */
     @Override
     public void addAfter(ILinkedListNode<T> currNode, T valueToAdd) {
-        this.addAfter(currNode, LinkedListNode.of(valueToAdd));
+        this.addAfter(currNode, LinkedListNode.make(valueToAdd));
     }
 
     /**

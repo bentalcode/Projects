@@ -101,7 +101,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
                     "The cache should have an available space.");
             }
 
-            currentNode = DoublyLinkedListNode.of(KeyValueNode.of(key, value));
+            currentNode = DoublyLinkedListNode.make(KeyValueNode.make(key, value));
 
             this.newItemAccessed(currentNode);
         }
@@ -170,7 +170,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
         IIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator = this.data.usedList().getIterator();
-        return DoublyLinkedListKeyValueNodeIterator.of(iterator);
+        return DoublyLinkedListKeyValueNodeIterator.make(iterator);
     }
 
     /**
@@ -179,7 +179,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IReverseIterator<IKeyValueNode<TKey, TValue>> getReverseIterator() {
         IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> reverseIterator = this.data.usedList().getReverseIterator();
-        return DoublyLinkedListKeyValueNodeReverseIterator.of(reverseIterator);
+        return DoublyLinkedListKeyValueNodeReverseIterator.make(reverseIterator);
     }
 
     /**
@@ -188,7 +188,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IIterator<TKey> getKeyIterator() {
         IIterator<IKeyValueNode<TKey, TValue>> iterator = this.getIterator();
-        return KeyValueNodeKeyIterator.of(iterator);
+        return KeyValueNodeKeyIterator.make(iterator);
     }
 
     /**
@@ -197,7 +197,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IReverseIterator<TKey> getKeyReverseIterator() {
         IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator = this.getReverseIterator();
-        return KeyValueNodeKeyReverseIterator.of(reverseIterator);
+        return KeyValueNodeKeyReverseIterator.make(reverseIterator);
     }
 
     /**
@@ -206,7 +206,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IIterator<TValue> getValueIterator() {
         IIterator<IKeyValueNode<TKey, TValue>> iterator = this.getIterator();
-        return KeyValueNodeValueIterator.of(iterator);
+        return KeyValueNodeValueIterator.make(iterator);
     }
 
     /**
@@ -215,7 +215,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IReverseIterator<TValue> getValueReverseIterator() {
         IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator = this.getReverseIterator();
-        return KeyValueNodeValueReverseIterator.of(reverseIterator);
+        return KeyValueNodeValueReverseIterator.make(reverseIterator);
     }
 
     /**

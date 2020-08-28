@@ -65,7 +65,7 @@ public final class GraphTestData implements IGraphTestData {
         int key = this.randomGenerator.nextInteger();
         int value = this.randomGenerator.nextInteger();
 
-        IVertex<Integer, Integer> vertex = Vertex.of(key, value);
+        IVertex<Integer, Integer> vertex = Vertex.make(key, value);
 
         return vertex;
     }
@@ -78,7 +78,7 @@ public final class GraphTestData implements IGraphTestData {
         double key = this.randomGenerator.nextDouble();
         double value = this.randomGenerator.nextDouble();
 
-        IVertex<Double, Double> vertex = Vertex.of(key, value);
+        IVertex<Double, Double> vertex = Vertex.make(key, value);
 
         return vertex;
     }
@@ -91,7 +91,7 @@ public final class GraphTestData implements IGraphTestData {
         char key = this.randomGenerator.nextCharacter();
         char value = this.randomGenerator.nextCharacter();
 
-        IVertex<Character, Character> vertex = Vertex.of(key, value);
+        IVertex<Character, Character> vertex = Vertex.make(key, value);
 
         return vertex;
     }
@@ -104,7 +104,7 @@ public final class GraphTestData implements IGraphTestData {
         String key = this.randomGenerator.nextString();
         String value = this.randomGenerator.nextString();
 
-        IVertex<String, String> vertex = Vertex.of(key, value);
+        IVertex<String, String> vertex = Vertex.make(key, value);
 
         return vertex;
     }
@@ -165,12 +165,12 @@ public final class GraphTestData implements IGraphTestData {
      * Gets data of graph1.
      */
     private IGraphData<Integer, String> getGraphData1() {
-        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
-        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
-        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
-        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
+        IVertex<Integer, String> vertex1 = Vertex.make(1, "a");
+        IVertex<Integer, String> vertex2 = Vertex.make(2, "b");
+        IVertex<Integer, String> vertex3 = Vertex.make(3, "c");
+        IVertex<Integer, String> vertex4 = Vertex.make(4, "d");
 
-        List<IVertex<Integer, String>> vertices = ArrayLists.of(
+        List<IVertex<Integer, String>> vertices = ArrayLists.make(
             vertex1,
             vertex2,
             vertex3,
@@ -181,13 +181,13 @@ public final class GraphTestData implements IGraphTestData {
         IEdge<Integer, String> edge23 = Edge.newDirectedEdge(vertex2, vertex3);
         IEdge<Integer, String> edge34 = Edge.newDirectedEdge(vertex3, vertex4);
 
-        List<IEdge<Integer, String>> edges = ArrayLists.of(
+        List<IEdge<Integer, String>> edges = ArrayLists.make(
             edge12,
             edge13,
             edge23,
             edge34);
 
-        Map<IEdge<Integer, String>, Integer> weights = HashMaps.of(
+        Map<IEdge<Integer, String>, Integer> weights = HashMaps.make(
             edge12, 5,
             edge23, 2,
             edge13, 6,
@@ -212,14 +212,14 @@ public final class GraphTestData implements IGraphTestData {
      * Gets data of graph2.
      */
     private IGraphData<Integer, String> getGraphData2() {
-        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
-        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
-        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
-        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
-        IVertex<Integer, String> vertex5 = Vertex.of(5, "e");
-        IVertex<Integer, String> vertex6 = Vertex.of(6, "f");
+        IVertex<Integer, String> vertex1 = Vertex.make(1, "a");
+        IVertex<Integer, String> vertex2 = Vertex.make(2, "b");
+        IVertex<Integer, String> vertex3 = Vertex.make(3, "c");
+        IVertex<Integer, String> vertex4 = Vertex.make(4, "d");
+        IVertex<Integer, String> vertex5 = Vertex.make(5, "e");
+        IVertex<Integer, String> vertex6 = Vertex.make(6, "f");
 
-        List<IVertex<Integer, String>> vertices = ArrayLists.of(
+        List<IVertex<Integer, String>> vertices = ArrayLists.make(
             vertex1,
             vertex2,
             vertex3,
@@ -236,7 +236,7 @@ public final class GraphTestData implements IGraphTestData {
         IEdge<Integer, String> edge46 = Edge.newDirectedEdge(vertex4, vertex6);
         IEdge<Integer, String> edge56 = Edge.newDirectedEdge(vertex5, vertex6);
 
-        List<IEdge<Integer, String>> edges = ArrayLists.of(
+        List<IEdge<Integer, String>> edges = ArrayLists.make(
             edge12,
             edge13,
             edge24,
@@ -275,13 +275,13 @@ public final class GraphTestData implements IGraphTestData {
      * Gets data of graph3.
      */
     private IGraphData<Integer, String> getGraphData3() {
-        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
-        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
-        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
-        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
-        IVertex<Integer, String> vertex5 = Vertex.of(5, "e");
+        IVertex<Integer, String> vertex1 = Vertex.make(1, "a");
+        IVertex<Integer, String> vertex2 = Vertex.make(2, "b");
+        IVertex<Integer, String> vertex3 = Vertex.make(3, "c");
+        IVertex<Integer, String> vertex4 = Vertex.make(4, "d");
+        IVertex<Integer, String> vertex5 = Vertex.make(5, "e");
 
-        List<IVertex<Integer, String>> vertices = ArrayLists.of(
+        List<IVertex<Integer, String>> vertices = ArrayLists.make(
             vertex1,
             vertex2,
             vertex3,
@@ -294,7 +294,7 @@ public final class GraphTestData implements IGraphTestData {
         IEdge<Integer, String> edge35 = Edge.newDirectedEdge(vertex3, vertex5);
         IEdge<Integer, String> edge45 = Edge.newDirectedEdge(vertex4, vertex5);
 
-        List<IEdge<Integer, String>> edges = ArrayLists.of(
+        List<IEdge<Integer, String>> edges = ArrayLists.make(
             edge12,
             edge13,
             edge25,
@@ -327,18 +327,18 @@ public final class GraphTestData implements IGraphTestData {
      * Gets data of graph1.
      */
     private IGraphData<Integer, String> getGraphDataWithLoop1() {
-        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
-        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
-        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
-        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
+        IVertex<Integer, String> vertex1 = Vertex.make(1, "a");
+        IVertex<Integer, String> vertex2 = Vertex.make(2, "b");
+        IVertex<Integer, String> vertex3 = Vertex.make(3, "c");
+        IVertex<Integer, String> vertex4 = Vertex.make(4, "d");
 
-        List<IVertex<Integer, String>> vertices = ArrayLists.of(
+        List<IVertex<Integer, String>> vertices = ArrayLists.make(
             vertex1,
             vertex2,
             vertex3,
             vertex4);
 
-        List<IEdge<Integer, String>> edges = ArrayLists.of(
+        List<IEdge<Integer, String>> edges = ArrayLists.make(
             Edge.newDirectedEdge(vertex1, vertex2),
             Edge.newDirectedEdge(vertex1, vertex3),
             Edge.newDirectedEdge(vertex2, vertex3),
@@ -365,43 +365,43 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex3 = vertices.get(2);
         IVertex<Integer, String> vertex4 = vertices.get(3);
 
-        IRoute<Integer, String> route12 = Route.of(vertex1, vertex2);
-        List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2))
+        IRoute<Integer, String> route12 = Route.make(vertex1, vertex2);
+        List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2))
         );
-        paths.add(Pair.of(route12, walks12));
+        paths.add(Pair.make(route12, walks12));
 
-        IRoute<Integer, String> route13 = Route.of(vertex1, vertex3);
-        List<IWalk<Integer, String>> walks13 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2, vertex3),
-            ArrayLists.of(vertex1, vertex3))
+        IRoute<Integer, String> route13 = Route.make(vertex1, vertex3);
+        List<IWalk<Integer, String>> walks13 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2, vertex3),
+            ArrayLists.make(vertex1, vertex3))
         );
-        paths.add(Pair.of(route13, walks13));
+        paths.add(Pair.make(route13, walks13));
 
-        IRoute<Integer, String> route14 = Route.of(vertex1, vertex4);
-        List<IWalk<Integer, String>> walks14 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2, vertex3, vertex4),
-            ArrayLists.of(vertex1, vertex3, vertex4))
+        IRoute<Integer, String> route14 = Route.make(vertex1, vertex4);
+        List<IWalk<Integer, String>> walks14 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2, vertex3, vertex4),
+            ArrayLists.make(vertex1, vertex3, vertex4))
         );
-        paths.add(Pair.of(route14, walks14));
+        paths.add(Pair.make(route14, walks14));
 
-        IRoute<Integer, String> route23 = Route.of(vertex2, vertex3);
-        List<IWalk<Integer, String>> walks23 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex2, vertex3))
+        IRoute<Integer, String> route23 = Route.make(vertex2, vertex3);
+        List<IWalk<Integer, String>> walks23 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex2, vertex3))
         );
-        paths.add(Pair.of(route23, walks23));
+        paths.add(Pair.make(route23, walks23));
 
-        IRoute<Integer, String> route24 = Route.of(vertex2, vertex4);
-        List<IWalk<Integer, String>> walks24 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex2, vertex3, vertex4))
+        IRoute<Integer, String> route24 = Route.make(vertex2, vertex4);
+        List<IWalk<Integer, String>> walks24 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex2, vertex3, vertex4))
         );
-        paths.add(Pair.of(route24, walks24));
+        paths.add(Pair.make(route24, walks24));
 
-        IRoute<Integer, String> route34 = Route.of(vertex3, vertex4);
-        List<IWalk<Integer, String>> walks34 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex3, vertex4))
+        IRoute<Integer, String> route34 = Route.make(vertex3, vertex4);
+        List<IWalk<Integer, String>> walks34 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex3, vertex4))
         );
-        paths.add(Pair.of(route34, walks34));
+        paths.add(Pair.make(route34, walks34));
 
         return paths;
     }
@@ -422,43 +422,43 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex5 = vertices.get(4);
         IVertex<Integer, String> vertex6 = vertices.get(5);
 
-        IRoute<Integer, String> route12 = Route.of(vertex1, vertex2);
-        List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2),
-            ArrayLists.of(vertex1, vertex3, vertex2))
+        IRoute<Integer, String> route12 = Route.make(vertex1, vertex2);
+        List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2),
+            ArrayLists.make(vertex1, vertex3, vertex2))
         );
-        paths.add(Pair.of(route12, walks12));
+        paths.add(Pair.make(route12, walks12));
 
-        IRoute<Integer, String> route13 = Route.of(vertex1, vertex3);
-        List<IWalk<Integer, String>> walks13 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex3))
+        IRoute<Integer, String> route13 = Route.make(vertex1, vertex3);
+        List<IWalk<Integer, String>> walks13 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex3))
         );
-        paths.add(Pair.of(route13, walks13));
+        paths.add(Pair.make(route13, walks13));
 
-        IRoute<Integer, String> route14 = Route.of(vertex1, vertex4);
-        List<IWalk<Integer, String>> walks14 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2, vertex4),
-            ArrayLists.of(vertex1, vertex3, vertex2, vertex4))
+        IRoute<Integer, String> route14 = Route.make(vertex1, vertex4);
+        List<IWalk<Integer, String>> walks14 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2, vertex4),
+            ArrayLists.make(vertex1, vertex3, vertex2, vertex4))
         );
-        paths.add(Pair.of(route14, walks14));
+        paths.add(Pair.make(route14, walks14));
 
-        IRoute<Integer, String> route15 = Route.of(vertex1, vertex5);
-        List<IWalk<Integer, String>> walks15 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2, vertex4, vertex5),
-            ArrayLists.of(vertex1, vertex3, vertex2, vertex4, vertex5),
-            ArrayLists.of(vertex1, vertex3, vertex5))
+        IRoute<Integer, String> route15 = Route.make(vertex1, vertex5);
+        List<IWalk<Integer, String>> walks15 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2, vertex4, vertex5),
+            ArrayLists.make(vertex1, vertex3, vertex2, vertex4, vertex5),
+            ArrayLists.make(vertex1, vertex3, vertex5))
         );
-        paths.add(Pair.of(route15, walks15));
+        paths.add(Pair.make(route15, walks15));
 
-        IRoute<Integer, String> route16 = Route.of(vertex1, vertex6);
-        List<IWalk<Integer, String>> walks16 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2, vertex4, vertex5, vertex6),
-            ArrayLists.of(vertex1, vertex2, vertex4, vertex6),
-            ArrayLists.of(vertex1, vertex3, vertex2, vertex4, vertex5, vertex6),
-            ArrayLists.of(vertex1, vertex3, vertex2, vertex4, vertex6),
-            ArrayLists.of(vertex1, vertex3, vertex5, vertex6))
+        IRoute<Integer, String> route16 = Route.make(vertex1, vertex6);
+        List<IWalk<Integer, String>> walks16 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2, vertex4, vertex5, vertex6),
+            ArrayLists.make(vertex1, vertex2, vertex4, vertex6),
+            ArrayLists.make(vertex1, vertex3, vertex2, vertex4, vertex5, vertex6),
+            ArrayLists.make(vertex1, vertex3, vertex2, vertex4, vertex6),
+            ArrayLists.make(vertex1, vertex3, vertex5, vertex6))
         );
-        paths.add(Pair.of(route16, walks16));
+        paths.add(Pair.make(route16, walks16));
 
         return paths;
     }
@@ -478,42 +478,42 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex4 = vertices.get(3);
         IVertex<Integer, String> vertex5 = vertices.get(4);
 
-        IRoute<Integer, String> route12 = Route.of(vertex1, vertex2);
-        List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2))
+        IRoute<Integer, String> route12 = Route.make(vertex1, vertex2);
+        List<IWalk<Integer, String>> walks12 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2))
         );
-        paths.add(Pair.of(route12, walks12));
+        paths.add(Pair.make(route12, walks12));
 
-        IRoute<Integer, String> route13 = Route.of(vertex1, vertex3);
-        List<IWalk<Integer, String>> walks13 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex3))
+        IRoute<Integer, String> route13 = Route.make(vertex1, vertex3);
+        List<IWalk<Integer, String>> walks13 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex3))
         );
-        paths.add(Pair.of(route13, walks13));
+        paths.add(Pair.make(route13, walks13));
 
-        IRoute<Integer, String> route15 = Route.of(vertex1, vertex5);
-        List<IWalk<Integer, String>> walks15 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex1, vertex2, vertex5),
-            ArrayLists.of(vertex1, vertex3, vertex5))
+        IRoute<Integer, String> route15 = Route.make(vertex1, vertex5);
+        List<IWalk<Integer, String>> walks15 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex1, vertex2, vertex5),
+            ArrayLists.make(vertex1, vertex3, vertex5))
         );
-        paths.add(Pair.of(route15, walks15));
+        paths.add(Pair.make(route15, walks15));
 
-        IRoute<Integer, String> route25 = Route.of(vertex2, vertex5);
-        List<IWalk<Integer, String>> walks25 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex2, vertex5))
+        IRoute<Integer, String> route25 = Route.make(vertex2, vertex5);
+        List<IWalk<Integer, String>> walks25 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex2, vertex5))
         );
-        paths.add(Pair.of(route25, walks25));
+        paths.add(Pair.make(route25, walks25));
 
-        IRoute<Integer, String> route35 = Route.of(vertex3, vertex5);
-        List<IWalk<Integer, String>> walks35 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex3, vertex5))
+        IRoute<Integer, String> route35 = Route.make(vertex3, vertex5);
+        List<IWalk<Integer, String>> walks35 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex3, vertex5))
         );
-        paths.add(Pair.of(route35, walks35));
+        paths.add(Pair.make(route35, walks35));
 
-        IRoute<Integer, String> route45 = Route.of(vertex4, vertex5);
-        List<IWalk<Integer, String>> walks45 = Walk.createWalks(ArrayLists.of(
-            ArrayLists.of(vertex4, vertex5))
+        IRoute<Integer, String> route45 = Route.make(vertex4, vertex5);
+        List<IWalk<Integer, String>> walks45 = Walk.createWalks(ArrayLists.make(
+            ArrayLists.make(vertex4, vertex5))
         );
-        paths.add(Pair.of(route45, walks45));
+        paths.add(Pair.make(route45, walks45));
 
         return paths;
     }
@@ -525,12 +525,12 @@ public final class GraphTestData implements IGraphTestData {
         List<IVertex<Integer, String>> vertices) {
 
         assert(vertices.size() == 4);
-        IVertex<Integer, String> vertex1 = Vertex.of(1, "a");
-        IVertex<Integer, String> vertex2 = Vertex.of(2, "b");
-        IVertex<Integer, String> vertex3 = Vertex.of(3, "c");
-        IVertex<Integer, String> vertex4 = Vertex.of(4, "d");
+        IVertex<Integer, String> vertex1 = Vertex.make(1, "a");
+        IVertex<Integer, String> vertex2 = Vertex.make(2, "b");
+        IVertex<Integer, String> vertex3 = Vertex.make(3, "c");
+        IVertex<Integer, String> vertex4 = Vertex.make(4, "d");
 
-        List<List<IVertex<Integer, String>>> data = ArrayLists.of(
+        List<List<IVertex<Integer, String>>> data = ArrayLists.make(
             List.of(vertex1),
             List.of(vertex2),
             List.of(vertex3),
@@ -553,7 +553,7 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex5 = vertices.get(4);
         IVertex<Integer, String> vertex6 = vertices.get(5);
 
-        List<List<IVertex<Integer, String>>> data = ArrayLists.of(
+        List<List<IVertex<Integer, String>>> data = ArrayLists.make(
             List.of(vertex1),
             List.of(vertex3),
             List.of(vertex2),
@@ -577,7 +577,7 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex4 = vertices.get(3);
         IVertex<Integer, String> vertex5 = vertices.get(4);
 
-        List<List<IVertex<Integer, String>>> data = ArrayLists.of(
+        List<List<IVertex<Integer, String>>> data = ArrayLists.make(
             List.of(vertex4),
             List.of(vertex1),
             List.of(vertex3),
@@ -600,25 +600,25 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex4 = vertices.get(3);
 
         Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths = new HashMap<>();
-        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.make(
             vertex1, 0,
             vertex2, 5,
             vertex3, 6,
             vertex4, 10);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, 0,
             vertex3, 2,
             vertex4, 6);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, Integer.MAX_VALUE,
             vertex3, 0,
             vertex4, 4);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, Integer.MAX_VALUE,
             vertex3, Integer.MAX_VALUE,
@@ -647,7 +647,7 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex6 = vertices.get(5);
 
         Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths = new HashMap<>();
-        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.make(
             vertex1, 0,
             vertex2, 10,
             vertex3, 8,
@@ -655,7 +655,7 @@ public final class GraphTestData implements IGraphTestData {
             vertex5, 15,
             vertex6, 17);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, 0,
             vertex3, Integer.MAX_VALUE,
@@ -663,7 +663,7 @@ public final class GraphTestData implements IGraphTestData {
             vertex5, 15,
             vertex6, 9);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, 4,
             vertex3, 0,
@@ -671,7 +671,7 @@ public final class GraphTestData implements IGraphTestData {
             vertex5, 7,
             vertex6, 9);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, Integer.MAX_VALUE,
             vertex3, Integer.MAX_VALUE,
@@ -679,7 +679,7 @@ public final class GraphTestData implements IGraphTestData {
             vertex5, 9,
             vertex6, 3);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths5 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths5 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, Integer.MAX_VALUE,
             vertex3, Integer.MAX_VALUE,
@@ -687,7 +687,7 @@ public final class GraphTestData implements IGraphTestData {
             vertex5, 0,
             vertex6, 2);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths6 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths6 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, Integer.MAX_VALUE,
             vertex3, Integer.MAX_VALUE,
@@ -719,35 +719,35 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, String> vertex5 = vertices.get(4);
 
         Map<IVertex<Integer, String>, Map<IVertex<Integer, String>, Integer>> shortestPaths = new HashMap<>();
-        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths1 = HashMaps.make(
             vertex1, 0,
             vertex2, 7,
             vertex3, 8,
             vertex4, Integer.MAX_VALUE,
             vertex5, 14);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths2 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, 0,
             vertex3, Integer.MAX_VALUE,
             vertex4, Integer.MAX_VALUE,
             vertex5, 13);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths3 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, Integer.MAX_VALUE,
             vertex3, 0,
             vertex4, Integer.MAX_VALUE,
             vertex5, 6);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths4 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, Integer.MAX_VALUE,
             vertex3, Integer.MAX_VALUE,
             vertex4, 0,
             vertex5, 2);
 
-        Map<IVertex<Integer, String>, Integer> shortestPaths5 = HashMaps.of(
+        Map<IVertex<Integer, String>, Integer> shortestPaths5 = HashMaps.make(
             vertex1, Integer.MAX_VALUE,
             vertex2, Integer.MAX_VALUE,
             vertex3, Integer.MAX_VALUE,

@@ -133,7 +133,7 @@ public final class Stack<T extends Comparable<T>> implements IStack<T> {
      */
     @Override
     public IIterator<T> getIterator() {
-        return InvertReverseIterator.of(this.data.getReverseIterator());
+        return InvertReverseIterator.make(this.data.getReverseIterator());
     }
 
     /**
@@ -141,7 +141,7 @@ public final class Stack<T extends Comparable<T>> implements IStack<T> {
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return InvertIterator.of(this.data.getIterator());
+        return InvertIterator.make(this.data.getIterator());
     }
 
     /**

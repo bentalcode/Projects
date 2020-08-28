@@ -112,7 +112,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
-        return BPlusTreeDataIterator.of(this.root);
+        return BPlusTreeDataIterator.make(this.root);
     }
 
     /**
@@ -120,7 +120,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IIterator<TKey> getKeyIterator() {
-        return KeyValueNodeKeyIterator.of(this.getIterator());
+        return KeyValueNodeKeyIterator.make(this.getIterator());
     }
 
     /**
@@ -128,7 +128,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IIterator<TValue> getValueIterator() {
-        return KeyValueNodeValueIterator.of(this.getIterator());
+        return KeyValueNodeValueIterator.make(this.getIterator());
     }
 
     /**

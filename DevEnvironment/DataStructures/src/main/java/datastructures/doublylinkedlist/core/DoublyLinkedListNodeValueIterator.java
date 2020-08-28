@@ -11,9 +11,16 @@ public final class DoublyLinkedListNodeValueIterator<T extends Comparable<T>> im
     private final IIterator<IDoublyLinkedListNode<T>> iterator;
 
     /**
-     * The NodeValueIterator constructor.
+     * Creates a new iterator of values of a doubly linked list.
      */
-    public DoublyLinkedListNodeValueIterator(IIterator<IDoublyLinkedListNode<T>> iterator) {
+    public static <T extends Comparable<T>> IIterator<T> make(IIterator<IDoublyLinkedListNode<T>> iterator) {
+        return new DoublyLinkedListNodeValueIterator<>(iterator);
+    }
+
+    /**
+     * The DoublyLinkedListNodeValueIterator constructor.
+     */
+    private DoublyLinkedListNodeValueIterator(IIterator<IDoublyLinkedListNode<T>> iterator) {
         Conditions.validateNotNull(
             iterator,
             "The iterator of nodes of a doubly linked list.");

@@ -227,7 +227,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
      */
     @Override
     public IIterator<T> getIterator() {
-        return ListIterator.of(this);
+        return ListIterator.make(this);
     }
 
     /**
@@ -235,7 +235,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return ListReverseIterator.of(this);
+        return ListReverseIterator.make(this);
     }
 
     /**

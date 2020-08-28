@@ -60,8 +60,8 @@ public final class SudokuTest {
             status,
             "Incorrect logic for solving Sudoku.");
 
-        IIterator<Character> resultIterator = TwoDimensionalCharacterArrayIterator.of(board.getData());
-        IIterator<Character> expectedResultIterator = TwoDimensionalCharacterArrayIterator.of(data.getResultBoard());
+        IIterator<Character> resultIterator = TwoDimensionalCharacterArrayIterator.make(board.getData());
+        IIterator<Character> expectedResultIterator = TwoDimensionalCharacterArrayIterator.make(data.getResultBoard());
 
         this.assertion.assertEqualsWithIterators(
             resultIterator,

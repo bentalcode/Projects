@@ -54,11 +54,11 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
      * Gets the data of tree2.
      */
     private IBinaryTreeData<Integer, String> getTreeData2() {
-        List<IBinaryTreeNode<Integer, String>> creationData = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
-        List<IBinaryTreeNode<Integer, String>> levelOrder = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
-        List<IBinaryTreeNode<Integer, String>> inorder = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
-        List<IBinaryTreeNode<Integer, String>> preorder = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
-        List<IBinaryTreeNode<Integer, String>> postorder = ArrayLists.of(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> creationData = ArrayLists.make(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> levelOrder = ArrayLists.make(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> inorder = ArrayLists.make(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> preorder = ArrayLists.make(BinaryTreeNodes.node(1, "a"));
+        List<IBinaryTreeNode<Integer, String>> postorder = ArrayLists.make(BinaryTreeNodes.node(1, "a"));
 
         return new BinaryTreeData<>(
             creationData,
@@ -86,28 +86,28 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
         creationData.add(BinaryTreeNodes.endNode());
         creationData.add(BinaryTreeNodes.endNode());
 
-        List<IBinaryTreeNode<Integer, String>> levelOrder = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> levelOrder = ArrayLists.make(
             BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.node(2, "b"),
             BinaryTreeNodes.node(5, "e"),
             BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.node(4, "d"));
 
-        List<IBinaryTreeNode<Integer, String>> inorder = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> inorder = ArrayLists.make(
             BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.node(2, "b"),
             BinaryTreeNodes.node(4, "d"),
             BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.node(5, "e"));
 
-        List<IBinaryTreeNode<Integer, String>> preorder = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> preorder = ArrayLists.make(
             BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.node(2, "b"),
             BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.node(4, "d"),
             BinaryTreeNodes.node(5, "e"));
 
-        List<IBinaryTreeNode<Integer, String>> postorder = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> postorder = ArrayLists.make(
             BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.node(4, "d"),
             BinaryTreeNodes.node(2, "b"),
@@ -144,7 +144,7 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
         creationData.add(BinaryTreeNodes.endNode());
         creationData.add(BinaryTreeNodes.endNode());
 
-        List<IBinaryTreeNode<Integer, String>> levelOrder = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> levelOrder = ArrayLists.make(
             BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.node(2, "b"),
             BinaryTreeNodes.node(3, "c"),
@@ -153,7 +153,7 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
             BinaryTreeNodes.node(6, "f"),
             BinaryTreeNodes.node(7, "h"));
 
-        List<IBinaryTreeNode<Integer, String>> inorder = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> inorder = ArrayLists.make(
             BinaryTreeNodes.node(4, "d"),
             BinaryTreeNodes.node(2, "b"),
             BinaryTreeNodes.node(5, "e"),
@@ -162,7 +162,7 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
             BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.node(7, "h"));
 
-        List<IBinaryTreeNode<Integer, String>> preorder = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> preorder = ArrayLists.make(
             BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.node(2, "b"),
             BinaryTreeNodes.node(4, "d"),
@@ -171,7 +171,7 @@ public final class BinaryTreeTestData implements IBinaryTreeTestData {
             BinaryTreeNodes.node(6, "f"),
             BinaryTreeNodes.node(7, "h"));
 
-        List<IBinaryTreeNode<Integer, String>> postorder = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> postorder = ArrayLists.make(
             BinaryTreeNodes.node(4, "d"),
             BinaryTreeNodes.node(5, "e"),
             BinaryTreeNodes.node(2, "b"),

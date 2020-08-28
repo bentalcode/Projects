@@ -16,7 +16,7 @@ public final class MatrixReverseIterator<T extends Comparable<T>> implements IRe
     /**
      * Creates a new reverse iterator of a matrix.
      */
-    public static <T extends Comparable<T>> IReverseIterator<T> of(IMatrix<T> data) {
+    public static <T extends Comparable<T>> IReverseIterator<T> make(IMatrix<T> data) {
         return new MatrixReverseIterator<>(data);
     }
 

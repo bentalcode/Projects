@@ -13,7 +13,7 @@ public class CollectionIterator<T> implements IIterator<T> {
     /**
      * Creates a new iterator of a collection.
      */
-    public static <T> IIterator<T> of(Collection<T> collection) {
+    public static <T> IIterator<T> make(Collection<T> collection) {
         return new CollectionIterator<>(collection);
     }
 

@@ -39,7 +39,7 @@ public final class CollectionTestData implements ICollectionTestData {
         List<Character> collection = Strings.toList("");
         List<List<List<Character>>> collectionOfSubCollections = new ArrayList<>();
 
-        return Pair.of(collection, collectionOfSubCollections);
+        return Pair.make(collection, collectionOfSubCollections);
     }
 
     /**
@@ -50,12 +50,12 @@ public final class CollectionTestData implements ICollectionTestData {
 
         List<List<List<Character>>> collectionOfSubCollections = new ArrayList<>();
 
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("abc")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("a"), Strings.toList("bc")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("ab"), Strings.toList("c")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("a"), Strings.toList("b"), Strings.toList("c")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("abc")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("a"), Strings.toList("bc")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("ab"), Strings.toList("c")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("a"), Strings.toList("b"), Strings.toList("c")));
 
-        return Pair.of(collection, collectionOfSubCollections);
+        return Pair.make(collection, collectionOfSubCollections);
     }
 
     /**
@@ -66,15 +66,15 @@ public final class CollectionTestData implements ICollectionTestData {
 
         List<List<List<Character>>> collectionOfSubCollections = new ArrayList<>();
 
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("abcd")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("a"), Strings.toList("bcd")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("ab"), Strings.toList("cd")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("a"), Strings.toList("b"), Strings.toList("cd")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("abc"), Strings.toList("d")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("a"), Strings.toList("bc"), Strings.toList("d")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("ab"), Strings.toList("c"), Strings.toList("d")));
-        collectionOfSubCollections.add(ArrayLists.of(Strings.toList("a"), Strings.toList("b"), Strings.toList("c"), Strings.toList("d")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("abcd")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("a"), Strings.toList("bcd")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("ab"), Strings.toList("cd")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("a"), Strings.toList("b"), Strings.toList("cd")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("abc"), Strings.toList("d")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("a"), Strings.toList("bc"), Strings.toList("d")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("ab"), Strings.toList("c"), Strings.toList("d")));
+        collectionOfSubCollections.add(ArrayLists.make(Strings.toList("a"), Strings.toList("b"), Strings.toList("c"), Strings.toList("d")));
 
-        return Pair.of(collection, collectionOfSubCollections);
+        return Pair.make(collection, collectionOfSubCollections);
     }
 }

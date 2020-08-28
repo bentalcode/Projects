@@ -5,10 +5,7 @@ import base.core.ListReverseIterator;
 import datastructures.bitarray.interfaces.IBitArray;
 import datastructures.bitarray.interfaces.IBitArrayData;
 import datastructures.core.TestData;
-import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListData;
 import datastructures.interfaces.ITestData;
-import datastructures.linkedlist.interfaces.ILinkedList;
-import datastructures.linkedlist.interfaces.ILinkedListData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +13,6 @@ import testbase.core.Assertion;
 import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
-
-import java.util.List;
 
 /**
  * The BitArrayTest class implements tests for a bit array.
@@ -84,7 +79,7 @@ public final class BitArrayTest {
 
         this.assertion.assertEqualsWithIterators(
             bitArray.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a stack.");
     }
 
@@ -135,7 +130,7 @@ public final class BitArrayTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "BitArray");
 
         //
@@ -143,7 +138,7 @@ public final class BitArrayTest {
         //
         iterationTest.testForwardIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "BitArray");
 
         //
@@ -151,7 +146,7 @@ public final class BitArrayTest {
         //
         iterationTest.testReverseIteration(
             container,
-            ListReverseIterator.of(data.getData()),
+            ListReverseIterator.make(data.getData()),
             "BitArray");
     }
 

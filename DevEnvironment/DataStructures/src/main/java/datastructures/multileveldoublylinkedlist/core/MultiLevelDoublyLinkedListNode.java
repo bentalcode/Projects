@@ -22,14 +22,14 @@ public final class MultiLevelDoublyLinkedListNode<T extends Comparable<T>> imple
     /**
      * Creates a new multi-level doubly linked list node.
      */
-    public static <T extends Comparable<T>> IMultiLevelDoublyLinkedListNode<T> of(T value) {
+    public static <T extends Comparable<T>> IMultiLevelDoublyLinkedListNode<T> make(T value) {
         return new MultiLevelDoublyLinkedListNode<>(value);
     }
 
     /**
      * Creates a new multi-level doubly linked list node.
      */
-    public static <T extends Comparable<T>> IMultiLevelDoublyLinkedListNode<T> of(
+    public static <T extends Comparable<T>> IMultiLevelDoublyLinkedListNode<T> make(
         T value,
         IMultiLevelDoublyLinkedListNode<T> previous,
         IMultiLevelDoublyLinkedListNode<T> next,

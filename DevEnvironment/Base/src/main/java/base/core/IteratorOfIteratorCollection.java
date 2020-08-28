@@ -20,7 +20,7 @@ public final class IteratorOfIteratorCollection<T> implements IIterator<T> {
     /**
      * Creates a new iterator from a collection of iterators.
      */
-    public static <T> IIterator<T> of(Collection<IIterator<T>> iterators) {
+    public static <T> IIterator<T> make(Collection<IIterator<T>> iterators) {
         return new IteratorOfIteratorCollection<>(iterators);
     }
 
@@ -148,7 +148,7 @@ public final class IteratorOfIteratorCollection<T> implements IIterator<T> {
          */
         @Override
         public IIterator<T> build() {
-            return IteratorOfIteratorCollection.of(this.iterators);
+            return IteratorOfIteratorCollection.make(this.iterators);
         }
     }
 }

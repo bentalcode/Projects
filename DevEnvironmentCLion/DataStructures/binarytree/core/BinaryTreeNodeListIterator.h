@@ -19,16 +19,14 @@ namespace datastructures {
             /**
              * Creates a new iterator of a list of binary nodes.
              */
-            static IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> of(
+            static IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> make(
                 const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes);
 
-        private:
             /**
              * The BinaryTreeNodeListIterator constructor.
              */
             BinaryTreeNodeListIterator(const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes);
 
-        public:
             /**
              * The BinaryTreeNodeListIterator destructor.
              */
@@ -87,7 +85,7 @@ namespace datastructures {
          * Creates a new iterator of a list of binary nodes.
          */
         template<typename TKey, typename TValue>
-        IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeNodeListIterator<TKey, TValue>::of(
+        IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeNodeListIterator<TKey, TValue>::make(
             const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes) {
 
             return IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>>(

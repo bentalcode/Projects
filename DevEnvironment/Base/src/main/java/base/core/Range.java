@@ -16,14 +16,14 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     /**
      * Creates a new range.
      */
-    public static <T extends Comparable<T>> IRange<T> of(T start, T end) {
+    public static <T extends Comparable<T>> IRange<T> make(T start, T end) {
         return new Range<>(start, end);
     }
 
     /**
      * Creates a new range.
      */
-    public static <T extends Comparable<T>> IRange<T> of(
+    public static <T extends Comparable<T>> IRange<T> make(
         RangeType rangeType,
         T start,
         T end) {
@@ -34,7 +34,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     /**
      * Creates a new range.
      */
-    public static <T extends Comparable<T>> IRange<T> of(
+    public static <T extends Comparable<T>> IRange<T> make(
         RangeType rangeType,
         T start,
         T end,

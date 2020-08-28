@@ -14,7 +14,7 @@ public class ListReverseIterator<T extends Comparable<T>> implements IReverseIte
     /**
      * Creates a new reverse iterator of a list.
      */
-    public static <T extends Comparable<T>> IReverseIterator<T> of(IList<T> list) {
+    public static <T extends Comparable<T>> IReverseIterator<T> make(IList<T> list) {
         return new ListReverseIterator<>(list);
     }
 

@@ -26,10 +26,10 @@ public final class BattleShipBoard implements IBattleShipBoard {
     private int currShipIndex;
     private final Map<IPosition, BattleShipShootResultType> previousShoots = new HashMap<>();
 
-    private static List<IPosition> defaultDirections = ArrayLists.of(
-        Position.of(1, -1), Position.of(1, 0), Position.of(1, 1),
-        Position.of(0, -1), Position.of(0, 1),
-        Position.of(-1, -1), Position.of(-1, 0), Position.of(-1, 1));
+    private static List<IPosition> defaultDirections = ArrayLists.make(
+        Position.make(1, -1), Position.make(1, 0), Position.make(1, 1),
+        Position.make(0, -1), Position.make(0, 1),
+        Position.make(-1, -1), Position.make(-1, 0), Position.make(-1, 1));
 
     /**
      * The BattleShipBoard constructor.

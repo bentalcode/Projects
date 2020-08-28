@@ -53,7 +53,7 @@ public final class GrayCode implements IGrayCode {
      */
     @Override
     public IIterator<Integer> getIterator() {
-        return ListIterator.of(this.grayCodes);
+        return ListIterator.make(this.grayCodes);
     }
 
     /**
@@ -61,7 +61,7 @@ public final class GrayCode implements IGrayCode {
      */
     @Override
     public IReverseIterator<Integer> getReverseIterator() {
-        return ListReverseIterator.of(this.grayCodes);
+        return ListReverseIterator.make(this.grayCodes);
     }
 
     /**

@@ -209,8 +209,8 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
                 return false;
             }
 
-            IIterator<ITreeNode<TKey, TValue>> lhsChildrenIterator = CollectionIterator.of(lhsChildren);
-            IIterator<ITreeNode<TKey, TValue>> rhsChildrenIterator = CollectionIterator.of(rhsChildren);
+            IIterator<ITreeNode<TKey, TValue>> lhsChildrenIterator = CollectionIterator.make(lhsChildren);
+            IIterator<ITreeNode<TKey, TValue>> rhsChildrenIterator = CollectionIterator.make(rhsChildren);
 
             while (lhsChildrenIterator.hasNext() && rhsChildrenIterator.hasNext()) {
                 ITreeNode<TKey, TValue> lhsChild = lhsChildrenIterator.next();
@@ -287,8 +287,8 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
                 return 1;
             }
 
-            IIterator<ITreeNode<TKey, TValue>> lhsChildrenIterator = CollectionIterator.of(lhsChildren);
-            IIterator<ITreeNode<TKey, TValue>> rhsChildrenIterator = CollectionIterator.of(rhsChildren);
+            IIterator<ITreeNode<TKey, TValue>> lhsChildrenIterator = CollectionIterator.make(lhsChildren);
+            IIterator<ITreeNode<TKey, TValue>> rhsChildrenIterator = CollectionIterator.make(rhsChildren);
 
             while (lhsChildrenIterator.hasNext() && rhsChildrenIterator.hasNext()) {
                 ITreeNode<TKey, TValue> lhsChild = lhsChildrenIterator.next();

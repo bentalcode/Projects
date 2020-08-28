@@ -16,14 +16,14 @@ public final class PrimeIterator implements IIterator<Integer> {
     /**
      * Creates a new iterator of a prime.
      */
-    public static IIterator<Integer> of(Prime prime) {
+    public static IIterator<Integer> make(Prime prime) {
         return new PrimeIterator(prime, initialPrime);
     }
 
     /**
      * Creates a new iterator of a prime.
      */
-    public static IIterator<Integer> of(Prime prime, int currPrime) {
+    public static IIterator<Integer> make(Prime prime, int currPrime) {
         return new PrimeIterator(prime, currPrime);
     }
 

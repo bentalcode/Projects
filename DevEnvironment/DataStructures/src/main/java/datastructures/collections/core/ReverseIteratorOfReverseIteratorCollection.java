@@ -22,7 +22,7 @@ public final class ReverseIteratorOfReverseIteratorCollection<T> implements IRev
     /**
      * Creates a new reverse iterator of a collection of reverse iterators.
      */
-    public static <T> IReverseIterator<T> of(Collection<IReverseIterator<T>> reverseIterators) {
+    public static <T> IReverseIterator<T> make(Collection<IReverseIterator<T>> reverseIterators) {
         return new ReverseIteratorOfReverseIteratorCollection<>(reverseIterators);
     }
 
@@ -123,7 +123,7 @@ public final class ReverseIteratorOfReverseIteratorCollection<T> implements IRev
          */
         @Override
         public IReverseIterator<T> build() {
-            return ReverseIteratorOfReverseIteratorCollection.of(this.reverseIterators);
+            return ReverseIteratorOfReverseIteratorCollection.make(this.reverseIterators);
         }
     }
 }

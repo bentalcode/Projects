@@ -17,7 +17,7 @@ public final class FileNames {
     public static final char kababCasedSeparator = '-';
     public static final char snakeCasedSeparator = '_';
 
-    public static final Set<Character> invalidCharacters = HashSets.of(
+    public static final Set<Character> invalidCharacters = HashSets.make(
         ':',
         '\\',
         '/',

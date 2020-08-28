@@ -88,8 +88,8 @@ public final class PermutationTest {
         List<List<T>> result = permutation.permute(values);
 
         this.assertion.assertEqualsWithIterators(
-            TwoDimensionalListIterator.of(result),
-            TwoDimensionalArrayIterator.of(expectedResult),
+            TwoDimensionalListIterator.make(result),
+            TwoDimensionalArrayIterator.make(expectedResult),
             "Incorrect logic for calculating permutations.");
     }
 
@@ -98,8 +98,8 @@ public final class PermutationTest {
         List<List<T>> result = permutation.permuteUnique(values);
 
         this.assertion.assertEqualsWithIterators(
-            TwoDimensionalListIterator.of(result),
-            TwoDimensionalArrayIterator.of(expectedResult),
+            TwoDimensionalListIterator.make(result),
+            TwoDimensionalArrayIterator.make(expectedResult),
             "Incorrect logic for calculating unique permutations.");
     }
 }

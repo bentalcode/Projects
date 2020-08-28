@@ -14,7 +14,7 @@ public final class CircularListReverseIterator<T extends Comparable<T>> implemen
     /**
      * Creates a reverse iterator of a circular list.
      */
-    public static <T extends Comparable<T>> IReverseIterator<T> of(ICircularList<T> circularList) {
+    public static <T extends Comparable<T>> IReverseIterator<T> make(ICircularList<T> circularList) {
         return new CircularListReverseIterator<>(circularList);
     }
 

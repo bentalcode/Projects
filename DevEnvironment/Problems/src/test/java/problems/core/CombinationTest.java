@@ -61,8 +61,8 @@ public final class CombinationTest {
         List<List<Integer>> result = combination.calculate();
 
         this.assertion.assertEqualsWithIterators(
-            TwoDimensionalListIterator.of(result),
-            TwoDimensionalIntegerArrayIterator.of(expectedResult),
+            TwoDimensionalListIterator.make(result),
+            TwoDimensionalIntegerArrayIterator.make(expectedResult),
             "Incorrect logic for calculating the combination.");
     }
 }

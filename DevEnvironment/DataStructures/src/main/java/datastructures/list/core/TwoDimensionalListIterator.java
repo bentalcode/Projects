@@ -16,7 +16,7 @@ public class TwoDimensionalListIterator<T extends Comparable<T>> implements IIte
     /**
      * Creates a new iterator of a two dimensional list.
      */
-    public static <T extends Comparable<T>> IIterator<T> of(IList<IList<T>> data) {
+    public static <T extends Comparable<T>> IIterator<T> make(IList<IList<T>> data) {
         return new TwoDimensionalListIterator<>(data);
     }
 

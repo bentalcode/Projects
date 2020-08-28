@@ -45,7 +45,7 @@ public final class BinaryTreeRecoveryTest {
      */
     @Test
     public void binaryTreeRecoveryTest() {
-        List<IBinaryTreeNode<Integer, String>> data1 = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> data1 = ArrayLists.make(
             BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode());
@@ -54,7 +54,7 @@ public final class BinaryTreeRecoveryTest {
 
         List<IBinaryTreeNode<Integer, String>> result1 = data1;
 
-        List<IBinaryTreeNode<Integer, String>> data2 = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> data2 = ArrayLists.make(
             BinaryTreeNodes.node(3, "c"),
             BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.endNode(),
@@ -67,7 +67,7 @@ public final class BinaryTreeRecoveryTest {
 
         boolean status2 = true;
 
-        List<IBinaryTreeNode<Integer, String>> result2 = ArrayLists.of(
+        List<IBinaryTreeNode<Integer, String>> result2 = ArrayLists.make(
             BinaryTreeNodes.node(2, "b"),
             BinaryTreeNodes.node(1, "a"),
             BinaryTreeNodes.endNode(),

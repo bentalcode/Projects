@@ -78,7 +78,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IReverseIterator<IBinaryTreeNode<TKey , TValue>> getReverseIterator() {
-        return BinaryTreeInorderReverseIterator.of(this.root);
+        return BinaryTreeInorderReverseIterator.make(this.root);
     }
 
     /**
@@ -86,7 +86,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IIterator<IBinaryTreeNode<TKey , TValue>> getLevelOrderIterator() {
-        return BinaryTreeLevelOrderIterator.of(this.root);
+        return BinaryTreeLevelOrderIterator.make(this.root);
     }
 
     /**
@@ -94,7 +94,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IIterator<IBinaryTreeNode<TKey , TValue>> getInorderIterator() {
-        return BinaryTreeInorderIterator.of(this.root);
+        return BinaryTreeInorderIterator.make(this.root);
     }
 
     /**
@@ -102,7 +102,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IIterator<IBinaryTreeNode<TKey , TValue>> getPreorderIterator() {
-        return BinaryTreePreorderIterator.of(this.root);
+        return BinaryTreePreorderIterator.make(this.root);
     }
 
     /**
@@ -110,7 +110,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      */
     @Override
     public IIterator<IBinaryTreeNode<TKey , TValue>> getPostorderIterator() {
-        return BinaryTreePostorderIterator.of(this.root);
+        return BinaryTreePostorderIterator.make(this.root);
     }
 
     /**
@@ -218,10 +218,10 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
             }
 
             IIterator<IBinaryTreeNode<TKey, TValue>> lhsIterator =
-                BinaryTreeLevelOrderWithEndNodesIterator.of(lhs.getRoot());
+                BinaryTreeLevelOrderWithEndNodesIterator.make(lhs.getRoot());
 
             IIterator<IBinaryTreeNode<TKey, TValue>> rhsIterator =
-                BinaryTreeLevelOrderWithEndNodesIterator.of(rhs.getRoot());
+                BinaryTreeLevelOrderWithEndNodesIterator.make(rhs.getRoot());
 
             return new EqualBuilder()
                 .withIterator(lhsIterator, rhsIterator, this.nodeComparator)
@@ -250,10 +250,10 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
             }
 
             IIterator<IBinaryTreeNode<TKey, TValue>> lhsIterator =
-                BinaryTreeLevelOrderWithEndNodesIterator.of(lhs.getRoot());
+                BinaryTreeLevelOrderWithEndNodesIterator.make(lhs.getRoot());
 
             IIterator<IBinaryTreeNode<TKey, TValue>> rhsIterator =
-                BinaryTreeLevelOrderWithEndNodesIterator.of(rhs.getRoot());
+                BinaryTreeLevelOrderWithEndNodesIterator.make(rhs.getRoot());
 
             return new CompareToBuilder()
                 .withIterator(lhsIterator, rhsIterator, this.nodeComparator)

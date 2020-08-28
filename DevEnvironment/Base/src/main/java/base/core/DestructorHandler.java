@@ -24,7 +24,7 @@ public final class DestructorHandler implements IDestructorHandler {
      * The DestructorHandler constructor.
      */
     public DestructorHandler() {
-        this(ArrayLists.newList());
+        this(ArrayLists.make());
     }
 
     /**

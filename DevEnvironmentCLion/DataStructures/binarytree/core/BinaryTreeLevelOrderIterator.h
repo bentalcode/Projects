@@ -17,10 +17,7 @@ namespace datastructures {
             /**
              * Creates a level order iterator of a binary tree.
              */
-            static base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> of(IBinaryTreeNodePtr<TKey, TValue> root)
-            {
-                return std::make_shared<BinaryTreeLevelOrderIterator<TKey, TValue>>(root);
-            }
+            static base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
 
             /**
              * The BinaryTreeLevelOrderIterator constructor.
@@ -64,6 +61,15 @@ namespace datastructures {
             std::unique_ptr<std::queue<IBinaryTreeNodePtr<TKey, TValue>>> m_queue;
         };
 
+        /**
+         * Creates a level order iterator of a binary tree.
+         */
+        template <typename TKey, typename TValue>
+        base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeLevelOrderIterator<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
+        {
+            return std::make_shared<BinaryTreeLevelOrderIterator<TKey, TValue>>(root);
+        }
+        
         /**
          * The BinaryTreeLevelOrderIterator constructor.
          */

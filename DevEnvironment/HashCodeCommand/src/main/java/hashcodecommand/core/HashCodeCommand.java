@@ -52,7 +52,7 @@ public final class HashCodeCommand extends AbstractCommand {
         this.log.info("Processing files at directory: " + directory);
 
         IFilePathScanner scanner = new FilePathScanner();
-        List<String> extensions = ArrayLists.of("java");
+        List<String> extensions = ArrayLists.make("java");
 
         List<Path> filePaths = scanner.scan(directory, extensions);
 

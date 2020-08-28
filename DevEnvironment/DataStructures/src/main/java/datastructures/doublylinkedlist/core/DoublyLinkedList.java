@@ -49,11 +49,16 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
             comparator,
             "The comparator of a doubly linked list.");
 
-        if (head != null) {
-            this.addToFront(head);
-        }
-
         this.comparator = comparator;
+
+        IDoublyLinkedListNode<T> currNode = head;
+
+        while (currNode != null) {
+            IDoublyLinkedListNode<T> nextNode = currNode.next();
+            addToBack(currNode);
+
+            currNode = nextNode;
+        }
     }
 
     /**
@@ -93,7 +98,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
      */
     @Override
     public void addToFront(T value) {
-        this.addToFront(DoublyLinkedListNode.of(value));
+        this.addToFront(DoublyLinkedListNode.make(value));
     }
 
     /**
@@ -101,7 +106,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
      */
     @Override
     public void addToBack(T value) {
-        this.addToBack(DoublyLinkedListNode.of(value));
+        this.addToBack(DoublyLinkedListNode.make(value));
     }
 
     /**
@@ -109,7 +114,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
      */
     @Override
     public void addAfter(IDoublyLinkedListNode<T> currNode, T valueToAdd) {
-        this.addAfter(currNode, DoublyLinkedListNode.of(valueToAdd));
+        this.addAfter(currNode, DoublyLinkedListNode.make(valueToAdd));
     }
 
     /**
@@ -117,7 +122,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
      */
     @Override
     public void addBefore(IDoublyLinkedListNode<T> currNode, T nodeToAdd) {
-        this.addBefore(currNode, DoublyLinkedListNode.of(nodeToAdd));
+        this.addBefore(currNode, DoublyLinkedListNode.make(nodeToAdd));
     }
 
     /**
@@ -139,7 +144,6 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
         }
         else {
             this.linkedNodes(node, this.head);
-
             this.head = node;
         }
 
@@ -165,7 +169,6 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
         }
         else {
             this.linkedNodes(this.tail, node);
-
             this.tail = node;
         }
 
@@ -193,9 +196,13 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
         IDoublyLinkedListNode<T> nextNode = currNode.next();
 
         this.linkedNodes(currNode, nodeToAdd);
-        this.linkedNodes(nodeToAdd, nextNode);
 
-        if (this.tail == currNode) {
+        if (nextNode != null)
+        {
+            this.linkedNodes(nodeToAdd, nextNode);
+        }
+        else
+        {
             this.tail = nodeToAdd;
         }
 
@@ -222,12 +229,14 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
 
         IDoublyLinkedListNode<T> previousNode = currNode.previous();
 
-        this.linkedNodes(previousNode, nodeToAdd);
-        this.linkedNodes(nodeToAdd, currNode);
-
-        if (this.head == currNode) {
+        if (previousNode != null) {
+            this.linkedNodes(previousNode, nodeToAdd);
+        }
+        else {
             this.head = nodeToAdd;
         }
+
+        this.linkedNodes(nodeToAdd, currNode);
 
         this.nodeAdded();
     }
@@ -307,7 +316,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
      */
     @Override
     public IIterator<IDoublyLinkedListNode<T>> getIterator() {
-        return new DoublyLinkedListNodeIterator<>(this.head);
+        return DoublyLinkedListNodeIterator.make(this.head);
     }
 
     /**
@@ -315,7 +324,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
      */
     @Override
     public IReverseIterator<IDoublyLinkedListNode<T>> getReverseIterator() {
-        return new DoublyLinkedListNodeReverseIterator<>(this.tail);
+        return DoublyLinkedListNodeReverseIterator.make(this.tail);
     }
 
     /**
@@ -323,7 +332,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
      */
     @Override
     public IIterator<T> getValueIterator() {
-        return new DoublyLinkedListNodeValueIterator<>(this.getIterator());
+        return DoublyLinkedListNodeValueIterator.make(this.getIterator());
     }
 
     /**
@@ -331,7 +340,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
      */
     @Override
     public IReverseIterator<T> getValueReverseIterator() {
-        return new DoublyLinkedListNodeValueReverseIterator<>(this.getReverseIterator());
+        return DoublyLinkedListNodeValueReverseIterator.make(this.getReverseIterator());
     }
 
     /**
@@ -349,7 +358,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
 
         while (currNode != null) {
             if (currIndex == index) {
-                return currNode;
+                break;
             }
 
             ++currIndex;
@@ -511,18 +520,18 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
     }
 
     /**
+     * Node added.
+     */
+    private void nodeAdded() {
+        ++this.size;
+    }
+
+    /**
      * Node removed.
      */
     private void nodeRemoved(IDoublyLinkedListNode<T> node) {
         node.unlinked();
 
         --this.size;
-    }
-
-    /**
-     * Node added.
-     */
-    private void nodeAdded() {
-        ++this.size;
     }
 }

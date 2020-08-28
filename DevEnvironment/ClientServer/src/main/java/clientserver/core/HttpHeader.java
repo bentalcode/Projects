@@ -51,7 +51,7 @@ public final class HttpHeader implements IHttpHeader {
      */
     @Override
     public void set(String name, String value) {
-        this.set(HttpHeaderEntry.of(name, value));
+        this.set(HttpHeaderEntry.make(name, value));
     }
 
     /**
@@ -68,7 +68,7 @@ public final class HttpHeader implements IHttpHeader {
      */
     @Override
     public IIterator<IHttpHeaderEntry> getIterator() {
-        return ListIterator.of(this.entries);
+        return ListIterator.make(this.entries);
     }
 
     /**

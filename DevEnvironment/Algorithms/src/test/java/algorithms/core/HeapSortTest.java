@@ -97,8 +97,8 @@ public final class HeapSortTest {
         heapSort.sort(arr);
 
         this.assertion.assertEqualsWithIterators(
-            ArrayIterator.of(arr),
-            ArrayIterator.of(expectedResult),
+            ArrayIterator.make(arr),
+            ArrayIterator.make(expectedResult),
             "Invalid logic for performing a heap sort.");
     }
 }

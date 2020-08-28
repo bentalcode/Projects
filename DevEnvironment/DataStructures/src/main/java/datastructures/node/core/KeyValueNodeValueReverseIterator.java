@@ -13,7 +13,7 @@ public final class KeyValueNodeValueReverseIterator<TKey extends Comparable<TKey
     /**
      * Creates a new reverse iterator of values of key-value nodes.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<TValue> of(
+    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<TValue> make(
         IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator) {
 
         return new KeyValueNodeValueReverseIterator<>(reverseIterator);

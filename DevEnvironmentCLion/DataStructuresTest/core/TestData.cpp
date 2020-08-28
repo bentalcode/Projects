@@ -19,6 +19,14 @@ TestData::~TestData()
 }
 
 /**
+ * Gets the data of tests of a doubly linked list.
+ */
+DoublyLinkedListTestDataPtr TestData::getDoublyLinkedListData()
+{
+    return DoublyLinkedListTestDataPtr(new DoublyLinkedListTestData);
+}
+
+/**
  * Gets the data of tests of a binary tree.
  */
 BinaryTreeTestDataPtr TestData::getBinaryTreeData()

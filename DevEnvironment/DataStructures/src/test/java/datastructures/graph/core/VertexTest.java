@@ -55,7 +55,7 @@ public final class VertexTest {
      */
     private void testIdentifyingVerticesByIntegerKey() {
         IVertex<Integer, Integer> vertex1 = this.testData.nextVertexByInteger();
-        IVertex<Integer, Integer> vertex2 = Vertex.of(vertex1.getKey());
+        IVertex<Integer, Integer> vertex2 = Vertex.make(vertex1.getKey());
 
         Set<IVertex> vertices = new HashSet<>();
         vertices.add(vertex1);
@@ -71,7 +71,7 @@ public final class VertexTest {
      */
     private void testIdentifyingVerticesByDoubleKey() {
         IVertex<Double, Double> vertex1 = this.testData.nextVertexByDouble();
-        IVertex<Double, Double> vertex2 = Vertex.of(vertex1.getKey());
+        IVertex<Double, Double> vertex2 = Vertex.make(vertex1.getKey());
 
         Set<IVertex> vertices = new HashSet<>();
         vertices.add(vertex1);
@@ -87,7 +87,7 @@ public final class VertexTest {
      */
     private void testIdentifyingVerticesByCharacterKey() {
         IVertex<Character, Character> vertex1 = this.testData.nextVertexByCharacter();
-        IVertex<Character, Character> vertex2 = Vertex.of(vertex1.getKey());
+        IVertex<Character, Character> vertex2 = Vertex.make(vertex1.getKey());
 
         Set<IVertex> vertices = new HashSet<>();
         vertices.add(vertex1);
@@ -103,7 +103,7 @@ public final class VertexTest {
      */
     private void testIdentifyingVerticesByStringKey() {
         IVertex<String, String> vertex1 = this.testData.nextVertexByString();
-        IVertex<String, String> vertex2 = Vertex.of(vertex1.getKey());
+        IVertex<String, String> vertex2 = Vertex.make(vertex1.getKey());
 
         Set<IVertex> vertices = new HashSet<>();
         vertices.add(vertex1);

@@ -36,28 +36,28 @@ public final class TrieTestData implements ITrieTestData {
     private ITrieData<Character> getTrieData1() {
         List<List<Character>> creationData = new ArrayList<>();
 
-        creationData.add(ArrayLists.of('a'));
-        creationData.add(ArrayLists.of('t', 'o'));
-        creationData.add(ArrayLists.of('t', 'e', 'a'));
-        creationData.add(ArrayLists.of('t', 'e', 'd'));
-        creationData.add(ArrayLists.of('t', 'e', 'n'));
-        creationData.add(ArrayLists.of('i', 'n', 'n'));
-        creationData.add(ArrayLists.of('c', 'a', 't'));
+        creationData.add(ArrayLists.make('a'));
+        creationData.add(ArrayLists.make('t', 'o'));
+        creationData.add(ArrayLists.make('t', 'e', 'a'));
+        creationData.add(ArrayLists.make('t', 'e', 'd'));
+        creationData.add(ArrayLists.make('t', 'e', 'n'));
+        creationData.add(ArrayLists.make('i', 'n', 'n'));
+        creationData.add(ArrayLists.make('c', 'a', 't'));
 
         List<IKeyValueNode<Character, Boolean>> data = new ArrayList<>();
-        data.add(KeyValueNode.of('a', true));
-        data.add(KeyValueNode.of('c', false));
-        data.add(KeyValueNode.of('a', false));
-        data.add(KeyValueNode.of('t', true));
-        data.add(KeyValueNode.of('t', false));
-        data.add(KeyValueNode.of('e', false));
-        data.add(KeyValueNode.of('a', true));
-        data.add(KeyValueNode.of('d', true));
-        data.add(KeyValueNode.of('n', true));
-        data.add(KeyValueNode.of('o', true));
-        data.add(KeyValueNode.of('i', false));
-        data.add(KeyValueNode.of('n', false));
-        data.add(KeyValueNode.of('n', true));
+        data.add(KeyValueNode.make('a', true));
+        data.add(KeyValueNode.make('c', false));
+        data.add(KeyValueNode.make('a', false));
+        data.add(KeyValueNode.make('t', true));
+        data.add(KeyValueNode.make('t', false));
+        data.add(KeyValueNode.make('e', false));
+        data.add(KeyValueNode.make('a', true));
+        data.add(KeyValueNode.make('d', true));
+        data.add(KeyValueNode.make('n', true));
+        data.add(KeyValueNode.make('o', true));
+        data.add(KeyValueNode.make('i', false));
+        data.add(KeyValueNode.make('n', false));
+        data.add(KeyValueNode.make('n', true));
 
         return new TrieData<>(
             creationData,

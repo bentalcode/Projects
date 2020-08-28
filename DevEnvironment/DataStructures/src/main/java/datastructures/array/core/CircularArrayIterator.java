@@ -14,7 +14,7 @@ public final class CircularArrayIterator<T extends Comparable<T>> implements IIt
     /**
      * Creates an iterator of a circular array.
      */
-    public static <T extends Comparable<T>> IIterator<T> of(ICircularArray<T> circularArray) {
+    public static <T extends Comparable<T>> IIterator<T> make(ICircularArray<T> circularArray) {
         return new CircularArrayIterator<>(circularArray);
     }
 

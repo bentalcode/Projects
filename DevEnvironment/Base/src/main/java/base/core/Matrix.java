@@ -267,7 +267,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IIterator<T> getIterator() {
-        return MatrixIterator.of(this);
+        return MatrixIterator.make(this);
     }
 
     /**
@@ -275,7 +275,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return MatrixReverseIterator.of(this);
+        return MatrixReverseIterator.make(this);
     }
 
     /**

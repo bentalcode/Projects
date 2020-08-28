@@ -21,7 +21,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue> 
     /**
      * The BPlusTreeDataIterator constructor.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> of(
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> make(
         IBPlusTreeNode<TKey> root) {
 
         return new BPlusTreeDataIterator<>(root);
@@ -82,7 +82,7 @@ public final class BPlusTreeDataIterator<TKey extends Comparable<TKey>, TValue> 
             }
         }
 
-        IKeyValueNode<TKey, TValue> currNode = KeyValueNode.of(currKey, currValue);
+        IKeyValueNode<TKey, TValue> currNode = KeyValueNode.make(currKey, currValue);
 
         return currNode;
     }

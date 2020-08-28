@@ -66,7 +66,7 @@ public final class HeapTest {
 
         this.assertion.assertEqualsWithIterators(
             heap.getIterator(),
-            ArrayIterator.of(data.getData()),
+            ArrayIterator.make(data.getData()),
             "Invalid creation logic of a heap.");
     }
 
@@ -78,7 +78,7 @@ public final class HeapTest {
 
         this.assertion.assertEqualsWithIterators(
             heap.getIterator(),
-            ArrayIterator.of(data.getData()),
+            ArrayIterator.make(data.getData()),
             "Invalid creation logic of a heap.");
 
         int currSize = heap.size();

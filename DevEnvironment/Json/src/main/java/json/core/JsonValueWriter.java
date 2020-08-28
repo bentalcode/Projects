@@ -202,7 +202,7 @@ public final class JsonValueWriter implements IJsonValueWriter {
             return;
         }
 
-        this.writeCollection(ArrayIterator.of(array));
+        this.writeCollection(ArrayIterator.make(array));
     }
 
     /**
@@ -214,7 +214,7 @@ public final class JsonValueWriter implements IJsonValueWriter {
             return;
         }
 
-        this.writeCollection(Iterator.of(collection));
+        this.writeCollection(Iterator.make(collection));
     }
 
     /**

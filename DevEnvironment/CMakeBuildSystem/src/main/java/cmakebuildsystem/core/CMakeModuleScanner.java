@@ -47,7 +47,7 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
             this.path,
             this.manifest.getProperties().getCMakeListsTargetPath());
 
-        List<List<String>> extensions = ArrayLists.of(
+        List<List<String>> extensions = ArrayLists.make(
             this.manifest.getProperties().getHeaderFileExtensions(),
             this.manifest.getProperties().getSourceFileExtensions(),
             this.manifest.getProperties().getCMakeListsFileExtensions());

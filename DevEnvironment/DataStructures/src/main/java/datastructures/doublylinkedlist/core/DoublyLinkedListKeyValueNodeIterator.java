@@ -16,7 +16,7 @@ public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<
     /**
      * Creates an iterator of a key-value node.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> of(
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> make(
         IIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
 
         return new DoublyLinkedListKeyValueNodeIterator<>(iterator);

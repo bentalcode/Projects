@@ -68,7 +68,7 @@ public final class CollectionComparator<T extends Comparable<T>> extends Abstrac
             return false;
         }
 
-        return this.iteratorComparator.isEqual(Iterator.of(lhs), Iterator.of(rhs), comparator);
+        return this.iteratorComparator.isEqual(Iterator.make(lhs), Iterator.make(rhs), comparator);
     }
 
     /**
@@ -104,6 +104,6 @@ public final class CollectionComparator<T extends Comparable<T>> extends Abstrac
             return 1;
         }
 
-        return this.iteratorComparator.compareTo(Iterator.of(lhs), Iterator.of(rhs), comparator);
+        return this.iteratorComparator.compareTo(Iterator.make(lhs), Iterator.make(rhs), comparator);
     }
 }

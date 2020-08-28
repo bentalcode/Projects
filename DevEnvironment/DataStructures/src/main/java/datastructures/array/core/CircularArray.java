@@ -108,7 +108,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public IIterator<T> getIterator() {
-        return CircularArrayIterator.of(this);
+        return CircularArrayIterator.make(this);
     }
 
     /**
@@ -116,7 +116,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return CircularArrayReverseIterator.of(this);
+        return CircularArrayReverseIterator.make(this);
     }
 
     /**

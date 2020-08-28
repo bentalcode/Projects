@@ -14,6 +14,11 @@ namespace base
     {
     public:
         /**
+         * Creates an iterator of a list.
+         */
+        static base::IIteratorPtr<T> make(const std::vector<T>& data);
+
+        /**
          * The constructor.
          */
         explicit ListIterator(const std::vector<T>& data);
@@ -54,6 +59,15 @@ namespace base
         const std::vector<T>& m_data;
         size_t m_index;
     };
+
+    /**
+     * Creates an iterator of a list.
+     */
+    template <typename T>
+    base::IIteratorPtr<T> ListIterator<T>::make(const std::vector<T>& data)
+    {
+        return std::make_shared<ListIterator>(data);
+    }
 
     template <typename T>
     ListIterator<T>::ListIterator(const std::vector<T>& data) :

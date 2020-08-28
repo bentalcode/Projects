@@ -3,7 +3,6 @@ package command.core;
 import base.core.CollectionIterator;
 import base.core.Conditions;
 import base.interfaces.IIterator;
-import command.CommandException;
 import command.interfaces.IParameter;
 import command.interfaces.IParameterSet;
 import command.interfaces.IParameterSetMetadata;
@@ -88,7 +87,7 @@ public final class ParameterSet implements IParameterSet {
      */
     @Override
     public IIterator<IParameter> getIterator() {
-        return CollectionIterator.of(this.parametersMap.values());
+        return CollectionIterator.make(this.parametersMap.values());
     }
 
     /**

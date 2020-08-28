@@ -68,12 +68,12 @@ public final class ArrayListTest {
 
         this.assertion.assertEqualsWithIterators(
             list.getIterator(),
-            base.core.ListIterator.of(data.getData()),
+            base.core.ListIterator.make(data.getData()),
             "Invalid creation logic of a list.");
 
         this.assertion.assertEqualsWithIterators(
             list.getIterator(),
-            ArrayIterator.of(list.toArray()),
+            ArrayIterator.make(list.toArray()),
             "Invalid creation logic of a list.");
     }
 
@@ -85,7 +85,7 @@ public final class ArrayListTest {
 
         this.assertion.assertEqualsWithIterators(
             list.getIterator(),
-            base.core.ListIterator.of(data.getData()),
+            base.core.ListIterator.make(data.getData()),
             "Invalid creation logic of a list.");
 
         java.util.List<T> values = Lists.fromIterator(list.getIterator());

@@ -17,7 +17,7 @@ public final class TestData implements ITestData {
 
     private static final String commandManifest1 = "manifest1.json";
     private static final String commandManifest2 = "manifest2.json";
-    private static final List<String> commandLines1 = ArrayLists.of(
+    private static final List<String> commandLines1 = ArrayLists.make(
         "-h",
         "--help",
         "C:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\interfaces\\DateTime.h",
@@ -28,7 +28,7 @@ public final class TestData implements ITestData {
         "--directory:=C:\\repositories\\Projects\\DevEnvironmentCLion\\Base --recurse"
     );
 
-    private static final List<String> commandLines2 = ArrayLists.of(
+    private static final List<String> commandLines2 = ArrayLists.make(
         "-h",
         "--help",
         "C:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\interfaces\\DateTime.h",

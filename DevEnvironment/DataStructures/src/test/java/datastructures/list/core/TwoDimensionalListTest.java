@@ -78,7 +78,7 @@ public final class TwoDimensionalListTest {
         //
         this.assertion.assertEqualsWithIterators(
             container.getIterator(),
-            TwoDimensionalListIterator.of(data.getCreationData()),
+            TwoDimensionalListIterator.make(data.getCreationData()),
             "Invalid creation logic of a two dimensional list.");
     }
 
@@ -97,7 +97,7 @@ public final class TwoDimensionalListTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            TwoDimensionalListIterator.of(data.getCreationData()),
+            TwoDimensionalListIterator.make(data.getCreationData()),
             "TwoDimensionalList");
 
         //
@@ -105,7 +105,7 @@ public final class TwoDimensionalListTest {
         //
         iterationTest.testForwardIteration(
             container,
-            TwoDimensionalListIterator.of(data.getCreationData()),
+            TwoDimensionalListIterator.make(data.getCreationData()),
             "TwoDimensionalList");
     }
 

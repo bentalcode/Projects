@@ -19,7 +19,7 @@ public final class Interval<Type extends Comparable<Type>> implements IInterval<
     /**
      * Creates a new instance of an interval.
      */
-    public static<Type extends Comparable<Type>> IInterval<Type> of(Type start, Type end) {
+    public static<Type extends Comparable<Type>> IInterval<Type> make(Type start, Type end) {
         return new Interval<>(
             start,
             end,

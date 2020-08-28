@@ -67,8 +67,8 @@ public final class CollectionTest {
         List<List<List<T>>> result = Collections.calculateSequenceSubCollectionsOfCollection(collection);
 
         this.assertion.assertEqualsWithIterators(
-            ThreeDimensionalListIterator.of(result),
-            ThreeDimensionalListIterator.of(expectedResult),
+            ThreeDimensionalListIterator.make(result),
+            ThreeDimensionalListIterator.make(expectedResult),
             "Incorrect logic for calculating all possible sequences of sub collections of a collection.");
     }
 }

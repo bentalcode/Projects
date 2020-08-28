@@ -19,7 +19,7 @@ public final class HashMapInternalIterator<TKey extends Comparable<TKey>, TValue
     /**
      * Creates a new iterator for a hash map.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> of(
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> make(
         List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
 
         return new HashMapInternalIterator<>(header);

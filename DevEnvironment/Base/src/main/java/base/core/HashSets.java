@@ -10,7 +10,7 @@ public final class HashSets {
     /**
      * Creates a new instance of hash-set.
      */
-    public static <TKey> HashSet<TKey> newSet() {
+    public static <TKey> HashSet<TKey> make() {
         return new HashSet<>();
     }
 
@@ -28,7 +28,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(TKey key) {
+    public static <TKey> HashSet<TKey> make(TKey key) {
 
         HashSet<TKey> set = new HashSet<>();
         set.add(key);
@@ -39,7 +39,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(
+    public static <TKey> HashSet<TKey> make(
         TKey key1,
         TKey key2) {
 
@@ -53,7 +53,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(
+    public static <TKey> HashSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3) {
@@ -69,7 +69,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(
+    public static <TKey> HashSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -87,7 +87,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(
+    public static <TKey> HashSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -107,7 +107,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(
+    public static <TKey> HashSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -129,7 +129,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(
+    public static <TKey> HashSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -153,7 +153,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(
+    public static <TKey> HashSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,
@@ -179,7 +179,7 @@ public final class HashSets {
     /**
      * Creates a new instance of a hash-set.
      */
-    public static <TKey> HashSet<TKey> of(
+    public static <TKey> HashSet<TKey> make(
         TKey key1,
         TKey key2,
         TKey key3,

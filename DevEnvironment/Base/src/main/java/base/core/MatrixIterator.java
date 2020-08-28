@@ -14,7 +14,7 @@ public final class MatrixIterator<T extends Comparable<T>> implements IIterator<
     /**
      * Creates a new iterator of a matrix.
      */
-    public static <T extends Comparable<T>> IIterator<T> of(IMatrix<T> data) {
+    public static <T extends Comparable<T>> IIterator<T> make(IMatrix<T> data) {
         return new MatrixIterator<>(data);
     }
 

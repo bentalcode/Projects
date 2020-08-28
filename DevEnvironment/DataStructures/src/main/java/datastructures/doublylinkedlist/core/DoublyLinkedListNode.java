@@ -13,28 +13,28 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
  */
 public final class DoublyLinkedListNode<T extends Comparable<T>> implements IDoublyLinkedListNode<T> {
     private T value;
-    private IDoublyLinkedListNode<T> previous;
     private IDoublyLinkedListNode<T> next;
+    private IDoublyLinkedListNode<T> previous;
     private final IBinaryComparator<IDoublyLinkedListNode<T>> comparator;
     private final int hashCode;
 
     /**
      * Creates a new doubly linked list node.
      */
-    public static <T extends Comparable<T>> IDoublyLinkedListNode<T> of(T value) {
+    public static <T extends Comparable<T>> IDoublyLinkedListNode<T> make(T value) {
         return new DoublyLinkedListNode<>(value);
     }
 
     /**
      * Creates a new doubly linked list node.
      */
-    public static <T extends Comparable<T>> IDoublyLinkedListNode<T> of(
+    public static <T extends Comparable<T>> IDoublyLinkedListNode<T> make(
         T value,
-        IDoublyLinkedListNode<T> previous,
         IDoublyLinkedListNode<T> next,
+        IDoublyLinkedListNode<T> previous,
         IBinaryComparator<IDoublyLinkedListNode<T>> comparator) {
 
-        return new DoublyLinkedListNode<>(value, previous, next, comparator);
+        return new DoublyLinkedListNode<>(value, next, previous, comparator);
     }
 
     /**
@@ -53,13 +53,13 @@ public final class DoublyLinkedListNode<T extends Comparable<T>> implements IDou
      */
     private DoublyLinkedListNode(
         T value,
-        IDoublyLinkedListNode<T> previous,
         IDoublyLinkedListNode<T> next,
+        IDoublyLinkedListNode<T> previous,
         IBinaryComparator<IDoublyLinkedListNode<T>> comparator) {
 
         this.value = value;
-        this.previous = previous;
         this.next = next;
+        this.previous = previous;
         this.comparator = comparator;
         this.hashCode = comparator.getHashCode(this);
     }
@@ -81,6 +81,31 @@ public final class DoublyLinkedListNode<T extends Comparable<T>> implements IDou
     }
 
     /**
+     * Gets a next node.
+     */
+    @Override
+    public IDoublyLinkedListNode<T> next() {
+        return this.next;
+    }
+
+    /**
+     * Sets a next node.
+     */
+    @Override
+    public void setNext(IDoublyLinkedListNode<T> node) {
+        this.next = node;
+    }
+
+    /**
+     * Checks whether there is a next node.
+     */
+    @Override
+    public boolean hasNext()
+    {
+        return this.next != null;
+    }
+
+    /**
      * Gets a previous node.
      */
     @Override
@@ -97,19 +122,12 @@ public final class DoublyLinkedListNode<T extends Comparable<T>> implements IDou
     }
 
     /**
-     * Gets a next node.
+     * Checks whether there is a next node.
      */
     @Override
-    public IDoublyLinkedListNode<T> next() {
-        return this.next;
-    }
-
-    /**
-     * Sets a next node.
-     */
-    @Override
-    public void setNext(IDoublyLinkedListNode<T> node) {
-        this.next = node;
+    public boolean hasPrevious()
+    {
+        return this.previous != null;
     }
 
     /**

@@ -109,7 +109,7 @@ public final class CircularList<T extends Comparable<T>> implements ICircularLis
      */
     @Override
     public IIterator<T> getIterator() {
-        return CircularListIterator.of(this);
+        return CircularListIterator.make(this);
     }
 
     /**
@@ -117,7 +117,7 @@ public final class CircularList<T extends Comparable<T>> implements ICircularLis
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return CircularListReverseIterator.of(this);
+        return CircularListReverseIterator.make(this);
     }
 
     /**

@@ -20,7 +20,7 @@ import java.util.List;
 public final class IgnoreRules implements IIgnoreRules {
     private static final String propertyPathPatterns = "pathPatterns";
 
-    private static final List<String> defaultPathPatterns = ArrayLists.of("glob:**\\\\*build*\\\\**");
+    private static final List<String> defaultPathPatterns = ArrayLists.make("glob:**\\\\*build*\\\\**");
     
     private final List<String> pathPatterns;
 

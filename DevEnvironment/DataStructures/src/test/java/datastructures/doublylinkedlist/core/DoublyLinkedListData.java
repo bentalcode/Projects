@@ -5,46 +5,36 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListData;
 import java.util.List;
 
 /**
- * The ListData class implements the data of a list.
+ * The DoublyLinkedListData class implements the data of a list.
  */
 public final class DoublyLinkedListData<T extends Comparable<T>> implements IDoublyLinkedListData<T> {
-    private final List<T> creationData;
-    private final List<IDoublyLinkedListNode<T>> data;
     private final List<T> values;
+    private final List<IDoublyLinkedListNode<T>> nodes;
 
     /**
-     * The ListData constructor.
+     * The DoublyLinkedListData constructor.
      */
     public DoublyLinkedListData(
-        List<T> creationData,
-        List<IDoublyLinkedListNode<T>> data,
-        List<T> values) {
-        this.creationData = creationData;
-        this.data = data;
+        List<T> values,
+        List<IDoublyLinkedListNode<T>> nodes) {
+
         this.values = values;
+        this.nodes = nodes;
     }
 
     /**
-     * Gets the creation data of the list.
-     */
-    @Override
-    public List<T> getCreationData() {
-        return this.creationData;
-    }
-
-    /**
-     * Gets the actual data of the list.
-     */
-    @Override
-    public List<IDoublyLinkedListNode<T>> getData() {
-        return this.data;
-    }
-
-    /**
-     * Gets the actual values of the list.
+     * Gets the values of the list.
      */
     @Override
     public List<T> getValues() {
         return this.values;
+    }
+
+    /**
+     * Gets the nodes of the list.
+     */
+    @Override
+    public List<IDoublyLinkedListNode<T>> getNodes() {
+        return this.nodes;
     }
 }

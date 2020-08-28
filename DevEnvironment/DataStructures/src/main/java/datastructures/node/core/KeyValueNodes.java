@@ -30,7 +30,7 @@ public final class KeyValueNodes<TKey extends Comparable<TKey>, TValue> implemen
      */
     @Override
     public IIterator<IKeyValueNode<TKey, TValue>> getIterator() {
-        return KeyValueNodeIterator.of(this.nodes);
+        return KeyValueNodeIterator.make(this.nodes);
     }
 
     /**
@@ -70,7 +70,7 @@ public final class KeyValueNodes<TKey extends Comparable<TKey>, TValue> implemen
          * Adds a new node by a key and a value.
          */
         public Builder<TKey, TValue> addNode(TKey key, TValue value) {
-            IKeyValueNode<TKey, TValue> node = KeyValueNode.of(key, value);
+            IKeyValueNode<TKey, TValue> node = KeyValueNode.make(key, value);
             return this.addNode(node);
         }
 

@@ -93,7 +93,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      */
     @Override
     public IIterator<T> getIterator() {
-        return ArrayIterator.of(this.data);
+        return ArrayIterator.make(this.data);
     }
 
     /**
@@ -101,7 +101,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return ArrayReverseIterator.of(this.data);
+        return ArrayReverseIterator.make(this.data);
     }
 
     /**

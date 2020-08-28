@@ -3,7 +3,6 @@ package command.core;
 import base.core.Pair;
 import base.core.ParsingResult;
 import base.core.StringEquality;
-import base.core.Strings;
 import base.interfaces.IPair;
 import base.interfaces.IParser;
 import base.interfaces.IParsingResult;
@@ -28,7 +27,7 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
                     arg, ICommandConstants.shortNamedParameterPrefix.length(), arg.length() - 1,
                     ICommandConstants.helpShortName, 0, ICommandConstants.helpShortName.length() - 1)) {
 
-                IPair<String, String> nameAndValue = Pair.of(
+                IPair<String, String> nameAndValue = Pair.make(
                     ICommandConstants.helpShortName,
                     ICommandConstants.trueValue);
 
@@ -43,7 +42,7 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
                     arg, ICommandConstants.longNamedParameterPrefix.length(), arg.length() - 1,
                     ICommandConstants.helpLongName, 0, ICommandConstants.helpLongName.length() - 1)) {
 
-                IPair<String, String> nameAndValue = Pair.of(
+                IPair<String, String> nameAndValue = Pair.make(
                     ICommandConstants.helpLongName,
                     ICommandConstants.trueValue);
 
@@ -92,7 +91,7 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
             value = arg.substring(valueStartIndex, valueEndIndex + 1);
         }
 
-        IPair<String, String> namedParameter = Pair.of(name, value);
+        IPair<String, String> namedParameter = Pair.make(name, value);
         return ParsingResult.successfulResult(namedParameter);
     }
 

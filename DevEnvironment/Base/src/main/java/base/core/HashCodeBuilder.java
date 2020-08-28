@@ -521,7 +521,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T> IHashCodeBuilder withArray(T[] array, IHashCodeProvider<T> provider) {
-        return this.withIterator(ArrayIterator.of(array), provider);
+        return this.withIterator(ArrayIterator.make(array), provider);
     }
 
     /**
@@ -538,7 +538,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T> IHashCodeBuilder withArray(T[][] array, IHashCodeProvider<T> provider) {
-        return this.withIterator(TwoDimensionalArrayIterator.of(array), provider);
+        return this.withIterator(TwoDimensionalArrayIterator.make(array), provider);
     }
 
     /**
@@ -555,7 +555,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T> IHashCodeBuilder withCollection(Collection<T> collection, IHashCodeProvider<T> provider) {
-        return this.withIterator(Iterator.of(collection), provider);
+        return this.withIterator(Iterator.make(collection), provider);
     }
 
     /**

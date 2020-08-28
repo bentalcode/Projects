@@ -12,7 +12,7 @@ public final class Pair<Type1, Type2> implements IPair<Type1, Type2> {
     /**
      * Creates a new instance of a pair.
      */
-    public static <Type1, Type2> IPair<Type1, Type2> of(Type1 first, Type2 second) {
+    public static <Type1, Type2> IPair<Type1, Type2> make(Type1 first, Type2 second) {
         return new Pair<>(first, second);
     }
 

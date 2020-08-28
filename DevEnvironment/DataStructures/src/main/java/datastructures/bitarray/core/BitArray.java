@@ -357,7 +357,7 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public IIterator<Boolean> getIterator() {
-        return BitArrayIterator.of(this);
+        return BitArrayIterator.make(this);
     }
 
     /**
@@ -365,7 +365,7 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public IReverseIterator<Boolean> getReverseIterator() {
-        return BitArrayReverseIterator.of(this);
+        return BitArrayReverseIterator.make(this);
     }
 
     /**

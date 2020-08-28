@@ -24,7 +24,7 @@ public final class SortedCollectionsIterator<TKey extends Comparable<TKey>> impl
     /**
      * Creates a new iterator of a sorted collections.
      */
-    public static <TKey extends Comparable<TKey>> ISortedCollectionsIterator<TKey> of(
+    public static <TKey extends Comparable<TKey>> ISortedCollectionsIterator<TKey> make(
         List<Collection<TKey>> collections) {
 
         return new SortedCollectionsIterator<>(collections);
@@ -33,7 +33,7 @@ public final class SortedCollectionsIterator<TKey extends Comparable<TKey>> impl
     /**
      * Creates a new iterator of a sorted collections.
      */
-    public static <TKey extends Comparable<TKey>> ISortedCollectionsIterator<TKey> of(
+    public static <TKey extends Comparable<TKey>> ISortedCollectionsIterator<TKey> make(
         List<Collection<TKey>> collections,
         IBinaryComparator<TKey> keyComparator) {
 
@@ -91,7 +91,7 @@ public final class SortedCollectionsIterator<TKey extends Comparable<TKey>> impl
         if (currCollectionIterator.hasNext()) {
             TKey nextElementKey = currCollectionIterator.next();
 
-            IKeyValueNode<TKey, Integer> nextElement = KeyValueNode.of(
+            IKeyValueNode<TKey, Integer> nextElement = KeyValueNode.make(
                 nextElementKey,
                 currCollectionIndex);
 
@@ -110,7 +110,7 @@ public final class SortedCollectionsIterator<TKey extends Comparable<TKey>> impl
         this.candidates = new PriorityQueue<>(this.comparator.toComparator());
 
         for (Collection<TKey> collection : this.collections) {
-            this.collectionsIterators.add(CollectionIterator.of(collection));
+            this.collectionsIterators.add(CollectionIterator.make(collection));
         }
     }
 }

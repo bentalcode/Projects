@@ -18,9 +18,9 @@ public final class TestData implements ITestData {
     private static final List<IPair<String, Class<?>>> SimpleJsonResourcesInformation = new ArrayList<>();
 
     static {
-        SimpleJsonResourcesInformation.add(Pair.of("simpleResource1.json", Types.class));
-        SimpleJsonResourcesInformation.add(Pair.of("simpleResource2.json", Fruit.class));
-        SimpleJsonResourcesInformation.add(Pair.of("simpleResource3.json", Colors.class));
+        SimpleJsonResourcesInformation.add(Pair.make("simpleResource1.json", Types.class));
+        SimpleJsonResourcesInformation.add(Pair.make("simpleResource2.json", Fruit.class));
+        SimpleJsonResourcesInformation.add(Pair.make("simpleResource3.json", Colors.class));
     }
 
     /**
@@ -44,7 +44,7 @@ public final class TestData implements ITestData {
 
             Class<?> classType = resourceInformation.second();
 
-            information.add(Pair.of(path, classType));
+            information.add(Pair.make(path, classType));
         }
 
         return information;

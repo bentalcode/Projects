@@ -17,7 +17,7 @@ public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comp
     /**
      * Creates a reverse iterator of a key-value node.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IKeyValueNode<TKey, TValue>> of(
+    public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IKeyValueNode<TKey, TValue>> make(
         IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> reverseIterator) {
 
         return new DoublyLinkedListKeyValueNodeReverseIterator<>(reverseIterator);

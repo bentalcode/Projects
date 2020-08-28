@@ -13,7 +13,7 @@ public final class InvertReverseIterator<T> implements IIterator<T> {
     /**
      * Creates a reverse iterator by inverting a reverse iterator to a forward iterator.
      */
-    public static <T> IIterator<T> of(IReverseIterator<T> reverseIterator) {
+    public static <T> IIterator<T> make(IReverseIterator<T> reverseIterator) {
         Conditions.validateNotNull(
             reverseIterator,
             "The reverse iterator to invert.");

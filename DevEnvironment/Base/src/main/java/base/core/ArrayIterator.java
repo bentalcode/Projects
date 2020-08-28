@@ -14,14 +14,14 @@ public class ArrayIterator<T> implements IIterator<T> {
     /**
      * Creates a new iterator for an array.
      */
-    public static <T> IIterator<T> of(T[] array) {
+    public static <T> IIterator<T> make(T[] array) {
         return new ArrayIterator<>(array, 0, (array != null) ? array.length - 1 : -1);
     }
 
     /**
      * Creates a new iterator for a sub array.
      */
-    public static <T> IIterator<T> of(T[] array, int startIndex, int endIndex) {
+    public static <T> IIterator<T> make(T[] array, int startIndex, int endIndex) {
         return new ArrayIterator<>(array, startIndex, endIndex);
     }
 

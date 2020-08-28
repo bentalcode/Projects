@@ -16,7 +16,7 @@ public final class GraphDefinition<TKey extends Comparable<TKey>, TValue> implem
     /**
      * Creates new graph definition.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IGraphDefinition<TKey, TValue> of(
+    public static <TKey extends Comparable<TKey>, TValue> IGraphDefinition<TKey, TValue> make(
         List<IVertex<TKey, TValue>> vertices,
         List<IEdge<TKey, TValue>> edges) {
 

@@ -13,7 +13,7 @@ public final class KeyValueNodeValueIterator<TKey extends Comparable<TKey>, TVal
     /**
      * Creates a new value iterator.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IIterator<TValue> of(
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<TValue> make(
         IIterator<IKeyValueNode<TKey, TValue>> iterator) {
 
         return new KeyValueNodeValueIterator<>(iterator);

@@ -19,7 +19,7 @@ public final class HttpHeaderEntry implements IHttpHeaderEntry {
     /**
      * Creates a new header entry.
      */
-    public static IHttpHeaderEntry of(String name, String value) {
+    public static IHttpHeaderEntry make(String name, String value) {
         return new HttpHeaderEntry(name, value);
     }
 

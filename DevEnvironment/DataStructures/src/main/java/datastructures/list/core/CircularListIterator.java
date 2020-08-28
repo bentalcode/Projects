@@ -14,7 +14,7 @@ public final class CircularListIterator<T extends Comparable<T>> implements IIte
     /**
      * Creates an iterator of a circular list.
      */
-    public static <T extends Comparable<T>> IIterator<T> of(ICircularList<T> circularList) {
+    public static <T extends Comparable<T>> IIterator<T> make(ICircularList<T> circularList) {
         return new CircularListIterator<>(circularList);
     }
 

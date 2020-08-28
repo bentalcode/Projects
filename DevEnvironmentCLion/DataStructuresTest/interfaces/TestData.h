@@ -1,8 +1,10 @@
 #ifndef TEST_DATA_H_0617b4eb_3504_48e8_aa96_9747cc17335d
 #define TEST_DATA_H_0617b4eb_3504_48e8_aa96_9747cc17335d
 
+#include "DoublyLinkedListTestData.h"
 #include "BinaryTreeTestData.h"
 
+using namespace test::datastructures::doublylinkedlist;
 using namespace test::datastructures::binarytree;
 
 namespace test {
@@ -23,6 +25,11 @@ namespace test {
              * The TestData destructor.
              */
             ~TestData();
+
+            /**
+             * Gets the data of tests of a doubly linked list.
+             */
+            DoublyLinkedListTestDataPtr getDoublyLinkedListData();
 
             /**
              * Gets the data of tests of a binary tree.

@@ -122,7 +122,7 @@ public final class Prime implements IPrime {
      */
     @Override
     public IIterator<Integer> getIterator() {
-        return PrimeIterator.of(this);
+        return PrimeIterator.make(this);
     }
 
     /**
@@ -130,7 +130,7 @@ public final class Prime implements IPrime {
      */
     @Override
     public IIterator<Integer> getIterator(int fromNumber) {
-        return PrimeIterator.of(this, fromNumber);
+        return PrimeIterator.make(this, fromNumber);
     }
 
     /**

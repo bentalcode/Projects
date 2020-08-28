@@ -282,7 +282,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      */
     @Override
     public IIterator<T> getIterator() {
-        return ArrayIterator.of(this.data, 0, this.size - 1);
+        return ArrayIterator.make(this.data, 0, this.size - 1);
     }
 
     /**
@@ -290,7 +290,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      */
     @Override
     public IReverseIterator<T> getReverseIterator() {
-        return ArrayReverseIterator.of(this.data, 0, this.size - 1);
+        return ArrayReverseIterator.make(this.data, 0, this.size - 1);
     }
 
     /**

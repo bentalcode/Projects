@@ -14,14 +14,14 @@ public class IntegerArrayIterator implements IIterator<Integer> {
     /**
      * Creates a new iterator for an array.
      */
-    public static IIterator<Integer> of(int[] array) {
+    public static IIterator<Integer> make(int[] array) {
         return new IntegerArrayIterator(array, 0, (array != null) ? array.length - 1 : -1);
     }
 
     /**
      * Creates a new iterator for a sub array.
      */
-    public static IIterator<Integer> of(int[] array, int startIndex, int endIndex) {
+    public static IIterator<Integer> make(int[] array, int startIndex, int endIndex) {
         return new IntegerArrayIterator(array, startIndex, endIndex);
     }
 

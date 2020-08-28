@@ -64,7 +64,7 @@ public final class CatalanNumber implements ICatalanNumber {
      */
     @Override
     public IIterator<Long> getIterator() {
-        return CatalanNumberIterator.of(this);
+        return CatalanNumberIterator.make(this);
     }
 
     /**
@@ -72,7 +72,7 @@ public final class CatalanNumber implements ICatalanNumber {
      */
     @Override
     public IIterator<Long> getIterator(int fromNumber) {
-        return CatalanNumberIterator.of(this, fromNumber);
+        return CatalanNumberIterator.make(this, fromNumber);
     }
 
     /**

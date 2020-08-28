@@ -47,8 +47,8 @@ public final class MapComparator<TKey, TValue> implements IMapComparator<TKey, T
         }
 
         return this.isEqual(
-            Iterator.of(lhs.entrySet()),
-            Iterator.of(rhs.entrySet()),
+            Iterator.make(lhs.entrySet()),
+            Iterator.make(rhs.entrySet()),
             keyComparator,
             valueComparator);
     }
@@ -136,8 +136,8 @@ public final class MapComparator<TKey, TValue> implements IMapComparator<TKey, T
         }
 
         return this.compareTo(
-            Iterator.of(lhs.entrySet()),
-            Iterator.of(rhs.entrySet()),
+            Iterator.make(lhs.entrySet()),
+            Iterator.make(rhs.entrySet()),
             keyComparator,
             valueComparator);
     }

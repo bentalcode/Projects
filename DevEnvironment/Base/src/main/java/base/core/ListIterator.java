@@ -13,7 +13,7 @@ public class ListIterator<T> implements IIterator<T> {
     /**
      * Creates a new iterator of a list.
      */
-    public static <T> IIterator<T> of(List<T> list) {
+    public static <T> IIterator<T> make(List<T> list) {
         return new ListIterator<>(list);
     }
 

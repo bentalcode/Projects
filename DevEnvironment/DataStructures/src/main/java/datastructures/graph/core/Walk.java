@@ -28,7 +28,7 @@ public final class Walk<TKey extends Comparable<TKey>, TValue> implements IWalk<
     /**
      * Creates a walk.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IWalk<TKey, TValue> of(List<IVertex<TKey, TValue>> vertices) {
+    public static <TKey extends Comparable<TKey>, TValue> IWalk<TKey, TValue> make(List<IVertex<TKey, TValue>> vertices) {
         return new Walk<>(vertices);
     }
 
@@ -45,7 +45,7 @@ public final class Walk<TKey extends Comparable<TKey>, TValue> implements IWalk<
         List<IWalk<TKey, TValue>> walks = new ArrayList<>();
 
         for (List<IVertex<TKey, TValue>> vertices : verticesList) {
-            IWalk<TKey, TValue> walk = Walk.of(vertices);
+            IWalk<TKey, TValue> walk = Walk.make(vertices);
             walks.add(walk);
         }
 
@@ -189,7 +189,7 @@ public final class Walk<TKey extends Comparable<TKey>, TValue> implements IWalk<
      */
     @Override
     public IIterator<IVertex<TKey, TValue>> getIterator() {
-        return ListIterator.of(this.vertices);
+        return ListIterator.make(this.vertices);
     }
 
     /**
@@ -197,7 +197,7 @@ public final class Walk<TKey extends Comparable<TKey>, TValue> implements IWalk<
      */
     @Override
     public IReverseIterator<IVertex<TKey, TValue>> getReverseIterator() {
-        return ListReverseIterator.of(this.vertices);
+        return ListReverseIterator.make(this.vertices);
     }
 
     /**

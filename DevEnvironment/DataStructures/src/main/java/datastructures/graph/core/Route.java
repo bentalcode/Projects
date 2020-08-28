@@ -23,7 +23,7 @@ public final class Route<TKey extends Comparable<TKey>, TValue> implements IRout
     /**
      * Creates a new instance of a route.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IRoute<TKey, TValue> of(
+    public static <TKey extends Comparable<TKey>, TValue> IRoute<TKey, TValue> make(
         IVertex<TKey, TValue> source,
         IVertex<TKey, TValue> destination) {
 

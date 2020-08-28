@@ -1,47 +1,28 @@
 #ifndef DATA_STRUCTURE_EXCEPTION_H_022aaf90_2524_48d9_9553_56c90b790cbe
 #define DATA_STRUCTURE_EXCEPTION_H_022aaf90_2524_48d9_9553_56c90b790cbe
 
-#include "PreCompiled.h"
-#include <exception>
+#include "BaseException.h"
 
-/**
- * The BaseException captured errors in the base module.
- */
-class BaseException : public std::runtime_error
-{
-public:
-    explicit BaseException(const std::string& errorMessage) :
-        std::runtime_error(errorMessage),
-        m_innerExceptionPtr(nullptr)
-    {
-    }
-
-    explicit BaseException(
-        const std::string& errorMessage,
-        std::exception& innerException) :
-        std::runtime_error(errorMessage),
-        m_innerExceptionPtr(std::make_exception_ptr(innerException))
-    {
-    }
+namespace datastructures {
 
     /**
-     * Gets the error message of an exception.
+     * The DataStructureException captured errors in the data structure module.
      */
-    inline std::string getErrorMessage()
+    class DataStructureException : public BaseException
     {
-        return this->what();
-    }
+    public:
+        explicit DataStructureException(const std::string& errorMessage) :
+            BaseException(errorMessage)
+        {
+        }
 
-    /**
-     * Gets the inner exception.
-     */
-    inline std::exception_ptr getInnerException()
-    {
-        return m_innerExceptionPtr;
-    }
-
-private:
-    std::exception_ptr m_innerExceptionPtr;
-};
+        DataStructureException(
+            const std::string& errorMessage,
+            std::exception& innerException) :
+            BaseException(errorMessage, innerException)
+        {
+        }
+    };
+}
 
 #endif // DATA_STRUCTURE_EXCEPTION_H_022aaf90_2524_48d9_9553_56c90b790cbe

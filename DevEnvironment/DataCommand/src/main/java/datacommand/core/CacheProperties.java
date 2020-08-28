@@ -21,10 +21,10 @@ public final class CacheProperties implements ICacheProperties {
     private static final double DefaultSecondaryIntensityFactor = 0.9;
     private static final double DefaultReductionIntensityFactor = 0.4;
 
-    private static final IRange<Long> CacheSizeRange = Range.of(
+    private static final IRange<Long> CacheSizeRange = Range.make(
         MinimumCacheSize, MaximumCacheSize);
 
-    private static final IRange<Double> IntensityFactorRange = Range.of(
+    private static final IRange<Double> IntensityFactorRange = Range.make(
         RangeType.ExclusiveToExclusive, MinimumIntensityFactor, MaximumIntensityFactor);
 
     private final long sizeInBytes;

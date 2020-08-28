@@ -66,7 +66,7 @@ public final class PriorityQueueTest {
 
         this.assertion.assertEqualsWithIterators(
             priorityQueue.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a priority queue.");
     }
 
@@ -78,7 +78,7 @@ public final class PriorityQueueTest {
 
         this.assertion.assertEqualsWithIterators(
             priorityQueue.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a priority queue.");
 
         int currSize = priorityQueue.size();

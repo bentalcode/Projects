@@ -15,7 +15,7 @@ public final class TwoDimensionalCharacterArrayIterator implements IIterator<Cha
     /**
      * Creates a new iterator of a two dimensional array of characters.
      */
-    public static IIterator<Character> of(char[][] data) {
+    public static IIterator<Character> make(char[][] data) {
         return new TwoDimensionalCharacterArrayIterator(data);
     }
 

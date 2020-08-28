@@ -13,7 +13,7 @@ public class ListReverseIterator<T> implements IReverseIterator<T> {
     /**
      * Creates a new reverse iterator of a list.
      */
-    public static <T> IReverseIterator<T> of(List<T> list) {
+    public static <T> IReverseIterator<T> make(List<T> list) {
         return new ListReverseIterator<>(list);
     }
 

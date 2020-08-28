@@ -120,7 +120,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
     protected IIterator<IKeyValueNode<TKey, TValue>> getInternalIterator(
         List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
 
-        return HashMapInternalIterator.of(header);
+        return HashMapInternalIterator.make(header);
     }
 
     /**
@@ -130,7 +130,7 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
     protected IReverseIterator<IKeyValueNode<TKey, TValue>> getInternalReverseIterator(
         List<IDoublyLinkedList<IKeyValueNode<TKey, TValue>>> header) {
 
-        return HashMapInternalReverseIterator.of(header);
+        return HashMapInternalReverseIterator.make(header);
     }
 
     /**

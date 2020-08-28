@@ -73,7 +73,7 @@ public final class FileLineReaderTest {
                 LineSeparatorType lineSeparator = reader.currentLineSeparator();
 
                 lines.add(line);
-                linesPositions.add(Doublet.of(lineStartIndex, lineEndIndex));
+                linesPositions.add(Doublet.make(lineStartIndex, lineEndIndex));
                 linesSeparators.add(lineSeparator);
             }
         }
@@ -90,24 +90,24 @@ public final class FileLineReaderTest {
                 LineSeparatorType lineSeparator = reader.currentLineSeparator();
 
                 reverseLines.add(line);
-                reverseLinesPositions.add(Doublet.of(lineStartIndex, lineEndIndex));
+                reverseLinesPositions.add(Doublet.make(lineStartIndex, lineEndIndex));
                 reverseLinesSeparators.add(lineSeparator);
             }
         }
 
         this.assertion.assertEqualsWithIteratorAndReverseIterator(
-            ListIterator.of(lines),
-            ListReverseIterator.of(reverseLines),
+            ListIterator.make(lines),
+            ListReverseIterator.make(reverseLines),
             "Incorrect logic for reading lines from a file.");
 
         this.assertion.assertEqualsWithIteratorAndReverseIterator(
-            ListIterator.of(linesPositions),
-            ListReverseIterator.of(reverseLinesPositions),
+            ListIterator.make(linesPositions),
+            ListReverseIterator.make(reverseLinesPositions),
             "Incorrect logic for reading lines positions from a file.");
 
         this.assertion.assertEqualsWithIteratorAndReverseIterator(
-            ListIterator.of(linesSeparators),
-            ListReverseIterator.of(reverseLinesSeparators),
+            ListIterator.make(linesSeparators),
+            ListReverseIterator.make(reverseLinesSeparators),
             "Incorrect logic for reading lines separators from a file.");
     }
 }

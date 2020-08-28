@@ -76,7 +76,7 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
      */
     @Override
     public IIterator<IKeyValueNode<TKey, Boolean>> getIterator() {
-        return TrieIterator.of(this.root);
+        return TrieIterator.make(this.root);
     }
 
     /**
@@ -218,8 +218,8 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
                 return false;
             }
 
-            IIterator<ITrieNode<TKey>> lhsChildrenIterator = CollectionIterator.of(lhsChildren);
-            IIterator<ITrieNode<TKey>> rhsChildrenIterator = CollectionIterator.of(rhsChildren);
+            IIterator<ITrieNode<TKey>> lhsChildrenIterator = CollectionIterator.make(lhsChildren);
+            IIterator<ITrieNode<TKey>> rhsChildrenIterator = CollectionIterator.make(rhsChildren);
 
             while (lhsChildrenIterator.hasNext() && rhsChildrenIterator.hasNext()) {
                 ITrieNode<TKey> lhsChild = lhsChildrenIterator.next();
@@ -296,8 +296,8 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
                 return 1;
             }
 
-            IIterator<ITrieNode<TKey>> lhsChildrenIterator = CollectionIterator.of(lhsChildren);
-            IIterator<ITrieNode<TKey>> rhsChildrenIterator = CollectionIterator.of(rhsChildren);
+            IIterator<ITrieNode<TKey>> lhsChildrenIterator = CollectionIterator.make(lhsChildren);
+            IIterator<ITrieNode<TKey>> rhsChildrenIterator = CollectionIterator.make(rhsChildren);
 
             while (lhsChildrenIterator.hasNext() && rhsChildrenIterator.hasNext()) {
                 ITrieNode<TKey> lhsChild = lhsChildrenIterator.next();
@@ -337,7 +337,7 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
                 sequence,
                 "The sequence to add to a trie.");
 
-            return this.addSequence(ListIterator.of(sequence));
+            return this.addSequence(ListIterator.make(sequence));
         }
 
         /**

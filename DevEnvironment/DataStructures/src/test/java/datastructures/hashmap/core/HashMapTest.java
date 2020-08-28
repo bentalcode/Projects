@@ -83,7 +83,7 @@ public final class HashMapTest {
 
         this.assertion.assertEqualsWithIterators(
             map.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a hash map.");
     }
 
@@ -95,7 +95,7 @@ public final class HashMapTest {
 
         this.assertion.assertEqualsWithIterators(
             map.getIterator(),
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "Invalid creation logic of a hash map.");
 
         List<IKeyValueNode<TKey, TValue>> keyValueNodes = Lists.fromIterator(map.getIterator());
@@ -137,7 +137,7 @@ public final class HashMapTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "HashMap");
 
         //
@@ -145,7 +145,7 @@ public final class HashMapTest {
         //
         iterationTest.testForwardIteration(
             container,
-            ListIterator.of(data.getData()),
+            ListIterator.make(data.getData()),
             "HashMap");
 
         //
@@ -153,7 +153,7 @@ public final class HashMapTest {
         //
         iterationTest.testReverseIteration(
             container,
-            ListReverseIterator.of(data.getData()),
+            ListReverseIterator.make(data.getData()),
             "HashMap");
 
         //
@@ -161,7 +161,7 @@ public final class HashMapTest {
         //
         iterationTest.testKeyIteration(
             container,
-            ListIterator.of(data.getKeys()),
+            ListIterator.make(data.getKeys()),
             "HashMap");
 
         //
@@ -169,7 +169,7 @@ public final class HashMapTest {
         //
         iterationTest.testKeyReverseIteration(
             container,
-            ListReverseIterator.of(data.getKeys()),
+            ListReverseIterator.make(data.getKeys()),
             "HashMap");
 
         //
@@ -177,7 +177,7 @@ public final class HashMapTest {
         //
         iterationTest.testValueIteration(
             container,
-            ListIterator.of(data.getValues()),
+            ListIterator.make(data.getValues()),
             "HashMap");
 
         //
@@ -185,7 +185,7 @@ public final class HashMapTest {
         //
         iterationTest.testValueReverseIteration(
             container,
-            ListReverseIterator.of(data.getValues()),
+            ListReverseIterator.make(data.getValues()),
             "HashMap");
     }
 
@@ -196,7 +196,7 @@ public final class HashMapTest {
         IMapData<TKey, TValue> data) {
 
         IHashMapBuilder<TKey, TValue> mapBuilder = new HashMapBuilder<>();
-        mapBuilder.set(ListIterator.of(data.getCreationData()));
+        mapBuilder.set(ListIterator.make(data.getCreationData()));
         IHashMap<TKey, TValue> map = mapBuilder.build();
 
         return map;

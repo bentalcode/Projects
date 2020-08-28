@@ -5,7 +5,6 @@ import base.core.Casting;
 import base.core.Conditions;
 import base.core.Conversion;
 import base.core.Lists;
-import base.core.Pair;
 import base.core.RegexMatcher;
 import base.interfaces.IPair;
 import datastructures.expressiontree.ExpressionTreeException;
@@ -369,7 +368,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
 
         IPair<Integer, Matcher> matchingResult = regexMatcher.tryFirstMatch(
             token,
-            ArrayLists.of(
+            ArrayLists.make(
                 ExpressionTreeParser.DoublePattern1,
                 ExpressionTreeParser.DoublePattern2,
                 ExpressionTreeParser.DoublePattern3));

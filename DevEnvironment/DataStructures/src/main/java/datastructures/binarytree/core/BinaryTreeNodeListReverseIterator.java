@@ -20,7 +20,7 @@ public final class BinaryTreeNodeListReverseIterator<TKey extends Comparable<TKe
     /**
      * Creates a new reverse iterator of a list of binary nodes.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNodeReverseIterator<IBinaryTreeNode<TKey, TValue>> of(
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNodeReverseIterator<IBinaryTreeNode<TKey, TValue>> make(
         List<IBinaryTreeNode<TKey, TValue>> nodes) {
 
         return new BinaryTreeNodeListReverseIterator<>(nodes);

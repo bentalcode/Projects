@@ -30,6 +30,6 @@ public final class AlphabeticalOrderResults implements IAlphabeticalOrderResults
      */
     @Override
     public IIterator<Character> getIterator() {
-        return ListIterator.of(this.characters);
+        return ListIterator.make(this.characters);
     }
 }

@@ -67,7 +67,7 @@ namespace datastructures {
         IBinaryTreePtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::build(const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes)
         {
             IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> iterator =
-                BinaryTreeNodeListIterator<TKey, TValue>::of(nodes);
+                BinaryTreeNodeListIterator<TKey, TValue>::make(nodes);
 
             BinaryTreeStreamBuilder builder(*iterator);
             IBinaryTreePtr<TKey, TValue> tree = builder.build();

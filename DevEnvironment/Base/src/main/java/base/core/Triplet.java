@@ -27,7 +27,7 @@ public final class Triplet
         Type1 extends Comparable<Type1>,
         Type2 extends Comparable<Type2>,
         Type3 extends Comparable<Type3>
-    > ITriplet<Type1, Type2, Type3> of(Type1 first, Type2 second, Type3 third) {
+    > ITriplet<Type1, Type2, Type3> make(Type1 first, Type2 second, Type3 third) {
         return new Triplet<>(
             first,
             second,

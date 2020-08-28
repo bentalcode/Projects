@@ -1,7 +1,6 @@
 package datastructures.trie.core;
 
 import base.core.Conditions;
-import base.core.Pair;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 import datastructures.node.core.KeyValueNode;
@@ -19,7 +18,7 @@ public final class TrieIterator<TKey extends Comparable<TKey>> implements IItera
     /**
      * Creates an iterator of a trie.
      */
-    public static <TKey extends Comparable<TKey>> IIterator<IKeyValueNode<TKey, Boolean>> of(ITrieNode<TKey> root) {
+    public static <TKey extends Comparable<TKey>> IIterator<IKeyValueNode<TKey, Boolean>> make(ITrieNode<TKey> root) {
         return new TrieIterator<>(root);
     }
 
@@ -61,7 +60,7 @@ public final class TrieIterator<TKey extends Comparable<TKey>> implements IItera
         //
         this.appendChildren(currElement);
 
-        return KeyValueNode.of(currElement.getKey(), currElement.isEndNode());
+        return KeyValueNode.make(currElement.getKey(), currElement.isEndNode());
     }
 
     /**

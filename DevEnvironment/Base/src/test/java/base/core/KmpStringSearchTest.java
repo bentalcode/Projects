@@ -216,39 +216,39 @@ public final class KmpStringSearchTest {
     public void findAllSubStringTest() {
         String str1 = "AAACAAAAC";
         String subString1 = null;
-        List<Integer> expectedResult1 = ArrayLists.newList();
+        List<Integer> expectedResult1 = ArrayLists.make();
 
         String str2 = "AAACAAAAC";
         String subString2 = "";
-        List<Integer> expectedResult2 = ArrayLists.newList();
+        List<Integer> expectedResult2 = ArrayLists.make();
 
         String str3 = "AAACAAAAC";
         String subString3 = "A";
-        List<Integer> expectedResult3 = ArrayLists.of(0, 1, 2, 4, 5, 6, 7);
+        List<Integer> expectedResult3 = ArrayLists.make(0, 1, 2, 4, 5, 6, 7);
 
         String str4 = "AAACAAAAC";
         String subString4 = "AAC";
-        List<Integer> expectedResult4 = ArrayLists.of(1, 6);
+        List<Integer> expectedResult4 = ArrayLists.make(1, 6);
 
         String str5 = "AAACAAAAC";
         String subString5 = "AAAA";
-        List<Integer> expectedResult5 = ArrayLists.of(4);
+        List<Integer> expectedResult5 = ArrayLists.make(4);
 
         String str6 = "AAACAAAAC";
         String subString6 = "AAAE";
-        List<Integer> expectedResult6 = ArrayLists.newList();
+        List<Integer> expectedResult6 = ArrayLists.make();
 
         String str7 = "AAACAAAAC";
         String subString7 = "CA";
-        List<Integer> expectedResult7 = ArrayLists.of(3);
+        List<Integer> expectedResult7 = ArrayLists.make(3);
 
         String str8 = "AAACAAAAC";
         String subString8 = "AAAAA";
-        List<Integer> expectedResult8 = ArrayLists.newList();
+        List<Integer> expectedResult8 = ArrayLists.make();
 
         String str9 = "AAACAAAAC";
         String subString9 = "AAAAC";
-        List<Integer> expectedResult9 = ArrayLists.of(4);
+        List<Integer> expectedResult9 = ArrayLists.make(4);
 
         this.testAllSubString(str1, subString1, expectedResult1);
         this.testAllSubString(str2, subString2, expectedResult2);
@@ -272,7 +272,7 @@ public final class KmpStringSearchTest {
         String subString1 = null;
         int subStringStartIndex1 = 0;
         int subStringEndIndex1 = 0;
-        List<Integer> expectedResult1 = ArrayLists.newList();
+        List<Integer> expectedResult1 = ArrayLists.make();
 
         String str2 = "CBAAACAAAACFH";
         int strStartIndex2 = 2;
@@ -280,7 +280,7 @@ public final class KmpStringSearchTest {
         String subString2 = "";
         int subStringStartIndex2 = 0;
         int subStringEndIndex2 = 0;
-        List<Integer> expectedResult2 = ArrayLists.newList();
+        List<Integer> expectedResult2 = ArrayLists.make();
 
         String str3 = "CBAAACAAAACFH";
         int strStartIndex3 = 2;
@@ -288,7 +288,7 @@ public final class KmpStringSearchTest {
         String subString3 = "A";
         int subStringStartIndex3 = 0;
         int subStringEndIndex3 = 0;
-        List<Integer> expectedResult3 = ArrayLists.of(2, 3, 4, 6, 7, 8, 9);
+        List<Integer> expectedResult3 = ArrayLists.make(2, 3, 4, 6, 7, 8, 9);
 
         String str4 = "CBAAACAAAACFH";
         int strStartIndex4 = 2;
@@ -296,7 +296,7 @@ public final class KmpStringSearchTest {
         String subString4 = "BAACB";
         int subStringStartIndex4 = 1;
         int subStringEndIndex4 = 3;
-        List<Integer> expectedResult4 = ArrayLists.of(3, 8);
+        List<Integer> expectedResult4 = ArrayLists.make(3, 8);
 
         String str5 = "CBAAACAAAACFH";
         int strStartIndex5 = 2;
@@ -304,7 +304,7 @@ public final class KmpStringSearchTest {
         String subString5 = "ZZAAAAZZ";
         int subStringStartIndex5 = 2;
         int subStringEndIndex5 = 5;
-        List<Integer> expectedResult5 = ArrayLists.of(6);
+        List<Integer> expectedResult5 = ArrayLists.make(6);
 
         String str6 = "CBAAACAAAACFH";
         int strStartIndex6 = 2;
@@ -312,7 +312,7 @@ public final class KmpStringSearchTest {
         String subString6 = "ZAAAEZ";
         int subStringStartIndex6 = 1;
         int subStringEndIndex6 = 4;
-        List<Integer> expectedResult6 = ArrayLists.newList();
+        List<Integer> expectedResult6 = ArrayLists.make();
 
         String str7 = "ACBAAACAAAACFHA";
         int strStartIndex7 = 3;
@@ -320,7 +320,7 @@ public final class KmpStringSearchTest {
         String subString7 = "ZZCA";
         int subStringStartIndex7 = 2;
         int subStringEndIndex7 = 3;
-        List<Integer> expectedResult7 = ArrayLists.of(6);
+        List<Integer> expectedResult7 = ArrayLists.make(6);
 
         String str8 = "ACBAAACAAAACFHA";
         int strStartIndex8 = 3;
@@ -328,7 +328,7 @@ public final class KmpStringSearchTest {
         String subString8 = "ZAAAAAZ";
         int subStringStartIndex8 = 1;
         int subStringEndIndex8 = 5;
-        List<Integer> expectedResult8 = ArrayLists.newList();
+        List<Integer> expectedResult8 = ArrayLists.make();
 
         String str9 = "ACBAAACAAAACFHA";
         int strStartIndex9 = 3;
@@ -336,7 +336,7 @@ public final class KmpStringSearchTest {
         String subString9 = "ZAAAACZ";
         int subStringStartIndex9 = 1;
         int subStringEndIndex9 = 5;
-        List<Integer> expectedResult9 = ArrayLists.of(7);
+        List<Integer> expectedResult9 = ArrayLists.make(7);
 
         this.testAllSubString(
             str1, strStartIndex1, strEndIndex1,

@@ -56,7 +56,7 @@ public final class RegexMatcher implements IRegexMatcher {
             Matcher matcher = pattern.matcher(expression);
 
             if (matcher.matches()) {
-                return Pair.of(index, matcher);
+                return Pair.make(index, matcher);
             }
 
             ++index;

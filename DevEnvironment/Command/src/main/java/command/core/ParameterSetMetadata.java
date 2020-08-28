@@ -38,8 +38,8 @@ public final class ParameterSetMetadata implements IParameterSetMetadata {
      * Creates help parameter-set.
      */
     public static IParameterSetMetadata createHelpParameterSet() {
-        List<IIndexedParameterMetadata> indexedParameterMetadata = ArrayLists.newList();
-        List<INamedParameterMetadata> namedParameters = ArrayLists.of(ParameterMetadata.createHelpParameter());
+        List<IIndexedParameterMetadata> indexedParameterMetadata = ArrayLists.make();
+        List<INamedParameterMetadata> namedParameters = ArrayLists.make(ParameterMetadata.createHelpParameter());
 
         return new ParameterSetMetadata(
             indexedParameterMetadata,
@@ -88,7 +88,7 @@ public final class ParameterSetMetadata implements IParameterSetMetadata {
      */
     @Override
     public IIterator<IParameterMetadata> getIterator() {
-        return CollectionIterator.of(this.parameters);
+        return CollectionIterator.make(this.parameters);
     }
 
     /**

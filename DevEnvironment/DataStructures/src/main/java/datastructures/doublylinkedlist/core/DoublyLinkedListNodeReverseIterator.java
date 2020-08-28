@@ -9,14 +9,21 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 public final class DoublyLinkedListNodeReverseIterator<T extends Comparable<T>> implements
     IReverseIterator<IDoublyLinkedListNode<T>> {
 
-    private final IDoublyLinkedListNode<T> tailNode;
-    private IDoublyLinkedListNode<T> currentNode;
+    private final IDoublyLinkedListNode<T> tail;
+    private IDoublyLinkedListNode<T> currNode;
+
+    /**
+     * Creates a new reverse iterator of a doubly linked list.
+     */
+    public static <T extends Comparable<T>> IReverseIterator<IDoublyLinkedListNode<T>> make(IDoublyLinkedListNode<T> tail) {
+        return new DoublyLinkedListNodeReverseIterator<>(tail);
+    }
 
     /**
      * The DoublyLinkedListNodeIterator constructor.
      */
-    public DoublyLinkedListNodeReverseIterator(IDoublyLinkedListNode<T> tailNode) {
-        this.tailNode = tailNode;
+    private DoublyLinkedListNodeReverseIterator(IDoublyLinkedListNode<T> tail) {
+        this.tail = tail;
 
         this.reset();
     }
@@ -26,7 +33,7 @@ public final class DoublyLinkedListNodeReverseIterator<T extends Comparable<T>> 
      */
     @Override
     public boolean hasNext() {
-        return this.currentNode != null;
+        return this.currNode != null;
     }
 
     /**
@@ -36,10 +43,10 @@ public final class DoublyLinkedListNodeReverseIterator<T extends Comparable<T>> 
     public IDoublyLinkedListNode<T> next() {
         assert(this.hasNext());
 
-        IDoublyLinkedListNode<T> currentNode = this.currentNode;
-        this.currentNode = this.currentNode.previous();
+        IDoublyLinkedListNode<T> currNode = this.currNode;
+        this.currNode = this.currNode.previous();
 
-        return currentNode;
+        return currNode;
     }
 
     /**
@@ -47,6 +54,6 @@ public final class DoublyLinkedListNodeReverseIterator<T extends Comparable<T>> 
      */
     @Override
     public void reset() {
-        this.currentNode = this.tailNode;
+        this.currNode = this.tail;
     }
 }

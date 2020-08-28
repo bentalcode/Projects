@@ -93,7 +93,7 @@ public final class UriReaderCommand extends AbstractCommand {
         String wordColumn = "Word";
         String counterColumn = "# of occurrences";
 
-        List<String> header = ArrayLists.of(wordColumn, counterColumn);
+        List<String> header = ArrayLists.make(wordColumn, counterColumn);
 
         int rowsSize = wordsData.size();
         int columnSize = header.size();

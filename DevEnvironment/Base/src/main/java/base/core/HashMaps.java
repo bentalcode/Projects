@@ -9,7 +9,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(TKey key, TValue value) {
+    public static <TKey, TValue> HashMap<TKey, TValue> make(TKey key, TValue value) {
 
         HashMap<TKey, TValue> map = new HashMap<>();
         map.put(key, value);
@@ -20,7 +20,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(
+    public static <TKey, TValue> HashMap<TKey, TValue> make(
         TKey key1, TValue value1,
         TKey key2, TValue value2) {
 
@@ -34,7 +34,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(
+    public static <TKey, TValue> HashMap<TKey, TValue> make(
         TKey key1, TValue value1,
         TKey key2, TValue value2,
         TKey key3, TValue value3) {
@@ -50,7 +50,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(
+    public static <TKey, TValue> HashMap<TKey, TValue> make(
         TKey key1, TValue value1,
         TKey key2, TValue value2,
         TKey key3, TValue value3,
@@ -68,7 +68,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(
+    public static <TKey, TValue> HashMap<TKey, TValue> make(
         TKey key1, TValue value1,
         TKey key2, TValue value2,
         TKey key3, TValue value3,
@@ -88,7 +88,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(
+    public static <TKey, TValue> HashMap<TKey, TValue> make(
         TKey key1, TValue value1,
         TKey key2, TValue value2,
         TKey key3, TValue value3,
@@ -110,7 +110,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(
+    public static <TKey, TValue> HashMap<TKey, TValue> make(
         TKey key1, TValue value1,
         TKey key2, TValue value2,
         TKey key3, TValue value3,
@@ -134,7 +134,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(
+    public static <TKey, TValue> HashMap<TKey, TValue> make(
         TKey key1, TValue value1,
         TKey key2, TValue value2,
         TKey key3, TValue value3,
@@ -160,7 +160,7 @@ public final class HashMaps {
     /**
      * Creates a new instance of a hash-map.
      */
-    public static <TKey, TValue> HashMap<TKey, TValue> of(
+    public static <TKey, TValue> HashMap<TKey, TValue> make(
         TKey key1, TValue value1,
         TKey key2, TValue value2,
         TKey key3, TValue value3,

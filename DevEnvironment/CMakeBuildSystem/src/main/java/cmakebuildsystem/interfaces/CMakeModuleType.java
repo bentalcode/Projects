@@ -17,7 +17,7 @@ public enum CMakeModuleType {
          */
         @Override
         public List<ICMakeBuildCommand> createCommands(String moduleName) {
-            return ArrayLists.of(
+            return ArrayLists.make(
                 new AddLibraryCommand(moduleName));
         }
     },
@@ -27,7 +27,7 @@ public enum CMakeModuleType {
          * Gets the corresponding cmake commands.
          */
         public List<ICMakeBuildCommand> createCommands(String moduleName) {
-            return ArrayLists.of(
+            return ArrayLists.make(
                 new AddExecutableCommand(moduleName),
                 new TargetLinkLibrariesCommand(moduleName));
         }

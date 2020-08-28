@@ -16,7 +16,7 @@ namespace datastructures {
             /**
              * Creates a new reverse iterator of a list of binary nodes.
              */
-            static IBinaryTreeNodeReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> of(
+            static IBinaryTreeNodeReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> make(
                 const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes);
 
         private:
@@ -92,7 +92,7 @@ namespace datastructures {
          * Creates a new reverse iterator of a list of binary nodes.
          */
         template<typename TKey, typename TValue>
-        IBinaryTreeNodeReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeNodeListReverseIterator<TKey, TValue>::of(
+        IBinaryTreeNodeReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeNodeListReverseIterator<TKey, TValue>::make(
             const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes) {
 
             return IBinaryTreeNodeReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>>(

@@ -187,7 +187,7 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
         Stack<IInterval<Type>> stack) {
 
         if (Interval.overlap(prevInterval, currInterval)) {
-            IInterval<Type> mergedInterval = Interval.of(
+            IInterval<Type> mergedInterval = Interval.make(
                 prevInterval.start(),
                 Base.max(prevInterval.end(), currInterval.end()));
 

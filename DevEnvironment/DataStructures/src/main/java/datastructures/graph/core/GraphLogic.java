@@ -200,7 +200,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
             }
         );
 
-        queue.offer(Pair.of(src, 0));
+        queue.offer(Pair.make(src, 0));
 
         while (!queue.isEmpty()) {
             IPair<IVertex<TKey, TValue>, Integer> curr = queue.poll();
@@ -215,7 +215,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
                 int nextDistance = currDistance + edgeWeight;
 
                 if (nextDistance < distances.get(nextVertex)) {
-                    queue.offer(Pair.of(nextVertex, nextDistance));
+                    queue.offer(Pair.make(nextVertex, nextDistance));
                     distances.put(nextVertex, nextDistance);
                 }
             }
@@ -304,7 +304,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
         List<IWalk<TKey, TValue>> paths) {
 
         Queue<IPair<IVertex<TKey, TValue>, IWalk<TKey, TValue>>> queue = new LinkedList<>();
-        queue.offer(Pair.of(start, new Walk<>()));
+        queue.offer(Pair.make(start, new Walk<>()));
 
         while (!queue.isEmpty()) {
             IPair<IVertex<TKey, TValue>, IWalk<TKey, TValue>> curr = queue.poll();
@@ -324,7 +324,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
                     }
 
                     IWalk<TKey, TValue> nextWalk = Walk.newWalk(currWalk);
-                    queue.offer(Pair.of(nextVertex, nextWalk));
+                    queue.offer(Pair.make(nextVertex, nextWalk));
                 }
             }
         }

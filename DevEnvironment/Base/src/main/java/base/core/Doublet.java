@@ -18,7 +18,7 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
      * Creates a new instance of a doublet.
      */
     public static<Type1 extends Comparable<Type1>, Type2
-        extends Comparable<Type2>> IDoublet<Type1, Type2> of(Type1 first, Type2 second) {
+        extends Comparable<Type2>> IDoublet<Type1, Type2> make(Type1 first, Type2 second) {
 
         return new Doublet<>(
             first,

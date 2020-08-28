@@ -14,7 +14,7 @@ public final class CircularArrayReverseIterator<T extends Comparable<T>> impleme
     /**
      * Creates a reverse iterator of a circular array.
      */
-    public static <T extends Comparable<T>> IReverseIterator<T> of(ICircularArray<T> circularArray) {
+    public static <T extends Comparable<T>> IReverseIterator<T> make(ICircularArray<T> circularArray) {
         return new CircularArrayReverseIterator<>(circularArray);
     }
 

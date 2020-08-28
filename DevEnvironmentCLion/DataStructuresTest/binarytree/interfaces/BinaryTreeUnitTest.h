@@ -94,7 +94,7 @@ namespace test {
                 // Test the data of the tree...
                 //
                 base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderIterator =
-                    BinaryTreeNodeListIterator<TKey, TValue>::of(treeData.getLevelOrder());
+                    BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getLevelOrder());
 
                 getAssertion().assertEqualsWithDereferenceIterators(
                     *(tree->getLevelOrderIterator()),
@@ -116,42 +116,42 @@ namespace test {
                 //
                 // Test the logic of a default iteration...
                 //
-                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> dataIterator = BinaryTreeNodeListIterator<TKey, TValue>::of(treeData.getInorder());
+                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> dataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getInorder());
                 testDefaultIteration(*tree, *dataIterator);
 
                 //
                 // Test the logic of a reverse iteration...
                 //
                 base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> reverseIterator = tree->getReverseIterator();
-                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> reverseDataIterator = BinaryTreeNodeListReverseIterator<TKey, TValue>::of(treeData.getInorder());
+                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> reverseDataIterator = BinaryTreeNodeListReverseIterator<TKey, TValue>::make(treeData.getInorder());
                 testIteration(*reverseIterator, *reverseDataIterator, "Reverse Iterator");
 
                 //
                 // Test the logic of a level order iteration...
                 //
                 base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderIterator = tree->getLevelOrderIterator();
-                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::of(treeData.getLevelOrder());
+                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getLevelOrder());
                 testIteration(*levelOrderIterator, *levelOrderDataIterator, "Level Order Iterator");
 
                 //
                 // Test the logic of an inorder iteration...
                 //
                 base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> inorderIterator = tree->getInorderIterator();
-                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> inorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::of(treeData.getInorder());
+                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> inorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getInorder());
                 testIteration(*inorderIterator, *inorderDataIterator, "Inorder Iterator");
 
                 //
                 // Test the logic of a preorder iteration...
                 //
                 base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> preorderIterator = tree->getPreorderIterator();
-                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> preorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::of(treeData.getPreorder());
+                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> preorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getPreorder());
                 testIteration(*preorderIterator, *preorderDataIterator, "Preorder Iterator");
 
                 //
                 // Test the logic of a postorder iteration...
                 //
                 base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> postorderIterator = tree->getPostorderIterator();
-                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> postorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::of(treeData.getPostorder());
+                base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> postorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getPostorder());
                 testIteration(*postorderIterator, *postorderDataIterator, "Postorder Iterator");
             }
 

@@ -17,6 +17,6 @@ public final class AddLibraryCommand extends AddBinaryCommand {
         super(
             ICMakeListsConstants.addLibraryCommand,
             moduleName,
-            ArrayLists.of(ICMakeListsConstants.staticLibrary));
+            ArrayLists.make(ICMakeListsConstants.staticLibrary));
     }
 }

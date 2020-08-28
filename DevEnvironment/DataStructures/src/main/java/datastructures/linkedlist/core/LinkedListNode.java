@@ -20,14 +20,14 @@ public final class LinkedListNode<T extends Comparable<T>> implements ILinkedLis
     /**
      * Creates a new linked list node.
      */
-    public static <T extends Comparable<T>> ILinkedListNode<T> of(T value) {
+    public static <T extends Comparable<T>> ILinkedListNode<T> make(T value) {
         return new LinkedListNode<>(value);
     }
 
     /**
      * Creates a new linked list node.
      */
-    public static <T extends Comparable<T>> ILinkedListNode<T> of(
+    public static <T extends Comparable<T>> ILinkedListNode<T> make(
         T value,
         ILinkedListNode<T> next,
         IBinaryComparator<ILinkedListNode<T>> comparator) {

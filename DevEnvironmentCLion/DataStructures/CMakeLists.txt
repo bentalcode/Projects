@@ -47,6 +47,15 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./binarytree/interfaces/IBinaryTreeNodeReverseIterator.h
     ./binarytree/interfaces/IBinaryTreeTraversal.h
     ./core/PreCompiled.h
+    ./doublylinkedlist/core/DoublyLinkedList.h
+    ./doublylinkedlist/core/DoublyLinkedListException.h
+    ./doublylinkedlist/core/DoublyLinkedListNode.h
+    ./doublylinkedlist/core/DoublyLinkedListNodeIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListNodeReverseIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListNodeValueIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListNodeValueReverseIterator.h
+    ./doublylinkedlist/interfaces/IDoublyLinkedList.h
+    ./doublylinkedlist/interfaces/IDoublyLinkedListNode.h
     ./interfaces/IteratorOfIteratorCollection.h
 )
 
@@ -64,6 +73,8 @@ set(DATA_STRUCTURES_INCLUDES
     ./binarytree/core
     ./binarytree/interfaces
     ./core
+    ./doublylinkedlist/core
+    ./doublylinkedlist/interfaces
     ./interfaces
 )
 

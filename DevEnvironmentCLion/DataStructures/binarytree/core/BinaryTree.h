@@ -125,7 +125,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> BinaryTree<TKey, TValue>::getIterator() const
         {
-            return std::make_shared<BinaryTreeInorderIterator<TKey, TValue>>(m_root);
+            return BinaryTreeInorderIterator<TKey, TValue>::make(m_root);
         }
 
         /**
@@ -152,7 +152,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getInorderIterator() const
         {
-            return std::make_shared<BinaryTreeInorderIterator<TKey, TValue>>(m_root);
+            return BinaryTreeInorderIterator<TKey, TValue>::make(m_root);
         }
 
         /**
