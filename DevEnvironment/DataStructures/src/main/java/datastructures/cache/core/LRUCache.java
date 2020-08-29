@@ -6,7 +6,7 @@ import datastructures.node.interfaces.IKeyValueNode;
 
 /**
  * The LRUCache class implements a most recently used cache.
- * Discards the most recently used items first.
+ * Discards the least recently used items first.
  */
 public final class LRUCache<TKey extends Comparable<TKey>, TValue> extends AbstractCache<TKey, TValue> {
     /**
@@ -24,7 +24,7 @@ public final class LRUCache<TKey extends Comparable<TKey>, TValue> extends Abstr
     @Override
     protected void makeAvailableSpace(CacheData<TKey, TValue> cacheData, int numberOfItems) {
         for (int i = 0; i < numberOfItems; ++i) {
-            IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> itemToRemove = cacheData.usedList().removeFromBack();
+            IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> itemToRemove = cacheData.usedList().removeFromFront();
             cacheData.dataLookup().remove(itemToRemove.getValue().getKey());
         }
     }

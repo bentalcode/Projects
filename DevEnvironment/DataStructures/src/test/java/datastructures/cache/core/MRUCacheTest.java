@@ -7,24 +7,24 @@ import datastructures.cache.interfaces.ICache;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
+import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
 
 /**
- * The LRUCacheTest class implements tests for a least recently used cache.
+ * The MRUCacheTest class implements tests for a most recently used cache.
  */
-public final class LRUCacheTest {
+public final class MRUCacheTest {
     private final IAssertion assertion = new Assertion();
     private final ITestData testData = new TestData();
 
     /**
-     * The LRUCacheTest constructor.
+     * The MRUCacheTest constructor.
      */
-    public LRUCacheTest() {
+    public MRUCacheTest() {
     }
 
     /**
@@ -42,33 +42,33 @@ public final class LRUCacheTest {
     }
 
     /**
-     * Tests the updation logic of a least recently used cache.
+     * Tests the updation logic of a most recently used cache.
      */
     @Test
-    public void lruCacheUpdationTest() {
-        ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
+    public void mruCacheUpdationTest() {
+        ICache<Integer, String> cache = new MRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
-            this.testData.getCacheData().getLruUpdationData();
+            this.testData.getCacheData().getMruUpdationData();
 
         this.testUpdation(cache, data);
     }
 
     /**
-     * Tests the iteration of a least recently used cache.
+     * Tests the iteration logic of a most recently used cache.
      */
     @Test
-    public void lruCacheIterationTest() {
-        ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
+    public void mruCacheIterationTest() {
+        ICache<Integer, String> cache = new MRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
-            this.testData.getCacheData().getLruUpdationData();
+            this.testData.getCacheData().getMruUpdationData();
 
         this.testIteration(cache, data);
     }
 
     /**
-     * Tests the updation logic of a cache.
+     * Tests the updation logic of a most recently used cache.
      */
     private <TKey extends Comparable<TKey>, TValue> void testUpdation(
         ICache<TKey, TValue> cache,

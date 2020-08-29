@@ -393,26 +393,26 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
         int numberOfItems);
 
     /**
-     * Determines whether the used-list has reached it's maximum capacity.
-     */
-    private boolean overCapacity() {
-        return this.size() >= this.properties.getCapacity();
-    }
-
-    /**
      * Processes accessing a current item.
      */
     private void currentItemAccessed(IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node) {
         this.data.usedList().remove(node);
-        this.data.usedList().addToFront(node);
+        this.data.usedList().addToBack(node);
     }
 
     /**
      * Processes accessing a new item.
      */
     private void newItemAccessed(IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node) {
-        this.data.dataLookup.put(node.getValue().getKey(), node);
-        this.data.usedList().addToFront(node);
+        this.data.dataLookup().put(node.getValue().getKey(), node);
+        this.data.usedList().addToBack(node);
+    }
+
+    /**
+     * Determines whether the used-list has reached it's maximum capacity.
+     */
+    private boolean overCapacity() {
+        return this.size() >= this.properties.getCapacity();
     }
 
     /**

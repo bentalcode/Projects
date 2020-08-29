@@ -20,31 +20,62 @@ public final class CacheTestData implements ICacheTestData {
     }
 
     /**
-     * Gets the least recently used data.
+     * Gets the updation data of a least recently used cache.
      */
     @Override
-    public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getUpdationData() {
+    public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getLruUpdationData() {
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = new ArrayList<>();
 
         data.add(Triple.make("set", KeyValueNode.make(1, "a"), ArrayLists.make(KeyValueNode.make(1, "a"))));
-        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(1, "a"))));
-        data.add(Triple.make("set", KeyValueNode.make(3, "c"), ArrayLists.make(KeyValueNode.make(3, "c"), KeyValueNode.make(2, "b"), KeyValueNode.make(1, "a"))));
-        data.add(Triple.make("set", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(3, "c"), KeyValueNode.make(2, "b"))));
-        data.add(Triple.make("set", KeyValueNode.make(1, "a"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(4, "d"), KeyValueNode.make(3, "c"))));
-        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(1, "a"), KeyValueNode.make(4, "d"))));
-        data.add(Triple.make("set", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(5, "e"), KeyValueNode.make(2, "b"), KeyValueNode.make(1, "a"))));
-        data.add(Triple.make("set", KeyValueNode.make(1, "a"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(5, "e"), KeyValueNode.make(2, "b"))));
-        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(1, "a"), KeyValueNode.make(5, "e"))));
-        data.add(Triple.make("set", KeyValueNode.make(3, "c"), ArrayLists.make(KeyValueNode.make(3, "c"), KeyValueNode.make(2, "b"), KeyValueNode.make(1, "a"))));
-        data.add(Triple.make("set", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(3, "c"), KeyValueNode.make(2, "b"))));
-        data.add(Triple.make("set", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(5, "e"), KeyValueNode.make(4, "d"), KeyValueNode.make(3, "c"))));
-        data.add(Triple.make("get", KeyValueNode.make(3, "c"), ArrayLists.make(KeyValueNode.make(3, "c"), KeyValueNode.make(5, "e"), KeyValueNode.make(4, "d"))));
-        data.add(Triple.make("get", KeyValueNode.make(3, "c"), ArrayLists.make(KeyValueNode.make(3, "c"), KeyValueNode.make(5, "e"), KeyValueNode.make(4, "d"))));
-        data.add(Triple.make("get", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(3, "c"), KeyValueNode.make(5, "e"))));
-        data.add(Triple.make("get", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(5, "e"), KeyValueNode.make(4, "d"), KeyValueNode.make(3, "c"))));
-        data.add(Triple.make("delete", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(5, "e"), KeyValueNode.make(3, "c"))));
-        data.add(Triple.make("delete", KeyValueNode.make(3, "c"), ArrayLists.make(KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"))));
+        data.add(Triple.make("set", KeyValueNode.make(3, "c"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"), KeyValueNode.make(3, "c"))));
+        data.add(Triple.make("set", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(3, "c"), KeyValueNode.make(4, "d"))));
+        data.add(Triple.make("set", KeyValueNode.make(1, "a"), ArrayLists.make(KeyValueNode.make(3, "c"), KeyValueNode.make(4, "d"), KeyValueNode.make(1, "a"))));
+        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"))));
+        data.add(Triple.make("set", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("set", KeyValueNode.make(1, "a"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"), KeyValueNode.make(1, "a"))));
+        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(5, "e"), KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"))));
+        data.add(Triple.make("set", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("set", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"), KeyValueNode.make(4, "d"))));
+        data.add(Triple.make("set", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"), KeyValueNode.make(4, "d"))));
+        data.add(Triple.make("get", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(4, "d"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("get", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(5, "e"), KeyValueNode.make(2, "b"))));
+        data.add(Triple.make("get", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(5, "e"), KeyValueNode.make(2, "b"), KeyValueNode.make(4, "d"))));
+        data.add(Triple.make("get", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(4, "d"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("delete", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("delete", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(5, "e"))));
         data.add(Triple.make("delete", KeyValueNode.make(5, "e"), new ArrayList<>()));
+
+        return data;
+    }
+
+    /**
+     * Gets the updation data of a most recently used cache.
+     */
+    @Override
+    public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getMruUpdationData()
+    {
+        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = new ArrayList<>();
+
+        data.add(Triple.make("set", KeyValueNode.make(1, "a"), ArrayLists.make(KeyValueNode.make(1, "a"))));
+        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"))));
+        data.add(Triple.make("set", KeyValueNode.make(3, "c"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"), KeyValueNode.make(3, "c"))));
+        data.add(Triple.make("set", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"), KeyValueNode.make(4, "d"))));
+        data.add(Triple.make("set", KeyValueNode.make(1, "a"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(4, "d"), KeyValueNode.make(1, "a"))));
+        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(1, "a"), KeyValueNode.make(2, "b"))));
+        data.add(Triple.make("set", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(1, "a"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("set", KeyValueNode.make(1, "a"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(5, "e"), KeyValueNode.make(1, "a"))));
+        data.add(Triple.make("set", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(5, "e"), KeyValueNode.make(2, "b"))));
+        data.add(Triple.make("set", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("set", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"), KeyValueNode.make(4, "d"))));
+        data.add(Triple.make("set", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"), KeyValueNode.make(4, "d"))));
+        data.add(Triple.make("get", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(4, "d"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("get", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(4, "d"), KeyValueNode.make(5, "e"), KeyValueNode.make(2, "b"))));
+        data.add(Triple.make("get", KeyValueNode.make(4, "c"), ArrayLists.make(KeyValueNode.make(5, "e"), KeyValueNode.make(2, "b"), KeyValueNode.make(4, "d"))));
+        data.add(Triple.make("get", KeyValueNode.make(5, "e"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(4, "d"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("delete", KeyValueNode.make(4, "d"), ArrayLists.make(KeyValueNode.make(2, "b"), KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("delete", KeyValueNode.make(2, "b"), ArrayLists.make(KeyValueNode.make(5, "e"))));
+        data.add(Triple.make("delete", KeyValueNode.make(5, "e"), ArrayLists.make()));
 
         return data;
     }

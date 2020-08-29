@@ -9,7 +9,12 @@ import java.util.List;
  */
 public interface ICacheTestData {
     /**
-     * Gets the updation data.
+     * Gets the updation data of a least recently used cache.
      */
-    List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getUpdationData();
+    List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getLruUpdationData();
+
+    /**
+     * Gets the updation data of a most recently used cache.
+     */
+    List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getMruUpdationData();
 }
