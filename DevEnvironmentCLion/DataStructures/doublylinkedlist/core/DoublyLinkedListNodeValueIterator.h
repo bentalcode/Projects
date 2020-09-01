@@ -3,6 +3,7 @@
 
 #include "IIterator.h"
 #include "DoublyLinkedListNode.h"
+#include "DoublyLinkedListException.h"
 
 namespace datastructures {
     namespace doublylinkedlist {
@@ -17,12 +18,12 @@ namespace datastructures {
             /**
              * Creates a new iterator of values of a doubly linked list.
              */
-            static base::IIteratorPtr<T> make(base::IIterator<IDoublyLinkedListNodePtr<T>>& iterator);
+            static base::IIteratorPtr<T> make(base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> iterator);
 
             /**
              * The DoublyLinkedListNodeValueIterator constructor.
              */
-            explicit DoublyLinkedListNodeValueIterator(base::IIterator<IDoublyLinkedListNodePtr<T>>& iterator);
+            explicit DoublyLinkedListNodeValueIterator(base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> iterator);
 
             /**
              * The DoublyLinkedListNodeValueIterator destructor.
@@ -57,14 +58,14 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIterator<IDoublyLinkedListNodePtr<T>>& m_iterator;
+            base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> m_iterator;
         };
 
         /**
          * Creates a new iterator of values of a doubly linked list.
          */
         template <typename T>
-        base::IIteratorPtr<T> DoublyLinkedListNodeValueIterator<T>::make(base::IIterator<IDoublyLinkedListNodePtr<T>>& iterator)
+        base::IIteratorPtr<T> DoublyLinkedListNodeValueIterator<T>::make(base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> iterator)
         {
             return std::make_shared<DoublyLinkedListNodeValueIterator<T>>(iterator);
         }
@@ -73,9 +74,15 @@ namespace datastructures {
          * The DoublyLinkedListNodeValueIterator constructor.
          */
         template <typename T>
-        DoublyLinkedListNodeValueIterator<T>::DoublyLinkedListNodeValueIterator(base::IIterator<IDoublyLinkedListNodePtr<T>>& iterator) :
+        DoublyLinkedListNodeValueIterator<T>::DoublyLinkedListNodeValueIterator(base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> iterator) :
             m_iterator(iterator)
         {
+            if (!iterator)
+            {
+                std::string errorMessage = "The iterator of nodes of doubly linked list is not defined.";
+                throw DoublyLinkedListException(errorMessage);
+            }
+
             reset();
         }
 
@@ -93,7 +100,7 @@ namespace datastructures {
         template <typename T>
         bool DoublyLinkedListNodeValueIterator<T>::hasNext() const
         {
-            return m_iterator.hasNext();
+            return m_iterator->hasNext();
         }
 
         /**
@@ -104,7 +111,7 @@ namespace datastructures {
         {
             assert(hasNext());
 
-            return m_iterator.next()->getValue();
+            return m_iterator->next()->getValue();
         }
 
         /**
@@ -113,7 +120,7 @@ namespace datastructures {
         template <typename T>
         void DoublyLinkedListNodeValueIterator<T>::reset()
         {
-            m_iterator.reset();
+            m_iterator->reset();
         }
     }
 }

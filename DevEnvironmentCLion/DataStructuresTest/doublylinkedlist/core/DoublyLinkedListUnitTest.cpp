@@ -117,4 +117,10 @@ void DoublyLinkedListUnitTest::doublyLinkedListIterationTest()
  */
 void DoublyLinkedListUnitTest::doublyLinkedListUpdationTest()
 {
+    DoublyLinkedList<int> list;
+
+    std::vector<std::tuple<std::string, int, std::vector<int>>> data =
+        m_testData.getDoublyLinkedListData()->getUpdationData();
+
+    testUpdation(list, data);
 }

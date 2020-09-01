@@ -71,9 +71,9 @@ namespace base
 
     template <typename T>
     ListIterator<T>::ListIterator(const std::vector<T>& data) :
-        m_data(data),
-        m_index(0)
+        m_data(data)
     {
+        reset();
     }
 
     template <typename T>

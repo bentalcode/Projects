@@ -5,6 +5,29 @@
 using namespace base;
 
 /**
+ * Checks whether strings are equals. (Ignore case)
+ */
+bool StringEquality::equalsIgnoreCase(
+    const std::string& left,
+    const std::string& right)
+{
+    if (left.size() != right.size())
+    {
+        return false;
+    }
+
+    if (left.empty() && right.empty())
+    {
+        return true;
+    }
+
+    return equals(
+        left, 0, left.size() - 1,
+        right, 0, right.size() - 1,
+        true);
+}
+
+/**
  * Checks whether strings are equals with start and end indexes.
  */
 bool StringEquality::equals(
@@ -76,10 +99,10 @@ bool StringEquality::equalsIgnoreCase(
  * Checks whether buffer strings are equals with start and end indexes.
  */
 bool StringEquality::equals(
-    char left[],
+    const std::string::value_type* left,
     size_t leftStartIndex,
     size_t leftEndIndex,
-    char right[],
+    const std::string::value_type* right,
     size_t rightStartIndex,
     size_t rightEndIndex)
 {
@@ -93,10 +116,10 @@ bool StringEquality::equals(
  * Checks whether buffer strings are equals with start and end indexes. (Ignore case)
  */
 bool StringEquality::equalsIgnoreCase(
-    char left[],
+    const std::string::value_type* left,
     size_t leftStartIndex,
     size_t leftEndIndex,
-    char right[],
+    const std::string::value_type* right,
     size_t rightStartIndex,
     size_t rightEndIndex)
 {
@@ -110,9 +133,9 @@ bool StringEquality::equalsIgnoreCase(
  * Checks whether buffer strings are equals with start index and length.
  */
 bool StringEquality::equals(
-    char left[],
+    const std::string::value_type* left,
     size_t leftStartIndex,
-    char right[],
+    const std::string::value_type* right,
     size_t rightStartIndex,
     size_t length)
 {
@@ -127,9 +150,9 @@ bool StringEquality::equals(
  * Checks whether buffer strings are equals with start index and length. (Ignore case)
  */
 bool StringEquality::equalsIgnoreCase(
-    char left[],
+    const std::string::value_type* left,
     size_t leftStartIndex,
-    char right[],
+    const std::string::value_type* right,
     size_t rightStartIndex,
     size_t length)
 {
@@ -152,9 +175,12 @@ bool StringEquality::equals(
     size_t rightEndIndex,
     bool ignoreCase)
 {
+    const std::string::value_type* leftStr = left.c_str();
+    const std::string::value_type* rightStr = right.c_str();
+
     return equals(
-        left.c_str(), leftStartIndex, leftEndIndex,
-        right.c_str(), rightStartIndex, rightEndIndex,
+        leftStr, leftStartIndex, leftEndIndex,
+        rightStr, rightStartIndex, rightEndIndex,
         ignoreCase);
 }
 
@@ -169,9 +195,12 @@ bool StringEquality::equals(
     size_t length,
     bool ignoreCase)
 {
+    const std::string::value_type* leftStr = left.c_str();
+    const std::string::value_type* rightStr = right.c_str();
+
     return equals(
-        left.c_str(), leftStartIndex,
-        right.c_str(), rightStartIndex,
+        leftStr, leftStartIndex,
+        rightStr, rightStartIndex,
         length,
         ignoreCase);
 }
@@ -180,10 +209,10 @@ bool StringEquality::equals(
  * Checks whether buffer strings are equals with start and end indexes.
  */
 bool StringEquality::equals(
-    char left[],
+    const char* left,
     size_t leftStartIndex,
     size_t leftEndIndex,
-    char right[],
+    const char* right,
     size_t rightStartIndex,
     size_t rightEndIndex,
     bool ignoreCase)
@@ -215,9 +244,9 @@ bool StringEquality::equals(
  * Checks whether buffer strings are equals with start index and length.
  */
 bool StringEquality::equals(
-    char left[],
+    const std::string::value_type* left,
     size_t leftStartIndex,
-    char right[],
+    const std::string::value_type* right,
     size_t rightStartIndex,
     size_t length,
     bool ignoreCase)

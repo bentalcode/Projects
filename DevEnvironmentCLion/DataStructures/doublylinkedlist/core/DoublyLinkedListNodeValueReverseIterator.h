@@ -18,12 +18,12 @@ namespace datastructures {
             /**
              * Creates a new reverse iterator of values of a doubly linked list.
              */
-            static base::IReverseIteratorPtr<T> make(base::IReverseIterator<IDoublyLinkedListNodePtr<T>>& reverseIterator);
+            static base::IReverseIteratorPtr<T> make(base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator);
 
             /**
              * The DoublyLinkedListNodeValueReverseIterator constructor.
              */
-            explicit DoublyLinkedListNodeValueReverseIterator(base::IReverseIterator<IDoublyLinkedListNodePtr<T>>& reverseIterator);
+            explicit DoublyLinkedListNodeValueReverseIterator(base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator);
 
             /**
              * The DoublyLinkedListNodeValueReverseIterator destructor.
@@ -58,7 +58,7 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IReverseIterator<IDoublyLinkedListNodePtr<T>>& m_reverseIterator;
+            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> m_reverseIterator;
         };
 
         /**
@@ -66,7 +66,7 @@ namespace datastructures {
          */
         template <typename T>
         base::IReverseIteratorPtr<T> DoublyLinkedListNodeValueReverseIterator<T>::make(
-            base::IReverseIterator<IDoublyLinkedListNodePtr<T>>& reverseIterator)
+            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator)
         {
             return std::make_shared<DoublyLinkedListNodeValueReverseIterator<T>>(reverseIterator);
         }
@@ -76,10 +76,16 @@ namespace datastructures {
          */
         template <typename T>
         DoublyLinkedListNodeValueReverseIterator<T>::DoublyLinkedListNodeValueReverseIterator(
-            base::IReverseIterator<IDoublyLinkedListNodePtr<T>>& reverseIterator) :
+            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
             reset();
+
+            if (!reverseIterator)
+            {
+                std::string errorMessage = "The reverse iterator of nodes of doubly linked list is not defined.";
+                throw DoublyLinkedListException(errorMessage);
+            }
         }
 
         /**
@@ -96,7 +102,7 @@ namespace datastructures {
         template <typename T>
         bool DoublyLinkedListNodeValueReverseIterator<T>::hasNext() const
         {
-            return m_reverseIterator.hasNext();
+            return m_reverseIterator->hasNext();
         }
 
         /**
@@ -107,7 +113,7 @@ namespace datastructures {
         {
             assert(hasNext());
 
-            return m_reverseIterator.next()->getValue();
+            return m_reverseIterator->next()->getValue();
         }
 
         /**
@@ -116,7 +122,7 @@ namespace datastructures {
         template <typename T>
         void DoublyLinkedListNodeValueReverseIterator<T>::reset()
         {
-            m_reverseIterator.reset();
+            m_reverseIterator->reset();
         }
     }
 }

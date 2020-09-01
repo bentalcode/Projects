@@ -526,7 +526,7 @@ namespace datastructures {
         template <typename T>
         base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedList<T>::getReverseIterator() const
         {
-            return DoublyLinkedListNodeReverseIterator<T>::make(m_head);
+            return DoublyLinkedListNodeReverseIterator<T>::make(m_tail);
         }
 
         /**
@@ -535,7 +535,7 @@ namespace datastructures {
         template <typename T>
         base::IIteratorPtr<T> DoublyLinkedList<T>::getValueIterator() const
         {
-            return DoublyLinkedListNodeValueIterator<T>::make(*getIterator());
+            return DoublyLinkedListNodeValueIterator<T>::make(getIterator());
         }
 
         /**
@@ -544,7 +544,7 @@ namespace datastructures {
         template <typename T>
         base::IReverseIteratorPtr<T> DoublyLinkedList<T>::getValueReverseIterator() const
         {
-            return DoublyLinkedListNodeValueReverseIterator<T>::make(*getReverseIterator());
+            return DoublyLinkedListNodeValueReverseIterator<T>::make(getReverseIterator());
         }
 
         /**

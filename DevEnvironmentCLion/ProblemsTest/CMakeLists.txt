@@ -81,6 +81,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/KmpStringSearch.h
     ../Base/core/List.h
     ../Base/core/ListIterator.h
+    ../Base/core/ListReverseIterator.h
     ../Base/core/Matrix.h
     ../Base/core/Position.h
     ../Base/core/PreCompiled.h

@@ -7,25 +7,25 @@ import java.util.List;
  * The ListReverseIterator class implements a reverse iterator of a list.
  */
 public class ListReverseIterator<T> implements IReverseIterator<T> {
-    private final List<T> list;
+    private final List<T> data;
     private int position;
 
     /**
      * Creates a new reverse iterator of a list.
      */
-    public static <T> IReverseIterator<T> make(List<T> list) {
-        return new ListReverseIterator<>(list);
+    public static <T> IReverseIterator<T> make(List<T> data) {
+        return new ListReverseIterator<>(data);
     }
 
     /**
      * The ListReverseIterator constructor.
      */
-    private ListReverseIterator(List<T> list) {
+    private ListReverseIterator(List<T> data) {
         Conditions.validateNotNull(
-            list,
+            data,
             "The list to iterate in reverse.");
 
-        this.list = list;
+        this.data = data;
 
         this.reset();
     }
@@ -45,7 +45,7 @@ public class ListReverseIterator<T> implements IReverseIterator<T> {
     public T next() {
         assert(this.hasNext());
 
-        T currElement = this.list.get(this.position);
+        T currElement = this.data.get(this.position);
         --this.position;
 
         return currElement;
@@ -56,6 +56,6 @@ public class ListReverseIterator<T> implements IReverseIterator<T> {
      */
     @Override
     public void reset() {
-        this.position = this.list.size() - 1;
+        this.position = this.data.size() - 1;
     }
 }

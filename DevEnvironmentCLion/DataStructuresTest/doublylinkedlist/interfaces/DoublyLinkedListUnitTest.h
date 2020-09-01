@@ -5,7 +5,9 @@
 #include "DoublyLinkedList.h"
 #include "TestData.h"
 #include "ListIterator.h"
+#include "ListReverseIterator.h"
 #include "IterationTest.h"
+#include "StringEquality.h"
 
 using namespace datastructures::doublylinkedlist;
 
@@ -63,6 +65,33 @@ namespace test {
                 void testIteration(const DoublyLinkedListData<T>& data);
 
                 /**
+                 * Tests the updation logic of a doubly linked list.
+                 */
+                template <typename T>
+                void testUpdation(
+                    DoublyLinkedList<T>& list,
+                    const std::vector<std::tuple<std::string, int, std::vector<int>>>& data);
+
+                /**
+                 * Tests the updation logic of a doubly linked list.
+                 */
+                template <typename T>
+                void testUpdation(
+                    DoublyLinkedList<T>& list,
+                    const std::string& operation,
+                    const T& item,
+                    const std::vector<T>& expectedContent);
+
+                /**
+                 * Updates the list.
+                 */
+                template <typename T>
+                void updateList(
+                    DoublyLinkedList<T>& list,
+                    const std::string& operation,
+                    const T& item);
+
+                /**
                  * Creates a doubly linked list.
                  */
                 template <typename T>
@@ -97,33 +126,133 @@ namespace test {
             template <typename T>
             void DoublyLinkedListUnitTest::testIteration(const DoublyLinkedListData<T>& data)
             {
+
                 //
                 // Create the container...
                 //
                 IDoublyLinkedListPtr<T> container = createDoublyLinkedList(data.getValues());
 
                 //
-                // Test the default iterator of the container...
+                // Test the forward iterator of the container...
                 //
                 test_base::IterationTest iterationTest;
 
                 base::IIterablePtr<IDoublyLinkedListNodePtr<T>> containerIterable = container;
-                base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> containerIterator = base::ListIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
+                base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> expectedIterator = base::ListIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
 
                 iterationTest.testForwardIterationWithDereference(
                     containerIterable,
-                    containerIterator,
+                    expectedIterator,
                     "DoublyLinkedList");
+
+                //
+                // Test the reverse iterator of the container...
+                //
+                base::IReverseIterablePtr<IDoublyLinkedListNodePtr<T>> containerReverseIterable = container;
+                base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> expectedReverseIterator =
+                    base::ListReverseIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
+
+                iterationTest.testReverseIterationWithDereference(
+                    containerReverseIterable,
+                    expectedReverseIterator,
+                    "DoublyLinkedList");
+
+                //
+                // Test the value iterator of the container...
+                //
+                base::IValueIterablePtr<T> valueIterable = container;
+                base::IIteratorPtr<T> expectedValueIterator = base::ListIterator<T>::make(data.getValues());
+
+                iterationTest.testValueIteration(
+                    valueIterable,
+                    expectedValueIterator,
+                    "DoublyLinkedList");
+
+                //
+                // Test the value reverse iterator of the container...
+                //
+                base::IValueReverseIterablePtr<T> valueReverseIterable = container;
+                base::IReverseIteratorPtr<T> expectedValueReverseIterator = base::ListReverseIterator<T>::make(data.getValues());
+
+                iterationTest.testValueReverseIteration(
+                    valueReverseIterable,
+                    expectedValueReverseIterator,
+                    "DoublyLinkedList");
+            }
+
+            /**
+             * Tests the updation logic of a doubly linked list.
+             */
+            template <typename T>
+            void DoublyLinkedListUnitTest::testUpdation(
+                DoublyLinkedList<T>& list,
+                const std::vector<std::tuple<std::string, int, std::vector<int>>>& data)
+            {
+                for (const std::tuple<std::string, int, std::vector<int>>& entry : data)
+                {
+                    testUpdation(
+                        list,
+                        std::get<0>(entry),
+                        std::get<1>(entry),
+                        std::get<2>(entry));
+                }
+            }
+
+            /**
+             * Tests the updation logic of a doubly linked list.
+             */
+            template <typename T>
+            void DoublyLinkedListUnitTest::testUpdation(
+                DoublyLinkedList<T>& list,
+                const std::string& operation,
+                const T& item,
+                const std::vector<T>& expectedContent)
+            {
+                updateList(list, operation, item);
+
+                getAssertion().assertEqualsWithIterators(
+                    *list.getValueIterator(),
+                    *base::ListIterator<T>::make(expectedContent),
+                    "Invalid updating logic of a doubly linked list.");
+            }
+
+            /**
+             * Updates the list.
+             */
+            template <typename T>
+            void DoublyLinkedListUnitTest::updateList(
+                DoublyLinkedList<T>& list,
+                const std::string& operation,
+                const T& item)
+            {
+                if (base::StringEquality::equalsIgnoreCase(operation, "addToFront"))
+                {
+                    list.addToFront(DoublyLinkedListNode<T>::make(item));
+                }
+                else if (base::StringEquality::equalsIgnoreCase(operation, "addToBack"))
+                {
+                    list.addToBack(DoublyLinkedListNode<T>::make(item));
+                }
+                else if (base::StringEquality::equalsIgnoreCase(operation, "removeFromFront"))
+                {
+                    list.removeFromFront();
+                }
+                else if (base::StringEquality::equalsIgnoreCase(operation, "removeFromBack"))
+                {
+                    list.removeFromBack();
+                }
             }
 
             /**
              * Creates a doubly linked list.
              */
             template <typename T>
-            IDoublyLinkedListPtr<T> DoublyLinkedListUnitTest::createDoublyLinkedList(const std::vector<T>& data) {
+            IDoublyLinkedListPtr<T> DoublyLinkedListUnitTest::createDoublyLinkedList(const std::vector<T>& data)
+            {
                 IDoublyLinkedListPtr<T> result(new DoublyLinkedList<T>());
 
-                for (T element : data) {
+                for (T element : data)
+                {
                     result->addToBack(element);
                 }
 
