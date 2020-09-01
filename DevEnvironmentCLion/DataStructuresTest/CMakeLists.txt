@@ -34,6 +34,9 @@ set(DATA_STRUCTURES_TEST_INCLUDES_FILES
     ./doublylinkedlist/interfaces/DoublyLinkedListUnitTest.h
     ./interfaces/IteratorOfIteratorCollectionUnitTest.h
     ./interfaces/TestData.h
+    ./linkedlist/interfaces/LinkedListData.h
+    ./linkedlist/interfaces/LinkedListTestData.h
+    ./linkedlist/interfaces/LinkedListUnitTest.h
 )
 
 set(DATA_STRUCTURES_TEST_SOURCES_FILES
@@ -44,6 +47,8 @@ set(DATA_STRUCTURES_TEST_SOURCES_FILES
     ./core/TestData.cpp
     ./doublylinkedlist/core/DoublyLinkedListTestData.cpp
     ./doublylinkedlist/core/DoublyLinkedListUnitTest.cpp
+    ./linkedlist/core/LinkedListTestData.cpp
+    ./linkedlist/core/LinkedListUnitTest.cpp
     ./main.cpp
 )
 
@@ -57,6 +62,7 @@ set(DATA_STRUCTURES_TEST_INCLUDES
     ./core
     ./doublylinkedlist/interfaces
     ./interfaces
+    ./linkedlist/interfaces
 )
 
 set(BASE_INCLUDES_FILES
@@ -113,6 +119,8 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/IValidator.h
+    ../Base/interfaces/IValueIterable.h
+    ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
@@ -163,10 +171,12 @@ set(TEST_BASE_INCLUDES_FILES
     ../TestBase/TestBaseException.h
     ../TestBase/core/PreCompiled.h
     ../TestBase/interfaces/Assertion.h
+    ../TestBase/interfaces/IterationTest.h
 )
 
 set(TEST_BASE_SOURCES_FILES
     ../TestBase/core/Assertion.cpp
+    ../TestBase/core/IterationTest.cpp
     ../TestBase/core/PreCompiled.cpp
 )
 
@@ -264,6 +274,13 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/doublylinkedlist/interfaces/IDoublyLinkedList.h
     ../DataStructures/doublylinkedlist/interfaces/IDoublyLinkedListNode.h
     ../DataStructures/interfaces/IteratorOfIteratorCollection.h
+    ../DataStructures/linkedlist/core/LinkedList.h
+    ../DataStructures/linkedlist/core/LinkedListException.h
+    ../DataStructures/linkedlist/core/LinkedListNode.h
+    ../DataStructures/linkedlist/core/LinkedListNodeIterator.h
+    ../DataStructures/linkedlist/core/LinkedListNodeValueIterator.h
+    ../DataStructures/linkedlist/interfaces/ILinkedList.h
+    ../DataStructures/linkedlist/interfaces/ILinkedListNode.h
 )
 
 set(DATA_STRUCTURES_SOURCES_FILES
@@ -283,6 +300,8 @@ set(DATA_STRUCTURES_INCLUDES
     ../DataStructures/doublylinkedlist/core
     ../DataStructures/doublylinkedlist/interfaces
     ../DataStructures/interfaces
+    ../DataStructures/linkedlist/core
+    ../DataStructures/linkedlist/interfaces
 )
 
 add_library(DataStructures STATIC

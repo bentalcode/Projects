@@ -57,6 +57,13 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./doublylinkedlist/interfaces/IDoublyLinkedList.h
     ./doublylinkedlist/interfaces/IDoublyLinkedListNode.h
     ./interfaces/IteratorOfIteratorCollection.h
+    ./linkedlist/core/LinkedList.h
+    ./linkedlist/core/LinkedListException.h
+    ./linkedlist/core/LinkedListNode.h
+    ./linkedlist/core/LinkedListNodeIterator.h
+    ./linkedlist/core/LinkedListNodeValueIterator.h
+    ./linkedlist/interfaces/ILinkedList.h
+    ./linkedlist/interfaces/ILinkedListNode.h
 )
 
 set(DATA_STRUCTURES_SOURCES_FILES
@@ -76,6 +83,8 @@ set(DATA_STRUCTURES_INCLUDES
     ./doublylinkedlist/core
     ./doublylinkedlist/interfaces
     ./interfaces
+    ./linkedlist/core
+    ./linkedlist/interfaces
 )
 
 set(BASE_INCLUDES_FILES
@@ -132,6 +141,8 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/IValidator.h
+    ../Base/interfaces/IValueIterable.h
+    ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h

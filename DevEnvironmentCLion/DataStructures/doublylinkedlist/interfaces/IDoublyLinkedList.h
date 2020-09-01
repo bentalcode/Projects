@@ -4,6 +4,8 @@
 #include "ISizableCollection.h"
 #include "IIterable.h"
 #include "IReverseIterable.h"
+#include "IValueIterable.h"
+#include "IValueReverseIterable.h"
 #include "IDoublyLinkedListNode.h"
 
 namespace datastructures {
@@ -12,11 +14,13 @@ namespace datastructures {
         /**
          * The IDoublyLinkedList interface defines a doubly linked list.
          */
-        template<typename T>
+        template <typename T>
         class IDoublyLinkedList :
             public base::ISizableCollection,
             public base::IIterable<IDoublyLinkedListNodePtr<T>>,
-            public base::IReverseIterable<IDoublyLinkedListNodePtr<T>>
+            public base::IReverseIterable<IDoublyLinkedListNodePtr<T>>,
+            public base::IValueIterable<T>,
+            public base::IValueReverseIterable<T>
         {
         public:
             /**
@@ -120,16 +124,6 @@ namespace datastructures {
              * Clears the list.
              */
             virtual void clear() = 0;
-
-            /**
-             * Gets an iterator of values of a list.
-             */
-            virtual base::IIteratorPtr<T> getValueIterator() const = 0;
-
-            /**
-             * Gets a reverse iterator of values of a list.
-             */
-            virtual base::IReverseIteratorPtr<T> getValueReverseIterator() const = 0;
 
             /**
              * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]

@@ -49,19 +49,9 @@ namespace test {
 
             private:
                 /**
-                 * Gets the data of list1.
+                 * Gets the data of list.
                  */
-                DoublyLinkedListDataPtr<int> getListData1() const;
-
-                /**
-                 * Gets the data of list2.
-                 */
-                DoublyLinkedListDataPtr<int> getListData2() const;
-
-                /**
-                 * Gets the data of list3.
-                 */
-                DoublyLinkedListDataPtr<int> getListData3() const;
+                DoublyLinkedListDataPtr<int> getListData(size_t size) const;
 
                 /**
                  * Gets the values of a doubly linked list.

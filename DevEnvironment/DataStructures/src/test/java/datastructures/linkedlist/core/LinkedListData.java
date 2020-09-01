@@ -5,47 +5,36 @@ import datastructures.linkedlist.interfaces.ILinkedListData;
 import java.util.List;
 
 /**
- * The LinkedListData class implements the data of a linked list.
+ * The LinkedListData class implements the data of a list.
  */
 public final class LinkedListData<T extends Comparable<T>> implements ILinkedListData<T> {
-    private final List<T> creationData;
-    private final List<ILinkedListNode<T>> data;
     private final List<T> values;
+    private final List<ILinkedListNode<T>> nodes;
 
     /**
-     * The ListData constructor.
+     * The LinkedListData constructor.
      */
     public LinkedListData(
-        List<T> creationData,
-        List<ILinkedListNode<T>> data,
-        List<T> values) {
+        List<T> values,
+        List<ILinkedListNode<T>> nodes) {
 
-        this.creationData = creationData;
-        this.data = data;
         this.values = values;
+        this.nodes = nodes;
     }
 
     /**
-     * Gets the creation data of the list.
-     */
-    @Override
-    public List<T> getCreationData() {
-        return this.creationData;
-    }
-
-    /**
-     * Gets the actual data of the list.
-     */
-    @Override
-    public List<ILinkedListNode<T>> getData() {
-        return this.data;
-    }
-
-    /**
-     * Gets the actual values of the list.
+     * Gets the values of the list.
      */
     @Override
     public List<T> getValues() {
         return this.values;
+    }
+
+    /**
+     * Gets the nodes of the list.
+     */
+    @Override
+    public List<ILinkedListNode<T>> getNodes() {
+        return this.nodes;
     }
 }

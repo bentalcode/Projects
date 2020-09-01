@@ -119,6 +119,8 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/IValidator.h
+    ../Base/interfaces/IValueIterable.h
+    ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h

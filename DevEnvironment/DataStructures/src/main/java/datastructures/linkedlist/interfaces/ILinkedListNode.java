@@ -27,6 +27,11 @@ public interface ILinkedListNode<T extends Comparable<T>> extends IUnaryComparat
     void setNext(ILinkedListNode<T> node);
 
     /**
+     * Checks whether there is a next node.
+     */
+    boolean hasNext();
+
+    /**
      * Unlinked the node.
      */
     void unlinked();

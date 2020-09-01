@@ -104,6 +104,12 @@ void DoublyLinkedListUnitTest::doublyLinkedListCreationTest()
  */
 void DoublyLinkedListUnitTest::doublyLinkedListIterationTest()
 {
+    std::vector<DoublyLinkedListDataPtr<int>> data = m_testData.getDoublyLinkedListData()->getData();
+
+    for (DoublyLinkedListDataPtr<int> listData : data)
+    {
+        testIteration(*listData);
+    }
 }
 
 /**

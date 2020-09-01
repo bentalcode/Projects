@@ -11,9 +11,16 @@ public final class LinkedListNodeValueIterator<T extends Comparable<T>> implemen
     private final IIterator<ILinkedListNode<T>> iterator;
 
     /**
+     * Creates a new iterator of values of a linked list.
+     */
+    public static <T extends Comparable<T>> IIterator<T> make(IIterator<ILinkedListNode<T>> iterator) {
+        return new LinkedListNodeValueIterator<>(iterator);
+    }
+
+    /**
      * The NodeValueIterator constructor.
      */
-    public LinkedListNodeValueIterator(IIterator<ILinkedListNode<T>> iterator) {
+    private LinkedListNodeValueIterator(IIterator<ILinkedListNode<T>> iterator) {
         Conditions.validateNotNull(
             iterator,
             "The iterator of nodes of a linked list.");

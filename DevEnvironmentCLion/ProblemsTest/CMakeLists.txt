@@ -117,6 +117,8 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/ITwoDimensionalList.h
     ../Base/interfaces/IValidator.h
+    ../Base/interfaces/IValueIterable.h
+    ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
@@ -167,10 +169,12 @@ set(TEST_BASE_INCLUDES_FILES
     ../TestBase/TestBaseException.h
     ../TestBase/core/PreCompiled.h
     ../TestBase/interfaces/Assertion.h
+    ../TestBase/interfaces/IterationTest.h
 )
 
 set(TEST_BASE_SOURCES_FILES
     ../TestBase/core/Assertion.cpp
+    ../TestBase/core/IterationTest.cpp
     ../TestBase/core/PreCompiled.cpp
 )
 

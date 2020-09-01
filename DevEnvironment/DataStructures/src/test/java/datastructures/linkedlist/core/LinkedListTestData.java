@@ -1,9 +1,7 @@
 package datastructures.linkedlist.core;
 
 import base.core.ArrayLists;
-import base.core.RandomGenerator;
 import base.core.Triple;
-import base.interfaces.IRandomGenerator;
 import base.interfaces.ITriple;
 import datastructures.linkedlist.interfaces.ILinkedListData;
 import datastructures.linkedlist.interfaces.ILinkedListNode;
@@ -15,12 +13,6 @@ import java.util.List;
  * The LinkedListTestData class implements data of tests of a linked list.
  */
 public final class LinkedListTestData implements ILinkedListTestData {
-    private static int RandomCollectionsSize = 10;
-    private static int RandomMinCollectionSize = 100;
-    private static int RandomMaxCollectionSize = 1000;
-
-    private final IRandomGenerator randomGenerator = new RandomGenerator();
-
     /**
      * The LinkedListTestData constructor.
      */
@@ -34,13 +26,9 @@ public final class LinkedListTestData implements ILinkedListTestData {
     public List<ILinkedListData<Integer>> getData() {
         List<ILinkedListData<Integer>> data = new ArrayList<>();
 
-        data.add(this.getListData1());
-        data.add(this.getListData2());
-        data.add(this.getListData3());
-
-        for (int i = 0; i < RandomCollectionsSize; ++i) {
-            data.add(this.getRandomListData(RandomMinCollectionSize, RandomMaxCollectionSize));
-        }
+        data.add(this.getListData(0));
+        data.add(this.getListData(50));
+        data.add(this.getListData(100));
 
         return data;
     }
@@ -71,66 +59,21 @@ public final class LinkedListTestData implements ILinkedListTestData {
     }
 
     /**
-     * Gets the data of list1.
+     * Gets the data of list.
      */
-    private ILinkedListData<Integer> getListData1() {
-        List<Integer> creationData = this.getData(0);
-        List<ILinkedListNode<Integer>> data = this.createData(creationData);
-        List<Integer> values = creationData;
+    private ILinkedListData<Integer> getListData(int size) {
+        List<Integer> values = this.createListValues(size);
+        List<ILinkedListNode<Integer>> nodes = this.createListNodes(values);
 
         return new LinkedListData<>(
-            creationData,
-            data,
-            values);
+            values,
+            nodes);
     }
 
     /**
-     * Gets the data of list2.
+     * Creates values of a list.
      */
-    private ILinkedListData<Integer> getListData2() {
-        List<Integer> creationData = this.getData(50);
-        List<ILinkedListNode<Integer>> data = this.createData(creationData);
-        List<Integer> values = creationData;
-
-        return new LinkedListData<>(
-            creationData,
-            data,
-            values);
-    }
-
-    /**
-     * Gets the data of list3.
-     */
-    private ILinkedListData<Integer> getListData3() {
-        List<Integer> creationData = this.getData(100);
-        List<ILinkedListNode<Integer>> data = this.createData(creationData);
-        List<Integer> values = creationData;
-
-        return new LinkedListData<>(
-            creationData,
-            data,
-            values);
-    }
-
-    /**
-     * Gets the random data of list.
-     */
-    private ILinkedListData<Integer> getRandomListData(int fromSize, int toSize) {
-        int size = this.randomGenerator.nextInteger(fromSize, toSize);
-        List<Integer> creationData = this.getData(size);
-        List<ILinkedListNode<Integer>> data = this.createData(creationData);
-        List<Integer> values = creationData;
-
-        return new LinkedListData<>(
-            creationData,
-            data,
-            values);
-    }
-
-    /**
-     * Gets the data of a linked list.
-     */
-    private List<Integer> getData(int size) {
+    private List<Integer> createListValues(int size) {
         List<Integer> result = new ArrayList<>();
 
         for (int i = 0; i < size; ++i) {
@@ -142,15 +85,15 @@ public final class LinkedListTestData implements ILinkedListTestData {
     }
 
     /**
-     * Creates the data of the list.
+     * Creates nodes of a list.
      */
-    private <TValue extends Comparable<TValue>> List<ILinkedListNode<TValue>> createData(List<TValue> values) {
-        List<ILinkedListNode<TValue>> data = new ArrayList<>();
+    private <TValue extends Comparable<TValue>> List<ILinkedListNode<TValue>> createListNodes(List<TValue> values) {
+        List<ILinkedListNode<TValue>> result = new ArrayList<>(values.size());
 
         for (TValue value : values) {
-            data.add(LinkedListNode.make(value));
+            result.add(LinkedListNode.make(value));
         }
 
-        return data;
+        return result;
     }
 }

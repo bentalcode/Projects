@@ -18,14 +18,24 @@ public final class LinkedListNode<T extends Comparable<T>> implements ILinkedLis
     private final int hashCode;
 
     /**
-     * Creates a new linked list node.
+     * Creates a new linked list node with a value.
      */
     public static <T extends Comparable<T>> ILinkedListNode<T> make(T value) {
         return new LinkedListNode<>(value);
     }
 
     /**
-     * Creates a new linked list node.
+     * Creates a new linked list node with a value and a next node.
+     */
+    public static <T extends Comparable<T>> ILinkedListNode<T> make(
+        T value,
+        ILinkedListNode<T> next) {
+
+        return new LinkedListNode<>(value, next, LinkedListNode.defaultComparator());
+    }
+
+    /**
+     * Creates a new linked list node with a value, a next node, and a comparator.
      */
     public static <T extends Comparable<T>> ILinkedListNode<T> make(
         T value,
@@ -89,6 +99,14 @@ public final class LinkedListNode<T extends Comparable<T>> implements ILinkedLis
     @Override
     public void setNext(ILinkedListNode<T> node) {
         this.next = node;
+    }
+
+    /**
+     * Checks whether there is a next node.
+     */
+    @Override
+    public boolean hasNext() {
+        return this.next != null;
     }
 
     /**

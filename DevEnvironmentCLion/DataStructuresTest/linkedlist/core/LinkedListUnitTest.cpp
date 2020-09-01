@@ -1,0 +1,120 @@
+#include "PreCompiled.h"
+
+#include "LinkedListUnitTest.h"
+#include "UnitTestFunction.h"
+
+using namespace test::datastructures;
+using namespace test::datastructures::linkedlist;
+using namespace test::datastructures::binarytree;
+
+class TestLinkedListCreationFunction : public unit_testing::UnitTestFunction<LinkedListUnitTest>
+{
+public:
+    TestLinkedListCreationFunction(LinkedListUnitTest& unitTest) :
+        UnitTestFunction("linkedListCreationTest", unitTest)
+    {
+    }
+
+    virtual ~TestLinkedListCreationFunction()
+    {
+    }
+
+    virtual void operator()()
+    {
+        getUnitTest().linkedListCreationTest();
+    }
+};
+
+class TestLinkedListIterationFunction : public unit_testing::UnitTestFunction<LinkedListUnitTest>
+{
+public:
+    TestLinkedListIterationFunction(LinkedListUnitTest& unitTest) :
+        UnitTestFunction("linkedListIterationTest", unitTest)
+    {
+    }
+
+    virtual ~TestLinkedListIterationFunction()
+    {
+    }
+
+    virtual void operator()()
+    {
+        getUnitTest().linkedListIterationTest();
+    }
+};
+
+class TestLinkedListUpdationFunction : public unit_testing::UnitTestFunction<LinkedListUnitTest>
+{
+public:
+    TestLinkedListUpdationFunction(LinkedListUnitTest& unitTest) :
+        UnitTestFunction("linkedListUpdationTest", unitTest)
+    {
+    }
+
+    virtual ~TestLinkedListUpdationFunction()
+    {
+    }
+
+    virtual void operator()()
+    {
+        getUnitTest().linkedListUpdationTest();
+    }
+};
+
+/**
+ * The LinkedListUnitTest constructor.
+ */
+LinkedListUnitTest::LinkedListUnitTest(const std::string& name) :
+    UnitTestBase(name)
+{
+}
+
+/**
+ * The LinkedListUnitTest destructor.
+ */
+LinkedListUnitTest::~LinkedListUnitTest()
+{
+}
+
+/**
+ * Registers tests of the unit test.
+ */
+void LinkedListUnitTest::registerTests(unit_testing::ITestRegistration& registration)
+{
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLinkedListCreationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLinkedListIterationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLinkedListUpdationFunction(*this)));
+}
+
+/**
+ * Tests the creation logic of a linked list.
+ */
+void LinkedListUnitTest::linkedListCreationTest()
+{
+    std::vector<LinkedListDataPtr<int>> data = m_testData.getLinkedListData()->getData();
+
+    for (LinkedListDataPtr<int> listData : data)
+    {
+        testCreation(*listData);
+    }
+}
+
+/**
+ * Tests the iteration logic of a linked list.
+ */
+void LinkedListUnitTest::linkedListIterationTest()
+{
+    std::vector<LinkedListDataPtr<int>> data = m_testData.getLinkedListData()->getData();
+
+    for (LinkedListDataPtr<int> listData : data)
+    {
+        //testIteration(*listData);
+    }
+}
+
+/**
+ * Tests the updation logic of a linked list.
+ */
+void LinkedListUnitTest::linkedListUpdationTest()
+{
+}

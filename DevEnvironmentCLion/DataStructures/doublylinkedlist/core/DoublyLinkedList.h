@@ -362,6 +362,8 @@ namespace datastructures {
         {
             validateNode(node);
 
+            node->unlinked();
+
             if (!m_tail)
             {
                 assert(!m_head && empty());
@@ -390,7 +392,7 @@ namespace datastructures {
 
             nodeToAdd->unlinked();
 
-            IDoublyLinkedListNodePtr<T> nextNode = nodeToAdd->next();
+            IDoublyLinkedListNodePtr<T> nextNode = currNode->next();
 
             linkedNodes(currNode, nodeToAdd);
 
@@ -467,7 +469,6 @@ namespace datastructures {
             }
 
             IDoublyLinkedListNodePtr<T> nodeToRemove = m_tail;
-
             remove(nodeToRemove);
 
             return nodeToRemove;
@@ -564,16 +565,18 @@ namespace datastructures {
 
             while (currNode != nullptr)
             {
+                assert(currIndex < size());
+
                 if (currIndex == index)
                 {
-                    break;
+                    return currNode;
                 }
 
                 ++currIndex;
                 currNode = currNode->next();
             }
 
-            return currNode;
+            return nullptr;
         }
 
         /**
@@ -584,7 +587,7 @@ namespace datastructures {
         {
             if (!node)
             {
-                std::string errorMessage = "The node is not defined.";
+                std::string errorMessage = "The node of a doubly linked list is not defined.";
                 throw DoublyLinkedListException(errorMessage);
             }
         }

@@ -5,6 +5,7 @@
 #include "DoublyLinkedList.h"
 #include "TestData.h"
 #include "ListIterator.h"
+#include "IterationTest.h"
 
 using namespace datastructures::doublylinkedlist;
 
@@ -56,6 +57,12 @@ namespace test {
                 void testCreation(const DoublyLinkedListData<T>& data);
 
                 /**
+                 * Tests the iteration logic of a doubly linked list.
+                 */
+                template <typename T>
+                void testIteration(const DoublyLinkedListData<T>& data);
+
+                /**
                  * Creates a doubly linked list.
                  */
                 template <typename T>
@@ -78,13 +85,35 @@ namespace test {
                 //
                 // Test the data of the container...
                 //
-                base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> a = container->getIterator();
-                base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> b = base::ListIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
-
                 getAssertion().assertEqualsWithDereferenceIterators(
-                    *a,
-                    *b,
+                    *container->getIterator(),
+                    *base::ListIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes()),
                     "Invalid creation logic of a doubly linked list.");
+            }
+
+            /**
+             * Tests the iteration logic of a doubly linked list.
+             */
+            template <typename T>
+            void DoublyLinkedListUnitTest::testIteration(const DoublyLinkedListData<T>& data)
+            {
+                //
+                // Create the container...
+                //
+                IDoublyLinkedListPtr<T> container = createDoublyLinkedList(data.getValues());
+
+                //
+                // Test the default iterator of the container...
+                //
+                test_base::IterationTest iterationTest;
+
+                base::IIterablePtr<IDoublyLinkedListNodePtr<T>> containerIterable = container;
+                base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> containerIterator = base::ListIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
+
+                iterationTest.testForwardIterationWithDereference(
+                    containerIterable,
+                    containerIterator,
+                    "DoublyLinkedList");
             }
 
             /**

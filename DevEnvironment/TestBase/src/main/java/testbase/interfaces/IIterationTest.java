@@ -17,119 +17,119 @@ public interface IIterationTest {
     /**
      * Tests the default iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testIteration(
-        IIterable<TValue> container,
-        IIterator<TValue> containerIterator,
+    <T extends Comparable<T>> void testIteration(
+        IIterable<T> container,
+        IIterator<T> expectedIterator,
         String containerName);
 
     /**
      * Tests the default iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testIteration(
-        IIterable<TValue> container,
-        IIterator<TValue> containerIterator,
-        IBinaryComparator<TValue> comparator,
+    <T extends Comparable<T>> void testIteration(
+        IIterable<T> container,
+        IIterator<T> expectedIterator,
+        IBinaryComparator<T> comparator,
         String containerName);
 
     /**
      * Tests the forward iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testForwardIteration(
-        IIterable<TValue> container,
-        IIterator<TValue> containerIterator,
+    <T extends Comparable<T>> void testForwardIteration(
+        IIterable<T> container,
+        IIterator<T> expectedIterator,
         String containerName);
 
     /**
      * Tests the forward iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testForwardIteration(
-        IIterable<TValue> container,
-        IIterator<TValue> containerIterator,
-        IBinaryComparator<TValue> comparator,
+    <T extends Comparable<T>> void testForwardIteration(
+        IIterable<T> container,
+        IIterator<T> expectedIterator,
+        IBinaryComparator<T> comparator,
         String containerName);
 
     /**
      * Tests the reverse iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testReverseIteration(
-        IReverseIterable<TValue> container,
-        IReverseIterator<TValue> containerReverseIterator,
+    <T extends Comparable<T>> void testReverseIteration(
+        IReverseIterable<T> container,
+        IReverseIterator<T> expectedReverseIterator,
         String containerName);
 
     /**
      * Tests the reverse iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testReverseIteration(
-        IReverseIterable<TValue> container,
-        IReverseIterator<TValue> containerReverseIterator,
-        IBinaryComparator<TValue> comparator,
+    <T extends Comparable<T>> void testReverseIteration(
+        IReverseIterable<T> container,
+        IReverseIterator<T> expectedReverseIterator,
+        IBinaryComparator<T> comparator,
         String containerName);
 
     /**
      * Tests the key iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testKeyIteration(
-        IKeyIterable<TValue> container,
-        IIterator<TValue> containerIterator,
+    <T extends Comparable<T>> void testKeyIteration(
+        IKeyIterable<T> container,
+        IIterator<T> expectedIterator,
         String containerName);
 
     /**
      * Tests the key iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testKeyIteration(
-        IKeyIterable<TValue> container,
-        IIterator<TValue> containerIterator,
-        IBinaryComparator<TValue> comparator,
+    <T extends Comparable<T>> void testKeyIteration(
+        IKeyIterable<T> container,
+        IIterator<T> expectedIterator,
+        IBinaryComparator<T> comparator,
         String containerName);
 
     /**
      * Tests the key reverse iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testKeyReverseIteration(
-        IKeyReverseIterable<TValue> container,
-        IReverseIterator<TValue> containerReverseIterator,
+    <T extends Comparable<T>> void testKeyReverseIteration(
+        IKeyReverseIterable<T> container,
+        IReverseIterator<T> expectedReverseIterator,
         String containerName);
 
     /**
      * Tests the key reverse iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testKeyReverseIteration(
-        IKeyReverseIterable<TValue> container,
-        IReverseIterator<TValue> containerReverseIterator,
-        IBinaryComparator<TValue> comparator,
+    <T extends Comparable<T>> void testKeyReverseIteration(
+        IKeyReverseIterable<T> container,
+        IReverseIterator<T> expectedReverseIterator,
+        IBinaryComparator<T> comparator,
         String containerName);
 
     /**
      * Tests the value iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testValueIteration(
-        IValueIterable<TValue> container,
-        IIterator<TValue> containerIterator,
+    <T extends Comparable<T>> void testValueIteration(
+        IValueIterable<T> container,
+        IIterator<T> expectedIterator,
         String containerName);
 
     /**
      * Tests the value iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testValueIteration(
-        IValueIterable<TValue> container,
-        IIterator<TValue> containerIterator,
-        IBinaryComparator<TValue> comparator,
+    <T extends Comparable<T>> void testValueIteration(
+        IValueIterable<T> container,
+        IIterator<T> expectedIterator,
+        IBinaryComparator<T> comparator,
         String containerName);
 
     /**
      * Tests the value reverse iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testValueReverseIteration(
-        IValueReverseIterable<TValue> container,
-        IReverseIterator<TValue> containerReverseIterator,
+    <T extends Comparable<T>> void testValueReverseIteration(
+        IValueReverseIterable<T> container,
+        IReverseIterator<T> expectedReverseIterator,
         String containerName);
 
     /**
      * Tests the value reverse iteration logic of a container.
      */
-    <TValue extends Comparable<TValue>> void testValueReverseIteration(
-        IValueReverseIterable<TValue> container,
-        IReverseIterator<TValue> containerReverseIterator,
-        IBinaryComparator<TValue> comparator,
+    <T extends Comparable<T>> void testValueReverseIteration(
+        IValueReverseIterable<T> container,
+        IReverseIterator<T> expectedReverseIterator,
+        IBinaryComparator<T> comparator,
         String containerName);
 }

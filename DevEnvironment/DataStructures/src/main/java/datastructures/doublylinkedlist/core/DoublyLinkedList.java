@@ -55,7 +55,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
 
         while (currNode != null) {
             IDoublyLinkedListNode<T> nextNode = currNode.next();
-            addToBack(currNode);
+            this.addToBack(currNode);
 
             currNode = nextNode;
         }
@@ -270,7 +270,6 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
         }
 
         IDoublyLinkedListNode<T> nodeToRemove = this.tail;
-
         this.remove(nodeToRemove);
 
         return nodeToRemove;
@@ -357,15 +356,17 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
         int currIndex = 0;
 
         while (currNode != null) {
+            assert(currIndex < this.size());
+
             if (currIndex == index) {
-                break;
+                return currNode;
             }
 
             ++currIndex;
             currNode = currNode.next();
         }
 
-        return currNode;
+        return null;
     }
 
     /**

@@ -86,14 +86,14 @@ public final class LinkedListTest {
         //
         // Create the container...
         //
-        ILinkedList<T> container = this.createLinkedList(data.getCreationData());
+        ILinkedList<T> container = this.createLinkedList(data.getValues());
 
         //
         // Test the data of the container...
         //
         this.assertion.assertEqualsWithIterators(
             container.getIterator(),
-            ListIterator.make(data.getData()),
+            ListIterator.make(data.getNodes()),
             "Invalid creation logic of a linked list.");
     }
 
@@ -104,7 +104,7 @@ public final class LinkedListTest {
         //
         // Create the container...
         //
-        ILinkedList<T> container = this.createLinkedList(data.getCreationData());
+        ILinkedList<T> container = this.createLinkedList(data.getValues());
 
         //
         // Test the default iterator of the container...
@@ -112,7 +112,7 @@ public final class LinkedListTest {
         IIterationTest iterationTest = new IterationTest();
         iterationTest.testIteration(
             container,
-            ListIterator.make(data.getData()),
+            ListIterator.make(data.getNodes()),
             "LinkedList");
 
         //
@@ -120,7 +120,7 @@ public final class LinkedListTest {
         //
         iterationTest.testForwardIteration(
             container,
-            ListIterator.make(data.getData()),
+            ListIterator.make(data.getNodes()),
             "LinkedList");
 
         //

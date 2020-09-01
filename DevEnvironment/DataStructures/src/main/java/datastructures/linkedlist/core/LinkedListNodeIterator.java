@@ -20,7 +20,7 @@ public final class LinkedListNodeIterator<T extends Comparable<T>> implements II
     /**
      * The LinkedListNodeIterator constructor.
      */
-    public LinkedListNodeIterator(ILinkedListNode<T> headNode) {
+    private LinkedListNodeIterator(ILinkedListNode<T> headNode) {
         this.headNode = headNode;
 
         this.reset();

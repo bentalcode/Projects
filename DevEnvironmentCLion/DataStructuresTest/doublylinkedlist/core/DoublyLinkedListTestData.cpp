@@ -27,9 +27,9 @@ std::vector<DoublyLinkedListDataPtr<int>> DoublyLinkedListTestData::getData() co
 {
     std::vector<DoublyLinkedListDataPtr<int>> data;
 
-    data.push_back(getListData1());
-    data.push_back(getListData2());
-    data.push_back(getListData3());
+    data.push_back(getListData(0));
+    data.push_back(getListData(50));
+    data.push_back(getListData(100));
 
     return data;
 }
@@ -57,41 +57,11 @@ std::vector<std::tuple<std::string, int, std::vector<int>>> DoublyLinkedListTest
 }
 
 /**
- * Gets the data of list1.
+ * Gets the data of a list.
  */
-DoublyLinkedListDataPtr<int> DoublyLinkedListTestData::getListData1() const
+DoublyLinkedListDataPtr<int> DoublyLinkedListTestData::getListData(size_t size) const
 {
-    std::vector<int> values = createListValues(0);
-    std::vector<IDoublyLinkedListNodePtr<int>> nodes = createListNodes(values);
-
-    DoublyLinkedListDataPtr<int> data(new DoublyLinkedListData<int>(
-        values,
-        nodes));
-
-    return data;
-}
-
-/**
- * Gets the data of list2.
- */
-DoublyLinkedListDataPtr<int> DoublyLinkedListTestData::getListData2() const
-{
-    std::vector<int> values = createListValues(50);
-    std::vector<IDoublyLinkedListNodePtr<int>> nodes = createListNodes(values);
-
-    DoublyLinkedListDataPtr<int> data(new DoublyLinkedListData<int>(
-        values,
-        nodes));
-
-    return data;
-}
-
-/**
- * Gets the data of list2.
- */
-DoublyLinkedListDataPtr<int> DoublyLinkedListTestData::getListData3() const
-{
-    std::vector<int> values = createListValues(100);
+    std::vector<int> values = createListValues(size);
     std::vector<IDoublyLinkedListNodePtr<int>> nodes = createListNodes(values);
 
     DoublyLinkedListDataPtr<int> data(new DoublyLinkedListData<int>(
@@ -108,7 +78,8 @@ std::vector<int> DoublyLinkedListTestData::createListValues(size_t size) const
 {
     std::vector<int> result(size);
 
-    for (size_t i = 0; i < size; ++i) {
+    for (size_t i = 0; i < size; ++i)
+    {
         int value = i + 1;
         result[i] = value;
     }

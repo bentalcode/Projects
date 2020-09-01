@@ -48,11 +48,16 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
             comparator,
             "The comparator of a linked list.");
 
-        if (head != null) {
-            this.addToFront(head);
-        }
-
         this.comparator = comparator;
+
+        ILinkedListNode<T> currNode = head;
+
+        while (currNode != null) {
+            ILinkedListNode<T> nextNode = currNode.next();
+            this.addToBack(currNode);
+
+            currNode = nextNode;
+        }
     }
 
     /**
@@ -130,7 +135,6 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
         }
         else {
             this.linkedNodes(node, this.head);
-
             this.head = node;
         }
 
@@ -156,7 +160,6 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
         }
         else {
             this.linkedNodes(this.tail, node);
-
             this.tail = node;
         }
 
@@ -184,9 +187,11 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
         ILinkedListNode<T> nextNode = currNode.next();
 
         this.linkedNodes(currNode, nodeToAdd);
-        this.linkedNodes(nodeToAdd, nextNode);
 
-        if (this.tail == currNode) {
+        if (nextNode != null) {
+            this.linkedNodes(nodeToAdd, nextNode);
+        }
+        else {
             this.tail = nodeToAdd;
         }
 
@@ -205,11 +210,11 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
         }
 
         ILinkedListNode<T> nodeToRemove = this.head;
-        ILinkedListNode<T> nextNode = nodeToRemove.next();
+        ILinkedListNode<T> nextNode = this.head.next();
 
         this.head = nextNode;
 
-        if (this.head == null) {
+        if (nextNode == null) {
             this.tail = null;
         }
 
@@ -234,6 +239,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
         }
 
         ILinkedListNode<T> nextNode = nodeToRemove.next();
+
         this.linkedNodes(currNode, nextNode);
 
         if (nextNode == null) {
@@ -258,7 +264,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
      */
     @Override
     public IIterator<ILinkedListNode<T>> getIterator() {
-        return new LinkedListNodeIterator<>(this.head);
+        return LinkedListNodeIterator.make(this.head);
     }
 
     /**
@@ -266,7 +272,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
      */
     @Override
     public IIterator<T> getValueIterator() {
-        return new LinkedListNodeValueIterator<>(this.getIterator());
+        return LinkedListNodeValueIterator.make(this.getIterator());
     }
 
     /**
@@ -283,6 +289,8 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
         int currIndex = 0;
 
         while (currNode != null) {
+            assert(currIndex < this.size());
+
             if (currIndex == index) {
                 return currNode;
             }
@@ -291,7 +299,7 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
             currNode = currNode.next();
         }
 
-        return currNode;
+        return null;
     }
 
     /**
@@ -442,18 +450,18 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
     }
 
     /**
+     * Node added.
+     */
+    private void nodeAdded() {
+        ++this.size;
+    }
+
+    /**
      * Node removed.
      */
     private void nodeRemoved(ILinkedListNode<T> node) {
         node.unlinked();
 
         --this.size;
-    }
-
-    /**
-     * Node added.
-     */
-    private void nodeAdded() {
-        ++this.size;
     }
 }

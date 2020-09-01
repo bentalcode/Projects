@@ -1,9 +1,7 @@
 package datastructures.doublylinkedlist.core;
 
 import base.core.ArrayLists;
-import base.core.RandomGenerator;
 import base.core.Triple;
-import base.interfaces.IRandomGenerator;
 import base.interfaces.ITriple;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
@@ -15,12 +13,6 @@ import java.util.List;
  * The DoublyLinkedListTestData class implements data of tests of a doubly linked list.
  */
 public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData {
-    private static int randomCollectionsSize = 10;
-    private static int randomMinCollectionSize = 100;
-    private static int randomMaxCollectionSize = 1000;
-
-    private final IRandomGenerator randomGenerator = new RandomGenerator();
-
     /**
      * The DoublyLinkedListTestData constructor.
      */
@@ -34,13 +26,9 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     public List<IDoublyLinkedListData<Integer>> getData() {
         List<IDoublyLinkedListData<Integer>> data = new ArrayList<>();
 
-        data.add(this.getListData1());
-        data.add(this.getListData2());
-        data.add(this.getListData3());
-
-        for (int i = 0; i < randomCollectionsSize; ++i) {
-            data.add(this.getRandomListData(randomMinCollectionSize, randomMaxCollectionSize));
-        }
+        data.add(this.getListData(0));
+        data.add(this.getListData(50));
+        data.add(this.getListData(100));
 
         return data;
     }
@@ -68,46 +56,9 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     }
 
     /**
-     * Gets the data of list1.
+     * Gets the data of list.
      */
-    private IDoublyLinkedListData<Integer> getListData1() {
-        List<Integer> values = this.createListValues(0);
-        List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
-
-        return new DoublyLinkedListData<>(
-            values,
-            nodes);
-    }
-
-    /**
-     * Gets the data of list2.
-     */
-    private IDoublyLinkedListData<Integer> getListData2() {
-        List<Integer> values = this.createListValues(50);
-        List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
-
-        return new DoublyLinkedListData<>(
-            values,
-            nodes);
-    }
-
-    /**
-     * Gets the data of list3.
-     */
-    private IDoublyLinkedListData<Integer> getListData3() {
-        List<Integer> values = this.createListValues(100);
-        List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
-
-        return new DoublyLinkedListData<>(
-            values,
-            nodes);
-    }
-
-    /**
-     * Gets the random data of list.
-     */
-    private IDoublyLinkedListData<Integer> getRandomListData(int fromSize, int toSize) {
-        int size = this.randomGenerator.nextInteger(fromSize, toSize);
+    private IDoublyLinkedListData<Integer> getListData(int size) {
         List<Integer> values = this.createListValues(size);
         List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
 
