@@ -17,12 +17,12 @@ namespace datastructures {
             /**
              * Creates a new iterator of values of a doubly linked list.
              */
-            static base::IIteratorPtr<T> make(base::IIterator<ILinkedListNodePtr<T>>& iterator);
+            static base::IIteratorPtr<T> make(base::IIteratorPtr<ILinkedListNodePtr<T>> iterator);
 
             /**
              * The LinkedListNodeValueIterator constructor.
              */
-            explicit LinkedListNodeValueIterator(base::IIterator<ILinkedListNodePtr<T>>& iterator);
+            explicit LinkedListNodeValueIterator(base::IIteratorPtr<ILinkedListNodePtr<T>> iterator);
 
             /**
              * The LinkedListNodeValueIterator destructor.
@@ -57,14 +57,14 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIterator<ILinkedListNodePtr<T>>& m_iterator;
+            base::IIteratorPtr<ILinkedListNodePtr<T>> m_iterator;
         };
 
         /**
          * Creates a new iterator of values of a doubly linked list.
          */
         template <typename T>
-        base::IIteratorPtr<T> LinkedListNodeValueIterator<T>::make(base::IIterator<ILinkedListNodePtr<T>>& iterator)
+        base::IIteratorPtr<T> LinkedListNodeValueIterator<T>::make(base::IIteratorPtr<ILinkedListNodePtr<T>> iterator)
         {
             return std::make_shared<LinkedListNodeValueIterator<T>>(iterator);
         }
@@ -73,7 +73,7 @@ namespace datastructures {
          * The LinkedListNodeValueIterator constructor.
          */
         template <typename T>
-        LinkedListNodeValueIterator<T>::LinkedListNodeValueIterator(base::IIterator<ILinkedListNodePtr<T>>& iterator) :
+        LinkedListNodeValueIterator<T>::LinkedListNodeValueIterator(base::IIteratorPtr<ILinkedListNodePtr<T>> iterator) :
             m_iterator(iterator)
         {
             reset();
@@ -93,7 +93,7 @@ namespace datastructures {
         template <typename T>
         bool LinkedListNodeValueIterator<T>::hasNext() const
         {
-            return m_iterator.hasNext();
+            return m_iterator->hasNext();
         }
 
         /**
@@ -104,7 +104,7 @@ namespace datastructures {
         {
             assert(hasNext());
 
-            return m_iterator.next()->getValue();
+            return m_iterator->next()->getValue();
         }
 
         /**
@@ -113,7 +113,7 @@ namespace datastructures {
         template <typename T>
         void LinkedListNodeValueIterator<T>::reset()
         {
-            m_iterator.reset();
+            m_iterator->reset();
         }
     }
 }

@@ -108,7 +108,7 @@ void LinkedListUnitTest::linkedListIterationTest()
 
     for (LinkedListDataPtr<int> listData : data)
     {
-        //testIteration(*listData);
+        testIteration(*listData);
     }
 }
 
@@ -117,4 +117,10 @@ void LinkedListUnitTest::linkedListIterationTest()
  */
 void LinkedListUnitTest::linkedListUpdationTest()
 {
+    LinkedList<int> list;
+
+    std::vector<std::tuple<std::string, int, std::vector<int>>> data =
+        m_testData.getLinkedListData()->getUpdationData();
+
+    testUpdation(list, data);
 }

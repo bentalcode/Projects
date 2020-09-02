@@ -126,7 +126,6 @@ namespace test {
             template <typename T>
             void DoublyLinkedListUnitTest::testIteration(const DoublyLinkedListData<T>& data)
             {
-
                 //
                 // Create the container...
                 //

@@ -6,6 +6,9 @@
 #include "TestData.h"
 #include "LinkedListData.h"
 #include "ListIterator.h"
+#include "IterationTest.h"
+#include "StringEquality.h"
+#include "UnitTestingException.h"
 
 using namespace datastructures::linkedlist;
 
@@ -56,6 +59,38 @@ namespace test {
                 template <typename T>
                 void testCreation(const LinkedListData<T>& data);
 
+                /**
+                 * Tests the iteration logic of a linked list.
+                 */
+                template <typename T>
+                void testIteration(const LinkedListData<T>& data);
+
+                /**
+                 * Tests the updation logic of a linked list.
+                 */
+                template <typename T>
+                void testUpdation(
+                    LinkedList<T>& list,
+                    const std::vector<std::tuple<std::string, int, std::vector<int>>>& data);
+
+                /**
+                 * Tests the updation logic of a linked list.
+                 */
+                template <typename T>
+                void testUpdation(
+                    LinkedList<T>& list,
+                    const std::string& operation,
+                    const T& item,
+                    const std::vector<T>& expectedContent);
+
+                /**
+                 * Updates the list.
+                 */
+                template <typename T>
+                void updateList(
+                    LinkedList<T>& list,
+                    const std::string& operation,
+                    const T& item);
 
                 /**
                  * Creates a linked list.
@@ -84,6 +119,112 @@ namespace test {
                     *container->getIterator(),
                     *base::ListIterator<ILinkedListNodePtr<T>>::make(data.getNodes()),
                     "Invalid creation logic of a linked list.");
+            }
+
+            /**
+             * Tests the iteration logic of a linked list.
+             */
+            template <typename T>
+            void LinkedListUnitTest::testIteration(const LinkedListData<T>& data)
+            {
+                //
+                // Create the container...
+                //
+                ILinkedListPtr<T> container = createLinkedList(data.getValues());
+
+                //
+                // Test the forward iterator of the container...
+                //
+                test_base::IterationTest iterationTest;
+
+                base::IIterablePtr<ILinkedListNodePtr<T>> containerIterable = container;
+                base::IIteratorPtr<ILinkedListNodePtr<T>> expectedIterator =
+                    base::ListIterator<ILinkedListNodePtr<T>>::make(data.getNodes());
+
+                iterationTest.testForwardIterationWithDereference(
+                    containerIterable,
+                    expectedIterator,
+                    "LinkedList");
+
+                //
+                // Test the value iterator of the container...
+                //
+                base::IValueIterablePtr<T> valueIterable = container;
+                base::IIteratorPtr<T> expectedValueIterator = base::ListIterator<T>::make(data.getValues());
+
+                iterationTest.testValueIteration(
+                    valueIterable,
+                    expectedValueIterator,
+                    "LinkedList");
+            }
+
+            /**
+             * Tests the updation logic of a linked list.
+             */
+            template <typename T>
+            void LinkedListUnitTest::testUpdation(
+                LinkedList<T>& list,
+                const std::vector<std::tuple<std::string, int, std::vector<int>>>& data)
+            {
+                for (const std::tuple<std::string, int, std::vector<int>>& entry : data)
+                {
+                    testUpdation(
+                        list,
+                        std::get<0>(entry),
+                        std::get<1>(entry),
+                        std::get<2>(entry));
+                }
+            }
+
+            /**
+             * Tests the updation logic of a linked list.
+             */
+            template <typename T>
+            void LinkedListUnitTest::testUpdation(
+                LinkedList<T>& list,
+                const std::string& operation,
+                const T& item,
+                const std::vector<T>& expectedContent)
+            {
+                updateList(list, operation, item);
+
+                getAssertion().assertEqualsWithIterators(
+                    *list.getValueIterator(),
+                    *base::ListIterator<T>::make(expectedContent),
+                    "Invalid updating logic of a linked list.");
+            }
+
+            /**
+             * Updates the list.
+             */
+            template <typename T>
+            void LinkedListUnitTest::updateList(
+                LinkedList<T>& list,
+                const std::string& operation,
+                const T& item)
+            {
+                if (base::StringEquality::equalsIgnoreCase(operation, "addToFront"))
+                {
+                    list.addToFront(LinkedListNode<T>::make(item));
+                }
+                else if (base::StringEquality::equalsIgnoreCase(operation, "addToBack"))
+                {
+                    list.addToBack(LinkedListNode<T>::make(item));
+                }
+                else if (base::StringEquality::equalsIgnoreCase(operation, "removeFromFront"))
+                {
+                    list.removeFromFront();
+                }
+                else if (base::StringEquality::equalsIgnoreCase(operation, "removeAfter"))
+                {
+                    ILinkedListNodePtr<T> currNode = list.getNode(0);
+                    list.removeAfter(currNode);
+                }
+                else
+                {
+                    std::string errorMessage = "The operation: " + operation + " is not supported.";
+                    throw unit_testing::UnitTestingException(errorMessage);
+                }
             }
 
             /**

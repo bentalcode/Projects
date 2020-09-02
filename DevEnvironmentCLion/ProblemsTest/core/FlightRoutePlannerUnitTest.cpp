@@ -53,7 +53,7 @@ void FlightRoutePlannerUnitTest::registerTests(unit_testing::ITestRegistration& 
  */
 void FlightRoutePlannerUnitTest::findShortestRouteTest()
 {
-    std::string source1 = "SEA"
+    std::string source1 = "SEA";
     std::string destination1 = "DEN";
     unsigned int numberOfStops1 = 0;
     bool expectedStatus1 = true;

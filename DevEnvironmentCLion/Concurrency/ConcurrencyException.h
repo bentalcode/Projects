@@ -1,47 +1,29 @@
 #ifndef CONCURRENCY_EXCEPTION_H_3e965933_2909_43a0_b74f_9e7f0c489243
 #define CONCURRENCY_EXCEPTION_H_3e965933_2909_43a0_b74f_9e7f0c489243
 
-#include "PreCompiled.h"
-#include <exception>
+#include "BaseException.h"
 
-/**
- * The ConcurrencyException captured errors in the concurrency module.
- */
-class ConcurrencyException : public std::runtime_error
-{
-public:
-    explicit ConcurrencyException(const std::string& errorMessage) :
-        std::runtime_error(errorMessage),
-        m_innerExceptionPtr(nullptr)
-    {
-    }
-
-    explicit ConcurrencyException(
-        const std::string& errorMessage,
-        std::exception& innerException) :
-        std::runtime_error(errorMessage),
-        m_innerExceptionPtr(std::make_exception_ptr(innerException))
-    {
-    }
+namespace concurrency {
 
     /**
-     * Gets the error message of an exception.
+     * The ConcurrencyException captured errors in the concurrency module.
      */
-    inline std::string getErrorMessage()
+    class ConcurrencyException : public base::BaseException
     {
-        return this->what();
-    }
+    public:
+        explicit ConcurrencyException(const std::string& errorMessage) :
+            base::BaseException(errorMessage)
+        {
+        }
 
-    /**
-     * Gets the inner exception.
-     */
-    inline std::exception_ptr getInnerException()
-    {
-        return m_innerExceptionPtr;
-    }
+        explicit ConcurrencyException(
+            const std::string& errorMessage,
+            std::exception& innerException) :
+            base::BaseException(errorMessage, innerException)
+        {
+        }
+    };
 
-private:
-    std::exception_ptr m_innerExceptionPtr;
-};
+}
 
 #endif // CONCURRENCY_EXCEPTION_H_3e965933_2909_43a0_b74f_9e7f0c489243

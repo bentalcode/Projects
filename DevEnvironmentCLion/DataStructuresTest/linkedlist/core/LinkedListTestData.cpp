@@ -53,7 +53,7 @@ std::vector<std::tuple<std::string, int, std::vector<int>>> LinkedListTestData::
     data.push_back(std::make_tuple<std::string, int, std::vector<int>>("removeAfter", 0, {1, 3, 4, 5}));
     data.push_back(std::make_tuple<std::string, int, std::vector<int>>("removeAfter", 0, {1, 4, 5}));
     data.push_back(std::make_tuple<std::string, int, std::vector<int>>("removeAfter", 0, {1, 5}));
-    data.push_back(std::make_tuple<std::string, int, std::vector<int>>("removeAfter", 0, {5}));
+    data.push_back(std::make_tuple<std::string, int, std::vector<int>>("removeAfter", 0, {1}));
     data.push_back(std::make_tuple<std::string, int, std::vector<int>>("removeFromFront", 0, {}));
 
     return data;

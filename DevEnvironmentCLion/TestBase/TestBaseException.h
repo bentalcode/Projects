@@ -1,46 +1,28 @@
 #ifndef TEST_BASE_EXCEPTION_H_4cc67362_8400_476c_8436_8e5b96732e0d
 #define TEST_BASE_EXCEPTION_H_4cc67362_8400_476c_8436_8e5b96732e0d
 
-#include <exception>
+#include "BaseException.h"
 
-/**
- * The TestBaseException captured errors in the test module.
- */
-class TestBaseException : public std::runtime_error
-{
-public:
-    explicit TestBaseException(const std::string& errorMessage) :
-        std::runtime_error(errorMessage),
-        m_innerExceptionPtr(nullptr)
-    {
-    }
-
-    explicit TestBaseException(
-        const std::string& errorMessage,
-        std::exception& innerException) :
-        std::runtime_error(errorMessage),
-        m_innerExceptionPtr(std::make_exception_ptr(innerException))
-    {
-    }
+namespace test_base {
 
     /**
-     * Gets the error message of an exception.
+     * The TestBaseException captured errors in the test module.
      */
-    inline std::string getErrorMessage()
+    class TestBaseException : public base::BaseException
     {
-        return this->what();
-    }
+    public:
+        explicit TestBaseException(const std::string& errorMessage) :
+            base::BaseException(errorMessage)
+        {
+        }
 
-    /**
-     * Gets the inner exception.
-     */
-    inline std::exception_ptr getInnerException()
-    {
-        return m_innerExceptionPtr;
-    }
-
-private:
-    std::exception_ptr m_innerExceptionPtr;
-};
+        TestBaseException(
+            const std::string& errorMessage,
+            std::exception& innerException) :
+            base::BaseException(errorMessage, innerException)
+        {
+        }
+    };
+}
 
 #endif // TEST_BASE_EXCEPTION_H_4cc67362_8400_476c_8436_8e5b96732e0d

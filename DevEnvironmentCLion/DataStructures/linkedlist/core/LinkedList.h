@@ -444,7 +444,7 @@ namespace datastructures {
         template <typename T>
         base::IIteratorPtr<T> LinkedList<T>::getValueIterator() const
         {
-            return LinkedListNodeValueIterator<T>::make(*getIterator());
+            return LinkedListNodeValueIterator<T>::make(getIterator());
         }
 
         /**
