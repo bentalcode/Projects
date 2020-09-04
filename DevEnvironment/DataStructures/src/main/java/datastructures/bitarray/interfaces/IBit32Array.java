@@ -15,7 +15,7 @@ public interface IBit32Array extends
     IReverseIterable<Boolean>,
     IUnaryComparator<IBit32Array> {
 
-    int SizeInBits = IPrimitiveSize.InBits.IntegerSize;
+    int sizeInBits = IPrimitiveSize.InBits.IntegerSize;
 
     /**
      * Turns on a bit at the specified index.
@@ -53,14 +53,34 @@ public interface IBit32Array extends
     void flip(int index);
 
     /**
-     * Returns the number of bits set to true in this bit array.
+     * Returns the number of bits set to true.
      */
     int cardinality();
+
+    /**
+     * Returns the number of bits set to true in the specified range.
+     */
+    int cardinality(int startIndex, int endIndex);
 
     /**
      * Sets all the bits to false.
      */
     void clear();
+
+    /**
+     * Sets all the bits in the specified range to false.
+     */
+    void clear(int startIndex, int endIndex);
+
+    /**
+     * Sets all the bits to true.
+     */
+    void enable();
+
+    /**
+     * Sets all the bits in the specified range to true.
+     */
+    void enable(int startIndex, int endIndex);
 
     /**
      * Performs a logical AND.

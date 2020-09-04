@@ -6,6 +6,7 @@ import base.core.Bits;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
+import base.core.Dimensions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
@@ -22,7 +23,7 @@ import base.core.Collections;
  * The BitArray class uses internally for each unit the Bit32Array class.
  */
 public final class BitArray implements IBitArray {
-    private final static int UnitSizeInBits = IBit32Array.SizeInBits;
+    private static final int unitSizeInBits = IBit32Array.sizeInBits;
 
     private final IBit32Array[] data;
     private final int size;
@@ -173,15 +174,31 @@ public final class BitArray implements IBitArray {
     }
 
     /**
-     * Returns the number of bits set to true in this bit array.
+     * Returns the number of bits set to true.
      */
     @Override
     public int cardinality() {
         int numberOfBitsOn = 0;
 
-        for (int unitIndex = 0; unitIndex < this.data.length; ++unitIndex) {
+        int numberOfUnits = this.numberOfUnits();
+        int unitIndex = 0;
+
+        //
+        // Operate on the unit level from unit {0...N-1}...
+        //
+        while (unitIndex < numberOfUnits - 1) {
             numberOfBitsOn += this.data[unitIndex].cardinality();
+            
+            ++unitIndex;
         }
+
+        //
+        // Operate on the last unit either as a whole or bit by bit...
+        //
+        int lastUnitBitStartIndex = 0;
+        int lastUnitBitEndIndex = this.bitIndexOf(this.size - 1);
+        
+        numberOfBitsOn += this.data[unitIndex].cardinality(lastUnitBitStartIndex, lastUnitBitEndIndex);
 
         return numberOfBitsOn;
     }
@@ -191,8 +208,154 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public void clear() {
-        for (int unitIndex = 0; unitIndex < this.data.length; ++unitIndex) {
+        int numberOfUnits = this.numberOfUnits();
+
+        //
+        // Operate on the unit level from unit {0...N-1}...
+        //
+        int unitIndex = 0;
+
+        while (unitIndex < numberOfUnits - 1) {
             this.data[unitIndex].clear();
+            ++unitIndex;
+        }
+
+        //
+        // Operate on the last unit either as a whole or bit by bit...
+        //
+        int lastUnitBitStartIndex = 0;
+        int lastUnitBitEndIndex = this.bitIndexOf(this.size() - 1);
+
+        this.data[unitIndex].clear(lastUnitBitStartIndex, lastUnitBitEndIndex);
+    }
+
+    /**
+     * Sets all the bits at the specified range to false.
+     */
+    @Override
+    public void clear(int startIndex, int endIndex) {
+        this.validateIndex(startIndex);
+        this.validateIndex(endIndex);
+
+        assert(startIndex <= endIndex);
+
+        if (startIndex > endIndex) {
+            return;
+        }
+
+        int startUnitIndex = this.unitIndexOf(startIndex);
+        int startBitIndex = this.bitIndexOf(startIndex);
+
+        int endUnitIndex = this.unitIndexOf(endIndex);
+        int endBitIndex = this.bitIndexOf(endIndex);
+
+        int numberOfUnits = Dimensions.length(startUnitIndex, endUnitIndex);
+
+        if (numberOfUnits == 0) {
+            return;
+        }
+
+        if (numberOfUnits == 1) {
+            //
+            // Update the single unit either as a whole or bit by bit...
+            //
+            this.data[startUnitIndex].clear(startBitIndex, endBitIndex);
+        }
+        else {
+            //
+            // Update the start unit either as a whole or bit by bit...
+            //
+            this.data[startUnitIndex].clear(startBitIndex, BitArray.unitSizeInBits - 1);
+
+            //
+            // Update the middle units as a whole...
+            //
+            for (int unitIndex = startUnitIndex + 1; unitIndex <= endUnitIndex - 1; ++unitIndex) {
+                this.data[unitIndex].clear();
+            }
+
+            //
+            // Update the end unit either as a whole or bit by bit...
+            //
+            this.data[endUnitIndex].clear(0, endBitIndex);
+        }
+    }
+
+    /**
+     * Sets all the bits to true.
+     */
+    @Override
+    public void enable() {
+        int numberOfUnits = this.numberOfUnits();
+
+        //
+        // Operate on the unit level from unit {0...N-1}...
+        //
+        int unitIndex = 0;
+
+        while (unitIndex < numberOfUnits - 1) {
+            this.data[unitIndex].enable();
+            ++unitIndex;
+        }
+
+        //
+        // Operate on the last unit either as a whole or bit by bit...
+        //
+        int lastUnitBitStartIndex = 0;
+        int lastUnitBitEndIndex = this.bitIndexOf(this.size() - 1);
+
+        this.data[unitIndex].enable(lastUnitBitStartIndex, lastUnitBitEndIndex);
+    }
+
+    /**
+     * Sets all the bits at the specified range to false.
+     */
+    @Override
+    public void enable(int startIndex, int endIndex) {
+        this.validateIndex(startIndex);
+        this.validateIndex(endIndex);
+
+        assert(startIndex <= endIndex);
+
+        if (startIndex > endIndex) {
+            return;
+        }
+
+        int startUnitIndex = this.unitIndexOf(startIndex);
+        int startBitIndex = this.bitIndexOf(startIndex);
+
+        int endUnitIndex = this.unitIndexOf(endIndex);
+        int endBitIndex = this.bitIndexOf(endIndex);
+
+        int numberOfUnits = Dimensions.length(startUnitIndex, endUnitIndex);
+
+        if (numberOfUnits == 0) {
+            return;
+        }
+
+        if (numberOfUnits == 1) {
+            //
+            // Update the single unit either as a whole or bit by bit...
+            //
+            this.data[startUnitIndex].enable(startBitIndex, endBitIndex);
+        }
+        else {
+            //
+            // Update the start unit either as a whole or bit by bit...
+            //
+            this.data[startUnitIndex].enable(startBitIndex, BitArray.unitSizeInBits - 1);
+
+            //
+            // Update the middle units as a whole...
+            //
+            for (int unitIndex = startUnitIndex + 1; unitIndex <= endUnitIndex - 1; ++unitIndex) {
+                this.data[unitIndex].enable();
+            }
+
+            //
+            // Update the end unit either as a whole or bit by bit...
+            //
+            this.data[endUnitIndex].enable(0, endBitIndex);
         }
     }
 
@@ -279,7 +442,7 @@ public final class BitArray implements IBitArray {
             other,
             "The other bit array.");
 
-        int lhsSize = this.size;
+        int lhsSize = this.size();
         int rhsSize = other.size();
 
         IBit32Array[] lhsData = this.data;
@@ -288,30 +451,31 @@ public final class BitArray implements IBitArray {
         int lhsNumOfUnits = lhsData.length;
         int rhsNumOfUnits = rhsData.length;
 
-        int size = Math.min(lhsSize, rhsSize);
-        int numOfUnits = Math.min(lhsNumOfUnits, rhsNumOfUnits);
+        int numberOfBits = Math.min(lhsSize, rhsSize);
+        int numberOfUnits = Math.min(lhsNumOfUnits, rhsNumOfUnits);
 
         //
         // Operate on the unit level from unit {0...N-1}...
         //
-        int currUnitIndex = 0;
+        int unitIndex = 0;
 
-        while (currUnitIndex < numOfUnits - 1) {
-            lhsData[currUnitIndex].operate(bitOperator, rhsData[currUnitIndex]);
-            ++currUnitIndex;
+        while (unitIndex < numberOfUnits - 1) {
+            lhsData[unitIndex].operate(bitOperator, rhsData[unitIndex]);
+            ++unitIndex;
         }
 
         //
         // Operate on the last unit either as a whole or bit by bit...
         //
-        int lastBitIndex = this.bitIndexOf(size - 1);
+        int lastUnitBitStartIndex = 0;
+        int lastUnitBitEndIndex = this.bitIndexOf(numberOfBits - 1);
 
-        if (lastBitIndex == BitArray.UnitSizeInBits -1) {
-            lhsData[currUnitIndex].operate(bitOperator, rhsData[currUnitIndex]);
+        if (lastUnitBitEndIndex == BitArray.unitSizeInBits -1) {
+            lhsData[unitIndex].operate(bitOperator, rhsData[unitIndex]);
         }
         else {
-            for (int bitIndex = 0; bitIndex <= lastBitIndex; ++bitIndex) {
-                lhsData[currUnitIndex].operate(bitOperator, bitIndex, rhsData[currUnitIndex].get(bitIndex));
+            for (int bitIndex = lastUnitBitStartIndex; bitIndex <= lastUnitBitEndIndex; ++bitIndex) {
+                lhsData[unitIndex].operate(bitOperator, bitIndex, rhsData[unitIndex].get(bitIndex));
             }
         }
     }
@@ -325,29 +489,30 @@ public final class BitArray implements IBitArray {
             bitOperator,
             "The bit operator.");
 
-        int numOfUnits = this.data.length;
+        int numberOfUnits = this.numberOfUnits();
 
         //
         // Operate on the unit level from unit {0...N-1}...
         //
-        int currUnitIndex = 0;
+        int unitIndex = 0;
 
-        while (currUnitIndex < numOfUnits - 1) {
-            this.data[currUnitIndex].not();
-            ++currUnitIndex;
+        while (unitIndex < numberOfUnits - 1) {
+            this.data[unitIndex].operate(bitOperator);
+            ++unitIndex;
         }
 
         //
         // Operate on the last unit either as a whole or bit by bit...
         //
-        int lastBitIndex = this.bitIndexOf(this.size - 1);
+        int lastUnitBitStartIndex = 0;
+        int lastUnitBitEndIndex = this.bitIndexOf(this.size() - 1);
 
-        if (lastBitIndex == BitArray.UnitSizeInBits -1) {
-            this.data[currUnitIndex].not();
+        if (lastUnitBitEndIndex == BitArray.unitSizeInBits -1) {
+            this.data[unitIndex].operate(bitOperator);
         }
         else {
-            for (int bitIndex = 0; bitIndex <= lastBitIndex; ++bitIndex) {
-                this.data[currUnitIndex].operate(bitOperator, bitIndex);
+            for (int bitIndex = lastUnitBitStartIndex; bitIndex <= lastUnitBitEndIndex; ++bitIndex) {
+                this.data[unitIndex].operate(bitOperator, bitIndex);
             }
         }
     }
@@ -500,6 +665,12 @@ public final class BitArray implements IBitArray {
      * Creates a bit array.
      */
     private IBit32Array[] createBitArray(int numberOfBits) {
+        assert(numberOfBits > 0);
+
+        if (numberOfBits <= 0) {
+            return null;
+        }
+
         int numberOfUnits = this.numberOfUnits(numberOfBits);
         IBit32Array[] data = new IBit32Array[numberOfUnits];
 
@@ -524,22 +695,26 @@ public final class BitArray implements IBitArray {
     }
 
     /**
+     * Gets the number of units.
+     */
+    private int numberOfUnits() {
+        return this.data.length;
+    }
+
+    /**
      * Calculates the number of units.
      */
     private int numberOfUnits(int numberOfBits) {
-        if (numberOfBits % BitArray.UnitSizeInBits == 0) {
-            return numberOfBits / BitArray.UnitSizeInBits;
-        }
-        else {
-            return (numberOfBits / BitArray.UnitSizeInBits) + 1;
-        }
+        return (numberOfBits % BitArray.unitSizeInBits) == 0 ?
+            (numberOfBits / BitArray.unitSizeInBits) :
+            (numberOfBits / BitArray.unitSizeInBits) + 1;
     }
 
     /**
      * Calculates the index of a unit.
      */
     private int unitIndexOf(int index) {
-        int unitIndex = index / BitArray.UnitSizeInBits;
+        int unitIndex = index / BitArray.unitSizeInBits;
         return unitIndex;
     }
 
@@ -547,7 +722,7 @@ public final class BitArray implements IBitArray {
      * Calculates the index of a bit in a unit.
      */
     private int bitIndexOf(int index) {
-        int bitIndex = index % BitArray.UnitSizeInBits;
+        int bitIndex = index % BitArray.unitSizeInBits;
         return bitIndex;
     }
 

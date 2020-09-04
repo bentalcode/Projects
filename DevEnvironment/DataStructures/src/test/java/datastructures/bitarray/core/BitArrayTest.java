@@ -1,5 +1,6 @@
 package datastructures.bitarray.core;
 
+import base.core.Dimensions;
 import base.core.ListIterator;
 import base.core.ListReverseIterator;
 import datastructures.bitarray.interfaces.IBitArray;
@@ -68,6 +69,36 @@ public final class BitArrayTest {
     public void bitArrayIterationTest() {
         for (IBitArrayData data : this.testData.getBitArrayData().getData()) {
             this.testIteration(data);
+        }
+    }
+
+    /**
+     * Tests the cardinality logic of a bit array.
+     */
+    @Test
+    public void bitArrayCardinalityTest() {
+        for (IBitArrayData data : this.testData.getBitArrayData().getData()) {
+            this.testCardinality(data);
+        }
+    }
+
+    /**
+     * Tests the clearing logic of a bit array.
+     */
+    @Test
+    public void bitArrayClearingTest() {
+        for (IBitArrayData data : this.testData.getBitArrayData().getData()) {
+            this.testClearing(data);
+        }
+    }
+
+    /**
+     * Tests the enabling logic of a bit array.
+     */
+    @Test
+    public void bitArrayEnablingTest() {
+        for (IBitArrayData data : this.testData.getBitArrayData().getData()) {
+            this.testEnabling(data);
         }
     }
 
@@ -148,6 +179,92 @@ public final class BitArrayTest {
             container,
             ListReverseIterator.make(data.getData()),
             "BitArray");
+    }
+
+    /**
+     * Tests the clearing logic of a bit array.
+     */
+    private void testClearing(IBitArrayData data) {
+        IBitArray bitArray = this.createBitArray(data);
+
+        bitArray.clear();
+        int numberOfOnes = bitArray.cardinality();
+        int expectedNumberOfOnes = 0;
+
+        this.assertion.assertTrue(
+            numberOfOnes == expectedNumberOfOnes,
+            "Incorrect logic of clearing a bit array, the number of ones should be: " +
+            expectedNumberOfOnes);
+
+        for (int startIndex = 0; startIndex < bitArray.size(); ++startIndex) {
+            for (int endIndex = startIndex; endIndex < bitArray.size(); ++endIndex) {
+
+                bitArray.enable();
+                bitArray.clear(startIndex, endIndex);
+
+                numberOfOnes = bitArray.cardinality();
+                expectedNumberOfOnes = bitArray.size() - Dimensions.length(startIndex, endIndex);
+
+                this.assertion.assertTrue(
+                    numberOfOnes == expectedNumberOfOnes,
+                    "Incorrect logic of clearing a bit array, the number of ones should be: " +
+                    expectedNumberOfOnes);
+            }
+        }
+    }
+
+    /**
+     * Tests the enabling logic of a bit array.
+     */
+    private void testEnabling(IBitArrayData data) {
+        IBitArray bitArray = this.createBitArray(data);
+
+        bitArray.enable();
+        int numberOfOnes = bitArray.cardinality();
+        int expectedNumberOfOnes = bitArray.size();
+
+        this.assertion.assertTrue(
+            numberOfOnes == expectedNumberOfOnes,
+            "Incorrect logic of enabling a bit array, the number of ones should be: " +
+            expectedNumberOfOnes);
+
+        for (int startIndex = 0; startIndex < bitArray.size(); ++startIndex) {
+            for (int endIndex = startIndex; endIndex < bitArray.size(); ++endIndex) {
+
+                bitArray.clear();
+                bitArray.enable(startIndex, endIndex);
+
+                numberOfOnes = bitArray.cardinality();
+                expectedNumberOfOnes = Dimensions.length(startIndex, endIndex);
+
+                this.assertion.assertTrue(
+                    numberOfOnes == expectedNumberOfOnes,
+                    "Incorrect logic of enabling a bit array, the number of ones should be: " +
+                    expectedNumberOfOnes);
+            }
+        }
+    }
+
+    /**
+     * Tests the cardinality logic of a bit array.
+     */
+    private void testCardinality(IBitArrayData data) {
+        IBitArray bitArray = this.createBitArray(data);
+
+        int result = bitArray.cardinality();
+
+        int expectedResult = 0;
+
+        for (int index = 0; index < bitArray.size(); ++index) {
+            if (bitArray.isOn(index)) {
+                ++expectedResult;
+            }
+        }
+
+        this.assertion.assertEquals(
+            result,
+            expectedResult,
+            "Incorrect logic of a cardinality logic of a bit array");
     }
 
     /**

@@ -6,11 +6,11 @@ import base.core.Bits;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
+import base.core.Dimensions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
-import base.interfaces.IPrimitiveSize;
 import base.interfaces.IReverseIterator;
 import datastructures.bitarray.interfaces.BinaryBitOperator;
 import datastructures.bitarray.interfaces.IBit32Array;
@@ -21,9 +21,9 @@ import base.core.Collections;
  * The Bit32Array class implements a bit array of size 32.
  */
 public final class Bit32Array implements IBit32Array {
-    private static int Size = IPrimitiveSize.InBits.IntegerSize;
+    private static final int allBitsMask = 0xFFFFFFFF;
 
-    private int data;
+    private int bits;
     private final IBinaryComparator<IBit32Array> comparator;
 
     /**
@@ -45,9 +45,9 @@ public final class Bit32Array implements IBit32Array {
     /**
      * The Bit32Array constructor.
      */
-    public Bit32Array(int data) {
+    public Bit32Array(int bits) {
         this(
-            data,
+            bits,
             Bit32Array.defaultComparator());
     }
 
@@ -64,14 +64,14 @@ public final class Bit32Array implements IBit32Array {
      * The Bit32Array constructor.
      */
     public Bit32Array(
-        int data,
+        int bits,
         IBinaryComparator<IBit32Array> comparator) {
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of a bit array.");
 
-        this.data = data;
+        this.bits = bits;
         this.comparator = comparator;
     }
 
@@ -99,7 +99,7 @@ public final class Bit32Array implements IBit32Array {
             comparator,
             "The comparator of a bit array.");
 
-        this.data = array.toInteger();
+        this.bits = array.toInteger();
         this.comparator = comparator;
     }
 
@@ -145,11 +145,11 @@ public final class Bit32Array implements IBit32Array {
         int mask = 1 << index;
 
         if (Bits.isOn(value)) {
-            this.data |= mask;
+            this.bits |= mask;
         }
         else {
-            int invertMask = ~mask;
-            this.data &= invertMask;
+            mask = ~mask;
+            this.bits &= mask;
         }
     }
 
@@ -162,7 +162,7 @@ public final class Bit32Array implements IBit32Array {
 
         int mask = 1 << index;
 
-        int bitValue = Bits.bitValue(this.data & mask);
+        int bitValue = Bits.bitValue(this.bits & mask);
         assert(Bits.isBitValue(bitValue));
 
         return bitValue;
@@ -177,22 +177,56 @@ public final class Bit32Array implements IBit32Array {
 
         int mask = 1 << index;
 
-        this.data ^= mask;
+        this.bits ^= mask;
     }
 
     /**
-     * Returns the number of bits set to true in this bit array.
+     * Returns the number of bits set to true.
      */
     @Override
     public int cardinality() {
         int numberOfBitsOn = 0;
 
-        int currValue = this.data;
+        int currValue = this.bits;
 
         while (currValue != 0) {
-            if ((currValue & 1) == 1) {
+            currValue = currValue & (currValue - 1);
+            ++numberOfBitsOn;
+        }
+
+        return numberOfBitsOn;
+    }
+
+    /**
+     * Returns the number of bits in the specified range.
+     */
+    @Override
+    public int cardinality(int startIndex, int endIndex) {
+        this.validateIndex(startIndex);
+        this.validateIndex(endIndex);
+
+        assert (startIndex <= endIndex);
+        int length = Dimensions.length(startIndex, endIndex);
+
+        if (length == 0) {
+            return 0;
+        }
+
+        int numberOfBitsOn = 0;
+
+        int currValue = this.bits;
+
+        int currIndex = startIndex;
+        currValue >>= startIndex;
+
+        while (currValue != 0 && currIndex <= endIndex) {
+
+            if (Bits.isOn(currValue & 1)) {
                 ++numberOfBitsOn;
             }
+
+            ++currIndex;
+            currValue >>= 1;
         }
 
         return numberOfBitsOn;
@@ -203,7 +237,72 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public void clear() {
-        this.data = 0;
+        this.bits = 0;
+    }
+
+    /**
+     * Sets all the bits at the specified range to false.
+     */
+    @Override
+    public void clear(int startIndex, int endIndex) {
+        this.validateIndex(startIndex);
+        this.validateIndex(endIndex);
+
+        assert(startIndex <= endIndex);
+        int length = Dimensions.length(startIndex, endIndex);
+
+        if (length == 0) {
+            return;
+        }
+
+        if (length == IBit32Array.sizeInBits) {
+            this.bits = 0;
+            return;
+        }
+
+        int mask = 1 << length;
+        --mask;
+
+        mask <<= startIndex;
+        mask = ~mask;
+
+        this.bits &= mask;
+    }
+
+    /**
+     * Sets all the bits to true.
+     */
+    @Override
+    public void enable() {
+        this.bits = allBitsMask;
+    }
+
+    /**
+     * Sets all the bits at the specified range to true.
+     */
+    @Override
+    public void enable(int startIndex, int endIndex) {
+        this.validateIndex(startIndex);
+        this.validateIndex(endIndex);
+
+        assert(startIndex <= endIndex);
+        int length = Dimensions.length(startIndex, endIndex);
+
+        if (length == 0) {
+            return;
+        }
+
+        if (length == IBit32Array.sizeInBits) {
+            this.bits = allBitsMask;
+            return;
+        }
+
+        int mask = 1 << length;
+        --mask;
+
+        mask <<= startIndex;
+
+        this.bits |= mask;
     }
 
     /**
@@ -211,7 +310,7 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public int size() {
-        return Bit32Array.Size;
+        return IBit32Array.sizeInBits;
     }
 
     /**
@@ -259,7 +358,15 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public void operate(BinaryBitOperator bitOperator, IBit32Array other) {
-        this.data = bitOperator.evaluate(this.data, other.toInteger());
+        Conditions.validateNotNull(
+            bitOperator,
+            "The bit binary operator.");
+
+        Conditions.validateNotNull(
+            other,
+            "The other bit array.");
+
+        this.bits = bitOperator.evaluate(this.bits, other.toInteger());
     }
 
     /**
@@ -267,7 +374,11 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public void operate(UnaryBitOperator bitOperator) {
-        this.data = bitOperator.evaluate(this.data);
+        Conditions.validateNotNull(
+            bitOperator,
+            "The bit unary operator.");
+
+        this.bits = bitOperator.evaluate(this.bits);
     }
 
     /**
@@ -309,9 +420,10 @@ public final class Bit32Array implements IBit32Array {
     public void operate(BinaryBitOperator bitOperator, int index, int value) {
         Conditions.validateNotNull(
             bitOperator,
-            "The bit operator.");
+            "The binary bit operator.");
 
-        int newValue = bitOperator.evaluate(this.get(index), value);
+        int currValue = this.get(index);
+        int newValue = bitOperator.evaluate(currValue, value);
         this.set(index, newValue);
     }
 
@@ -320,8 +432,12 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public void operate(UnaryBitOperator bitOperator, int index) {
-        int value = this.get(index);
-        int newValue = bitOperator.evaluateBit(value);
+        Conditions.validateNotNull(
+            bitOperator,
+            "The unary bit operator.");
+
+        int currValue = this.get(index);
+        int newValue = bitOperator.evaluateBit(currValue);
         this.set(index, newValue);
     }
 
@@ -330,7 +446,7 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public int toInteger() {
-        return this.data;
+        return this.bits;
     }
 
     /**
@@ -482,7 +598,8 @@ public final class Bit32Array implements IBit32Array {
      */
     private void validateIndex(int index) {
         int startIndex = 0;
-        int endIndex = Bit32Array.Size - 1;
+        int endIndex = IBit32Array.sizeInBits - 1;
+
         Arrays.validateIndex(index, startIndex, endIndex);
     }
 }

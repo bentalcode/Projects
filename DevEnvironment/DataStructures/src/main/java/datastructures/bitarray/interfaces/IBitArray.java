@@ -55,7 +55,7 @@ public interface IBitArray extends
     void flip(int index);
 
     /**
-     * Returns the number of bits set to true in this bit array.
+     * Returns the number of bits set to true.
      */
     int cardinality();
 
@@ -63,6 +63,21 @@ public interface IBitArray extends
      * Sets all the bits to false.
      */
     void clear();
+
+    /**
+     * Sets all the bits at the specified range to false.
+     */
+    void clear(int startIndex, int endIndex);
+
+    /**
+     * Sets all the bits to true.
+     */
+    void enable();
+
+    /**
+     * Sets all the bits at the specified range to true.
+     */
+    void enable(int startIndex, int endIndex);
 
     /**
      * Performs a logical AND on this bit array with the other bit array.
