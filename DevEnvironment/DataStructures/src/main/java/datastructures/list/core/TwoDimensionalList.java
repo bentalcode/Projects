@@ -6,6 +6,7 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.Indexes;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import datastructures.list.interfaces.IList;

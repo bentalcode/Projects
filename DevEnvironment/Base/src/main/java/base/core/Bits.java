@@ -89,6 +89,7 @@ public final class Bits {
      * Flips the value of a bit.
      */
     public static int flip(int bit) {
+        assert(isBitValue(bit));
         return bit ^ 1;
     }
 
@@ -107,9 +108,7 @@ public final class Bits {
      * Validates the index.
      */
     private static void validateIndex(int index) {
-        Conditions.validate(
-            index >= 0 && index < IPrimitiveSize.InBits.IntegerSize,
-            "The index is out of range.");
+        Indexes.validateIndex(index, 0, IPrimitiveSize.InBits.IntegerSize - 1);
     }
 
     /**

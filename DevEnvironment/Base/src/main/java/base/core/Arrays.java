@@ -120,8 +120,8 @@ public final class Arrays {
             array,
             "The array.");
 
-        Arrays.validateIndex(leftIndex, 0, array.length - 1);
-        Arrays.validateIndex(rightIndex, 0, array.length - 1);
+        Indexes.validateIndex(leftIndex, 0, array.length - 1);
+        Indexes.validateIndex(rightIndex, 0, array.length - 1);
 
         int temp = array[leftIndex];
         array[leftIndex] = array[rightIndex];
@@ -132,17 +132,7 @@ public final class Arrays {
      * Validates an index of an array.
      */
     public static <T> void validateIndex(T[] array, int index) {
-        Arrays.validateIndex(index, 0, array.length - 1);
-    }
-
-    /**
-     * Validates an index of an array.
-     */
-    public static void validateIndex(int index, int startIndex, int endIndex) {
-        Conditions.validate(
-            index >= startIndex && index <= endIndex,
-            "The index of an array is out of bound." +
-            "Index = " + index + " , Range = " + Range.make(startIndex, endIndex));
+        Indexes.validateIndex(index, 0, array.length - 1);
     }
 
     /**

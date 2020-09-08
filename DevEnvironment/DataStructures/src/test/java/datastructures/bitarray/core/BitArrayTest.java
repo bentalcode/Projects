@@ -149,7 +149,7 @@ public final class BitArrayTest {
     /**
      * Tests the iteration logic of a bit array.
      */
-    private <T extends Comparable<T>> void testIteration(IBitArrayData data) {
+    private void testIteration(IBitArrayData data) {
         //
         // Create the container...
         //
@@ -271,10 +271,10 @@ public final class BitArrayTest {
      * Creates a bit array.
      */
     private IBitArray createBitArray(IBitArrayData data) {
-        IBitArray bitArray = new BitArray(data.getCreationData().size());
+        IBitArray bitArray = new BitArray(data.getData().size());
 
         for (int i = 0; i < bitArray.size(); ++i) {
-            if (data.getCreationData().get(i)) {
+            if (data.getData().get(i)) {
                 bitArray.turnOn(i);
             }
             else {

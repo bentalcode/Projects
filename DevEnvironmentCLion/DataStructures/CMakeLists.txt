@@ -46,6 +46,13 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./binarytree/interfaces/IBinaryTreeNodeIterator.h
     ./binarytree/interfaces/IBinaryTreeNodeReverseIterator.h
     ./binarytree/interfaces/IBinaryTreeTraversal.h
+    ./bitarray/core/Bit32Array.h
+    ./bitarray/core/Bit32ArrayIterator.h
+    ./bitarray/core/Bit32ArrayReverseIterator.h
+    ./bitarray/core/BitArray.h
+    ./bitarray/core/BitArrayException.h
+    ./bitarray/interfaces/IBit32Array.h
+    ./bitarray/interfaces/IBitArray.h
     ./core/PreCompiled.h
     ./doublylinkedlist/core/DoublyLinkedList.h
     ./doublylinkedlist/core/DoublyLinkedListException.h
@@ -67,6 +74,9 @@ set(DATA_STRUCTURES_INCLUDES_FILES
 )
 
 set(DATA_STRUCTURES_SOURCES_FILES
+    ./bitarray/core/Bit32Array.cpp
+    ./bitarray/core/Bit32ArrayIterator.cpp
+    ./bitarray/core/Bit32ArrayReverseIterator.cpp
     ./core/PreCompiled.cpp
 )
 
@@ -79,6 +89,8 @@ set(DATA_STRUCTURES_INCLUDES
     .
     ./binarytree/core
     ./binarytree/interfaces
+    ./bitarray/core
+    ./bitarray/interfaces
     ./core
     ./doublylinkedlist/core
     ./doublylinkedlist/interfaces
@@ -90,6 +102,7 @@ set(DATA_STRUCTURES_INCLUDES
 set(BASE_INCLUDES_FILES
     ../Base/BaseException.h
     ../Base/NotImplementedException.h
+    ../Base/core/AndBitOperator.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
     ../Base/core/ClassType.h
@@ -107,6 +120,8 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ListIterator.h
     ../Base/core/ListReverseIterator.h
     ../Base/core/Matrix.h
+    ../Base/core/NotBitOperator.h
+    ../Base/core/OrBitOperator.h
     ../Base/core/Position.h
     ../Base/core/PreCompiled.h
     ../Base/core/ReferenceCount.h
@@ -115,6 +130,8 @@ set(BASE_INCLUDES_FILES
     ../Base/core/StringIterator.h
     ../Base/core/TwoDimensionalList.h
     ../Base/core/TwoDimensionalListIterator.h
+    ../Base/core/XorBitOperator.h
+    ../Base/interfaces/Bits.h
     ../Base/interfaces/ClassTypes.h
     ../Base/interfaces/ComparatorFactory.h
     ../Base/interfaces/CompareToBuilder.h
@@ -122,7 +139,9 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Dimensions.h
     ../Base/interfaces/Duration.h
     ../Base/interfaces/EqualBuilder.h
+    ../Base/interfaces/IBinaryBitOperator.h
     ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/IBitOperator.h
     ../Base/interfaces/IBuilder.h
     ../Base/interfaces/ICalculator.h
     ../Base/interfaces/IClassType.h
@@ -141,10 +160,12 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/IUnaryBitOperator.h
     ../Base/interfaces/IValidator.h
     ../Base/interfaces/IValueIterable.h
     ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
+    ../Base/interfaces/Indexes.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
     ../Base/interfaces/IterableComparator.h
@@ -160,12 +181,17 @@ set(BASE_INCLUDES_FILES
 )
 
 set(BASE_SOURCES_FILES
+    ../Base/core/AndBitOperator.cpp
+    ../Base/core/Bits.cpp
     ../Base/core/ClassType.cpp
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
+    ../Base/core/Indexes.cpp
     ../Base/core/KmpStringSearch.cpp
     ../Base/core/LogStreamWriter.cpp
+    ../Base/core/NotBitOperator.cpp
+    ../Base/core/OrBitOperator.cpp
     ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp
     ../Base/core/SkipIterator.cpp
@@ -173,6 +199,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/StringEquality.cpp
     ../Base/core/StringSearch.cpp
     ../Base/core/Strings.cpp
+    ../Base/core/XorBitOperator.cpp
 )
 
 set(BASE_SOURCES

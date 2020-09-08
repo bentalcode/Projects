@@ -3,7 +3,6 @@
 #include "BinaryTreeUnitTest.h"
 #include "UnitTestFunction.h"
 
-using namespace test::datastructures;
 using namespace test::datastructures::binarytree;
 
 class TestBinaryTreeCreationFunction : public unit_testing::UnitTestFunction<BinaryTreeUnitTest>

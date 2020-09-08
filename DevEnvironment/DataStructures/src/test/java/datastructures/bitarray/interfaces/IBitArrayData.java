@@ -7,12 +7,7 @@ import java.util.List;
  */
 public interface IBitArrayData {
     /**
-     * Gets the creation data of the bit array.
-     */
-    List<Boolean> getCreationData();
-
-    /**
-     * Gets the actual data of the bit array.
+     * Gets the data of a bit array.
      */
     List<Boolean> getData();
 }

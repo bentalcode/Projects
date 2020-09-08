@@ -27,6 +27,7 @@ endif()
 set(BASE_INCLUDES_FILES
     ./BaseException.h
     ./NotImplementedException.h
+    ./core/AndBitOperator.h
     ./core/BaseDependencies.h
     ./core/BaseLogic.h
     ./core/ClassType.h
@@ -44,6 +45,8 @@ set(BASE_INCLUDES_FILES
     ./core/ListIterator.h
     ./core/ListReverseIterator.h
     ./core/Matrix.h
+    ./core/NotBitOperator.h
+    ./core/OrBitOperator.h
     ./core/Position.h
     ./core/PreCompiled.h
     ./core/ReferenceCount.h
@@ -52,6 +55,8 @@ set(BASE_INCLUDES_FILES
     ./core/StringIterator.h
     ./core/TwoDimensionalList.h
     ./core/TwoDimensionalListIterator.h
+    ./core/XorBitOperator.h
+    ./interfaces/Bits.h
     ./interfaces/ClassTypes.h
     ./interfaces/ComparatorFactory.h
     ./interfaces/CompareToBuilder.h
@@ -59,7 +64,9 @@ set(BASE_INCLUDES_FILES
     ./interfaces/Dimensions.h
     ./interfaces/Duration.h
     ./interfaces/EqualBuilder.h
+    ./interfaces/IBinaryBitOperator.h
     ./interfaces/IBinaryComparator.h
+    ./interfaces/IBitOperator.h
     ./interfaces/IBuilder.h
     ./interfaces/ICalculator.h
     ./interfaces/IClassType.h
@@ -78,10 +85,12 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ISizableCollection.h
     ./interfaces/ISkipIterator.h
     ./interfaces/ITwoDimensionalList.h
+    ./interfaces/IUnaryBitOperator.h
     ./interfaces/IValidator.h
     ./interfaces/IValueIterable.h
     ./interfaces/IValueReverseIterable.h
     ./interfaces/IVisitor.h
+    ./interfaces/Indexes.h
     ./interfaces/Interval.h
     ./interfaces/Intervals.h
     ./interfaces/IterableComparator.h
@@ -97,12 +106,17 @@ set(BASE_INCLUDES_FILES
 )
 
 set(BASE_SOURCES_FILES
+    ./core/AndBitOperator.cpp
+    ./core/Bits.cpp
     ./core/ClassType.cpp
     ./core/CompareToBuilder.cpp
     ./core/DateTime.cpp
     ./core/EqualBuilder.cpp
+    ./core/Indexes.cpp
     ./core/KmpStringSearch.cpp
     ./core/LogStreamWriter.cpp
+    ./core/NotBitOperator.cpp
+    ./core/OrBitOperator.cpp
     ./core/Position.cpp
     ./core/PreCompiled.cpp
     ./core/SkipIterator.cpp
@@ -110,6 +124,7 @@ set(BASE_SOURCES_FILES
     ./core/StringEquality.cpp
     ./core/StringSearch.cpp
     ./core/Strings.cpp
+    ./core/XorBitOperator.cpp
 )
 
 set(BASE_SOURCES

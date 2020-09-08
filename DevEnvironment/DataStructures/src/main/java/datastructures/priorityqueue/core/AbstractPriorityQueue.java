@@ -7,6 +7,7 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.Indexes;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IMatch;
@@ -196,7 +197,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
      */
     @Override
     public void updateAndHypifyUp(int index, T element) {
-        Arrays.validateIndex(index, 0, this.data.size() - 1);
+        Indexes.validateIndex(index, 0, this.data.size() - 1);
         this.data.set(index, element);
         this.heapifyUp(index);
     }
@@ -206,7 +207,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
      */
     @Override
     public void updateAndHypifyDown(int index, T element) {
-        Arrays.validateIndex(index, 0, this.data.size() - 1);
+        Indexes.validateIndex(index, 0, this.data.size() - 1);
         this.data.set(index, element);
         this.heapifyDown(index);
     }

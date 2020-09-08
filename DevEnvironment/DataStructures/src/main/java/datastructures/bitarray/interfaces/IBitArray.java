@@ -82,22 +82,22 @@ public interface IBitArray extends
     /**
      * Performs a logical AND on this bit array with the other bit array.
      */
-    void and(IBitArray other);
+    void andOperator(IBitArray other);
 
     /**
      * Performs a logical OR on this bit array with the other bit array.
      */
-    void or(IBitArray other);
+    void orOperator(IBitArray other);
 
     /**
      * Performs a logical XOR on this bit array with the other bit array.
      */
-    void xor(IBitArray other);
+    void xorOperator(IBitArray other);
 
     /**
      * Performs a logical NOT on this bit array.
      */
-    void not(IBitArray other);
+    void notOperator(IBitArray other);
 
     /**
      * Performs a logical bit operator on this bit array with the other bit array.

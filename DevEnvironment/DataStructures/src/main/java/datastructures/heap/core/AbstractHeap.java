@@ -9,6 +9,7 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.Indexes;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IMatch;
@@ -254,7 +255,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      */
     @Override
     public void updateAndHypifyUp(int index, T element) {
-        Arrays.validateIndex(index, 0, this.size - 1);
+        Indexes.validateIndex(index, 0, this.size - 1);
         this.data[index] = element;
         this.heapifyUp(index);
     }
@@ -264,7 +265,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      */
     @Override
     public void updateAndHypifyDown(int index, T element) {
-        Arrays.validateIndex(index, 0, this.size - 1);
+        Indexes.validateIndex(index, 0, this.size - 1);
         this.data[index] = element;
         this.heapifyDown(index);
     }

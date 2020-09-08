@@ -9,6 +9,7 @@ import base.core.Conditions;
 import base.core.Dimensions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.Indexes;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
@@ -401,7 +402,7 @@ public final class BitArray implements IBitArray {
      * Performs a logical AND on this bit array with the other bit array.
      */
     @Override
-    public void and(IBitArray other) {
+    public void andOperator(IBitArray other) {
         this.operate(BinaryBitOperator.And, other);
     }
 
@@ -409,7 +410,7 @@ public final class BitArray implements IBitArray {
      * Performs a logical OR on this bit array with the other bit array.
      */
     @Override
-    public void or(IBitArray other) {
+    public void orOperator(IBitArray other) {
         this.operate(BinaryBitOperator.Or, other);
     }
 
@@ -417,7 +418,7 @@ public final class BitArray implements IBitArray {
      * Performs a logical XOR on this bit array with the other bit array.
      */
     @Override
-    public void xor(IBitArray other) {
+    public void xorOperator(IBitArray other) {
         this.operate(BinaryBitOperator.Xor, other);
     }
 
@@ -425,7 +426,7 @@ public final class BitArray implements IBitArray {
      * Performs a logical NOT on this bit array.
      */
     @Override
-    public void not(IBitArray other) {
+    public void notOperator(IBitArray other) {
         this.operate(UnaryBitOperator.Not);
     }
 
@@ -732,6 +733,6 @@ public final class BitArray implements IBitArray {
     private void validateIndex(int index) {
         int startIndex = 0;
         int endIndex = this.size - 1;
-        Arrays.validateIndex(index, startIndex, endIndex);
+        Indexes.validateIndex(index, startIndex, endIndex);
     }
 }

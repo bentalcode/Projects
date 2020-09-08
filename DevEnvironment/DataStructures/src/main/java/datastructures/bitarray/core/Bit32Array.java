@@ -1,7 +1,6 @@
 package datastructures.bitarray.core;
 
 import base.core.AbstractBinaryComparator;
-import base.core.Arrays;
 import base.core.Bits;
 import base.core.Casting;
 import base.core.CompareToBuilder;
@@ -9,6 +8,7 @@ import base.core.Conditions;
 import base.core.Dimensions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.Indexes;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
@@ -318,7 +318,7 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public boolean empty() {
-        return this.size() == 0;
+        return false;
     }
 
     /**
@@ -600,6 +600,6 @@ public final class Bit32Array implements IBit32Array {
         int startIndex = 0;
         int endIndex = IBit32Array.sizeInBits - 1;
 
-        Arrays.validateIndex(index, startIndex, endIndex);
+        Indexes.validateIndex(index, startIndex, endIndex);
     }
 }

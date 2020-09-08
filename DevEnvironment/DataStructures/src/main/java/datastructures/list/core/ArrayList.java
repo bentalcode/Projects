@@ -7,6 +7,7 @@ import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
+import base.core.Indexes;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
@@ -442,6 +443,6 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
      * Validates an index.
      */
     private void validateIndex(int index) {
-        Arrays.validateIndex(index, 0, this.size - 1);
+        Indexes.validateIndex(index, 0, this.size - 1);
     }
 }

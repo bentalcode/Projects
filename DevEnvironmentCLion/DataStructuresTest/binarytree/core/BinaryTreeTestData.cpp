@@ -5,7 +5,6 @@
 #include "BinaryTreeNode.h"
 #include "BinaryTreeNodes.h"
 
-using namespace test::datastructures;
 using namespace test::datastructures::binarytree;
 
 /**
