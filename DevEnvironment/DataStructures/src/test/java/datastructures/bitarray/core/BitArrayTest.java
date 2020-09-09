@@ -108,10 +108,15 @@ public final class BitArrayTest {
     private void testCreation(IBitArrayData data) {
         IBitArray bitArray = this.createBitArray(data);
 
+        this.assertion.assertEquals(
+            bitArray.size(),
+            data.getData().size(),
+            "Invalid creation logic of a bit array.");
+
         this.assertion.assertEqualsWithIterators(
             bitArray.getIterator(),
             ListIterator.make(data.getData()),
-            "Invalid creation logic of a stack.");
+            "Invalid creation logic of a bit array.");
     }
 
     /**
@@ -264,14 +269,14 @@ public final class BitArrayTest {
         this.assertion.assertEquals(
             result,
             expectedResult,
-            "Incorrect logic of a cardinality logic of a bit array");
+            "Incorrect logic of a cardinality logic of a bit array.");
     }
 
     /**
      * Creates a bit array.
      */
     private IBitArray createBitArray(IBitArrayData data) {
-        IBitArray bitArray = new BitArray(data.getData().size());
+        IBitArray bitArray = BitArray.make(data.getData().size());
 
         for (int i = 0; i < bitArray.size(); ++i) {
             if (data.getData().get(i)) {

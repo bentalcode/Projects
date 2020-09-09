@@ -2,10 +2,11 @@
 #define BIT32_ARRAY_ITERATOR_H_e710c65f_207c_4302_bbed_31ef389b1edc
 
 #include "IIterator.h"
-#include "IBit32Array.h"
 
 namespace datastructures {
     namespace bitarray {
+
+        class IBit32Array;
 
         /**
          * The Bit32ArrayIterator class implements an iterator of a bit 32 array.

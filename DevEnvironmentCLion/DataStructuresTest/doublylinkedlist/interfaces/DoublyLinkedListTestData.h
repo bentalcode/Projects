@@ -45,7 +45,7 @@ namespace test {
                 /**
                  * Gets the updation data of a doubly linked list.
                  */
-                std::vector<std::tuple<std::string, int, std::vector<int>>> getUpdationData();
+                std::vector<std::tuple<std::string, int, std::vector<int>>> getUpdationData() const;
 
             private:
                 /**

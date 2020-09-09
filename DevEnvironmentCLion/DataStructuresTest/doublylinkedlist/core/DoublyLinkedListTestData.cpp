@@ -37,7 +37,7 @@ std::vector<DoublyLinkedListDataPtr<int>> DoublyLinkedListTestData::getData() co
 /**
  * Gets the updation data of a doubly linked list.
  */
-std::vector<std::tuple<std::string, int, std::vector<int>>> DoublyLinkedListTestData::getUpdationData()
+std::vector<std::tuple<std::string, int, std::vector<int>>> DoublyLinkedListTestData::getUpdationData() const
 {
     std::vector<std::tuple<std::string, int, std::vector<int>>> data;
 

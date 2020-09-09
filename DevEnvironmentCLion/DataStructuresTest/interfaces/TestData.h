@@ -1,10 +1,12 @@
 #ifndef TEST_DATA_H_0617b4eb_3504_48e8_aa96_9747cc17335d
 #define TEST_DATA_H_0617b4eb_3504_48e8_aa96_9747cc17335d
 
+#include "BitArrayTestData.h"
 #include "LinkedListTestData.h"
 #include "DoublyLinkedListTestData.h"
 #include "BinaryTreeTestData.h"
 
+using namespace test::datastructures::bitarray;
 using namespace test::datastructures::linkedlist;
 using namespace test::datastructures::doublylinkedlist;
 using namespace test::datastructures::binarytree;
@@ -29,6 +31,11 @@ namespace test {
             ~TestData();
 
             /**
+             * Gets the data of tests of a bit array.
+             */
+            BitArrayTestDataPtr getBitArrayData();
+
+            /**
              * Gets the data of tests of a linked list.
              */
             LinkedListTestDataPtr getLinkedListData();
@@ -48,7 +55,7 @@ namespace test {
              */
             template <typename T>
             std::shared_ptr<std::vector<T>> createVector(
-                int size,
+                size_t size,
                 const T& initialValue) const;
 
             /**
@@ -56,21 +63,21 @@ namespace test {
              */
             template <typename T>
             std::shared_ptr<std::vector<std::vector<T>>> createTwoDimensionalVector(
-                int rows,
-                int columns,
+                size_t rows,
+                size_t columns,
                 const T& initialValue) const;
         };
 
         template <typename T>
         std::shared_ptr<std::vector<T>> TestData::createVector(
-            int size,
+            size_t size,
             const T& initialValue) const
         {
             std::shared_ptr<std::vector<T>> vector = std::make_shared<std::vector<T>>(size);
 
             T currValue = initialValue;
 
-            for (int i = 0; i < size; ++i) {
+            for (size_t i = 0; i < size; ++i) {
                 (*vector)[i] = currValue;
                 ++currValue;
             }
@@ -80,21 +87,22 @@ namespace test {
 
         template <typename T>
         std::shared_ptr<std::vector<std::vector<T>>> TestData::createTwoDimensionalVector(
-            int rows,
-            int columns,
+            size_t rows,
+            size_t columns,
             const T& initialValue) const
         {
             std::shared_ptr<std::vector<std::vector<T>>> vector = std::make_shared<std::vector<std::vector<T>>>(rows);
 
-            for (int row = 0; row < rows; ++row) {
+            for (size_t row = 0; row < rows; ++row)
+            {
                 std::vector<T> rowData(columns);
                 (*vector)[row] = rowData;
             }
 
             T value = initialValue;
-            for (int row = 0; row < rows; ++row)
+            for (size_t row = 0; row < rows; ++row)
             {
-                for (int column = 0; column < columns; ++column)
+                for (size_t column = 0; column < columns; ++column)
                 {
                     (*vector)[row][column] = value;
                     ++value;

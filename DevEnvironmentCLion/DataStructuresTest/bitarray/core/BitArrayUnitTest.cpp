@@ -2,6 +2,13 @@
 
 #include "BitArrayUnitTest.h"
 #include "UnitTestFunction.h"
+#include "BitArray.h"
+#include "BitArrayData.h"
+#include "ListIterator.h"
+#include "ListReverseIterator.h"
+#include "IterationTest.h"
+#include "Dimensions.h"
+#include "Assertion.h"
 
 using namespace test::datastructures::bitarray;
 
@@ -146,6 +153,9 @@ void BitArrayUnitTest::registerTests(unit_testing::ITestRegistration& registrati
  */
 void BitArrayUnitTest::bitArrayCreationTest()
 {
+    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+        testCreation(*data);
+    }
 }
 
 /**
@@ -153,6 +163,9 @@ void BitArrayUnitTest::bitArrayCreationTest()
  */
 void BitArrayUnitTest::bitArrayTurnOnOffTest()
 {
+    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+        testTurnOnOff(*data);
+    }
 }
 
 /**
@@ -160,6 +173,9 @@ void BitArrayUnitTest::bitArrayTurnOnOffTest()
  */
 void BitArrayUnitTest::bitArrayIterationTest()
 {
+    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+        testIteration(*data);
+    }
 }
 
 /**
@@ -167,6 +183,9 @@ void BitArrayUnitTest::bitArrayIterationTest()
  */
 void BitArrayUnitTest::bitArrayCardinalityTest()
 {
+    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+        testCardinality(*data);
+    }
 }
 
 /**
@@ -174,6 +193,9 @@ void BitArrayUnitTest::bitArrayCardinalityTest()
  */
 void BitArrayUnitTest::bitArrayClearingTest()
 {
+    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+        testClearing(*data);
+    }
 }
 
 /**
@@ -181,6 +203,9 @@ void BitArrayUnitTest::bitArrayClearingTest()
  */
 void BitArrayUnitTest::bitArrayEnablingTest()
 {
+    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+        testEnabling(*data);
+    }
 }
 
 /**
@@ -188,6 +213,17 @@ void BitArrayUnitTest::bitArrayEnablingTest()
  */
 void BitArrayUnitTest::testCreation(const BitArrayData& data)
 {
+    IBitArrayPtr bitArray = createBitArray(data);
+
+    getAssertion().assertEquals(
+        bitArray->size(),
+        data.getData().size(),
+        "Invalid creation logic of a bit array.");
+
+    getAssertion().assertEqualsWithIterators(
+        *bitArray->getIterator(),
+        *base::ListIterator<bool>::make(data.getData()),
+        "Invalid creation logic of a bit array.");
 }
 
 /**
@@ -195,6 +231,32 @@ void BitArrayUnitTest::testCreation(const BitArrayData& data)
  */
 void BitArrayUnitTest::testTurnOnOff(const BitArrayData& data)
 {
+    IBitArrayPtr bitArray = createBitArray(data);
+    IBitArrayPtr expectedBitArray = BitArray::copy(*bitArray);
+    expectedBitArray->flip();
+
+    for (size_t i = 0; i < bitArray->size(); ++i) {
+        if (bitArray->isOn(i)) {
+            bitArray->turnOff(i);
+
+            getAssertion().assertTrue(
+                bitArray->isOff(i),
+                "Invalid turn off logic of a bit array.");
+        }
+        else
+        {
+            bitArray->turnOn(i);
+
+            getAssertion().assertTrue(
+                bitArray->isOn(i),
+                "Invalid turn on logic of a bit array.");
+        }
+    }
+
+    getAssertion().assertEqualsWithDereference(
+        bitArray,
+        expectedBitArray,
+        "Invalid turn on/off logic of a bit array.");
 }
 
 /**
@@ -202,6 +264,43 @@ void BitArrayUnitTest::testTurnOnOff(const BitArrayData& data)
  */
 void BitArrayUnitTest::testIteration(const BitArrayData& data)
 {
+    //
+    // Create the container...
+    //
+    IBitArrayPtr container = createBitArray(data);
+
+    //
+    // Test the default iterator of the container...
+    //
+    base::IIterablePtr<bool> containerIterable = container;
+    base::IIteratorPtr<bool> expectedIterator = base::ListIterator<bool>::make(data.getData());
+
+    test_base::IterationTest iterationTest;
+    iterationTest.testForwardIteration(
+        containerIterable,
+        expectedIterator,
+        "BitArray");
+
+    //
+    // Test the forward iterator of the container...
+    //
+    expectedIterator = base::ListIterator<bool>::make(data.getData());
+
+    iterationTest.testForwardIteration(
+        containerIterable,
+        expectedIterator,
+        "BitArray");
+
+    //
+    // Test the reverse iterator of the container...
+    //
+    base::IReverseIterablePtr<bool> containerReverseIterable = container;
+    base::IReverseIteratorPtr<bool> expectedReveseIterator = base::ListReverseIterator<bool>::make(data.getData());
+
+    iterationTest.testReverseIteration(
+        containerReverseIterable,
+        expectedReveseIterator,
+        "BitArray");
 }
 
 /**
@@ -209,6 +308,32 @@ void BitArrayUnitTest::testIteration(const BitArrayData& data)
  */
 void BitArrayUnitTest::testClearing(const BitArrayData& data)
 {
+    IBitArrayPtr bitArray = createBitArray(data);
+
+    bitArray->clear();
+    size_t numberOfOnes = bitArray->cardinality();
+    size_t expectedNumberOfOnes = 0;
+
+    getAssertion().assertTrue(
+        numberOfOnes == expectedNumberOfOnes,
+        "Incorrect logic of clearing a bit array, the number of ones should be: " +
+        expectedNumberOfOnes);
+
+    for (size_t startIndex = 0; startIndex < bitArray->size(); ++startIndex) {
+        for (size_t endIndex = startIndex; endIndex < bitArray->size(); ++endIndex) {
+
+            bitArray->enable();
+            bitArray->clear(startIndex, endIndex);
+
+            numberOfOnes = bitArray->cardinality();
+            expectedNumberOfOnes = bitArray->size() - base::Dimensions::length(startIndex, endIndex);
+
+            getAssertion().assertTrue(
+                numberOfOnes == expectedNumberOfOnes,
+                "Incorrect logic of clearing a bit array, the number of ones should be: " +
+                expectedNumberOfOnes);
+        }
+    }
 }
 
 /**
@@ -216,6 +341,32 @@ void BitArrayUnitTest::testClearing(const BitArrayData& data)
  */
 void BitArrayUnitTest::testEnabling(const BitArrayData& data)
 {
+    IBitArrayPtr bitArray = createBitArray(data);
+
+    bitArray->enable();
+    size_t numberOfOnes = bitArray->cardinality();
+    size_t expectedNumberOfOnes = bitArray->size();
+
+    getAssertion().assertTrue(
+        numberOfOnes == expectedNumberOfOnes,
+        "Incorrect logic of enabling a bit array, the number of ones should be: " +
+        expectedNumberOfOnes);
+
+    for (size_t startIndex = 0; startIndex < bitArray->size(); ++startIndex) {
+        for (size_t endIndex = startIndex; endIndex < bitArray->size(); ++endIndex) {
+
+            bitArray->clear();
+            bitArray->enable(startIndex, endIndex);
+
+            numberOfOnes = bitArray->cardinality();
+            expectedNumberOfOnes = base::Dimensions::length(startIndex, endIndex);
+
+            getAssertion().assertTrue(
+                numberOfOnes == expectedNumberOfOnes,
+                "Incorrect logic of enabling a bit array, the number of ones should be: " +
+                expectedNumberOfOnes);
+        }
+    }
 }
 
 /**
@@ -223,6 +374,22 @@ void BitArrayUnitTest::testEnabling(const BitArrayData& data)
  */
 void BitArrayUnitTest::testCardinality(const BitArrayData& data)
 {
+    IBitArrayPtr bitArray = createBitArray(data);
+
+    size_t result = bitArray->cardinality();
+
+    size_t expectedResult = 0;
+
+    for (int index = 0; index < bitArray->size(); ++index) {
+        if (bitArray->isOn(index)) {
+            ++expectedResult;
+        }
+    }
+
+    getAssertion().assertEquals(
+        result,
+        expectedResult,
+        "Incorrect logic of a cardinality logic of a bit array.");
 }
 
 /**
@@ -230,6 +397,19 @@ void BitArrayUnitTest::testCardinality(const BitArrayData& data)
  */
 IBitArrayPtr BitArrayUnitTest::createBitArray(const BitArrayData& data)
 {
-    IBitArrayPtr bitArray;
+    IBitArrayPtr bitArray = BitArray::make(data.getData().size());
+
+    for (size_t i = 0; i < bitArray->size(); ++i)
+    {
+        if (data.getData().at(i))
+        {
+            bitArray->turnOn(i);
+        }
+        else
+        {
+            bitArray->turnOff(i);
+        }
+    }
+
     return bitArray;
 }

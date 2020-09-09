@@ -187,7 +187,7 @@ namespace datastructures {
          */
         inline bool operator<(const IBit32Array& left, const IBit32Array& right)
         {
-            return true;
+            return left.toInteger() < right.toInteger();
         }
     }
 }

@@ -291,6 +291,8 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/bitarray/core/Bit32ArrayReverseIterator.h
     ../DataStructures/bitarray/core/BitArray.h
     ../DataStructures/bitarray/core/BitArrayException.h
+    ../DataStructures/bitarray/core/BitArrayIterator.h
+    ../DataStructures/bitarray/core/BitArrayReverseIterator.h
     ../DataStructures/bitarray/interfaces/IBit32Array.h
     ../DataStructures/bitarray/interfaces/IBitArray.h
     ../DataStructures/core/PreCompiled.h
@@ -317,6 +319,9 @@ set(DATA_STRUCTURES_SOURCES_FILES
     ../DataStructures/bitarray/core/Bit32Array.cpp
     ../DataStructures/bitarray/core/Bit32ArrayIterator.cpp
     ../DataStructures/bitarray/core/Bit32ArrayReverseIterator.cpp
+    ../DataStructures/bitarray/core/BitArray.cpp
+    ../DataStructures/bitarray/core/BitArrayIterator.cpp
+    ../DataStructures/bitarray/core/BitArrayReverseIterator.cpp
     ../DataStructures/core/PreCompiled.cpp
 )
 

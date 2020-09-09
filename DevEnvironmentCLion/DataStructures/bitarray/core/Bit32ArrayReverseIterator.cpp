@@ -1,6 +1,6 @@
 #include "PreCompiled.h"
 #include "Bit32ArrayReverseIterator.h"
-#include "BitArrayException.h"
+#include "Bit32Array.h"
 
 using namespace datastructures::bitarray;
 

@@ -13,11 +13,11 @@
 using namespace datastructures::bitarray;
 
 /**
- * The Bit32Array constructor.
+ * Creates a bit 32 array.
  */
-Bit32Array::Bit32Array() :
-    Bit32Array(0)
+IBit32ArrayPtr Bit32Array::make(unsigned int bits)
 {
+    return std::make_shared<Bit32Array>(bits);
 }
 
 /**
@@ -236,7 +236,7 @@ void Bit32Array::enable(size_t startIndex, size_t endIndex)
         return;
     }
 
-    int mask = 1 << length;
+    unsigned int mask = 1 << length;
     --mask;
 
     mask <<= startIndex;
@@ -370,8 +370,8 @@ void Bit32Array::operate(
     const base::IUnaryBitOperator& bitOperator,
     size_t index)
 {
-    int currValue = get(index);
-    int newValue = bitOperator.evaluateBit(currValue);
+    unsigned int currValue = get(index);
+    unsigned int newValue = bitOperator.evaluateBit(currValue);
     set(index, newValue);
 }
 

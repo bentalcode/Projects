@@ -30,16 +30,18 @@ namespace base {
     }
 
     /**
-     * Defines the dereference less for pointers.
-     */
-    class DereferenceLess
+    * Defines the dereference less for pointers.
+    */
+    template <typename T>
+    struct DereferenceLess
     {
-        template <typename T>
         bool operator() (T left, T right)
+        const
         {
-            return *left < *right;
+            return *left  < *right;
         }
     };
+
 }
 
 #endif // BASE_LOGIC_H_c4a868dc_da0b_4927_ab53_fc88886932f3

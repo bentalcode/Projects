@@ -13,9 +13,24 @@ namespace datastructures {
         {
         public:
             /**
+             * Creates a bit array.
+             */
+            static IBitArrayPtr make(size_t numberOfBits);
+
+            /**
+             * Copies a bit array.
+             */
+            static IBitArrayPtr copy(const IBitArray& bitArray);
+
+            /**
              * The BitArray constructor.
              */
             explicit BitArray(size_t numberOfBits);
+
+            /**
+             * The BitArray copy constructor.
+             */
+            BitArray(const IBitArray& bitArray);
 
             /**
              * The BitArray destructor.
@@ -62,7 +77,7 @@ namespace datastructures {
             /**
              * Gets a value of a bit at the specified index.
              */
-            virtual int get(size_t index) const override;
+            virtual size_t get(size_t index) const override;
 
             /**
              * Sets the bits to the complement of its current value.
@@ -100,6 +115,16 @@ namespace datastructures {
             virtual void enable(size_t startIndex, size_t endIndex) override;
 
             /**
+             * Gets the size of the collection.
+             */
+            virtual size_t size() const override;
+
+            /**
+             * Checks whether the collection is empty.
+             */
+            virtual bool empty() const override;
+
+            /**
              * Performs a logical AND on this bit array with the other bit array.
              */
             virtual void andOperator(const IBitArray& other) override;
@@ -117,17 +142,17 @@ namespace datastructures {
             /**
              * Performs a logical NOT on this bit array.
              */
-            virtual void notOperator(const IBitArray& other) override;
+            virtual void notOperator() override;
 
             /**
              * Performs a logical bit operator on this bit array with the other bit array.
              */
-            virtual void operate(const BinaryBitOperator& bitOperator, const IBitArray& other) override;
+            virtual void operate(const base::IBinaryBitOperator& bitOperator, const IBitArray& other) override;
 
             /**
              * Performs a logical bit operator on this bit array.
              */
-            virtual void operate(const UnaryBitOperator& bitOperator) override;
+            virtual void operate(const base:: IUnaryBitOperator& bitOperator) override;
 
             /**
              * Converts the bits to a native array.
@@ -135,11 +160,53 @@ namespace datastructures {
             virtual std::vector<unsigned int> toArray() const override;
 
             /**
-             * Converts the bits to a 32 bit array.
+             * Converts the bits to a bit 32 array.
              */
             virtual const std::vector<IBit32ArrayPtr>& toBit32Array() const override;
 
+            /**
+             * Gets the iterator.
+             */
+            virtual base::IIteratorPtr<bool> getIterator() const override;
+
+            /**
+             * Gets the reverse iterator.
+             */
+            virtual base::IReverseIteratorPtr<bool> getReverseIterator() const override;
+
         private:
+            static const size_t unitSizeInBits = IBit32Array::sizeInBits;
+
+            /**
+             * Creates a bit array.
+             */
+            std::vector<IBit32ArrayPtr> createBitArray(size_t numberOfBits) const;
+
+            /**
+             * Gets the number of units.
+             */
+            size_t getNumberOfUnits() const;
+
+            /**
+             * Calculates the number of units.
+             */
+            size_t getNumberOfUnits(size_t numberOfBits) const;
+
+            /**
+             * Calculates the index of a unit.
+             */
+            size_t unitIndexOf(size_t index) const;
+
+            /**
+             * Calculates the index of a bit in a unit.
+             */
+            size_t bitIndexOf(size_t index) const;
+
+            /**
+             * Validates an index.
+             */
+            void validateIndex(size_t index) const;
+
             std::vector<IBit32ArrayPtr> m_data;
             size_t m_size;
         };

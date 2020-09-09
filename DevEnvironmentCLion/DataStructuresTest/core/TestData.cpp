@@ -19,6 +19,14 @@ TestData::~TestData()
 }
 
 /**
+ * Gets the data of tests of a bit array.
+ */
+BitArrayTestDataPtr TestData::getBitArrayData()
+{
+    return BitArrayTestDataPtr(new BitArrayTestData);
+}
+
+/**
  * Gets the data of tests of a linked list.
  */
 LinkedListTestDataPtr TestData::getLinkedListData()

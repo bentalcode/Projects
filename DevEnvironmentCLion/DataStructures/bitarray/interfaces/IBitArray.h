@@ -1,8 +1,12 @@
 #ifndef I_BIT_ARRAY_H_039397dc_65db_4f96_ac8e_c71ba80a99b0
 #define I_BIT_ARRAY_H_039397dc_65db_4f96_ac8e_c71ba80a99b0
 
-#include <vector>
 #include "IBit32Array.h"
+
+namespace base {
+    class IUnaryBitOperator;
+    class IBinaryBitOperator;
+};
 
 namespace datastructures {
     namespace bitarray {
@@ -10,7 +14,10 @@ namespace datastructures {
         /**
          * The IBitArray interface defines a bit array, which manages a compact array of bits.
          */
-        class IBitArray
+        class IBitArray :
+            public base::ISizableCollection,
+            public base::IIterable<bool>,
+            public base::IReverseIterable<bool>
         {
         public:
             /**
@@ -63,7 +70,7 @@ namespace datastructures {
             /**
              * Gets a value of a bit at the specified index.
              */
-            virtual int get(size_t index) const = 0;
+            virtual size_t get(size_t index) const = 0;
 
             /**
              * Sets the bits to the complement of its current value.
@@ -118,17 +125,17 @@ namespace datastructures {
             /**
              * Performs a logical NOT on this bit array.
              */
-            virtual void notOperator(const IBitArray& other) = 0;
+            virtual void notOperator() = 0;
 
             /**
              * Performs a logical bit operator on this bit array with the other bit array.
              */
-            virtual void operate(const BinaryBitOperator& bitOperator, const IBitArray& other) = 0;
+            virtual void operate(const base::IBinaryBitOperator& bitOperator, const IBitArray& other) = 0;
 
             /**
              * Performs a logical bit operator on this bit array.
              */
-            virtual void operate(const UnaryBitOperator& bitOperator) = 0;
+            virtual void operate(const base::IUnaryBitOperator& bitOperator) = 0;
 
             /**
              * Converts the bits to a native array.
@@ -136,11 +143,9 @@ namespace datastructures {
             virtual std::vector<unsigned int> toArray() const = 0;
 
             /**
-             * Converts the bits to a 32 bit array.
+             * Converts the bits to a bit 32 array.
              */
             virtual const std::vector<IBit32ArrayPtr>& toBit32Array() const = 0;
-
-        private:
         };
 
         using IBitArrayPtr = std::shared_ptr<IBitArray>;
@@ -150,7 +155,15 @@ namespace datastructures {
          */
         inline bool operator<(const IBitArray& left, const IBitArray& right)
         {
-            return true;
+            const std::vector<IBit32ArrayPtr>& leftArray = left.toBit32Array();
+            const std::vector<IBit32ArrayPtr>& rightArray = right.toBit32Array();
+
+            return std::lexicographical_compare(
+                leftArray.begin(),
+                leftArray.end(),
+                rightArray.begin(),
+                rightArray.end(),
+                base::DereferenceLess<IBit32ArrayPtr>());
         }
     }
 }

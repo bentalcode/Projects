@@ -1,7 +1,6 @@
 package datastructures.bitarray.core;
 
 import base.core.AbstractBinaryComparator;
-import base.core.Arrays;
 import base.core.Bits;
 import base.core.Casting;
 import base.core.CompareToBuilder;
@@ -31,19 +30,17 @@ public final class BitArray implements IBitArray {
     private final IBinaryComparator<IBitArray> comparator;
 
     /**
-     * Copies a bit array.
+     * Creates a a bit array.
      */
-    public static IBitArray copy(IBitArray bitArray) {
-        return new BitArray(bitArray);
+    public static IBitArray make(int numberOfBits) {
+        return new BitArray(numberOfBits, defaultComparator());
     }
 
     /**
-     * The BitArray constructor.
+     * Copies a bit array.
      */
-    public BitArray(int numberOfBits) {
-        this(
-            numberOfBits,
-            BitArray.defaultComparator());
+    public static IBitArray copy(IBitArray bitArray) {
+        return new BitArray(bitArray, defaultComparator());
     }
 
     /**
@@ -69,16 +66,7 @@ public final class BitArray implements IBitArray {
     /**
      * The BitArray copy constructor.
      */
-    public BitArray(IBitArray array) {
-        this(
-            array,
-            BitArray.defaultComparator());
-    }
-
-    /**
-     * The BitArray copy constructor.
-     */
-    public BitArray(
+    private BitArray(
         IBitArray array,
         IBinaryComparator<IBitArray> comparator) {
 
@@ -116,7 +104,7 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public boolean isOn(int index) {
-        return Bits.isOn(this.get(index));
+        return this.get(index) != 0;
     }
 
     /**
@@ -124,7 +112,7 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public boolean isOff(int index) {
-        return Bits.isOff(this.get(index));
+        return this.get(index) == 0;
     }
 
     /**
@@ -150,7 +138,10 @@ public final class BitArray implements IBitArray {
         int unitIndex = this.unitIndexOf(index);
         int bitIndex = this.bitIndexOf(index);
 
-        return this.data[unitIndex].get(bitIndex);
+        int bitValue = this.data[unitIndex].get(bitIndex);
+        assert(Bits.isBitValue(bitValue));
+
+        return bitValue;
     }
 
     /**
@@ -303,7 +294,7 @@ public final class BitArray implements IBitArray {
         // Operate on the last unit either as a whole or bit by bit...
         //
         int lastUnitBitStartIndex = 0;
-        int lastUnitBitEndIndex = this.bitIndexOf(this.size() - 1);
+        int lastUnitBitEndIndex = this.bitIndexOf(this.size - 1);
 
         this.data[unitIndex].enable(lastUnitBitStartIndex, lastUnitBitEndIndex);
     }
@@ -377,28 +368,6 @@ public final class BitArray implements IBitArray {
     }
 
     /**
-     * Converts the bits to a native array.
-     */
-    @Override
-    public int[] toArray() {
-        int[] array = new int[this.data.length];
-
-        for (int unitIndex = 0; unitIndex < this.data.length; ++unitIndex) {
-            array[unitIndex] = this.data[unitIndex].toInteger();
-        }
-
-        return array;
-    }
-
-    /**
-     * Converts the bits to a 32 bit array.
-     */
-    @Override
-    public IBit32Array[] toBit32Array() {
-        return this.data;
-    }
-
-    /**
      * Performs a logical AND on this bit array with the other bit array.
      */
     @Override
@@ -426,7 +395,7 @@ public final class BitArray implements IBitArray {
      * Performs a logical NOT on this bit array.
      */
     @Override
-    public void notOperator(IBitArray other) {
+    public void notOperator() {
         this.operate(UnaryBitOperator.Not);
     }
 
@@ -506,7 +475,7 @@ public final class BitArray implements IBitArray {
         // Operate on the last unit either as a whole or bit by bit...
         //
         int lastUnitBitStartIndex = 0;
-        int lastUnitBitEndIndex = this.bitIndexOf(this.size() - 1);
+        int lastUnitBitEndIndex = this.bitIndexOf(this.size - 1);
 
         if (lastUnitBitEndIndex == BitArray.unitSizeInBits -1) {
             this.data[unitIndex].operate(bitOperator);
@@ -516,6 +485,28 @@ public final class BitArray implements IBitArray {
                 this.data[unitIndex].operate(bitOperator, bitIndex);
             }
         }
+    }
+
+    /**
+     * Converts the bits to a native array.
+     */
+    @Override
+    public int[] toArray() {
+        int[] array = new int[this.data.length];
+
+        for (int unitIndex = 0; unitIndex < this.data.length; ++unitIndex) {
+            array[unitIndex] = this.data[unitIndex].toInteger();
+        }
+
+        return array;
+    }
+
+    /**
+     * Converts the bits to a 32 bit array.
+     */
+    @Override
+    public IBit32Array[] toBit32Array() {
+        return this.data;
     }
 
     /**
@@ -676,7 +667,7 @@ public final class BitArray implements IBitArray {
         IBit32Array[] data = new IBit32Array[numberOfUnits];
 
         for (int i = 0; i < data.length; ++i) {
-            data[i] = new Bit32Array();
+            data[i] = Bit32Array.make();
         }
 
         return data;
@@ -685,7 +676,7 @@ public final class BitArray implements IBitArray {
     /**
      * Copies a bit array.
      */
-    private IBit32Array[] copyBitArray(IBit32Array[] originData) {
+    private static IBit32Array[] copyBitArray(IBit32Array[] originData) {
         IBit32Array[] data = new IBit32Array[originData.length];
 
         for (int i = 0; i < data.length; ++i) {
@@ -715,16 +706,14 @@ public final class BitArray implements IBitArray {
      * Calculates the index of a unit.
      */
     private int unitIndexOf(int index) {
-        int unitIndex = index / BitArray.unitSizeInBits;
-        return unitIndex;
+        return index / BitArray.unitSizeInBits;
     }
 
     /**
      * Calculates the index of a bit in a unit.
      */
     private int bitIndexOf(int index) {
-        int bitIndex = index % BitArray.unitSizeInBits;
-        return bitIndex;
+        return index % BitArray.unitSizeInBits;
     }
 
     /**

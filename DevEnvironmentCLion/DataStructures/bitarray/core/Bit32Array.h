@@ -13,14 +13,14 @@ namespace datastructures {
         {
         public:
             /**
-             * The Bit32Array constructor.
+             * Creates a bit 32 array.
              */
-            Bit32Array();
+            static IBit32ArrayPtr make(unsigned int bits = 0);
 
             /**
              * The Bit32Array constructor from an integer.
              */
-            explicit Bit32Array(unsigned int bits);
+            explicit Bit32Array(unsigned int bits = 0);
 
             /**
              * The Bit32Array destructor.
@@ -201,6 +201,7 @@ namespace datastructures {
         };
 
         using IBit32ArrayPtr = std::shared_ptr<IBit32Array>;
+
     }
 }
 

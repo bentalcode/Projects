@@ -27,43 +27,30 @@ public final class Bit32Array implements IBit32Array {
     private final IBinaryComparator<IBit32Array> comparator;
 
     /**
+     * Creates a bit 32 array.
+     */
+    public static IBit32Array make() {
+        return new Bit32Array(0, Bit32Array.defaultComparator());
+    }
+
+    /**
+     * Creates a bit 32 array.
+     */
+    public static IBit32Array make(int bits) {
+        return new Bit32Array(bits, Bit32Array.defaultComparator());
+    }
+
+    /**
      * Copies a bit array.
      */
     public static IBit32Array copy(IBit32Array bitArray) {
-        return new Bit32Array(bitArray);
+        return new Bit32Array(bitArray, Bit32Array.defaultComparator());
     }
 
     /**
      * The Bit32Array constructor.
      */
-    public Bit32Array() {
-        this(
-            0,
-            Bit32Array.defaultComparator());
-    }
-
-    /**
-     * The Bit32Array constructor.
-     */
-    public Bit32Array(int bits) {
-        this(
-            bits,
-            Bit32Array.defaultComparator());
-    }
-
-    /**
-     * The Bit32Array constructor.
-     */
-    public Bit32Array(IBinaryComparator<IBit32Array> comparator) {
-        this(
-            0,
-            comparator);
-    }
-
-    /**
-     * The Bit32Array constructor.
-     */
-    public Bit32Array(
+    private Bit32Array(
         int bits,
         IBinaryComparator<IBit32Array> comparator) {
 
@@ -78,22 +65,13 @@ public final class Bit32Array implements IBit32Array {
     /**
      * The Bit32Array copy constructor.
      */
-    public Bit32Array(IBit32Array array) {
-        this(
-            array,
-            Bit32Array.defaultComparator());
-    }
-
-    /**
-     * The Bit32Array copy constructor.
-     */
-    public Bit32Array(
+    private Bit32Array(
         IBit32Array array,
         IBinaryComparator<IBit32Array> comparator) {
 
         Conditions.validateNotNull(
             array,
-            "The bit array.");
+            "The bit array to copy.");
 
         Conditions.validateNotNull(
             comparator,

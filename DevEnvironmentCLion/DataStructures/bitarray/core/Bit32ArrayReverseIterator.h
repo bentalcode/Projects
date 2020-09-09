@@ -2,10 +2,11 @@
 #define BIT32_ARRAY_REVERSE_ITERATOR_H_fda3565c_d63e_4991_9695_ed2780e7a76e
 
 #include "IReverseIterator.h"
-#include "IBit32Array.h"
 
 namespace datastructures {
     namespace bitarray {
+
+        class IBit32Array;
 
         /**
          * The Bit32ArrayReverseIterator class implements a reverse iterator of a bit 32 array.

@@ -97,7 +97,7 @@ public interface IBitArray extends
     /**
      * Performs a logical NOT on this bit array.
      */
-    void notOperator(IBitArray other);
+    void notOperator();
 
     /**
      * Performs a logical bit operator on this bit array with the other bit array.
