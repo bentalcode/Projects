@@ -10,7 +10,7 @@ public final class Base {
      * Gets the min element with a comparator.
      */
     public static <Type extends Comparable<Type>> Type min(Type first, Type second) {
-        IBinaryComparator<Type> comparator = Comparator.defaultComparator();
+        IBinaryComparator<Type> comparator = Comparator.make();
         return Base.min(first, second, comparator);
     }
 
@@ -18,7 +18,7 @@ public final class Base {
      * Gets the max element with a comparator.
      */
     public static <Type extends Comparable<Type>> Type max(Type first, Type second) {
-        IBinaryComparator<Type> comparator = Comparator.defaultComparator();
+        IBinaryComparator<Type> comparator = Comparator.make();
         return Base.max(first, second, comparator);
     }
 

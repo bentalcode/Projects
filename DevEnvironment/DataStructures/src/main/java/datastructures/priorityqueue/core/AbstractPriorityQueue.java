@@ -1,7 +1,6 @@
 package datastructures.priorityqueue.core;
 
 import base.core.AbstractBinaryComparator;
-import base.core.Arrays;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
@@ -23,8 +22,8 @@ import datastructures.priorityqueue.interfaces.IPriorityQueue;
  * The priority queue is implemented as a heap with a dynamic array.
  *
  * A complete binary tree can be uniquely represented by storing it's level order traversal in an array.
- * The left child of an element is located at index: 2*index+1.
- * The right child of an element is located at index: 2*index+2.
+ * The left child of an element is located at index: 2 * index + 1.
+ * The right child of an element is located at index: 2 * index + 2.
  * The parent of an element is located at index: (index - 1) / 2.
  */
 public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements IPriorityQueue<T> {
@@ -47,7 +46,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
     }
 
     /**
-     * The AbstractPriorityQueue constructor.
+     * The AbstractPriorityQueue constructor with initial data.
      */
     protected AbstractPriorityQueue(
         IList<T> data,
@@ -81,11 +80,13 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
     public void offer(T element) {
         this.data.add(element);
 
-        if (this.size() == 1) {
+        int newSize = this.size();
+
+        if (newSize == 1) {
             return;
         }
 
-        this.heapifyUp(this.size() - 1);
+        this.heapifyUp(newSize - 1);
     }
 
     /**
@@ -156,7 +157,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
 
     /**
      * Finds an element in a priority queue.
-     * Retruns -1 if the element does not exist.
+     * Returns -1 if the element does not exist.
      */
     @Override
     public int find(T element) {
@@ -173,13 +174,13 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
 
     /**
      * Finds an element in a priority queue by a match predicate.
-     * Retruns -1 if the element does not exist.
+     * Returns -1 if the element does not exist.
      */
     @Override
     public int find(IMatch<T> match) {
-        if (match == null) {
-            return -1;
-        }
+        Conditions.validateNotNull(
+            match,
+            "the match is not defined.");
 
         for (int index = 0; index < this.data.size(); ++index) {
             T currElement = this.data.get(index);
@@ -288,7 +289,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<IPriorityQueue<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new Comparator<>(elementComparator);
     }
 
@@ -477,6 +478,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
     private void swapValues(int leftIndex, int rightIndex) {
         assert(leftIndex >= 0 && leftIndex < this.data.size());
         assert(rightIndex >= 0 && rightIndex < this.data.size());
+        assert(leftIndex <= rightIndex);
 
         if (leftIndex == rightIndex) {
             return;
@@ -520,7 +522,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
     }
 
     /**
-     * Checks whether the element is a leaf.
+     * Checks whether an element is a leaf.
      */
     private boolean isLeaf(int index) {
         return index >= this.size() / 2;

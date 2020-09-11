@@ -5,7 +5,7 @@
 #include "LinkedList.h"
 #include "TestData.h"
 #include "LinkedListData.h"
-#include "ListIterator.h"
+#include "VectorIterator.h"
 #include "IterationTest.h"
 #include "StringEquality.h"
 #include "UnitTestingException.h"
@@ -117,7 +117,7 @@ namespace test {
                 //
                 getAssertion().assertEqualsWithDereferenceIterators(
                     *container->getIterator(),
-                    *base::ListIterator<ILinkedListNodePtr<T>>::make(data.getNodes()),
+                    *base::VectorIterator<ILinkedListNodePtr<T>>::make(data.getNodes()),
                     "Invalid creation logic of a linked list.");
             }
 
@@ -139,7 +139,7 @@ namespace test {
 
                 base::IIterablePtr<ILinkedListNodePtr<T>> containerIterable = container;
                 base::IIteratorPtr<ILinkedListNodePtr<T>> expectedIterator =
-                    base::ListIterator<ILinkedListNodePtr<T>>::make(data.getNodes());
+                    base::VectorIterator<ILinkedListNodePtr<T>>::make(data.getNodes());
 
                 iterationTest.testForwardIterationWithDereference(
                     containerIterable,
@@ -150,7 +150,7 @@ namespace test {
                 // Test the value iterator of the container...
                 //
                 base::IValueIterablePtr<T> valueIterable = container;
-                base::IIteratorPtr<T> expectedValueIterator = base::ListIterator<T>::make(data.getValues());
+                base::IIteratorPtr<T> expectedValueIterator = base::VectorIterator<T>::make(data.getValues());
 
                 iterationTest.testValueIteration(
                     valueIterable,
@@ -190,7 +190,7 @@ namespace test {
 
                 getAssertion().assertEqualsWithIterators(
                     *list.getValueIterator(),
-                    *base::ListIterator<T>::make(expectedContent),
+                    *base::VectorIterator<T>::make(expectedContent),
                     "Invalid updating logic of a linked list.");
             }
 

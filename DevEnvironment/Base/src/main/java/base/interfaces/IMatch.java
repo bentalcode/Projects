@@ -5,7 +5,7 @@ package base.interfaces;
  */
 public interface IMatch<T> {
     /**
-     * Checks if an element is matching.
+     * Checks whether an element is matching.
      */
     boolean match(T element);
 }

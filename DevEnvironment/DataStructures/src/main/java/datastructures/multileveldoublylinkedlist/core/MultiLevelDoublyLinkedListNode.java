@@ -197,7 +197,7 @@ public final class MultiLevelDoublyLinkedListNode<T extends Comparable<T>> imple
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<IMultiLevelDoublyLinkedListNode<T>> defaultComparator() {
-        IBinaryComparator<T> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> keyComparator = base.core.Comparator.make();
         return new MultiLevelDoublyLinkedListNode.Comparator<>(keyComparator);
     }
 

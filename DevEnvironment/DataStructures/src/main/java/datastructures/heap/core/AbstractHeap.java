@@ -214,7 +214,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
 
     /**
      * Finds an element in a priority queue.
-     * Retruns -1 if the element does not exist.
+     * Returns -1 if the element does not exist.
      */
     @Override
     public int find(T element) {
@@ -231,7 +231,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
 
     /**
      * Finds an element in a priority queue by a match predicate.
-     * Retruns -1 if the element does not exist.
+     * Returns -1 if the element does not exist.
      */
     @Override
     public int find(IMatch<T> match) {
@@ -346,7 +346,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<IPriorityQueue<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new Comparator<>(elementComparator);
     }
 

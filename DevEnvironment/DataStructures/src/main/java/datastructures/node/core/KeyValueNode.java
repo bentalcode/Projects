@@ -143,7 +143,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IKeyValueNode<TKey, TValue>> defaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.make();
         return new Comparator<>(keyComparator);
     }
 

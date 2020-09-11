@@ -6,7 +6,7 @@
 #include "OrBitOperator.h"
 #include "XorBitOperator.h"
 #include "NotBitOperator.h"
-#include "BitArrayException.h"
+#include "bitarray/BitArrayException.h"
 #include "Dimensions.h"
 #include "Indexes.h"
 #include "BitArrayIterator.h"

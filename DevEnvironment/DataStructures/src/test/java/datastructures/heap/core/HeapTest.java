@@ -106,13 +106,13 @@ public final class HeapTest {
         IPriorityQueue<T> heap;
 
         if (data.getCreationData().length == 0) {
-            heap = new Heap<>(
+            heap = Heap.make(
                 data.getClassType(),
                 data.getCapacity(),
                 data.getElementComparator());
         }
         else {
-            heap = new Heap<>(
+            heap = Heap.make(
                 data.getCreationData(),
                 data.getElementComparator());
         }

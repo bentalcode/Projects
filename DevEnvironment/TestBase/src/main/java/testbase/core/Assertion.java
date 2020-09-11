@@ -3,7 +3,6 @@ package testbase.core;
 import base.core.Comparator;
 import base.core.EqualBuilder;
 import base.interfaces.IBinaryComparator;
-import base.interfaces.IEqualBuilder;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IIterable;
 import base.interfaces.IIterator;
@@ -142,7 +141,7 @@ public final class Assertion implements IAssertion {
         T rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+        IBinaryComparator<T> comparator = Comparator.make();
 
         this.assertEquals(
             lhs,
@@ -180,7 +179,7 @@ public final class Assertion implements IAssertion {
         T[] rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+        IBinaryComparator<T> comparator = Comparator.make();
 
         this.assertEquals(
             lhs,
@@ -217,7 +216,7 @@ public final class Assertion implements IAssertion {
         Collection<T> rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+        IBinaryComparator<T> comparator = Comparator.make();
 
         this.assertEquals(
             lhs,
@@ -292,7 +291,7 @@ public final class Assertion implements IAssertion {
         IIterator<T> rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+        IBinaryComparator<T> comparator = Comparator.make();
 
         this.assertEqualsWithIterators(
             lhs,
@@ -329,7 +328,7 @@ public final class Assertion implements IAssertion {
         IReverseIterator<T> rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+        IBinaryComparator<T> comparator = Comparator.make();
 
         this.assertEqualsWithIteratorAndReverseIterator(
             lhs,
@@ -366,7 +365,7 @@ public final class Assertion implements IAssertion {
         IIterable<T> rhs,
         String message) {
 
-        IBinaryComparator<T> comparator = Comparator.defaultComparator();
+        IBinaryComparator<T> comparator = Comparator.make();
 
         this.assertEqualsWithIterables(
             lhs,

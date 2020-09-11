@@ -25,7 +25,7 @@ public final class CircularString implements ICircularString {
         this(
             value,
             0,
-            Comparator.defaultComparator());
+            Comparator.make());
     }
 
     /**
@@ -38,7 +38,7 @@ public final class CircularString implements ICircularString {
         this(
             value,
             startIndex,
-            Comparator.defaultComparator());
+            Comparator.make());
     }
 
     /**

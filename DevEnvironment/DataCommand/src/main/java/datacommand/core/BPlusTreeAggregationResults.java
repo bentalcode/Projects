@@ -1,6 +1,5 @@
 package datacommand.core;
 
-import base.core.BigIntegerConversion;
 import base.core.Conversion;
 import base.interfaces.IIterator;
 import base.core.Comparator;
@@ -14,7 +13,6 @@ import datastructures.bplustree.interfaces.IBPlusTree;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import java.math.BigInteger;
 
 /**
  * The BPlusTreeAggregationResults class implements aggregation results of the data
@@ -29,7 +27,7 @@ public final class BPlusTreeAggregationResults extends AbstractAggregationResult
     public BPlusTreeAggregationResults(IAggregationResultsProperties properties) {
         super(properties);
 
-        IBinaryComparator<String> keyComparator = Comparator.defaultComparator();
+        IBinaryComparator<String> keyComparator = Comparator.make();
         IBinaryComparator<IBPlusTreeNode<String>> nodeComparator = BPlusTreeNode.defaultComparator(keyComparator);
 
         IBPlusTreeProperties<String, IAggregationResult> treeProperties =

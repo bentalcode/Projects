@@ -4,8 +4,8 @@
 #include "UnitTestBase.h"
 #include "DoublyLinkedList.h"
 #include "TestData.h"
-#include "ListIterator.h"
-#include "ListReverseIterator.h"
+#include "VectorIterator.h"
+#include "VectorReverseIterator.h"
 #include "IterationTest.h"
 #include "StringEquality.h"
 
@@ -116,7 +116,7 @@ namespace test {
                 //
                 getAssertion().assertEqualsWithDereferenceIterators(
                     *container->getIterator(),
-                    *base::ListIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes()),
+                    *base::VectorIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes()),
                     "Invalid creation logic of a doubly linked list.");
             }
 
@@ -137,7 +137,7 @@ namespace test {
                 test_base::IterationTest iterationTest;
 
                 base::IIterablePtr<IDoublyLinkedListNodePtr<T>> containerIterable = container;
-                base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> expectedIterator = base::ListIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
+                base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> expectedIterator = base::VectorIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
 
                 iterationTest.testForwardIterationWithDereference(
                     containerIterable,
@@ -149,7 +149,7 @@ namespace test {
                 //
                 base::IReverseIterablePtr<IDoublyLinkedListNodePtr<T>> containerReverseIterable = container;
                 base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> expectedReverseIterator =
-                    base::ListReverseIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
+                    base::VectorReverseIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
 
                 iterationTest.testReverseIterationWithDereference(
                     containerReverseIterable,
@@ -160,7 +160,7 @@ namespace test {
                 // Test the value iterator of the container...
                 //
                 base::IValueIterablePtr<T> valueIterable = container;
-                base::IIteratorPtr<T> expectedValueIterator = base::ListIterator<T>::make(data.getValues());
+                base::IIteratorPtr<T> expectedValueIterator = base::VectorIterator<T>::make(data.getValues());
 
                 iterationTest.testValueIteration(
                     valueIterable,
@@ -171,7 +171,7 @@ namespace test {
                 // Test the value reverse iterator of the container...
                 //
                 base::IValueReverseIterablePtr<T> valueReverseIterable = container;
-                base::IReverseIteratorPtr<T> expectedValueReverseIterator = base::ListReverseIterator<T>::make(data.getValues());
+                base::IReverseIteratorPtr<T> expectedValueReverseIterator = base::VectorReverseIterator<T>::make(data.getValues());
 
                 iterationTest.testValueReverseIteration(
                     valueReverseIterable,
@@ -211,7 +211,7 @@ namespace test {
 
                 getAssertion().assertEqualsWithIterators(
                     *list.getValueIterator(),
-                    *base::ListIterator<T>::make(expectedContent),
+                    *base::VectorIterator<T>::make(expectedContent),
                     "Invalid updating logic of a doubly linked list.");
             }
 

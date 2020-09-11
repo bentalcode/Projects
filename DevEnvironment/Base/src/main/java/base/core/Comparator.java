@@ -7,25 +7,25 @@ import base.interfaces.IBinaryComparator;
  */
 public final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<T> {
     /**
-     * Gets the default comparator.
+     * Creates a comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<T> defaultComparator() {
+    public static <T extends Comparable<T>> IBinaryComparator<T> make() {
         return new Comparator<>();
     }
 
     /**
-     * Gets the default invert comparator.
+     * Creates an invert comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<T> defaultInvertComparator() {
-        IBinaryComparator<T> comparator = Comparator.defaultComparator();
-        return Comparator.invertComparator(comparator);
+    public static <T extends Comparable<T>> IBinaryComparator<T> makeInvert() {
+        IBinaryComparator<T> comparator = Comparator.make();
+        return Comparator.makeInvert(comparator);
     }
 
     /**
-     * Gets the invert comparator.
+     * Creates an invert comparator.
      */
-    public static <T extends Comparable<T>> IBinaryComparator<T> invertComparator(IBinaryComparator<T> comparator) {
-        return new InvertComparator<>(comparator);
+    public static <T extends Comparable<T>> IBinaryComparator<T> makeInvert(IBinaryComparator<T> comparator) {
+        return InvertComparator.make(comparator);
     }
 
     /**

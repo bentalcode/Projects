@@ -35,7 +35,7 @@ namespace base {
         /**
          * Gets the hash code of this instance.
          */
-        virtual int getHashCode(const T& obj) = 0;
+        virtual std::size_t getHashCode(const T& obj) const = 0;
     };
 }
 

@@ -46,7 +46,7 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
             IHashMapConstants.DefaultCapacity,
             IHashMapConstants.DefaultLoadFactor,
             LinkedHashMap.defaultComparator(),
-            base.core.Comparator.defaultComparator());
+            base.core.Comparator.make());
     }
 
     /**
@@ -217,7 +217,7 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ILinkedHashMap<TKey, TValue>> defaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.make();
         IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator = new KeyValueNode.Comparator<>(keyComparator);
 
         return new Comparator<>(

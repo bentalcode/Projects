@@ -493,7 +493,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T extends Comparable<T>> IHashCodeBuilder withObject(T obj) {
-        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        IHashCodeProvider<T> provider = base.core.Comparator.make();
         return this.withObject(obj, provider);
     }
 
@@ -512,7 +512,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T extends Comparable<T>> IHashCodeBuilder withArray(T[] array) {
-        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        IHashCodeProvider<T> provider = base.core.Comparator.make();
         return this.withArray(array, provider);
     }
 
@@ -529,7 +529,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T extends Comparable<T>> IHashCodeBuilder withArray(T[][] array) {
-        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        IHashCodeProvider<T> provider = base.core.Comparator.make();
         return this.withArray(array, provider);
     }
 
@@ -546,7 +546,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T extends Comparable<T>> IHashCodeBuilder withCollection(Collection<T> collection) {
-        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        IHashCodeProvider<T> provider = base.core.Comparator.make();
         return this.withCollection(collection, provider);
     }
 
@@ -563,7 +563,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T extends Comparable<T>> IHashCodeBuilder withIterator(IIterator<T> iterator) {
-        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        IHashCodeProvider<T> provider = base.core.Comparator.make();
         return this.withIterator(iterator, provider);
     }
 
@@ -586,7 +586,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <T extends Comparable<T>> IHashCodeBuilder withIterable(IIterable<T> iterable) {
-        IHashCodeProvider<T> provider = base.core.Comparator.defaultComparator();
+        IHashCodeProvider<T> provider = base.core.Comparator.make();
         return this.withIterator(iterable.getIterator(), provider);
     }
 
@@ -603,8 +603,8 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> IHashCodeBuilder withMap(Map<TKey, TValue> map) {
-        IHashCodeProvider<TKey> keyProvider = base.core.Comparator.defaultComparator();
-        IHashCodeProvider<TValue> valueProvider = base.core.Comparator.defaultComparator();
+        IHashCodeProvider<TKey> keyProvider = base.core.Comparator.make();
+        IHashCodeProvider<TValue> valueProvider = base.core.Comparator.make();
         return this.withMap(map, keyProvider, valueProvider);
     }
 

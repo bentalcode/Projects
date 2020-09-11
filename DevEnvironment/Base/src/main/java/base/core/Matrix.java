@@ -338,7 +338,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<IMatrix<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new Comparator<>(elementComparator);
     }
 

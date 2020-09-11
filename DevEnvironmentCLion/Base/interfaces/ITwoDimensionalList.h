@@ -39,42 +39,42 @@ namespace base
         /**
          * Gets the number of rows.
          */
-        virtual std::size_t rowsSize() const = 0;
+        virtual size_t rowsSize() const = 0;
 
         /**
          * Gets the number of columns in a specific row.
          */
-        virtual std::size_t rowSize(std::size_t rowIndex) const = 0;
+        virtual size_t rowSize(size_t rowIndex) const = 0;
 
         /**
          * Gets an element at a specified position.
          */
-        virtual const T& get(std::size_t rowIndex, std::size_t columnIndex) const = 0;
+        virtual const T& get(size_t rowIndex, size_t columnIndex) const = 0;
 
         /**
          * Gets all elements.
          */
-        virtual const std::vector<std::vector<T>>& getData() const = 0;
+        virtual const std::list<std::list<T>>& getData() const = 0;
 
         /**
          * Gets a row.
          */
-        virtual const std::vector<T>& getRow(std::size_t rowIndex) const = 0;
+        virtual const std::list<T>& getRow(size_t rowIndex) const = 0;
 
         /**
          * Adds a new row.
          */
-        virtual void addRow(const std::vector<T>& row) = 0;
+        virtual void addRow(const std::list<T>& row) = 0;
 
         /**
          * Gets a row.
          */
-        virtual const std::vector<T>& operator[](int index) const = 0;
+        virtual const std::list<T>& operator[](int index) const = 0;
 
         /**
          * Gets a row.
          */
-        virtual std::vector<T>& operator[](int index) = 0;
+        virtual std::list<T>& operator[](int index) = 0;
     };
 
     template <typename T>

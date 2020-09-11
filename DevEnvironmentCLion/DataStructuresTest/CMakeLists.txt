@@ -40,6 +40,9 @@ set(DATA_STRUCTURES_TEST_INCLUDES_FILES
     ./linkedlist/interfaces/LinkedListData.h
     ./linkedlist/interfaces/LinkedListTestData.h
     ./linkedlist/interfaces/LinkedListUnitTest.h
+    ./priorityqueue/interfaces/PriorityQueueData.h
+    ./priorityqueue/interfaces/PriorityQueueTestData.h
+    ./priorityqueue/interfaces/PriorityQueueUnitTest.h
 )
 
 set(DATA_STRUCTURES_TEST_SOURCES_FILES
@@ -56,6 +59,8 @@ set(DATA_STRUCTURES_TEST_SOURCES_FILES
     ./linkedlist/core/LinkedListTestData.cpp
     ./linkedlist/core/LinkedListUnitTest.cpp
     ./main.cpp
+    ./priorityqueue/core/PriorityQueueTestData.cpp
+    ./priorityqueue/core/PriorityQueueUnitTest.cpp
 )
 
 set(DATA_STRUCTURES_TEST_SOURCES
@@ -70,6 +75,7 @@ set(DATA_STRUCTURES_TEST_INCLUDES
     ./doublylinkedlist/interfaces
     ./interfaces
     ./linkedlist/interfaces
+    ./priorityqueue/interfaces
 )
 
 set(BASE_INCLUDES_FILES
@@ -80,6 +86,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/BaseLogic.h
     ../Base/core/ClassType.h
     ../Base/core/ComparableComparator.h
+    ../Base/core/Comparator.h
     ../Base/core/DereferenceComparableComparator.h
     ../Base/core/DereferenceComparableComparator2.h
     ../Base/core/DereferenceEquatableComparator.h
@@ -87,6 +94,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/EquatableComparator.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
+    ../Base/core/InvertComparator.h
     ../Base/core/IterableObject.h
     ../Base/core/KmpStringSearch.h
     ../Base/core/List.h
@@ -103,6 +111,9 @@ set(BASE_INCLUDES_FILES
     ../Base/core/StringIterator.h
     ../Base/core/TwoDimensionalList.h
     ../Base/core/TwoDimensionalListIterator.h
+    ../Base/core/TwoDimensionalVector.h
+    ../Base/core/VectorIterator.h
+    ../Base/core/VectorReverseIterator.h
     ../Base/core/XorBitOperator.h
     ../Base/interfaces/Bits.h
     ../Base/interfaces/ClassTypes.h
@@ -127,12 +138,14 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMatch.h
     ../Base/interfaces/IMatrix.h
     ../Base/interfaces/IReverseIterable.h
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/ITwoDimensionalVector.h
     ../Base/interfaces/IUnaryBitOperator.h
     ../Base/interfaces/IValidator.h
     ../Base/interfaces/IValueIterable.h
@@ -286,18 +299,18 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/binarytree/interfaces/IBinaryTreeNodeIterator.h
     ../DataStructures/binarytree/interfaces/IBinaryTreeNodeReverseIterator.h
     ../DataStructures/binarytree/interfaces/IBinaryTreeTraversal.h
+    ../DataStructures/bitarray/BitArrayException.h
     ../DataStructures/bitarray/core/Bit32Array.h
     ../DataStructures/bitarray/core/Bit32ArrayIterator.h
     ../DataStructures/bitarray/core/Bit32ArrayReverseIterator.h
     ../DataStructures/bitarray/core/BitArray.h
-    ../DataStructures/bitarray/core/BitArrayException.h
     ../DataStructures/bitarray/core/BitArrayIterator.h
     ../DataStructures/bitarray/core/BitArrayReverseIterator.h
     ../DataStructures/bitarray/interfaces/IBit32Array.h
     ../DataStructures/bitarray/interfaces/IBitArray.h
     ../DataStructures/core/PreCompiled.h
+    ../DataStructures/doublylinkedlist/DoublyLinkedListException.h
     ../DataStructures/doublylinkedlist/core/DoublyLinkedList.h
-    ../DataStructures/doublylinkedlist/core/DoublyLinkedListException.h
     ../DataStructures/doublylinkedlist/core/DoublyLinkedListNode.h
     ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeIterator.h
     ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeReverseIterator.h
@@ -306,13 +319,17 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/doublylinkedlist/interfaces/IDoublyLinkedList.h
     ../DataStructures/doublylinkedlist/interfaces/IDoublyLinkedListNode.h
     ../DataStructures/interfaces/IteratorOfIteratorCollection.h
+    ../DataStructures/linkedlist/LinkedListException.h
     ../DataStructures/linkedlist/core/LinkedList.h
-    ../DataStructures/linkedlist/core/LinkedListException.h
     ../DataStructures/linkedlist/core/LinkedListNode.h
     ../DataStructures/linkedlist/core/LinkedListNodeIterator.h
     ../DataStructures/linkedlist/core/LinkedListNodeValueIterator.h
     ../DataStructures/linkedlist/interfaces/ILinkedList.h
     ../DataStructures/linkedlist/interfaces/ILinkedListNode.h
+    ../DataStructures/priorityqueue/PriorityQueueException.h
+    ../DataStructures/priorityqueue/core/AbstractPriorityQueue.h
+    ../DataStructures/priorityqueue/core/PriorityQueue.h
+    ../DataStructures/priorityqueue/interfaces/IPriorityQueue.h
 )
 
 set(DATA_STRUCTURES_SOURCES_FILES
@@ -334,14 +351,20 @@ set(DATA_STRUCTURES_INCLUDES
     ../DataStructures
     ../DataStructures/binarytree/core
     ../DataStructures/binarytree/interfaces
+    ../DataStructures/bitarray
     ../DataStructures/bitarray/core
     ../DataStructures/bitarray/interfaces
     ../DataStructures/core
+    ../DataStructures/doublylinkedlist
     ../DataStructures/doublylinkedlist/core
     ../DataStructures/doublylinkedlist/interfaces
     ../DataStructures/interfaces
+    ../DataStructures/linkedlist
     ../DataStructures/linkedlist/core
     ../DataStructures/linkedlist/interfaces
+    ../DataStructures/priorityqueue
+    ../DataStructures/priorityqueue/core
+    ../DataStructures/priorityqueue/interfaces
 )
 
 add_library(DataStructures STATIC

@@ -30,7 +30,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
      * Creates a new tree node.
      */
     public static <TKey extends Comparable<TKey>, TValue> ITreeNode<TKey, TValue> create(TKey key, TValue value) {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.make();
         return TreeNode.create(key, value, keyComparator);
     }
 
@@ -178,7 +178,7 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ITreeNode<TKey, TValue>> defaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.make();
         return new Comparator<>(keyComparator);
     }
 

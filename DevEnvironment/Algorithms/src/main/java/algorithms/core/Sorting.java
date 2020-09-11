@@ -16,7 +16,7 @@ public final class Sorting {
     public static <T extends Comparable<T>> boolean isSorted(Collection<T> collection) {
         return isSorted(
             collection,
-            Comparator.defaultComparator(),
+            Comparator.make(),
             SortingOrder.Ascending);
     }
 
@@ -29,7 +29,7 @@ public final class Sorting {
 
         return isSorted(
             collection,
-            Comparator.defaultComparator(),
+            Comparator.make(),
             sortingOrder);
     }
 

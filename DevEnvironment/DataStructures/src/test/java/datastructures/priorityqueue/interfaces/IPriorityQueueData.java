@@ -18,12 +18,12 @@ public interface IPriorityQueueData<T extends Comparable<T>> {
     IBinaryComparator<T> getElementComparator();
 
     /**
-     * Gets the creation data.
+     * Gets the creation data of a priority queue.
      */
     List<T> getCreationData();
 
     /**
-     * Gets the actual data of the priority queue.
+     * Gets the actual data of a priority queue.
      */
     List<T> getData();
 }

@@ -179,7 +179,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<ICircularArray<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new Comparator<>(elementComparator);
     }
 

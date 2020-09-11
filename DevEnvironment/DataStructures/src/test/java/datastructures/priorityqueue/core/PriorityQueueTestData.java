@@ -43,7 +43,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
 
         return new PriorityQueueData<>(
             Integer.class,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             data,
             data);
     }
@@ -57,7 +57,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
 
         return new PriorityQueueData<>(
             Integer.class,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             creationData,
             expectedData);
     }
@@ -71,7 +71,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
 
         return new PriorityQueueData<>(
             Integer.class,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             creationData,
             expectedData);
     }
@@ -85,7 +85,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
 
         return new PriorityQueueData<>(
             Integer.class,
-            base.core.Comparator.defaultInvertComparator(),
+            base.core.Comparator.makeInvert(),
             creationData,
             expectedData);
     }
@@ -99,7 +99,7 @@ public final class PriorityQueueTestData implements IPriorityQueueTestData {
 
         return new PriorityQueueData<>(
             Integer.class,
-            base.core.Comparator.defaultInvertComparator(),
+            base.core.Comparator.makeInvert(),
             creationData,
             expectedData);
     }

@@ -299,7 +299,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<IList<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new ArrayList.Comparator<>(elementComparator);
     }
 

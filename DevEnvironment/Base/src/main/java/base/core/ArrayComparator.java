@@ -32,7 +32,7 @@ public final class ArrayComparator<T extends Comparable<T>> extends AbstractBina
      */
     @Override
     public boolean isEqual(T[] lhs, T[] rhs) {
-        return this.isEqual(lhs, rhs, Comparator.defaultComparator());
+        return this.isEqual(lhs, rhs, Comparator.make());
     }
 
     /**
@@ -44,7 +44,7 @@ public final class ArrayComparator<T extends Comparable<T>> extends AbstractBina
      */
     @Override
     public int compareTo(T[] lhs, T[] rhs) {
-        return this.compareTo(lhs, rhs, Comparator.defaultComparator());
+        return this.compareTo(lhs, rhs, Comparator.make());
     }
 
     /**

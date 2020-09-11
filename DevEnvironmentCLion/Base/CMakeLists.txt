@@ -32,6 +32,7 @@ set(BASE_INCLUDES_FILES
     ./core/BaseLogic.h
     ./core/ClassType.h
     ./core/ComparableComparator.h
+    ./core/Comparator.h
     ./core/DereferenceComparableComparator.h
     ./core/DereferenceComparableComparator2.h
     ./core/DereferenceEquatableComparator.h
@@ -39,6 +40,7 @@ set(BASE_INCLUDES_FILES
     ./core/EquatableComparator.h
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
+    ./core/InvertComparator.h
     ./core/IterableObject.h
     ./core/KmpStringSearch.h
     ./core/List.h
@@ -55,6 +57,9 @@ set(BASE_INCLUDES_FILES
     ./core/StringIterator.h
     ./core/TwoDimensionalList.h
     ./core/TwoDimensionalListIterator.h
+    ./core/TwoDimensionalVector.h
+    ./core/VectorIterator.h
+    ./core/VectorReverseIterator.h
     ./core/XorBitOperator.h
     ./interfaces/Bits.h
     ./interfaces/ClassTypes.h
@@ -79,12 +84,14 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IIterable.h
     ./interfaces/IIterator.h
     ./interfaces/IList.h
+    ./interfaces/IMatch.h
     ./interfaces/IMatrix.h
     ./interfaces/IReverseIterable.h
     ./interfaces/IReverseIterator.h
     ./interfaces/ISizableCollection.h
     ./interfaces/ISkipIterator.h
     ./interfaces/ITwoDimensionalList.h
+    ./interfaces/ITwoDimensionalVector.h
     ./interfaces/IUnaryBitOperator.h
     ./interfaces/IValidator.h
     ./interfaces/IValueIterable.h

@@ -17,17 +17,17 @@ namespace base
         /**
          * The constructor, with an initial sizes: rowSize x colSize.
          */
-        TwoDimensionalList(std::size_t rowsSize, std::size_t colsSize);
+        TwoDimensionalList(size_t rowsSize, size_t colsSize);
 
         /**
-         * The constructor, with a two dimensional vector.
+         * The constructor, with a two dimensional list.
          */
-        explicit TwoDimensionalList(const std::vector<std::vector<T>>& data);
+        explicit TwoDimensionalList(const std::list<std::list<T>>& data);
 
         /**
          * The constructor, with an initializer list.
          */
-        TwoDimensionalList(const std::initializer_list<std::vector<T>>& list);
+        TwoDimensionalList(const std::initializer_list<std::list<T>>& list);
 
         /**
          * The destructor.
@@ -49,42 +49,42 @@ namespace base
         /**
          * Gets the number of rows.
          */
-        virtual std::size_t rowsSize() const override;
+        virtual size_t rowsSize() const override;
 
         /**
          * Gets the number of columns in a specific row.
          */
-        virtual std::size_t rowSize(std::size_t rowIndex) const override;
+        virtual size_t rowSize(size_t rowIndex) const override;
 
         /**
          * Gets an element at a specified position.
          */
-        virtual const T& get(std::size_t rowIndex, std::size_t columnIndex) const override;
+        virtual const T& get(size_t rowIndex, size_t columnIndex) const override;
 
         /**
          * Gets all elements.
          */
-        virtual const std::vector<std::vector<T>>& getData() const override;
+        virtual const std::list<std::list<T>>& getData() const override;
 
         /**
          * Gets a row.
          */
-        virtual const std::vector<T>& getRow(std::size_t rowIndex) const override;
+        virtual const std::list<T>& getRow(size_t rowIndex) const override;
 
         /**
          * Adds a new row.
          */
-        virtual void addRow(const std::vector<T>& data) override;
+        virtual void addRow(const std::list<T>& data) override;
 
         /**
          * Gets a row.
          */
-        virtual const std::vector<T>& operator[](int index) const override;
+        virtual const std::list<T>& operator[](int index) const override;
 
         /**
          * Gets a row.
          */
-        virtual std::vector<T>& operator[](int index) override;
+        virtual std::list<T>& operator[](int index) override;
 
         /**
          * Returns whether the collection is empty.
@@ -94,7 +94,7 @@ namespace base
         /**
          * Gets the size of the collection.
          */
-        virtual std::size_t size() const override;
+        virtual size_t size() const override;
 
         /**
          * Gets the iterator.
@@ -102,33 +102,33 @@ namespace base
         virtual IIteratorPtr<T> getIterator() const override;
 
     private:
-        using TwoDimensionalVector = std::vector<std::vector<T>>;
+        using TwoDimensionalVector = std::list<std::list<T>>;
         TwoDimensionalVector m_data;
     };
 
     template <typename T>
-    TwoDimensionalList<T>::TwoDimensionalList(std::size_t rowsSize, std::size_t colsSize) :
+    TwoDimensionalList<T>::TwoDimensionalList(size_t rowsSize, size_t colsSize) :
         m_data(rowsSize)
     {
         for (size_t i = 0; i < rowsSize; ++i)
         {
-            std::vector<T> row(colsSize);
+            std::list<T> row(colsSize);
             m_data[i] = row;
         }
     }
 
     template <typename T>
-    TwoDimensionalList<T>::TwoDimensionalList(const std::vector<std::vector<T>>& data) :
+    TwoDimensionalList<T>::TwoDimensionalList(const std::list<std::list<T>>& data) :
         m_data(data)
     {
     }
 
     template <typename T>
-    TwoDimensionalList<T>::TwoDimensionalList(const std::initializer_list<std::vector<T>>& data) :
+    TwoDimensionalList<T>::TwoDimensionalList(const std::initializer_list<std::list<T>>& data) :
         m_data(data.size())
     {
-        std::size_t rowIndex = 0;
-        for (const std::vector<T>& row : data)
+        size_t rowIndex = 0;
+        for (const std::list<T>& row : data)
         {
             m_data[rowIndex] = row;
             ++rowIndex;
@@ -141,38 +141,38 @@ namespace base
     }
 
     template <typename T>
-    std::size_t TwoDimensionalList<T>::rowsSize() const
+    size_t TwoDimensionalList<T>::rowsSize() const
     {
         return m_data.size();
     }
 
     template <typename T>
-    std::size_t TwoDimensionalList<T>::rowSize(std::size_t rowIndex) const {
-        const std::vector<T>& row = m_data[rowIndex];
+    size_t TwoDimensionalList<T>::rowSize(size_t rowIndex) const {
+        const std::list<T>& row = m_data[rowIndex];
         return row.size();
     }
 
     template <typename T>
-    const T& TwoDimensionalList<T>::get(std::size_t rowIndex, std::size_t columnIndex) const
+    const T& TwoDimensionalList<T>::get(size_t rowIndex, size_t columnIndex) const
     {
-        const std::vector<T>& row = m_data[rowIndex];
+        const std::list<T>& row = m_data[rowIndex];
         return row[columnIndex];
     }
 
     template <typename T>
-    const std::vector<std::vector<T>>& TwoDimensionalList<T>::getData() const
+    const std::list<std::list<T>>& TwoDimensionalList<T>::getData() const
     {
         return m_data;
     }
 
     template <typename T>
-    const std::vector<T>& TwoDimensionalList<T>::getRow(std::size_t rowIndex) const
+    const std::list<T>& TwoDimensionalList<T>::getRow(size_t rowIndex) const
     {
         return m_data[rowIndex];
     }
 
     template <typename T>
-    void TwoDimensionalList<T>::addRow(const std::vector<T>& row)
+    void TwoDimensionalList<T>::addRow(const std::list<T>& row)
     {
         return m_data.push_back(row);
     }
@@ -181,7 +181,7 @@ namespace base
      * Gets a const element at a specified position.
      */
     template <typename T>
-    const std::vector<T>& TwoDimensionalList<T>::operator[](int index) const
+    const std::list<T>& TwoDimensionalList<T>::operator[](int index) const
     {
         return m_data[index];
     }
@@ -190,7 +190,7 @@ namespace base
      * Gets an element at a specified position.
      */
     template <typename T>
-    std::vector<T>& TwoDimensionalList<T>::operator[](int index)
+    std::list<T>& TwoDimensionalList<T>::operator[](int index)
     {
         return m_data[index];
     }
@@ -202,9 +202,9 @@ namespace base
     }
 
     template <typename T>
-    std::size_t TwoDimensionalList<T>::size() const
+    size_t TwoDimensionalList<T>::size() const
     {
-        std::size_t size = 0;
+        size_t size = 0;
 
         for (typename TwoDimensionalVector::value_type row : m_data) {
             size += row.size();

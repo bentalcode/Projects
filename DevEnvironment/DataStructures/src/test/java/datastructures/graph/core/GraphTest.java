@@ -207,7 +207,7 @@ public final class GraphTest {
             Map<IVertex<TKey, TValue>, Integer> expectedShortestPaths = allExpectedShortestPaths.get(src);
 
             IEquatableComparator<IVertex<TKey, TValue>> keyComparator = Vertex.defaultComparator();
-            IEquatableComparator<Integer> valueComparator = base.core.Comparator.defaultComparator();
+            IEquatableComparator<Integer> valueComparator = base.core.Comparator.make();
 
             this.assertion.assertEquals(
                 shortestPaths,

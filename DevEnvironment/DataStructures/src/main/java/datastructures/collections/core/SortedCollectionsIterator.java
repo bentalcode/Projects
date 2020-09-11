@@ -44,7 +44,7 @@ public final class SortedCollectionsIterator<TKey extends Comparable<TKey>> impl
      * The SortedCollectionIterator constructor.
      */
     private SortedCollectionsIterator(List<Collection<TKey>> collections) {
-        this(collections, base.core.Comparator.defaultComparator());
+        this(collections, base.core.Comparator.make());
     }
 
     /**

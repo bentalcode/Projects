@@ -49,12 +49,12 @@ public final class PriorityQueueTest {
     }
 
     /**
-     * Tests the creation and removal logic of a priority queue.
+     * Tests the peek and poll logic of a priority queue.
      */
     @Test
-    public void listCreationAndRemovalTest() {
+    public void peekAndPollTest() {
         for (IPriorityQueueData<Integer> data : this.testData.getPriorityQueueData().getData()) {
-            this.testCreationWithRemoval(data);
+            this.testPeekAndPoll(data);
         }
     }
 
@@ -71,9 +71,9 @@ public final class PriorityQueueTest {
     }
 
     /**
-     * Tests the creation and removal logic of a priority queue.
+     * Tests the peek and poll logic of a priority queue.
      */
-    private <T extends Comparable<T>> void testCreationWithRemoval(IPriorityQueueData<T> data) {
+    private <T extends Comparable<T>> void testPeekAndPoll(IPriorityQueueData<T> data) {
         IPriorityQueue<T> priorityQueue = this.createPriorityQueue(data);
 
         this.assertion.assertEqualsWithIterators(
@@ -91,21 +91,20 @@ public final class PriorityQueueTest {
             this.assertion.assertEquals(
                 removedValue,
                 valueToRemove,
-                "Invalid remove logic of a priority queue: invalid removed value.");
+                "Incorrect peak and poll logic of a priority queue: invalid removed value.");
 
-            this.assertion.assertTrue(
-                priorityQueue.size() == currSize,
-                "Invalid remove logic of a priority queue: invalid size.");
+            this.assertion.assertEquals(
+                priorityQueue.size(),
+                currSize,
+                "Incorrect peak and poll logic of a priority queue: invalid size.");
         }
     }
 
     /**
      * Creates a priority queue.
      */
-    private <T extends Comparable<T>> IPriorityQueue<T> createPriorityQueue(
-        IPriorityQueueData<T> data) {
-
-        IPriorityQueue<T> priorityQueue = new PriorityQueue<>(
+    private <T extends Comparable<T>> IPriorityQueue<T> createPriorityQueue(IPriorityQueueData<T> data) {
+        IPriorityQueue<T> priorityQueue = PriorityQueue.make(
             data.getClassType(),
             data.getElementComparator());
 

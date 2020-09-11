@@ -294,7 +294,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<ICache<TKey, TValue>> defaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.make();
         IBinaryComparator<IKeyValueNode<TKey, TValue>> comparator = new KeyValueNode.Comparator<>(keyComparator);
 
         return new Comparator<>(

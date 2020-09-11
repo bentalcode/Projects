@@ -143,9 +143,9 @@ public final class Triplet
             Type2 extends Comparable<Type2>,
             Type3 extends Comparable<Type3>
         > IBinaryComparator<ITriplet<Type1, Type2, Type3>> defaultComparator() {
-        IBinaryComparator<Type1> firstElementComparator = base.core.Comparator.defaultComparator();
-        IBinaryComparator<Type2> secondElementComparator = base.core.Comparator.defaultComparator();
-        IBinaryComparator<Type3> thirdElementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<Type1> firstElementComparator = base.core.Comparator.make();
+        IBinaryComparator<Type2> secondElementComparator = base.core.Comparator.make();
+        IBinaryComparator<Type3> thirdElementComparator = base.core.Comparator.make();
 
         return new Comparator<>(
             firstElementComparator,

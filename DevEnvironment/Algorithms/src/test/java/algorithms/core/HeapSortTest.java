@@ -92,7 +92,7 @@ public final class HeapSortTest {
 
         ISort<T> heapSort = new HeapSort<>(
             classType,
-            base.core.Comparator.defaultComparator());
+            base.core.Comparator.make());
 
         heapSort.sort(arr);
 

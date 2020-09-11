@@ -4,7 +4,7 @@
 #include "PreCompiled.h"
 #include "UnitTestBase.h"
 #include "TestData.h"
-#include "ListIterator.h"
+#include "VectorIterator.h"
 #include "TwoDimensionalListIterator.h"
 #include "IteratorOfIteratorCollection.h"
 
@@ -55,7 +55,7 @@ namespace test {
             const std::vector<T>& oneDimensionalArray,
             const std::vector<std::vector<T>>& twoDimensionalArray)
         {
-            base::IIteratorPtr<T> oneDimensionalArrayIterator(new base::ListIterator<T>(oneDimensionalArray));
+            base::IIteratorPtr<T> oneDimensionalArrayIterator(new base::VectorIterator<T>(oneDimensionalArray));
             base::IIteratorPtr<T> twoDimensionalArrayIterator(new base::TwoDimensionalListIterator<T>(twoDimensionalArray));
 
             std::vector<base::IIteratorPtr<T>> iterators;
@@ -71,7 +71,7 @@ namespace test {
                 data.insert(data.end(), row.begin(), row.end());
             }
 
-            base::IIteratorPtr<T> dataIterator(new base::ListIterator<T>(data));
+            base::IIteratorPtr<T> dataIterator(new base::VectorIterator<T>(data));
 
             getAssertion().assertEqualsWithIterators(
                 *iteratorOfIterators,

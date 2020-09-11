@@ -8,7 +8,7 @@ import java.nio.file.Path;
  * The FileComparator class implements a comparator for files.
  */
 public final class FileComparator implements IComparableComparator<Path> {
-    private final IComparableComparator<String> comparator = Comparator.defaultComparator();
+    private final IComparableComparator<String> comparator = Comparator.make();
 
     /**
      * The FileComparator constructor.

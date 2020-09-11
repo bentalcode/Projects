@@ -92,7 +92,7 @@ public final class MergeSortTest {
 
         ISort<T> mergeSort = new MergeSort<>(
             classType,
-            base.core.Comparator.defaultComparator());
+            base.core.Comparator.make());
 
         mergeSort.sort(arr);
 

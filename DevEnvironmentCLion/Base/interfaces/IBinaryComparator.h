@@ -4,6 +4,7 @@
 #include "IHashCodeProvider.h"
 #include "IEquatableComparator.h"
 #include "IComparableComparator.h"
+#include <memory>
 
 namespace base {
 
@@ -11,7 +12,10 @@ namespace base {
      * The IBinaryComparator interface defines a binary comparator.
      */
     template <typename T>
-    class IBinaryComparator : public IHashCodeProvider<T>, IEquatableComparator<T>, IComparableComparator<T>
+    class IBinaryComparator :
+        public IHashCodeProvider<T>,
+        public IEquatableComparator<T>,
+        public IComparableComparator<T>
     {
     public:
         /**
@@ -36,6 +40,9 @@ namespace base {
         IBinaryComparator& operator=(const IBinaryComparator&) = delete;
         IBinaryComparator& operator=(IBinaryComparator&&) = delete;
     };
+
+    template <typename T>
+    using IBinaryComparatorPtr = std::shared_ptr<IBinaryComparator<T>>;
 }
 
 #endif // I_BINARY_COMPARATOR_H_daa463f1_8170_47c6_88a5_5e7f79de9df5

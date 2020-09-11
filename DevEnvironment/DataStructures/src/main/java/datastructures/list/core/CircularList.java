@@ -180,7 +180,7 @@ public final class CircularList<T extends Comparable<T>> implements ICircularLis
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<ICircularList<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new Comparator<>(elementComparator);
     }
 

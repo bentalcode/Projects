@@ -2,7 +2,6 @@
 #define LIST_ITERATOR_H_9d18cf60_d223_4bab_b5fd_8841deb8eb1f
 
 #include "IIterator.h"
-#include "IList.h"
 
 namespace base
 {
@@ -16,12 +15,12 @@ namespace base
         /**
          * Creates an iterator of a list.
          */
-        static base::IIteratorPtr<T> make(const std::vector<T>& data);
+        static base::IIteratorPtr<T> make(const std::list<T>& data);
 
         /**
          * The constructor.
          */
-        explicit ListIterator(const std::vector<T>& data);
+        explicit ListIterator(const std::list<T>& data);
 
         /**
          * The destructor.
@@ -56,21 +55,21 @@ namespace base
         virtual void reset() override;
 
     private:
-        const std::vector<T>& m_data;
-        size_t m_index;
+        const std::list<T>& m_data;
+        typename std::list<T>::const_iterator m_iterator;
     };
 
     /**
      * Creates an iterator of a list.
      */
     template <typename T>
-    base::IIteratorPtr<T> ListIterator<T>::make(const std::vector<T>& data)
+    base::IIteratorPtr<T> ListIterator<T>::make(const std::list<T>& data)
     {
         return std::make_shared<ListIterator>(data);
     }
 
     template <typename T>
-    ListIterator<T>::ListIterator(const std::vector<T>& data) :
+    ListIterator<T>::ListIterator(const std::list<T>& data) :
         m_data(data)
     {
         reset();
@@ -84,7 +83,7 @@ namespace base
     template <typename T>
     bool ListIterator<T>::hasNext() const
     {
-        return m_index < m_data.size();
+        return m_iterator != m_data.end();
     }
 
     template <typename T>
@@ -92,8 +91,8 @@ namespace base
     {
         assert(hasNext());
 
-        T currElement = m_data[m_index];
-        ++m_index;
+        T currElement = *m_iterator;
+        ++m_iterator;
 
         return currElement;
     }
@@ -101,7 +100,7 @@ namespace base
     template <typename T>
     void ListIterator<T>::reset()
     {
-        m_index = 0;
+        m_iterator = m_data.begin();
     }
 }
 

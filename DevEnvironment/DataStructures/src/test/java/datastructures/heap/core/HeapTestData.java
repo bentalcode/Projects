@@ -44,7 +44,7 @@ public final class HeapTestData implements IHeapTestData {
         return new HeapData<>(
             Integer.class,
             capacity,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             data,
             data);
     }
@@ -60,7 +60,7 @@ public final class HeapTestData implements IHeapTestData {
         return new HeapData<>(
             Integer.class,
             capacity,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             creationData,
             expectedData);
     }
@@ -76,7 +76,7 @@ public final class HeapTestData implements IHeapTestData {
         return new HeapData<>(
             Integer.class,
             capacity,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             creationData,
             expectedData);
     }
@@ -92,7 +92,7 @@ public final class HeapTestData implements IHeapTestData {
         return new HeapData<>(
             Integer.class,
             capacity,
-            base.core.Comparator.defaultInvertComparator(),
+            base.core.Comparator.makeInvert(),
             creationData,
             expectedData);
     }
@@ -108,7 +108,7 @@ public final class HeapTestData implements IHeapTestData {
         return new HeapData<>(
             Integer.class,
             capacity,
-            base.core.Comparator.defaultInvertComparator(),
+            base.core.Comparator.makeInvert(),
             creationData,
             expectedData);
     }

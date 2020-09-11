@@ -5,7 +5,7 @@
 #include "LinkedListNode.h"
 #include "LinkedListNodeIterator.h"
 #include "LinkedListNodeValueIterator.h"
-#include "LinkedListException.h"
+#include "linkedlist/LinkedListException.h"
 
 namespace datastructures {
     namespace linkedlist {

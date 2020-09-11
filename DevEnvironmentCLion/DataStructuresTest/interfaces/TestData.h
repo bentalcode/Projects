@@ -5,11 +5,13 @@
 #include "LinkedListTestData.h"
 #include "DoublyLinkedListTestData.h"
 #include "BinaryTreeTestData.h"
+#include "PriorityQueueTestData.h"
 
 using namespace test::datastructures::bitarray;
 using namespace test::datastructures::linkedlist;
 using namespace test::datastructures::doublylinkedlist;
 using namespace test::datastructures::binarytree;
+using namespace test::datastructures::priority_queue;
 
 namespace test {
     namespace datastructures {
@@ -49,6 +51,11 @@ namespace test {
              * Gets the data of tests of a binary tree.
              */
             BinaryTreeTestDataPtr getBinaryTreeData();
+
+            /**
+             * Gets the data of tests of a priority queue.
+             */
+            PriorityQueueTestDataPtr getPriorityQueueData();
 
             /**
              * Creates a vector.

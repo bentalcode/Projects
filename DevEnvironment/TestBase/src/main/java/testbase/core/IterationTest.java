@@ -37,7 +37,7 @@ public final class IterationTest implements IIterationTest {
         this.testIteration(
             container,
             expectedIterator,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             containerName);
     }
 
@@ -94,7 +94,7 @@ public final class IterationTest implements IIterationTest {
         this.testForwardIteration(
             container,
             expectedIterator,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             containerName);
     }
 
@@ -154,7 +154,7 @@ public final class IterationTest implements IIterationTest {
         this.testReverseIteration(
             container,
             expectedReverseIterator,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             containerName);
     }
 
@@ -214,7 +214,7 @@ public final class IterationTest implements IIterationTest {
         this.testKeyIteration(
             container,
             expectedIterator,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             containerName);
     }
 
@@ -274,7 +274,7 @@ public final class IterationTest implements IIterationTest {
         this.testKeyReverseIteration(
             container,
             expectedReverseIterator,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             containerName);
     }
 
@@ -334,7 +334,7 @@ public final class IterationTest implements IIterationTest {
         this.testValueIteration(
             container,
             expectedIterator,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             containerName);
     }
 
@@ -394,7 +394,7 @@ public final class IterationTest implements IIterationTest {
         this.testValueReverseIteration(
             container,
             expectedReverseIterator,
-            base.core.Comparator.defaultComparator(),
+            base.core.Comparator.make(),
             containerName);
     }
 

@@ -4,11 +4,10 @@
 #include "UnitTestFunction.h"
 #include "BitArray.h"
 #include "BitArrayData.h"
-#include "ListIterator.h"
-#include "ListReverseIterator.h"
+#include "VectorIterator.h"
+#include "VectorReverseIterator.h"
 #include "IterationTest.h"
 #include "Dimensions.h"
-#include "Assertion.h"
 
 using namespace test::datastructures::bitarray;
 
@@ -222,7 +221,7 @@ void BitArrayUnitTest::testCreation(const BitArrayData& data)
 
     getAssertion().assertEqualsWithIterators(
         *bitArray->getIterator(),
-        *base::ListIterator<bool>::make(data.getData()),
+        *base::VectorIterator<bool>::make(data.getData()),
         "Invalid creation logic of a bit array.");
 }
 
@@ -273,7 +272,7 @@ void BitArrayUnitTest::testIteration(const BitArrayData& data)
     // Test the default iterator of the container...
     //
     base::IIterablePtr<bool> containerIterable = container;
-    base::IIteratorPtr<bool> expectedIterator = base::ListIterator<bool>::make(data.getData());
+    base::IIteratorPtr<bool> expectedIterator = base::VectorIterator<bool>::make(data.getData());
 
     test_base::IterationTest iterationTest;
     iterationTest.testForwardIteration(
@@ -284,7 +283,7 @@ void BitArrayUnitTest::testIteration(const BitArrayData& data)
     //
     // Test the forward iterator of the container...
     //
-    expectedIterator = base::ListIterator<bool>::make(data.getData());
+    expectedIterator = base::VectorIterator<bool>::make(data.getData());
 
     iterationTest.testForwardIteration(
         containerIterable,
@@ -295,7 +294,7 @@ void BitArrayUnitTest::testIteration(const BitArrayData& data)
     // Test the reverse iterator of the container...
     //
     base::IReverseIterablePtr<bool> containerReverseIterable = container;
-    base::IReverseIteratorPtr<bool> expectedReveseIterator = base::ListReverseIterator<bool>::make(data.getData());
+    base::IReverseIteratorPtr<bool> expectedReveseIterator = base::VectorReverseIterator<bool>::make(data.getData());
 
     iterationTest.testReverseIteration(
         containerReverseIterable,

@@ -56,7 +56,7 @@ namespace base
 
     private:
         const std::vector<T>& m_data;
-        size_t m_index;
+        typename std::vector<T>::const_reverse_iterator m_reverseIterator;
     };
 
     /**
@@ -92,7 +92,7 @@ namespace base
     template <typename T>
     bool ListReverseIterator<T>::hasNext() const
     {
-        return m_index >= 0;
+        return m_reverseIterator != m_data.rend();
     }
 
     /**
@@ -103,8 +103,8 @@ namespace base
     {
         assert(hasNext());
 
-        T currElement = m_data[m_index];
-        --m_index;
+        T currElement = *m_reverseIterator;
+        ++m_reverseIterator;
 
         return currElement;
     }
@@ -115,7 +115,7 @@ namespace base
     template <typename T>
     void ListReverseIterator<T>::reset()
     {
-        m_index = m_data.size() - 1;
+        m_reverseIterator = m_data.rbegin();
     }
 }
 

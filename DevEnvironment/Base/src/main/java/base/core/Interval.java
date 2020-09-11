@@ -4,7 +4,6 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IComparableComparator;
 import base.interfaces.IInterval;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -64,7 +63,7 @@ public final class Interval<Type extends Comparable<Type>> implements IInterval<
      * Determines whether two sorted intervals overlap.
      */
     public static <Type extends Comparable<Type>> boolean overlap(IInterval<Type> left, IInterval<Type> right) {
-        IComparableComparator<Type> comparable = base.core.Comparator.defaultComparator();
+        IComparableComparator<Type> comparable = base.core.Comparator.make();
         return comparable.compareTo(right.start(), left.end()) <= 0;
     }
 
@@ -141,7 +140,7 @@ public final class Interval<Type extends Comparable<Type>> implements IInterval<
      * Gets the default comparator.
      */
     public static <Type extends Comparable<Type>> IBinaryComparator<IInterval<Type>> defaultComparator() {
-        IBinaryComparator<Type> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<Type> elementComparator = base.core.Comparator.make();
         return new Comparator<>(elementComparator);
     }
 

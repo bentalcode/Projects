@@ -165,7 +165,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<ITwoDimensionalList<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new Comparator<>(elementComparator);
     }
 

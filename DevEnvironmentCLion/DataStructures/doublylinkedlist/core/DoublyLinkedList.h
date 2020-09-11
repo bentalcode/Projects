@@ -7,7 +7,7 @@
 #include "DoublyLinkedListNodeReverseIterator.h"
 #include "DoublyLinkedListNodeValueIterator.h"
 #include "DoublyLinkedListNodeValueReverseIterator.h"
-#include "DoublyLinkedListException.h"
+#include "doublylinkedlist/DoublyLinkedListException.h"
 
 namespace datastructures {
     namespace doublylinkedlist {

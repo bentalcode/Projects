@@ -32,7 +32,7 @@ public final class CollectionComparator<T extends Comparable<T>> extends Abstrac
      */
     @Override
     public boolean isEqual(Collection<T> lhs, Collection<T> rhs) {
-        return this.isEqual(lhs, rhs, Comparator.defaultComparator());
+        return this.isEqual(lhs, rhs, Comparator.make());
     }
 
     /**
@@ -44,7 +44,7 @@ public final class CollectionComparator<T extends Comparable<T>> extends Abstrac
      */
     @Override
     public int compareTo(Collection<T> lhs, Collection<T> rhs) {
-        return this.compareTo(lhs, rhs, Comparator.defaultComparator());
+        return this.compareTo(lhs, rhs, Comparator.make());
     }
 
     /**

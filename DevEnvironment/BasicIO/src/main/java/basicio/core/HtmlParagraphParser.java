@@ -76,7 +76,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
 
         this.mostlyUsedWordsCapacity = mostlyUsedWordsCapacity;
         this.excludedWords = excludedWords;
-        this.mostlyUsedWordsPriorityQueue = Heap.createMinHeap(
+        this.mostlyUsedWordsPriorityQueue = Heap.make(
             IDoublet.class,
             mostlyUsedWordsCapacity,
             new MostlyUsedWordComparator());

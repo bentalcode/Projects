@@ -223,7 +223,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IBinaryTreeNode<TKey, TValue>> defaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.make();
         return new Comparator<>(keyComparator);
     }
 

@@ -9,9 +9,16 @@ public final class InvertComparator<T> extends AbstractBinaryComparator<T> {
     private final IBinaryComparator<T> comparator;
 
     /**
+     * Creates an invert comparator.
+     */
+    public static <T extends Comparable<T>> IBinaryComparator<T> make(IBinaryComparator<T> comparator) {
+        return new InvertComparator<>(comparator);
+    }
+
+    /**
      * The InvertComparator constructor.
      */
-    public InvertComparator(IBinaryComparator<T> comparator) {
+    private InvertComparator(IBinaryComparator<T> comparator) {
         Conditions.validateNotNull(
             comparator,
             "The comparator to invert.");

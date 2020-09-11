@@ -49,3 +49,11 @@ BinaryTreeTestDataPtr TestData::getBinaryTreeData()
 {
     return BinaryTreeTestDataPtr(new BinaryTreeTestData);
 }
+
+/**
+ * Gets the data of tests of a priority queue.
+ */
+PriorityQueueTestDataPtr TestData::getPriorityQueueData()
+{
+    return PriorityQueueTestDataPtr(new PriorityQueueTestData);
+}

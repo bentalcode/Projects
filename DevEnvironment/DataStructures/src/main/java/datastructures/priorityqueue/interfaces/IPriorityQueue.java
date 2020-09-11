@@ -42,13 +42,13 @@ public interface IPriorityQueue<T extends Comparable<T>> extends
 
     /**
      * Finds an element in a priority queue.
-     * Retruns -1 if the element does not exist.
+     * Returns -1 if the element does not exist.
      */
     int find(T element);
 
     /**
      * Finds an element in a priority queue by a match predicate.
-     * Retruns -1 if the element does not exist.
+     * Returns -1 if the element does not exist.
      */
     int find(IMatch<T> match);
 
@@ -61,9 +61,4 @@ public interface IPriorityQueue<T extends Comparable<T>> extends
      * Updates a value of a specific element and heapify it down.
      */
     void updateAndHypifyDown(int index, T element);
-
-    /**
-     * Copies the priority queue.
-     */
-    IPriorityQueue<T> copy();
 }

@@ -124,8 +124,8 @@ public final class Doublet<Type1 extends Comparable<Type1>, Type2 extends Compar
             Type1 extends Comparable<Type1>,
             Type2 extends Comparable<Type2>
         > IBinaryComparator<IDoublet<Type1, Type2>> defaultComparator() {
-        IBinaryComparator<Type1> firstElementComparator = base.core.Comparator.defaultComparator();
-        IBinaryComparator<Type2> secondElementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<Type1> firstElementComparator = base.core.Comparator.make();
+        IBinaryComparator<Type2> secondElementComparator = base.core.Comparator.make();
 
         return new Comparator<>(
             firstElementComparator,

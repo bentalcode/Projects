@@ -55,7 +55,7 @@ public final class HeapSort<T extends Comparable<T>> implements ISort<T> {
         assert(endIndex >= startIndex && endIndex < arr.length);
 
         int capacity = endIndex - startIndex + 1;
-        IPriorityQueue<T> priorityQueue = Heap.createMinHeap(
+        IPriorityQueue<T> priorityQueue = Heap.make(
             this.classType,
             capacity,
             this.comparator);

@@ -187,7 +187,7 @@ public final class DoublyLinkedListNode<T extends Comparable<T>> implements IDou
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<IDoublyLinkedListNode<T>> defaultComparator() {
-        IBinaryComparator<T> valueComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> valueComparator = base.core.Comparator.make();
         return new DoublyLinkedListNode.Comparator<>(valueComparator);
     }
 

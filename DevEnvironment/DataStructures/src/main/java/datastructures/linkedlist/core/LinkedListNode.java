@@ -165,7 +165,7 @@ public final class LinkedListNode<T extends Comparable<T>> implements ILinkedLis
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>> IBinaryComparator<ILinkedListNode<TKey>> defaultComparator() {
-        IBinaryComparator<TKey> keyComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<TKey> keyComparator = base.core.Comparator.make();
         return new LinkedListNode.Comparator<>(keyComparator);
     }
 

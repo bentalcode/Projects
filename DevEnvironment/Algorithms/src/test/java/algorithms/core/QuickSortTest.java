@@ -92,7 +92,7 @@ public final class QuickSortTest {
 
         ISort<T> quickSort = new QuickSort<>(
             classType,
-            base.core.Comparator.defaultComparator());
+            base.core.Comparator.make());
 
         quickSort.sort(arr);
 

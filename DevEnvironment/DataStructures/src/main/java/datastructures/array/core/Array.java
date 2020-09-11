@@ -172,7 +172,7 @@ public final class Array<T extends Comparable<T>> implements IArray<T> {
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<IArray<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new Array.Comparator<>(elementComparator);
     }
 

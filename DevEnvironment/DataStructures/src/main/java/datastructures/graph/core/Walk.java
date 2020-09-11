@@ -260,7 +260,7 @@ public final class Walk<TKey extends Comparable<TKey>, TValue> implements IWalk<
      * Gets the default comparator.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryComparator<IWalk<TKey, TValue>> defaultComparator() {
-        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<IVertex<TKey, TValue>> vertexComparator = base.core.Comparator.make();
         return new Comparator<>(vertexComparator);
     }
 

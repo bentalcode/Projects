@@ -204,7 +204,7 @@ public final class Stack<T extends Comparable<T>> implements IStack<T> {
      * Gets the default comparator.
      */
     public static <T extends Comparable<T>> IBinaryComparator<IStack<T>> defaultComparator() {
-        IBinaryComparator<T> elementComparator = base.core.Comparator.defaultComparator();
+        IBinaryComparator<T> elementComparator = base.core.Comparator.make();
         return new Comparator<>(elementComparator);
     }
 

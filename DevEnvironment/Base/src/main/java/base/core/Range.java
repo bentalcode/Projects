@@ -54,7 +54,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
             RangeType.InclusiveToInclusive,
             start,
             end,
-            Comparator.defaultComparator());
+            Comparator.make());
     }
     /**
      * The Range constructor.
@@ -68,7 +68,7 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
             rangeType,
             start,
             end,
-            Comparator.defaultComparator());
+            Comparator.make());
     }
 
     /**

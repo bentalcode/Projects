@@ -26,7 +26,7 @@ public final class ComparatorFactory implements IComparatorFactory {
      */
     @Override
     public <T extends Comparable<T>> IBinaryComparator<T> createComparator() {
-        return Comparator.defaultComparator();
+        return Comparator.make();
     }
 
     /**

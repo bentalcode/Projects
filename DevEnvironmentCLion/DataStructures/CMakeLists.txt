@@ -46,18 +46,18 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./binarytree/interfaces/IBinaryTreeNodeIterator.h
     ./binarytree/interfaces/IBinaryTreeNodeReverseIterator.h
     ./binarytree/interfaces/IBinaryTreeTraversal.h
+    ./bitarray/BitArrayException.h
     ./bitarray/core/Bit32Array.h
     ./bitarray/core/Bit32ArrayIterator.h
     ./bitarray/core/Bit32ArrayReverseIterator.h
     ./bitarray/core/BitArray.h
-    ./bitarray/core/BitArrayException.h
     ./bitarray/core/BitArrayIterator.h
     ./bitarray/core/BitArrayReverseIterator.h
     ./bitarray/interfaces/IBit32Array.h
     ./bitarray/interfaces/IBitArray.h
     ./core/PreCompiled.h
+    ./doublylinkedlist/DoublyLinkedListException.h
     ./doublylinkedlist/core/DoublyLinkedList.h
-    ./doublylinkedlist/core/DoublyLinkedListException.h
     ./doublylinkedlist/core/DoublyLinkedListNode.h
     ./doublylinkedlist/core/DoublyLinkedListNodeIterator.h
     ./doublylinkedlist/core/DoublyLinkedListNodeReverseIterator.h
@@ -66,13 +66,17 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./doublylinkedlist/interfaces/IDoublyLinkedList.h
     ./doublylinkedlist/interfaces/IDoublyLinkedListNode.h
     ./interfaces/IteratorOfIteratorCollection.h
+    ./linkedlist/LinkedListException.h
     ./linkedlist/core/LinkedList.h
-    ./linkedlist/core/LinkedListException.h
     ./linkedlist/core/LinkedListNode.h
     ./linkedlist/core/LinkedListNodeIterator.h
     ./linkedlist/core/LinkedListNodeValueIterator.h
     ./linkedlist/interfaces/ILinkedList.h
     ./linkedlist/interfaces/ILinkedListNode.h
+    ./priorityqueue/PriorityQueueException.h
+    ./priorityqueue/core/AbstractPriorityQueue.h
+    ./priorityqueue/core/PriorityQueue.h
+    ./priorityqueue/interfaces/IPriorityQueue.h
 )
 
 set(DATA_STRUCTURES_SOURCES_FILES
@@ -94,14 +98,20 @@ set(DATA_STRUCTURES_INCLUDES
     .
     ./binarytree/core
     ./binarytree/interfaces
+    ./bitarray
     ./bitarray/core
     ./bitarray/interfaces
     ./core
+    ./doublylinkedlist
     ./doublylinkedlist/core
     ./doublylinkedlist/interfaces
     ./interfaces
+    ./linkedlist
     ./linkedlist/core
     ./linkedlist/interfaces
+    ./priorityqueue
+    ./priorityqueue/core
+    ./priorityqueue/interfaces
 )
 
 set(BASE_INCLUDES_FILES
@@ -112,6 +122,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/BaseLogic.h
     ../Base/core/ClassType.h
     ../Base/core/ComparableComparator.h
+    ../Base/core/Comparator.h
     ../Base/core/DereferenceComparableComparator.h
     ../Base/core/DereferenceComparableComparator2.h
     ../Base/core/DereferenceEquatableComparator.h
@@ -119,6 +130,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/EquatableComparator.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
+    ../Base/core/InvertComparator.h
     ../Base/core/IterableObject.h
     ../Base/core/KmpStringSearch.h
     ../Base/core/List.h
@@ -135,6 +147,9 @@ set(BASE_INCLUDES_FILES
     ../Base/core/StringIterator.h
     ../Base/core/TwoDimensionalList.h
     ../Base/core/TwoDimensionalListIterator.h
+    ../Base/core/TwoDimensionalVector.h
+    ../Base/core/VectorIterator.h
+    ../Base/core/VectorReverseIterator.h
     ../Base/core/XorBitOperator.h
     ../Base/interfaces/Bits.h
     ../Base/interfaces/ClassTypes.h
@@ -159,12 +174,14 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMatch.h
     ../Base/interfaces/IMatrix.h
     ../Base/interfaces/IReverseIterable.h
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/ITwoDimensionalVector.h
     ../Base/interfaces/IUnaryBitOperator.h
     ../Base/interfaces/IValidator.h
     ../Base/interfaces/IValueIterable.h
