@@ -26,6 +26,7 @@ endif()
 
 set(DATA_STRUCTURES_INCLUDES_FILES
     ./DataStructureException.h
+    ./binarytree/BinaryTreeException.h
     ./binarytree/core/BinaryTree.h
     ./binarytree/core/BinaryTreeEndNode.h
     ./binarytree/core/BinaryTreeInorderIterator.h
@@ -38,8 +39,10 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./binarytree/core/BinaryTreeNodeListReverseIterator.h
     ./binarytree/core/BinaryTreeNodes.h
     ./binarytree/core/BinaryTreePostorderIterator.h
+    ./binarytree/core/BinaryTreePreorderInorderTraversalBuilder.h
     ./binarytree/core/BinaryTreePreorderIterator.h
     ./binarytree/core/BinaryTreeStreamBuilder.h
+    ./binarytree/core/BinaryTreeTraversalBuilder.h
     ./binarytree/interfaces/IBinaryTree.h
     ./binarytree/interfaces/IBinaryTreeLogic.h
     ./binarytree/interfaces/IBinaryTreeNode.h
@@ -96,6 +99,7 @@ set(DATA_STRUCTURES_SOURCES
 
 set(DATA_STRUCTURES_INCLUDES
     .
+    ./binarytree
     ./binarytree/core
     ./binarytree/interfaces
     ./bitarray

@@ -1,7 +1,10 @@
 package datastructures.binarytree.core;
 
+import base.core.Pair;
+import base.interfaces.IPair;
 import datastructures.binarytree.interfaces.IBinaryTreeData;
 import datastructures.binarytree.interfaces.IBinaryTreeNode;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,5 +72,52 @@ public final class BinaryTreeData<TKey extends Comparable<TKey>, TValue> impleme
     @Override
     public List<IBinaryTreeNode<TKey, TValue>> getPostorder() {
         return this.postorder;
+    }
+
+    /**
+     * Gets the level order data.
+     */
+    @Override
+    public List<IPair<TKey, TValue>> getLevelOrderData() {
+        return nodesToKeyValues(this.levelOrder);
+    }
+
+    /**
+     * Gets the inorder data.
+     */
+    @Override
+    public List<IPair<TKey, TValue>> getInorderData() {
+        return nodesToKeyValues(this.inorder);
+    }
+
+    /**
+     * Gets the preorder data.
+     */
+    @Override
+    public List<IPair<TKey, TValue>> getPreorderData() {
+        return nodesToKeyValues(this.preorder);
+    }
+
+    /**
+     * Gets the postorder data.
+     */
+    @Override
+    public List<IPair<TKey, TValue>> getPostorderData() {
+        return nodesToKeyValues(this.postorder);
+    }
+
+    /**
+     * Transforms the nodes to key values.
+     */
+    private static <TKey extends Comparable<TKey>, TValue> List<IPair<TKey, TValue>> nodesToKeyValues(
+        List<IBinaryTreeNode<TKey, TValue>> nodes) {
+
+        List<IPair<TKey, TValue>> keyValues = new ArrayList<>(nodes.size());
+
+        for (IBinaryTreeNode<TKey, TValue> node : nodes) {
+            keyValues.add(Pair.make(node.getKey(), node.getValue()));
+        }
+
+        return keyValues;
     }
 }

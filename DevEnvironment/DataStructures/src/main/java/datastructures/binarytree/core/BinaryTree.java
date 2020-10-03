@@ -21,17 +21,18 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
     private final IBinaryComparator<IBinaryTree<TKey, TValue>> comparator;
 
     /**
-     * The BinaryTree constructor.
+     * Creates a new binary tree.
      */
-    public BinaryTree() {
-        this(null);
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTree<TKey, TValue> make() {
+        IBinaryTreeNode<TKey, TValue> root = null;
+        return new BinaryTree<>(root, BinaryTree.defaultComparator());
     }
 
     /**
-     * The BinaryTree constructor.
+     * Creates a new binary tree.
      */
-    public BinaryTree(IBinaryTreeNode<TKey, TValue> root) {
-        this(root, BinaryTree.defaultComparator());
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTree<TKey, TValue> make(IBinaryTreeNode<TKey, TValue> root) {
+        return new BinaryTree<>(root, BinaryTree.defaultComparator());
     }
 
     /**

@@ -9,7 +9,7 @@ public final class BinaryTreeNodes {
     /**
      * Creates a new binary tree node.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNode<TKey, TValue> node(TKey key, TValue value) {
+    public static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNode<TKey, TValue> make(TKey key, TValue value) {
         return new BinaryTreeNode<>(key, value);
     }
 

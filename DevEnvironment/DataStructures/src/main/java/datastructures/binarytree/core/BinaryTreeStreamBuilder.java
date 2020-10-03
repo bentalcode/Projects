@@ -46,7 +46,7 @@ public final class BinaryTreeStreamBuilder<TKey extends Comparable<TKey>, TValue
         IBinaryTreeNode<TKey, TValue> rootNode = this.read(this.iterator);
         this.iterator.getSkipIterator().setSkipElementsStatus(previousStatus);
 
-        IBinaryTree<TKey, TValue> tree = new BinaryTree<>(rootNode);
+        IBinaryTree<TKey, TValue> tree = BinaryTree.make(rootNode);
 
         return tree;
     }

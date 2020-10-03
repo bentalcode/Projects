@@ -26,7 +26,7 @@ public final class Multiplication implements IMultiplication {
             right != null && left.length > 0,
             "The right number is not defined.");
 
-        int[] result = new int[left.length + right.length + 1];
+        int[] result = new int[left.length + right.length];
 
         int leftInsertIndex = 0;
 

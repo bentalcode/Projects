@@ -72,7 +72,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
         Stack<IVertex<TKey, TValue>> resultStack = new Stack<>();
 
         Set<IVertex<TKey, TValue>> visitedVertices = new HashSet<>();
-        Set<IVertex<TKey, TValue>> searchVertices = new HashSet<>();
+        Set<IVertex<TKey, TValue>> currPath = new HashSet<>();
 
         for (IVertex<TKey, TValue> vertex : this.graph.vertices()) {
 
@@ -83,14 +83,14 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
             if (!this.topologicalSearch(
                     vertex,
                     visitedVertices,
-                    searchVertices,
+                    currPath,
                     resultStack)) {
 
                 String errorMessage = "The graph contains a loop. No topological search is possible.";
                 throw new GraphException(errorMessage);
             }
 
-            assert(searchVertices.isEmpty());
+            assert(currPath.isEmpty());
         }
 
         List<IVertex<TKey, TValue>> result = new ArrayList<>();
@@ -264,7 +264,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
     private boolean topologicalSearch(
         IVertex<TKey, TValue> vertex,
         Set<IVertex<TKey, TValue>> visitedVertices,
-        Set<IVertex<TKey, TValue>> searchVertices,
+        Set<IVertex<TKey, TValue>> currPath,
         Stack<IVertex<TKey, TValue>> resultStack) {
 
         if (visitedVertices.contains(vertex)) {
@@ -272,10 +272,10 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
         }
 
         visitedVertices.add(vertex);
-        searchVertices.add(vertex);
+        currPath.add(vertex);
 
         for (IVertex<TKey, TValue> nextVertex : this.graph.getAdjacencyMatrix().getAdjacentVertices(vertex)) {
-            if (searchVertices.contains(nextVertex)) {
+            if (currPath.contains(nextVertex)) {
                 return false;
             }
 
@@ -283,12 +283,12 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
                 continue;
             }
 
-            if (!this.topologicalSearch(nextVertex, visitedVertices, searchVertices, resultStack)) {
+            if (!this.topologicalSearch(nextVertex, visitedVertices, currPath, resultStack)) {
                 return false;
             }
         }
 
-        searchVertices.remove(vertex);
+        currPath.remove(vertex);
 
         resultStack.push(vertex);
 

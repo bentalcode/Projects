@@ -2,6 +2,7 @@
 #include "LinkedListUnitTest.h"
 #include "DoublyLinkedListUnitTest.h"
 #include "BinaryTreeUnitTest.h"
+#include "BinaryTreeTraversalBuilderUnitTest.h"
 #include "BitArrayUnitTest.h"
 #include "PriorityQueueUnitTest.h"
 #include "IteratorOfIteratorCollectionUnitTest.h"
@@ -27,6 +28,9 @@ int main()
 
     IUnitTestPtr binaryTreeUnitTest(new BinaryTreeUnitTest("BinaryTree"));
     testManager.registerTest(binaryTreeUnitTest);
+
+    IUnitTestPtr binaryTreeTraversalBuilderUnitTest(new BinaryTreeTraversalBuilderUnitTest("BinaryTreeTraversalBuilder"));
+    testManager.registerTest(binaryTreeTraversalBuilderUnitTest);
 
     IUnitTestPtr bitArrayUnitTest(new BitArrayUnitTest("BitArray"));
     testManager.registerTest(bitArrayUnitTest);

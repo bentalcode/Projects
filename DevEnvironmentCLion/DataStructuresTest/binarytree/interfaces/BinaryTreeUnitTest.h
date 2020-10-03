@@ -50,19 +50,19 @@ namespace test {
                 /**
                  * Tests the creation logic of a binary tree.
                  */
-                template<typename TKey, typename TValue>
+                template <typename TKey, typename TValue>
                 void testCreation(const BinaryTreeData<TKey, TValue>& treeData);
 
                 /**
                  * Tests the iteration logic of a binary tree.
                  */
-                template<typename TKey, typename TValue>
+                template <typename TKey, typename TValue>
                 void testIteration(const BinaryTreeData<TKey, TValue>& treeData);
 
                 /**
                  * Tests the logic of default iteration of a binary tree.
                  */
-                template<typename TKey, typename TValue>
+                template <typename TKey, typename TValue>
                 void testDefaultIteration(
                     const IBinaryTree<TKey, TValue>& tree,
                     base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& dataIterator);
@@ -70,7 +70,7 @@ namespace test {
                 /**
                  * Tests the logic of iteration of a binary tree.
                  */
-                template<typename TKey, typename TValue>
+                template <typename TKey, typename TValue>
                 void testIteration(
                     base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& treeIterator,
                     base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& dataIterator,
@@ -82,7 +82,7 @@ namespace test {
             /**
              * Tests the creation logic of a binary tree.
              */
-            template<typename TKey, typename TValue>
+            template <typename TKey, typename TValue>
             void BinaryTreeUnitTest::testCreation(const BinaryTreeData<TKey, TValue>& treeData)
             {
                 //
@@ -105,7 +105,7 @@ namespace test {
             /**
              * Tests the iteration logic of a binary tree.
              */
-            template<typename TKey, typename TValue>
+            template <typename TKey, typename TValue>
             void BinaryTreeUnitTest::testIteration(const BinaryTreeData<TKey, TValue>& treeData)
             {
                 //
@@ -158,7 +158,7 @@ namespace test {
             /**
              * Tests the logic of default iteration of a binary tree.
              */
-            template<typename TKey, typename TValue>
+            template <typename TKey, typename TValue>
             void BinaryTreeUnitTest::testDefaultIteration(
                 const IBinaryTree<TKey, TValue>& tree,
                 base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& dataIterator)
@@ -179,7 +179,7 @@ namespace test {
             /**
              * Tests the logic of iteration of a binary tree.
              */
-            template<typename TKey, typename TValue>
+            template <typename TKey, typename TValue>
             void BinaryTreeUnitTest::testIteration(
                 base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& treeIterator,
                 base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& dataIterator,

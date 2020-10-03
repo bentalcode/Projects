@@ -17,13 +17,13 @@ namespace datastructures {
             /**
              * Creates a new binary tree node.
              */
-            template<typename TKey, typename TValue>
-            static IBinaryTreeNodePtr<TKey, TValue> nodePtr(TKey key, TValue value);
+            template <typename TKey, typename TValue>
+            static IBinaryTreeNodePtr<TKey, TValue> make(TKey key, TValue value);
 
             /**
              * Creates a new binary tree end node.
              */
-            template<typename TKey, typename TValue>
+            template <typename TKey, typename TValue>
             static IBinaryTreeNodePtr<TKey, TValue> endNode();
 
         private:
@@ -38,7 +38,7 @@ namespace datastructures {
          * Creates a new binary tree node.
          */
         template<typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodes::nodePtr(TKey key, TValue value) {
+        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodes::make(TKey key, TValue value) {
             return IBinaryTreeNodePtr<TKey, TValue>(new BinaryTreeNode<TKey, TValue>(key, value));
         }
 

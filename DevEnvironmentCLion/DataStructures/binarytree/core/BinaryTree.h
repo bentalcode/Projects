@@ -18,6 +18,12 @@ namespace datastructures {
         template<typename TKey, typename TValue>
         class BinaryTree final : public IBinaryTree<TKey, TValue> {
         public:
+
+            /**
+             * Creates a new binary tree.
+             */
+            static IBinaryTreePtr<TKey, TValue> make(IBinaryTreeNodePtr<TKey, TValue> root = nullptr);
+
             /**
              * The constructor.
              */
@@ -83,6 +89,15 @@ namespace datastructures {
         private:
             IBinaryTreeNodePtr<TKey, TValue> m_root;
         };
+
+        /**
+         * Creates a new binary tree.
+         */
+        template<typename TKey, typename TValue>
+        IBinaryTreePtr<TKey, TValue> BinaryTree<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
+        {
+            return std::make_shared<BinaryTree>(root);
+        }
 
         /**
          * The constructor.

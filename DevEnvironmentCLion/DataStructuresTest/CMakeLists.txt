@@ -27,6 +27,7 @@ endif()
 set(DATA_STRUCTURES_TEST_INCLUDES_FILES
     ./binarytree/interfaces/BinaryTreeData.h
     ./binarytree/interfaces/BinaryTreeTestData.h
+    ./binarytree/interfaces/BinaryTreeTraversalBuilderUnitTest.h
     ./binarytree/interfaces/BinaryTreeUnitTest.h
     ./bitarray/interfaces/BitArrayData.h
     ./bitarray/interfaces/BitArrayTestData.h
@@ -47,6 +48,7 @@ set(DATA_STRUCTURES_TEST_INCLUDES_FILES
 
 set(DATA_STRUCTURES_TEST_SOURCES_FILES
     ./binarytree/core/BinaryTreeTestData.cpp
+    ./binarytree/core/BinaryTreeTraversalBuilderUnitTest.cpp
     ./binarytree/core/BinaryTreeUnitTest.cpp
     ./bitarray/core/BitArrayData.cpp
     ./bitarray/core/BitArrayTestData.cpp
@@ -279,6 +281,7 @@ add_library(UnitTesting STATIC
 
 set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/DataStructureException.h
+    ../DataStructures/binarytree/BinaryTreeException.h
     ../DataStructures/binarytree/core/BinaryTree.h
     ../DataStructures/binarytree/core/BinaryTreeEndNode.h
     ../DataStructures/binarytree/core/BinaryTreeInorderIterator.h
@@ -291,8 +294,10 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/binarytree/core/BinaryTreeNodeListReverseIterator.h
     ../DataStructures/binarytree/core/BinaryTreeNodes.h
     ../DataStructures/binarytree/core/BinaryTreePostorderIterator.h
+    ../DataStructures/binarytree/core/BinaryTreePreorderInorderTraversalBuilder.h
     ../DataStructures/binarytree/core/BinaryTreePreorderIterator.h
     ../DataStructures/binarytree/core/BinaryTreeStreamBuilder.h
+    ../DataStructures/binarytree/core/BinaryTreeTraversalBuilder.h
     ../DataStructures/binarytree/interfaces/IBinaryTree.h
     ../DataStructures/binarytree/interfaces/IBinaryTreeLogic.h
     ../DataStructures/binarytree/interfaces/IBinaryTreeNode.h
@@ -349,6 +354,7 @@ set(DATA_STRUCTURES_SOURCES
 
 set(DATA_STRUCTURES_INCLUDES
     ../DataStructures
+    ../DataStructures/binarytree
     ../DataStructures/binarytree/core
     ../DataStructures/binarytree/interfaces
     ../DataStructures/bitarray
