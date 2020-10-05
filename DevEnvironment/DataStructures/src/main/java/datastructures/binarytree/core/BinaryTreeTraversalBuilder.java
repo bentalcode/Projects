@@ -2,30 +2,57 @@ package datastructures.binarytree.core;
 
 import base.interfaces.IBuilder;
 import base.interfaces.IPair;
+import datastructures.binarytree.BinaryTreeException;
 import datastructures.binarytree.interfaces.IBinaryTree;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
- * The BinaryTreeTraversalBuilder class implements a builder of a binary tree from various traversals.
+ * The BinaryTreeTraversalBuilder abstract base class implements a builder of a binary tree
+ * from various traversal.
  */
-public final class BinaryTreeTraversalBuilder {
+public abstract class BinaryTreeTraversalBuilder<TKey extends Comparable<TKey>, TValue> implements
+    IBuilder<IBinaryTree<TKey, TValue>> {
 
     /**
-     * Builds a binary tree from a preorder and an inorder traversal.
+     * The BinaryTreeTraversalBuilder constructor.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IBinaryTree<TKey, TValue> buildFromPreorderInorderTraversal(
-        List<IPair<TKey, TValue>> preorder,
-        List<IPair<TKey, TValue>> inorder) {
-
-        IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreePreorderInorderTraversalBuilder<>(preorder, inorder);
-        IBinaryTree<TKey, TValue> tree = builder.build();
-
-        return tree;
+    protected BinaryTreeTraversalBuilder() {
     }
 
     /**
-     * Disables the default constructor, this is a static class.
+     * Creates an index map.
      */
-    private BinaryTreeTraversalBuilder() {
+    protected static <TKey extends Comparable<TKey>, TValue> Map<TKey, Integer> createIndexMap(
+        List<IPair<TKey, TValue>> data) {
+
+        Map<TKey, Integer> result = new HashMap<>();
+
+        for (int index = 0; index < data.size(); ++index) {
+            TKey key = data.get(index).first();
+
+            result.put(key, index);
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets an index of a node by a key.
+     */
+    protected static <TKey extends Comparable<TKey>> int getNodeIndex(
+        Map<TKey, Integer> indexMap,
+        TKey key)
+    {
+        if (!indexMap.containsKey(key)) {
+            String errorMessage =
+                "The index of node with key: " + key +
+                " was not found in the index map.";
+
+            throw new BinaryTreeException(errorMessage);
+        }
+
+        return indexMap.get(key);
     }
 }

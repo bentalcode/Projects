@@ -54,6 +54,18 @@ public final class BinaryTreeTraversalBuilderTest {
     }
 
     /**
+     * Tests the creation logic of a binary tree from a preorder and a postorder traversal.
+     */
+    @Test
+    public void binaryTreePreorderPostorderTraversalBuilderTest() {
+        List<IBinaryTreeData<Integer, String>> data = this.testData.getBinaryTreeData().getData();
+
+        for (IBinaryTreeData<Integer, String> treeData : data) {
+            this.testPreorderPostorderTraversalBuilder(treeData);
+        }
+    }
+
+    /**
      * Tests the creation logic of a binary tree from a preorder and an inorder traversal.
      */
     private <TKey extends Comparable<TKey>, TValue> void testPreorderInorderTraversalBuilder(
@@ -62,7 +74,7 @@ public final class BinaryTreeTraversalBuilderTest {
         //
         // Create the tree...
         //
-        IBinaryTree<TKey, TValue> tree = BinaryTreeTraversalBuilder.buildFromPreorderInorderTraversal(
+        IBinaryTree<TKey, TValue> tree = BinaryTreeTraversalsBuilder.buildFromPreorderInorderTraversal(
             data.getPreorderData(),
             data.getInorderData());
 
@@ -76,5 +88,30 @@ public final class BinaryTreeTraversalBuilderTest {
             tree.getLevelOrderIterator(),
             levelOrderIterator,
             "Invalid creation logic of a binary tree from a preorder and an inorder traversal.");
+    }
+
+    /**
+     * Tests the creation logic of a binary tree from a preorder and a postorder traversal.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void testPreorderPostorderTraversalBuilder(
+        IBinaryTreeData<TKey, TValue> data) {
+
+        //
+        // Create the tree...
+        //
+        IBinaryTree<TKey, TValue> tree = BinaryTreeTraversalsBuilder.buildFromPreorderPostorderTraversal(
+            data.getPreorderData(),
+            data.getPostorderData());
+
+        //
+        // Test the data of the tree...
+        //
+        IBinaryTreeNodeIterator<IBinaryTreeNode<TKey, TValue>> levelOrderIterator =
+            BinaryTreeNodeListIterator.make(data.getLevelOrder());
+
+        this.assertion.assertEqualsWithIterators(
+            tree.getLevelOrderIterator(),
+            levelOrderIterator,
+            "Invalid creation logic of a binary tree from a preorder and a postorder traversal.");
     }
 }

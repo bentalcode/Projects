@@ -41,8 +41,10 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./binarytree/core/BinaryTreePostorderIterator.h
     ./binarytree/core/BinaryTreePreorderInorderTraversalBuilder.h
     ./binarytree/core/BinaryTreePreorderIterator.h
+    ./binarytree/core/BinaryTreePreorderPostorderTraversalBuilder.h
     ./binarytree/core/BinaryTreeStreamBuilder.h
     ./binarytree/core/BinaryTreeTraversalBuilder.h
+    ./binarytree/core/BinaryTreeTraversalsBuilder.h
     ./binarytree/interfaces/IBinaryTree.h
     ./binarytree/interfaces/IBinaryTreeLogic.h
     ./binarytree/interfaces/IBinaryTreeNode.h

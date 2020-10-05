@@ -42,12 +42,23 @@ namespace test {
                  */
                 void binaryTreePreorderInorderTraversalBuilderTest();
 
+                /**
+                 * Tests the creation logic of a binary tree from a preorder and a postorder traversal.
+                 */
+                void binaryTreePreorderPostorderTraversalBuilderTest();
+
             private:
                 /**
                  * Tests the creation logic of a binary tree from a preorder and an inorder traversal.
                  */
                 template <typename TKey, typename TValue>
                 void testPreorderInorderTraversalBuilder(const BinaryTreeData<TKey, TValue>& treeData);
+
+                /**
+                 * Tests the creation logic of a binary tree from a preorder and a postorder traversal.
+                 */
+                template <typename TKey, typename TValue>
+                void testPreorderPostorderTraversalBuilder(const BinaryTreeData<TKey, TValue>& treeData);
 
                 TestData m_testData;
             };

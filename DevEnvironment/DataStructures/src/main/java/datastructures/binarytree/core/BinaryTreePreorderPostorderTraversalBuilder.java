@@ -10,32 +10,32 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The BinaryTreePreorderInorderTraversalBuilder class implements a builder of a binary tree
- * from a preorder and an inorder traversal.
+ * The BinaryTreePreorderPostorderTraversalBuilder class implements a builder of a binary tree
+ * from a preorder and a postorder traversal.
  */
-public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Comparable<TKey>, TValue>
-    extends BinaryTreeTraversalBuilder {
+public final class BinaryTreePreorderPostorderTraversalBuilder<TKey extends Comparable<TKey>, TValue> extends
+    BinaryTreeTraversalBuilder<TKey, TValue> {
 
     private final List<IPair<TKey, TValue>> preorder;
-    private final List<IPair<TKey, TValue>> inorder;
+    private final List<IPair<TKey, TValue>> postorder;
 
     /**
-     * The BinaryTreePreorderInorderTraversalBuilder constructor.
+     * The BinaryTreePreorderPostorderTraversalBuilder constructor.
      */
-    public BinaryTreePreorderInorderTraversalBuilder(
+    public BinaryTreePreorderPostorderTraversalBuilder(
         List<IPair<TKey, TValue>> preorder,
-        List<IPair<TKey, TValue>> inorder) {
+        List<IPair<TKey, TValue>> postorder) {
 
         Conditions.validateNotNull(preorder, "The preorder traversal data.");
-        Conditions.validateNotNull(inorder, "The inorder traversal data.");
+        Conditions.validateNotNull(postorder, "The postorder traversal data.");
 
-        if (preorder.size() != inorder.size()) {
-            String errorMessage = "The length of a preorder and a inorder traversals do not match.";
+        if (preorder.size() != postorder.size()) {
+            String errorMessage = "The length of a preorder and a postorder traversals do not match.";
             throw new BinaryTreeException(errorMessage);
         }
 
         this.preorder = preorder;
-        this.inorder = inorder;
+        this.postorder = postorder;
     }
 
     /**
@@ -43,7 +43,7 @@ public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Compar
      */
     @Override
     public IBinaryTree<TKey, TValue> build() {
-        Map<TKey, Integer> inorderIndexMap = createIndexMap(this.inorder);
+        Map<TKey, Integer> postorderIndexMap = createIndexMap(this.postorder);
 
         if (this.preorder.isEmpty()) {
             return BinaryTree.make();
@@ -51,12 +51,12 @@ public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Compar
 
         IBinaryTreeNode<TKey, TValue> root = build(
             this.preorder,
-            this.inorder,
+            this.postorder,
             0,
             this.preorder.size() - 1,
             0,
-            this.inorder.size() - 1,
-            inorderIndexMap);
+            this.postorder.size() - 1,
+            postorderIndexMap);
 
         return BinaryTree.make(root);
     }
@@ -66,16 +66,16 @@ public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Compar
      */
     private static <TKey extends Comparable<TKey>, TValue> IBinaryTreeNode<TKey, TValue> build(
         List<IPair<TKey, TValue>> preorder,
-        List<IPair<TKey, TValue>> inorder,
+        List<IPair<TKey, TValue>> postorder,
         int preorderStartIndex,
         int preorderEndIndex,
-        int inorderStartIndex,
-        int inorderEndIndex,
-        Map<TKey, Integer> inorderIndexMap) {
+        int postorderStartIndex,
+        int postorderEndIndex,
+        Map<TKey, Integer> postorderIndexMap) {
 
         int preorderLength = Dimensions.length(preorderStartIndex, preorderEndIndex);
-        int inorderLength = Dimensions.length(inorderStartIndex, inorderEndIndex);
-        assert(preorderLength == inorderLength);
+        int postorderLength = Dimensions.length(postorderStartIndex, postorderEndIndex);
+        assert(preorderLength == postorderLength);
 
         int length = preorderLength;
 
@@ -90,36 +90,37 @@ public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Compar
             return root;
         }
 
-        int rootIndex = getNodeIndex(inorderIndexMap, rootData.first());
-        int leftSize = Dimensions.length(inorderStartIndex, rootIndex - 1);
+        IPair<TKey, TValue> leftRootData = preorder.get(preorderStartIndex + 1);
+        int leftRootIndex = getNodeIndex(postorderIndexMap, leftRootData.first());
+        int leftSize = Dimensions.length(postorderStartIndex, leftRootIndex);
 
         int preorderLeftStartIndex = preorderStartIndex + 1;
         int preorderLeftEndIndex = preorderStartIndex + leftSize;
-        int inorderLeftStartIndex = inorderStartIndex;
-        int inorderLeftEndIndex = rootIndex - 1;
+        int postorderLeftStartIndex = postorderStartIndex;
+        int postorderLeftEndIndex = leftRootIndex;
 
         int preorderRightStartIndex = preorderLeftEndIndex + 1;
         int preorderRightEndIndex = preorderEndIndex;
-        int inorderRightStartIndex = rootIndex + 1;
-        int inorderRightEndIndex = inorderEndIndex;
+        int postorderRightStartIndex = postorderLeftEndIndex + 1;
+        int postorderRightEndIndex = postorderEndIndex - 1;
 
         IBinaryTreeNode<TKey, TValue> leftChild = build(
             preorder,
-            inorder,
+            postorder,
             preorderLeftStartIndex,
             preorderLeftEndIndex,
-            inorderLeftStartIndex,
-            inorderLeftEndIndex,
-            inorderIndexMap);
+            postorderLeftStartIndex,
+            postorderLeftEndIndex,
+            postorderIndexMap);
 
         IBinaryTreeNode<TKey, TValue> rightChild = build(
             preorder,
-            inorder,
+            postorder,
             preorderRightStartIndex,
             preorderRightEndIndex,
-            inorderRightStartIndex,
-            inorderRightEndIndex,
-            inorderIndexMap);
+            postorderRightStartIndex,
+            postorderRightEndIndex,
+            postorderIndexMap);
 
         root.setLeftChild(leftChild);
         root.setRightChild(rightChild);

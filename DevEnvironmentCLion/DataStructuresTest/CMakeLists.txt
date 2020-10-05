@@ -296,8 +296,10 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/binarytree/core/BinaryTreePostorderIterator.h
     ../DataStructures/binarytree/core/BinaryTreePreorderInorderTraversalBuilder.h
     ../DataStructures/binarytree/core/BinaryTreePreorderIterator.h
+    ../DataStructures/binarytree/core/BinaryTreePreorderPostorderTraversalBuilder.h
     ../DataStructures/binarytree/core/BinaryTreeStreamBuilder.h
     ../DataStructures/binarytree/core/BinaryTreeTraversalBuilder.h
+    ../DataStructures/binarytree/core/BinaryTreeTraversalsBuilder.h
     ../DataStructures/binarytree/interfaces/IBinaryTree.h
     ../DataStructures/binarytree/interfaces/IBinaryTreeLogic.h
     ../DataStructures/binarytree/interfaces/IBinaryTreeNode.h

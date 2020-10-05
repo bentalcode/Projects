@@ -29,7 +29,7 @@ int main()
     IUnitTestPtr binaryTreeUnitTest(new BinaryTreeUnitTest("BinaryTree"));
     testManager.registerTest(binaryTreeUnitTest);
 
-    IUnitTestPtr binaryTreeTraversalBuilderUnitTest(new BinaryTreeTraversalBuilderUnitTest("BinaryTreeTraversalBuilder"));
+    IUnitTestPtr binaryTreeTraversalBuilderUnitTest(new BinaryTreeTraversalBuilderUnitTest("BinaryTreeTraversalsBuilder"));
     testManager.registerTest(binaryTreeTraversalBuilderUnitTest);
 
     IUnitTestPtr bitArrayUnitTest(new BitArrayUnitTest("BitArray"));
