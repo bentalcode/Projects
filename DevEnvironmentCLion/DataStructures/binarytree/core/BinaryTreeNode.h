@@ -9,7 +9,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNode class implements a node of a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeNode final : public IBinaryTreeNode<TKey, TValue> {
         public:
             /**
@@ -94,7 +94,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNode constructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeNode<TKey, TValue>::BinaryTreeNode(const TKey& key, const TValue& value) :
             m_key(key),
             m_value(value)
@@ -104,7 +104,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNode destructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeNode<TKey, TValue>::~BinaryTreeNode()
         {
         }
@@ -112,7 +112,7 @@ namespace datastructures {
         /**
          * Gets the key of the node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         const TKey& BinaryTreeNode<TKey, TValue>::getKey() const
         {
             return m_key;
@@ -121,7 +121,7 @@ namespace datastructures {
         /**
          * Sets the key of the node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeNode<TKey, TValue>::setKey(const TKey& key)
         {
             m_key = key;
@@ -130,7 +130,7 @@ namespace datastructures {
         /**
          * Gets the value of the node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         const TValue& BinaryTreeNode<TKey, TValue>::getValue() const
         {
             return m_value;
@@ -139,7 +139,7 @@ namespace datastructures {
         /**
          * Sets the value of the node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeNode<TKey, TValue>::setValue(const TValue& value)
         {
             m_value = value;
@@ -148,7 +148,7 @@ namespace datastructures {
         /**
          * Gets the node of a left child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNode<TKey, TValue>::getLeftChild() const
         {
             return m_leftChild;
@@ -157,7 +157,7 @@ namespace datastructures {
         /**
          * Sets the node of a left child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeNode<TKey, TValue>::setLeftChild(IBinaryTreeNodePtr<TKey, TValue> child)
         {
             m_leftChild = child;
@@ -166,7 +166,7 @@ namespace datastructures {
         /**
          * Gets the node of a right child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNode<TKey, TValue>::getRightChild() const
         {
             return m_rightChild;
@@ -175,7 +175,7 @@ namespace datastructures {
         /**
          * Sets the node of a right child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeNode<TKey, TValue>::setRightChild(IBinaryTreeNodePtr<TKey, TValue> child)
         {
             m_rightChild = child;
@@ -184,7 +184,7 @@ namespace datastructures {
         /**
          * Checks whether there is a left child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         bool BinaryTreeNode<TKey, TValue>::hasLeftChild() const
         {
             return m_leftChild != nullptr;
@@ -193,7 +193,7 @@ namespace datastructures {
         /**
          * Checks whether there is a right child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         bool BinaryTreeNode<TKey, TValue>::hasRightChild() const
         {
             return m_rightChild != nullptr;

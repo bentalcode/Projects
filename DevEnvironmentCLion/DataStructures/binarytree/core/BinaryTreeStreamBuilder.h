@@ -13,7 +13,7 @@ namespace datastructures {
         /**
          * The BinaryTreeStreamBuilder class implements a builder for a binary tree from a stream.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeStreamBuilder final : public base::IBuilder<IBinaryTreePtr<TKey, TValue>>
         {
         public:
@@ -63,7 +63,7 @@ namespace datastructures {
         /**
          * Builds a binary tree from a list of nodes.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreePtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::build(const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes)
         {
             IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> iterator =
@@ -78,7 +78,7 @@ namespace datastructures {
         /**
          * The BinaryTreeStreamBuilder constructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeStreamBuilder<TKey, TValue>::BinaryTreeStreamBuilder(IBinaryTreeNodeIterator<IBinaryTreeNodePtr<TKey, TValue>>& iterator) :
             m_iterator(iterator)
         {
@@ -87,7 +87,7 @@ namespace datastructures {
         /**
          * The BinaryTreeStreamBuilder destructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeStreamBuilder<TKey, TValue>::~BinaryTreeStreamBuilder()
         {
         }
@@ -95,7 +95,7 @@ namespace datastructures {
         /**
          * Builds the binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreePtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::build()
         {
             bool previousStatus = m_iterator.getSkipIterator()->disableSkipElements();
@@ -110,7 +110,7 @@ namespace datastructures {
         /**
          * Reads the tree from an input stream.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::read(
             IBinaryTreeNodeIterator<IBinaryTreeNodePtr<TKey, TValue>>& iterator)
         {

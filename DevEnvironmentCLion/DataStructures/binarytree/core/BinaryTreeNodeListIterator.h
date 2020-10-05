@@ -12,7 +12,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNodeListIterator class implements an iterator of a list of binary nodes.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeNodeListIterator final : public IBinaryTreeNodeIterator<IBinaryTreeNodePtr<TKey, TValue>>
         {
         public:
@@ -84,7 +84,7 @@ namespace datastructures {
         /**
          * Creates a new iterator of a list of binary nodes.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeNodeListIterator<TKey, TValue>::make(
             const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes) {
 
@@ -95,7 +95,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNodeListIterator constructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeNodeListIterator<TKey, TValue>::BinaryTreeNodeListIterator(
             const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes) :
             m_nodes(nodes),
@@ -110,7 +110,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNodeListIterator destructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeNodeListIterator<TKey, TValue>::~BinaryTreeNodeListIterator()
         {
         }
@@ -118,7 +118,7 @@ namespace datastructures {
         /**
          * Checks whether there is a next element.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         bool BinaryTreeNodeListIterator<TKey, TValue>::hasNext() const
         {
             return m_position < m_nodes.size();
@@ -127,7 +127,7 @@ namespace datastructures {
         /**
          * Gets the next element.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodeListIterator<TKey, TValue>::next()
         {
             assert(hasNext());
@@ -141,7 +141,7 @@ namespace datastructures {
         /**
          * Resets the iterator.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeNodeListIterator<TKey, TValue>::reset()
         {
             m_position = alignPosition(0);
@@ -150,7 +150,7 @@ namespace datastructures {
         /**
          * Gets the skip iterator.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         base::ISkipIteratorPtr BinaryTreeNodeListIterator<TKey, TValue>::getSkipIterator() const
         {
             return m_skipIterator;
@@ -159,7 +159,7 @@ namespace datastructures {
         /*
          * Gets the next position.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         size_t BinaryTreeNodeListIterator<TKey, TValue>::nextPosition(size_t position)
         {
             return alignPosition(position + 1);
@@ -168,7 +168,7 @@ namespace datastructures {
         /*
          * Aligns the position.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         size_t BinaryTreeNodeListIterator<TKey, TValue>::alignPosition(size_t position)
         {
             size_t currPosition = position;

@@ -12,7 +12,7 @@ namespace datastructures {
         /**
          * The IBinaryTree interface defines a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class IBinaryTree : public
             base::IIterable<IBinaryTreeNodePtr<TKey, TValue>>,
             base::IReverseIterable<IBinaryTreeNodePtr<TKey, TValue>>

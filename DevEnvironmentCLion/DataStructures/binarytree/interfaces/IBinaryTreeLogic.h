@@ -9,7 +9,7 @@ namespace datastructures {
         /**
          * The IBinaryTreeLogic interface defines logic of a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class IBinaryTreeLogic
         {
         public:

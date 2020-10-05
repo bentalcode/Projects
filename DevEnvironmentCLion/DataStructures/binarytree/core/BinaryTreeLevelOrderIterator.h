@@ -10,7 +10,7 @@ namespace datastructures {
         /**
          * The BinaryTreeLevelOrderIterator class implements a level order iterator of a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeLevelOrderIterator : public base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>
         {
         public:

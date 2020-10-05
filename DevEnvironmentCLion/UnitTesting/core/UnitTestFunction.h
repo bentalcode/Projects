@@ -8,7 +8,7 @@ namespace unit_testing {
     /**
      * The UnitTestFunction abstract base class implements a unit test function.
      */
-    template<typename UnitTestType>
+    template <typename UnitTestType>
     class UnitTestFunction : public ITestFunction {
     public:
         /**
@@ -52,7 +52,7 @@ namespace unit_testing {
     /**
      * The UnitTestFunction constructor.
      */
-    template<typename UnitTestType>
+    template <typename UnitTestType>
     inline UnitTestFunction<UnitTestType>::UnitTestFunction(const std::string& testName, UnitTestType& unitTest) :
         m_testName(testName),
         m_unitTest(unitTest)
@@ -65,7 +65,7 @@ namespace unit_testing {
     /**
      * The UnitTestFunction destructor.
      */
-    template<typename UnitTestType>
+    template <typename UnitTestType>
     inline UnitTestFunction<UnitTestType>::~UnitTestFunction()
     {
     }
@@ -73,7 +73,7 @@ namespace unit_testing {
     /**
      * Gets the name of the test.
      */
-    template<typename UnitTestType>
+    template <typename UnitTestType>
     inline const std::string& UnitTestFunction<UnitTestType>::getName() const
     {
         return m_name;
@@ -82,7 +82,7 @@ namespace unit_testing {
     /**
      * Gets the unit test.
      */
-    template<typename UnitTestType>
+    template <typename UnitTestType>
     inline UnitTestType& UnitTestFunction<UnitTestType>::getUnitTest()
     {
         return m_unitTest;

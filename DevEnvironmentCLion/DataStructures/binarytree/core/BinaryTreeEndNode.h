@@ -11,7 +11,7 @@ namespace datastructures {
          * The BinaryTreeEndNode class implements an internal end nodes of a binary tree,
          * which is used for serialization.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeEndNode final : public IBinaryTreeNode<TKey, TValue> {
         public:
             /**
@@ -90,7 +90,7 @@ namespace datastructures {
         /**
          * The BinaryTreeEndNode constructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeEndNode<TKey, TValue>::BinaryTreeEndNode()
         {
         }
@@ -98,7 +98,7 @@ namespace datastructures {
         /**
          * The BinaryTreeEndNode destructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeEndNode<TKey, TValue>::~BinaryTreeEndNode()
         {
         }
@@ -106,7 +106,7 @@ namespace datastructures {
         /**
          * Gets the key of the node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         const TKey& BinaryTreeEndNode<TKey, TValue>::getKey() const
         {
             throw base::NotImplementedException("BinaryTreeEndNode::getKey()");
@@ -115,7 +115,7 @@ namespace datastructures {
         /**
          * Sets the key of the node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeEndNode<TKey, TValue>::setKey(const TKey& key)
         {
             throw base::NotImplementedException("BinaryTreeEndNode::setKey()");
@@ -124,7 +124,7 @@ namespace datastructures {
         /**
          * Gets the value of the node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         const TValue& BinaryTreeEndNode<TKey, TValue>::getValue() const
         {
             throw base::NotImplementedException("BinaryTreeEndNode::getValue()");
@@ -133,7 +133,7 @@ namespace datastructures {
         /**
          * Sets the value of the node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeEndNode<TKey, TValue>::setValue(const TValue& value)
         {
             throw base::NotImplementedException("BinaryTreeEndNode::setValue()");
@@ -142,7 +142,7 @@ namespace datastructures {
         /**
          * Gets the node of a left child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeEndNode<TKey, TValue>::getLeftChild() const
         {
             throw base::NotImplementedException("BinaryTreeEndNode::getLeftChild()");
@@ -151,7 +151,7 @@ namespace datastructures {
         /**
          * Sets the node of a left child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeEndNode<TKey, TValue>::setLeftChild(IBinaryTreeNodePtr<TKey, TValue> child)
         {
             throw base::NotImplementedException("BinaryTreeEndNode::setLeftChild()");
@@ -160,7 +160,7 @@ namespace datastructures {
         /**
          * Gets the node of a right child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeEndNode<TKey, TValue>::getRightChild() const
         {
             throw base::NotImplementedException("BinaryTreeEndNode::getRightChild()");
@@ -169,7 +169,7 @@ namespace datastructures {
         /**
          * Sets the node of a right child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeEndNode<TKey, TValue>::setRightChild(IBinaryTreeNodePtr<TKey, TValue> child)
         {
             throw base::NotImplementedException("BinaryTreeEndNode::setRightChild()");
@@ -178,7 +178,7 @@ namespace datastructures {
         /**
          * Checks whether there is a left child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         bool BinaryTreeEndNode<TKey, TValue>::hasLeftChild() const
         {
             throw base::NotImplementedException("BinaryTreeEndNode::hasLeftChild()");
@@ -187,7 +187,7 @@ namespace datastructures {
         /**
          * Checks whether there is a right child.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         bool BinaryTreeEndNode<TKey, TValue>::hasRightChild() const
         {
             throw base::NotImplementedException("BinaryTreeEndNode::hasRightChild()");

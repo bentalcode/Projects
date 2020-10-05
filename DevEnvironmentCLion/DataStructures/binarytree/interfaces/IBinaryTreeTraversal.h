@@ -10,7 +10,7 @@ namespace datastructures {
         /**
          * The IBinaryTreeTraversal interface defines various traversal in a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class IBinaryTreeTraversal {
         public:
             /**

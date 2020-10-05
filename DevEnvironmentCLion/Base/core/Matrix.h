@@ -171,7 +171,7 @@ namespace base
         m_cols = m_data[0].size();
     }
 
-    template<typename T>
+    template <typename T>
     Matrix<T>::Matrix(const Matrix<T>& rhs) :
         m_data(rhs.m_data),
         m_rows(rhs.m_rows),
@@ -179,7 +179,7 @@ namespace base
     {
     }
 
-    template<typename T>
+    template <typename T>
     Matrix<T>& Matrix<T>::operator=(const Matrix<T>& rhs)
     {
         if (this == &rhs)

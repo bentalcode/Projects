@@ -6,7 +6,7 @@ namespace base
     /**
      * The Triple class template implements a triple.
      */
-    template<typename Type1, typename Type2, typename Type3>
+    template <typename Type1, typename Type2, typename Type3>
     class Triple final
     {
     public:
@@ -53,7 +53,7 @@ namespace base
         Type2 m_third;
     };
 
-    template<typename Type1, typename Type2, typename Type3>
+    template <typename Type1, typename Type2, typename Type3>
     Triple<Type1, Type2, Type3>::Triple(const Type1& first, const Type2& second, const Type3& third) :
         m_first(first),
         m_second(second),
@@ -61,30 +61,30 @@ namespace base
     {
     }
 
-    template<typename Type1, typename Type2, typename Type3>
+    template <typename Type1, typename Type2, typename Type3>
     Triple<Type1, Type2, Type3>::~Triple()
     {
     }
 
-    template<typename Type1, typename Type2, typename Type3>
+    template <typename Type1, typename Type2, typename Type3>
     const Type1& Triple<Type1, Type2, Type3>::getFirst() const
     {
         return m_first;
     }
 
-    template<typename Type1, typename Type2, typename Type3>
+    template <typename Type1, typename Type2, typename Type3>
     const Type2& Triple<Type1, Type2, Type3>::getSecond() const
     {
         return m_second;
     }
 
-    template<typename Type1, typename Type2, typename Type3>
+    template <typename Type1, typename Type2, typename Type3>
     const Type3& Triple<Type1, Type2, Type3>::getThird() const
     {
         return m_third;
     }
 
-    template<typename Type1, typename Type2, typename Type3>
+    template <typename Type1, typename Type2, typename Type3>
     bool operator<(const Triple<Type1, Type2, Type3>& left, const Triple<Type1, Type2, Type3>& right) {
         if (left.getFirst() < right.getFirst()) {
             return true;

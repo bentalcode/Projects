@@ -13,7 +13,7 @@ namespace problems
     /**
      * The MatchingTriplets class implements the matching triplets problem.
      */
-    template<typename T>
+    template <typename T>
     class MatchingTriplets final : public IMatchingTriplets<T>
     {
     public:
@@ -94,7 +94,7 @@ namespace problems
     /**
      * Gets the matching triplets values.
      */
-    template<typename T>
+    template <typename T>
     std::set<base::Triple<T, T, T>> MatchingTriplets<T>::getMatchingTriplets(const std::vector<T>& values, T sum)
     {
         std::set<base::Triple<T, T, T>> result;
@@ -134,7 +134,7 @@ namespace problems
     /**
      * Gets the matching triplets indexes.
      */
-    template<typename T>
+    template <typename T>
     std::list<base::Triple<size_t, size_t, size_t>> MatchingTriplets<T>::getMatchingTripletsIndexes(const std::vector<T>& values, T sum)
     {
         std::list<base::Triple<size_t, size_t, size_t>> result;
@@ -175,7 +175,7 @@ namespace problems
     /**
      * Gets the matching closest triplet.
      */
-    template<typename T>
+    template <typename T>
     std::unique_ptr<base::Triple<T, T, T>> MatchingTriplets<T>::getMatchingClosestTriplet(const std::vector<T>& values, T sum)
     {
         std::unique_ptr<base::Triple<T, T, T>> result;
@@ -227,7 +227,7 @@ namespace problems
     /**
      * Gets the matching pairs values.
      */
-    template<typename T>
+    template <typename T>
     std::set<base::Pair<T, T>> MatchingTriplets<T>::getMatchingPairs(
         const std::vector<T>& sortedValues,
         size_t startIndex,
@@ -276,7 +276,7 @@ namespace problems
     /**
      * Gets the matching pairs indexes.
      */
-    template<typename T>
+    template <typename T>
     std::list<base::Pair<size_t, size_t>> MatchingTriplets<T>::getMatchingPairsIndexes(
         const std::vector<T>& values,
         size_t startIndex,

@@ -52,7 +52,7 @@ namespace memory_management
     /**
      * The ObjectPoolElement constructor.
      */
-    template<typename T>
+    template <typename T>
     ObjectPoolElement<T>::ObjectPoolElement(
         T* element,
         ObjectPool<T>& pool) :
@@ -64,7 +64,7 @@ namespace memory_management
     /**
      * The ObjectPoolElement destructor.
      */
-    template<typename T>
+    template <typename T>
     ObjectPoolElement<T>::~ObjectPoolElement()
     {
         m_pool.releaseElement(m_element);
@@ -73,7 +73,7 @@ namespace memory_management
     /**
      * Gets an element of the pool.
      */
-    template<typename T>
+    template <typename T>
     T* ObjectPoolElement<T>::element()
     {
         return m_element;

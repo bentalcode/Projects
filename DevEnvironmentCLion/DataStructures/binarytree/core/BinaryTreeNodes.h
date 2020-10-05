@@ -37,7 +37,7 @@ namespace datastructures {
         /**
          * Creates a new binary tree node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodes::make(TKey key, TValue value) {
             return IBinaryTreeNodePtr<TKey, TValue>(new BinaryTreeNode<TKey, TValue>(key, value));
         }
@@ -45,7 +45,7 @@ namespace datastructures {
         /**
          * Creates a new binary tree end node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodes::endNode() {
             return IBinaryTreeNodePtr<TKey, TValue>(new BinaryTreeEndNode<TKey, TValue>());
         }

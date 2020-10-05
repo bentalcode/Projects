@@ -6,7 +6,7 @@ namespace base
     /**
      * The Pair class template implements a pair.
      */
-    template<typename Type1, typename Type2>
+    template <typename Type1, typename Type2>
     class Pair final
     {
     public:
@@ -47,31 +47,31 @@ namespace base
         Type2 m_second;
     };
 
-    template<typename Type1, typename Type2>
+    template <typename Type1, typename Type2>
     Pair<Type1, Type2>::Pair(const Type1& first, const Type2& second) :
         m_first(first),
         m_second(second)
     {
     }
 
-    template<typename Type1, typename Type2>
+    template <typename Type1, typename Type2>
     Pair<Type1, Type2>::~Pair()
     {
     }
 
-    template<typename Type1, typename Type2>
+    template <typename Type1, typename Type2>
     const Type1& Pair<Type1, Type2>::getFirst() const
     {
         return m_first;
     }
 
-    template<typename Type1, typename Type2>
+    template <typename Type1, typename Type2>
     const Type2& Pair<Type1, Type2>::getSecond() const
     {
         return m_second;
     }
 
-    template<typename Type1, typename Type2>
+    template <typename Type1, typename Type2>
     bool operator<(const Pair<Type1, Type2>& left, const Pair<Type1, Type2>& right) {
         if (left.getFirst() < right.getFirst()) {
             return true;

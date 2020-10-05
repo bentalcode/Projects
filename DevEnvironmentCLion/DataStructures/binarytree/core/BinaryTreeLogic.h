@@ -9,7 +9,7 @@ namespace datastructures {
         /**
          * The BinaryTreeLogic class implements logic of a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeLogic : public IBinaryTreeLogic<TKey, TValue>
         {
         public:
@@ -63,7 +63,7 @@ namespace datastructures {
         /**
          * The BinaryTreeLogic constructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeLogic<TKey, TValue>::BinaryTreeLogic()
         {
         }
@@ -71,7 +71,7 @@ namespace datastructures {
         /**
          * The BinaryTreeLogic destructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeLogic<TKey, TValue>::~BinaryTreeLogic()
         {
         }
@@ -79,7 +79,7 @@ namespace datastructures {
         /**
          * Gets the minimum node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::getMinimumNode(
             IBinaryTreeNodePtr<TKey, TValue> root)
         {
@@ -96,7 +96,7 @@ namespace datastructures {
         /**
          * Moves to the minimum node by storing the nodes in the stack.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeLogic<TKey, TValue>::moveMinimumNode(
             IBinaryTreeNodePtr<TKey, TValue> root,
             std::stack<IBinaryTreeNodePtr<TKey, TValue>>& stack)
@@ -113,7 +113,7 @@ namespace datastructures {
         /**
          * Gets the maximum node.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::getMaximumNode(
             IBinaryTreeNodePtr<TKey, TValue> root)
         {
@@ -130,7 +130,7 @@ namespace datastructures {
         /**
          * Moves to the maximum node by storing the nodes in the stack.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeLogic<TKey, TValue>::moveMaximumNode(
             IBinaryTreeNodePtr<TKey, TValue> root,
             std::stack<IBinaryTreeNodePtr<TKey, TValue>>& stack)

@@ -10,7 +10,7 @@ namespace datastructures {
         /**
          * The IBinaryTreeNodeIterator interface defines an iterator of binary tree nodes.
          */
-        template<typename T>
+        template <typename T>
         class IBinaryTreeNodeIterator : public base::IIterator<T>
         {
         public:

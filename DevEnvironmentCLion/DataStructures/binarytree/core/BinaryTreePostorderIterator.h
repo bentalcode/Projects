@@ -10,7 +10,7 @@ namespace datastructures {
         /**
          * The BinaryTreePostorderIterator class implements an preorder iterator of a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreePostorderIterator : public base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>
         {
         public:

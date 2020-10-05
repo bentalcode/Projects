@@ -10,7 +10,7 @@ namespace base
     /**
      * The SharedPtr class template implements a shared ptr.
      */
-    template<class T>
+    template <class T>
     class SharedPtr final
     {
     public:
@@ -52,7 +52,7 @@ namespace base
         ReferenceCountHolder<T>* m_holder;
     };
 
-    template<class T>
+    template <class T>
     SharedPtr<T>::SharedPtr(T* pointer)
     {
         ReferenceCountHolder<T>* holder = nullptr;
@@ -79,20 +79,20 @@ namespace base
         initialize();
     }
 
-    template<class T>
+    template <class T>
     SharedPtr<T>::SharedPtr(const SharedPtr& rhs) :
         m_holder(rhs.m_holder)
     {
         initialize();
     }
 
-    template<class T>
+    template <class T>
     SharedPtr<T>::~SharedPtr()
     {
         m_holder->removeReference();
     }
 
-    template<class T>
+    template <class T>
     SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr& rhs)
     {
         if (this == rhs)
@@ -107,31 +107,31 @@ namespace base
         return *this;
     }
 
-    template<class T>
+    template <class T>
     T* SharedPtr<T>::operator->()
     {
         return m_holder->getPointee();
     }
 
-    template<class T>
+    template <class T>
     const T* SharedPtr<T>::operator->() const
     {
         return m_holder->getPointee();
     }
 
-    template<class T>
+    template <class T>
     T& SharedPtr<T>::operator*()
     {
         return *this->operator->();
     }
 
-    template<class T>
+    template <class T>
     const T& SharedPtr<T>::operator*() const
     {
         return *this->operator->();
     }
 
-    template<class T>
+    template <class T>
     void SharedPtr<T>::initialize()
     {
         m_holder->addReference();

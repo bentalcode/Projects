@@ -7,7 +7,7 @@ namespace datastructures {
         /**
          * The IBinaryTreeNode interface defines defines a node of a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class IBinaryTreeNode
         {
         public:

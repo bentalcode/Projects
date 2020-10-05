@@ -9,7 +9,7 @@ namespace problems
     /**
      * The MatrixFinder class implements a matrix finder problem.
      */
-    template<typename T>
+    template <typename T>
     class MatrixFinder final : public IMatrixFinder<T>
     {
     public:

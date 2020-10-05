@@ -148,7 +148,7 @@ namespace test_base {
     /**
      * Tests the forward iteration logic of a container with a dereference.
      */
-    template<typename T>
+    template <typename T>
     void IterationTest::testForwardIterationWithDereference(
         base::IIterablePtr<T> container,
         base::IIteratorPtr<T> expectedIterator,
@@ -275,7 +275,7 @@ namespace test_base {
     /**
      * Tests the value iteration logic of a container with a dereference.
      */
-    template<typename T>
+    template <typename T>
     void IterationTest::testValueIterationWithDereference(
         base::IValueIterablePtr<T> container,
         base::IIteratorPtr<T> expectedIterator,
@@ -307,7 +307,7 @@ namespace test_base {
     /**
      * Tests the value reverse iteration logic of a container.
      */
-    template<typename T>
+    template <typename T>
     void IterationTest::testValueReverseIteration(
         base::IValueReverseIterablePtr<T> container,
         base::IReverseIteratorPtr<T> expectedReverseIterator,

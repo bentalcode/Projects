@@ -12,7 +12,7 @@ namespace test {
             /**
              * The ILinkedListData interface defines the data of a linked list.
              */
-            template<typename T>
+            template <typename T>
             class LinkedListData final {
             public:
                 /**
@@ -54,7 +54,7 @@ namespace test {
                 std::vector<ILinkedListNodePtr<T>> m_nodes;
             };
 
-            template<typename T>
+            template <typename T>
             using LinkedListDataPtr = std::shared_ptr<LinkedListData<T>>;
 
             /**

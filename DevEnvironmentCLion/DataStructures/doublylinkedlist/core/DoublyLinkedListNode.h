@@ -9,7 +9,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedListNode class implements a node of a doubly linked list.
          */
-        template<typename T>
+        template <typename T>
         class DoublyLinkedListNode final : public IDoublyLinkedListNode<T>
         {
         public:
@@ -124,7 +124,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedListNode constructor.
          */
-        template<typename T>
+        template <typename T>
         DoublyLinkedListNode<T>::DoublyLinkedListNode() :
             m_nextNode(nullptr),
             m_previousNode(nullptr)
@@ -134,7 +134,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedListNode constructor with value.
          */
-        template<typename T>
+        template <typename T>
         DoublyLinkedListNode<T>::DoublyLinkedListNode(const T& value) :
             m_value(value),
             m_nextNode(nullptr),
@@ -145,7 +145,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedListNode constructor with value and prev and next nodes.
          */
-        template<typename T>
+        template <typename T>
         DoublyLinkedListNode<T>::DoublyLinkedListNode(
             const T& value,
             IDoublyLinkedListNodePtr<T> prevNode,
@@ -159,7 +159,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedListNode destructor.
          */
-        template<typename T>
+        template <typename T>
         DoublyLinkedListNode<T>::~DoublyLinkedListNode()
         {
         }
@@ -167,7 +167,7 @@ namespace datastructures {
         /**
          * Gets a value of a node.
          */
-        template<typename T>
+        template <typename T>
         const T& DoublyLinkedListNode<T>::getValue() const
         {
             return m_value;
@@ -176,7 +176,7 @@ namespace datastructures {
         /**
         * Sets a value of a node.
         */
-        template<typename T>
+        template <typename T>
         void DoublyLinkedListNode<T>::setValue(const T& value)
         {
             m_value = value;
@@ -185,7 +185,7 @@ namespace datastructures {
         /**
          * Gets a next node.
          */
-        template<typename T>
+        template <typename T>
         IDoublyLinkedListNodePtr<T> DoublyLinkedListNode<T>::next() const
         {
             return m_nextNode;
@@ -194,7 +194,7 @@ namespace datastructures {
         /**
          * Sets a next node.
          */
-        template<typename T>
+        template <typename T>
         void DoublyLinkedListNode<T>::setNext(IDoublyLinkedListNodePtr<T> node)
         {
             m_nextNode = node;
@@ -203,7 +203,7 @@ namespace datastructures {
         /**
          * Checks whether there is a next node.
          */
-        template<typename T>
+        template <typename T>
         bool DoublyLinkedListNode<T>::hasNext() const
         {
             return m_nextNode != nullptr;
@@ -212,7 +212,7 @@ namespace datastructures {
         /**
          * Gets a previous node.
          */
-        template<typename T>
+        template <typename T>
         IDoublyLinkedListNodePtr<T> DoublyLinkedListNode<T>::previous() const
         {
             return m_previousNode;
@@ -221,7 +221,7 @@ namespace datastructures {
         /**
          * Sets a previous node.
          */
-        template<typename T>
+        template <typename T>
         void DoublyLinkedListNode<T>::setPrevious(IDoublyLinkedListNodePtr<T> node)
         {
             m_previousNode = node;
@@ -230,7 +230,7 @@ namespace datastructures {
         /**
          * Checks whether there is a previous node.
          */
-        template<typename T>
+        template <typename T>
         bool DoublyLinkedListNode<T>::hasPrevious() const
         {
             return m_previousNode != nullptr;
@@ -239,7 +239,7 @@ namespace datastructures {
         /**
          * Unlinked the node.
          */
-        template<typename T>
+        template <typename T>
         void DoublyLinkedListNode<T>::unlinked()
         {
             m_nextNode = nullptr;

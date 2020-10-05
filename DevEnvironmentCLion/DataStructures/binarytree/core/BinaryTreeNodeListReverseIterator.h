@@ -9,7 +9,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNodeListReverseIterator class implements a reverse iterator of a list of binary nodes.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeNodeListReverseIterator final : public IBinaryTreeNodeReverseIterator<IBinaryTreeNodePtr<TKey, TValue>>
         {
         public:
@@ -91,7 +91,7 @@ namespace datastructures {
         /**
          * Creates a new reverse iterator of a list of binary nodes.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodeReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeNodeListReverseIterator<TKey, TValue>::make(
             const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes) {
 
@@ -102,7 +102,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNodeListReverseIterator constructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeNodeListReverseIterator<TKey, TValue>::BinaryTreeNodeListReverseIterator(
             const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes) :
             m_nodes(nodes),
@@ -117,7 +117,7 @@ namespace datastructures {
         /**
          * The BinaryTreeNodeListReverseIterator destructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTreeNodeListReverseIterator<TKey, TValue>::~BinaryTreeNodeListReverseIterator()
         {
         }
@@ -125,7 +125,7 @@ namespace datastructures {
         /**
          * Checks whether there is a next element.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         bool BinaryTreeNodeListReverseIterator<TKey, TValue>::hasNext() const
         {
             return !m_endPosition;
@@ -134,7 +134,7 @@ namespace datastructures {
         /**
          * Gets the next element.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodeListReverseIterator<TKey, TValue>::next()
         {
             assert(hasNext());
@@ -155,7 +155,7 @@ namespace datastructures {
         /**
          * Resets the iterator.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeNodeListReverseIterator<TKey, TValue>::reset()
         {
             if (!m_nodes.empty())
@@ -171,7 +171,7 @@ namespace datastructures {
         /**
          * Gets the skip iterator.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         base::ISkipIteratorPtr BinaryTreeNodeListReverseIterator<TKey, TValue>::getSkipIterator() const
         {
             return m_skipIterator;
@@ -180,7 +180,7 @@ namespace datastructures {
         /*
          * Gets the next position.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeNodeListReverseIterator<TKey, TValue>::nextPosition(
             size_t position,
             bool& endPosition,
@@ -200,7 +200,7 @@ namespace datastructures {
         /*
          * Aligns the position.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         void BinaryTreeNodeListReverseIterator<TKey, TValue>::alignPosition(
             size_t position,
             bool& endPosition,

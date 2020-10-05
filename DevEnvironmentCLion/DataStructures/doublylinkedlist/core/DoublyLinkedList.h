@@ -15,7 +15,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedList class implements a doubly linked list.
          */
-        template<typename T>
+        template <typename T>
         class DoublyLinkedList final : public IDoublyLinkedList<T>
         {
         public:
@@ -203,7 +203,7 @@ namespace datastructures {
         /**
          * Creates a new doubly linked list.
          */
-        template<typename T>
+        template <typename T>
         IDoublyLinkedListPtr<T> DoublyLinkedList<T>::make()
         {
             return std::make_shared<DoublyLinkedList<T>>();
@@ -212,7 +212,7 @@ namespace datastructures {
         /**
          * Creates a new doubly linked list from a node list.
          */
-        template<typename T>
+        template <typename T>
         IDoublyLinkedListNodePtr<T> DoublyLinkedList<T>::make(IDoublyLinkedListNodePtr<T> head)
         {
             return std::make_shared<DoublyLinkedListNode<T>>(head);
@@ -221,7 +221,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedList constructor.
          */
-        template<typename T>
+        template <typename T>
         DoublyLinkedList<T>::DoublyLinkedList() :
             m_size(0)
         {
@@ -230,7 +230,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedList constructor with a node list.
          */
-        template<typename T>
+        template <typename T>
         DoublyLinkedList<T>::DoublyLinkedList(IDoublyLinkedListNodePtr<T> head) :
             m_size(0)
         {
@@ -248,7 +248,7 @@ namespace datastructures {
         /**
          * The DoublyLinkedList destructor.
          */
-        template<typename T>
+        template <typename T>
         DoublyLinkedList<T>::~DoublyLinkedList()
         {
         }

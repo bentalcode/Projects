@@ -11,7 +11,7 @@ namespace datastructures {
         /**
          * The BinaryTreeInorderReverseIterator class implements an inorder reverse iterator of a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTreeInorderReverseIterator : public base::IReverseIterator<IBinaryTreeNodePtr<TKey, TValue>>
         {
         public:

@@ -9,7 +9,7 @@ namespace datastructures {
         /**
          * The IBinaryTreeNodeReverseIterator interface defines a reverse iterator of binary nodes.
          */
-        template<typename T>
+        template <typename T>
         class IBinaryTreeNodeReverseIterator : public base::IReverseIterator<T> {
         public:
             /**

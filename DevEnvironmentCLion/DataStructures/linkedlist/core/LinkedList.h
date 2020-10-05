@@ -171,7 +171,7 @@ namespace datastructures {
         /**
          * Creates a new doubly linked list.
          */
-        template<typename T>
+        template <typename T>
         ILinkedListPtr<T> LinkedList<T>::make()
         {
             return std::make_shared<LinkedList<T>>();
@@ -180,7 +180,7 @@ namespace datastructures {
         /**
          * Creates a new doubly linked list from a node list.
          */
-        template<typename T>
+        template <typename T>
         ILinkedListNodePtr<T> LinkedList<T>::make(ILinkedListNodePtr<T> head)
         {
             return std::make_shared<LinkedListNode<T>>(head);
@@ -189,7 +189,7 @@ namespace datastructures {
         /**
          * The LinkedList constructor.
          */
-        template<typename T>
+        template <typename T>
         LinkedList<T>::LinkedList() :
             m_size(0)
         {
@@ -198,7 +198,7 @@ namespace datastructures {
         /**
          * The LinkedList constructor with a node list.
          */
-        template<typename T>
+        template <typename T>
         LinkedList<T>::LinkedList(ILinkedListNodePtr<T> head) :
             m_size(0)
         {
@@ -216,7 +216,7 @@ namespace datastructures {
         /**
          * The LinkedList destructor.
          */
-        template<typename T>
+        template <typename T>
         LinkedList<T>::~LinkedList()
         {
         }

@@ -100,7 +100,7 @@ namespace problems
      * Each value should be used once.
      * The result set must not contain duplicate combinations.
      */
-    template<typename T>
+    template <typename T>
     std::set<std::vector<T>> CombinationSum<T>::singleCombinationSum(const std::vector<T>& values, int sum) {
         std::set<std::vector<T>> results;
 

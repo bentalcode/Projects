@@ -12,7 +12,7 @@ namespace test {
             /**
              * The DoublyLinkedListData class implements the data of a doubly linked list.
              */
-            template<typename T>
+            template <typename T>
             class DoublyLinkedListData final {
             public:
                 /**
@@ -54,7 +54,7 @@ namespace test {
                 std::vector<IDoublyLinkedListNodePtr<T>> m_nodes;
             };
 
-            template<typename T>
+            template <typename T>
             using DoublyLinkedListDataPtr = std::shared_ptr<DoublyLinkedListData<T>>;
 
             /**

@@ -89,7 +89,7 @@ namespace base
     /**
      * The IterableObject constructor.
      */
-    template<typename T>
+    template <typename T>
     IterableObject<T>::IterableObject(IIteratorPtr<T> iterator) :
         m_iterator(iterator)
     {
@@ -98,7 +98,7 @@ namespace base
     /**
      * The IterableObject destructor.
      */
-    template<typename T>
+    template <typename T>
     IterableObject<T>::~IterableObject()
     {
     }
@@ -106,7 +106,7 @@ namespace base
     /**
      * The begin of range for implementing a range-based loop.
      */
-    template<typename T>
+    template <typename T>
     typename IterableObject<T>::IteratorObject IterableObject<T>::begin() const
     {
         T currElement = nullptr;
@@ -122,7 +122,7 @@ namespace base
     /**
      * The end of range for implementing a range-based loop.
      */
-    template<typename T>
+    template <typename T>
     typename IterableObject<T>::IteratorObject IterableObject<T>::end() const
     {
         return IteratorObject(nullptr, nullptr);
@@ -131,7 +131,7 @@ namespace base
     /**
      * The IterableObject::IteratorObject constructor.
      */
-    template<typename T>
+    template <typename T>
     IterableObject<T>::IteratorObject::IteratorObject(
         IIteratorPtr<T> iterator,
         T currElement) :
@@ -143,7 +143,7 @@ namespace base
     /**
      * The IterableObject::IteratorObject destructor.
      */
-    template<typename T>
+    template <typename T>
     IterableObject<T>::IteratorObject::~IteratorObject()
     {
     }
@@ -151,7 +151,7 @@ namespace base
     /**
      * The IterableObject::IteratorObject::operator++ for implementing a range-based loop.
      */
-    template<typename T>
+    template <typename T>
     typename IterableObject<T>::IteratorObject& IterableObject<T>::IteratorObject::operator++()
     {
         if (m_iterator->hasNext())
@@ -168,7 +168,7 @@ namespace base
     /**
      * The IterableObject::IteratorObject::operator!= for implementing a range-based loop.
      */
-    template<typename T>
+    template <typename T>
     bool IterableObject<T>::IteratorObject::operator!=(const IterableObject<T>::IteratorObject& other) const
     {
         return m_currElement != other.m_currElement;
@@ -177,7 +177,7 @@ namespace base
     /**
      * The IterableObject::IteratorObject::operator* for implementing a range-based loop.
      */
-    template<typename T>
+    template <typename T>
     const T IterableObject<T>::IteratorObject::operator*() const
     {
         return m_currElement;

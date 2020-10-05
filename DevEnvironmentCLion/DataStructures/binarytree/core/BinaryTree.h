@@ -15,7 +15,7 @@ namespace datastructures {
         /**
          * The BinaryTree class implements a binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         class BinaryTree final : public IBinaryTree<TKey, TValue> {
         public:
 
@@ -93,7 +93,7 @@ namespace datastructures {
         /**
          * Creates a new binary tree.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         IBinaryTreePtr<TKey, TValue> BinaryTree<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
         {
             return std::make_shared<BinaryTree>(root);
@@ -102,7 +102,7 @@ namespace datastructures {
         /**
          * The constructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTree<TKey, TValue>::BinaryTree(IBinaryTreeNodePtr<TKey, TValue> root) :
             m_root(root)
         {
@@ -111,7 +111,7 @@ namespace datastructures {
         /**
          * The destructor.
          */
-        template<typename TKey, typename TValue>
+        template <typename TKey, typename TValue>
         BinaryTree<TKey, TValue>::~BinaryTree()
         {
         }

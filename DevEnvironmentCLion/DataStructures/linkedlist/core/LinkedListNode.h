@@ -105,7 +105,7 @@ namespace datastructures {
         /**
          * The LinkedListNode constructor.
          */
-        template<typename T>
+        template <typename T>
         LinkedListNode<T>::LinkedListNode() :
             m_nextNode(nullptr)
         {
@@ -114,7 +114,7 @@ namespace datastructures {
         /**
          * The LinkedListNode constructor with value.
          */
-        template<typename T>
+        template <typename T>
         LinkedListNode<T>::LinkedListNode(const T& value) :
             m_value(value),
             m_nextNode(nullptr)
@@ -124,7 +124,7 @@ namespace datastructures {
         /**
          * The LinkedListNode constructor with value and prev and next nodes.
          */
-        template<typename T>
+        template <typename T>
         LinkedListNode<T>::LinkedListNode(
             const T& value,
             ILinkedListNodePtr<T> nextNode) :
@@ -136,7 +136,7 @@ namespace datastructures {
         /**
          * The LinkedListNode destructor.
          */
-        template<typename T>
+        template <typename T>
         LinkedListNode<T>::~LinkedListNode()
         {
         }
@@ -189,7 +189,7 @@ namespace datastructures {
         /**
          * Unlinked the node.
          */
-        template<typename T>
+        template <typename T>
         void LinkedListNode<T>::unlinked()
         {
             m_nextNode = nullptr;

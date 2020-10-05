@@ -54,7 +54,7 @@ namespace base {
         /**
          * Tests the creation logic of an interval map.
          */
-        template<typename Key, typename Value>
+        template <typename Key, typename Value>
         void testIntervalMapCreation(
             const Value& initialValue,
             const std::vector<base::Pair<base::Interval<Key>, Value>>& data);
@@ -62,7 +62,7 @@ namespace base {
         /**
          * Tests the iteration logic of an interval map.
          */
-        template<typename Key, typename Value>
+        template <typename Key, typename Value>
         void testIntervalMapIteration(
             const Value& initialValue,
             const std::vector<base::Pair<base::Interval<Key>, Value>>& data);
@@ -76,7 +76,7 @@ namespace base {
     /**
      * Tests the creation logic of an interval map.
      */
-    template<typename Key, typename Value>
+    template <typename Key, typename Value>
     void IntervalMapUnitTest::testIntervalMapCreation(
         const Value& initialValue,
         const std::vector<base::Pair<base::Interval<Key>, Value>>& data) {
@@ -108,7 +108,7 @@ namespace base {
     /**
      * Tests the iteration logic of an interval map.
      */
-    template<typename Key, typename Value>
+    template <typename Key, typename Value>
     void IntervalMapUnitTest::testIntervalMapIteration(
         const Value& initialValue,
         const std::vector<base::Pair<base::Interval<Key>, Value>>& data) {

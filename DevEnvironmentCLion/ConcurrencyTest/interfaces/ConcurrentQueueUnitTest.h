@@ -45,7 +45,7 @@ namespace concurrency_test {
         TestData m_testData;
     };
 
-    template<typename T>
+    template <typename T>
     class QueueClient final
     {
     public:

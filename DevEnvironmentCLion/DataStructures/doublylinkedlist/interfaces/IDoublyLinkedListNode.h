@@ -7,7 +7,7 @@ namespace datastructures {
         /**
          * The IDoublyLinkedListNode interface defines a node of a doubly linked list.
          */
-        template<typename T>
+        template <typename T>
         class IDoublyLinkedListNode
         {
         public:

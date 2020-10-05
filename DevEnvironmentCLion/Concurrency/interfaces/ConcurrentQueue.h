@@ -145,14 +145,14 @@ namespace concurrency
         m_queue.pop();
     }
 
-    template<typename T>
+    template <typename T>
     size_t ConcurrentQueue<T>::size() const
     {
         std::unique_lock<std::mutex> lock(m_mutex);
         return m_queue.size();
     }
 
-    template<typename T>
+    template <typename T>
     bool ConcurrentQueue<T>::empty() const
     {
         std::unique_lock<std::mutex> lock(m_mutex);
