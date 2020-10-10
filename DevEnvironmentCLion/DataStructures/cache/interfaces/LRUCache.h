@@ -8,13 +8,18 @@ namespace datastructures {
     namespace cache {
 
         /**
-         * The LRUCache class implements a most recently used cache.
+         * The LRUCache class implements a least recently used cache.
          * Discards the least recently used items first.
          */
         template <typename TKey, typename TValue>
         class LRUCache final : public AbstractCache<TKey, TValue>
         {
         public:
+            /**
+             * Creates a least recently used cache.
+             */
+            static ICachePtr<TKey, TValue> make(ICachePropertiesPtr properties);
+
             /**
              * The LRUCache constructor.
              */
@@ -45,6 +50,15 @@ namespace datastructures {
                 typename AbstractCache<TKey, TValue>::CacheData& cacheData,
                 size_t numberOfItems) override;
         };
+
+        /**
+         * Creates a least recently used cache.
+         */
+        template <typename TKey, typename TValue>
+        ICachePtr<TKey, TValue> LRUCache<TKey, TValue>::make(ICachePropertiesPtr properties)
+        {
+            return std::make_shared<LRUCache<TKey, TValue>>(properties);
+        }
 
         /**
          * The LRUCache constructor.

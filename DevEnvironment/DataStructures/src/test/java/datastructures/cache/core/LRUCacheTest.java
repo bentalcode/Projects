@@ -1,16 +1,25 @@
 package datastructures.cache.core;
 
 import base.core.Iterator;
+import base.core.ListIterator;
+import base.core.ListReverseIterator;
 import base.interfaces.IIterator;
 import base.interfaces.ITriple;
 import datastructures.cache.interfaces.ICache;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
+import datastructures.node.core.KeyIterator;
+import datastructures.node.core.KeyReverseIterator;
+import datastructures.node.core.KeyValueNodeIterator;
+import datastructures.node.core.KeyValueNodeReverseIterator;
+import datastructures.node.core.ValueIterator;
+import datastructures.node.core.ValueReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
+import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import java.util.List;
 
@@ -55,7 +64,7 @@ public final class LRUCacheTest {
     }
 
     /**
-     * Tests the iteration of a least recently used cache.
+     * Tests the iteration logic of a least recently used cache.
      */
     @Test
     public void lruCacheIterationTest() {
@@ -133,67 +142,59 @@ public final class LRUCacheTest {
         //
         // Test the default iterator of the container...
         //
-        int index = 0;
-
-        for (IKeyValueNode<TKey, TValue> node : cache) {
-            this.assertion.assertEquals(
-                node,
-                expectedContent.get(index),
-                "Incorrect logic of default forward iterator over nodes.");
-
-            ++index;
-        }
+        IterationTest iterationTest = new IterationTest();
+        iterationTest.testIteration(
+            cache,
+            ListIterator.make(expectedContent),
+            "LRUCache");
 
         //
         // Test the forward iteration over nodes...
         //
-        IIterator<IKeyValueNode<TKey, TValue>> iterator = cache.getIterator();
-        index = 0;
+        iterationTest.testForwardIteration(
+            cache,
+            ListIterator.make(expectedContent),
+            "LRUCache");
 
-        while (iterator.hasNext()) {
-            IKeyValueNode<TKey, TValue> node = iterator.next();
-
-            this.assertion.assertEquals(
-                node,
-                expectedContent.get(index),
-                "Incorrect logic of forward iterator over nodes.");
-
-            ++index;
-        }
+        //
+        // Test the reverse iteration over nodes...
+        //
+        iterationTest.testReverseIteration(
+            cache,
+            ListReverseIterator.make(expectedContent),
+            "LRUCache");
 
         //
         // Test the forward iteration over keys...
         //
-        IIterator<TKey> keyIterator = cache.getKeyIterator();
-        index = 0;
+        iterationTest.testKeyIteration(
+            cache,
+            KeyIterator.make(KeyValueNodeIterator.make(expectedContent)),
+            "LRUCache");
 
-        while (keyIterator.hasNext()) {
-            TKey key = keyIterator.next();
-
-            this.assertion.assertEquals(
-                key,
-                expectedContent.get(index).getKey(),
-                "Incorrect logic of forward iterator over keys.");
-
-            ++index;
-        }
+        //
+        // Test the reverse iteration over keys...
+        //
+        iterationTest.testKeyReverseIteration(
+            cache,
+            KeyReverseIterator.make(KeyValueNodeReverseIterator.make(expectedContent)),
+            "LRUCache");
 
         //
         // Test the forward iteration over values...
         //
-        IIterator<TValue> valueIterator = cache.getValueIterator();
-        index = 0;
+        iterationTest.testValueIteration(
+            cache,
+            ValueIterator.make(KeyValueNodeIterator.make(expectedContent)),
+            "LRUCache");
 
-        while (valueIterator.hasNext()) {
-            TValue value = valueIterator.next();
-
-            this.assertion.assertEquals(
-                value,
-                expectedContent.get(index).getValue(),
-                "Incorrect logic of forward iterator over values.");
-
-            ++index;
-        }
+        //
+        // Test the reverse iteration over values...
+        //
+        iterationTest.testValueReverseIteration(
+            cache,
+            ValueReverseIterator.make(KeyValueNodeReverseIterator.make(expectedContent)),
+            "LRUCache");
     }
 
     /**

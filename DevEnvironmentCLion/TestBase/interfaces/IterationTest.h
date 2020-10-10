@@ -3,6 +3,8 @@
 
 #include "IIterable.h"
 #include "IReverseIterable.h"
+#include "IKeyIterable.h"
+#include "IKeyReverseIterable.h"
 #include "IValueIterable.h"
 #include "IValueReverseIterable.h"
 #include "Assertion.h"
@@ -70,6 +72,33 @@ namespace test_base {
         template <typename T>
         void testReverseIterationWithDereference(
             base::IReverseIterablePtr<T> container,
+            base::IReverseIteratorPtr<T> expectedReverseIterator,
+            const std::string& containerName);
+
+        /**
+         * Tests the key iteration logic of a container.
+         */
+        template <typename T>
+        void testKeyIteration(
+            base::IKeyIterablePtr<T> container,
+            base::IIteratorPtr<T> expectedIterator,
+            const std::string& containerName);
+
+        /**
+         * Tests the key iteration logic of a container with a dereference.
+         */
+        template <typename T>
+        void testKeyIterationWithDereference(
+            base::IKeyIterablePtr<T> container,
+            base::IIteratorPtr<T> expectedIterator,
+            const std::string& containerName);
+
+        /**
+         * Tests the key reverse iteration logic of a container.
+         */
+        template <typename T>
+        void testKeyReverseIteration(
+            base::IKeyReverseIterablePtr<T> container,
             base::IReverseIteratorPtr<T> expectedReverseIterator,
             const std::string& containerName);
 
@@ -232,6 +261,102 @@ namespace test_base {
                 << " Invalid element found in reverse index: " << std::to_string(index);
 
             m_assertion.assertEqualsWithDereference(
+                element,
+                expectedElement,
+                errorMessageStream.str());
+
+            ++index;
+        }
+    }
+
+    /**
+     * Tests the key iteration logic of a container.
+     */
+    template <typename T>
+    void IterationTest::testKeyIteration(
+        base::IKeyIterablePtr<T> container,
+        base::IIteratorPtr<T> expectedIterator,
+        const std::string& containerName)
+    {
+        base::IIteratorPtr<T> iterator = container->getKeyIterator();
+
+        size_t index = 0;
+
+        while (iterator->hasNext() && expectedIterator->hasNext())
+        {
+            T element = iterator->next();
+            T expectedElement = expectedIterator->next();
+
+            std::stringstream errorMessageStream;
+            errorMessageStream
+                << "The key iteration logic of " << containerName << " is invalid."
+                << " Invalid element found in index: " << std::to_string(index);
+
+            m_assertion.assertEquals(
+                element,
+                expectedElement,
+                errorMessageStream.str());
+
+            ++index;
+        }
+    }
+
+    /**
+     * Tests the key iteration logic of a container with a dereference.
+     */
+    template <typename T>
+    void IterationTest::testKeyIterationWithDereference(
+        base::IKeyIterablePtr<T> container,
+        base::IIteratorPtr<T> expectedIterator,
+        const std::string& containerName)
+    {
+        base::IIteratorPtr<T> iterator = container->getKeyIterator();
+
+        size_t index = 0;
+
+        while (iterator->hasNext() && expectedIterator->hasNext())
+        {
+            T element = iterator->next();
+            T expectedElement = expectedIterator->next();
+
+            std::stringstream errorMessageStream;
+            errorMessageStream
+                << "The key iteration logic with a dereference of " << containerName << " is invalid."
+                << " Invalid element found in index: " << std::to_string(index);
+
+            m_assertion.assertEqualsWithDereference(
+                element,
+                expectedElement,
+                errorMessageStream.str());
+
+            ++index;
+        }
+    }
+
+    /**
+     * Tests the key reverse iteration logic of a container.
+     */
+    template <typename T>
+    void IterationTest::testKeyReverseIteration(
+        base::IKeyReverseIterablePtr<T> container,
+        base::IReverseIteratorPtr<T> expectedReverseIterator,
+        const std::string& containerName)
+    {
+        base::IReverseIteratorPtr<T> reverseIterator = container->getKeyReverseIterator();
+
+        size_t index = 0;
+
+        while (reverseIterator->hasNext() && expectedReverseIterator->hasNext())
+        {
+            T element = reverseIterator->next();
+            T expectedElement = expectedReverseIterator->next();
+
+            std::stringstream errorMessageStream;
+            errorMessageStream
+                << "The key reverse iteration logic of " << containerName << " is invalid."
+                << " Invalid element found in reverse index: " << std::to_string(index);
+
+            m_assertion.assertEquals(
                 element,
                 expectedElement,
                 errorMessageStream.str());

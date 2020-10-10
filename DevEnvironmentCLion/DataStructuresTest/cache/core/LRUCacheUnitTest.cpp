@@ -26,6 +26,24 @@ public:
     }
 };
 
+class TestLRUCacheIterationTestFunction final : public unit_testing::UnitTestFunction<LRUCacheUnitTest>
+{
+public:
+    TestLRUCacheIterationTestFunction(LRUCacheUnitTest& unitTest) :
+        UnitTestFunction("lruCacheIterationTest", unitTest)
+    {
+    }
+
+    virtual ~TestLRUCacheIterationTestFunction()
+    {
+    }
+
+    virtual void operator()()
+    {
+        getUnitTest().lruCacheIterationTest();
+    }
+};
+
 /**
  * The LRUCacheUnitTest constructor.
  */
@@ -47,6 +65,7 @@ LRUCacheUnitTest::~LRUCacheUnitTest()
 void LRUCacheUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
     registration.registerTest(unit_testing::ITestFunctionPtr(new TestLRUCacheUpdationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLRUCacheIterationTestFunction(*this)));
 }
 
 /**
@@ -63,5 +82,22 @@ void LRUCacheUnitTest::lruCacheUpdationTest()
     for (const std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>& cacheData : data)
     {
         testUpdation(cache, cacheData);
+    }
+}
+
+/**
+ * Tests the iteration logic of a least recently used cache.
+ */
+void LRUCacheUnitTest::lruCacheIterationTest()
+{
+    ICachePropertiesPtr properties = CacheProperties::make(3, 1);
+    ICachePtr<int, std::string> cache = LRUCache<int, std::string>::make(properties);
+
+    std::vector<std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>> data =
+        m_testData.getCacheData()->getLruUpdationData();
+
+    for (const std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>& cacheData : data)
+    {
+        testIteration(cache, cacheData);
     }
 }

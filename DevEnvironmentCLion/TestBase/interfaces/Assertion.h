@@ -202,16 +202,12 @@ namespace test_base {
             lhs.size() == rhs.size() &&
             std::equal(lhs.begin(), lhs.end(), rhs.begin());
 
-        if (status == false)
-        {
-            int i = 5;
-        }
         assertTrue(status, message);
     }
 
     /**
-         * Asserts equality with dereference.
-         */
+     * Asserts equality with dereference.
+     */
     template <typename T>
     void Assertion::assertEqualsWithDereference(
         T lhs,
