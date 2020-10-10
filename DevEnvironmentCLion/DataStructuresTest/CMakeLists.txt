@@ -32,6 +32,8 @@ set(DATA_STRUCTURES_TEST_INCLUDES_FILES
     ./bitarray/interfaces/BitArrayData.h
     ./bitarray/interfaces/BitArrayTestData.h
     ./bitarray/interfaces/BitArrayUnitTest.h
+    ./cache/interfaces/CacheTestData.h
+    ./cache/interfaces/LRUCacheUnitTest.h
     ./core/PreCompiled.h
     ./doublylinkedlist/interfaces/DoublyLinkedListData.h
     ./doublylinkedlist/interfaces/DoublyLinkedListTestData.h
@@ -53,6 +55,8 @@ set(DATA_STRUCTURES_TEST_SOURCES_FILES
     ./bitarray/core/BitArrayData.cpp
     ./bitarray/core/BitArrayTestData.cpp
     ./bitarray/core/BitArrayUnitTest.cpp
+    ./cache/core/CacheTestData.cpp
+    ./cache/core/LRUCacheUnitTest.cpp
     ./core/IteratorOfIteratorCollectionUnitTest.cpp
     ./core/PreCompiled.cpp
     ./core/TestData.cpp
@@ -73,6 +77,7 @@ set(DATA_STRUCTURES_TEST_SOURCES
 set(DATA_STRUCTURES_TEST_INCLUDES
     ./binarytree/interfaces
     ./bitarray/interfaces
+    ./cache/interfaces
     ./core
     ./doublylinkedlist/interfaces
     ./interfaces
@@ -139,6 +144,8 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
+    ../Base/interfaces/IKeyIterable.h
+    ../Base/interfaces/IKeyReverseIterable.h
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatch.h
     ../Base/interfaces/IMatrix.h
@@ -315,9 +322,17 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/bitarray/core/BitArrayReverseIterator.h
     ../DataStructures/bitarray/interfaces/IBit32Array.h
     ../DataStructures/bitarray/interfaces/IBitArray.h
+    ../DataStructures/cache/CacheException.h
+    ../DataStructures/cache/core/AbstractCache.h
+    ../DataStructures/cache/core/CacheProperties.h
+    ../DataStructures/cache/interfaces/ICache.h
+    ../DataStructures/cache/interfaces/ICacheProperties.h
+    ../DataStructures/cache/interfaces/LRUCache.h
     ../DataStructures/core/PreCompiled.h
     ../DataStructures/doublylinkedlist/DoublyLinkedListException.h
     ../DataStructures/doublylinkedlist/core/DoublyLinkedList.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedListKeyValueNodeIterator.h
+    ../DataStructures/doublylinkedlist/core/DoublyLinkedListKeyValueNodeReverseIterator.h
     ../DataStructures/doublylinkedlist/core/DoublyLinkedListNode.h
     ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeIterator.h
     ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeReverseIterator.h
@@ -333,6 +348,12 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/linkedlist/core/LinkedListNodeValueIterator.h
     ../DataStructures/linkedlist/interfaces/ILinkedList.h
     ../DataStructures/linkedlist/interfaces/ILinkedListNode.h
+    ../DataStructures/node/NodeException.h
+    ../DataStructures/node/core/KeyIterator.h
+    ../DataStructures/node/core/KeyReverseIterator.h
+    ../DataStructures/node/core/KeyValueNode.h
+    ../DataStructures/node/core/ValueIterator.h
+    ../DataStructures/node/interfaces/IKeyValueNode.h
     ../DataStructures/priorityqueue/PriorityQueueException.h
     ../DataStructures/priorityqueue/core/AbstractPriorityQueue.h
     ../DataStructures/priorityqueue/core/PriorityQueue.h
@@ -346,6 +367,7 @@ set(DATA_STRUCTURES_SOURCES_FILES
     ../DataStructures/bitarray/core/BitArray.cpp
     ../DataStructures/bitarray/core/BitArrayIterator.cpp
     ../DataStructures/bitarray/core/BitArrayReverseIterator.cpp
+    ../DataStructures/cache/core/CacheProperties.cpp
     ../DataStructures/core/PreCompiled.cpp
 )
 
@@ -362,6 +384,9 @@ set(DATA_STRUCTURES_INCLUDES
     ../DataStructures/bitarray
     ../DataStructures/bitarray/core
     ../DataStructures/bitarray/interfaces
+    ../DataStructures/cache
+    ../DataStructures/cache/core
+    ../DataStructures/cache/interfaces
     ../DataStructures/core
     ../DataStructures/doublylinkedlist
     ../DataStructures/doublylinkedlist/core
@@ -370,6 +395,9 @@ set(DATA_STRUCTURES_INCLUDES
     ../DataStructures/linkedlist
     ../DataStructures/linkedlist/core
     ../DataStructures/linkedlist/interfaces
+    ../DataStructures/node
+    ../DataStructures/node/core
+    ../DataStructures/node/interfaces
     ../DataStructures/priorityqueue
     ../DataStructures/priorityqueue/core
     ../DataStructures/priorityqueue/interfaces

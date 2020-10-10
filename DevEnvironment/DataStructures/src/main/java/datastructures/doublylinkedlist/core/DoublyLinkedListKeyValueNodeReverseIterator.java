@@ -6,8 +6,8 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
- * The DoublyLinkedListKeyValueNodeReverseIterator class implements a reverse iterator of key-value nodes
- * of a doubly linked list.
+ * The DoublyLinkedListKeyValueNodeReverseIterator class implements a reverse iterator of
+ * key-value nodes of a doubly linked list.
  */
 public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TValue>
     implements IReverseIterator<IKeyValueNode<TKey, TValue>> {
@@ -15,7 +15,7 @@ public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comp
     private final IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> reverseIterator;
 
     /**
-     * Creates a reverse iterator of a key-value node.
+     * Creates a new reverse iterator of a key-value node.
      */
     public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IKeyValueNode<TKey, TValue>> make(
         IReverseIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> reverseIterator) {

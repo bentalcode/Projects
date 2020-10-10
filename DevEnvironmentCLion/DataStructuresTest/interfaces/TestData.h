@@ -6,12 +6,14 @@
 #include "DoublyLinkedListTestData.h"
 #include "BinaryTreeTestData.h"
 #include "PriorityQueueTestData.h"
+#include "CacheTestData.h"
 
 using namespace test::datastructures::bitarray;
 using namespace test::datastructures::linkedlist;
 using namespace test::datastructures::doublylinkedlist;
 using namespace test::datastructures::binarytree;
 using namespace test::datastructures::priority_queue;
+using namespace test::datastructures::cache;
 
 namespace test {
     namespace datastructures {
@@ -35,27 +37,32 @@ namespace test {
             /**
              * Gets the data of tests of a bit array.
              */
-            BitArrayTestDataPtr getBitArrayData();
+            BitArrayTestDataPtr getBitArrayData() const;
 
             /**
              * Gets the data of tests of a linked list.
              */
-            LinkedListTestDataPtr getLinkedListData();
+            LinkedListTestDataPtr getLinkedListData() const;
 
             /**
              * Gets the data of tests of a doubly linked list.
              */
-            DoublyLinkedListTestDataPtr getDoublyLinkedListData();
+            DoublyLinkedListTestDataPtr getDoublyLinkedListData() const;
 
             /**
              * Gets the data of tests of a binary tree.
              */
-            BinaryTreeTestDataPtr getBinaryTreeData();
+            BinaryTreeTestDataPtr getBinaryTreeData() const;
 
             /**
              * Gets the data of tests of a priority queue.
              */
-            PriorityQueueTestDataPtr getPriorityQueueData();
+            PriorityQueueTestDataPtr getPriorityQueueData() const;
+
+            /**
+             * Gets the data of tests of a cache.
+             */
+            CacheTestDataPtr getCacheData() const;
 
             /**
              * Creates a vector.

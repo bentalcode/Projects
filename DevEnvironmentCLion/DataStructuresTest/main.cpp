@@ -5,6 +5,7 @@
 #include "BinaryTreeTraversalBuilderUnitTest.h"
 #include "BitArrayUnitTest.h"
 #include "PriorityQueueUnitTest.h"
+#include "LRUCacheUnitTest.h"
 #include "IteratorOfIteratorCollectionUnitTest.h"
 
 using namespace datastructures;
@@ -15,6 +16,7 @@ using namespace test::datastructures::doublylinkedlist;
 using namespace test::datastructures::binarytree;
 using namespace test::datastructures::bitarray;
 using namespace test::datastructures::priority_queue;
+using namespace test::datastructures::cache;
 
 int main()
 {
@@ -37,6 +39,9 @@ int main()
 
     IUnitTestPtr priorityQueueUnitTest(new PriorityQueueUnitTest("PriorityQueue"));
     testManager.registerTest(priorityQueueUnitTest);
+
+    IUnitTestPtr lruCacheUnitTest(new LRUCacheUnitTest("LRUCache"));
+    testManager.registerTest(lruCacheUnitTest);
 
     IUnitTestPtr iteratorOfIteratorCollectionUnitTest(new IteratorOfIteratorCollectionUnitTest("IteratorOfIteratorCollection"));
     testManager.registerTest(iteratorOfIteratorCollectionUnitTest);

@@ -23,7 +23,7 @@ public final class CacheProperties implements ICacheProperties {
 
         Conditions.validate(
             numberOfItemsForMakingAvailableSpace <= capacity,
-            "The number of items for making available space in a cache has to be less than it's capacity.");
+            "The number of items for making available space can not exceed the cache capacity.");
 
         this.capacity = capacity;
         this.numberOfItemsForMakingAvailableSpace = numberOfItemsForMakingAvailableSpace;

@@ -14,7 +14,7 @@ public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<
     private final IIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator;
 
     /**
-     * Creates an iterator of a key-value node.
+     * Creates a new iterator of key-value nodes.
      */
     public static <TKey extends Comparable<TKey>, TValue> IIterator<IKeyValueNode<TKey, TValue>> make(
         IIterator<IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> iterator) {
@@ -50,7 +50,8 @@ public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<
     public IKeyValueNode<TKey, TValue> next() {
         assert(this.hasNext());
 
-        IKeyValueNode<TKey, TValue> node = this.iterator.next().getValue();
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> listNode = this.iterator.next();
+        IKeyValueNode<TKey, TValue> node = listNode.getValue();
 
         return node;
     }

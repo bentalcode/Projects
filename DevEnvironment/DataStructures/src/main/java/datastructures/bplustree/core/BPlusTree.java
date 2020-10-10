@@ -15,8 +15,8 @@ import datastructures.bplustree.interfaces.IBPlusTreeLeafNode;
 import datastructures.bplustree.interfaces.IBPlusTreeMetrics;
 import datastructures.bplustree.interfaces.IBPlusTreeNode;
 import datastructures.bplustree.interfaces.IBPlusTreeProperties;
-import datastructures.node.core.KeyValueNodeKeyIterator;
-import datastructures.node.core.KeyValueNodeValueIterator;
+import datastructures.node.core.KeyIterator;
+import datastructures.node.core.ValueIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import java.util.LinkedList;
 import java.util.List;
@@ -120,7 +120,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IIterator<TKey> getKeyIterator() {
-        return KeyValueNodeKeyIterator.make(this.getIterator());
+        return KeyIterator.make(this.getIterator());
     }
 
     /**
@@ -128,7 +128,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
      */
     @Override
     public IIterator<TValue> getValueIterator() {
-        return KeyValueNodeValueIterator.make(this.getIterator());
+        return ValueIterator.make(this.getIterator());
     }
 
     /**

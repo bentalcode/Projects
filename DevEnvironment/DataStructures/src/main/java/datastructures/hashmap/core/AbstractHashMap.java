@@ -15,10 +15,10 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.hashmap.HashMapException;
 import datastructures.map.interfaces.IMap;
 import datastructures.node.core.KeyValueNode;
-import datastructures.node.core.KeyValueNodeKeyIterator;
-import datastructures.node.core.KeyValueNodeKeyReverseIterator;
-import datastructures.node.core.KeyValueNodeValueIterator;
-import datastructures.node.core.KeyValueNodeValueReverseIterator;
+import datastructures.node.core.KeyIterator;
+import datastructures.node.core.KeyReverseIterator;
+import datastructures.node.core.ValueIterator;
+import datastructures.node.core.ValueReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import java.util.ArrayList;
 import java.util.List;
@@ -166,7 +166,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public IIterator<TKey> getKeyIterator() {
-        return KeyValueNodeKeyIterator.make(this.getIterator());
+        return KeyIterator.make(this.getIterator());
     }
 
     /**
@@ -174,7 +174,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public IReverseIterator<TKey> getKeyReverseIterator() {
-        return KeyValueNodeKeyReverseIterator.make(this.getReverseIterator());
+        return KeyReverseIterator.make(this.getReverseIterator());
     }
 
     /**
@@ -182,7 +182,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public IIterator<TValue> getValueIterator() {
-        return KeyValueNodeValueIterator.make(this.getIterator());
+        return ValueIterator.make(this.getIterator());
     }
 
     /**
@@ -190,7 +190,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public IReverseIterator<TValue> getValueReverseIterator() {
-        return KeyValueNodeValueReverseIterator.make(this.getReverseIterator());
+        return ValueReverseIterator.make(this.getReverseIterator());
     }
 
     /**

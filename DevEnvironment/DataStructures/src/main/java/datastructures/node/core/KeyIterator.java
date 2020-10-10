@@ -5,27 +5,27 @@ import base.interfaces.IIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
- * The KeyValueNodeValueIterator class implements an iterator of values of key-value nodes.
+ * The KeyIterator class implements an iterator of keys from key-value nodes.
  */
-public final class KeyValueNodeValueIterator<TKey extends Comparable<TKey>, TValue> implements IIterator<TValue> {
+public final class KeyIterator<TKey extends Comparable<TKey>, TValue> implements IIterator<TKey> {
     private final IIterator<IKeyValueNode<TKey, TValue>> iterator;
 
     /**
-     * Creates a new value iterator.
+     * Creates a new iterator of keys from key value nodes.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IIterator<TValue> make(
+    public static <TKey extends Comparable<TKey>, TValue> IIterator<TKey> make(
         IIterator<IKeyValueNode<TKey, TValue>> iterator) {
 
-        return new KeyValueNodeValueIterator<>(iterator);
+        return new KeyIterator<>(iterator);
     }
 
     /**
-     * The KeyValueNodeValueIterator constructor.
+     * The KeyIterator constructor.
      */
-    private KeyValueNodeValueIterator(IIterator<IKeyValueNode<TKey, TValue>> iterator) {
+    private KeyIterator(IIterator<IKeyValueNode<TKey, TValue>> iterator) {
         Conditions.validateNotNull(
             iterator,
-            "The iterator of a key-value node.");
+            "The iterator of key-value nodes.");
 
         this.iterator = iterator;
 
@@ -33,7 +33,7 @@ public final class KeyValueNodeValueIterator<TKey extends Comparable<TKey>, TVal
     }
 
     /**
-     * Checks whether there is a next value.
+     * Checks whether there is a next key.
      */
     @Override
     public boolean hasNext() {
@@ -41,13 +41,13 @@ public final class KeyValueNodeValueIterator<TKey extends Comparable<TKey>, TVal
     }
 
     /**
-     * Gets the next value.
+     * Gets the next key.
      */
     @Override
-    public TValue next() {
+    public TKey next() {
         assert(this.hasNext());
 
-        return this.iterator.next().getValue();
+        return this.iterator.next().getKey();
     }
 
     /**

@@ -3,7 +3,7 @@
 
 #include "IIterator.h"
 #include "DoublyLinkedListNode.h"
-#include "doublylinkedlist/DoublyLinkedListException.h"
+#include "DoublyLinkedListException.h"
 
 namespace datastructures {
     namespace doublylinkedlist {

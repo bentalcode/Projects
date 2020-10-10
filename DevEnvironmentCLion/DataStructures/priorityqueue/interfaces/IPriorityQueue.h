@@ -98,7 +98,38 @@ namespace datastructures {
         template <typename T>
         inline bool operator<(const IPriorityQueue<T>& left, const IPriorityQueue<T>& right)
         {
-            return true;
+            if (left.size() < right.size())
+            {
+                return true;
+            }
+
+            if (left.size() > right.size())
+            {
+                return false;
+            }
+
+            base::IIteratorPtr<T> leftIterator = left.getIterator();
+            base::IIteratorPtr<T> rightIterator = right.getIterator();
+
+            while (leftIterator->hasNext() && rightIterator->hasNext())
+            {
+                const T& leftValue = leftIterator->next();
+                const T& rightValue = rightIterator->next();
+
+                if (leftValue < rightValue)
+                {
+                    return true;
+                }
+
+                if (leftValue > rightValue)
+                {
+                    return false;
+                }
+            }
+
+            assert(!leftIterator->hasNext() && !rightIterator->hasNext());
+
+            return false;
         }
     }
 }

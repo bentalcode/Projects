@@ -5,24 +5,24 @@ import base.interfaces.IReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 
 /**
- * The KeyValueNodeValueReverseIterator class implements a reverse iterator of values of key-value nodes.
+ * The ValueReverseIterator class implements a reverse iterator of values from key-value nodes.
  */
-public final class KeyValueNodeValueReverseIterator<TKey extends Comparable<TKey>, TValue> implements IReverseIterator<TValue> {
+public final class ValueReverseIterator<TKey extends Comparable<TKey>, TValue> implements IReverseIterator<TValue> {
     private final IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator;
 
     /**
-     * Creates a new reverse iterator of values of key-value nodes.
+     * Creates a new reverse iterator of values from key-value nodes.
      */
     public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<TValue> make(
         IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator) {
 
-        return new KeyValueNodeValueReverseIterator<>(reverseIterator);
+        return new ValueReverseIterator<>(reverseIterator);
     }
 
     /**
-     * The KeyValueNodeValueReverseIterator constructor.
+     * The ValueReverseIterator constructor.
      */
-    private KeyValueNodeValueReverseIterator(IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator) {
+    private ValueReverseIterator(IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator) {
         Conditions.validateNotNull(
             reverseIterator,
             "The reverse iterator of of key-value nodes.");

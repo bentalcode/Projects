@@ -19,10 +19,10 @@ import datastructures.doublylinkedlist.core.DoublyLinkedListKeyValueNodeReverseI
 import datastructures.doublylinkedlist.core.DoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.node.core.KeyValueNode;
-import datastructures.node.core.KeyValueNodeKeyIterator;
-import datastructures.node.core.KeyValueNodeKeyReverseIterator;
-import datastructures.node.core.KeyValueNodeValueIterator;
-import datastructures.node.core.KeyValueNodeValueReverseIterator;
+import datastructures.node.core.KeyIterator;
+import datastructures.node.core.KeyReverseIterator;
+import datastructures.node.core.ValueIterator;
+import datastructures.node.core.ValueReverseIterator;
 import datastructures.node.interfaces.IKeyValueNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,16 +74,14 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     public void set(TKey key, TValue value) {
         this.validateKey(key);
 
-        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currentNode;
-
-        if (this.data.dataLookup().containsKey(key)) {
+        if (this.has(key)) {
             //
             // If the key is set in the cache, update it's value...
             //
-            currentNode = this.data.dataLookup().get(key);
-            currentNode.getValue().setValue(value);
+            IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currNode = this.data.getKeyValueNode(key);
+            currNode.getValue().setValue(value);
 
-            this.currentItemAccessed(currentNode);
+            this.currentItemAccessed(currNode);
         }
         else {
             //
@@ -101,9 +99,10 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
                     "The cache should have an available space.");
             }
 
-            currentNode = DoublyLinkedListNode.make(KeyValueNode.make(key, value));
+            IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currNode =
+                DoublyLinkedListNode.make(KeyValueNode.make(key, value));
 
-            this.newItemAccessed(currentNode);
+            this.newItemAccessed(currNode);
         }
     }
 
@@ -113,22 +112,23 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
      */
     @Override
     public TValue get(TKey key) {
-        this.validateKey(key);
+        //
+        // Validate that the key exists...
+        //
+        this.validateKeyExists(key);
 
         //
         // Get the current value of the node...
         //
-        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currentNode = this.data.dataLookup().get(key);
-        this.validateKeyExists(key, currentNode);
-
-        TValue currentValue = currentNode.getValue().getValue();
+        IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currNode = this.data.getKeyValueNode(key);
+        TValue currValue = currNode.getValue().getValue();
 
         //
         // Mark that the item is accessed...
         //
-        this.currentItemAccessed(currentNode);
+        this.currentItemAccessed(currNode);
 
-        return currentValue;
+        return currValue;
     }
 
     /**
@@ -143,14 +143,12 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     public boolean delete(TKey key) {
         this.validateKey(key);
 
-        if (!this.data.dataLookup().containsKey(key)) {
+        if (!this.has(key)) {
             return false;
         }
 
         IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node = this.data.dataLookup().get(key);
-
-        this.data.usedList().remove(node);
-        this.data.dataLookup().remove(key);
+        this.data.removeKeyValueNode(node);
 
         return true;
     }
@@ -161,7 +159,23 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
      */
     @Override
     public boolean has(TKey key) {
-        return this.data.dataLookup().containsKey(key);
+        return this.data.hasKey(key);
+    }
+
+    /**
+     * Gets the size of a cache.
+     */
+    @Override
+    public int size() {
+        return this.data.dataLookup().size();
+    }
+
+    /**
+     * Checks whether the cache is empty.
+     */
+    @Override
+    public boolean empty() {
+        return this.data.dataLookup().isEmpty();
     }
 
     /**
@@ -188,7 +202,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IIterator<TKey> getKeyIterator() {
         IIterator<IKeyValueNode<TKey, TValue>> iterator = this.getIterator();
-        return KeyValueNodeKeyIterator.make(iterator);
+        return KeyIterator.make(iterator);
     }
 
     /**
@@ -197,7 +211,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IReverseIterator<TKey> getKeyReverseIterator() {
         IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator = this.getReverseIterator();
-        return KeyValueNodeKeyReverseIterator.make(reverseIterator);
+        return KeyReverseIterator.make(reverseIterator);
     }
 
     /**
@@ -206,7 +220,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IIterator<TValue> getValueIterator() {
         IIterator<IKeyValueNode<TKey, TValue>> iterator = this.getIterator();
-        return KeyValueNodeValueIterator.make(iterator);
+        return ValueIterator.make(iterator);
     }
 
     /**
@@ -215,23 +229,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     @Override
     public IReverseIterator<TValue> getValueReverseIterator() {
         IReverseIterator<IKeyValueNode<TKey, TValue>> reverseIterator = this.getReverseIterator();
-        return KeyValueNodeValueReverseIterator.make(reverseIterator);
-    }
-
-    /**
-     * Gets the size of a cache.
-     */
-    @Override
-    public int size() {
-        return this.data.dataLookup().size();
-    }
-
-    /**
-     * Checks whether the cache is empty.
-     */
-    @Override
-    public boolean empty() {
-        return this.size() == 0;
+        return ValueReverseIterator.make(reverseIterator);
     }
 
     /**
@@ -425,11 +423,11 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     }
 
     /**
-     * Validates a key exists.
+     * Validates that the key exists.
      */
-    private void validateKeyExists(TKey key, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currentNode) {
-        if (currentNode == null || !key.equals(currentNode.getValue().getKey())) {
-            String errorMessage = "The key: " + key + " is not set in the cache.";
+    private void validateKeyExists(TKey key) {
+        if (!this.has(key)) {
+            String errorMessage = "The key: " + key + " is not defined in the cache.";
 
             this.log.error(errorMessage);
             throw new CacheException(errorMessage);
@@ -461,6 +459,28 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
          */
         protected DoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList() {
             return this.usedList;
+        }
+
+        /**
+         * Gets the key-value node.
+         */
+        protected IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> getKeyValueNode(TKey key) {
+            return this.dataLookup.get(key);
+        }
+
+        /**
+         * Removes the key-value node.
+         */
+        protected void removeKeyValueNode(IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node) {
+            this.dataLookup.remove(node.getValue().getKey());
+            this.usedList.remove(node);
+        }
+
+        /**
+         * Checks whether the key exists.
+         */
+        protected boolean hasKey(TKey key) {
+            return this.dataLookup.containsKey(key);
         }
     }
 }

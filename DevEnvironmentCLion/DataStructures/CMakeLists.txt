@@ -60,9 +60,17 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./bitarray/core/BitArrayReverseIterator.h
     ./bitarray/interfaces/IBit32Array.h
     ./bitarray/interfaces/IBitArray.h
+    ./cache/CacheException.h
+    ./cache/core/AbstractCache.h
+    ./cache/core/CacheProperties.h
+    ./cache/interfaces/ICache.h
+    ./cache/interfaces/ICacheProperties.h
+    ./cache/interfaces/LRUCache.h
     ./core/PreCompiled.h
     ./doublylinkedlist/DoublyLinkedListException.h
     ./doublylinkedlist/core/DoublyLinkedList.h
+    ./doublylinkedlist/core/DoublyLinkedListKeyValueNodeIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListKeyValueNodeReverseIterator.h
     ./doublylinkedlist/core/DoublyLinkedListNode.h
     ./doublylinkedlist/core/DoublyLinkedListNodeIterator.h
     ./doublylinkedlist/core/DoublyLinkedListNodeReverseIterator.h
@@ -78,6 +86,12 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./linkedlist/core/LinkedListNodeValueIterator.h
     ./linkedlist/interfaces/ILinkedList.h
     ./linkedlist/interfaces/ILinkedListNode.h
+    ./node/NodeException.h
+    ./node/core/KeyIterator.h
+    ./node/core/KeyReverseIterator.h
+    ./node/core/KeyValueNode.h
+    ./node/core/ValueIterator.h
+    ./node/interfaces/IKeyValueNode.h
     ./priorityqueue/PriorityQueueException.h
     ./priorityqueue/core/AbstractPriorityQueue.h
     ./priorityqueue/core/PriorityQueue.h
@@ -91,6 +105,7 @@ set(DATA_STRUCTURES_SOURCES_FILES
     ./bitarray/core/BitArray.cpp
     ./bitarray/core/BitArrayIterator.cpp
     ./bitarray/core/BitArrayReverseIterator.cpp
+    ./cache/core/CacheProperties.cpp
     ./core/PreCompiled.cpp
 )
 
@@ -107,6 +122,9 @@ set(DATA_STRUCTURES_INCLUDES
     ./bitarray
     ./bitarray/core
     ./bitarray/interfaces
+    ./cache
+    ./cache/core
+    ./cache/interfaces
     ./core
     ./doublylinkedlist
     ./doublylinkedlist/core
@@ -115,6 +133,9 @@ set(DATA_STRUCTURES_INCLUDES
     ./linkedlist
     ./linkedlist/core
     ./linkedlist/interfaces
+    ./node
+    ./node/core
+    ./node/interfaces
     ./priorityqueue
     ./priorityqueue/core
     ./priorityqueue/interfaces
@@ -179,6 +200,8 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
+    ../Base/interfaces/IKeyIterable.h
+    ../Base/interfaces/IKeyReverseIterable.h
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatch.h
     ../Base/interfaces/IMatrix.h

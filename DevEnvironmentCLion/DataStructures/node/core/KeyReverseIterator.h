@@ -1,0 +1,130 @@
+#ifndef KEY_REVERSE_ITERATOR_H_499d0208_fc40_4746_ae72_69b73b57d80b
+#define KEY_REVERSE_ITERATOR_H_499d0208_fc40_4746_ae72_69b73b57d80b
+
+#include "IReverseIterator.h"
+#include "IKeyValueNode.h"
+#include "NodeException.h"
+
+namespace datastructures {
+    namespace node {
+
+        /**
+         * The KeyReverseIterator class implements a reverse iterator of keys from key-value nodes.
+         */
+        template <typename TKey, typename TValue>
+        class KeyReverseIterator final : public base::IReverseIterator<TKey>
+        {
+        public:
+            /**
+             * Creates a new reverse iterator of keys from key value nodes.
+             */
+            static base::IReverseIteratorPtr<TKey> make(base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
+
+            /**
+             * The KeyReverseIterator constructor.
+             */
+            explicit KeyReverseIterator(base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
+
+            /**
+             * The KeyReverseIterator destructor.
+             */
+            virtual ~KeyReverseIterator();
+
+            /**
+             * The copy/move constructors.
+             */
+            KeyReverseIterator(const KeyReverseIterator&) = delete;
+            KeyReverseIterator(KeyReverseIterator&&) = delete;
+
+            /**
+             * The copy/move assignment operators.
+             */
+            KeyReverseIterator& operator=(const KeyReverseIterator&) = delete;
+            KeyReverseIterator& operator=(KeyReverseIterator&&) = delete;
+
+            /**
+             * Checks whether there is a next node.
+             */
+            virtual bool hasNext() const override;
+
+            /**
+             * Gets the next node.
+             */
+            virtual TKey next() override;
+
+            /**
+             * Resets the iterator.
+             */
+            virtual void reset() override;
+
+        private:
+            base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> m_reverseIterator;
+        };
+
+        /**
+         * Creates a new reverse iterator of keys from key value nodes.
+         */
+        template <typename TKey, typename TValue>
+        base::IReverseIteratorPtr<TKey> KeyReverseIterator<TKey, TValue>::make(
+            base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator)
+        {
+            return std::make_shared<KeyReverseIterator<TKey, TValue>>(reverseIterator);
+        }
+
+        /**
+         * The KeyReverseIterator constructor.
+         */
+        template <typename TKey, typename TValue>
+        KeyReverseIterator<TKey, TValue>::KeyReverseIterator(
+            base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator) :
+            m_reverseIterator(reverseIterator)
+        {
+            if (!reverseIterator)
+            {
+                std::string errorMessage = "The reverse iterator of key-value nodes is not defined.";
+                throw NodeException(errorMessage);
+            }
+
+            reset();
+        }
+
+        /**
+         * The KeyReverseIterator destructor.
+         */
+        template <typename TKey, typename TValue>
+        KeyReverseIterator<TKey, TValue>::~KeyReverseIterator()
+        {
+        }
+
+        /**
+         * Checks whether there is a next node.
+         */
+        template <typename TKey, typename TValue>
+        bool KeyReverseIterator<TKey, TValue>::hasNext() const
+        {
+            return m_reverseIterator->hasNext();
+        }
+
+        /**
+         * Gets the next node.
+         */
+        template <typename TKey, typename TValue>
+        TKey KeyReverseIterator<TKey, TValue>::next()
+        {
+            assert(hasNext());
+
+            return m_reverseIterator->next()->getKey();
+        }
+
+        /**
+         * Resets the iterator.
+         */
+        template <typename TKey, typename TValue>
+        void KeyReverseIterator<TKey, TValue>::reset()
+        {
+            m_reverseIterator->reset();
+        }
+    }
+}
+
+#endif // KEY_REVERSE_ITERATOR_H_499d0208_fc40_4746_ae72_69b73b57d80b

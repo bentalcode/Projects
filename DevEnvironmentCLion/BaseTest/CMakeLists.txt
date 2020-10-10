@@ -116,6 +116,8 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
+    ../Base/interfaces/IKeyIterable.h
+    ../Base/interfaces/IKeyReverseIterable.h
     ../Base/interfaces/IList.h
     ../Base/interfaces/IMatch.h
     ../Base/interfaces/IMatrix.h
