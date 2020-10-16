@@ -92,7 +92,7 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         String unit = this.generateUnit(name, nameUnitsMap);
         String transmittingNodeName = this.generateTransmittingNodeName();
 
-        return new CANSignalRule(
+        return CANSignalRule.make(
             name,
             bitStart,
             bitLength,

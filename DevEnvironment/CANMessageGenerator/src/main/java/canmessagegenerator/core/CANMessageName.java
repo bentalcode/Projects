@@ -9,13 +9,23 @@ import org.slf4j.LoggerFactory;
  * The CANMessageName class implements an name of a controller area network message.
  */
 public final class CANMessageName implements ICANMessageName {
+    private static final int minNameLength = 1;
+    private static final int maxNameLength = 32;
+
     private final char[] name;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
+     * Creates a new message name.
+     */
+    public static ICANMessageName make(char[] name) {
+        return new CANMessageName(name);
+    }
+
+    /**
      * The CANMessageName Constructor.
      */
-    public CANMessageName(char[] name) {
+    private CANMessageName(char[] name) {
         validateName(name);
 
         this.name = name;
@@ -30,6 +40,9 @@ public final class CANMessageName implements ICANMessageName {
         return this.name;
     }
 
+    /**
+     * Gets the string representation of this instance.
+     */
     @Override
     public String toString() {
         return new String(this.name);
@@ -39,7 +52,7 @@ public final class CANMessageName implements ICANMessageName {
      * Validates the name of the message.
      */
     private void validateName(char[] name) {
-        if (name.length < 1 || name.length > 32) {
+        if (name.length < minNameLength || name.length > maxNameLength) {
             String errorMessage = "The length of the message is invalid.";
 
             this.log.error(errorMessage);

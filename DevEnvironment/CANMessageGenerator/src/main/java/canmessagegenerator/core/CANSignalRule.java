@@ -3,7 +3,6 @@ package canmessagegenerator.core;
 import base.core.Conditions;
 import base.core.Strings;
 import canmessagegenerator.interfaces.ICANSignalRule;
-
 import java.io.PrintWriter;
 
 /**
@@ -29,9 +28,39 @@ public final class CANSignalRule implements ICANSignalRule {
     private final String transmittingNodeName;
 
     /**
+     * Creates a new rule.
+     */
+    public static ICANSignalRule make(
+        String name,
+        int bitStart,
+        int bitLength,
+        boolean byteOrderBigEndian,
+        boolean valueTypeUnsigned,
+        double scale,
+        int offset,
+        int minimum,
+        int maximum,
+        String unit,
+        String transmittingNodeName) {
+
+        return new CANSignalRule(
+            name,
+            bitStart,
+            bitLength,
+            byteOrderBigEndian,
+            valueTypeUnsigned,
+            scale,
+            offset,
+            minimum,
+            maximum,
+            unit,
+            transmittingNodeName);
+    }
+
+    /**
      * The CANSignal constructor.
      */
-    public CANSignalRule(
+    private CANSignalRule(
         String name,
         int bitStart,
         int bitLength,
@@ -51,18 +80,6 @@ public final class CANSignalRule implements ICANSignalRule {
         Conditions.validate(
             bitLength >= 0,
             "The bit length can not be a negative number.");
-
-        Conditions.validate(
-            scale >= 0,
-            "The scale can not be a negative number.");
-
-        Conditions.validate(
-            offset >= 0,
-            "The offset can not be a negative number.");
-
-        Conditions.validate(
-            minimum >= 0,
-            "The minimum can not be a negative number.");
 
         Conditions.validate(
             maximum >= minimum,
@@ -146,7 +163,7 @@ public final class CANSignalRule implements ICANSignalRule {
      * Gets the minimum.
      */
     @Override
-    public double getMinimum() {
+    public int getMinimum() {
         return this.minimum;
     }
 
@@ -154,7 +171,7 @@ public final class CANSignalRule implements ICANSignalRule {
      * Gets the maximum.
      */
     @Override
-    public double getMaximum() {
+    public int getMaximum() {
         return this.maximum;
     }
 

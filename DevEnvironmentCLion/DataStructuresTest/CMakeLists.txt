@@ -353,6 +353,7 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/node/core/KeyReverseIterator.h
     ../DataStructures/node/core/KeyValueNode.h
     ../DataStructures/node/core/ValueIterator.h
+    ../DataStructures/node/core/ValueReverseIterator.h
     ../DataStructures/node/interfaces/IKeyValueNode.h
     ../DataStructures/priorityqueue/PriorityQueueException.h
     ../DataStructures/priorityqueue/core/AbstractPriorityQueue.h

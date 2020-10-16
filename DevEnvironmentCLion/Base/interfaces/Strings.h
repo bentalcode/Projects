@@ -75,6 +75,36 @@ namespace base
             const std::string& separatorRegex,
             std::vector<std::string>& result);
 
+        /**
+         * Wraps a string.
+         */
+        static std::string wrap(const std::string& str, std::string::value_type start, std::string::value_type end);
+
+        /**
+         * Wraps a string.
+         */
+        static std::string wrap(const std::string& str, const std::string& start, const std::string& end);
+
+        /**
+         * Wraps a string with parentheses.
+         */
+        static std::string wrapWithParentheses(const std::string& str);
+
+        /**
+         * Wraps a string with curly brackets.
+         */
+        static std::string wrapWithCurlyBracket(const std::string& str);
+
+        /**
+         * Wraps a string with square brackets.
+         */
+        static std::string wrapWithSquareBracket(const std::string& str);
+
+        /**
+         * Wraps a string with quotes.
+         */
+        static std::string wrapWithQuotes(const std::string& str);
+
     private:
         /**
          * This is a static class - Disables the default constructor and destructor.

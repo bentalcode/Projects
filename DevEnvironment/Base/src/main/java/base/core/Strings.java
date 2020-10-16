@@ -263,14 +263,14 @@ public final class Strings {
     }
 
     /**
-     * Wraps a string.
+     * Wraps a string with a character.
      */
     public static String wrap(String str, char start, char end) {
         return start + str + end;
     }
 
     /**
-     * Wraps a string.
+     * Wraps a string with a string.
      */
     public static String wrap(String str, String start, String end) {
         return start + str + end;

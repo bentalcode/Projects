@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(CANMessageGenerator VERSION 1.0)
+project(CANMessageGeneratorCommand VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -24,34 +24,22 @@ else()
     set(BOOST_PATH "c:\\Boost\\boost_1_70_0")
 endif()
 
-set(CANMESSAGE_GENERATOR_INCLUDES_FILES
-    ./CANMessageGeneratorException.h
-    ./core/CANMessageId.h
-    ./core/CANMessageName.h
-    ./core/CANSignalRule.h
+set(CANMESSAGE_GENERATOR_COMMAND_INCLUDES_FILES
     ./core/PreCompiled.h
-    ./interfaces/ICANMessageId.h
-    ./interfaces/ICANMessageName.h
-    ./interfaces/ICANRule.h
-    ./interfaces/ICANSignalRule.h
 )
 
-set(CANMESSAGE_GENERATOR_SOURCES_FILES
-    ./core/CANMessageId.cpp
-    ./core/CANMessageName.cpp
-    ./core/CANSignalRule.cpp
+set(CANMESSAGE_GENERATOR_COMMAND_SOURCES_FILES
     ./core/PreCompiled.cpp
+    ./main.cpp
 )
 
-set(CANMESSAGE_GENERATOR_SOURCES
-    ${CANMESSAGE_GENERATOR_INCLUDES_FILES}
-    ${CANMESSAGE_GENERATOR_SOURCES_FILES}
+set(CANMESSAGE_GENERATOR_COMMAND_SOURCES
+    ${CANMESSAGE_GENERATOR_COMMAND_INCLUDES_FILES}
+    ${CANMESSAGE_GENERATOR_COMMAND_SOURCES_FILES}
 )
 
-set(CANMESSAGE_GENERATOR_INCLUDES
-    .
+set(CANMESSAGE_GENERATOR_COMMAND_INCLUDES
     ./core
-    ./interfaces
 )
 
 set(BASE_INCLUDES_FILES
@@ -181,14 +169,55 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
-include_directories(CANMessageGenerator
-    ${BASE_INCLUDES}
-    ${CANMESSAGE_GENERATOR_INCLUDES}
+set(CANMESSAGE_GENERATOR_INCLUDES_FILES
+    ../CANMessageGenerator/CANMessageGeneratorException.h
+    ../CANMessageGenerator/core/CANMessageId.h
+    ../CANMessageGenerator/core/CANMessageName.h
+    ../CANMessageGenerator/core/CANSignalRule.h
+    ../CANMessageGenerator/core/PreCompiled.h
+    ../CANMessageGenerator/interfaces/ICANMessageId.h
+    ../CANMessageGenerator/interfaces/ICANMessageName.h
+    ../CANMessageGenerator/interfaces/ICANRule.h
+    ../CANMessageGenerator/interfaces/ICANSignalRule.h
+)
+
+set(CANMESSAGE_GENERATOR_SOURCES_FILES
+    ../CANMessageGenerator/core/CANMessageId.cpp
+    ../CANMessageGenerator/core/CANMessageName.cpp
+    ../CANMessageGenerator/core/CANSignalRule.cpp
+    ../CANMessageGenerator/core/PreCompiled.cpp
+)
+
+set(CANMESSAGE_GENERATOR_SOURCES
+    ${CANMESSAGE_GENERATOR_INCLUDES_FILES}
+    ${CANMESSAGE_GENERATOR_SOURCES_FILES}
+)
+
+set(CANMESSAGE_GENERATOR_INCLUDES
+    ../CANMessageGenerator
+    ../CANMessageGenerator/core
+    ../CANMessageGenerator/interfaces
 )
 
 add_library(CANMessageGenerator STATIC
     ${BASE_SOURCES}
     ${CANMESSAGE_GENERATOR_SOURCES}
+)
+
+include_directories(CANMessageGeneratorCommand
+    ${BASE_INCLUDES}
+    ${CANMESSAGE_GENERATOR_COMMAND_INCLUDES}
+    ${CANMESSAGE_GENERATOR_INCLUDES}
+)
+
+add_executable(CANMessageGeneratorCommand
+    ${BASE_SOURCES}
+    ${CANMESSAGE_GENERATOR_COMMAND_SOURCES}
+    ${CANMESSAGE_GENERATOR_SOURCES}
+)
+
+target_link_libraries(CANMessageGeneratorCommand
+    PRIVATE Base CANMessageGenerator
 )
 
 include_directories(

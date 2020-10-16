@@ -59,12 +59,12 @@ public interface ICANSignalRule extends ICANRule {
     /**
      * Gets the minimum.
      */
-    double getMinimum();
+    int getMinimum();
 
     /**
      * Gets the maximum.
      */
-    double getMaximum();
+    int getMaximum();
 
     /**
      * Gets the unit.

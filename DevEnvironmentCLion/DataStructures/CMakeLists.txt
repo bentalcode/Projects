@@ -91,6 +91,7 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./node/core/KeyReverseIterator.h
     ./node/core/KeyValueNode.h
     ./node/core/ValueIterator.h
+    ./node/core/ValueReverseIterator.h
     ./node/interfaces/IKeyValueNode.h
     ./priorityqueue/PriorityQueueException.h
     ./priorityqueue/core/AbstractPriorityQueue.h

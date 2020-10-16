@@ -33,7 +33,7 @@ public final class CANMessageRuleGenerator extends CANRuleGenerator implements I
     @Override
     public ICANMessageRule generate(String name) {
         ICANMessageId messageId = this.generateMessageId();
-        ICANMessageName messageName = new CANMessageName(name.toCharArray());
+        ICANMessageName messageName = CANMessageName.make(name.toCharArray());
         int length = this.generateLength();
         String transmittingNodeName = this.generateTransmittingNodeName();
         List<ICANSignalRule> signalRules = this.generateSignalRules(name);
@@ -53,7 +53,7 @@ public final class CANMessageRuleGenerator extends CANRuleGenerator implements I
         int mainId = this.generateId(0, 28);
         int extendedId = this.generateId(29, 30);
 
-        return new CANMessageId(mainId, extendedId);
+        return CANMessageId.make(mainId, extendedId);
     }
 
     /**

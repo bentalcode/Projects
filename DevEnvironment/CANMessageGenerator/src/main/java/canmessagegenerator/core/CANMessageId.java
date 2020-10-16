@@ -10,9 +10,16 @@ public final class CANMessageId implements ICANMessageId {
     private final int extendedId;
 
     /**
+     * Creates a new message id.
+     */
+    public static ICANMessageId make(int mainId, int extendedId) {
+        return new CANMessageId(mainId, extendedId);
+    }
+
+    /**
      * The CANMessageId Constructor.
      */
-    public CANMessageId(int mainId, int extendedId) {
+    private CANMessageId(int mainId, int extendedId) {
         this.mainId = mainId;
         this.extendedId = extendedId;
     }

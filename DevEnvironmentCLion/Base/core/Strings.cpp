@@ -166,23 +166,20 @@ void Strings::splitStringWithRegex(
     size_t startIndex,
     size_t endIndex,
     const std::string& separatorRegex,
-    std::vector<std::string>& result)
-{
+    std::vector<std::string>& result) {
     std::regex regexExpression(separatorRegex);
 
     size_t currIndex = startIndex;
 
-    while (currIndex <= endIndex)
-    {
+    while (currIndex <= endIndex) {
         std::smatch match;
         bool status = regex_search(
-            str.begin() + currIndex,
-            str.end(),
-            match,
-            regexExpression);
+                str.begin() + currIndex,
+                str.end(),
+                match,
+                regexExpression);
 
-        if (!status)
-        {
+        if (!status) {
             size_t tokenStartIndex = currIndex;
             size_t tokenEndIndex = endIndex;
             size_t tokenLength = Dimensions::length(tokenStartIndex, tokenEndIndex);
@@ -199,12 +196,9 @@ void Strings::splitStringWithRegex(
 
         std::string token;
 
-        if (currSeparatorStartIndex == 0)
-        {
+        if (currSeparatorStartIndex == 0) {
             token = "";
-        }
-        else
-        {
+        } else {
             size_t tokenStartIndex = currIndex;
             size_t tokenEndIndex = currSeparatorStartIndex - 1;
             size_t tokenLength = Dimensions::length(tokenStartIndex, tokenEndIndex);
@@ -213,12 +207,59 @@ void Strings::splitStringWithRegex(
 
         result.push_back(token);
 
-        if (currSeparatorStartIndex + currSeparatorLength - 1 == endIndex)
-        {
+        if (currSeparatorStartIndex + currSeparatorLength - 1 == endIndex) {
             token = "";
             result.push_back(token);
         }
 
         currIndex = currSeparatorStartIndex + currSeparatorLength;
     }
+}
+
+/**
+ * Wraps a string with a character.
+ */
+std::string Strings::wrap(const std::string& str, std::string::value_type start, std::string::value_type end)
+{
+    return start + str + end;
+}
+
+/**
+ * Wraps a string with a string.
+ */
+std::string Strings::wrap(const std::string& str, const std::string& start, const std::string& end)
+{
+    return start + str + end;
+}
+
+/**
+ * Wraps a string with parentheses.
+ */
+std::string Strings::wrapWithParentheses(const std::string& str)
+{
+    return '(' + str + ')';
+}
+
+/**
+ * Wraps a string with curly brackets.
+ */
+std::string Strings::wrapWithCurlyBracket(const std::string& str)
+{
+    return '{' + str + '}';
+}
+
+/**
+ * Wraps a string with square brackets.
+ */
+std::string Strings::wrapWithSquareBracket(const std::string& str)
+{
+    return '[' + str + ']';
+}
+
+/**
+ * Wraps a string with quotes.
+ */
+std::string Strings::wrapWithQuotes(const std::string& str)
+{
+    return '"' + str + '"';
 }

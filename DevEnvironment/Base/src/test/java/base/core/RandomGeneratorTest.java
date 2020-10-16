@@ -41,12 +41,6 @@ public final class RandomGeneratorTest {
         testRandomInteger(0, Integer.MAX_VALUE);
         testRandomInteger(1, Integer.MAX_VALUE);
         testRandomInteger(Integer.MAX_VALUE, Integer.MAX_VALUE);
-
-        for (int from = 0; from <= Integer.MAX_VALUE; ++from) {
-            for (int to = from; to <= Integer.MAX_VALUE; ++to) {
-                this.testRandomInteger(from, to);
-            }
-        }
     }
 
     /**
