@@ -30,6 +30,11 @@ public interface IRandomGenerator {
     double nextDouble();
 
     /**
+     * Generates a new double between the following specified values (inclusively).
+     */
+    double nextDouble(double from, double to);
+
+    /**
      * Generates a new character.
      */
     char nextCharacter();

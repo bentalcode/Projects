@@ -298,6 +298,13 @@ public final class Strings {
     }
 
     /**
+     * Wraps a string with quotes.
+     */
+    public static String wrapWithQuotes(String str) {
+        return '"' + str + '"';
+    }
+
+    /**
      * The Strings constructor - Disables the default constructor.
      */
     private Strings() {

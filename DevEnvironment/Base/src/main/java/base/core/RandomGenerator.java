@@ -40,11 +40,16 @@ public final class RandomGenerator implements IRandomGenerator {
     @Override
     public int nextInteger(int from, int to) {
         Conditions.validate(
-            from <= to,
+            from >= 0 && from <= to,
             "Invalid range of characters.");
 
         int range = to - from;
-        int randomRange = this.random.nextInt(range + 1);
+
+        if (range < Integer.MAX_VALUE) {
+            ++range;
+        }
+
+        int randomRange = this.random.nextInt(range);
 
         int result = from + randomRange;
 
@@ -67,6 +72,23 @@ public final class RandomGenerator implements IRandomGenerator {
     @Override
     public double nextDouble() {
         return this.random.nextDouble();
+    }
+
+    /**
+     * Generates a new double between the following specified values (inclusively).
+     */
+    @Override
+    public double nextDouble(double from, double to) {
+        Conditions.validate(
+            from <= to,
+            "Invalid range of characters.");
+
+        double range = to - from;
+
+        // The generated double is a value between 0.0 (inclusively) and 1.0 (exclusively).
+        double randomDouble = this.random.nextDouble();
+
+        return range * randomDouble;
     }
 
     /**
