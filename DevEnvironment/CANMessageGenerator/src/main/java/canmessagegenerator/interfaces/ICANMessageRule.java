@@ -27,7 +27,7 @@ public interface ICANMessageRule extends ICANRule {
     /**
      * The length (DLC) must be an integer between 0 and 1785.
      */
-    int getLength();
+    short getLength();
 
     /**
      * Gets the name of the transmitting node.

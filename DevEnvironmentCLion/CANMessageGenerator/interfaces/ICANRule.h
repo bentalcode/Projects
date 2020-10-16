@@ -35,14 +35,14 @@ namespace controllerareanetweok {
             ICANRule &operator=(ICANRule&&) = delete;
 
             /**
-             * Writers the content of the rule.
-             */
-            virtual void writeRule(std::ostream& putput) const = 0;
-
-            /**
              * Gets the string representation of this instance.
              */
             virtual std::string toString() const = 0;
+
+            /**
+             * Writers the content of the rule.
+             */
+            virtual void writeRule(std::ostream& putput) const = 0;
         };
 
         using ICANRulePtr = std::shared_ptr<ICANRule>;

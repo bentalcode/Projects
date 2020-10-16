@@ -107,14 +107,14 @@ namespace controllerareanetweok {
             virtual const std::string& getTransmittingNodeName() const = 0;
 
             /**
-             * Writers the content of the rule.
-             */
-            virtual void writeRule(std::ostream& output) const = 0;
-
-            /**
              * Gets the string representation of this instance.
              */
             virtual std::string toString() const = 0;
+
+            /**
+             * Writers the content of the rule.
+             */
+            virtual void writeRule(std::ostream& output) const = 0;
         };
 
         using ICANSignalRulePtr = std::shared_ptr<ICANSignalRule>;

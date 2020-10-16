@@ -214,8 +214,8 @@ std::string CANSignalRule::toString() const
 /**
  * Writers the content of the rule.
  */
-void CANSignalRule::writeRule(std::ostream& putput) const
+void CANSignalRule::writeRule(std::ostream& output) const
 {
     std::string rule = toString();
-    putput << rule;
+    output << rule;
 }

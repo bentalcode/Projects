@@ -28,10 +28,12 @@ set(CANMESSAGE_GENERATOR_INCLUDES_FILES
     ./CANMessageGeneratorException.h
     ./core/CANMessageId.h
     ./core/CANMessageName.h
+    ./core/CANMessageRule.h
     ./core/CANSignalRule.h
     ./core/PreCompiled.h
     ./interfaces/ICANMessageId.h
     ./interfaces/ICANMessageName.h
+    ./interfaces/ICANMessageRule.h
     ./interfaces/ICANRule.h
     ./interfaces/ICANSignalRule.h
 )
@@ -39,6 +41,7 @@ set(CANMESSAGE_GENERATOR_INCLUDES_FILES
 set(CANMESSAGE_GENERATOR_SOURCES_FILES
     ./core/CANMessageId.cpp
     ./core/CANMessageName.cpp
+    ./core/CANMessageRule.cpp
     ./core/CANSignalRule.cpp
     ./core/PreCompiled.cpp
 )

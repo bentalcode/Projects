@@ -173,10 +173,12 @@ set(CANMESSAGE_GENERATOR_INCLUDES_FILES
     ../CANMessageGenerator/CANMessageGeneratorException.h
     ../CANMessageGenerator/core/CANMessageId.h
     ../CANMessageGenerator/core/CANMessageName.h
+    ../CANMessageGenerator/core/CANMessageRule.h
     ../CANMessageGenerator/core/CANSignalRule.h
     ../CANMessageGenerator/core/PreCompiled.h
     ../CANMessageGenerator/interfaces/ICANMessageId.h
     ../CANMessageGenerator/interfaces/ICANMessageName.h
+    ../CANMessageGenerator/interfaces/ICANMessageRule.h
     ../CANMessageGenerator/interfaces/ICANRule.h
     ../CANMessageGenerator/interfaces/ICANSignalRule.h
 )
@@ -184,6 +186,7 @@ set(CANMESSAGE_GENERATOR_INCLUDES_FILES
 set(CANMESSAGE_GENERATOR_SOURCES_FILES
     ../CANMessageGenerator/core/CANMessageId.cpp
     ../CANMessageGenerator/core/CANMessageName.cpp
+    ../CANMessageGenerator/core/CANMessageRule.cpp
     ../CANMessageGenerator/core/CANSignalRule.cpp
     ../CANMessageGenerator/core/PreCompiled.cpp
 )

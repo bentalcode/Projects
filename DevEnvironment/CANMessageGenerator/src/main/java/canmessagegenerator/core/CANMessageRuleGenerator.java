@@ -34,11 +34,11 @@ public final class CANMessageRuleGenerator extends CANRuleGenerator implements I
     public ICANMessageRule generate(String name) {
         ICANMessageId messageId = this.generateMessageId();
         ICANMessageName messageName = CANMessageName.make(name.toCharArray());
-        int length = this.generateLength();
+        short length = this.generateLength();
         String transmittingNodeName = this.generateTransmittingNodeName();
         List<ICANSignalRule> signalRules = this.generateSignalRules(name);
 
-        return new CANMessageRule(
+        return CANMessageRule.make(
             messageId,
             messageName,
             length,
@@ -59,8 +59,8 @@ public final class CANMessageRuleGenerator extends CANRuleGenerator implements I
     /**
      * Generates a length.
      */
-    private int generateLength() {
-        int length = this.randomGenerator().nextInteger(minLength, maxLength);
+    private short generateLength() {
+        short length = (short)this.randomGenerator().nextInteger(minLength, maxLength);
         return length;
     }
 

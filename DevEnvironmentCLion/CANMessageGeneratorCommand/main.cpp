@@ -2,6 +2,7 @@
 #include "CANMessageName.h"
 #include "ICANRule.h"
 #include "CANSignalRule.h"
+#include "ICANMessageRule.h"
 
 using namespace controllerareanetweok::messagegenerator;
 
