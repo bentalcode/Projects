@@ -4,6 +4,7 @@ import base.core.Conditions;
 import base.core.ParsingResult;
 import base.interfaces.IParser;
 import command.interfaces.IIndexedParameterMetadata;
+import command.interfaces.IInputParameters;
 import command.interfaces.INamedParameterMetadata;
 import command.interfaces.IParameter;
 import command.interfaces.IParameterSet;

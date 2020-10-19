@@ -80,6 +80,6 @@ public final class CHeaderCommand extends AbstractCommand {
      * Initializes the command.
      */
     private void initialize() {
-        this.parameters = new CHeaderCommandParameters(this.getInformation().getParameters());
+        this.parameters = new CHeaderCommandParameters(this.getParameters());
     }
 }

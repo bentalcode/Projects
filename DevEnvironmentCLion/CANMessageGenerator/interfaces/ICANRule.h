@@ -3,7 +3,7 @@
 
 #include <memory>
 
-namespace controllerareanetweok {
+namespace controllerareanetwork {
     namespace messagegenerator {
 
         /**

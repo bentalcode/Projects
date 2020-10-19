@@ -2,13 +2,11 @@ package canmessagegeneratorcommand.core;
 
 import base.core.Conditions;
 import base.core.Pair;
-import base.core.Paths;
 import base.interfaces.IPair;
 import canmessagegeneratorcommand.CANMessageGeneratorCommandException;
 import canmessagegeneratorcommand.interfaces.ICANMessageGeneratorCommandParameters;
 import command.interfaces.ICommandParameters;
 import command.interfaces.IParameter;
-import java.nio.file.Path;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;

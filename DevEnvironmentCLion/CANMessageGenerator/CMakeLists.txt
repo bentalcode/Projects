@@ -26,23 +26,37 @@ endif()
 
 set(CANMESSAGE_GENERATOR_INCLUDES_FILES
     ./CANMessageGeneratorException.h
+    ./JitterMessageHandlerException.h
     ./core/CANMessageId.h
     ./core/CANMessageName.h
     ./core/CANMessageRule.h
+    ./core/CANMessageRuleGenerator.h
+    ./core/CANRuleGenerator.h
     ./core/CANSignalRule.h
+    ./core/CANSignalRuleGenerator.h
+    ./core/JitterMessageData.h
+    ./core/JitterMessageHandler.h
     ./core/PreCompiled.h
     ./interfaces/ICANMessageId.h
     ./interfaces/ICANMessageName.h
     ./interfaces/ICANMessageRule.h
     ./interfaces/ICANRule.h
+    ./interfaces/ICANRuleGenerator.h
     ./interfaces/ICANSignalRule.h
+    ./interfaces/IJitterMessageData.h
+    ./interfaces/IJitterMessageHandler.h
 )
 
 set(CANMESSAGE_GENERATOR_SOURCES_FILES
     ./core/CANMessageId.cpp
     ./core/CANMessageName.cpp
     ./core/CANMessageRule.cpp
+    ./core/CANMessageRuleGenerator.cpp
+    ./core/CANRuleGenerator.cpp
     ./core/CANSignalRule.cpp
+    ./core/CANSignalRuleGenerator.cpp
+    ./core/JitterMessageData.cpp
+    ./core/JitterMessageHandler.cpp
     ./core/PreCompiled.cpp
 )
 
@@ -82,8 +96,10 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Matrix.h
     ../Base/core/NotBitOperator.h
     ../Base/core/OrBitOperator.h
+    ../Base/core/ParsingResult.h
     ../Base/core/Position.h
     ../Base/core/PreCompiled.h
+    ../Base/core/RandomGenerator.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
     ../Base/core/SkipIterator.h
@@ -119,8 +135,12 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IKeyIterable.h
     ../Base/interfaces/IKeyReverseIterable.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMainParser.h
     ../Base/interfaces/IMatch.h
     ../Base/interfaces/IMatrix.h
+    ../Base/interfaces/IParser.h
+    ../Base/interfaces/IParsingResult.h
+    ../Base/interfaces/IRandomGenerator.h
     ../Base/interfaces/IReverseIterable.h
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
@@ -161,6 +181,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/OrBitOperator.cpp
     ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp
+    ../Base/core/RandomGenerator.cpp
     ../Base/core/SkipIterator.cpp
     ../Base/core/StringComparable.cpp
     ../Base/core/StringEquality.cpp

@@ -1,6 +1,8 @@
 package command.core;
 
 import base.core.Conditions;
+import command.interfaces.IInputParameters;
+
 import java.util.List;
 import java.util.Map;
 

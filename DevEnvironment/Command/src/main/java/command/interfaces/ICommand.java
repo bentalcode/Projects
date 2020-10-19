@@ -5,14 +5,24 @@ package command.interfaces;
  */
 public interface ICommand {
     /**
-     * Sets information of a command.
+     * Sets process information of a command.
      */
-    void setInformation(ICommandInformation commandInformation);
+    void setProcessInformation(IProcessInformation processInformation);
 
     /**
-     * Gets information of a command.
+     * Gets process information of a command.
      */
-    ICommandInformation getInformation();
+    IProcessInformation getProcessInformation();
+
+    /**
+     * Sets parameters of a command.
+     */
+    void setParameters(ICommandParameters parameters);
+
+    /**
+     * Gets parameters of a command.
+     */
+    ICommandParameters getParameters();
 
     /**
      * Sets a message writer of a command.

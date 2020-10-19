@@ -3,18 +3,18 @@ package canmessagegeneratorcommand.core;
 import base.core.Threads;
 import base.interfaces.IPair;
 import canmessagegenerator.core.CANMessageRuleGenerator;
-import canmessagegenerator.core.MessageJitter;
+import canmessagegenerator.core.JitterMessageHandler;
 import canmessagegenerator.interfaces.ICANMessageRule;
 import canmessagegenerator.interfaces.ICANRuleGenerator;
 import canmessagegenerator.interfaces.ICANSignalRule;
 import canmessagegenerator.interfaces.IJitterMessageData;
-import canmessagegenerator.interfaces.IMessageJitter;
+import canmessagegenerator.interfaces.IJitterMessageHandler;
 import canmessagegeneratorcommand.interfaces.ICANMessageGeneratorCommandParameters;
 import command.core.AbstractCommand;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-import command.interfaces.IMessageWriter;
+import base.interfaces.IMessageWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
     private static final String messageNameText = "messageName:";
 
     private ICANMessageGeneratorCommandParameters parameters;
-    private final IMessageJitter messageJitter = new MessageJitter();
+    private final IJitterMessageHandler messageJitter = new JitterMessageHandler();
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -171,10 +171,10 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
             String messageName = message.first();
             int frequencyInHz = message.second();
 
-            long transmissionTimeInMillis = 1000 / frequencyInHz;
-            Duration transmissionTime = Duration.ofMillis(transmissionTimeInMillis);
+            long transmittingTimeInMillis = 1000 / frequencyInHz;
+            Duration transmittingTime = Duration.ofMillis(transmittingTimeInMillis);
 
-            this.messageJitter.registerMessage(messageName, transmissionTime);
+            this.messageJitter.registerMessage(messageName, transmittingTime);
         }
     }
 
@@ -192,6 +192,6 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
      * Initializes the command.
      */
     private void initialize() {
-        this.parameters = new CANMessageGeneratorCommandParameters(this.getInformation().getParameters());
+        this.parameters = new CANMessageGeneratorCommandParameters(this.getParameters());
     }
 }

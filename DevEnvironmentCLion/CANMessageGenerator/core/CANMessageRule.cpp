@@ -2,7 +2,7 @@
 #include "CANMessageRule.h"
 #include "CANMessageGeneratorException.h"
 
-using namespace controllerareanetweok::messagegenerator;
+using namespace controllerareanetwork::messagegenerator;
 
 const std::string CANMessageRule::messageSyntax = "BO_";
 int CANMessageRule::minimumDataLength = 0;

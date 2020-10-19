@@ -49,8 +49,10 @@ set(BASE_INCLUDES_FILES
     ./core/Matrix.h
     ./core/NotBitOperator.h
     ./core/OrBitOperator.h
+    ./core/ParsingResult.h
     ./core/Position.h
     ./core/PreCompiled.h
+    ./core/RandomGenerator.h
     ./core/ReferenceCount.h
     ./core/ReferenceCountHolder.h
     ./core/SkipIterator.h
@@ -86,8 +88,12 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IKeyIterable.h
     ./interfaces/IKeyReverseIterable.h
     ./interfaces/IList.h
+    ./interfaces/IMainParser.h
     ./interfaces/IMatch.h
     ./interfaces/IMatrix.h
+    ./interfaces/IParser.h
+    ./interfaces/IParsingResult.h
+    ./interfaces/IRandomGenerator.h
     ./interfaces/IReverseIterable.h
     ./interfaces/IReverseIterator.h
     ./interfaces/ISizableCollection.h
@@ -128,6 +134,7 @@ set(BASE_SOURCES_FILES
     ./core/OrBitOperator.cpp
     ./core/Position.cpp
     ./core/PreCompiled.cpp
+    ./core/RandomGenerator.cpp
     ./core/SkipIterator.cpp
     ./core/StringComparable.cpp
     ./core/StringEquality.cpp

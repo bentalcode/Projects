@@ -3,7 +3,7 @@
 
 #include "ICANSignalRule.h"
 
-namespace controllerareanetweok {
+namespace controllerareanetwork {
     namespace messagegenerator {
 
         /**
@@ -64,13 +64,13 @@ namespace controllerareanetweok {
             /**
              * The copy/move constructors.
              */
-            CANSignalRule(const CANSignalRule&) = default;
+            CANSignalRule(const CANSignalRule&) = delete;
             CANSignalRule(CANSignalRule&&) = delete;
 
             /**
              * The copy/move assignment operators.
              */
-            CANSignalRule& operator=(const CANSignalRule&) = default;
+            CANSignalRule& operator=(const CANSignalRule&) = delete;
             CANSignalRule& operator=(CANSignalRule&&) = delete;
 
             /**

@@ -54,7 +54,7 @@ namespace unit_testing
         /**
          * Gets the duration of the tests.
          */
-        virtual DurationPtr getDuration() const = 0;
+        virtual base::DurationPtr getDuration() const = 0;
 
         /**
          * Gets the results.

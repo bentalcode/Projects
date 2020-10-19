@@ -56,7 +56,7 @@ namespace unit_testing
         /**
          * Gets the duration of a test.
          */
-        virtual const Duration& getDuration() const override;
+        virtual const base::Duration& getDuration() const override;
 
         /**
          * Gets the result status of running a unit test.
@@ -77,7 +77,7 @@ namespace unit_testing
         std::string m_name;
         base::DateTime m_startTime;
         base::DateTime m_endTime;
-        Duration m_duration;
+        base::Duration m_duration;
         bool m_resultStatus;
         std::string m_errorMessage;
     };

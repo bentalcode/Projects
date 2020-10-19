@@ -13,7 +13,7 @@ import java.io.PrintWriter;
  * The CommandMessageWriter class implements a writer of a command message.
  */
 public final class CommandMessageWriter implements Closeable, ICommandMessageWriter {
-    private final ICommandManifest manifest;
+    private final String usageMessage;
     private final PrintWriter informationalWriter;
     private final PrintWriter warningWriter;
     private final PrintWriter errorWriter;
@@ -22,12 +22,12 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
     /**
      * The CommandMessageWriter constructor.
      */
-    public CommandMessageWriter(ICommandManifest manifest) {
+    public CommandMessageWriter(String usageMessage) {
         Conditions.validateNotNull(
-            manifest,
-            "The manifest of a command.");
+            usageMessage,
+            "The usage message of the command.");
 
-        this.manifest = manifest;
+        this.usageMessage = usageMessage;
 
         try (DestructorHandler destructorHandler = new DestructorHandler()) {
             PrintWriter informationalWriter = new PrintWriter(System.out);
@@ -58,8 +58,7 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
      */
     @Override
     public void writeUsageMessage() {
-        String usageMessage = this.manifest.getHelp().getUsageMessage();
-        this.writeInformationalMessage(usageMessage);
+        this.writeInformationalMessage(this.usageMessage);
     }
 
     /**
@@ -67,13 +66,11 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
      */
     @Override
     public void writeUsageMessage(boolean status) {
-        String usageMessage = this.manifest.getHelp().getUsageMessage();
-
         if (status) {
-            this.writeInformationalMessage(usageMessage);
+            this.writeInformationalMessage(this.usageMessage);
         }
         else {
-            this.writeErrorMessage(usageMessage);
+            this.writeErrorMessage(this.usageMessage);
         }
     }
 

@@ -1,5 +1,6 @@
 package command.core;
 
+import base.BaseException;
 import base.core.Conditions;
 import base.core.DestructorHandler;
 import base.core.ResourceReader;
@@ -27,9 +28,18 @@ public final class CommandHandler implements Closeable, ICommandHandler {
      * The CommandHandler constructor.
      */
     public CommandHandler() {
-        ICommandManifest manifest = loadManifest();
+        this(loadManifest());
+    }
 
-        CommandMessageWriter commandMessageWriter = new CommandMessageWriter(manifest);
+    /**
+     * The CommandHandler constructor.
+     */
+    public CommandHandler(ICommandManifest manifest) {
+        Conditions.validateNotNull(
+            manifest,
+            "The manifest of the command");
+
+        CommandMessageWriter commandMessageWriter = new CommandMessageWriter(manifest.getHelp().getUsageMessage());
         this.destructorHandler.register(commandMessageWriter);
 
         this.manifest = manifest;
@@ -45,13 +55,53 @@ public final class CommandHandler implements Closeable, ICommandHandler {
     }
 
     /**
+     * Runs a command and returns the exit status.
+     */
+    @Override
+    public int run(ICommand command, String[] arguments) {
+        int exitStatus = 0;
+
+        try {
+            if(!this.runCommand(command, arguments)) {
+                String errorMessage =
+                    "The command: " + this.manifest.getName() +
+                    " has failed to run, Exit Status: -1";
+
+                this.messageWriter.writeErrorMessage(errorMessage);
+
+                exitStatus = -1;
+            }
+        }
+        catch (BaseException e) {
+            String errorMessage =
+                "The command: " + this.manifest.getName() +
+                " has failed to run due to runtime error: " + e.getMessage() +
+                ", Exit Status: -1";
+
+            this.messageWriter.writeErrorMessage(errorMessage);
+            exitStatus = -1;
+        }
+        catch (Exception e) {
+            String errorMessage =
+                "The command: " + this.manifest.getName() +
+                " has failed to run due to an en-expected error: " + e.getMessage() +
+                ", Exit Status: -1";
+
+            this.messageWriter.writeErrorMessage(errorMessage);
+
+            exitStatus = -1;
+        }
+
+        return exitStatus;
+    }
+
+    /**
      * Runs a command.
      *
      * Returns true if running the command successfully.
      * Returns false if failing to run the command.
      */
-    @Override
-    public boolean run(ICommand command, String[] arguments) {
+    private boolean runCommand(ICommand command, String[] arguments) {
         Conditions.validateNotNull(
             command,
             "The command to run.");
@@ -71,16 +121,26 @@ public final class CommandHandler implements Closeable, ICommandHandler {
         IParsingResult<ICommandParameters> parametersResult = this.parseParameters(arguments);
 
         if (parametersResult.failed() || isHelpCommand(parametersResult.getResult())) {
+
+            if (parametersResult.failed()) {
+                String errorMessage =
+                    "The command: " + this.manifest.getName() +
+                    " has failed to parse the parameters due to parsing error: " + parametersResult.getErrorMessage() +
+                    ", Exit Status: 0";
+
+                this.messageWriter.writeErrorMessage(errorMessage);
+            }
+
             this.messageWriter.writeUsageMessage(parametersResult.getStatus());
+
             return parametersResult.getStatus();
         }
 
         //
         // Set the information of the command...
         //
-        command.setInformation(new CommandInformation(
-            processInformation,
-            parametersResult.getResult()));
+        command.setProcessInformation(processInformation);
+        command.setParameters(parametersResult.getResult());
 
         command.setMessageWriter(this.messageWriter);
 
@@ -97,9 +157,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
      */
     private IParsingResult<ICommandParameters> parseParameters(String[] arguments) {
         IParser<String[], ICommandParameters> parser = new CommandParser(this.manifest);
-
         IParsingResult<ICommandParameters> result = parser.parse(arguments);
-
         return result;
     }
 

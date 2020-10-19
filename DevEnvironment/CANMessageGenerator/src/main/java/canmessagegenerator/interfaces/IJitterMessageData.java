@@ -1,17 +1,16 @@
 package canmessagegenerator.interfaces;
 
-import java.sql.Time;
 import java.time.Duration;
 import java.time.Instant;
 
 /**
- * The IMessageData interface defines the jitter message data.
+ * The IJitterMessageData interface defines the message data for Jitter.
  */
 public interface IJitterMessageData {
     /**
-     * Gets the transmission time.
+     * Gets the transmitting time.
      */
-    Duration getTransmissionTime();
+    Duration getTransmittingTime();
 
     /**
      * Gets the last sending time of a message.

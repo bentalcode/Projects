@@ -8,9 +8,6 @@ namespace unit_testing
     class ITestRunningResult;
     using ITestRunningResultPtr = std::shared_ptr<ITestRunningResult>;
 
-    using Duration = base::Duration<double>;
-    using DurationPtr = std::shared_ptr<Duration>;
-
     /**
      * The ITestRunningResult interface defines result of a single test.
      */
@@ -57,7 +54,7 @@ namespace unit_testing
         /**
          * Gets the duration of a test.
          */
-        virtual const Duration& getDuration() const = 0;
+        virtual const base::Duration& getDuration() const = 0;
 
         /**
          * Gets the result status of running a test.

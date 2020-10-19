@@ -3,7 +3,7 @@
 #include "CANMessageGeneratorException.h"
 #include "Strings.h"
 
-using namespace controllerareanetweok::messagegenerator;
+using namespace controllerareanetwork::messagegenerator;
 
 const std::string CANSignalRule::messageSyntax = "SG_";
 const std::string CANSignalRule::byteOrderBigEndianSyntax = "@0";

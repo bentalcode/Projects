@@ -78,7 +78,7 @@ const base::DateTime& TestRunningResult::getEndTime() const
 /**
  * Gets the duration of a test.
  */
-const Duration& TestRunningResult::getDuration() const
+const base::Duration& TestRunningResult::getDuration() const
 {
     return m_duration;
 }

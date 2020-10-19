@@ -11,6 +11,11 @@ namespace base
     {
     public:
         /**
+         * Creates a new pair.
+         */
+        static std::shared_ptr<Pair<Type1, Type2>> make(const Type1& first, const Type2& second);
+
+        /**
          * The constructor.
          */
         Pair(const Type1& first, const Type2& second);
@@ -46,6 +51,18 @@ namespace base
         Type1 m_first;
         Type2 m_second;
     };
+
+    template <typename Type1, typename Type2>
+    using PairPtr = std::shared_ptr<Pair<Type1, Type2>>;
+
+    /**
+     * Creates a new pair.
+     */
+    template <typename Type1, typename Type2>
+    PairPtr<Type1, Type2> Pair<Type1, Type2>::make(const Type1& first, const Type2& second)
+    {
+        return std::make_shared<Pair<Type1, Type2>>(first, second);
+    }
 
     template <typename Type1, typename Type2>
     Pair<Type1, Type2>::Pair(const Type1& first, const Type2& second) :

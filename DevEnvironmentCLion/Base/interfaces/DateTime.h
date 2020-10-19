@@ -1,7 +1,7 @@
 #ifndef DATE_TIME_H_38b1a564_a9f2_4d17_91a4_47f1b6e987d8
 #define DATE_TIME_H_38b1a564_a9f2_4d17_91a4_47f1b6e987d8
 
-#include "Duration.h"
+#include <chrono>
 
 namespace base
 {

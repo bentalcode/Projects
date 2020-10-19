@@ -7,6 +7,7 @@ import base.interfaces.IPair;
 import base.interfaces.IParser;
 import command.interfaces.ICommandManifest;
 import command.interfaces.ICommandParameters;
+import command.interfaces.IInputParameters;
 import command.interfaces.IParameter;
 import command.interfaces.IParameterSet;
 import command.interfaces.IParameterSetMetadata;
@@ -48,13 +49,7 @@ public final class CommandParser implements IParser<String[], ICommandParameters
         //
         // Parse the parameters of the command...
         //
-        int startIndex = 0;
-        int endIndex = arguments.length - 1;
-
-        IParsingResult<IInputParameters> inputParametersResult = this.parseInputParameters(
-            arguments,
-            startIndex,
-            endIndex);
+        IParsingResult<IInputParameters> inputParametersResult = this.parseInputParameters(arguments);
 
         if (inputParametersResult.failed()) {
             return ParsingResult.failureResult(inputParametersResult);
@@ -86,26 +81,13 @@ public final class CommandParser implements IParser<String[], ICommandParameters
     /**
      * Parses input parameters of a command.
      */
-    private IParsingResult<IInputParameters> parseInputParameters(
-        String[] arguments,
-        int startIndex,
-        int endIndex) {
-
-        assert(startIndex >= 0 && startIndex < arguments.length);
-        assert(endIndex == -1 || endIndex >= startIndex && endIndex < arguments.length);
-
+    private IParsingResult<IInputParameters> parseInputParameters(String[] arguments) {
         List<String> indexedParameters = new ArrayList<>();
         Map<String, String> namedParameters = new HashMap<>();
 
-        if (startIndex > endIndex) {
-            return ParsingResult.successfulResult(new InputParameters(
-                indexedParameters,
-                namedParameters));
-        }
-
         IParser<String, IPair<String, String>> namedParameterParser = new NamedParameterParser();
 
-        for (int i = startIndex; i <= endIndex; ++i) {
+        for (int i = 0; i < arguments.length; ++i) {
             String arg = arguments[i];
 
             if (NamedParameterParser.isNamedParameter(arg)) {
@@ -139,7 +121,7 @@ public final class CommandParser implements IParser<String[], ICommandParameters
     }
 
     /**
-     * Parses parameter-sets of a command..
+     * Parses parameter-sets of a command.
      */
     private IParsingResult<IParameterSet> parseParameterSets(IInputParameters inputParameters) {
         int parameterSetIndex = 0;

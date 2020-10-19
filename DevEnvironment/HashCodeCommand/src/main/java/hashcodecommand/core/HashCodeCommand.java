@@ -95,6 +95,6 @@ public final class HashCodeCommand extends AbstractCommand {
      * Initializes the command.
      */
     private void initialize() {
-        this.parameters = new HashCodeCommandParameters(this.getInformation().getParameters());
+        this.parameters = new HashCodeCommandParameters(this.getParameters());
     }
 }

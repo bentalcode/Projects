@@ -12,7 +12,7 @@ import basicio.interfaces.IHtmlParagraphParser;
 import basicio.interfaces.IHtmlStatistics;
 import basicio.interfaces.IParagraphReader;
 import command.core.AbstractCommand;
-import command.interfaces.IMessageWriter;
+import base.interfaces.IMessageWriter;
 import java.util.List;
 import java.util.Set;
 import urireadercommand.interfaces.IUriReaderCommandParameters;
@@ -80,7 +80,7 @@ public final class UriReaderCommand extends AbstractCommand {
      * Initializes the command.
      */
     private void initialize() {
-        this.parameters = new UriReaderCommandParameters(this.getInformation().getParameters());
+        this.parameters = new UriReaderCommandParameters(this.getParameters());
     }
 
     /**

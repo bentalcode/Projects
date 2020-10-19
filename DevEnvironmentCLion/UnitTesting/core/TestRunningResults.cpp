@@ -56,14 +56,14 @@ base::DateTimePtr TestRunningResults::getEndTime() const
 /**
  * Gets the duration of the tests.
  */
-DurationPtr TestRunningResults::getDuration() const
+base::DurationPtr TestRunningResults::getDuration() const
 {
     if (!m_startTime || !m_endTime)
     {
         return nullptr;
     }
 
-    return DurationPtr(new Duration(m_endTime->getTimePoint() - m_startTime->getTimePoint()));
+    return base::Duration::between(m_startTime, m_endTime);
 }
 
 /**

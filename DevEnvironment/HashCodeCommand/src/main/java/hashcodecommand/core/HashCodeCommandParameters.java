@@ -2,8 +2,8 @@ package hashcodecommand.core;
 
 import base.core.Conditions;
 import base.core.Paths;
-import hashcodecommand.interfaces.IHashCodeParameters;
 import command.interfaces.ICommandParameters;
+import hashcodecommand.interfaces.IHashCodeParameters;
 import command.interfaces.IParameter;
 import java.nio.file.Path;
 

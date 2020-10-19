@@ -25,10 +25,15 @@ else()
 endif()
 
 set(CANMESSAGE_GENERATOR_COMMAND_INCLUDES_FILES
+    ./core/CANMessageGeneratorCommand.h
+    ./core/CANMessageGeneratorCommandParameters.h
     ./core/PreCompiled.h
+    ./interfaces/ICANMessageGeneratorCommandParameters.h
 )
 
 set(CANMESSAGE_GENERATOR_COMMAND_SOURCES_FILES
+    ./core/CANMessageGeneratorCommand.cpp
+    ./core/CANMessageGeneratorCommandParameters.cpp
     ./core/PreCompiled.cpp
     ./main.cpp
 )
@@ -40,6 +45,7 @@ set(CANMESSAGE_GENERATOR_COMMAND_SOURCES
 
 set(CANMESSAGE_GENERATOR_COMMAND_INCLUDES
     ./core
+    ./interfaces
 )
 
 set(BASE_INCLUDES_FILES
@@ -67,8 +73,10 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Matrix.h
     ../Base/core/NotBitOperator.h
     ../Base/core/OrBitOperator.h
+    ../Base/core/ParsingResult.h
     ../Base/core/Position.h
     ../Base/core/PreCompiled.h
+    ../Base/core/RandomGenerator.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
     ../Base/core/SkipIterator.h
@@ -104,8 +112,12 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IKeyIterable.h
     ../Base/interfaces/IKeyReverseIterable.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMainParser.h
     ../Base/interfaces/IMatch.h
     ../Base/interfaces/IMatrix.h
+    ../Base/interfaces/IParser.h
+    ../Base/interfaces/IParsingResult.h
+    ../Base/interfaces/IRandomGenerator.h
     ../Base/interfaces/IReverseIterable.h
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
@@ -146,6 +158,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/OrBitOperator.cpp
     ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp
+    ../Base/core/RandomGenerator.cpp
     ../Base/core/SkipIterator.cpp
     ../Base/core/StringComparable.cpp
     ../Base/core/StringEquality.cpp
@@ -169,25 +182,93 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
+set(COMMAND_INCLUDES_FILES
+    ../Command/CommandException.h
+    ../Command/core/AbstractCommand.h
+    ../Command/core/CommandConstants.h
+    ../Command/core/CommandHandler.h
+    ../Command/core/CommandManifest.h
+    ../Command/core/CommandMessageWriter.h
+    ../Command/core/CommandParameters.h
+    ../Command/core/CommandParser.h
+    ../Command/core/InputParameters.h
+    ../Command/core/NamedParameterParser.h
+    ../Command/core/Parameter.h
+    ../Command/core/ParameterSet.h
+    ../Command/interfaces/ICommand.h
+    ../Command/interfaces/ICommandHandler.h
+    ../Command/interfaces/ICommandManifest.h
+    ../Command/interfaces/ICommandMessageWriter.h
+    ../Command/interfaces/ICommandParameters.h
+    ../Command/interfaces/IInputParameters.h
+    ../Command/interfaces/IMessageWriter.h
+    ../Command/interfaces/IParameter.h
+    ../Command/interfaces/IParameterSet.h
+)
+
+set(COMMAND_SOURCES_FILES
+    ../Command/core/AbstractCommand.cpp
+    ../Command/core/CommandConstants.cpp
+    ../Command/core/CommandHandler.cpp
+    ../Command/core/CommandManifest.cpp
+    ../Command/core/CommandMessageWriter.cpp
+    ../Command/core/CommandParameters.cpp
+    ../Command/core/CommandParser.cpp
+    ../Command/core/InputParameters.cpp
+    ../Command/core/NamedParameterParser.cpp
+    ../Command/core/Parameter.cpp
+    ../Command/core/ParameterSet.cpp
+)
+
+set(COMMAND_SOURCES
+    ${COMMAND_INCLUDES_FILES}
+    ${COMMAND_SOURCES_FILES}
+)
+
+set(COMMAND_INCLUDES
+    ../Command
+    ../Command/core
+    ../Command/interfaces
+)
+
+add_library(Command STATIC
+    ${BASE_SOURCES}
+    ${COMMAND_SOURCES}
+)
+
 set(CANMESSAGE_GENERATOR_INCLUDES_FILES
     ../CANMessageGenerator/CANMessageGeneratorException.h
+    ../CANMessageGenerator/JitterMessageHandlerException.h
     ../CANMessageGenerator/core/CANMessageId.h
     ../CANMessageGenerator/core/CANMessageName.h
     ../CANMessageGenerator/core/CANMessageRule.h
+    ../CANMessageGenerator/core/CANMessageRuleGenerator.h
+    ../CANMessageGenerator/core/CANRuleGenerator.h
     ../CANMessageGenerator/core/CANSignalRule.h
+    ../CANMessageGenerator/core/CANSignalRuleGenerator.h
+    ../CANMessageGenerator/core/JitterMessageData.h
+    ../CANMessageGenerator/core/JitterMessageHandler.h
     ../CANMessageGenerator/core/PreCompiled.h
     ../CANMessageGenerator/interfaces/ICANMessageId.h
     ../CANMessageGenerator/interfaces/ICANMessageName.h
     ../CANMessageGenerator/interfaces/ICANMessageRule.h
     ../CANMessageGenerator/interfaces/ICANRule.h
+    ../CANMessageGenerator/interfaces/ICANRuleGenerator.h
     ../CANMessageGenerator/interfaces/ICANSignalRule.h
+    ../CANMessageGenerator/interfaces/IJitterMessageData.h
+    ../CANMessageGenerator/interfaces/IJitterMessageHandler.h
 )
 
 set(CANMESSAGE_GENERATOR_SOURCES_FILES
     ../CANMessageGenerator/core/CANMessageId.cpp
     ../CANMessageGenerator/core/CANMessageName.cpp
     ../CANMessageGenerator/core/CANMessageRule.cpp
+    ../CANMessageGenerator/core/CANMessageRuleGenerator.cpp
+    ../CANMessageGenerator/core/CANRuleGenerator.cpp
     ../CANMessageGenerator/core/CANSignalRule.cpp
+    ../CANMessageGenerator/core/CANSignalRuleGenerator.cpp
+    ../CANMessageGenerator/core/JitterMessageData.cpp
+    ../CANMessageGenerator/core/JitterMessageHandler.cpp
     ../CANMessageGenerator/core/PreCompiled.cpp
 )
 
@@ -211,16 +292,18 @@ include_directories(CANMessageGeneratorCommand
     ${BASE_INCLUDES}
     ${CANMESSAGE_GENERATOR_COMMAND_INCLUDES}
     ${CANMESSAGE_GENERATOR_INCLUDES}
+    ${COMMAND_INCLUDES}
 )
 
 add_executable(CANMessageGeneratorCommand
     ${BASE_SOURCES}
     ${CANMESSAGE_GENERATOR_COMMAND_SOURCES}
     ${CANMESSAGE_GENERATOR_SOURCES}
+    ${COMMAND_SOURCES}
 )
 
 target_link_libraries(CANMessageGeneratorCommand
-    PRIVATE Base CANMessageGenerator
+    PRIVATE Base Command CANMessageGenerator
 )
 
 include_directories(

@@ -3,7 +3,7 @@
 
 #include "ICANMessageId.h"
 
-namespace controllerareanetweok {
+namespace controllerareanetwork {
     namespace messagegenerator {
 
         /**
@@ -30,13 +30,13 @@ namespace controllerareanetweok {
             /**
              * The copy/move constructors.
              */
-            CANMessageId(const CANMessageId&) = default;
+            CANMessageId(const CANMessageId&) = delete;
             CANMessageId(CANMessageId&&) = delete;
 
             /**
              * The copy/move assignment operators.
              */
-            CANMessageId& operator=(const CANMessageId&) = default;
+            CANMessageId& operator=(const CANMessageId&) = delete;
             CANMessageId& operator=(CANMessageId&&) = delete;
 
             /**

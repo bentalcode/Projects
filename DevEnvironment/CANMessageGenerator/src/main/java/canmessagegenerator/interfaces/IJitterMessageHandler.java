@@ -4,19 +4,19 @@ import java.time.Duration;
 import java.time.Instant;
 
 /**
- * The IMessageGeneratorJitter interface defines a Jitter for messages.
+ * The IJitterMessageHandler interface defines a Jitter Message Handler.
  */
-public interface IMessageJitter {
+public interface IJitterMessageHandler {
     /**
      * Registers a message.
      */
-    void registerMessage(String messageName, Duration transmissionTime);
+    void registerMessage(String messageName, Duration transmittingTime);
 
     /**
      * Unregisters a message.
      *
-     * Returns true if the message got unregistered successfully from the Jitter.
-     * Returns false if the message is not currently registered with the Jitter.
+     * Returns true if the message got unregistered successfully from the Jitter Handler.
+     * Returns false if the message is not currently registered with the Jitter Handler.
      */
     boolean unregisterMessage(String messageName);
 
@@ -34,7 +34,7 @@ public interface IMessageJitter {
      * Gets the jitter deviation.
      * J(i) = J(i-1) + (|D(i-1,i)| - J(i-1))/16
      */
-    double getJitterDeviation(String messageName);
+    double getDeviation(String messageName);
 
     /**
      * Gets the message data.

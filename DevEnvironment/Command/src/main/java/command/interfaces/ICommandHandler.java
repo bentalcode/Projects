@@ -5,10 +5,7 @@ package command.interfaces;
  */
 public interface ICommandHandler {
     /**
-     * Runs a command.
-     *
-     * Returns true if running the command successfully.
-     * Returns false if failing to run the command.
+     * Runs a command and returns the exit status.
      */
-    boolean run(ICommand command, String[] arguments);
+    int run(ICommand command, String[] arguments);
 }

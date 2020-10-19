@@ -1,5 +1,7 @@
 package command.interfaces;
 
+import base.interfaces.IMessageWriter;
+
 /**
  * The ICommandMessageWriter interface defines a writer of a command message.
  */

@@ -6,7 +6,7 @@
 #include "CANMessageName.h"
 #include "ICANSignalRule.h"
 
-namespace controllerareanetweok {
+namespace controllerareanetwork {
     namespace messagegenerator {
 
         /**

@@ -1,10 +1,9 @@
 package canmessagegenerator.core;
 
 import base.core.CaseInsensitiveStringComparator;
-import canmessagegenerator.CANMessageGeneratorException;
-import canmessagegenerator.MessageJitterException;
+import canmessagegenerator.JitterMessageHandlerException;
 import canmessagegenerator.interfaces.IJitterMessageData;
-import canmessagegenerator.interfaces.IMessageJitter;
+import canmessagegenerator.interfaces.IJitterMessageHandler;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Map;
@@ -13,42 +12,42 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The MessageGeneratorJitter class implements a Jitter for messages.
+ * The JitterMessageHandler class implements a Jitter Message Handler.
  */
-public final class MessageJitter implements IMessageJitter {
+public final class JitterMessageHandler implements IJitterMessageHandler {
     private final Map<String, IJitterMessageData> messageDataMap =
         new TreeMap<>(new CaseInsensitiveStringComparator());
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * The MessageJitter constructor.
+     * The JitterMessageHandler constructor.
      */
-    public MessageJitter() {
+    public JitterMessageHandler() {
     }
 
     /**
      * Registers a message.
      */
     @Override
-    public void registerMessage(String messageName, Duration transmissionTime) {
+    public void registerMessage(String messageName, Duration transmittingTime) {
         if (this.messageDataMap.containsKey(messageName)) {
             String errorMessage =
-                "The message type: " + messageName + " has already been registered with the Jitter.";
+                "The message type: " + messageName + " has already been registered with the Jitter Handler.";
 
             this.log.error(errorMessage);
-            throw new MessageJitterException(errorMessage);
+            throw new JitterMessageHandlerException(errorMessage);
         }
 
-        IJitterMessageData messageData = new JitterMessageData(transmissionTime);
+        IJitterMessageData messageData = JitterMessageData.make(transmittingTime);
         this.messageDataMap.put(messageName, messageData);
     }
 
     /**
      * Unregisters a message.
      *
-     * Returns true if the message got unregistered successfully from the Jitter.
-     * Returns false if the message is not currently registered with the Jitter.
+     * Returns true if the message got unregistered successfully from the Jitter Handler.
+     * Returns false if the message is not currently registered with the Jitter Handler.
      */
     @Override
     public boolean unregisterMessage(String messageName) {
@@ -84,10 +83,10 @@ public final class MessageJitter implements IMessageJitter {
         if (sendingTime == null) {
             String errorMessage =
                 "The sending time of message: " + messageName +
-                " was not recorded with the Jitter.";
+                " was not recorded with the Jitter Handler.";
 
             this.log.error(errorMessage);
-            throw new CANMessageGeneratorException(errorMessage);
+            throw new JitterMessageHandlerException(errorMessage);
         }
 
         data.incrementNumberOfMessagesReceived();
@@ -99,20 +98,19 @@ public final class MessageJitter implements IMessageJitter {
         double prevDeviation = data.getDeviation();
 
         Duration currDuration = Duration.between(sendingTime, time);
-        double currDeviation = currDuration.toMillis() - data.getTransmissionTime().toMillis();
+        long currDeviation = currDuration.toMillis() - data.getTransmittingTime().toMillis();
 
-        double deviation = prevDeviation + (Math.abs(currDeviation) - prevDeviation) / 16;
+        double deviation = prevDeviation + (Math.abs((double)currDeviation) - prevDeviation) / 16.0;
 
         data.setDeviation(deviation);
     }
 
     /**
-     * Gets the jitter deviation.
+     * Gets the deviation.
      */
     @Override
-    public double getJitterDeviation(String messageName) {
+    public double getDeviation(String messageName) {
         IJitterMessageData data = this.getMessageData(messageName);
-
         return data.getDeviation();
     }
 
@@ -122,10 +120,10 @@ public final class MessageJitter implements IMessageJitter {
     @Override
     public IJitterMessageData getMessageData(String messageName) {
         if (!this.messageDataMap.containsKey(messageName)) {
-            String errorMessage = "The message: " + messageName + " is not registered with the Jitter.";
+            String errorMessage = "The message: " + messageName + " is not registered with the Jitter Handler.";
 
             this.log.error(errorMessage);
-            throw new MessageJitterException(errorMessage);
+            throw new JitterMessageHandlerException(errorMessage);
         }
 
         return this.messageDataMap.get(messageName);

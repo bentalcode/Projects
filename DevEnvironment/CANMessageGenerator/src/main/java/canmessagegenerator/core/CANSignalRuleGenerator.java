@@ -2,9 +2,9 @@ package canmessagegenerator.core;
 
 import base.core.ArrayLists;
 import base.core.CaseInsensitiveStringComparator;
-import base.core.Dimensions;
 import base.core.Pair;
 import base.interfaces.IPair;
+import base.interfaces.IPrimitiveSize;
 import canmessagegenerator.CANMessageGeneratorException;
 import canmessagegenerator.interfaces.ICANRuleGenerator;
 import canmessagegenerator.interfaces.ICANSignalRule;
@@ -22,7 +22,7 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
     private static final double minPhysicalValue = 0.0;
     private static final double maxPhysicalValue = 1000000.0;
 
-    private static final int maxRawValueBitLength = 32;
+    private static final int maxRawValueSizeInBits = 32;
 
     private static final int minValue = 0;
     private static final int maxValue = 10;
@@ -43,14 +43,14 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         //
         // Generate a random data size...
         //
-        int dataSize = this.generateDataSize(dataMinSizeInBits, dataMaxSizeInBits);
+        int dataSizeInBits = this.generateDataSize(dataMinSizeInBits, dataMaxSizeInBits);
 
         //
         // Generate a random bit start and bit length...
         //
         IPair<Integer, Integer> bitStartAndBitLength = this.generateBitStartAndBitLength(
-            dataSize,
-            maxRawValueBitLength);
+            dataSizeInBits,
+            maxRawValueSizeInBits);
 
         int bitStart = bitStartAndBitLength.first();
         int bitLength = bitStartAndBitLength.second();
@@ -109,7 +109,13 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
     /**
      * Generates the size of the data.
      */
-    private int generateDataSize(int dataMinSizeInBits, int dataMaxSizeInBits) {
+    private int generateDataSize(
+        int dataMinSizeInBits,
+        int dataMaxSizeInBits) {
+
+        assert(dataMinSizeInBits >= 0);
+        assert(dataMaxSizeInBits >= dataMinSizeInBits);
+
         int dataSize = this.randomGenerator().nextInteger(dataMinSizeInBits, dataMaxSizeInBits);
         return dataSize;
     }
@@ -118,13 +124,13 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
      * Generates a bit start and bit length for the relevant data.
      */
     private IPair<Integer, Integer> generateBitStartAndBitLength(
-        int dataBitLength,
-        int maxRawValueBitLength) {
+        int dataSizeInBits,
+        int maxRawValueSizeInBits) {
 
-        int maxBitLength = Math.min(dataBitLength, maxRawValueBitLength);
+        int maxBitLength = Math.min(dataSizeInBits, maxRawValueSizeInBits);
 
         int bitLength = this.randomGenerator().nextInteger(1, maxBitLength);
-        int remainderSize = dataBitLength - bitLength;
+        int remainderSize = dataSizeInBits - bitLength;
 
         int bitStart = 0;
 
@@ -157,14 +163,17 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
      */
     private IPair<Double, Integer> generateScaleAndOffset(
         double physicalValue,
-        boolean unsigned,
+        boolean valueTypeUnsigned,
         int bitLength) {
+
+        assert(bitLength <= IPrimitiveSize.InBits.IntegerSize);
+
         int valueBitLength = bitLength;
 
         //
         // Calculate the max raw value...
         //
-        if (!unsigned && valueBitLength > 0) {
+        if (!valueTypeUnsigned && valueBitLength > 0) {
             --valueBitLength;
         }
 

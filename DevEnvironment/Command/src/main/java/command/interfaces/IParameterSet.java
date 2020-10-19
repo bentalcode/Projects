@@ -18,7 +18,7 @@ public interface IParameterSet extends IIterable<IParameter> {
     IParameterSetMetadata getMetadata();
 
     /**
-     * Gets parameters of a parameter-set.
+     * Gets parameters map of a parameter-set.
      */
     Map<String, IParameter> getParameters();
 

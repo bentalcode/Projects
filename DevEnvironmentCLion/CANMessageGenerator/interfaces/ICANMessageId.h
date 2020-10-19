@@ -1,9 +1,7 @@
 #ifndef I_CAN_MESSAGE_ID_H_f0a4208e_4024_4578_8f7a_e0c06d280346
 #define I_CAN_MESSAGE_ID_H_f0a4208e_4024_4578_8f7a_e0c06d280346
 
-#include <memory>
-
-namespace controllerareanetweok {
+namespace controllerareanetwork {
     namespace messagegenerator {
 
         /**

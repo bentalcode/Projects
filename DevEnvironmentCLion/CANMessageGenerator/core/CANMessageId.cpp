@@ -1,7 +1,7 @@
 #include "PreCompiled.h"
 #include "CANMessageId.h"
 
-using namespace controllerareanetweok::messagegenerator;
+using namespace controllerareanetwork::messagegenerator;
 
 /**
  * Creates a new messages id.

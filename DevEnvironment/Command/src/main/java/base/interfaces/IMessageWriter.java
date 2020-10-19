@@ -1,4 +1,4 @@
-package command.interfaces;
+package base.interfaces;
 
 import java.io.PrintWriter;
 

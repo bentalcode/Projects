@@ -8,30 +8,37 @@ import java.time.Instant;
  * The JitterMessageData class implements the jitter message data.
  */
 public final class JitterMessageData implements IJitterMessageData {
-    private static final String transmissionTimeText = "TransmissionTime:";
+    private static final String transmittingTimeText = "TransmittingTime:";
     private static final String deviationText = "Deviation:";
     private static final String numberOfMessagesSentText = "numberOfMessagesSent:";
     private static final String numberOfMessagesReceivedText = "numberOfMessagesReceived:";
 
-    private final Duration transmissionTime;
+    private final Duration transmittingTime;
     private Instant lastSendingTime;
     private long numberOfMessagesSent;
     private long numberOfMessagesReceived;
     private double deviation;
 
     /**
-     * The JitterMessageData constructor.
+     * Creates a new message data.
      */
-    public JitterMessageData(Duration transmissionTime) {
-        this.transmissionTime = transmissionTime;
+    public static IJitterMessageData make(Duration transmittingTime) {
+        return new JitterMessageData(transmittingTime);
     }
 
     /**
-     * Gets the transmission time.
+     * The JitterMessageData constructor.
+     */
+    private JitterMessageData(Duration transmittingTime) {
+        this.transmittingTime = transmittingTime;
+    }
+
+    /**
+     * Gets the transmitting time.
      */
     @Override
-    public Duration getTransmissionTime() {
-        return this.transmissionTime;
+    public Duration getTransmittingTime() {
+        return this.transmittingTime;
     }
 
     /**
@@ -106,7 +113,7 @@ public final class JitterMessageData implements IJitterMessageData {
         StringBuilder result = new StringBuilder();
 
         result
-            .append(transmissionTimeText).append(" ").append(this.transmissionTime)
+            .append(transmittingTimeText).append(" ").append(this.transmittingTime)
             .append(", " )
             .append(deviationText).append(" ").append(this.deviation)
             .append(", " )

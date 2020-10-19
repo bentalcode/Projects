@@ -3,7 +3,7 @@
 
 #include "BaseException.h"
 
-namespace controllerareanetweok {
+namespace controllerareanetwork {
     namespace messagegenerator {
 
         /**

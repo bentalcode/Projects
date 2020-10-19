@@ -2,7 +2,7 @@
 #include "CANMessageName.h"
 #include "CANMessageGeneratorException.h"
 
-using namespace controllerareanetweok::messagegenerator;
+using namespace controllerareanetwork::messagegenerator;
 
 const size_t CANMessageName::minNameLength = 1;
 const size_t CANMessageName::maxNameLength = 32;
