@@ -5,7 +5,7 @@
 #include "UnitTestBase.h"
 #include "TestData.h"
 #include "VectorIterator.h"
-#include "TwoDimensionalListIterator.h"
+#include "TwoDimensionalVectorIterator.h"
 #include "IteratorOfIteratorCollection.h"
 
 namespace test {

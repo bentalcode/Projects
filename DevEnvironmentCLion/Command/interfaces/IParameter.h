@@ -64,6 +64,11 @@ namespace command {
         virtual long getLongValue() const = 0;
 
         /**
+         * Gets a size_t value of a parameter.
+         */
+        virtual size_t getSizeTValue() const = 0;
+
+        /**
          * Gets a float value of a parameter.
          */
         virtual float getFloatValue() const = 0;

@@ -41,11 +41,11 @@ public final class HashCodeProvider implements IContentProvider {
 
         int preTokenStartIndex = matcher.start(0);
         int preTokenEndIndex = hashCodeTokenStartIndex - 1;
-        int preTokenLength = Dimensions.length(preTokenStartIndex, preTokenEndIndex);
+        int preTokenLength = Dimensions.indexes(preTokenStartIndex, preTokenEndIndex);
 
         int postTokenStartIndex = hashCodeTokenEndIndex + 1;
         int postTokenEndIndex = matcher.end(0) - 1;
-        int postTokenLength = Dimensions.length(postTokenStartIndex, postTokenEndIndex);
+        int postTokenLength = Dimensions.indexes(postTokenStartIndex, postTokenEndIndex);
 
         String newHashCodeToken = "(" + this.nextPrime() + ", " + this.nextPrime() + ")";
 

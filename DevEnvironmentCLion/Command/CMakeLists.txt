@@ -82,6 +82,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ClassType.h
     ../Base/core/ComparableComparator.h
     ../Base/core/Comparator.h
+    ../Base/core/Conversion.h
     ../Base/core/DereferenceComparableComparator.h
     ../Base/core/DereferenceComparableComparator2.h
     ../Base/core/DereferenceEquatableComparator.h
@@ -105,10 +106,10 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
     ../Base/core/SkipIterator.h
+    ../Base/core/StringConversion.h
     ../Base/core/StringIterator.h
-    ../Base/core/TwoDimensionalList.h
-    ../Base/core/TwoDimensionalListIterator.h
     ../Base/core/TwoDimensionalVector.h
+    ../Base/core/TwoDimensionalVectorIterator.h
     ../Base/core/VectorIterator.h
     ../Base/core/VectorReverseIterator.h
     ../Base/core/XorBitOperator.h
@@ -147,7 +148,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ISkipIterator.h
-    ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/IStringConversion.h
     ../Base/interfaces/ITwoDimensionalVector.h
     ../Base/interfaces/IUnaryBitOperator.h
     ../Base/interfaces/IValidator.h
@@ -161,11 +162,13 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IteratorComparator.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
+    ../Base/interfaces/Range.h
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/StringComparable.h
     ../Base/interfaces/StringEquality.h
     ../Base/interfaces/StringSearch.h
     ../Base/interfaces/Strings.h
+    ../Base/interfaces/Threads.h
     ../Base/interfaces/Triple.h
 )
 
@@ -174,6 +177,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/Bits.cpp
     ../Base/core/ClassType.cpp
     ../Base/core/CompareToBuilder.cpp
+    ../Base/core/Conversion.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/Indexes.cpp
@@ -186,9 +190,11 @@ set(BASE_SOURCES_FILES
     ../Base/core/RandomGenerator.cpp
     ../Base/core/SkipIterator.cpp
     ../Base/core/StringComparable.cpp
+    ../Base/core/StringConversion.cpp
     ../Base/core/StringEquality.cpp
     ../Base/core/StringSearch.cpp
     ../Base/core/Strings.cpp
+    ../Base/core/Threads.cpp
     ../Base/core/XorBitOperator.cpp
 )
 

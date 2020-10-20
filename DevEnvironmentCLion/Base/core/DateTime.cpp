@@ -5,6 +5,14 @@
 using namespace base;
 
 /**
+ * Creates a new date-time.
+ */
+DateTimePtr DateTime::make(const std::chrono::system_clock::time_point& timePoint)
+{
+    return std::make_shared<DateTime>(timePoint);
+}
+
+/**
  * The DateTime default constructor.
  */
 DateTime::DateTime(const std::chrono::system_clock::time_point& timePoint) :
@@ -22,9 +30,9 @@ DateTime::~DateTime()
 /**
  * Gets the current time.
  */
-DateTime DateTime::now()
+DateTimePtr DateTime::now()
 {
-    return DateTime(DateTime::currentTimePoint());
+    return DateTime::make(DateTime::currentTimePoint());
 }
 
 /**

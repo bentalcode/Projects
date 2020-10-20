@@ -1,6 +1,8 @@
 #include "PreCompiled.h"
 #include "Parameter.h"
 #include "CommandConstants.h"
+#include "Conversion.h"
+#include "Strings.h"
 
 using namespace command;
 
@@ -64,7 +66,7 @@ bool Parameter::isDefined() const
  */
 bool Parameter::getBooleanValue() const
 {
-    return true;
+    return base::Conversion::stringConversion().toBoolean(m_value);
 }
 
 /**
@@ -72,7 +74,7 @@ bool Parameter::getBooleanValue() const
  */
 short Parameter::getShortValue() const
 {
-    return 0;
+    return base::Conversion::stringConversion().toShort(m_value);
 }
 
 /**
@@ -80,7 +82,7 @@ short Parameter::getShortValue() const
  */
 int Parameter::getIntegerValue() const
 {
-    return 0;
+    return base::Conversion::stringConversion().toInteger(m_value);
 }
 
 /**
@@ -88,7 +90,15 @@ int Parameter::getIntegerValue() const
  */
 long Parameter::getLongValue() const
 {
-    return 0;
+    return base::Conversion::stringConversion().toLong(m_value);
+}
+
+/**
+ * Gets a size_t value of a parameter.
+ */
+size_t Parameter::getSizeTValue() const
+{
+    return base::Conversion::stringConversion().toSizeT(m_value);
 }
 
 /**
@@ -96,7 +106,7 @@ long Parameter::getLongValue() const
  */
 float Parameter::getFloatValue() const
 {
-    return 0.0;
+    return base::Conversion::stringConversion().toFloat(m_value);
 }
 
 /**
@@ -104,7 +114,7 @@ float Parameter::getFloatValue() const
  */
 double Parameter::getDoubleValue() const
 {
-    return 0.0;
+    return base::Conversion::stringConversion().toDouble(m_value);
 }
 
 /**
@@ -112,7 +122,7 @@ double Parameter::getDoubleValue() const
  */
 char Parameter::getCharacterValue() const
 {
-    return 0;
+    return base::Conversion::stringConversion().toCharacter(m_value);
 }
 
 /**
@@ -128,7 +138,7 @@ const std::string& Parameter::getStringValue() const
  */
 base::DurationPtr Parameter::getDurationValue() const
 {
-    return nullptr;
+    return base::Conversion::stringConversion().toDuration(m_value);
 }
 
 /**
@@ -136,5 +146,5 @@ base::DurationPtr Parameter::getDurationValue() const
  */
 void Parameter::getStringArrayValue(std::vector<std::string>& result) const
 {
-
+    base::Strings::splitString(m_value, ",", result);
 }

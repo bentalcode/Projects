@@ -66,7 +66,7 @@ void CANMessageName::validateName(const std::vector<std::string::value_type>& na
                "The following character: " + std::to_string(character) + " is invalid." +
                "; A character can be between 'a' to 'Z', or a digit, or an underscore.";
 
-            throw new CANMessageGeneratorException(errorMessage);
+            throw CANMessageGeneratorException(errorMessage);
         }
     }
 }

@@ -224,8 +224,8 @@ bool StringEquality::equals(
     assert(rightStartIndex >= 0);
     assert(rightEndIndex >= rightStartIndex);
 
-    size_t leftLength = Dimensions::length(leftStartIndex, leftEndIndex);
-    size_t rightLength = Dimensions::length(rightStartIndex, rightEndIndex);
+    size_t leftLength = Dimensions::indexes(leftStartIndex, leftEndIndex);
+    size_t rightLength = Dimensions::indexes(rightStartIndex, rightEndIndex);
 
     if (leftLength != rightLength) {
         return false;

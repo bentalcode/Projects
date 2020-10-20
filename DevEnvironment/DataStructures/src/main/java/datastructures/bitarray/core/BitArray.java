@@ -241,7 +241,7 @@ public final class BitArray implements IBitArray {
         int endUnitIndex = this.unitIndexOf(endIndex);
         int endBitIndex = this.bitIndexOf(endIndex);
 
-        int numberOfUnits = Dimensions.length(startUnitIndex, endUnitIndex);
+        int numberOfUnits = Dimensions.indexes(startUnitIndex, endUnitIndex);
 
         if (numberOfUnits == 0) {
             return;
@@ -319,7 +319,7 @@ public final class BitArray implements IBitArray {
         int endUnitIndex = this.unitIndexOf(endIndex);
         int endBitIndex = this.bitIndexOf(endIndex);
 
-        int numberOfUnits = Dimensions.length(startUnitIndex, endUnitIndex);
+        int numberOfUnits = Dimensions.indexes(startUnitIndex, endUnitIndex);
 
         if (numberOfUnits == 0) {
             return;

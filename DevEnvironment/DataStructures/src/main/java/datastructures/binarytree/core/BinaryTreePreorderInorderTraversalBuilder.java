@@ -73,8 +73,8 @@ public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Compar
         int inorderEndIndex,
         Map<TKey, Integer> inorderIndexMap) {
 
-        int preorderLength = Dimensions.length(preorderStartIndex, preorderEndIndex);
-        int inorderLength = Dimensions.length(inorderStartIndex, inorderEndIndex);
+        int preorderLength = Dimensions.indexes(preorderStartIndex, preorderEndIndex);
+        int inorderLength = Dimensions.indexes(inorderStartIndex, inorderEndIndex);
         assert(preorderLength == inorderLength);
 
         int length = preorderLength;
@@ -91,7 +91,7 @@ public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Compar
         }
 
         int rootIndex = getNodeIndex(inorderIndexMap, rootData.first());
-        int leftSize = Dimensions.length(inorderStartIndex, rootIndex - 1);
+        int leftSize = Dimensions.indexes(inorderStartIndex, rootIndex - 1);
 
         int preorderLeftStartIndex = preorderStartIndex + 1;
         int preorderLeftEndIndex = preorderStartIndex + leftSize;

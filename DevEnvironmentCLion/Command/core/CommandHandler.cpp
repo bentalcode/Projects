@@ -4,6 +4,7 @@
 #include "CommandParser.h"
 #include "CommandMessageWriter.h"
 #include "CommandConstants.h"
+#include "JitterMessageHandlerException.h"
 
 using namespace command;
 
@@ -56,10 +57,20 @@ int CommandHandler::run(ICommand& command, int argc, char *argv[])
             exitStatus = -1;
         }
     }
-    catch (std::exception& e) {
+    catch (base::BaseException& e)
+    {
         std::string errorMessage =
             "The command: " + m_manifest->getName() +
             " has failed to run due to runtime error: " + e.what() +
+            ", Exit Status: -1";
+
+        exitStatus = -1;
+    }
+    catch (std::exception& e)
+    {
+        std::string errorMessage =
+            "The command: " + m_manifest->getName() +
+            " has failed to run due to unexpected error: " + e.what() +
             ", Exit Status: -1";
 
         exitStatus = -1;

@@ -2,7 +2,7 @@
 #define MATRIX_H_dcaa609c_4d6a_4d6e_b8b6_e69e32df1a25
 
 #include "IMatrix.h"
-#include "TwoDimensionalListIterator.h"
+#include "TwoDimensionalVectorIterator.h"
 #include "Position.h"
 
 namespace base
@@ -275,7 +275,7 @@ namespace base
     template <typename T>
     IIteratorPtr<T> Matrix<T>::getIterator() const
     {
-        IIteratorPtr<T> iterator(new TwoDimensionalListIterator<T>(m_data));
+        IIteratorPtr<T> iterator(new TwoDimensionalVectorIterator<T>(m_data));
         return iterator;
     }
 

@@ -76,6 +76,7 @@ namespace controllerareanetwork {
         };
 
         using IJitterMessageHandlerPtr = std::shared_ptr<IJitterMessageHandler>;
+        using IJitterMessageHandlerUniquePtr = std::unique_ptr<IJitterMessageHandler>;
     }
 }
 

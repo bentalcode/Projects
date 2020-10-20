@@ -65,9 +65,7 @@ void ListUnitTest::testList(int size)
     for (int i = 0; i < size; ++i)
     {
         ++value;
-        list[i] = value;
-
-        assert(list[i] == value);
+        list.add(value);
     }
 
     int index = 0;

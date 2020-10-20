@@ -46,6 +46,7 @@ namespace controllerareanetwork {
         };
 
         using ICANMessageGeneratorCommandParametersPtr = std::shared_ptr<ICANMessageGeneratorCommandParameters>;
+        using ICANMessageGeneratorCommandParametersUniquePtr = std::unique_ptr<ICANMessageGeneratorCommandParameters>;
     }
 }
 

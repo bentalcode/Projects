@@ -14,13 +14,13 @@ namespace base
         /**
          * Creates an interval.
          */
-        static Interval<T> make(const T& first, const T& second);
+        static Interval<T> make(const T& start, const T& end);
 
 
         /**
          * The constructor.
          */
-        Interval(const T& first, const T& second);
+        Interval(const T& start, const T& end);
 
         /**
          * The destructor.
@@ -58,7 +58,7 @@ namespace base
         /**
          * Validates the interval start and end points.
          */
-        static void validate(T start, T end);
+        static void validate(const T& start, const T& end);
 
         T m_start;
         T m_end;
@@ -68,9 +68,9 @@ namespace base
     using IntervalPtr = std::shared_ptr<Interval<T>>;
 
     template <typename T>
-    Interval<T> Interval<T>::make(const T& first, const T& second)
+    Interval<T> Interval<T>::make(const T& start, const T& end)
     {
-        return Interval<T>(first, second);
+        return Interval<T>(start, end);
     }
 
     template <typename T>
@@ -123,7 +123,7 @@ namespace base
     }
 
     template <typename T>
-    void Interval<T>::validate(T start, T end)
+    void Interval<T>::validate(const T& start, const T& end)
     {
         if (start > end)
         {

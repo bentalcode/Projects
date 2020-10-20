@@ -70,8 +70,8 @@ bool MinimumWindowSubstring::findMinimumWindow(std::string& result)
                 endIndex,
                 characterCounter);
 
-            std::size_t currLength = base::Dimensions::length(startIndex, endIndex);
-            std::size_t minLength = base::Dimensions::length(minStartIndex, minEndIndex);
+            std::size_t currLength = base::Dimensions::indexes(startIndex, endIndex);
+            std::size_t minLength = base::Dimensions::indexes(minStartIndex, minEndIndex);
 
             if (currLength < minLength)
             {
@@ -83,7 +83,7 @@ bool MinimumWindowSubstring::findMinimumWindow(std::string& result)
         ++currIndex;
     }
 
-    std::size_t minLength = base::Dimensions::length(minStartIndex, minEndIndex);
+    std::size_t minLength = base::Dimensions::indexes(minStartIndex, minEndIndex);
     result = m_src.substr(minStartIndex, minLength);
 
     return true;

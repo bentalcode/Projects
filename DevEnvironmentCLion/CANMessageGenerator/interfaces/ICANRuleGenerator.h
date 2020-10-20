@@ -41,6 +41,9 @@ namespace controllerareanetwork {
 
         template <typename T>
         using ICANRuleGeneratorPtr = std::shared_ptr<ICANRuleGenerator<T>>;
+
+        template <typename T>
+        using ICANRuleGeneratorUniquePtr = std::unique_ptr<ICANRuleGenerator<T>>;
     }
 }
 

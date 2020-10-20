@@ -3,7 +3,7 @@
 #include "WordFinderUnitTest.h"
 #include "UnitTestFunction.h"
 #include "WordFinder.h"
-#include "TwoDimensionalListIterator.h"
+#include "TwoDimensionalVectorIterator.h"
 
 using namespace problems_test;
 

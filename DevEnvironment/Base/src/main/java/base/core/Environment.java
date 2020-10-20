@@ -79,7 +79,7 @@ public final class Environment {
             int prefixStartIndex = currIndex;
             int prefixEndIndex = variableStartIndex - 1;
 
-            int prefixLength = Dimensions.length(prefixStartIndex, prefixEndIndex);
+            int prefixLength = Dimensions.indexes(prefixStartIndex, prefixEndIndex);
 
             if (prefixLength > 0) {
                 String prefix = name.substring(prefixStartIndex, prefixEndIndex + 1);
@@ -102,7 +102,7 @@ public final class Environment {
         int postfixStartIndex = currIndex;
         int postfixEndIndex = name.length() - 1;
 
-        int postfixLength = Dimensions.length(postfixStartIndex, postfixEndIndex);
+        int postfixLength = Dimensions.indexes(postfixStartIndex, postfixEndIndex);
 
         if (postfixLength > 0) {
             String postfix = name.substring(postfixStartIndex, postfixEndIndex + 1);
@@ -140,7 +140,7 @@ public final class Environment {
             --endIndex;
         }
 
-        int nameLength = Dimensions.length(startIndex, endIndex);
+        int nameLength = Dimensions.indexes(startIndex, endIndex);
 
         if (nameLength == 0) {
             String errorMessage = "The variable is not defined. Variable pattern: " + variablePattern;

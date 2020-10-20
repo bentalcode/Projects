@@ -61,7 +61,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
             endIndex -= this.directorySeparator.length();
         }
 
-        int effectiveComponentLength = Dimensions.length(startIndex, endIndex);
+        int effectiveComponentLength = Dimensions.indexes(startIndex, endIndex);
 
         if (effectiveComponentLength > 0) {
             String effectiveComponent = component.substring(startIndex, endIndex + 1);

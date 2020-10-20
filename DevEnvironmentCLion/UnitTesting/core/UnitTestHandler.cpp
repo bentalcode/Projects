@@ -70,19 +70,19 @@ const ITestRunningResults& UnitTestHandler::run()
  */
 void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
 {
-    base::DateTime startTime = base::DateTime::now();
+    base::DateTimePtr startTime = base::DateTime::now();
 
     std::string errorMessage;
     bool resultStatus = runTest(unitTestFunction, errorMessage);
 
-    base::DateTime endTime = base::DateTime::now();
+    base::DateTimePtr endTime = base::DateTime::now();
 
     if (resultStatus)
     {
         m_unitTestRunningResults.setSuccessfulRunningResult(
             unitTestFunction.getName(),
-            startTime,
-            endTime);
+            *startTime,
+            *endTime);
 
         m_logStreamWriter.getInformationalStream()
             << "Unit Test: " << unitTestFunction.getName() << ", Passed." << std::endl;
@@ -91,8 +91,8 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
     {
         m_unitTestRunningResults.setFailedRunningResult(
             unitTestFunction.getName(),
-            startTime,
-            endTime,
+            *startTime,
+            *endTime,
             errorMessage);
 
         m_logStreamWriter.getErrorStream()

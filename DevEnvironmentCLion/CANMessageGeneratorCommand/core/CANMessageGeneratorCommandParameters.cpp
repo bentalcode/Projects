@@ -1,27 +1,38 @@
 #include "PreCompiled.h"
 #include "CANMessageGeneratorCommandParameters.h"
+#include "Strings.h"
+#include "CANMessageGeneratorCommandException.h"
 
 using namespace controllerareanetwork::messagegeneratorcommand;
 
-/**
- * Creates a new command parameters.
- */
-ICANMessageGeneratorCommandParametersPtr CANMessageGeneratorCommandParameters::make(
-    base::DurationPtr duration,
-    const std::vector<std::pair<std::string, size_t>>& messagesFrequencies)
-{
-    return std::make_shared<CANMessageGeneratorCommandParameters>(duration, messagesFrequencies);
-}
+const size_t CANMessageGeneratorCommandParameters::defaultSessionDurationInSeconds = 10 * 60;
 
 /**
  * The CANMessageGeneratorCommandParameters constructor.
  */
 CANMessageGeneratorCommandParameters::CANMessageGeneratorCommandParameters(
-    base::DurationPtr duration,
-    const std::vector<std::pair<std::string, size_t>>& messagesFrequencies) :
-    m_duration(duration),
-    m_messagesFrequencies(messagesFrequencies)
+    const command::ICommandParameters& parameters)
 {
+    const command::IParameterSet& p = parameters.getParameterSet();
+
+    command::IParameterPtr driveSessionDurationParameter = parameters.getParameterSet().getParameter("driveSessionTime");
+    size_t driveSessionInSeconds = driveSessionDurationParameter != nullptr && driveSessionDurationParameter->isDefined() ?
+        driveSessionDurationParameter->getSizeTValue() :
+        defaultSessionDurationInSeconds;
+
+    m_duration = base::Duration::fromSeconds(driveSessionInSeconds);
+
+    command::IParameterPtr messagesFrequenciesParameter = parameters.getParameterSet().getParameter("messagesFrequencies");
+    std::vector<std::string> messagesFrequenciesStrings;
+
+    if (messagesFrequenciesParameter != nullptr && messagesFrequenciesParameter->isDefined())
+    {
+        messagesFrequenciesParameter->getStringArrayValue(messagesFrequenciesStrings);
+    }
+
+    parseMessageFrequencies(
+        messagesFrequenciesStrings,
+        m_messagesFrequencies);
 }
 
 /**
@@ -45,4 +56,29 @@ const base::Duration& CANMessageGeneratorCommandParameters::getDriveSessionDurat
 const std::vector<std::pair<std::string, size_t>>& CANMessageGeneratorCommandParameters::getMessagesFrequencies() const
 {
     return m_messagesFrequencies;
+}
+
+/**
+ * Parses the message frequencies.
+ */
+void CANMessageGeneratorCommandParameters::parseMessageFrequencies(
+    const std::vector<std::string>& messagesFrequencies,
+    std::vector<std::pair<std::string, size_t>>& result)
+{
+    for (const std::string& messagesFrequency : messagesFrequencies)
+    {
+        std::vector<std::string> messageFrequencyTokens;
+        base::Strings::splitString(messagesFrequency, ":", messageFrequencyTokens);
+
+        if (messageFrequencyTokens.size() != 2)
+        {
+            std::string errorMessage = "The message frequency token is invalid. Format: '<name>:<size>'";
+            throw CANMessageGeneratorCommandException(errorMessage);
+        }
+
+        std::string messageName = base::Strings::trimCopy(messageFrequencyTokens.at(0));
+        size_t frequencyInHertz = std::stoi(messageFrequencyTokens.at(1));
+
+        result.push_back(std::make_pair(messageName, frequencyInHertz));
+    }
 }

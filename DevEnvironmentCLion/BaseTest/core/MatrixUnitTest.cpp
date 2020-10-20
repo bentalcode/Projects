@@ -3,7 +3,7 @@
 #include "MatrixUnitTest.h"
 #include "UnitTestFunction.h"
 #include "Matrix.h"
-#include "TwoDimensionalListIterator.h"
+#include "TwoDimensionalVectorIterator.h"
 
 using namespace base;
 
@@ -134,7 +134,7 @@ void MatrixUnitTest::testMatrixCreation(const std::vector<std::vector<int>> &dat
 void MatrixUnitTest::testMatrixIteration(const std::vector<std::vector<int>>& data)
 {
     base::Matrix<int> matrix(data);
-    base::TwoDimensionalListIterator<int> dataIterator(data);
+    base::TwoDimensionalVectorIterator<int> dataIterator(data);
 
     getAssertion().assertEqualsWithIterators(
         *(matrix.getIterator()),

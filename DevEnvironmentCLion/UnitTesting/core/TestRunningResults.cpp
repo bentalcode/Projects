@@ -63,7 +63,7 @@ base::DurationPtr TestRunningResults::getDuration() const
         return nullptr;
     }
 
-    return base::Duration::between(m_startTime, m_endTime);
+    return base::Duration::between(*m_startTime, *m_endTime);
 }
 
 /**

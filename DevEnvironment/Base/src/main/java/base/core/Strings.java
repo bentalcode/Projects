@@ -256,7 +256,7 @@ public final class Strings {
             }
         }
 
-        int length = Dimensions.length(startIndex, endIndex);
+        int length = Dimensions.indexes(startIndex, endIndex);
         String result = length > 0 ? str.substring(startIndex, endIndex + 1) : "";
 
         return result;

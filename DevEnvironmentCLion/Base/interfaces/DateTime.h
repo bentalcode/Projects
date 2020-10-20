@@ -15,6 +15,11 @@ namespace base
     {
     public:
         /**
+         * Creates a new date-time.
+         */
+        static DateTimePtr make(const std::chrono::system_clock::time_point& timePoint);
+
+        /**
          * The constructor.
          */
         explicit DateTime(const std::chrono::system_clock::time_point& timePoint);
@@ -49,7 +54,7 @@ namespace base
         /**
          * Gets the current time.
          */
-        static DateTime now();
+        static DateTimePtr now();
 
         /**
          * Gets the current time point.
@@ -70,6 +75,12 @@ namespace base
         dateTime.getDateTimeInformation(stream);
         return stream;
     }
+
+    inline bool operator<(const DateTime& lhs, const DateTime& rhs)
+    {
+        return lhs.getTimePoint() < rhs.getTimePoint();
+    }
+
 }
 
 #endif // DATE_TIME_H_38b1a564_a9f2_4d17_91a4_47f1b6e987d8

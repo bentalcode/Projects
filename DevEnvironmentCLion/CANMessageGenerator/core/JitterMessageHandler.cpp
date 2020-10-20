@@ -124,9 +124,11 @@ IJitterMessageDataPtr JitterMessageHandler::getMessageData(const std::string& me
 {
     MessageDataMap::const_iterator messageIterator = m_messageDataMap.find(messageName);
 
-    if (messageIterator != m_messageDataMap.end()) {
-        std::string errorMessage = "The message: " + messageName + " is not registered with the Jitter Handler.";
-        throw new JitterMessageHandlerException(errorMessage);
+    if (messageIterator == m_messageDataMap.end()) {
+        std::string errorMessage =
+            "The message: " + messageName + " is not registered with the Jitter Handler.";
+
+        throw JitterMessageHandlerException(errorMessage);
     }
 
     return messageIterator->second;

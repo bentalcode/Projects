@@ -35,8 +35,7 @@ set(BASE_INCLUDES_FILES
         ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
-    ../Base/interfaces/ITwoDimensionalList.h
-    ../Base/interfaces/LogStreamWriter.h
+        ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/Triple.h
@@ -49,8 +48,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
     ../Base/core/StringIterator.h
-    ../Base/core/TwoDimensionalList.h
-    ../Base/BaseException.h)
+        ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES
     ../Base/core/CompareToBuilder.cpp

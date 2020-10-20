@@ -198,7 +198,7 @@ public final class StringSearch {
         assert(endIndex >= 0 && endIndex < str.length);
         assert(postfix != null);
 
-        int strLength = Dimensions.length(0, endIndex);
+        int strLength = Dimensions.indexes(0, endIndex);
 
         if (strLength < postfix.length) {
             return false;
@@ -314,8 +314,8 @@ public final class StringSearch {
         assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
         assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
 
-        int stringLength = Dimensions.length(startIndex, endIndex);
-        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
+        int stringLength = Dimensions.indexes(startIndex, endIndex);
+        int subStringLength = Dimensions.indexes(subStringStartIndex, subStringEndIndex);
 
         if (subStringLength == 0 || subStringLength > stringLength) {
             return 0;
@@ -361,8 +361,8 @@ public final class StringSearch {
         assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
         assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
 
-        int stringLength = Dimensions.length(startIndex, endIndex);
-        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
+        int stringLength = Dimensions.indexes(startIndex, endIndex);
+        int subStringLength = Dimensions.indexes(subStringStartIndex, subStringEndIndex);
 
         if (subStringLength == 0 || subStringLength > stringLength) {
             return 0;

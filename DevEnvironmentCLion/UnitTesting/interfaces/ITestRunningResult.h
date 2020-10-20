@@ -2,6 +2,7 @@
 #define I_TEST_RUNNING_RESULT_H_9621735a_bf67_40ac_8d24_ff90b1240e9f
 
 #include "DateTime.h"
+#include "Duration.h"
 
 namespace unit_testing
 {

@@ -13,8 +13,7 @@ namespace base {
     {
     public:
         explicit BaseException(const std::string& errorMessage) :
-            std::logic_error(errorMessage),
-            m_innerExceptionPtr(nullptr)
+            std::logic_error(errorMessage)
         {
         }
 

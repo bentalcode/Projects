@@ -85,6 +85,11 @@ namespace command {
         virtual float getFloatValue() const override;
 
         /**
+         * Gets a size_t value of a parameter.
+         */
+        virtual size_t getSizeTValue() const override;
+
+        /**
          * Gets a double value of a parameter.
          */
         virtual double getDoubleValue() const override;

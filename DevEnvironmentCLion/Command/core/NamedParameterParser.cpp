@@ -87,7 +87,7 @@ base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterP
         //
         size_t nameStartIndex = prefix.size();
         size_t nameEndIndex = arg.length() - 1;
-        size_t nameLength = base::Dimensions::length(nameStartIndex, nameEndIndex);
+        size_t nameLength = base::Dimensions::indexes(nameStartIndex, nameEndIndex);
 
         name = arg.substr(nameStartIndex, nameLength);
     }
@@ -98,11 +98,11 @@ base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterP
         //
         size_t nameStartIndex = prefix.size();
         size_t nameEndIndex = separatorIndex - 1;
-        size_t nameLength = base::Dimensions::length(nameStartIndex, nameEndIndex);
+        size_t nameLength = base::Dimensions::indexes(nameStartIndex, nameEndIndex);
 
         size_t valueStartIndex = separatorIndex + CommandConstants::namedParameterSeparator.size();
         size_t valueEndIndex = arg.length() - 1;
-        size_t valueLength = base::Dimensions::length(valueStartIndex, valueEndIndex);
+        size_t valueLength = base::Dimensions::indexes(valueStartIndex, valueEndIndex);
 
         name = arg.substr(nameStartIndex, nameLength);
         value = arg.substr(valueStartIndex, valueLength);

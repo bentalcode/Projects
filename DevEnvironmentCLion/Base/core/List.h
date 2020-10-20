@@ -46,24 +46,9 @@ namespace base
         virtual const T& get(std::size_t index) const override;
 
         /**
-         * Sets an element at a specified position.
-         */
-        virtual void set(std::size_t index, const T& element) override;
-
-        /**
          * Adds an element.
          */
         virtual void add(const T& element) override;
-
-        /**
-         * Gets a const element at a specified position.
-         */
-        virtual const T& operator[](int index) const override;
-
-        /**
-         * Gets an element at a specified position.
-         */
-        virtual T& operator[](int index) override;
 
         /**
          * Returns whether the collection is empty.
@@ -81,7 +66,7 @@ namespace base
         virtual IIteratorPtr<T> getIterator() const override;
 
     private:
-        std::vector<T> m_data;
+        std::list<T> m_data;
     };
 
     template <typename T>
@@ -103,31 +88,15 @@ namespace base
     template <typename T>
     const T& List<T>::get(std::size_t index) const
     {
-        return m_data[index];
-    }
-
-    template <typename T>
-    void List<T>::set(std::size_t index, const T& element)
-    {
-        m_data[index] = element;
+        auto iterator = m_data.begin();
+        std::advance(iterator, index);
+        return *iterator;
     }
 
     template <typename T>
     void List<T>::add(const T& element)
     {
         m_data.push_back(element);
-    }
-
-    template <typename T>
-    const T& List<T>::operator[](int index) const
-    {
-        return m_data[index];
-    }
-
-    template <typename T>
-    T& List<T>::operator[](int index)
-    {
-        return m_data[index];
     }
 
     template <typename T>

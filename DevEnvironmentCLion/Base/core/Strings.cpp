@@ -104,7 +104,7 @@ void Strings::splitString(
         {
             size_t tokenStartIndex = currIndex;
             size_t tokenEndIndex = endIndex;
-            size_t tokenLength = Dimensions::length(tokenStartIndex, tokenEndIndex);
+            size_t tokenLength = Dimensions::indexes(tokenStartIndex, tokenEndIndex);
 
             std::string token = str.substr(tokenStartIndex, tokenLength);
 
@@ -123,7 +123,7 @@ void Strings::splitString(
         {
             size_t tokenStartIndex = currIndex;
             size_t tokenEndIndex = currSeparatorStartIndex - 1;
-            size_t tokenLength = Dimensions::length(tokenStartIndex, tokenEndIndex);
+            size_t tokenLength = Dimensions::indexes(tokenStartIndex, tokenEndIndex);
             token = str.substr(tokenStartIndex, tokenLength);
         }
 
@@ -182,7 +182,7 @@ void Strings::splitStringWithRegex(
         if (!status) {
             size_t tokenStartIndex = currIndex;
             size_t tokenEndIndex = endIndex;
-            size_t tokenLength = Dimensions::length(tokenStartIndex, tokenEndIndex);
+            size_t tokenLength = Dimensions::indexes(tokenStartIndex, tokenEndIndex);
 
             std::string token = str.substr(tokenStartIndex, tokenLength);
 
@@ -201,7 +201,7 @@ void Strings::splitStringWithRegex(
         } else {
             size_t tokenStartIndex = currIndex;
             size_t tokenEndIndex = currSeparatorStartIndex - 1;
-            size_t tokenLength = Dimensions::length(tokenStartIndex, tokenEndIndex);
+            size_t tokenLength = Dimensions::indexes(tokenStartIndex, tokenEndIndex);
             token = str.substr(tokenStartIndex, tokenLength);
         }
 

@@ -74,7 +74,7 @@ public final class CANMessageGeneratorCommandParameters implements ICANMessageGe
             String[] messageFrequencyTokens = value.split(":");
 
             if (messageFrequencyTokens == null || messageFrequencyTokens.length != 2) {
-                String errorMessage = "The message frequency is invalid.";
+                String errorMessage = "The message frequency token is invalid. Format: '<name>:<size>'";
                 throw new CANMessageGeneratorCommandException(errorMessage);
             }
 

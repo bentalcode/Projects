@@ -89,8 +89,8 @@ public final class KmpStringSearch {
         assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
         assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
 
-        int strLength = Dimensions.length(strStartIndex, strEndIndex);
-        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
+        int strLength = Dimensions.indexes(strStartIndex, strEndIndex);
+        int subStringLength = Dimensions.indexes(subStringStartIndex, subStringEndIndex);
 
         if (subStringLength > strLength) {
             return -1;
@@ -147,8 +147,8 @@ public final class KmpStringSearch {
 
         List<Integer> resultIndexes = new ArrayList<>();
 
-        int strLength = Dimensions.length(strStartIndex, strEndIndex);
-        int subStringLength = Dimensions.length(subStringStartIndex, subStringEndIndex);
+        int strLength = Dimensions.indexes(strStartIndex, strEndIndex);
+        int subStringLength = Dimensions.indexes(subStringStartIndex, subStringEndIndex);
 
         if (subStringLength > strLength) {
             return resultIndexes;
@@ -211,7 +211,7 @@ public final class KmpStringSearch {
         assert(startIndex >= 0 && startIndex < str.length);
         assert(endIndex >= startIndex && endIndex < str.length);
 
-        int strLength = Dimensions.length(startIndex, endIndex);
+        int strLength = Dimensions.indexes(startIndex, endIndex);
 
         int[] lps = new int[strLength];
         lps[0] = 0;

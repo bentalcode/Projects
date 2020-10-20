@@ -1,20 +1,21 @@
 #include "UnitTestManager.h"
-#include "ListUnitTest.h"
-#include "TwoDimensionalListUnitTest.h"
+#include "TwoDimensionalVectorUnitTest.h"
 #include "MatrixUnitTest.h"
 #include "IntervalMapUnitTest.h"
 #include "StringsUnitTest.h"
 #include "KmpStringSearchUnitTest.h"
+#include "RandomGeneratorUnitTest.h"
+
 using namespace base;
 using namespace unit_testing;
 
 int main()
 {
-    UnitTestManager testManager;
-    IUnitTestPtr listUnitTest(new ListUnitTest("List"));
-    testManager.registerTest(listUnitTest);
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    IUnitTestPtr twoDimensionalListUnitTest(new TwoDimensionalListUnitTest("TwoDimensionalList"));
+    UnitTestManager testManager;
+
+    IUnitTestPtr twoDimensionalListUnitTest(new TwoDimensionalVectorUnitTest("TwoDimensionalVector"));
     testManager.registerTest(twoDimensionalListUnitTest);
 
     IUnitTestPtr matrixUnitTest(new MatrixUnitTest("Matrix"));
@@ -28,6 +29,9 @@ int main()
 
     IUnitTestPtr kmpStringSearchUnitTest(new KmpStringSearchUnitTest("KmpStringSearch"));
     testManager.registerTest(kmpStringSearchUnitTest);
+
+    IUnitTestPtr randomGeneratorUnitTest(new RandomGeneratorUnitTest("RandomGenerator"));
+    testManager.registerTest(randomGeneratorUnitTest);
 
     testManager.run();
 

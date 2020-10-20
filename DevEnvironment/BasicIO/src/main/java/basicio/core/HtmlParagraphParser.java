@@ -279,7 +279,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             currIndex = referenceEndIndex + 1;
         }
 
-        int referenceLength = Dimensions.length(referenceStartIndex, referenceEndIndex);
+        int referenceLength = Dimensions.indexes(referenceStartIndex, referenceEndIndex);
 
         if (referenceLength > 0 && referenceEndIndex == token.length() - 1) {
             return token.substring(0, referenceStartIndex);

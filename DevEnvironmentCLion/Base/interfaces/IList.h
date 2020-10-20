@@ -42,24 +42,9 @@ namespace base
         virtual const T& get(std::size_t index) const = 0;
 
         /**
-         * Sets an element at a specified position.
-         */
-        virtual void set(std::size_t index, const T& element) = 0;
-
-        /**
          * Adds an element.
          */
         virtual void add(const T& element) = 0;
-
-        /**
-         * Gets a const element at a specified position.
-         */
-        virtual const T& operator[](int index) const = 0;
-
-        /**
-         * Gets an element at a specified position.
-         */
-        virtual T& operator[](int index) = 0;
     };
 }
 

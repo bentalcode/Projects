@@ -10,10 +10,10 @@ namespace base
     {
     public:
         /**
-         * Gets the length of a dimension.
+         * Gets the number of indexes in a dimension.
          */
         template <typename T>
-        static T length(T start, T end);
+        static int indexes(T startIndex, T endIndex);
 
     private:
         /**
@@ -24,17 +24,17 @@ namespace base
     };
 
     /**
-     * Gets the length of a dimension.
+     * Gets the number of elements in a dimension.
      */
     template <typename T>
-    T Dimensions::length(T start, T end)
+    int Dimensions::indexes(T startIndex, T endIndex)
     {
-        if (start < 0 || end < 0 || start > end)
+        if (startIndex < 0 || endIndex < 0 || startIndex > endIndex)
         {
             return 0;
         }
 
-        return end - start + 1;
+        return endIndex - startIndex + 1;
     }
 }
 

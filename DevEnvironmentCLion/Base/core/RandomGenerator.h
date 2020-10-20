@@ -2,6 +2,7 @@
 #define RANDOM_GENERATOR_H_f4975c61_a60f_4167_9cd2_e0a52c9b4b56
 
 #include "IRandomGenerator.h"
+#include <bits/stdc++.h>
 
 namespace base
 {
@@ -69,6 +70,11 @@ namespace base
         virtual float nextFloat(float from, float to) override;
 
     private:
+        /**
+         * Validates the specified range.
+         */
+        template <typename T>
+        static void validateRange(T start, T end);
     };
 }
 

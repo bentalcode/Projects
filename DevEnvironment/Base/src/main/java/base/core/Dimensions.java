@@ -5,9 +5,9 @@ package base.core;
  */
 public final class Dimensions {
     /**
-     * Gets the length of a dimension.
+     * Gets the number of indexes in a dimension.
      */
-    public static int length(int startIndex, int endIndex) {
+    public static int indexes(int startIndex, int endIndex) {
         if (startIndex < 0 || endIndex < 0 || startIndex > endIndex) {
             return 0;
         }
@@ -16,9 +16,9 @@ public final class Dimensions {
     }
 
     /**
-     * Gets the length of a dimension.
+     * Gets the number of indexes in a dimension.
      */
-    public static long length(long startIndex, long endIndex) {
+    public static long indexes(long startIndex, long endIndex) {
         if (startIndex > endIndex) {
             return 0;
         }

@@ -124,8 +124,8 @@ namespace datastructures {
             size_t postorderEndIndex,
             const std::map<TKey, size_t>& postorderIndexMap)
         {
-            size_t preorderLength = base::Dimensions::length(preorderStartIndex, preorderEndIndex);
-            size_t postorderLength = base::Dimensions::length(postorderStartIndex, postorderEndIndex);
+            size_t preorderLength = base::Dimensions::indexes(preorderStartIndex, preorderEndIndex);
+            size_t postorderLength = base::Dimensions::indexes(postorderStartIndex, postorderEndIndex);
             assert(preorderLength == postorderLength);
 
             size_t length = preorderLength;
@@ -146,7 +146,7 @@ namespace datastructures {
             const std::pair<TKey, TValue>& leftRootData = preorder[preorderStartIndex + 1];
 
             size_t leftRootIndex = BinaryTreeTraversalBuilder<TKey, TValue>::getNodeIndex(postorderIndexMap, leftRootData.first);
-            size_t leftSize = base::Dimensions::length(postorderStartIndex, leftRootIndex);
+            size_t leftSize = base::Dimensions::indexes(postorderStartIndex, leftRootIndex);
 
             size_t preorderLeftStartIndex = preorderStartIndex + 1;
             size_t preorderLeftEndIndex = preorderStartIndex + leftSize;

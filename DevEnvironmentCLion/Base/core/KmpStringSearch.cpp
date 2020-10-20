@@ -42,8 +42,8 @@ bool KmpStringSearch::findSubString(
 
     resultIndex = 0;
 
-    size_t strLength = Dimensions::length(strStartIndex, strEndIndex);
-    size_t subStringLength = Dimensions::length(subStringStartIndex, subStringEndIndex);
+    size_t strLength = Dimensions::indexes(strStartIndex, strEndIndex);
+    size_t subStringLength = Dimensions::indexes(subStringStartIndex, subStringEndIndex);
 
     if (subStringLength > strLength) {
         return false;
@@ -124,8 +124,8 @@ void KmpStringSearch::findAllSubString(
     assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.size());
     assert(resultIndexes.empty());
 
-    size_t strLength = Dimensions::length(strStartIndex, strEndIndex);
-    size_t subStringLength = Dimensions::length(subStringStartIndex, subStringEndIndex);
+    size_t strLength = Dimensions::indexes(strStartIndex, strEndIndex);
+    size_t subStringLength = Dimensions::indexes(subStringStartIndex, subStringEndIndex);
 
     if (subStringLength > strLength) {
         return;
@@ -201,7 +201,7 @@ void KmpStringSearch::createLongestPrefixSuffix(
     assert(endIndex >= startIndex && endIndex < str.size());
     assert(lps.empty());
 
-    size_t strLength = Dimensions::length(startIndex, endIndex);
+    size_t strLength = Dimensions::indexes(startIndex, endIndex);
 
     lps.resize(strLength);
     lps[0] = 0;

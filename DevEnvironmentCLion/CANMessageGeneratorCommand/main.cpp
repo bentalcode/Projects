@@ -3,6 +3,7 @@
 #include "CommandHandler.h"
 #include "CommandManifest.h"
 #include "CANMessageGeneratorCommand.h"
+#include "RandomGenerator.h"
 
 using namespace controllerareanetwork::messagegeneratorcommand;
 
@@ -10,6 +11,8 @@ static command::ICommandManifestPtr loadManifest();
 
 int main(int argc, char *argv[])
 {
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
     command::ICommandManifestPtr manifest = loadManifest();
     command::ICommandHandlerPtr commandHandler = command::CommandHandler::make(manifest);
     command::ICommandPtr command = CANMessageGeneratorCommand::make();

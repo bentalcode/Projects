@@ -53,14 +53,24 @@ namespace base
         void getDurationInformation(std::ostream& stream) const;
 
         /**
+         * Gets the seconds of the duration.
+         */
+        size_t toSeconds() const;
+
+        /**
          * Gets the milliseconds of the duration.
          */
-        long toMilliseconds() const;
+        size_t toMilliseconds() const;
+
+        /**
+         * Creates the duration from seconds.
+         */
+        static std::shared_ptr<DurationType<ArithmeticType, PeriodType>> fromSeconds(size_t milliseconds);
 
         /**
          * Creates the duration from milliseconds.
          */
-        static std::shared_ptr<DurationType<ArithmeticType, PeriodType>> fromMilliseconds(long milliseconds);
+        static std::shared_ptr<DurationType<ArithmeticType, PeriodType>> fromMilliseconds(size_t milliseconds);
 
         /**
          * Gets the duration between two date-time points.
@@ -94,20 +104,40 @@ namespace base
     }
 
     /**
+     * Gets the seconds of the duration.
+     */
+    template <typename ArithmeticType, typename PeriodType>
+    size_t DurationType<ArithmeticType, PeriodType>::toSeconds() const
+    {
+        SecondTick durationSeconds(m_duration);
+        return durationSeconds.count();
+    }
+
+    /**
      * Gets the milliseconds of the duration.
      */
     template <typename ArithmeticType, typename PeriodType>
-    long DurationType<ArithmeticType, PeriodType>::toMilliseconds() const
+    size_t DurationType<ArithmeticType, PeriodType>::toMilliseconds() const
     {
         MilliSecondTick durationMilliseconds(m_duration);
         return durationMilliseconds.count();
     }
 
     /**
+     * Creates the duration from seconds.
+     */
+    template <typename ArithmeticType, typename PeriodType>
+    std::shared_ptr<DurationType<ArithmeticType, PeriodType>> DurationType<ArithmeticType, PeriodType>::fromSeconds(size_t seconds)
+    {
+        SecondTick durationSeconds(seconds);
+        return std::make_shared<Duration>(durationSeconds);
+    }
+
+    /**
      * Creates the duration from milliseconds.
      */
     template <typename ArithmeticType, typename PeriodType>
-    std::shared_ptr<DurationType<ArithmeticType, PeriodType>> DurationType<ArithmeticType, PeriodType>::fromMilliseconds(long milliseconds)
+    std::shared_ptr<DurationType<ArithmeticType, PeriodType>> DurationType<ArithmeticType, PeriodType>::fromMilliseconds(size_t milliseconds)
     {
         MilliSecondTick durationMilliseconds(milliseconds);
         return std::make_shared<Duration>(durationMilliseconds);
@@ -140,6 +170,41 @@ namespace base
         return stream;
     }
 
+    template <typename ArithmeticType, typename PeriodType>
+    inline bool operator==(const DurationType<ArithmeticType, PeriodType>& lhs, const DurationType<ArithmeticType, PeriodType>& rhs)
+    {
+        return lhs.getDuration() == rhs.getDuration();
+    }
+
+    template <typename ArithmeticType, typename PeriodType>
+    inline bool operator!=(const DurationType<ArithmeticType, PeriodType>& lhs, const DurationType<ArithmeticType, PeriodType>& rhs)
+    {
+        return !(lhs.getDuration() == rhs.getDuration());
+    }
+
+    template <typename ArithmeticType, typename PeriodType>
+    inline bool operator<(const DurationType<ArithmeticType, PeriodType>& lhs, const DurationType<ArithmeticType, PeriodType>& rhs)
+    {
+        return lhs.getDuration() < rhs.getDuration();
+    }
+
+    template <typename ArithmeticType, typename PeriodType>
+    inline bool operator<=(const DurationType<ArithmeticType, PeriodType>& lhs, const DurationType<ArithmeticType, PeriodType>& rhs)
+    {
+        return lhs.getDuration() <= rhs.getDuration();
+    }
+
+    template <typename ArithmeticType, typename PeriodType>
+    inline bool operator>(const DurationType<ArithmeticType, PeriodType>& lhs, const DurationType<ArithmeticType, PeriodType>& rhs)
+    {
+        return lhs.getDuration() > rhs.getDuration();
+    }
+
+    template <typename ArithmeticType, typename PeriodType>
+    inline bool operator>=(const DurationType<ArithmeticType, PeriodType>& lhs, const DurationType<ArithmeticType, PeriodType>& rhs)
+    {
+        return lhs.getDuration() >= rhs.getDuration();
+    }
 
 }
 

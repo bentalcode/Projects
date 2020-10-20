@@ -73,8 +73,8 @@ public final class BinaryTreePreorderPostorderTraversalBuilder<TKey extends Comp
         int postorderEndIndex,
         Map<TKey, Integer> postorderIndexMap) {
 
-        int preorderLength = Dimensions.length(preorderStartIndex, preorderEndIndex);
-        int postorderLength = Dimensions.length(postorderStartIndex, postorderEndIndex);
+        int preorderLength = Dimensions.indexes(preorderStartIndex, preorderEndIndex);
+        int postorderLength = Dimensions.indexes(postorderStartIndex, postorderEndIndex);
         assert(preorderLength == postorderLength);
 
         int length = preorderLength;
@@ -92,7 +92,7 @@ public final class BinaryTreePreorderPostorderTraversalBuilder<TKey extends Comp
 
         IPair<TKey, TValue> leftRootData = preorder.get(preorderStartIndex + 1);
         int leftRootIndex = getNodeIndex(postorderIndexMap, leftRootData.first());
-        int leftSize = Dimensions.length(postorderStartIndex, leftRootIndex);
+        int leftSize = Dimensions.indexes(postorderStartIndex, leftRootIndex);
 
         int preorderLeftStartIndex = preorderStartIndex + 1;
         int preorderLeftEndIndex = preorderStartIndex + leftSize;

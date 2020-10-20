@@ -129,7 +129,8 @@ std::pair<size_t, size_t> CANSignalRuleGenerator::generateBitStartAndBitLength(
 
     size_t bitStart = 0;
 
-    if (remainderSize > 0) {
+    if (remainderSize > 0)
+    {
         bitStart = randomGenerator().nextSizeT(0, remainderSize - 1);
     }
 
@@ -236,10 +237,10 @@ std::string CANSignalRuleGenerator::generateUnit(
         throw CANMessageGeneratorException(errorMessage);
     }
 
-    std::vector<std::string> units = nameUnitsIterator->second;
+    const std::vector<std::string>& units = nameUnitsIterator->second;
     size_t numberOfUnits = units.size();
     size_t unitIndex = randomGenerator().nextSizeT(0, numberOfUnits - 1);
-    std::string unit = units.at(unitIndex);
+    const std::string& unit = units.at(unitIndex);
 
     return unit;
 }

@@ -26,7 +26,7 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
     private static final String messageNameText = "messageName:";
 
     private ICANMessageGeneratorCommandParameters parameters;
-    private final IJitterMessageHandler messageJitter = new JitterMessageHandler();
+    private final IJitterMessageHandler messageHandler = new JitterMessageHandler();
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -117,7 +117,7 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
         String messageName,
         IMessageWriter messageWriter) {
 
-        this.messageJitter.setMessageSendingTime(messageName, Instant.now());
+        this.messageHandler.setMessageSendingTime(messageName, Instant.now());
 
         ICANRuleGenerator<ICANMessageRule> ruleGenerator = new CANMessageRuleGenerator();
         ICANMessageRule rule = ruleGenerator.generate(messageName);
@@ -128,7 +128,7 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
             messageWriter.writeInformationalMessage("    " + signalRule);
         }
 
-        this.messageJitter.setMessageReceivingTime(messageName, Instant.now());
+        this.messageHandler.setMessageReceivingTime(messageName, Instant.now());
     }
 
     /**
@@ -152,7 +152,7 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
         String messageName,
         IMessageWriter messageWriter) {
 
-        IJitterMessageData messageData = this.messageJitter.getMessageData(messageName);
+        IJitterMessageData messageData = this.messageHandler.getMessageData(messageName);
 
         StringBuilder information = new StringBuilder();
         information
@@ -171,10 +171,10 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
             String messageName = message.first();
             int frequencyInHz = message.second();
 
-            long transmittingTimeInMillis = 1000 / frequencyInHz;
-            Duration transmittingTime = Duration.ofMillis(transmittingTimeInMillis);
+            long transmittingTimeInMilliseconds = 1000 / frequencyInHz;
+            Duration transmittingTime = Duration.ofMillis(transmittingTimeInMilliseconds);
 
-            this.messageJitter.registerMessage(messageName, transmittingTime);
+            this.messageHandler.registerMessage(messageName, transmittingTime);
         }
     }
 

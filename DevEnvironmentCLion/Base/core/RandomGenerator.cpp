@@ -1,5 +1,7 @@
 #include "PreCompiled.h"
 #include "RandomGenerator.h"
+#include "Dimensions.h"
+#include "Range.h"
 
 using namespace base;
 
@@ -22,7 +24,8 @@ RandomGenerator::~RandomGenerator()
  */
 bool RandomGenerator::nextBoolean()
 {
-    return true;
+    int randomIndex = rand() % 2;
+    return randomIndex == 0 ? false : true;
 }
 
 /**
@@ -30,7 +33,7 @@ bool RandomGenerator::nextBoolean()
  */
 int RandomGenerator::nextInteger()
 {
-    return 0;
+    return rand();
 }
 
 /**
@@ -38,7 +41,21 @@ int RandomGenerator::nextInteger()
  */
 int RandomGenerator::nextInteger(int from, int to)
 {
-    return 0;
+    Range<int>::validate(from, to);
+
+    if (from == to)
+    {
+        return from;
+    }
+
+    int length = base::Dimensions::indexes(from, to);
+
+    length = base::Dimensions::indexes(from, to);
+    int result = from + rand() % length;
+
+    assert(result >= from && result <= to);
+
+    return result;
 }
 
 /**
@@ -46,7 +63,7 @@ int RandomGenerator::nextInteger(int from, int to)
  */
 size_t RandomGenerator::nextSizeT()
 {
-    return 0;
+    return rand();
 }
 
 /**
@@ -54,7 +71,19 @@ size_t RandomGenerator::nextSizeT()
  */
 size_t RandomGenerator::nextSizeT(size_t from, size_t to)
 {
-    return 0;
+    Range<int>::validate(from, to);
+
+    if (from == to)
+    {
+        return from;
+    }
+
+    size_t length = base::Dimensions::indexes(from, to);
+    size_t result = from + rand() % length;
+
+    assert(result >= from && result <= to);
+
+    return result;
 }
 
 /**
@@ -62,7 +91,7 @@ size_t RandomGenerator::nextSizeT(size_t from, size_t to)
  */
 float RandomGenerator::nextFloat()
 {
-    return 0.0;
+    return nextFloat(0.0, RAND_MAX);
 }
 
 /**
@@ -70,5 +99,17 @@ float RandomGenerator::nextFloat()
  */
 float RandomGenerator::nextFloat(float from, float to)
 {
-    return 0.0;
+    Range<int>::validate(from, to);
+
+    if (from == to)
+    {
+        return from;
+    }
+
+    float range = to - from;
+    float result = from + (range * (static_cast<float>(rand()) / static_cast<float>(RAND_MAX)));
+
+    assert(result >= from && result <= to);
+
+    return result;
 }

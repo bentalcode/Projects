@@ -57,7 +57,7 @@ public final class MergeSort<T> implements ISort<T> {
         int endIndex,
         T[] buffer) {
 
-        int length = Dimensions.length(startIndex, endIndex);
+        int length = Dimensions.indexes(startIndex, endIndex);
 
         if (length <= 1) {
             return;
@@ -92,10 +92,10 @@ public final class MergeSort<T> implements ISort<T> {
         assert(buffer != null);
         assert(buffer.length == arr.length);
 
-        int leftLength = Dimensions.length(leftStartIndex, leftEndIndex);
+        int leftLength = Dimensions.indexes(leftStartIndex, leftEndIndex);
         Arrays.copy(arr, leftStartIndex, buffer, leftStartIndex, leftLength);
 
-        int rightLength = Dimensions.length(rightStartIndex, rightEndIndex);
+        int rightLength = Dimensions.indexes(rightStartIndex, rightEndIndex);
         Arrays.copy(arr, rightStartIndex, buffer, rightStartIndex, rightLength);
 
         int currLeftIndex = leftStartIndex;

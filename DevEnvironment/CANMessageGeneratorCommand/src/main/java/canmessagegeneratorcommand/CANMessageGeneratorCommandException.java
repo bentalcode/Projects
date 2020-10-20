@@ -1,11 +1,12 @@
 package canmessagegeneratorcommand;
 
-import command.CommandException;
+import base.BaseException;
 
 /**
- * The CANMessageGeneratorCommand class captures errors in the CAN Message Generator Command module.
+ * The CANMessageGeneratorCommandException class implements an exception
+ * for capturing errors in the CAN Message Generator Command module.
  */
-public class CANMessageGeneratorCommandException extends CommandException {
+public class CANMessageGeneratorCommandException extends BaseException {
     /**
      * The CANMessageGeneratorCommandException constructor.
      */

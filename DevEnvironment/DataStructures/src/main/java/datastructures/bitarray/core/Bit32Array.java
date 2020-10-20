@@ -184,7 +184,7 @@ public final class Bit32Array implements IBit32Array {
         this.validateIndex(endIndex);
 
         assert (startIndex <= endIndex);
-        int length = Dimensions.length(startIndex, endIndex);
+        int length = Dimensions.indexes(startIndex, endIndex);
 
         if (length == 0) {
             return 0;
@@ -227,7 +227,7 @@ public final class Bit32Array implements IBit32Array {
         this.validateIndex(endIndex);
 
         assert(startIndex <= endIndex);
-        int length = Dimensions.length(startIndex, endIndex);
+        int length = Dimensions.indexes(startIndex, endIndex);
 
         if (length == 0) {
             return;
@@ -264,7 +264,7 @@ public final class Bit32Array implements IBit32Array {
         this.validateIndex(endIndex);
 
         assert(startIndex <= endIndex);
-        int length = Dimensions.length(startIndex, endIndex);
+        int length = Dimensions.indexes(startIndex, endIndex);
 
         if (length == 0) {
             return;

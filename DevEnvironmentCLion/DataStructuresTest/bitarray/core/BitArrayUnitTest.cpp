@@ -325,7 +325,7 @@ void BitArrayUnitTest::testClearing(const BitArrayData& data)
             bitArray->clear(startIndex, endIndex);
 
             numberOfOnes = bitArray->cardinality();
-            expectedNumberOfOnes = bitArray->size() - base::Dimensions::length(startIndex, endIndex);
+            expectedNumberOfOnes = bitArray->size() - base::Dimensions::indexes(startIndex, endIndex);
 
             getAssertion().assertTrue(
                 numberOfOnes == expectedNumberOfOnes,
@@ -358,7 +358,7 @@ void BitArrayUnitTest::testEnabling(const BitArrayData& data)
             bitArray->enable(startIndex, endIndex);
 
             numberOfOnes = bitArray->cardinality();
-            expectedNumberOfOnes = base::Dimensions::length(startIndex, endIndex);
+            expectedNumberOfOnes = base::Dimensions::indexes(startIndex, endIndex);
 
             getAssertion().assertTrue(
                 numberOfOnes == expectedNumberOfOnes,

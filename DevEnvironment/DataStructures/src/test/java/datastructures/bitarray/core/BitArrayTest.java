@@ -208,7 +208,7 @@ public final class BitArrayTest {
                 bitArray.clear(startIndex, endIndex);
 
                 numberOfOnes = bitArray.cardinality();
-                expectedNumberOfOnes = bitArray.size() - Dimensions.length(startIndex, endIndex);
+                expectedNumberOfOnes = bitArray.size() - Dimensions.indexes(startIndex, endIndex);
 
                 this.assertion.assertTrue(
                     numberOfOnes == expectedNumberOfOnes,
@@ -240,7 +240,7 @@ public final class BitArrayTest {
                 bitArray.enable(startIndex, endIndex);
 
                 numberOfOnes = bitArray.cardinality();
-                expectedNumberOfOnes = Dimensions.length(startIndex, endIndex);
+                expectedNumberOfOnes = Dimensions.indexes(startIndex, endIndex);
 
                 this.assertion.assertTrue(
                     numberOfOnes == expectedNumberOfOnes,

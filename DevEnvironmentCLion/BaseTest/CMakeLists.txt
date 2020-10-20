@@ -30,9 +30,10 @@ set(BASE_TEST_INCLUDES_FILES
     ./interfaces/KmpStringSearchUnitTest.h
     ./interfaces/ListUnitTest.h
     ./interfaces/MatrixUnitTest.h
+    ./interfaces/RandomGeneratorUnitTest.h
     ./interfaces/StringsUnitTest.h
     ./interfaces/TestData.h
-    ./interfaces/TwoDimensionalListUnitTest.h
+    ./interfaces/TwoDimensionalVectorUnitTest.h
 )
 
 set(BASE_TEST_SOURCES_FILES
@@ -41,9 +42,10 @@ set(BASE_TEST_SOURCES_FILES
     ./core/ListUnitTest.cpp
     ./core/MatrixUnitTest.cpp
     ./core/PreCompiled.cpp
+    ./core/RandomGeneratorUnitTest.cpp
     ./core/StringsUnitTest.cpp
     ./core/TestData.cpp
-    ./core/TwoDimensionalListUnitTest.cpp
+    ./core/TwoDimensionalVectorUnitTest.cpp
     ./main.cpp
 )
 
@@ -66,6 +68,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ClassType.h
     ../Base/core/ComparableComparator.h
     ../Base/core/Comparator.h
+    ../Base/core/Conversion.h
     ../Base/core/DereferenceComparableComparator.h
     ../Base/core/DereferenceComparableComparator2.h
     ../Base/core/DereferenceEquatableComparator.h
@@ -89,10 +92,10 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
     ../Base/core/SkipIterator.h
+    ../Base/core/StringConversion.h
     ../Base/core/StringIterator.h
-    ../Base/core/TwoDimensionalList.h
-    ../Base/core/TwoDimensionalListIterator.h
     ../Base/core/TwoDimensionalVector.h
+    ../Base/core/TwoDimensionalVectorIterator.h
     ../Base/core/VectorIterator.h
     ../Base/core/VectorReverseIterator.h
     ../Base/core/XorBitOperator.h
@@ -131,7 +134,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ISkipIterator.h
-    ../Base/interfaces/ITwoDimensionalList.h
+    ../Base/interfaces/IStringConversion.h
     ../Base/interfaces/ITwoDimensionalVector.h
     ../Base/interfaces/IUnaryBitOperator.h
     ../Base/interfaces/IValidator.h
@@ -145,11 +148,13 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IteratorComparator.h
     ../Base/interfaces/LogStreamWriter.h
     ../Base/interfaces/Pair.h
+    ../Base/interfaces/Range.h
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/StringComparable.h
     ../Base/interfaces/StringEquality.h
     ../Base/interfaces/StringSearch.h
     ../Base/interfaces/Strings.h
+    ../Base/interfaces/Threads.h
     ../Base/interfaces/Triple.h
 )
 
@@ -158,6 +163,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/Bits.cpp
     ../Base/core/ClassType.cpp
     ../Base/core/CompareToBuilder.cpp
+    ../Base/core/Conversion.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/Indexes.cpp
@@ -170,9 +176,11 @@ set(BASE_SOURCES_FILES
     ../Base/core/RandomGenerator.cpp
     ../Base/core/SkipIterator.cpp
     ../Base/core/StringComparable.cpp
+    ../Base/core/StringConversion.cpp
     ../Base/core/StringEquality.cpp
     ../Base/core/StringSearch.cpp
     ../Base/core/Strings.cpp
+    ../Base/core/Threads.cpp
     ../Base/core/XorBitOperator.cpp
 )
 
