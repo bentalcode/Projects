@@ -68,6 +68,7 @@ set(PROBLEMS_INCLUDES
 set(BASE_INCLUDES_FILES
     ../Base/BaseException.h
     ../Base/NotImplementedException.h
+    ../Base/WindowsException.h
     ../Base/core/AndBitOperator.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
@@ -88,6 +89,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/List.h
     ../Base/core/ListIterator.h
     ../Base/core/ListReverseIterator.h
+    ../Base/core/LocalFreeReleaser.h
     ../Base/core/Matrix.h
     ../Base/core/NotBitOperator.h
     ../Base/core/OrBitOperator.h
@@ -104,6 +106,9 @@ set(BASE_INCLUDES_FILES
     ../Base/core/TwoDimensionalVectorIterator.h
     ../Base/core/VectorIterator.h
     ../Base/core/VectorReverseIterator.h
+    ../Base/core/WindowsConsoleColorHandler.h
+    ../Base/core/WindowsDependecies.h
+    ../Base/core/WindowsErrors.h
     ../Base/core/XorBitOperator.h
     ../Base/interfaces/Bits.h
     ../Base/interfaces/ClassTypes.h
@@ -121,6 +126,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IClassType.h
     ../Base/interfaces/ICollection.h
     ../Base/interfaces/IComparableComparator.h
+    ../Base/interfaces/IConsoleColorHandler.h
     ../Base/interfaces/IEquatableComparator.h
     ../Base/interfaces/IFinder.h
     ../Base/interfaces/IHashCodeProvider.h
@@ -156,6 +162,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/Pair.h
     ../Base/interfaces/Range.h
     ../Base/interfaces/SharedPtr.h
+    ../Base/interfaces/StandardFileDescriptor.h
     ../Base/interfaces/StringComparable.h
     ../Base/interfaces/StringEquality.h
     ../Base/interfaces/StringSearch.h
@@ -187,6 +194,8 @@ set(BASE_SOURCES_FILES
     ../Base/core/StringSearch.cpp
     ../Base/core/Strings.cpp
     ../Base/core/Threads.cpp
+    ../Base/core/WindowsConsoleColorHandler.cpp
+    ../Base/core/WindowsErrors.cpp
     ../Base/core/XorBitOperator.cpp
 )
 

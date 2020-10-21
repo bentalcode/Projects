@@ -27,6 +27,7 @@ endif()
 set(BASE_INCLUDES_FILES
     ./BaseException.h
     ./NotImplementedException.h
+    ./WindowsException.h
     ./core/AndBitOperator.h
     ./core/BaseDependencies.h
     ./core/BaseLogic.h
@@ -47,6 +48,7 @@ set(BASE_INCLUDES_FILES
     ./core/List.h
     ./core/ListIterator.h
     ./core/ListReverseIterator.h
+    ./core/LocalFreeReleaser.h
     ./core/Matrix.h
     ./core/NotBitOperator.h
     ./core/OrBitOperator.h
@@ -63,6 +65,9 @@ set(BASE_INCLUDES_FILES
     ./core/TwoDimensionalVectorIterator.h
     ./core/VectorIterator.h
     ./core/VectorReverseIterator.h
+    ./core/WindowsConsoleColorHandler.h
+    ./core/WindowsDependecies.h
+    ./core/WindowsErrors.h
     ./core/XorBitOperator.h
     ./interfaces/Bits.h
     ./interfaces/ClassTypes.h
@@ -80,6 +85,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IClassType.h
     ./interfaces/ICollection.h
     ./interfaces/IComparableComparator.h
+    ./interfaces/IConsoleColorHandler.h
     ./interfaces/IEquatableComparator.h
     ./interfaces/IFinder.h
     ./interfaces/IHashCodeProvider.h
@@ -115,6 +121,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/Pair.h
     ./interfaces/Range.h
     ./interfaces/SharedPtr.h
+    ./interfaces/StandardFileDescriptor.h
     ./interfaces/StringComparable.h
     ./interfaces/StringEquality.h
     ./interfaces/StringSearch.h
@@ -146,6 +153,8 @@ set(BASE_SOURCES_FILES
     ./core/StringSearch.cpp
     ./core/Strings.cpp
     ./core/Threads.cpp
+    ./core/WindowsConsoleColorHandler.cpp
+    ./core/WindowsErrors.cpp
     ./core/XorBitOperator.cpp
 )
 

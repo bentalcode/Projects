@@ -1,5 +1,6 @@
 #include "PreCompiled.h"
 #include "CommandMessageWriter.h"
+#include "WindowsConsoleColorHandler.h"
 
 using namespace command;
 
@@ -15,10 +16,12 @@ ICommandMessageWriterPtr CommandMessageWriter::make(const std::string& usageMess
  * The CommandMessageWriter constructor.
  */
 CommandMessageWriter::CommandMessageWriter(const std::string& usageMessage) :
-    m_usageMessage(usageMessage),
-    m_informationalStream(std::cout),
-    m_warningStream(std::cout),
-    m_errorStream(std::cout)
+    CommandMessageWriter(
+        usageMessage,
+        std::cout,
+        std::cout,
+        std::cout,
+        createConsoleColorHandler())
 {
 }
 
@@ -29,12 +32,23 @@ CommandMessageWriter::CommandMessageWriter(
     const std::string& usageMessage,
     std::ostream& informationalStream,
     std::ostream& warningStream,
-    std::ostream& errorStream) :
+    std::ostream& errorStream,
+    base::IConsoleColorHandlerPtr consoleColorHandler) :
     m_usageMessage(usageMessage),
     m_informationalStream(std::cout),
     m_warningStream(std::cout),
-    m_errorStream(std::cout)
+    m_errorStream(std::cout),
+    m_consoleColorHandler(consoleColorHandler)
 {
+    if (!consoleColorHandler)
+    {
+        std::string errorMessage = "The console color handler is not defined.";
+        throw base::BaseException(errorMessage);
+    }
+
+    m_consoleColorHandler->setColorAttributes(
+        base::StandardFileDescriptor::StandardOutput,
+        FOREGROUND_GREEN);
 }
 
 /**
@@ -123,4 +137,12 @@ void CommandMessageWriter::writeMessage(
     std::ostream& ostream)
 {
     ostream << message << std::endl;
+}
+
+/**
+ * Creates a console color handler.
+ */
+base::IConsoleColorHandlerPtr CommandMessageWriter::createConsoleColorHandler()
+{
+    return std::make_shared<base::WindowsConsoleColorHandler>();
 }

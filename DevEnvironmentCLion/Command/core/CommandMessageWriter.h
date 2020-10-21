@@ -2,6 +2,7 @@
 #define COMMAND_MESSAGE_WRITER_H_198ccbba_d9c5_4624_930e_9c8fa785344c
 
 #include "ICommandMessageWriter.h"
+#include "IConsoleColorHandler.h"
 
 namespace command {
 
@@ -28,7 +29,8 @@ namespace command {
             const std::string& usageMessage,
             std::ostream& errorStream,
             std::ostream& warningStream,
-            std::ostream& informationalStream);
+            std::ostream& informationalStream,
+            base::IConsoleColorHandlerPtr consoleColorHandler);
 
         /**
          * The CommandMessageWriter Destructor.
@@ -95,10 +97,16 @@ namespace command {
             const std::string& message,
             std::ostream& ostream);
 
+        /**
+         * Creates a console color handler.
+         */
+        static base::IConsoleColorHandlerPtr createConsoleColorHandler();
+
         std::string m_usageMessage;
         std::ostream& m_informationalStream;
         std::ostream& m_warningStream;
         std::ostream& m_errorStream;
+        base::IConsoleColorHandlerPtr m_consoleColorHandler;
     };
 }
 

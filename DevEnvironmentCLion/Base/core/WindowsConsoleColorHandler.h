@@ -1,0 +1,60 @@
+#ifndef WINDOWS_CONSOLE_COLOR_HANDLER_H_532400e6_e026_425b_a848_7dd938587c3d
+#define WINDOWS_CONSOLE_COLOR_HANDLER_H_532400e6_e026_425b_a848_7dd938587c3d
+
+#include "IConsoleColorHandler.h"
+
+namespace base
+{
+    /**
+     * The WindowsConsoleColorHandler class implements a Console Color Handler for Windows.
+     */
+    class WindowsConsoleColorHandler final : public IConsoleColorHandler
+    {
+    public:
+        /**
+         * The WindowsConsoleColorHandler constructor.
+         */
+        WindowsConsoleColorHandler();
+
+        /**
+         * The WindowsConsoleColorHandler destructor.
+         */
+        virtual ~WindowsConsoleColorHandler();
+
+        /**
+         * The copy/move constructors.
+         */
+        WindowsConsoleColorHandler(const WindowsConsoleColorHandler&) = delete;
+        WindowsConsoleColorHandler(WindowsConsoleColorHandler&&) = delete;
+
+        /**
+         * The copy/move assignment operators.
+         */
+        WindowsConsoleColorHandler& operator=(const WindowsConsoleColorHandler&) = delete;
+        WindowsConsoleColorHandler& operator=(WindowsConsoleColorHandler&&) = delete;
+
+        /**
+         * Gets the current color attributes.
+         * Returns true if the functions succeeds, otherwise false.
+         */
+        virtual bool getColorAttributes(
+            StandardFileDescriptor fileDescriptor,
+            unsigned short& result) const override;
+
+        /**
+         * Sets the current color attributes.
+         * Returns true if the functions succeeds, otherwise false.
+         */
+        virtual bool setColorAttributes(
+            StandardFileDescriptor fileDescriptor,
+            unsigned short attributes) override;
+
+    private:
+        /**
+         * Gets the handle of the file descriptor.
+         */
+        static HANDLE getFileDescriptorHandle(StandardFileDescriptor fileDescriptor);
+    };
+}
+
+#endif // WINDOWS_CONSOLE_COLOR_HANDLER_H_532400e6_e026_425b_a848_7dd938587c3d
