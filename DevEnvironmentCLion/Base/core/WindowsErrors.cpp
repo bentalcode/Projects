@@ -1,5 +1,4 @@
 #include "PreCompiled.h"
-#include "WindowsErrors.h"
 #include "LocalFreeReleaser.h"
 
 using namespace base;
@@ -26,7 +25,7 @@ std::string WindowsErrors::getLastErrorAsString()
         0,
         NULL);
 
-    std::unique_ptr<LocalFreeReleaser> messagePtr = std::make_unique<LocalFreeReleaser>(messageBuffer);
+    LocalFreeReleaser messagePtr(messageBuffer);
 
     std::string message(messageBuffer, size);
 

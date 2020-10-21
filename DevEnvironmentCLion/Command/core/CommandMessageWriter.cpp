@@ -40,15 +40,11 @@ CommandMessageWriter::CommandMessageWriter(
     m_errorStream(std::cout),
     m_consoleColorHandler(consoleColorHandler)
 {
-    if (!consoleColorHandler)
-    {
-        std::string errorMessage = "The console color handler is not defined.";
-        throw base::BaseException(errorMessage);
+    if (consoleColorHandler) {
+        m_consoleColorHandler->setColorAttributes(
+            base::StandardFileDescriptor::StandardOutput,
+            FOREGROUND_GREEN);
     }
-
-    m_consoleColorHandler->setColorAttributes(
-        base::StandardFileDescriptor::StandardOutput,
-        FOREGROUND_GREEN);
 }
 
 /**
@@ -142,7 +138,10 @@ void CommandMessageWriter::writeMessage(
 /**
  * Creates a console color handler.
  */
-base::IConsoleColorHandlerPtr CommandMessageWriter::createConsoleColorHandler()
-{
-    return std::make_shared<base::WindowsConsoleColorHandler>();
+base::IConsoleColorHandlerPtr CommandMessageWriter::createConsoleColorHandler() {
+    #if defined(WIN32)
+        return std::make_shared<base::WindowsConsoleColorHandler>();
+    # else
+        return nullptr;
+    #endif
 }
