@@ -16,9 +16,9 @@ ICommandMessageWriterPtr CommandMessageWriter::make(const std::string& usageMess
  */
 CommandMessageWriter::CommandMessageWriter(const std::string& usageMessage) :
     m_usageMessage(usageMessage),
-    m_errorStream(std::cout),
+    m_informationalStream(std::cout),
     m_warningStream(std::cout),
-    m_informationalStream(std::cout)
+    m_errorStream(std::cout)
 {
 }
 
@@ -27,13 +27,13 @@ CommandMessageWriter::CommandMessageWriter(const std::string& usageMessage) :
  */
 CommandMessageWriter::CommandMessageWriter(
     const std::string& usageMessage,
-    std::ostream& errorStream,
+    std::ostream& informationalStream,
     std::ostream& warningStream,
-    std::ostream& informationalStream) :
+    std::ostream& errorStream) :
     m_usageMessage(usageMessage),
-    m_errorStream(std::cout),
+    m_informationalStream(std::cout),
     m_warningStream(std::cout),
-    m_informationalStream(std::cout)
+    m_errorStream(std::cout)
 {
 }
 
@@ -72,7 +72,7 @@ void CommandMessageWriter::CommandMessageWriter::writeUsageMessage(bool status)
  */
 void CommandMessageWriter::writeInformationalMessage(const std::string& message)
 {
-    m_informationalStream << message;
+    writeMessage(message, m_informationalStream);
 }
 
 /**
@@ -80,7 +80,7 @@ void CommandMessageWriter::writeInformationalMessage(const std::string& message)
  */
 void CommandMessageWriter::writeWarningMessage(const std::string& message)
 {
-    m_warningStream << message;
+    writeMessage(message, m_warningStream);
 }
 
 /**
@@ -88,7 +88,7 @@ void CommandMessageWriter::writeWarningMessage(const std::string& message)
  */
 void CommandMessageWriter::writeErrorMessage(const std::string& message)
 {
-    m_errorStream << message;
+    writeMessage(message, m_errorStream);
 }
 
 /**
@@ -113,4 +113,14 @@ std::ostream& CommandMessageWriter::getWarningStream()
 std::ostream& CommandMessageWriter::getInformationalStream()
 {
     return m_informationalStream;
+}
+
+/**
+ * Writes a message to an output stream.
+ */
+void CommandMessageWriter::writeMessage(
+    const std::string& message,
+    std::ostream& ostream)
+{
+    ostream << message << std::endl;
 }

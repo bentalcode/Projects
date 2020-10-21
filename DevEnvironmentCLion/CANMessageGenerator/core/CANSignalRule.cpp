@@ -68,7 +68,7 @@ CANSignalRule::CANSignalRule(
     m_unit(unit),
     m_transmittingNodeName(transmittingNodeName)
 {
-    if (minimum < maximum)
+    if (minimum > maximum)
     {
         std::string errorMessage = "The maximum can not be less than the minimum.";
         throw CANMessageGeneratorException(errorMessage);

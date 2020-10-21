@@ -88,10 +88,17 @@ namespace command {
         virtual void writeUsageMessage(bool status) override;
 
     private:
+        /**
+         * Writes a message to an output stream.
+         */
+        static void writeMessage(
+            const std::string& message,
+            std::ostream& ostream);
+
         std::string m_usageMessage;
-        std::ostream& m_errorStream;
-        std::ostream& m_warningStream;
         std::ostream& m_informationalStream;
+        std::ostream& m_warningStream;
+        std::ostream& m_errorStream;
     };
 }
 

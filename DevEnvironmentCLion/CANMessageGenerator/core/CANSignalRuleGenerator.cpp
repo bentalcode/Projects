@@ -176,7 +176,7 @@ std::pair<float, int> CANSignalRuleGenerator::generateScaleAndOffset(
     }
 
     int minRawValue = 0;
-    int maxRawValue = std::pow(2, valueBitLength);
+    int maxRawValue = (valueBitLength >= 32) ? std::numeric_limits<int>::max() : (1 << valueBitLength) - 1;
 
     //
     // Generate a random raw value in the specified range...

@@ -122,9 +122,9 @@ std::string CANMessageRule::toString() const
 
     stream << messageSyntax;
     stream << " ";
-    stream << m_id;
+    stream << m_id->toString();
     stream << " ";
-    stream << m_name;
+    stream << m_name->toString();
     stream << ": ";
     stream << m_length;
     stream << " ";

@@ -56,7 +56,7 @@ namespace test {
             const std::vector<std::vector<T>>& twoDimensionalArray)
         {
             base::IIteratorPtr<T> oneDimensionalArrayIterator(new base::VectorIterator<T>(oneDimensionalArray));
-            base::IIteratorPtr<T> twoDimensionalArrayIterator(new base::TwoDimensionalListIterator<T>(twoDimensionalArray));
+            base::IIteratorPtr<T> twoDimensionalArrayIterator(new base::TwoDimensionalVectorIterator<T>(twoDimensionalArray));
 
             std::vector<base::IIteratorPtr<T>> iterators;
             iterators.push_back(oneDimensionalArrayIterator);

@@ -178,7 +178,7 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         }
 
         int minRawValue = 0;
-        int maxRawValue = (int)Math.pow(2, valueBitLength);
+        int maxRawValue = (valueBitLength >= 32) ? Integer.MAX_VALUE : (1 << valueBitLength) - 1;
 
         //
         // Generate a random raw value in the specified range...

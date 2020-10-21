@@ -106,8 +106,11 @@ float RandomGenerator::nextFloat(float from, float to)
         return from;
     }
 
+    float randomZeroToOne = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+
     float range = to - from;
-    float result = from + (range * (static_cast<float>(rand()) / static_cast<float>(RAND_MAX)));
+    float randomRange = range * randomZeroToOne * 0.5;
+    float result = from + randomRange;
 
     assert(result >= from && result <= to);
 
