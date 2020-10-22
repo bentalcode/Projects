@@ -1,10 +1,10 @@
 package command.core;
 
 import base.core.Conditions;
+import base.interfaces.IMessageWriter;
 import command.interfaces.ICommand;
 import command.interfaces.ICommandMessageWriter;
 import command.interfaces.ICommandParameters;
-import command.interfaces.IParameterSet;
 import command.interfaces.IProcessInformation;
 
 /**
@@ -13,7 +13,7 @@ import command.interfaces.IProcessInformation;
 public abstract class AbstractCommand implements ICommand {
     private IProcessInformation processInformation;
     private ICommandParameters parameters;
-    private ICommandMessageWriter messageWriter;
+    private IMessageWriter messageWriter;
 
     /**
      * The AbstractCommand constructor.
@@ -64,7 +64,7 @@ public abstract class AbstractCommand implements ICommand {
      * Sets a message writer of a command.
      */
     @Override
-    public void setMessageWriter(ICommandMessageWriter messageWriter) {
+    public void setMessageWriter(IMessageWriter messageWriter) {
         Conditions.validateNotNull(
             messageWriter,
             "The message writer of a command.");
@@ -76,7 +76,7 @@ public abstract class AbstractCommand implements ICommand {
      * Gets a message writer of a command.
      */
     @Override
-    public ICommandMessageWriter getMessageWriter() {
+    public IMessageWriter getMessageWriter() {
         return this.messageWriter;
     }
 }

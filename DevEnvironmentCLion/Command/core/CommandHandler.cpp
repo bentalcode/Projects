@@ -29,7 +29,7 @@ CommandHandler::CommandHandler(
         throw CommandException(errorMessage);
     }
 
-    m_messageWriter = CommandMessageWriter::make(manifest->getUsageMessage());
+    m_commandMessageWriter = CommandMessageWriter::make(manifest->getUsageMessage());
 }
 
 /**
@@ -52,7 +52,7 @@ int CommandHandler::run(ICommand& command, int argc, char *argv[])
                 "The command: " + m_manifest->getName() +
                 " has failed to run, Exit Status: -1";
 
-            m_messageWriter->writeErrorMessage(errorMessage);
+            m_commandMessageWriter->getMessageWriter()->writeErrorMessage(errorMessage);
 
             exitStatus = -1;
         }
@@ -101,10 +101,10 @@ bool CommandHandler::runCommand(ICommand& command, int argc, char *argv[])
                 " has failed to parse the parameters due to parsing error: " + parametersResult->getErrorMessage() +
                 ", Exit Status: 0";
 
-            m_messageWriter->writeErrorMessage(errorMessage);
+            m_commandMessageWriter->getMessageWriter()->writeErrorMessage(errorMessage);
         }
 
-        m_messageWriter->writeUsageMessage(parametersResult->getStatus());
+        m_commandMessageWriter->writeUsageMessage(parametersResult->getStatus());
 
         return parametersResult->getStatus();
     }
@@ -114,7 +114,7 @@ bool CommandHandler::runCommand(ICommand& command, int argc, char *argv[])
     //
     command.setParameters(parametersResult->getResult());
 
-    command.setMessageWriter(m_messageWriter);
+    command.setMessageWriter(m_commandMessageWriter->getMessageWriter());
 
     //
     // Run the logic of the command...

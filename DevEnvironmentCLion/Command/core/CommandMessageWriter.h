@@ -2,7 +2,6 @@
 #define COMMAND_MESSAGE_WRITER_H_198ccbba_d9c5_4624_930e_9c8fa785344c
 
 #include "ICommandMessageWriter.h"
-#include "IConsoleColorHandler.h"
 
 namespace command {
 
@@ -23,16 +22,6 @@ namespace command {
         explicit CommandMessageWriter(const std::string& usageMessage);
 
         /**
-         * The CommandMessageWriter Constructor.
-         */
-        CommandMessageWriter(
-            const std::string& usageMessage,
-            std::ostream& errorStream,
-            std::ostream& warningStream,
-            std::ostream& informationalStream,
-            base::IConsoleColorHandlerPtr consoleColorHandler);
-
-        /**
          * The CommandMessageWriter Destructor.
          */
         virtual ~CommandMessageWriter();
@@ -50,36 +39,6 @@ namespace command {
         CommandMessageWriter& operator=(CommandMessageWriter&&) = delete;
 
         /**
-         * Writes an informational message.
-         */
-        virtual void writeInformationalMessage(const std::string& message) override;
-
-        /**
-         * Writes a warning message.
-         */
-        virtual void writeWarningMessage(const std::string& message) override;
-
-        /**
-         * Writes an error message.
-         */
-        virtual void writeErrorMessage(const std::string& message) override;
-
-        /**
-         * Gets an error stream.
-         */
-        virtual std::ostream& getErrorStream() override;
-
-        /**
-         * Gets a warning writer.
-         */
-        virtual std::ostream& getWarningStream() override;
-
-        /**
-         * Gets an informational writer.
-         */
-        virtual std::ostream& getInformationalStream() override;
-
-        /**
          * Writes a usage message.
          */
         virtual void writeUsageMessage() override;
@@ -89,24 +48,14 @@ namespace command {
          */
         virtual void writeUsageMessage(bool status) override;
 
+        /**
+         * Gets the message writer.
+         */
+        virtual base::IMessageWriterPtr getMessageWriter() override;
+
     private:
-        /**
-         * Writes a message to an output stream.
-         */
-        static void writeMessage(
-            const std::string& message,
-            std::ostream& ostream);
-
-        /**
-         * Creates a console color handler.
-         */
-        static base::IConsoleColorHandlerPtr createConsoleColorHandler();
-
         std::string m_usageMessage;
-        std::ostream& m_informationalStream;
-        std::ostream& m_warningStream;
-        std::ostream& m_errorStream;
-        base::IConsoleColorHandlerPtr m_consoleColorHandler;
+        base::IMessageWriterPtr m_messageWriter;
     };
 }
 

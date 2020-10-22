@@ -3,6 +3,7 @@
 
 #include "ICommandHandler.h"
 #include "ICommandManifest.h"
+#include "ICommandMessageWriter.h"
 #include "ParsingResult.h"
 
 namespace command {
@@ -65,7 +66,7 @@ namespace command {
         static bool isHelpCommand(const ICommandParameters& parameters);
 
         ICommandManifestPtr m_manifest;
-        ICommandMessageWriterPtr m_messageWriter;
+        ICommandMessageWriterPtr m_commandMessageWriter;
     };
 }
 

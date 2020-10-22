@@ -47,16 +47,16 @@ namespace command {
         /**
          * Sets a message writer of a command.
          */
-        virtual void setMessageWriter(ICommandMessageWriterPtr messageWriter) override;
+        virtual void setMessageWriter(base::IMessageWriterPtr messageWriter) override;
 
         /**
          * Gets a message writer of a command.
          */
-        virtual ICommandMessageWriter& getMessageWriter() override;
+        virtual base::IMessageWriter& getMessageWriter() override;
 
     private:
         ICommandParametersPtr m_parameters;
-        ICommandMessageWriterPtr m_messageWriter;
+        base::IMessageWriterPtr m_messageWriter;
     };
 }
 

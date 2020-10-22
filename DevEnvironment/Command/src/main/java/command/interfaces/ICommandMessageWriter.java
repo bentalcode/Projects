@@ -3,9 +3,9 @@ package command.interfaces;
 import base.interfaces.IMessageWriter;
 
 /**
- * The ICommandMessageWriter interface defines a writer of a command message.
+ * The ICommandMessageWriter interface defines a writer of a command messages.
  */
-public interface ICommandMessageWriter extends IMessageWriter {
+public interface ICommandMessageWriter {
     /**
      * Writes a usage message.
      */
@@ -15,4 +15,10 @@ public interface ICommandMessageWriter extends IMessageWriter {
      * Writes a usage message.
      */
     void writeUsageMessage(boolean status);
+
+    /**
+     * Gets the message writer.
+     */
+    IMessageWriter getMessageWriter();
+
 }

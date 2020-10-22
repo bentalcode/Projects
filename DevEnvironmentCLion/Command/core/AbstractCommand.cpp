@@ -43,7 +43,7 @@ const ICommandParameters& AbstractCommand::getParameters() const
 /**
  * Sets a message writer of a command.
  */
-void AbstractCommand::setMessageWriter(ICommandMessageWriterPtr messageWriter)
+void AbstractCommand::setMessageWriter(base::IMessageWriterPtr messageWriter)
 {
     if (!messageWriter)
     {
@@ -57,8 +57,7 @@ void AbstractCommand::setMessageWriter(ICommandMessageWriterPtr messageWriter)
 /**
  * Gets a message writer of a command.
  */
-ICommandMessageWriter& AbstractCommand::getMessageWriter()
+base::IMessageWriter& AbstractCommand::getMessageWriter()
 {
     return *m_messageWriter;
 }
-

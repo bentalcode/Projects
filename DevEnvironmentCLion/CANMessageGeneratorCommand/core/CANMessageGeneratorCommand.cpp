@@ -89,7 +89,7 @@ bool CANMessageGeneratorCommand::processMessages(
     const std::string& messageName,
     size_t numberOfMessages,
     const base::Duration& timeout,
-    command::IMessageWriter& messageWriter)
+    base::IMessageWriter& messageWriter)
 {
     size_t messageIndex = 0;
 
@@ -113,7 +113,7 @@ bool CANMessageGeneratorCommand::processMessages(
  */
 void CANMessageGeneratorCommand::processMessage(
     const std::string& messageName,
-    command::IMessageWriter& messageWriter)
+    base::IMessageWriter& messageWriter)
 {
     base::DateTimePtr sendingTime = base::DateTime::now();
     m_messageHandler->setMessageSendingTime(messageName, sendingTime);

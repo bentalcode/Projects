@@ -68,14 +68,14 @@ namespace controllerareanetwork {
                 const std::string& messageName,
                 size_t numberOfMessages,
                 const base::Duration& timeout,
-                command::IMessageWriter& messageWriter);
+                base::IMessageWriter& messageWriter);
 
             /**
              * Processes the message.
              */
             void processMessage(
                 const std::string& messageName,
-                command::IMessageWriter& messageWriter);
+                base::IMessageWriter& messageWriter);
 
             /**
              * Registers the messages with the Jitter.

@@ -1,23 +1,20 @@
 package command.core;
 
-import base.core.ColorType;
 import base.core.Conditions;
 import base.core.DestructorHandler;
+import base.core.MessageWriter;
 import base.interfaces.IDestructorHandler;
-import command.interfaces.ICommandManifest;
+import base.interfaces.IMessageWriter;
 import command.interfaces.ICommandMessageWriter;
 import java.io.Closeable;
-import java.io.PrintWriter;
 
 /**
  * The CommandMessageWriter class implements a writer of a command message.
  */
 public final class CommandMessageWriter implements Closeable, ICommandMessageWriter {
     private final String usageMessage;
-    private final PrintWriter informationalWriter;
-    private final PrintWriter warningWriter;
-    private final PrintWriter errorWriter;
-    private final IDestructorHandler destructorHandler;
+    private final MessageWriter messageWriter;
+    private final IDestructorHandler destructorHandler = new DestructorHandler();
 
     /**
      * The CommandMessageWriter constructor.
@@ -29,20 +26,8 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
 
         this.usageMessage = usageMessage;
 
-        try (DestructorHandler destructorHandler = new DestructorHandler()) {
-            PrintWriter informationalWriter = new PrintWriter(System.out);
-            destructorHandler.register(informationalWriter);
-            PrintWriter warningWriter = new PrintWriter(System.err);
-            destructorHandler.register(warningWriter);
-            PrintWriter errorWriter = new PrintWriter(System.err);
-            destructorHandler.register(errorWriter);
-
-            this.destructorHandler = destructorHandler.move();
-
-            this.informationalWriter = informationalWriter;
-            this.warningWriter = warningWriter;
-            this.errorWriter = errorWriter;
-        }
+        this.messageWriter = new MessageWriter();
+        this.destructorHandler.register(this.messageWriter);
     }
 
     /**
@@ -53,12 +38,13 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
         this.destructorHandler.close();
     }
 
+
     /**
      * Writes a usage message.
      */
     @Override
     public void writeUsageMessage() {
-        this.writeInformationalMessage(this.usageMessage);
+        this.messageWriter.writeInformationalMessage(this.usageMessage);
     }
 
     /**
@@ -67,72 +53,18 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
     @Override
     public void writeUsageMessage(boolean status) {
         if (status) {
-            this.writeInformationalMessage(this.usageMessage);
+            this.messageWriter.writeInformationalMessage(this.usageMessage);
         }
         else {
-            this.writeErrorMessage(this.usageMessage);
+            this.messageWriter.writeInformationalMessage(this.usageMessage);
         }
     }
 
     /**
-     * Writes an informational message.
+     * Gets the message writer.
      */
     @Override
-    public void writeInformationalMessage(String message) {
-        this.writeMessage(
-            this.informationalWriter,
-            ColorType.GREEN + message);
-    }
-
-    /**
-     * Writes a warning message.
-     */
-    @Override
-    public void writeWarningMessage(String message) {
-        this.writeMessage(
-            this.warningWriter,
-            ColorType.YELLOW + message);
-    }
-
-    /**
-     * Writes an error message.
-     */
-    @Override
-    public void writeErrorMessage(String message) {
-        this.writeMessage(
-            this.errorWriter,
-            ColorType.RED + message);
-    }
-
-    /**
-     * Gets an error writer.
-     */
-    @Override
-    public PrintWriter getErrorWriter() {
-        return this.errorWriter;
-    }
-
-    /**
-     * Gets a warning writer.
-     */
-    @Override
-    public PrintWriter getWarningWriter() {
-        return this.warningWriter;
-    }
-
-    /**
-     * Gets an informational writer.
-     */
-    @Override
-    public PrintWriter getInformationalWriter() {
-        return this.informationalWriter;
-    }
-
-    /**
-     * Writes a message to an output stream.
-     */
-    private void writeMessage(PrintWriter writer, String message) {
-        writer.println(message);
-        writer.flush();
+    public IMessageWriter getMessageWriter() {
+        return this.messageWriter;
     }
 }

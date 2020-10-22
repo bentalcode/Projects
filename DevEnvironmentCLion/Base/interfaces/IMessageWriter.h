@@ -1,7 +1,7 @@
 #ifndef I_MESSAGE_WRITER_H_01c54c66_a0c8_4a91_b03f_99f0876f5e18
 #define I_MESSAGE_WRITER_H_01c54c66_a0c8_4a91_b03f_99f0876f5e18
 
-namespace command {
+namespace base {
 
     /**
      * The IMessageWriter interface defines a writer of messages.

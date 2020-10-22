@@ -6,9 +6,9 @@
 namespace command {
 
     /**
-     * The ICommandMessageWriter interface defines a writer of a command message.
+     * The ICommandMessageWriter interface defines a writer of a command messages.
      */
-    class ICommandMessageWriter : public IMessageWriter
+    class ICommandMessageWriter
     {
     public:
         /**
@@ -42,6 +42,11 @@ namespace command {
          * Writes a usage message.
          */
         virtual void writeUsageMessage(bool status) = 0;
+
+        /**
+         * Gets the message writer.
+         */
+        virtual base::IMessageWriterPtr getMessageWriter() = 0;
     };
 
     using ICommandMessageWriterPtr = std::shared_ptr<ICommandMessageWriter>;

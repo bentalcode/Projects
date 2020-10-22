@@ -21,7 +21,7 @@ import java.nio.file.Path;
  */
 public final class CommandHandler implements Closeable, ICommandHandler {
     private final ICommandManifest manifest;
-    private final ICommandMessageWriter messageWriter;
+    private final ICommandMessageWriter commandMessageWriter;
     private final IDestructorHandler destructorHandler = new DestructorHandler();
 
     /**
@@ -43,7 +43,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
         this.destructorHandler.register(commandMessageWriter);
 
         this.manifest = manifest;
-        this.messageWriter = commandMessageWriter;
+        this.commandMessageWriter = commandMessageWriter;
     }
 
     /**
@@ -67,7 +67,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
                     "The command: " + this.manifest.getName() +
                     " has failed to run, Exit Status: -1";
 
-                this.messageWriter.writeErrorMessage(errorMessage);
+                this.commandMessageWriter.getMessageWriter().writeErrorMessage(errorMessage);
 
                 exitStatus = -1;
             }
@@ -78,7 +78,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
                 " has failed to run due to runtime error: " + e.getMessage() +
                 ", Exit Status: -1";
 
-            this.messageWriter.writeErrorMessage(errorMessage);
+            this.commandMessageWriter.getMessageWriter().writeErrorMessage(errorMessage);
             exitStatus = -1;
         }
         catch (Exception e) {
@@ -87,7 +87,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
                 " has failed to run due to an en-expected error: " + e.getMessage() +
                 ", Exit Status: -1";
 
-            this.messageWriter.writeErrorMessage(errorMessage);
+            this.commandMessageWriter.getMessageWriter().writeErrorMessage(errorMessage);
 
             exitStatus = -1;
         }
@@ -128,10 +128,10 @@ public final class CommandHandler implements Closeable, ICommandHandler {
                     " has failed to parse the parameters due to parsing error: " + parametersResult.getErrorMessage() +
                     ", Exit Status: 0";
 
-                this.messageWriter.writeErrorMessage(errorMessage);
+                this.commandMessageWriter.getMessageWriter().writeErrorMessage(errorMessage);
             }
 
-            this.messageWriter.writeUsageMessage(parametersResult.getStatus());
+            this.commandMessageWriter.writeUsageMessage(parametersResult.getStatus());
 
             return parametersResult.getStatus();
         }
@@ -142,7 +142,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
         command.setProcessInformation(processInformation);
         command.setParameters(parametersResult.getResult());
 
-        command.setMessageWriter(this.messageWriter);
+        command.setMessageWriter(this.commandMessageWriter.getMessageWriter());
 
         //
         // Run the logic of the command...

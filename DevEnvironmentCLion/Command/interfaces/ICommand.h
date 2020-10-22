@@ -2,7 +2,7 @@
 #define I_COMMAND_H_7331e91c_6adf_416a_b19e_3180f8f9b285
 
 #include "ICommandParameters.h"
-#include "ICommandMessageWriter.h"
+#include "IMessageWriter.h"
 
 namespace command {
 
@@ -47,12 +47,12 @@ namespace command {
         /**
          * Sets a message writer of a command.
          */
-        virtual void setMessageWriter(ICommandMessageWriterPtr messageWriter) = 0;
+        virtual void setMessageWriter(base::IMessageWriterPtr messageWriter) = 0;
 
         /**
          * Gets a message writer of a command.
          */
-        virtual ICommandMessageWriter& getMessageWriter() = 0;
+        virtual base::IMessageWriter& getMessageWriter() = 0;
 
         /**
          * Runs the logic of a command.

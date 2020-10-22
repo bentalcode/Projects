@@ -98,6 +98,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IMainParser.h
     ./interfaces/IMatch.h
     ./interfaces/IMatrix.h
+    ./interfaces/IMessageWriter.h
     ./interfaces/IParser.h
     ./interfaces/IParsingResult.h
     ./interfaces/IRandomGenerator.h
@@ -118,6 +119,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IterableComparator.h
     ./interfaces/IteratorComparator.h
     ./interfaces/LogStreamWriter.h
+    ./interfaces/MessageWriter.h
     ./interfaces/Pair.h
     ./interfaces/Range.h
     ./interfaces/SharedPtr.h
@@ -141,6 +143,7 @@ set(BASE_SOURCES_FILES
     ./core/Indexes.cpp
     ./core/KmpStringSearch.cpp
     ./core/LogStreamWriter.cpp
+    ./core/MessageWriter.cpp
     ./core/NotBitOperator.cpp
     ./core/OrBitOperator.cpp
     ./core/Position.cpp
