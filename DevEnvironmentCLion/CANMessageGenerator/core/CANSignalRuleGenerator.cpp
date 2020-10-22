@@ -2,6 +2,7 @@
 #include "CANSignalRuleGenerator.h"
 #include "CANSignalRule.h"
 #include "CANMessageGeneratorException.h"
+#include "CANMessageName.h"
 #include <cmath>
 
 using namespace controllerareanetwork::messagegenerator;
@@ -36,6 +37,12 @@ CANSignalRuleGenerator::~CANSignalRuleGenerator()
  */
 ICANSignalRulePtr CANSignalRuleGenerator::generate(const std::string& name)
 {
+    //
+    // Generate the name of the rule...
+    //
+    std::vector<std::string::value_type> messageNameCharacters(name.begin(), name.end());
+    ICANMessageNamePtr messageName = CANMessageName::make(messageNameCharacters);
+
     //
     // Generate a random data size...
     //
@@ -89,7 +96,7 @@ ICANSignalRulePtr CANSignalRuleGenerator::generate(const std::string& name)
     std::string transmittingNodeName = generateTransmittingNodeName();
 
     return CANSignalRule::make(
-        name,
+        messageName,
         bitStart,
         bitLength,
         byteOrderBigEndian,

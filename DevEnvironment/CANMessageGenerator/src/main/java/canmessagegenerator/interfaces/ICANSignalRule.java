@@ -19,7 +19,7 @@ public interface ICANSignalRule extends ICANRule {
     /**
      * Gets the name of the signal.
      */
-    String getName();
+    ICANMessageName getName();
 
     /**
      * Gets the bit start.

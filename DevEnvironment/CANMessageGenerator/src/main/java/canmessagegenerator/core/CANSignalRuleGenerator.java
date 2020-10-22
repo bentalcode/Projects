@@ -6,6 +6,7 @@ import base.core.Pair;
 import base.interfaces.IPair;
 import base.interfaces.IPrimitiveSize;
 import canmessagegenerator.CANMessageGeneratorException;
+import canmessagegenerator.interfaces.ICANMessageName;
 import canmessagegenerator.interfaces.ICANRuleGenerator;
 import canmessagegenerator.interfaces.ICANSignalRule;
 import java.util.List;
@@ -40,6 +41,11 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
      */
     @Override
     public ICANSignalRule generate(String name) {
+        //
+        // Generate a message name...
+        //
+        ICANMessageName messageName = CANMessageName.make(name.toCharArray());
+
         //
         // Generate a random data size...
         //
@@ -93,7 +99,7 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         String transmittingNodeName = this.generateTransmittingNodeName();
 
         return CANSignalRule.make(
-            name,
+            messageName,
             bitStart,
             bitLength,
             byteOrderBigEndian,

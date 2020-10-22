@@ -1,6 +1,8 @@
 #ifndef I_CAN_MESSAGE_NAME_H_0f5383a3_fe96_4551_9953_dda12baabd01
 #define I_CAN_MESSAGE_NAME_H_0f5383a3_fe96_4551_9953_dda12baabd01
 
+#include <vector>
+
 namespace controllerareanetwork {
     namespace messagegenerator {
 

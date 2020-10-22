@@ -1,6 +1,7 @@
 #include "PreCompiled.h"
 #include "CANMessageRuleGenerator.h"
 #include "CANMessageRule.h"
+#include "CANMessageName.h"
 #include "CANSignalRuleGenerator.h"
 #include "Bits.h"
 

@@ -1,7 +1,7 @@
 #ifndef I_CAN_RULE_H_96fe6fd1_99c3_4b70_bb92_b2a453c85554
 #define I_CAN_RULE_H_96fe6fd1_99c3_4b70_bb92_b2a453c85554
 
-#include <memory>
+#include "ICANMessageName.h"
 
 namespace controllerareanetwork {
     namespace messagegenerator {
@@ -33,6 +33,11 @@ namespace controllerareanetwork {
              */
             ICANRule &operator=(const ICANRule&) = delete;
             ICANRule &operator=(ICANRule&&) = delete;
+
+            /**
+             * Gets the name of the message.
+             */
+            virtual const ICANMessageName& getName() const = 0;
 
             /**
              * Gets the string representation of this instance.

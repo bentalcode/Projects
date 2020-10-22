@@ -28,7 +28,7 @@ namespace controllerareanetwork {
              * Creates a new rule.
              */
             static ICANSignalRulePtr make(
-                const std::string& name,
+                ICANMessageNamePtr name,
                 size_t bitStart,
                 size_t bitLength,
                 bool byteOrderBigEndian,
@@ -44,7 +44,7 @@ namespace controllerareanetwork {
              * The CANSignal constructor.
              */
             CANSignalRule(
-                const std::string& name,
+                ICANMessageNamePtr name,
                 size_t bitStart,
                 size_t bitLength,
                 bool byteOrderBigEndian,
@@ -74,9 +74,9 @@ namespace controllerareanetwork {
             CANSignalRule& operator=(CANSignalRule&&) = delete;
 
             /**
-             * Gets the name of the signal.
+             * Gets the name of the message.
              */
-            virtual const std::string& getName() const override;
+            virtual const ICANMessageName& getName() const override;
 
             /**
              * Gets the bit start.
@@ -150,7 +150,7 @@ namespace controllerareanetwork {
             static const std::string valueTypeUnsignedSyntax;
             static const std::string valueTypeSignedSyntax;
 
-            std::string m_name;
+            ICANMessageNamePtr m_name;
             size_t m_bitStart;
             size_t m_bitLength;
             bool m_byteOrderBigEndian;

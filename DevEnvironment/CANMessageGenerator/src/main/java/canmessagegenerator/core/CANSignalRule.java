@@ -2,6 +2,7 @@ package canmessagegenerator.core;
 
 import base.core.Conditions;
 import base.core.Strings;
+import canmessagegenerator.interfaces.ICANMessageName;
 import canmessagegenerator.interfaces.ICANSignalRule;
 import java.io.PrintWriter;
 
@@ -27,7 +28,7 @@ public final class CANSignalRule implements ICANSignalRule {
     private static final String valueTypeUnsignedSyntax = "+";
     private static final String valueTypeSignedSyntax = "-";
 
-    private final String name;
+    private final ICANMessageName name;
     private final int bitStart;
     private final int bitLength;
     private final boolean byteOrderBigEndian;
@@ -43,7 +44,7 @@ public final class CANSignalRule implements ICANSignalRule {
      * Creates a new rule.
      */
     public static ICANSignalRule make(
-        String name,
+        ICANMessageName name,
         int bitStart,
         int bitLength,
         boolean byteOrderBigEndian,
@@ -73,7 +74,7 @@ public final class CANSignalRule implements ICANSignalRule {
      * The CANSignal constructor.
      */
     private CANSignalRule(
-        String name,
+        ICANMessageName name,
         int bitStart,
         int bitLength,
         boolean byteOrderBigEndian,
@@ -84,6 +85,10 @@ public final class CANSignalRule implements ICANSignalRule {
         int maximum,
         String unit,
         String transmittingNodeName) {
+
+        Conditions.validateNotNull(
+            name,
+            "The name of the message.");
 
         Conditions.validate(
             bitStart >= 0,
@@ -114,7 +119,7 @@ public final class CANSignalRule implements ICANSignalRule {
      * Gets the name of the signal.
      */
     @Override
-    public String getName() {
+    public ICANMessageName getName() {
         return this.name;
     }
 

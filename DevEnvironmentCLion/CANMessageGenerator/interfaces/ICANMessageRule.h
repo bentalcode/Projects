@@ -3,7 +3,6 @@
 
 #include "ICANRule.h"
 #include "CANMessageId.h"
-#include "CANMessageName.h"
 #include "ICANSignalRule.h"
 
 namespace controllerareanetwork {
@@ -49,11 +48,6 @@ namespace controllerareanetwork {
              * Gets the identifier of the message.
              */
             virtual const ICANMessageId& getId() const = 0;
-
-            /**
-             * Gets the name of the message.
-             */
-            virtual const ICANMessageName& getName() const = 0;
 
             /**
              * The length (DLC) must be an integer between 0 and 1785.

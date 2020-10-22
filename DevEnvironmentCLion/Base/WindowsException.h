@@ -9,7 +9,7 @@ namespace base {
     /**
      * The WindowsException class implements a windows exception.
      */
-    class WindowsException : public base::BaseException
+    class WindowsException final : public base::BaseException
     {
     public:
         /**

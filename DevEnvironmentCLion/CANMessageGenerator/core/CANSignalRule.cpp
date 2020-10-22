@@ -15,7 +15,7 @@ const std::string CANSignalRule::valueTypeSignedSyntax = "-";
  * Creates a new rule.
  */
 ICANSignalRulePtr CANSignalRule::make(
-    const std::string& name,
+    ICANMessageNamePtr name,
     size_t bitStart,
     size_t bitLength,
     bool byteOrderBigEndian,
@@ -45,7 +45,7 @@ ICANSignalRulePtr CANSignalRule::make(
  * The CANSignal constructor.
  */
 CANSignalRule::CANSignalRule(
-    const std::string& name,
+    ICANMessageNamePtr name,
     size_t bitStart,
     size_t bitLength,
     bool byteOrderBigEndian,
@@ -68,6 +68,12 @@ CANSignalRule::CANSignalRule(
     m_unit(unit),
     m_transmittingNodeName(transmittingNodeName)
 {
+    if (!name)
+    {
+        std::string errorMessage = "The name of the message is not defined.";
+        throw CANMessageGeneratorException(errorMessage);
+    }
+
     if (minimum > maximum)
     {
         std::string errorMessage = "The maximum can not be less than the minimum.";
@@ -85,9 +91,9 @@ CANSignalRule::~CANSignalRule()
 /**
  * Gets the name of the signal.
  */
-const std::string& CANSignalRule::getName() const
+const ICANMessageName& CANSignalRule::getName() const
 {
-    return m_name;
+    return *m_name;
 }
 
 /**

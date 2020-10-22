@@ -47,11 +47,6 @@ namespace controllerareanetwork {
             ICANSignalRule &operator=(ICANSignalRule&&) = delete;
 
             /**
-             * Gets the name of the signal.
-             */
-            virtual const std::string& getName() const = 0;
-
-            /**
              * Gets the bit start.
              * The bit start counts from 0 and marks the start of the signal in the data payload.
              */
