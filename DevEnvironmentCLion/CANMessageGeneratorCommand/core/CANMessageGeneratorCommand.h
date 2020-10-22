@@ -78,6 +78,20 @@ namespace controllerareanetwork {
                 base::IMessageWriter& messageWriter);
 
             /**
+             * Displays the Jitter information of the messages.
+             */
+            void displayMessagesJitterInformation(
+                const std::vector<std::pair<std::string, size_t>>& messages,
+                base::IMessageWriter& messageWriter);
+
+            /**
+             * Displays the Jitter information of the message.
+             */
+            void displayMessageJitterInformation(
+                const std::string& messageName,
+                base::IMessageWriter& messageWriter);
+
+            /**
              * Registers the messages with the Jitter.
              */
             void registerMessagesWithJitter(const std::vector<std::pair<std::string, size_t>>& messages);

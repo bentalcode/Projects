@@ -7,8 +7,8 @@
 
 using namespace controllerareanetwork::messagegeneratorcommand;
 
-static const std::string messagesDeviationText = "Controller Area Network Message Generator Summary:";
-static const std::string messageNameText = "messageName:";
+const std::string CANMessageGeneratorCommand::messagesDeviationText = "Controller Area Network Message Generator Summary:";
+const std::string CANMessageGeneratorCommand::messageNameText = "messageName:";
 
 /**
  * Creates a new command.
@@ -44,6 +44,12 @@ void CANMessageGeneratorCommand::run()
     generateMessages(
         m_parameters->getDriveSessionDuration(),
         m_parameters->getMessagesFrequencies());
+
+    getMessageWriter().writeInformationalMessage("\n");
+
+    displayMessagesJitterInformation(
+        m_parameters->getMessagesFrequencies(),
+        getMessageWriter());
 }
 
 /**
@@ -132,6 +138,37 @@ void CANMessageGeneratorCommand::processMessage(
 }
 
 /**
+ * Displays the Jitter information of the messages.
+ */
+void CANMessageGeneratorCommand::displayMessagesJitterInformation(
+    const std::vector<std::pair<std::string, size_t>>& messages,
+    base::IMessageWriter& messageWriter)
+{
+    messageWriter.writeInformationalMessage(messagesDeviationText);
+
+    for (const std::pair<std::string, size_t> message : messages)
+    {
+        displayMessageJitterInformation(message.first, messageWriter);
+    }
+}
+
+/**
+ * Displays the Jitter information of the message.
+ */
+void CANMessageGeneratorCommand::displayMessageJitterInformation(
+    const std::string& messageName,
+    base::IMessageWriter& messageWriter)
+{
+    IJitterMessageDataPtr messageData = m_messageHandler->getMessageData(messageName);
+
+    std::stringstream informationStream;
+    informationStream
+        << messageNameText << " " << messageName << ", " << messageData->toString();
+
+    messageWriter.writeInformationalMessage(informationStream.str());
+}
+
+/**
  * Registers the messages with the Jitter.
  */
 void CANMessageGeneratorCommand::registerMessagesWithJitter(const std::vector<std::pair<std::string, size_t>>& messages)
@@ -155,13 +192,7 @@ bool CANMessageGeneratorCommand::sessionActive(const base::DateTime& startTime, 
 {
     base::DateTimePtr currTime = base::DateTime::now();
 
-    auto t1 = startTime.getTimePoint().time_since_epoch().count();
-    auto t2 = currTime->getTimePoint().time_since_epoch().count();
-
     base::DurationPtr currDuration = base::Duration::between(startTime, *currTime);
-
-    size_t currDurationInMilliseconds = currDuration->toMilliseconds();
-    size_t timeOutInMilliseconds = timeout.toMilliseconds();
 
     return *currDuration < timeout;
 }
