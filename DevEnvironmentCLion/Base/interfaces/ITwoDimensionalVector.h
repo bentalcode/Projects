@@ -8,7 +8,7 @@ namespace base
 {
     /**
      * The ITwoDimensionalVector interface defines a generic two dimensional vector.
-     * The list can contains rows with different sizes.
+     * The data structure can contains rows with different sizes.
      */
     template <typename T>
     class ITwoDimensionalVector : public ISizableCollection, public IIterable<T>
@@ -67,14 +67,14 @@ namespace base
         virtual void addRow(const std::vector<T>& row) = 0;
 
         /**
-         * Gets a row.
+         * Gets a row by using operator[] const.
          */
-        virtual const std::vector<T>& operator[](int index) const = 0;
+        virtual const std::vector<T>& operator[](size_t index) const = 0;
 
         /**
-         * Gets a row.
+         * Gets a row by using operator[].
          */
-        virtual std::vector<T>& operator[](int index) = 0;
+        virtual std::vector<T>& operator[](size_t index) = 0;
     };
 
     template <typename T>

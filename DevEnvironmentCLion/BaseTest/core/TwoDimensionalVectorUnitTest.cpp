@@ -64,9 +64,9 @@ void TwoDimensionalVectorUnitTest::registerTests(unit_testing::ITestRegistration
  */
 void TwoDimensionalVectorUnitTest::twoDimensionalVectorCreationTest()
 {
-    for (int row = 1; row <= 10; ++row)
+    for (size_t row = 1; row <= 10; ++row)
     {
-        for (int column = 1; column <= 10; ++column)
+        for (size_t column = 1; column <= 10; ++column)
         {
             std::shared_ptr<std::vector<std::vector<int>>> data = m_testData.createTwoDimensionalVector(row, column, 1);
             testTwoDimensionalVectorCreation(*data);
@@ -79,9 +79,9 @@ void TwoDimensionalVectorUnitTest::twoDimensionalVectorCreationTest()
  */
 void TwoDimensionalVectorUnitTest::twoDimensionalVectorIterationTest()
 {
-    for (int row = 1; row <= 10; ++row)
+    for (size_t row = 1; row <= 10; ++row)
     {
-        for (int column = 1; column <= 10; ++column)
+        for (size_t column = 1; column <= 10; ++column)
         {
             std::shared_ptr<std::vector<std::vector<int>>> data = m_testData.createTwoDimensionalVector(row, column, 1);
             testTwoDimensionalVectorIteration(*data);
@@ -94,13 +94,13 @@ void TwoDimensionalVectorUnitTest::twoDimensionalVectorIterationTest()
  */
 void TwoDimensionalVectorUnitTest::testTwoDimensionalVectorCreation(const std::vector<std::vector<int>>& data)
 {
-    base::TwoDimensionalVector<int> vector(data);
+    base::TwoDimensionalVector<int> twoDimensionalVector(data);
 
-    for (int row = 0; row < data.size(); ++row)
+    for (size_t row = 0; row < data.size(); ++row)
     {
-        for (int column = 0; column < data[row].size(); ++column)
+        for (size_t column = 0; column < data[row].size(); ++column)
         {
-            int currentValue = vector[row][column];
+            int currentValue = twoDimensionalVector[row][column];
             int expectedValue = data[row][column];
 
             getAssertion().assertEquals(

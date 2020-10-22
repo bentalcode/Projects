@@ -37,14 +37,39 @@ namespace base
         IList& operator=(IList&&) = delete;
 
         /**
+         * Gets an element from the front.
+         */
+        virtual const T& front() const = 0;
+
+        /**
+         * Gets an element from the back.
+         */
+        virtual const T& back() const = 0;
+
+        /**
          * Gets an element at a specified position.
          */
         virtual const T& get(std::size_t index) const = 0;
 
         /**
-         * Adds an element.
+         * Adds an element to the back of the list.
          */
-        virtual void add(const T& element) = 0;
+        virtual void addBack(const T& element) = 0;
+
+        /**
+         * Adds an element to the front of the list.
+         */
+        virtual void addFront(const T& element) = 0;
+
+        /**
+         * Removes an element from the back of the list.
+         */
+        virtual void removeBack() = 0;
+
+        /**
+         * Removes an element from the front of the list.
+         */
+        virtual void removeFront() = 0;
     };
 }
 

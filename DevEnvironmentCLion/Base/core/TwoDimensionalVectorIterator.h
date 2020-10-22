@@ -2,7 +2,6 @@
 #define TWO_DIMENSIONAL_VECTOR_ITERATOR_H_499f9121_6edc_4a8a_8914_4da66c409f28
 
 #include "IIterator.h"
-#include "IList.h"
 
 namespace base
 {
@@ -14,12 +13,12 @@ namespace base
     {
     public:
         /**
-         * The constructor.
+         * The TwoDimensionalVectorIterator constructor.
          */
         explicit TwoDimensionalVectorIterator(const std::vector<std::vector<T>>& data);
 
         /**
-         * The destructor.
+         * The TwoDimensionalVectorIterator destructor.
          */
         virtual ~TwoDimensionalVectorIterator();
 
@@ -61,49 +60,58 @@ namespace base
          */
         std::size_t columnSize(std::size_t rowIndex) const;
 
-        /**
-         * Gets a value of a specific position.
-         */
-        const T& get(std::size_t rowIndex, std::size_t columnIndex) const;
-
         const std::vector<std::vector<T>>& m_data;
-        size_t m_rows;
+        size_t m_rowsSize;
         size_t m_rowIndex;
         size_t m_columnIndex;
     };
 
+    /**
+     * The TwoDimensionalVectorIterator constructor.
+     */
     template <typename T>
     TwoDimensionalVectorIterator<T>::TwoDimensionalVectorIterator(const std::vector<std::vector<T>>& data) :
         m_data(data),
-        m_rows(data.size()),
+        m_rowsSize(data.size()),
         m_rowIndex(0),
         m_columnIndex(0)
     {
     }
 
+    /**
+     * The TwoDimensionalVectorIterator destructor.
+     */
     template <typename T>
     TwoDimensionalVectorIterator<T>::~TwoDimensionalVectorIterator()
     {
     }
 
+    /**
+     * Checks whether there is a next element.
+     */
     template <typename T>
     bool TwoDimensionalVectorIterator<T>::hasNext() const
     {
-        return m_rowIndex < m_rows && m_columnIndex < columnSize(m_rowIndex);
+        return m_rowIndex < m_rowsSize && m_columnIndex < columnSize(m_rowIndex);
     }
 
+    /**
+     * Gets the next element.
+     */
     template <typename T>
     T TwoDimensionalVectorIterator<T>::next()
     {
         assert(hasNext());
-
-        const T& currElement = get(m_rowIndex, m_columnIndex);
+        const T& currElement = m_data[m_rowIndex][m_columnIndex];
 
         moveNext();
 
         return currElement;
     }
 
+    /**
+     * Resets the iterator.
+     */
     template <typename T>
     void TwoDimensionalVectorIterator<T>::reset()
     {
@@ -137,17 +145,6 @@ namespace base
         return m_data[rowIndex].size();
     }
 
-    /**
-     * Gets a value of a specific position.
-     */
-    template <typename T>
-    const T& TwoDimensionalVectorIterator<T>::get(std::size_t rowIndex, std::size_t columnIndex) const
-    {
-        assert(rowIndex >= 0 && rowIndex < m_rows);
-        assert(columnIndex >= 0 && columnIndex < m_data[rowIndex].size());
-
-        return m_data[rowIndex][columnIndex];
-    }
 }
 
 #endif // TWO_DIMENSIONAL_VECTOR_ITERATOR_H_499f9121_6edc_4a8a_8914_4da66c409f28

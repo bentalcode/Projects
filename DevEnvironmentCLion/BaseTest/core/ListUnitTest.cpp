@@ -48,7 +48,7 @@ void ListUnitTest::registerTests(unit_testing::ITestRegistration& registration)
  */
 void ListUnitTest::listTest()
 {
-    for (int size = 1; size <= 100; ++size)
+    for (size_t size = 1; size <= 100; ++size)
     {
         testList(size);
     }
@@ -57,15 +57,15 @@ void ListUnitTest::listTest()
 /**
  * Tests the list.
  */
-void ListUnitTest::testList(int size)
+void ListUnitTest::testList(size_t size)
 {
-    base::List<int> list(size);
+    base::List<int> list;
 
     int value = 0;
-    for (int i = 0; i < size; ++i)
+    for (size_t i = 0; i < size; ++i)
     {
         ++value;
-        list.add(value);
+        list.addBack(value);
     }
 
     int index = 0;

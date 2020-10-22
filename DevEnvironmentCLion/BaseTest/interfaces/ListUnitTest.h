@@ -48,7 +48,7 @@ namespace base {
         /**
          * Tests the list.
          */
-        void testList(int size);
+        void testList(size_t size);
     };
 }
 
