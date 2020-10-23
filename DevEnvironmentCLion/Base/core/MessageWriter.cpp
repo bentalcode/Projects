@@ -20,6 +20,7 @@ MessageWriter::MessageWriter() :
         std::cout,
         std::cout,
         std::cout,
+        std::cout,
         createConsoleColorHandler())
 {
 }
@@ -31,10 +32,12 @@ MessageWriter::MessageWriter(
     std::ostream& informationalStream,
     std::ostream& warningStream,
     std::ostream& errorStream,
+    std::ostream& debugStream,
     base::IConsoleColorHandlerPtr consoleColorHandler) :
     m_informationalStream(std::cout),
     m_warningStream(std::cout),
     m_errorStream(std::cout),
+    m_debugStream(std::cout),
     m_consoleColorHandler(consoleColorHandler)
 {
     if (consoleColorHandler) {
@@ -97,6 +100,14 @@ std::ostream& MessageWriter::getWarningStream()
 std::ostream& MessageWriter::getInformationalStream()
 {
     return m_informationalStream;
+}
+
+/**
+ * Gets a debug stream.
+ */
+std::ostream& MessageWriter::getDebugStream()
+{
+    return m_debugStream;
 }
 
 /**

@@ -29,6 +29,7 @@ namespace base {
             std::ostream& errorStream,
             std::ostream& warningStream,
             std::ostream& informationalStream,
+            std::ostream& debugStream,
             base::IConsoleColorHandlerPtr consoleColorHandler);
 
         /**
@@ -69,14 +70,19 @@ namespace base {
         virtual std::ostream& getErrorStream() override;
 
         /**
-         * Gets a warning writer.
+         * Gets a warning stream.
          */
         virtual std::ostream& getWarningStream() override;
 
         /**
-         * Gets an informational writer.
+         * Gets an informational stream.
          */
         virtual std::ostream& getInformationalStream() override;
+
+        /**
+         * Gets a debug stream.
+         */
+        virtual std::ostream& getDebugStream() override;
 
     private:
         /**
@@ -94,6 +100,7 @@ namespace base {
         std::ostream& m_informationalStream;
         std::ostream& m_warningStream;
         std::ostream& m_errorStream;
+        std::ostream& m_debugStream;
         base::IConsoleColorHandlerPtr m_consoleColorHandler;
     };
 }

@@ -23,7 +23,7 @@ namespace unit_testing
          */
         UnitTestHandler(
             IUnitTest& unitTest,
-            base::LogStreamWriter& logStreamWriter);
+            base::IMessageWriter& messageWriter);
 
         /**
          * The UnitTestHandler destructor.
@@ -65,7 +65,7 @@ namespace unit_testing
 
         IUnitTest& m_unitTest;
 
-        base::LogStreamWriter& m_logStreamWriter;
+        base::IMessageWriter& m_messageWriter;
 
         using TestList = std::list<ITestFunctionPtr>;
         TestList m_unitTests;

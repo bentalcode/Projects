@@ -21,7 +21,7 @@ namespace unit_testing
         /**
          * The constructor.
          */
-        explicit UnitTestManager(base::LogStreamWriterPtr logStreamWriter);
+        explicit UnitTestManager(base::IMessageWriterPtr messageWriter);
 
         /**
          * The destructor.
@@ -61,7 +61,7 @@ namespace unit_testing
          */
         void runUnitTest(IUnitTest& unitTest);
 
-        base::LogStreamWriterPtr m_logStreamWriter;
+        base::IMessageWriterPtr m_messageWriter;
 
         using UnitTestList = std::list<IUnitTestPtr>;
         UnitTestList m_unitTests;

@@ -2,7 +2,7 @@
 #define I_UNIT_TEST_H_d86268d1_323b_4615_b062_2313f504fe9c
 
 #include "ITestRegistration.h"
-#include "LogStreamWriter.h"
+#include "IMessageWriter.h"
 
 namespace unit_testing
 {
@@ -58,9 +58,9 @@ namespace unit_testing
         virtual void postRun() = 0;
 
         /**
-         * Sets the log stream writer.
+         * Sets the message writer.
          */
-        virtual void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter) = 0;
+        virtual void setMessageWriter(base::IMessageWriterPtr messageWriter) = 0;
     };
 }
 

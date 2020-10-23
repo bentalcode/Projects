@@ -1,6 +1,7 @@
 #include "PreCompiled.h"
 
 #include "Assertion.h"
+#include "MessageWriter.h"
 #include "TestBaseException.h"
 
 using namespace test_base;
@@ -9,15 +10,15 @@ using namespace test_base;
  * The Assertion constructor.
  */
 Assertion::Assertion() :
-    m_logStreamWriter(new base::LogStreamWriter())
+    Assertion(base::MessageWriter::make())
 {
 }
 
 /**
  * The Assertion constructor.
  */
-Assertion::Assertion(base::LogStreamWriterPtr logStreamWriter) :
-    m_logStreamWriter(logStreamWriter)
+Assertion::Assertion(base::IMessageWriterPtr messageWriter) :
+    m_messageWriter(messageWriter)
 {
 }
 
@@ -37,9 +38,9 @@ void Assertion::assertTrue(
 {
     if (!expression)
     {
-        if (m_logStreamWriter)
+        if (m_messageWriter)
         {
-            m_logStreamWriter->getErrorStream() << message << std::endl;
+            m_messageWriter->writeErrorMessage(message);
         }
 
         throw TestBaseException(message);
@@ -47,16 +48,16 @@ void Assertion::assertTrue(
 }
 
 /**
- * Sets the log stream writer.
+ * Sets the message writer.
  */
-void Assertion::setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter)
+void Assertion::setMessageWriter(base::IMessageWriterPtr messageWriter)
 {
-    if (!logStreamWriter)
+    if (!messageWriter)
     {
-        std::string errorMessage = "The Log Stream Writer has not been set.";
+        std::string errorMessage = "The Message Writer is not defined.";
         throw TestBaseException(errorMessage);
     }
 
-    m_logStreamWriter = logStreamWriter;
+    m_messageWriter = messageWriter;
 }
 

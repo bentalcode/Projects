@@ -1,6 +1,7 @@
 #include "PreCompiled.h"
 
 #include "UnitTestManager.h"
+#include "MessageWriter.h"
 #include "UnitTestHandler.h"
 #include "UnitTestingException.h"
 
@@ -26,21 +27,21 @@ private:
  * The UnitTestManager default constructor.
  */
 UnitTestManager::UnitTestManager() :
-    m_logStreamWriter(new base::LogStreamWriter)
+    m_messageWriter(base::MessageWriter::make())
 {
 }
 
 /**
  * The UnitTestManager constructor.
  */
-UnitTestManager::UnitTestManager(base::LogStreamWriterPtr logStreamWriter)
+UnitTestManager::UnitTestManager(base::IMessageWriterPtr messageWriter)
 {
-    if (!logStreamWriter) {
-        std::string errorMessage = "The Log Stream Writer has not been set.";
+    if (!messageWriter) {
+        std::string errorMessage = "The Message Writer is not defined.";
         throw UnitTestingException(errorMessage);
     }
 
-    m_logStreamWriter = logStreamWriter;
+    m_messageWriter = messageWriter;
 }
 
 /**
@@ -56,11 +57,11 @@ UnitTestManager::~UnitTestManager()
 void UnitTestManager::registerTest(IUnitTestPtr unitTest)
 {
     if (!unitTest) {
-        std::string errorMessage = "The Unit Test has not been set.";
+        std::string errorMessage = "The Unit Test is not defined.";
         throw UnitTestingException(errorMessage);
     }
 
-    unitTest->setLogStreamWriter(m_logStreamWriter);
+    unitTest->setMessageWriter(m_messageWriter);
     m_unitTests.push_back(unitTest);
 }
 
@@ -70,7 +71,7 @@ void UnitTestManager::registerTest(IUnitTestPtr unitTest)
 void UnitTestManager::unregisterTest(IUnitTestPtr unitTest)
 {
     if (!unitTest) {
-        std::string errorMessage = "The Unit Test has not been set.";
+        std::string errorMessage = "The Unit Test is not defined.";
         throw UnitTestingException(errorMessage);
     }
 
@@ -93,7 +94,7 @@ void UnitTestManager::run()
 
     m_unitTestRunningResults.setEndTime();
 
-    m_logStreamWriter->getInformationalStream() << m_unitTestRunningResults;
+    m_messageWriter->getInformationalStream() << m_unitTestRunningResults;
 }
 
 /**
@@ -101,10 +102,10 @@ void UnitTestManager::run()
  */
 void UnitTestManager::runUnitTest(IUnitTest& unitTest)
 {
-    UnitTestHandler unitTestHandler(unitTest, *m_logStreamWriter);
+    unit_testing::UnitTestHandler unitTestHandler(unitTest, *m_messageWriter);
     const ITestRunningResults& runningResults = unitTestHandler.run();
 
-    m_logStreamWriter->getInformationalStream() << runningResults;
+    m_messageWriter->getInformationalStream() << runningResults;
 
     m_unitTestRunningResults.add(runningResults);
 }

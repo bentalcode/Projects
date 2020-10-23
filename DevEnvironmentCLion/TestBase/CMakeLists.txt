@@ -35,8 +35,7 @@ set(BASE_INCLUDES_FILES
         ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
-        ../Base/interfaces/LogStreamWriter.h
-    ../Base/interfaces/Pair.h
+        ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
@@ -54,8 +53,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
-    ../Base/core/LogStreamWriter.cpp
-    ../Base/core/PreCompiled.cpp)
+        ../Base/core/PreCompiled.cpp)
 
 set(BASE_SOURCES
     ${BASE_INCLUDES_FILES}

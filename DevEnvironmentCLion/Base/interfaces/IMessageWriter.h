@@ -60,6 +60,11 @@ namespace base {
          * Gets an informational stream.
          */
         virtual std::ostream& getInformationalStream() = 0;
+
+        /**
+         * Gets a debug stream.
+         */
+        virtual std::ostream& getDebugStream() = 0;
     };
 
     using IMessageWriterPtr = std::shared_ptr<IMessageWriter>;

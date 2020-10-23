@@ -49,15 +49,15 @@ namespace unit_testing {
         virtual void postRun() override;
 
         /**
-         * Sets the log stream writer.
+         * Sets the message writer.
          */
-        virtual void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter) override;
+        virtual void setMessageWriter(base::IMessageWriterPtr messageWriter) override;
 
     protected:
         /**
-         * Gets the log stream writer.
+         * Gets the message writer.
          */
-        base::LogStreamWriter& getLogStreamWriter();
+        base::IMessageWriter& getMessageWriter();
 
         /**
          * Gets the assertion.
@@ -66,7 +66,7 @@ namespace unit_testing {
 
     private:
         std::string m_name;
-        base::LogStreamWriterPtr m_logStreamWriter;
+        base::IMessageWriterPtr m_messageWriter;
         test_base::Assertion m_assertion;
     };
 }

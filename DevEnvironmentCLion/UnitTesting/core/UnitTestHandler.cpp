@@ -13,9 +13,9 @@ using namespace unit_testing;
  */
 UnitTestHandler::UnitTestHandler(
     IUnitTest& unitTest,
-    base::LogStreamWriter& logStreamWriter) :
+    base::IMessageWriter& messageWriter) :
     m_unitTest(unitTest),
-    m_logStreamWriter(logStreamWriter)
+    m_messageWriter(messageWriter)
 {
 }
 
@@ -33,7 +33,7 @@ void UnitTestHandler::registerTest(ITestFunctionPtr testFunction)
 {
     if (!testFunction)
     {
-        std::string errorMessage = "The test function of a unit test has not been defined.";
+        std::string errorMessage = "The test function of unit test is not defined.";
         throw UnitTestingException(errorMessage);
     }
 
@@ -84,7 +84,7 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
             *startTime,
             *endTime);
 
-        m_logStreamWriter.getInformationalStream()
+        m_messageWriter.getInformationalStream()
             << "Unit Test: " << unitTestFunction.getName() << ", Passed." << std::endl;
     }
     else
@@ -95,7 +95,7 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
             *endTime,
             errorMessage);
 
-        m_logStreamWriter.getErrorStream()
+        m_messageWriter.getErrorStream()
             << "Unit Test: "
             << unitTestFunction.getName() << ", Failed. ErrorMessage: " << errorMessage << std::endl;
     }

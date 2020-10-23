@@ -1,11 +1,11 @@
 #ifndef ASSERTION_H_d5cec444_dcab_450e_ba52_6e2ac44e787c
 #define ASSERTION_H_d5cec444_dcab_450e_ba52_6e2ac44e787c
 
+#include "IMessageWriter.h"
 #include "EqualBuilder.h"
 #include "EquatableComparator.h"
 #include "DereferenceEquatableComparator.h"
 #include "DereferenceEquatableComparator2.h"
-#include "LogStreamWriter.h"
 
 namespace test_base {
 
@@ -23,7 +23,7 @@ namespace test_base {
         /**
          * The constructor.
          */
-        explicit Assertion(base::LogStreamWriterPtr logStreamWriter);
+        explicit Assertion(base::IMessageWriterPtr messageWriter);
 
         /**
          * The destructor.
@@ -154,12 +154,12 @@ namespace test_base {
             const std::string& message);
 
         /**
-         * Sets the log stream writer.
+         * Sets the message writer.
          */
-        void setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter);
+        void setMessageWriter(base::IMessageWriterPtr messageWriter);
 
     private:
-        base::LogStreamWriterPtr m_logStreamWriter;
+        base::IMessageWriterPtr m_messageWriter;
     };
 
     /**

@@ -10,7 +10,7 @@ using namespace unit_testing;
  */
 UnitTestBase::UnitTestBase(const std::string& name) :
     m_name(name),
-    m_assertion(m_logStreamWriter)
+    m_assertion(m_messageWriter)
 {
 }
 
@@ -44,18 +44,18 @@ void UnitTestBase::postRun()
 }
 
 /**
- * Sets the log stream writer.
+ * Sets the message writer.
  */
-void UnitTestBase::setLogStreamWriter(base::LogStreamWriterPtr logStreamWriter)
+void UnitTestBase::setMessageWriter(base::IMessageWriterPtr messageWriter)
 {
-    if (!logStreamWriter)
+    if (!messageWriter)
     {
-        std::string errorMessage = "The Log Stream Writer has not been set.";
+        std::string errorMessage = "The Message Writer is not defined.";
         throw UnitTestingException(errorMessage);
     }
 
-    m_logStreamWriter = logStreamWriter;
-    m_assertion.setLogStreamWriter(m_logStreamWriter);
+    messageWriter = messageWriter;
+    m_assertion.setMessageWriter(messageWriter);
 }
 
 /**
@@ -67,9 +67,9 @@ test_base::Assertion& UnitTestBase::getAssertion()
 }
 
 /**
- * Gets the log stream writer.
+ * Gets the message writer.
  */
-base::LogStreamWriter& UnitTestBase::getLogStreamWriter()
+base::IMessageWriter& UnitTestBase::getMessageWriter()
 {
-    return *m_logStreamWriter;
+    return *m_messageWriter;
 }
