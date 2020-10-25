@@ -49,11 +49,22 @@ namespace base
             StandardFileDescriptor fileDescriptor,
             unsigned short attributes) override;
 
+        /**
+         * Gets the attributes of a foreground color.
+         */
+        virtual unsigned short getForegroundColorAttributes(ColorType colorType) const override;
+
     private:
         /**
          * Gets the handle of the file descriptor.
          */
         static HANDLE getFileDescriptorHandle(StandardFileDescriptor fileDescriptor);
+
+        /**
+         * Creates the foreground color map.
+         */
+        using ForegroundColorMap = std::map<ColorType, unsigned short>;
+        static ForegroundColorMap* createForegroundColorMap();
     };
 }
 

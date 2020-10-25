@@ -94,7 +94,8 @@ void UnitTestManager::run()
 
     m_unitTestRunningResults.setEndTime();
 
-    m_messageWriter->getInformationalStream() << m_unitTestRunningResults;
+    std::string informationalMessage = m_unitTestRunningResults.toString();
+    m_messageWriter->writeInformationalMessage(informationalMessage);
 }
 
 /**
@@ -105,7 +106,8 @@ void UnitTestManager::runUnitTest(IUnitTest& unitTest)
     unit_testing::UnitTestHandler unitTestHandler(unitTest, *m_messageWriter);
     const ITestRunningResults& runningResults = unitTestHandler.run();
 
-    m_messageWriter->getInformationalStream() << runningResults;
+    std::string informationalMessage = m_unitTestRunningResults.toString();
+    m_messageWriter->writeInformationalMessage(informationalMessage);
 
     m_unitTestRunningResults.add(runningResults);
 }

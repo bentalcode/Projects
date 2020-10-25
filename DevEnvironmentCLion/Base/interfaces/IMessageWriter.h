@@ -47,24 +47,9 @@ namespace base {
         virtual void writeErrorMessage(const std::string& message) = 0;
 
         /**
-         * Gets an error stream.
+         * Writes a debug message.
          */
-        virtual std::ostream& getErrorStream() = 0;
-
-        /**
-         * Gets a warning stream.
-         */
-        virtual std::ostream& getWarningStream() = 0;
-
-        /**
-         * Gets an informational stream.
-         */
-        virtual std::ostream& getInformationalStream() = 0;
-
-        /**
-         * Gets a debug stream.
-         */
-        virtual std::ostream& getDebugStream() = 0;
+        virtual void writeDebugMessage(const std::string& message) = 0;
     };
 
     using IMessageWriterPtr = std::shared_ptr<IMessageWriter>;

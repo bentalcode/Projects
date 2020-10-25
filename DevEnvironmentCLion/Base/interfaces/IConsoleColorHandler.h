@@ -2,6 +2,7 @@
 #define I_CONSOLE_COLOR_HANDLER_H_2f5c7933_f285_43de_a789_00f4c4e91797
 
 #include "StandardFileDescriptor.h"
+#include "ColorType.h"
 
 namespace base
 {
@@ -48,6 +49,11 @@ namespace base
         virtual bool setColorAttributes(
             StandardFileDescriptor fileDescriptor,
             unsigned short attributes) = 0;
+
+        /**
+         * Gets the attributes of the foreground color.
+         */
+        virtual unsigned short getForegroundColorAttributes(ColorType colorType) const = 0;
     };
 
     using IConsoleColorHandlerPtr = std::shared_ptr<IConsoleColorHandler>;

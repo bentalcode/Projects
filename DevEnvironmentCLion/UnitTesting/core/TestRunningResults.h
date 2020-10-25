@@ -64,9 +64,9 @@ namespace unit_testing
         virtual const ITestRunningResultList& getResults() const override;
 
         /**
-         * Gets the information of the running results.
+         * Gets the string representation of this instance.
          */
-        virtual void getRunningResultsInformation(std::ostream& stream) const override;
+        virtual std::string toString() const override;
 
         /**
          * Sets the start time of the tests.

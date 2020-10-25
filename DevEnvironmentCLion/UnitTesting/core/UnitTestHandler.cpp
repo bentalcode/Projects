@@ -84,8 +84,8 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
             *startTime,
             *endTime);
 
-        m_messageWriter.getInformationalStream()
-            << "Unit Test: " << unitTestFunction.getName() << ", Passed." << std::endl;
+        std::string message = "Unit Test: " + unitTestFunction.getName() + ", Passed.";
+        m_messageWriter.writeInformationalMessage(message);
     }
     else
     {
@@ -95,9 +95,10 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
             *endTime,
             errorMessage);
 
-        m_messageWriter.getErrorStream()
-            << "Unit Test: "
-            << unitTestFunction.getName() << ", Failed. ErrorMessage: " << errorMessage << std::endl;
+        std::string message =
+            "Unit Test: " + unitTestFunction.getName() + ", Failed. ErrorMessage: " + errorMessage;
+
+        m_messageWriter.writeInformationalMessage(message);
     }
 }
 

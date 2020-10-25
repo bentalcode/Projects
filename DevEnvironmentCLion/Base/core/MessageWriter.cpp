@@ -1,6 +1,7 @@
 #include "PreCompiled.h"
 #include "MessageWriter.h"
 #include "WindowsConsoleColorHandler.h"
+#include "ConsoleColorSetter.h"
 
 using namespace base;
 
@@ -40,11 +41,6 @@ MessageWriter::MessageWriter(
     m_debugStream(std::cout),
     m_consoleColorHandler(consoleColorHandler)
 {
-    if (consoleColorHandler) {
-        m_consoleColorHandler->setColorAttributes(
-            base::StandardFileDescriptor::StandardOutput,
-            FOREGROUND_GREEN);
-    }
 }
 
 /**
@@ -59,6 +55,11 @@ MessageWriter::~MessageWriter()
  */
 void MessageWriter::writeInformationalMessage(const std::string& message)
 {
+    base::ConsoleColorSetter consoleColorSetter(
+        m_consoleColorHandler,
+        base::StandardFileDescriptor::StandardOutput,
+        m_consoleColorHandler->getForegroundColorAttributes(ColorType::Green));
+
     writeMessage(message, m_informationalStream);
 }
 
@@ -67,6 +68,11 @@ void MessageWriter::writeInformationalMessage(const std::string& message)
  */
 void MessageWriter::writeWarningMessage(const std::string& message)
 {
+    base::ConsoleColorSetter consoleColorSetter(
+        m_consoleColorHandler,
+        base::StandardFileDescriptor::StandardError,
+        m_consoleColorHandler->getForegroundColorAttributes(ColorType::Yellow));
+
     writeMessage(message, m_warningStream);
 }
 
@@ -75,39 +81,25 @@ void MessageWriter::writeWarningMessage(const std::string& message)
  */
 void MessageWriter::writeErrorMessage(const std::string& message)
 {
+    base::ConsoleColorSetter consoleColorSetter(
+        m_consoleColorHandler,
+        base::StandardFileDescriptor::StandardError,
+        m_consoleColorHandler->getForegroundColorAttributes(ColorType::Red));
+
     writeMessage(message, m_errorStream);
 }
 
 /**
- * Gets an error stream.
+ * Writes a debug message.
  */
-std::ostream& MessageWriter::getErrorStream()
+void MessageWriter::writeDebugMessage(const std::string& message)
 {
-    return m_errorStream;
-}
+    base::ConsoleColorSetter consoleColorSetter(
+        m_consoleColorHandler,
+        base::StandardFileDescriptor::StandardOutput,
+        m_consoleColorHandler->getForegroundColorAttributes(ColorType::Green));
 
-/**
- * Gets a warning stream.
- */
-std::ostream& MessageWriter::getWarningStream()
-{
-    return m_warningStream;
-}
-
-/**
- * Gets an informational stream.
- */
-std::ostream& MessageWriter::getInformationalStream()
-{
-    return m_informationalStream;
-}
-
-/**
- * Gets a debug stream.
- */
-std::ostream& MessageWriter::getDebugStream()
-{
-    return m_debugStream;
+    writeMessage(message, m_debugStream);
 }
 
 /**
@@ -123,7 +115,8 @@ void MessageWriter::writeMessage(
 /**
  * Creates a console color handler.
  */
-base::IConsoleColorHandlerPtr MessageWriter::createConsoleColorHandler() {
+base::IConsoleColorHandlerPtr MessageWriter::createConsoleColorHandler()
+{
     #if defined(WIN32)
         return std::make_shared<base::WindowsConsoleColorHandler>();
     # else

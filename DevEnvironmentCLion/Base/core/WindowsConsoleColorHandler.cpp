@@ -79,3 +79,48 @@ HANDLE WindowsConsoleColorHandler::getFileDescriptorHandle(StandardFileDescripto
         throw BaseException(errorMessage);
     }
 }
+
+/**
+ * Gets the attributes of a foreground color.
+ */
+unsigned short WindowsConsoleColorHandler::getForegroundColorAttributes(ColorType colorType) const
+{
+    static std::unique_ptr<ForegroundColorMap> colorMap(createForegroundColorMap());
+
+    ForegroundColorMap::const_iterator colorIterator = colorMap->find(colorType);
+
+    if (colorIterator == colorMap->end())
+    {
+        std::string errorMessage = "The color type for the specific foreground color is not defined.";
+        throw BaseException(errorMessage);
+    }
+
+    return colorIterator->second;
+}
+
+/**
+ * Creates the foreground color map.
+ */
+WindowsConsoleColorHandler::ForegroundColorMap* WindowsConsoleColorHandler::createForegroundColorMap()
+{
+    std::unique_ptr<ForegroundColorMap> colorMap = std::make_unique<ForegroundColorMap>();
+
+    colorMap->insert(std::make_pair(ColorType::Black, 0));
+    colorMap->insert(std::make_pair(ColorType::DarkBlue, FOREGROUND_BLUE));
+    colorMap->insert(std::make_pair(ColorType::DarkGreen, FOREGROUND_GREEN));
+    colorMap->insert(std::make_pair(ColorType::DarkCyan, FOREGROUND_GREEN | FOREGROUND_BLUE));
+    colorMap->insert(std::make_pair(ColorType::DarkRed, FOREGROUND_RED));
+    colorMap->insert(std::make_pair(ColorType::DarkMagenta, FOREGROUND_RED | FOREGROUND_BLUE));
+    colorMap->insert(std::make_pair(ColorType::DarkYellow, FOREGROUND_RED | FOREGROUND_GREEN));
+    colorMap->insert(std::make_pair(ColorType::DarkGray, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE));
+    colorMap->insert(std::make_pair(ColorType::Gray, FOREGROUND_INTENSITY));
+    colorMap->insert(std::make_pair(ColorType::Blue, FOREGROUND_INTENSITY | FOREGROUND_BLUE));
+    colorMap->insert(std::make_pair(ColorType::Green, FOREGROUND_INTENSITY | FOREGROUND_GREEN));
+    colorMap->insert(std::make_pair(ColorType::Cyan, FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE));
+    colorMap->insert(std::make_pair(ColorType::Red, FOREGROUND_INTENSITY | FOREGROUND_RED));
+    colorMap->insert(std::make_pair(ColorType::Magenta, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE));
+    colorMap->insert(std::make_pair(ColorType::Yellow, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN));
+    colorMap->insert(std::make_pair(ColorType::White, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE));
+
+    return colorMap.release();
+}

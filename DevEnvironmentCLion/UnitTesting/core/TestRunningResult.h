@@ -69,9 +69,9 @@ namespace unit_testing
         virtual const std::string& getErrorMessage() const override;
 
         /**
-         * Gets the information of the running result.
+         * Gets the string representation of this instance.
          */
-        virtual void getRunningResultInformation(std::ostream& stream) const override;
+        virtual std::string toString() const override;
 
     private:
         std::string m_name;

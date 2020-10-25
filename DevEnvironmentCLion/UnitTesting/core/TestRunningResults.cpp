@@ -75,18 +75,20 @@ const ITestRunningResultList& TestRunningResults::getResults() const
 }
 
 /**
- * Gets the information of the running results.
+ * Gets the string representation of this instance.
  */
-void TestRunningResults::getRunningResultsInformation(std::ostream& stream) const
+std::string TestRunningResults::toString() const
 {
-    stream << std::endl << "Running Results: " << std::endl;
+    std::stringstream stream;
+
+    stream << "Running Results: " << std::endl;
 
     int index = 0;
 
     for (ITestRunningResultPtr runningResultPtr : m_runningResults)
     {
         ++index;
-        stream << "[" << index << "] " << *runningResultPtr << std::endl;
+        stream << "[" << index << "] " << *runningResultPtr << std::endl << std::endl;
     }
 
     stream << std::endl;
@@ -95,11 +97,14 @@ void TestRunningResults::getRunningResultsInformation(std::ostream& stream) cons
     stream << "Number of passed tests: " << m_numberOfSuccessfulTests << std::endl;
     stream << "Number of failed tests: " << m_numberOfFailedTests << std::endl;
 
-    if (m_startTime && m_endTime) {
+    if (m_startTime && m_endTime)
+    {
         stream << "Start Time: " << *m_startTime << std::endl;
         stream << "End Time: " << *m_endTime << std::endl;
         stream << "Duration Time: " << *getDuration() << std::endl;
     }
+
+    return stream.str();
 }
 
 /**

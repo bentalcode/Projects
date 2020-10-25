@@ -31,10 +31,12 @@ TestRunningResult::~TestRunningResult()
 }
 
 /**
- * Gets the information of the running result.
+ * Gets the string representation of this instance.
  */
-void TestRunningResult::getRunningResultInformation(std::ostream& stream) const
+std::string TestRunningResult::toString() const
 {
+    std::stringstream stream;
+
     stream
         << "Name: " << m_name
         << ", StartTime: " << m_startTime
@@ -51,7 +53,7 @@ void TestRunningResult::getRunningResultInformation(std::ostream& stream) const
         stream << "Failed" << ", ErrorMessage: " << m_errorMessage;
     }
 
-    stream << std::endl;
+    return stream.str();
 }
 
 const std::string& TestRunningResult::getName() const

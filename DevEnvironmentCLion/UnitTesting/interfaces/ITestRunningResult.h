@@ -68,9 +68,9 @@ namespace unit_testing
         virtual const std::string& getErrorMessage() const = 0;
 
         /**
-         * Gets the information of the running result.
+         * Gets the string representation of this instance.
          */
-        virtual void getRunningResultInformation(std::ostream& stream) const = 0;
+        virtual std::string toString() const = 0;
     };
 
     /**
@@ -78,7 +78,8 @@ namespace unit_testing
      */
     inline std::ostream& operator<<(std::ostream& stream, const ITestRunningResult& runningResult)
     {
-        runningResult.getRunningResultInformation(stream);
+        std::string string = runningResult.toString();
+        stream << string;
         return stream;
     }
 }

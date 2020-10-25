@@ -65,6 +65,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ClassType.h
     ../Base/core/ComparableComparator.h
     ../Base/core/Comparator.h
+    ../Base/core/ConsoleColorSetter.h
     ../Base/core/Conversion.h
     ../Base/core/DereferenceComparableComparator.h
     ../Base/core/DereferenceComparableComparator2.h
@@ -103,6 +104,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/XorBitOperator.h
     ../Base/interfaces/Bits.h
     ../Base/interfaces/ClassTypes.h
+    ../Base/interfaces/ColorType.h
     ../Base/interfaces/ComparatorFactory.h
     ../Base/interfaces/CompareToBuilder.h
     ../Base/interfaces/DateTime.h
@@ -167,6 +169,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/Bits.cpp
     ../Base/core/ClassType.cpp
     ../Base/core/CompareToBuilder.cpp
+    ../Base/core/ConsoleColorSetter.cpp
     ../Base/core/Conversion.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp

@@ -65,24 +65,9 @@ namespace base {
         virtual void writeErrorMessage(const std::string& message) override;
 
         /**
-         * Gets an error stream.
+         * Writes a debug message.
          */
-        virtual std::ostream& getErrorStream() override;
-
-        /**
-         * Gets a warning stream.
-         */
-        virtual std::ostream& getWarningStream() override;
-
-        /**
-         * Gets an informational stream.
-         */
-        virtual std::ostream& getInformationalStream() override;
-
-        /**
-         * Gets a debug stream.
-         */
-        virtual std::ostream& getDebugStream() override;
+        virtual void writeDebugMessage(const std::string& message) override;
 
     private:
         /**
