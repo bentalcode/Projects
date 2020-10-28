@@ -59,6 +59,11 @@ namespace base {
          */
         void randomFloatTest();
 
+        /**
+         * Tests the logic of generating a random double.
+         */
+        void randomDoubleTest();
+
     private:
         /**
          * Tests the logic of generating a random boolean.
@@ -79,6 +84,11 @@ namespace base {
          * Tests the logic of generating a random float.
          */
         void testRandomFloat(float from, float to);
+
+        /**
+         * Tests the logic of generating a random double.
+         */
+        void testRandomDouble(double from, double to);
     };
 }
 

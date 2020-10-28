@@ -79,7 +79,6 @@ namespace base {
         IIterator<T>& rhs,
         const IEquatableComparator<T>& comparator)
     {
-
         while (lhs.hasNext() && rhs.hasNext())
         {
             T lhsValue = lhs.next();

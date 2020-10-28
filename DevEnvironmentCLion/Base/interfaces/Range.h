@@ -48,6 +48,11 @@ namespace base
         const T& getEnd() const;
 
         /**
+         * Gets the string representation of this instance.
+         */
+        std::string toString() const;
+
+        /**
          * Validates the the range start and end points.
          */
         static void validate(const T& start, const T& end);
@@ -60,12 +65,18 @@ namespace base
     template <typename T>
     using RangePtr = std::shared_ptr<Range<T>>;
 
+    /**
+     * Creates a range.
+     */
     template <typename T>
     Range<T> Range<T>::make(const T& start, const T& end)
     {
         return Range<T>(start, end);
     }
 
+    /**
+     * The constructor.
+     */
     template <typename T>
     Range<T>::Range(const T& start, const T& end) :
         m_start(start),
@@ -74,23 +85,59 @@ namespace base
         validate(start, end);
     }
 
+    /**
+     * The destructor.
+     */
     template <typename T>
     Range<T>::~Range()
     {
     }
 
+    /**
+     * Gets the start point of a range.
+     */
     template <typename T>
     const T& Range<T>::getStart() const
     {
         return m_start;
     }
 
+    /**
+     * Gets the end point of a range.
+     */
     template <typename T>
     const T& Range<T>::getEnd() const
     {
         return m_end;
     }
 
+    /**
+     * Gets the string representation of this instance.
+     */
+    template <typename T>
+    std::string Range<T>::toString() const
+    {
+        std::stringstream stream;
+        stream << "[" << m_start << "-" << m_end << "]";
+        return stream.str();
+    }
+
+    /**
+     * Validates the the range start and end points.
+     */
+    template <typename T>
+    void Range<T>::validate(const T& start, const T& end)
+    {
+        if (start > end)
+        {
+            std::string errorMessage = "Invalid range start and end points.";
+            throw BaseException(errorMessage);
+        }
+    }
+
+    /**
+     * The operator< for implementing equivalence relation.
+     */
     template <typename T>
     bool operator<(const Range<T>& left, const Range<T>& right)
     {
@@ -105,16 +152,6 @@ namespace base
         }
 
         return left.getEnd() < right.getEnd();
-    }
-
-    template <typename T>
-    void Range<T>::validate(const T& start, const T& end)
-    {
-        if (start > end)
-        {
-            std::string errorMessage = "Invalid range start and end points.";
-            throw BaseException(errorMessage);
-        }
     }
 }
 

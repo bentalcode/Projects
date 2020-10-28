@@ -6,7 +6,7 @@ namespace base
     /**
      * The StringEquality class implements complementary APIs for string equality.
      */
-    class StringEquality
+    class StringEquality final
     {
     public:
         /**

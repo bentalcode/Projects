@@ -65,6 +65,16 @@ namespace base
          * Generates a new float between the following specified values (inclusively).
          */
         virtual float nextFloat(float from, float to) = 0;
+
+        /**
+         * Generates a new double.
+         */
+        virtual double nextDouble() = 0;
+
+        /**
+         * Generates a new double between the following specified values (inclusively).
+         */
+        virtual double nextDouble(double from, double to) = 0;
     };
 
     template <typename T>

@@ -67,7 +67,7 @@ namespace controllerareanetwork {
              * Gets the jitter deviation.
              * J(i) = J(i-1) + (|D(i-1,i)| - J(i-1))/16
              */
-            virtual double getDeviation(const std::string& messageName) override;
+            virtual float getDeviation(const std::string& messageName) override;
 
             /**
              * Gets the message data.

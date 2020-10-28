@@ -69,6 +69,16 @@ namespace base
          */
         virtual float nextFloat(float from, float to) override;
 
+        /**
+         * Generates a new double.
+         */
+        virtual double nextDouble() override;
+
+        /**
+         * Generates a new double between the following specified values (inclusively).
+         */
+        virtual double nextDouble(double from, double to) override;
+
     private:
         /**
          * Validates the specified range.

@@ -79,12 +79,12 @@ namespace controllerareanetwork {
             /**
              * Gets the Jitter deviation.
              */
-            virtual double getDeviation() const override;
+            virtual float getDeviation() const override;
 
             /**
              * Sets the Jitter deviation.
              */
-            virtual void setDeviation(double deviation) override;
+            virtual void setDeviation(float deviation) override;
 
             /**
              * Gets the string representation of this instance.
@@ -101,7 +101,7 @@ namespace controllerareanetwork {
             base::DateTimePtr m_lastSendingTime;
             size_t m_numberOfMessagesSent;
             size_t m_numberOfMessagesReceived;
-            double m_deviation;
+            float m_deviation;
         };
 
     }

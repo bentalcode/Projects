@@ -6,7 +6,7 @@ namespace base
     /**
      * The StringComparable class implements complementary APIs for comparing string.
      */
-    class StringComparable
+    class StringComparable final
     {
     public:
         /**

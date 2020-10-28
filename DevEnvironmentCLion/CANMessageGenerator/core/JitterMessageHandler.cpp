@@ -50,7 +50,8 @@ bool JitterMessageHandler::unregisterMessage(const std::string& messageName)
 {
     MessageDataMap::const_iterator messageIterator = m_messageDataMap.find(messageName);
 
-    if (messageIterator == m_messageDataMap.end()) {
+    if (messageIterator == m_messageDataMap.end())
+    {
         return false;
     }
 
@@ -83,7 +84,8 @@ void JitterMessageHandler::setMessageReceivingTime(
 
     base::DateTimePtr sendingTime = data->getMessageLastSendingTime();
 
-    if (!sendingTime) {
+    if (!sendingTime)
+    {
         std::string errorMessage =
             "The sending time of message: " + messageName +
             " was not recorded with the Jitter Handler.";
@@ -97,12 +99,12 @@ void JitterMessageHandler::setMessageReceivingTime(
     // Update the deviation...
     // J(i) = J(i-1) + (|D(i-1,i)| - J(i-1))/16
     //
-    double prevDeviation = data->getDeviation();
+    float prevDeviation = data->getDeviation();
 
     base::DurationPtr currDuration = base::Duration::between(*sendingTime, *time);
     long currDeviation = currDuration->toMilliseconds() - data->getTransmittingTime()->toMilliseconds();
 
-    double deviation = prevDeviation + (std::abs(static_cast<double>(currDeviation)) - prevDeviation) / 16.0;
+    float deviation = prevDeviation + (std::abs(static_cast<float>(currDeviation)) - prevDeviation) / 16.0;
 
     data->setDeviation(deviation);
 }
@@ -111,7 +113,7 @@ void JitterMessageHandler::setMessageReceivingTime(
  * Gets the jitter deviation.
  * J(i) = J(i-1) + (|D(i-1,i)| - J(i-1))/16
  */
-double JitterMessageHandler::getDeviation(const std::string& messageName)
+float JitterMessageHandler::getDeviation(const std::string& messageName)
 {
     IJitterMessageDataPtr data = getMessageData(messageName);
     return data->getDeviation();
@@ -124,7 +126,8 @@ IJitterMessageDataPtr JitterMessageHandler::getMessageData(const std::string& me
 {
     MessageDataMap::const_iterator messageIterator = m_messageDataMap.find(messageName);
 
-    if (messageIterator == m_messageDataMap.end()) {
+    if (messageIterator == m_messageDataMap.end())
+    {
         std::string errorMessage =
             "The message: " + messageName + " is not registered with the Jitter Handler.";
 

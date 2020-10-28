@@ -73,12 +73,12 @@ namespace controllerareanetwork {
             /**
              * Gets the Jitter deviation.
              */
-            virtual double getDeviation() const = 0;
+            virtual float getDeviation() const = 0;
 
             /**
              * Sets the Jitter deviation.
              */
-            virtual void setDeviation(double deviation) = 0;
+            virtual void setDeviation(float deviation) = 0;
 
             /**
              * Gets the string representation of this instance.

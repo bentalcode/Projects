@@ -97,7 +97,7 @@ void JitterMessageData::incrementNumberOfMessagesReceived()
 /**
  * Gets the Jitter deviation.
  */
-double JitterMessageData::getDeviation() const
+float JitterMessageData::getDeviation() const
 {
     return m_deviation;
 }
@@ -105,7 +105,7 @@ double JitterMessageData::getDeviation() const
 /**
  * Sets the Jitter deviation.
  */
-void JitterMessageData::setDeviation(double deviation)
+void JitterMessageData::setDeviation(float deviation)
 {
     m_deviation = deviation;
 }

@@ -71,7 +71,7 @@ size_t RandomGenerator::nextSizeT()
  */
 size_t RandomGenerator::nextSizeT(size_t from, size_t to)
 {
-    Range<int>::validate(from, to);
+    Range<size_t>::validate(from, to);
 
     if (from == to)
     {
@@ -95,11 +95,11 @@ float RandomGenerator::nextFloat()
 }
 
 /**
- * Generates a new double between the following specified values (inclusively).
+ * Generates a new float between the following specified values (inclusively).
  */
 float RandomGenerator::nextFloat(float from, float to)
 {
-    Range<int>::validate(from, to);
+    Range<float>::validate(from, to);
 
     if (from == to)
     {
@@ -109,8 +109,39 @@ float RandomGenerator::nextFloat(float from, float to)
     float randomZeroToOne = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 
     float range = to - from;
-    float randomRange = range * randomZeroToOne * 0.5;
+    float randomRange = range * randomZeroToOne;
     float result = from + randomRange;
+
+    assert(result >= from && result <= to);
+
+    return result;
+}
+
+/**
+ * Generates a new double.
+ */
+double RandomGenerator::nextDouble()
+{
+    return nextDouble(0.0, RAND_MAX);
+}
+
+/**
+ * Generates a new double between the following specified values (inclusively).
+ */
+double RandomGenerator::nextDouble(double from, double to)
+{
+    Range<double>::validate(from, to);
+
+    if (from == to)
+    {
+        return from;
+    }
+
+    double randomZeroToOne = static_cast<double>(rand()) / static_cast<double>(RAND_MAX);
+
+    double range = to - from;
+    double randomRange = range * randomZeroToOne;
+    double result = from + randomRange;
 
     assert(result >= from && result <= to);
 
