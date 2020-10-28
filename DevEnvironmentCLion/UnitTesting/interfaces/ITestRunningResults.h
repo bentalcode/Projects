@@ -2,6 +2,7 @@
 #define I_TEST_RUNNING_RESULTS_H_15064a1c_72bb_4089_a240_8dd37b54a382
 
 #include "ITestRunningResult.h"
+#include "IMessageWriter.h"
 
 namespace unit_testing
 {
@@ -65,6 +66,11 @@ namespace unit_testing
          * Gets the string representation of this instance.
          */
         virtual std::string toString() const = 0;
+
+        /**
+         * Writes the result of the tests.
+         */
+        virtual void write(base::IMessageWriter& messageWriter) const = 0;
     };
 
     /**

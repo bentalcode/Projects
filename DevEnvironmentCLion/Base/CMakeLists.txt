@@ -50,6 +50,8 @@ set(BASE_INCLUDES_FILES
     ./core/ListIterator.h
     ./core/ListReverseIterator.h
     ./core/LocalFreeReleaser.h
+    ./core/Log.h
+    ./core/LogFactory.h
     ./core/Matrix.h
     ./core/MessageWriter.h
     ./core/NotBitOperator.h
@@ -98,6 +100,8 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IKeyIterable.h
     ./interfaces/IKeyReverseIterable.h
     ./interfaces/IList.h
+    ./interfaces/ILog.h
+    ./interfaces/ILogFactory.h
     ./interfaces/IMainParser.h
     ./interfaces/IMatch.h
     ./interfaces/IMatrix.h
@@ -121,6 +125,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/Intervals.h
     ./interfaces/IterableComparator.h
     ./interfaces/IteratorComparator.h
+    ./interfaces/LogLevelType.h
     ./interfaces/Pair.h
     ./interfaces/Range.h
     ./interfaces/SharedPtr.h
@@ -144,6 +149,8 @@ set(BASE_SOURCES_FILES
     ./core/EqualBuilder.cpp
     ./core/Indexes.cpp
     ./core/KmpStringSearch.cpp
+    ./core/Log.cpp
+    ./core/LogFactory.cpp
     ./core/MessageWriter.cpp
     ./core/NotBitOperator.cpp
     ./core/OrBitOperator.cpp

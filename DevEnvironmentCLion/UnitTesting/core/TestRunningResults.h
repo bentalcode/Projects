@@ -1,6 +1,7 @@
 #ifndef TEST_RUNNING_RESULTS_H_2d82bc69_c581_46d3_84f0_d54192a60ee9
 #define TEST_RUNNING_RESULTS_H_2d82bc69_c581_46d3_84f0_d54192a60ee9
 
+#include "IConsoleColorHandler.h"
 #include "ITestRunningResults.h"
 
 namespace unit_testing
@@ -64,11 +65,6 @@ namespace unit_testing
         virtual const ITestRunningResultList& getResults() const override;
 
         /**
-         * Gets the string representation of this instance.
-         */
-        virtual std::string toString() const override;
-
-        /**
          * Sets the start time of the tests.
          */
         void setStartTime();
@@ -99,6 +95,16 @@ namespace unit_testing
          * Adds new running results.
          */
         void add(const ITestRunningResults& results);
+
+        /**
+         * Gets the string representation of this instance.
+         */
+        virtual std::string toString() const override;
+
+        /**
+         * Writes the result of the tests.
+         */
+        virtual void write(base::IMessageWriter& messageWriter) const override;
 
     private:
         int m_numberOfSuccessfulTests;

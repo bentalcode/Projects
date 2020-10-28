@@ -27,7 +27,7 @@ private:
  * The UnitTestManager default constructor.
  */
 UnitTestManager::UnitTestManager() :
-    m_messageWriter(base::MessageWriter::make())
+    UnitTestManager(base::MessageWriter::make())
 {
 }
 
@@ -36,7 +36,8 @@ UnitTestManager::UnitTestManager() :
  */
 UnitTestManager::UnitTestManager(base::IMessageWriterPtr messageWriter)
 {
-    if (!messageWriter) {
+    if (!messageWriter)
+    {
         std::string errorMessage = "The Message Writer is not defined.";
         throw UnitTestingException(errorMessage);
     }
@@ -56,7 +57,8 @@ UnitTestManager::~UnitTestManager()
  */
 void UnitTestManager::registerTest(IUnitTestPtr unitTest)
 {
-    if (!unitTest) {
+    if (!unitTest)
+    {
         std::string errorMessage = "The Unit Test is not defined.";
         throw UnitTestingException(errorMessage);
     }
@@ -70,7 +72,8 @@ void UnitTestManager::registerTest(IUnitTestPtr unitTest)
  */
 void UnitTestManager::unregisterTest(IUnitTestPtr unitTest)
 {
-    if (!unitTest) {
+    if (!unitTest)
+    {
         std::string errorMessage = "The Unit Test is not defined.";
         throw UnitTestingException(errorMessage);
     }
@@ -88,14 +91,14 @@ void UnitTestManager::run()
 {
     m_unitTestRunningResults.setStartTime();
 
-    for (IUnitTestPtr unitTest : m_unitTests) {
+    for (IUnitTestPtr unitTest : m_unitTests)
+    {
         runUnitTest(*unitTest);
     }
 
     m_unitTestRunningResults.setEndTime();
 
-    std::string informationalMessage = m_unitTestRunningResults.toString();
-    m_messageWriter->writeInformationalMessage(informationalMessage);
+    m_unitTestRunningResults.write(*m_messageWriter);
 }
 
 /**
@@ -104,10 +107,8 @@ void UnitTestManager::run()
 void UnitTestManager::runUnitTest(IUnitTest& unitTest)
 {
     unit_testing::UnitTestHandler unitTestHandler(unitTest, *m_messageWriter);
-    const ITestRunningResults& runningResults = unitTestHandler.run();
 
-    std::string informationalMessage = m_unitTestRunningResults.toString();
-    m_messageWriter->writeInformationalMessage(informationalMessage);
+    const ITestRunningResults& runningResults = unitTestHandler.run();
 
     m_unitTestRunningResults.add(runningResults);
 }

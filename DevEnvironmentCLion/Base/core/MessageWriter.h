@@ -18,9 +18,9 @@ namespace base {
         static IMessageWriterPtr make();
 
         /**
-         * The MessageWriter Constructor.
+         * Creates a new message writer with no console color handler.
          */
-        MessageWriter();
+        static IMessageWriterPtr makeLight();
 
         /**
          * The CommandMessageWriter Constructor.

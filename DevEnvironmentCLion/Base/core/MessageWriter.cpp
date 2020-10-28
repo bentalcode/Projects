@@ -10,20 +10,25 @@ using namespace base;
  */
 IMessageWriterPtr MessageWriter::make()
 {
-    return std::make_shared<MessageWriter>();
+    return std::make_shared<MessageWriter>(
+        std::cout,
+        std::cout,
+        std::cout,
+        std::cout,
+        createConsoleColorHandler());
 }
 
 /**
- * The MessageWriter constructor.
+ * Creates a new message writer with no console color handler.
  */
-MessageWriter::MessageWriter() :
-    MessageWriter(
-        std::cout,
-        std::cout,
-        std::cout,
-        std::cout,
-        createConsoleColorHandler())
+IMessageWriterPtr MessageWriter::makeLight()
 {
+    return std::make_shared<MessageWriter>(
+        std::cout,
+        std::cout,
+        std::cout,
+        std::cout,
+        nullptr);
 }
 
 /**
@@ -35,10 +40,10 @@ MessageWriter::MessageWriter(
     std::ostream& errorStream,
     std::ostream& debugStream,
     base::IConsoleColorHandlerPtr consoleColorHandler) :
-    m_informationalStream(std::cout),
-    m_warningStream(std::cout),
-    m_errorStream(std::cout),
-    m_debugStream(std::cout),
+    m_informationalStream(informationalStream),
+    m_warningStream(warningStream),
+    m_errorStream(errorStream),
+    m_debugStream(debugStream),
     m_consoleColorHandler(consoleColorHandler)
 {
 }
@@ -58,7 +63,7 @@ void MessageWriter::writeInformationalMessage(const std::string& message)
     base::ConsoleColorSetter consoleColorSetter(
         m_consoleColorHandler,
         base::StandardFileDescriptor::StandardOutput,
-        m_consoleColorHandler->getForegroundColorAttributes(ColorType::Green));
+        ColorType::Green);
 
     writeMessage(message, m_informationalStream);
 }
@@ -71,7 +76,7 @@ void MessageWriter::writeWarningMessage(const std::string& message)
     base::ConsoleColorSetter consoleColorSetter(
         m_consoleColorHandler,
         base::StandardFileDescriptor::StandardError,
-        m_consoleColorHandler->getForegroundColorAttributes(ColorType::Yellow));
+        ColorType::Yellow);
 
     writeMessage(message, m_warningStream);
 }
@@ -84,7 +89,7 @@ void MessageWriter::writeErrorMessage(const std::string& message)
     base::ConsoleColorSetter consoleColorSetter(
         m_consoleColorHandler,
         base::StandardFileDescriptor::StandardError,
-        m_consoleColorHandler->getForegroundColorAttributes(ColorType::Red));
+        ColorType::Green);
 
     writeMessage(message, m_errorStream);
 }
@@ -97,7 +102,7 @@ void MessageWriter::writeDebugMessage(const std::string& message)
     base::ConsoleColorSetter consoleColorSetter(
         m_consoleColorHandler,
         base::StandardFileDescriptor::StandardOutput,
-        m_consoleColorHandler->getForegroundColorAttributes(ColorType::Green));
+        ColorType::Green);
 
     writeMessage(message, m_debugStream);
 }

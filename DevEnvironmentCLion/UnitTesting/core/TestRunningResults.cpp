@@ -2,6 +2,7 @@
 
 #include "TestRunningResults.h"
 #include "TestRunningResult.h"
+#include "UnitTestingConsts.h"
 
 using namespace unit_testing;
 
@@ -75,39 +76,6 @@ const ITestRunningResultList& TestRunningResults::getResults() const
 }
 
 /**
- * Gets the string representation of this instance.
- */
-std::string TestRunningResults::toString() const
-{
-    std::stringstream stream;
-
-    stream << "Running Results: " << std::endl;
-
-    int index = 0;
-
-    for (ITestRunningResultPtr runningResultPtr : m_runningResults)
-    {
-        ++index;
-        stream << "[" << index << "] " << *runningResultPtr << std::endl << std::endl;
-    }
-
-    stream << std::endl;
-    stream << "Summary: " <<std::endl;
-    stream << "Number of tests: " << m_runningResults.size() << std::endl;
-    stream << "Number of passed tests: " << m_numberOfSuccessfulTests << std::endl;
-    stream << "Number of failed tests: " << m_numberOfFailedTests << std::endl;
-
-    if (m_startTime && m_endTime)
-    {
-        stream << "Start Time: " << *m_startTime << std::endl;
-        stream << "End Time: " << *m_endTime << std::endl;
-        stream << "Duration Time: " << *getDuration() << std::endl;
-    }
-
-    return stream.str();
-}
-
-/**
  * Sets the start time of the tests.
  */
 void TestRunningResults::setStartTime()
@@ -174,4 +142,87 @@ void TestRunningResults::add(const ITestRunningResults& results)
 
     m_numberOfSuccessfulTests += results.numberOfSuccessfulTests();
     m_numberOfFailedTests += results.numberOfFailedTests();
+}
+
+/**
+ * Gets the string representation of this instance.
+ */
+std::string TestRunningResults::toString() const
+{
+    std::stringstream stream;
+
+    stream << "Running Results: " << std::endl;
+
+    int index = 0;
+
+    for (ITestRunningResultPtr runningResultPtr : m_runningResults)
+    {
+        ++index;
+        stream << "[" << index << "] " << *runningResultPtr << std::endl << std::endl;
+    }
+
+    stream << "Summary: " << std::endl;
+    stream << "Number of tests: " << m_runningResults.size() << std::endl;
+    stream << "Number of passed tests: " << m_numberOfSuccessfulTests << std::endl;
+    stream << "Number of failed tests: " << m_numberOfFailedTests << std::endl;
+
+    if (m_startTime && m_endTime)
+    {
+        stream << "Start Time: " << *m_startTime << std::endl;
+        stream << "End Time: " << *m_endTime << std::endl;
+        stream << "Duration Time: " << *getDuration() << std::endl;
+    }
+
+    return stream.str();
+}
+
+/**
+ * Writes the console color handler.
+ */
+void TestRunningResults::write(base::IMessageWriter& messageWriter) const
+{
+    std::stringstream testResultsStartStream;
+    testResultsStartStream
+        << UnitTestingConsts::testResultsStart << std::endl
+        << "Running Results: ";
+
+    messageWriter.writeInformationalMessage(testResultsStartStream.str());
+
+    size_t index = 0;
+
+    for (ITestRunningResultPtr testRunningResultPtr : m_runningResults)
+    {
+        ++index;
+        std::stringstream testResultStream;
+        testResultStream << "[" << index << "] " << testRunningResultPtr->toString() << std::endl;
+
+        std::string testResult = testResultStream.str();
+
+        if (testRunningResultPtr->getResultStatus())
+        {
+            messageWriter.writeInformationalMessage(testResult);
+        }
+        else
+        {
+            messageWriter.writeErrorMessage(testResult);
+        }
+    }
+
+    std::stringstream testResultsEndStream;
+    testResultsEndStream << std::endl;
+    testResultsEndStream << "Summary: " << std::endl;
+    testResultsEndStream << "Number of tests: " << m_runningResults.size() << std::endl;
+    testResultsEndStream << "Number of passed tests: " << m_numberOfSuccessfulTests << std::endl;
+    testResultsEndStream << "Number of failed tests: " << m_numberOfFailedTests << std::endl;
+
+    if (m_startTime && m_endTime)
+    {
+        testResultsEndStream << "Start Time: " << *m_startTime << std::endl;
+        testResultsEndStream << "End Time: " << *m_endTime << std::endl;
+        testResultsEndStream << "Duration Time: " << *getDuration() << std::endl;
+    }
+
+    testResultsEndStream << UnitTestingConsts::testResultsEnd << std::endl;
+
+    messageWriter.writeInformationalMessage(testResultsEndStream.str());
 }

@@ -54,7 +54,7 @@ void UnitTestBase::setMessageWriter(base::IMessageWriterPtr messageWriter)
         throw UnitTestingException(errorMessage);
     }
 
-    messageWriter = messageWriter;
+    m_messageWriter = messageWriter;
     m_assertion.setMessageWriter(messageWriter);
 }
 

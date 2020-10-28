@@ -61,10 +61,11 @@ void ObjectPoolUnitTest::testObjectPool(int numberOfElements) {
 
     ObjectPool<int> objectPool1(numberOfElements);
 
-    std::ostream& stream = getLogStreamWriter().getInformationalStream();
+    std::stringstream stream;
     stream << "Acquiring " << numberOfElements << " objects from the Object Pool:";
 
-    for (int i = 0; i < numberOfElements; ++i) {
+    for (int i = 0; i < numberOfElements; ++i)
+    {
         int *elementPtr = objectPool1.acquireElement();
         *elementPtr = i;
 
@@ -80,7 +81,8 @@ void ObjectPoolUnitTest::testObjectPool(int numberOfElements) {
 
     stream << "Releasing " << numberOfElements << " objects from the Object Pool:" << std::endl;
 
-    for (std::vector<int *>::const_iterator i = elements.begin(); i != elements.end(); ++i) {
+    for (std::vector<int *>::const_iterator i = elements.begin(); i != elements.end(); ++i)
+    {
         objectPool1.releaseElement(*i);
         stream << objectPool1;
     }
@@ -92,6 +94,10 @@ void ObjectPoolUnitTest::testObjectPool(int numberOfElements) {
     stream << "Pool Allocation Information:" << std::endl;
     objectPool1.getPoolAllocationInformation(stream);
     stream << std::endl;
+
+    base::IMessageWriter& writer1 = getMessageWriter();
+
+    writer1.writeInformationalMessage(stream.str());
 }
 
 

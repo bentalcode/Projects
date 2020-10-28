@@ -1,10 +1,10 @@
 #include "PreCompiled.h"
 
 #include "UnitTestHandler.h"
-#include "TestRunningResults.h"
 #include "UnitTestingException.h"
 #include "UnitTestException.h"
 #include "DateTime.h"
+#include "UnitTestingConsts.h"
 
 using namespace unit_testing;
 
@@ -72,10 +72,20 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
 {
     base::DateTimePtr startTime = base::DateTime::now();
 
+    std::stringstream testStartStream;
+    testStartStream
+        << UnitTestingConsts::testStart << std::endl
+        << "Running Unit Test: " + unitTestFunction.getName() << std::endl;
+
+    m_messageWriter.writeInformationalMessage(testStartStream.str());
+
     std::string errorMessage;
     bool resultStatus = runTest(unitTestFunction, errorMessage);
 
     base::DateTimePtr endTime = base::DateTime::now();
+
+    std::stringstream testResultStream;
+    testResultStream << "Unit Test: " + unitTestFunction.getName();
 
     if (resultStatus)
     {
@@ -84,8 +94,9 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
             *startTime,
             *endTime);
 
-        std::string message = "Unit Test: " + unitTestFunction.getName() + ", Passed.";
-        m_messageWriter.writeInformationalMessage(message);
+        testResultStream << ", Passed.";
+
+        m_messageWriter.writeInformationalMessage(testResultStream.str());
     }
     else
     {
@@ -95,11 +106,15 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
             *endTime,
             errorMessage);
 
-        std::string message =
-            "Unit Test: " + unitTestFunction.getName() + ", Failed. ErrorMessage: " + errorMessage;
+        testResultStream << ", Failed. ErrorMessage: " + errorMessage;
 
-        m_messageWriter.writeInformationalMessage(message);
+        m_messageWriter.writeErrorMessage(testResultStream.str());
     }
+
+    std::stringstream testEndStream;
+    testEndStream << UnitTestingConsts::testEnd << std::endl;
+
+    m_messageWriter.writeInformationalMessage(testEndStream.str());
 }
 
 /**

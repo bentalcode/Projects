@@ -2,6 +2,7 @@
 #define CONSOLE_COLOR_SETTER_H_33638183_f87c_4ce1_a3c9_9aa9e684e7e1
 
 #include "IConsoleColorHandler.h"
+#include "Log.h"
 
 namespace base
 {
@@ -12,7 +13,15 @@ namespace base
     {
     public:
         /**
-         * The WindowsConsoleColorHandler constructor.
+         * The ConsoleColorSetter constructor.
+         */
+        ConsoleColorSetter(
+            IConsoleColorHandlerPtr consoleColorHandler,
+            StandardFileDescriptor fileDescriptor,
+            ColorType colorType);
+
+        /**
+         * The ConsoleColorSetter constructor.
          */
         ConsoleColorSetter(
             IConsoleColorHandlerPtr consoleColorHandler,
@@ -20,7 +29,7 @@ namespace base
             unsigned short attributes);
 
         /**
-         * The WindowsConsoleColorHandler destructor.
+         * The ConsoleColorSetter destructor.
          */
         ~ConsoleColorSetter();
 
@@ -37,11 +46,18 @@ namespace base
         ConsoleColorSetter& operator=(ConsoleColorSetter&&) = delete;
 
     private:
+        /**
+         * Initializes the console color setter.
+         */
+        bool initialize();
+
         IConsoleColorHandlerPtr m_consoleColorHandler;
         StandardFileDescriptor m_fileDescriptor;
         unsigned short m_newAttributes;
         unsigned short m_currAttributes;
-        bool m_status;
+        bool m_active;
+
+        ILogPtr m_log;
     };
 }
 
