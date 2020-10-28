@@ -44,7 +44,7 @@ ILogFactory& LogFactory::getInstance()
 
         if (!instance)
         {
-            instance = std::make_unique<LogFactory>();
+            instance.reset(new LogFactory);
         }
     }
 

@@ -11,12 +11,13 @@ namespace base {
      */
     class LogFactory final : public ILogFactory
     {
-    public:
+    private:
         /**
          * The LogFactory Constructor.
          */
         explicit LogFactory(LogLevelType logLevel = LogLevelType::Informational);
 
+    public:
         /**
          * The LogFactory Destructor.
          */
