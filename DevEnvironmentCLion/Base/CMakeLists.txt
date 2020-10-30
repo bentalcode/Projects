@@ -31,20 +31,33 @@ set(BASE_INCLUDES_FILES
     ./core/AndBitOperator.h
     ./core/BaseDependencies.h
     ./core/BaseLogic.h
+    ./core/Bits.h
     ./core/ClassType.h
+    ./core/ClassTypes.h
     ./core/ComparableComparator.h
     ./core/Comparator.h
+    ./core/ComparatorFactory.h
+    ./core/CompareToBuilder.h
     ./core/ConsoleColorSetter.h
     ./core/Conversion.h
+    ./core/DateTime.h
     ./core/DereferenceComparableComparator.h
     ./core/DereferenceComparableComparator2.h
     ./core/DereferenceEquatableComparator.h
     ./core/DereferenceEquatableComparator2.h
+    ./core/Dimensions.h
+    ./core/Duration.h
+    ./core/EqualBuilder.h
     ./core/EquatableComparator.h
+    ./core/Indexes.h
+    ./core/Interval.h
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
+    ./core/Intervals.h
     ./core/InvertComparator.h
+    ./core/IterableComparator.h
     ./core/IterableObject.h
+    ./core/IteratorComparator.h
     ./core/KmpStringSearch.h
     ./core/List.h
     ./core/ListIterator.h
@@ -56,15 +69,24 @@ set(BASE_INCLUDES_FILES
     ./core/MessageWriter.h
     ./core/NotBitOperator.h
     ./core/OrBitOperator.h
+    ./core/Pair.h
     ./core/ParsingResult.h
     ./core/Position.h
     ./core/PreCompiled.h
     ./core/RandomGenerator.h
+    ./core/Range.h
     ./core/ReferenceCount.h
     ./core/ReferenceCountHolder.h
+    ./core/SharedPtr.h
     ./core/SkipIterator.h
+    ./core/StringComparable.h
     ./core/StringConversion.h
+    ./core/StringEquality.h
     ./core/StringIterator.h
+    ./core/StringSearch.h
+    ./core/Strings.h
+    ./core/Threads.h
+    ./core/Triple.h
     ./core/TwoDimensionalVector.h
     ./core/TwoDimensionalVectorIterator.h
     ./core/VectorIterator.h
@@ -73,15 +95,7 @@ set(BASE_INCLUDES_FILES
     ./core/WindowsDependecies.h
     ./core/WindowsErrors.h
     ./core/XorBitOperator.h
-    ./interfaces/Bits.h
-    ./interfaces/ClassTypes.h
     ./interfaces/ColorType.h
-    ./interfaces/ComparatorFactory.h
-    ./interfaces/CompareToBuilder.h
-    ./interfaces/DateTime.h
-    ./interfaces/Dimensions.h
-    ./interfaces/Duration.h
-    ./interfaces/EqualBuilder.h
     ./interfaces/IBinaryBitOperator.h
     ./interfaces/IBinaryComparator.h
     ./interfaces/IBitOperator.h
@@ -120,22 +134,8 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IValueIterable.h
     ./interfaces/IValueReverseIterable.h
     ./interfaces/IVisitor.h
-    ./interfaces/Indexes.h
-    ./interfaces/Interval.h
-    ./interfaces/Intervals.h
-    ./interfaces/IterableComparator.h
-    ./interfaces/IteratorComparator.h
     ./interfaces/LogLevelType.h
-    ./interfaces/Pair.h
-    ./interfaces/Range.h
-    ./interfaces/SharedPtr.h
     ./interfaces/StandardFileDescriptor.h
-    ./interfaces/StringComparable.h
-    ./interfaces/StringEquality.h
-    ./interfaces/StringSearch.h
-    ./interfaces/Strings.h
-    ./interfaces/Threads.h
-    ./interfaces/Triple.h
 )
 
 set(BASE_SOURCES_FILES

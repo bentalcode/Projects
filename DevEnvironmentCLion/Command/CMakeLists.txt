@@ -79,20 +79,33 @@ set(BASE_INCLUDES_FILES
     ../Base/core/AndBitOperator.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
+    ../Base/core/Bits.h
     ../Base/core/ClassType.h
+    ../Base/core/ClassTypes.h
     ../Base/core/ComparableComparator.h
     ../Base/core/Comparator.h
+    ../Base/core/ComparatorFactory.h
+    ../Base/core/CompareToBuilder.h
     ../Base/core/ConsoleColorSetter.h
     ../Base/core/Conversion.h
+    ../Base/core/DateTime.h
     ../Base/core/DereferenceComparableComparator.h
     ../Base/core/DereferenceComparableComparator2.h
     ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/DereferenceEquatableComparator2.h
+    ../Base/core/Dimensions.h
+    ../Base/core/Duration.h
+    ../Base/core/EqualBuilder.h
     ../Base/core/EquatableComparator.h
+    ../Base/core/Indexes.h
+    ../Base/core/Interval.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
+    ../Base/core/Intervals.h
     ../Base/core/InvertComparator.h
+    ../Base/core/IterableComparator.h
     ../Base/core/IterableObject.h
+    ../Base/core/IteratorComparator.h
     ../Base/core/KmpStringSearch.h
     ../Base/core/List.h
     ../Base/core/ListIterator.h
@@ -104,15 +117,24 @@ set(BASE_INCLUDES_FILES
     ../Base/core/MessageWriter.h
     ../Base/core/NotBitOperator.h
     ../Base/core/OrBitOperator.h
+    ../Base/core/Pair.h
     ../Base/core/ParsingResult.h
     ../Base/core/Position.h
     ../Base/core/PreCompiled.h
     ../Base/core/RandomGenerator.h
+    ../Base/core/Range.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/SharedPtr.h
     ../Base/core/SkipIterator.h
+    ../Base/core/StringComparable.h
     ../Base/core/StringConversion.h
+    ../Base/core/StringEquality.h
     ../Base/core/StringIterator.h
+    ../Base/core/StringSearch.h
+    ../Base/core/Strings.h
+    ../Base/core/Threads.h
+    ../Base/core/Triple.h
     ../Base/core/TwoDimensionalVector.h
     ../Base/core/TwoDimensionalVectorIterator.h
     ../Base/core/VectorIterator.h
@@ -121,15 +143,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/WindowsDependecies.h
     ../Base/core/WindowsErrors.h
     ../Base/core/XorBitOperator.h
-    ../Base/interfaces/Bits.h
-    ../Base/interfaces/ClassTypes.h
     ../Base/interfaces/ColorType.h
-    ../Base/interfaces/ComparatorFactory.h
-    ../Base/interfaces/CompareToBuilder.h
-    ../Base/interfaces/DateTime.h
-    ../Base/interfaces/Dimensions.h
-    ../Base/interfaces/Duration.h
-    ../Base/interfaces/EqualBuilder.h
     ../Base/interfaces/IBinaryBitOperator.h
     ../Base/interfaces/IBinaryComparator.h
     ../Base/interfaces/IBitOperator.h
@@ -168,22 +182,8 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IValueIterable.h
     ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
-    ../Base/interfaces/Indexes.h
-    ../Base/interfaces/Interval.h
-    ../Base/interfaces/Intervals.h
-    ../Base/interfaces/IterableComparator.h
-    ../Base/interfaces/IteratorComparator.h
     ../Base/interfaces/LogLevelType.h
-    ../Base/interfaces/Pair.h
-    ../Base/interfaces/Range.h
-    ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/StandardFileDescriptor.h
-    ../Base/interfaces/StringComparable.h
-    ../Base/interfaces/StringEquality.h
-    ../Base/interfaces/StringSearch.h
-    ../Base/interfaces/Strings.h
-    ../Base/interfaces/Threads.h
-    ../Base/interfaces/Triple.h
 )
 
 set(BASE_SOURCES_FILES
