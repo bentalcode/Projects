@@ -33,7 +33,7 @@ set(DATA_STRUCTURES_TEST_INCLUDES_FILES
     ./bitarray/interfaces/BitArrayTestData.h
     ./bitarray/interfaces/BitArrayUnitTest.h
     ./cache/interfaces/CacheTestData.h
-        cache/interfaces/CacheUnitTest.h
+    ./cache/interfaces/CacheUnitTest.h
     ./core/PreCompiled.h
     ./doublylinkedlist/interfaces/DoublyLinkedListData.h
     ./doublylinkedlist/interfaces/DoublyLinkedListTestData.h
@@ -56,7 +56,7 @@ set(DATA_STRUCTURES_TEST_SOURCES_FILES
     ./bitarray/core/BitArrayTestData.cpp
     ./bitarray/core/BitArrayUnitTest.cpp
     ./cache/core/CacheTestData.cpp
-        cache/core/CacheUnitTest.cpp
+    ./cache/core/CacheUnitTest.cpp
     ./core/IteratorOfIteratorCollectionUnitTest.cpp
     ./core/PreCompiled.cpp
     ./core/TestData.cpp
