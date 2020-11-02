@@ -37,12 +37,12 @@ namespace unit_testing
         /**
          * Gets the number of successful tests.
          */
-        virtual int numberOfSuccessfulTests() const override;
+        virtual size_t numberOfSuccessfulTests() const override;
 
         /**
          * Gets the number of failed tests.
          */
-        virtual int numberOfFailedTests() const override;
+        virtual size_t numberOfFailedTests() const override;
 
         /**
          * Gets the start time of the tests.
@@ -107,8 +107,8 @@ namespace unit_testing
         virtual void write(base::IMessageWriter& messageWriter) const override;
 
     private:
-        int m_numberOfSuccessfulTests;
-        int m_numberOfFailedTests;
+        size_t m_numberOfSuccessfulTests;
+        size_t m_numberOfFailedTests;
         base::DateTimePtr m_startTime;
         base::DateTimePtr m_endTime;
         ITestRunningResultList m_runningResults;

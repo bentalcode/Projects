@@ -15,16 +15,16 @@ import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 
 /**
- * The MRUCacheTest class implements tests for a most recently used cache.
+ * The CacheTest class implements tests for a cache.
  */
-public final class MRUCacheTest {
+public final class CacheTest {
     private final IAssertion assertion = new Assertion();
     private final ITestData testData = new TestData();
 
     /**
-     * The MRUCacheTest constructor.
+     * The CacheTest constructor.
      */
-    public MRUCacheTest() {
+    public CacheTest() {
     }
 
     /**
@@ -55,6 +55,19 @@ public final class MRUCacheTest {
     }
 
     /**
+     * Tests the updation logic of a least recently used cache.
+     */
+    @Test
+    public void lruCacheUpdationTest() {
+        ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
+
+        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
+            this.testData.getCacheData().getLruUpdationData();
+
+        this.testUpdation(cache, data);
+    }
+
+    /**
      * Tests the iteration logic of a most recently used cache.
      */
     @Test
@@ -68,7 +81,20 @@ public final class MRUCacheTest {
     }
 
     /**
-     * Tests the updation logic of a most recently used cache.
+     * Tests the iteration logic of a least recently used cache.
+     */
+    @Test
+    public void lruCacheIterationTest() {
+        ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
+
+        List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
+                this.testData.getCacheData().getLruUpdationData();
+
+        this.testIteration(cache, data);
+    }
+
+    /**
+     * Tests the updation logic of a cache.
      */
     private <TKey extends Comparable<TKey>, TValue> void testUpdation(
         ICache<TKey, TValue> cache,

@@ -66,6 +66,7 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./cache/interfaces/ICache.h
     ./cache/interfaces/ICacheProperties.h
     ./cache/interfaces/LRUCache.h
+    ./cache/interfaces/MRUCache.h
     ./core/PreCompiled.h
     ./doublylinkedlist/DoublyLinkedListException.h
     ./doublylinkedlist/core/DoublyLinkedList.h

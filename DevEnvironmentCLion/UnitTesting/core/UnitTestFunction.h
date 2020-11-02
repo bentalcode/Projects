@@ -14,7 +14,9 @@ namespace unit_testing {
         /**
          * The constructor.
          */
-        UnitTestFunction(const std::string& testName, UnitTestType& unitTest);
+        UnitTestFunction(
+            const std::string& testName,
+            UnitTestType& unitTest);
 
         /**
          * The destructor.
@@ -53,7 +55,9 @@ namespace unit_testing {
      * The UnitTestFunction constructor.
      */
     template <typename UnitTestType>
-    inline UnitTestFunction<UnitTestType>::UnitTestFunction(const std::string& testName, UnitTestType& unitTest) :
+    inline UnitTestFunction<UnitTestType>::UnitTestFunction(
+        const std::string& testName,
+        UnitTestType& unitTest) :
         m_testName(testName),
         m_unitTest(unitTest)
     {

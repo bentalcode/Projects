@@ -25,7 +25,7 @@ TestRunningResults::~TestRunningResults()
 /**
  * Gets the number of successful tests.
  */
-int TestRunningResults::numberOfSuccessfulTests() const
+size_t TestRunningResults::numberOfSuccessfulTests() const
 {
     return m_numberOfSuccessfulTests;
 }
@@ -33,7 +33,7 @@ int TestRunningResults::numberOfSuccessfulTests() const
 /**
  * Gets the number of failed tests.
  */
-int TestRunningResults::numberOfFailedTests() const
+size_t TestRunningResults::numberOfFailedTests() const
 {
     return m_numberOfFailedTests;
 }
@@ -153,7 +153,7 @@ std::string TestRunningResults::toString() const
 
     stream << "Running Results: " << std::endl;
 
-    int index = 0;
+    size_t index = 0;
 
     for (ITestRunningResultPtr runningResultPtr : m_runningResults)
     {

@@ -64,7 +64,6 @@ namespace unit_testing
         bool runTest(ITestFunction& unitTestFunction, std::string& errorMessage);
 
         IUnitTest& m_unitTest;
-
         base::IMessageWriter& m_messageWriter;
 
         using TestList = std::list<ITestFunctionPtr>;

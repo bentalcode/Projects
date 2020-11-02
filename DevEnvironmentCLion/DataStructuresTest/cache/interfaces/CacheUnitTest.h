@@ -1,5 +1,5 @@
-#ifndef LRU_CACHE_UNIT_TEST_H_ebe6facb_b744_48a6_9e40_659e23af8624
-#define LRU_CACHE_UNIT_TEST_H_ebe6facb_b744_48a6_9e40_659e23af8624
+#ifndef CACHE_UNIT_TEST_H_ebe6facb_b744_48a6_9e40_659e23af8624
+#define CACHE_UNIT_TEST_H_ebe6facb_b744_48a6_9e40_659e23af8624
 
 #include "UnitTestBase.h"
 #include "TestData.h"
@@ -18,20 +18,20 @@ namespace test {
         namespace cache {
 
             /**
-             * The LRUCacheUnitTest class implements the data of the tests of a cache.
+             * The CacheUnitTest class implements the data of the tests of a cache.
              */
-            class LRUCacheUnitTest final : public unit_testing::UnitTestBase
+            class CacheUnitTest final : public unit_testing::UnitTestBase
             {
             public:
                 /**
-                 * The LRUCacheUnitTest constructor.
+                 * The CacheUnitTest constructor.
                  */
-                explicit LRUCacheUnitTest(const std::string& name);
+                explicit CacheUnitTest(const std::string& name);
 
                 /**
-                 * The LRUCacheUnitTest destructor.
+                 * The CacheUnitTest destructor.
                  */
-                virtual ~LRUCacheUnitTest();
+                virtual ~CacheUnitTest();
 
                 /**
                  * Registers tests of the unit test.
@@ -44,9 +44,19 @@ namespace test {
                 void lruCacheUpdationTest();
 
                 /**
+                 * Tests the updation logic of a most recently used cache.
+                 */
+                void mruCacheUpdationTest();
+
+                /**
                  * Tests the iteration logic of a least recently used cache.
                  */
                 void lruCacheIterationTest();
+
+                /**
+                 * Tests the iteration logic of a most recently used cache.
+                 */
+                void mruCacheIterationTest();
 
             private:
                 /**
@@ -101,7 +111,7 @@ namespace test {
              * Tests the updation logic of a cache.
              */
             template <typename TKey, typename TValue>
-            void LRUCacheUnitTest::testUpdation(
+            void CacheUnitTest::testUpdation(
                 ICache<TKey, TValue>& cache,
                 const std::tuple<std::string, IKeyValueNodePtr<TKey, TValue>, std::vector<IKeyValueNodePtr<TKey, TValue>>>& data)
             {
@@ -116,7 +126,7 @@ namespace test {
              * Tests the iteration logic of a cache.
              */
             template <typename TKey, typename TValue>
-            void LRUCacheUnitTest::testIteration(
+            void CacheUnitTest::testIteration(
                 ICachePtr<TKey, TValue> cache,
                 const std::tuple<std::string, IKeyValueNodePtr<TKey, TValue>, std::vector<IKeyValueNodePtr<TKey, TValue>>>& data)
             {
@@ -131,7 +141,7 @@ namespace test {
              * Tests the updation logic of a cache.
              */
             template <typename TKey, typename TValue>
-            void LRUCacheUnitTest::testUpdation(
+            void CacheUnitTest::testUpdation(
                 ICache<TKey, TValue>& cache,
                 const std::string& operation,
                 const IKeyValueNode<TKey, TValue>& item,
@@ -152,7 +162,7 @@ namespace test {
              * Tests the iteration logic of a cache.
              */
             template <typename TKey, typename TValue>
-            void LRUCacheUnitTest::testIteration(
+            void CacheUnitTest::testIteration(
                 ICachePtr<TKey, TValue> cache,
                 const std::string& operation,
                 const IKeyValueNode<TKey, TValue>& item,
@@ -241,7 +251,7 @@ namespace test {
              * Updates the cache.
              */
             template <typename TKey, typename TValue>
-            void LRUCacheUnitTest::updateCache(
+            void CacheUnitTest::updateCache(
                 ICache<TKey, TValue>& cache,
                 const std::string& operation,
                 const IKeyValueNode<TKey, TValue>& item)
@@ -264,4 +274,4 @@ namespace test {
     }
 }
 
-#endif // LRU_CACHE_UNIT_TEST_H_ebe6facb_b744_48a6_9e40_659e23af8624
+#endif // CACHE_UNIT_TEST_H_ebe6facb_b744_48a6_9e40_659e23af8624

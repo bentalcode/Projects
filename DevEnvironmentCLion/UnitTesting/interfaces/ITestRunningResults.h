@@ -35,12 +35,12 @@ namespace unit_testing
         /**
          * Gets the number of successful tests.
          */
-        virtual int numberOfSuccessfulTests() const = 0;
+        virtual size_t numberOfSuccessfulTests() const = 0;
 
         /**
          * Gets the number of failed tests.
          */
-        virtual int numberOfFailedTests() const = 0;
+        virtual size_t numberOfFailedTests() const = 0;
 
         /**
          * Gets the start time of the tests.

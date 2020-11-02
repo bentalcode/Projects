@@ -15,7 +15,8 @@ public:
     {
     }
 
-    bool operator()(IUnitTestPtr unitTest) {
+    bool operator()(IUnitTestPtr unitTest)
+    {
         return m_name == unitTest->getName();
     }
 

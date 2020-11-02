@@ -6,39 +6,21 @@
 namespace unit_testing {
 
     /**
-     * The UnitTestException captured errors in the unit test module.
+     * The UnitTestException class implements an exception for capturing errors in the unit-test module.
      */
-    class UnitTestException : public std::runtime_error
-    {
+    class UnitTestException : public base::BaseException {
     public:
-        explicit UnitTestException(const std::string &errorMessage) :
-            std::runtime_error(errorMessage),
-            m_innerExceptionPtr(nullptr) {
+        explicit UnitTestException(const std::string& errorMessage) :
+            base::BaseException(errorMessage)
+        {
         }
 
-        explicit UnitTestException(
-            const std::string &errorMessage,
-            std::exception &innerException) :
-            std::runtime_error(errorMessage),
-            m_innerExceptionPtr(std::make_exception_ptr(innerException)) {
+        UnitTestException(
+            const std::string& errorMessage,
+            std::exception& innerException) :
+            base::BaseException(errorMessage, innerException)
+        {
         }
-
-        /**
-         * Gets the error message of an exception.
-         */
-        inline std::string getErrorMessage() {
-            return this->what();
-        }
-
-        /**
-         * Gets the inner exception.
-         */
-        inline std::exception_ptr getInnerException() {
-            return m_innerExceptionPtr;
-        }
-
-    private:
-        std::exception_ptr m_innerExceptionPtr;
     };
 }
 
