@@ -25,11 +25,29 @@ namespace base
         Intervals() = delete;
         ~Intervals() = delete;
 
+        /**
+         * Defines the sort interval functor.
+         */
         struct SortedIntervalFunctor final : public std::binary_function<IntervalPtr<T>, IntervalPtr<T>, bool>
         {
             bool operator() (IntervalPtr<T> left, IntervalPtr<T> right)
             {
-                return true;
+                if (!left && !right)
+                {
+                    return false;
+                }
+
+                if (!left)
+                {
+                    return true;
+                }
+
+                if (!right)
+                {
+                    return false;
+                }
+
+                return *left < *right;
             }
         };
     };
