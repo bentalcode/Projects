@@ -17,7 +17,10 @@ public final class BinaryTreeTraversalsBuilder {
         List<IPair<TKey, TValue>> preorder,
         List<IPair<TKey, TValue>> inorder) {
 
-        IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreePreorderInorderTraversalBuilder<>(preorder, inorder);
+        IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreePreorderInorderTraversalBuilder<>(
+            preorder,
+            inorder);
+
         IBinaryTree<TKey, TValue> tree = builder.build();
 
         return tree;

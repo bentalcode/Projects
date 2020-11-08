@@ -3,7 +3,7 @@ package datastructures.graph.interfaces;
 import base.interfaces.IVisitor;
 
 /**
- * The IGraph interface defines various traversals of a graph.
+ * The IGraphTraversal interface defines various traversals of a graph.
  */
 public interface IGraphTraversal<TKey extends Comparable<TKey>, TValue> {
     /**

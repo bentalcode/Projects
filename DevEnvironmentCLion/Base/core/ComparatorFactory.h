@@ -3,6 +3,7 @@
 
 #include "IteratorComparator.h"
 #include "IterableComparator.h"
+#include "CollectionComparator.h"
 
 namespace base {
 
@@ -35,6 +36,12 @@ namespace base {
         ComparatorFactory& operator=(ComparatorFactory&&) = delete;
 
         /**
+         * Creates a vector comparator.
+         */
+        template <typename CollectionType>
+        CollectionComparatorPtr<CollectionType> createCollectionComparator() const;
+
+        /**
          * Creates an iterator comparator.
          */
         template <typename T>
@@ -48,13 +55,23 @@ namespace base {
     };
 
     /**
+     * Creates a collection comparator.
+     */
+    template <typename CollectionType>
+    CollectionComparatorPtr<CollectionType> ComparatorFactory::createCollectionComparator() const
+    {
+        CollectionComparatorPtr<CollectionType> comparator(new CollectionComparator<CollectionType>());
+        return comparator;
+    }
+
+    /**
      * Creates an iterator comparator.
      */
     template <typename T>
     IteratorComparatorPtr<T> ComparatorFactory::createIteratorComparator() const
     {
-        IteratorComparatorPtr<T> iteratorComparator(new IterableComparator<T>());
-        return iteratorComparator;
+        IteratorComparatorPtr<T> comparator(new IterableComparator<T>());
+        return comparator;
     }
 
     /**

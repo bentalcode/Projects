@@ -26,14 +26,14 @@ public final class Walk<TKey extends Comparable<TKey>, TValue> implements IWalk<
     private final IBinaryComparator<IWalk<TKey, TValue>> comparator;
 
     /**
-     * Creates a walk.
+     * Creates a new walk.
      */
     public static <TKey extends Comparable<TKey>, TValue> IWalk<TKey, TValue> make(List<IVertex<TKey, TValue>> vertices) {
         return new Walk<>(vertices);
     }
 
     /**
-     * Creates a list walks.
+     * Creates a new list of walks.
      */
     public static <TKey extends Comparable<TKey>, TValue> List<IWalk<TKey, TValue>> createWalks(
         List<List<IVertex<TKey, TValue>>> verticesList) {

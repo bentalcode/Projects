@@ -26,7 +26,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
     /**
      * Creates a new graph from it's data.
      */
-    public static <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> create(
+    public static <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> make(
         IGraphDefinition<TKey, TValue> graphData) {
 
         IGraphBuilder<TKey, TValue> graphBuilder = new GraphBuilder<>();
@@ -114,10 +114,10 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
         //
         // Add the connections to the adjacency matrix...
         //
-        this.connections.get(sourceVertex).add(destinationVertex);
+        this.addConnection(sourceVertex, destinationVertex);
 
         if (!edge.directed()) {
-            this.connections.get(destinationVertex).add(sourceVertex);
+            this.addConnection(destinationVertex, sourceVertex);
         }
 
         return this;
@@ -193,6 +193,15 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
             this.edges,
             adjacencyMatrix,
             this.comparator);
+    }
+
+    /**
+     * Adds a connection to the adjacency matrix.
+     */
+    private void addConnection(
+        IVertex<TKey, TValue> sourceVertex, IVertex<TKey, TValue> destinationVertex)
+    {
+        this.connections.get(sourceVertex).add(destinationVertex);
     }
 
     /**

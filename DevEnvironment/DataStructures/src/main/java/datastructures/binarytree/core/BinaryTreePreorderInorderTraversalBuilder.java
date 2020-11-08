@@ -14,7 +14,7 @@ import java.util.Map;
  * from a preorder and an inorder traversal.
  */
 public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Comparable<TKey>, TValue>
-    extends BinaryTreeTraversalBuilder {
+    extends BinaryTreeTraversalBuilder<TKey, TValue> {
 
     private final List<IPair<TKey, TValue>> preorder;
     private final List<IPair<TKey, TValue>> inorder;

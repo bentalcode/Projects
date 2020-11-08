@@ -5,6 +5,8 @@
 #include "ComparableComparator.h"
 #include "DereferenceComparableComparator.h"
 #include "DereferenceComparableComparator2.h"
+#include "CollectionComparator.h"
+#include "MapComparator.h"
 
 namespace base {
 
@@ -57,6 +59,58 @@ namespace base {
             const T& lhs,
             const T& rhs,
             const IComparableComparator<T>& comparator);
+
+        /**
+         * With a generic vector.
+         */
+        template <typename T>
+        CompareToBuilder& withVector(
+            const std::vector<T>& lhs,
+            const std::vector<T>& rhs);
+
+        /**
+         * With a generic vector and a comparator.
+         */
+        template <typename T>
+        CompareToBuilder& withVector(
+            const std::vector<T>& lhs,
+            const std::vector<T>& rhs,
+            const IComparableComparator<T>& comparator);
+
+        /**
+         * With a generic set.
+         */
+        template <typename T>
+        CompareToBuilder& withSet(
+            const std::set<T>& lhs,
+            const std::set<T>& rhs);
+
+        /**
+         * With a generic set and a comparator.
+         */
+        template <typename T>
+        CompareToBuilder& withSet(
+            const std::set<T>& lhs,
+            const std::set<T>& rhs,
+            const IComparableComparator<T>& comparator);
+
+        /**
+         * With a generic map.
+         */
+        template <typename TKey, typename TValue>
+        CompareToBuilder& withMap(
+            const std::map<TKey, TValue>& lhs,
+            const std::map<TKey, TValue>& rhs);
+
+        /**
+         * With a generic map and a key/value comparators.
+         */
+        template <typename TKey, typename TValue>
+        CompareToBuilder& withMap(
+            const std::map<TKey, TValue>& lhs,
+            const std::map<TKey, TValue>& rhs,
+            const IComparableComparator<TKey>& keyComparator,
+            const IComparableComparator<TValue>& valueComparator);
 
         /**
          * With a generic iterator.
@@ -144,6 +198,121 @@ namespace base {
         }
 
         m_compareStatus = comparator.compareTo(lhs, rhs);
+
+        return *this;
+    }
+
+    /**
+     * With a generic vector.
+     */
+    template <typename T>
+    CompareToBuilder& CompareToBuilder::withVector(
+        const std::vector<T>& lhs,
+        const std::vector<T>& rhs)
+    {
+        ComparableComparator<T> comparator;
+        return withVector(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic vector and a comparator.
+     */
+    template <typename T>
+    CompareToBuilder& CompareToBuilder::withVector(
+        const std::vector<T>& lhs,
+        const std::vector<T>& rhs,
+        const IComparableComparator<T>& comparator)
+    {
+        if (m_compareStatus != 0)
+        {
+            return *this;
+        }
+
+        CollectionComparator<T> collectionComparator;
+        m_compareStatus = collectionComparator.compareTo(lhs, rhs, comparator);
+
+        return *this;
+    }
+
+    /**
+     * With a generic set.
+     */
+    template <typename T>
+    CompareToBuilder& CompareToBuilder::withSet(
+        const std::set<T>& lhs,
+        const std::set<T>& rhs)
+    {
+        CollectionComparator<T> comparator;
+        return withSet(lhs, rhs, comparator);
+    }
+
+    /**
+     * With a generic set and a comparator.
+     */
+    template <typename T>
+    CompareToBuilder& CompareToBuilder::withSet(
+        const std::set<T>& lhs,
+        const std::set<T>& rhs,
+        const IComparableComparator<T>& comparator)
+    {
+        if (m_compareStatus != 0)
+        {
+            return *this;
+        }
+
+        CollectionComparator<T> collectionComparator;
+        m_compareStatus = collectionComparator.compareTo(lhs, rhs, comparator);
+
+        return *this;
+    }
+
+    /**
+     * With a generic map.
+     */
+    template <typename TKey, typename TValue>
+    CompareToBuilder& CompareToBuilder::withMap(
+        const std::map<TKey, TValue>& lhs,
+        const std::map<TKey, TValue>& rhs)
+    {
+        if (m_compareStatus != 0)
+        {
+            return *this;
+        }
+
+        ComparableComparator<TKey> keyComparator;
+        ComparableComparator<TValue> valueComparator;
+
+        MapComparator<TKey, TValue> mapComparator;
+        m_compareStatus = mapComparator.compareTo(
+            lhs,
+            rhs,
+            keyComparator,
+            valueComparator);
+
+        return *this;
+    }
+
+    /**
+     * With a generic map and a key/value comparators.
+     */
+    template <typename TKey, typename TValue>
+    CompareToBuilder& CompareToBuilder::withMap(
+        const std::map<TKey, TValue>& lhs,
+        const std::map<TKey, TValue>& rhs,
+        const IComparableComparator<TKey>& keyComparator,
+        const IComparableComparator<TValue>& valueComparator)
+    {
+        if (m_compareStatus != 0)
+        {
+            return *this;
+        }
+
+        MapComparator<TKey, TValue> mapComparator;
+        m_compareStatus = mapComparator.compareTo(
+            lhs,
+            rhs,
+            keyComparator,
+            valueComparator);
 
         return *this;
     }

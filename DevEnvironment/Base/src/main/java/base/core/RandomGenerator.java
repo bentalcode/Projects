@@ -1,7 +1,6 @@
 package base.core;
 
 import base.interfaces.IRandomGenerator;
-import base.interfaces.StringCaseSensitiveType;
 import java.util.Random;
 
 /**
@@ -96,34 +95,12 @@ public final class RandomGenerator implements IRandomGenerator {
      */
     @Override
     public char nextCharacter() {
-        return this.nextCharacter(StringCaseSensitiveType.Sensitive);
-    }
+        char fromCharacter = Character.MIN_VALUE;
+        char toCharacter = Character.MAX_VALUE;
 
-    /**
-     * Generates a new character ignore case.
-     */
-    @Override
-    public char nextCharacterIgnoreCase() {
-        return this.nextCharacter(StringCaseSensitiveType.Insensitive);
-    }
-
-    /**
-     * Generates a new character.
-     */
-    @Override
-    public char nextCharacter(StringCaseSensitiveType sensitiveType) {
-        char from = Character.MIN_VALUE;
-        char to = Character.MAX_VALUE;
-
-        char result =  this.nextCharacter(
-            from,
-            to);
-
-        if (this.nextStringCaseSensitiveType() == StringCaseSensitiveType.Sensitive) {
-            result = Character.toUpperCase(result);
-        }
-        
-        return result;
+        return this.nextCharacter(
+            fromCharacter,
+            toCharacter);
     }
 
     /**
@@ -151,51 +128,12 @@ public final class RandomGenerator implements IRandomGenerator {
      */
     @Override
     public String nextString() {
-        return this.nextString(StringCaseSensitiveType.Sensitive);
-    }
-
-    /**
-     * Generates a new string ignore case.
-     */
-    @Override
-    public String nextStringIgnoreCase() {
-        return this.nextString(StringCaseSensitiveType.Insensitive);
-    }
-
-    /**
-     * Generates a new string.
-     */
-    @Override
-    public String nextString(StringCaseSensitiveType sensitiveType) {
         int fromLength = 0;
         int toLength = RandomGenerator.defaultStringMaxLength;
 
         return this.nextString(
             fromLength,
-            toLength,
-            sensitiveType);
-    }
-
-    /**
-     * Generates a new string with a length between the specified lengths (inclusively).
-     */
-    @Override
-    public String nextString(int fromLength, int toLength) {
-        return this.nextString(
-            fromLength,
-            toLength,
-            StringCaseSensitiveType.Sensitive);
-    }
-
-    /**
-     * Generates a new string ignore case with a length between the specified lengths (inclusively).
-     */
-    @Override
-    public String nextStringIgnoreCase(int fromLength, int toLength) {
-        return this.nextString(
-            fromLength,
-            toLength,
-            StringCaseSensitiveType.Insensitive);
+            toLength);
     }
 
     /**
@@ -204,40 +142,12 @@ public final class RandomGenerator implements IRandomGenerator {
     @Override
     public String nextString(
         int fromLength,
-        int toLength,
-        StringCaseSensitiveType sensitiveType) {
+        int toLength) {
 
-        Conditions.validate(
-            fromLength <= toLength,
-            "Invalid range of a length.");
+        char fromCharacter = Character.MIN_VALUE;
+        char toCharacter = Character.MAX_VALUE;
 
-        int length = this.nextInteger(fromLength, toLength);
-
-        if (length == 0) {
-            return "";
-        }
-
-        char[] data = new char[length];
-
-        for (int i = 0; i < length; ++i) {
-            data[i] = this.nextCharacter(sensitiveType);
-        }
-
-        String result = new String(data);
-        assert(result.length() >= fromLength && result.length() <= toLength);
-
-        return result;
-    }
-
-    /**
-     * Generates a new string with characters between the specified range (inclusively).
-     */
-    @Override
-    public String nextString(char fromCharacter, char toCharacter) {
-        int fromLength = 0;
-        int toLength = RandomGenerator.defaultStringMaxLength;
-
-        return this.nextString(
+        return nextString(
             fromCharacter,
             toCharacter,
             fromLength,
@@ -259,9 +169,7 @@ public final class RandomGenerator implements IRandomGenerator {
             fromCharacter <= toCharacter,
             "Invalid range of characters.");
 
-        Conditions.validate(
-            fromLength <= toLength,
-            "Invalid range of a length.");
+        Range.validate(fromLength, toLength);
 
         int length = this.nextInteger(fromLength, toLength);
 
@@ -279,12 +187,5 @@ public final class RandomGenerator implements IRandomGenerator {
         assert(result.length() >= fromLength && result.length() <= toLength);
 
         return result;
-    }
-
-    /**
-     * Generates a new case sensitive type for a string.
-     */
-    private StringCaseSensitiveType nextStringCaseSensitiveType() {
-        return this.nextBoolean() ? StringCaseSensitiveType.Sensitive : StringCaseSensitiveType.Insensitive;
     }
 }

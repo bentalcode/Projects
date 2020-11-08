@@ -1,6 +1,8 @@
 #ifndef I_RANDOM_GENERATOR_H_9f2fd989_72d0_4c38_9660_ade9b37b2ef8
 #define I_RANDOM_GENERATOR_H_9f2fd989_72d0_4c38_9660_ade9b37b2ef8
 
+#include "StringComparisonType.h"
+
 namespace base
 {
     /**
@@ -75,6 +77,36 @@ namespace base
          * Generates a new double between the following specified values (inclusively).
          */
         virtual double nextDouble(double from, double to) = 0;
+
+        /**
+         * Generates a new character.
+         */
+        virtual char nextCharacter() = 0;
+
+        /**
+         * Generates a new character between the following specified values (inclusively).
+         */
+        virtual char nextCharacter(char from, char to) = 0;
+
+        /**
+         * Generates a new string.
+         */
+        virtual std::string nextString() = 0;
+
+        /**
+         * Generates a new string ignore case with a length between the specified lengths (inclusively).
+         */
+        virtual std::string nextString(size_t fromLength, size_t toLength) = 0;
+
+        /**
+         * Generates a new string with characters between the specified range (inclusively),
+         * and length between the specified lengths (inclusively).
+         */
+        virtual std::string nextString(
+            char fromCharacter,
+            char toCharacter,
+            size_t fromLength,
+            size_t toLength) = 0;
     };
 
     template <typename T>

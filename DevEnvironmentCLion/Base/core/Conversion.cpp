@@ -4,10 +4,19 @@
 using namespace base;
 
 /**
- * Gets the string conversion.
+ * Gets an integer conversion.
+ */
+const IIntegerConversion& Conversion::integerConversion()
+{
+    static IntegerConversion conversion;
+    return conversion;
+}
+
+/**
+ * Gets a string conversion.
  */
 const IStringConversion& Conversion::stringConversion()
 {
-    static StringConversion stringConversion;
-    return stringConversion;
+    static StringConversion conversion;
+    return conversion;
 }

@@ -20,7 +20,7 @@ public final class KeyValueNodeReverseIterator<TKey extends Comparable<TKey>, TV
     public static <TKey extends Comparable<TKey>, TValue> IReverseIterator<IKeyValueNode<TKey, TValue>> make(
         List<IKeyValueNode<TKey, TValue>> nodes) {
 
-        return new KeyValueNodeReverseIterator(nodes);
+        return new KeyValueNodeReverseIterator<>(nodes);
     }
 
     /**

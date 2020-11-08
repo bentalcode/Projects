@@ -13,6 +13,11 @@ namespace base
     {
     public:
         /**
+         * Creates a new iterator of a two dimensional vector.
+         */
+        static IIteratorPtr<T> make(const std::vector<std::vector<T>>& data);
+
+        /**
          * The TwoDimensionalVectorIterator constructor.
          */
         explicit TwoDimensionalVectorIterator(const std::vector<std::vector<T>>& data);
@@ -65,6 +70,15 @@ namespace base
         size_t m_rowIndex;
         size_t m_columnIndex;
     };
+
+    /**
+     * Creates a new iterator of a two dimensional vector.
+     */
+    template <typename T>
+    IIteratorPtr<T> TwoDimensionalVectorIterator<T>::make(const std::vector<std::vector<T>>& data)
+    {
+        return std::make_shared<TwoDimensionalVectorIterator<T>>(data);
+    }
 
     /**
      * The TwoDimensionalVectorIterator constructor.

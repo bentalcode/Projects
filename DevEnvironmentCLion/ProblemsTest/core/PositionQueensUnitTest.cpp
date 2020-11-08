@@ -3,7 +3,7 @@
 #include "PositionQueensUnitTest.h"
 #include "UnitTestFunction.h"
 #include "PositionQueens.h"
-#include "TwoDimensionalList.h"
+#include "TwoDimensionalVector.h"
 
 using namespace problems_test;
 
@@ -209,11 +209,11 @@ void PositionQueensUnitTest::testPositionQueens(
     problems::PositionQueens positionQueens;
     std::vector<std::vector<std::string>> result = positionQueens.positionQueens(size);
 
-    base::TwoDimensionalList<std::string> resultTwoDimensionalList(result);
-    base::TwoDimensionalList<std::string> expectedResultTwoDimensionalList(expectedResult);
+    base::TwoDimensionalVector<std::string> resultTwoDimensionalVector(result);
+    base::TwoDimensionalVector<std::string> expectedResultTwoDimensionalVector(expectedResult);
 
     getAssertion().assertEqualsWithIterables(
-       resultTwoDimensionalList,
-       expectedResultTwoDimensionalList,
-       "Invalid logic for position queens.");
+        resultTwoDimensionalVector,
+        expectedResultTwoDimensionalVector,
+        "Invalid logic for position queens.");
 }

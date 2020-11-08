@@ -35,7 +35,7 @@ std::vector<std::vector<base::Position>> WordFinder::find()
 
     for (std::size_t row = 0; row < m_matrix.rowsSize(); ++row)
     {
-        for (std::size_t col = 0; col < m_matrix.colsSize(); ++col)
+        for (std::size_t col = 0; col < m_matrix.columnsSize(); ++col)
         {
             char currCharacter = m_matrix[row][col];
 

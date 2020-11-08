@@ -4,6 +4,8 @@
 
 using namespace test::datastructures;
 
+#include "GraphData.h"
+
 /**
  * The TestData constructor.
  */
@@ -23,7 +25,7 @@ TestData::~TestData()
  */
 BitArrayTestDataPtr TestData::getBitArrayData() const
 {
-    return BitArrayTestDataPtr(new BitArrayTestData);
+    return std::make_shared<BitArrayTestData>();
 }
 
 /**
@@ -31,7 +33,7 @@ BitArrayTestDataPtr TestData::getBitArrayData() const
  */
 LinkedListTestDataPtr TestData::getLinkedListData() const
 {
-    return LinkedListTestDataPtr(new LinkedListTestData);
+    return std::make_shared<LinkedListTestData>();
 }
 
 /**
@@ -39,7 +41,7 @@ LinkedListTestDataPtr TestData::getLinkedListData() const
  */
 DoublyLinkedListTestDataPtr TestData::getDoublyLinkedListData() const
 {
-    return DoublyLinkedListTestDataPtr(new DoublyLinkedListTestData);
+    return std::make_shared<DoublyLinkedListTestData>();
 }
 
 /**
@@ -47,7 +49,7 @@ DoublyLinkedListTestDataPtr TestData::getDoublyLinkedListData() const
  */
 BinaryTreeTestDataPtr TestData::getBinaryTreeData() const
 {
-    return BinaryTreeTestDataPtr(new BinaryTreeTestData);
+    return std::make_shared<BinaryTreeTestData>();
 }
 
 /**
@@ -55,7 +57,15 @@ BinaryTreeTestDataPtr TestData::getBinaryTreeData() const
  */
 PriorityQueueTestDataPtr TestData::getPriorityQueueData() const
 {
-    return PriorityQueueTestDataPtr(new PriorityQueueTestData);
+    return std::make_shared<PriorityQueueTestData>();
+}
+
+/**
+ * Gets the data of tests of a graph.
+ */
+GraphTestDataPtr TestData::getGraphData() const
+{
+    return std::make_shared<GraphTestData>();
 }
 
 /**
@@ -63,5 +73,5 @@ PriorityQueueTestDataPtr TestData::getPriorityQueueData() const
  */
 CacheTestDataPtr TestData::getCacheData() const
 {
-    return CacheTestDataPtr(new CacheTestData);
+    return std::make_shared<CacheTestData>();
 }

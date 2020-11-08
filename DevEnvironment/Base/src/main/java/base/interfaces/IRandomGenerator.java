@@ -40,16 +40,6 @@ public interface IRandomGenerator {
     char nextCharacter();
 
     /**
-     * Generates a new character ignore case.
-     */
-    char nextCharacterIgnoreCase();
-
-    /**
-     * Generates a new character.
-     */
-    char nextCharacter(StringCaseSensitiveType sensitiveType);
-
-    /**
      * Generates a new character between the following specified values (inclusively).
      */
     char nextCharacter(char from, char to);
@@ -60,38 +50,17 @@ public interface IRandomGenerator {
     String nextString();
 
     /**
-     * Generates a new string ignore case.
-     */
-    String nextStringIgnoreCase();
-
-    /**
-     * Generates a new string.
-     */
-    String nextString(StringCaseSensitiveType sensitiveType);
-
-    /**
-     * Generates a new string with a length between the specified lengths (inclusively).
-     */
-    String nextString(int fromLength, int toLength);
-
-    /**
      * Generates a new string ignore case with a length between the specified lengths (inclusively).
      */
-    String nextStringIgnoreCase(int fromLength, int toLength);
-
-    /**
-     * Generates a new string with a length between the specified lengths (inclusively).
-     */
-    String nextString(int fromLength, int toLength, StringCaseSensitiveType sensitiveType);
-
-    /**
-     * Generates a new string with characters between the specified range (inclusively).
-     */
-    String nextString(char fromCharacter, char toCharacter);
+    String nextString(int fromLength, int toLength);
 
     /**
      * Generates a new string with characters between the specified range (inclusively),
      * and length between the specified lengths (inclusively).
      */
-    String nextString(char fromCharacter, char toCharacter, int fromLength, int toLength);
+    String nextString(
+        char fromCharacter,
+        char toCharacter,
+        int fromLength,
+        int toLength);
 }

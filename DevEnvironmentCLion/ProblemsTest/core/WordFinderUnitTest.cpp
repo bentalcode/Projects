@@ -89,8 +89,8 @@ void WordFinderUnitTest::testWordFinder(
 
     std::vector<std::vector<base::Position>> result = finderPtr->find();
 
-    base::IIteratorPtr<base::Position> resultIterator(new base::TwoDimensionalListIterator<base::Position>(result));
-    base::IIteratorPtr<base::Position> expectedResultIterator(new base::TwoDimensionalListIterator<base::Position>(result));
+    base::IIteratorPtr<base::Position> resultIterator = base::TwoDimensionalVectorIterator<base::Position>::make(result);
+    base::IIteratorPtr<base::Position> expectedResultIterator = base::TwoDimensionalVectorIterator<base::Position>::make(result);
 
     getAssertion().assertEqualsWithIterators(
         *resultIterator,

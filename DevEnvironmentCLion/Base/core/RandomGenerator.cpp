@@ -2,8 +2,11 @@
 #include "RandomGenerator.h"
 #include "Dimensions.h"
 #include "Range.h"
+#include "Conversion.h"
 
 using namespace base;
+
+const size_t RandomGenerator::defaultStringMaxLength = 1000;
 
 /**
  * The RandomGenerator constructor.
@@ -144,6 +147,95 @@ double RandomGenerator::nextDouble(double from, double to)
     double result = from + randomRange;
 
     assert(result >= from && result <= to);
+
+    return result;
+}
+
+/**
+ * Generates a new character.
+ */
+char RandomGenerator::nextCharacter()
+{
+    char fromCharacter = std::numeric_limits<char>::min();
+    char toCharacter = std::numeric_limits<char>::max();
+
+    return nextCharacter(
+        fromCharacter,
+        toCharacter);
+}
+
+/**
+ * Generates a new character between the following specified values (inclusively).
+ */
+char RandomGenerator::nextCharacter(char from, char to) {
+    Range<char>::validate(from, to);
+
+    int range = to - from;
+    int randomRange = this->nextInteger(0, range);
+
+    int randomResult = from + randomRange;
+    char result = Conversion::integerConversion().toCharacter(randomResult);
+
+    assert(result >= from && result <= to);
+
+    return result;
+}
+
+/**
+ * Generates a new string.
+ */
+std::string RandomGenerator::nextString()
+{
+    size_t fromLength = 0;
+    size_t toLength = RandomGenerator::defaultStringMaxLength;
+
+    return nextString(
+        fromLength,
+        toLength);
+}
+
+/**
+ * Generates a new string ignore case with a length between the specified lengths (inclusively).
+ */
+std::string RandomGenerator::nextString(size_t fromLength, size_t toLength)
+{
+    char fromCharacter = std::numeric_limits<char>::min();
+    char toCharacter = std::numeric_limits<char>::max();
+
+    return nextString(
+        fromCharacter,
+        toCharacter,
+        fromLength,
+        toLength);
+}
+
+/**
+ * Generates a new string with characters between the specified range (inclusively),
+ * and length between the specified lengths (inclusively).
+ */
+std::string RandomGenerator::nextString(
+    char fromCharacter,
+    char toCharacter,
+    size_t fromLength,
+    size_t toLength)
+{
+    Range<char>::validate(fromCharacter, toCharacter);
+    Range<size_t>::validate(fromLength, toLength);
+
+    size_t length = nextSizeT(fromLength, toLength);
+
+    if (length == 0) {
+        return "";
+    }
+
+    std::string::value_type data[length];
+
+    for (size_t i = 0; i < length; ++i) {
+        data[i] = nextCharacter(fromCharacter, toCharacter);
+    }
+
+    std::string result(data);
+    assert(result.size() >= fromLength && result.size() <= toLength);
 
     return result;
 }

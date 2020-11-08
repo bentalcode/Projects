@@ -34,6 +34,8 @@ set(BASE_INCLUDES_FILES
     ./core/Bits.h
     ./core/ClassType.h
     ./core/ClassTypes.h
+    ./core/CollectionComparator.h
+    ./core/Collections.h
     ./core/ComparableComparator.h
     ./core/Comparator.h
     ./core/ComparatorFactory.h
@@ -50,6 +52,7 @@ set(BASE_INCLUDES_FILES
     ./core/EqualBuilder.h
     ./core/EquatableComparator.h
     ./core/Indexes.h
+    ./core/IntegerConversion.h
     ./core/Interval.h
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
@@ -65,6 +68,7 @@ set(BASE_INCLUDES_FILES
     ./core/LocalFreeReleaser.h
     ./core/Log.h
     ./core/LogFactory.h
+    ./core/MapComparator.h
     ./core/Matrix.h
     ./core/MessageWriter.h
     ./core/NotBitOperator.h
@@ -108,6 +112,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IEquatableComparator.h
     ./interfaces/IFinder.h
     ./interfaces/IHashCodeProvider.h
+    ./interfaces/IIntegerConversion.h
     ./interfaces/IIntervalMap.h
     ./interfaces/IIterable.h
     ./interfaces/IIterator.h
@@ -136,18 +141,21 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IVisitor.h
     ./interfaces/LogLevelType.h
     ./interfaces/StandardFileDescriptor.h
+    ./interfaces/StringComparisonType.h
 )
 
 set(BASE_SOURCES_FILES
     ./core/AndBitOperator.cpp
     ./core/Bits.cpp
     ./core/ClassType.cpp
+    ./core/Collections.cpp
     ./core/CompareToBuilder.cpp
     ./core/ConsoleColorSetter.cpp
     ./core/Conversion.cpp
     ./core/DateTime.cpp
     ./core/EqualBuilder.cpp
     ./core/Indexes.cpp
+    ./core/IntegerConversion.cpp
     ./core/KmpStringSearch.cpp
     ./core/Log.cpp
     ./core/LogFactory.cpp

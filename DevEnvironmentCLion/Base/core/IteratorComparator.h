@@ -11,7 +11,7 @@ namespace base {
      * The IteratorComparator class implements a comparator for iterators.
      */
     template <typename T>
-    class IteratorComparator
+    class IteratorComparator final
     {
     public:
         /**

@@ -2,6 +2,7 @@ package datastructures.graph.core;
 
 import base.core.AbstractBinaryComparator;
 import base.core.Casting;
+import base.core.ClassTypes;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
 import base.core.EqualBuilder;
@@ -10,12 +11,15 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IComparableComparator;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IHashCodeProvider;
+import datastructures.graph.GraphException;
 import datastructures.graph.interfaces.IAdjacencyMatrix;
 import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IVertex;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The AdjacencyMatrix class implements an adjacency matrix of a graph.
@@ -25,6 +29,8 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
 
     private final IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> comparator;
     private final int hashCode;
+
+    private static Logger log = LoggerFactory.getLogger(ClassTypes.class);
 
     /**
      * The AdjacencyMatrix constructor.
@@ -78,9 +84,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
      */
     @Override
     public Set<IVertex<TKey, TValue>> getAdjacentVertices(IVertex<TKey, TValue> vertex) {
-        this.validateVertex(vertex);
-
-        return this.connections.get(vertex);
+        return this.getVertexConnections(vertex);
     }
 
     /**
@@ -88,14 +92,12 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
      */
     @Override
     public Set<IEdge<TKey, TValue>> getAdjacentEdges(IVertex<TKey, TValue> vertex) {
-        this.validateVertex(vertex);
-
-        Set<IVertex<TKey, TValue>> adjacentVertices = this.connections.get(vertex);
+        Set<IVertex<TKey, TValue>> adjacentVertices = this.getVertexConnections(vertex);
 
         Set<IEdge<TKey, TValue>> edges = new HashSet<>();
 
         for (IVertex<TKey, TValue> adjacentVertex : adjacentVertices) {
-            IEdge<TKey, TValue> edge = this.connected(adjacentVertex, vertex) ?
+            IEdge<TKey, TValue> edge = this.connected(vertex, adjacentVertex) ?
                 Edge.newEdge(vertex, adjacentVertex) :
                 Edge.newDirectedEdge(vertex, adjacentVertex);
 
@@ -263,11 +265,16 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
     }
 
     /**
-     * Validates a vertex.
+     * Gets the connections of a vertex.
      */
-    private void validateVertex(IVertex<TKey, TValue> vertex) {
-        Conditions.validate(
-            this.connections.containsKey(vertex),
-            "The vertex is not defined in the adjacency matrix.");
+    private Set<IVertex<TKey, TValue>> getVertexConnections(IVertex<TKey, TValue> vertex) {
+        if (!this.connections.containsKey(vertex)) {
+            String errorMessage = "The vertex: " + vertex.toString() + " is not defined in the adjacency matrix.";
+
+            this.log.error(errorMessage);
+            throw new GraphException(errorMessage);
+        }
+
+        return this.connections.get(vertex);
     }
 }

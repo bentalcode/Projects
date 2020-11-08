@@ -15,12 +15,12 @@ namespace base
         /**
          * Creates a new reverse iterator of a list.
          */
-        static base::IReverseIteratorPtr<T> make(const std::vector<T>& data);
+        static base::IReverseIteratorPtr<T> make(const std::list<T>& data);
 
         /**
          * The constructor.
          */
-        explicit ListReverseIterator(const std::vector<T>& data);
+        explicit ListReverseIterator(const std::list<T>& data);
 
         /**
          * The destructor.
@@ -55,15 +55,15 @@ namespace base
         virtual void reset() override;
 
     private:
-        const std::vector<T>& m_data;
-        typename std::vector<T>::const_reverse_iterator m_reverseIterator;
+        const std::list<T>& m_data;
+        typename std::list<T>::const_reverse_iterator m_reverseIterator;
     };
 
     /**
      * Creates a reverse iterator of a list.
      */
     template <typename T>
-    base::IReverseIteratorPtr<T> ListReverseIterator<T>::make(const std::vector<T>& data)
+    base::IReverseIteratorPtr<T> ListReverseIterator<T>::make(const std::list<T>& data)
     {
         return std::make_shared<ListReverseIterator>(data);
     }
@@ -72,7 +72,7 @@ namespace base
      * The constructor.
      */
     template <typename T>
-    ListReverseIterator<T>::ListReverseIterator(const std::vector<T>& data) :
+    ListReverseIterator<T>::ListReverseIterator(const std::list<T>& data) :
         m_data(data)
     {
         reset();

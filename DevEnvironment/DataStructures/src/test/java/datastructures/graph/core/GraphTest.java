@@ -53,7 +53,7 @@ public final class GraphTest {
      * Tests whether a graph has a loop.
      */
     @Test
-    public void detectLoopTest() {
+    public void loopDetectionTest() {
         for (IGraphData<Integer, String> data : this.testData.getGraphData().getGraphsData()) {
             this.testLoopDetection(data, false);
         }
@@ -223,7 +223,7 @@ public final class GraphTest {
      */
     private <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> createGraph(IGraphData<TKey, TValue> data) {
         IGraphDefinition<TKey, TValue> graphDefinition = GraphDefinition.make(data.vertices(), data.edges());
-        IGraph<TKey, TValue> graph = GraphBuilder.create(graphDefinition);
+        IGraph<TKey, TValue> graph = GraphBuilder.make(graphDefinition);
         return graph;
     }
 }

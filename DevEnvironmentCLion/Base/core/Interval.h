@@ -16,7 +16,6 @@ namespace base
          */
         static Interval<T> make(const T& start, const T& end);
 
-
         /**
          * The constructor.
          */

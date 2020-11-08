@@ -79,12 +79,38 @@ namespace base
          */
         virtual double nextDouble(double from, double to) override;
 
-    private:
         /**
-         * Validates the specified range.
+         * Generates a new character.
          */
-        template <typename T>
-        static void validateRange(T start, T end);
+        virtual char nextCharacter() override;
+
+        /**
+         * Generates a new character between the following specified values (inclusively).
+         */
+        virtual char nextCharacter(char from, char to) override;
+
+        /**
+         * Generates a new string.
+         */
+        virtual std::string nextString() override;
+
+        /**
+         * Generates a new string ignore case with a length between the specified lengths (inclusively).
+         */
+        virtual std::string nextString(size_t fromLength, size_t toLength) override;
+
+        /**
+         * Generates a new string with characters between the specified range (inclusively),
+         * and length between the specified lengths (inclusively).
+         */
+        virtual std::string nextString(
+            char fromCharacter,
+            char toCharacter,
+            size_t fromLength,
+            size_t toLength) override;
+
+    private:
+        static const size_t defaultStringMaxLength;
     };
 }
 

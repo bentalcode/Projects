@@ -15,6 +15,26 @@ namespace base
     {
     public:
         /**
+         * Creates a two dimensional vector.
+         */
+        static ITwoDimensionalVectorPtr<T> make();
+
+        /**
+         * Creates a two dimensional vector, with an initial sizes: rowSize x colSize.
+         */
+        static ITwoDimensionalVectorPtr<T> make(size_t rowsSize, size_t columnsSize);
+
+        /**
+         * Creates a two dimensional vector, with a two dimensional vector.
+         */
+        static ITwoDimensionalVectorPtr<T> make(const std::vector<std::vector<T>>& data);
+
+        /**
+         * The constructor.
+         */
+        TwoDimensionalVector();
+
+        /**
          * The constructor, with an initial sizes: rowSize x colSize.
          */
         TwoDimensionalVector(size_t rowsSize, size_t columnsSize);
@@ -104,6 +124,41 @@ namespace base
     private:
         std::vector<std::vector<T>> m_data;
     };
+
+    /**
+     * Creates a two dimensional vector.
+     */
+    template <typename T>
+    ITwoDimensionalVectorPtr<T> TwoDimensionalVector<T>::make()
+    {
+        return std::make_shared<TwoDimensionalVector<T>>();
+    }
+
+    /**
+     * Creates a two dimensional vector, with an initial sizes: rowSize x colSize.
+     */
+    template <typename T>
+    ITwoDimensionalVectorPtr<T> TwoDimensionalVector<T>::make(size_t rowsSize, size_t columnsSize)
+    {
+        return std::make_shared<TwoDimensionalVector<T>>(rowsSize, columnsSize);
+    }
+
+    /**
+     * Creates a two dimensional vector, with a two dimensional vector.
+     */
+    template <typename T>
+    ITwoDimensionalVectorPtr<T> TwoDimensionalVector<T>::make(const std::vector<std::vector<T>>& data)
+    {
+        return std::make_shared<TwoDimensionalVector<T>>(data);
+    }
+
+    /**
+     * The constructor.
+     */
+    template <typename T>
+    TwoDimensionalVector<T>::TwoDimensionalVector()
+    {
+    }
 
     /**
      * The constructor, with an initial sizes: rowSize x colSize.

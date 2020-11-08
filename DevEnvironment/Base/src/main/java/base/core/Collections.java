@@ -16,7 +16,7 @@ public final class Collections {
     private static final String defaultDelimiter = ", ";
 
     /**
-     * Converts an iterator of items into a string.
+     * Converts an iterator to a string.
      */
     public static <T> String toString(IIterator<T> iterator) {
         String prefix = defaultPrefix;
@@ -31,7 +31,7 @@ public final class Collections {
     }
 
     /**
-     * Converts an iterator of items into a string.
+     * Converts an iterator to a string.
      */
     public static <T> String toString(
         IIterator<T> iterator,
@@ -47,7 +47,7 @@ public final class Collections {
     }
 
     /**
-     * Converts an iterator of items into a string.
+     * Converts an iterator to a string.
      */
     public static <T> String toString(
         String prefix,
@@ -87,7 +87,7 @@ public final class Collections {
     }
 
     /**
-     * Converts an iterator of items into a string.
+     * Converts a collection to a string.
      */
     public static <T> String toString(Collection<T> collection) {
         String prefix = defaultPrefix;
@@ -102,7 +102,7 @@ public final class Collections {
     }
 
     /**
-     * Converts an iterator of items into a string.
+     * Converts a collection to a string.
      */
     public static <T> String toString(
         Collection<T> collection,
@@ -119,7 +119,7 @@ public final class Collections {
     }
 
     /**
-     * Converts a collection of items into a string.
+     * Converts a collection to a string.
      */
     public static <T> String toString(
         String prefix,

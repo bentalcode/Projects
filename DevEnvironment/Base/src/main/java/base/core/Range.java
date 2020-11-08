@@ -178,4 +178,13 @@ public final class Range<T extends Comparable<T>> implements IRange<T> {
     public int compareTo(IRange<T> other) {
         return this.comparator.compareTo(this, other);
     }
+
+    /**
+     * Validates a range.
+     */
+    public static void validate(int from, int to) {
+        Conditions.validate(
+            from <= to,
+            "The specified range: " + from + "-" + to + " is not valid.");
+    }
 }

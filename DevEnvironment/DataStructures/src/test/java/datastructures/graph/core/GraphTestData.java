@@ -525,10 +525,10 @@ public final class GraphTestData implements IGraphTestData {
         List<IVertex<Integer, String>> vertices) {
 
         assert(vertices.size() == 4);
-        IVertex<Integer, String> vertex1 = Vertex.make(1, "a");
-        IVertex<Integer, String> vertex2 = Vertex.make(2, "b");
-        IVertex<Integer, String> vertex3 = Vertex.make(3, "c");
-        IVertex<Integer, String> vertex4 = Vertex.make(4, "d");
+        IVertex<Integer, String> vertex1 = vertices.get(0);
+        IVertex<Integer, String> vertex2 = vertices.get(1);
+        IVertex<Integer, String> vertex3 = vertices.get(2);
+        IVertex<Integer, String> vertex4 = vertices.get(3);
 
         List<List<IVertex<Integer, String>>> data = ArrayLists.make(
             List.of(vertex1),

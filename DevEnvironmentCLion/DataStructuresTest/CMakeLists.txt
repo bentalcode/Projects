@@ -38,6 +38,9 @@ set(DATA_STRUCTURES_TEST_INCLUDES_FILES
     ./doublylinkedlist/interfaces/DoublyLinkedListData.h
     ./doublylinkedlist/interfaces/DoublyLinkedListTestData.h
     ./doublylinkedlist/interfaces/DoublyLinkedListUnitTest.h
+    ./graph/interfaces/GraphData.h
+    ./graph/interfaces/GraphTestData.h
+    ./graph/interfaces/GraphUnitTest.h
     ./interfaces/IteratorOfIteratorCollectionUnitTest.h
     ./interfaces/TestData.h
     ./linkedlist/interfaces/LinkedListData.h
@@ -62,6 +65,8 @@ set(DATA_STRUCTURES_TEST_SOURCES_FILES
     ./core/TestData.cpp
     ./doublylinkedlist/core/DoublyLinkedListTestData.cpp
     ./doublylinkedlist/core/DoublyLinkedListUnitTest.cpp
+    ./graph/core/GraphTestData.cpp
+    ./graph/core/GraphUnitTest.cpp
     ./linkedlist/core/LinkedListTestData.cpp
     ./linkedlist/core/LinkedListUnitTest.cpp
     ./main.cpp
@@ -80,6 +85,7 @@ set(DATA_STRUCTURES_TEST_INCLUDES
     ./cache/interfaces
     ./core
     ./doublylinkedlist/interfaces
+    ./graph/interfaces
     ./interfaces
     ./linkedlist/interfaces
     ./priorityqueue/interfaces
@@ -95,6 +101,8 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Bits.h
     ../Base/core/ClassType.h
     ../Base/core/ClassTypes.h
+    ../Base/core/CollectionComparator.h
+    ../Base/core/Collections.h
     ../Base/core/ComparableComparator.h
     ../Base/core/Comparator.h
     ../Base/core/ComparatorFactory.h
@@ -111,6 +119,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/EqualBuilder.h
     ../Base/core/EquatableComparator.h
     ../Base/core/Indexes.h
+    ../Base/core/IntegerConversion.h
     ../Base/core/Interval.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
@@ -126,6 +135,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/LocalFreeReleaser.h
     ../Base/core/Log.h
     ../Base/core/LogFactory.h
+    ../Base/core/MapComparator.h
     ../Base/core/Matrix.h
     ../Base/core/MessageWriter.h
     ../Base/core/NotBitOperator.h
@@ -169,6 +179,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IEquatableComparator.h
     ../Base/interfaces/IFinder.h
     ../Base/interfaces/IHashCodeProvider.h
+    ../Base/interfaces/IIntegerConversion.h
     ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
@@ -197,18 +208,21 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IVisitor.h
     ../Base/interfaces/LogLevelType.h
     ../Base/interfaces/StandardFileDescriptor.h
+    ../Base/interfaces/StringComparisonType.h
 )
 
 set(BASE_SOURCES_FILES
     ../Base/core/AndBitOperator.cpp
     ../Base/core/Bits.cpp
     ../Base/core/ClassType.cpp
+    ../Base/core/Collections.cpp
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/ConsoleColorSetter.cpp
     ../Base/core/Conversion.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/Indexes.cpp
+    ../Base/core/IntegerConversion.cpp
     ../Base/core/KmpStringSearch.cpp
     ../Base/core/Log.cpp
     ../Base/core/LogFactory.cpp
@@ -376,6 +390,25 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/doublylinkedlist/core/DoublyLinkedListNodeValueReverseIterator.h
     ../DataStructures/doublylinkedlist/interfaces/IDoublyLinkedList.h
     ../DataStructures/doublylinkedlist/interfaces/IDoublyLinkedListNode.h
+    ../DataStructures/graph/GraphException.h
+    ../DataStructures/graph/core/AdjacencyMatrix.h
+    ../DataStructures/graph/core/Edge.h
+    ../DataStructures/graph/core/GraphBuilder.h
+    ../DataStructures/graph/core/GraphDefinition.h
+    ../DataStructures/graph/core/GraphLogic.h
+    ../DataStructures/graph/core/Route.h
+    ../DataStructures/graph/core/Vertex.h
+    ../DataStructures/graph/core/Walk.h
+    ../DataStructures/graph/interfaces/IAdjacencyMatrix.h
+    ../DataStructures/graph/interfaces/IEdge.h
+    ../DataStructures/graph/interfaces/IGraph.h
+    ../DataStructures/graph/interfaces/IGraphBuilder.h
+    ../DataStructures/graph/interfaces/IGraphDefinition.h
+    ../DataStructures/graph/interfaces/IGraphLogic.h
+    ../DataStructures/graph/interfaces/IGraphTraversal.h
+    ../DataStructures/graph/interfaces/IRoute.h
+    ../DataStructures/graph/interfaces/IVertex.h
+    ../DataStructures/graph/interfaces/IWalk.h
     ../DataStructures/interfaces/IteratorOfIteratorCollection.h
     ../DataStructures/linkedlist/LinkedListException.h
     ../DataStructures/linkedlist/core/LinkedList.h
@@ -428,6 +461,9 @@ set(DATA_STRUCTURES_INCLUDES
     ../DataStructures/doublylinkedlist
     ../DataStructures/doublylinkedlist/core
     ../DataStructures/doublylinkedlist/interfaces
+    ../DataStructures/graph
+    ../DataStructures/graph/core
+    ../DataStructures/graph/interfaces
     ../DataStructures/interfaces
     ../DataStructures/linkedlist
     ../DataStructures/linkedlist/core

@@ -1,6 +1,7 @@
 #ifndef CONVERSION_H_b3ae1e83_7982_4c4a_8061_3bd109d16646
 #define CONVERSION_H_b3ae1e83_7982_4c4a_8061_3bd109d16646
 
+#include "IntegerConversion.h"
 #include "StringConversion.h"
 
 namespace base
@@ -12,7 +13,12 @@ namespace base
     {
     public:
         /**
-         * Gets the string conversion.
+         * Gets an integer conversion.
+         */
+        static const IIntegerConversion& integerConversion();
+
+        /**
+         * Gets a string conversion.
          */
         static const IStringConversion& stringConversion();
 

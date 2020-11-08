@@ -6,6 +6,7 @@
 #include "DoublyLinkedListTestData.h"
 #include "BinaryTreeTestData.h"
 #include "PriorityQueueTestData.h"
+#include "GraphTestData.h"
 #include "CacheTestData.h"
 
 using namespace test::datastructures::bitarray;
@@ -13,6 +14,7 @@ using namespace test::datastructures::linkedlist;
 using namespace test::datastructures::doublylinkedlist;
 using namespace test::datastructures::binarytree;
 using namespace test::datastructures::priority_queue;
+using namespace test::datastructures::graph;
 using namespace test::datastructures::cache;
 
 namespace test {
@@ -58,6 +60,11 @@ namespace test {
              * Gets the data of tests of a priority queue.
              */
             PriorityQueueTestDataPtr getPriorityQueueData() const;
+
+            /**
+             * Gets the data of tests of a graph.
+             */
+            GraphTestDataPtr getGraphData() const;
 
             /**
              * Gets the data of tests of a cache.

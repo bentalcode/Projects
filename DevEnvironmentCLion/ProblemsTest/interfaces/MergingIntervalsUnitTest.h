@@ -5,7 +5,7 @@
 #include "MergingIntervals.h"
 #include "TestData.h"
 #include "Assertion.h"
-#include "ListIterator.h"
+#include "VectorIterator.h"
 
 namespace problems_test {
 
@@ -68,8 +68,8 @@ namespace problems_test {
         problems::MergingIntervals<T> mergingIntervals;
         std::vector<base::IntervalPtr<T>> result = mergingIntervals.merge(intervals);
 
-        base::ListIterator<base::IntervalPtr<T>> resultIterator(result);
-        base::ListIterator<base::IntervalPtr<T>> expectedResultIterator(expectedResult);
+        base::VectorIterator<base::IntervalPtr<T>> resultIterator(result);
+        base::VectorIterator<base::IntervalPtr<T>> expectedResultIterator(expectedResult);
 
         getAssertion().assertEqualsWithDereferenceIterators(
            resultIterator,
