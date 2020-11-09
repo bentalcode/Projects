@@ -116,6 +116,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Range.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/SetIterator.h
     ../Base/core/SharedPtr.h
     ../Base/core/SkipIterator.h
     ../Base/core/StringComparable.h

@@ -17,14 +17,14 @@ namespace datastructures {
             /**
              * Creates a new instance of an edge.
              */
-            static IEdgePtr<TKey, TValue> newEdge(
+            static IEdgePtr<TKey, TValue> make(
                 IVertexPtr<TKey, TValue> source,
                 IVertexPtr<TKey, TValue> destination);
 
             /**
              * Creates a new instance of a directed edge.
              */
-            static IEdgePtr<TKey, TValue> newDirectedEdge(
+            static IEdgePtr<TKey, TValue> makeDirected(
                 IVertexPtr<TKey, TValue> source,
                 IVertexPtr<TKey, TValue> destination);
 
@@ -83,7 +83,7 @@ namespace datastructures {
          * Creates a new instance of an edge.
          */
         template <typename TKey, typename TValue>
-        IEdgePtr<TKey, TValue> Edge<TKey, TValue>::newEdge(
+        IEdgePtr<TKey, TValue> Edge<TKey, TValue>::make(
             IVertexPtr<TKey, TValue> source,
             IVertexPtr<TKey, TValue> destination)
         {
@@ -97,7 +97,7 @@ namespace datastructures {
          * Creates a new instance of a directed edge.
          */
         template <typename TKey, typename TValue>
-        IEdgePtr<TKey, TValue> Edge<TKey, TValue>::newDirectedEdge(
+        IEdgePtr<TKey, TValue> Edge<TKey, TValue>::makeDirected(
             IVertexPtr<TKey, TValue> source,
             IVertexPtr<TKey, TValue> destination)
         {
@@ -163,7 +163,7 @@ namespace datastructures {
         std::string Edge<TKey, TValue>::toString() const
         {
             std::stringstream stream;
-            stream << m_source;
+            stream << *m_source;
 
             if (m_directed)
             {
@@ -174,7 +174,7 @@ namespace datastructures {
                 stream << "<->";
             }
 
-            stream << m_destination;
+            stream << *m_destination;
 
             return stream.str();
         }

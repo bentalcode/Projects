@@ -94,7 +94,7 @@ IEdgePtr<int, int> GraphTestData::nextDirectedEdgeByInteger()
     IVertexPtr<int, int> sourceVertex = nextVertexByInteger();
     IVertexPtr<int, int> destinationVertex = nextVertexByInteger();
 
-    IEdgePtr<int, int> edge = Edge<int, int>::newDirectedEdge(sourceVertex, destinationVertex);
+    IEdgePtr<int, int> edge = Edge<int, int>::makeDirected(sourceVertex, destinationVertex);
 
     return edge;
 }
@@ -107,7 +107,7 @@ IEdgePtr<double, double> GraphTestData::nextDirectedEdgeByDouble()
     IVertexPtr<double, double> sourceVertex = nextVertexByDouble();
     IVertexPtr<double, double> destinationVertex = nextVertexByDouble();
 
-    return Edge<double, double>::newDirectedEdge(sourceVertex, destinationVertex);
+    return Edge<double, double>::makeDirected(sourceVertex, destinationVertex);
 }
 
 /**
@@ -118,7 +118,7 @@ IEdgePtr<char, char> GraphTestData::nextDirectedEdgeByCharacter()
     IVertexPtr<char, char> sourceVertex = nextVertexByCharacter();
     IVertexPtr<char, char> destinationVertex = nextVertexByCharacter();
 
-    return Edge<char, char>::newDirectedEdge(sourceVertex, destinationVertex);
+    return Edge<char, char>::makeDirected(sourceVertex, destinationVertex);
 }
 
 /**
@@ -129,7 +129,7 @@ IEdgePtr<std::string, std::string> GraphTestData::nextDirectedEdgeByString()
     IVertexPtr<std::string, std::string> sourceVertex = nextVertexByString();
     IVertexPtr<std::string, std::string> destinationVertex = nextVertexByString();
 
-    return Edge<std::string, std::string>::newDirectedEdge(
+    return Edge<std::string, std::string>::makeDirected(
         sourceVertex,
         destinationVertex);
 }
@@ -152,10 +152,10 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData1()
         vertex4
     };
 
-    IEdgePtr<int, std::string> edge12 = Edge<int, std::string>::newDirectedEdge(vertex1, vertex2);
-    IEdgePtr<int, std::string> edge13 = Edge<int, std::string>::newDirectedEdge(vertex1, vertex3);
-    IEdgePtr<int, std::string> edge23 = Edge<int, std::string>::newDirectedEdge(vertex2, vertex3);
-    IEdgePtr<int, std::string> edge34 = Edge<int, std::string>::newDirectedEdge(vertex3, vertex4);
+    IEdgePtr<int, std::string> edge12 = Edge<int, std::string>::makeDirected(vertex1, vertex2);
+    IEdgePtr<int, std::string> edge13 = Edge<int, std::string>::makeDirected(vertex1, vertex3);
+    IEdgePtr<int, std::string> edge23 = Edge<int, std::string>::makeDirected(vertex2, vertex3);
+    IEdgePtr<int, std::string> edge34 = Edge<int, std::string>::makeDirected(vertex3, vertex4);
 
     std::vector<IEdgePtr<int, std::string>> edges
     {
@@ -213,14 +213,14 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData2()
         vertex6
     };
 
-    IEdgePtr<int, std::string> edge12 = Edge<int, std::string>::newDirectedEdge(vertex1, vertex2);
-    IEdgePtr<int, std::string> edge13 = Edge<int, std::string>::newDirectedEdge(vertex1, vertex3);
-    IEdgePtr<int, std::string> edge24 = Edge<int, std::string>::newDirectedEdge(vertex2, vertex4);
-    IEdgePtr<int, std::string> edge32 = Edge<int, std::string>::newDirectedEdge(vertex3, vertex2);
-    IEdgePtr<int, std::string> edge35 = Edge<int, std::string>::newDirectedEdge(vertex3, vertex5);
-    IEdgePtr<int, std::string> edge45 = Edge<int, std::string>::newDirectedEdge(vertex4, vertex5);
-    IEdgePtr<int, std::string> edge46 = Edge<int, std::string>::newDirectedEdge(vertex4, vertex6);
-    IEdgePtr<int, std::string> edge56 = Edge<int, std::string>::newDirectedEdge(vertex5, vertex6);
+    IEdgePtr<int, std::string> edge12 = Edge<int, std::string>::makeDirected(vertex1, vertex2);
+    IEdgePtr<int, std::string> edge13 = Edge<int, std::string>::makeDirected(vertex1, vertex3);
+    IEdgePtr<int, std::string> edge24 = Edge<int, std::string>::makeDirected(vertex2, vertex4);
+    IEdgePtr<int, std::string> edge32 = Edge<int, std::string>::makeDirected(vertex3, vertex2);
+    IEdgePtr<int, std::string> edge35 = Edge<int, std::string>::makeDirected(vertex3, vertex5);
+    IEdgePtr<int, std::string> edge45 = Edge<int, std::string>::makeDirected(vertex4, vertex5);
+    IEdgePtr<int, std::string> edge46 = Edge<int, std::string>::makeDirected(vertex4, vertex6);
+    IEdgePtr<int, std::string> edge56 = Edge<int, std::string>::makeDirected(vertex5, vertex6);
 
     std::vector<IEdgePtr<int, std::string>> edges =
     {
@@ -284,11 +284,11 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData3()
         vertex5
     };
 
-    IEdgePtr<int, std::string> edge12 = Edge<int, std::string>::newDirectedEdge(vertex1, vertex2);
-    IEdgePtr<int, std::string> edge13 = Edge<int, std::string>::newDirectedEdge(vertex1, vertex3);
-    IEdgePtr<int, std::string> edge25 = Edge<int, std::string>::newDirectedEdge(vertex2, vertex5);
-    IEdgePtr<int, std::string> edge35 = Edge<int, std::string>::newDirectedEdge(vertex3, vertex5);
-    IEdgePtr<int, std::string> edge45 = Edge<int, std::string>::newDirectedEdge(vertex4, vertex5);
+    IEdgePtr<int, std::string> edge12 = Edge<int, std::string>::makeDirected(vertex1, vertex2);
+    IEdgePtr<int, std::string> edge13 = Edge<int, std::string>::makeDirected(vertex1, vertex3);
+    IEdgePtr<int, std::string> edge25 = Edge<int, std::string>::makeDirected(vertex2, vertex5);
+    IEdgePtr<int, std::string> edge35 = Edge<int, std::string>::makeDirected(vertex3, vertex5);
+    IEdgePtr<int, std::string> edge45 = Edge<int, std::string>::makeDirected(vertex4, vertex5);
 
     std::vector<IEdgePtr<int, std::string>> edges =
     {
@@ -348,12 +348,12 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphDataWithLoop1()
 
     std::vector<IEdgePtr<int, std::string>> edges =
     {
-        Edge<int, std::string>::newDirectedEdge(vertex1, vertex2),
-        Edge<int, std::string>::newDirectedEdge(vertex1, vertex3),
-        Edge<int, std::string>::newDirectedEdge(vertex2, vertex3),
-        Edge<int, std::string>::newDirectedEdge(vertex3, vertex1),
-        Edge<int, std::string>::newDirectedEdge(vertex3, vertex4),
-        Edge<int, std::string>::newDirectedEdge(vertex4, vertex4)
+        Edge<int, std::string>::makeDirected(vertex1, vertex2),
+        Edge<int, std::string>::makeDirected(vertex1, vertex3),
+        Edge<int, std::string>::makeDirected(vertex2, vertex3),
+        Edge<int, std::string>::makeDirected(vertex3, vertex1),
+        Edge<int, std::string>::makeDirected(vertex3, vertex4),
+        Edge<int, std::string>::makeDirected(vertex4, vertex4)
     };
 
     GraphDataPtr<int, std::string> graphDataPtr = std::make_shared<GraphData<int, std::string>>(

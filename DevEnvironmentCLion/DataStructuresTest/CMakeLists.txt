@@ -148,6 +148,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Range.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/SetIterator.h
     ../Base/core/SharedPtr.h
     ../Base/core/SkipIterator.h
     ../Base/core/StringComparable.h
@@ -393,6 +394,7 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/graph/GraphException.h
     ../DataStructures/graph/core/AdjacencyMatrix.h
     ../DataStructures/graph/core/Edge.h
+    ../DataStructures/graph/core/Graph.h
     ../DataStructures/graph/core/GraphBuilder.h
     ../DataStructures/graph/core/GraphDefinition.h
     ../DataStructures/graph/core/GraphLogic.h

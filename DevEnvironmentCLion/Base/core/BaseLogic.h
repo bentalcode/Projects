@@ -35,10 +35,10 @@ namespace base {
     template <typename T>
     struct DereferenceLess
     {
-        bool operator() (T left, T right)
+        bool operator() (T leftPtr, T rightPtr)
         const
         {
-            return *left  < *right;
+            return *leftPtr  < *rightPtr;
         }
     };
 

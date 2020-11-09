@@ -6,6 +6,7 @@
 #include "GraphDefinition.h"
 #include "TestData.h"
 #include "GraphBuilder.h"
+#include "GraphLogic.h"
 
 using namespace datastructures::graph;
 
@@ -65,6 +66,17 @@ namespace test {
                 const GraphData<TKey, TValue>& data,
                 bool expectedStatus)
             {
+                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                std::string informationalMessage = "Created Graph: " + graph->toString();
+                getMessageWriter().writeInformationalMessage(informationalMessage);
+
+                GraphLogic<TKey, TValue> graphLogic(graph);
+                bool status = graphLogic.detectLoop();
+
+                getAssertion().assertEquals(
+                    status,
+                    expectedStatus,
+                    "Incorrect logic of a loop detection in a graph.");
             }
 
             /**

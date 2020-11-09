@@ -1,6 +1,8 @@
 #ifndef COLLECTIONS_H_bd7b6910_701e_4e8e_98a7_dfb1aeb6eab1
 #define COLLECTIONS_H_bd7b6910_701e_4e8e_98a7_dfb1aeb6eab1
 
+#include "IIterator.h"
+
 namespace base
 {
     /**
@@ -13,7 +15,8 @@ namespace base
          * Converts a collection to a string.
          */
         template <typename CollectionType>
-        static std::string toString(const CollectionType& collection);
+        static std::string toString(
+            const CollectionType& collection);
 
         /**
          * Converts a collection to a string.
@@ -29,6 +32,56 @@ namespace base
         template <typename CollectionType>
         static std::string toString(
             const CollectionType& collection,
+            std::string prefix,
+            std::string postfix,
+            std::string delimiter);
+
+        /**
+         * Converts an iterator to a string.
+         */
+        template <typename T>
+        static std::string iteratorToString(
+            IIterator<T>& iterator);
+
+        /**
+         * Converts an iterator to a string.
+         */
+        template <typename T>
+        static std::string iteratorToString(
+            IIterator<T>& iterator,
+            const std::string& delimiter);
+
+        /**
+         * Converts an iterator to a string.
+         */
+        template <typename T>
+        static std::string iteratorToString(
+            IIterator<T>& iterator,
+            std::string prefix,
+            std::string postfix,
+            std::string delimiter);
+
+        /**
+         * Converts an iterator to a string by dereferencing it's element.
+         */
+        template <typename T>
+        static std::string dereferenceIteratorToString(
+            IIterator<T>& iterator);
+
+        /**
+         * Converts an iterator to a string by dereferencing it's element.
+         */
+        template <typename T>
+        static std::string dereferenceIteratorToString(
+            IIterator<T>& iterator,
+            const std::string& delimiter);
+
+        /**
+         * Converts an iterator to a string by dereferencing it's element.
+         */
+        template <typename T>
+        static std::string dereferenceIteratorToString(
+            IIterator<T>& iterator,
             std::string prefix,
             std::string postfix,
             std::string delimiter);
@@ -95,6 +148,130 @@ namespace base
             }
 
             result << *i;
+        }
+
+        result << postfix;
+
+        return result.str();
+    }
+
+    /**
+     * Converts an iterator to a string.
+     */
+    template <typename T>
+    std::string Collections::iteratorToString(IIterator<T>& iterator)
+    {
+        return Collections::iteratorToString(
+            iterator,
+            defaultPrefix,
+            defaultPostfix,
+            defaultDelimiter);
+    }
+
+    /**
+     * Converts an iterator to a string.
+     */
+    template <typename T>
+    std::string Collections::iteratorToString(
+        IIterator<T>& iterator,
+        const std::string& delimiter)
+    {
+        return Collections::iteratorToString(
+            iterator,
+            defaultPrefix,
+            defaultPostfix,
+            delimiter);
+    }
+
+    /**
+     * Converts an iterator to a string.
+     */
+    template <typename T>
+    std::string Collections::iteratorToString(
+        IIterator<T>& iterator,
+        std::string prefix,
+        std::string postfix,
+        std::string delimiter)
+    {
+        std::stringstream result;
+
+        result << prefix;
+
+        bool firstElement = true;
+        while (iterator.hasNext())
+        {
+            T element = iterator.next();
+
+            if (!firstElement)
+            {
+                result << delimiter;
+            }
+
+            result << element;
+
+            firstElement = false;
+        }
+
+        result << postfix;
+
+        return result.str();
+    }
+
+    /**
+     * Converts an iterator to a string by dereferencing it's element.
+     */
+    template <typename T>
+    std::string Collections::dereferenceIteratorToString(IIterator<T>& iterator)
+    {
+        return Collections::dereferenceIteratorToString(
+                iterator,
+                defaultPrefix,
+                defaultPostfix,
+                defaultDelimiter);
+    }
+
+    /**
+     * Converts an iterator to a string by dereferencing it's element.
+     */
+    template <typename T>
+    std::string Collections::dereferenceIteratorToString(
+            IIterator<T>& iterator,
+            const std::string& delimiter)
+    {
+        return Collections::dereferenceIteratorToString(
+                iterator,
+                defaultPrefix,
+                defaultPostfix,
+                delimiter);
+    }
+
+    /**
+     * Converts an iterator to a string by dereferencing it's element.
+     */
+    template <typename T>
+    std::string Collections::dereferenceIteratorToString(
+        IIterator<T>& iterator,
+        std::string prefix,
+        std::string postfix,
+        std::string delimiter)
+    {
+        std::stringstream result;
+
+        result << prefix;
+
+        bool firstElement = true;
+        while (iterator.hasNext())
+        {
+            T element = iterator.next();
+
+            if (!firstElement)
+            {
+                result << delimiter;
+            }
+
+            result << *element;
+
+            firstElement = false;
         }
 
         result << postfix;

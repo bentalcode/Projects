@@ -47,21 +47,21 @@ namespace datastructures {
              * Checks whether two vertices are connected.
              */
             virtual bool connected(
-                const IVertex<TKey, TValue>& sourceVertex,
-                const IVertex<TKey, TValue>& destinationVertex) const = 0;
+                IVertexPtr<TKey, TValue> sourceVertex,
+                IVertexPtr<TKey, TValue> destinationVertex) const = 0;
 
             /**
              * Gets the adjacent vertices of a vertex.
              */
             virtual void getAdjacentVertices(
-                const IVertex<TKey, TValue>& vertex,
+                IVertexPtr<TKey, TValue> vertex,
                 std::set<IVertexPtr<TKey, TValue>>& result) const = 0;
 
             /**
              * Gets the adjacent edges of a vertex.
              */
             virtual void getAdjacentEdges(
-                const IVertex<TKey, TValue>& vertex,
+                IVertexPtr<TKey, TValue> vertex,
                 std::set<IEdgePtr<TKey, TValue>>& result) const = 0;
         };
 

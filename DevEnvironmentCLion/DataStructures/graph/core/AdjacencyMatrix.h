@@ -17,6 +17,11 @@ namespace datastructures {
         {
         public:
             /**
+             * Creates a new a adjacency map.
+             */
+            static IAdjacencyMatrixPtr<TKey, TValue> make(const AdjacencyMap<TKey, TValue>& connections);
+
+            /**
              * The AdjacencyMatrix constructor.
              */
             explicit AdjacencyMatrix(const AdjacencyMap<TKey, TValue>& connections);
@@ -47,36 +52,45 @@ namespace datastructures {
              * Checks whether two vertices are connected.
              */
             virtual bool connected(
-                const IVertex<TKey, TValue>& sourceVertex,
-                const IVertex<TKey, TValue>& destinationVertex) const override;
+                IVertexPtr<TKey, TValue> sourceVertex,
+                IVertexPtr<TKey, TValue> destinationVertex) const override;
 
             /**
              * Gets the adjacent vertices of a vertex.
              */
             virtual void getAdjacentVertices(
-                const IVertex<TKey, TValue>& vertex,
+                IVertexPtr<TKey, TValue> vertex,
                 VertexSet<TKey, TValue>& result) const override;
 
             /**
              * Gets the adjacent edges of a vertex.
              */
             virtual void getAdjacentEdges(
-                const IVertex<TKey, TValue>& vertex,
+                IVertexPtr<TKey, TValue> vertex,
                 EdgeSet<TKey, TValue>& result) const override;
 
         private:
             /**
              * Gets the connections of a vertex.
              */
-            const VertexSet<TKey, TValue>& getVertexConnections(const IVertex<TKey, TValue>& vertex) const;
+            const VertexSet<TKey, TValue>& getVertexConnections(IVertexPtr<TKey, TValue> vertex) const;
 
             /**
              * Finds the connections of a vertex.
              */
-            const VertexSet<TKey, TValue>* findVertexConnections(const IVertex<TKey, TValue>& vertex) const;
+            const VertexSet<TKey, TValue>* findVertexConnections(IVertexPtr<TKey, TValue> vertex) const;
 
             AdjacencyMap<TKey, TValue> m_connections;
         };
+
+        /**
+         * Creates a new a djacency map.
+         */
+        template <typename TKey, typename TValue>
+        IAdjacencyMatrixPtr<TKey, TValue> AdjacencyMatrix<TKey, TValue>::make(const AdjacencyMap<TKey, TValue>& connections)
+        {
+            return std::make_shared<AdjacencyMatrix<TKey, TValue>>(connections);
+        }
 
         /**
          * The AdjacencyMatrix constructor.
@@ -110,11 +124,10 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         bool AdjacencyMatrix<TKey, TValue>::connected(
-            const IVertex<TKey, TValue>& sourceVertex,
-            const IVertex<TKey, TValue>& destinationVertex) const
+            IVertexPtr<TKey, TValue> sourceVertex,
+            IVertexPtr<TKey, TValue> destinationVertex) const
         {
-            typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator =
-                m_connections.find(sourceVertex);
+            typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator = m_connections.find(sourceVertex);
 
             if (sourceVertexIterator == m_connections.end())
             {
@@ -126,7 +139,7 @@ namespace datastructures {
             typename VertexSet<TKey, TValue>::const_iterator destinationVertexIterator =
                 destinationVertices.find(destinationVertex);
 
-            return destinationVertexIterator != m_connections.end();
+            return destinationVertexIterator != destinationVertices.end();
         }
 
         /**
@@ -134,10 +147,11 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void AdjacencyMatrix<TKey, TValue>::getAdjacentVertices(
-            const IVertex<TKey, TValue>& vertex,
+            IVertexPtr<TKey, TValue> vertex,
             VertexSet<TKey, TValue>& result) const
         {
-            result = getVertexConnections(vertex);
+            const VertexSet<TKey, TValue>& connections = getVertexConnections(vertex);
+            result = connections;
         }
 
         /**
@@ -145,21 +159,18 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void AdjacencyMatrix<TKey, TValue>::getAdjacentEdges(
-            const IVertex<TKey, TValue>& vertex,
+            IVertexPtr<TKey, TValue> vertex,
             EdgeSet<TKey, TValue>& result) const
         {
-            VertexSet<TKey, TValue> adjacentVertices;
-            getVertexConnections(vertex, adjacentVertices);
-
-            IVertexPtr<TKey, TValue> sourceVertex = Vertex<TKey, TValue>::copy(vertex);
+            const VertexSet<TKey, TValue>& adjacentVertices = getVertexConnections(vertex);
 
             for (IVertexPtr<TKey, TValue> destinationVertex : adjacentVertices)
             {
-                IEdgePtr<TKey, TValue> edge = connected(*sourceVertex, *destinationVertex) ?
-                    Edge<TKey, TValue>::make(sourceVertex, destinationVertex) :
-                    Edge<TKey, TValue>::makeDirectedEdge(sourceVertex, destinationVertex);
+                IEdgePtr<TKey, TValue> edge = connected(vertex, destinationVertex) ?
+                    Edge<TKey, TValue>::make(vertex, destinationVertex) :
+                    Edge<TKey, TValue>::makeDirected(vertex, destinationVertex);
 
-                result.push_back(edge);
+                result.insert(edge);
             }
         }
 
@@ -168,14 +179,14 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         const VertexSet<TKey, TValue>& AdjacencyMatrix<TKey, TValue>::getVertexConnections(
-            const IVertex<TKey, TValue>& vertex) const
+            IVertexPtr<TKey, TValue> vertex) const
         {
             const VertexSet<TKey, TValue>* vertexConnections = findVertexConnections(vertex);
 
             if (vertexConnections == nullptr)
             {
                 std::string errorMessage =
-                    "The vertex: " + vertex.toString() + " is not defined in the adjacency matrix.";
+                    "The vertex: " + vertex->toString() + " is not defined in the adjacency matrix.";
 
                 throw GraphException(errorMessage);
             }
@@ -188,12 +199,10 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         const VertexSet<TKey, TValue>* AdjacencyMatrix<TKey, TValue>::findVertexConnections(
-            const IVertex<TKey, TValue>& vertex) const
+            IVertexPtr<TKey, TValue> vertex) const
         {
-            typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator =
-                m_connections.find(vertex);
-
-            return sourceVertexIterator != m_connections.end() ? sourceVertexIterator->second : nullptr;
+            typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator = m_connections.find(vertex);
+            return sourceVertexIterator != m_connections.end() ? &sourceVertexIterator->second : nullptr;
         }
 
     }

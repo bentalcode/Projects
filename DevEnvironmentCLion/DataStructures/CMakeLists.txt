@@ -82,6 +82,7 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./graph/GraphException.h
     ./graph/core/AdjacencyMatrix.h
     ./graph/core/Edge.h
+    ./graph/core/Graph.h
     ./graph/core/GraphBuilder.h
     ./graph/core/GraphDefinition.h
     ./graph/core/GraphLogic.h
@@ -222,6 +223,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Range.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/SetIterator.h
     ../Base/core/SharedPtr.h
     ../Base/core/SkipIterator.h
     ../Base/core/StringComparable.h

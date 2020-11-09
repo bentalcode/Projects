@@ -81,6 +81,7 @@ set(BASE_INCLUDES_FILES
     ./core/Range.h
     ./core/ReferenceCount.h
     ./core/ReferenceCountHolder.h
+    ./core/SetIterator.h
     ./core/SharedPtr.h
     ./core/SkipIterator.h
     ./core/StringComparable.h

@@ -4,6 +4,8 @@
 #include "IGraphBuilder.h"
 #include "Edge.h"
 #include "GraphException.h"
+#include "AdjacencyMatrix.h"
+#include "Graph.h"
 
 namespace datastructures {
     namespace graph {
@@ -82,6 +84,11 @@ namespace datastructures {
             virtual IGraphBuilder<TKey, TValue>& addEdges(
                 const std::vector<IEdgePtr<TKey, TValue>>& edges) override;
 
+            /**
+             * Builds the graph.
+             */
+            virtual IGraphPtr<TKey, TValue> build() override;
+
         private:
             /**
              * Adds an vertex if not defined.
@@ -146,7 +153,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addVertex(IVertexPtr<TKey, TValue> vertex)
         {
-            m_vertices.add(vertex);
+            m_vertices.insert(vertex);
             return *this;
         }
 
@@ -170,8 +177,8 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addEdge(IEdgePtr<TKey, TValue> edge)
         {
-            IVertexPtr<TKey, TValue> sourceVertex = edge.source();
-            IVertexPtr<TKey, TValue> destinationVertex = edge.destination();
+            IVertexPtr<TKey, TValue> sourceVertex = edge->source();
+            IVertexPtr<TKey, TValue> destinationVertex = edge->destination();
 
             //
             // Add the new vertices if required...
@@ -189,12 +196,12 @@ namespace datastructures {
             //
             addConnection(sourceVertex, destinationVertex);
 
-            if (!edge.directed())
+            if (!edge->directed())
             {
                 addConnection(destinationVertex, sourceVertex);
             }
 
-            return this;
+            return *this;
         }
 
         /**
@@ -240,6 +247,20 @@ namespace datastructures {
             return *this;
         }
 
+        /**
+         * Builds the graph.
+         */
+        template <typename TKey, typename TValue>
+        IGraphPtr<TKey, TValue> GraphBuilder<TKey, TValue>::build()
+        {
+            IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix = AdjacencyMatrix<TKey, TValue>::make(m_connections);
+
+            return Graph<TKey, TValue>::make(
+                m_vertices,
+                m_edges,
+                adjacencyMatrix);
+        }
+
         //
         // Add the connections to the adjacency matrix...
         //
@@ -267,14 +288,16 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void GraphBuilder<TKey, TValue>::addVertexIfNotExist(IVertexPtr<TKey, TValue> vertex)
         {
-            typename std::set<IVertexPtr<TKey, TValue>>::const_iterator vertexIterator = m_vertices.find(vertex);
+            typename std::set<IVertexPtr<TKey, TValue>>::iterator vertexIterator = m_vertices.find(vertex);
 
             if (vertexIterator != m_vertices.end())
             {
-                m_vertices.push_back(vertex);
-                std::set<IVertexPtr<TKey, TValue>> connections;
-                m_connections.push_back(vertex, connections);
+                return;
             }
+
+            m_vertices.insert(vertex);
+            std::set<IVertexPtr<TKey, TValue>> connections;
+            m_connections.insert(std::make_pair(vertex, connections));
         }
 
     }

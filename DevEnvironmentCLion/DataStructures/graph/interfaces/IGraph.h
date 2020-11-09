@@ -61,7 +61,7 @@ namespace datastructures {
              * Gets the degree.
              * A vertex degree is the number of edges incident to a vertex. Notated as d(V).
              */
-            virtual size_t getDegree(const IVertex<TKey, TValue>& vertex) = 0;
+            virtual size_t getDegree(IVertexPtr<TKey, TValue> vertex) const = 0;
 
             /**
              * Gets string representation of this instance.
@@ -85,9 +85,9 @@ namespace datastructures {
          * Serializes the object to an output stream.
          */
         template <typename TKey, typename TValue>
-        std::ostream& operator<<(std::ostream& stream, const IGraph<TKey, TValue>& edge)
+        std::ostream& operator<<(std::ostream& stream, const IGraph<TKey, TValue>& graph)
         {
-            stream << edge.toString();
+            stream << graph.toString();
             return stream;
         }
     }
