@@ -84,6 +84,7 @@ set(BASE_INCLUDES_FILES
     ./core/SetIterator.h
     ./core/SharedPtr.h
     ./core/SkipIterator.h
+    ./core/SmartPointers.h
     ./core/StringComparable.h
     ./core/StringConversion.h
     ./core/StringEquality.h

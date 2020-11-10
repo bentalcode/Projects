@@ -132,6 +132,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/SetIterator.h
     ../Base/core/SharedPtr.h
     ../Base/core/SkipIterator.h
+    ../Base/core/SmartPointers.h
     ../Base/core/StringComparable.h
     ../Base/core/StringConversion.h
     ../Base/core/StringEquality.h

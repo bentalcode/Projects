@@ -239,10 +239,10 @@ namespace base
             const std::string& delimiter)
     {
         return Collections::dereferenceIteratorToString(
-                iterator,
-                defaultPrefix,
-                defaultPostfix,
-                delimiter);
+            iterator,
+            defaultPrefix,
+            defaultPostfix,
+            delimiter);
     }
 
     /**

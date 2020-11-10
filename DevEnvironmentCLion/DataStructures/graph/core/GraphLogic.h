@@ -77,6 +77,15 @@ namespace datastructures {
                 IVertexPtr<TKey, TValue> vertex,
                 VertexSet<TKey, TValue>& visitedVertices,
                 VertexSet<TKey, TValue>& searchVertices) const;
+
+            /**
+             * Tries to perform a topological search of a graph.
+             */
+            bool topologicalSearch(
+                IVertexPtr<TKey, TValue> vertex,
+                std::set<IVertexPtr<TKey, TValue>>& visitedVertices,
+                std::set<IVertexPtr<TKey, TValue>>& currPath,
+                std::stack<IVertexPtr<TKey, TValue>>& result) const;
                     
             IGraphPtr<TKey, TValue> m_graph;
         };
@@ -107,13 +116,16 @@ namespace datastructures {
             VertexSet<TKey, TValue> visitedVertices;
             VertexSet<TKey, TValue> searchVertices;
 
-            for (IVertexPtr<TKey, TValue> vertex : m_graph->vertices()) {
-
-                if (visitedVertices.find(vertex) != visitedVertices.end()) {
+            const VertexSet<TKey, TValue>& vertices = m_graph->vertices();
+            for (IVertexPtr<TKey, TValue> vertex : vertices)
+            {
+                if (visitedVertices.find(vertex) != visitedVertices.end())
+                {
                     continue;
                 }
 
-                if (detectLoop(vertex, visitedVertices, searchVertices)) {
+                if (detectLoop(vertex, visitedVertices, searchVertices))
+                {
                     return true;
                 }
 
@@ -129,6 +141,38 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void GraphLogic<TKey, TValue>::topologicalSearch(std::list<IVertexPtr<TKey, TValue>>& result) const
         {
+            std::stack<IVertexPtr<TKey, TValue>> resultStack;
+            std::set<IVertexPtr<TKey, TValue>> visitedVertices;
+            std::set<IVertexPtr<TKey, TValue>> currPath;
+
+            const VertexSet<TKey, TValue>& vertices = m_graph->vertices();
+            for (IVertexPtr<TKey, TValue> vertex : vertices)
+            {
+                if (visitedVertices.find(vertex) != visitedVertices.end())
+                {
+                    continue;
+                }
+
+                if (!topologicalSearch(
+                        vertex,
+                        visitedVertices,
+                        currPath,
+                        resultStack))
+                {
+                    std::string errorMessage =
+                        "The graph contains a loop, aborting topological search. No topological search is possible.";
+
+                    throw GraphException(errorMessage);
+                }
+
+                assert(currPath.empty());
+            }
+
+            while (!resultStack.empty())
+            {
+                result.push_back(resultStack.top());
+                resultStack.pop();
+            }
         }
 
         /**
@@ -205,6 +249,55 @@ namespace datastructures {
             searchVertices.erase(vertex);
 
             return false;
+        }
+
+        /**
+         * Performs a topological search of a graph.
+         */
+        template <typename TKey, typename TValue>
+        bool GraphLogic<TKey, TValue>::topologicalSearch(
+            IVertexPtr<TKey, TValue> vertex,
+            std::set<IVertexPtr<TKey, TValue>>& visitedVertices,
+            std::set<IVertexPtr<TKey, TValue>>& currPath,
+            std::stack<IVertexPtr<TKey, TValue>>& result) const
+        {
+            if (visitedVertices.find(vertex) != visitedVertices.end())
+            {
+                return true;
+            }
+
+            visitedVertices.insert(vertex);
+            currPath.insert(vertex);
+
+            VertexSet<TKey, TValue> adjacentVertices;
+            m_graph->getAdjacencyMatrix().getAdjacentVertices(vertex, adjacentVertices);
+
+            for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
+            {
+                if (currPath.find(nextVertex) != currPath.end())
+                {
+                    return false;
+                }
+
+                if (visitedVertices.find(nextVertex) != visitedVertices.end())
+                {
+                    continue;
+                }
+
+                if (!topologicalSearch(
+                        nextVertex,
+                        visitedVertices,
+                        currPath,
+                        result)) {
+
+                    return false;
+                }
+            }
+
+            currPath.erase(vertex);
+            result.push(vertex);
+
+            return true;
         }
     }
 }

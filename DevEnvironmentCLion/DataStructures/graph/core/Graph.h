@@ -23,16 +23,16 @@ namespace datastructures {
              * Creates a new graph.
              */
             static IGraphPtr<TKey, TValue> make(
-                VertexSet<TKey, TValue> vertices,
-                EdgeSet<TKey, TValue> edges,
+                const VertexSet<TKey, TValue>& vertices,
+                const EdgeSet<TKey, TValue>& edges,
                 IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix);
 
             /**
              * The Graph constructor.
              */
             Graph(
-                VertexSet<TKey, TValue> vertices,
-                EdgeSet<TKey, TValue> edges,
+                const VertexSet<TKey, TValue>& vertices,
+                const EdgeSet<TKey, TValue>& edges,
                 IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix);
 
             /**
@@ -83,8 +83,8 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         IGraphPtr<TKey, TValue> Graph<TKey, TValue>::make(
-            VertexSet<TKey, TValue> vertices,
-            EdgeSet<TKey, TValue> edges,
+            const VertexSet<TKey, TValue>& vertices,
+            const EdgeSet<TKey, TValue>& edges,
             IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix)
         {
             return std::make_shared<Graph<TKey, TValue>>(
@@ -98,8 +98,8 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         Graph<TKey, TValue>::Graph(
-            VertexSet<TKey, TValue> vertices,
-            EdgeSet<TKey, TValue> edges,
+            const VertexSet<TKey, TValue>& vertices,
+            const EdgeSet<TKey, TValue>& edges,
             IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix) :
             m_vertices(vertices),
             m_edges(edges),

@@ -86,7 +86,9 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
                     currPath,
                     resultStack)) {
 
-                String errorMessage = "The graph contains a loop. No topological search is possible.";
+                String errorMessage =
+                    "The graph contains a loop, aborting topological search. No topological search is possible.";
+
                 throw new GraphException(errorMessage);
             }
 
@@ -259,7 +261,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
     }
 
     /**
-     * Detects whether a graph contains a loop.
+     * Performs a topological search of a graph.
      */
     private boolean topologicalSearch(
         IVertex<TKey, TValue> vertex,
@@ -283,13 +285,17 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
                 continue;
             }
 
-            if (!this.topologicalSearch(nextVertex, visitedVertices, currPath, resultStack)) {
+            if (!this.topologicalSearch(
+                    nextVertex,
+                    visitedVertices,
+                    currPath,
+                    resultStack)) {
+
                 return false;
             }
         }
 
         currPath.remove(vertex);
-
         resultStack.push(vertex);
 
         return true;

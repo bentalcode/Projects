@@ -4,6 +4,7 @@
 #include "IAdjacencyMatrix.h"
 #include "Edge.h"
 #include "Vertex.h"
+#include "SmartPointers.h"
 #include "GraphException.h"
 
 namespace datastructures {
@@ -127,6 +128,9 @@ namespace datastructures {
             IVertexPtr<TKey, TValue> sourceVertex,
             IVertexPtr<TKey, TValue> destinationVertex) const
         {
+            base::SmartPointers::validate(sourceVertex);
+            base::SmartPointers::validate(destinationVertex);
+
             typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator = m_connections.find(sourceVertex);
 
             if (sourceVertexIterator == m_connections.end())
@@ -150,6 +154,8 @@ namespace datastructures {
             IVertexPtr<TKey, TValue> vertex,
             VertexSet<TKey, TValue>& result) const
         {
+            base::SmartPointers::validate(vertex);
+
             const VertexSet<TKey, TValue>& connections = getVertexConnections(vertex);
             result = connections;
         }
@@ -162,6 +168,8 @@ namespace datastructures {
             IVertexPtr<TKey, TValue> vertex,
             EdgeSet<TKey, TValue>& result) const
         {
+            base::SmartPointers::validate(vertex);
+
             const VertexSet<TKey, TValue>& adjacentVertices = getVertexConnections(vertex);
 
             for (IVertexPtr<TKey, TValue> destinationVertex : adjacentVertices)

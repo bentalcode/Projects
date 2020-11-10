@@ -5,21 +5,39 @@
 
 using namespace test::datastructures::graph;
 
-class TestGraphLoopDetectionFunction final : public unit_testing::UnitTestFunction<GraphUnitTest>
+class LoopDetectionTestFunction final : public unit_testing::UnitTestFunction<GraphUnitTest>
 {
 public:
-    TestGraphLoopDetectionFunction(GraphUnitTest& unitTest) :
+    LoopDetectionTestFunction(GraphUnitTest& unitTest) :
         UnitTestFunction("loopDetectionTest", unitTest)
     {
     }
 
-    virtual ~TestGraphLoopDetectionFunction()
+    virtual ~LoopDetectionTestFunction()
     {
     }
 
     virtual void operator()()
     {
         getUnitTest().loopDetectionTest();
+    }
+};
+
+class TopologicalSearchTestFunction final : public unit_testing::UnitTestFunction<GraphUnitTest>
+{
+public:
+    TopologicalSearchTestFunction(GraphUnitTest& unitTest) :
+        UnitTestFunction("topologicalSearchTest", unitTest)
+    {
+    }
+
+    virtual ~TopologicalSearchTestFunction()
+    {
+    }
+
+    virtual void operator()()
+    {
+        getUnitTest().topologicalSearchTest();
     }
 };
 
@@ -43,7 +61,8 @@ GraphUnitTest::~GraphUnitTest()
  */
 void GraphUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestGraphLoopDetectionFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new LoopDetectionTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TopologicalSearchTestFunction(*this)));
 }
 
 /**
@@ -65,5 +84,19 @@ void GraphUnitTest::loopDetectionTest()
     for (GraphDataPtr<int, std::string> graphData : graphsDataWithLoops)
     {
         testLoopDetection(*graphData, true);
+    }
+}
+
+/**
+ * Tests the logic of a topological search of a graph.
+ */
+void GraphUnitTest::topologicalSearchTest()
+{
+    std::vector<GraphDataPtr<int, std::string>> graphsData;
+    m_testData.getGraphData()->getGraphsData(graphsData);
+
+    for (GraphDataPtr<int, std::string> graphData : graphsData)
+    {
+        testTopologicalSearch(*graphData);
     }
 }

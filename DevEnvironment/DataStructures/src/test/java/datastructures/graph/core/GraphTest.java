@@ -2,8 +2,10 @@ package datastructures.graph.core;
 
 import base.core.ListIterator;
 import base.core.Lists;
+import base.core.TwoDimensionalListIterator;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IPair;
+import base.interfaces.ITwoDimensionalList;
 import datastructures.core.TestData;
 import datastructures.graph.interfaces.IEdge;
 import datastructures.graph.interfaces.IGraph;
@@ -64,7 +66,7 @@ public final class GraphTest {
     }
 
     /**
-     * Tests topological search of a graph.
+     * Tests the logic of a topological search of a graph.
      */
     @Test
     public void topologicalSearchTest() {
@@ -127,17 +129,12 @@ public final class GraphTest {
         IGraph<TKey, TValue> graph = this.createGraph(data);
         IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
-        boolean hasLoop = graphLogic.detectLoop();
-        this.assertion.assertEquals(
-            hasLoop,
-            false,
-            "Invalid graph. The graph contains a loop. Topological search is impossible.");
-
-        List<IVertex<TKey, TValue>> result = graphLogic.topologicalSearch();
+        List<IVertex<TKey, TValue>> topologicalSearch = graphLogic.topologicalSearch();
+        ITwoDimensionalList<IVertex<TKey, TValue>> expectedTopologicalSearch = data.getTopologicalSearch();
 
         this.assertion.assertEqualsWithIterators(
-            ListIterator.make(result),
-            data.getTopologicalSearch().getIterator(),
+            ListIterator.make(topologicalSearch),
+            expectedTopologicalSearch.getIterator(),
             "Incorrect logic of a topological search in a graph.");
     }
 
