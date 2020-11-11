@@ -39,12 +39,12 @@ namespace datastructures {
             /**
              * Gets the source vertex.
              */
-            virtual const IVertex<TKey, TValue>& source() const = 0;
+            virtual IVertexPtr<TKey, TValue> source() const = 0;
 
             /**
              * Gets the destination vertex.
              */
-            virtual const IVertex<TKey, TValue>& destination() const = 0;
+            virtual IVertexPtr<TKey, TValue> destination() const = 0;
 
             /**
              * Gets string representation of this instance.

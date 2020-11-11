@@ -1,7 +1,7 @@
 #ifndef WALK_H_c382a318_e17c_404b_bd58_d077015d7d1f
 #define WALK_H_c382a318_e17c_404b_bd58_d077015d7d1f
 
-#include "Walk.h"
+#include "IWalk.h"
 #include "ListIterator.h"
 #include "ListReverseIterator.h"
 #include "Collections.h"
@@ -22,8 +22,19 @@ namespace datastructures {
             /**
              * Creates a new walk.
              */
+            static IWalkPtr<TKey, TValue> make();
+
+            /**
+             * Creates a new walk.
+             */
             static IWalkPtr<TKey, TValue> make(
                 const std::list<IVertexPtr<TKey, TValue>>& vertices);
+
+            /**
+             * Copies a walk.
+             */
+            static IWalkPtr<TKey, TValue> copy(
+                const IWalk<TKey, TValue>& walk);
 
             /**
              * Creates a new list of walks.
@@ -31,6 +42,11 @@ namespace datastructures {
             static void makeWalks(
                 const std::vector<std::list<IVertexPtr<TKey, TValue>>>& verticeLists,
                 std::vector<IWalkPtr<TKey, TValue>>& result);
+
+            /**
+             * The Walk constructor.
+             */
+            Walk();
 
             /**
              * The Walk constructor.
@@ -45,14 +61,14 @@ namespace datastructures {
             /**
              * The copy/move constructors.
              */
-            Walk(const Walk&) = delete;
+            Walk(const IWalk<TKey, TValue>&);
             Walk(Walk&&) = delete;
 
             /**
              * The copy/move assignment operators.
              */
-            Walk& operator=(const Walk&) = delete;
-            Walk& operator=(Walk&&) = delete;
+            Walk& operator=(const IWalk<TKey, TValue>&);
+            Walk& operator=(Walk<TKey, TValue>&&) = delete;
 
             /**
              * Adds a vertex.
@@ -107,9 +123,27 @@ namespace datastructures {
          * Creates a new walk.
          */
         template <typename TKey, typename TValue>
+        IWalkPtr<TKey, TValue> Walk<TKey, TValue>::make()
+        {
+            return std::make_shared<Walk<TKey, TValue>>();
+        }
+
+        /**
+         * Creates a new walk.
+         */
+        template <typename TKey, typename TValue>
         IWalkPtr<TKey, TValue> Walk<TKey, TValue>::make(const std::list<IVertexPtr<TKey, TValue>>& vertices)
         {
             return std::make_shared<Walk<TKey, TValue>>(vertices);
+        }
+
+        /**
+         * Copies a walk.
+         */
+        template <typename TKey, typename TValue>
+        IWalkPtr<TKey, TValue> Walk<TKey, TValue>::copy(const IWalk<TKey, TValue>& walk)
+        {
+            return std::make_shared<Walk<TKey, TValue>>(walk);
         }
 
         /**
@@ -131,9 +165,42 @@ namespace datastructures {
          * The Walk constructor.
          */
         template <typename TKey, typename TValue>
+        Walk<TKey, TValue>::Walk()
+        {
+        }
+
+        /**
+         * The Walk constructor.
+         */
+        template <typename TKey, typename TValue>
         Walk<TKey, TValue>::Walk(const std::list<IVertexPtr<TKey, TValue>>& vertices) :
             m_vertices(vertices)
         {
+        }
+
+        /**
+         * The Walk copy constructor.
+         */
+        template <typename TKey, typename TValue>
+        Walk<TKey, TValue>::Walk(const IWalk<TKey, TValue>& walk) :
+            m_vertices(walk.getVertices())
+        {
+        }
+
+        /**
+         * The Walk assignment operator.
+         */
+        template <typename TKey, typename TValue>
+        Walk<TKey, TValue>& Walk<TKey, TValue>::operator=(const IWalk<TKey, TValue>& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+
+            m_vertices = other.m_vertices;
+
+            return *this;
         }
 
         /**

@@ -198,7 +198,6 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Interval.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
-    ../Base/core/Intervals.h
     ../Base/core/InvertComparator.h
     ../Base/core/IterableComparator.h
     ../Base/core/IterableObject.h
@@ -227,6 +226,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/SharedPtr.h
     ../Base/core/SkipIterator.h
     ../Base/core/SmartPointers.h
+    ../Base/core/Sorting.h
     ../Base/core/StringComparable.h
     ../Base/core/StringConversion.h
     ../Base/core/StringEquality.h

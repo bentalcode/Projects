@@ -49,12 +49,12 @@ namespace datastructures {
             /**
              * Gets the source vertex.
              */
-            virtual const IVertex<TKey, TValue>& source() const override;
+            virtual IVertexPtr<TKey, TValue> source() const override;
 
             /**
              * Gets the destination vertex.
              */
-            virtual const IVertex<TKey, TValue>& destination() const override;
+            virtual IVertexPtr<TKey, TValue> destination() const override;
 
             /**
              * Gets string representation of this instance.
@@ -115,18 +115,18 @@ namespace datastructures {
          * Gets the source vertex.
          */
         template <typename TKey, typename TValue>
-        const IVertex<TKey, TValue>& Route<TKey, TValue>::source() const
+        IVertexPtr<TKey, TValue> Route<TKey, TValue>::source() const
         {
-            return *m_source;
+            return m_source;
         }
 
         /**
          * Gets the destination vertex.
          */
         template <typename TKey, typename TValue>
-        const IVertex<TKey, TValue>& Route<TKey, TValue>::destination() const
+        IVertexPtr<TKey, TValue> Route<TKey, TValue>::destination() const
         {
-            return *m_destination;
+            return m_destination;
         }
 
         /**

@@ -91,7 +91,7 @@ namespace test {
                 /**
                  * Gets the paths for the defined routes in the graph.
                  */
-                const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>> getPaths() const;
+                const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>& getPaths() const;
 
                 /**
                  * Gets the topological search of the graph.
@@ -220,9 +220,9 @@ namespace test {
              * Gets the paths for the defined routes in the graph.
              */
             template <typename TKey, typename TValue>
-            const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>> GraphData<TKey, TValue>::getPaths() const
+            const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>& GraphData<TKey, TValue>::getPaths() const
             {
-                return m_weights;
+                return m_paths;
             }
 
             /**

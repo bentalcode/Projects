@@ -380,8 +380,7 @@ namespace base {
             return *this;
         }
 
-        DereferenceComparableComparator2<T, TComparator> dereferenceComparator(comparator);
-        return withIterator(lhs, rhs, dereferenceComparator);
+        return withIterator(lhs, rhs, comparator);
     }
 
     /**
@@ -410,7 +409,7 @@ namespace base {
             return *this;
         }
 
-        IterableComparatorPtr<T> iterableComparator = new IterableComparator<T>();
+        IterableComparatorPtr<T> iterableComparator(new IterableComparator<T>);
         m_compareStatus = iterableComparator->compareTo(lhs, rhs, comparator);
 
         return *this;

@@ -14,31 +14,31 @@ namespace base {
     template <typename T>
     bool operator>(const T& left, const T& right)
     {
-        return !(left < right || left == right);
+        return right < left;
     }
 
     template <typename T>
     bool operator<=(const T& left, const T& right)
     {
-        return left < right || left == right;
+        return !(right < left);
     }
 
     template <typename T>
     bool operator>=(const T& left, const T& right)
     {
-        return left > right || left == right;
+        return !(left < right);
     }
 
     /**
     * Defines the dereference less for pointers.
     */
-    template <typename T>
-    struct DereferenceLess
+    template<typename T>
+    struct DereferenceLess final
     {
-        bool operator() (T leftPtr, T rightPtr)
+        bool operator()(T leftPtr, T rightPtr)
         const
         {
-            return *leftPtr  < *rightPtr;
+            return *leftPtr < *rightPtr;
         }
     };
 

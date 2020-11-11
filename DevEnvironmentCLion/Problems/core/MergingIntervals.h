@@ -2,7 +2,7 @@
 #define MERGING_INTERVALS_H_f2c78749_ad4f_466d_8654_06cb81f98301
 
 #include "IMergingIntervals.h"
-#include "Intervals.h"
+#include "Sorting.h"
 
 namespace problems
 {
@@ -61,7 +61,8 @@ namespace problems
             return result;
         }
 
-        std::vector<base::IntervalPtr<T>> sortedIntervals = base::Intervals<T>::sort(intervals);
+        std::vector<base::IntervalPtr<T>> sortedIntervals(intervals.begin(), intervals.end());
+        base::Sorting::dereferenceSort(sortedIntervals);
 
         std::stack<base::IntervalPtr<T>> stack;
         stack.push(sortedIntervals[0]);

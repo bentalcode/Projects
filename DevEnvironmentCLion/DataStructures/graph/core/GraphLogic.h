@@ -3,6 +3,7 @@
 
 #include "IGraphLogic.h"
 #include "IGraph.h"
+#include "Walk.h"
 
 namespace datastructures {
     namespace graph {
@@ -86,6 +87,14 @@ namespace datastructures {
                 std::set<IVertexPtr<TKey, TValue>>& visitedVertices,
                 std::set<IVertexPtr<TKey, TValue>>& currPath,
                 std::stack<IVertexPtr<TKey, TValue>>& result) const;
+
+            /**
+             * Finds paths by performing a Breadth-First search.
+             */
+            void findPathsWithBreadthFirstSearch(
+                IVertexPtr<TKey, TValue> source,
+                IVertexPtr<TKey, TValue> destination,
+                std::list<IWalkPtr<TKey, TValue>>& result) const;
                     
             IGraphPtr<TKey, TValue> m_graph;
         };
@@ -183,6 +192,7 @@ namespace datastructures {
             const IRoute<TKey, TValue>& route,
             std::list<IWalkPtr<TKey, TValue>>& result) const
         {
+            findPathsWithBreadthFirstSearch(route.source(), route.destination(), result);
         }
 
         /**
@@ -298,6 +308,54 @@ namespace datastructures {
             result.push(vertex);
 
             return true;
+        }
+
+        /**
+         * Finds paths by performing a Breadth-First search.
+         */
+        template <typename TKey, typename TValue>
+        void GraphLogic<TKey, TValue>::findPathsWithBreadthFirstSearch(
+            IVertexPtr<TKey, TValue> source,
+            IVertexPtr<TKey, TValue> destination,
+            std::list<IWalkPtr<TKey, TValue>>& result) const
+        {
+            std::queue<std::pair<IVertexPtr<TKey, TValue>, IWalkPtr<TKey, TValue>>> queue;
+            queue.push(std::make_pair(source, Walk<TKey, TValue>::make()));
+
+            while (!queue.empty())
+            {
+                std::pair<IVertexPtr<TKey, TValue>, IWalkPtr<TKey, TValue>> currElement = queue.front();
+                queue.pop();
+
+                IVertexPtr<TKey, TValue> currVertex = currElement.first;
+                IWalkPtr<TKey, TValue> currPath = currElement.second;
+
+                currPath->addVertex(currVertex);
+
+                if (*currVertex == *destination)
+                {
+                    IWalkPtr<TKey, TValue> newResult = Walk<TKey, TValue>::copy(*currPath);
+                    result.push_back(newResult);
+                }
+                else
+                {
+                    VertexSet<TKey, TValue> adjacentVertices;
+                    m_graph->getAdjacencyMatrix().getAdjacentVertices(currVertex, adjacentVertices);
+
+                    for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
+                    {
+                        if (currPath->visited(*nextVertex))
+                        {
+                            continue;
+                        }
+
+                        IWalkPtr<TKey, TValue> nextWalk = Walk<TKey, TValue>::copy(*currPath);
+                        nextWalk->addVertex(nextVertex);
+
+                        queue.push(std::make_pair(nextVertex, nextWalk));
+                    }
+                }
+            }
         }
     }
 }

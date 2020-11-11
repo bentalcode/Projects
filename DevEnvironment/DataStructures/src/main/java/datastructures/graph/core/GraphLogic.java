@@ -305,12 +305,12 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
      * Find paths by performing a Breadth-First search.
      */
     private void findPathsWithBreadthFirstSearch(
-        IVertex<TKey, TValue> start,
-        IVertex<TKey, TValue> end,
-        List<IWalk<TKey, TValue>> paths) {
+        IVertex<TKey, TValue> source,
+        IVertex<TKey, TValue> destination,
+        List<IWalk<TKey, TValue>> result) {
 
         Queue<IPair<IVertex<TKey, TValue>, IWalk<TKey, TValue>>> queue = new LinkedList<>();
-        queue.offer(Pair.make(start, new Walk<>()));
+        queue.offer(Pair.make(source, new Walk<>()));
 
         while (!queue.isEmpty()) {
             IPair<IVertex<TKey, TValue>, IWalk<TKey, TValue>> curr = queue.poll();
@@ -320,8 +320,8 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
 
             currWalk.addVertex(currVertex);
 
-            if (currVertex.equals(end)) {
-                paths.add(Walk.newWalk(currWalk));
+            if (currVertex.equals(destination)) {
+                result.add(Walk.newWalk(currWalk));
             }
             else {
                 for (IVertex<TKey, TValue> nextVertex : this.graph.getAdjacencyMatrix().getAdjacentVertices(currVertex)) {

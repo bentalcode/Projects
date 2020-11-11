@@ -62,7 +62,7 @@ namespace base {
         {
             return -1;
         }
-        else if (lhs > rhs)
+        else if (rhs < lhs)
         {
             return 1;
         }

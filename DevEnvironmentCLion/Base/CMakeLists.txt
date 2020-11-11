@@ -56,7 +56,6 @@ set(BASE_INCLUDES_FILES
     ./core/Interval.h
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
-    ./core/Intervals.h
     ./core/InvertComparator.h
     ./core/IterableComparator.h
     ./core/IterableObject.h
@@ -85,6 +84,7 @@ set(BASE_INCLUDES_FILES
     ./core/SharedPtr.h
     ./core/SkipIterator.h
     ./core/SmartPointers.h
+    ./core/Sorting.h
     ./core/StringComparable.h
     ./core/StringConversion.h
     ./core/StringEquality.h

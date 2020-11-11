@@ -95,10 +95,10 @@ namespace datastructures {
 
             base::CompareToBuilder compareToBuilder;
             bool status = compareToBuilder.withDereferenceIterator(
-                lhsIterator,
-                rhsIterator).build();
+                *lhsIterator,
+                *rhsIterator).build();
 
-            return status <= 1;
+            return status < 0;
         }
     }
 }
