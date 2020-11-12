@@ -409,6 +409,7 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/graph/interfaces/IGraphDefinition.h
     ../DataStructures/graph/interfaces/IGraphLogic.h
     ../DataStructures/graph/interfaces/IGraphTraversal.h
+    ../DataStructures/graph/interfaces/IPathFinder.h
     ../DataStructures/graph/interfaces/IRoute.h
     ../DataStructures/graph/interfaces/IVertex.h
     ../DataStructures/graph/interfaces/IWalk.h

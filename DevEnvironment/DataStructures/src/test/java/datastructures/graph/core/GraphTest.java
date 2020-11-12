@@ -2,7 +2,6 @@ package datastructures.graph.core;
 
 import base.core.ListIterator;
 import base.core.Lists;
-import base.core.TwoDimensionalListIterator;
 import base.interfaces.IEquatableComparator;
 import base.interfaces.IPair;
 import base.interfaces.ITwoDimensionalList;
@@ -12,6 +11,7 @@ import datastructures.graph.interfaces.IGraph;
 import datastructures.graph.interfaces.IGraphData;
 import datastructures.graph.interfaces.IGraphDefinition;
 import datastructures.graph.interfaces.IGraphLogic;
+import datastructures.graph.interfaces.IPathFinder;
 import datastructures.graph.interfaces.IRoute;
 import datastructures.graph.interfaces.IVertex;
 import datastructures.graph.interfaces.IWalk;
@@ -145,21 +145,17 @@ public final class GraphTest {
         IGraph<TKey, TValue> graph = this.createGraph(data);
         IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
-        List<IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>>> routesData = data.getPaths();
+        IPathFinder<TKey, TValue> pathFinder = new IPathFinder<TKey, TValue>() {
+            @Override
+            public List<IWalk<TKey, TValue>> findPaths(IRoute<TKey, TValue> route) {
+                return graphLogic.findPathsWithBreadthFirstSearch(route);
+            }
+        };
 
-        for (IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>> routeData : routesData) {
-            IRoute<TKey, TValue> route = routeData.first();
-            List<IWalk<TKey, TValue>> expectedPaths = routeData.second();
-
-            List<IWalk<TKey, TValue>> paths = graphLogic.findPathsWithBreadthFirstSearch(route);
-
-            Lists.sort(paths, Walk.defaultComparator());
-
-            this.assertion.assertEqualsWithIterators(
-                ListIterator.make(paths),
-                ListIterator.make(expectedPaths),
-                "Incorrect logic of finding paths with a Breadth-First search in a graph.");
-        }
+        this.testFindPaths(
+            pathFinder,
+            data.getPaths(),
+            "Breadth First Search");
     }
 
     /**
@@ -169,20 +165,39 @@ public final class GraphTest {
         IGraph<TKey, TValue> graph = this.createGraph(data);
         IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
-        List<IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>>> routesData = data.getPaths();
+        IPathFinder<TKey, TValue> pathFinder = new IPathFinder<TKey, TValue>() {
+            @Override
+            public List<IWalk<TKey, TValue>> findPaths(IRoute<TKey, TValue> route) {
+                return graphLogic.findPathsWithDepthFirstSearch(route);
+            }
+        };
+
+        this.testFindPaths(
+            pathFinder,
+            data.getPaths(),
+            "Depth First Search");
+    }
+
+    /**
+     * Tests the logic of finding paths in a graph.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void testFindPaths(
+        IPathFinder pathFinder,
+        List<IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>>> routesData,
+        String method) {
 
         for (IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>> routeData : routesData) {
             IRoute<TKey, TValue> route = routeData.first();
             List<IWalk<TKey, TValue>> expectedPaths = routeData.second();
 
-            List<IWalk<TKey, TValue>> paths = graphLogic.findPathsWithDepthFirstSearch(route);
+            List<IWalk<TKey, TValue>> paths = pathFinder.findPaths(route);
 
             Lists.sort(paths, Walk.defaultComparator());
 
             this.assertion.assertEqualsWithIterators(
                 ListIterator.make(paths),
                 ListIterator.make(expectedPaths),
-                "Incorrect logic of finding paths with a Depth-First search in a graph.");
+                "Incorrect logic of finding paths with a " + method + " + in a graph.");
         }
     }
 

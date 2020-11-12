@@ -212,6 +212,13 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
 
             for (IEdge<TKey, TValue> edge : this.graph.getAdjacencyMatrix().getAdjacentEdges(currVertex)) {
                 IVertex<TKey, TValue> nextVertex = edge.destination();
+
+                if (!weights.containsKey(edge))
+                {
+                    String errorMessage = "The edge: " + edge + " does not exist in the edge-weights map.";
+                    throw new GraphException(errorMessage);
+                }
+
                 int edgeWeight = weights.get(edge);
 
                 int nextDistance = currDistance + edgeWeight;
@@ -340,42 +347,42 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
      * Find paths by performing a Depth-First search.
      */
     private void findPathsWithDepthFirstSearch(
-        IVertex<TKey, TValue> curr,
-        IVertex<TKey, TValue> end,
+        IVertex<TKey, TValue> source,
+        IVertex<TKey, TValue> destination,
         IWalk<TKey, TValue> currPath,
         Set<IVertex<TKey, TValue>> visited,
-        List<IWalk<TKey, TValue>> paths) {
+        List<IWalk<TKey, TValue>> result) {
 
-        if (visited.contains(curr)) {
+        if (visited.contains(source)) {
             return;
         }
 
-        if (curr.equals(end)) {
+        if (source.equals(destination)) {
             IWalk<TKey, TValue> newPath = Walk.newWalk(currPath);
-            newPath.addVertex(curr);
-            paths.add(newPath);
+            newPath.addVertex(source);
+            result.add(newPath);
 
             return;
         }
 
-        currPath.addVertex(curr);
-        visited.add(curr);
-        assert(currPath.size() == visited.size());
+        currPath.addVertex(source);
+        visited.add(source);
 
-        for (IVertex<TKey, TValue> next : this.graph.getAdjacencyMatrix().getAdjacentVertices(curr)) {
-            if (visited.contains(next)) {
+        for (IVertex<TKey, TValue> nextVertex : this.graph.getAdjacencyMatrix().getAdjacentVertices(source)) {
+
+            if (visited.contains(nextVertex)) {
                 continue;
             }
 
             this.findPathsWithDepthFirstSearch(
-                next,
-                end,
+                nextVertex,
+                destination,
                 currPath,
                 visited,
-                paths);
+                result);
         }
 
         currPath.removeLastVertex();
-        visited.remove(curr);
+        visited.remove(source);
     }
 }

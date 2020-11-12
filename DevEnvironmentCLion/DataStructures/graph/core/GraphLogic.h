@@ -18,7 +18,7 @@ namespace datastructures {
             /**
              * The GraphLogic constructor.
              */
-            explicit GraphLogic(IGraphPtr<TKey, TValue> graph);
+            explicit GraphLogic(const IGraph<TKey, TValue>& graph);
 
             /**
              * The GraphLogic destructor.
@@ -95,15 +95,25 @@ namespace datastructures {
                 IVertexPtr<TKey, TValue> source,
                 IVertexPtr<TKey, TValue> destination,
                 std::list<IWalkPtr<TKey, TValue>>& result) const;
+
+            /**
+             * Finds paths by performing a Depth-First search.
+             */
+            void findPathsWithDepthFirstSearch(
+                IVertexPtr<TKey, TValue> source,
+                IVertexPtr<TKey, TValue> destination,
+                IWalk<TKey, TValue>& currPath,
+                std::set<IVertexPtr<TKey, TValue>>& visited,
+                std::list<IWalkPtr<TKey, TValue>>& result) const;
                     
-            IGraphPtr<TKey, TValue> m_graph;
+            const IGraph<TKey, TValue>& m_graph;
         };
 
         /**
          * The GraphLogic constructor.
          */
         template <typename TKey, typename TValue>
-        GraphLogic<TKey, TValue>::GraphLogic(IGraphPtr<TKey, TValue> graph) :
+        GraphLogic<TKey, TValue>::GraphLogic(const IGraph<TKey, TValue>& graph) :
             m_graph(graph)
         {
         }
@@ -125,7 +135,7 @@ namespace datastructures {
             VertexSet<TKey, TValue> visitedVertices;
             VertexSet<TKey, TValue> searchVertices;
 
-            const VertexSet<TKey, TValue>& vertices = m_graph->vertices();
+            const VertexSet<TKey, TValue>& vertices = m_graph.vertices();
             for (IVertexPtr<TKey, TValue> vertex : vertices)
             {
                 if (visitedVertices.find(vertex) != visitedVertices.end())
@@ -154,7 +164,7 @@ namespace datastructures {
             std::set<IVertexPtr<TKey, TValue>> visitedVertices;
             std::set<IVertexPtr<TKey, TValue>> currPath;
 
-            const VertexSet<TKey, TValue>& vertices = m_graph->vertices();
+            const VertexSet<TKey, TValue>& vertices = m_graph.vertices();
             for (IVertexPtr<TKey, TValue> vertex : vertices)
             {
                 if (visitedVertices.find(vertex) != visitedVertices.end())
@@ -203,6 +213,18 @@ namespace datastructures {
             const IRoute<TKey, TValue>& route,
             std::list<IWalkPtr<TKey, TValue>>& result) const
         {
+            IVertexPtr<TKey, TValue> source = route.source();
+            IVertexPtr<TKey, TValue> destination = route.destination();
+
+            IWalkPtr<TKey, TValue> currPath = Walk<TKey, TValue>::make();
+            std::set<IVertexPtr<TKey, TValue>> visited;
+
+            findPathsWithDepthFirstSearch(
+                source,
+                destination,
+                *currPath,
+                visited,
+                result);
         }
 
         /**
@@ -236,7 +258,7 @@ namespace datastructures {
             searchVertices.insert(vertex);
 
             VertexSet<TKey, TValue> adjacentVertices;
-            m_graph->getAdjacencyMatrix().getAdjacentVertices(vertex, adjacentVertices);
+            m_graph.getAdjacencyMatrix().getAdjacentVertices(vertex, adjacentVertices);
 
             for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
             {
@@ -280,7 +302,7 @@ namespace datastructures {
             currPath.insert(vertex);
 
             VertexSet<TKey, TValue> adjacentVertices;
-            m_graph->getAdjacencyMatrix().getAdjacentVertices(vertex, adjacentVertices);
+            m_graph.getAdjacencyMatrix().getAdjacentVertices(vertex, adjacentVertices);
 
             for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
             {
@@ -340,7 +362,7 @@ namespace datastructures {
                 else
                 {
                     VertexSet<TKey, TValue> adjacentVertices;
-                    m_graph->getAdjacencyMatrix().getAdjacentVertices(currVertex, adjacentVertices);
+                    m_graph.getAdjacencyMatrix().getAdjacentVertices(currVertex, adjacentVertices);
 
                     for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
                     {
@@ -356,6 +378,56 @@ namespace datastructures {
                     }
                 }
             }
+        }
+
+        /**
+         * Finds paths by performing a Depth-First search.
+         */
+        template <typename TKey, typename TValue>
+        void GraphLogic<TKey, TValue>::findPathsWithDepthFirstSearch(
+            IVertexPtr<TKey, TValue> source,
+            IVertexPtr<TKey, TValue> destination,
+            IWalk<TKey, TValue>& currPath,
+            std::set<IVertexPtr<TKey, TValue>>& visited,
+            std::list<IWalkPtr<TKey, TValue>>& result) const
+        {
+            if (visited.find(source) != visited.end())
+            {
+                return;
+            }
+
+            if (*source == *destination)
+            {
+                IWalkPtr<TKey, TValue> newResult = Walk<TKey, TValue>::copy(currPath);
+                newResult->addVertex(source);
+                result.push_back(newResult);
+
+                return;
+            }
+
+            currPath.addVertex(source);
+            visited.insert(source);
+
+            VertexSet<TKey, TValue> adjacentVertices;
+            m_graph.getAdjacencyMatrix().getAdjacentVertices(source, adjacentVertices);
+
+            for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
+            {
+                if (visited.find(nextVertex) != visited.end())
+                {
+                    return;
+                }
+
+                findPathsWithDepthFirstSearch(
+                    nextVertex,
+                    destination,
+                    currPath,
+                    visited,
+                    result);
+            }
+
+            currPath.removeLastVertex();
+            visited.erase(source);
         }
     }
 }

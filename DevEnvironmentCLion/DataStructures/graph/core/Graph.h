@@ -5,9 +5,9 @@
 #include "IVertex.h"
 #include "IEdge.h"
 #include "IAdjacencyMatrix.h"
-#include "GraphException.h"
 #include "SetIterator.h"
 #include "Collections.h"
+#include "GraphException.h"
 
 namespace datastructures {
     namespace graph {

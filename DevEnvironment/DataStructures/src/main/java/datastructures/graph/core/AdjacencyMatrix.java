@@ -97,7 +97,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
         Set<IEdge<TKey, TValue>> edges = new HashSet<>();
 
         for (IVertex<TKey, TValue> adjacentVertex : adjacentVertices) {
-            IEdge<TKey, TValue> edge = this.connected(vertex, adjacentVertex) ?
+            IEdge<TKey, TValue> edge = this.connected(adjacentVertex, vertex) ?
                 Edge.newEdge(vertex, adjacentVertex) :
                 Edge.newDirectedEdge(vertex, adjacentVertex);
 

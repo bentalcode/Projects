@@ -7,6 +7,7 @@
 #include "TestData.h"
 #include "GraphBuilder.h"
 #include "GraphLogic.h"
+#include "IPathFinder.h"
 #include "VectorIterator.h"
 #include "ListIterator.h"
 #include "Collections.h"
@@ -92,6 +93,15 @@ namespace test {
                 void testFindPathsWithDepthFirstSearch(const GraphData<TKey, TValue>& data);
 
                 /**
+                 * Tests the logic of finding paths in a graph.
+                 */
+                template <typename TKey, typename TValue>
+                void testFindPaths(
+                    IPathFinder<TKey, TValue>& pathFinder,
+                    const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>& routesData,
+                    const std::string& method);
+
+                /**
                  * Tests the logic of finding shortest paths in a graph.
                  */
                 template <typename TKey, typename TValue>
@@ -116,7 +126,7 @@ namespace test {
             {
                 IGraphPtr<TKey, TValue> graph = createGraph(data);
 
-                GraphLogic<TKey, TValue> graphLogic(graph);
+                GraphLogic<TKey, TValue> graphLogic(*graph);
                 bool status = graphLogic.detectLoop();
 
                 getAssertion().assertEquals(
@@ -132,7 +142,7 @@ namespace test {
             void GraphUnitTest::testTopologicalSearch(const GraphData<TKey, TValue>& data)
             {
                 IGraphPtr<TKey, TValue> graph = createGraph(data);
-                GraphLogic<TKey, TValue> graphLogic(graph);
+                GraphLogic<TKey, TValue> graphLogic(*graph);
 
                 std::list<IVertexPtr<TKey, TValue>> result;
                 graphLogic.topologicalSearch(result);
@@ -167,32 +177,40 @@ namespace test {
             template <typename TKey, typename TValue>
             void GraphUnitTest::testFindPathsWithBreadthFirstSearch(const GraphData<TKey, TValue>& data)
             {
-                IGraphPtr<TKey, TValue> graph = createGraph(data);
-                GraphLogic<TKey, TValue> graphLogic(graph);
-
-                const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>& routesData = data.getPaths();
-
-                for (const std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>& routeData : routesData)
+                class PathFinder final : public IPathFinder<TKey, TValue>
                 {
-                    IRoutePtr<TKey, TValue> route = routeData.first;
-                    const std::vector<IWalkPtr<TKey, TValue>>& expectedPaths = routeData.second;
+                public:
+                    PathFinder(const IGraph<TKey, TValue>& graph) : m_graph(graph)
+                    {
+                    }
 
-                    std::list<IWalkPtr<TKey, TValue>> paths;
-                    graphLogic.findPathsWithBreadthFirstSearch(*route, paths);
+                    virtual ~PathFinder()
+                    {
+                    }
 
-                    paths.sort();
+                    /**
+                     * Finds paths.
+                     */
+                    virtual void findPaths(
+                        const IRoute<TKey, TValue>& route,
+                        std::list<IWalkPtr<TKey, TValue>>& result) override
+                    {
+                        GraphLogic<TKey, TValue> graphLogic(m_graph);
+                        graphLogic.findPathsWithBreadthFirstSearch(route, result);
+                    }
 
-                    base::IIteratorPtr<IWalkPtr<TKey, TValue>> pathIterator =
-                        base::ListIterator<IWalkPtr<TKey, TValue>>::make(paths);
+                private:
+                    const IGraph<TKey, TValue>& m_graph;
+                };
 
-                    base::IIteratorPtr<IWalkPtr<TKey, TValue>> expectedPathIterator =
-                        base::VectorIterator<IWalkPtr<TKey, TValue>>::make(expectedPaths);
+                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                PathFinder pathFinder(*graph);
+                std::string method("Breadth First Search");
 
-                    getAssertion().assertEqualsWithDereferenceIterators(
-                        *pathIterator,
-                        *expectedPathIterator,
-                        "Incorrect logic of finding paths with a Breadth-First search in a graph.");
-                }
+                testFindPaths(
+                    pathFinder,
+                    data.getPaths(),
+                    method);
             }
 
             /**
@@ -201,6 +219,72 @@ namespace test {
             template <typename TKey, typename TValue>
             void GraphUnitTest::testFindPathsWithDepthFirstSearch(const GraphData<TKey, TValue>& data)
             {
+                class PathFinder final : public IPathFinder<TKey, TValue>
+                {
+                public:
+                    PathFinder(const IGraph<TKey, TValue>& graph) : m_graph(graph)
+                    {
+                    }
+
+                    virtual ~PathFinder()
+                    {
+                    }
+
+                    /**
+                     * Finds paths.
+                     */
+                    virtual void findPaths(
+                        const IRoute<TKey, TValue>& route,
+                        std::list<IWalkPtr<TKey, TValue>>& result) override
+                    {
+                        GraphLogic<TKey, TValue> graphLogic(m_graph);
+                        graphLogic.findPathsWithDepthFirstSearch(route, result);
+                    }
+
+                private:
+                    const IGraph<TKey, TValue>& m_graph;
+                };
+
+                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                PathFinder pathFinder(*graph);
+                std::string method("Breadth First Search");
+
+                testFindPaths(
+                    pathFinder,
+                    data.getPaths(),
+                    method);
+            }
+
+            /**
+             * Tests the logic of finding paths in a graph.
+             */
+            template <typename TKey, typename TValue>
+            void GraphUnitTest::testFindPaths(
+                IPathFinder<TKey, TValue>& pathFinder,
+                const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>& routesData,
+                const std::string& method)
+            {
+                for (const std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>& routeData : routesData)
+                {
+                    IRoutePtr<TKey, TValue> route = routeData.first;
+                    const std::vector<IWalkPtr<TKey, TValue>>& expectedPaths = routeData.second;
+
+                    std::list<IWalkPtr<TKey, TValue>> paths;
+                    pathFinder.findPaths(*route, paths);
+
+                    paths.sort();
+
+                    base::IIteratorPtr<IWalkPtr<TKey, TValue>> pathIterator =
+                    base::ListIterator<IWalkPtr<TKey, TValue>>::make(paths);
+
+                    base::IIteratorPtr<IWalkPtr<TKey, TValue>> expectedPathIterator =
+                    base::VectorIterator<IWalkPtr<TKey, TValue>>::make(expectedPaths);
+
+                    getAssertion().assertEqualsWithDereferenceIterators(
+                        *pathIterator,
+                        *expectedPathIterator,
+                        "Incorrect logic of finding paths with a " + method + " in a graph.");
+                }
             }
 
             /**

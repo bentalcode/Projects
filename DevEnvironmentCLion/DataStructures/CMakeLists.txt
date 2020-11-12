@@ -96,6 +96,7 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ./graph/interfaces/IGraphDefinition.h
     ./graph/interfaces/IGraphLogic.h
     ./graph/interfaces/IGraphTraversal.h
+    ./graph/interfaces/IPathFinder.h
     ./graph/interfaces/IRoute.h
     ./graph/interfaces/IVertex.h
     ./graph/interfaces/IWalk.h

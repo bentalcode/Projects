@@ -1,5 +1,6 @@
 package datastructures.graph.core;
 
+import base.core.HashMaps;
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.graph.interfaces.IEdge;
 import org.junit.After;
@@ -7,7 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -48,6 +52,20 @@ public final class EdgeTest {
             this.testIdentifyingEdgesByCharacterKey();
             this.testIdentifyingEdgesByStringKey();
         }
+    }
+
+    /**
+     * Tests the logic of mapping an edge.
+     */
+    @Test
+    public void mappingEdgeTest() {
+        IEdge<Integer, Integer> edge1 = this.testData.nextDirectedEdgeByInteger();
+        IEdge<Integer, Integer> edge2 = this.testData.nextDirectedEdgeByInteger();
+
+        Map<IEdge<Integer, Integer>, Integer> map = HashMaps.make(edge1, 1, edge2, 2);
+
+        this.testMappingEdge(map, edge1, true);
+        this.testMappingEdge(map, edge2, true);
     }
 
     /**
@@ -124,5 +142,21 @@ public final class EdgeTest {
         this.assertion.assertTrue(
             edges.size() == 1,
             "Incorrect logic of identifying edges by a string key.");
+    }
+
+    /**
+     * Tests the logic of mapping an edge.
+     */
+    private <TKey extends Comparable<TKey>, TValue> void testMappingEdge(
+        Map<IEdge<TKey, TValue>, Integer> map,
+        IEdge<TKey, TValue> edge,
+        boolean exists)
+    {
+        boolean status = map.containsKey(edge);
+
+        this.assertion.assertEquals(
+            status,
+            exists,
+            "Incorrect logic of mapping an edge.");
     }
 }
