@@ -2,7 +2,7 @@
 #define ROUTE_H_5c2ac7da_e388_4658_87c0_517fef72d6c4
 
 #include "IRoute.h"
-#include "GraphException.h"
+#include "SmartPointers.h"
 
 namespace datastructures {
     namespace graph {
@@ -90,17 +90,8 @@ namespace datastructures {
             m_source(source),
             m_destination(destination)
         {
-            if (!source)
-            {
-                std::string errorMessage = "The source of the route is not defined.";
-                throw GraphException(errorMessage);
-            }
-
-            if (!destination)
-            {
-                std::string errorMessage = "The destination of the route is not defined.";
-                throw GraphException(errorMessage);
-            }
+            base::SmartPointers::validate(source);
+            base::SmartPointers::validate(destination);
         }
 
         /**

@@ -7,6 +7,7 @@
 #include "VectorIterator.h"
 #include "VectorReverseIterator.h"
 #include "Indexes.h"
+#include "SmartPointers.h"
 
 namespace datastructures {
     namespace priority_queue {
@@ -196,11 +197,7 @@ namespace datastructures {
             m_data(data),
             m_elementComparator(elementComparator)
         {
-            if (!elementComparator)
-            {
-                std::string errorMessage = "The element comparator is not defined.";
-                throw PriorityQueueException(errorMessage);
-            }
+            base::SmartPointers::validate(elementComparator);
         }
 
         /**

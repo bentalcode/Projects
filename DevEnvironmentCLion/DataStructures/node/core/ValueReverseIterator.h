@@ -4,6 +4,7 @@
 #include "IReverseIterator.h"
 #include "IKeyValueNode.h"
 #include "NodeException.h"
+#include "SmartPointers.h"
 
 namespace datastructures {
     namespace node {
@@ -79,12 +80,7 @@ namespace datastructures {
             base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
-            if (!reverseIterator)
-            {
-                std::string errorMessage = "The reverse iterator of key-value nodes is not defined.";
-                throw NodeException(errorMessage);
-            }
-
+            base::SmartPointers::validate(reverseIterator);
             reset();
         }
 

@@ -79,13 +79,9 @@ namespace datastructures {
             base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
-            reset();
+            base::SmartPointers::validate(reverseIterator);
 
-            if (!reverseIterator)
-            {
-                std::string errorMessage = "The reverse iterator of nodes of doubly linked list is not defined.";
-                throw DoublyLinkedListException(errorMessage);
-            }
+            reset();
         }
 
         /**

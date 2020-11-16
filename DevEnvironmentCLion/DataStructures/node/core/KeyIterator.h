@@ -3,7 +3,7 @@
 
 #include "IIterator.h"
 #include "IKeyValueNode.h"
-#include "NodeException.h"
+#include "SmartPointers.h"
 
 namespace datastructures {
     namespace node {
@@ -77,12 +77,7 @@ namespace datastructures {
         KeyIterator<TKey, TValue>::KeyIterator(base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> iterator) :
             m_iterator(iterator)
         {
-            if (!iterator)
-            {
-                std::string errorMessage = "The iterator of key-value nodes is not defined.";
-                throw NodeException(errorMessage);
-            }
-
+            base::SmartPointers::validate(iterator);
             reset();
         }
 

@@ -2,6 +2,7 @@
 #define INVERT_COMPARATOR_H_cfb11670_10ea_4f49_9382_dc2e4bd0e6af
 
 #include "IBinaryComparator.h"
+#include "SmartPointers.h"
 
 namespace base
 {
@@ -78,11 +79,7 @@ namespace base
     InvertComparator<T>::InvertComparator(IBinaryComparatorPtr<T> comparator) :
         m_comparator(comparator)
     {
-        if (!comparator)
-        {
-            std::string errorMessage = "The invert comparator is not defined.";
-            throw BaseException(errorMessage);
-        }
+        SmartPointers::validate(comparator);
     }
 
     /**

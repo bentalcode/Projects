@@ -4,8 +4,7 @@
 #include "IIterator.h"
 #include "IKeyValueNode.h"
 #include "IDoublyLinkedListNode.h"
-#include "DoublyLinkedListException.h"
-#include "CacheException.h"
+#include "SmartPointers.h"
 
 namespace datastructures {
     namespace doublylinkedlist {
@@ -83,13 +82,7 @@ namespace datastructures {
             base::IIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator) :
             m_iterator(iterator)
         {
-            if (!iterator)
-            {
-                std::string errorMessage =
-                    "The iterator of a doubly linked list node of a key-value nodes is not defined.";
-
-                throw CacheException(errorMessage);
-            }
+            base::SmartPointers::validate(iterator);
 
             reset();
         }

@@ -4,6 +4,7 @@
 #include "IIterator.h"
 #include "DoublyLinkedListNode.h"
 #include "DoublyLinkedListException.h"
+#include "SmartPointers.h"
 
 namespace datastructures {
     namespace doublylinkedlist {
@@ -77,12 +78,7 @@ namespace datastructures {
         DoublyLinkedListNodeValueIterator<T>::DoublyLinkedListNodeValueIterator(base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> iterator) :
             m_iterator(iterator)
         {
-            if (!iterator)
-            {
-                std::string errorMessage = "The iterator of nodes of doubly linked list is not defined.";
-                throw DoublyLinkedListException(errorMessage);
-            }
-
+            base::SmartPointers::validate(iterator);
             reset();
         }
 

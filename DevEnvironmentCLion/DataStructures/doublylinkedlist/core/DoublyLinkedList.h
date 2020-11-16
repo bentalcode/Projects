@@ -173,11 +173,6 @@ namespace datastructures {
 
         private:
             /**
-             * Validate a node.
-             */
-             void validateNode(IDoublyLinkedListNodePtr<T> node) const;
-
-            /**
              * Linked nodes.
              */
             void linkedNodes(IDoublyLinkedListNodePtr<T> left, IDoublyLinkedListNodePtr<T> right);
@@ -335,7 +330,7 @@ namespace datastructures {
         template <typename T>
         void DoublyLinkedList<T>::addToFront(IDoublyLinkedListNodePtr<T> node)
         {
-            validateNode(node);
+            base::SmartPointers::validate(node);
 
             node->unlinked();
 
@@ -360,7 +355,7 @@ namespace datastructures {
         template <typename T>
         void DoublyLinkedList<T>::addToBack(IDoublyLinkedListNodePtr<T> node)
         {
-            validateNode(node);
+            base::SmartPointers::validate(node);
 
             node->unlinked();
 
@@ -387,8 +382,8 @@ namespace datastructures {
             IDoublyLinkedListNodePtr<T> currNode,
             IDoublyLinkedListNodePtr<T> nodeToAdd)
         {
-            validateNode(currNode);
-            validateNode(nodeToAdd);
+            base::SmartPointers::validate(currNode);
+            base::SmartPointers::validate(nodeToAdd);
 
             nodeToAdd->unlinked();
 
@@ -416,8 +411,8 @@ namespace datastructures {
             IDoublyLinkedListNodePtr<T> currNode,
             IDoublyLinkedListNodePtr<T> nodeToAdd)
         {
-            validateNode(currNode);
-            validateNode(nodeToAdd);
+            base::SmartPointers::validate(currNode);
+            base::SmartPointers::validate(nodeToAdd);
 
             nodeToAdd->unlinked();
 
@@ -480,7 +475,7 @@ namespace datastructures {
         template <typename T>
         void DoublyLinkedList<T>::remove(IDoublyLinkedListNodePtr<T> nodeToRemove)
         {
-            validateNode(nodeToRemove);
+            base::SmartPointers::validate(nodeToRemove);
 
             IDoublyLinkedListNodePtr<T> previousNode = nodeToRemove->previous();
             IDoublyLinkedListNodePtr<T> nextNode = nodeToRemove->next();
@@ -577,19 +572,6 @@ namespace datastructures {
             }
 
             return nullptr;
-        }
-
-        /**
-         * Validate a node.
-         */
-        template <typename T>
-        void DoublyLinkedList<T>::validateNode(IDoublyLinkedListNodePtr<T> node) const
-        {
-            if (!node)
-            {
-                std::string errorMessage = "The node of a doubly linked list is not defined.";
-                throw DoublyLinkedListException(errorMessage);
-            }
         }
 
         /**

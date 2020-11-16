@@ -7,7 +7,7 @@
 #include "IAdjacencyMatrix.h"
 #include "SetIterator.h"
 #include "Collections.h"
-#include "GraphException.h"
+#include "SmartPointers.h"
 
 namespace datastructures {
     namespace graph {
@@ -105,11 +105,7 @@ namespace datastructures {
             m_edges(edges),
             m_adjacencyMatrix(adjacencyMatrix)
         {
-            if (!adjacencyMatrix)
-            {
-                std::string errorMessage = "The adjacency matrix is not defined.";
-                throw GraphException(errorMessage);
-            }
+            base::SmartPointers::validate(adjacencyMatrix);
         }
 
         /**

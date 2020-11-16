@@ -4,7 +4,7 @@
 #include "IReverseIterator.h"
 #include "IKeyValueNode.h"
 #include "IDoublyLinkedListNode.h"
-#include "DoublyLinkedListException.h"
+#include "SmartPointers.h"
 
 namespace datastructures {
     namespace doublylinkedlist {
@@ -83,13 +83,7 @@ namespace datastructures {
             base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
-            if (!reverseIterator)
-            {
-                std::string errorMessage =
-                    "The reverse iterator of a doubly linked list node of a key-value nodes is not defined.";
-
-                throw CacheException(errorMessage);
-            }
+            base::SmartPointers::validate(reverseIterator);
 
             reset();
         }

@@ -5,7 +5,8 @@
 #include "LinkedListNode.h"
 #include "LinkedListNodeIterator.h"
 #include "LinkedListNodeValueIterator.h"
-#include "linkedlist/LinkedListException.h"
+#include "SmartPointers.h"
+#include "LinkedListException.h"
 
 namespace datastructures {
     namespace linkedlist {
@@ -140,11 +141,6 @@ namespace datastructures {
             virtual ILinkedListNodePtr<T> getNode(size_t index) const override;
 
         private:
-            /**
-             * Validate a node.
-             */
-             void validateNode(ILinkedListNodePtr<T> node) const;
-
             /**
              * Linked nodes.
              */
@@ -292,7 +288,7 @@ namespace datastructures {
         template <typename T>
         void LinkedList<T>::addToFront(ILinkedListNodePtr<T> node)
         {
-            validateNode(node);
+            base::SmartPointers::validate(node);
 
             node->unlinked();
 
@@ -317,7 +313,7 @@ namespace datastructures {
         template <typename T>
         void LinkedList<T>::addToBack(ILinkedListNodePtr<T> node)
         {
-            validateNode(node);
+            base::SmartPointers::validate(node);
 
             node->unlinked();
 
@@ -344,8 +340,8 @@ namespace datastructures {
             ILinkedListNodePtr<T> currNode,
             ILinkedListNodePtr<T> nodeToAdd)
         {
-            validateNode(currNode);
-            validateNode(nodeToAdd);
+            base::SmartPointers::validate(currNode);
+            base::SmartPointers::validate(nodeToAdd);
 
             nodeToAdd->unlinked();
 
@@ -398,7 +394,7 @@ namespace datastructures {
         template <typename T>
         void LinkedList<T>::removeAfter(ILinkedListNodePtr<T> currNode)
         {
-            validateNode(currNode);
+            base::SmartPointers::validate(currNode);
 
             ILinkedListNodePtr<T> nodeToRemove = currNode->next();
 
@@ -477,19 +473,6 @@ namespace datastructures {
             }
 
             return nullptr;
-        }
-
-        /**
-         * Validate a node.
-         */
-        template <typename T>
-        void LinkedList<T>::validateNode(ILinkedListNodePtr<T> node) const
-        {
-            if (!node)
-            {
-                std::string errorMessage = "The node of a linked list is not defined.";
-                throw LinkedListException(errorMessage);
-            }
         }
 
         /**
