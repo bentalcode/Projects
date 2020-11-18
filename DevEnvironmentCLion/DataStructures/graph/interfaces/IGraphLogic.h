@@ -1,6 +1,8 @@
 #ifndef I_GRAPH_LOGIC_H_0f714d5e_2b5f_446c_a128_f7a064131ddd
 #define I_GRAPH_LOGIC_H_0f714d5e_2b5f_446c_a128_f7a064131ddd
 
+#include "IGraphDefinition.h"
+
 namespace datastructures {
     namespace graph {
 
@@ -62,14 +64,13 @@ namespace datastructures {
              * Finds the shortest paths from the source vertex to all other vertices in the given graph.
              */
             virtual void findShortestPaths(
-                const IVertex<TKey, TValue>& src,
-                const std::map<IEdgePtr<TKey, TValue>, size_t> weights,
-                std::map<IVertexPtr<TKey, TValue>, size_t>& result) const = 0;
+                IVertexPtr<TKey, TValue> src,
+                const EdgeWeightMap<TKey, TValue>& weights,
+                VertexShortestPathsMap<TKey, TValue>& result) const = 0;
         };
 
         template <typename TKey, typename TValue>
         using IGraphLogicPtr = std::shared_ptr<IGraphLogic<TKey, TValue>>;
-
     }
 }
 

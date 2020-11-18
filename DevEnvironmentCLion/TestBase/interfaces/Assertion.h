@@ -69,15 +69,6 @@ namespace test_base {
             const std::string& message);
 
         /**
-         * Asserts equality with vectors.
-         */
-        template <typename T>
-        void assertEquals(
-            const std::vector<T>& lhs,
-            const std::vector<T>& rhs,
-            const std::string& message);
-
-        /**
          * Asserts equality with dereference.
          */
         template <typename T>
@@ -186,22 +177,6 @@ namespace test_base {
         const std::string& message)
     {
         bool status = comparator.isEqual(lhs, rhs);
-        assertTrue(status, message);
-    }
-
-    /**
-     * Asserts equality with vectors.
-     */
-    template <typename T>
-    void Assertion::assertEquals(
-        const std::vector<T>& lhs,
-        const std::vector<T>& rhs,
-        const std::string& message)
-    {
-        bool status =
-            lhs.size() == rhs.size() &&
-            std::equal(lhs.begin(), lhs.end(), rhs.begin());
-
         assertTrue(status, message);
     }
 

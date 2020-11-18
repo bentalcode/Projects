@@ -50,6 +50,17 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         using IGraphDefinitionPtr = std::shared_ptr<IGraphDefinition<TKey, TValue>>;
 
+        template <typename TKey, typename TValue>
+        using VertexShortestPathsMap = std::map<IVertexPtr<TKey, TValue>, long, base::DereferenceLess<IVertexPtr<TKey, TValue>>>;
+
+        template <typename TKey, typename TValue>
+        using GraphShortestPathsMap = std::map<IVertexPtr<TKey, TValue>, VertexShortestPathsMap<TKey, TValue>>;
+
+        template <typename TKey, typename TValue>
+        using EdgeWeightMap = std::map<IEdgePtr<TKey, TValue>, long, base::DereferenceLess<IEdgePtr<TKey, TValue>>>;
+
+        template <typename TKey, typename TValue>
+        using RoutesPaths = std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>;
     }
 }
 

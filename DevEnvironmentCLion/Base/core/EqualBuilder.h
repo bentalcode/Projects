@@ -6,6 +6,7 @@
 #include "IteratorComparator.h"
 #include "DereferenceEquatableComparator.h"
 #include "DereferenceEquatableComparator2.h"
+#include "MapComparator.h"
 
 namespace base {
 
@@ -58,6 +59,24 @@ namespace base {
             const T& lhs,
             const T& rhs,
             const IEquatableComparator<T>& comparator);
+
+        /**
+         * With a generic map.
+         */
+        template <typename TKey, typename TValue, typename TCompare = std::less<TKey>>
+        EqualBuilder& withMap(
+            const std::map<TKey, TValue, TCompare>& lhs,
+            const std::map<TKey, TValue, TCompare>& rhs);
+
+        /**
+         * With a generic map and a key/value comparators.
+         */
+        template <typename TKey, typename TValue, typename TCompare = std::less<TKey>>
+        EqualBuilder& withMap(
+            const std::map<TKey, TValue, TCompare>& lhs,
+            const std::map<TKey, TValue, TCompare>& rhs,
+            const IEquatableComparator<TKey>& keyComparator,
+            const IEquatableComparator<TValue>& valueComparator);
 
         /**
          * With a generic iterator.
@@ -145,6 +164,53 @@ namespace base {
         }
 
         m_equalityStatus = comparator.isEqual(lhs, rhs);
+
+        return *this;
+    }
+
+    /**
+     * With a generic map.
+     */
+    template <typename TKey, typename TValue, typename TCompare>
+    EqualBuilder& EqualBuilder::withMap(
+        const std::map<TKey, TValue, TCompare>& lhs,
+        const std::map<TKey, TValue, TCompare>& rhs)
+    {
+        if (!m_equalityStatus)
+        {
+            return *this;
+        }
+
+        MapComparator<TKey, TValue, TCompare> mapComparator;
+
+        m_equalityStatus = mapComparator.isEqual(
+            lhs,
+            rhs);
+
+        return *this;
+    }
+
+    /**
+     * With a generic map and a key/value comparators.
+     */
+    template <typename TKey, typename TValue, typename TCompare>
+    EqualBuilder& EqualBuilder::withMap(
+        const std::map<TKey, TValue, TCompare>& lhs,
+        const std::map<TKey, TValue, TCompare>& rhs,
+        const IEquatableComparator<TKey>& keyComparator,
+        const IEquatableComparator<TValue>& valueComparator)
+    {
+        if (!m_equalityStatus)
+        {
+            return *this;
+        }
+
+        MapComparator<TKey, TValue, TCompare> mapComparator;
+        m_equalityStatus = mapComparator.isEqual(
+            lhs,
+            rhs,
+            keyComparator,
+            valueComparator);
 
         return *this;
     }

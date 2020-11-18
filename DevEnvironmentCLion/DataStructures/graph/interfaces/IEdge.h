@@ -65,17 +65,17 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         bool operator<(const IEdge<TKey, TValue>& left, const IEdge<TKey, TValue>& right)
         {
-            if (left.source() < right.source())
+            if (*left.source() < *right.source())
             {
                 return true;
             }
 
-            if (left.source() > right.source())
+            if (*left.source() >  *right.source())
             {
                 return false;
             }
 
-            return left.destination() < right.destination();
+            return *left.destination() < *right.destination();
         }
 
         /**

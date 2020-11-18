@@ -153,26 +153,27 @@ namespace test {
                  */
                 void getGraphShortestPaths1(
                     const std::vector<IVertexPtr<int, std::string>>& vertices,
-                    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>>& result);
+                    GraphShortestPathsMap<int, std::string>& result);
 
                 /**
                  * Gets the shortest paths of graph2.
                  */
                 void getGraphShortestPaths2(
                     const std::vector<IVertexPtr<int, std::string>>& vertices,
-                    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>>& result);
+                    GraphShortestPathsMap<int, std::string>& result);
 
                 /**
                  * Gets the shortest paths of graph3.
                  */
                 void getGraphShortestPaths3(
                     const std::vector<IVertexPtr<int, std::string>>& vertices,
-                    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>>& result);
+                    GraphShortestPathsMap<int, std::string>& result);
 
                 base::RandomGenerator m_randomGenerator;
             };
 
             using GraphTestDataPtr = std::shared_ptr<GraphTestData>;
+
         }
     }
 }

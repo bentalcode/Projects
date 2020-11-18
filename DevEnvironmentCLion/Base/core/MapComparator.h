@@ -10,7 +10,7 @@ namespace base {
     /**
      * The MapComparator class implements a comparator for maps.
      */
-    template <typename TKey, typename TValue>
+    template <typename TKey, typename TValue, typename TCompare = std::less<TKey>>
     class MapComparator final
     {
     public:
@@ -37,13 +37,20 @@ namespace base {
         MapComparator& operator=(MapComparator&&) = delete;
 
         /**
+         * Checks whether the iterators are equals.
+         */
+        bool isEqual(
+            const std::map<TKey, TValue, TCompare>& lhs,
+            const std::map<TKey, TValue, TCompare>& rhs);
+
+        /**
          * Checks whether the iterators are equals with an element comparator.
          */
         bool isEqual(
-            const std::map<TKey, TValue>& lhs,
-            const std::map<TKey, TValue>& rhs,
+            const std::map<TKey, TValue, TCompare>& lhs,
+            const std::map<TKey, TValue, TCompare>& rhs,
             const IEquatableComparator<TKey>& keyComparator,
-            const IEquatableComparator<TKey>& valueComparator);
+            const IEquatableComparator<TValue>& valueComparator);
 
         /**
          * Determines the relative order of iterators with an element comparator.
@@ -53,56 +60,101 @@ namespace base {
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         int compareTo(
-            const std::map<TKey, TValue>& lhs,
-            const std::map<TKey, TValue>& rhs,
+            const std::map<TKey, TValue, TCompare>& lhs,
+            const std::map<TKey, TValue, TCompare>& rhs,
             const IComparableComparator<TKey>& keyComparator,
-            const IComparableComparator<TKey>& valueComparator);
+            const IComparableComparator<TValue>& valueComparator);
     };
 
-    template <typename TKey, typename TValue>
-    using MapComparatorPtr = std::shared_ptr<MapComparator<TKey, TValue>>;
+    template <typename TKey, typename TValue, typename TCompare>
+    using MapComparatorPtr = std::shared_ptr<MapComparator<TKey, TValue, TCompare>>;
 
     /**
      * The MapComparator constructor.
      */
-    template <typename TKey, typename TValue>
-    MapComparator<TKey, TValue>::MapComparator()
+    template <typename TKey, typename TValue, typename TCompare>
+    MapComparator<TKey, TValue, TCompare>::MapComparator()
     {
     }
 
     /**
      * The MapComparator destructor.
      */
-    template <typename TKey, typename TValue>
-    MapComparator<TKey, TValue>::~MapComparator()
+    template <typename TKey, typename TValue, typename TCompare>
+    MapComparator<TKey, TValue, TCompare>::~MapComparator()
     {
     }
 
     /**
      * Checks whether the iterators are equals with an element comparator.
      */
-    template <typename TKey, typename TValue>
-    bool MapComparator<TKey, TValue>::isEqual(
-        const std::map<TKey, TValue>& lhs,
-        const std::map<TKey, TValue>& rhs,
-        const IEquatableComparator<TKey>& keyComparator,
-        const IEquatableComparator<TKey>& valueComparator)
+    template <typename TKey, typename TValue, typename TCompare>
+    bool MapComparator<TKey, TValue, TCompare>::isEqual(
+        const std::map<TKey, TValue, TCompare>& lhs,
+        const std::map<TKey, TValue, TCompare>& rhs)
     {
         if (lhs.size() != rhs.size())
         {
             return false;
         }
 
-        typename std::map<TKey, TValue>::const_iterator lhsIterator = lhs.begin();
-        typename std::map<TKey, TValue>::const_iterator rhsIterator = rhs.begin();
+        typename std::map<TKey, TValue, TCompare>::const_iterator lhsIterator = lhs.begin();
+        typename std::map<TKey, TValue, TCompare>::const_iterator rhsIterator = rhs.begin();
 
         while (lhsIterator != lhs.end() && rhsIterator != rhs.end())
         {
-            if (!keyComparator.isEqual(lhsIterator->first, rhsIterator->first) ||
-                !valueComparator.isEqual(lhsIterator->second, rhsIterator->second))
+            const TKey& leftKey = lhsIterator->first;
+            const TValue& leftValue = lhsIterator->second;
+
+            const TKey& rightKey = rhsIterator->first;
+            const TValue& rightValue = rhsIterator->second;
+
+            if (leftKey != rightKey || leftValue != rightValue)
             {
                 return false;
             }
+
+            ++lhsIterator;
+            ++rhsIterator;
+        }
+
+        return lhsIterator == lhs.end() && rhsIterator == rhs.end();
+    }
+
+    /**
+     * Checks whether the iterators are equals with an element comparator.
+     */
+    template <typename TKey, typename TValue, typename TCompare>
+    bool MapComparator<TKey, TValue, TCompare>::isEqual(
+        const std::map<TKey, TValue, TCompare>& lhs,
+        const std::map<TKey, TValue, TCompare>& rhs,
+        const IEquatableComparator<TKey>& keyComparator,
+        const IEquatableComparator<TValue>& valueComparator)
+    {
+        if (lhs.size() != rhs.size())
+        {
+            return false;
+        }
+
+        typename std::map<TKey, TValue, TCompare>::const_iterator lhsIterator = lhs.begin();
+        typename std::map<TKey, TValue, TCompare>::const_iterator rhsIterator = rhs.begin();
+
+        while (lhsIterator != lhs.end() && rhsIterator != rhs.end())
+        {
+            const TKey& leftKey = lhsIterator->first;
+            const TValue& leftValue = lhsIterator->second;
+
+            const TKey& rightKey = rhsIterator->first;
+            const TValue& rightValue = rhsIterator->second;
+
+            if (!keyComparator.isEqual(leftKey, rightKey) ||
+                !valueComparator.isEqual(leftValue, rightValue))
+            {
+                return false;
+            }
+
+            ++lhsIterator;
+            ++rhsIterator;
         }
 
         return lhsIterator == lhs.end() && rhsIterator == rhs.end();
@@ -115,12 +167,12 @@ namespace base {
      * Returns 0 if the left hand side value is equal to the right hand side value.
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
-    template <typename TKey, typename TValue>
-    int MapComparator<TKey, TValue>::compareTo(
-        const std::map<TKey, TValue>& lhs,
-        const std::map<TKey, TValue>& rhs,
+    template <typename TKey, typename TValue, typename TCompare>
+    int MapComparator<TKey, TValue, TCompare>::compareTo(
+        const std::map<TKey, TValue, TCompare>& lhs,
+        const std::map<TKey, TValue, TCompare>& rhs,
         const IComparableComparator<TKey>& keyComparator,
-        const IComparableComparator<TKey>& valueComparator)
+        const IComparableComparator<TValue>& valueComparator)
     {
         if (lhs.size() < rhs.size())
         {
@@ -132,8 +184,8 @@ namespace base {
             return 1;
         }
 
-        typename std::map<TKey, TValue>::const_iterator lhsIterator = lhs.begin();
-        typename std::map<TKey, TValue>::const_iterator rhsIterator = rhs.begin();
+        typename std::map<TKey, TValue, TCompare>::const_iterator lhsIterator = lhs.begin();
+        typename std::map<TKey, TValue, TCompare>::const_iterator rhsIterator = rhs.begin();
 
         int status = 0;
 

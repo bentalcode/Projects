@@ -165,7 +165,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData1()
         edge34
     };
 
-    std::map<IEdgePtr<int, std::string>, int> weights;
+    EdgeWeightMap<int, std::string> weights;
     weights.insert(std::make_pair(edge12, 5));
     weights.insert(std::make_pair(edge23, 2));
     weights.insert(std::make_pair(edge13, 6));
@@ -177,7 +177,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData1()
     base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData1(
         vertices);
 
-    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>> shortestPaths;
+    GraphShortestPathsMap<int, std::string> shortestPaths;
     getGraphShortestPaths1(
         vertices,
         shortestPaths);
@@ -234,7 +234,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData2()
         edge56
     };
 
-    std::map<IEdgePtr<int, std::string>, int> weights;
+    EdgeWeightMap<int, std::string> weights;
     weights.insert(std::make_pair(edge12, 10));
     weights.insert(std::make_pair(edge13, 8));
     weights.insert(std::make_pair(edge24, 6));
@@ -250,7 +250,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData2()
     base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData2(
         vertices);
 
-    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>> shortestPaths;
+    GraphShortestPathsMap<int, std::string> shortestPaths;
     getGraphShortestPaths2(
         vertices,
         shortestPaths);
@@ -299,7 +299,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData3()
         edge45
     };
 
-    std::map<IEdgePtr<int, std::string>, int> weights =
+    EdgeWeightMap<int, std::string> weights =
     {
         {edge12, 7},
         {edge13, 8},
@@ -314,7 +314,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData3()
     base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData3(
         vertices);
 
-    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>> shortestPaths;
+    GraphShortestPathsMap<int, std::string> shortestPaths;
     getGraphShortestPaths3(
         vertices,
         shortestPaths);
@@ -687,7 +687,7 @@ base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getG
  */
 void GraphTestData::getGraphShortestPaths1(
     const std::vector<IVertexPtr<int, std::string>>& vertices,
-    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>>& result)
+    GraphShortestPathsMap<int, std::string>& result)
 {
     assert(vertices.size() == 4);
     IVertexPtr<int, std::string> vertex1 = vertices[0];
@@ -695,7 +695,7 @@ void GraphTestData::getGraphShortestPaths1(
     IVertexPtr<int, std::string> vertex3 = vertices[2];
     IVertexPtr<int, std::string> vertex4 = vertices[3];
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths1 =
+    VertexShortestPathsMap<int, std::string> shortestPaths1 =
     {
         {vertex1, 0},
         {vertex2, 5},
@@ -703,7 +703,7 @@ void GraphTestData::getGraphShortestPaths1(
         {vertex4, 10}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths2 =
+    VertexShortestPathsMap<int, std::string> shortestPaths2 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, 0},
@@ -711,7 +711,7 @@ void GraphTestData::getGraphShortestPaths1(
         {vertex4, 6}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths3 =
+    VertexShortestPathsMap<int, std::string> shortestPaths3 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, std::numeric_limits<int>::max()},
@@ -719,7 +719,7 @@ void GraphTestData::getGraphShortestPaths1(
         {vertex4, 4}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths4 =
+    VertexShortestPathsMap<int, std::string> shortestPaths4 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, std::numeric_limits<int>::max()},
@@ -738,7 +738,7 @@ void GraphTestData::getGraphShortestPaths1(
  */
 void GraphTestData::getGraphShortestPaths2(
     const std::vector<IVertexPtr<int, std::string>>& vertices,
-    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>>& result)
+    GraphShortestPathsMap<int, std::string>& result)
 {
     assert(vertices.size() == 6);
     IVertexPtr<int, std::string> vertex1 = vertices[0];
@@ -748,7 +748,7 @@ void GraphTestData::getGraphShortestPaths2(
     IVertexPtr<int, std::string> vertex5 = vertices[4];
     IVertexPtr<int, std::string> vertex6 = vertices[5];
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths1 =
+    VertexShortestPathsMap<int, std::string> shortestPaths1 =
     {
         {vertex1, 0},
         {vertex2, 10},
@@ -758,7 +758,7 @@ void GraphTestData::getGraphShortestPaths2(
         {vertex6, 17}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths2 =
+    VertexShortestPathsMap<int, std::string> shortestPaths2 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, 0},
@@ -768,7 +768,7 @@ void GraphTestData::getGraphShortestPaths2(
         {vertex6, 9}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths3 =
+    VertexShortestPathsMap<int, std::string> shortestPaths3 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, 4},
@@ -778,7 +778,7 @@ void GraphTestData::getGraphShortestPaths2(
         {vertex6, 9}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths4 =
+    VertexShortestPathsMap<int, std::string> shortestPaths4 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, std::numeric_limits<int>::max()},
@@ -788,7 +788,7 @@ void GraphTestData::getGraphShortestPaths2(
         {vertex6, 3}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths5 =
+    VertexShortestPathsMap<int, std::string> shortestPaths5 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, std::numeric_limits<int>::max()},
@@ -798,7 +798,7 @@ void GraphTestData::getGraphShortestPaths2(
         {vertex6, 2}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths6 =
+    VertexShortestPathsMap<int, std::string> shortestPaths6 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, std::numeric_limits<int>::max()},
@@ -821,7 +821,7 @@ void GraphTestData::getGraphShortestPaths2(
  */
 void GraphTestData::getGraphShortestPaths3(
     const std::vector<IVertexPtr<int, std::string>>& vertices,
-    std::map<IVertexPtr<int, std::string>, std::map<IVertexPtr<int, std::string>, size_t>>& result)
+    GraphShortestPathsMap<int, std::string>& result)
 {
     assert(vertices.size() == 5);
 
@@ -831,7 +831,7 @@ void GraphTestData::getGraphShortestPaths3(
     IVertexPtr<int, std::string> vertex4 = vertices[3];
     IVertexPtr<int, std::string> vertex5 = vertices[4];
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths1 =
+    VertexShortestPathsMap<int, std::string> shortestPaths1 =
     {
         {vertex1, 0},
         {vertex2, 7},
@@ -840,7 +840,7 @@ void GraphTestData::getGraphShortestPaths3(
         {vertex5, 14}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths2 =
+    VertexShortestPathsMap<int, std::string> shortestPaths2 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, 0},
@@ -849,7 +849,7 @@ void GraphTestData::getGraphShortestPaths3(
         {vertex5, 13}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths3 =
+    VertexShortestPathsMap<int, std::string> shortestPaths3 =
     {
        {vertex1, std::numeric_limits<int>::max()},
        {vertex2, std::numeric_limits<int>::max()},
@@ -858,7 +858,7 @@ void GraphTestData::getGraphShortestPaths3(
        {vertex5, 6}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths4 =
+    VertexShortestPathsMap<int, std::string> shortestPaths4 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, std::numeric_limits<int>::max()},
@@ -867,7 +867,7 @@ void GraphTestData::getGraphShortestPaths3(
         {vertex5, 2}
     };
 
-    std::map<IVertexPtr<int, std::string>, size_t> shortestPaths5 =
+    VertexShortestPathsMap<int, std::string> shortestPaths5 =
     {
         {vertex1, std::numeric_limits<int>::max()},
         {vertex2, std::numeric_limits<int>::max()},

@@ -15,6 +15,7 @@
 #include <sstream>
 #include <typeinfo>
 #include <tuple>
+#include <functional>
 
 #include "BaseLogic.h"
 

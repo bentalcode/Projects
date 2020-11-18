@@ -12,12 +12,17 @@ namespace base {
     {
     public:
         /**
-         * The constructor.
+         * Creates a new instance of an equatable comparator.
+         */
+        static IEquatableComparatorPtr<T> make();
+
+        /**
+         * The EquatableComparator constructor.
          */
         EquatableComparator();
 
         /**
-         * The destructor.
+         * The EquatableComparator destructor.
          */
         virtual ~EquatableComparator();
 
@@ -36,19 +41,37 @@ namespace base {
         /**
          * Checks whether two instances are equals.
          */
-        virtual bool isEqual(const T& lhs, const T& rhs) const;
+        virtual bool isEqual(const T& lhs, const T& rhs) const override;
     };
 
+    /**
+     * Creates a new instance of an equatable comparator.
+     */
+    template <typename T>
+    IEquatableComparatorPtr<T> EquatableComparator<T>::make()
+    {
+        return std::make_shared<EquatableComparator<T>>();
+    }
+
+    /**
+     * The EquatableComparator constructor.
+     */
     template <typename T>
     EquatableComparator<T>::EquatableComparator()
     {
     }
 
+    /**
+     * The EquatableComparator destructor.
+     */
     template <typename T>
     EquatableComparator<T>::~EquatableComparator()
     {
     }
 
+    /**
+     * Checks whether two instances are equals.
+     */
     template <typename T>
     bool EquatableComparator<T>::isEqual(const T& lhs, const T& rhs) const
     {

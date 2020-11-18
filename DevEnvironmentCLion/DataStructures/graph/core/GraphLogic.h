@@ -66,9 +66,9 @@ namespace datastructures {
              * Finds the shortest paths from the source vertex to all other vertices in the given graph.
              */
             virtual void findShortestPaths(
-                const IVertex<TKey, TValue>& src,
-                const std::map<IEdgePtr<TKey, TValue>, size_t> weights,
-                std::map<IVertexPtr<TKey, TValue>, size_t>& result) const override;
+                IVertexPtr<TKey, TValue> src,
+                const EdgeWeightMap<TKey, TValue>& weights,
+                VertexShortestPathsMap<TKey, TValue>& result) const override;
 
         private:
             /**
@@ -105,7 +105,21 @@ namespace datastructures {
                 IWalk<TKey, TValue>& currPath,
                 std::set<IVertexPtr<TKey, TValue>>& visited,
                 std::list<IWalkPtr<TKey, TValue>>& result) const;
-                    
+
+            /**
+             * Gets weight of an edge.
+             */
+            static long getEdgeWeight(
+                const EdgeWeightMap<TKey, TValue>& weights,
+                IEdgePtr<TKey, TValue> edge);
+
+            /**
+             * Gets shortest distance of a vertex.
+             */
+            static long getShortestDistance(
+                const VertexShortestPathsMap<TKey, TValue>& shortestPathsMap,
+                IVertexPtr<TKey, TValue> vertex);
+
             const IGraph<TKey, TValue>& m_graph;
         };
 
@@ -232,10 +246,76 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void GraphLogic<TKey, TValue>::findShortestPaths(
-            const IVertex<TKey, TValue>& src,
-            const std::map<IEdgePtr<TKey, TValue>, size_t> weights,
-            std::map<IVertexPtr<TKey, TValue>, size_t>& result) const
+            IVertexPtr<TKey, TValue> src,
+            const EdgeWeightMap<TKey, TValue>& weights,
+            VertexShortestPathsMap<TKey, TValue>& result) const
         {
+            base::SmartPointers::validate(src);
+
+            //
+            // Initializes the distances map...
+            //
+            for (IVertexPtr<TKey, TValue> vertex : m_graph.vertices())
+            {
+                long initializedDistance = *vertex == *src ? 0 : std::numeric_limits<long>::max();
+                result.insert(std::make_pair(vertex, initializedDistance));
+            }
+
+            using Dqueue = std::deque<std::pair<IVertexPtr<TKey, TValue>, long>>;
+            Dqueue queue;
+            queue.push_back(std::make_pair(src, 0));
+
+#ifdef _DEBUG
+            std::function<void(const typename Dqueue::value_type& value, std::ostream& stream)> queueFunctor =
+                [](const typename Dqueue::value_type& value, std::ostream& stream)
+            {
+                IVertexPtr<TKey, TValue> vertex = value.first;
+                long distance = value.second;
+                stream << "Vertex=" << *vertex << ", Distance=" << distance;
+            };
+
+            std::function<void(const typename VertexShortestPathsMap<TKey, TValue>::value_type& value, std::ostream& stream)> resultFunctor =
+                [](const typename VertexShortestPathsMap<TKey, TValue>::value_type& value, std::ostream& stream)
+            {
+                IVertexPtr<TKey, TValue> vertex = value.first;
+                long distance = value.second;
+                stream << "Vertex=" << *vertex << ", Distance=" << distance;
+            };
+
+            std::string queueContent = base::Collections::toString(queue, queueFunctor);
+            std::string resultContent = base::Collections::toString(result, resultFunctor);
+#endif
+
+            while (!queue.empty())
+            {
+                std::pair<IVertexPtr<TKey, TValue>, long> currElement = queue.front();
+                queue.pop_front();
+
+                IVertexPtr<TKey, TValue> currVertex = currElement.first;
+                long currDistance = currElement.second;
+
+                EdgeSet<TKey, TValue> adjacentEdges;
+                m_graph.getAdjacencyMatrix().getAdjacentEdges(currVertex, adjacentEdges);
+
+                for (IEdgePtr<TKey, TValue> adjacentEdge : adjacentEdges)
+                {
+                    IVertexPtr<TKey, TValue> nextVertex = adjacentEdge->destination();
+                    long edgeWeight = getEdgeWeight(weights, adjacentEdge);
+
+                    long nextDistance = currDistance + edgeWeight;
+                    long nextVertexDistance = getShortestDistance(result, nextVertex);
+
+                    if (nextDistance < nextVertexDistance)
+                    {
+                        result[nextVertex] = nextDistance;
+                        queue.push_back(std::make_pair(nextVertex, nextDistance));
+#ifdef _DEBUG
+                        queueContent = base::Collections::toString(queue, queueFunctor);
+                        resultContent = base::Collections::toString(result, resultFunctor);
+#endif
+                    }
+                }
+            }
         }
 
         /**
@@ -429,6 +509,44 @@ namespace datastructures {
             currPath.removeLastVertex();
             visited.erase(source);
         }
+    }
+
+    /**
+     * Gets weight of an edge.
+     */
+    template <typename TKey, typename TValue>
+    long GraphLogic<TKey, TValue>::getEdgeWeight(
+        const EdgeWeightMap<TKey, TValue>& weights,
+        IEdgePtr<TKey, TValue> edge)
+    {
+        typename EdgeWeightMap<TKey, TValue>::const_iterator edgeIterator = weights.find(edge);
+
+        if (edgeIterator == weights.end())
+        {
+            std::string errorMessage = "The weight of an edge is not defined in the adjacent matrix of the graph.";
+            throw GraphException(errorMessage);
+        }
+
+        return edgeIterator->second;
+    }
+
+    /**
+     * Gets shortest distance of a vertex.
+     */
+    template <typename TKey, typename TValue>
+    long GraphLogic<TKey, TValue>::getShortestDistance(
+        const VertexShortestPathsMap<TKey, TValue>& shortestDistancesMap,
+        IVertexPtr<TKey, TValue> vertex)
+    {
+        typename VertexShortestPathsMap<TKey, TValue>::const_iterator vertexIterator = shortestDistancesMap.find(vertex);
+
+        if (vertexIterator == shortestDistancesMap.end())
+        {
+            std::string errorMessage = "The vertex does not exist in the shortest distances map.";
+            throw GraphException(errorMessage);
+        }
+
+        return vertexIterator->second;
     }
 }
 

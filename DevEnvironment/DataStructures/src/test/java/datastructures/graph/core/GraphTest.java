@@ -209,14 +209,11 @@ public final class GraphTest {
         IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
         Map<IEdge<TKey, TValue>, Integer> weights = data.getWeights();
-        Map<IVertex<TKey, TValue>, Map<IVertex<TKey, TValue>, Integer>> allExpectedShortestPaths = data.getShortestPaths();
+        Map<IVertex<TKey, TValue>, Map<IVertex<TKey, TValue>, Integer>> graphShortestPaths = data.getShortestPaths();
 
         for (IVertex<TKey, TValue> vertex : data.vertices()) {
-            IVertex<TKey, TValue> src = vertex;
-
-            Map<IVertex<TKey, TValue>, Integer> shortestPaths = graphLogic.findShortestPaths(src, weights);
-
-            Map<IVertex<TKey, TValue>, Integer> expectedShortestPaths = allExpectedShortestPaths.get(src);
+            Map<IVertex<TKey, TValue>, Integer> shortestPaths = graphLogic.findShortestPaths(vertex, weights);
+            Map<IVertex<TKey, TValue>, Integer> expectedShortestPaths = graphShortestPaths.get(vertex);
 
             IEquatableComparator<IVertex<TKey, TValue>> keyComparator = Vertex.defaultComparator();
             IEquatableComparator<Integer> valueComparator = base.core.Comparator.make();

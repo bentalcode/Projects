@@ -12,6 +12,7 @@
 #include "ListIterator.h"
 #include "Collections.h"
 #include "Sorting.h"
+#include "EqualBuilder.h"
 
 using namespace datastructures::graph;
 
@@ -98,7 +99,7 @@ namespace test {
                 template <typename TKey, typename TValue>
                 void testFindPaths(
                     IPathFinder<TKey, TValue>& pathFinder,
-                    const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>& routesData,
+                    const RoutesPaths<TKey, TValue>& routesData,
                     const std::string& method);
 
                 /**
@@ -261,7 +262,7 @@ namespace test {
             template <typename TKey, typename TValue>
             void GraphUnitTest::testFindPaths(
                 IPathFinder<TKey, TValue>& pathFinder,
-                const std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>& routesData,
+                const RoutesPaths<TKey, TValue>& routesData,
                 const std::string& method)
             {
                 for (const std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>& routeData : routesData)
@@ -293,6 +294,41 @@ namespace test {
             template <typename TKey, typename TValue>
             void GraphUnitTest::testFindShortestPaths(const GraphData<TKey, TValue>& data)
             {
+                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                GraphLogic<TKey, TValue> graphLogic(*graph);
+
+                const EdgeWeightMap<TKey, TValue>& weights = data.getWeights();
+                const GraphShortestPathsMap<TKey, TValue>& graphShortestPaths = data.getShortestPaths();
+
+                for (IVertexPtr<TKey, TValue> vertex : data.vertices())
+                {
+                    VertexShortestPathsMap<TKey, TValue> result;
+                    graphLogic.findShortestPaths(
+                        vertex,
+                        weights,
+                        result);
+
+                    typename GraphShortestPathsMap<TKey, TValue>::const_iterator vertexShortestPathsIterator =
+                        graphShortestPaths.find(vertex);
+
+                    const VertexShortestPathsMap<TKey, TValue>& expectedResult = vertexShortestPathsIterator->second;
+
+                    IEquatableComparatorPtr<IVertexPtr<TKey, TValue>> keyComparator =
+                        DereferenceEquatableComparator<IVertexPtr<TKey, TValue>>::make();
+
+                    IEquatableComparatorPtr<long> valueComparator = EquatableComparator<long>::make();
+
+                    base::EqualBuilder equalBuilder;
+                    bool status = equalBuilder.withMap(
+                        result,
+                        expectedResult,
+                        *keyComparator,
+                        *valueComparator).build();
+
+                    getAssertion().assertTrue(
+                        true,
+                        "Incorrect logic of calculating shortest paths in a graph.");
+                }
             }
 
             /**
