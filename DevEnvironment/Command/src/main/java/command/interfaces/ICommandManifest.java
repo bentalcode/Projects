@@ -24,10 +24,10 @@ public interface ICommandManifest extends
     /**
      * Gets help metadata of a command.
      */
-    ICommandHelpMetadata getHelp();
+    ICommandHelpMetadata getHelpMetadata();
 
     /**
      * Gets parameter-sets metadata of a command.
      */
-    List<IParameterSetMetadata> getParameterSets();
+    List<IParameterSetMetadata> getParameterSetMetadata();
 }

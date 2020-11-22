@@ -1,5 +1,7 @@
 #include "PreCompiled.h"
 #include "CommandManifest.h"
+#include "SmartPointers.h"
+#include "CommandHelpMetadata.h"
 
 using namespace command;
 
@@ -11,10 +13,33 @@ ICommandManifestPtr CommandManifest::make(
     const std::string& description,
     const std::string& usageMessage)
 {
+    ICommandHelpMetadataPtr helpMetadata = CommandHelpMetadata::make(usageMessage);
+    std::vector<IParameterSetMetadataPtr> parameterSetMetadata;
+
     return std::make_shared<CommandManifest>(
         name,
         description,
-        usageMessage);
+        usageMessage,
+        helpMetadata,
+        parameterSetMetadata);
+}
+
+/**
+ * Creates a new manifest.
+ */
+ICommandManifestPtr CommandManifest::make(
+    const std::string& name,
+    const std::string& description,
+    const std::string& usageMessage,
+    const std::vector<IParameterSetMetadataPtr>& parameterSetMetadata)
+{
+    ICommandHelpMetadataPtr helpMetadata = CommandHelpMetadata::make(usageMessage);
+    return std::make_shared<CommandManifest>(
+        name,
+        description,
+        usageMessage,
+        helpMetadata,
+        parameterSetMetadata);
 }
 
 /**
@@ -23,11 +48,16 @@ ICommandManifestPtr CommandManifest::make(
 CommandManifest::CommandManifest(
     const std::string& name,
     const std::string& description,
-    const std::string& usageMessage) :
+    const std::string& usageMessage,
+    ICommandHelpMetadataPtr helpMetadata,
+    const std::vector<IParameterSetMetadataPtr>& parameterSetMetadata) :
     m_name(name),
     m_description(description),
-    m_usageMessage(usageMessage)
+    m_usageMessage(usageMessage),
+    m_helpMetadata(helpMetadata),
+    m_parameterSetMetadata(parameterSetMetadata)
 {
+    base::SmartPointers::validate(helpMetadata);
 }
 
 /**
@@ -54,9 +84,17 @@ const std::string& CommandManifest::getDescription() const
 }
 
 /**
- * Gets usage message of a command.
+ * Gets help metadata of a command.
  */
-const std::string& CommandManifest::getUsageMessage() const
+const ICommandHelpMetadata& CommandManifest::getHelpMetadata() const
 {
-    return m_usageMessage;
+    return *m_helpMetadata;
+}
+
+/**
+ * Gets parameter-sets metadata of a command.
+ */
+void CommandManifest::getParameterSets(std::vector<IParameterSetMetadataPtr>& parameterSets) const
+{
+    parameterSets.insert(parameterSets.end(), m_parameterSetMetadata.begin(), m_parameterSetMetadata.end());
 }

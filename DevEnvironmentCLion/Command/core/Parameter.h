@@ -12,11 +12,6 @@ namespace command {
     {
     public:
         /**
-         * Creates a help parameter.
-         */
-        static IParameterPtr createHelpParameter();
-
-        /**
          * Creates a new parameter.
          */
         static IParameterPtr make(

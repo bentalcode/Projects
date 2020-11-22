@@ -11,7 +11,7 @@ import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 
 /**
- * The IndexedParameterMetadata class implements meta-data of an indexed  parameter.
+ * The IndexedParameterMetadata class implements meta-data of an indexed parameter.
  */
 public final class IndexedParameterMetadata extends ParameterMetadata implements IIndexedParameterMetadata {
     private final IBinaryComparator<IIndexedParameterMetadata> comparator = defaultComparator();

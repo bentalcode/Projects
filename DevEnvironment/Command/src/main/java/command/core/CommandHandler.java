@@ -39,7 +39,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
             manifest,
             "The manifest of the command");
 
-        CommandMessageWriter commandMessageWriter = new CommandMessageWriter(manifest.getHelp().getUsageMessage());
+        CommandMessageWriter commandMessageWriter = new CommandMessageWriter(manifest.getHelpMetadata().getUsageMessage());
         this.destructorHandler.register(commandMessageWriter);
 
         this.manifest = manifest;

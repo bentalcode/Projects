@@ -29,36 +29,54 @@ set(COMMAND_INCLUDES_FILES
     ./core/AbstractCommand.h
     ./core/CommandConstants.h
     ./core/CommandHandler.h
+    ./core/CommandHelpMetadata.h
     ./core/CommandManifest.h
     ./core/CommandMessageWriter.h
     ./core/CommandParameters.h
     ./core/CommandParser.h
+    ./core/IndexedParameterMetadata.h
     ./core/InputParameters.h
+    ./core/NamedParameterMetadata.h
     ./core/NamedParameterParser.h
     ./core/Parameter.h
+    ./core/ParameterMetadata.h
     ./core/ParameterSet.h
+    ./core/ParameterSetMetadata.h
+    ./core/ProcessInformation.h
     ./interfaces/ICommand.h
     ./interfaces/ICommandHandler.h
+    ./interfaces/ICommandHelpMetadata.h
     ./interfaces/ICommandManifest.h
     ./interfaces/ICommandMessageWriter.h
     ./interfaces/ICommandParameters.h
+    ./interfaces/IIndexedParameterMetadata.h
     ./interfaces/IInputParameters.h
+    ./interfaces/INamedParameterMetadata.h
     ./interfaces/IParameter.h
+    ./interfaces/IParameterMetadata.h
     ./interfaces/IParameterSet.h
+    ./interfaces/IParameterSetMetadata.h
+    ./interfaces/IProcessInformation.h
 )
 
 set(COMMAND_SOURCES_FILES
     ./core/AbstractCommand.cpp
     ./core/CommandConstants.cpp
     ./core/CommandHandler.cpp
+    ./core/CommandHelpMetadata.cpp
     ./core/CommandManifest.cpp
     ./core/CommandMessageWriter.cpp
     ./core/CommandParameters.cpp
     ./core/CommandParser.cpp
+    ./core/IndexedParameterMetadata.cpp
     ./core/InputParameters.cpp
+    ./core/NamedParameterMetadata.cpp
     ./core/NamedParameterParser.cpp
     ./core/Parameter.cpp
+    ./core/ParameterMetadata.cpp
     ./core/ParameterSet.cpp
+    ./core/ParameterSetMetadata.cpp
+    ./core/ProcessInformation.cpp
 )
 
 set(COMMAND_SOURCES

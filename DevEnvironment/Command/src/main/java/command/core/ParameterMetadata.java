@@ -17,17 +17,6 @@ public abstract class ParameterMetadata implements IParameterMetadata {
     private final String description;
 
     /**
-     * Creates meta-data of a help parameter.
-     */
-    public static INamedParameterMetadata createHelpParameter() {
-        return NamedParameterMetadata.create(
-            "Help",
-            ICommandConstants.helpShortName,
-            ICommandConstants.helpLongName,
-            "The help of the command");
-    }
-
-    /**
      * The ParameterMetadata constructor.
      */
     protected ParameterMetadata(

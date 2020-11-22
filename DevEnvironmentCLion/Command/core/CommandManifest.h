@@ -8,16 +8,25 @@ namespace command {
     /**
      * The CommandManifest class implements a command handler for running commands.
      */
-    class CommandManifest : public ICommandManifest
+    class CommandManifest final : public ICommandManifest
     {
     public:
         /**
-         * Creates a new manifest.
+         * Creates a new command manifest.
          */
         static ICommandManifestPtr make(
             const std::string& name,
             const std::string& description,
             const std::string& usageMessage);
+
+        /**
+         * Creates a new command manifest.
+         */
+        static ICommandManifestPtr make(
+            const std::string& name,
+            const std::string& description,
+            const std::string& usageMessage,
+            const std::vector<IParameterSetMetadataPtr>& parameterSetMetadata);
 
 
         /**
@@ -26,7 +35,9 @@ namespace command {
         CommandManifest(
             const std::string& name,
             const std::string& description,
-            const std::string& usageMessage);
+            const std::string& usageMessage,
+            ICommandHelpMetadataPtr helpMetadata,
+            const std::vector<IParameterSetMetadataPtr>& parameterSetMetadata);
 
         /**
          * The CommandManifest destructor.
@@ -56,14 +67,21 @@ namespace command {
         virtual const std::string& getDescription() const override;
 
         /**
-         * Gets usage message of a command.
+         * Gets help metadata of a command.
          */
-        virtual const std::string& getUsageMessage() const override;
+        virtual const ICommandHelpMetadata& getHelpMetadata() const override;
+
+        /**
+         * Gets parameter-sets metadata of a command.
+         */
+        virtual void getParameterSets(std::vector<IParameterSetMetadataPtr>& parameterSets) const override;
 
     private:
         std::string m_name;
         std::string m_description;
         std::string m_usageMessage;
+        ICommandHelpMetadataPtr m_helpMetadata;
+        std::vector<IParameterSetMetadataPtr> m_parameterSetMetadata;
     };
 
     using ICommandManifestPtr = std::shared_ptr<ICommandManifest>;

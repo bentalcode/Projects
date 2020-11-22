@@ -126,7 +126,7 @@ public final class CommandParser implements IParser<String[], ICommandParameters
     private IParsingResult<IParameterSet> parseParameterSets(IInputParameters inputParameters) {
         int parameterSetIndex = 0;
 
-        for (IParameterSetMetadata parameterSetMetadata : this.manifest.getParameterSets()) {
+        for (IParameterSetMetadata parameterSetMetadata : this.manifest.getParameterSetMetadata()) {
             IParser<IInputParameters, IParameterSet> parameterSetParser = new ParameterSetParser(
                 this.manifest.getName(),
                 parameterSetIndex,
@@ -166,7 +166,7 @@ public final class CommandParser implements IParser<String[], ICommandParameters
      */
     private IParsingResult<ICommandParameters> createHelpCommandResult() {
         IParameterSetMetadata parameterSetMetadata = ParameterSetMetadata.createHelpParameterSet();
-        List<IParameter> parameters = ArrayLists.make(Parameter.createHelpParameter());
+        List<IParameter> parameters = ArrayLists.make(CommandHelpMetadata.createHelpParameter());
         IParameterSet parameterSet = new ParameterSet(CommandHelpMetadata.helpParameterSetIndex, parameterSetMetadata, parameters);
         return ParsingResult.successfulResult(new CommandParameters(parameterSet));
     }

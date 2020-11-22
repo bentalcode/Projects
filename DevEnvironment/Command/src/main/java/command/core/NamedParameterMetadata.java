@@ -26,6 +26,8 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
 
     private final String shortName;
     private final String longName;
+    private final String shortNameKey;
+    private final String longNameKey;
     private final boolean optional;
     private String defaultValue;
 
@@ -35,7 +37,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
     /**
      * Creates a parameter meta-data.
      */
-    public static INamedParameterMetadata create(
+    public static INamedParameterMetadata make(
         String name,
         String shortName,
         String longName,
@@ -53,7 +55,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
     /**
      * Creates an optional parameter meta-data.
      */
-    public static INamedParameterMetadata createOptional(
+    public static INamedParameterMetadata makeOptional(
         String name,
         String shortName,
         String longName,
@@ -90,6 +92,8 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
 
         this.shortName = shortName;
         this.longName = longName;
+        this.shortNameKey = ICommandConstants.shortNamedParameterPrefix + shortName;
+        this.longNameKey = ICommandConstants.longNamedParameterPrefix + longName;
         this.optional = optional;
         this.defaultValue = defaultValue;
 
@@ -117,7 +121,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
      */
     @Override
     public String getShortNameKey() {
-        return ICommandConstants.shortNamedParameterPrefix + this.shortName;
+        return this.shortNameKey;
     }
 
     /**
@@ -125,7 +129,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
      */
     @Override
     public String getLongNameKey() {
-        return ICommandConstants.longNamedParameterPrefix + this.longName;
+        return this.longNameKey;
     }
 
     /**

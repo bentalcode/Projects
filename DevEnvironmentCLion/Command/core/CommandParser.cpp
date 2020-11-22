@@ -6,6 +6,7 @@
 #include "CommandConstants.h"
 #include "InputParameters.h"
 #include "Parameter.h"
+#include "CommandHelpMetadata.h"
 
 using namespace command;
 
@@ -146,7 +147,7 @@ bool CommandParser::isHelpCommand(const IInputParameters& inputParameters)
 base::IParsingResultPtr<ICommandParametersPtr> CommandParser::createHelpCommandResult()
 {
     std::vector<IParameterPtr> parameters;
-    parameters.push_back(Parameter::createHelpParameter());
+    parameters.push_back(CommandHelpMetadata::createHelpParameter());
 
     IParameterSetPtr parameterSet = ParameterSet::make(
         CommandConstants::helpParameterSetIndex,

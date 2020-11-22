@@ -9,6 +9,8 @@ import base.core.HashCodeBuilder;
 import base.core.Strings;
 import base.interfaces.IBinaryComparator;
 import command.interfaces.ICommandHelpMetadata;
+import command.interfaces.INamedParameterMetadata;
+import command.interfaces.IParameter;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
@@ -32,6 +34,24 @@ public final class CommandHelpMetadata implements ICommandHelpMetadata {
 
     private final IBinaryComparator<ICommandHelpMetadata> comparator = defaultComparator();
     private final int hashCode;
+
+    /**
+     * Creates a help parameter.
+     */
+    public static IParameter createHelpParameter() {
+        return new Parameter(createHelpParameterMetadata(), null);
+    }
+
+    /**
+     * Creates meta-data of a help parameter.
+     */
+    public static INamedParameterMetadata createHelpParameterMetadata() {
+        return NamedParameterMetadata.make(
+            "Help",
+            ICommandConstants.helpShortName,
+            ICommandConstants.helpLongName,
+            "The help of the command");
+    }
 
     /**
      * The CommandHelpMetadata constructor.

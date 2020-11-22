@@ -17,13 +17,6 @@ public final class Parameter implements IParameter {
     private final String value;
 
     /**
-     * Creates a help parameter.
-     */
-    public static IParameter createHelpParameter() {
-        return new Parameter(ParameterMetadata.createHelpParameter(), null);
-    }
-
-    /**
      * The Parameter constructor.
      */
     public Parameter(

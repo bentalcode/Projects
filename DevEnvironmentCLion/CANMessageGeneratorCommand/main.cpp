@@ -4,6 +4,7 @@
 #include "CommandManifest.h"
 #include "CANMessageGeneratorCommand.h"
 #include "RandomGenerator.h"
+#include "CommandHelpMetadata.h"
 
 using namespace controllerareanetwork::messagegeneratorcommand;
 

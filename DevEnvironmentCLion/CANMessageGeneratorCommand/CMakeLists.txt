@@ -225,36 +225,54 @@ set(COMMAND_INCLUDES_FILES
     ../Command/core/AbstractCommand.h
     ../Command/core/CommandConstants.h
     ../Command/core/CommandHandler.h
+    ../Command/core/CommandHelpMetadata.h
     ../Command/core/CommandManifest.h
     ../Command/core/CommandMessageWriter.h
     ../Command/core/CommandParameters.h
     ../Command/core/CommandParser.h
+    ../Command/core/IndexedParameterMetadata.h
     ../Command/core/InputParameters.h
+    ../Command/core/NamedParameterMetadata.h
     ../Command/core/NamedParameterParser.h
     ../Command/core/Parameter.h
+    ../Command/core/ParameterMetadata.h
     ../Command/core/ParameterSet.h
+    ../Command/core/ParameterSetMetadata.h
+    ../Command/core/ProcessInformation.h
     ../Command/interfaces/ICommand.h
     ../Command/interfaces/ICommandHandler.h
+    ../Command/interfaces/ICommandHelpMetadata.h
     ../Command/interfaces/ICommandManifest.h
     ../Command/interfaces/ICommandMessageWriter.h
     ../Command/interfaces/ICommandParameters.h
+    ../Command/interfaces/IIndexedParameterMetadata.h
     ../Command/interfaces/IInputParameters.h
+    ../Command/interfaces/INamedParameterMetadata.h
     ../Command/interfaces/IParameter.h
+    ../Command/interfaces/IParameterMetadata.h
     ../Command/interfaces/IParameterSet.h
+    ../Command/interfaces/IParameterSetMetadata.h
+    ../Command/interfaces/IProcessInformation.h
 )
 
 set(COMMAND_SOURCES_FILES
     ../Command/core/AbstractCommand.cpp
     ../Command/core/CommandConstants.cpp
     ../Command/core/CommandHandler.cpp
+    ../Command/core/CommandHelpMetadata.cpp
     ../Command/core/CommandManifest.cpp
     ../Command/core/CommandMessageWriter.cpp
     ../Command/core/CommandParameters.cpp
     ../Command/core/CommandParser.cpp
+    ../Command/core/IndexedParameterMetadata.cpp
     ../Command/core/InputParameters.cpp
+    ../Command/core/NamedParameterMetadata.cpp
     ../Command/core/NamedParameterParser.cpp
     ../Command/core/Parameter.cpp
+    ../Command/core/ParameterMetadata.cpp
     ../Command/core/ParameterSet.cpp
+    ../Command/core/ParameterSetMetadata.cpp
+    ../Command/core/ProcessInformation.cpp
 )
 
 set(COMMAND_SOURCES

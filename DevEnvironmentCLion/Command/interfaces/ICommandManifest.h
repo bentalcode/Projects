@@ -1,6 +1,9 @@
 #ifndef I_COMMAND_MANIFEST_H_27391c05_d0d0_4424_b93b_d03a73606520
 #define I_COMMAND_MANIFEST_H_27391c05_d0d0_4424_b93b_d03a73606520
 
+#include "ICommandHelpMetadata.h"
+#include "IParameterSetMetadata.h"
+
 namespace command {
 
     /**
@@ -42,9 +45,14 @@ namespace command {
         virtual const std::string& getDescription() const = 0;
 
         /**
-         * Gets usage message of a command.
+         * Gets help metadata of a command.
          */
-        virtual const std::string& getUsageMessage() const = 0;
+        virtual const ICommandHelpMetadata& getHelpMetadata() const = 0;
+
+        /**
+         * Gets parameter-sets metadata of a command.
+         */
+        virtual void getParameterSets(std::vector<IParameterSetMetadataPtr>& parameterSets) const = 0;
     };
 
     using ICommandManifestPtr = std::shared_ptr<ICommandManifest>;

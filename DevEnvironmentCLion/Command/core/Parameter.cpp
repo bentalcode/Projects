@@ -7,14 +7,6 @@
 using namespace command;
 
 /**
- * Creates a help parameter.
- */
-IParameterPtr Parameter::createHelpParameter()
-{
-    return std::make_shared<Parameter>(CommandConstants::helpShortName, "", false);
-}
-
-/**
  * Creates a new parameter.
  */
 IParameterPtr Parameter::make(

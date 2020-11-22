@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The ParameterSet class implements a metadata of a parameter-set.
+ * The ParameterSetMetadata class implements a metadata of a parameter-set.
  */
 public final class ParameterSetMetadata implements IParameterSetMetadata {
     private static final String propertyIndexedParameters = "indexedParameters";
@@ -39,7 +39,7 @@ public final class ParameterSetMetadata implements IParameterSetMetadata {
      */
     public static IParameterSetMetadata createHelpParameterSet() {
         List<IIndexedParameterMetadata> indexedParameterMetadata = ArrayLists.make();
-        List<INamedParameterMetadata> namedParameters = ArrayLists.make(ParameterMetadata.createHelpParameter());
+        List<INamedParameterMetadata> namedParameters = ArrayLists.make(CommandHelpMetadata.createHelpParameterMetadata());
 
         return new ParameterSetMetadata(
             indexedParameterMetadata,

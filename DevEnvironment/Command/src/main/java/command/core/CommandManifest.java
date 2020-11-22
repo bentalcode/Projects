@@ -28,20 +28,36 @@ public final class CommandManifest implements ICommandManifest {
 
     private final String name;
     private final String description;
-    private final ICommandHelpMetadata help;
-    private final List<IParameterSetMetadata> parameterSets;
+    private final ICommandHelpMetadata helpMetadata;
+    private final List<IParameterSetMetadata> parameterSetMetadata;
 
     private final IBinaryComparator<ICommandManifest> comparator = defaultComparator();
     private final int hashCode;
 
     /**
-     * The CommandMetadata constructor.
+     * Creates a new command manifest.
      */
-    public CommandManifest(
+    public static ICommandManifest make(
         String name,
         String description,
-        ICommandHelpMetadata help,
-        List<IParameterSetMetadata> parameterSets) {
+        ICommandHelpMetadata helpMetadata,
+        List<IParameterSetMetadata> parameterSetMetadata) {
+
+        return new CommandManifest(
+            name,
+            description,
+            helpMetadata,
+            parameterSetMetadata);
+    }
+
+    /**
+     * The CommandManifest constructor.
+     */
+    private CommandManifest(
+        String name,
+        String description,
+        ICommandHelpMetadata helpMetadata,
+        List<IParameterSetMetadata> parameterSetMetadata) {
 
         Conditions.validateStringNotNullOrEmpty(
             name,
@@ -52,17 +68,17 @@ public final class CommandManifest implements ICommandManifest {
             "The description of a command.");
 
         Conditions.validateNotNull(
-            help,
+            helpMetadata,
             "The help metadata of a command.");
 
         Conditions.validateNotNull(
-            parameterSets,
+            parameterSetMetadata,
             "The parameters-set of a command.");
 
         this.name = name;
         this.description = description;
-        this.help = help;
-        this.parameterSets = parameterSets;
+        this.helpMetadata = helpMetadata;
+        this.parameterSetMetadata = parameterSetMetadata;
 
         this.hashCode = this.comparator.hashCode();
     }
@@ -87,15 +103,15 @@ public final class CommandManifest implements ICommandManifest {
      * Gets help metadata of a command.
      */
     @Override
-    public ICommandHelpMetadata getHelp() {
-        return this.help;
+    public ICommandHelpMetadata getHelpMetadata() {
+        return this.helpMetadata;
     }
 
     /**
      * Gets parameter-sets metadata of a command.
      */
-    public List<IParameterSetMetadata> getParameterSets() {
-        return this.parameterSets;
+    public List<IParameterSetMetadata> getParameterSetMetadata() {
+        return this.parameterSetMetadata;
     }
 
     /**
@@ -128,8 +144,8 @@ public final class CommandManifest implements ICommandManifest {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(propertyName, this.name);
         writer.writeStringProperty(propertyDescription, this.description);
-        writer.writeObjectProperty(propertyHelp, this.help);
-        writer.writeCollectionProperty(propertyParameterSets, this.parameterSets);
+        writer.writeObjectProperty(propertyHelp, this.helpMetadata);
+        writer.writeCollectionProperty(propertyParameterSets, this.parameterSetMetadata);
     }
 
     /**
@@ -224,8 +240,8 @@ public final class CommandManifest implements ICommandManifest {
             return new HashCodeBuilder(199, 211)
                 .withString(obj.getName())
                 .withString(obj.getDescription())
-                .withObject(obj.getHelp())
-                .withCollection(obj.getParameterSets())
+                .withObject(obj.getHelpMetadata())
+                .withCollection(obj.getParameterSetMetadata())
                 .build();
         }
 
@@ -245,8 +261,8 @@ public final class CommandManifest implements ICommandManifest {
             return new EqualBuilder()
                 .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getDescription(), rhs.getDescription())
-                .withObject(lhs.getHelp(), rhs.getHelp())
-                .withCollection(lhs.getParameterSets(), rhs.getParameterSets())
+                .withObject(lhs.getHelpMetadata(), rhs.getHelpMetadata())
+                .withCollection(lhs.getParameterSetMetadata(), rhs.getParameterSetMetadata())
                 .build();
         }
 
@@ -274,8 +290,8 @@ public final class CommandManifest implements ICommandManifest {
             return new CompareToBuilder()
                 .withString(lhs.getName(), rhs.getName())
                 .withString(lhs.getDescription(), rhs.getDescription())
-                .withObject(lhs.getHelp(), rhs.getHelp())
-                .withCollection(lhs.getParameterSets(), rhs.getParameterSets())
+                .withObject(lhs.getHelpMetadata(), rhs.getHelpMetadata())
+                .withCollection(lhs.getParameterSetMetadata(), rhs.getParameterSetMetadata())
                 .build();
         }
     }

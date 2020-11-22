@@ -29,7 +29,7 @@ CommandHandler::CommandHandler(
         throw CommandException(errorMessage);
     }
 
-    m_commandMessageWriter = CommandMessageWriter::make(manifest->getUsageMessage());
+    m_commandMessageWriter = CommandMessageWriter::make(manifest->getHelpMetadata().getUsageMessage());
 }
 
 /**
