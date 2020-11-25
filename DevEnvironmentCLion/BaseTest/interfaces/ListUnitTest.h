@@ -1,55 +1,56 @@
 #ifndef LIST_UNIT_TEST_H_25e7e522_cd62_4126_ac7d_af33bc12efcc
 #define LIST_UNIT_TEST_H_25e7e522_cd62_4126_ac7d_af33bc12efcc
 
-#include "PreCompiled.h"
 #include "UnitTestBase.h"
 
-namespace base {
-
-    /**
-     * The ListUnitTest class implements a unit test for a list.
-     */
-    class ListUnitTest final : public unit_testing::UnitTestBase
-    {
-    public:
-        /**
-         * The constructor.
-         */
-        explicit ListUnitTest(const std::string& name);
+namespace test {
+    namespace base {
 
         /**
-         * The destructor.
+         * The ListUnitTest class implements a unit test for a list.
          */
-        virtual ~ListUnitTest();
+        class ListUnitTest final : public unit_testing::UnitTestBase
+        {
+        public:
+            /**
+             * The constructor.
+             */
+            explicit ListUnitTest(const std::string& name);
 
-        /**
-         * The copy/move constructors.
-         */
-        ListUnitTest(const ListUnitTest&) = delete;
-        ListUnitTest(ListUnitTest&&) = delete;
+            /**
+             * The destructor.
+             */
+            virtual ~ListUnitTest();
 
-        /**
-         * The copy/move assignment operators.
-         */
-        ListUnitTest& operator=(const ListUnitTest&) = delete;
-        ListUnitTest& operator=(ListUnitTest&&) = delete;
+            /**
+             * The copy/move constructors.
+             */
+            ListUnitTest(const ListUnitTest&) = delete;
+            ListUnitTest(ListUnitTest&&) = delete;
 
-        /**
-         * Registers tests of the unit test.
-         */
-        virtual void registerTests(unit_testing::ITestRegistration& registration);
+            /**
+             * The copy/move assignment operators.
+             */
+            ListUnitTest& operator=(const ListUnitTest&) = delete;
+            ListUnitTest& operator=(ListUnitTest&&) = delete;
 
-        /**
-         * Tests the list.
-         */
-        void listTest();
+            /**
+             * Registers tests of the unit test.
+             */
+            virtual void registerTests(unit_testing::ITestRegistration& registration);
 
-    private:
-        /**
-         * Tests the list.
-         */
-        void testList(size_t size);
-    };
+            /**
+             * Tests the list.
+             */
+            void listTest();
+
+        private:
+            /**
+             * Tests the list.
+             */
+            void testList(size_t size);
+        };
+    }
 }
 
 #endif // LIST_UNIT_TEST_H_25e7e522_cd62_4126_ac7d_af33bc12efcc

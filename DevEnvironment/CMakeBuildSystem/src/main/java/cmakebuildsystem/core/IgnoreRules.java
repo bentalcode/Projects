@@ -74,7 +74,7 @@ public final class IgnoreRules implements IIgnoreRules {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringCollectionProperty(propertyPathPatterns, this.pathPatterns);
+        writer.writeCollectionProperty(propertyPathPatterns, this.pathPatterns);
     }
 
     /**

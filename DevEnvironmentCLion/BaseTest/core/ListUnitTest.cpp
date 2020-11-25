@@ -5,14 +5,15 @@
 #include "UnitTestFunction.h"
 
 using namespace base;
+using namespace test::base;
 
-class TestListFunction : public unit_testing::UnitTestFunction<ListUnitTest> {
+class ListTestFunction : public unit_testing::UnitTestFunction<ListUnitTest> {
 public:
-    TestListFunction(ListUnitTest &unitTest) :
+    ListTestFunction(ListUnitTest &unitTest) :
         UnitTestFunction("listTest", unitTest) {
     }
 
-    virtual ~TestListFunction() {
+    virtual ~ListTestFunction() {
     }
 
     virtual void operator()() {
@@ -40,7 +41,7 @@ ListUnitTest::~ListUnitTest()
  */
 void ListUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestListFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new ListTestFunction(*this)));
 }
 
 /**
@@ -59,7 +60,7 @@ void ListUnitTest::listTest()
  */
 void ListUnitTest::testList(size_t size)
 {
-    base::List<int> list;
+    List<int> list;
 
     int value = 0;
     for (size_t i = 0; i < size; ++i)
@@ -70,7 +71,7 @@ void ListUnitTest::testList(size_t size)
 
     int index = 0;
 
-    base::IIteratorPtr<int> iterator = list.getIterator();
+    IIteratorPtr<int> iterator = list.getIterator();
     while (iterator->hasNext())
     {
         int currentValue = iterator->next();

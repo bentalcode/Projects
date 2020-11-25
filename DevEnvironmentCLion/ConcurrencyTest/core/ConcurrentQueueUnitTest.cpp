@@ -3,15 +3,17 @@
 #include "ConcurrentQueueUnitTest.h"
 #include "UnitTestFunction.h"
 
-using namespace concurrency_test;
+using namespace test::concurrency;
 
-class TestConcurrentQueueFunction : public unit_testing::UnitTestFunction<ConcurrentQueueUnitTest> {
+class ConcurrentQueueTestFunction : public unit_testing::UnitTestFunction<ConcurrentQueueUnitTest> {
 public:
-    TestConcurrentQueueFunction(ConcurrentQueueUnitTest &unitTest) :
-        UnitTestFunction("iteratorOfIteratorCollectionTest", unitTest) {
+    ConcurrentQueueTestFunction(ConcurrentQueueUnitTest &unitTest) :
+        UnitTestFunction("concurrentQueueTest", unitTest)
+    {
     }
 
-    virtual ~TestConcurrentQueueFunction() {
+    virtual ~ConcurrentQueueTestFunction()
+    {
     }
 
     virtual void operator()() {
@@ -39,7 +41,7 @@ ConcurrentQueueUnitTest::~ConcurrentQueueUnitTest()
  */
 void ConcurrentQueueUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestConcurrentQueueFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new ConcurrentQueueTestFunction(*this)));
 }
 
 /**
@@ -48,6 +50,5 @@ void ConcurrentQueueUnitTest::registerTests(unit_testing::ITestRegistration& reg
 void ConcurrentQueueUnitTest::concurrentQueueTest()
 {
     std::shared_ptr<std::vector<int>> data = m_testData.createVector<>(10, 1);
-
     testConcurrentQueue(*data);
 }

@@ -5,15 +5,16 @@
 #include "Strings.h"
 
 using namespace base;
+using namespace test::base;
 
-class TestSplitStringFunction final : public unit_testing::UnitTestFunction<StringsUnitTest> {
+class SplitStringTestFunction final : public unit_testing::UnitTestFunction<StringsUnitTest> {
 public:
-    explicit TestSplitStringFunction(StringsUnitTest& unitTest) :
-        UnitTestFunction("splitStringTest", unitTest)
+    explicit SplitStringTestFunction(StringsUnitTest& unitTest) :
+        UnitTestFunction("splitString", unitTest)
     {
     }
 
-    virtual ~TestSplitStringFunction()
+    virtual ~SplitStringTestFunction()
     {
     }
 
@@ -23,14 +24,14 @@ public:
     }
 };
 
-class TestSplitStringWithRegexFunction final : public unit_testing::UnitTestFunction<StringsUnitTest> {
+class SplitStringWithRegexTestFunction final : public unit_testing::UnitTestFunction<StringsUnitTest> {
 public:
-    explicit TestSplitStringWithRegexFunction(StringsUnitTest& unitTest) :
-        UnitTestFunction("splitStringWithRegexTest", unitTest)
+    explicit SplitStringWithRegexTestFunction(StringsUnitTest& unitTest) :
+        UnitTestFunction("splitStringWithRegex", unitTest)
     {
     }
 
-    virtual ~TestSplitStringWithRegexFunction()
+    virtual ~SplitStringWithRegexTestFunction()
     {
     }
 
@@ -60,8 +61,8 @@ StringsUnitTest::~StringsUnitTest()
  */
 void StringsUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestSplitStringFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestSplitStringWithRegexFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new SplitStringTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new SplitStringWithRegexTestFunction(*this)));
 }
 
 /**

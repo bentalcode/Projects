@@ -32,7 +32,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a boolean property.
      */
     @Override
-    public void writeBooleanProperty(String name, boolean value) {
+    public void writeBooleanProperty(
+        String name,
+        boolean value) {
+
         this.validatePropertyName(name);
 
         this.generator.writePropertyName(name);
@@ -43,7 +46,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a byte property.
      */
     @Override
-    public void writeByteProperty(String name, byte value) {
+    public void writeByteProperty(
+        String name,
+        byte value) {
+
         this.validatePropertyName(name);
 
         this.generator.writePropertyName(name);
@@ -54,7 +60,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a short property.
      */
     @Override
-    public void writeShortProperty(String name, short value) {
+    public void writeShortProperty(
+        String name,
+        short value) {
+
         this.validatePropertyName(name);
 
         this.generator.writePropertyName(name);
@@ -65,7 +74,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes an integer property.
      */
     @Override
-    public void writeIntegerProperty(String name, int value) {
+    public void writeIntegerProperty(
+        String name,
+        int value) {
+
         this.validatePropertyName(name);
 
         this.generator.writePropertyName(name);
@@ -76,7 +88,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a long property.
      */
     @Override
-    public void writeLongProperty(String name, long value) {
+    public void writeLongProperty(
+        String name,
+        long value) {
+
         this.validatePropertyName(name);
 
         this.generator.writePropertyName(name);
@@ -87,7 +102,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a float property.
      */
     @Override
-    public void writeFloatProperty(String name, float value) {
+    public void writeFloatProperty(
+        String name,
+        float value) {
+
         this.validatePropertyName(name);
 
         this.generator.writePropertyName(name);
@@ -98,7 +116,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a double property.
      */
     @Override
-    public void writeDoubleProperty(String name, double value) {
+    public void writeDoubleProperty(
+        String name,
+        double value) {
+
         this.validatePropertyName(name);
 
         this.generator.writePropertyName(name);
@@ -109,7 +130,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a string property.
      */
     @Override
-    public void writeStringProperty(String name, String value) {
+    public void writeStringProperty(
+        String name,
+        String value) {
+
         this.validatePropertyName(name);
 
         if (value == null) {
@@ -123,7 +147,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
     /**
      * Writes an enum property.
      */
-    public <T extends Enum<T>> void writeEnumProperty(String name, T value) {
+    public <T extends Enum<T>> void writeEnumProperty(
+        String name,
+        T value) {
+
         if (value == null) {
             return;
         }
@@ -135,7 +162,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a boolean array property.
      */
     @Override
-    public void writeBooleanArrayProperty(String name, boolean[] array) {
+    public void writeArrayProperty(
+        String name,
+        boolean[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -150,7 +180,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a byte array property.
      */
     @Override
-    public void writeByteArrayProperty(String name, byte[] array) {
+    public void writeArrayProperty(
+        String name,
+        byte[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -165,7 +198,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a short array property.
      */
     @Override
-    public void writeShortArrayProperty(String name, short[] array) {
+    public void writeArrayProperty(
+        String name,
+        short[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -180,7 +216,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes an integer array property.
      */
     @Override
-    public void writeIntegerArrayProperty(String name, int[] array) {
+    public void writeArrayProperty(
+        String name,
+        int[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -195,7 +234,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a long array property.
      */
     @Override
-    public void writeLongArrayProperty(String name, long[] array) {
+    public void writeArrayProperty(
+        String name,
+        long[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -210,7 +252,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a float array property.
      */
     @Override
-    public void writeFloatArrayProperty(String name, float[] array) {
+    public void writeArrayProperty(
+        String name,
+        float[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -225,7 +270,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a double array property.
      */
     @Override
-    public void writeDoubleArrayProperty(String name, double[] array) {
+    public void writeArrayProperty(
+        String name,
+        double[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -240,7 +288,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a string array property.
      */
     @Override
-    public void writeStringArrayProperty(String name, String[] array) {
+    public void writeArrayProperty(
+        String name,
+        String[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -255,7 +306,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a string collection property.
      */
     @Override
-    public void writeStringCollectionProperty(String name, Collection<String> collection) {
+    public void writeCollectionProperty(
+        String name,
+        Collection<String> collection) {
+
         this.validatePropertyName(name);
 
         if (collection == null || collection.isEmpty()) {
@@ -270,7 +324,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a blob property.
      */
     @Override
-    public void writeBlobProperty(String name, byte[] blob) {
+    public void writeBlobProperty(
+        String name,
+        byte[] blob) {
+
         this.validatePropertyName(name);
 
         if (blob == null) {
@@ -359,7 +416,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a generic object property.
      */
     @Override
-    public <T extends IJsonSerialization> void writeObjectProperty(String name, T object) {
+    public <T extends IJsonSerialization> void writeObjectProperty(
+        String name,
+        T object) {
+
         this.validatePropertyName(name);
 
         if (object == null) {
@@ -376,7 +436,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a generic array property.
      */
     @Override
-    public <T extends IJsonSerialization> void writeArrayProperty(String name, T[] array) {
+    public <T extends IJsonSerialization> void writeArrayProperty(
+        String name,
+        T[] array) {
+
         this.validatePropertyName(name);
 
         if (array == null) {
@@ -393,7 +456,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a generic collection property.
      */
     @Override
-    public <T extends IJsonSerialization> void writeCollectionProperty(String name, List<T> collection) {
+    public <T extends IJsonSerialization> void writeCollectionProperty(
+        String name,
+        List<T> collection) {
+
         this.validatePropertyName(name);
 
         if (collection == null || collection.isEmpty()) {
@@ -432,7 +498,10 @@ public final class JsonObjectWriter implements IJsonObjectWriter {
      * Writes a map property.
      */
     @Override
-    public void writeMapProperty(String name, Map<String, String> map) {
+    public void writeMapProperty(
+        String name,
+        Map<String, String> map) {
+
         this.validatePropertyName(name);
 
         if (map == null || map.isEmpty()) {

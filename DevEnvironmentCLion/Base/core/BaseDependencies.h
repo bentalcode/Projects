@@ -16,6 +16,7 @@
 #include <typeinfo>
 #include <tuple>
 #include <functional>
+#include <cstddef>
 
 #include "BaseLogic.h"
 

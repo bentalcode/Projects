@@ -15,132 +15,186 @@ public interface IJsonObjectWriter {
     /**
      * Writes a boolean property.
      */
-    void writeBooleanProperty(String name, boolean value);
+    void writeBooleanProperty(
+        String name,
+        boolean value);
 
     /**
      * Writes a byte property.
      */
-    void writeByteProperty(String name, byte value);
+    void writeByteProperty(
+        String name,
+        byte value);
 
     /**
      * Writes a short property.
      */
-    void writeShortProperty(String name, short value);
+    void writeShortProperty(
+        String name,
+        short value);
 
     /**
      * Writes an integer property.
      */
-    void writeIntegerProperty(String name, int value);
+    void writeIntegerProperty(
+        String name,
+        int value);
 
     /**
      * Writes a long property.
      */
-    void writeLongProperty(String name, long value);
+    void writeLongProperty(
+        String name,
+        long value);
 
     /**
      * Writes a float property.
      */
-    void writeFloatProperty(String name, float value);
+    void writeFloatProperty(
+        String name,
+        float value);
 
     /**
      * Writes a double property.
      */
-    void writeDoubleProperty(String name, double value);
+    void writeDoubleProperty(
+        String name,
+        double value);
 
     /**
      * Writes a string property.
      */
-    void writeStringProperty(String name, String value);
+    void writeStringProperty(
+        String name,
+        String value);
 
     /**
      * Writes an enum property.
      */
-    <T extends Enum<T>> void writeEnumProperty(String name, T value);
+    <T extends Enum<T>> void writeEnumProperty(
+        String name,
+        T value);
 
     /**
      * Writes a boolean array property.
      */
-    void writeBooleanArrayProperty(String name, boolean[] array);
+    void writeArrayProperty(
+        String name,
+        boolean[] array);
 
     /**
      * Writes a byte array property.
      */
-    void writeByteArrayProperty(String name, byte[] array);
+    void writeArrayProperty(
+        String name,
+        byte[] array);
 
     /**
      * Writes a short array property.
      */
-    void writeShortArrayProperty(String name, short[] array);
+    void writeArrayProperty(
+        String name,
+        short[] array);
 
     /**
      * Writes an integer array property.
      */
-    void writeIntegerArrayProperty(String name, int[] array);
+    void writeArrayProperty(
+        String name,
+        int[] array);
 
     /**
      * Writes a long array property.
      */
-    void writeLongArrayProperty(String name, long[] array);
+    void writeArrayProperty(
+        String name,
+        long[] array);
 
     /**
      * Writes a float array property.
      */
-    void writeFloatArrayProperty(String name, float[] array);
+    void writeArrayProperty(
+        String name,
+        float[] array);
 
     /**
      * Writes a double array property.
      */
-    void writeDoubleArrayProperty(String name, double[] array);
+    void writeArrayProperty(
+        String name,
+        double[] array);
 
     /**
      * Writes a string array property.
      */
-    void writeStringArrayProperty(String name, String[] array);
+    void writeArrayProperty(
+        String name,
+        String[] array);
 
     /**
      * Writes a string collection property.
      */
-    void writeStringCollectionProperty(String name, Collection<String> collection);
+    void writeCollectionProperty(
+        String name,
+        Collection<String> collection);
 
     /**
      * Writes a blob property.
      */
-    void writeBlobProperty(String name, byte[] blob);
+    void writeBlobProperty(
+        String name,
+        byte[] blob);
 
     /**
      * Writes a date property.
      */
-    void writeDateProperty(String name, Date date);
+    void writeDateProperty(
+        String name,
+        Date date);
 
     /**
      * Writes a date property with a formatter.
      */
-    void writeDateProperty(String name, Date dataTime, DateFormat formatter);
+    void writeDateProperty(
+        String name,
+        Date dataTime,
+        DateFormat formatter);
 
     /**
      * Writes a duration property.
      */
-    void writeDurationProperty(String name, Duration duration);
+    void writeDurationProperty(
+        String name,
+        Duration duration);
 
     /**
      * Writes a duration property with a formatter.
      */
-    void writeDurationProperty(String name, Duration duration, String formatter);
+    void writeDurationProperty(
+        String name,
+        Duration duration,
+        String formatter);
 
     /**
      * Writes a generic object property.
      */
-    <T extends IJsonSerialization> void writeObjectProperty(String name, T object);
+    <T extends IJsonSerialization> void writeObjectProperty(
+        String name,
+        T object);
 
     /**
      * Writes a generic array property.
      */
-    <T extends IJsonSerialization> void writeArrayProperty(String name, T[] array);
+    <T extends IJsonSerialization> void writeArrayProperty(
+        String name,
+        T[] array);
 
     /**
      * Writes a generic collection property.
      */
-    <T extends IJsonSerialization> void writeCollectionProperty(String name, List<T> list);
+    <T extends IJsonSerialization> void writeCollectionProperty(
+        String name,
+        List<T> list);
 
     /**
      * Writes a generic collection property with a transformer.
@@ -151,9 +205,11 @@ public interface IJsonObjectWriter {
         IToString<T> transformer);
 
     /**
-     * Writes a map property.
+     * Writes a string map property.
      */
-    void writeMapProperty(String name, Map<String, String> map);
+    void writeMapProperty(
+        String name,
+        Map<String, String> map);
 
     /**
      * Writes a map property with key and value transformers.

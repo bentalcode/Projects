@@ -7,6 +7,7 @@
 #include "RandomGeneratorUnitTest.h"
 
 using namespace base;
+using namespace test::base;
 using namespace unit_testing;
 
 int main()

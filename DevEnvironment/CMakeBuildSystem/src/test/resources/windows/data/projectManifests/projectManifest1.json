@@ -7,6 +7,7 @@
         "Concurrency",
         "MemoryManagement",
         "Command",
+        "Json",
         "CANMessageGenerator",
         "CANMessageGeneratorCommand",
         "Problems",
@@ -15,6 +16,7 @@
         "DataStructuresTest",
         "ConcurrencyTest",
         "MemoryManagementTest",
+        "JsonTest",
         "ProblemsTest"
     ],
     "modules": [
@@ -42,6 +44,13 @@
         },
         {
             "name": "DataStructures",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ]
+        },
+        {
+            "name": "Json",
             "type": "library",
             "dependentModules": [
                 "Base"
@@ -123,6 +132,16 @@
                 "TestBase",
                 "UnitTesting",
                 "DataStructures"
+            ]
+        },
+        {
+            "name": "JsonTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting",
+                "Json"
             ]
         },
         {

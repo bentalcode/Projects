@@ -113,6 +113,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IConsoleColorHandler.h
     ./interfaces/IEquatableComparator.h
     ./interfaces/IFinder.h
+    ./interfaces/IFromString.h
     ./interfaces/IHashCodeProvider.h
     ./interfaces/IIntegerConversion.h
     ./interfaces/IIntervalMap.h
@@ -135,6 +136,8 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ISizableCollection.h
     ./interfaces/ISkipIterator.h
     ./interfaces/IStringConversion.h
+    ./interfaces/IToString.h
+    ./interfaces/ITransformer.h
     ./interfaces/ITwoDimensionalVector.h
     ./interfaces/IUnaryBitOperator.h
     ./interfaces/IValidator.h

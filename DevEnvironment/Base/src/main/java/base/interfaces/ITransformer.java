@@ -1,11 +1,11 @@
 package base.interfaces;
 
 /**
- * The ITransformer interface defines a transformer.
+ * The ITransformer interface defines a generic transformer.
  */
-public interface ITransformer<FROM_OBJECT, TO_OBJECT> {
+public interface ITransformer<TFromObject, TToObject> {
     /**
-     * Transforms the object.
+     * Transforms an object.
      */
-    TO_OBJECT transform(FROM_OBJECT obj);
+    TToObject transform(TFromObject obj);
 }

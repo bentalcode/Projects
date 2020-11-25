@@ -111,7 +111,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
         writer.writeEnumProperty(propertyType, this.type);
         writer.writeObjectProperty(propertyProperties, this.properties);
         writer.writeObjectProperty(propertyCMakeListsManifest, this.cmakeListsManifest);
-        writer.writeStringCollectionProperty(propertyDependentModules, this.dependentModules);
+        writer.writeCollectionProperty(propertyDependentModules, this.dependentModules);
     }
 
     /**

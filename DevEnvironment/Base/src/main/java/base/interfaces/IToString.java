@@ -1,11 +1,11 @@
 package base.interfaces;
 
 /**
- * The IToString interface defines a to string.
+ * The IToString interface defines a to string transformer.
  */
 public interface IToString<T> {
     /**
-     * Converts the object to a string.
+     * Transforms an object to a string.
      */
     String toString(T obj);
 }

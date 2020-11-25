@@ -153,7 +153,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(propertyName, this.name);
         writer.writeStringProperty(propertyRootPath, this.rootPath);
-        writer.writeStringCollectionProperty(propertyEffectiveModules, this.effectiveModules);
+        writer.writeCollectionProperty(propertyEffectiveModules, this.effectiveModules);
         writer.writeCollectionProperty(propertyModules, this.modules);
         writer.writeObjectProperty(propertyEditorSettings, this.editorSettings);
         writer.writeObjectProperty(propertyIgnoreRules, this.ignoreRules);

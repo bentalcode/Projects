@@ -2,7 +2,7 @@
 
 #include "TestData.h"
 
-using namespace concurrency_test;
+using namespace test::concurrency;
 
 /**
  * The TestData constructor.

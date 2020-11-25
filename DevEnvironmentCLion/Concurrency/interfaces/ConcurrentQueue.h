@@ -1,7 +1,6 @@
 #ifndef CONCURRENT_QUEUE_H_bc494888_f01b_40ca_aab2_b23271283ee4
 #define CONCURRENT_QUEUE_H_bc494888_f01b_40ca_aab2_b23271283ee4
 
-#include <queue>
 #include <mutex>
 #include <condition_variable>
 

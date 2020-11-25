@@ -123,9 +123,9 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(propertyPath, this.path);
         writer.writeStringProperty(propertyCMakeListsTargetPath, this.cmakeListsTargetPath);
-        writer.writeStringCollectionProperty(propertyHeaderFileExtensions, this.headerFileExtensions);
-        writer.writeStringCollectionProperty(propertySourceFileExtensions, this.sourceFileExtensions);
-        writer.writeStringCollectionProperty(propertyCMakeListsFileExtensions, this.cmakeListsFileExtensions);
+        writer.writeCollectionProperty(propertyHeaderFileExtensions, this.headerFileExtensions);
+        writer.writeCollectionProperty(propertySourceFileExtensions, this.sourceFileExtensions);
+        writer.writeCollectionProperty(propertyCMakeListsFileExtensions, this.cmakeListsFileExtensions);
     }
 
     /**

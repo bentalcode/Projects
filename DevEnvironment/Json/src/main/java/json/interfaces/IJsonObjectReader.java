@@ -1,6 +1,6 @@
 package json.interfaces;
 
-import base.core.IFromString;
+import base.interfaces.IFromString;
 import java.text.DateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -55,12 +55,16 @@ public interface IJsonObjectReader {
     /**
      * Reads an enum property.
      */
-    <T extends Enum<T>> T readEnumProperty(String name, IFromString<T> transformer);
+    <T extends Enum<T>> T readEnumProperty(
+        String name,
+        IFromString<T> transformer);
 
     /**
      * Reads a generic property with a transformer.
      */
-    <T> T readProperty(String name, IFromString<T> transformer);
+    <T> T readProperty(
+        String name,
+        IFromString<T> transformer);
 
     /**
      * Reads a boolean array property.
@@ -125,7 +129,9 @@ public interface IJsonObjectReader {
     /**
      * Reads a date property with a formatter.
      */
-    Date readDateProperty(String name, DateFormat formatter);
+    Date readDateProperty(
+        String name,
+        DateFormat formatter);
 
     /**
      * Reads a duration property.
@@ -135,35 +141,57 @@ public interface IJsonObjectReader {
     /**
      * Reads a duration property with a formatter.
      */
-    Duration readDurationProperty(String name, String formatter);
+    Duration readDurationProperty(
+        String name,
+        String formatter);
 
     /**
      * Reads a generic object property.
      */
-    <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType readObjectProperty(String name, Class<ClassType> classType);
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType readObjectProperty(
+        String name,
+        Class<ClassType> classType);
 
     /**
      * Reads a generic array property.
      */
-    <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType[] readArrayProperty(String name, Class<ClassType> classType);
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> ResultType[] readArrayProperty(
+        String name,
+        Class<ClassType> classType);
 
     /**
      * Reads a generic list property.
      */
-    <ResultType extends IJsonSerialization, ClassType extends ResultType> List<ResultType> readListProperty(String name, Class<ClassType> classType);
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> List<ResultType> readListProperty(
+        String name,
+        Class<ClassType> classType);
 
     /**
      * Reads a generic set property.
      */
-    <ResultType extends IJsonSerialization, ClassType extends ResultType> Set<ResultType> readSetProperty(String name, Class<ClassType> classType);
+    <ResultType extends IJsonSerialization, ClassType extends ResultType> Set<ResultType> readSetProperty(
+        String name,
+        Class<ClassType> classType);
 
     /**
      * Reads a generic list property with a transformer.
      */
-    <T> List<T> readListProperty(String name, IFromString<T> transformer);
+    <T> List<T> readListProperty(
+        String name,
+        IFromString<T> transformer);
 
     /**
      * Reads a generic set property with a transformer.
      */
-    <T> Set<T> readSetProperty(String name, IFromString<T> transformer);
+    <T> Set<T> readSetProperty(
+        String name,
+        IFromString<T> transformer);
+
+    /**
+     * Reads a generic map property with key and value transformers.
+     */
+    <TKey, TValue> Map<TKey, TValue> readMapProperty(
+        String name,
+        IFromString<TKey> keyTransformer,
+        IFromString<TValue> valueTransformer);
 }

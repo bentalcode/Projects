@@ -6,15 +6,16 @@
 #include "TwoDimensionalVectorIterator.h"
 
 using namespace base;
+using namespace test::base;
 
-class TestMatrixFunction final : public unit_testing::UnitTestFunction<MatrixUnitTest> {
+class MatrixTestFunction final : public unit_testing::UnitTestFunction<MatrixUnitTest> {
 public:
-    explicit TestMatrixFunction(MatrixUnitTest& unitTest) :
+    explicit MatrixTestFunction(MatrixUnitTest& unitTest) :
         UnitTestFunction("matrixCreationTest", unitTest) 
     {
     }
 
-    virtual ~TestMatrixFunction() 
+    virtual ~MatrixTestFunction() 
     {
     }
 
@@ -24,15 +25,15 @@ public:
     }
 };
 
-class TestMatrixIterationFunction final : public unit_testing::UnitTestFunction<MatrixUnitTest> 
+class MatrixIterationTestFunction final : public unit_testing::UnitTestFunction<MatrixUnitTest> 
 {
 public:
-    explicit TestMatrixIterationFunction(MatrixUnitTest &unitTest) :
+    explicit MatrixIterationTestFunction(MatrixUnitTest &unitTest) :
         UnitTestFunction("matrixIterationTest", unitTest) 
     {
     }
 
-    virtual ~TestMatrixIterationFunction() 
+    virtual ~MatrixIterationTestFunction() 
     {
     }
 
@@ -62,8 +63,8 @@ MatrixUnitTest::~MatrixUnitTest()
  */
 void MatrixUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMatrixFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMatrixIterationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new MatrixTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new MatrixIterationTestFunction(*this)));
 }
 
 /**
@@ -101,7 +102,7 @@ void MatrixUnitTest::matrixIterationTest()
  */
 void MatrixUnitTest::testMatrixCreation(const std::vector<std::vector<int>> &data)
 {
-    base::Matrix<int> matrix(data);
+    Matrix<int> matrix(data);
 
     for (int row = 0; row < data.size(); ++row)
     {
@@ -117,8 +118,8 @@ void MatrixUnitTest::testMatrixCreation(const std::vector<std::vector<int>> &dat
         }
     }
 
-    base::Matrix<int> matrix1(matrix);
-    base::Matrix<int> matrix2(1, 1);
+    Matrix<int> matrix1(matrix);
+    Matrix<int> matrix2(1, 1);
     matrix2 = matrix;
 
     bool status = matrix1 == matrix2;
@@ -133,8 +134,8 @@ void MatrixUnitTest::testMatrixCreation(const std::vector<std::vector<int>> &dat
  */
 void MatrixUnitTest::testMatrixIteration(const std::vector<std::vector<int>>& data)
 {
-    base::Matrix<int> matrix(data);
-    base::TwoDimensionalVectorIterator<int> dataIterator(data);
+    Matrix<int> matrix(data);
+    TwoDimensionalVectorIterator<int> dataIterator(data);
 
     getAssertion().assertEqualsWithIterators(
         *(matrix.getIterator()),

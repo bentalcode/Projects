@@ -12,7 +12,7 @@ import testbase.core.JsonObjectStreamingTest;
 import testbase.interfaces.IJsonObjectStreamingTest;
 
 /**
- * The JsonStreamTest class implements tests for reading writing from/to json streams.
+ * The JsonStreamingTest class implements tests for reading writing from/to json streams.
  */
 public final class JsonStreamingTest {
     private final IJsonObjectStreamingTest streamingTest = new JsonObjectStreamingTest();

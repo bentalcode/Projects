@@ -5,12 +5,13 @@ import base.core.ClassTypes;
 import base.core.Conditions;
 import base.core.Dates;
 import base.core.Durations;
-import base.core.IFromString;
+import base.interfaces.IFromString;
 import json.interfaces.IJsonObjectReader;
 import java.text.DateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -124,7 +125,10 @@ public final class JsonObjectReader implements IJsonObjectReader {
     /**
      * Reads an enum property.
      */
-    public <T extends Enum<T>> T readEnumProperty(String name, IFromString<T> transformer) {
+    public <T extends Enum<T>> T readEnumProperty(
+        String name,
+        IFromString<T> transformer) {
+
         return this.readProperty(name, transformer);
     }
 
@@ -132,7 +136,12 @@ public final class JsonObjectReader implements IJsonObjectReader {
      * Reads a generic property with a transformer.
      */
     @Override
-    public <T> T readProperty(String name, IFromString<T> transformer) {
+    public <T> T readProperty(
+        String name,
+        IFromString<T> transformer) {
+
+        validateTransformer(transformer);
+
         String value = this.readStringProperty(name);
         return transformer.fromString(value);
     }
@@ -271,7 +280,10 @@ public final class JsonObjectReader implements IJsonObjectReader {
      * Reads a date property.
      */
     @Override
-    public Date readDateProperty(String name, DateFormat formatter) {
+    public Date readDateProperty(
+        String name,
+        DateFormat formatter) {
+
         String value = this.readStringProperty(name);
         return Dates.parse(value, formatter);
     }
@@ -289,7 +301,10 @@ public final class JsonObjectReader implements IJsonObjectReader {
      * Reads a duration property.
      */
     @Override
-    public Duration readDurationProperty(String name, String formatter) {
+    public Duration readDurationProperty(
+        String name,
+        String formatter) {
+
         String value = this.readStringProperty(name);
         return Durations.parse(value, formatter);
     }
@@ -354,7 +369,12 @@ public final class JsonObjectReader implements IJsonObjectReader {
      * Reads a generic list property with a transformer.
      */
     @Override
-    public <T> List<T> readListProperty(String name, IFromString<T> transformer) {
+    public <T> List<T> readListProperty(
+        String name,
+        IFromString<T> transformer) {
+
+        validateTransformer(transformer);
+
         IJsonValue value = this.getPropertyValue(name);
         IJsonValueReader reader = new JsonValueReader(value);
 
@@ -377,7 +397,12 @@ public final class JsonObjectReader implements IJsonObjectReader {
      * Reads a generic set property with a transformer.
      */
     @Override
-    public <T> Set<T> readSetProperty(String name, IFromString<T> transformer) {
+    public <T> Set<T> readSetProperty(
+        String name,
+        IFromString<T> transformer) {
+
+        validateTransformer(transformer);
+
         IJsonValue value = this.getPropertyValue(name);
         IJsonValueReader reader = new JsonValueReader(value);
 
@@ -397,6 +422,32 @@ public final class JsonObjectReader implements IJsonObjectReader {
     }
 
     /**
+     * Reads a generic map property with key and value transformers.
+     */
+    @Override
+    public <TKey, TValue> Map<TKey, TValue> readMapProperty(
+        String name,
+        IFromString<TKey> keyTransformer,
+        IFromString<TValue> valueTransformer) {
+
+        validateTransformer(keyTransformer);
+        validateTransformer(valueTransformer);
+
+        Map<String, String> stringMap = this.readStringMapProperty(name);
+
+        Map<TKey, TValue> result = new HashMap<>();
+
+        for (Map.Entry<String, String> stringEntry : stringMap.entrySet()) {
+            TKey key = keyTransformer.fromString(stringEntry.getKey());
+            TValue value = valueTransformer.fromString(stringEntry.getValue());
+
+            result.put(key, value);
+        }
+
+        return result;
+    }
+
+    /**
      * Get the property value.
      */
     private IJsonValue getPropertyValue(String name) {
@@ -410,5 +461,14 @@ public final class JsonObjectReader implements IJsonObjectReader {
         }
 
         return this.jsonObject.getPropertyValue(name);
+    }
+
+    /**
+     * Validates a transformer.
+     */
+    private static <T> void validateTransformer(IFromString<T> transformer) {
+        Conditions.validateNotNull(
+            transformer,
+            "The transformer.");
     }
 }

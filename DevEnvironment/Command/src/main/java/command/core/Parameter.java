@@ -2,7 +2,7 @@ package command.core;
 
 import base.core.Conditions;
 import base.core.Conversion;
-import base.core.IFromString;
+import base.interfaces.IFromString;
 import command.interfaces.IParameter;
 import command.interfaces.IParameterMetadata;
 import java.math.BigInteger;

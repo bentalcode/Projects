@@ -261,13 +261,13 @@ public final class Types implements ITypes {
         writer.writeDoubleProperty(Types.DoubleProperty, this.getDoubleValue());
         writer.writeStringProperty(Types.StringProperty, this.getStringValue());
 
-        writer.writeBooleanArrayProperty(Types.BooleanArrayProperty, this.getBooleanArray());
-        writer.writeShortArrayProperty(Types.ShortArrayProperty, this.getShortArray());
-        writer.writeIntegerArrayProperty(Types.IntegerArrayProperty, this.getIntegerArray());
-        writer.writeLongArrayProperty(Types.LongArrayProperty, this.getLongArray());
-        writer.writeFloatArrayProperty(Types.FloatArrayProperty, this.getFloatArray());
-        writer.writeDoubleArrayProperty(Types.DoubleArrayProperty, this.getDoubleArray());
-        writer.writeStringArrayProperty(Types.StringArrayProperty, this.getStringArray());
+        writer.writeArrayProperty(Types.BooleanArrayProperty, this.getBooleanArray());
+        writer.writeArrayProperty(Types.ShortArrayProperty, this.getShortArray());
+        writer.writeArrayProperty(Types.IntegerArrayProperty, this.getIntegerArray());
+        writer.writeArrayProperty(Types.LongArrayProperty, this.getLongArray());
+        writer.writeArrayProperty(Types.FloatArrayProperty, this.getFloatArray());
+        writer.writeArrayProperty(Types.DoubleArrayProperty, this.getDoubleArray());
+        writer.writeArrayProperty(Types.StringArrayProperty, this.getStringArray());
         writer.writeBlobProperty(Types.BlobProperty, this.getBlob());
     }
 

@@ -1,6 +1,6 @@
 package command.interfaces;
 
-import base.core.IFromString;
+import base.interfaces.IFromString;
 import java.math.BigInteger;
 import java.time.Duration;
 import java.util.Date;

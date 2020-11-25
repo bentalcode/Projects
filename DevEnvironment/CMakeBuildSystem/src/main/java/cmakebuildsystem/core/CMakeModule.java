@@ -149,7 +149,7 @@ public final class CMakeModule implements ICMakeModule {
         writer.writeCollectionProperty(propertyHeaderFilesPaths, this.headerFilesPaths, Path::toString);
         writer.writeCollectionProperty(propertySourceFilesPaths, this.sourceFilesPaths, Path::toString);
         writer.writeStringProperty(propertyCmakeListsFilePath, this.cmakeListsFilePath.toString());
-        writer.writeStringCollectionProperty(propertyDependentModules, this.dependentModules);
+        writer.writeCollectionProperty(propertyDependentModules, this.dependentModules);
     }
 
     /**

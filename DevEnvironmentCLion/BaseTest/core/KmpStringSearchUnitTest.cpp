@@ -5,15 +5,16 @@
 #include "KmpStringSearch.h"
 
 using namespace base;
+using namespace test::base;
 
-class TestFindSubStringFunction final : public unit_testing::UnitTestFunction<KmpStringSearchUnitTest> {
+class FindSubStringTestFunction final : public unit_testing::UnitTestFunction<KmpStringSearchUnitTest> {
 public:
-    explicit TestFindSubStringFunction(KmpStringSearchUnitTest& unitTest) :
+    explicit FindSubStringTestFunction(KmpStringSearchUnitTest& unitTest) :
         UnitTestFunction("findSubStringTest", unitTest)
     {
     }
 
-    virtual ~TestFindSubStringFunction()
+    virtual ~FindSubStringTestFunction()
     {
     }
 
@@ -23,15 +24,15 @@ public:
     }
 };
 
-class TestAllFindSubStringFunction final : public unit_testing::UnitTestFunction<KmpStringSearchUnitTest>
+class FindAllFindSubStringTestFunction final : public unit_testing::UnitTestFunction<KmpStringSearchUnitTest>
 {
 public:
-    explicit TestAllFindSubStringFunction(KmpStringSearchUnitTest &unitTest) :
+    explicit FindAllFindSubStringTestFunction(KmpStringSearchUnitTest &unitTest) :
         UnitTestFunction("findAllSubStringTest", unitTest)
     {
     }
 
-    virtual ~TestAllFindSubStringFunction()
+    virtual ~FindAllFindSubStringTestFunction()
     {
     }
 
@@ -61,8 +62,8 @@ KmpStringSearchUnitTest::~KmpStringSearchUnitTest()
  */
 void KmpStringSearchUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestFindSubStringFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestAllFindSubStringFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new FindSubStringTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new FindAllFindSubStringTestFunction(*this)));
 }
 
 /**

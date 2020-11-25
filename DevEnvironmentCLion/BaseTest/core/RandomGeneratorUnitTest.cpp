@@ -5,16 +5,17 @@
 #include "UnitTestFunction.h"
 
 using namespace base;
+using namespace test::base;
 
-class TestRandomBooleanFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
+class RandomBooleanTestFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
 {
 public:
-    TestRandomBooleanFunction(RandomGeneratorUnitTest &unitTest) :
+    RandomBooleanTestFunction(RandomGeneratorUnitTest &unitTest) :
         UnitTestFunction("randomBooleanTest", unitTest)
     {
     }
 
-    virtual ~TestRandomBooleanFunction()
+    virtual ~RandomBooleanTestFunction()
     {
     }
 
@@ -24,15 +25,15 @@ public:
     }
 };
 
-class TestRandomIntegerFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
+class RandomIntegerTestFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
 {
 public:
-    TestRandomIntegerFunction(RandomGeneratorUnitTest &unitTest) :
+    RandomIntegerTestFunction(RandomGeneratorUnitTest &unitTest) :
         UnitTestFunction("randomIntegerTest", unitTest)
     {
     }
 
-    virtual ~TestRandomIntegerFunction()
+    virtual ~RandomIntegerTestFunction()
     {
     }
 
@@ -42,15 +43,15 @@ public:
     }
 };
 
-class TestRandomSizeTFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
+class RandomSizeTTestFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
 {
 public:
-    TestRandomSizeTFunction(RandomGeneratorUnitTest &unitTest) :
+    RandomSizeTTestFunction(RandomGeneratorUnitTest &unitTest) :
         UnitTestFunction("randomSizeTTest", unitTest)
     {
     }
 
-    virtual ~TestRandomSizeTFunction()
+    virtual ~RandomSizeTTestFunction()
     {
     }
 
@@ -60,15 +61,15 @@ public:
     }
 };
 
-class TestRandomFloatFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
+class RandomFloatTestFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
 {
 public:
-    TestRandomFloatFunction(RandomGeneratorUnitTest &unitTest) :
+    RandomFloatTestFunction(RandomGeneratorUnitTest &unitTest) :
         UnitTestFunction("randomFloatTTest", unitTest)
     {
     }
 
-    virtual ~TestRandomFloatFunction()
+    virtual ~RandomFloatTestFunction()
     {
     }
 
@@ -78,15 +79,15 @@ public:
     }
 };
 
-class TestRandomDoubleFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
+class RandomDoubleTestFunction final : public unit_testing::UnitTestFunction<RandomGeneratorUnitTest>
 {
 public:
-    TestRandomDoubleFunction(RandomGeneratorUnitTest &unitTest) :
+    RandomDoubleTestFunction(RandomGeneratorUnitTest &unitTest) :
         UnitTestFunction("randomDoubleTest", unitTest)
     {
     }
 
-    virtual ~TestRandomDoubleFunction()
+    virtual ~RandomDoubleTestFunction()
     {
     }
 
@@ -116,11 +117,11 @@ RandomGeneratorUnitTest::~RandomGeneratorUnitTest()
  */
 void RandomGeneratorUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestRandomBooleanFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestRandomIntegerFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestRandomSizeTFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestRandomFloatFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestRandomDoubleFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomBooleanTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomIntegerTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomSizeTTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomFloatTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomDoubleTestFunction(*this)));
 }
 
 /**

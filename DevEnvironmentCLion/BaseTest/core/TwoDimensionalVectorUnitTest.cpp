@@ -6,14 +6,15 @@
 #include "TwoDimensionalVectorIterator.h"
 
 using namespace base;
+using namespace test::base;
 
-class TestTwoDimensionalVectorCreationFunction final : public unit_testing::UnitTestFunction<TwoDimensionalVectorUnitTest> {
+class TwoDimensionalVectorCreationTestFunction final : public unit_testing::UnitTestFunction<TwoDimensionalVectorUnitTest> {
 public:
-    explicit TestTwoDimensionalVectorCreationFunction(TwoDimensionalVectorUnitTest &unitTest) :
+    explicit TwoDimensionalVectorCreationTestFunction(TwoDimensionalVectorUnitTest &unitTest) :
         UnitTestFunction("twoDimensionalListCreationTest", unitTest) {
     }
 
-    virtual ~TestTwoDimensionalVectorCreationFunction() {
+    virtual ~TwoDimensionalVectorCreationTestFunction() {
     }
 
     virtual void operator()() override {
@@ -21,13 +22,13 @@ public:
     }
 };
 
-class TestTwoDimensionalVectorIterationFunction final : public unit_testing::UnitTestFunction<TwoDimensionalVectorUnitTest> {
+class TwoDimensionalVectorIterationTestFunction final : public unit_testing::UnitTestFunction<TwoDimensionalVectorUnitTest> {
 public:
-    explicit TestTwoDimensionalVectorIterationFunction(TwoDimensionalVectorUnitTest &unitTest) :
+    explicit TwoDimensionalVectorIterationTestFunction(TwoDimensionalVectorUnitTest &unitTest) :
         UnitTestFunction("twoDimensionalVectorIterationTest", unitTest) {
     }
 
-    virtual ~TestTwoDimensionalVectorIterationFunction() {
+    virtual ~TwoDimensionalVectorIterationTestFunction() {
     }
 
     virtual void operator()() override {
@@ -55,8 +56,8 @@ TwoDimensionalVectorUnitTest::~TwoDimensionalVectorUnitTest()
  */
 void TwoDimensionalVectorUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestTwoDimensionalVectorCreationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestTwoDimensionalVectorIterationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TwoDimensionalVectorCreationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionPtr(new TwoDimensionalVectorIterationTestFunction(*this)));
 }
 
 /**
@@ -94,7 +95,7 @@ void TwoDimensionalVectorUnitTest::twoDimensionalVectorIterationTest()
  */
 void TwoDimensionalVectorUnitTest::testTwoDimensionalVectorCreation(const std::vector<std::vector<int>>& data)
 {
-    base::TwoDimensionalVector<int> twoDimensionalVector(data);
+    TwoDimensionalVector<int> twoDimensionalVector(data);
 
     for (size_t row = 0; row < data.size(); ++row)
     {
@@ -116,8 +117,8 @@ void TwoDimensionalVectorUnitTest::testTwoDimensionalVectorCreation(const std::v
  */
 void TwoDimensionalVectorUnitTest::testTwoDimensionalVectorIteration(const std::vector<std::vector<int>>& data)
 {
-    base::TwoDimensionalVector<int> vector(data);
-    base::TwoDimensionalVectorIterator<int> dataIterator(data);
+    TwoDimensionalVector<int> vector(data);
+    TwoDimensionalVectorIterator<int> dataIterator(data);
 
     this->getAssertion().assertEqualsWithIterators(
         *(vector.getIterator()),
