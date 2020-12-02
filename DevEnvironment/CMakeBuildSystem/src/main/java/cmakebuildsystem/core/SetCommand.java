@@ -1,7 +1,12 @@
 package cmakebuildsystem.core;
 
+import base.core.ArrayLists;
 import base.core.Conditions;
+import cmakebuildsystem.interfaces.ICMakeBuildCommand;
+import cmakebuildsystem.interfaces.ICMakeBuildElement;
 import cmakebuildsystem.interfaces.ICMakeWriter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,9 +16,23 @@ public final class SetCommand extends CMakeBuildCommand {
     private final List<String> items;
 
     /**
+     * Creates a new set command.
+     */
+    public static ICMakeBuildCommand make(String subjectName, String value) {
+        return new SetCommand(subjectName, ArrayLists.make(value));
+    }
+
+    /**
+     * Creates a new set command.
+     */
+    public static ICMakeBuildCommand make(String subjectName, List<String> items) {
+        return new SetCommand(subjectName, items);
+    }
+
+    /**
      * The SetCommand constructor.
      */
-    public SetCommand(String subjectName, List<String> items) {
+    private SetCommand(String subjectName, List<String> items) {
         super(
             ICMakeListsConstants.setCommand,
             subjectName);

@@ -43,7 +43,7 @@ public final class JsonStreamingTest {
      */
     @Test
     public void jsonStreamingTest() {
-        for (IPair<Path, Class<?>> resourceInformation : this.testData.getSimpleJsonResourcesInformation()) {
+        for (IPair<Path, Class<?>> resourceInformation : this.testData.getJsonResourcesInformation()) {
             String json = ResourceReader.loadString(resourceInformation.first());
 
             this.streamingTest.testStreaming(json, Casting.cast(resourceInformation.second()));

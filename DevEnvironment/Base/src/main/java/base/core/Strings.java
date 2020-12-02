@@ -67,6 +67,35 @@ public final class Strings {
     }
 
     /**
+     * Replaces the token in a string.
+     */
+    public static String replace(String src, String token, String newToken) {
+        Conditions.validateNotNull(
+            src,
+            "The source string.");
+
+        Conditions.validateNotNull(
+            token,
+            "The current token for replacing.");
+
+        Conditions.validateNotNull(
+            newToken,
+            "The new token for replacing.");
+
+        if (src.isEmpty() ||
+            token.isEmpty() ||
+            token.length() > src.length()) {
+
+            return src;
+        }
+
+        return replace(
+            src.toCharArray(),
+            token.toCharArray(),
+            newToken.toCharArray());
+    }
+
+    /**
      * Clones a string.
      */
     public static char[] clone(
@@ -129,6 +158,87 @@ public final class Strings {
         }
 
         return numberOfCharactersWritten;
+    }
+
+    /**
+     * Replaces the token in a string.
+     */
+    public static String replace(
+        char[] src,
+        char[] token,
+        char[] newToken) {
+
+        assert(src != null);
+        assert(token != null);
+        assert(newToken != null);
+
+        if (token.length > src.length || token.length == 0) {
+            return new String(src);
+        }
+
+        //
+        // Calculate the new size of the string...
+        //
+        int newSize = 0;
+        boolean tokenExist = false;
+
+        int index = 0;
+        int endIndex = src.length - token.length;
+
+        while (index <= endIndex) {
+            if (StringEquality.equals(
+                    src,
+                    index,
+                    token,
+                    0,
+                    token.length)) {
+
+                newSize += newToken.length;
+                tokenExist = true;
+            }
+            else {
+                ++newSize;
+            }
+
+            ++index;
+        }
+
+        if (!tokenExist) {
+            return new String(src);
+        }
+
+        char[] result = new char[newSize];
+
+        index = 0;
+        int resultInsertIndex = 0;
+
+        while (index < src.length) {
+            if (StringEquality.equals(
+                    src,
+                    index,
+                    token,
+                    0,
+                    token.length)) {
+
+                int numberOfCopiedCharacters = Strings.copy(
+                    newToken,
+                    0,
+                    result,
+                    resultInsertIndex,
+                    newToken.length);
+
+                resultInsertIndex += numberOfCopiedCharacters;
+            }
+            else {
+                result[resultInsertIndex] = src[index];
+                ++resultInsertIndex;
+            }
+
+            ++index;
+        }
+
+        assert(resultInsertIndex == result.length);
+        return new String(result);
     }
 
     /**
@@ -256,7 +366,7 @@ public final class Strings {
             }
         }
 
-        int length = Dimensions.indexes(startIndex, endIndex);
+        int length = Indexes.size(startIndex, endIndex);
         String result = length > 0 ? str.substring(startIndex, endIndex + 1) : "";
 
         return result;

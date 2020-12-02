@@ -2,19 +2,25 @@
 
 #include "JsonStreamingUnitTest.h"
 #include "UnitTestFunction.h"
+#include "TestData.h"
+#include "ResourceReader.h"
 
 using namespace test::json;
 
-class TestJsonStreamingFunction : public unit_testing::UnitTestFunction<JsonStreamingUnitTest> {
+class TestJsonStreamingFunction : public unit_testing::UnitTestFunction<JsonStreamingUnitTest>
+{
 public:
     TestJsonStreamingFunction(JsonStreamingUnitTest &unitTest) :
-        UnitTestFunction("jsonStreamingTest", unitTest) {
+        UnitTestFunction("jsonStreamingTest", unitTest)
+    {
     }
 
-    virtual ~TestJsonStreamingFunction() {
+    virtual ~TestJsonStreamingFunction()
+    {
     }
 
-    virtual void operator()() {
+    virtual void operator()()
+    {
         getUnitTest().jsonStreamingTest();
     }
 };
@@ -47,4 +53,14 @@ void JsonStreamingUnitTest::registerTests(unit_testing::ITestRegistration& regis
  */
 void JsonStreamingUnitTest::jsonStreamingTest()
 {
+    std::vector<std::pair<std::string, base::ClassType>> resourcesInformation;
+    m_testData.getJsonResourcesInformation(resourcesInformation);
+
+    for (const std::pair<std::string, base::ClassType>& resourceInformation : resourcesInformation)
+    {
+        std::string json = base::ResourceReader::loadString(resourceInformation.first);
+        const base::ClassType& classType = resourceInformation.second;
+
+        // m_streamingTest.testStreaming(json, Casting.cast(resourceInformation.second()));
+    }
 }

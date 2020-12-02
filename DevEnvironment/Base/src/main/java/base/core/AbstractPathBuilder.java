@@ -9,7 +9,7 @@ import java.util.List;
  */
 public abstract class AbstractPathBuilder implements IPathBuilder {
     private final String rootDirectory;
-    private final String directorySeparator;
+    private final String separator;
     private final List<String> components = new ArrayList<>();
     private String extension;
 
@@ -22,7 +22,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
             "The separator of a path.");
 
         this.rootDirectory = initialComponent;
-        this.directorySeparator = separator;
+        this.separator = separator;
     }
 
     /**
@@ -34,11 +34,11 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
     }
 
     /**
-     * Gets a directory separator of a path.
+     * Gets a separator of a path.
      */
     @Override
-    public String getDirectorySeparator() {
-        return this.directorySeparator;
+    public String getSeparator() {
+        return this.separator;
     }
 
     /**
@@ -53,15 +53,15 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
         int startIndex = 0;
         int endIndex = component.length() - 1;
 
-        if (component.startsWith(this.directorySeparator)) {
-            startIndex += this.directorySeparator.length();
+        if (component.startsWith(this.separator)) {
+            startIndex += this.separator.length();
         }
 
-        if (component.endsWith(this.directorySeparator)) {
-            endIndex -= this.directorySeparator.length();
+        if (component.endsWith(this.separator)) {
+            endIndex -= this.separator.length();
         }
 
-        int effectiveComponentLength = Dimensions.indexes(startIndex, endIndex);
+        int effectiveComponentLength = Indexes.size(startIndex, endIndex);
 
         if (effectiveComponentLength > 0) {
             String effectiveComponent = component.substring(startIndex, endIndex + 1);
@@ -99,7 +99,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
         boolean addDirectorySeparator = false;
         for (String component : this.components) {
             if (addDirectorySeparator) {
-                result.append(this.directorySeparator);
+                result.append(this.separator);
             }
 
             result.append(component);

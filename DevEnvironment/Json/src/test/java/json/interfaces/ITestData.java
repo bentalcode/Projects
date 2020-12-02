@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ITestData {
     /**
-     * Gets information of simple json resources.
+     * Gets information of json resources.
      */
-    List<IPair<Path, Class<?>>> getSimpleJsonResourcesInformation();
+    List<IPair<Path, Class<?>>> getJsonResourcesInformation();
 }

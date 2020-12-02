@@ -7,7 +7,7 @@
 #include "XorBitOperator.h"
 #include "NotBitOperator.h"
 #include "bitarray/BitArrayException.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 #include "Indexes.h"
 #include "BitArrayIterator.h"
 #include "BitArrayReverseIterator.h"
@@ -222,7 +222,7 @@ void BitArray::clear(size_t startIndex, size_t endIndex)
     size_t endUnitIndex = unitIndexOf(endIndex);
     size_t endBitIndex = bitIndexOf(endIndex);
 
-    size_t numberOfUnits = base::Dimensions::indexes(startUnitIndex, endUnitIndex);
+    size_t numberOfUnits = base::Indexes::size(startUnitIndex, endUnitIndex);
 
     if (numberOfUnits == 0)
     {
@@ -306,7 +306,7 @@ void BitArray::enable(size_t startIndex, size_t endIndex)
     size_t endUnitIndex = unitIndexOf(endIndex);
     size_t endBitIndex = bitIndexOf(endIndex);
 
-    size_t numberOfUnits = base::Dimensions::indexes(startUnitIndex, endUnitIndex);
+    size_t numberOfUnits = base::Indexes::size(startUnitIndex, endUnitIndex);
 
     if (numberOfUnits == 0)
     {

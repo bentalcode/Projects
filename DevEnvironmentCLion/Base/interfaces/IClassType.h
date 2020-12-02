@@ -22,13 +22,13 @@ namespace base
         /**
          * The copy/move constructors.
          */
-        IClassType(const IClassType&) = delete;
+        IClassType(const IClassType&) = default;
         IClassType(IClassType&&) = delete;
 
         /**
          * The copy/move assignment operators.
          */
-        IClassType& operator=(const IClassType&) = delete;
+        IClassType& operator=(const IClassType&) = default;
         IClassType& operator=(IClassType&&) = delete;
 
         /**

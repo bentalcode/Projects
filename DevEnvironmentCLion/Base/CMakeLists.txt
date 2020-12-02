@@ -1,6 +1,13 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.6)
 
 project(Base VERSION 1.0)
+
+set(CMAKE_CXX_STANDARD
+    14
+)
+set(RESOURCES_DIRECTORY_NAME
+    resources
+)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -28,6 +35,7 @@ set(BASE_INCLUDES_FILES
     ./BaseException.h
     ./NotImplementedException.h
     ./WindowsException.h
+    ./core/AbstractPathBuilder.h
     ./core/AndBitOperator.h
     ./core/BaseDependencies.h
     ./core/BaseLogic.h
@@ -47,7 +55,6 @@ set(BASE_INCLUDES_FILES
     ./core/DereferenceComparableComparator2.h
     ./core/DereferenceEquatableComparator.h
     ./core/DereferenceEquatableComparator2.h
-    ./core/Dimensions.h
     ./core/Duration.h
     ./core/EqualBuilder.h
     ./core/EquatableComparator.h
@@ -74,12 +81,15 @@ set(BASE_INCLUDES_FILES
     ./core/OrBitOperator.h
     ./core/Pair.h
     ./core/ParsingResult.h
+    ./core/PathBuilder.h
     ./core/Position.h
     ./core/PreCompiled.h
     ./core/RandomGenerator.h
     ./core/Range.h
     ./core/ReferenceCount.h
     ./core/ReferenceCountHolder.h
+    ./core/ResourcePathBuilder.h
+    ./core/ResourceReader.h
     ./core/SetIterator.h
     ./core/SharedPtr.h
     ./core/SkipIterator.h
@@ -98,7 +108,7 @@ set(BASE_INCLUDES_FILES
     ./core/VectorIterator.h
     ./core/VectorReverseIterator.h
     ./core/WindowsConsoleColorHandler.h
-    ./core/WindowsDependecies.h
+    ./core/WindowsDependencies.h
     ./core/WindowsErrors.h
     ./core/XorBitOperator.h
     ./interfaces/ColorType.h
@@ -130,7 +140,9 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IMessageWriter.h
     ./interfaces/IParser.h
     ./interfaces/IParsingResult.h
+    ./interfaces/IPathBuilder.h
     ./interfaces/IRandomGenerator.h
+    ./interfaces/IResourceReader.h
     ./interfaces/IReverseIterable.h
     ./interfaces/IReverseIterator.h
     ./interfaces/ISizableCollection.h
@@ -150,6 +162,7 @@ set(BASE_INCLUDES_FILES
 )
 
 set(BASE_SOURCES_FILES
+    ./core/AbstractPathBuilder.cpp
     ./core/AndBitOperator.cpp
     ./core/Bits.cpp
     ./core/ClassType.cpp
@@ -167,9 +180,12 @@ set(BASE_SOURCES_FILES
     ./core/MessageWriter.cpp
     ./core/NotBitOperator.cpp
     ./core/OrBitOperator.cpp
+    ./core/PathBuilder.cpp
     ./core/Position.cpp
     ./core/PreCompiled.cpp
     ./core/RandomGenerator.cpp
+    ./core/ResourcePathBuilder.cpp
+    ./core/ResourceReader.cpp
     ./core/SkipIterator.cpp
     ./core/StringComparable.cpp
     ./core/StringConversion.cpp

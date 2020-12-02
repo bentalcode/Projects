@@ -1,5 +1,6 @@
 package json.core;
 
+import base.core.ArrayLists;
 import base.core.Pair;
 import base.interfaces.IPair;
 import json.interfaces.ITestData;
@@ -12,16 +13,13 @@ import java.util.List;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String DataDirectoryName = "data";
-    private static final String SimpleJsonResourcesDirectoryName = "simpleJsonResources";
+    private static final String dataDirectoryName = "data";
+    private static final String jsonDirectoryName = "json";
 
-    private static final List<IPair<String, Class<?>>> SimpleJsonResourcesInformation = new ArrayList<>();
-
-    static {
-        SimpleJsonResourcesInformation.add(Pair.make("simpleResource1.json", Types.class));
-        SimpleJsonResourcesInformation.add(Pair.make("simpleResource2.json", Fruit.class));
-        SimpleJsonResourcesInformation.add(Pair.make("simpleResource3.json", Colors.class));
-    }
+    private static final List<IPair<String, Class<?>>> jsonResourcesInformation = ArrayLists.make(
+        Pair.make("propertyType.json", PropertyType.class),
+        Pair.make("fruit.json", Fruit.class),
+        Pair.make("colors.json", Colors.class));
 
     /**
      * The TestData constructor.
@@ -30,16 +28,16 @@ public final class TestData implements ITestData {
     }
 
     /**
-     * Gets information of simple json resources.
+     * Gets information of json resources.
      */
     @Override
-    public List<IPair<Path, Class<?>>> getSimpleJsonResourcesInformation() {
+    public List<IPair<Path, Class<?>>> getJsonResourcesInformation() {
         List<IPair<Path, Class<?>>> information = new ArrayList<>();
 
-        for (IPair<String, Class<?>> resourceInformation : TestData.SimpleJsonResourcesInformation) {
+        for (IPair<String, Class<?>> resourceInformation : jsonResourcesInformation) {
             Path path = ResourcePaths.create(
-                TestData.DataDirectoryName,
-                TestData.SimpleJsonResourcesDirectoryName,
+                TestData.dataDirectoryName,
+                TestData.jsonDirectoryName,
                 resourceInformation.first());
 
             Class<?> classType = resourceInformation.second();

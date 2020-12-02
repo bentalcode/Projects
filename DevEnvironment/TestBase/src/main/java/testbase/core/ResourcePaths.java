@@ -5,7 +5,7 @@ import base.core.ResourcePathBuilder;
 import java.nio.file.Path;
 
 /**
- * The ResourcePaths class implements builder for resource paths.
+ * The ResourcePaths class implements complementary APIs for resource paths.
  */
 public final class ResourcePaths {
     /**
@@ -57,5 +57,11 @@ public final class ResourcePaths {
             .build();
 
         return Paths.create(path);
+    }
+
+    /**
+     * The ResourcePaths constructor - Disables the default constructor.
+     */
+    private ResourcePaths() {
     }
 }

@@ -19,22 +19,28 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     private static final String propertyProjectVersion = "projectVersion";
     private static final String propertyPresetPath = "presetPath";
     private static final String propertyPostsetPath = "postsetPath";
+    private static final String propertyBuildPropertiesPath = "buildPropertiesPath";
     private static final String propertyIncludesFilesProperty = "includesFilesProperty";
     private static final String propertySourcesFilesProperty = "sourcesFilesProperty";
     private static final String propertyIncludesProperty = "includesProperty";
     private static final String propertySourcesProperty = "sourcesProperty";
 
-    private static final String defaultCMakeVersion = "3.13";
+    private static final String defaultCMakeVersion = "3.6";
     private static final String defaultProjectVersion = "1.0";
 
     private static final String defaultPresetPath = new ResourcePathBuilder()
-        .addComponent("manifests")
-        .addComponent("defaultCMakeListsPreset1.txt")
+        .addComponent(ICMakeListsConstants.manifestDirectoryName)
+        .addComponent(ICMakeListsConstants.defaultCMakeListsPresetFileName)
         .build();
 
     private static final String defaultPostsetPath = new ResourcePathBuilder()
-        .addComponent("manifests")
-        .addComponent("defaultCMakeListsPostset1.txt")
+        .addComponent(ICMakeListsConstants.manifestDirectoryName)
+        .addComponent(ICMakeListsConstants.defaultCMakeListsPostsetFileName)
+        .build();
+
+    private static final String defaultBuildPropertiesPath = new ResourcePathBuilder()
+        .addComponent(ICMakeListsConstants.manifestDirectoryName)
+        .addComponent(ICMakeListsConstants.defaultCMakeListsBuildPropertiesFileName)
         .build();
 
     private static final String defaultIncludesFilesProperty = "INCLUDES_FILES";
@@ -46,6 +52,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     private final String projectVersion;
     private final String presetPath;
     private final String postsetPath;
+    private final String buildPropertiesPath;
     private final String includesFilesProperty;
     private final String sourcesFilesProperty;
     private final String includesProperty;
@@ -63,6 +70,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             defaultProjectVersion,
             defaultPresetPath,
             defaultPostsetPath,
+            defaultBuildPropertiesPath,
             defaultIncludesFilesProperty,
             defaultSourcesFilesProperty,
             defaultIncludesProperty,
@@ -77,6 +85,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
         String projectVersion,
         String presetPath,
         String postsetPath,
+        String buildPropertiesPath,
         String includesFilesProperty,
         String sourcesFilesProperty,
         String includesProperty,
@@ -86,6 +95,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
         this.projectVersion = projectVersion;
         this.presetPath = presetPath;
         this.postsetPath = postsetPath;
+        this.buildPropertiesPath = buildPropertiesPath;
         this.includesFilesProperty = includesFilesProperty;
         this.sourcesFilesProperty = sourcesFilesProperty;
         this.includesProperty = includesProperty;
@@ -124,6 +134,14 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     @Override
     public String getPostsetPath() {
         return this.postsetPath;
+    }
+
+    /**
+     * Gets the path of build properties.
+     */
+    @Override
+    public String getBuildPropertiesPath() {
+        return this.buildPropertiesPath;
     }
 
     /**
@@ -167,6 +185,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
         writer.writeStringProperty(propertyProjectVersion, this.projectVersion);
         writer.writeStringProperty(propertyPresetPath, this.presetPath);
         writer.writeStringProperty(propertyPostsetPath, this.postsetPath);
+        writer.writeStringProperty(propertyBuildPropertiesPath, this.buildPropertiesPath);
         writer.writeStringProperty(propertyIncludesFilesProperty, this.includesFilesProperty);
         writer.writeStringProperty(propertySourcesFilesProperty, this.sourcesFilesProperty);
         writer.writeStringProperty(propertyIncludesProperty, this.includesProperty);
@@ -191,7 +210,11 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
 
         String postsetPath = reader.hasProperty(propertyPostsetPath) ?
             reader.readStringProperty(propertyPostsetPath) :
-                propertyPostsetPath;
+            defaultPostsetPath;
+
+        String buildPropertiesPath = reader.hasProperty(propertyBuildPropertiesPath) ?
+            reader.readStringProperty(propertyBuildPropertiesPath) :
+            defaultBuildPropertiesPath;
 
         String includesFilesProperty = reader.hasProperty(propertyIncludesFilesProperty) ?
             reader.readStringProperty(propertyIncludesFilesProperty) :
@@ -214,6 +237,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             projectVersion,
             presetPath,
             postsetPath,
+            buildPropertiesPath,
             includesFilesProperty,
             sourcesFilesProperty,
             includesProperty,
@@ -295,6 +319,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
                 .withString(obj.getProjectVersion())
                 .withString(obj.getPresetPath())
                 .withString(obj.getPostsetPath())
+                .withString(obj.getBuildPropertiesPath())
                 .withString(obj.getIncludesFilesProperty())
                 .withString(obj.getSourcesFilesProperty())
                 .withString(obj.getIncludesProperty())
@@ -320,6 +345,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
                 .withString(lhs.getProjectVersion(), rhs.getProjectVersion())
                 .withString(lhs.getPresetPath(), rhs.getPresetPath())
                 .withString(lhs.getPostsetPath(), rhs.getPostsetPath())
+                .withString(lhs.getBuildPropertiesPath(), rhs.getBuildPropertiesPath())
                 .withString(lhs.getIncludesFilesProperty(), rhs.getIncludesFilesProperty())
                 .withString(lhs.getSourcesFilesProperty(), rhs.getSourcesFilesProperty())
                 .withString(lhs.getIncludesProperty(), rhs.getIncludesProperty())
@@ -353,6 +379,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
                 .withString(lhs.getProjectVersion(), rhs.getProjectVersion())
                 .withString(lhs.getPresetPath(), rhs.getPresetPath())
                 .withString(lhs.getPostsetPath(), rhs.getPostsetPath())
+                .withString(lhs.getBuildPropertiesPath(), rhs.getBuildPropertiesPath())
                 .withString(lhs.getIncludesFilesProperty(), rhs.getIncludesFilesProperty())
                 .withString(lhs.getSourcesFilesProperty(), rhs.getSourcesFilesProperty())
                 .withString(lhs.getIncludesProperty(), rhs.getIncludesProperty())

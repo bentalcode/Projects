@@ -30,6 +30,11 @@ public interface ICMakeModule extends IUnaryComparator<ICMakeModule>, IJsonSeria
     List<Path> getSourceFilesPaths();
 
     /**
+     * Gets the paths of the build files.
+     */
+    List<Path> getBuildFilesPaths();
+
+    /**
      * Gets the path of the CMakeLists file.
      */
     Path getCMakeListsFilePath();

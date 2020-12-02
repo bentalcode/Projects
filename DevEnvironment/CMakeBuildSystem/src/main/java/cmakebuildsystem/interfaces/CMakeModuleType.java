@@ -4,7 +4,9 @@ import base.core.ArrayLists;
 import base.core.Enums;
 import cmakebuildsystem.core.AddExecutableCommand;
 import cmakebuildsystem.core.AddLibraryCommand;
+import cmakebuildsystem.core.CMakeBuildProperties;
 import cmakebuildsystem.core.TargetLinkLibrariesCommand;
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -12,6 +14,14 @@ import java.util.List;
  */
 public enum CMakeModuleType {
     Library("library") {
+        /**
+         * Gets the corresponding build properties.
+         */
+        @Override
+        public ICMakeBuildElement createBuildProperties(Path path) {
+            return CMakeBuildProperties.make();
+        }
+
         /**
          * Gets the corresponding cmake commands.
          */
@@ -24,8 +34,17 @@ public enum CMakeModuleType {
 
     Executable("executable") {
         /**
+         * Gets the corresponding build properties.
+         */
+        @Override
+        public ICMakeBuildElement createBuildProperties(Path path) {
+            return CMakeBuildProperties.make(path);
+        }
+
+        /**
          * Gets the corresponding cmake commands.
          */
+        @Override
         public List<ICMakeBuildCommand> createCommands(String moduleName) {
             return ArrayLists.make(
                 new AddExecutableCommand(moduleName),
@@ -41,6 +60,11 @@ public enum CMakeModuleType {
     CMakeModuleType(String name) {
         this.name = name;
     }
+
+    /**
+     * Gets the corresponding build properties.
+     */
+    public abstract ICMakeBuildElement createBuildProperties(Path path);
 
     /**
      * Gets the corresponding cmake commands.

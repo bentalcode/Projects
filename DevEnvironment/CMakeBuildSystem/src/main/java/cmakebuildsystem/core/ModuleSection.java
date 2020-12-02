@@ -129,7 +129,7 @@ public final class ModuleSection implements ICMakeBuildElement {
         List<String> directories = this.getDirectories(files);
         includeDirectories.addAll(directories);
 
-        ICMakeBuildCommand setCommand = new SetCommand(
+        ICMakeBuildCommand setCommand = SetCommand.make(
             variable.getName(),
             files);
 
@@ -154,7 +154,7 @@ public final class ModuleSection implements ICMakeBuildElement {
 
         List<String> files = this.normalizeFilePaths(this.module.getSourceFilesPaths());
 
-        ICMakeBuildCommand setCommand = new SetCommand(
+        ICMakeBuildCommand setCommand = SetCommand.make(
             variable.getName(),
             files);
 
@@ -181,7 +181,7 @@ public final class ModuleSection implements ICMakeBuildElement {
         variables.add(includesFilesVariable.getVariable());
         variables.add(sourcesFilesVariable.getVariable());
 
-        ICMakeBuildCommand setCommand = new SetCommand(
+        ICMakeBuildCommand setCommand = SetCommand.make(
             sourcesVariable.getName(),
             variables);
 
@@ -205,7 +205,7 @@ public final class ModuleSection implements ICMakeBuildElement {
             this.module.getName(),
             manifest.getIncludesProperty());
 
-        ICMakeBuildCommand setCommand = new SetCommand(
+        ICMakeBuildCommand setCommand = SetCommand.make(
             includesVariable.getName(),
             directories);
 

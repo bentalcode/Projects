@@ -29,6 +29,11 @@ public interface ICMakeModuleProperties extends IUnaryComparator<ICMakeModulePro
     List<String> getSourceFileExtensions();
 
     /**
+     * Gets the extensions of a build file.
+     */
+    List<String> getBuildFileExtensions();
+
+    /**
      * Gets the extensions of a CMakeLists file.
      */
     List<String> getCMakeListsFileExtensions();

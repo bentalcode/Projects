@@ -28,6 +28,11 @@ public interface ICMakeListsManifest extends IUnaryComparator<ICMakeListsManifes
     String getPostsetPath();
 
     /**
+     * Gets the path of build properties.
+     */
+    String getBuildPropertiesPath();
+
+    /**
      * Gets the includes files property.
      */
     String getIncludesFilesProperty();

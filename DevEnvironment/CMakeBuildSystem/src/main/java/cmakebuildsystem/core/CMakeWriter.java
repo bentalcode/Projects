@@ -1,10 +1,13 @@
 package cmakebuildsystem.core;
 
+import base.core.ArrayLists;
 import base.core.Conditions;
 import base.core.Writers;
 import cmakebuildsystem.interfaces.ICMakeWriter;
 import cmakebuildsystem.interfaces.IEditorSettings;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The CMakeWriter class implements a writer of a CMake build.
@@ -43,6 +46,35 @@ public final class CMakeWriter implements ICMakeWriter {
 
         Writers.write(this.writer, section);
         Writers.write(this.writer, "\n");
+    }
+
+    /**
+     * Writes a new comment.
+     */
+    @Override
+    public void writeComment(String comment) {
+        this.writeComment(ArrayLists.make(comment));
+    }
+
+    /**
+     * Writes a new comment.
+     */
+    @Override
+    public void writeComment(List<String> comments) {
+        Conditions.validateNotNull(
+            comments,
+            "The comments.");
+
+        StringBuilder commentBuilder = new StringBuilder();
+        commentBuilder.append("#").append("\n");
+
+        for (String comment : comments) {
+            commentBuilder.append("#").append(" ").append(comment).append("\n");
+        }
+
+        commentBuilder.append("#").append("\n");
+
+        Writers.write(this.writer, commentBuilder.toString());
     }
 
     /**

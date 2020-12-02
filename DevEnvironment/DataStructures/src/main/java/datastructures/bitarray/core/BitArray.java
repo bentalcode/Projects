@@ -5,10 +5,9 @@ import base.core.Bits;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
-import base.core.Dimensions;
+import base.core.Indexes;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
-import base.core.Indexes;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
@@ -241,7 +240,7 @@ public final class BitArray implements IBitArray {
         int endUnitIndex = this.unitIndexOf(endIndex);
         int endBitIndex = this.bitIndexOf(endIndex);
 
-        int numberOfUnits = Dimensions.indexes(startUnitIndex, endUnitIndex);
+        int numberOfUnits = Indexes.size(startUnitIndex, endUnitIndex);
 
         if (numberOfUnits == 0) {
             return;
@@ -319,7 +318,7 @@ public final class BitArray implements IBitArray {
         int endUnitIndex = this.unitIndexOf(endIndex);
         int endBitIndex = this.bitIndexOf(endIndex);
 
-        int numberOfUnits = Dimensions.indexes(startUnitIndex, endUnitIndex);
+        int numberOfUnits = Indexes.size(startUnitIndex, endUnitIndex);
 
         if (numberOfUnits == 0) {
             return;

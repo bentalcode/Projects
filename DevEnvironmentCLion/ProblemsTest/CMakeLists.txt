@@ -1,8 +1,22 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.6)
 
 project(ProblemsTest VERSION 1.0)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD
+    14
+)
+set(RESOURCES_DIRECTORY_NAME
+    resources
+)
+
+#
+# Configure build properties...
+#
+set(VERSION_MAJOR "1")
+set(VERSION_MINOR "1")
+set(VERSION_PATCH "0")
+
+# configure_file(./BuildConfig.h.in ./BuildConfig.h)
 
 macro(print_all_variables)
     message(STATUS "print_all_variables------------------------------------------{")
@@ -67,6 +81,7 @@ set(BASE_INCLUDES_FILES
     ../Base/BaseException.h
     ../Base/NotImplementedException.h
     ../Base/WindowsException.h
+    ../Base/core/AbstractPathBuilder.h
     ../Base/core/AndBitOperator.h
     ../Base/core/BaseDependencies.h
     ../Base/core/BaseLogic.h
@@ -86,7 +101,6 @@ set(BASE_INCLUDES_FILES
     ../Base/core/DereferenceComparableComparator2.h
     ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/DereferenceEquatableComparator2.h
-    ../Base/core/Dimensions.h
     ../Base/core/Duration.h
     ../Base/core/EqualBuilder.h
     ../Base/core/EquatableComparator.h
@@ -113,12 +127,15 @@ set(BASE_INCLUDES_FILES
     ../Base/core/OrBitOperator.h
     ../Base/core/Pair.h
     ../Base/core/ParsingResult.h
+    ../Base/core/PathBuilder.h
     ../Base/core/Position.h
     ../Base/core/PreCompiled.h
     ../Base/core/RandomGenerator.h
     ../Base/core/Range.h
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
+    ../Base/core/ResourcePathBuilder.h
+    ../Base/core/ResourceReader.h
     ../Base/core/SetIterator.h
     ../Base/core/SharedPtr.h
     ../Base/core/SkipIterator.h
@@ -137,7 +154,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/VectorIterator.h
     ../Base/core/VectorReverseIterator.h
     ../Base/core/WindowsConsoleColorHandler.h
-    ../Base/core/WindowsDependecies.h
+    ../Base/core/WindowsDependencies.h
     ../Base/core/WindowsErrors.h
     ../Base/core/XorBitOperator.h
     ../Base/interfaces/ColorType.h
@@ -169,7 +186,9 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IMessageWriter.h
     ../Base/interfaces/IParser.h
     ../Base/interfaces/IParsingResult.h
+    ../Base/interfaces/IPathBuilder.h
     ../Base/interfaces/IRandomGenerator.h
+    ../Base/interfaces/IResourceReader.h
     ../Base/interfaces/IReverseIterable.h
     ../Base/interfaces/IReverseIterator.h
     ../Base/interfaces/ISizableCollection.h
@@ -189,6 +208,7 @@ set(BASE_INCLUDES_FILES
 )
 
 set(BASE_SOURCES_FILES
+    ../Base/core/AbstractPathBuilder.cpp
     ../Base/core/AndBitOperator.cpp
     ../Base/core/Bits.cpp
     ../Base/core/ClassType.cpp
@@ -206,9 +226,12 @@ set(BASE_SOURCES_FILES
     ../Base/core/MessageWriter.cpp
     ../Base/core/NotBitOperator.cpp
     ../Base/core/OrBitOperator.cpp
+    ../Base/core/PathBuilder.cpp
     ../Base/core/Position.cpp
     ../Base/core/PreCompiled.cpp
     ../Base/core/RandomGenerator.cpp
+    ../Base/core/ResourcePathBuilder.cpp
+    ../Base/core/ResourceReader.cpp
     ../Base/core/SkipIterator.cpp
     ../Base/core/StringComparable.cpp
     ../Base/core/StringConversion.cpp
@@ -241,6 +264,7 @@ set(TEST_BASE_INCLUDES_FILES
     ../TestBase/core/PreCompiled.h
     ../TestBase/interfaces/Assertion.h
     ../TestBase/interfaces/IterationTest.h
+    ../TestBase/interfaces/ResourcePaths.h
 )
 
 set(TEST_BASE_SOURCES_FILES

@@ -7,7 +7,7 @@
     "sourceFileExtensions": ["c", "cpp"],
     "cmakeListsFileExtensions": ["CMakeLists.txt"],
     "cmakeListsManifest": {
-        "cmakeVersion": "3.13",
+        "cmakeVersion": "3.6",
         "projectVersion": "1.0",
         "presetPath": "cmakeListsPreset1.txt",
         "postsetPath": "cmakeListsPostset1.txt",

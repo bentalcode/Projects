@@ -3,7 +3,7 @@
 #include "ParsingResult.h"
 #include "StringSearch.h"
 #include "StringEquality.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 #include "CommandConstants.h"
 
 using namespace command;
@@ -87,7 +87,7 @@ base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterP
         //
         size_t nameStartIndex = prefix.size();
         size_t nameEndIndex = arg.length() - 1;
-        size_t nameLength = base::Dimensions::indexes(nameStartIndex, nameEndIndex);
+        size_t nameLength = base::Indexes::size(nameStartIndex, nameEndIndex);
 
         name = arg.substr(nameStartIndex, nameLength);
     }
@@ -98,11 +98,11 @@ base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterP
         //
         size_t nameStartIndex = prefix.size();
         size_t nameEndIndex = separatorIndex - 1;
-        size_t nameLength = base::Dimensions::indexes(nameStartIndex, nameEndIndex);
+        size_t nameLength = base::Indexes::size(nameStartIndex, nameEndIndex);
 
         size_t valueStartIndex = separatorIndex + CommandConstants::namedParameterSeparator.size();
         size_t valueEndIndex = arg.length() - 1;
-        size_t valueLength = base::Dimensions::indexes(valueStartIndex, valueEndIndex);
+        size_t valueLength = base::Indexes::size(valueStartIndex, valueEndIndex);
 
         name = arg.substr(nameStartIndex, nameLength);
         value = arg.substr(valueStartIndex, valueLength);

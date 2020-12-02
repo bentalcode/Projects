@@ -21,17 +21,20 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     private static final String propertyCMakeListsTargetPath = "cmakeListsTargetPath";
     private static final String propertyHeaderFileExtensions = "headerFileExtensions";
     private static final String propertySourceFileExtensions = "sourceFileExtensions";
+    private static final String propertyBuildFileExtensions = "buildFileExtensions";
     private static final String propertyCMakeListsFileExtensions = "cmakeListsFileExtensions";
 
     private static final String defaultCmakeListsTargetPath = "CMakeLists.txt";
     private static final List<String> defaultHeaderFileExtensions = ArrayLists.make("h");
     private static final List<String> defaultSourceFileExtensions = ArrayLists.make("cpp");
+    private static final List<String> defaultBuildFileExtensions = ArrayLists.make(".in");
     private static final List<String> defaultCMakeListsFileExtensions = ArrayLists.make("CMakeLists.txt");
 
     private final String path;
     private final String cmakeListsTargetPath;
     private final List<String> headerFileExtensions;
     private final List<String> sourceFileExtensions;
+    private final List<String> buildFileExtensions;
     private final List<String> cmakeListsFileExtensions;
 
     private final IBinaryComparator<ICMakeModuleProperties> comparator = defaultComparator();
@@ -46,6 +49,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
             defaultCmakeListsTargetPath,
             defaultHeaderFileExtensions,
             defaultSourceFileExtensions,
+            defaultBuildFileExtensions,
             defaultCMakeListsFileExtensions);
     }
 
@@ -57,12 +61,14 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
         String cmakeListsTargetPath,
         List<String> headerFileExtensions,
         List<String> sourceFileExtensions,
+        List<String> buildFileExtensions,
         List<String> cmakeListsFileExtensions) {
 
         this.path = path;
         this.cmakeListsTargetPath = cmakeListsTargetPath;
         this.headerFileExtensions = headerFileExtensions;
         this.sourceFileExtensions = sourceFileExtensions;
+        this.buildFileExtensions = buildFileExtensions;
         this.cmakeListsFileExtensions = cmakeListsFileExtensions;
 
         this.hashCode = this.comparator.hashCode();
@@ -101,6 +107,14 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     }
 
     /**
+     * Gets the extensions of a build file.
+     */
+    @Override
+    public List<String> getBuildFileExtensions() {
+        return this.buildFileExtensions;
+    }
+
+    /**
      * Gets the extensions of a CMakeLists file.
      */
     @Override
@@ -125,6 +139,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
         writer.writeStringProperty(propertyCMakeListsTargetPath, this.cmakeListsTargetPath);
         writer.writeCollectionProperty(propertyHeaderFileExtensions, this.headerFileExtensions);
         writer.writeCollectionProperty(propertySourceFileExtensions, this.sourceFileExtensions);
+        writer.writeCollectionProperty(propertyBuildFileExtensions, this.buildFileExtensions);
         writer.writeCollectionProperty(propertyCMakeListsFileExtensions, this.cmakeListsFileExtensions);
     }
 
@@ -150,6 +165,10 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
             reader.readStringListProperty(propertySourceFileExtensions) :
             defaultSourceFileExtensions;
 
+        List<String> buildFileExtensions = reader.hasProperty(propertyBuildFileExtensions) ?
+            reader.readStringListProperty(propertyBuildFileExtensions) :
+            defaultBuildFileExtensions;
+
         List<String> cmakeListsFileExtensions = reader.hasProperty(propertyCMakeListsFileExtensions) ?
             reader.readStringListProperty(propertyCMakeListsFileExtensions) :
             defaultCMakeListsFileExtensions;
@@ -159,6 +178,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
             cmakeListsTargetPath,
             headerFileExtensions,
             sourceFileExtensions,
+            buildFileExtensions,
             cmakeListsFileExtensions);
     }
 
@@ -237,6 +257,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
                 .withString(obj.getCMakeListsTargetPath())
                 .withCollection(obj.getHeaderFileExtensions())
                 .withCollection(obj.getSourceFileExtensions())
+                .withCollection(obj.getBuildFileExtensions())
                 .withCollection(obj.getCMakeListsFileExtensions())
                 .build();
         }
@@ -259,6 +280,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
                 .withString(lhs.getCMakeListsTargetPath(), rhs.getCMakeListsTargetPath())
                 .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
                 .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
+                .withCollection(lhs.getBuildFileExtensions(), rhs.getBuildFileExtensions())
                 .withCollection(lhs.getCMakeListsFileExtensions(), rhs.getCMakeListsFileExtensions())
                 .build();
         }
@@ -289,6 +311,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
                 .withString(lhs.getCMakeListsTargetPath(), rhs.getCMakeListsTargetPath())
                 .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
                 .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
+                .withCollection(lhs.getBuildFileExtensions(), rhs.getBuildFileExtensions())
                 .withCollection(lhs.getCMakeListsFileExtensions(), rhs.getCMakeListsFileExtensions())
                 .build();
         }

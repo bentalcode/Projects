@@ -32,10 +32,10 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IList.h
     ../Base/interfaces/Interval.h
     ../Base/interfaces/Intervals.h
-        ../Base/interfaces/ISizableCollection.h
+    ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/IterableComparator.h
     ../Base/interfaces/IteratorComparator.h
-        ../Base/interfaces/Pair.h
+    ../Base/interfaces/Pair.h
     ../Base/interfaces/SharedPtr.h
     ../Base/interfaces/Triple.h
     ../Base/core/BaseDependencies.h
@@ -47,13 +47,13 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ReferenceCount.h
     ../Base/core/ReferenceCountHolder.h
     ../Base/core/StringIterator.h
-        ../Base/BaseException.h)
+    ../Base/BaseException.h)
 
 set(BASE_SOURCES_FILES
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/DateTime.cpp
     ../Base/core/EqualBuilder.cpp
-        ../Base/core/PreCompiled.cpp)
+    ../Base/core/PreCompiled.cpp)
 
 set(BASE_SOURCES
     ${BASE_INCLUDES_FILES}

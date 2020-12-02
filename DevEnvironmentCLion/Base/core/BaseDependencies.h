@@ -21,7 +21,7 @@
 #include "BaseLogic.h"
 
 #if defined(WIN32)
-#include "WindowsDependecies.h"
+#include "WindowsDependencies.h"
 #endif
 
 #endif // BASE_DEPENDENCIES_H_bec73cd9_8f83_41a4_8da2_893f5eec55b2

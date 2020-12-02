@@ -39,6 +39,40 @@ public final class StringSearch {
     }
 
     /**
+     * Gets first index of a sub string.
+     * Returns -1 if the character is not found.
+     */
+    public static int firstIndexOf(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subStr) {
+
+        if (startIndex > endIndex) {
+            return -1;
+        }
+
+        return firstIndexOf(str, startIndex, endIndex, subStr, false);
+    }
+
+    /**
+     * Gets first index of a sub string.
+     * Returns -1 if the character is not found.
+     */
+    public static int firstIndexOfIgnoreCase(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subStr) {
+
+        if (startIndex > endIndex) {
+            return -1;
+        }
+
+        return firstIndexOf(str, startIndex, endIndex, subStr, true);
+    }
+
+    /**
      * Gets last index of a character.
      * Returns -1 if the character is not found.
      */
@@ -98,6 +132,58 @@ public final class StringSearch {
 
             if (currCharacter == character) {
                 return currIndex;
+            }
+
+            ++currIndex;
+        }
+
+        return -1;
+    }
+
+    /**
+     * Gets first index of a sub-string.
+     * Returns -1 if the sub-string is not found.
+     */
+    private static int firstIndexOf(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subStr,
+        boolean ignoreCase) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length);
+        assert(endIndex >= startIndex && endIndex < str.length);
+        assert(subStr != null);
+
+        if (subStr.length > str.length || subStr.length == 0) {
+            return -1;
+        }
+
+        int currIndex = startIndex;
+        int effectiveEndIndex = endIndex - subStr.length + 1;
+
+        while (currIndex <= effectiveEndIndex) {
+            if (ignoreCase) {
+                if (StringEquality.equalsIgnoreCase(
+                        str,
+                        currIndex,
+                        subStr,
+                        0,
+                        subStr.length - 1)) {
+
+                    return currIndex;
+                }
+            } else {
+                if (StringEquality.equals(
+                        str,
+                        currIndex,
+                        subStr,
+                        0,
+                        subStr.length - 1)) {
+
+                    return currIndex;
+                }
             }
 
             ++currIndex;
@@ -198,7 +284,7 @@ public final class StringSearch {
         assert(endIndex >= 0 && endIndex < str.length);
         assert(postfix != null);
 
-        int strLength = Dimensions.indexes(0, endIndex);
+        int strLength = Indexes.size(0, endIndex);
 
         if (strLength < postfix.length) {
             return false;
@@ -314,8 +400,8 @@ public final class StringSearch {
         assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
         assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
 
-        int stringLength = Dimensions.indexes(startIndex, endIndex);
-        int subStringLength = Dimensions.indexes(subStringStartIndex, subStringEndIndex);
+        int stringLength = Indexes.size(startIndex, endIndex);
+        int subStringLength = Indexes.size(subStringStartIndex, subStringEndIndex);
 
         if (subStringLength == 0 || subStringLength > stringLength) {
             return 0;
@@ -361,8 +447,8 @@ public final class StringSearch {
         assert(subStringStartIndex >= 0 && subStringStartIndex < subString.length);
         assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.length);
 
-        int stringLength = Dimensions.indexes(startIndex, endIndex);
-        int subStringLength = Dimensions.indexes(subStringStartIndex, subStringEndIndex);
+        int stringLength = Indexes.size(startIndex, endIndex);
+        int subStringLength = Indexes.size(subStringStartIndex, subStringEndIndex);
 
         if (subStringLength == 0 || subStringLength > stringLength) {
             return 0;

@@ -10,9 +10,9 @@ public interface IPathBuilder extends IBuilder<String> {
     String getRootDirectory();
 
     /**
-     * Gets a directory separator.
+     * Gets a separator of a path.
      */
-    String getDirectorySeparator();
+    String getSeparator();
 
     /**
      * Adds a new component to a path.
@@ -23,9 +23,4 @@ public interface IPathBuilder extends IBuilder<String> {
      * Sets an extension of a path.
      */
     IPathBuilder setExtension(String extension);
-
-    /**
-     * Builds the path.
-     */
-    String build();
 }

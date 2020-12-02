@@ -1,5 +1,7 @@
-#ifndef TEST_DATA_H_aaed1940_0c4a_4797_bf0a_51fbf9e635d5
-#define TEST_DATA_H_aaed1940_0c4a_4797_bf0a_51fbf9e635d5
+#ifndef TEST_DATA_H_85ac285c_8309_4730_922b_52c8f67d434f
+#define TEST_DATA_H_85ac285c_8309_4730_922b_52c8f67d434f
+
+#include "ClassType.h"
 
 namespace test {
     namespace json {
@@ -19,9 +21,19 @@ namespace test {
              * The TestData destructor.
              */
             ~TestData();
+
+            /**
+             * Gets information of json resources.
+             */
+            void getJsonResourcesInformation(std::vector<std::pair<std::string, base::ClassType>>& result);
+
+        private:
+            static const std::string dataDirectoryName;
+            static const std::string jsonDirectoryName;
+            static std::vector<std::pair<std::string, base::ClassType>> jsonResourcesInformation;
         };
 
     }
 }
 
-#endif // TEST_DATA_H_aaed1940_0c4a_4797_bf0a_51fbf9e635d5
+#endif // TEST_DATA_H_85ac285c_8309_4730_922b_52c8f67d434f

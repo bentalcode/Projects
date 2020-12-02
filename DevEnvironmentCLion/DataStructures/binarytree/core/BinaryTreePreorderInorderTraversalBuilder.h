@@ -2,7 +2,7 @@
 #define BINARY_TREE_PREORDER_INORDER_TRAVERSAL_BUILDER_H_791044d6_3edb_496e_a494_bad7c5a4e813
 
 #include "BinaryTreeTraversalBuilder.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 
 namespace datastructures {
     namespace binarytree {
@@ -124,8 +124,8 @@ namespace datastructures {
             size_t inorderEndIndex,
             const std::map<TKey, size_t>& inorderIndexMap)
         {
-            size_t preorderLength = base::Dimensions::indexes(preorderStartIndex, preorderEndIndex);
-            size_t inorderLength = base::Dimensions::indexes(inorderStartIndex, inorderEndIndex);
+            size_t preorderLength = base::Indexes::size(preorderStartIndex, preorderEndIndex);
+            size_t inorderLength = base::Indexes::size(inorderStartIndex, inorderEndIndex);
             assert(preorderLength == inorderLength);
 
             size_t length = preorderLength;
@@ -144,7 +144,7 @@ namespace datastructures {
             }
 
             size_t rootIndex = BinaryTreeTraversalBuilder<TKey, TValue>::getNodeIndex(inorderIndexMap, rootData.first);
-            size_t leftSize = base::Dimensions::indexes(inorderStartIndex, rootIndex - 1);
+            size_t leftSize = base::Indexes::size(inorderStartIndex, rootIndex - 1);
 
             size_t preorderLeftStartIndex = preorderStartIndex + 1;
             size_t preorderLeftEndIndex = preorderStartIndex + leftSize;

@@ -1,6 +1,6 @@
 package datastructures.bitarray.core;
 
-import base.core.Dimensions;
+import base.core.Indexes;
 import base.core.ListIterator;
 import base.core.ListReverseIterator;
 import datastructures.bitarray.interfaces.IBitArray;
@@ -208,7 +208,7 @@ public final class BitArrayTest {
                 bitArray.clear(startIndex, endIndex);
 
                 numberOfOnes = bitArray.cardinality();
-                expectedNumberOfOnes = bitArray.size() - Dimensions.indexes(startIndex, endIndex);
+                expectedNumberOfOnes = bitArray.size() - Indexes.size(startIndex, endIndex);
 
                 this.assertion.assertTrue(
                     numberOfOnes == expectedNumberOfOnes,
@@ -240,7 +240,7 @@ public final class BitArrayTest {
                 bitArray.enable(startIndex, endIndex);
 
                 numberOfOnes = bitArray.cardinality();
-                expectedNumberOfOnes = Dimensions.indexes(startIndex, endIndex);
+                expectedNumberOfOnes = Indexes.size(startIndex, endIndex);
 
                 this.assertion.assertTrue(
                     numberOfOnes == expectedNumberOfOnes,

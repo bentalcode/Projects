@@ -4,7 +4,7 @@ import base.core.AbstractBinaryComparator;
 import base.core.ArrayLists;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
-import base.core.Dimensions;
+import base.core.Indexes;
 import base.core.Doublet;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
@@ -279,7 +279,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             currIndex = referenceEndIndex + 1;
         }
 
-        int referenceLength = Dimensions.indexes(referenceStartIndex, referenceEndIndex);
+        int referenceLength = Indexes.size(referenceStartIndex, referenceEndIndex);
 
         if (referenceLength > 0 && referenceEndIndex == token.length() - 1) {
             return token.substring(0, referenceStartIndex);

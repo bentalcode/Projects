@@ -50,19 +50,22 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
         List<List<String>> extensions = ArrayLists.make(
             this.manifest.getProperties().getHeaderFileExtensions(),
             this.manifest.getProperties().getSourceFileExtensions(),
+            this.manifest.getProperties().getBuildFileExtensions(),
             this.manifest.getProperties().getCMakeListsFileExtensions());
 
         IFilePathScanner scanner = new FilePathScanner();
         List<List<Path>> pathsResult = scanner.scanByCategory(this.path, extensions);
         List<Path> headerFilesPaths = pathsResult.get(0);
         List<Path> sourceFilesPaths = pathsResult.get(1);
-        List<Path> cmakeListsFilesPaths = pathsResult.get(2);
+        List<Path> buildFilesPaths = pathsResult.get(2);
+        List<Path> cmakeListsFilesPaths = pathsResult.get(3);
 
         ICMakeModule module = new CMakeModule(
             this.manifest.getName(),
             this.path,
             headerFilesPaths,
             sourceFilesPaths,
+            buildFilesPaths,
             cmakeListsTargetPath,
             this.manifest.getDependentModules());
 

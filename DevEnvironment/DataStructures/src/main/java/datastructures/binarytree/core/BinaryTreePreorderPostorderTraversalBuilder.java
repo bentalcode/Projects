@@ -1,7 +1,7 @@
 package datastructures.binarytree.core;
 
 import base.core.Conditions;
-import base.core.Dimensions;
+import base.core.Indexes;
 import base.interfaces.IPair;
 import datastructures.binarytree.BinaryTreeException;
 import datastructures.binarytree.interfaces.IBinaryTree;
@@ -73,8 +73,8 @@ public final class BinaryTreePreorderPostorderTraversalBuilder<TKey extends Comp
         int postorderEndIndex,
         Map<TKey, Integer> postorderIndexMap) {
 
-        int preorderLength = Dimensions.indexes(preorderStartIndex, preorderEndIndex);
-        int postorderLength = Dimensions.indexes(postorderStartIndex, postorderEndIndex);
+        int preorderLength = Indexes.size(preorderStartIndex, preorderEndIndex);
+        int postorderLength = Indexes.size(postorderStartIndex, postorderEndIndex);
         assert(preorderLength == postorderLength);
 
         int length = preorderLength;
@@ -92,7 +92,7 @@ public final class BinaryTreePreorderPostorderTraversalBuilder<TKey extends Comp
 
         IPair<TKey, TValue> leftRootData = preorder.get(preorderStartIndex + 1);
         int leftRootIndex = getNodeIndex(postorderIndexMap, leftRootData.first());
-        int leftSize = Dimensions.indexes(postorderStartIndex, leftRootIndex);
+        int leftSize = Indexes.size(postorderStartIndex, leftRootIndex);
 
         int preorderLeftStartIndex = preorderStartIndex + 1;
         int preorderLeftEndIndex = preorderStartIndex + leftSize;

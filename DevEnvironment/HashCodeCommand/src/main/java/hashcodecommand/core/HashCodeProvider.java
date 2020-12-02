@@ -1,6 +1,6 @@
 package hashcodecommand.core;
 
-import base.core.Dimensions;
+import base.core.Indexes;
 import base.core.Prime;
 import basicio.interfaces.IContentProvider;
 import java.util.regex.Matcher;
@@ -41,11 +41,11 @@ public final class HashCodeProvider implements IContentProvider {
 
         int preTokenStartIndex = matcher.start(0);
         int preTokenEndIndex = hashCodeTokenStartIndex - 1;
-        int preTokenLength = Dimensions.indexes(preTokenStartIndex, preTokenEndIndex);
+        int preTokenLength = Indexes.size(preTokenStartIndex, preTokenEndIndex);
 
         int postTokenStartIndex = hashCodeTokenEndIndex + 1;
         int postTokenEndIndex = matcher.end(0) - 1;
-        int postTokenLength = Dimensions.indexes(postTokenStartIndex, postTokenEndIndex);
+        int postTokenLength = Indexes.size(postTokenStartIndex, postTokenEndIndex);
 
         String newHashCodeToken = "(" + this.nextPrime() + ", " + this.nextPrime() + ")";
 

@@ -1,7 +1,7 @@
 #include "PreCompiled.h"
 
 #include "MinimumWindowSubstring.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 
 using namespace problems;
 
@@ -70,8 +70,8 @@ bool MinimumWindowSubstring::findMinimumWindow(std::string& result)
                 endIndex,
                 characterCounter);
 
-            std::size_t currLength = base::Dimensions::indexes(startIndex, endIndex);
-            std::size_t minLength = base::Dimensions::indexes(minStartIndex, minEndIndex);
+            std::size_t currLength = base::Indexes::size(startIndex, endIndex);
+            std::size_t minLength = base::Indexes::size(minStartIndex, minEndIndex);
 
             if (currLength < minLength)
             {
@@ -83,7 +83,7 @@ bool MinimumWindowSubstring::findMinimumWindow(std::string& result)
         ++currIndex;
     }
 
-    std::size_t minLength = base::Dimensions::indexes(minStartIndex, minEndIndex);
+    std::size_t minLength = base::Indexes::size(minStartIndex, minEndIndex);
     result = m_src.substr(minStartIndex, minLength);
 
     return true;

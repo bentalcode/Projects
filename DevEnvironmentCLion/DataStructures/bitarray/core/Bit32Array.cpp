@@ -1,7 +1,7 @@
 #include "PreCompiled.h"
 #include "Bit32Array.h"
 #include "Bits.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 #include "Indexes.h"
 #include "AndBitOperator.h"
 #include "OrBitOperator.h"
@@ -141,7 +141,7 @@ size_t Bit32Array::cardinality(size_t startIndex, size_t endIndex) const
     validateIndex(endIndex);
 
     assert (startIndex <= endIndex);
-    size_t length = base::Dimensions::indexes(startIndex, endIndex);
+    size_t length = base::Indexes::size(startIndex, endIndex);
 
     if (length == 0)
     {
@@ -186,7 +186,7 @@ void Bit32Array::clear(size_t startIndex, size_t endIndex)
     validateIndex(endIndex);
 
     assert(startIndex <= endIndex);
-    size_t length = base::Dimensions::indexes(startIndex, endIndex);
+    size_t length = base::Indexes::size(startIndex, endIndex);
 
     if (length == 0) {
         return;
@@ -223,7 +223,7 @@ void Bit32Array::enable(size_t startIndex, size_t endIndex)
     validateIndex(endIndex);
 
     assert(startIndex <= endIndex);
-    size_t length = base::Dimensions::indexes(startIndex, endIndex);
+    size_t length = base::Indexes::size(startIndex, endIndex);
 
     if (length == 0)
     {

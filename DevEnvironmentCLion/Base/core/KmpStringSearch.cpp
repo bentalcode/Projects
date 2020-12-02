@@ -1,7 +1,7 @@
 #include "PreCompiled.h"
 
 #include "KmpStringSearch.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 
 using namespace base;
 
@@ -42,8 +42,8 @@ bool KmpStringSearch::findSubString(
 
     resultIndex = 0;
 
-    size_t strLength = Dimensions::indexes(strStartIndex, strEndIndex);
-    size_t subStringLength = Dimensions::indexes(subStringStartIndex, subStringEndIndex);
+    size_t strLength = Indexes::size(strStartIndex, strEndIndex);
+    size_t subStringLength = Indexes::size(subStringStartIndex, subStringEndIndex);
 
     if (subStringLength > strLength) {
         return false;
@@ -124,8 +124,8 @@ void KmpStringSearch::findAllSubString(
     assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.size());
     assert(resultIndexes.empty());
 
-    size_t strLength = Dimensions::indexes(strStartIndex, strEndIndex);
-    size_t subStringLength = Dimensions::indexes(subStringStartIndex, subStringEndIndex);
+    size_t strLength = Indexes::size(strStartIndex, strEndIndex);
+    size_t subStringLength = Indexes::size(subStringStartIndex, subStringEndIndex);
 
     if (subStringLength > strLength) {
         return;
@@ -201,7 +201,7 @@ void KmpStringSearch::createLongestPrefixSuffix(
     assert(endIndex >= startIndex && endIndex < str.size());
     assert(lps.empty());
 
-    size_t strLength = Dimensions::indexes(startIndex, endIndex);
+    size_t strLength = Indexes::size(startIndex, endIndex);
 
     lps.resize(strLength);
     lps[0] = 0;

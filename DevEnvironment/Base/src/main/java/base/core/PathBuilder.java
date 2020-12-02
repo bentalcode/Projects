@@ -4,7 +4,7 @@ package base.core;
  * The PathBuilder class implements a builder of a path.
  */
 public final class PathBuilder extends AbstractPathBuilder {
-    private static final String defaultInitialComponent = null;
+    private static final String defaultRootDirectory = null;
     private static final String defaultSeparator = "\\";
 
     /**
@@ -12,7 +12,7 @@ public final class PathBuilder extends AbstractPathBuilder {
      */
     public PathBuilder() {
         this(
-            PathBuilder.defaultInitialComponent,
+            PathBuilder.defaultRootDirectory,
             PathBuilder.defaultSeparator);
     }
 
@@ -21,16 +21,16 @@ public final class PathBuilder extends AbstractPathBuilder {
      */
     public PathBuilder(String separator) {
         super(
-            PathBuilder.defaultInitialComponent,
+            PathBuilder.defaultRootDirectory,
             separator);
     }
 
     /**
      * The PathBuilder constructor.
      */
-    public PathBuilder(String initialComponent, String separator) {
+    public PathBuilder(String rootDirectory, String separator) {
         super(
-            initialComponent,
+            rootDirectory,
             separator);
     }
 }

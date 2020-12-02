@@ -265,8 +265,8 @@ public final class StringComparable {
         assert(rightStartIndex >= 0 && rightStartIndex < right.length);
         assert(rightEndIndex >= rightStartIndex && rightEndIndex < right.length);
 
-        int leftLength = Dimensions.indexes(leftStartIndex, leftEndIndex);
-        int rightLength = Dimensions.indexes(rightStartIndex, rightEndIndex);
+        int leftLength = Indexes.size(leftStartIndex, leftEndIndex);
+        int rightLength = Indexes.size(rightStartIndex, rightEndIndex);
 
         if (leftLength < rightLength) {
             return -1;

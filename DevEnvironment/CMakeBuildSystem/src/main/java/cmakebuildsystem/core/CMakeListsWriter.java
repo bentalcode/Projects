@@ -106,6 +106,13 @@ public final class CMakeListsWriter implements IWriter {
         elements.add(projectVersion);
 
         //
+        // Add the build properties section...
+        //
+        Path buildPropertiesPath = resolveResourcePath(this.moduleManifest.getCMakeListsManifest().getBuildPropertiesPath());
+        ICMakeBuildElement buildPropertiesSection = this.moduleManifest.getType().createBuildProperties(buildPropertiesPath);
+        elements.add(buildPropertiesSection);
+
+        //
         // Add the preset section...
         //
         Path presetPath = resolveResourcePath(this.moduleManifest.getCMakeListsManifest().getPresetPath());

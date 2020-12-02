@@ -1,7 +1,7 @@
 #include "PreCompiled.h"
 #include "StringSearch.h"
 #include "StringEquality.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 
 using namespace base;
 
@@ -33,7 +33,7 @@ size_t StringSearch::firstIndexOf(
     }
 
     std::string stringToSearch(1, character);
-    size_t length = Dimensions::indexes(startIndex, endIndex);
+    size_t length = Indexes::size(startIndex, endIndex);
 
     std::string::const_iterator resultIterator = std::find_first_of(
         str.begin(),
@@ -65,7 +65,7 @@ size_t StringSearch::firstIndexOfIgnoreCase(
     }
 
     std::string stringToSearch(1, character);
-    size_t length = Dimensions::indexes(startIndex, endIndex);
+    size_t length = Indexes::size(startIndex, endIndex);
 
     std::string::const_iterator resultIterator = std::find_first_of(
         str.begin(),
@@ -263,8 +263,8 @@ unsigned int StringSearch::countSubString(
     assert(subStringStartIndex >= 0 && subStringStartIndex < subString.size());
     assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.size());
 
-    size_t stringLength = Dimensions::indexes(startIndex, endIndex);
-    size_t subStringLength = Dimensions::indexes(subStringStartIndex, subStringEndIndex);
+    size_t stringLength = Indexes::size(startIndex, endIndex);
+    size_t subStringLength = Indexes::size(subStringStartIndex, subStringEndIndex);
 
     if (subStringLength == 0 || subStringLength > stringLength) {
         return 0;
@@ -308,8 +308,8 @@ unsigned int StringSearch::countSubStringFromEnd(
     assert(subStringStartIndex >= 0 && subStringStartIndex < subString.size());
     assert(subStringEndIndex >= subStringStartIndex && subStringEndIndex < subString.size());
 
-    size_t stringLength = Dimensions::indexes(startIndex, endIndex);
-    size_t subStringLength = Dimensions::indexes(subStringStartIndex, subStringEndIndex);
+    size_t stringLength = Indexes::size(startIndex, endIndex);
+    size_t subStringLength = Indexes::size(subStringStartIndex, subStringEndIndex);
 
     if (subStringLength == 0 || subStringLength > stringLength) {
         return 0;

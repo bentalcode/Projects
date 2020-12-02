@@ -182,7 +182,7 @@ public final class GraphTest {
      * Tests the logic of finding paths in a graph.
      */
     private <TKey extends Comparable<TKey>, TValue> void testFindPaths(
-        IPathFinder pathFinder,
+        IPathFinder<TKey, TValue> pathFinder,
         List<IPair<IRoute<TKey, TValue>, List<IWalk<TKey, TValue>>>> routesData,
         String method) {
 

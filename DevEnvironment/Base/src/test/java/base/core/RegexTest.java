@@ -136,7 +136,7 @@ public final class RegexTest {
             currIndex = referenceEndIndex + 1;
         }
 
-        int referenceLength = Dimensions.indexes(referenceStartIndex, referenceEndIndex);
+        int referenceLength = Indexes.size(referenceStartIndex, referenceEndIndex);
 
         String result = null;
         if (referenceLength > 0 && referenceEndIndex == str.length() - 1) {

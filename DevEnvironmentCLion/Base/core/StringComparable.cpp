@@ -1,6 +1,6 @@
 #include "PreCompiled.h"
 #include "StringComparable.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 
 using namespace base;
 
@@ -195,8 +195,8 @@ int StringComparable::compare(
     assert(rightStartIndex >= 0);
     assert(rightEndIndex >= rightStartIndex);
 
-    size_t leftLength = Dimensions::indexes(leftStartIndex, leftEndIndex);
-    size_t rightLength = Dimensions::indexes(rightStartIndex, rightEndIndex);
+    size_t leftLength = Indexes::size(leftStartIndex, leftEndIndex);
+    size_t rightLength = Indexes::size(rightStartIndex, rightEndIndex);
 
     if (leftLength < rightLength) {
         return -1;

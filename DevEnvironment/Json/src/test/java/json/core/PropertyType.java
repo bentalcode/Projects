@@ -8,12 +8,12 @@ import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
-import json.interfaces.ITypes;
+import json.interfaces.IPropertyType;
 
 /**
- * The Types class implements properties of a type.
+ * The Types class implements various types of a property.
  */
-public final class Types implements ITypes {
+public final class PropertyType implements IPropertyType {
     private static final String BooleanProperty = "boolean";
     private static final String ShortProperty = "short";
     private static final String IntegerProperty = "integer";
@@ -47,13 +47,13 @@ public final class Types implements ITypes {
     private final double[] doubleArray;
     private final String[] stringArray;
     private final byte[] blob;
-    private final IBinaryComparator<ITypes> comparator;
+    private final IBinaryComparator<IPropertyType> comparator;
     private final int hashCode;
 
     /**
-     * The Color constructor.
+     * The PropertyType constructor.
      */
-    public Types(
+    public PropertyType(
         boolean booleanValue,
         short shortValue,
         int integerValue,
@@ -86,12 +86,12 @@ public final class Types implements ITypes {
             doubleArray,
             stringArray,
             blob,
-            Types.defaultComparator());
+            PropertyType.defaultComparator());
     }
     /**
-     * The Color constructor.
+     * The PropertyType constructor.
      */
-    public Types(
+    public PropertyType(
         boolean booleanValue,
         short shortValue,
         int integerValue,
@@ -107,7 +107,7 @@ public final class Types implements ITypes {
         double[] doubleArray,
         String[] stringArray,
         byte[] blob,
-        IBinaryComparator<ITypes> comparator) {
+        IBinaryComparator<IPropertyType> comparator) {
 
         this.booleanValue = booleanValue;
         this.shortValue = shortValue;
@@ -129,58 +129,58 @@ public final class Types implements ITypes {
     }
 
     /**
-     * Gets a boolean value.
+     * Gets a boolean property.
      */
     @Override
-    public boolean getBooleanValue() {
+    public boolean getBooleanProperty() {
         return this.booleanValue;
     }
 
     /**
-     * Gets a short value.
+     * Gets a short property.
      */
     @Override
-    public short getShortValue() {
+    public short getShortProperty() {
         return this.shortValue;
     }
 
     /**
-     * Gets an integer value.
+     * Gets an integer property.
      */
     @Override
-    public int getIntegerValue() {
+    public int getIntegerProperty() {
         return this.integerValue;
     }
 
     /**
-     * Gets a long value.
+     * Gets a long property.
      */
     @Override
-    public long getLongValue() {
+    public long getLongProperty() {
         return this.longValue;
     }
 
     /**
-     * Gets a float value.
+     * Gets a float property.
      */
     @Override
-    public float getFloatValue() {
+    public float getFloatProperty() {
         return this.floatValue;
     }
 
     /**
-     * Gets a double value.
+     * Gets a double property.
      */
     @Override
-    public double getDoubleValue() {
+    public double getDoubleProperty() {
         return this.doubleValue;
     }
 
     /**
-     * Gets a string value.
+     * Gets a string property.
      */
     @Override
-    public String getStringValue() {
+    public String getStringProperty() {
         return this.stringValue;
     }
 
@@ -188,7 +188,7 @@ public final class Types implements ITypes {
      * Gets a boolean array.
      */
     @Override
-    public boolean[] getBooleanArray() {
+    public boolean[] getBooleanArrayProperty() {
         return this.booleanArray;
     }
 
@@ -196,7 +196,7 @@ public final class Types implements ITypes {
      * Gets a short array.
      */
     @Override
-    public short[] getShortArray() {
+    public short[] getShortArrayProperty() {
         return this.shortArray;
     }
 
@@ -204,7 +204,7 @@ public final class Types implements ITypes {
      * Gets an integer array.
      */
     @Override
-    public int[] getIntegerArray() {
+    public int[] getIntegerArrayProperty() {
         return this.integerArray;
     }
 
@@ -212,7 +212,7 @@ public final class Types implements ITypes {
      * Gets a long array.
      */
     @Override
-    public long[] getLongArray() {
+    public long[] getLongArrayProperty() {
         return this.longArray;
     }
 
@@ -220,7 +220,7 @@ public final class Types implements ITypes {
      * Gets a float array.
      */
     @Override
-    public float[] getFloatArray() {
+    public float[] getFloatArrayProperty() {
         return this.floatArray;
     }
 
@@ -228,7 +228,7 @@ public final class Types implements ITypes {
      * Gets a double array.
      */
     @Override
-    public double[] getDoubleArray() {
+    public double[] getDoubleArrayProperty() {
         return this.doubleArray;
     }
 
@@ -236,7 +236,7 @@ public final class Types implements ITypes {
      * Gets a string array.
      */
     @Override
-    public String[] getStringArray() {
+    public String[] getStringArrayProperty() {
         return this.stringArray;
     }
 
@@ -244,7 +244,7 @@ public final class Types implements ITypes {
      * Gets a blob.
      */
     @Override
-    public byte[] getBlob() {
+    public byte[] getBlobProperty() {
         return this.blob;
     }
 
@@ -253,46 +253,46 @@ public final class Types implements ITypes {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeBooleanProperty(Types.BooleanProperty, this.getBooleanValue());
-        writer.writeShortProperty(Types.ShortProperty, this.getShortValue());
-        writer.writeIntegerProperty(Types.IntegerProperty, this.getIntegerValue());
-        writer.writeLongProperty(Types.LongProperty, this.getLongValue());
-        writer.writeFloatProperty(Types.FloatProperty, this.getFloatValue());
-        writer.writeDoubleProperty(Types.DoubleProperty, this.getDoubleValue());
-        writer.writeStringProperty(Types.StringProperty, this.getStringValue());
+        writer.writeBooleanProperty(PropertyType.BooleanProperty, this.getBooleanProperty());
+        writer.writeShortProperty(PropertyType.ShortProperty, this.getShortProperty());
+        writer.writeIntegerProperty(PropertyType.IntegerProperty, this.getIntegerProperty());
+        writer.writeLongProperty(PropertyType.LongProperty, this.getLongProperty());
+        writer.writeFloatProperty(PropertyType.FloatProperty, this.getFloatProperty());
+        writer.writeDoubleProperty(PropertyType.DoubleProperty, this.getDoubleProperty());
+        writer.writeStringProperty(PropertyType.StringProperty, this.getStringProperty());
 
-        writer.writeArrayProperty(Types.BooleanArrayProperty, this.getBooleanArray());
-        writer.writeArrayProperty(Types.ShortArrayProperty, this.getShortArray());
-        writer.writeArrayProperty(Types.IntegerArrayProperty, this.getIntegerArray());
-        writer.writeArrayProperty(Types.LongArrayProperty, this.getLongArray());
-        writer.writeArrayProperty(Types.FloatArrayProperty, this.getFloatArray());
-        writer.writeArrayProperty(Types.DoubleArrayProperty, this.getDoubleArray());
-        writer.writeArrayProperty(Types.StringArrayProperty, this.getStringArray());
-        writer.writeBlobProperty(Types.BlobProperty, this.getBlob());
+        writer.writeArrayProperty(PropertyType.BooleanArrayProperty, this.getBooleanArrayProperty());
+        writer.writeArrayProperty(PropertyType.ShortArrayProperty, this.getShortArrayProperty());
+        writer.writeArrayProperty(PropertyType.IntegerArrayProperty, this.getIntegerArrayProperty());
+        writer.writeArrayProperty(PropertyType.LongArrayProperty, this.getLongArrayProperty());
+        writer.writeArrayProperty(PropertyType.FloatArrayProperty, this.getFloatArrayProperty());
+        writer.writeArrayProperty(PropertyType.DoubleArrayProperty, this.getDoubleArrayProperty());
+        writer.writeArrayProperty(PropertyType.StringArrayProperty, this.getStringArrayProperty());
+        writer.writeBlobProperty(PropertyType.BlobProperty, this.getBlobProperty());
     }
 
     /**
      * Reads a json.
      */
-    public static Types readJson(IJsonObjectReader reader) {
-        boolean booleanValue = reader.readBooleanProperty(Types.BooleanProperty);
-        short shortValue = reader.readShortProperty(Types.ShortProperty);
-        int integerValue = reader.readIntegerProperty(Types.IntegerProperty);
-        long longValue = reader.readLongProperty(Types.LongProperty);
-        float floatValue = reader.readFloatProperty(Types.FloatProperty);
-        double doubleValue = reader.readDoubleProperty(Types.DoubleProperty);
-        String stringValue = reader.readStringProperty(Types.StringProperty);
+    public static PropertyType readJson(IJsonObjectReader reader) {
+        boolean booleanValue = reader.readBooleanProperty(PropertyType.BooleanProperty);
+        short shortValue = reader.readShortProperty(PropertyType.ShortProperty);
+        int integerValue = reader.readIntegerProperty(PropertyType.IntegerProperty);
+        long longValue = reader.readLongProperty(PropertyType.LongProperty);
+        float floatValue = reader.readFloatProperty(PropertyType.FloatProperty);
+        double doubleValue = reader.readDoubleProperty(PropertyType.DoubleProperty);
+        String stringValue = reader.readStringProperty(PropertyType.StringProperty);
 
-        boolean[] booleanArray = reader.readBooleanArrayProperty(Types.BooleanArrayProperty);
-        short[] shortArray = reader.readShortArrayProperty(Types.ShortArrayProperty);
-        int[] integerArray = reader.readIntegerArrayProperty(Types.IntegerArrayProperty);
-        long[] longArray = reader.readLongArrayProperty(Types.LongArrayProperty);
-        float[] floatArray = reader.readFloatArrayProperty(Types.FloatArrayProperty);
-        double[] doubleArray = reader.readDoubleArrayProperty(Types.DoubleArrayProperty);
-        String[] stringArray = reader.readStringArrayProperty(Types.StringArrayProperty);
-        byte[] blob = reader.readBlobProperty(Types.BlobProperty);
+        boolean[] booleanArray = reader.readBooleanArrayProperty(PropertyType.BooleanArrayProperty);
+        short[] shortArray = reader.readShortArrayProperty(PropertyType.ShortArrayProperty);
+        int[] integerArray = reader.readIntegerArrayProperty(PropertyType.IntegerArrayProperty);
+        long[] longArray = reader.readLongArrayProperty(PropertyType.LongArrayProperty);
+        float[] floatArray = reader.readFloatArrayProperty(PropertyType.FloatArrayProperty);
+        double[] doubleArray = reader.readDoubleArrayProperty(PropertyType.DoubleArrayProperty);
+        String[] stringArray = reader.readStringArrayProperty(PropertyType.StringArrayProperty);
+        byte[] blob = reader.readBlobProperty(PropertyType.BlobProperty);
 
-        return new Types(
+        return new PropertyType(
             booleanValue,
             shortValue,
             integerValue,
@@ -342,7 +342,7 @@ public final class Types implements ITypes {
      * Checks whether the instances are equals.
      */
     @Override
-    public boolean isEqual(ITypes other) {
+    public boolean isEqual(IPropertyType other) {
         return this.comparator.isEqual(this, other);
     }
 
@@ -354,21 +354,21 @@ public final class Types implements ITypes {
      * Returns 1 if the left hand side value is greater than the right hand side value.
      */
     @Override
-    public int compareTo(ITypes other) {
+    public int compareTo(IPropertyType other) {
         return this.comparator.compareTo(this, other);
     }
 
     /**
      * Gets the default comparator.
      */
-    public static IBinaryComparator<ITypes> defaultComparator() {
+    public static IBinaryComparator<IPropertyType> defaultComparator() {
         return new Comparator();
     }
 
     /**
      * The Comparator class implements a comparator of a fruit.
      */
-    public static final class Comparator extends AbstractBinaryComparator<ITypes> {
+    public static final class Comparator extends AbstractBinaryComparator<IPropertyType> {
         /**
          * The Comparator constructor.
          */
@@ -379,23 +379,23 @@ public final class Types implements ITypes {
          * Gets a hash code of this instance.
          */
         @Override
-        public int getHashCode(ITypes obj) {
+        public int getHashCode(IPropertyType obj) {
             return new HashCodeBuilder(787, 797)
-                .withBoolean(obj.getBooleanValue())
-                .withShort(obj.getShortValue())
-                .withInteger(obj.getIntegerValue())
-                .withLong(obj.getLongValue())
-                .withFloat(obj.getFloatValue())
-                .withDouble(obj.getDoubleValue())
-                .withString(obj.getStringValue())
-                .withBooleanArray(obj.getBooleanArray())
-                .withShortArray(obj.getShortArray())
-                .withIntegerArray(obj.getIntegerArray())
-                .withLongArray(obj.getLongArray())
-                .withFloatArray(obj.getFloatArray())
-                .withDoubleArray(obj.getDoubleArray())
-                .withStringArray(obj.getStringArray())
-                .withByteArray(obj.getBlob())
+                .withBoolean(obj.getBooleanProperty())
+                .withShort(obj.getShortProperty())
+                .withInteger(obj.getIntegerProperty())
+                .withLong(obj.getLongProperty())
+                .withFloat(obj.getFloatProperty())
+                .withDouble(obj.getDoubleProperty())
+                .withString(obj.getStringProperty())
+                .withBooleanArray(obj.getBooleanArrayProperty())
+                .withShortArray(obj.getShortArrayProperty())
+                .withIntegerArray(obj.getIntegerArrayProperty())
+                .withLongArray(obj.getLongArrayProperty())
+                .withFloatArray(obj.getFloatArrayProperty())
+                .withDoubleArray(obj.getDoubleArrayProperty())
+                .withStringArray(obj.getStringArrayProperty())
+                .withByteArray(obj.getBlobProperty())
                 .build();
         }
 
@@ -403,7 +403,7 @@ public final class Types implements ITypes {
          * Checks whether two instances are equals.
          */
         @Override
-        public boolean isEqual(ITypes lhs, ITypes rhs) {
+        public boolean isEqual(IPropertyType lhs, IPropertyType rhs) {
             if (lhs == null && rhs == null) {
                 return true;
             }
@@ -413,21 +413,21 @@ public final class Types implements ITypes {
             }
 
             return new EqualBuilder()
-                .withBoolean(lhs.getBooleanValue(), rhs.getBooleanValue())
-                .withShort(lhs.getShortValue(), rhs.getShortValue())
-                .withInteger(lhs.getIntegerValue(), rhs.getIntegerValue())
-                .withLong(lhs.getLongValue(), rhs.getLongValue())
-                .withFloat(lhs.getFloatValue(), rhs.getFloatValue())
-                .withDouble(lhs.getDoubleValue(), rhs.getDoubleValue())
-                .withString(lhs.getStringValue(), rhs.getStringValue())
-                .withBooleanArray(lhs.getBooleanArray(), rhs.getBooleanArray())
-                .withShortArray(lhs.getShortArray(), rhs.getShortArray())
-                .withIntegerArray(lhs.getIntegerArray(), rhs.getIntegerArray())
-                .withLongArray(lhs.getLongArray(), rhs.getLongArray())
-                .withFloatArray(lhs.getFloatArray(), rhs.getFloatArray())
-                .withDoubleArray(lhs.getDoubleArray(), rhs.getDoubleArray())
-                .withStringArray(lhs.getStringArray(), rhs.getStringArray())
-                .withByteArray(lhs.getBlob(), rhs.getBlob())
+                .withBoolean(lhs.getBooleanProperty(), rhs.getBooleanProperty())
+                .withShort(lhs.getShortProperty(), rhs.getShortProperty())
+                .withInteger(lhs.getIntegerProperty(), rhs.getIntegerProperty())
+                .withLong(lhs.getLongProperty(), rhs.getLongProperty())
+                .withFloat(lhs.getFloatProperty(), rhs.getFloatProperty())
+                .withDouble(lhs.getDoubleProperty(), rhs.getDoubleProperty())
+                .withString(lhs.getStringProperty(), rhs.getStringProperty())
+                .withBooleanArray(lhs.getBooleanArrayProperty(), rhs.getBooleanArrayProperty())
+                .withShortArray(lhs.getShortArrayProperty(), rhs.getShortArrayProperty())
+                .withIntegerArray(lhs.getIntegerArrayProperty(), rhs.getIntegerArrayProperty())
+                .withLongArray(lhs.getLongArrayProperty(), rhs.getLongArrayProperty())
+                .withFloatArray(lhs.getFloatArrayProperty(), rhs.getFloatArrayProperty())
+                .withDoubleArray(lhs.getDoubleArrayProperty(), rhs.getDoubleArrayProperty())
+                .withStringArray(lhs.getStringArrayProperty(), rhs.getStringArrayProperty())
+                .withByteArray(lhs.getBlobProperty(), rhs.getBlobProperty())
                 .build();
         }
 
@@ -439,7 +439,7 @@ public final class Types implements ITypes {
          * Returns 1 if the left hand side value is greater than the right hand side value.
          */
         @Override
-        public int compareTo(ITypes lhs, ITypes rhs) {
+        public int compareTo(IPropertyType lhs, IPropertyType rhs) {
             if (lhs == null && rhs == null) {
                 return 0;
             }
@@ -453,21 +453,21 @@ public final class Types implements ITypes {
             }
 
             return new CompareToBuilder()
-                .withBoolean(lhs.getBooleanValue(), rhs.getBooleanValue())
-                .withShort(lhs.getShortValue(), rhs.getShortValue())
-                .withInteger(lhs.getShortValue(), rhs.getIntegerValue())
-                .withLong(lhs.getLongValue(), rhs.getLongValue())
-                .withFloat(lhs.getFloatValue(), rhs.getFloatValue())
-                .withDouble(lhs.getDoubleValue(), rhs.getDoubleValue())
-                .withString(lhs.getStringValue(), rhs.getStringValue())
-                .withBooleanArray(lhs.getBooleanArray(), rhs.getBooleanArray())
-                .withShortArray(lhs.getShortArray(), rhs.getShortArray())
-                .withIntegerArray(lhs.getIntegerArray(), rhs.getIntegerArray())
-                .withLongArray(lhs.getLongArray(), rhs.getLongArray())
-                .withFloatArray(lhs.getFloatArray(), rhs.getFloatArray())
-                .withDoubleArray(lhs.getDoubleArray(), rhs.getDoubleArray())
-                .withStringArray(lhs.getStringArray(), rhs.getStringArray())
-                .withByteArray(lhs.getBlob(), rhs.getBlob())
+                .withBoolean(lhs.getBooleanProperty(), rhs.getBooleanProperty())
+                .withShort(lhs.getShortProperty(), rhs.getShortProperty())
+                .withInteger(lhs.getShortProperty(), rhs.getIntegerProperty())
+                .withLong(lhs.getLongProperty(), rhs.getLongProperty())
+                .withFloat(lhs.getFloatProperty(), rhs.getFloatProperty())
+                .withDouble(lhs.getDoubleProperty(), rhs.getDoubleProperty())
+                .withString(lhs.getStringProperty(), rhs.getStringProperty())
+                .withBooleanArray(lhs.getBooleanArrayProperty(), rhs.getBooleanArrayProperty())
+                .withShortArray(lhs.getShortArrayProperty(), rhs.getShortArrayProperty())
+                .withIntegerArray(lhs.getIntegerArrayProperty(), rhs.getIntegerArrayProperty())
+                .withLongArray(lhs.getLongArrayProperty(), rhs.getLongArrayProperty())
+                .withFloatArray(lhs.getFloatArrayProperty(), rhs.getFloatArrayProperty())
+                .withDoubleArray(lhs.getDoubleArrayProperty(), rhs.getDoubleArrayProperty())
+                .withStringArray(lhs.getStringArrayProperty(), rhs.getStringArrayProperty())
+                .withByteArray(lhs.getBlobProperty(), rhs.getBlobProperty())
                 .build();
         }
     }

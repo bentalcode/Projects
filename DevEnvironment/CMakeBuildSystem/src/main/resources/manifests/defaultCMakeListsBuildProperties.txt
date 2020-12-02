@@ -1,0 +1,8 @@
+#
+# Configure build properties...
+#
+set(VERSION_MAJOR "1")
+set(VERSION_MINOR "1")
+set(VERSION_PATCH "0")
+
+# configure_file(./BuildConfig.h.in ./BuildConfig.h)

@@ -1,6 +1,9 @@
 package base.core;
 
+import base.interfaces.IPathBuilder;
 import java.nio.file.Path;
+import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * The Paths class implements complementary APIs for paths.
@@ -107,6 +110,60 @@ public final class Paths {
             separator.toCharArray());
 
         return (relativePath != null) ? new String(relativePath) : null;
+    }
+
+    /**
+     * Normalizes a path.
+     */
+    public static String normalizePath(String path) {
+        return normalizePath(path, separator);
+    }
+
+    /**
+     * Normalizes a path.
+     */
+    public static String normalizePath(String path, String separator) {
+        Conditions.validateNotNull(
+            path,
+            "The path.");
+
+        Conditions.validateStringNotNullOrEmpty(
+            separator,
+            "The separator.");
+
+        String effectiveSeparator = Strings.replace(separator, "\\", "\\\\");
+
+        String[] tokens = path.split(effectiveSeparator);
+
+        Stack<String> tokenStack = new Stack<>();
+
+        for (String token : tokens) {
+            tokenStack.push(token);
+        }
+
+        LinkedList<String> components = new LinkedList<>();
+
+        while (!tokenStack.empty()) {
+            String currComponent = tokenStack.pop();
+
+            if (currComponent.equals(Paths.currentDirectory)) {
+                continue;
+            }
+
+            if (currComponent.equals(Paths.parentDirectory)) {
+                tokenStack.pop();
+            }
+
+            components.addFirst(currComponent);
+        }
+
+        IPathBuilder pathBuilder = new PathBuilder();
+
+        for (String component : components) {
+            pathBuilder.addComponent(component);
+        }
+
+        return pathBuilder.build();
     }
 
     /**

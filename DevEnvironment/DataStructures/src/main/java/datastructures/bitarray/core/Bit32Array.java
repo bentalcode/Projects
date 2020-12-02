@@ -5,10 +5,9 @@ import base.core.Bits;
 import base.core.Casting;
 import base.core.CompareToBuilder;
 import base.core.Conditions;
-import base.core.Dimensions;
+import base.core.Indexes;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
-import base.core.Indexes;
 import base.interfaces.IBinaryComparator;
 import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
@@ -184,7 +183,7 @@ public final class Bit32Array implements IBit32Array {
         this.validateIndex(endIndex);
 
         assert (startIndex <= endIndex);
-        int length = Dimensions.indexes(startIndex, endIndex);
+        int length = Indexes.size(startIndex, endIndex);
 
         if (length == 0) {
             return 0;
@@ -227,7 +226,7 @@ public final class Bit32Array implements IBit32Array {
         this.validateIndex(endIndex);
 
         assert(startIndex <= endIndex);
-        int length = Dimensions.indexes(startIndex, endIndex);
+        int length = Indexes.size(startIndex, endIndex);
 
         if (length == 0) {
             return;
@@ -264,7 +263,7 @@ public final class Bit32Array implements IBit32Array {
         this.validateIndex(endIndex);
 
         assert(startIndex <= endIndex);
-        int length = Dimensions.indexes(startIndex, endIndex);
+        int length = Indexes.size(startIndex, endIndex);
 
         if (length == 0) {
             return;

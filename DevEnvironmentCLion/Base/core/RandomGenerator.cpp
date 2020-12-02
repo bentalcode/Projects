@@ -1,6 +1,6 @@
 #include "PreCompiled.h"
 #include "RandomGenerator.h"
-#include "Dimensions.h"
+#include "Indexes.h"
 #include "Range.h"
 #include "Conversion.h"
 
@@ -51,9 +51,9 @@ int RandomGenerator::nextInteger(int from, int to)
         return from;
     }
 
-    int length = base::Dimensions::indexes(from, to);
+    int length = base::Indexes::size(from, to);
 
-    length = base::Dimensions::indexes(from, to);
+    length = base::Indexes::size(from, to);
     int result = from + rand() % length;
 
     assert(result >= from && result <= to);
@@ -81,7 +81,7 @@ size_t RandomGenerator::nextSizeT(size_t from, size_t to)
         return from;
     }
 
-    size_t length = base::Dimensions::indexes(from, to);
+    size_t length = base::Indexes::size(from, to);
     size_t result = from + rand() % length;
 
     assert(result >= from && result <= to);
