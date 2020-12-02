@@ -1,7 +1,7 @@
-package basicio.interfaces;
+package base.interfaces;
 
 import base.core.Enums;
-import basicio.core.FileNames;
+import base.core.FileNames;
 
 /**
  * The FileNameType enum defines types of files name.

@@ -16,12 +16,12 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
     /**
      * The AbstractPathBuilder constructor.
      */
-    protected AbstractPathBuilder(String initialComponent, String separator) {
+    protected AbstractPathBuilder(String rootDirectory, String separator) {
         Conditions.validateNotNull(
             separator,
             "The separator of a path.");
 
-        this.rootDirectory = initialComponent;
+        this.rootDirectory = rootDirectory;
         this.separator = separator;
     }
 
@@ -96,7 +96,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
             result.append(this.rootDirectory);
         }
 
-        boolean addDirectorySeparator = false;
+        boolean addDirectorySeparator = this.rootDirectory != null;
         for (String component : this.components) {
             if (addDirectorySeparator) {
                 result.append(this.separator);

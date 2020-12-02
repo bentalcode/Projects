@@ -49,15 +49,15 @@ set(MEMORY_MANAGEMENT_SOURCES_FILES
     ./core/PreCompiled.cpp
 )
 
-set(MEMORY_MANAGEMENT_SOURCES
-    ${MEMORY_MANAGEMENT_INCLUDES_FILES}
-    ${MEMORY_MANAGEMENT_SOURCES_FILES}
-)
-
 set(MEMORY_MANAGEMENT_INCLUDES
     .
     ./core
     ./interfaces
+)
+
+set(MEMORY_MANAGEMENT_SOURCES
+    ${MEMORY_MANAGEMENT_INCLUDES_FILES}
+    ${MEMORY_MANAGEMENT_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -227,15 +227,15 @@ set(BASE_SOURCES_FILES
     ../Base/core/XorBitOperator.cpp
 )
 
-set(BASE_SOURCES
-    ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES}
-)
-
 set(BASE_INCLUDES
     ../Base
     ../Base/core
     ../Base/interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
 )
 
 add_library(Base STATIC

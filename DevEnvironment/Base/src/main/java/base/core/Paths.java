@@ -12,8 +12,6 @@ public final class Paths {
     public static final String currentDirectory = ".";
     public static final String parentDirectory = "..";
 
-    private final static String separator = System.getProperty("file.separator");
-
     /**
      * Creates a new file path.
      */
@@ -32,7 +30,9 @@ public final class Paths {
      * Gets the directory section of the path.
      */
     public static String getDirectory(String path) {
-        return getDirectory(path, separator);
+        return getDirectory(
+            path,
+            Environment.getOperatingSystemControlSettings().pathSettings().getPathSeparator());
     }
 
     /**
@@ -40,15 +40,68 @@ public final class Paths {
      * Returns null if no directory is found.
      */
     public static String getDirectory(String path, String separator) {
-        Paths.validateSeparator(separator);
+        Conditions.validateNotNull(
+            path,
+            "The path.");
 
-        if (path == null) {
-            return null;
-        }
+        Paths.validateSeparator(separator);
 
         char[] directory = getDirectory(path.toCharArray(), separator.toCharArray());
 
         return (directory != null) ? new String(directory) : null;
+    }
+
+    /**
+     * Gets a file extension of a path.
+     */
+    public String getFileExtension(String path) {
+        Conditions.validateNotNull(
+            path,
+            "The path.");
+
+        return FileNames.getExtension(path);
+    }
+
+    /**
+     * Gets an file name of a path.
+     */
+    public static String getFileName(String path) {
+        return getFileName(
+            path,
+            Environment.getOperatingSystemControlSettings().pathSettings().getPathSeparator());
+    }
+
+    /**
+     * Gets an file name of a path.
+     */
+    public static String getFileName(
+        String path,
+        String separator) {
+
+        Conditions.validateStringNotNullOrEmpty(
+            path,
+            "The path.");
+
+        Conditions.validateNotNull(
+            separator,
+            "The separator.");
+
+        char[] pathArray = path.toCharArray();
+        int extensionIndex = FileNames.getFileExtensionIndex(pathArray);
+        int separatorStartIndex = StringSearch.lastIndexOf(
+            pathArray,
+            0,
+            extensionIndex - 1,
+            separator.toCharArray());
+
+        if (separatorStartIndex == -1) {
+            return "";
+        }
+
+        int fileNameStartIndex = (separatorStartIndex == -1) ? 0 : separatorStartIndex + separator.length();
+        int fileNameEndIndex = extensionIndex - 1;
+
+        return path.substring(fileNameStartIndex, fileNameEndIndex + 1);
     }
 
     /**
@@ -58,7 +111,10 @@ public final class Paths {
         String path1,
         String path2) {
 
-        return pathsEquivalent(path1, path2, Paths.separator);
+        return pathsEquivalent(
+            path1,
+            path2,
+            Environment.getOperatingSystemControlSettings().pathSettings().getPathSeparator());
     }
 
     /**
@@ -90,7 +146,10 @@ public final class Paths {
      * Returns null if a relative path is not found.
      */
     public static String getRelativePath(String path, String rootPath) {
-        return getRelativePath(path, rootPath, separator);
+        return getRelativePath(
+            path,
+            rootPath,
+            Environment.getOperatingSystemControlSettings().pathSettings().getPathSeparator());
     }
 
     /**
@@ -116,7 +175,9 @@ public final class Paths {
      * Normalizes a path.
      */
     public static String normalizePath(String path) {
-        return normalizePath(path, separator);
+        return normalizePath(
+            path,
+            Environment.getOperatingSystemControlSettings().pathSettings().getPathSeparator());
     }
 
     /**
@@ -157,7 +218,7 @@ public final class Paths {
             components.addFirst(currComponent);
         }
 
-        IPathBuilder pathBuilder = new PathBuilder();
+        IPathBuilder pathBuilder = Environment.getOperatingSystemControlSettings().pathSettings().createPathBuilder();
 
         for (String component : components) {
             pathBuilder.addComponent(component);
@@ -173,7 +234,10 @@ public final class Paths {
      * Return -1 if no common root path is found.
      */
     public static int findCommonRootPathEndIndex(String path1, String path2) {
-        return findCommonRootPathEndIndex(path1, path2, separator);
+        return findCommonRootPathEndIndex(
+            path1,
+            path2,
+            Environment.getOperatingSystemControlSettings().pathSettings().getPathSeparator());
     }
 
     /**

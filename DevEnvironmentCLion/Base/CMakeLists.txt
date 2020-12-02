@@ -198,15 +198,15 @@ set(BASE_SOURCES_FILES
     ./core/XorBitOperator.cpp
 )
 
-set(BASE_SOURCES
-    ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES}
-)
-
 set(BASE_INCLUDES
     .
     ./core
     ./interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
 )
 
 include_directories(Base

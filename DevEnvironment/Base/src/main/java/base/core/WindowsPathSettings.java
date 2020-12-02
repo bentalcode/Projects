@@ -35,6 +35,6 @@ public final class WindowsPathSettings implements IOperatingSystemPathSettings {
      */
     @Override
     public IPathBuilder createPathBuilder() {
-        return new PathBuilder(this.getPathSeparator());
+        return new PathBuilder();
     }
 }

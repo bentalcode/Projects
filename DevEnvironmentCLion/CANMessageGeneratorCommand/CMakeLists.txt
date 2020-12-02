@@ -16,7 +16,6 @@ set(VERSION_MAJOR "1")
 set(VERSION_MINOR "1")
 set(VERSION_PATCH "0")
 
-# configure_file(./BuildConfig.h.in ./BuildConfig.h)
 
 macro(print_all_variables)
     message(STATUS "print_all_variables------------------------------------------{")
@@ -53,15 +52,15 @@ set(CANMESSAGE_GENERATOR_COMMAND_SOURCES_FILES
     ./main.cpp
 )
 
-set(CANMESSAGE_GENERATOR_COMMAND_SOURCES
-    ${CANMESSAGE_GENERATOR_COMMAND_INCLUDES_FILES}
-    ${CANMESSAGE_GENERATOR_COMMAND_SOURCES_FILES}
-)
-
 set(CANMESSAGE_GENERATOR_COMMAND_INCLUDES
     .
     ./core
     ./interfaces
+)
+
+set(CANMESSAGE_GENERATOR_COMMAND_SOURCES
+    ${CANMESSAGE_GENERATOR_COMMAND_INCLUDES_FILES}
+    ${CANMESSAGE_GENERATOR_COMMAND_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -231,15 +230,15 @@ set(BASE_SOURCES_FILES
     ../Base/core/XorBitOperator.cpp
 )
 
-set(BASE_SOURCES
-    ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES}
-)
-
 set(BASE_INCLUDES
     ../Base
     ../Base/core
     ../Base/interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
 )
 
 add_library(Base STATIC
@@ -301,15 +300,15 @@ set(COMMAND_SOURCES_FILES
     ../Command/core/ProcessInformation.cpp
 )
 
-set(COMMAND_SOURCES
-    ${COMMAND_INCLUDES_FILES}
-    ${COMMAND_SOURCES_FILES}
-)
-
 set(COMMAND_INCLUDES
     ../Command
     ../Command/core
     ../Command/interfaces
+)
+
+set(COMMAND_SOURCES
+    ${COMMAND_INCLUDES_FILES}
+    ${COMMAND_SOURCES_FILES}
 )
 
 add_library(Command STATIC
@@ -353,15 +352,15 @@ set(CANMESSAGE_GENERATOR_SOURCES_FILES
     ../CANMessageGenerator/core/PreCompiled.cpp
 )
 
-set(CANMESSAGE_GENERATOR_SOURCES
-    ${CANMESSAGE_GENERATOR_INCLUDES_FILES}
-    ${CANMESSAGE_GENERATOR_SOURCES_FILES}
-)
-
 set(CANMESSAGE_GENERATOR_INCLUDES
     ../CANMessageGenerator
     ../CANMessageGenerator/core
     ../CANMessageGenerator/interfaces
+)
+
+set(CANMESSAGE_GENERATOR_SOURCES
+    ${CANMESSAGE_GENERATOR_INCLUDES_FILES}
+    ${CANMESSAGE_GENERATOR_SOURCES_FILES}
 )
 
 add_library(CANMessageGenerator STATIC

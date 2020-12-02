@@ -15,6 +15,7 @@ public interface ICMakeListsConstants {
     String addLibraryCommand = "add_library";
     String addExecutableCommand = "add_executable";
     String targetLinkLibrariesCommand = "target_link_libraries";
+    String configureFileCommand = "configure_file";
 
     String resourcesVariableName = "RESOURCES_DIRECTORY_NAME";
 

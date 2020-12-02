@@ -5,24 +5,24 @@ package base.core;
  */
 public final class PathBuilder extends AbstractPathBuilder {
     private static final String defaultRootDirectory = null;
-    private static final String defaultSeparator = "\\";
+    private static final String defaultSeparator = WindowsPath.directorySeparator;
 
     /**
      * The PathBuilder constructor.
      */
     public PathBuilder() {
         this(
-            PathBuilder.defaultRootDirectory,
-            PathBuilder.defaultSeparator);
+            defaultRootDirectory,
+            defaultSeparator);
     }
 
     /**
      * The PathBuilder constructor.
      */
-    public PathBuilder(String separator) {
+    private PathBuilder(String rootDirectory) {
         super(
-            PathBuilder.defaultRootDirectory,
-            separator);
+            rootDirectory,
+            defaultSeparator);
     }
 
     /**

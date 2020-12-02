@@ -84,15 +84,15 @@ set(COMMAND_SOURCES_FILES
     ./core/ProcessInformation.cpp
 )
 
-set(COMMAND_SOURCES
-    ${COMMAND_INCLUDES_FILES}
-    ${COMMAND_SOURCES_FILES}
-)
-
 set(COMMAND_INCLUDES
     .
     ./core
     ./interfaces
+)
+
+set(COMMAND_SOURCES
+    ${COMMAND_INCLUDES_FILES}
+    ${COMMAND_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -262,15 +262,15 @@ set(BASE_SOURCES_FILES
     ../Base/core/XorBitOperator.cpp
 )
 
-set(BASE_SOURCES
-    ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES}
-)
-
 set(BASE_INCLUDES
     ../Base
     ../Base/core
     ../Base/interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
 )
 
 add_library(Base STATIC

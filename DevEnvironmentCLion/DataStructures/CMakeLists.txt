@@ -137,11 +137,6 @@ set(DATA_STRUCTURES_SOURCES_FILES
     ./core/PreCompiled.cpp
 )
 
-set(DATA_STRUCTURES_SOURCES
-    ${DATA_STRUCTURES_INCLUDES_FILES}
-    ${DATA_STRUCTURES_SOURCES_FILES}
-)
-
 set(DATA_STRUCTURES_INCLUDES
     .
     ./binarytree
@@ -170,6 +165,11 @@ set(DATA_STRUCTURES_INCLUDES
     ./priorityqueue
     ./priorityqueue/core
     ./priorityqueue/interfaces
+)
+
+set(DATA_STRUCTURES_SOURCES
+    ${DATA_STRUCTURES_INCLUDES_FILES}
+    ${DATA_STRUCTURES_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -339,15 +339,15 @@ set(BASE_SOURCES_FILES
     ../Base/core/XorBitOperator.cpp
 )
 
-set(BASE_SOURCES
-    ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES}
-)
-
 set(BASE_INCLUDES
     ../Base
     ../Base/core
     ../Base/interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
 )
 
 add_library(Base STATIC

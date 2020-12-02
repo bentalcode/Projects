@@ -276,7 +276,7 @@ public final class StringEquality {
     /**
      * Checks whether buffer strings are equals with start index and length.
      */
-    private static boolean equals(
+    public static boolean equals(
         char[] left,
         int leftStartIndex,
         char[] right,

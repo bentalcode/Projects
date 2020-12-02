@@ -59,15 +59,15 @@ set(PROBLEMS_SOURCES_FILES
     ./core/WordFinder.cpp
 )
 
-set(PROBLEMS_SOURCES
-    ${PROBLEMS_INCLUDES_FILES}
-    ${PROBLEMS_SOURCES_FILES}
-)
-
 set(PROBLEMS_INCLUDES
     .
     ./core
     ./interfaces
+)
+
+set(PROBLEMS_SOURCES
+    ${PROBLEMS_INCLUDES_FILES}
+    ${PROBLEMS_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -237,15 +237,15 @@ set(BASE_SOURCES_FILES
     ../Base/core/XorBitOperator.cpp
 )
 
-set(BASE_SOURCES
-    ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES}
-)
-
 set(BASE_INCLUDES
     ../Base
     ../Base/core
     ../Base/interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
 )
 
 add_library(Base STATIC

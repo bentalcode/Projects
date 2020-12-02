@@ -5,7 +5,7 @@ package base.core;
  */
 public final class StringSearch {
     /**
-     * Gets first index of a character.
+     * Gets an index of a character by searching from start.
      * Returns -1 if the character is not found.
      */
     public static int firstIndexOf(
@@ -22,7 +22,7 @@ public final class StringSearch {
     }
 
     /**
-     * Gets first index of a character.
+     * Gets an index of a character by searching from start. (Ignore Case.)
      * Returns -1 if the character is not found.
      */
     public static int firstIndexOfIgnoreCase(
@@ -39,7 +39,7 @@ public final class StringSearch {
     }
 
     /**
-     * Gets first index of a sub string.
+     * Gets an index of a sub string by searching from start.
      * Returns -1 if the character is not found.
      */
     public static int firstIndexOf(
@@ -56,7 +56,7 @@ public final class StringSearch {
     }
 
     /**
-     * Gets first index of a sub string.
+     * Gets an index of a sub string by searching from start. (Ignore Case.)
      * Returns -1 if the character is not found.
      */
     public static int firstIndexOfIgnoreCase(
@@ -73,7 +73,7 @@ public final class StringSearch {
     }
 
     /**
-     * Gets last index of a character.
+     * Gets an index of a character by searching from end.
      * Returns -1 if the character is not found.
      */
     public static int lastIndexOf(
@@ -90,7 +90,7 @@ public final class StringSearch {
     }
 
     /**
-     * Gets last index of a character.
+     * Gets an index of a character by searching from end. (Ignore Case.)
      * Returns -1 if the character is not found.
      */
     public static int lastIndexOfIgnoreCase(
@@ -107,7 +107,41 @@ public final class StringSearch {
     }
 
     /**
-     * Gets first index of a character.
+     * Gets an index of a sub string by searching from end.
+     * Returns -1 if the character is not found.
+     */
+    public static int lastIndexOf(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subStr) {
+
+        if (startIndex > endIndex) {
+            return -1;
+        }
+
+        return lastIndexOf(str, startIndex, endIndex, subStr, false);
+    }
+
+    /**
+     * Gets an index of a sub string by searching from end. (Ignore Case.)
+     * Returns -1 if the character is not found.
+     */
+    public static int lastIndexOfIgnoreCase(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subString) {
+
+        if (startIndex > endIndex) {
+            return -1;
+        }
+
+        return lastIndexOf(str, startIndex, endIndex, subString, true);
+    }
+
+    /**
+     * Gets an index of a character by searching from start.
      * Returns -1 if the character is not found.
      */
     private static int firstIndexOf(
@@ -141,7 +175,7 @@ public final class StringSearch {
     }
 
     /**
-     * Gets first index of a sub-string.
+     * Gets an index of a sub string by searching from start.
      * Returns -1 if the sub-string is not found.
      */
     private static int firstIndexOf(
@@ -193,7 +227,7 @@ public final class StringSearch {
     }
 
     /**
-     * Gets end index of a character.
+     * Gets an index of a character by searching from end.
      * Returns -1 if the character is not found.
      */
     private static int lastIndexOf(
@@ -217,6 +251,42 @@ public final class StringSearch {
             }
 
             if (currCharacter == character) {
+                return currIndex;
+            }
+
+            --currIndex;
+        }
+
+        return -1;
+    }
+
+    /**
+     * Gets an index of a sub string by searching from end.
+     * Returns -1 if the character is not found.
+     */
+    private static int lastIndexOf(
+        char[] str,
+        int startIndex,
+        int endIndex,
+        char[] subStr,
+        boolean ignoreCase) {
+
+        assert(str != null);
+        assert(startIndex >= 0 && startIndex < str.length);
+        assert(endIndex >= startIndex && endIndex < str.length);
+        assert(subStr != null);
+
+        int currIndex = endIndex;
+
+        while (currIndex >= startIndex) {
+            if (StringEquality.equals(
+                str,
+                currIndex,
+                subStr,
+                0,
+                subStr.length,
+                ignoreCase)) {
+
                 return currIndex;
             }
 

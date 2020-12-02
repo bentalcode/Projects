@@ -1,10 +1,7 @@
-package basicio.core;
+package base.core;
 
 import base.BaseException;
-import base.core.Conditions;
-import base.core.HashSets;
-import base.core.StringSearch;
-import basicio.interfaces.FileNameType;
+import base.interfaces.FileNameType;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,13 +58,13 @@ public final class FileNames {
             fileName,
             "The name of a file.");
 
-        int nameEndIndex = getNameEndIndex(fileName.toCharArray());
+        int extensionIndex = getFileExtensionIndex(fileName.toCharArray());
 
-        if (nameEndIndex == -1 || nameEndIndex >= fileName.length() - 2) {
+        if (extensionIndex == -1 || extensionIndex == 0) {
             return "";
         }
 
-        int extensionStartIndex = nameEndIndex + 2;
+        int extensionStartIndex = extensionIndex + 1;
         int extensionEndIndex = fileName.length() - 1;
 
         return fileName.substring(extensionStartIndex, extensionEndIndex + 1);
@@ -347,12 +344,22 @@ public final class FileNames {
      */
     private static int getNameEndIndex(char[] fileName) {
         assert(fileName != null);
-        int endIndex = StringSearch.lastIndexOf(fileName, 0, fileName.length - 1, extensionSeparator);
+        int endIndex = getFileExtensionIndex(fileName);
 
         if (endIndex == -1 || endIndex == 0) {
             return -1;
         }
 
+        return endIndex - 1;
+    }
+
+    /**
+     * Gets an end index of a name of a file (with out it's extension).
+     * Returns -1 if the name is empty.
+     */
+    public static int getFileExtensionIndex(char[] fileName) {
+        assert(fileName != null);
+        int endIndex = StringSearch.lastIndexOf(fileName, 0, fileName.length - 1, extensionSeparator);
         return endIndex - 1;
     }
 

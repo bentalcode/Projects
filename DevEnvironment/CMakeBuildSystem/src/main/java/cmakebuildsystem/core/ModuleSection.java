@@ -1,21 +1,30 @@
 package cmakebuildsystem.core;
 
 import base.core.Conditions;
+import base.core.Environment;
+import base.core.Pair;
 import base.core.Paths;
+import base.core.StringEquality;
 import base.core.UnixPath;
+import base.core.UnixPathBuilder;
+import base.core.UnixPathSettings;
+import base.interfaces.IPair;
 import base.interfaces.IPathMatcher;
 import cmakebuildsystem.interfaces.ICMakeBuildElement;
 import cmakebuildsystem.interfaces.ICMakeBuildCommand;
 import cmakebuildsystem.interfaces.ICMakeListsManifest;
 import cmakebuildsystem.interfaces.ICMakeModule;
+import cmakebuildsystem.interfaces.ICMakeModuleManifest;
 import cmakebuildsystem.interfaces.ICMakeVariable;
 import cmakebuildsystem.interfaces.ICMakeWriter;
 import cmakebuildsystem.interfaces.IIgnoreRules;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -69,11 +78,13 @@ public final class ModuleSection implements ICMakeBuildElement {
         // Writes includes files section...
         //
         List<String> includesDirectories = new ArrayList<>();
+        Map<String, String> buildFilePaths = new HashMap<>();
         ICMakeVariable includesFilesVariable = this.writeModuleIncludesFilesSection(
             writer,
-            moduleContextData.getManifest().getCMakeListsManifest(),
+            moduleContextData.getManifest(),
+            contextData,
             includesDirectories,
-            contextData);
+            buildFilePaths);
 
         writer.newLine();
 
@@ -82,19 +93,9 @@ public final class ModuleSection implements ICMakeBuildElement {
         //
         ICMakeVariable sourcesFilesVariable = this.writeModuleSourcesFilesSection(
             writer,
-            moduleContextData.getManifest().getCMakeListsManifest(),
-            contextData);
-
-        writer.newLine();
-
-        //
-        // Writes sources section...
-        //
-        ICMakeVariable sourcesVariable = this.writeModuleSourcesSection(
-            writer,
-            includesFilesVariable,
-            sourcesFilesVariable,
-            contextData);
+            moduleContextData.getManifest(),
+            contextData,
+            buildFilePaths);
 
         writer.newLine();
 
@@ -107,6 +108,27 @@ public final class ModuleSection implements ICMakeBuildElement {
             contextData,
             includesDirectories);
 
+        writer.newLine();
+
+        //
+        // Writes sources section...
+        //
+        ICMakeVariable sourcesVariable = this.writeModuleSourcesSection(
+            writer,
+            includesFilesVariable,
+            sourcesFilesVariable,
+            contextData);
+
+        //
+        // Configure the build files...
+        //
+        if (!buildFilePaths.isEmpty()) {
+            this.writeBuildFilesConfigurationSection(
+                writer,
+                buildFilePaths,
+                contextData);
+        }
+
         moduleContextData.setVariable(includesVariable);
         moduleContextData.setVariable(sourcesVariable);
     }
@@ -116,22 +138,32 @@ public final class ModuleSection implements ICMakeBuildElement {
      */
     private ICMakeVariable writeModuleIncludesFilesSection(
         ICMakeWriter writer,
-        ICMakeListsManifest manifest,
+        ICMakeModuleManifest manifest,
+        ICMakeBuildContextData contextData,
         List<String> includeDirectories,
-        ICMakeBuildContextData contextData) {
+        Map<String, String> buildFilePaths) {
 
         ICMakeVariable variable = CMakeVariable.createVariable(
             this.module.getName(),
-            manifest.getIncludesFilesProperty());
+            manifest.getCMakeListsManifest().getIncludesFilesProperty());
 
-        List<String> files = this.normalizeFilePaths(this.module.getHeaderFilesPaths());
+        List<String> filePaths = this.normalizeFilePaths(this.module.getHeaderFilesPaths());
 
-        List<String> directories = this.getDirectories(files);
+        transformBuildFilePaths(
+            this.module.getRootPath(),
+            this.module.getBuildFilesPaths(),
+            manifest.getProperties().getBuildFileExtensions(),
+            manifest.getProperties().getHeaderFileExtensions(),
+            buildFilePaths);
+
+        filePaths.addAll(buildFilePaths.values());
+
+        List<String> directories = this.getDirectories(filePaths);
         includeDirectories.addAll(directories);
 
         ICMakeBuildCommand setCommand = SetCommand.make(
             variable.getName(),
-            files);
+            filePaths);
 
         setCommand.compile(
             writer,
@@ -145,14 +177,22 @@ public final class ModuleSection implements ICMakeBuildElement {
      */
     private ICMakeVariable writeModuleSourcesFilesSection(
         ICMakeWriter writer,
-        ICMakeListsManifest manifest,
-        ICMakeBuildContextData contextData) {
+        ICMakeModuleManifest manifest,
+        ICMakeBuildContextData contextData,
+        Map<String, String> buildFilePaths) {
 
         ICMakeVariable variable = CMakeVariable.createVariable(
             this.module.getName(),
-            manifest.getSourcesFilesProperty());
+            manifest.getCMakeListsManifest().getSourcesFilesProperty());
 
         List<String> files = this.normalizeFilePaths(this.module.getSourceFilesPaths());
+
+        transformBuildFilePaths(
+            this.module.getRootPath(),
+            this.module.getBuildFilesPaths(),
+            manifest.getProperties().getBuildFileExtensions(),
+            manifest.getProperties().getSourceFileExtensions(),
+            buildFilePaths);
 
         ICMakeBuildCommand setCommand = SetCommand.make(
             variable.getName(),
@@ -163,6 +203,30 @@ public final class ModuleSection implements ICMakeBuildElement {
             contextData);
 
         return variable;
+    }
+
+    /**
+     * Writes an includes section of a module.
+     */
+    private ICMakeVariable writeModuleIncludesSection(
+        ICMakeWriter writer,
+        ICMakeListsManifest manifest,
+        ICMakeBuildContextData contextData,
+        List<String> directories) {
+
+        ICMakeVariable includesVariable = CMakeVariable.createVariable(
+            this.module.getName(),
+            manifest.getIncludesProperty());
+
+        ICMakeBuildCommand setCommand = SetCommand.make(
+            includesVariable.getName(),
+            directories);
+
+        setCommand.compile(
+            writer,
+            contextData);
+
+        return includesVariable;
     }
 
     /**
@@ -193,27 +257,22 @@ public final class ModuleSection implements ICMakeBuildElement {
     }
 
     /**
-     * Writes an includes section of a module.
+     * Writes the build files configuration section.
      */
-    private ICMakeVariable writeModuleIncludesSection(
+    private void writeBuildFilesConfigurationSection(
         ICMakeWriter writer,
-        ICMakeListsManifest manifest,
-        ICMakeBuildContextData contextData,
-        List<String> directories) {
+        Map<String, String> paths,
+        ICMakeBuildContextData contextData) {
 
-        ICMakeVariable includesVariable = CMakeVariable.createVariable(
-            this.module.getName(),
-            manifest.getIncludesProperty());
+        for (Map.Entry<String, String> entry : paths.entrySet()) {
+            ICMakeBuildElement buildCommand = ConfigureFileCommand.make(
+                entry.getKey(),
+                entry.getValue());
 
-        ICMakeBuildCommand setCommand = SetCommand.make(
-            includesVariable.getName(),
-            directories);
-
-        setCommand.compile(
-            writer,
-            contextData);
-
-        return includesVariable;
+            buildCommand.compile(
+                writer,
+                contextData);
+        }
     }
 
     /**
@@ -242,6 +301,74 @@ public final class ModuleSection implements ICMakeBuildElement {
         Collections.sort(result);
 
         return result;
+    }
+
+    /**
+     * Transforms the build file paths.
+     */
+    private static void transformBuildFilePaths(
+        Path rootPath,
+        List<Path> paths,
+        List<String> buildFileExtensions,
+        List<String> expectedExtensions,
+        Map<String, String> result) {
+
+        for (Path path : paths) {
+            String sourcePath = path.toString();
+
+            for (String buildFileExtension : buildFileExtensions) {
+                if (sourcePath.endsWith(buildFileExtension)) {
+
+                    for (String expectedExtension : expectedExtensions) {
+                        int expectedExtensionStartIndex =
+                            sourcePath.length() - buildFileExtension.length() - expectedExtension.length();
+
+                        int expectedExtensionEndIndex =
+                            expectedExtensionStartIndex + expectedExtension.length() - 1;
+
+                        if (StringEquality.equals(
+                                sourcePath, expectedExtensionStartIndex, expectedExtensionEndIndex,
+                                expectedExtension, 0, expectedExtension.length() - 1)) {
+
+                            IPair<String, String> transformedBuildPath = transformBuildFilePath(
+                                rootPath,
+                                sourcePath,
+                                buildFileExtension);
+
+                            result.put(
+                                transformedBuildPath.first(),
+                                transformedBuildPath.second());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Transforms the build file path.
+     */
+    private static IPair<String, String> transformBuildFilePath(
+        Path rootPath,
+        String path,
+        String buildFileExtension) {
+
+        String relativePath = Paths.getRelativePath(path, rootPath.toString());
+        String sourcePath = Paths.separatorToUnix(relativePath);
+        String transformedSourcePath = sourcePath.substring(
+            0,
+            sourcePath.length() - buildFileExtension.length());
+
+        transformedSourcePath = Paths.normalizePath(
+            transformedSourcePath,
+            UnixPath.directorySeparator);
+
+        String targetPath = new UnixPathBuilder(Paths.currentDirectory)
+            .addComponent(ICMakeListsConstants.buildDirectoryName)
+            .addComponent(transformedSourcePath)
+            .build();
+
+        return Pair.make(sourcePath, targetPath);
     }
 
     /**

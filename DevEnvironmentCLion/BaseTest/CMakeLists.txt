@@ -16,7 +16,6 @@ set(VERSION_MAJOR "1")
 set(VERSION_MINOR "1")
 set(VERSION_PATCH "0")
 
-# configure_file(./BuildConfig.h.in ./BuildConfig.h)
 
 macro(print_all_variables)
     message(STATUS "print_all_variables------------------------------------------{")
@@ -63,14 +62,14 @@ set(BASE_TEST_SOURCES_FILES
     ./main.cpp
 )
 
-set(BASE_TEST_SOURCES
-    ${BASE_TEST_INCLUDES_FILES}
-    ${BASE_TEST_SOURCES_FILES}
-)
-
 set(BASE_TEST_INCLUDES
     ./core
     ./interfaces
+)
+
+set(BASE_TEST_SOURCES
+    ${BASE_TEST_INCLUDES_FILES}
+    ${BASE_TEST_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -240,15 +239,15 @@ set(BASE_SOURCES_FILES
     ../Base/core/XorBitOperator.cpp
 )
 
-set(BASE_SOURCES
-    ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES}
-)
-
 set(BASE_INCLUDES
     ../Base
     ../Base/core
     ../Base/interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
 )
 
 add_library(Base STATIC
@@ -269,15 +268,15 @@ set(TEST_BASE_SOURCES_FILES
     ../TestBase/core/PreCompiled.cpp
 )
 
-set(TEST_BASE_SOURCES
-    ${TEST_BASE_INCLUDES_FILES}
-    ${TEST_BASE_SOURCES_FILES}
-)
-
 set(TEST_BASE_INCLUDES
     ../TestBase
     ../TestBase/core
     ../TestBase/interfaces
+)
+
+set(TEST_BASE_SOURCES
+    ${TEST_BASE_INCLUDES_FILES}
+    ${TEST_BASE_SOURCES_FILES}
 )
 
 add_library(TestBase STATIC
@@ -315,15 +314,15 @@ set(UNIT_TESTING_SOURCES_FILES
     ../UnitTesting/core/UnitTestingConsts.cpp
 )
 
-set(UNIT_TESTING_SOURCES
-    ${UNIT_TESTING_INCLUDES_FILES}
-    ${UNIT_TESTING_SOURCES_FILES}
-)
-
 set(UNIT_TESTING_INCLUDES
     ../UnitTesting
     ../UnitTesting/core
     ../UnitTesting/interfaces
+)
+
+set(UNIT_TESTING_SOURCES
+    ${UNIT_TESTING_INCLUDES_FILES}
+    ${UNIT_TESTING_SOURCES_FILES}
 )
 
 add_library(UnitTesting STATIC

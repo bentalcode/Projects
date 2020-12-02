@@ -39,15 +39,15 @@ set(CONCURRENCY_SOURCES_FILES
     ./core/PreCompiled.cpp
 )
 
-set(CONCURRENCY_SOURCES
-    ${CONCURRENCY_INCLUDES_FILES}
-    ${CONCURRENCY_SOURCES_FILES}
-)
-
 set(CONCURRENCY_INCLUDES
     .
     ./core
     ./interfaces
+)
+
+set(CONCURRENCY_SOURCES
+    ${CONCURRENCY_INCLUDES_FILES}
+    ${CONCURRENCY_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -217,15 +217,15 @@ set(BASE_SOURCES_FILES
     ../Base/core/XorBitOperator.cpp
 )
 
-set(BASE_SOURCES
-    ${BASE_INCLUDES_FILES}
-    ${BASE_SOURCES_FILES}
-)
-
 set(BASE_INCLUDES
     ../Base
     ../Base/core
     ../Base/interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
 )
 
 add_library(Base STATIC
