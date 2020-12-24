@@ -1,6 +1,7 @@
 package problems.core;
 
 import base.core.Conditions;
+import base.core.Indexes;
 import base.interfaces.ICalculator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -60,7 +61,7 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
 
         int minStartIndex = startIndex;
         int minEndIndex = endIndex;
-        int minLength = minEndIndex - minStartIndex + 1;
+        int minLength = Indexes.size(minStartIndex, minEndIndex);
 
         for (int currIndex = endIndex + 1; currIndex < this.src.length; ++currIndex) {
             char currValue = this.src[currIndex];
@@ -69,7 +70,7 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
                 continue;
             }
 
-            MinimumWindowSubstring.updateCharacterCounter(
+            updateCharacterCounter(
                 characterCounter,
                 currValue,
                 1);
@@ -80,7 +81,7 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
                 currIndex,
                 characterCounter);
 
-            int currLength = currIndex - startIndex + 1;
+            int currLength = Indexes.size(startIndex, currIndex);
 
             if (currLength < minLength) {
                 minStartIndex = startIndex;
@@ -106,7 +107,7 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
             char currValue = src[i];
 
             if (this.characters.contains(currValue)) {
-                MinimumWindowSubstring.updateCharacterCounter(characterCounter, currValue, 1);
+                updateCharacterCounter(characterCounter, currValue, 1);
 
                 if (characterCounter.size() == this.characters.size()) {
                     return i;
