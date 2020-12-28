@@ -79,7 +79,6 @@ public final class Interval<Type extends Comparable<Type>> implements IInterval<
         return sortedIntervals;
     }
 
-
     /**
      * Gets the string representation of an interval.
      */

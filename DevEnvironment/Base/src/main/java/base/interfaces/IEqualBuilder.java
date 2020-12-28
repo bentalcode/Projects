@@ -51,6 +51,16 @@ public interface IEqualBuilder {
     IEqualBuilder withDouble(double lhs, double rhs);
 
     /**
+     * With a double and an epsilon.
+     */
+    IEqualBuilder withDouble(double lhs, double rhs, double epsilon);
+
+    /**
+     * With a double and a default epsilon.
+     */
+    IEqualBuilder withAlmostDouble(double lhs, double rhs);
+
+    /**
      * With a character.
      */
     IEqualBuilder withCharacter(char lhs, char rhs);

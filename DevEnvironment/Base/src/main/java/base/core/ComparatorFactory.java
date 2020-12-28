@@ -30,6 +30,22 @@ public final class ComparatorFactory implements IComparatorFactory {
     }
 
     /**
+     * Creates an almost double comparator with a default epsilon.
+     */
+    @Override
+    public IBinaryComparator<Double> createAlmostDoubleComparator() {
+        return new DoubleAlmostComparator();
+    }
+
+    /**
+     * Creates an almost double comparator with a specified epsilon.
+     */
+    @Override
+    public IBinaryComparator<Double> createAlmostDoubleComparator(double epsilon) {
+        return new DoubleAlmostComparator(epsilon);
+    }
+
+    /**
      * Creates an array comparator.
      */
     @Override

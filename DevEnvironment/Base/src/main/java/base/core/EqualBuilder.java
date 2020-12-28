@@ -145,6 +145,36 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
+     * With a double and an epsilon.
+     */
+    @Override
+    public IEqualBuilder withDouble(double lhs, double rhs, double epsilon) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        IEquatableComparator<Double> comparator = this.comparatorFactory.createAlmostDoubleComparator();
+        this.equalityStatus = comparator.isEqual(lhs, rhs);
+
+        return this;
+    }
+
+    /**
+     * With a double and a default epsilon.
+     */
+    @Override
+    public IEqualBuilder withAlmostDouble(double lhs, double rhs) {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        IEquatableComparator<Double> comparator = this.comparatorFactory.createAlmostDoubleComparator();
+        this.equalityStatus = comparator.isEqual(lhs, rhs);
+
+        return this;
+    }
+
+    /**
      * With a character.
      */
     @Override

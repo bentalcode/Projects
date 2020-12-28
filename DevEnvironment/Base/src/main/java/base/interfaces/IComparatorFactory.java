@@ -13,6 +13,16 @@ public interface IComparatorFactory {
     <T extends Comparable<T>> IBinaryComparator<T> createComparator();
 
     /**
+     * Creates an almost double comparator with a default epsilon.
+     */
+    IBinaryComparator<Double> createAlmostDoubleComparator();
+
+    /**
+     * Creates an almost double comparator with a specified epsilon.
+     */
+    IBinaryComparator<Double> createAlmostDoubleComparator(double epsilon);
+
+    /**
      * Creates an array comparator.
      */
     <T extends Comparable<T>> IArrayComparator<T> createArrayComparator();
