@@ -79,7 +79,7 @@ public final class MultiLevelDoublyLinkedListTest {
         List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
 
         for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
-            IMultiLevelDoublyLinkedList<Integer> list = this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+            IMultiLevelDoublyLinkedList<Integer> list = createMultiLevelDoublyLinkedList(listData.getCreationData());
             List<List<Integer>> expectedLevels = listData.getLevels();
 
             this.testGetLevels(list, expectedLevels);
@@ -94,7 +94,7 @@ public final class MultiLevelDoublyLinkedListTest {
         List<IMultiLevelDoublyLinkedListData<Integer>> data = this.testData.getMultiLevelDoublyLinkedListData().getData();
 
         for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
-            IMultiLevelDoublyLinkedList<Integer> list = this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+            IMultiLevelDoublyLinkedList<Integer> list = createMultiLevelDoublyLinkedList(listData.getCreationData());
             List<List<Integer>> expectedLevels = listData.getVerticalLevels();
 
             this.testGetVerticalLevels(list, expectedLevels);
@@ -110,7 +110,7 @@ public final class MultiLevelDoublyLinkedListTest {
 
         for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
             IMultiLevelDoublyLinkedList<Integer> list =
-                this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+                createMultiLevelDoublyLinkedList(listData.getCreationData());
 
             List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevels =
                 listData.getNodesByLevels();
@@ -128,7 +128,7 @@ public final class MultiLevelDoublyLinkedListTest {
 
         for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
             IMultiLevelDoublyLinkedList<Integer> list =
-                this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+                createMultiLevelDoublyLinkedList(listData.getCreationData());
 
             List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevels =
                 listData.getNodesByVerticalLevels();
@@ -146,7 +146,7 @@ public final class MultiLevelDoublyLinkedListTest {
 
         for (IMultiLevelDoublyLinkedListData<Integer> listData : data) {
             IMultiLevelDoublyLinkedList<Integer> list =
-                this.createMultiLevelDoublyLinkedList(listData.getCreationData());
+                createMultiLevelDoublyLinkedList(listData.getCreationData());
 
             List<List<IMultiLevelDoublyLinkedListNode<Integer>>> nodesByLevels =
                 listData.getNodesByDepthLevels();
@@ -162,7 +162,7 @@ public final class MultiLevelDoublyLinkedListTest {
         //
         // Create the container...
         //
-        IMultiLevelDoublyLinkedList<T> container = this.createMultiLevelDoublyLinkedList(data.getCreationData());
+        IMultiLevelDoublyLinkedList<T> container = createMultiLevelDoublyLinkedList(data.getCreationData());
 
         //
         // Test the data of the container...
@@ -180,7 +180,7 @@ public final class MultiLevelDoublyLinkedListTest {
         //
         // Create the container...
         //
-        IMultiLevelDoublyLinkedList<T> container = this.createMultiLevelDoublyLinkedList(data.getCreationData());
+        IMultiLevelDoublyLinkedList<T> container = createMultiLevelDoublyLinkedList(data.getCreationData());
 
         //
         // Test the default iterator of the container...
@@ -291,7 +291,7 @@ public final class MultiLevelDoublyLinkedListTest {
     /**
      * Creates a multi-level doubly linked list.
      */
-    private <T extends Comparable<T>> IMultiLevelDoublyLinkedList<T> createMultiLevelDoublyLinkedList(
+    private static <T extends Comparable<T>> IMultiLevelDoublyLinkedList<T> createMultiLevelDoublyLinkedList(
         ITriple<IMatrix<T>, boolean[][], boolean[][]> data) {
 
         IMultiLevelDoublyLinkedList<T> result = new MultiLevelDoublyLinkedList<>();

@@ -20,6 +20,7 @@ import datastructures.heap.core.HeapTestData;
 import datastructures.heap.interfaces.IHeapTestData;
 import datastructures.interfaces.ITestData;
 import datastructures.linkedlist.core.LinkedListTestData;
+import datastructures.linkedlist.interfaces.ILinkedListData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.core.ListTestData;
 import datastructures.list.core.TwoDimensionalListTestData;
@@ -29,6 +30,8 @@ import datastructures.matrix.core.MatrixTestData;
 import datastructures.matrix.interfaces.IMatrixTestData;
 import datastructures.priorityqueue.core.PriorityQueueTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
+import datastructures.queue.core.QueueTestData;
+import datastructures.queue.interfaces.IQueueTestData;
 import datastructures.stack.core.StackTestData;
 import datastructures.stack.interfaces.IStackTestData;
 import datastructures.trie.core.TrieTestData;
@@ -108,6 +111,14 @@ public final class TestData implements ITestData {
     @Override
     public IMultiLevelDoublyLinkedListTestData getMultiLevelDoublyLinkedListData() {
         return new MultiLevelDoublyLinkedListTestData();
+    }
+
+    /**
+     * Gets the data of tests of a queue.
+     */
+    @Override
+    public IQueueTestData getQueueData() {
+        return new QueueTestData();
     }
 
     /**

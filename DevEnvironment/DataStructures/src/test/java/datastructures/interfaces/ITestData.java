@@ -9,11 +9,13 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.heap.interfaces.IHeapTestData;
+import datastructures.linkedlist.interfaces.ILinkedListData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.interfaces.IListTestData;
 import datastructures.list.interfaces.ITwoDimensionalListTestData;
 import datastructures.matrix.interfaces.IMatrixTestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueueTestData;
+import datastructures.queue.interfaces.IQueueTestData;
 import datastructures.stack.interfaces.IStackTestData;
 import datastructures.trie.interfaces.ITrieTestData;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListTestData;
@@ -61,6 +63,11 @@ public interface ITestData {
      * Gets the data of tests of a multi-level doubly linked list.
      */
     IMultiLevelDoublyLinkedListTestData getMultiLevelDoublyLinkedListData();
+
+    /**
+     * Gets the data of tests of a queue.
+     */
+    IQueueTestData getQueueData();
 
     /**
      * Gets the data of tests of a priority queue.

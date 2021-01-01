@@ -6,6 +6,8 @@ import base.interfaces.ITriple;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListData;
+import testbase.core.CollectionValues;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,8 +61,8 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
      * Gets the data of list.
      */
     private IDoublyLinkedListData<Integer> getListData(int size) {
-        List<Integer> values = this.createListValues(size);
-        List<IDoublyLinkedListNode<Integer>> nodes = this.createListNodes(values);
+        List<Integer> values = CollectionValues.createListValues(size);
+        List<IDoublyLinkedListNode<Integer>> nodes = createListNodes(values);
 
         return new DoublyLinkedListData<>(
             values,
@@ -68,23 +70,9 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     }
 
     /**
-     * Creates values of a doubly linked list.
-     */
-    private List<Integer> createListValues(int size) {
-        List<Integer> result = new ArrayList<>();
-
-        for (int i = 0; i < size; ++i) {
-            int value = i + 1;
-            result.add(value);
-        }
-
-        return result;
-    }
-
-    /**
      * Creates nodes of a doubly linked list.
      */
-    private <TValue extends Comparable<TValue>> List<IDoublyLinkedListNode<TValue>> createListNodes(List<TValue> values) {
+    private static <TValue extends Comparable<TValue>> List<IDoublyLinkedListNode<TValue>> createListNodes(List<TValue> values) {
         List<IDoublyLinkedListNode<TValue>> result = new ArrayList<>(values.size());
 
         for (TValue value : values) {

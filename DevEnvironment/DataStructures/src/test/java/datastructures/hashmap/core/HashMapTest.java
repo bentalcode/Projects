@@ -79,7 +79,7 @@ public final class HashMapTest {
      * Tests the creation logic of a hash-map.
      */
     private <TKey extends Comparable<TKey>, TValue> void testCreation(IMapData<TKey, TValue> data) {
-        IHashMap<TKey, TValue> map = this.createHashMap(data);
+        IHashMap<TKey, TValue> map = createHashMap(data);
 
         this.assertion.assertEqualsWithIterators(
             map.getIterator(),
@@ -91,7 +91,7 @@ public final class HashMapTest {
      * Tests the creation with deletion logic of a hash-map.
      */
     private <TKey extends Comparable<TKey>, TValue> void testCreationWithDeletion(IMapData<TKey, TValue> data) {
-        IHashMap<TKey, TValue> map = this.createHashMap(data);
+        IHashMap<TKey, TValue> map = createHashMap(data);
 
         this.assertion.assertEqualsWithIterators(
             map.getIterator(),
@@ -129,7 +129,7 @@ public final class HashMapTest {
         //
         // Create the container...
         //
-        IHashMap<TKey, TValue> container = this.createHashMap(data);
+        IHashMap<TKey, TValue> container = createHashMap(data);
 
         //
         // Test the default iterator of the container...
@@ -192,7 +192,7 @@ public final class HashMapTest {
     /**
      * Creates a hash map.
      */
-    private <TKey extends Comparable<TKey>, TValue> IHashMap<TKey, TValue> createHashMap(
+    private static <TKey extends Comparable<TKey>, TValue> IHashMap<TKey, TValue> createHashMap(
         IMapData<TKey, TValue> data) {
 
         IHashMapBuilder<TKey, TValue> mapBuilder = new HashMapBuilder<>();

@@ -106,7 +106,7 @@ public final class BitArrayTest {
      * Tests the creation logic of a bit array.
      */
     private void testCreation(IBitArrayData data) {
-        IBitArray bitArray = this.createBitArray(data);
+        IBitArray bitArray = createBitArray(data);
 
         this.assertion.assertEquals(
             bitArray.size(),
@@ -123,7 +123,7 @@ public final class BitArrayTest {
      * Tests the turn on and off logic of a bit array.
      */
     private void testTurnOnOff(IBitArrayData data) {
-        IBitArray bitArray = this.createBitArray(data);
+        IBitArray bitArray = createBitArray(data);
         IBitArray expectedBitArray = BitArray.copy(bitArray);
         expectedBitArray.flip();
 
@@ -158,7 +158,7 @@ public final class BitArrayTest {
         //
         // Create the container...
         //
-        IBitArray container = this.createBitArray(data);
+        IBitArray container = createBitArray(data);
 
         //
         // Test the default iterator of the container...
@@ -190,7 +190,7 @@ public final class BitArrayTest {
      * Tests the clearing logic of a bit array.
      */
     private void testClearing(IBitArrayData data) {
-        IBitArray bitArray = this.createBitArray(data);
+        IBitArray bitArray = createBitArray(data);
 
         bitArray.clear();
         int numberOfOnes = bitArray.cardinality();
@@ -222,7 +222,7 @@ public final class BitArrayTest {
      * Tests the enabling logic of a bit array.
      */
     private void testEnabling(IBitArrayData data) {
-        IBitArray bitArray = this.createBitArray(data);
+        IBitArray bitArray = createBitArray(data);
 
         bitArray.enable();
         int numberOfOnes = bitArray.cardinality();
@@ -254,7 +254,7 @@ public final class BitArrayTest {
      * Tests the cardinality logic of a bit array.
      */
     private void testCardinality(IBitArrayData data) {
-        IBitArray bitArray = this.createBitArray(data);
+        IBitArray bitArray = createBitArray(data);
 
         int result = bitArray.cardinality();
 
@@ -275,7 +275,7 @@ public final class BitArrayTest {
     /**
      * Creates a bit array.
      */
-    private IBitArray createBitArray(IBitArrayData data) {
+    private static IBitArray createBitArray(IBitArrayData data) {
         IBitArray bitArray = BitArray.make(data.getData().size());
 
         for (int i = 0; i < bitArray.size(); ++i) {

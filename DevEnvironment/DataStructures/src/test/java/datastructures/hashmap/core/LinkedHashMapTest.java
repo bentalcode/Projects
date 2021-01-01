@@ -81,7 +81,7 @@ public final class LinkedHashMapTest {
     private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testCreation(
         IMapData<TKey, TValue> data) {
 
-        ILinkedHashMap<TKey, TValue> map = this.createLinkedHashMap(data);
+        ILinkedHashMap<TKey, TValue> map = createLinkedHashMap(data);
 
         this.assertion.assertEqualsWithIterators(
             map.getIterator(),
@@ -95,7 +95,7 @@ public final class LinkedHashMapTest {
     private <TKey extends Comparable<TKey>, TValue extends Comparable<TValue>> void testCreationWithDeletion(
         IMapData<TKey, TValue> data) {
 
-        ILinkedHashMap<TKey, TValue> map = this.createLinkedHashMap(data);
+        ILinkedHashMap<TKey, TValue> map = createLinkedHashMap(data);
 
         this.assertion.assertEqualsWithIterators(
             map.getIterator(),
@@ -133,7 +133,7 @@ public final class LinkedHashMapTest {
         //
         // Create the container...
         //
-        ILinkedHashMap<TKey, TValue> container = this.createLinkedHashMap(data);
+        ILinkedHashMap<TKey, TValue> container = createLinkedHashMap(data);
 
         //
         // Test the default iterator of the container...
@@ -196,7 +196,7 @@ public final class LinkedHashMapTest {
     /**
      * Creates a linked hash map.
      */
-    private <TKey extends Comparable<TKey>, TValue> ILinkedHashMap<TKey, TValue> createLinkedHashMap(
+    private static <TKey extends Comparable<TKey>, TValue> ILinkedHashMap<TKey, TValue> createLinkedHashMap(
         IMapData<TKey, TValue> data) {
 
         ILinkedHashMapBuilder<TKey, TValue> mapBuilder = new LinkedHashMapBuilder<>();

@@ -88,7 +88,7 @@ public final class DoublyLinkedListTest {
         //
         // Create the container...
         //
-        IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getValues());
+        IDoublyLinkedList<T> container = createDoublyLinkedList(data.getValues());
 
         //
         // Test the data of the container...
@@ -106,7 +106,7 @@ public final class DoublyLinkedListTest {
         //
         // Create the container...
         //
-        IDoublyLinkedList<T> container = this.createDoublyLinkedList(data.getValues());
+        IDoublyLinkedList<T> container = createDoublyLinkedList(data.getValues());
 
         //
         // Test the default iterator of the container...
@@ -186,7 +186,7 @@ public final class DoublyLinkedListTest {
     /**
      * Creates a doubly linked list.
      */
-    private <T extends Comparable<T>> IDoublyLinkedList<T> createDoublyLinkedList(List<T> data) {
+    private static <T extends Comparable<T>> IDoublyLinkedList<T> createDoublyLinkedList(List<T> data) {
         IDoublyLinkedList<T> result = new DoublyLinkedList<>();
 
         for (T element : data) {

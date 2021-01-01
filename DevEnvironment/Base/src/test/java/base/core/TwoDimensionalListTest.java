@@ -66,7 +66,7 @@ public final class TwoDimensionalListTest {
         //
         // Create the container...
         //
-        ITwoDimensionalList<T> container = this.createTwoDimensionalList(data);
+        ITwoDimensionalList<T> container = createTwoDimensionalList(data);
 
         //
         // Test the data of the container...
@@ -84,7 +84,7 @@ public final class TwoDimensionalListTest {
         //
         // Create the container...
         //
-        ITwoDimensionalList<T> container = this.createTwoDimensionalList(data);
+        ITwoDimensionalList<T> container = createTwoDimensionalList(data);
 
         //
         // Test the default iterator of the container...
@@ -107,7 +107,7 @@ public final class TwoDimensionalListTest {
     /**
      * Creates a two dimensional list.
      */
-    private <T extends Comparable<T>> ITwoDimensionalList<T> createTwoDimensionalList(List<List<T>> data) {
+    private static <T extends Comparable<T>> ITwoDimensionalList<T> createTwoDimensionalList(List<List<T>> data) {
         ITwoDimensionalList<T> result = new TwoDimensionalList<>(data);
         return result;
     }
