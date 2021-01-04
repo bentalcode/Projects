@@ -1,7 +1,7 @@
 package clientserver.core;
 
 import base.core.Conditions;
-import base.interfaces.IRunnable;
+import base.interfaces.ILogic;
 import clientserver.ClientServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import java.time.Duration;
 /**
  * The IdleHandler class implements an idle handler.
  */
-public final class IdleHandler implements IRunnable {
+public final class IdleHandler implements ILogic {
     private final Duration duration;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());

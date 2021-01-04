@@ -1,7 +1,7 @@
 package clientserver.core;
 
 import base.core.Conditions;
-import base.interfaces.IRunnable;
+import base.interfaces.ILogic;
 import clientserver.interfaces.IRetryLogic;
 import clientserver.interfaces.IRetryHandler;
 import clientserver.interfaces.IRetryPolicy;
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class RetryHandler implements IRetryHandler {
     private final IRetryPolicy policy;
-    private final IRunnable idleLogic;
+    private final ILogic idleLogic;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -29,7 +29,7 @@ public final class RetryHandler implements IRetryHandler {
     /**
      * The RetryHandler constructor.
      */
-    public RetryHandler(IRetryPolicy policy, IRunnable idleLogic) {
+    public RetryHandler(IRetryPolicy policy, ILogic idleLogic) {
         Conditions.validateNotNull(
             policy,
             "The retry policy.");
