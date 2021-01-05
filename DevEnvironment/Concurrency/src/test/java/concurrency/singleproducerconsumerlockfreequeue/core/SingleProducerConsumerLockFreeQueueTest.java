@@ -42,43 +42,43 @@ public final class SingleProducerConsumerLockFreeQueueTest {
     }
 
     /**
-     * Tests the logic of a single producer-consumer.
+     * Tests the logic of a single producer-consumer circular buffer queue.
      */
     @Test
-    public void singleProducerConsumerTest() {
+    public void singleProducerConsumerCircularBufferQueueTest() {
         for (int size = 1; size <= 100; ++size) {
             int capacity = size;
             List<Integer> values = CollectionValues.createListValues(size);
-            this.testSingleProducerConsumer(Integer.class, values, capacity);
+            this.testSingleProducerConsumerCircularBufferQueue(Integer.class, values, capacity);
         }
     }
 
     /**
-     * Tests the logic of a single producer-consumer with a fixed capacity.
+     * Tests the logic of a single producer-consumer circular buffer queue with a fixed capacity.
      */
     @Test
-    public void singleProducerConsumerWithFixedCapacityTest() {
+    public void singleProducerConsumerCircularBufferQueueWithFixedCapacityTest() {
         int capacity = 10;
 
         for (int size = 1; size <= 100; ++size) {
             List<Integer> values = CollectionValues.createListValues(size);
-            this.testSingleProducerConsumer(Integer.class, values, capacity);
+            this.testSingleProducerConsumerCircularBufferQueue(Integer.class, values, capacity);
         }
     }
 
     /**
-     * Tests the logic of a single producer-consumer.
+     * Tests the logic of a single producer-consumer circular buffer queue.
      */
-    private <T extends Comparable<T>> void testSingleProducerConsumer(
+    private <T extends Comparable<T>> void testSingleProducerConsumerCircularBufferQueue(
         Class<T> classType,
         List<T> data,
         int capacity) {
 
-        IConcurrentQueue<T> queue = new SingleProducerConsumerLockFreeQueue<>(classType, capacity);
+        IConcurrentQueue<T> queue = new SingleProducerConsumerCircularBufferQueue<>(classType, capacity);
         IMessageQueueTrackingInformation messageQueueTrackingInformation = new MessageQueueTrackingInformation();
 
-        ConcurrentSingleProducerConsumerLockFreeQueue<T> concurrentQueue =
-            ConcurrentSingleProducerConsumerLockFreeQueue.make(
+        ConcurrentSingleProducerConsumerCircularBufferQueue<T> concurrentQueue =
+            ConcurrentSingleProducerConsumerCircularBufferQueue.make(
                 queue,
                 messageQueueTrackingInformation);
 

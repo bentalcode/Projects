@@ -11,10 +11,10 @@ import concurrency.interfaces.IMessageQueueTrackingInformation;
 import java.time.Duration;
 
 /**
- * The ConcurrentSingleProducerConsumerLockFreeQueue class implements a
- * concurrent single producer consumer lock free queue.
+ * The ConcurrentSingleProducerConsumerCircularBufferQueue class implements a
+ * a concurrent single producer consumer lock free queue by using a circular buffer.
  */
-public final class ConcurrentSingleProducerConsumerLockFreeQueue<T> extends AbstractRunnable {
+public final class ConcurrentSingleProducerConsumerCircularBufferQueue<T> extends AbstractRunnable {
     private static final Duration defaultShutdownTimeout = Duration.ofSeconds(60);
     private static final Duration defaultShutdownPollingDuration = Duration.ofSeconds(1);
 
@@ -28,9 +28,9 @@ public final class ConcurrentSingleProducerConsumerLockFreeQueue<T> extends Abst
     /**
      * Creates a new concurrent single producer consumer lock free queue.
      */
-    public static <T> ConcurrentSingleProducerConsumerLockFreeQueue<T> make(IConcurrentQueue<T> queue) {
+    public static <T> ConcurrentSingleProducerConsumerCircularBufferQueue<T> make(IConcurrentQueue<T> queue) {
 
-        return new ConcurrentSingleProducerConsumerLockFreeQueue<>(
+        return new ConcurrentSingleProducerConsumerCircularBufferQueue<>(
             queue,
             defaultShutdownTimeout,
             defaultShutdownPollingDuration,
@@ -40,11 +40,11 @@ public final class ConcurrentSingleProducerConsumerLockFreeQueue<T> extends Abst
     /**
      * Creates a new concurrent single producer consumer lock free queue.
      */
-    public static <T> ConcurrentSingleProducerConsumerLockFreeQueue<T> make(
+    public static <T> ConcurrentSingleProducerConsumerCircularBufferQueue<T> make(
         IConcurrentQueue<T> queue,
         IMessageQueueTrackingInformation messageQueueTrackingInformation) {
 
-        return new ConcurrentSingleProducerConsumerLockFreeQueue<>(
+        return new ConcurrentSingleProducerConsumerCircularBufferQueue<>(
             queue,
             defaultShutdownTimeout,
             defaultShutdownPollingDuration,
@@ -54,7 +54,7 @@ public final class ConcurrentSingleProducerConsumerLockFreeQueue<T> extends Abst
     /**
      * The ConcurrentSingleProducerConsumerLockFreeQueue constructor.
      */
-    public ConcurrentSingleProducerConsumerLockFreeQueue(
+    public ConcurrentSingleProducerConsumerCircularBufferQueue(
         IConcurrentQueue<T> queue,
         Duration shutdownTimeout,
         Duration shutdownPollingDuration,

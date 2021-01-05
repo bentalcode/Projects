@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * The LockFreeSingleProducerConsumerQueue class implements a single producer consumer
+ * The SingleProducerConsumerCircularBufferQueue class implements a single producer consumer
  * lock free queue by using a circular buffer.
  * The wait-free and lock-free circular queue is a useful technique for time and memory sensitive
  * systems.
@@ -20,16 +20,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  * in a range of areas, from interrupt and signal handlers to real-time systems or other time
  * sensitive software.
  */
-public final class SingleProducerConsumerLockFreeQueue<T> implements IConcurrentQueue<T> {
+public final class SingleProducerConsumerCircularBufferQueue<T> implements IConcurrentQueue<T> {
     private final int capacity;
     private final T[] elements;
     private final AtomicInteger headIndex = new AtomicInteger();
     private final AtomicInteger tailIndex = new AtomicInteger();
 
     /**
-     * The LockFreeSingleProducerConsumerQueue constructor.
+     * The SingleProducerConsumerCircularBufferQueue constructor.
      */
-    public SingleProducerConsumerLockFreeQueue(
+    public SingleProducerConsumerCircularBufferQueue(
         Class<T> classType,
         int capacity) {
 
