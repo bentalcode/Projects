@@ -1,21 +1,22 @@
-package concurrency.core.lockfreequeue;
+package concurrency.singleproducerconsumerlockfreequeue.core;
 
 import base.core.Conditions;
-import base.interfaces.IIterator;
+import base.interfaces.IReceiver;
 import base.interfaces.IRunnable;
 import concurrency.interfaces.IConcurrentQueue;
 import concurrency.interfaces.IMessageQueueTrackingInformation;
 import java.time.Duration;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The ProducerQueueTask class implements a task of a producer of a queue.
+ * The ConsumerQueueTask class implements a task of a consumer of a queue.
  */
-public final class ProducerQueueTask<T> implements Runnable {
+public final class ConsumerQueueTask<T> implements java.lang.Runnable {
     private final IRunnable runnable;
     private final IConcurrentQueue<T> queue;
-    private final IIterator<T> dataIterator;
+    private final IReceiver<T> receiver;
     private final Object eventMessagePublished;
     private final Object eventMessageReceived;
     private final Duration shutdownPollingDuration;
@@ -24,12 +25,12 @@ public final class ProducerQueueTask<T> implements Runnable {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * The ProducerQueueTask constructor.
+     * The ConsumerQueueTask constructor.
      */
-    public ProducerQueueTask(
+    public ConsumerQueueTask(
         IRunnable runnable,
         IConcurrentQueue<T> queue,
-        IIterator<T> dataIterator,
+        IReceiver<T> receiver,
         Object eventMessagePublished,
         Object eventMessageReceived,
         Duration shutdownPollingDuration,
@@ -44,8 +45,8 @@ public final class ProducerQueueTask<T> implements Runnable {
             "The concurrent queue.");
 
         Conditions.validateNotNull(
-            dataIterator,
-            "The iterator of data.");
+            receiver,
+            "The receiver to send the messages.");
 
         Conditions.validateNotNull(
             eventMessagePublished,
@@ -61,7 +62,7 @@ public final class ProducerQueueTask<T> implements Runnable {
 
         this.runnable = runnable;
         this.queue = queue;
-        this.dataIterator = dataIterator;
+        this.receiver = receiver;
         this.eventMessagePublished = eventMessagePublished;
         this.eventMessageReceived = eventMessageReceived;
         this.shutdownPollingDuration = shutdownPollingDuration;
@@ -77,22 +78,18 @@ public final class ProducerQueueTask<T> implements Runnable {
         String threadName = Thread.currentThread().getName();
 
         String informationalMessage =
-            "The producer thread has started." +
+            "The consumer thread has started." +
             " [Thread Id: " + threadId + ", Thread Name: " + threadName + "]";
 
         this.log.info(informationalMessage);
         System.out.println(informationalMessage);
 
-        while (this.runnable.isRunning() &&
-               this.dataIterator.hasNext()) {
+        while (this.runnable.isRunning()) {
 
-            T currElement = this.dataIterator.next();
-
-            synchronized (this.eventMessageReceived) {
-
-                while (this.runnable.isRunning() && this.queue.size() == this.queue.getCapacity()) {
+            synchronized (this.eventMessagePublished) {
+                while (this.runnable.isRunning() && this.queue.empty()) {
                     try {
-                        this.eventMessageReceived.wait(this.shutdownPollingDuration.toMillis());
+                        this.eventMessagePublished.wait(this.shutdownPollingDuration.toMillis());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -103,29 +100,32 @@ public final class ProducerQueueTask<T> implements Runnable {
                 break;
             }
 
-            boolean status = this.queue.enqueue(currElement);
-            assert(status);
+            Optional<T> currElement = this.queue.dequeue();
+            boolean status = currElement.isPresent();
+            assert (status);
 
             if (status) {
+                this.receiver.receive(currElement.get());
+
                 if (this.messageQueueTrackingInformation != null) {
-                    this.messageQueueTrackingInformation.messagePublished();
+                    this.messageQueueTrackingInformation.messageReceived();
                 }
 
-                synchronized (this.eventMessagePublished) {
-                    this.eventMessagePublished.notify();
+                synchronized (this.eventMessageReceived) {
+                    this.eventMessageReceived.notify();
                 }
             }
             else {
                 String warningMessage =
-                    "The ProducerQueueTask failed to enqueue an element to" +
-                    " the single producer consumer lock free queue.";
+                    "The ConsumerQueueTask failed to dequeue an element from" +
+                    " a single producer consumer lock free queue.";
 
                 this.log.warn(warningMessage);
             }
         }
 
         informationalMessage =
-            "The producer thread has ended." +
+            "The consumer thread has ended." +
             " [Thread Id: " + threadId + ", Thread Name: " + threadName + "]";
 
         this.log.info(informationalMessage);

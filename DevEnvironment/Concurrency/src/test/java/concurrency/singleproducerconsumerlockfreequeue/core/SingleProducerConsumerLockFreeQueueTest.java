@@ -1,11 +1,8 @@
-package concurrency.core;
+package concurrency.singleproducerconsumerlockfreequeue.core;
 
 import base.core.ListIterator;
 import base.interfaces.IIterator;
 import base.interfaces.IReceiver;
-import concurrency.core.lockfreequeue.ConcurrentSingleProducerConsumerLockFreeQueue;
-import concurrency.core.lockfreequeue.MessageQueueTrackingInformation;
-import concurrency.core.lockfreequeue.SingleProducerConsumerLockFreeQueue;
 import concurrency.interfaces.IConcurrentQueue;
 import concurrency.interfaces.IMessageQueueTrackingInformation;
 import java.util.ArrayList;

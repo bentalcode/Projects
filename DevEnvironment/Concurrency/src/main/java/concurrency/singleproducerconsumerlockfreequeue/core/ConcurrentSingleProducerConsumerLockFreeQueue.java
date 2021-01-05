@@ -1,4 +1,4 @@
-package concurrency.core.lockfreequeue;
+package concurrency.singleproducerconsumerlockfreequeue.core;
 
 import base.core.AbstractRunnable;
 import base.core.Conditions;
