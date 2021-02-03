@@ -48,7 +48,7 @@ public final class AlmostComparatorTest {
         this.testDoubleAlmostComparator(comparator, 0.0, 0.0001, 0);
         this.testDoubleAlmostComparator(comparator, 0.0, 0.00009999999999, 0);
         this.testDoubleAlmostComparator(comparator, 0.00009999999999, 0.0, 0);
-        this.testDoubleAlmostComparator(comparator, 0.0, 0.00010000000001, -1);
+        this.testDoubleAlmostComparator(comparator, 0.0, 0.00010000000001, 0);
         this.testDoubleAlmostComparator(comparator, 0.00010000000001, 0.0, 1);
     }
 
