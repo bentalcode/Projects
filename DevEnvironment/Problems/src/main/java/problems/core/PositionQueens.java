@@ -10,29 +10,25 @@ import java.util.List;
 public final class PositionQueens implements IPositionQueens {
 
     /**
-     * Positions queens.
+     * Positions queens and returns the boards.
      */
     @Override
     public List<List<String>> positionQueens(int size) {
-        List<List<Integer>> positions = new ArrayList<>();
+        List<List<Integer>> boards = new ArrayList<>();
 
         if (size < 4) {
-            return this.createResults(size, positions);
+            return this.createBoardsAsString(boards, size);
         }
 
-        List<Integer> currPosition = new ArrayList<>(size);
-
-        for (int i = 0; i < size; ++i) {
-            currPosition.add(-1);
-        }
+        List<Integer> board = createBoard(size);
 
         this.positionQueens(
+            board,
             size,
-            currPosition,
             0,
-            positions);
+            boards);
 
-        List<List<String>> results = this.createResults(size, positions);
+        List<List<String>> results = this.createBoardsAsString(boards, size);
 
         return results;
     }
@@ -40,69 +36,121 @@ public final class PositionQueens implements IPositionQueens {
     /**
      * Positions queens.
      */
-    private void positionQueens(
+    private boolean positionQueens(
+        List<Integer> board,
         int size,
-        List<Integer> currPosition,
-        int currColumnIndex,
-        List<List<Integer>> result) {
+        int columnIndex,
+        List<List<Integer>> boards) {
 
-        assert(currColumnIndex >= 0 && currColumnIndex <= size);
+        assert(columnIndex >= 0 && columnIndex <= size);
 
-        if (currColumnIndex > size) {
-            return;
+        if (size < 4) {
+            return false;
         }
 
-        if (currColumnIndex == size) {
-            List<Integer> newPosition = new ArrayList<>(currPosition);
-            result.add(newPosition);
-            return;
+        if (columnIndex > size) {
+            return false;
         }
 
-        for (int currRowIndex = 0; currRowIndex < size; ++currRowIndex) {
-            this.positionQueen(currPosition, currRowIndex, currColumnIndex);
+        if (columnIndex == size) {
+            List<Integer> newBoard = new ArrayList<>(board);
+            boards.add(newBoard);
+            return true;
+        }
 
-            if (this.validatePosition(currPosition, size, currRowIndex, currColumnIndex)) {
-                this.positionQueens(
+        boolean status = false;
+
+        for (int rowIndex = 0; rowIndex < size; ++rowIndex) {
+            this.positionQueen(board, rowIndex, columnIndex);
+
+            if (this.validateBoard(board, size, rowIndex, columnIndex)) {
+                boolean currStatus = this.positionQueens(
+                    board,
                     size,
-                    currPosition,
-                    currColumnIndex + 1,
-                    result);
+                    columnIndex + 1,
+                    boards);
+
+                if (currStatus) {
+                    status = true;
+                }
             }
 
-            this.unPositionQueen(currPosition, currColumnIndex);
+            this.unPositionQueen(board, columnIndex);
         }
+
+        return status;
     }
 
     /**
      * Positions a queen.
      */
-    private void positionQueen(List<Integer> position, int rowIndex, int columnIndex) {
-        position.set(columnIndex, rowIndex);
+    private void positionQueen(
+        List<Integer> board,
+        int rowIndex,
+        int columnIndex) {
+
+        board.set(columnIndex, rowIndex);
     }
 
     /**
      * UnPositions a queen.
      */
-    private void unPositionQueen(List<Integer> position, int columnIndex) {
-        position.set(columnIndex, -1);
+    private void unPositionQueen(
+        List<Integer> board,
+        int columnIndex) {
+
+        board.set(columnIndex, -1);
     }
 
     /**
-     * Validates a position.
+     * Validates a board.
      */
-    private boolean validatePosition(List<Integer> position, int size, int rowIndex, int columnIndex) {
+    private boolean validateBoard(
+        List<Integer> board,
+        int size,
+        int rowIndex,
+        int columnIndex) {
+
         //
-        // Validates the row...
+        // Validates the left row...
         //
         int currRowIndex = rowIndex;
         int currColumnIndex = columnIndex - 1;
 
         while (currColumnIndex >= 0) {
-            if (this.hasQueen(position, currRowIndex, currColumnIndex)) {
+            if (this.hasQueen(board, currRowIndex, currColumnIndex)) {
                 return false;
             }
 
             --currColumnIndex;
+        }
+
+        //
+        // Validates the upper column...
+        //
+        currRowIndex = rowIndex + 1;
+        currColumnIndex = columnIndex;
+
+        while (currRowIndex < size) {
+            if (this.hasQueen(board, currRowIndex, currColumnIndex)) {
+                return false;
+            }
+
+            ++currRowIndex;
+        }
+
+        //
+        // Validates the lower column...
+        //
+        currRowIndex = rowIndex - 1;
+        currColumnIndex = columnIndex;
+
+        while (currRowIndex >= 0) {
+            if (this.hasQueen(board, currRowIndex, currColumnIndex)) {
+                return false;
+            }
+
+            --currRowIndex;
         }
 
         //
@@ -112,7 +160,7 @@ public final class PositionQueens implements IPositionQueens {
         currColumnIndex = columnIndex - 1;
 
         while (currRowIndex < size && currColumnIndex >= 0) {
-            if (this.hasQueen(position, currRowIndex, currColumnIndex)) {
+            if (this.hasQueen(board, currRowIndex, currColumnIndex)) {
                 return false;
             }
 
@@ -127,7 +175,7 @@ public final class PositionQueens implements IPositionQueens {
         currColumnIndex = columnIndex - 1;
 
         while (currRowIndex >= 0 && currColumnIndex >= 0) {
-            if (this.hasQueen(position, currRowIndex, currColumnIndex)) {
+            if (this.hasQueen(board, currRowIndex, currColumnIndex)) {
                 return false;
             }
 
@@ -141,18 +189,38 @@ public final class PositionQueens implements IPositionQueens {
     /**
      * Checks whether the specific position includes a queen.
      */
-    private boolean hasQueen(List<Integer> position, int rowIndex, int columnIndex) {
-        return position.get(columnIndex) == rowIndex;
+    private boolean hasQueen(
+        List<Integer> board,
+        int rowIndex,
+        int columnIndex) {
+
+        return board.get(columnIndex) == rowIndex;
     }
 
     /**
-     * Creates the positions.
+     * Create a board of queens.
      */
-    private List<List<String>> createResults(int size, List<List<Integer>> positions) {
+    private List<Integer> createBoard(int size) {
+        List<Integer> board = new ArrayList<>(size);
+
+        for (int i = 0; i < size; ++i) {
+            board.add(-1);
+        }
+
+        return board;
+    }
+
+    /**
+     * Creates boards as string.
+     */
+    private List<List<String>> createBoardsAsString(
+        List<List<Integer>> boards,
+        int size) {
+
         List<List<String>> results = new ArrayList<>();
 
-        for (List<Integer> position : positions) {
-            List<String> result = this.createResult(size, position);
+        for (List<Integer> board : boards) {
+            List<String> result = this.createBoardAsString(board, size);
             results.add(result);
         }
 
@@ -160,16 +228,19 @@ public final class PositionQueens implements IPositionQueens {
     }
 
     /**
-     * Creates a position.
+     * Creates a board as string.
      */
-    private List<String> createResult(int size, List<Integer> position) {
+    private List<String> createBoardAsString(
+        List<Integer> board,
+        int size) {
+
         List<String> result = new ArrayList<>(size);
 
         for (int rowIndex = 0; rowIndex < size; ++rowIndex) {
             char[] currRow = new char[size];
 
             for (int columnIndex = 0; columnIndex < size; ++columnIndex) {
-                if (this.hasQueen(position, rowIndex, columnIndex)) {
+                if (this.hasQueen(board, rowIndex, columnIndex)) {
                     currRow[columnIndex] = 'Q';
                 }
                 else {

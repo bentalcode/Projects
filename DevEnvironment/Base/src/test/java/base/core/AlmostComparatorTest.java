@@ -46,10 +46,13 @@ public final class AlmostComparatorTest {
         this.testDoubleAlmostComparator(comparator, 0.0, 1.0, -1);
         this.testDoubleAlmostComparator(comparator, 1.0, 0.0, 1);
         this.testDoubleAlmostComparator(comparator, 0.0, 0.0001, 0);
+        this.testDoubleAlmostComparator(comparator, 0.0, 0.001, 0);
+        this.testDoubleAlmostComparator(comparator, 0.0, 0.0011, -1);
+        this.testDoubleAlmostComparator(comparator, 0.0, 0.00099, 0);
         this.testDoubleAlmostComparator(comparator, 0.0, 0.00009999999999, 0);
         this.testDoubleAlmostComparator(comparator, 0.00009999999999, 0.0, 0);
         this.testDoubleAlmostComparator(comparator, 0.0, 0.00010000000001, 0);
-        this.testDoubleAlmostComparator(comparator, 0.00010000000001, 0.0, 1);
+        this.testDoubleAlmostComparator(comparator, 0.0010000000001, 0.0, 1);
     }
 
     /**
