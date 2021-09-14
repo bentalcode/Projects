@@ -27,6 +27,11 @@ public interface ILine extends IUnaryComparator<ILine> {
     double getYIntercept();
 
     /**
+     * Returns whether a line is horizontal.
+     */
+    boolean horizontal();
+
+    /**
      * Returns whether a line is vertical.
      */
     boolean vertical();

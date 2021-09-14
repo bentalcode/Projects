@@ -17,6 +17,7 @@ public final class Line implements ILine {
     private final IPoint end;
     private final double slope;
     private final double yIntercept;
+    private Boolean isHorizontalOrVertical;
 
     private final IBinaryComparator<ILine> lineComparator;
     private final IBinaryComparator<IPoint> pointComparator;
@@ -71,9 +72,15 @@ public final class Line implements ILine {
         this.lineComparator = lineComparator;
         this.pointComparator = pointComparator;
 
-        if (this.start.getX() == this.end.getX()) {
+        if (this.start.getY() == this.end.getY()) {
+            this.slope = 0;
+            this.yIntercept = this.start.getY();
+            this.isHorizontalOrVertical = Boolean.TRUE;
+        }
+        else if (this.start.getX() == this.end.getX()) {
             this.slope = Double.POSITIVE_INFINITY;
             this.yIntercept = Double.POSITIVE_INFINITY;
+            this.isHorizontalOrVertical = Boolean.FALSE;
         }
         else {
             this.slope = (this.end.getY() - this.start.getY()) / (this.end.getX() - this.start.getX());
@@ -117,8 +124,16 @@ public final class Line implements ILine {
      * Returns whether a line is vertical.
      */
     @Override
+    public boolean horizontal() {
+        return this.isHorizontalOrVertical != null && this.isHorizontalOrVertical;
+    }
+
+    /**
+     * Returns whether a line is vertical.
+     */
+    @Override
     public boolean vertical() {
-        return this.slope == Double.POSITIVE_INFINITY;
+        return this.isHorizontalOrVertical != null && !this.isHorizontalOrVertical;
     }
 
     /**
@@ -290,16 +305,22 @@ public final class Line implements ILine {
             line2,
             "The second line.");
 
-        if (line1.vertical() && line2.vertical()) {
-            if (line1.getStart().getX() != line2.getStart().getX()) {
+        if (line1.horizontal() && line2.horizontal()) {
+            if (line1.getStart().getY() != line2.getStart().getY()) {
                 return null;
             }
             else {
                 return this.intersectionOfContinuesLines(line1, line2);
             }
         }
-
-        if (line1.getSlope() == line2.getSlope()) {
+        else if (line1.vertical() && line2.vertical()) {
+            if (line1.getStart().getX() != line2.getStart().getX()) {
+                return null;
+            }
+            else {
+                return this.intersectionOfContinuesLines(line1, line2);
+            }
+        } else if (line1.getSlope() == line2.getSlope()) {
             if (line1.getYIntercept() != line2.getYIntercept()) {
                 return null;
             }
@@ -308,6 +329,7 @@ public final class Line implements ILine {
             }
         }
 
+        assert(!(line1.horizontal() && line2.horizontal()));
         assert(!(line1.vertical() && line2.vertical()));
 
         double xIntersection;
