@@ -81,12 +81,11 @@ public final class GrayCode implements IGrayCode {
         int capacity = (int)Math.pow(2, numberOfBits);
         List<Integer> codes = new ArrayList<>(capacity);
 
-        codes.add(0);
-
         if (numberOfBits == 0) {
             return codes;
         }
 
+        codes.add(0);
         codes.add(1);
 
         if (numberOfBits == 1) {
@@ -96,8 +95,8 @@ public final class GrayCode implements IGrayCode {
         int currNumberOfBits = 2;
 
         while (currNumberOfBits <= numberOfBits) {
-            List<Integer> nextSet = createNextSet(codes, currNumberOfBits);
-            codes.addAll(nextSet);
+            List<Integer> nextCodes = createNextGrayCodes(codes, currNumberOfBits);
+            codes.addAll(nextCodes);
 
             ++currNumberOfBits;
         }
@@ -106,22 +105,21 @@ public final class GrayCode implements IGrayCode {
     }
 
     /**
-     * Creates the next set.
+     * Creates the next gray codes.
      * Reverse the original set, and for each number, add a one bit in front of the number.
      */
-    private static List<Integer> createNextSet(List<Integer> set, int numberOfBits) {
-        List<Integer> result = new ArrayList<>(set.size());
+    private static List<Integer> createNextGrayCodes(List<Integer> codes, int numberOfBits) {
+        List<Integer> nextCodes = new ArrayList<>(codes.size());
 
         int bitIndex = numberOfBits - 1;
 
-        for (int i = set.size() - 1; i >= 0; --i) {
-            int currValue = set.get(i);
+        for (int i = codes.size() - 1; i >= 0; --i) {
+            int code = codes.get(i);
+            code = Bits.turnOn(code, bitIndex);
 
-            currValue = Bits.turnOn(currValue, bitIndex);
-
-            result.add(currValue);
+            nextCodes.add(code);
         }
 
-        return result;
+        return nextCodes;
     }
 }

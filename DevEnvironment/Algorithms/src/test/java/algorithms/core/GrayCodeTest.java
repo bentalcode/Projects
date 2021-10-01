@@ -40,7 +40,7 @@ public final class GrayCodeTest {
     @Test
     public void grayCodeTest() {
         int numberOfBits0 = 0;
-        int[] grayCodes0 = {0};
+        int[] grayCodes0 = {};
 
         int numberOfBits1 = 1;
         int[] grayCodes1 = {0, 1};
