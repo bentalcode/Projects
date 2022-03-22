@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 14)
 if (NOT $ENV{BOOST_ROOT})
     set(BOOT_ROOT $ENV{BOOST_ROOT})
 else()
-    set(BOOT_ROOT "c:\\Boost\\boost_1_70_0")
+    set(BOOT_ROOT "c:\\Boost\\boost_1_78_0")
 endif()
 
 #

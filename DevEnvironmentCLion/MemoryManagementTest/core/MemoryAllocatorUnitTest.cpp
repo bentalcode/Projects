@@ -74,7 +74,7 @@ void MemoryAllocatorUnitTest::memoryAllocatorTest()
  */
 void MemoryAllocatorUnitTest::alignedMemoryAllocatorTest()
 {
-    int alignment = 4;
+    int alignment = 8;
     for (unsigned int i = 0; i < 100; ++i)
     {
         testAlignedMemoryAllocator(i, alignment);
@@ -86,7 +86,7 @@ void MemoryAllocatorUnitTest::alignedMemoryAllocatorTest()
  */
 void MemoryAllocatorUnitTest::testMemoryAllocator(unsigned int size) {
     MemoryAllocator memoryAllocator;
-    void* memory = nullptr;
+
     {
         MemoryPtr memory(memoryAllocator.allocate(size));
 
@@ -102,7 +102,6 @@ void MemoryAllocatorUnitTest::testMemoryAllocator(unsigned int size) {
                 memory.get() != nullptr,
                 "Invalid allocated memory.");
         }
-
     }
 }
 

@@ -28,7 +28,7 @@ print_all_variables()
 if (NOT $ENV{BOOST_ROOT})
     set(BOOST_PATH $ENV{BOOST_ROOT})
 else()
-    set(BOOST_PATH "c:\\Boost\\boost_1_70_0")
+    set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
 
 set(BASE_INCLUDES_FILES

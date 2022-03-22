@@ -1,14 +1,14 @@
 #include "UnitTestManager.h"
-#include "JsonStreamingUnitTest.h"
+#include "ConcurrentQueueUnitTest.h"
 
-using namespace test::json;
+using namespace test::concurrency;
 using namespace unit_testing;
 
 int main()
 {
     UnitTestManager testManager;
 
-    IUnitTestPtr jsonStreamingUnitTest(new JsonStreamingUnitTest("JsonStreaming"));
+    IUnitTestPtr jsonStreamingUnitTest(new ConcurrentQueueUnitTest("ConcurrentQueue"));
     testManager.registerTest(jsonStreamingUnitTest);
 
     testManager.run();
