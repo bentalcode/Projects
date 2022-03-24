@@ -64,7 +64,9 @@ void* MemoryAllocator::allocate(const std::size_t size)
         return nullptr;
     }
 
-    unsigned char* allocatedMemory = new unsigned char[size];
+    byte* allocatedMemory = new byte[size];
+    zeroMemory(allocatedMemory, size);
+
     return static_cast<void*>(allocatedMemory);
 }
 
@@ -78,7 +80,7 @@ void MemoryAllocator::release(void* memoryPtr)
         return;
     }
 
-    unsigned char* allocatedMemory = static_cast<unsigned char*>(memoryPtr);
+    byte* allocatedMemory = static_cast<byte*>(memoryPtr);
 
     delete[] allocatedMemory;
 }
@@ -136,19 +138,32 @@ void MemoryAllocator::releaseAligned(void* memoryPtr)
  */
 void MemoryAllocator::clear(void* memoryPtr, std::size_t size)
 {
-    std::uintptr_t rawAddress = reinterpret_cast<std::uintptr_t>(memoryPtr);
+    zeroMemory(memoryPtr, size);
+}
 
-    for (std::size_t i = 0; i < size; ++i)
-    {
-        rawAddress = 0;
+/**
+ * Zero the memory.
+ */
+void MemoryAllocator::zeroMemory(void* memory, size_t size)
+{
+    byte *memoryPtr = static_cast<byte*>(memory);
+
+    for (size_t i = 0; i < size; ++i) {
+        memoryPtr[i] = 0;
     }
 }
 
+/**
+ * Checks whether the alignment is valid.
+ */
 bool MemoryAllocator::isAlignmentValid(size_t alignment)
 {
     return (alignment > 1 && alignment <= 128 && MemoryAllocator::powOfTwo(alignment));
 }
 
+/**
+ * Checks whether a number is a pow of two.
+ */
 bool MemoryAllocator::powOfTwo(size_t number)
 {
     return (number & (number - 1)) == 0;

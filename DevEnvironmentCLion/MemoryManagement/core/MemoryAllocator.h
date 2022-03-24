@@ -85,6 +85,8 @@ namespace memory_management
         virtual void clear(void* memoryPtr, std::size_t size) override;
 
     private:
+        static void zeroMemory(void* memoryPtr, size_t size);
+
         static bool isAlignmentValid(size_t alignment);
 
         static bool powOfTwo(size_t number);
