@@ -18,7 +18,7 @@ import java.util.List;
  * The IgnoreRules class implements ignore rules.
  */
 public final class IgnoreRules implements IIgnoreRules {
-    private static final String propertyPathPatterns = "pathPatterns";
+    private static final String PROPERTY_PATH_PATTERNS = "pathPatterns";
 
     private static final List<String> defaultPathPatterns = ArrayLists.make("glob:**\\\\*build*\\\\**");
     
@@ -74,15 +74,15 @@ public final class IgnoreRules implements IIgnoreRules {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeCollectionProperty(propertyPathPatterns, this.pathPatterns);
+        writer.writeCollectionProperty(PROPERTY_PATH_PATTERNS, this.pathPatterns);
     }
 
     /**
      * Reads a json.
      */
     public static IIgnoreRules readJson(IJsonObjectReader reader) {
-        List<String> pathPatterns = reader.hasProperty(propertyPathPatterns) ?
-            reader.readStringListProperty(propertyPathPatterns) :
+        List<String> pathPatterns = reader.hasProperty(PROPERTY_PATH_PATTERNS) ?
+            reader.readStringListProperty(PROPERTY_PATH_PATTERNS) :
             defaultPathPatterns;
 
         return new IgnoreRules(pathPatterns);

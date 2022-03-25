@@ -8,10 +8,10 @@ import java.time.Instant;
  * The JitterMessageData class implements the jitter message data.
  */
 public final class JitterMessageData implements IJitterMessageData {
-    private static final String transmittingTimeText = "TransmittingTime:";
-    private static final String deviationText = "Deviation:";
-    private static final String numberOfMessagesSentText = "numberOfMessagesSent:";
-    private static final String numberOfMessagesReceivedText = "numberOfMessagesReceived:";
+    private static final String TRANSMITTING_TIME_TEXT = "TransmittingTime:";
+    private static final String DEVIATION_TEXT = "Deviation:";
+    private static final String NUMBER_OF_MESSAGES_SENT_TEXT = "numberOfMessagesSent:";
+    private static final String NUMBER_OF_MESSAGES_RECEIVED_TEXT = "numberOfMessagesReceived:";
 
     private final Duration transmittingTime;
     private Instant lastSendingTime;
@@ -113,13 +113,13 @@ public final class JitterMessageData implements IJitterMessageData {
         StringBuilder result = new StringBuilder();
 
         result
-            .append(transmittingTimeText).append(" ").append(this.transmittingTime)
+            .append(TRANSMITTING_TIME_TEXT).append(" ").append(this.transmittingTime)
             .append(", " )
-            .append(deviationText).append(" ").append(this.deviation)
+            .append(DEVIATION_TEXT).append(" ").append(this.deviation)
             .append(", " )
-            .append(numberOfMessagesSentText).append(" ").append(this.numberOfMessagesSent)
+            .append(NUMBER_OF_MESSAGES_SENT_TEXT).append(" ").append(this.numberOfMessagesSent)
             .append(", " )
-            .append(numberOfMessagesReceivedText).append(" ").append(this.numberOfMessagesReceived);
+            .append(NUMBER_OF_MESSAGES_RECEIVED_TEXT).append(" ").append(this.numberOfMessagesReceived);
 
         return result.toString();
     }

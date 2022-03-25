@@ -240,12 +240,10 @@ public final class BlockTreeNodeData<TKey extends Comparable<TKey>, TValue> impl
          */
         @Override
         public IBlockTreeNodeData<TKey, TValue> build() {
-            IBlockTreeNodeData<TKey, TValue> treeData = new BlockTreeNodeData<>(
+            return new BlockTreeNodeData<>(
                 this.keys,
                 this.values,
                 BlockTreeNodeData.defaultComparator());
-
-            return treeData;
         }
     }
 }

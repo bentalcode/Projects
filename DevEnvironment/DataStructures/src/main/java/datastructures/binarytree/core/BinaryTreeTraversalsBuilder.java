@@ -21,9 +21,7 @@ public final class BinaryTreeTraversalsBuilder {
             preorder,
             inorder);
 
-        IBinaryTree<TKey, TValue> tree = builder.build();
-
-        return tree;
+        return builder.build();
     }
 
     /**
@@ -34,9 +32,7 @@ public final class BinaryTreeTraversalsBuilder {
         List<IPair<TKey, TValue>> postorder) {
 
         IBuilder<IBinaryTree<TKey, TValue>> builder = new BinaryTreePreorderPostorderTraversalBuilder<>(preorder, postorder);
-        IBinaryTree<TKey, TValue> tree = builder.build();
-
-        return tree;
+        return builder.build();
     }
 
     /**

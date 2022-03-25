@@ -77,16 +77,14 @@ public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Compar
         int inorderLength = Indexes.size(inorderStartIndex, inorderEndIndex);
         assert(preorderLength == inorderLength);
 
-        int length = preorderLength;
-
-        if (length == 0) {
+        if (preorderLength == 0) {
             return null;
         }
 
         IPair<TKey, TValue> rootData = preorder.get(preorderStartIndex);
         IBinaryTreeNode<TKey, TValue> root = BinaryTreeNodes.make(rootData.first(), rootData.second());
 
-        if (length == 1) {
+        if (preorderLength == 1) {
             return root;
         }
 

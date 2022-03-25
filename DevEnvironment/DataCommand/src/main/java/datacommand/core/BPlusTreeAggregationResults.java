@@ -57,8 +57,7 @@ public final class BPlusTreeAggregationResults extends AbstractAggregationResult
      */
     @Override
     protected IAggregationResult findResult(String key) {
-        IAggregationResult result = this.results.search(key);
-        return result;
+        return this.results.search(key);
     }
 
     /**
@@ -84,10 +83,7 @@ public final class BPlusTreeAggregationResults extends AbstractAggregationResult
     @Override
     public long calculateSize() {
         IBPlusTreeMetrics metrics = this.results.calculateMetrics();
-
-        long size = Conversion.bigIntegerConversion().toLong(metrics.getCapacityInBytes());
-
-        return size;
+        return Conversion.bigIntegerConversion().toLong(metrics.getCapacityInBytes());
     }
 
     /**

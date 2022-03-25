@@ -11,17 +11,17 @@ import java.util.List;
  * The Collections class implements complementary APIs for collections.
  */
 public final class Collections {
-    private static final String defaultPrefix = "{";
-    private static final String defaultPostfix = "}";
-    private static final String defaultDelimiter = ", ";
+    private static final String PREFIX = "{";
+    private static final String POSTFIX = "}";
+    private static final String DELIMITER = ", ";
 
     /**
      * Converts an iterator to a string.
      */
     public static <T> String toString(IIterator<T> iterator) {
-        String prefix = defaultPrefix;
-        String postfix = defaultPostfix;
-        String delimiter = defaultDelimiter;
+        String prefix = PREFIX;
+        String postfix = POSTFIX;
+        String delimiter = DELIMITER;
 
         return toString(
             prefix,
@@ -90,9 +90,9 @@ public final class Collections {
      * Converts a collection to a string.
      */
     public static <T> String toString(Collection<T> collection) {
-        String prefix = defaultPrefix;
-        String postfix = defaultPostfix;
-        String delimiter = defaultDelimiter;
+        String prefix = PREFIX;
+        String postfix = POSTFIX;
+        String delimiter = DELIMITER;
 
         return toString(
             prefix,

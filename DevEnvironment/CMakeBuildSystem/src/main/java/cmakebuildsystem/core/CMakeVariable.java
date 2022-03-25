@@ -37,8 +37,7 @@ public final class CMakeVariable implements ICMakeVariable {
      */
     @Override
     public String getVariable() {
-        String variable = "${" + this.name + "}";
-        return variable;
+        return "${" + this.name + "}";
     }
 
     /**
@@ -84,8 +83,7 @@ public final class CMakeVariable implements ICMakeVariable {
             return prefixSection;
         }
 
-        String variableName = prefixSection + "_" + nameSection;
-        return variableName;
+        return prefixSection + "_" + nameSection;
     }
 
     /**

@@ -15,8 +15,8 @@ import json.interfaces.IJsonObjectWriter;
  * The EditorSettings class implements settings of an editor.
  */
 public final class EditorSettings implements IEditorSettings {
-    private static final String propertyTabSize = "tabSize";
-    private static final int defaultTabSize = 4;
+    private static final String PROPERTY_TAB_SIZE = "tabSize";
+    private static final int DEFAULT_TAB_SIZE = 4;
 
     private final int tabSize;
 
@@ -27,7 +27,7 @@ public final class EditorSettings implements IEditorSettings {
      * Gets the default editor settings.
      */
     public static IEditorSettings defaultEditorSettings() {
-        return new EditorSettings(defaultTabSize);
+        return new EditorSettings(DEFAULT_TAB_SIZE);
     }
 
     /**
@@ -66,16 +66,16 @@ public final class EditorSettings implements IEditorSettings {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeIntegerProperty(propertyTabSize, this.tabSize);
+        writer.writeIntegerProperty(PROPERTY_TAB_SIZE, this.tabSize);
     }
 
     /**
      * Reads a json.
      */
     public static IEditorSettings readJson(IJsonObjectReader reader) {
-        int tabSize = reader.hasProperty(propertyTabSize) ?
-            reader.readIntegerProperty(propertyTabSize) :
-            defaultTabSize;
+        int tabSize = reader.hasProperty(PROPERTY_TAB_SIZE) ?
+            reader.readIntegerProperty(PROPERTY_TAB_SIZE) :
+                DEFAULT_TAB_SIZE;
 
         return new EditorSettings(
             tabSize);

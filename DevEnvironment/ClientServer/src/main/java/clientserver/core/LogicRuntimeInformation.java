@@ -12,10 +12,10 @@ import java.util.Date;
  * The LogicRuntimeInformation class implements the runtime information of the logic execution.
  */
 public final class LogicRuntimeInformation implements ILogicRuntimeInformation {
-    private static final String propertyName = "name";
-    private static final String propertyStartTime = "startTime";
-    private static final String propertyEndTime = "endTime";
-    private static final String propertyErrorInformation = "errorInformation";
+    private static final String PROPERTY_NAME = "name";
+    private static final String PROPERTY_START_TIME = "startTime";
+    private static final String PROPERTY_END_TIME = "endTime";
+    private static final String PROPERTY_ERROR_INFORMATION = "errorInformation";
 
     private final String name;
     private final Date startTime;
@@ -98,20 +98,20 @@ public final class LogicRuntimeInformation implements ILogicRuntimeInformation {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(LogicRuntimeInformation.propertyName, this.name);
-        writer.writeDateProperty(LogicRuntimeInformation.propertyStartTime, this.startTime);
-        writer.writeDateProperty(LogicRuntimeInformation.propertyEndTime, this.endTime);
-        writer.writeObjectProperty(LogicRuntimeInformation.propertyErrorInformation, this.errorInformation);
+        writer.writeStringProperty(LogicRuntimeInformation.PROPERTY_NAME, this.name);
+        writer.writeDateProperty(LogicRuntimeInformation.PROPERTY_START_TIME, this.startTime);
+        writer.writeDateProperty(LogicRuntimeInformation.PROPERTY_END_TIME, this.endTime);
+        writer.writeObjectProperty(LogicRuntimeInformation.PROPERTY_ERROR_INFORMATION, this.errorInformation);
     }
 
     /**
      * Reads an object from a json reader.
      */
     public static ILogicRuntimeInformation readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(LogicRuntimeInformation.propertyName);
-        Date startTime = reader.readDateProperty(LogicRuntimeInformation.propertyStartTime);
-        Date endTime = reader.readDateProperty(LogicRuntimeInformation.propertyEndTime);
-        IErrorInformation errorInformation = reader.readObjectProperty(LogicRuntimeInformation.propertyErrorInformation, ErrorInformation.class);
+        String name = reader.readStringProperty(LogicRuntimeInformation.PROPERTY_NAME);
+        Date startTime = reader.readDateProperty(LogicRuntimeInformation.PROPERTY_START_TIME);
+        Date endTime = reader.readDateProperty(LogicRuntimeInformation.PROPERTY_END_TIME);
+        IErrorInformation errorInformation = reader.readObjectProperty(LogicRuntimeInformation.PROPERTY_ERROR_INFORMATION, ErrorInformation.class);
 
         return new LogicRuntimeInformation(
             name,

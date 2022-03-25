@@ -7,13 +7,12 @@ import java.util.Stack;
  * The UnixPath class implements a unix path.
  */
 public final class UnixPath extends AbstractPath {
-    public static final char separator = '/';
-
-    public static final String rootDirectory = "/";
-    public static final String directorySeparator = String.valueOf(separator);
-    public static final String currentDirectory = Paths.currentDirectory;
-    public static final String parentDirectory = Paths.parentDirectory;
-    public static final String homeDirectory = "~";
+    public static final char SEPARATOR = '/';
+    public static final String ROOT_DIRECTORY = "/";
+    public static final String DIRECTORY_SEPARATOR = String.valueOf(SEPARATOR);
+    public static final String CURRENT_DIRECTORY = Paths.currentDirectory;
+    public static final String PARENT_DIRECTORY = Paths.parentDirectory;
+    public static final String HOME_DIRECTORY = "~";
 
     /**
      * The UnixPath constructor.
@@ -26,7 +25,7 @@ public final class UnixPath extends AbstractPath {
      * Gets the directory section of the path.
      */
     public static String getDirectory(String path) {
-        return Paths.getDirectory(path, UnixPath.directorySeparator);
+        return Paths.getDirectory(path, UnixPath.DIRECTORY_SEPARATOR);
     }
 
     /**
@@ -69,9 +68,9 @@ public final class UnixPath extends AbstractPath {
         String homeDirectory;
         String reminder;
 
-        if (path.startsWith(UnixPath.homeDirectory)) {
+        if (path.startsWith(UnixPath.HOME_DIRECTORY)) {
             homeDirectory = System.getProperty("user.home");
-            reminder = path.substring(UnixPath.homeDirectory.length());
+            reminder = path.substring(UnixPath.HOME_DIRECTORY.length());
         }
         else {
             homeDirectory = "";
@@ -95,15 +94,15 @@ public final class UnixPath extends AbstractPath {
      * Makes a canonical path.
      */
     private static String makeCanonical(String path) {
-        String[] components = path.split(UnixPath.directorySeparator);
+        String[] components = path.split(UnixPath.DIRECTORY_SEPARATOR);
 
         Stack<String> stack = new Stack<>();
 
         for (String component : components) {
-            if (component.isEmpty() || component.equals(UnixPath.currentDirectory)) {
+            if (component.isEmpty() || component.equals(UnixPath.CURRENT_DIRECTORY)) {
                 continue;
             }
-            else if (component.equals(UnixPath.parentDirectory)) {
+            else if (component.equals(UnixPath.PARENT_DIRECTORY)) {
                 if (!stack.empty()) {
                     stack.pop();
                 }

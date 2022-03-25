@@ -9,7 +9,7 @@ import java.nio.file.Path;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String DataDirectoryName = "data";
+    private static final String DATA_DIRECTORY_NAME = "data";
 
     /**
      * The TestData constructor.

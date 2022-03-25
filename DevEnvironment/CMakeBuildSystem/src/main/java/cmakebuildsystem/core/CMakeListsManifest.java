@@ -15,38 +15,38 @@ import json.interfaces.IJsonObjectWriter;
  * The CMakeListsManifest class implements a manifest of a CMakeLists file.
  */
 public final class CMakeListsManifest implements ICMakeListsManifest {
-    private static final String propertyCMakeVersion = "cmakeVersion";
-    private static final String propertyProjectVersion = "projectVersion";
-    private static final String propertyPresetPath = "presetPath";
-    private static final String propertyPostsetPath = "postsetPath";
-    private static final String propertyBuildPropertiesPath = "buildPropertiesPath";
-    private static final String propertyIncludesFilesProperty = "includesFilesProperty";
-    private static final String propertySourcesFilesProperty = "sourcesFilesProperty";
-    private static final String propertyIncludesProperty = "includesProperty";
-    private static final String propertySourcesProperty = "sourcesProperty";
+    private static final String PROPERTY_CMAKE_VERSION = "cmakeVersion";
+    private static final String PROPERTY_PROJECT_VERSION = "projectVersion";
+    private static final String PROPERTY_PRESET_PATH = "presetPath";
+    private static final String PROPERTY_POSTSET_PATH = "postsetPath";
+    private static final String PROPERTY_BUILD_PROPERTIES_PATH = "buildPropertiesPath";
+    private static final String PROPERTY_INCLUDES_FILES_PROPERTY = "includesFilesProperty";
+    private static final String PROPERTY_SOURCES_FILES_PROPERTY = "sourcesFilesProperty";
+    private static final String PROPERTY_INCLUDES_PROPERTY = "includesProperty";
+    private static final String PROPERTY_SOURCES_PROPERTY = "sourcesProperty";
 
-    private static final String defaultCMakeVersion = "3.6";
-    private static final String defaultProjectVersion = "1.0";
+    private static final String CMAKE_VERSION = "3.6";
+    private static final String PROJECT_VERSION = "1.0";
 
-    private static final String defaultPresetPath = new ResourcePathBuilder()
+    private static final String PRESET_PATH = new ResourcePathBuilder()
         .addComponent(ICMakeListsConstants.manifestDirectoryName)
         .addComponent(ICMakeListsConstants.defaultCMakeListsPresetFileName)
         .build();
 
-    private static final String defaultPostsetPath = new ResourcePathBuilder()
+    private static final String POSTSET_PATH = new ResourcePathBuilder()
         .addComponent(ICMakeListsConstants.manifestDirectoryName)
         .addComponent(ICMakeListsConstants.defaultCMakeListsPostsetFileName)
         .build();
 
-    private static final String defaultBuildPropertiesPath = new ResourcePathBuilder()
+    private static final String BUILD_PROPERTIES_PATH = new ResourcePathBuilder()
         .addComponent(ICMakeListsConstants.manifestDirectoryName)
         .addComponent(ICMakeListsConstants.defaultCMakeListsBuildPropertiesFileName)
         .build();
 
-    private static final String defaultIncludesFilesProperty = "INCLUDES_FILES";
-    private static final String defaultSourcesFilesProperty = "SOURCES_FILES";
-    private static final String defaultIncludesProperty = "INCLUDES";
-    private static final String defaultSourcesProperty = "SOURCES";
+    private static final String INCLUDES_FILES_PROPERTY = "INCLUDES_FILES";
+    private static final String SOURCES_FILES_PROPERTY = "SOURCES_FILES";
+    private static final String INCLUDES_PROPERTY = "INCLUDES";
+    private static final String SOURCES_PROPERTY = "SOURCES";
 
     private final String cmakeVersion;
     private final String projectVersion;
@@ -66,15 +66,15 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
      */
     public static ICMakeListsManifest defaultManifest() {
         return new CMakeListsManifest(
-            defaultCMakeVersion,
-            defaultProjectVersion,
-            defaultPresetPath,
-            defaultPostsetPath,
-            defaultBuildPropertiesPath,
-            defaultIncludesFilesProperty,
-            defaultSourcesFilesProperty,
-            defaultIncludesProperty,
-            defaultSourcesProperty);
+                CMAKE_VERSION,
+                PROJECT_VERSION,
+                PRESET_PATH,
+                POSTSET_PATH,
+                BUILD_PROPERTIES_PATH,
+                INCLUDES_FILES_PROPERTY,
+                SOURCES_FILES_PROPERTY,
+                INCLUDES_PROPERTY,
+                SOURCES_PROPERTY);
     }
 
     /**
@@ -181,56 +181,56 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyCMakeVersion, this.cmakeVersion);
-        writer.writeStringProperty(propertyProjectVersion, this.projectVersion);
-        writer.writeStringProperty(propertyPresetPath, this.presetPath);
-        writer.writeStringProperty(propertyPostsetPath, this.postsetPath);
-        writer.writeStringProperty(propertyBuildPropertiesPath, this.buildPropertiesPath);
-        writer.writeStringProperty(propertyIncludesFilesProperty, this.includesFilesProperty);
-        writer.writeStringProperty(propertySourcesFilesProperty, this.sourcesFilesProperty);
-        writer.writeStringProperty(propertyIncludesProperty, this.includesProperty);
-        writer.writeStringProperty(propertySourcesProperty, this.sourcesProperty);
+        writer.writeStringProperty(PROPERTY_CMAKE_VERSION, this.cmakeVersion);
+        writer.writeStringProperty(PROPERTY_PROJECT_VERSION, this.projectVersion);
+        writer.writeStringProperty(PROPERTY_PRESET_PATH, this.presetPath);
+        writer.writeStringProperty(PROPERTY_POSTSET_PATH, this.postsetPath);
+        writer.writeStringProperty(PROPERTY_BUILD_PROPERTIES_PATH, this.buildPropertiesPath);
+        writer.writeStringProperty(PROPERTY_INCLUDES_FILES_PROPERTY, this.includesFilesProperty);
+        writer.writeStringProperty(PROPERTY_SOURCES_FILES_PROPERTY, this.sourcesFilesProperty);
+        writer.writeStringProperty(PROPERTY_INCLUDES_PROPERTY, this.includesProperty);
+        writer.writeStringProperty(PROPERTY_SOURCES_PROPERTY, this.sourcesProperty);
     }
 
     /**
      * Reads a json.
      */
     public static ICMakeListsManifest readJson(IJsonObjectReader reader) {
-        String cmakeVersion = reader.hasProperty(propertyCMakeVersion) ?
-            reader.readStringProperty(propertyCMakeVersion) :
-            defaultCMakeVersion;
+        String cmakeVersion = reader.hasProperty(PROPERTY_CMAKE_VERSION) ?
+            reader.readStringProperty(PROPERTY_CMAKE_VERSION) :
+                CMAKE_VERSION;
 
-        String projectVersion = reader.hasProperty(propertyProjectVersion) ?
-            reader.readStringProperty(propertyProjectVersion) :
-            defaultProjectVersion;
+        String projectVersion = reader.hasProperty(PROPERTY_PROJECT_VERSION) ?
+            reader.readStringProperty(PROPERTY_PROJECT_VERSION) :
+                PROJECT_VERSION;
 
-        String presetPath = reader.hasProperty(propertyPresetPath) ?
-            reader.readStringProperty(propertyPresetPath) :
-            defaultPresetPath;
+        String presetPath = reader.hasProperty(PROPERTY_PRESET_PATH) ?
+            reader.readStringProperty(PROPERTY_PRESET_PATH) :
+                PRESET_PATH;
 
-        String postsetPath = reader.hasProperty(propertyPostsetPath) ?
-            reader.readStringProperty(propertyPostsetPath) :
-            defaultPostsetPath;
+        String postsetPath = reader.hasProperty(PROPERTY_POSTSET_PATH) ?
+            reader.readStringProperty(PROPERTY_POSTSET_PATH) :
+                POSTSET_PATH;
 
-        String buildPropertiesPath = reader.hasProperty(propertyBuildPropertiesPath) ?
-            reader.readStringProperty(propertyBuildPropertiesPath) :
-            defaultBuildPropertiesPath;
+        String buildPropertiesPath = reader.hasProperty(PROPERTY_BUILD_PROPERTIES_PATH) ?
+            reader.readStringProperty(PROPERTY_BUILD_PROPERTIES_PATH) :
+                BUILD_PROPERTIES_PATH;
 
-        String includesFilesProperty = reader.hasProperty(propertyIncludesFilesProperty) ?
-            reader.readStringProperty(propertyIncludesFilesProperty) :
-            defaultIncludesFilesProperty;
+        String includesFilesProperty = reader.hasProperty(PROPERTY_INCLUDES_FILES_PROPERTY) ?
+            reader.readStringProperty(PROPERTY_INCLUDES_FILES_PROPERTY) :
+                INCLUDES_FILES_PROPERTY;
 
-        String sourcesFilesProperty = reader.hasProperty(propertySourcesFilesProperty) ?
-            reader.readStringProperty(propertySourcesFilesProperty) :
-            defaultSourcesFilesProperty;
+        String sourcesFilesProperty = reader.hasProperty(PROPERTY_SOURCES_FILES_PROPERTY) ?
+            reader.readStringProperty(PROPERTY_SOURCES_FILES_PROPERTY) :
+                SOURCES_FILES_PROPERTY;
 
-        String includesProperty = reader.hasProperty(propertyIncludesProperty) ?
-            reader.readStringProperty(propertyIncludesProperty) :
-            defaultIncludesProperty;
+        String includesProperty = reader.hasProperty(PROPERTY_INCLUDES_PROPERTY) ?
+            reader.readStringProperty(PROPERTY_INCLUDES_PROPERTY) :
+                INCLUDES_PROPERTY;
 
-        String sourcesProperty = reader.hasProperty(propertySourcesProperty) ?
-            reader.readStringProperty(propertySourcesProperty) :
-            defaultSourcesProperty;
+        String sourcesProperty = reader.hasProperty(PROPERTY_SOURCES_PROPERTY) ?
+            reader.readStringProperty(PROPERTY_SOURCES_PROPERTY) :
+                SOURCES_PROPERTY;
 
         return new CMakeListsManifest(
             cmakeVersion,

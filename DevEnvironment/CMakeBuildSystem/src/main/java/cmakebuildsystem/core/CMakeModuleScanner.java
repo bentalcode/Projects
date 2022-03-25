@@ -60,7 +60,7 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
         List<Path> buildFilesPaths = pathsResult.get(2);
         List<Path> cmakeListsFilesPaths = pathsResult.get(3);
 
-        ICMakeModule module = new CMakeModule(
+        return new CMakeModule(
             this.manifest.getName(),
             this.path,
             headerFilesPaths,
@@ -68,8 +68,6 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
             buildFilesPaths,
             cmakeListsTargetPath,
             this.manifest.getDependentModules());
-
-        return module;
     }
 
     /**

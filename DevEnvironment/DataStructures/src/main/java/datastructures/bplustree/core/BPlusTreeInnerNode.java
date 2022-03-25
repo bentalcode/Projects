@@ -340,9 +340,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
         int keysSize = this.getKeyCount() * this.getProperties().getKeySizeInBytes();
         int valuesSize = this.getChildrenCount() * IPrimitiveSize.InBytes.ReferenceSize;
 
-        int size = keysSize + valuesSize;
-
-        return size;
+        return keysSize + valuesSize;
     }
 
     /**
@@ -357,7 +355,6 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
         //
         // Swaps the keys...
         //
-        int leftNodeCount = midIndex;
         int rightNodeCount = this.getKeyCount() - midIndex - 1;
 
         int leftNodeIndex = midIndex + 1;
@@ -370,7 +367,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
 
         // When splitting a leaf node, the middle key is kept on new node and be pushed to parent node.
         this.setKey(midIndex, null);
-        this.setKeyCount(leftNodeCount);
+        this.setKeyCount(midIndex);
         rightNode.setKeyCount(rightNodeCount);
 
         //

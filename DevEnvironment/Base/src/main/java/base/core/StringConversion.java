@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * The StringConversion class implements conversions for a string.
  */
 public final class StringConversion implements IStringConversion {
-    private static final String separator = ",";
+    private static final String SEPARATOR = ",";
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -236,7 +236,7 @@ public final class StringConversion implements IStringConversion {
      */
     @Override
     public String[] toArray(String value) {
-        return this.toArray(value, StringConversion.separator);
+        return this.toArray(value, StringConversion.SEPARATOR);
     }
 
     /**

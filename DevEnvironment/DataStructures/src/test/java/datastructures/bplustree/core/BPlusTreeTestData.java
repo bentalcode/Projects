@@ -39,17 +39,15 @@ public final class BPlusTreeTestData implements IBPlusTreeTestData {
         IBinaryComparator<Integer> keyComparator = Comparator.make();
         IBinaryComparator<IBPlusTreeNode<Integer>> nodeComparator = BPlusTreeNode.defaultComparator(keyComparator);
 
-        IBPlusTreeProperties<Integer, String> properties = new BPlusTreeProperties.Builder<Integer, String>()
-                .withDegree(4)
-                .withKeyClassType(Integer.class)
-                .withValueClassType(String.class)
-                .withKeyComparator(keyComparator)
-                .withNodeComparator(nodeComparator)
-                .withKeySizeInBytes(IPrimitiveSize.InBytes.IntegerSize)
-                .withValueSizeInBytes(IPrimitiveSize.InBytes.CharacterSize * 1)
-                .build();
-
-        return properties;
+        return new BPlusTreeProperties.Builder<Integer, String>()
+            .withDegree(4)
+            .withKeyClassType(Integer.class)
+            .withValueClassType(String.class)
+            .withKeyComparator(keyComparator)
+            .withNodeComparator(nodeComparator)
+            .withKeySizeInBytes(IPrimitiveSize.InBytes.IntegerSize)
+            .withValueSizeInBytes(IPrimitiveSize.InBytes.CharacterSize * 1)
+            .build();
     }
 
     /**

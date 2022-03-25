@@ -133,14 +133,11 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
 
         node.unlinked();
 
-        if (this.head == null) {
-            assert(this.empty());
-            this.head = node;
-        }
-        else {
+        if (this.head != null) {
             this.linkedNodes(node, this.head);
-            this.head = node;
         }
+
+        this.head = node;
 
         this.nodeAdded();
     }

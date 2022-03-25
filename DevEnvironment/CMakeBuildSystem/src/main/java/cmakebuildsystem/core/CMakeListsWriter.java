@@ -166,9 +166,7 @@ public final class CMakeListsWriter implements IWriter {
         ICMakeBuildElement postsetSection = new CMakeResource(postsetPath);
         elements.add(postsetSection);
 
-        ICMakeListsFile file = new CMakeListsFile(elements);
-
-        return file;
+        return new CMakeListsFile(elements);
     }
 
     /**

@@ -102,9 +102,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
             return null;
         }
 
-        TValue value = leaf.getValue(index);
-
-        return value;
+        return leaf.getValue(index);
     }
 
     /**

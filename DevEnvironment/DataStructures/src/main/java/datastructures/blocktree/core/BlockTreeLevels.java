@@ -273,11 +273,9 @@ public final class BlockTreeLevels<TKey extends Comparable<TKey>, TValue> implem
          */
         @Override
         public IBlockTreeLevels<TKey, TValue> build() {
-            IBlockTreeLevels<TKey, TValue> levels = new BlockTreeLevels<>(
+            return new BlockTreeLevels<>(
                 this.levels,
                 BlockTreeLevels.defaultComparator());
-
-            return levels;
         }
     }
 }

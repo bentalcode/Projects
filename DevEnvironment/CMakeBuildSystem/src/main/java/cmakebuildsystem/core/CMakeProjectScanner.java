@@ -38,12 +38,10 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
         Path projectPath = this.calculateProjectPath(this.manifest);
         List<ICMakeModule> modules = this.scanModules(projectPath);
 
-        ICMakeProject project = new CMakeProject(
+        return new CMakeProject(
             name,
             projectPath,
             modules);
-
-        return project;
     }
 
     /**
@@ -70,9 +68,7 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
             modulePath,
             moduleManifest);
 
-        ICMakeModule module = scanner.scan();
-
-        return module;
+        return scanner.scan();
     }
 
     /**

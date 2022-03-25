@@ -259,8 +259,7 @@ public final class CircularArray<T extends Comparable<T>> implements ICircularAr
      * Gets the actual index of an index.
      */
     private int indexOf(int index) {
-        int result = (this.startIndex + index) % this.data.length;
-        return result;
+        return (this.startIndex + index) % this.data.length;
     }
 
     /**

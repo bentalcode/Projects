@@ -114,10 +114,7 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
     private int calculateInnerNodeCapacity(IBPlusTreeProperties<TKey, TValue> properties) {
         int keysCapacity = properties.getDegree() * properties.getInnerNodeProperties().getKeySizeInBytes();
         int childrenCapacity = (properties.getDegree() + 1) * IPrimitiveSize.InBytes.ReferenceSize;
-
-        int capacity = keysCapacity + childrenCapacity;
-
-        return capacity;
+        return keysCapacity + childrenCapacity;
     }
 
     /**
@@ -126,9 +123,6 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
     private int calculateLeafNodeCapacity(IBPlusTreeProperties<TKey, TValue> properties) {
         int keysCapacity = properties.getDegree() * properties.getInnerNodeProperties().getKeySizeInBytes();
         int valueCapacity = (properties.getDegree()) * properties.getLeafNodeProperties().getValueSizeInBytes();
-
-        int capacity = keysCapacity + valueCapacity;
-
-        return capacity;
+        return keysCapacity + valueCapacity;
     }
 }

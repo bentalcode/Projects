@@ -10,9 +10,9 @@ import java.util.List;
  * The TableWriter class implements a writer of a table.
  */
 public final class TableWriter implements ITableWriter {
-    private static final String defaultHorizontalLineUnit = "-";
-    private static final String defaultVerticalLineUnit = "|";
-    private static final String defaultPadUnit = " ";
+    private static final String HORIZONTAL_LINE_UNIT = "-";
+    private static final String VERTICAL_LINE_UNIT = "|";
+    private static final String PAD_UNIT = " ";
 
     private final Writer writer;
     private final String horizontalLineUnit;
@@ -25,9 +25,9 @@ public final class TableWriter implements ITableWriter {
     public TableWriter(Writer writer) {
         this(
             writer,
-            defaultHorizontalLineUnit,
-            defaultVerticalLineUnit,
-            defaultPadUnit);
+                HORIZONTAL_LINE_UNIT,
+                VERTICAL_LINE_UNIT,
+                PAD_UNIT);
     }
 
     /**

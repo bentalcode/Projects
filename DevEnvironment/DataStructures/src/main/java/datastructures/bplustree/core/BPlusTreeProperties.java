@@ -192,7 +192,7 @@ public final class BPlusTreeProperties<TKey extends Comparable<TKey>, TValue> im
          */
         @Override
         public IBPlusTreeProperties<TKey, TValue> build() {
-            IBPlusTreeProperties<TKey, TValue> properties = new BPlusTreeProperties<>(
+            return new BPlusTreeProperties<>(
                 this.degree,
                 this.keyClassType,
                 this.valueClassType,
@@ -200,8 +200,6 @@ public final class BPlusTreeProperties<TKey extends Comparable<TKey>, TValue> im
                 this.nodeComparator,
                 this.sizeOfKeyInBytes,
                 this.sizeOfValueInBytes);
-
-            return properties;
         }
     }
 }

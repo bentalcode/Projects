@@ -21,12 +21,12 @@ import json.interfaces.IJsonObjectWriter;
 public final class CommandHelpMetadata implements ICommandHelpMetadata {
     public static final int helpParameterSetIndex = -1;
 
-    private static final String propertyShortName = "shortName";
-    private static final String propertyLongName = "longName";
-    private static final String propertyUsageMessage = "usageMessage";
+    private static final String PROPERTY_SHORT_NAME = "shortName";
+    private static final String PROPERTY_LONG_NAME = "longName";
+    private static final String PROPERTY_USAGE_MESSAGE = "usageMessage";
 
-    private static final String defaultShortName = ICommandConstants.helpShortName;
-    private static final String defaultLongName = ICommandConstants.helpLongName;
+    private static final String DEFAULT_SHORT_NAME = ICommandConstants.helpShortName;
+    private static final String DEFAULT_LONG_NAME = ICommandConstants.helpLongName;
 
     private final String shortName;
     private final String longName;
@@ -121,29 +121,29 @@ public final class CommandHelpMetadata implements ICommandHelpMetadata {
     @Override
     public void writeJson(IJsonObjectWriter writer) {
         if (this.shortName != null) {
-            writer.writeStringProperty(propertyShortName, this.shortName);
+            writer.writeStringProperty(PROPERTY_SHORT_NAME, this.shortName);
         }
 
         if (this.longName != null) {
-            writer.writeStringProperty(propertyLongName, this.longName);
+            writer.writeStringProperty(PROPERTY_LONG_NAME, this.longName);
         }
 
-        writer.writeStringProperty(propertyUsageMessage, this.usageMessage);
+        writer.writeStringProperty(PROPERTY_USAGE_MESSAGE, this.usageMessage);
     }
 
     /**
      * Reads a json.
      */
     public static ICommandHelpMetadata readJson(IJsonObjectReader reader) {
-        String shortName = reader.hasProperty(propertyShortName) ?
-            reader.readStringProperty(propertyShortName) :
-            defaultShortName;
+        String shortName = reader.hasProperty(PROPERTY_SHORT_NAME) ?
+            reader.readStringProperty(PROPERTY_SHORT_NAME) :
+                DEFAULT_SHORT_NAME;
 
-        String longName = reader.hasProperty(propertyLongName) ?
-            reader.readStringProperty(propertyLongName) :
-            defaultLongName;
+        String longName = reader.hasProperty(PROPERTY_LONG_NAME) ?
+            reader.readStringProperty(PROPERTY_LONG_NAME) :
+                DEFAULT_LONG_NAME;
 
-        String usageMessage = reader.readStringProperty(propertyUsageMessage);
+        String usageMessage = reader.readStringProperty(PROPERTY_USAGE_MESSAGE);
 
         return new CommandHelpMetadata(
             shortName,

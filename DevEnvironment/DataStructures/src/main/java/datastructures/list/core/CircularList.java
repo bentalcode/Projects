@@ -260,8 +260,7 @@ public final class CircularList<T extends Comparable<T>> implements ICircularLis
      * Gets the actual index of an index.
      */
     private int indexOf(int index) {
-        int result = (this.startIndex + index) % this.data.size();
-        return result;
+        return (this.startIndex + index) % this.data.size();
     }
 
     /**

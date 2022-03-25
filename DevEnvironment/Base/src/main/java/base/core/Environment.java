@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
  * The Environment class implements complementary APIs for current environment.
  */
 public final class Environment {
-    private static final String variablePattern = "\\$\\{[A-Za-z0-9\\-\\_\\.]+\\}";
-    private static final Logger log = LoggerFactory.getLogger(Enums.class);
+    private static final String VARIABLE_PATTERN = "\\$\\{[A-Za-z0-9\\-\\_\\.]+\\}";
+    private static final Logger LOG = LoggerFactory.getLogger(Enums.class);
 
     /**
      * Checks whether the current operating system is windows.
@@ -62,7 +62,7 @@ public final class Environment {
             return name;
         }
 
-        Pattern pattern = Pattern.compile(variablePattern);
+        Pattern pattern = Pattern.compile(VARIABLE_PATTERN);
         Matcher matcher = pattern.matcher(name);
 
         StringBuilder result = new StringBuilder();
@@ -117,18 +117,18 @@ public final class Environment {
      */
     private static String getVariableName(String variable) {
         if (variable == null || variable.length() < 2) {
-            String errorMessage = "Invalid length. Variable pattern: " + variablePattern;
+            String errorMessage = "Invalid length. Variable pattern: " + VARIABLE_PATTERN;
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BaseException(errorMessage);
         }
 
         char first = variable.charAt(0);
 
         if (first != '$') {
-            String errorMessage = "The variable does not start with a $. Variable pattern: " + variablePattern;
+            String errorMessage = "The variable does not start with a $. Variable pattern: " + VARIABLE_PATTERN;
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BaseException(errorMessage);
         }
 
@@ -143,9 +143,9 @@ public final class Environment {
         int nameLength = Indexes.size(startIndex, endIndex);
 
         if (nameLength == 0) {
-            String errorMessage = "The variable is not defined. Variable pattern: " + variablePattern;
+            String errorMessage = "The variable is not defined. Variable pattern: " + VARIABLE_PATTERN;
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BaseException(errorMessage);
         }
 

@@ -19,7 +19,7 @@ public final class UnixPathSettings implements IOperatingSystemPathSettings {
      */
     @Override
     public String getPathSeparator() {
-        return UnixPath.directorySeparator;
+        return UnixPath.DIRECTORY_SEPARATOR;
     }
 
     /**

@@ -97,8 +97,7 @@ public final class CacheProperties implements ICacheProperties {
      */
     @Override
     public long getIntensityZoneSizeInBytes() {
-        long size = (long)(this.sizeInBytes * this.intensityFactor);
-        return size;
+        return (long)(this.sizeInBytes * this.intensityFactor);
     }
 
     /**
@@ -106,8 +105,7 @@ public final class CacheProperties implements ICacheProperties {
      */
     @Override
     public long getSecondaryIntensityZoneSizeInBytes() {
-        long size = (long)(this.getIntensityZoneSizeInBytes() * this.secondaryIntensityFactor);
-        return size;
+        return (long)(this.getIntensityZoneSizeInBytes() * this.secondaryIntensityFactor);
     }
 
     /**

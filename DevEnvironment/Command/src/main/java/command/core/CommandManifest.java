@@ -21,10 +21,10 @@ import json.interfaces.IJsonObjectWriter;
  * The CommandManifest class implements a manifest of a command.
  */
 public final class CommandManifest implements ICommandManifest {
-    private static final String propertyName = "name";
-    private static final String propertyDescription = "description";
-    private static final String propertyHelp = "help";
-    private static final String propertyParameterSets = "parameterSets";
+    private static final String PROPERTY_NAME = "name";
+    private static final String PROPERTY_DESCRIPTION = "description";
+    private static final String PROPERTY_HELP = "help";
+    private static final String PROPERTY_PARAMETER_SETS = "parameterSets";
 
     private final String name;
     private final String description;
@@ -142,22 +142,22 @@ public final class CommandManifest implements ICommandManifest {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyName, this.name);
-        writer.writeStringProperty(propertyDescription, this.description);
-        writer.writeObjectProperty(propertyHelp, this.helpMetadata);
-        writer.writeCollectionProperty(propertyParameterSets, this.parameterSetMetadata);
+        writer.writeStringProperty(PROPERTY_NAME, this.name);
+        writer.writeStringProperty(PROPERTY_DESCRIPTION, this.description);
+        writer.writeObjectProperty(PROPERTY_HELP, this.helpMetadata);
+        writer.writeCollectionProperty(PROPERTY_PARAMETER_SETS, this.parameterSetMetadata);
     }
 
     /**
      * Reads a json.
      */
     public static ICommandManifest readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(propertyName);
-        String description = reader.readStringProperty(propertyDescription);
-        ICommandHelpMetadata help = reader.readObjectProperty(propertyHelp, CommandHelpMetadata.class);
+        String name = reader.readStringProperty(PROPERTY_NAME);
+        String description = reader.readStringProperty(PROPERTY_DESCRIPTION);
+        ICommandHelpMetadata help = reader.readObjectProperty(PROPERTY_HELP, CommandHelpMetadata.class);
 
         List<IParameterSetMetadata> parameterSets = reader.readListProperty(
-            propertyParameterSets,
+                PROPERTY_PARAMETER_SETS,
             ParameterSetMetadata.class);
 
         return new CommandManifest(

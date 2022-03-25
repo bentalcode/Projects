@@ -21,12 +21,12 @@ import java.util.List;
  * The CMakeProjectManifest class implements a manifest of a CMake project.
  */
 public final class CMakeProjectManifest implements ICMakeProjectManifest {
-    private static final String propertyName = "name";
-    private static final String propertyRootPath = "rootPath";
-    private static final String propertyEffectiveModules = "effectiveModules";
-    private static final String propertyModules = "modules";
-    private static final String propertyEditorSettings = "editorSettings";
-    private static final String propertyIgnoreRules = "ignoreRules";
+    private static final String PROPERTY_NAME = "name";
+    private static final String PROPERTY_ROOT_PATH = "rootPath";
+    private static final String PROPERTY_EFFECTIVE_MODULES = "effectiveModules";
+    private static final String PROPERTY_MODULES = "modules";
+    private static final String PROPERTY_EDITOR_SETTINGS = "editorSettings";
+    private static final String PROPERTY_IGNORE_RULES = "ignoreRules";
 
     private final String name;
     private final String rootPath;
@@ -151,33 +151,33 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyName, this.name);
-        writer.writeStringProperty(propertyRootPath, this.rootPath);
-        writer.writeCollectionProperty(propertyEffectiveModules, this.effectiveModules);
-        writer.writeCollectionProperty(propertyModules, this.modules);
-        writer.writeObjectProperty(propertyEditorSettings, this.editorSettings);
-        writer.writeObjectProperty(propertyIgnoreRules, this.ignoreRules);
+        writer.writeStringProperty(PROPERTY_NAME, this.name);
+        writer.writeStringProperty(PROPERTY_ROOT_PATH, this.rootPath);
+        writer.writeCollectionProperty(PROPERTY_EFFECTIVE_MODULES, this.effectiveModules);
+        writer.writeCollectionProperty(PROPERTY_MODULES, this.modules);
+        writer.writeObjectProperty(PROPERTY_EDITOR_SETTINGS, this.editorSettings);
+        writer.writeObjectProperty(PROPERTY_IGNORE_RULES, this.ignoreRules);
     }
 
     /**
      * Reads a json.
      */
     public static ICMakeProjectManifest readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(propertyName);
-        String rootPath = reader.readStringProperty(propertyRootPath);
+        String name = reader.readStringProperty(PROPERTY_NAME);
+        String rootPath = reader.readStringProperty(PROPERTY_ROOT_PATH);
 
-        List<String> effectiveModules = reader.hasProperty(propertyEffectiveModules) ?
-            reader.readStringListProperty(propertyEffectiveModules) :
+        List<String> effectiveModules = reader.hasProperty(PROPERTY_EFFECTIVE_MODULES) ?
+            reader.readStringListProperty(PROPERTY_EFFECTIVE_MODULES) :
             new ArrayList<>();
 
-        List<ICMakeModuleManifest> modules = reader.readListProperty(propertyModules, CMakeModuleManifest.class);
+        List<ICMakeModuleManifest> modules = reader.readListProperty(PROPERTY_MODULES, CMakeModuleManifest.class);
 
-        IEditorSettings editorSettings = reader.hasProperty(propertyEditorSettings) ?
-            reader.readObjectProperty(propertyEditorSettings, EditorSettings.class) :
+        IEditorSettings editorSettings = reader.hasProperty(PROPERTY_EDITOR_SETTINGS) ?
+            reader.readObjectProperty(PROPERTY_EDITOR_SETTINGS, EditorSettings.class) :
             EditorSettings.defaultEditorSettings();
 
-        IIgnoreRules ignoreRules = reader.hasProperty(propertyIgnoreRules) ?
-            reader.readObjectProperty(propertyIgnoreRules, IgnoreRules.class) :
+        IIgnoreRules ignoreRules = reader.hasProperty(PROPERTY_IGNORE_RULES) ?
+            reader.readObjectProperty(PROPERTY_IGNORE_RULES, IgnoreRules.class) :
             IgnoreRules.defaultIgnoreRules();
 
         return new CMakeProjectManifest(

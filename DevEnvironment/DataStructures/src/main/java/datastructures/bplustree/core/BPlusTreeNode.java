@@ -238,9 +238,7 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
         //
         // Push up a key to a parent internal node...
         //
-        IBPlusTreeNode<TKey> result = parent.pushUpKey(upKey, leftNode, rightNode);
-
-        return result;
+        return parent.pushUpKey(upKey, leftNode, rightNode);
     }
 
     /**

@@ -175,8 +175,7 @@ public final class CircularString implements ICircularString {
      * Increments an index.
      */
     private int increment(int index, int size) {
-        int result = (index + size) % this.value.length();
-        return result;
+        return (index + size) % this.value.length();
     }
 
     /**

@@ -24,8 +24,8 @@ import java.util.List;
  * The ParameterSetMetadata class implements a metadata of a parameter-set.
  */
 public final class ParameterSetMetadata implements IParameterSetMetadata {
-    private static final String propertyIndexedParameters = "indexedParameters";
-    private static final String propertyNamedParameters = "namedParameters";
+    private static final String PROPERTY_INDEXED_PARAMETERS = "indexedParameters";
+    private static final String PROPERTY_NAMED_PARAMETERS = "namedParameters";
 
     private final List<IIndexedParameterMetadata> indexedParameters;
     private final List<INamedParameterMetadata> namedParameters;
@@ -111,23 +111,23 @@ public final class ParameterSetMetadata implements IParameterSetMetadata {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeCollectionProperty(propertyIndexedParameters, this.indexedParameters);
-        writer.writeCollectionProperty(propertyNamedParameters, this.namedParameters);
+        writer.writeCollectionProperty(PROPERTY_INDEXED_PARAMETERS, this.indexedParameters);
+        writer.writeCollectionProperty(PROPERTY_NAMED_PARAMETERS, this.namedParameters);
     }
 
     /**
      * Reads a json.
      */
     public static IParameterSetMetadata readJson(IJsonObjectReader reader) {
-        List<IIndexedParameterMetadata> indexedParameters = reader.hasProperty(propertyIndexedParameters) ?
+        List<IIndexedParameterMetadata> indexedParameters = reader.hasProperty(PROPERTY_INDEXED_PARAMETERS) ?
             reader.readListProperty(
-                propertyIndexedParameters,
+                    PROPERTY_INDEXED_PARAMETERS,
                 IndexedParameterMetadata.class) :
             new ArrayList<>();
 
-        List<INamedParameterMetadata> namedParameters = reader.hasProperty(propertyNamedParameters) ?
+        List<INamedParameterMetadata> namedParameters = reader.hasProperty(PROPERTY_NAMED_PARAMETERS) ?
             reader.readListProperty(
-                propertyNamedParameters,
+                    PROPERTY_NAMED_PARAMETERS,
                 NamedParameterMetadata.class) :
             new ArrayList<>();
 

@@ -20,11 +20,11 @@ import java.util.List;
  * The CMakeModuleManifest class implements a CMake module.
  */
 public final class CMakeModuleManifest implements ICMakeModuleManifest {
-    private static final String propertyName = "name";
-    private static final String propertyType = "type";
-    private static final String propertyProperties = "properties";
-    private static final String propertyCMakeListsManifest = "cmakeListsManifest";
-    private static final String propertyDependentModules = "dependentModules";
+    private static final String PROPERTY_NAME = "name";
+    private static final String PROPERTY_TYPE = "type";
+    private static final String PROPERTY_PROPERTIES = "properties";
+    private static final String PROPERTY_CMAKE_LISTS_MANIFEST = "cmakeListsManifest";
+    private static final String PROPERTY_DEPENDENT_MODULES = "dependentModules";
 
     private final String name;
     private final CMakeModuleType type;
@@ -107,31 +107,31 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyName, this.name);
-        writer.writeEnumProperty(propertyType, this.type);
-        writer.writeObjectProperty(propertyProperties, this.properties);
-        writer.writeObjectProperty(propertyCMakeListsManifest, this.cmakeListsManifest);
-        writer.writeCollectionProperty(propertyDependentModules, this.dependentModules);
+        writer.writeStringProperty(PROPERTY_NAME, this.name);
+        writer.writeEnumProperty(PROPERTY_TYPE, this.type);
+        writer.writeObjectProperty(PROPERTY_PROPERTIES, this.properties);
+        writer.writeObjectProperty(PROPERTY_CMAKE_LISTS_MANIFEST, this.cmakeListsManifest);
+        writer.writeCollectionProperty(PROPERTY_DEPENDENT_MODULES, this.dependentModules);
     }
 
     /**
      * Reads a json.
      */
     public static ICMakeModuleManifest readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(propertyName);
+        String name = reader.readStringProperty(PROPERTY_NAME);
 
-        CMakeModuleType type = reader.readEnumProperty(propertyType, value -> { return CMakeModuleType.parse(value); });
+        CMakeModuleType type = reader.readEnumProperty(PROPERTY_TYPE, value -> { return CMakeModuleType.parse(value); });
 
-        ICMakeModuleProperties properties = reader.hasProperty(propertyProperties) ?
-            reader.readObjectProperty(propertyProperties, CMakeModuleProperties.class) :
+        ICMakeModuleProperties properties = reader.hasProperty(PROPERTY_PROPERTIES) ?
+            reader.readObjectProperty(PROPERTY_PROPERTIES, CMakeModuleProperties.class) :
             CMakeModuleProperties.defaultProperties();
 
-        ICMakeListsManifest cmakeListsManifest = reader.hasProperty(propertyCMakeListsManifest) ?
-            reader.readObjectProperty(propertyCMakeListsManifest, CMakeListsManifest.class) :
+        ICMakeListsManifest cmakeListsManifest = reader.hasProperty(PROPERTY_CMAKE_LISTS_MANIFEST) ?
+            reader.readObjectProperty(PROPERTY_CMAKE_LISTS_MANIFEST, CMakeListsManifest.class) :
             CMakeListsManifest.defaultManifest();
 
-        List<String> dependentModules = reader.hasProperty(propertyDependentModules) ?
-            reader.readStringListProperty(propertyDependentModules) :
+        List<String> dependentModules = reader.hasProperty(PROPERTY_DEPENDENT_MODULES) ?
+            reader.readStringListProperty(PROPERTY_DEPENDENT_MODULES) :
             new ArrayList<>();
 
         return new CMakeModuleManifest(

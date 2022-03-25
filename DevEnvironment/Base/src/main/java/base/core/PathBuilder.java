@@ -4,16 +4,16 @@ package base.core;
  * The PathBuilder class implements a builder of a path.
  */
 public final class PathBuilder extends AbstractPathBuilder {
-    private static final String defaultRootDirectory = null;
-    private static final String defaultSeparator = WindowsPath.directorySeparator;
+    private static final String ROOT_DIRECTORY = null;
+    private static final String SEPARATOR = WindowsPath.directorySeparator;
 
     /**
      * The PathBuilder constructor.
      */
     public PathBuilder() {
         this(
-            defaultRootDirectory,
-            defaultSeparator);
+            ROOT_DIRECTORY,
+            SEPARATOR);
     }
 
     /**
@@ -22,7 +22,7 @@ public final class PathBuilder extends AbstractPathBuilder {
     private PathBuilder(String rootDirectory) {
         super(
             rootDirectory,
-            defaultSeparator);
+            SEPARATOR);
     }
 
     /**

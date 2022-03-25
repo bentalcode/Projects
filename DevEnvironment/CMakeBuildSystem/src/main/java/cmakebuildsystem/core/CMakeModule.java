@@ -21,13 +21,13 @@ import java.util.List;
  * The CMakeModule class implements a CMake module.
  */
 public final class CMakeModule implements ICMakeModule {
-    private static final String propertyName = "name";
-    private static final String propertyRootPath = "rootPath";
-    private static final String propertyHeaderFilesPaths = "headerFilesPaths";
-    private static final String propertySourceFilesPaths = "sourceFilesPaths";
-    private static final String propertyBuildFilesPaths = "buildFilesPaths";
-    private static final String propertyCmakeListsFilePath = "cmakeListsFilePath";
-    private static final String propertyDependentModules = "dependentModules";
+    private static final String PROPERTY_NAME = "name";
+    private static final String PROPERTY_ROOT_PATH = "rootPath";
+    private static final String PROPERTY_HEADER_FILES_PATHS = "headerFilesPaths";
+    private static final String PROPERTY_SOURCE_FILES_PATHS = "sourceFilesPaths";
+    private static final String PROPERTY_BUILD_FILES_PATHS = "buildFilesPaths";
+    private static final String PROPERTY_CMAKE_LISTS_FILE_PATH = "cmakeListsFilePath";
+    private static final String PROPERTY_DEPENDENT_MODULES = "dependentModules";
 
     private final String name;
     private final Path rootPath;
@@ -160,31 +160,31 @@ public final class CMakeModule implements ICMakeModule {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyName, this.name);
-        writer.writeStringProperty(propertyRootPath, this.rootPath.toString());
-        writer.writeCollectionProperty(propertyHeaderFilesPaths, this.headerFilesPaths, Path::toString);
-        writer.writeCollectionProperty(propertySourceFilesPaths, this.sourceFilesPaths, Path::toString);
-        writer.writeCollectionProperty(propertyBuildFilesPaths, this.buildFilesPaths, Path::toString);
-        writer.writeStringProperty(propertyCmakeListsFilePath, this.cmakeListsFilePath.toString());
-        writer.writeCollectionProperty(propertyDependentModules, this.dependentModules);
+        writer.writeStringProperty(PROPERTY_NAME, this.name);
+        writer.writeStringProperty(PROPERTY_ROOT_PATH, this.rootPath.toString());
+        writer.writeCollectionProperty(PROPERTY_HEADER_FILES_PATHS, this.headerFilesPaths, Path::toString);
+        writer.writeCollectionProperty(PROPERTY_SOURCE_FILES_PATHS, this.sourceFilesPaths, Path::toString);
+        writer.writeCollectionProperty(PROPERTY_BUILD_FILES_PATHS, this.buildFilesPaths, Path::toString);
+        writer.writeStringProperty(PROPERTY_CMAKE_LISTS_FILE_PATH, this.cmakeListsFilePath.toString());
+        writer.writeCollectionProperty(PROPERTY_DEPENDENT_MODULES, this.dependentModules);
     }
 
     /**
      * Reads a json.
      */
     public static ICMakeModule readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(propertyName);
-        Path rootPath = reader.readProperty(propertyRootPath, value -> { return Paths.create(value); });
-        List<Path> headerFilesPaths = reader.readListProperty(propertyHeaderFilesPaths, value -> { return Paths.create(value); });
-        List<Path> sourceFilesPaths = reader.readListProperty(propertySourceFilesPaths, value -> { return Paths.create(value); });
-        List<Path> buildFilesPaths = reader.hasProperty(propertyBuildFilesPaths) ?
-            reader.readListProperty(propertyBuildFilesPaths, value -> { return Paths.create(value); }) :
+        String name = reader.readStringProperty(PROPERTY_NAME);
+        Path rootPath = reader.readProperty(PROPERTY_ROOT_PATH, value -> { return Paths.create(value); });
+        List<Path> headerFilesPaths = reader.readListProperty(PROPERTY_HEADER_FILES_PATHS, value -> { return Paths.create(value); });
+        List<Path> sourceFilesPaths = reader.readListProperty(PROPERTY_SOURCE_FILES_PATHS, value -> { return Paths.create(value); });
+        List<Path> buildFilesPaths = reader.hasProperty(PROPERTY_BUILD_FILES_PATHS) ?
+            reader.readListProperty(PROPERTY_BUILD_FILES_PATHS, value -> { return Paths.create(value); }) :
             new ArrayList<>();
 
-        Path cmakeListsFilePath = reader.readProperty(propertyCmakeListsFilePath, value -> { return Paths.create(value); });
+        Path cmakeListsFilePath = reader.readProperty(PROPERTY_CMAKE_LISTS_FILE_PATH, value -> { return Paths.create(value); });
 
-        List<String> dependentModules = reader.hasProperty(propertyDependentModules) ?
-            reader.readStringListProperty(propertyDependentModules) :
+        List<String> dependentModules = reader.hasProperty(PROPERTY_DEPENDENT_MODULES) ?
+            reader.readStringListProperty(PROPERTY_DEPENDENT_MODULES) :
             new ArrayList<>();
 
         return new CMakeModule(
@@ -339,43 +339,35 @@ public final class CMakeModule implements ICMakeModule {
      * Creates an includes variable of a module.
      */
     public static ICMakeVariable createIncludesVariable(ICMakeModuleContextData contextData) {
-        ICMakeVariable variable = CMakeVariable.createVariable(
+        return CMakeVariable.createVariable(
             contextData.getModule().getName(),
             contextData.getManifest().getCMakeListsManifest().getIncludesProperty());
-
-        return variable;
     }
 
     /**
      * Creates an includes variable name of a module.
      */
     public static String createIncludesVariableName(ICMakeModuleContextData contextData) {
-        String variableName = CMakeVariable.createVariableName(
+        return CMakeVariable.createVariableName(
             contextData.getModule().getName(),
             contextData.getManifest().getCMakeListsManifest().getIncludesProperty());
-
-        return variableName;
     }
 
     /**
      * Creates a sources variable of a module.
      */
     public static ICMakeVariable createSourcesVariable(ICMakeModuleContextData contextData) {
-        ICMakeVariable variable = CMakeVariable.createVariable(
+        return CMakeVariable.createVariable(
             contextData.getModule().getName(),
             contextData.getManifest().getCMakeListsManifest().getSourcesProperty());
-
-        return variable;
     }
 
     /**
      * Creates a sources variable name of a module.
      */
     public static String createSourcesVariableName(ICMakeModuleContextData contextData) {
-        String variableName = CMakeVariable.createVariableName(
+        return CMakeVariable.createVariableName(
             contextData.getModule().getName(),
             contextData.getManifest().getCMakeListsManifest().getSourcesProperty());
-
-        return variableName;
     }
 }

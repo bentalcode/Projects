@@ -145,13 +145,11 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
         Map<String, List<ICMakeModule>> modulesDependencies = this.createModulesDependenciesMap(modules);
         Set<String> effectiveModules = this.createEffectiveModulesSet(modules, this.manifest.getEffectiveModules());
 
-        ICMakeBuildContextData contextData = new CMakeBuildContextData(
+        return new CMakeBuildContextData(
             modules,
             modulesManifests,
             modulesDependencies,
             effectiveModules);
-
-        return contextData;
     }
 
     /**

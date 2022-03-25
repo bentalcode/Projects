@@ -12,13 +12,13 @@ import java.util.List;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String dataDirectoryName = "data";
-    private static final String fileFormatDirectoryName = "fileFormat";
-    private static final String paragraphsDirectoryName = "paragraphs";
-    private static final String paragraphFileName = "paragraph";
-    private static final String paragraphFileExtension = "txt";
+    private static final String DATA_DIRECTORY_NAME = "data";
+    private static final String FILE_FORMAT_DIRECTORY_NAME = "fileFormat";
+    private static final String PARAGRAPHS_DIRECTORY_NAME = "paragraphs";
+    private static final String PARAGRAPH_FILE_NAME = "paragraph";
+    private static final String PARAGRAPH_FILE_EXTENSION = "txt";
 
-    private static final String[] fileFormatResourceNames = {
+    private static final String[] FILE_FORMAT_RESOURCE_NAMES = {
         "UnixFormat.h",
         "WindowsFormat.h"
     };
@@ -36,10 +36,10 @@ public final class TestData implements ITestData {
     public List<Path> getFileFormatResourcePaths() {
         List<Path> result = new ArrayList<>();
 
-        for (String path : TestData.fileFormatResourceNames) {
+        for (String path : TestData.FILE_FORMAT_RESOURCE_NAMES) {
             Path requestPath = ResourcePaths.create(
-                TestData.dataDirectoryName,
-                TestData.fileFormatDirectoryName,
+                TestData.DATA_DIRECTORY_NAME,
+                TestData.FILE_FORMAT_DIRECTORY_NAME,
                 path);
 
             result.add(requestPath);
@@ -59,10 +59,10 @@ public final class TestData implements ITestData {
 
         for (int paragraphIndex = paragraphStartIndex; paragraphIndex <= paragraphEndIndex; ++paragraphIndex) {
             String path = new ResourcePathBuilder()
-                .addComponent(TestData.dataDirectoryName)
-                .addComponent(TestData.paragraphsDirectoryName)
-                .addComponent(paragraphFileName + paragraphIndex)
-                .setExtension(TestData.paragraphFileExtension)
+                .addComponent(TestData.DATA_DIRECTORY_NAME)
+                .addComponent(TestData.PARAGRAPHS_DIRECTORY_NAME)
+                .addComponent(PARAGRAPH_FILE_NAME + paragraphIndex)
+                .setExtension(TestData.PARAGRAPH_FILE_EXTENSION)
                 .build();
 
 

@@ -122,8 +122,7 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         assert(dataMinSizeInBits >= 0);
         assert(dataMaxSizeInBits >= dataMinSizeInBits);
 
-        int dataSize = this.randomGenerator().nextInteger(dataMinSizeInBits, dataMaxSizeInBits);
-        return dataSize;
+        return this.randomGenerator().nextInteger(dataMinSizeInBits, dataMaxSizeInBits);
     }
 
     /**
@@ -151,16 +150,14 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
      * Generates whether the byte order is big endian.
      */
     private boolean generateByteOrderBigEndian() {
-        boolean byteOrderBigEndian = this.randomGenerator().nextBoolean();
-        return byteOrderBigEndian;
+        return this.randomGenerator().nextBoolean();
     }
 
     /**
      * Generates whether the value type is unsigned.
      */
     private boolean generateValueTypeUnsigned() {
-        boolean valueTypeUnsigned = this.randomGenerator().nextBoolean();
-        return valueTypeUnsigned;
+        return this.randomGenerator().nextBoolean();
     }
 
     /**
@@ -236,9 +233,7 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         List<String> units = nameToUnitsMap.get(name);
         int numberOfUnits = units.size();
         int unitIndex = this.randomGenerator().nextInteger(0, numberOfUnits - 1);
-        String unit = units.get(unitIndex);
-
-        return unit;
+        return units.get(unitIndex);
     }
 
     /**

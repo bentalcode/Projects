@@ -79,8 +79,7 @@ public final class CANMessageRuleGenerator extends CANRuleGenerator implements I
      * Generates a new length.
      */
     private short generateLength() {
-        short length = (short)this.randomGenerator().nextInteger(minLength, maxLength);
-        return length;
+        return (short)this.randomGenerator().nextInteger(minLength, maxLength);
     }
 
     /**

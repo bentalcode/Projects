@@ -241,10 +241,7 @@ public final class BPlusTreeLeafNode<TKey extends Comparable<TKey>, TValue>
     public int getSizeInBytes() {
         int keysSize = this.getKeyCount() * this.properties.getKeySizeInBytes();
         int valuesSize = this.getKeyCount() * this.properties.getValueSizeInBytes();
-
-        int size = keysSize + valuesSize;
-
-        return size;
+        return keysSize + valuesSize;
     }
 
     /**
@@ -256,9 +253,7 @@ public final class BPlusTreeLeafNode<TKey extends Comparable<TKey>, TValue>
 
         IBPlusTreeLeafNode<TKey, TValue> rightNode = new BPlusTreeLeafNode<>(this.properties);
 
-        int leftNodeCount = midIndex;
         int rightNodeCount = this.getKeyCount() - midIndex;
-
         int leftNodeIndex = midIndex;
 
         for (int rightNodeIndex = 0; rightNodeIndex < rightNodeCount; ++rightNodeIndex) {
@@ -267,7 +262,7 @@ public final class BPlusTreeLeafNode<TKey extends Comparable<TKey>, TValue>
             ++leftNodeIndex;
         }
 
-        this.setKeyCount(leftNodeCount);
+        this.setKeyCount(midIndex);
         rightNode.setKeyCount(rightNodeCount);
 
         return rightNode;

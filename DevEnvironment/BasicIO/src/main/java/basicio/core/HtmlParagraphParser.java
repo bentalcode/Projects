@@ -36,11 +36,11 @@ import org.slf4j.LoggerFactory;
 public final class HtmlParagraphParser implements IHtmlParagraphParser {
     private static final int defaultMostlyUsedWordsCapacity = 10;
 
-    private static final String tokenSeparatorRegex = "[( )]";
-    private static final String referenceRegex = "(\\[[0-9]+\\])";
-    private static final Pattern referencePattern = Pattern.compile(referenceRegex);
-    private static final List<Character> sentenceSeparators = ArrayLists.make(',', '.', ';');
-    private static final char specialToken = 65533;
+    private static final String TOKEN_SEPARATOR_REGEX = "[( )]";
+    private static final String REFERENCE_REGEX = "(\\[[0-9]+\\])";
+    private static final Pattern REFERENCE_PATTERN = Pattern.compile(REFERENCE_REGEX);
+    private static final List<Character> SENTENCE_SEPARATORS = ArrayLists.make(',', '.', ';');
+    private static final char SPECIAL_TOKEN = 65533;
 
     private final int mostlyUsedWordsCapacity;
     private final Set<String> excludedWords;
@@ -150,7 +150,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             return;
         }
 
-        String[] tokens = line.split(tokenSeparatorRegex);
+        String[] tokens = line.split(TOKEN_SEPARATOR_REGEX);
 
         for (String token : tokens) {
             this.processToken(token);
@@ -165,7 +165,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             return;
         }
 
-        String subTokenSeparator = "[" + "(" + specialToken + ")" + "]";
+        String subTokenSeparator = "[" + "(" + SPECIAL_TOKEN + ")" + "]";
         String[] subTokens = token.split(subTokenSeparator);
 
         for (String subToken : subTokens) {
@@ -253,7 +253,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             return token;
         }
 
-        Matcher matcher = referencePattern.matcher(token);
+        Matcher matcher = REFERENCE_PATTERN.matcher(token);
 
         int referenceStartIndex = - 1;
         int referenceEndIndex = -1;
@@ -292,13 +292,13 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
      * Removes sentence separators from front and end.
      */
     private String removeSentenceSeparators(String token) {
-        String resultantToken = Strings.removeFirstCharacter(token, sentenceSeparators);
+        String resultantToken = Strings.removeFirstCharacter(token, SENTENCE_SEPARATORS);
 
         if (Strings.isNullOrEmpty(resultantToken)) {
             return null;
         }
 
-        resultantToken = Strings.removeLastCharacter(resultantToken, sentenceSeparators);
+        resultantToken = Strings.removeLastCharacter(resultantToken, SENTENCE_SEPARATORS);
 
         return resultantToken;
     }

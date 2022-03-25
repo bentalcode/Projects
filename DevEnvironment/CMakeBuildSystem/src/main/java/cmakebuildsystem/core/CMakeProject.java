@@ -20,9 +20,9 @@ import java.util.List;
  * The CMakeProject implements a CMake project.
  */
 public final class CMakeProject implements ICMakeProject {
-    private static final String propertyName = "name";
-    private static final String propertyRootPath = "rootPath";
-    private static final String propertyModules = "modules";
+    private static final String PROPERTY_NAME = "name";
+    private static final String PROPERTY_ROOT_PATH = "rootPath";
+    private static final String PROPERTY_MODULES = "modules";
 
     private final String name;
     private final Path rootPath;
@@ -95,18 +95,18 @@ public final class CMakeProject implements ICMakeProject {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyName, this.name);
-        writer.writeStringProperty(propertyRootPath, this.rootPath.toString());
-        writer.writeCollectionProperty(propertyModules, this.modules);
+        writer.writeStringProperty(PROPERTY_NAME, this.name);
+        writer.writeStringProperty(PROPERTY_ROOT_PATH, this.rootPath.toString());
+        writer.writeCollectionProperty(PROPERTY_MODULES, this.modules);
     }
 
     /**
      * Reads a json.
      */
     public static ICMakeProject readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(propertyName);
-        Path rootPath = reader.readProperty(propertyRootPath, value -> { return Paths.create(value); });
-        List<ICMakeModule> modules = reader.readListProperty(propertyModules, CMakeModule.class);
+        String name = reader.readStringProperty(PROPERTY_NAME);
+        Path rootPath = reader.readProperty(PROPERTY_ROOT_PATH, value -> { return Paths.create(value); });
+        List<ICMakeModule> modules = reader.readListProperty(PROPERTY_MODULES, CMakeModule.class);
 
         return new CMakeProject(
             name,

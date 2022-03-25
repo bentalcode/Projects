@@ -10,10 +10,10 @@ import java.util.List;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String dataDirectoryName = "data";
-    private static final String primesDirectoryName = "primes";
-    private static final String isPrimeFileName = "isPrime.txt";
-    private static final String primesFileName = "primes.txt";
+    private static final String DATA_DIRECTORY_NAME = "data";
+    private static final String PRIMES_DIRECTORY_NAME = "primes";
+    private static final String IS_PRIME_FILE_NAME = "isPrime.txt";
+    private static final String PRIMES_FILE_NAME = "primes.txt";
 
     /**
      * The TestData constructor.
@@ -27,9 +27,9 @@ public final class TestData implements ITestData {
     @Override
     public Path getIsPrimeResourcePath() {
         Path path = this.createResourcePath(
-            TestData.dataDirectoryName,
-            TestData.primesDirectoryName,
-            TestData.isPrimeFileName);
+            TestData.DATA_DIRECTORY_NAME,
+            TestData.PRIMES_DIRECTORY_NAME,
+            TestData.IS_PRIME_FILE_NAME);
 
         return path;
     }
@@ -40,9 +40,9 @@ public final class TestData implements ITestData {
     @Override
     public Path getPrimesResourcePath() {
         Path path = this.createResourcePath(
-            TestData.dataDirectoryName,
-            TestData.primesDirectoryName,
-            TestData.primesFileName);
+            TestData.DATA_DIRECTORY_NAME,
+            TestData.PRIMES_DIRECTORY_NAME,
+            TestData.PRIMES_FILE_NAME);
 
         return path;
     }

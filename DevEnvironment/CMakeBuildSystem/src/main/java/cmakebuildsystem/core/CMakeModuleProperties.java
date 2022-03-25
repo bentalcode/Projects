@@ -17,18 +17,18 @@ import java.util.List;
  * The CMakeModuleProperties class implements proeprties of a CMake module.
  */
 public final class CMakeModuleProperties implements ICMakeModuleProperties {
-    private static final String propertyPath = "path";
-    private static final String propertyCMakeListsTargetPath = "cmakeListsTargetPath";
-    private static final String propertyHeaderFileExtensions = "headerFileExtensions";
-    private static final String propertySourceFileExtensions = "sourceFileExtensions";
-    private static final String propertyBuildFileExtensions = "buildFileExtensions";
-    private static final String propertyCMakeListsFileExtensions = "cmakeListsFileExtensions";
+    private static final String PROPERTY_PATH = "path";
+    private static final String PROPERTY_CMAKE_LISTS_TARGET_PATH = "cmakeListsTargetPath";
+    private static final String PROPERTY_HEADER_FILE_EXTENSIONS = "headerFileExtensions";
+    private static final String PROPERTY_SOURCE_FILE_EXTENSIONS = "sourceFileExtensions";
+    private static final String PROPERTY_BUILD_FILE_EXTENSIONS = "buildFileExtensions";
+    private static final String PROPERTY_CMAKE_LISTS_FILE_EXTENSIONS = "cmakeListsFileExtensions";
 
-    private static final String defaultCmakeListsTargetPath = "CMakeLists.txt";
-    private static final List<String> defaultHeaderFileExtensions = ArrayLists.make("h");
-    private static final List<String> defaultSourceFileExtensions = ArrayLists.make("cpp");
-    private static final List<String> defaultBuildFileExtensions = ArrayLists.make(".in");
-    private static final List<String> defaultCMakeListsFileExtensions = ArrayLists.make("CMakeLists.txt");
+    private static final String DEFAULT_CMAKE_LISTS_TARGET_PATH = "CMakeLists.txt";
+    private static final List<String> DEFAULT_HEADER_FILE_EXTENSIONS = ArrayLists.make("h");
+    private static final List<String> DEFAULT_SOURCE_FILE_EXTENSIONS = ArrayLists.make("cpp");
+    private static final List<String> DEFAULT_BUILD_FILE_EXTENSIONS = ArrayLists.make(".in");
+    private static final List<String> DEFAULT_CMAKE_LISTS_FILE_EXTENSIONS = ArrayLists.make("CMakeLists.txt");
 
     private final String path;
     private final String cmakeListsTargetPath;
@@ -46,11 +46,11 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     public static ICMakeModuleProperties defaultProperties() {
         return new CMakeModuleProperties(
             null,
-            defaultCmakeListsTargetPath,
-            defaultHeaderFileExtensions,
-            defaultSourceFileExtensions,
-            defaultBuildFileExtensions,
-            defaultCMakeListsFileExtensions);
+                DEFAULT_CMAKE_LISTS_TARGET_PATH,
+                DEFAULT_HEADER_FILE_EXTENSIONS,
+                DEFAULT_SOURCE_FILE_EXTENSIONS,
+                DEFAULT_BUILD_FILE_EXTENSIONS,
+                DEFAULT_CMAKE_LISTS_FILE_EXTENSIONS);
     }
 
     /**
@@ -135,12 +135,12 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyPath, this.path);
-        writer.writeStringProperty(propertyCMakeListsTargetPath, this.cmakeListsTargetPath);
-        writer.writeCollectionProperty(propertyHeaderFileExtensions, this.headerFileExtensions);
-        writer.writeCollectionProperty(propertySourceFileExtensions, this.sourceFileExtensions);
-        writer.writeCollectionProperty(propertyBuildFileExtensions, this.buildFileExtensions);
-        writer.writeCollectionProperty(propertyCMakeListsFileExtensions, this.cmakeListsFileExtensions);
+        writer.writeStringProperty(PROPERTY_PATH, this.path);
+        writer.writeStringProperty(PROPERTY_CMAKE_LISTS_TARGET_PATH, this.cmakeListsTargetPath);
+        writer.writeCollectionProperty(PROPERTY_HEADER_FILE_EXTENSIONS, this.headerFileExtensions);
+        writer.writeCollectionProperty(PROPERTY_SOURCE_FILE_EXTENSIONS, this.sourceFileExtensions);
+        writer.writeCollectionProperty(PROPERTY_BUILD_FILE_EXTENSIONS, this.buildFileExtensions);
+        writer.writeCollectionProperty(PROPERTY_CMAKE_LISTS_FILE_EXTENSIONS, this.cmakeListsFileExtensions);
     }
 
     /**
@@ -149,29 +149,29 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     public static ICMakeModuleProperties readJson(IJsonObjectReader reader) {
         String path = null;
 
-        if (reader.hasProperty(propertyPath)) {
-            path = reader.readStringProperty(propertyPath);
+        if (reader.hasProperty(PROPERTY_PATH)) {
+            path = reader.readStringProperty(PROPERTY_PATH);
         }
 
-        String cmakeListsTargetPath = reader.hasProperty(propertyCMakeListsTargetPath) ?
-            reader.readStringProperty(propertyCMakeListsTargetPath) :
-            defaultCmakeListsTargetPath;
+        String cmakeListsTargetPath = reader.hasProperty(PROPERTY_CMAKE_LISTS_TARGET_PATH) ?
+            reader.readStringProperty(PROPERTY_CMAKE_LISTS_TARGET_PATH) :
+                DEFAULT_CMAKE_LISTS_TARGET_PATH;
 
-        List<String> headerFileExtensions = reader.hasProperty(propertyHeaderFileExtensions) ?
-            reader.readStringListProperty(propertyHeaderFileExtensions) :
-            defaultHeaderFileExtensions;
+        List<String> headerFileExtensions = reader.hasProperty(PROPERTY_HEADER_FILE_EXTENSIONS) ?
+            reader.readStringListProperty(PROPERTY_HEADER_FILE_EXTENSIONS) :
+                DEFAULT_HEADER_FILE_EXTENSIONS;
 
-        List<String> sourceFileExtensions = reader.hasProperty(propertySourceFileExtensions) ?
-            reader.readStringListProperty(propertySourceFileExtensions) :
-            defaultSourceFileExtensions;
+        List<String> sourceFileExtensions = reader.hasProperty(PROPERTY_SOURCE_FILE_EXTENSIONS) ?
+            reader.readStringListProperty(PROPERTY_SOURCE_FILE_EXTENSIONS) :
+                DEFAULT_SOURCE_FILE_EXTENSIONS;
 
-        List<String> buildFileExtensions = reader.hasProperty(propertyBuildFileExtensions) ?
-            reader.readStringListProperty(propertyBuildFileExtensions) :
-            defaultBuildFileExtensions;
+        List<String> buildFileExtensions = reader.hasProperty(PROPERTY_BUILD_FILE_EXTENSIONS) ?
+            reader.readStringListProperty(PROPERTY_BUILD_FILE_EXTENSIONS) :
+                DEFAULT_BUILD_FILE_EXTENSIONS;
 
-        List<String> cmakeListsFileExtensions = reader.hasProperty(propertyCMakeListsFileExtensions) ?
-            reader.readStringListProperty(propertyCMakeListsFileExtensions) :
-            defaultCMakeListsFileExtensions;
+        List<String> cmakeListsFileExtensions = reader.hasProperty(PROPERTY_CMAKE_LISTS_FILE_EXTENSIONS) ?
+            reader.readStringListProperty(PROPERTY_CMAKE_LISTS_FILE_EXTENSIONS) :
+                DEFAULT_CMAKE_LISTS_FILE_EXTENSIONS;
 
         return new CMakeModuleProperties(
             path,

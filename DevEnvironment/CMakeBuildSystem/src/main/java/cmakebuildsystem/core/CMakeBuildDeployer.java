@@ -51,11 +51,9 @@ public final class CMakeBuildDeployer implements ICMakeBuildDeployer {
     private IMakeProjectDeployer createProjectDeployer(ICMakeProjectManifest manifest) {
         ICMakeProject project = this.scanProject(manifest);
 
-        IMakeProjectDeployer projectDeployer = new CMakeProjectDeployer(
+        return new CMakeProjectDeployer(
             manifest,
             project);
-
-        return projectDeployer;
     }
 
     /**
@@ -63,7 +61,6 @@ public final class CMakeBuildDeployer implements ICMakeBuildDeployer {
      */
     private ICMakeProject scanProject(ICMakeProjectManifest manifest) {
         CMakeProjectScanner scanner = new CMakeProjectScanner(manifest);
-        ICMakeProject project = scanner.scan();
-        return project;
+        return scanner.scan();
     }
 }

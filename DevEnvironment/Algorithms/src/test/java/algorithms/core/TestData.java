@@ -8,9 +8,9 @@ import java.nio.file.Path;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String dataDirectoryName = "data";
-    private static final String catalanDirectoryName = "catalan";
-    private static final String catalansFileName = "catalans.txt";
+    private static final String DATA_DIRECTORY_NAME = "data";
+    private static final String CATALAN_DIRECTORY_NAME = "catalan";
+    private static final String CATALANS_FILE_NAME = "catalans.txt";
 
     /**
      * The TestData constructor.
@@ -25,9 +25,9 @@ public final class TestData implements ITestData {
     public Path getCatalanResourcePath()
      {
         Path path = ResourcePaths.create(
-            TestData.dataDirectoryName,
-            TestData.catalanDirectoryName,
-            TestData.catalansFileName);
+            TestData.DATA_DIRECTORY_NAME,
+            TestData.CATALAN_DIRECTORY_NAME,
+            TestData.CATALANS_FILE_NAME);
 
         return path;
     }

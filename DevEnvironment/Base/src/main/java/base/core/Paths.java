@@ -267,14 +267,14 @@ public final class Paths {
      * Converts separators of the path to Windows.
      */
     public static String separatorToWindows(String path) {
-        return convertSeparators(path, UnixPath.separator, WindowsPath.separator);
+        return convertSeparators(path, UnixPath.SEPARATOR, WindowsPath.separator);
     }
 
     /**
      * Converts separators of the path to Unix.
      */
     public static String separatorToUnix(String path) {
-        return convertSeparators(path, WindowsPath.separator, UnixPath.separator);
+        return convertSeparators(path, WindowsPath.separator, UnixPath.SEPARATOR);
     }
 
     /**

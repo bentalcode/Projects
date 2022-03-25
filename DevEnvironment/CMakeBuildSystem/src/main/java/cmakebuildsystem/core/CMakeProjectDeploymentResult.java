@@ -18,8 +18,8 @@ import java.util.Map;
  * The CMakeProjectDeploymentResult class implements a deployment result of a CMake project.
  */
 public final class CMakeProjectDeploymentResult implements ICMakeProjectDeploymentResult {
-    private static final String propertyProject = "propertyProject";
-    private static final String propertyDeploymentData = "deploymentData";
+    private static final String PROPERTY_PROJECT = "propertyProject";
+    private static final String PROPERTY_DEPLOYMENT_DATA = "deploymentData";
 
     private final ICMakeProject project;
     private final Map<String, String> deploymentData;
@@ -84,16 +84,16 @@ public final class CMakeProjectDeploymentResult implements ICMakeProjectDeployme
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeObjectProperty(propertyProject, this.project);
-        writer.writeMapProperty(propertyDeploymentData, this.deploymentData);
+        writer.writeObjectProperty(PROPERTY_PROJECT, this.project);
+        writer.writeMapProperty(PROPERTY_DEPLOYMENT_DATA, this.deploymentData);
     }
 
     /**
      * Reads a json.
      */
     public static ICMakeProjectDeploymentResult readJson(IJsonObjectReader reader) {
-        ICMakeProject project = reader.readObjectProperty(propertyProject, CMakeProject.class);
-        Map<String, String> deploymentData = reader.readStringMapProperty(propertyDeploymentData);
+        ICMakeProject project = reader.readObjectProperty(PROPERTY_PROJECT, CMakeProject.class);
+        Map<String, String> deploymentData = reader.readStringMapProperty(PROPERTY_DEPLOYMENT_DATA);
 
         return new CMakeProjectDeploymentResult(
             project,

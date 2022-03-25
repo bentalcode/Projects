@@ -42,10 +42,7 @@ public abstract class CANRuleGenerator {
     private String generateTransmittingNodeName(List<String> transmittingNodeNames) {
         int numberOfNames = transmittingNodeNames.size();
         int nameIndex = this.randomGenerator.nextInteger(0, numberOfNames - 1);
-
-        String name = transmittingNodeNames.get(nameIndex);
-
-        return name;
+        return transmittingNodeNames.get(nameIndex);
     }
 
     /**

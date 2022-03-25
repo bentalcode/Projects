@@ -17,12 +17,11 @@ import json.interfaces.IJsonObjectWriter;
  * The NamedParameterMetadata class implements meta-data of a named parameter.
  */
 public final class NamedParameterMetadata extends ParameterMetadata implements INamedParameterMetadata {
-    private static final String propertyShortName = "shortName";
-    private static final String propertyLongName = "longName";
-    private static final String propertyOptional = "optional";
-    private static final String propertyDefaultValue = "defaultValue";
-
-    private static final boolean defaultOptionalValue = false;
+    private static final String PROPERTY_SHORT_NAME = "shortName";
+    private static final String PROPERTY_LONG_NAME = "longName";
+    private static final String PROPERTY_OPTIONAL = "optional";
+    private static final String PROPERTY_DEFAULT_VALUE = "defaultValue";
+    private static final boolean DEFAULT_OPTIONAL_VALUE = false;
 
     private final String shortName;
     private final String longName;
@@ -171,17 +170,17 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
         super.writeJson(writer);
 
         if (this.shortName != null) {
-            writer.writeStringProperty(propertyShortName, this.shortName);
+            writer.writeStringProperty(PROPERTY_SHORT_NAME, this.shortName);
         }
 
         if (this.longName != null) {
-            writer.writeStringProperty(propertyLongName, this.longName);
+            writer.writeStringProperty(PROPERTY_LONG_NAME, this.longName);
         }
 
-        writer.writeBooleanProperty(propertyOptional, this.optional);
+        writer.writeBooleanProperty(PROPERTY_OPTIONAL, this.optional);
 
         if (this.defaultValue != null) {
-            writer.writeStringProperty(propertyDefaultValue, this.defaultValue);
+            writer.writeStringProperty(PROPERTY_DEFAULT_VALUE, this.defaultValue);
         }
     }
 
@@ -191,21 +190,21 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
     public static INamedParameterMetadata readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(propertyName);
 
-        String shortName = reader.hasProperty(propertyShortName) ?
-            reader.readStringProperty(propertyShortName) :
+        String shortName = reader.hasProperty(PROPERTY_SHORT_NAME) ?
+            reader.readStringProperty(PROPERTY_SHORT_NAME) :
             null;
 
-        String longName = reader.hasProperty(propertyLongName) ?
-            reader.readStringProperty(propertyLongName) :
+        String longName = reader.hasProperty(PROPERTY_LONG_NAME) ?
+            reader.readStringProperty(PROPERTY_LONG_NAME) :
             null;
 
         String description = reader.readStringProperty(propertyDescription);
 
-        boolean optional = reader.hasProperty(propertyOptional) ?
-            reader.readBooleanProperty(propertyOptional) : defaultOptionalValue;
+        boolean optional = reader.hasProperty(PROPERTY_OPTIONAL) ?
+            reader.readBooleanProperty(PROPERTY_OPTIONAL) : DEFAULT_OPTIONAL_VALUE;
 
-        String defaultValue = reader.hasProperty(propertyDefaultValue) ?
-            reader.readStringProperty(propertyDefaultValue) :
+        String defaultValue = reader.hasProperty(PROPERTY_DEFAULT_VALUE) ?
+            reader.readStringProperty(PROPERTY_DEFAULT_VALUE) :
             null;
 
         return new NamedParameterMetadata(
