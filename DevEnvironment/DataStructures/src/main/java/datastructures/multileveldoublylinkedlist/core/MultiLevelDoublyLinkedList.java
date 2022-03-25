@@ -135,7 +135,6 @@ public final class MultiLevelDoublyLinkedList<T extends Comparable<T>> implement
 
         if (this.head == null) {
             assert(this.empty());
-
             this.head = node;
         }
         else {

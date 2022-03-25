@@ -271,7 +271,6 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
             this.setKeyCount(newKeyCount);
 
             upKey = siblingNode.getKey(0);
-            siblingNode.deleteAt(borrowIndex);
         }
         else {
             //
@@ -279,8 +278,9 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
             //
             this.insertAt(0, sinkKey, siblingNode.getChild(borrowIndex + 1), this.getChild(0));
             upKey = siblingNode.getKey(borrowIndex);
-            siblingNode.deleteAt(borrowIndex);
         }
+
+        siblingNode.deleteAt(borrowIndex);
 
         return upKey;
     }

@@ -154,14 +154,13 @@ public final class LinkedList<T extends Comparable<T>> implements ILinkedList<T>
 
         if (this.tail == null) {
             assert(this.head == null && this.empty());
-
             this.head = node;
-            this.tail = node;
         }
         else {
             this.linkedNodes(this.tail, node);
-            this.tail = node;
         }
+
+        this.tail = node;
 
         this.nodeAdded();
     }

@@ -42,11 +42,7 @@ public final class SudokuBoardValidator implements IValidator {
             return false;
         }
 
-        if (!this.subBoardsValid()) {
-            return false;
-        }
-
-        return true;
+        return this.subBoardsValid();
     }
 
     /**

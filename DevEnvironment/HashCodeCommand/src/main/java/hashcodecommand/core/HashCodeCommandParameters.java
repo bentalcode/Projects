@@ -37,8 +37,7 @@ public final class HashCodeCommandParameters implements IHashCodeParameters {
             initialPrime.getIntegerValue() : 2;
 
         IParameter recurse = parameters.getParameterSet().getParameter("recurse");
-        this.recurse = recurse != null && recurse.isSet() ?
-            recurse.getBooleanValue() : false;
+        this.recurse = recurse != null && recurse.isSet() && recurse.getBooleanValue();
     }
 
     /**

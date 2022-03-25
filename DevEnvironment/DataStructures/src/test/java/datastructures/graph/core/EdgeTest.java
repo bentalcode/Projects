@@ -75,9 +75,7 @@ public final class EdgeTest {
             Vertex.make(edge1.source().getKey()),
             Vertex.make(edge1.destination().getKey()));
 
-        if (edge1.equals(edge2)) {
-            assert(edge1.hashCode() == edge2.hashCode());
-        }
+        assert !edge1.equals(edge2) || (edge1.hashCode() == edge2.hashCode());
 
         Set<IEdge> edges = new HashSet<>();
         edges.add(edge1);

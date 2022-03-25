@@ -163,14 +163,13 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
 
         if (this.tail == null) {
             assert(this.head == null && this.empty());
-
             this.head = node;
-            this.tail = node;
         }
         else {
             this.linkedNodes(this.tail, node);
-            this.tail = node;
         }
+
+        this.tail = node;
 
         this.nodeAdded();
     }

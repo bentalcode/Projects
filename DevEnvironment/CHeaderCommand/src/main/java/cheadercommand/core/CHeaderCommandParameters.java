@@ -32,8 +32,7 @@ public final class CHeaderCommandParameters implements ICHeaderCommandParameters
             Paths.create(filePath.getStringValue()) : null;
 
         IParameter recurse = parameters.getParameterSet().getParameter("recurse");
-        this.recurse = recurse != null && recurse.isSet() ?
-            recurse.getBooleanValue() : false;
+        this.recurse = recurse != null && recurse.isSet() && recurse.getBooleanValue();
     }
 
     /**
