@@ -63,7 +63,7 @@ public final class RunTestOnOperatingSystemRule implements TestRule {
     /**
      * The OperatingSystemRule class implements an operating system rule.
      */
-    private final class OperatingSystemRule extends Statement {
+    private static final class OperatingSystemRule extends Statement {
         private final Statement base;
         private final List<OperatingSystemType> operatingSystemTypes;
 

@@ -22,20 +22,6 @@ public final class AlmostComparatorTest {
     }
 
     /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
-    }
-
-    /**
      * Tests the double almost comparator.
      */
     @Test

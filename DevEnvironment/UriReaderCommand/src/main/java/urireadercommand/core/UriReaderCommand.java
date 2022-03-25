@@ -41,14 +41,14 @@ public final class UriReaderCommand extends AbstractCommand {
 
         this.log.info("Reading from uri: " + this.parameters.getUri());
 
-        IHtmlStatistics statistics = this.readUri(
+        IHtmlStatistics statistics = readUri(
             this.parameters.getUri(),
             this.parameters.getNumberOfMostlyUsedWords(),
             this.parameters.getExcludedWords());
 
         List<IPair<String, Integer>> mostlyUsedWords = statistics.getMostlyUsedWords();
 
-        this.displayOutput(this.getMessageWriter(), mostlyUsedWords);
+        displayOutput(this.getMessageWriter(), mostlyUsedWords);
     }
 
     /**

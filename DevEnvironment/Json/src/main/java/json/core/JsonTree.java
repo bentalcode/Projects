@@ -4,24 +4,24 @@ package json.core;
  * The JsonTree class implements a json tree.
  */
 public final class JsonTree implements IJsonTree {
-    private static final int rootId = 0;
+    private static final int ROOT_ID = 0;
 
-    private IJsonObject rootObject;
-    private IJsonArray rootArray;
-    private int id = rootId;
+    private final IJsonObject rootObject;
+    private final IJsonArray rootArray;
+    private int id = ROOT_ID;
 
     /**
      * Creates a json tree from a root object.
      */
     public static IJsonTree createWithRootObject() {
-        return new JsonTree(new JsonObject(rootId));
+        return new JsonTree(new JsonObject(ROOT_ID));
     }
 
     /**
      * Creates a json tree from a root array.
      */
     public static IJsonTree createWithRootArray() {
-        return new JsonTree(new JsonArray(rootId));
+        return new JsonTree(new JsonArray(ROOT_ID));
     }
 
     /**

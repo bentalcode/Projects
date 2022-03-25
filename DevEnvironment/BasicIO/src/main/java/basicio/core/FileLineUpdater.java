@@ -138,7 +138,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         //
         // Create the update queue...
         //
-        Queue<IUpdateRecord> queue = this.createUpdateQueue(updateRecords);
+        Queue<IUpdateRecord> queue = createUpdateQueue(updateRecords);
 
         //
         // Process each line...

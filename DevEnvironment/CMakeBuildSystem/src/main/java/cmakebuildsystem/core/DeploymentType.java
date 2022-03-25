@@ -1,9 +1,6 @@
 package cmakebuildsystem.core;
 
-import base.core.Enums;
 import cmakebuildsystem.interfaces.ICMakeModule;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The DeploymentType enum defines various types of a deployment.
@@ -30,7 +27,6 @@ public enum DeploymentType {
     };
 
     private final String name;
-    private final static Logger log = LoggerFactory.getLogger(DeploymentType.class);
 
     /**
      * The DeploymentType constructor.
@@ -49,20 +45,5 @@ public enum DeploymentType {
      */
     public String toString() {
         return this.name;
-    }
-
-    /**
-     * Parses an enum string.
-     */
-    public static DeploymentType parse(String str) {
-        return Enums.parse(DeploymentType.class, str);
-    }
-
-    /**
-     * Tries to parse an enum string.
-     * Return null of the string value is not matching to a specific enum.
-     */
-    public static DeploymentType tryParse(String str) {
-        return Enums.tryParse(DeploymentType.class, str);
     }
 }

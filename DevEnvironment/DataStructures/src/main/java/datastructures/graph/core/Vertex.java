@@ -14,7 +14,7 @@ import datastructures.graph.interfaces.IVertex;
  */
 public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVertex<TKey, TValue> {
     private final TKey key;
-    private TValue value;
+    private final TValue value;
     private final IBinaryComparator<IVertex<TKey, TValue>> comparator;
     private final int hashCode;
 

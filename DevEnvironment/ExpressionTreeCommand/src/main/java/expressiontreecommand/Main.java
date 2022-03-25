@@ -62,8 +62,7 @@ public final class Main {
      * Processes data.
      */
     private static IExpressionTreeResults processData(IExpressionTreeCommandParameters parameters) {
-
-        IExpressionTreeCommand command = new ExpressionTreeCommand(parameters);
+        IExpressionTreeCommand command = new ExpressionTreeCommand();
 
         IExpressionTreeResults results;
 

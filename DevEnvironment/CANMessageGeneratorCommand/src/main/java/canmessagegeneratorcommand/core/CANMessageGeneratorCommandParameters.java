@@ -16,7 +16,7 @@ import java.util.List;
  * a Controller Area Network message generator command.
  */
 public final class CANMessageGeneratorCommandParameters implements ICANMessageGeneratorCommandParameters {
-    private int defaultSessionDurationInSeconds = 10 * 60;
+    private static final int SESSION_DURATION_IN_SECONDS = 10 * 60;
 
     private final Duration driveSessionDuration;
     private final List<IPair<String, Integer>> messagesFrequencies;
@@ -32,7 +32,7 @@ public final class CANMessageGeneratorCommandParameters implements ICANMessageGe
         IParameter driveSessionDurationParameter = parameters.getParameterSet().getParameter("driveSessionTime");
         int driveSessionInSeconds = driveSessionDurationParameter != null && driveSessionDurationParameter.isSet() ?
             driveSessionDurationParameter.getIntegerValue() :
-            defaultSessionDurationInSeconds;
+                SESSION_DURATION_IN_SECONDS;
 
         this.driveSessionDuration = Duration.ofSeconds(driveSessionInSeconds);
 

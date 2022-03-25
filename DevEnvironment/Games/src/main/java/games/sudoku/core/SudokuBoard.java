@@ -8,12 +8,11 @@ import games.sudoku.interfaces.ISudokuBoard;
  * The SudokuBoard class implements a Sudoku board.
  */
 public final class SudokuBoard implements ISudokuBoard {
-    private static final int Size = 9;
-    private static final int SubSize = 3;
+    private static final int SIZE = 9;
+    private static final int SUB_SIZE = 3;
 
     private final char[][] data;
     private final int size;
-    private final int subSize;
     private final IValidator validator;
 
     /**
@@ -22,8 +21,8 @@ public final class SudokuBoard implements ISudokuBoard {
     public SudokuBoard(char[][] data) {
         this(
             data,
-            SudokuBoard.Size,
-            SudokuBoard.SubSize);
+            SudokuBoard.SIZE,
+            SudokuBoard.SUB_SIZE);
     }
 
     /**
@@ -46,7 +45,6 @@ public final class SudokuBoard implements ISudokuBoard {
 
         this.data = data;
         this.size = size;
-        this.subSize = subSize;
         this.validator = validator;
     }
 

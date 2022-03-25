@@ -11,11 +11,11 @@ import java.util.List;
  * The TwoDimensionalListTestData class implements data of tests for a two dimensional list.
  */
 public final class TwoDimensionalListTestData implements ITwoDimensionalListTestData {
-    private static int RandomCollectionsSize = 10;
-    private static int RandomMinRowSize = 10;
-    private static int RandomMaxRowSize = 100;
-    private static int RandomMinColumnSize = 10;
-    private static int RandomMaxColumnSize = 100;
+    private static final int RANDOM_COLLECTIONS_SIZE = 10;
+    private static final int RANDOM_MIN_ROW_SIZE = 10;
+    private static final int RANDOM_MAX_ROW_SIZE = 100;
+    private static final int RANDOM_MIN_COLUMN_SIZE = 10;
+    private static final int RANDOM_MAX_COLUMN_SIZE = 100;
 
     private final IRandomGenerator randomGenerator = new RandomGenerator();
 
@@ -36,12 +36,12 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
         data.add(this.getTwoDimensionalListData2());
         data.add(this.getTwoDimensionalListData3());
 
-        for (int i = 0; i < RandomCollectionsSize; ++i) {
+        for (int i = 0; i < RANDOM_COLLECTIONS_SIZE; ++i) {
             data.add(this.getRandomTwoDimensionalListData(
-                RandomMinRowSize,
-                RandomMaxRowSize,
-                RandomMinColumnSize,
-                RandomMaxColumnSize));
+                RANDOM_MIN_ROW_SIZE,
+                RANDOM_MAX_ROW_SIZE,
+                RANDOM_MIN_COLUMN_SIZE,
+                RANDOM_MAX_COLUMN_SIZE));
         }
 
         return data;

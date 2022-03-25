@@ -66,9 +66,9 @@ public final class RegexTest {
         String str4 = "abc.[12][123][1234]a";
         String regex4 = "(\\[[0-9]+\\])+";
 
-        //this.testFindReference(str1, regex1, "[12]");
-        //this.testFindReference(str2, regex2, "[12][123]");
-        //this.testFindReference(str3, regex3, "[12][123][1234]");
+        this.testFindReference(str1, regex1, "[12]");
+        this.testFindReference(str2, regex2, "[12][123]");
+        this.testFindReference(str3, regex3, "[12][123][1234]");
         this.testFindReference(str4, regex4, null);
     }
 

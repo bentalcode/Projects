@@ -21,8 +21,8 @@ import datastructures.trie.interfaces.ITrieNode;
  * The TrieNode class implements a node in a trie.
  */
 public final class TrieNode<TKey extends Comparable<TKey>> implements ITrieNode<TKey> {
-    private TKey key;
-    private boolean isEndNode;
+    private final TKey key;
+    private final boolean isEndNode;
     private final IMap<TKey, ITrieNode<TKey>> children = new HashMap<>();
     private final IBinaryComparator<ITrieNode<TKey>> comparator;
     private final int hashCode;

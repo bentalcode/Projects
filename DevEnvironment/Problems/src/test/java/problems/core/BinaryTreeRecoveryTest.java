@@ -52,8 +52,6 @@ public final class BinaryTreeRecoveryTest {
 
         boolean status1 = false;
 
-        List<IBinaryTreeNode<Integer, String>> result1 = data1;
-
         List<IBinaryTreeNode<Integer, String>> data2 = ArrayLists.make(
             BinaryTreeNodes.make(3, "c"),
             BinaryTreeNodes.make(1, "a"),
@@ -114,7 +112,7 @@ public final class BinaryTreeRecoveryTest {
         result3.add(BinaryTreeNodes.endNode());
         result3.add(BinaryTreeNodes.endNode());
 
-        this.testBinaryTreeRecovery(data1, status1, result1);
+        this.testBinaryTreeRecovery(data1, status1, data1);
         this.testBinaryTreeRecovery(data2, status2, result2);
         this.testBinaryTreeRecovery(data3, status3, result3);
     }

@@ -1,7 +1,6 @@
 package alphabeticalordercommand.core;
 
 import alphabeticalordercommand.interfaces.IAlphabeticalOrderCommand;
-import alphabeticalordercommand.interfaces.IAlphabeticalOrderCommandParameters;
 import alphabeticalordercommand.interfaces.IAlphabeticalOrderResults;
 import base.core.Conditions;
 import java.util.List;
@@ -15,19 +14,12 @@ import org.slf4j.LoggerFactory;
  * The AlphabeticalOrderCommand class implements a command for processing alphabetical data.
  */
 public final class AlphabeticalOrderCommand implements IAlphabeticalOrderCommand {
-    private final IAlphabeticalOrderCommandParameters parameters;
-
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The AlphabeticalOrderCommandParameters constructor.
      */
-    public AlphabeticalOrderCommand(IAlphabeticalOrderCommandParameters parameters) {
-        Conditions.validateNotNull(
-            parameters,
-            "The parameters of an alphabetical order command.");
-
-        this.parameters = parameters;
+    public AlphabeticalOrderCommand() {
     }
 
     /**
@@ -60,9 +52,7 @@ public final class AlphabeticalOrderCommand implements IAlphabeticalOrderCommand
         // Calculate the results...
         //
         ICalculator<IAlphabeticalOrderResults> calculator = new AlphabeticalOrderCalculator(data);
-        IAlphabeticalOrderResults results = calculator.calculate();
-
-        return results;
+        return calculator.calculate();
     }
 
     /**

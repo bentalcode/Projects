@@ -13,11 +13,4 @@ public class CANMessageGeneratorCommandException extends BaseException {
     public CANMessageGeneratorCommandException(String errorMessage) {
         super(errorMessage);
     }
-
-    /**
-     * The CANMessageGeneratorCommandException constructor.
-     */
-    public CANMessageGeneratorCommandException(String errorMessage, Exception e) {
-        super(errorMessage, e);
-    }
 }

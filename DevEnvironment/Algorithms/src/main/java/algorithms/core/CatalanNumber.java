@@ -9,17 +9,16 @@ import org.slf4j.LoggerFactory;
  * The CatalanNumber class implements a catalan number.
  */
 public final class CatalanNumber implements ICatalanNumber {
-    public static final int maxCalculatedNumber = 35;
+    public static final int MAX_CALCULATED_NUMBER = 35;
 
     private final long[] catalans;
-
     private static final Logger log = LoggerFactory.getLogger(CatalanNumber.class);
 
     /**
      * The CatalanNumber constructor.
      */
     public CatalanNumber() {
-        this(maxCalculatedNumber);
+        this(MAX_CALCULATED_NUMBER);
     }
 
     /**
@@ -135,8 +134,8 @@ public final class CatalanNumber implements ICatalanNumber {
      * Validates a number for calculating a catalan number.
      */
     private static void validateN(int n) {
-        if (n < 0 || n > maxCalculatedNumber) {
-            String errorMessage = "The number for calculating a catalan number is: (0-" + maxCalculatedNumber + "]";
+        if (n < 0 || n > MAX_CALCULATED_NUMBER) {
+            String errorMessage = "The number for calculating a catalan number is: (0-" + MAX_CALCULATED_NUMBER + "]";
 
             log.error(errorMessage);
             throw new ArithmeticException(errorMessage);

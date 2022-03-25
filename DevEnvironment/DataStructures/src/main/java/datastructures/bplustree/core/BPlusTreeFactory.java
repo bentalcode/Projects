@@ -11,7 +11,7 @@ import datastructures.node.interfaces.IKeyValueNodes;
  * The BPlusTreeFactory class implements a factory for creating B+ trees.
  */
 public final class BPlusTreeFactory<TKey extends Comparable<TKey>, TValue> implements IBPlusTreeFactory<TKey, TValue> {
-    private IBPlusTreeProperties<TKey, TValue> properties;
+    private final IBPlusTreeProperties<TKey, TValue> properties;
 
     /**
      * The BPlusTree constructor.

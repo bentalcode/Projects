@@ -10,7 +10,7 @@ import java.util.List;
  * The Directions class implements 2D directions.
  */
 public final class Directions implements IDirections {
-    private static List<IDirection> DefaultDirections = List.of(
+    private static final List<IDirection> DIRECTIONS = List.of(
         new Direction(0.0), new Direction(45), new Direction(90),
         new Direction(135), new Direction(180), new Direction(225),
         new Direction(270), new Direction(315));
@@ -22,7 +22,7 @@ public final class Directions implements IDirections {
      * The Directions constructor.
      */
     public Directions() {
-        this(Directions.DefaultDirections);
+        this(Directions.DIRECTIONS);
     }
 
     /**

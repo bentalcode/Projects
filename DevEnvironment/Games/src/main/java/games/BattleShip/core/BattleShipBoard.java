@@ -26,7 +26,7 @@ public final class BattleShipBoard implements IBattleShipBoard {
     private int currShipIndex;
     private final Map<IPosition, BattleShipShootResultType> previousShoots = new HashMap<>();
 
-    private static List<IPosition> defaultDirections = ArrayLists.make(
+    private static final List<IPosition> DEFAULT_DIRECTIONS = ArrayLists.make(
         Position.make(1, -1), Position.make(1, 0), Position.make(1, 1),
         Position.make(0, -1), Position.make(0, 1),
         Position.make(-1, -1), Position.make(-1, 0), Position.make(-1, 1));
@@ -35,7 +35,7 @@ public final class BattleShipBoard implements IBattleShipBoard {
      * The BattleShipBoard constructor.
      */
     public BattleShipBoard(int rows, int columns) {
-        this(rows, columns, defaultDirections);
+        this(rows, columns, DEFAULT_DIRECTIONS);
     }
 
     /**

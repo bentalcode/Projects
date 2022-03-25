@@ -158,17 +158,13 @@ public final class ScrambledStringsDetector implements IDetector {
         rightStartIndex2 = startIndex2;
         rightEndIndex2 = leftStartIndex2 - 1;
 
-        if (scrambledStrings(
+        return
+            scrambledStrings(
                 s1, leftStartIndex1, leftEndIndex1,
                 s2, leftStartIndex2, leftEndIndex2) &&
             scrambledStrings(
                 s1, rightStartIndex1, rightEndIndex1,
-                s2, rightStartIndex2, rightEndIndex2)) {
-
-            return true;
-        }
-
-        return false;
+                s2, rightStartIndex2, rightEndIndex2);
     }
 
     /**

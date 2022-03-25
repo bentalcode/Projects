@@ -7,7 +7,7 @@ import java.util.Collection;
  * The Iterator class implements a wrapper for the build-in iterator.
  */
 public final class Iterator<T> implements IIterator<T> {
-    private java.util.Iterator<T> iterator;
+    private final java.util.Iterator<T> iterator;
 
     /**
      * Creates a new operator.

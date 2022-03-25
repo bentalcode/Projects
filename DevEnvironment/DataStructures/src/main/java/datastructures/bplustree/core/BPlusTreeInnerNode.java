@@ -388,7 +388,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
     /**
      * Shifts the children to the right.
      */
-    protected void shiftChildrenToRight(int index) {
+    private void shiftChildrenToRight(int index) {
         for (int i = this.getChildrenCount(); i > index; --i) {
             this.setChild(i, this.getChild(i - 1));
         }

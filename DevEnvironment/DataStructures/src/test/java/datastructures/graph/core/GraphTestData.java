@@ -39,8 +39,8 @@ public final class GraphTestData implements IGraphTestData {
         List<IGraphData<Integer, String>> graphsData = new ArrayList<>();
 
         graphsData.add(this.getGraphData1());
-        //graphsData.add(this.getGraphData2());
-        //graphsData.add(this.getGraphData3());
+        graphsData.add(this.getGraphData2());
+        graphsData.add(this.getGraphData3());
 
         return graphsData;
     }

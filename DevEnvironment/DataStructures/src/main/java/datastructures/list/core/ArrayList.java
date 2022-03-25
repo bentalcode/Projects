@@ -211,8 +211,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
             return null;
         }
 
-        T[] result = Arrays.copy(this.array, this.classType, 0, this.size - 1);
-        return result;
+        return Arrays.copy(this.array, this.classType, 0, this.size - 1);
     }
 
     /**
@@ -430,10 +429,8 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
         assert(index - shiftSize >= 0);
 
         for (int i = index; i < this.size; ++i) {
-            int sourceIndex = i;
             int destinationIndex = i - shiftSize;
-
-            this.array[destinationIndex] = this.array[sourceIndex];
+            this.array[destinationIndex] = this.array[i];
         }
 
         this.size -= shiftSize;

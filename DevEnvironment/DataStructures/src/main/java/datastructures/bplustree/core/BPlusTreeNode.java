@@ -19,7 +19,7 @@ import java.util.List;
 public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IBPlusTreeNode<TKey> {
 
     private final IBPlusTreeNodeProperties<TKey> properties;
-    private TKey[] keys;
+    private final TKey[] keys;
     private int keyCount;
     private IBPlusTreeNode<TKey> parentNode;
     private IBPlusTreeNode<TKey> leftSibling;

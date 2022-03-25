@@ -17,10 +17,8 @@ public final class Line implements ILine {
     private final IPoint end;
     private final double slope;
     private final double yIntercept;
-    private Boolean isHorizontalOrVertical;
-
+    private final Boolean isHorizontalOrVertical;
     private final IBinaryComparator<ILine> lineComparator;
-    private final IBinaryComparator<IPoint> pointComparator;
 
     /**
      * The Line constructor.
@@ -70,7 +68,6 @@ public final class Line implements ILine {
         }
 
         this.lineComparator = lineComparator;
-        this.pointComparator = pointComparator;
 
         if (this.start.getY() == this.end.getY()) {
             this.slope = 0;
@@ -85,6 +82,7 @@ public final class Line implements ILine {
         else {
             this.slope = (this.end.getY() - this.start.getY()) / (this.end.getX() - this.start.getX());
             this.yIntercept = this.start.getY() - this.slope * this.start.getX();
+            this.isHorizontalOrVertical = null;
         }
     }
 

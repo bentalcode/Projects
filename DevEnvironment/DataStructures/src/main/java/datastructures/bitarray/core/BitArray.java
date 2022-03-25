@@ -77,7 +77,7 @@ public final class BitArray implements IBitArray {
             comparator,
             "The comparator of a bit array.");
 
-        this.data = this.copyBitArray(array.toBit32Array());
+        this.data = copyBitArray(array.toBit32Array());
         this.size = array.size();
         this.comparator = comparator;
     }

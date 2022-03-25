@@ -14,7 +14,7 @@ public final class BPlusTreeLeafNode<TKey extends Comparable<TKey>, TValue>
     implements IBPlusTreeLeafNode<TKey, TValue> {
 
     private final IBPlusTreeLeafNodeProperties<TKey, TValue> properties;
-    private TValue[] values;
+    private final TValue[] values;
 
     /**
      * The BPlusTreeLeafNode constructor.

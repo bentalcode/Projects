@@ -11,11 +11,11 @@ import java.util.List;
  * The MatrixTestData class implements data of tests for a matrix.
  */
 public final class MatrixTestData implements IMatrixTestData {
-    private static int RandomCollectionsSize = 10;
-    private static int RandomMinRowSize = 10;
-    private static int RandomMaxRowSize = 100;
-    private static int RandomMinColumnSize = 10;
-    private static int RandomMaxColumnSize = 100;
+    private static final int RANDOM_COLLECTIONS_SIZE = 10;
+    private static final int RANDOM_MIN_ROW_SIZE = 10;
+    private static final int RANDOM_MAX_ROW_SIZE = 100;
+    private static final int RANDOM_MIN_COLUMN_SIZE = 10;
+    private static final int RANDOM_MAX_COLUMN_SIZE = 100;
 
     private final IRandomGenerator randomGenerator = new RandomGenerator();
 
@@ -36,12 +36,13 @@ public final class MatrixTestData implements IMatrixTestData {
         data.add(this.getMatrixData3());
         data.add(this.getMatrixData4());
 
-        for (int i = 0; i < RandomCollectionsSize; ++i) {
-            data.add(this.getRandomMatrixData(
-                RandomMinRowSize,
-                RandomMaxRowSize,
-                RandomMinColumnSize,
-                RandomMaxColumnSize));
+        for (int i = 0; i < RANDOM_COLLECTIONS_SIZE; ++i) {
+            data.add(
+                this.getRandomMatrixData(
+                    RANDOM_MIN_ROW_SIZE,
+                    RANDOM_MAX_ROW_SIZE,
+                    RANDOM_MIN_COLUMN_SIZE,
+                    RANDOM_MAX_COLUMN_SIZE));
         }
 
         return data;

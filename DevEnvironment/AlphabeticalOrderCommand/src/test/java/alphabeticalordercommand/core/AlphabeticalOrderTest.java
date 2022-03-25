@@ -6,8 +6,6 @@ import base.core.ListIterator;
 import base.interfaces.ICalculator;
 import base.interfaces.IPair;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
@@ -23,20 +21,6 @@ public final class AlphabeticalOrderTest {
      * The AlphabeticalOrderTest constructor.
      */
     public AlphabeticalOrderTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

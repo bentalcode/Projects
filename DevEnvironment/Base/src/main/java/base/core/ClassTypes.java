@@ -3,13 +3,12 @@ package base.core;
 import base.BaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.lang.reflect.Type;
 
 /**
  * The ClassTypes class implements complementary APIs for class types.
  */
 public final class ClassTypes {
-    private static Logger log = LoggerFactory.getLogger(ClassTypes.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ClassTypes.class);
 
     /**
      * Gets a name of a class of an object.
@@ -46,22 +45,11 @@ public final class ClassTypes {
                 "The ClassTypes failed loading class name: " + className +
                 " due to the following error: " + e.getMessage();
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BaseException(errorMessage, e);
         }
 
         return classType;
-    }
-
-    /**
-     * Gets the generic interfaces of a class.
-     */
-    public static <T> Type[] getGenericInterfaces(Class<T> classType) {
-        Conditions.validateNotNull(
-            classType,
-            "The type of a class.");
-
-        return classType.getGenericInterfaces();
     }
 
     /**

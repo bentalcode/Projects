@@ -16,7 +16,7 @@ public final class PathsTest {
     private final IAssertion assertion = new Assertion();
 
     /**
-     * The PrimesTest constructor.
+     * The PathsTest constructor.
      */
     public PathsTest() {
     }
@@ -217,11 +217,11 @@ public final class PathsTest {
         String pattern6 = "glob:**/*build*/**";
         boolean status6 = true;
 
-        //this.testPathMatcher(path1, pattern1, status1);
-        //this.testPathMatcher(path2, pattern2, status2);
-        //this.testPathMatcher(path3, pattern3, status3);
-        //this.testPathMatcher(path4, pattern4, status4);
-        //this.testPathMatcher(path5, pattern5, status5);
+        this.testPathMatcher(path1, pattern1, status1);
+        this.testPathMatcher(path2, pattern2, status2);
+        this.testPathMatcher(path3, pattern3, status3);
+        this.testPathMatcher(path4, pattern4, status4);
+        this.testPathMatcher(path5, pattern5, status5);
         this.testPathMatcher(path6, pattern6, status6);
     }
 

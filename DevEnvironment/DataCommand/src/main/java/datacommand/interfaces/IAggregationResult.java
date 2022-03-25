@@ -17,7 +17,7 @@ public interface IAggregationResult {
     /**
      * Increments the counter of the key.
      */
-    void IncrementKeyCounter();
+    void incrementKeyCounter();
 
     /**
      * Gets the value with the highest sort order.

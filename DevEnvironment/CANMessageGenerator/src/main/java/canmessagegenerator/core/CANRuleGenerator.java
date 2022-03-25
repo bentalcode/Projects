@@ -9,10 +9,9 @@ import java.util.List;
  * The CANSignalRuleGenerator class implements a generator of CAN signal rules.
  */
 public abstract class CANRuleGenerator {
-    private static final String defaultNodeName = "Vector__XXX";
-    private static final String nodeNamePrefix = "Node";
-    private static final int numberOfNodes = 100;
-
+    private static final String DEFAULT_NODE_NAME = "Vector__XXX";
+    private static final String NODE_NAME_PREFIX = "Node";
+    private static final int NUMBER_OF_NODES = 100;
     private static final List<String> transmittingNodeNames = createTransmittingNodeNames();
 
     private final IRandomGenerator randomGenerator = new RandomGenerator();
@@ -54,10 +53,10 @@ public abstract class CANRuleGenerator {
      */
     private static List<String> createTransmittingNodeNames() {
         List<String> result = new ArrayList<>();
-        result.add(defaultNodeName);
+        result.add(DEFAULT_NODE_NAME);
 
-        for (int i = 0; i < numberOfNodes; ++i) {
-            String nodeName = nodeNamePrefix + i;
+        for (int i = 0; i < NUMBER_OF_NODES; ++i) {
+            String nodeName = NODE_NAME_PREFIX + i;
             result.add(nodeName);
         }
 

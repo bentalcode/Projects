@@ -1,8 +1,7 @@
 package base.core;
 
-import java.nio.file.Path;
-
 import base.BaseException;
+import java.nio.file.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +9,7 @@ import org.slf4j.LoggerFactory;
  * The Conditions class implements validations for various conditions.
  */
 public final class Conditions {
-    private static Logger log = LoggerFactory.getLogger(Casting.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Casting.class);
 
     /**
      * Validates a conditions.
@@ -19,7 +18,7 @@ public final class Conditions {
         if (!condition) {
             String message = "Condition.validate() failed due to the following error: " + errorMessage;
 
-            Conditions.log.error(message);
+            LOG.error(message);
             throw new BaseException(message);
         }
     }
@@ -31,7 +30,7 @@ public final class Conditions {
         if (obj == null) {
             String message = "The instance of an object can not be null. Parameter: " + name;
 
-            Conditions.log.error(message);
+            LOG.error(message);
             throw new BaseException(message);
         }
     }
@@ -43,7 +42,7 @@ public final class Conditions {
         if (Strings.isNullOrEmpty(str)) {
             String message = "The instance of a string can not be null or empty. Parameter: " + name;
 
-            Conditions.log.error(message);
+            LOG.error(message);
             throw new BaseException(message);
         }
     }
@@ -55,7 +54,7 @@ public final class Conditions {
         if (Paths.isNullOrEmpty(path)) {
             String message = "The instance of a path can not be null or empty. Parameter: " + name;
 
-            Conditions.log.error(message);
+            LOG.error(message);
             throw new BaseException(message);
         }
     }
@@ -66,7 +65,7 @@ public final class Conditions {
     public static void fail(String errorMessage) {
         String message = "Condition failed due to the following error: " + errorMessage;
 
-        Conditions.log.error(message);
+        LOG.error(message);
         throw new BaseException(message);
     }
 

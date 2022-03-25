@@ -14,7 +14,7 @@ import java.util.List;
  */
 public final class CMakeWriter implements ICMakeWriter {
     private final Writer writer;
-    private IEditorSettings editorSettings;
+    private final IEditorSettings editorSettings;
     private int indentationSize;
 
     /**

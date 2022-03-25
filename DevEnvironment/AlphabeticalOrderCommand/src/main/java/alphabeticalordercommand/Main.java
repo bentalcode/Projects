@@ -34,14 +34,14 @@ public final class Main {
                 return;
             }
 
-            /**
-             * Process the data...
-             */
+            //
+            // Process the data...
+            //
             IAlphabeticalOrderResults results = Main.processData(parameters);
 
-            /**
-             * Writes the results to the console...
-             */
+            //
+            // Writes the results to the console...
+            //
             Main.displayResults(results);
 
             System.exit(0);
@@ -62,7 +62,7 @@ public final class Main {
      * Processes data.
      */
     private static IAlphabeticalOrderResults processData(IAlphabeticalOrderCommandParameters parameters) {
-        IAlphabeticalOrderCommand command = new AlphabeticalOrderCommand(parameters);
+        IAlphabeticalOrderCommand command = new AlphabeticalOrderCommand();
 
         IAlphabeticalOrderResults results;
 
@@ -112,14 +112,6 @@ public final class Main {
      */
     private static void writeInformationalMessage(String message) {
         PrintStream outputStream = System.out;
-        Main.writeMessage(message, outputStream);
-    }
-
-    /**
-     * Writes a warning message.
-     */
-    private static void writeWarningMessage(String message) {
-        PrintStream outputStream = System.err;
         Main.writeMessage(message, outputStream);
     }
 

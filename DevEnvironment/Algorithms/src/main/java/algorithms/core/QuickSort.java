@@ -9,25 +9,18 @@ import base.interfaces.IBinaryComparator;
  * The QuickSort class implements a quick sort.
  */
 public final class QuickSort<T> implements ISort<T> {
-    private final Class<T> classType;
     private final IBinaryComparator<T> comparator;
 
     /**
      * The QuickSort constructor.
      */
     public QuickSort(
-        Class<T> classType,
         IBinaryComparator<T> comparator) {
-
-        Conditions.validateNotNull(
-            classType,
-            "The class type.");
 
         Conditions.validateNotNull(
             comparator,
             "The comparator of elements.");
 
-        this.classType = classType;
         this.comparator = comparator;
     }
 

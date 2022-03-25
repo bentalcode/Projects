@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  * The Casting class implements complementary APIs for casting.
  */
 public final class Casting {
-    private static Logger log = LoggerFactory.getLogger(Casting.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Casting.class);
 
     /**
      * Casts the object to the requested type.
@@ -22,7 +22,7 @@ public final class Casting {
                 "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                 " to the requested type due to the following error: " + e.getMessage();
 
-            Casting.log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
     }
@@ -31,19 +31,10 @@ public final class Casting {
      * Casts the object to the requested type.
      */
     public static <TTo, TFrom> TTo cast(TFrom obj, Class<?> requestedType) {
+        TTo convertedType;
+
         try {
-            TTo convertedType = Casting.unsafeCast(obj);
-
-            if (!requestedType.isAssignableFrom(convertedType.getClass())) {
-                String errorMessage =
-                    "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
-                    " to the requested type: " + requestedType.getName();
-
-                Casting.log.error(errorMessage);
-                throw new BaseException(errorMessage);
-            }
-
-            return convertedType;
+            convertedType = Casting.unsafeCast(obj);
         }
         catch (ClassCastException e) {
             String errorMessage =
@@ -51,9 +42,20 @@ public final class Casting {
                 " to the requested type: " + requestedType.getName() +
                 " due to the following error: " + e.getMessage();
 
-            Casting.log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
+
+        if (!requestedType.isAssignableFrom(convertedType.getClass())) {
+            String errorMessage =
+                "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
+                " to the requested type: " + requestedType.getName();
+
+            LOG.error(errorMessage);
+            throw new BaseException(errorMessage);
+        }
+
+        return convertedType;
     }
 
     /**

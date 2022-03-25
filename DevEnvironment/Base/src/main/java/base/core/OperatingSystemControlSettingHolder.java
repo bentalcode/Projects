@@ -11,7 +11,8 @@ import java.util.Map;
  */
 public final class OperatingSystemControlSettingHolder {
     private static class InstanceHolder {
-        public static OperatingSystemControlSettingHolder instance = new OperatingSystemControlSettingHolder();
+        private static final OperatingSystemControlSettingHolder instance =
+            new OperatingSystemControlSettingHolder();
     }
 
     private final Map<OperatingSystemType, IOperatingSystemControlSettings> operatingSystemsControlSettings = new HashMap<>();

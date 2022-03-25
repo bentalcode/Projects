@@ -116,7 +116,7 @@ public final class DataCommand implements IDataCommand {
 
         if (results.has(key)) {
             IAggregationResult currResult = results.get(key);
-            currResult.IncrementKeyCounter();
+            currResult.incrementKeyCounter();
 
             if (currResult.getHighestSortOrderValue().compareTo(value) < 0) {
                 currResult.setHighestSortOrderValue(value);

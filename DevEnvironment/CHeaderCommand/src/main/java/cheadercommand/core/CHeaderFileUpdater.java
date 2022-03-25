@@ -50,7 +50,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
             return -1;
         }
 
-        return this.updateFileHeader(this.path);
+        return updateFileHeader(this.path);
     }
 
     /**

@@ -15,7 +15,7 @@ public final class ResourceReader implements IResourceReader, ICloseable {
     private final Path path;
     private final InputStream stream;
 
-    private static Logger log = LoggerFactory.getLogger(ResourceReader.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ResourceReader.class);
 
     /**
      * The ResourceReader constructor.
@@ -90,7 +90,7 @@ public final class ResourceReader implements IResourceReader, ICloseable {
         if (stream == null) {
             String errorMessage = "The resource: " + path + " failed to get opened as a stream.";
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BaseException(errorMessage);
         }
 

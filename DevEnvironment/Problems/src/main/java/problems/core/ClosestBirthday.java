@@ -34,7 +34,7 @@ public final class ClosestBirthday extends AbstractClosestBirthday {
             birthdays.length >= 2,
             "The birthdays array has to contain at least two dates.");
 
-        int[] days = this.createSortedDays(this.year, birthdays);
+        int[] days = createSortedDays(this.year, birthdays);
         return this.closestDays(days);
     }
 

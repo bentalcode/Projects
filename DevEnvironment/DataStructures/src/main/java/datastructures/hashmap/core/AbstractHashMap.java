@@ -125,8 +125,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
      */
     @Override
     public List<TValue> getValues() {
-        List<TValue> values = Lists.fromIterator(this.getValueIterator());
-        return values;
+        return Lists.fromIterator(this.getValueIterator());
     }
 
     /**

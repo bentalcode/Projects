@@ -2,6 +2,7 @@ package algorithms.core;
 
 import algorithms.interfaces.ISort;
 import base.core.ArrayIterator;
+import base.interfaces.IBinaryComparator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,31 +55,24 @@ public final class QuickSortTest {
         Integer[] input5 = {10, 8, 8, 7, 6, 5, 5, 3, 2, 1};
         Integer[] result5 = {1, 2, 3, 5, 5, 6, 7, 8, 8, 10};
 
-        Class<Integer> classType = Integer.class;
-
         this.testQuickSort(
             input1,
-            classType,
             result1);
 
         this.testQuickSort(
             input2,
-            classType,
             result2);
 
         this.testQuickSort(
             input3,
-            classType,
             result3);
 
         this.testQuickSort(
             input4,
-            classType,
             result4);
 
         this.testQuickSort(
             input5,
-            classType,
             result5);
     }
 
@@ -87,12 +81,10 @@ public final class QuickSortTest {
      */
     private <T extends Comparable<T>> void testQuickSort(
         T[] arr,
-        Class<T> classType,
         T[] expectedResult) {
 
-        ISort<T> quickSort = new QuickSort<>(
-            classType,
-            base.core.Comparator.make());
+        IBinaryComparator<T> comparator = base.core.Comparator.make();
+        ISort<T> quickSort = new QuickSort<>(comparator);
 
         quickSort.sort(arr);
 

@@ -12,9 +12,9 @@ import java.util.List;
  * The StackTestData class implements data of tests for a stack.
  */
 public final class StackTestData implements IStackTestData {
-    private static int randomCollectionsSize = 10;
-    private static int randomMinCollectionSize = 100;
-    private static int randomMaxCollectionSize = 1000;
+    private static final int RANDOM_COLLECTIONS_SIZE = 10;
+    private static final int RANDOM_MIN_COLLECTION_SIZE = 100;
+    private static final int RANDOM_MAX_COLLECTION_SIZE = 1000;
 
     private final IRandomGenerator randomGenerator = new RandomGenerator();
 
@@ -35,8 +35,8 @@ public final class StackTestData implements IStackTestData {
         data.add(this.getStackData2());
         data.add(this.getStackData3());
 
-        for (int i = 0; i < randomCollectionsSize; ++i) {
-            data.add(this.getRandomStackData(randomMinCollectionSize, randomMaxCollectionSize));
+        for (int i = 0; i < RANDOM_COLLECTIONS_SIZE; ++i) {
+            data.add(this.getRandomStackData(RANDOM_MIN_COLLECTION_SIZE, RANDOM_MAX_COLLECTION_SIZE));
         }
 
         return data;

@@ -29,8 +29,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
 
     private final IBinaryComparator<IAdjacencyMatrix<TKey, TValue>> comparator;
     private final int hashCode;
-
-    private static Logger log = LoggerFactory.getLogger(ClassTypes.class);
+    private final Logger log = LoggerFactory.getLogger(ClassTypes.class);
 
     /**
      * The AdjacencyMatrix constructor.
@@ -183,16 +182,13 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
          */
         @Override
         public int getHashCode(IAdjacencyMatrix<TKey, TValue> obj) {
-
-            IHashCodeProvider<IVertex<TKey, TValue>> keyProvider = this.vertexComparator;
-
             IHashCodeProvider<Set<IVertex<TKey, TValue>>> valueProvider =
                 (vertices) -> { return new HashCodeBuilder(457, 461).withCollection(vertices, this.vertexComparator).build(); };
 
             return new HashCodeBuilder(463, 467)
                 .withMap(
                     obj.connections(),
-                    keyProvider,
+                    this.vertexComparator,
                     valueProvider)
                     .build();
         }
@@ -210,8 +206,6 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
                 return false;
             }
 
-            IEquatableComparator<IVertex<TKey, TValue>> keyComparator = this.vertexComparator;
-
             IEquatableComparator<Set<IVertex<TKey, TValue>>> valueComparator =
                 (vertices1, vertices2) -> {
                     return new EqualBuilder().withCollection(vertices1, vertices2, this.vertexComparator).build();
@@ -221,7 +215,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
                 .withMap(
                     lhs.connections(),
                     rhs.connections(),
-                    keyComparator,
+                    this.vertexComparator,
                     valueComparator)
                     .build();
         }
@@ -247,8 +241,6 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
                 return 1;
             }
 
-            IComparableComparator<IVertex<TKey, TValue>> keyComparator = this.vertexComparator;
-
             IComparableComparator<Set<IVertex<TKey, TValue>>> valueComparator =
                 (vertices1, vertices2) -> {
                     return new CompareToBuilder().withCollection(vertices1, vertices2, this.vertexComparator).build();
@@ -258,7 +250,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
                 .withMap(
                     lhs.connections(),
                     rhs.connections(),
-                    keyComparator,
+                    this.vertexComparator,
                     valueComparator)
                 .build();
         }

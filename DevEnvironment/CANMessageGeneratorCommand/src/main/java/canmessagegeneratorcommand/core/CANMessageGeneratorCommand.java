@@ -88,7 +88,7 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
     /**
      * Processes the messages.
      */
-    private boolean processMessages(
+    private void processMessages(
         String messageName,
         int numberOfMessages,
         Duration timeout,
@@ -106,8 +106,6 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
 
             Threads.sleep(delayInMilliseconds);
         }
-
-        return true;
     }
 
     /**

@@ -437,41 +437,41 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     /**
      * The CacheData class captures the internal data of a cache.
      */
-    protected final class CacheData<TKey extends Comparable<TKey>, TValue> {
+    protected static final class CacheData<TKey extends Comparable<TKey>, TValue> {
         private final Map<TKey, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup = new HashMap<>();
         private final DoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList = new DoublyLinkedList<>();
 
         /**
          * The CacheData constructor.
          */
-        protected CacheData() {
+        public CacheData() {
         }
 
         /**
          * Gets the data lookup.
          */
-        protected Map<TKey, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup() {
+        public Map<TKey, IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>>> dataLookup() {
             return this.dataLookup;
         }
 
         /**
          * Gets the data lookup.
          */
-        protected DoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList() {
+        public DoublyLinkedList<IKeyValueNode<TKey, TValue>> usedList() {
             return this.usedList;
         }
 
         /**
          * Gets the key-value node.
          */
-        protected IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> getKeyValueNode(TKey key) {
+        public IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> getKeyValueNode(TKey key) {
             return this.dataLookup.get(key);
         }
 
         /**
          * Removes the key-value node.
          */
-        protected void removeKeyValueNode(IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node) {
+        public void removeKeyValueNode(IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> node) {
             this.dataLookup.remove(node.getValue().getKey());
             this.usedList.remove(node);
         }
@@ -479,7 +479,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
         /**
          * Checks whether the key exists.
          */
-        protected boolean hasKey(TKey key) {
+        public boolean hasKey(TKey key) {
             return this.dataLookup.containsKey(key);
         }
     }

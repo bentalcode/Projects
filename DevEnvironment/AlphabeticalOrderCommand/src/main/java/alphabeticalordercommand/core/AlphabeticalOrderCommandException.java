@@ -12,11 +12,4 @@ public class AlphabeticalOrderCommandException extends BaseException {
     public AlphabeticalOrderCommandException(String errorMessage) {
         super(errorMessage);
     }
-
-    /**
-     * The AlphabeticalOrderCommandException constructor.
-     */
-    public AlphabeticalOrderCommandException(String errorMessage, Exception e) {
-        super(errorMessage, e);
-    }
 }

@@ -28,7 +28,7 @@ import datacommand.interfaces.IDataResult;
  *
  */
 public final class DataResult implements IDataResult {
-    private IAggregationResults aggregationResults;
+    private final IAggregationResults aggregationResults;
 
     /**
      * The DataResult constructor.

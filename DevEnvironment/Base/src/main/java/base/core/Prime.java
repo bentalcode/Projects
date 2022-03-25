@@ -82,11 +82,7 @@ public final class Prime implements IPrime {
         // If the next prime number is not in the cache,
         // then calculate for each candidate number whether it is a prime...
         //
-        while(true) {
-            if (this.isPrime(nextPrime)) {
-                break;
-            }
-
+        while(!this.isPrime(nextPrime)) {
             nextPrime = ArithmeticOperators.safeAdd(nextPrime, 1);
         }
 

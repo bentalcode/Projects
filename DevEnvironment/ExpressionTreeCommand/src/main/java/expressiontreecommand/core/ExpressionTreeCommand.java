@@ -4,32 +4,18 @@ import base.core.Conditions;
 import datastructures.expressiontree.core.ExpressionTree;
 import datastructures.expressiontree.interfaces.IExpressionTree;
 import expressiontreecommand.interfaces.IExpressionTreeCommand;
-import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
 import expressiontreecommand.interfaces.IExpressionTreeResult;
 import expressiontreecommand.interfaces.IExpressionTreeResults;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Scanner;
 
 /**
  * The ExpressionTreeCommand class implements a command for processing expression tree.
  */
 public final class ExpressionTreeCommand implements IExpressionTreeCommand {
-    private final IExpressionTreeCommandParameters parameters;
-
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     /**
-     * The ExpressionTreeCommandParameters constructor.
+     * The ExpressionTreeCommand constructor.
      */
-    public ExpressionTreeCommand(IExpressionTreeCommandParameters parameters) {
-        Conditions.validateNotNull(
-            parameters,
-            "The parameters of expression tree command.");
-
-        this.parameters = parameters;
+    public ExpressionTreeCommand() {
     }
 
     /**

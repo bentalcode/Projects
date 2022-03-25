@@ -12,11 +12,4 @@ public class CacheException extends DataStructureException {
     public CacheException(String errorMessage) {
         super(errorMessage);
     }
-
-    /**
-     * The CacheException constructor.
-     */
-    public CacheException(String errorMessage, Exception e) {
-        super(errorMessage, e);
-    }
 }

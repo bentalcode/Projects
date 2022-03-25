@@ -8,7 +8,7 @@ import datacommand.interfaces.IAggregationResult;
  * The IAggregationResult class implements an aggregation result of the data.
  */
 public final class AggregationResult implements IAggregationResult {
-    private String key;
+    private final String key;
     private long keyCounter;
     private String highestSortOrderValue;
 
@@ -57,7 +57,7 @@ public final class AggregationResult implements IAggregationResult {
      * Increments the counter of the key.
      */
     @Override
-    public void IncrementKeyCounter() {
+    public void incrementKeyCounter() {
         ++this.keyCounter;
     }
 

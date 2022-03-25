@@ -9,12 +9,12 @@ import java.util.List;
  * The Strings class implements complementary APIs for strings.
  */
 public final class Strings {
-    private static List<IPair<Character, Character>> parenthesesStartEndTokens = ArrayLists.make(
+    private static final List<IPair<Character, Character>> PARENTHESES_START_END_TOKENS = ArrayLists.make(
         Pair.make('(', ')'),
         Pair.make('[', ']'),
         Pair.make('{', '}'));
 
-    private static List<IPair<Character, Character>> quotationStartEndTokens = ArrayLists.make(
+    private static final List<IPair<Character, Character>> QUOTATION_START_END_TOKENS = ArrayLists.make(
         Pair.make('\'', '\''),
         Pair.make('\"', '\"'));
 
@@ -245,14 +245,14 @@ public final class Strings {
      * Removes outer parentheses from the string.
      */
     public static String removeParentheses(String str) {
-        return removeStartAndEndCharacters(str, parenthesesStartEndTokens);
+        return removeStartAndEndCharacters(str, PARENTHESES_START_END_TOKENS);
     }
 
     /**
      * Removes quotation marks.
      */
     public static String removeQuotationMarks(String str) {
-        return removeStartAndEndCharacters(str, quotationStartEndTokens);
+        return removeStartAndEndCharacters(str, QUOTATION_START_END_TOKENS);
     }
 
     /**

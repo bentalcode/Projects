@@ -29,7 +29,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
     private final String shortNameKey;
     private final String longNameKey;
     private final boolean optional;
-    private String defaultValue;
+    private final String defaultValue;
 
     private final IBinaryComparator<INamedParameterMetadata> comparator = defaultComparator();
     private final int hashCode;

@@ -8,18 +8,17 @@ import base.interfaces.IIterator;
  * The CatalanNumberIterator class implements an iterator of catalan numbers.
  */
 public final class CatalanNumberIterator implements IIterator<Long> {
-    private static final int initialNumber = 0;
+    private static final int INITIAL_NUMBER = 0;
+    private static final int MAX_NUMBER = CatalanNumber.MAX_CALCULATED_NUMBER;
 
     private final ICatalanNumber catalanNumber;
-    private final int maxNumber = CatalanNumber.maxCalculatedNumber;
     private int currNumber;
-
 
     /**
      * Creates a new iterator of a catalan.
      */
     public static IIterator<Long> make(ICatalanNumber catalanNumber) {
-        return new CatalanNumberIterator(catalanNumber, initialNumber);
+        return new CatalanNumberIterator(catalanNumber, INITIAL_NUMBER);
     }
 
     /**
@@ -35,7 +34,7 @@ public final class CatalanNumberIterator implements IIterator<Long> {
     private CatalanNumberIterator(ICatalanNumber catalanNumber) {
         this(
             catalanNumber,
-            initialNumber);
+            INITIAL_NUMBER);
     }
 
     /**
@@ -56,7 +55,7 @@ public final class CatalanNumberIterator implements IIterator<Long> {
      */
     @Override
     public boolean hasNext() {
-        return this.currNumber <= this.maxNumber;
+        return this.currNumber <= MAX_NUMBER;
     }
 
     /**
@@ -77,7 +76,7 @@ public final class CatalanNumberIterator implements IIterator<Long> {
      */
     @Override
     public void reset() {
-        this.reset(initialNumber);
+        this.reset(INITIAL_NUMBER);
     }
 
     /**

@@ -81,8 +81,8 @@ public final class TableWriter implements ITableWriter {
             header.size() == data.colsSize(),
             "The header of a table does match the dimensions of it's data.");
 
-        List<Integer> columnsLengths = this.calculateColumnsLengths(header, data);
-        int width = this.calculateTableWidth(columnsLengths);
+        List<Integer> columnsLengths = calculateColumnsLengths(header, data);
+        int width = calculateTableWidth(columnsLengths);
 
         this.writeHeader(header, width, columnsLengths);
 

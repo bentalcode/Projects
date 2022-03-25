@@ -382,14 +382,12 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
          */
         @Override
         public IBinaryTreeNode<TKey, TValue> build() {
-            IBinaryTreeNode<TKey, TValue> node = new BinaryTreeNode<>(
+            return new BinaryTreeNode<>(
                 this.key,
                 this.value,
                 this.leftChild,
                 this.rightChild,
                 this.comparator);
-
-            return node;
         }
     }
 }

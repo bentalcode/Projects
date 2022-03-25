@@ -11,9 +11,9 @@ import java.util.List;
  * The BitArrayTestData class implements data of tests for a bit array.
  */
 public final class BitArrayTestData implements IBitArrayTestData {
-    private static int RandomCollectionsSize = 10;
-    private static int RandomMinCollectionSize = 100;
-    private static int RandomMaxCollectionSize = 1000;
+    private static final int RANDOM_COLLECTIONS_SIZE = 10;
+    private static final int RANDOM_MIN_COLLECTION_SIZE = 100;
+    private static final int RANDOM_MAX_COLLECTION_SIZE = 1000;
 
     private final IRandomGenerator randomGenerator = new RandomGenerator();
 
@@ -34,8 +34,8 @@ public final class BitArrayTestData implements IBitArrayTestData {
         data.add(this.createBitArrayData(32));
         data.add(this.createBitArrayData(50));
 
-        for (int i = 0; i < RandomCollectionsSize; ++i) {
-            data.add(this.createRandomBitArrayData(RandomMinCollectionSize, RandomMaxCollectionSize));
+        for (int i = 0; i < RANDOM_COLLECTIONS_SIZE; ++i) {
+            data.add(this.createRandomBitArrayData(RANDOM_MIN_COLLECTION_SIZE, RANDOM_MAX_COLLECTION_SIZE));
         }
 
         return data;

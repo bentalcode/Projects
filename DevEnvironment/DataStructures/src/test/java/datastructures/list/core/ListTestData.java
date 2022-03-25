@@ -11,9 +11,9 @@ import java.util.List;
  * The ListTestData class implements data of tests for a list.
  */
 public final class ListTestData implements IListTestData {
-    private static int randomCollectionsSize = 10;
-    private static int randomMinCollectionSize = 100;
-    private static int randomMaxCollectionSize = 1000;
+    private static final int RANDOM_COLLECTIONS_SIZE = 10;
+    private static final int RANDOM_MIN_COLLECTION_SIZE = 100;
+    private static final int RANDOM_MAX_COLLECTION_SIZE = 1000;
 
     private final IRandomGenerator randomGenerator = new RandomGenerator();
 
@@ -34,8 +34,8 @@ public final class ListTestData implements IListTestData {
         data.add(this.getListData2());
         data.add(this.getListData3());
 
-        for (int i = 0; i < randomCollectionsSize; ++i) {
-            data.add(this.getRandomListData(randomMinCollectionSize, randomMaxCollectionSize));
+        for (int i = 0; i < RANDOM_COLLECTIONS_SIZE; ++i) {
+            data.add(this.getRandomListData(RANDOM_MIN_COLLECTION_SIZE, RANDOM_MAX_COLLECTION_SIZE));
         }
 
         return data;

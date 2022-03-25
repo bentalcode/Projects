@@ -1,11 +1,9 @@
 package problems.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import problems.interfaces.IAdding;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The AddingTest class implements tests for an adding problem.
@@ -17,20 +15,6 @@ public final class AddingTest {
      * The AddingTest constructor.
      */
     public AddingTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**
