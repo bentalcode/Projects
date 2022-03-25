@@ -1,6 +1,6 @@
 {
     "name": "DevEnvironmentCLion",
-    "rootPath": "c:\\repositories\\Projects\\DevEnvironmentCLion",
+    "rootPath": "c:\\git\\repositories\\Projects\\DevEnvironmentCLion",
     "effectiveModules": [
         "Base",
         "DataStructures",
