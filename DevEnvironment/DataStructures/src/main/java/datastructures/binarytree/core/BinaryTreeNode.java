@@ -165,14 +165,7 @@ public final class BinaryTreeNode<TKey extends Comparable<TKey>, TValue> impleme
      */
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        result.append("{");
-        result.append("Key: ").append(this.key);
-        result.append(", Value: ").append(this.value);
-        result.append("}");
-
-        return result.toString();
+        return "{ Key: " + this.key + ", Value: " + this.value + "}";
     }
 
     /**

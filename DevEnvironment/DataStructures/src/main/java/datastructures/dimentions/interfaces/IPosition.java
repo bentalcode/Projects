@@ -2,8 +2,6 @@ package datastructures.dimentions.interfaces;
 
 import base.interfaces.IUnaryComparator;
 
-import java.util.List;
-
 /**
  * The Position interface defines a position in 2D.
  */

@@ -1,15 +1,10 @@
 package datastructures.queue.core;
 
-import base.core.ArrayLists;
-import base.core.Triple;
-import base.interfaces.ITriple;
-import datastructures.linkedlist.interfaces.ILinkedListNode;
 import datastructures.queue.interfaces.IQueueData;
 import datastructures.queue.interfaces.IQueueTestData;
-import testbase.core.CollectionValues;
-
 import java.util.ArrayList;
 import java.util.List;
+import testbase.core.CollectionValues;
 
 /**
  * The QueueTestData class implements data of tests of a queue.

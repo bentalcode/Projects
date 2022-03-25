@@ -22,7 +22,7 @@ public final class CommandParserTest {
     /**
      * The CommandParserTest constructor.
      */
-    public void CommandParserTest() {
+    public CommandParserTest() {
     }
 
     /**

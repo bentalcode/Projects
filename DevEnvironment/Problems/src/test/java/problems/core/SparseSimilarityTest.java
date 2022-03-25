@@ -2,20 +2,15 @@ package problems.core;
 
 import base.core.ArrayLists;
 import base.interfaces.ICalculator;
-import base.interfaces.IIterator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import problems.interfaces.IAdding;
 import problems.interfaces.ISparseSimilarityResult;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * The SparseSimilarityTest class implements tests for a sparse similarity problem.

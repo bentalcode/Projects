@@ -9,7 +9,6 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.hashmap.interfaces.IHashMapTestData;
 import datastructures.heap.interfaces.IHeapTestData;
-import datastructures.linkedlist.interfaces.ILinkedListData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.interfaces.IListTestData;
 import datastructures.list.interfaces.ITwoDimensionalListTestData;

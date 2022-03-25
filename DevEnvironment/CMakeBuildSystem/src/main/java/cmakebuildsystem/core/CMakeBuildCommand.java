@@ -2,7 +2,6 @@ package cmakebuildsystem.core;
 
 import base.core.Collections;
 import base.core.Conditions;
-import base.core.Strings;
 import cmakebuildsystem.interfaces.ICMakeBuildCommand;
 import cmakebuildsystem.interfaces.ICMakeWriter;
 import java.util.List;

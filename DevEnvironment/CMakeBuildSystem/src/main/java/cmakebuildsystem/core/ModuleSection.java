@@ -1,13 +1,11 @@
 package cmakebuildsystem.core;
 
 import base.core.Conditions;
-import base.core.Environment;
 import base.core.Pair;
 import base.core.Paths;
 import base.core.StringEquality;
 import base.core.UnixPath;
 import base.core.UnixPathBuilder;
-import base.core.UnixPathSettings;
 import base.interfaces.IPair;
 import base.interfaces.IPathMatcher;
 import cmakebuildsystem.interfaces.ICMakeBuildElement;

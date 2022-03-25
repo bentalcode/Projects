@@ -1,7 +1,6 @@
 package command.core;
 
 import base.core.Conditions;
-import command.interfaces.INamedParameterMetadata;
 import command.interfaces.IParameterMetadata;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectWriter;

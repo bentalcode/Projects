@@ -9,7 +9,6 @@ import expressiontreecommand.interfaces.IExpressionTreeCommand;
 import expressiontreecommand.interfaces.IExpressionTreeCommandParameters;
 import expressiontreecommand.interfaces.IExpressionTreeResult;
 import expressiontreecommand.interfaces.IExpressionTreeResults;
-
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -35,14 +34,14 @@ public final class Main {
                 return;
             }
 
-            /**
-             * Process the data...
-             */
+            //
+            // Process the data...
+            //
             IExpressionTreeResults results = Main.processData(parameters);
 
-            /**
-             * Writes the result to the console...
-             */
+            //
+            // Writes the result to the console...
+            //
             Main.displayResult(results);
 
             System.exit(0);

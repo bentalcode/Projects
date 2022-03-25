@@ -69,21 +69,6 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      */
     protected AbstractHeap(
         T[] data,
-        IBinaryComparator<T> elementComparator,
-        IBinaryComparator<IPriorityQueue<T>> comparator) {
-
-        this(
-            data,
-            data != null ? data.length : 0,
-            elementComparator,
-            comparator);
-    }
-
-    /**
-     * The AbstractHeap constructor.
-     */
-    protected AbstractHeap(
-        T[] data,
         int size,
         IBinaryComparator<T> elementComparator,
         IBinaryComparator<IPriorityQueue<T>> comparator) {

@@ -1,6 +1,5 @@
 package problems.interfaces;
 
-import base.interfaces.IInterval;
 import base.interfaces.IUnaryComparator;
 
 /**

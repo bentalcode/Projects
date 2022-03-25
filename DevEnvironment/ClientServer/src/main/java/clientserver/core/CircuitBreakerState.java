@@ -3,8 +3,6 @@ package clientserver.core;
 import base.core.Conditions;
 import base.core.Dates;
 import clientserver.interfaces.ICircuitBreakerPolicy;
-import clientserver.interfaces.IErrorInformation;
-
 import java.util.Date;
 
 /**

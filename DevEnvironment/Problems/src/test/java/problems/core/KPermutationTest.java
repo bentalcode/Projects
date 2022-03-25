@@ -3,7 +3,6 @@ package problems.core;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import problems.interfaces.IAdding;
 import problems.interfaces.IKPermutation;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;

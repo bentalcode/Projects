@@ -3,7 +3,6 @@ package command.core;
 import base.core.Conditions;
 import base.interfaces.IMessageWriter;
 import command.interfaces.ICommand;
-import command.interfaces.ICommandMessageWriter;
 import command.interfaces.ICommandParameters;
 import command.interfaces.IProcessInformation;
 

@@ -35,14 +35,14 @@ public final class Main {
                 return;
             }
 
-            /**
-             * Process the data...
-             */
+            //
+            // Process the data...
+            //
             IDataResult result = Main.processData(parameters);
 
-            /**
-             * Writes the result to the console...
-             */
+            //
+            // Writes the result to the console...
+            //
             Main.displayResult(result);
 
             System.exit(0);

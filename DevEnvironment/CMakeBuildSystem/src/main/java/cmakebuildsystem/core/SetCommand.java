@@ -3,10 +3,7 @@ package cmakebuildsystem.core;
 import base.core.ArrayLists;
 import base.core.Conditions;
 import cmakebuildsystem.interfaces.ICMakeBuildCommand;
-import cmakebuildsystem.interfaces.ICMakeBuildElement;
 import cmakebuildsystem.interfaces.ICMakeWriter;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -87,9 +87,7 @@ public final class CommandParser implements IParser<String[], ICommandParameters
 
         IParser<String, IPair<String, String>> namedParameterParser = new NamedParameterParser();
 
-        for (int i = 0; i < arguments.length; ++i) {
-            String arg = arguments[i];
-
+        for (String arg : arguments) {
             if (NamedParameterParser.isNamedParameter(arg)) {
                 IParsingResult<IPair<String, String>> namedParameterResult = namedParameterParser.parse(arg);
 

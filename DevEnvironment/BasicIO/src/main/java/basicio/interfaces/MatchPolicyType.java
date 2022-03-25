@@ -16,7 +16,7 @@ public enum MatchPolicyType {
     };
 
     private final String name;
-    private final static Logger log = LoggerFactory.getLogger(MatchPolicyType.class);
+    private final static Logger LOG = LoggerFactory.getLogger(MatchPolicyType.class);
 
     /**
      * The MatchPolicyType constructor.
@@ -42,7 +42,7 @@ public enum MatchPolicyType {
             String errorMessage =
                 "The string: " + value + " is not matching to any type of enum: MatchPolicyType.";
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BasicIOException(errorMessage);
         }
 

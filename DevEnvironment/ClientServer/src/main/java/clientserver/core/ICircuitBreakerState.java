@@ -1,7 +1,6 @@
 package clientserver.core;
 
 import clientserver.interfaces.CircuitBreakerStateType;
-import clientserver.interfaces.IErrorInformation;
 import clientserver.interfaces.ILogicRuntimeInformation;
 
 /**

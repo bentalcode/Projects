@@ -6,7 +6,7 @@ import base.interfaces.IEquivalencyConstants;
  * The DoubleAlmostComparator class implements an almost comparator for doubles.
  */
 public final class DoubleAlmostComparator extends AbstractBinaryComparator<Double> {
-    private final static double defaultEpsilon = IEquivalencyConstants.doubleEpsilon;
+    private final static double EPSILON = IEquivalencyConstants.doubleEpsilon;
 
     private final double epsilon;
 
@@ -14,7 +14,7 @@ public final class DoubleAlmostComparator extends AbstractBinaryComparator<Doubl
      * The DoubleAlmostComparator constructor.
      */
     public DoubleAlmostComparator() {
-        this(DoubleAlmostComparator.defaultEpsilon);
+        this(DoubleAlmostComparator.EPSILON);
     }
 
     /**

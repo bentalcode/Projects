@@ -2,6 +2,7 @@ package canmessagegeneratorcommand.core;
 
 import base.core.Threads;
 import base.interfaces.IPair;
+import base.interfaces.IMessageWriter;
 import canmessagegenerator.core.CANMessageRuleGenerator;
 import canmessagegenerator.core.JitterMessageHandler;
 import canmessagegenerator.interfaces.ICANMessageRule;
@@ -14,21 +15,16 @@ import command.core.AbstractCommand;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-import base.interfaces.IMessageWriter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The CANMessageGeneratorCommand class implements a command for a controller area network.
  */
 public final class CANMessageGeneratorCommand extends AbstractCommand {
-    private static final String messagesDeviationText = "Controller Area Network Message Generator Summary:";
-    private static final String messageNameText = "messageName:";
+    private static final String MESSAGES_DEVIATION_TEXT = "Controller Area Network Message Generator Summary:";
+    private static final String MESSAGE_NAME_TEXT = "messageName:";
 
     private ICANMessageGeneratorCommandParameters parameters;
     private final IJitterMessageHandler messageHandler = new JitterMessageHandler();
-
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The CANMessageGeneratorCommand constructor.
@@ -136,7 +132,7 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
         List<IPair<String, Integer>> messages,
         IMessageWriter messageWriter) {
 
-        messageWriter.writeInformationalMessage(messagesDeviationText);
+        messageWriter.writeInformationalMessage(MESSAGES_DEVIATION_TEXT);
 
         for (IPair<String, Integer> message : messages) {
             this.displayMessageJitterInformation(message.first(), messageWriter);
@@ -154,7 +150,7 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
 
         StringBuilder information = new StringBuilder();
         information
-            .append(messageNameText).append(" ").append(messageName)
+            .append(MESSAGE_NAME_TEXT).append(" ").append(messageName)
             .append(", ")
             .append(messageData);
 

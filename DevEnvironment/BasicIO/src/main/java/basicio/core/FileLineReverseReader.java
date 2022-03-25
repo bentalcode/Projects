@@ -158,9 +158,7 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
                 long lineEndPosition;
 
                 if (this.currLineStartPosition == -1) {
-                    lineEndPosition = (lineStartPosition > this.length - 1) ?
-                        lineStartPosition :
-                        this.length - 1;
+                    lineEndPosition = Math.max(lineStartPosition, this.length - 1);
                 }
                 else {
                     lineEndPosition = this.currLineStartPosition - 1;

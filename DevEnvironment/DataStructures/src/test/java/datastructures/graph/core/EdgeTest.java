@@ -3,16 +3,14 @@ package datastructures.graph.core;
 import base.core.HashMaps;
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.graph.interfaces.IEdge;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import testbase.core.Assertion;
-import testbase.interfaces.IAssertion;
-
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import testbase.core.Assertion;
+import testbase.interfaces.IAssertion;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * The GraphTest class implements tests for a edges.

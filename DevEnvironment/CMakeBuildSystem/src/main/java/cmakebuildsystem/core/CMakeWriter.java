@@ -6,7 +6,6 @@ import base.core.Writers;
 import cmakebuildsystem.interfaces.ICMakeWriter;
 import cmakebuildsystem.interfaces.IEditorSettings;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

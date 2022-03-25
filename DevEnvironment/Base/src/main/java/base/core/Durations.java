@@ -1,7 +1,6 @@
 package base.core;
 
 import java.time.Duration;
-import java.util.Date;
 
 /**
  * The Durations class implements complementary APIs for durations.

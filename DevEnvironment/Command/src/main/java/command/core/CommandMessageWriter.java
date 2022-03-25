@@ -25,7 +25,6 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
             "The usage message of the command.");
 
         this.usageMessage = usageMessage;
-
         this.messageWriter = new MessageWriter();
         this.destructorHandler.register(this.messageWriter);
     }
@@ -56,7 +55,7 @@ public final class CommandMessageWriter implements Closeable, ICommandMessageWri
             this.messageWriter.writeInformationalMessage(this.usageMessage);
         }
         else {
-            this.messageWriter.writeInformationalMessage(this.usageMessage);
+            this.messageWriter.writeErrorMessage(this.usageMessage);
         }
     }
 

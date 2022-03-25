@@ -1,10 +1,8 @@
 package clientserver.core;
 
-import base.core.Collections;
+import clientserver.interfaces.IHttpHeaderEntry;
 import base.core.Conditions;
 import base.core.Strings;
-import clientserver.interfaces.IHttpHeaderEntry;
-
 import java.util.Collection;
 
 /**

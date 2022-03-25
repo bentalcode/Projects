@@ -20,7 +20,6 @@ import datastructures.heap.core.HeapTestData;
 import datastructures.heap.interfaces.IHeapTestData;
 import datastructures.interfaces.ITestData;
 import datastructures.linkedlist.core.LinkedListTestData;
-import datastructures.linkedlist.interfaces.ILinkedListData;
 import datastructures.linkedlist.interfaces.ILinkedListTestData;
 import datastructures.list.core.ListTestData;
 import datastructures.list.core.TwoDimensionalListTestData;

@@ -4,8 +4,6 @@ import base.interfaces.IAlmostComparatorFactory;
 import base.interfaces.IBinaryComparator;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 /**

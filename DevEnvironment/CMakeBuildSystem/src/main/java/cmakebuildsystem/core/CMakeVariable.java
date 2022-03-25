@@ -1,12 +1,9 @@
 package cmakebuildsystem.core;
 
 import base.core.Conditions;
-import cmakebuildsystem.interfaces.ICMakeModule;
 import cmakebuildsystem.interfaces.ICMakeVariable;
 import cmakebuildsystem.interfaces.ICMakeWriter;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

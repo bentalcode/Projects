@@ -1,6 +1,5 @@
 package base.core;
 
-import base.interfaces.IIterator;
 import base.interfaces.IReverseIterator;
 
 /**

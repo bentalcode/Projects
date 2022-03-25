@@ -24,7 +24,7 @@ public final class FileNames {
         '<',
         '>');
 
-    private final static Logger log = LoggerFactory.getLogger(FileNameType.class);
+    private final static Logger LOG = LoggerFactory.getLogger(FileNameType.class);
 
     /**
      * Gets a type of a file name.
@@ -45,7 +45,7 @@ public final class FileNames {
         else {
             String errorMessage = "The type of file name: " + fileName + " is not supported.";
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BaseException(errorMessage);
         }
     }
