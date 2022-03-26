@@ -1,11 +1,9 @@
 package problems.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import problems.interfaces.IInterleavingStrings;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The InterleavingStringsTest class implements tests for interleaving strings problem.
@@ -17,20 +15,6 @@ public final class InterleavingStringsTest {
      * The InterleavingStringsTest constructor.
      */
     public InterleavingStringsTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

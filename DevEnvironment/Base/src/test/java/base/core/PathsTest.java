@@ -1,13 +1,12 @@
 package base.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import testbase.core.Assertion;
-import testbase.interfaces.IAssertion;
+
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
+import testbase.core.Assertion;
+import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The PathsTest class implements tests for paths.
@@ -19,20 +18,6 @@ public final class PathsTest {
      * The PathsTest constructor.
      */
     public PathsTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -6,11 +6,9 @@ import command.interfaces.ICommandManifest;
 import base.interfaces.IParsingResult;
 import command.interfaces.ICommandParameters;
 import command.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The CommandParserTest class implements tests for a command parser.
@@ -23,20 +21,6 @@ public final class CommandParserTest {
      * The CommandParserTest constructor.
      */
     public CommandParserTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

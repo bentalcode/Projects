@@ -4,13 +4,11 @@ import base.core.ArrayLists;
 import base.core.Interval;
 import base.core.ListIterator;
 import base.interfaces.IInterval;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import problems.interfaces.IMergingIntervals;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The MergingIntervalsTest class implements tests for the merging intervals problem.
@@ -22,20 +20,6 @@ public final class MergingIntervalsTest {
      * The MergingIntervalsTest constructor.
      */
     public MergingIntervalsTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

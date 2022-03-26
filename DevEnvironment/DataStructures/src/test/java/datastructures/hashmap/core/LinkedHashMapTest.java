@@ -9,14 +9,12 @@ import datastructures.hashmap.interfaces.ILinkedHashMapBuilder;
 import datastructures.hashmap.interfaces.IMapData;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
 import java.util.List;
+import org.junit.Test;
 
 /**
  * The LinkedHashMapTest class implements tests for a linked hash map.
@@ -29,20 +27,6 @@ public final class LinkedHashMapTest {
      * The LinkedHashMapTest constructor.
      */
     public LinkedHashMapTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

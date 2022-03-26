@@ -1,11 +1,9 @@
 package problems.core;
 
 import base.interfaces.IValidator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The NumberValidatorTest class implements tests for validating numbers.
@@ -17,20 +15,6 @@ public final class NumberValidatorTest {
      * The NumberValidatorTest constructor.
      */
     public NumberValidatorTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

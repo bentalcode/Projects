@@ -2,12 +2,10 @@ package base.core;
 
 import base.interfaces.IPair;
 import base.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.util.List;
+import org.junit.Test;
 
 /**
  * The IntegerConversionTest class implements tests for integer-conversions.
@@ -20,20 +18,6 @@ public final class IntegerConversionTest {
      * The IntegerConversionTest constructor.
      */
     public IntegerConversionTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

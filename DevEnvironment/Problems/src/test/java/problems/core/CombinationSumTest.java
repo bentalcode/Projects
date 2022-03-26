@@ -3,14 +3,12 @@ package problems.core;
 import base.core.IteratorOfIteratorCollection;
 import base.core.ListIterator;
 import base.core.TwoDimensionalIntegerArrayIterator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
+import java.util.Set;
 import problems.interfaces.ICombinationSum;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
-import java.util.Set;
+import org.junit.Test;
 
 /**
  * The CombinationSumTest class implements tests for a combination sum problem.
@@ -22,20 +20,6 @@ public final class CombinationSumTest {
      * The CombinationSumTest constructor.
      */
     public CombinationSumTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

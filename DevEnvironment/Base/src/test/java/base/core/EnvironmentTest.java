@@ -1,11 +1,9 @@
 package base.core;
 
 import base.interfaces.IStringTransformer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The EnvironmentTest class implements tests for an environment.
@@ -17,20 +15,6 @@ public final class EnvironmentTest {
      * The EnvironmentTest constructor.
      */
     public EnvironmentTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

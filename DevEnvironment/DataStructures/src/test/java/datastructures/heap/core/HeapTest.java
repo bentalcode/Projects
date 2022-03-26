@@ -5,11 +5,9 @@ import datastructures.core.TestData;
 import datastructures.heap.interfaces.IHeapData;
 import datastructures.interfaces.ITestData;
 import datastructures.priorityqueue.interfaces.IPriorityQueue;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The HeapTest class implements tests for a heap.
@@ -22,20 +20,6 @@ public final class HeapTest {
      * The HeapTest constructor.
      */
     public HeapTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

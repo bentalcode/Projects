@@ -7,15 +7,13 @@ import datastructures.core.TestData;
 import datastructures.linkedlist.interfaces.ILinkedList;
 import datastructures.linkedlist.interfaces.ILinkedListNode;
 import datastructures.linkedlist.interfaces.ILinkedListData;
-import testbase.core.Assertion;
 import datastructures.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import testbase.core.Assertion;
 import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
 import java.util.List;
+import org.junit.Test;
 
 /**
  * The LinkedListTest class implements tests for a linked list.
@@ -28,20 +26,6 @@ public final class LinkedListTest {
      * The LinkedListTest constructor.
      */
     public LinkedListTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -5,11 +5,9 @@ import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.matrix.interfaces.IMatrixData;
 import datastructures.matrix.interfaces.IMatrix;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The MatrixTest class implements tests for a matrix.
@@ -22,20 +20,6 @@ public final class MatrixTest {
      * The MatrixTest constructor.
      */
     public MatrixTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

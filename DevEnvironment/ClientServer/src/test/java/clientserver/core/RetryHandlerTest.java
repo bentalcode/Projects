@@ -6,18 +6,16 @@ import clientserver.interfaces.IRetryHandler;
 import clientserver.interfaces.IRetryLogic;
 import clientserver.interfaces.IRetryLogicInformation;
 import clientserver.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import testbase.core.Assertion;
-import testbase.core.JsonObjectStreamingTest;
-import testbase.interfaces.IAssertion;
-import testbase.interfaces.IJsonObjectStreamingTest;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import testbase.core.Assertion;
+import testbase.core.JsonObjectStreamingTest;
+import testbase.interfaces.IAssertion;
+import testbase.interfaces.IJsonObjectStreamingTest;
+import org.junit.Test;
 
 /**
  * The RetryHandlerTest class implements tests for a retry handler.
@@ -31,20 +29,6 @@ public final class RetryHandlerTest {
      * The RetryHandlerTest constructor.
      */
     public RetryHandlerTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

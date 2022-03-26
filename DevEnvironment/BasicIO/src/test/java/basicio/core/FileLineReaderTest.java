@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -29,20 +27,6 @@ public final class FileLineReaderTest {
      * The FileLineReaderTest constructor.
      */
     public FileLineReaderTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

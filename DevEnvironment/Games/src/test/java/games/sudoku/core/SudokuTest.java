@@ -6,11 +6,9 @@ import games.core.TestData;
 import games.interfaces.ITestData;
 import games.sudoku.interfaces.ISudokuBoard;
 import games.sudoku.interfaces.ISudokuData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The SudokuTest class implements tests for a Sudoku game.
@@ -23,20 +21,6 @@ public final class SudokuTest {
      * The SudokuTest constructor.
      */
     public SudokuTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

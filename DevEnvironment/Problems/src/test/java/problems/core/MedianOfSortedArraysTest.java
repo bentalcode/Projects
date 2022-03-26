@@ -1,11 +1,9 @@
 package problems.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import problems.interfaces.IMedianOfSortedArrays;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The MedianOfSortedArraysTest class implements tests for the median of sorted arrays problem.
@@ -17,20 +15,6 @@ public final class MedianOfSortedArraysTest {
      * The MedianOfSortedArraysTest constructor.
      */
     public MedianOfSortedArraysTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -13,8 +13,6 @@ import datastructures.bplustree.interfaces.IBPlusTreeProperties;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.node.interfaces.IKeyValueNodes;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
@@ -31,20 +29,6 @@ public final class BPlusTreeTest {
      * The BPlusTreeTest constructor.
      */
     public BPlusTreeTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

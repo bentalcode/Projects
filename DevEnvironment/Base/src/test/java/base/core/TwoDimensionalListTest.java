@@ -2,14 +2,12 @@ package base.core;
 
 import base.interfaces.ITestData;
 import base.interfaces.ITwoDimensionalList;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import testbase.core.Assertion;
 import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The TwoDimensionalListTest class implements tests for a two dimensional list.
@@ -22,20 +20,6 @@ public final class TwoDimensionalListTest {
      * The TwoDimensionalListTest constructor.
      */
     public TwoDimensionalListTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

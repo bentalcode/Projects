@@ -2,13 +2,11 @@ package problems.core;
 
 import base.core.Pair;
 import base.interfaces.IPair;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.Arrays;
 import problems.interfaces.IEventlyDistribution;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.Arrays;
+import org.junit.Test;
 
 /**
  * The EvenlyDistributionTest class implements tests for evenly distribution.
@@ -20,20 +18,6 @@ public final class EvenlyDistributionTest {
      * The EvenlyDistributionTest constructor.
      */
     public EvenlyDistributionTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -5,14 +5,12 @@ import base.core.CollectionIterator;
 import base.core.ListIterator;
 import base.core.Triplet;
 import base.interfaces.ITriplet;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.Collections;
+import java.util.List;
 import problems.interfaces.IMatchingTriplets;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.Collections;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The MatchingTripletsTest class implements tests for the matching triplets problem.
@@ -24,20 +22,6 @@ public final class MatchingTripletsTest {
      * The MatchingTripletsTest constructor.
      */
     public MatchingTripletsTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -1,11 +1,9 @@
 package base.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The KmpStringSearchTest class implements tests for string search string search
@@ -18,20 +16,6 @@ public final class KmpStringSearchTest {
      * The KmpStringSearchTest constructor.
      */
     public KmpStringSearchTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

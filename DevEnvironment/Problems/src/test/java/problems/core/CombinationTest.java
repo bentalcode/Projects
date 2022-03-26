@@ -3,12 +3,10 @@ package problems.core;
 import base.core.TwoDimensionalIntegerArrayIterator;
 import base.core.TwoDimensionalListIterator;
 import base.interfaces.ICalculator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.util.List;
+import org.junit.Test;
 
 /**
  * The CombinationTest class implements tests for a combination problem.
@@ -20,20 +18,6 @@ public final class CombinationTest {
      * The CombinationTest constructor.
      */
     public CombinationTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

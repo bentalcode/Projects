@@ -1,11 +1,9 @@
 package problems.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import problems.interfaces.IClosestBirthday;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The ClosestBirthdayTest class implements tests for the closest birthday problem.
@@ -17,20 +15,6 @@ public final class ClosestBirthdayTest {
      * The ClosestBirthdayTest constructor.
      */
     public ClosestBirthdayTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -1,11 +1,9 @@
 package problems.core;
 
 import base.interfaces.ICalculator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The MaxRectangleAreaTest class implements tests for a max rectangle area problem.
@@ -17,20 +15,6 @@ public final class MaxRectangleAreaTest {
      * The MaxRectangleAreaTest constructor.
      */
     public MaxRectangleAreaTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

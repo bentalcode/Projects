@@ -7,12 +7,10 @@ import concurrency.interfaces.IConcurrentQueue;
 import concurrency.interfaces.IMessageQueueTrackingInformation;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.core.CollectionValues;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The SingleProducerConsumerLockFreeQueueTest class implements tests
@@ -25,20 +23,6 @@ public final class SingleProducerConsumerLockFreeQueueTest {
      * The LockFreeSingleProducerConsumerQueueTest constructor.
      */
     public SingleProducerConsumerLockFreeQueueTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -3,11 +3,9 @@ package algorithms.core;
 import algorithms.interfaces.ISort;
 import base.core.ArrayIterator;
 import base.interfaces.IBinaryComparator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The QuickSortTest class implements tests for a quick sort.
@@ -19,20 +17,6 @@ public final class QuickSortTest {
      * The QuickSortTest constructor.
      */
     public QuickSortTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

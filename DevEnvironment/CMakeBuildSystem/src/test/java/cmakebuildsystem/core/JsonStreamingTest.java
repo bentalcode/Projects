@@ -2,12 +2,10 @@ package cmakebuildsystem.core;
 
 import base.core.ResourceReader;
 import cmakebuildsystem.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.nio.file.Path;
 import testbase.core.JsonObjectStreamingTest;
 import testbase.interfaces.IJsonObjectStreamingTest;
-import java.nio.file.Path;
+import org.junit.Test;
 
 /**
  * The JsonStreamTest class implements tests for reading writing from/to json streams.
@@ -20,20 +18,6 @@ public final class JsonStreamingTest {
      * The JsonStreamTest constructor.
      */
     public JsonStreamingTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

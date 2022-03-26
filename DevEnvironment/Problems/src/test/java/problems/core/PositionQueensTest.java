@@ -2,13 +2,11 @@ package problems.core;
 
 import base.core.ArrayLists;
 import base.core.TwoDimensionalListIterator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import problems.interfaces.IPositionQueens;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The PositionQueensTest class implements tests for the position queens problem.
@@ -20,20 +18,6 @@ public final class PositionQueensTest {
      * The PositionQueensTest constructor.
      */
     public PositionQueensTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

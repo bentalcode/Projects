@@ -16,13 +16,11 @@ import datastructures.graph.interfaces.IRoute;
 import datastructures.graph.interfaces.IVertex;
 import datastructures.graph.interfaces.IWalk;
 import datastructures.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.util.List;
 import java.util.Map;
+import org.junit.Test;
 
 /**
  * The GraphTest class implements tests for a graph.
@@ -35,20 +33,6 @@ public final class GraphTest {
      * The GraphTest constructor.
      */
     public GraphTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

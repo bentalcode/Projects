@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Set;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -23,20 +21,6 @@ public final class EdgeTest {
      * The EdgeTest constructor.
      */
     public EdgeTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

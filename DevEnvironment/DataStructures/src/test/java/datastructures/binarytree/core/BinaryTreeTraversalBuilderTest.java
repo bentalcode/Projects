@@ -6,8 +6,6 @@ import datastructures.binarytree.interfaces.IBinaryTreeNode;
 import datastructures.binarytree.interfaces.IBinaryTreeNodeIterator;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
@@ -25,20 +23,6 @@ public final class BinaryTreeTraversalBuilderTest {
      * The BinaryTreeTraversalBuilderTest constructor.
      */
     public BinaryTreeTraversalBuilderTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

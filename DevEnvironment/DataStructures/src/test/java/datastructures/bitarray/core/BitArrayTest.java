@@ -7,8 +7,6 @@ import datastructures.bitarray.interfaces.IBitArray;
 import datastructures.bitarray.interfaces.IBitArrayData;
 import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.core.IterationTest;
@@ -26,20 +24,6 @@ public final class BitArrayTest {
      * The BitArrayTest constructor.
      */
     public BitArrayTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

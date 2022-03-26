@@ -2,13 +2,11 @@ package problems.core;
 
 import base.core.TwoDimensionalArrayIterator;
 import base.core.TwoDimensionalListIterator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import problems.interfaces.IPermutation;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The PermutationTest class implements tests for the permutations problem.
@@ -20,20 +18,6 @@ public final class PermutationTest {
      * The PermutationTest constructor.
      */
     public PermutationTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

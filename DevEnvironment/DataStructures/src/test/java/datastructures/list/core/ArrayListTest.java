@@ -7,8 +7,6 @@ import datastructures.interfaces.ITestData;
 import datastructures.list.interfaces.IArrayList;
 import datastructures.list.interfaces.IList;
 import datastructures.list.interfaces.IListData;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
@@ -24,20 +22,6 @@ public final class ArrayListTest {
      * The ArrayListTest constructor.
      */
     public ArrayListTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

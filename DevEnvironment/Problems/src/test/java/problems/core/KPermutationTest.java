@@ -1,11 +1,10 @@
 package problems.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
 import problems.interfaces.IKPermutation;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The KPermutationTest class implements tests for a k permutation problem.
@@ -17,20 +16,6 @@ public final class KPermutationTest {
      * The KPermutationTest constructor.
      */
     public KPermutationTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

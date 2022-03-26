@@ -21,20 +21,6 @@ public final class GrayCodeTest {
     }
 
     /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
-    }
-
-    /**
      * Tests the logic of a gray code.
      */
     @Test

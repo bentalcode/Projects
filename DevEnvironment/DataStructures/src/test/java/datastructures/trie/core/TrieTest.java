@@ -5,12 +5,10 @@ import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.trie.interfaces.ITrie;
 import datastructures.trie.interfaces.ITrieData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The TrieTest class implements tests for a trie.
@@ -23,20 +21,6 @@ public final class TrieTest {
      * The TrieTest constructor.
      */
     public TrieTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

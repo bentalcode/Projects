@@ -8,8 +8,6 @@ import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import datastructures.node.interfaces.IKeyValueNode;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
@@ -25,20 +23,6 @@ public final class CacheTest {
      * The CacheTest constructor.
      */
     public CacheTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

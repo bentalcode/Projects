@@ -8,15 +8,13 @@ import cmakebuildsystem.interfaces.ICMakeBuildDeployer;
 import cmakebuildsystem.interfaces.ICMakeProjectDeploymentResult;
 import cmakebuildsystem.interfaces.ICMakeProjectManifest;
 import cmakebuildsystem.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
+import org.junit.Test;
 
 /**
  * The CMakeBuildDeployerTest class implements tests for a CMake Build Deployer.
@@ -29,20 +27,6 @@ public final class CMakeBuildDeployerTest {
      * The HeapSortTest constructor.
      */
     public CMakeBuildDeployerTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

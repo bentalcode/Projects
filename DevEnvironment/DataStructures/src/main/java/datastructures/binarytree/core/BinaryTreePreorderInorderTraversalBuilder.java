@@ -91,32 +91,22 @@ public final class BinaryTreePreorderInorderTraversalBuilder<TKey extends Compar
         int rootIndex = getNodeIndex(inorderIndexMap, rootData.first());
         int leftSize = Indexes.size(inorderStartIndex, rootIndex - 1);
 
-        int preorderLeftStartIndex = preorderStartIndex + 1;
-        int preorderLeftEndIndex = preorderStartIndex + leftSize;
-        int inorderLeftStartIndex = inorderStartIndex;
-        int inorderLeftEndIndex = rootIndex - 1;
-
-        int preorderRightStartIndex = preorderLeftEndIndex + 1;
-        int preorderRightEndIndex = preorderEndIndex;
-        int inorderRightStartIndex = rootIndex + 1;
-        int inorderRightEndIndex = inorderEndIndex;
-
         IBinaryTreeNode<TKey, TValue> leftChild = build(
             preorder,
             inorder,
-            preorderLeftStartIndex,
-            preorderLeftEndIndex,
-            inorderLeftStartIndex,
-            inorderLeftEndIndex,
+            preorderStartIndex + 1,
+            preorderStartIndex + leftSize,
+            inorderStartIndex,
+            rootIndex - 1,
             inorderIndexMap);
 
         IBinaryTreeNode<TKey, TValue> rightChild = build(
             preorder,
             inorder,
-            preorderRightStartIndex,
-            preorderRightEndIndex,
-            inorderRightStartIndex,
-            inorderRightEndIndex,
+            preorderStartIndex + leftSize + 1,
+            preorderEndIndex,
+            rootIndex + 1,
+            inorderEndIndex,
             inorderIndexMap);
 
         root.setLeftChild(leftChild);

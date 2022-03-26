@@ -3,15 +3,13 @@ package base.core;
 import base.interfaces.IIterator;
 import base.interfaces.IPrime;
 import base.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import testbase.core.Assertion;
-import testbase.core.FileDataReader;
-import testbase.interfaces.IAssertion;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
+import testbase.core.Assertion;
+import testbase.core.FileDataReader;
+import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The PrimesTest class implements tests for primes.
@@ -24,20 +22,6 @@ public final class PrimesTest {
      * The PrimesTest constructor.
      */
     public PrimesTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

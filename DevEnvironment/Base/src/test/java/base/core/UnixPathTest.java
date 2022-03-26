@@ -1,13 +1,11 @@
 package base.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.rules.TestRule;
 import testbase.core.Assertion;
 import testbase.core.RunTestOnOperatingSystemRule;
 import testbase.interfaces.IAssertion;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.junit.rules.TestRule;
 
 /**
  * The UnixPathTest class implements tests for unix paths.
@@ -23,20 +21,6 @@ public final class UnixPathTest {
 
     @ClassRule
     public static TestRule runTestOnUnixRule = RunTestOnOperatingSystemRule.runOnUnix();
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Tests the logic for getting an absolute unix path.

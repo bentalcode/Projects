@@ -6,11 +6,9 @@ import datastructures.interfaces.ITestData;
 import datastructures.stack.interfaces.IStack;
 import datastructures.stack.interfaces.IStackData;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The StackTest class implements tests for a stack.
@@ -23,20 +21,6 @@ public final class StackTest {
      * The StackTest constructor.
      */
     public StackTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

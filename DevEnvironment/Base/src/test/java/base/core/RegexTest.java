@@ -1,12 +1,10 @@
 package base.core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import testbase.core.Assertion;
-import testbase.interfaces.IAssertion;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import testbase.core.Assertion;
+import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The RegexTest class implements tests for regex.
@@ -18,20 +16,6 @@ public final class RegexTest {
      * The RegexTest constructor.
      */
     public RegexTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

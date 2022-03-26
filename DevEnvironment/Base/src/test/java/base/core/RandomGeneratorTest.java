@@ -1,11 +1,9 @@
 package base.core;
 
 import base.interfaces.IRandomGenerator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The RandomGeneratorTest class implements tests for a random generator.
@@ -17,20 +15,6 @@ public final class RandomGeneratorTest {
      * The SortingTest constructor.
      */
     public RandomGeneratorTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

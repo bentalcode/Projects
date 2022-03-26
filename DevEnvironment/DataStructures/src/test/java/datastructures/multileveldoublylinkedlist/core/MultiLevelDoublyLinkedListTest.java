@@ -11,14 +11,12 @@ import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLin
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListData;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListLogic;
 import datastructures.multileveldoublylinkedlist.interfaces.IMultiLevelDoublyLinkedListNode;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import testbase.core.Assertion;
 import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The MultiLevelDoublyLinkedListTest class implements tests for a multi-level doubly linked list.
@@ -31,20 +29,6 @@ public final class MultiLevelDoublyLinkedListTest {
      * The MultiLevelDoublyLinkedListTest constructor.
      */
     public MultiLevelDoublyLinkedListTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

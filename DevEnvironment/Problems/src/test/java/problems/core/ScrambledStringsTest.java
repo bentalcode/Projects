@@ -1,11 +1,9 @@
 package problems.core;
 
 import base.interfaces.IDetector;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The ScrambledStringsTest class implements tests for detecting scrambled strings.
@@ -17,20 +15,6 @@ public final class ScrambledStringsTest {
      * The ScrambledStringsTest constructor.
      */
     public ScrambledStringsTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

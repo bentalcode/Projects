@@ -1,12 +1,10 @@
 package base.core;
 
 import base.interfaces.IIterator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.util.Arrays;
+import org.junit.Test;
 
 /**
  * The StringsTest class implements tests for strings.
@@ -18,20 +16,6 @@ public final class StringsTest {
      * The StringsTest constructor.
      */
     public StringsTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

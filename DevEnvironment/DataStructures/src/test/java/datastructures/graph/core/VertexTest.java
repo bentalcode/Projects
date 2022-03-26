@@ -2,13 +2,11 @@ package datastructures.graph.core;
 
 import datastructures.graph.interfaces.IGraphTestData;
 import datastructures.graph.interfaces.IVertex;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.Test;
 
 /**
  * The VertexTest class implements tests for a vertex.
@@ -21,20 +19,6 @@ public final class VertexTest {
      * The VertexTest constructor.
      */
     public VertexTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

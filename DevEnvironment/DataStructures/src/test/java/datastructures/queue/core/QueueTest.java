@@ -7,13 +7,11 @@ import datastructures.queue.interfaces.IQueue;
 import datastructures.queue.interfaces.IQueueData;
 import testbase.core.Assertion;
 import datastructures.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
 import java.util.List;
+import org.junit.Test;
 
 /**
  * The QueueTest class implements tests for a queue.
@@ -26,20 +24,6 @@ public final class QueueTest {
      * The QueueTest constructor.
      */
     public QueueTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

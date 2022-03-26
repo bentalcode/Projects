@@ -2,13 +2,11 @@ package problems.core;
 
 import base.core.ArrayLists;
 import base.core.ListIterator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import problems.interfaces.ITextAlignment;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The TextAlignmentTest class implements tests for a text alignment problem.
@@ -20,20 +18,6 @@ public final class TextAlignmentTest {
      * The TextAlignmentTest constructor.
      */
     public TextAlignmentTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -11,8 +11,6 @@ import datastructures.core.TestData;
 import datastructures.interfaces.ITestData;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
@@ -28,20 +26,6 @@ public final class BinaryTreeTest {
      * The BinaryTreeTest constructor.
      */
     public BinaryTreeTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

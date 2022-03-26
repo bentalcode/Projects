@@ -2,14 +2,12 @@ package problems.core;
 
 import base.core.ArrayLists;
 import base.core.ListIterator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import problems.interfaces.IEditInformation;
 import problems.interfaces.IStringTransformation;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The StringTransformationTest class implements tests for a string transformation.
@@ -21,20 +19,6 @@ public final class StringTransformationTest {
      * The StringTransformationTest constructor.
      */
     public StringTransformationTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

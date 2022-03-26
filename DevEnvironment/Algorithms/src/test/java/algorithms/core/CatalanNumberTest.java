@@ -3,14 +3,12 @@ package algorithms.core;
 import algorithms.interfaces.ICatalanNumber;
 import algorithms.interfaces.ITestData;
 import base.interfaces.IIterator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.nio.file.Path;
+import java.util.List;
 import testbase.core.Assertion;
 import testbase.core.FileDataReader;
 import testbase.interfaces.IAssertion;
-import java.nio.file.Path;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The CatalanNumberTest class implements tests for catalan numbers.
@@ -23,20 +21,6 @@ public final class CatalanNumberTest {
      * The CatalanNumberTest constructor.
      */
     public CatalanNumberTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

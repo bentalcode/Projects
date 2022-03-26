@@ -9,13 +9,11 @@ import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListData;
 import testbase.core.Assertion;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.interfaces.ITestData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import testbase.core.IterationTest;
 import testbase.interfaces.IAssertion;
 import testbase.interfaces.IIterationTest;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * The DoublyLinkedListTest class implements tests for a doubly linked list.
@@ -28,20 +26,6 @@ public final class DoublyLinkedListTest {
      * The DoublyLinkedListTest constructor.
      */
     public DoublyLinkedListTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

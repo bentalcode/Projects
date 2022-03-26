@@ -2,11 +2,9 @@ package algorithms.core;
 
 import algorithms.interfaces.ISort;
 import base.core.ArrayIterator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
+import org.junit.Test;
 
 /**
  * The MergeSortTest class implements tests for a merge sort.
@@ -18,20 +16,6 @@ public final class MergeSortTest {
      * The MergeSortTest constructor.
      */
     public MergeSortTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**

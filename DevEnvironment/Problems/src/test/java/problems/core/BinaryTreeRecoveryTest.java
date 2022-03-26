@@ -10,8 +10,6 @@ import java.util.List;
 import problems.interfaces.IBinaryTreeRecovery;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -24,20 +22,6 @@ public final class BinaryTreeRecoveryTest {
      * The BinaryTreeRecoveryTest constructor.
      */
     public BinaryTreeRecoveryTest() {
-    }
-
-    /**
-     * Initialize the tests.
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     * Un-Initializes the tests.
-     */
-    @After
-    public void tearDown() {
     }
 
     /**
