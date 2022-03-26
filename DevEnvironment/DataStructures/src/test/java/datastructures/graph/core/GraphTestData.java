@@ -98,9 +98,7 @@ public final class GraphTestData implements IGraphTestData {
         String key = this.randomGenerator.nextString();
         String value = this.randomGenerator.nextString();
 
-        IVertex<String, String> vertex = Vertex.make(key, value);
-
-        return vertex;
+        return Vertex.make(key, value);
     }
 
     /**
@@ -111,9 +109,7 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Integer, Integer> sourceVertex = this.nextVertexByInteger();
         IVertex<Integer, Integer> destinationVertex = this.nextVertexByInteger();
 
-        IEdge<Integer, Integer> edge = Edge.newDirectedEdge(sourceVertex, destinationVertex);
-
-        return edge;
+        return Edge.newDirectedEdge(sourceVertex, destinationVertex);
     }
 
     /**
@@ -137,9 +133,7 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Character, Character> sourceVertex = this.nextVertexByCharacter();
         IVertex<Character, Character> destinationVertex = this.nextVertexByCharacter();
 
-        IEdge<Character, Character> edge = Edge.newDirectedEdge(sourceVertex, destinationVertex);
-
-        return edge;
+        return Edge.newDirectedEdge(sourceVertex, destinationVertex);
     }
 
     /**
@@ -150,9 +144,7 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<String, String> sourceVertex = this.nextVertexByString();
         IVertex<String, String> destinationVertex = this.nextVertexByString();
 
-        IEdge<String, String> edge = Edge.newDirectedEdge(sourceVertex, destinationVertex);
-
-        return edge;
+        return Edge.newDirectedEdge(sourceVertex, destinationVertex);
     }
 
     /**

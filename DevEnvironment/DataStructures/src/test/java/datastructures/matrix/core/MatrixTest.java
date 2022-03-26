@@ -48,7 +48,6 @@ public final class MatrixTest {
      * Creates a matrix.
      */
     private <T extends Comparable<T>> IMatrix<T> createMatrix(IMatrixData<T> data) {
-        IMatrix<T> matrix = new Matrix<>(data.getCreationData());
-        return matrix;
+        return new Matrix<>(data.getData());
     }
 }

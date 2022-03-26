@@ -86,15 +86,11 @@ public final class Collections {
      * Converts a collection to a string.
      */
     public static <T> String toString(Collection<T> collection) {
-        String prefix = PREFIX;
-        String postfix = POSTFIX;
-        String delimiter = DELIMITER;
-
         return toString(
-            prefix,
-            postfix,
+            PREFIX,
+            POSTFIX,
             collection,
-            delimiter);
+            DELIMITER);
     }
 
     /**

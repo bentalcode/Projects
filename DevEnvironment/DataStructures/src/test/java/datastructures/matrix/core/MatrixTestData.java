@@ -52,36 +52,32 @@ public final class MatrixTestData implements IMatrixTestData {
      * Gets the data of a matrix1.
      */
     private IMatrixData<Integer> getMatrixData1() {
-        List<List<Integer>> creationData = this.createMatrix(1, 1);
-        List<List<Integer>> data = creationData;
-        return new MatrixData<>(Integer.class, creationData, data);
+        List<List<Integer>> data = this.createMatrix(1, 1);
+        return new MatrixData<>(data);
     }
 
     /**
      * Gets the data of a matrix2.
      */
     private IMatrixData<Integer> getMatrixData2() {
-        List<List<Integer>> creationData = this.createMatrix(1, 2);
-        List<List<Integer>> data = creationData;
-        return new MatrixData<>(Integer.class, creationData, data);
+        List<List<Integer>> data = this.createMatrix(1, 2);
+        return new MatrixData<>(data);
     }
 
     /**
      * Gets the data of a matrix3.
      */
     private IMatrixData<Integer> getMatrixData3() {
-        List<List<Integer>> creationData = this.createMatrix(10, 20);
-        List<List<Integer>> data = creationData;
-        return new MatrixData<>(Integer.class, creationData, data);
+        List<List<Integer>> data = this.createMatrix(10, 20);
+        return new MatrixData<>(data);
     }
 
     /**
      * Gets the data of a matrix4.
      */
     private IMatrixData<Integer> getMatrixData4() {
-        List<List<Integer>> creationData = this.createMatrix(100, 200);
-        List<List<Integer>> data = creationData;
-        return new MatrixData<>(Integer.class, creationData, data);
+        List<List<Integer>> data = this.createMatrix(100, 200);
+        return new MatrixData<>(data);
     }
 
     /**
@@ -96,10 +92,9 @@ public final class MatrixTestData implements IMatrixTestData {
         int rowsSize = this.randomGenerator.nextInteger(fromRowSize, toRowSize);
         int columnSize = this.randomGenerator.nextInteger(fromColumnSize, toColumnSize);
 
-        List<List<Integer>> creationData = this.createMatrix(rowsSize, columnSize);
-        List<List<Integer>> data = creationData;
+        List<List<Integer>> data = this.createMatrix(rowsSize, columnSize);
 
-        return new MatrixData<>(Integer.class, creationData, data);
+        return new MatrixData<>(data);
     }
 
     /**
