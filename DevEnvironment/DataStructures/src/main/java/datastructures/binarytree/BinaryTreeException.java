@@ -12,11 +12,4 @@ public class BinaryTreeException extends DataStructureException {
     public BinaryTreeException(String errorMessage) {
         super(errorMessage);
     }
-
-    /**
-     * The BinaryTreeException constructor.
-     */
-    public BinaryTreeException(String errorMessage, Exception e) {
-        super(errorMessage, e);
-    }
 }

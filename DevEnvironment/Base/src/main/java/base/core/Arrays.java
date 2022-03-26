@@ -113,22 +113,6 @@ public final class Arrays {
     }
 
     /**
-     * Swaps values of two elements in an array.
-     */
-    public static void swap(int[] array, int leftIndex, int rightIndex) {
-        Conditions.validateNotNull(
-            array,
-            "The array.");
-
-        Indexes.validateIndex(leftIndex, 0, array.length - 1);
-        Indexes.validateIndex(rightIndex, 0, array.length - 1);
-
-        int temp = array[leftIndex];
-        array[leftIndex] = array[rightIndex];
-        array[rightIndex] = temp;
-    }
-
-    /**
      * Validates an index of an array.
      */
     public static <T> void validateIndex(T[] array, int index) {
