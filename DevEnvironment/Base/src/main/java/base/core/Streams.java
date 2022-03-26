@@ -1,7 +1,7 @@
 package base.core;
 
 import base.BaseException;
-import base.interfaces.IConstants;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -37,7 +37,7 @@ public final class Streams {
           encoding,
           "The encoding.");
 
-        return new ByteArrayInputStream(content.getBytes(IConstants.DefaultEncoding));
+        return new ByteArrayInputStream(content.getBytes(Constants.DEFAULT_ENCODING));
     }
 
     /**

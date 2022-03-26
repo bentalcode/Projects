@@ -16,7 +16,7 @@ public final class IncludesDirectoriesCommand extends CMakeBuildCommand {
      */
     public IncludesDirectoriesCommand(String moduleName) {
         super(
-            ICMakeListsConstants.includeDirectoriesCommand,
+            CMakeListsConstants.INCLUDE_DIRECTORIES_COMMAND,
             moduleName);
     }
 

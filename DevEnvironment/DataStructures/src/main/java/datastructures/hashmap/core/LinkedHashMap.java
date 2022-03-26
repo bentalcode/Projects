@@ -13,7 +13,6 @@ import base.interfaces.IReverseIterator;
 import datastructures.doublylinkedlist.core.DoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
-import datastructures.hashmap.interfaces.IHashMapConstants;
 import datastructures.hashmap.interfaces.ILinkedHashMap;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
@@ -43,8 +42,8 @@ public final class LinkedHashMap<TKey extends Comparable<TKey>, TValue>
      */
     public LinkedHashMap() {
         this(
-            IHashMapConstants.DefaultCapacity,
-            IHashMapConstants.DefaultLoadFactor,
+            HashMapConstants.DEFAULT_CAPACITY,
+            HashMapConstants.DEFAULT_LOAD_FACTOR,
             LinkedHashMap.defaultComparator(),
             base.core.Comparator.make());
     }

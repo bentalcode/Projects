@@ -47,8 +47,8 @@ public final class ProjectVersion implements ICMakeBuildElement {
             "The context data.");
 
         String line =
-            ICMakeListsConstants.project +
-            "(" + this.moduleName + " " + ICMakeListsConstants.version + " " + this.version + ")";
+            CMakeListsConstants.PROJECT +
+            "(" + this.moduleName + " " + CMakeListsConstants.VERSION + " " + this.version + ")";
 
         writer.write(line);
     }

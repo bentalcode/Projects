@@ -38,8 +38,8 @@ public final class CMakeVersion implements ICMakeBuildElement {
             "The context data.");
 
         String line =
-            ICMakeListsConstants.cmakeMinimumRequired +
-            "(" + ICMakeListsConstants.version + " " + this.version + ")";
+            CMakeListsConstants.CMAKE_MINIMUM_REQUIRED +
+            "(" + CMakeListsConstants.VERSION + " " + this.version + ")";
 
         writer.write(line);
     }

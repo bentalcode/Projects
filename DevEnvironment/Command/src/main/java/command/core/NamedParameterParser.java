@@ -24,32 +24,32 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
     public IParsingResult<IPair<String, String>> parse(String arg) {
         if (isShortNamedParameter(arg)) {
             if (StringEquality.equalsIgnoreCase(
-                    arg, ICommandConstants.shortNamedParameterPrefix.length(), arg.length() - 1,
-                    ICommandConstants.helpShortName, 0, ICommandConstants.helpShortName.length() - 1)) {
+                    arg, CommandConstants.shortNamedParameterPrefix.length(), arg.length() - 1,
+                    CommandConstants.helpShortName, 0, CommandConstants.helpShortName.length() - 1)) {
 
                 IPair<String, String> nameAndValue = Pair.make(
-                    ICommandConstants.helpShortName,
-                    ICommandConstants.trueValue);
+                    CommandConstants.helpShortName,
+                    CommandConstants.trueValue);
 
                 return ParsingResult.successfulResult(nameAndValue);
             }
             else {
-                return this.parseNamedParameter(arg, ICommandConstants.shortNamedParameterPrefix);
+                return this.parseNamedParameter(arg, CommandConstants.shortNamedParameterPrefix);
             }
         }
         else if (isLongNamedParameter(arg)) {
             if (StringEquality.equalsIgnoreCase(
-                    arg, ICommandConstants.longNamedParameterPrefix.length(), arg.length() - 1,
-                    ICommandConstants.helpLongName, 0, ICommandConstants.helpLongName.length() - 1)) {
+                    arg, CommandConstants.longNamedParameterPrefix.length(), arg.length() - 1,
+                    CommandConstants.helpLongName, 0, CommandConstants.helpLongName.length() - 1)) {
 
                 IPair<String, String> nameAndValue = Pair.make(
-                    ICommandConstants.helpLongName,
-                    ICommandConstants.trueValue);
+                    CommandConstants.helpLongName,
+                    CommandConstants.trueValue);
 
                 return ParsingResult.successfulResult(nameAndValue);
             }
             else {
-                return this.parseNamedParameter(arg, ICommandConstants.longNamedParameterPrefix);
+                return this.parseNamedParameter(arg, CommandConstants.longNamedParameterPrefix);
             }
         }
         else {
@@ -62,7 +62,7 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
      * Parses a named parameter.
      */
     private IParsingResult<IPair<String, String>> parseNamedParameter(String arg, String prefix) {
-        int separatorIndex = arg.indexOf(ICommandConstants.namedParameterSeparator);
+        int separatorIndex = arg.indexOf(CommandConstants.namedParameterSeparator);
 
         String name;
         String value;
@@ -84,7 +84,7 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
             int nameStartIndex = prefix.length();
             int nameEndIndex = separatorIndex - 1;
 
-            int valueStartIndex = separatorIndex + ICommandConstants.namedParameterSeparator.length();
+            int valueStartIndex = separatorIndex + CommandConstants.namedParameterSeparator.length();
             int valueEndIndex = arg.length() - 1;
 
             name = arg.substring(nameStartIndex, nameEndIndex + 1);
@@ -108,14 +108,14 @@ public final class NamedParameterParser implements IParser<String, IPair<String,
     public static boolean isShortNamedParameter(String arg) {
         return
             arg != null &&
-            arg.startsWith(ICommandConstants.shortNamedParameterPrefix) &&
-            !arg.startsWith(ICommandConstants.longNamedParameterPrefix);
+            arg.startsWith(CommandConstants.shortNamedParameterPrefix) &&
+            !arg.startsWith(CommandConstants.longNamedParameterPrefix);
     }
 
     /**
      * Checks if a parameter is long named parameter.
      */
     public static boolean isLongNamedParameter(String arg) {
-        return arg != null && arg.startsWith(ICommandConstants.longNamedParameterPrefix);
+        return arg != null && arg.startsWith(CommandConstants.longNamedParameterPrefix);
     }
 }

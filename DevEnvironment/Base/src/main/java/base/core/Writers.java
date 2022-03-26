@@ -1,7 +1,7 @@
 package base.core;
 
 import base.BaseException;
-import base.interfaces.IConstants;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -90,7 +90,7 @@ public final class Writers {
             stream,
             "The output stream.");
 
-        return new OutputStreamWriter(stream, IConstants.DefaultEncoding);
+        return new OutputStreamWriter(stream, Constants.DEFAULT_ENCODING);
     }
 
     /**

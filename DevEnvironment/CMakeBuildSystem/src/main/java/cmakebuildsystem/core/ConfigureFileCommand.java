@@ -24,7 +24,7 @@ public final class ConfigureFileCommand extends CMakeBuildCommand {
      */
     private ConfigureFileCommand(String sourceFilePath, String targetFilePath) {
         super(
-            ICMakeListsConstants.configureFileCommand,
+            CMakeListsConstants.CONFIGURE_FILE_COMMAND,
             sourceFilePath);
 
         this.targetFilePath = targetFilePath;

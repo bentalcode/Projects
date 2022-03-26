@@ -25,8 +25,8 @@ public final class CommandHelpMetadata implements ICommandHelpMetadata {
     private static final String PROPERTY_LONG_NAME = "longName";
     private static final String PROPERTY_USAGE_MESSAGE = "usageMessage";
 
-    private static final String DEFAULT_SHORT_NAME = ICommandConstants.helpShortName;
-    private static final String DEFAULT_LONG_NAME = ICommandConstants.helpLongName;
+    private static final String DEFAULT_SHORT_NAME = CommandConstants.helpShortName;
+    private static final String DEFAULT_LONG_NAME = CommandConstants.helpLongName;
 
     private final String shortName;
     private final String longName;
@@ -48,8 +48,8 @@ public final class CommandHelpMetadata implements ICommandHelpMetadata {
     public static INamedParameterMetadata createHelpParameterMetadata() {
         return NamedParameterMetadata.make(
             "Help",
-            ICommandConstants.helpShortName,
-            ICommandConstants.helpLongName,
+            CommandConstants.helpShortName,
+            CommandConstants.helpLongName,
             "The help of the command");
     }
 

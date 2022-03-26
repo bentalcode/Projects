@@ -1,7 +1,7 @@
 package base.core;
 
 import base.BaseException;
-import base.interfaces.IConstants;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,7 +44,7 @@ public final class Readers {
 
         return new InputStreamReader(
             stream,
-            IConstants.DefaultEncoding);
+            Constants.DEFAULT_ENCODING);
     }
 
     /**
@@ -58,7 +58,7 @@ public final class Readers {
         try {
             reader = new InputStreamReader(
                 new FileInputStream(file),
-                IConstants.DefaultEncoding);
+                Constants.DEFAULT_ENCODING);
         } catch (FileNotFoundException e) {
             String errorMessage =
                 "The Readers class failed creating an input stream reader to resource: " + path +

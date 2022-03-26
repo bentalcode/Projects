@@ -1,12 +1,10 @@
 package base.core;
 
-import base.interfaces.IEquivalencyConstants;
-
 /**
  * The DoubleAlmostComparator class implements an almost comparator for doubles.
  */
 public final class DoubleAlmostComparator extends AbstractBinaryComparator<Double> {
-    private final static double EPSILON = IEquivalencyConstants.doubleEpsilon;
+    private final static double EPSILON = 0.001;
 
     private final double epsilon;
 

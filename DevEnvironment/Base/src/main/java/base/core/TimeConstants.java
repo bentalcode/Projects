@@ -25,7 +25,7 @@ public final class TimeConstants {
     }
 
     /**
-     * The TimeConstants constructor - Disables the default constructor.
+     * Disables the default constructor - This is a static class.
      */
     private TimeConstants() {
     }

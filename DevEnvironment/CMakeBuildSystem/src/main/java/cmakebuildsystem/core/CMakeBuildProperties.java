@@ -72,12 +72,12 @@ public final class CMakeBuildProperties implements ICMakeBuildElement {
      */
     private void addVariables(List<ICMakeBuildElement> variables) {
         ICMakeBuildElement cmakeCXXStandardVersionVariable = SetCommand.make(
-            ICMakeListsConstants.cmakeCXXStandardVersionVariableName,
-            ICMakeListsConstants.cmakeCXXStandardVersion);
+            CMakeListsConstants.CMAKE_CXX_STANDARD_VERSION_VARIABLE_NAME,
+            CMakeListsConstants.CMAKE_CXX_STANDARD_VERSION);
 
         ICMakeBuildElement resourcesVariable = SetCommand.make(
-            ICMakeListsConstants.resourcesVariableName,
-            ICMakeListsConstants.resourcesDirectoryName);
+            CMakeListsConstants.RESOURCES_DIRECTORY_VARIABLE_NAME,
+            CMakeListsConstants.RESOURCES_DIRECTORY_NAME);
 
         variables.add(cmakeCXXStandardVersionVariable);
         variables.add(resourcesVariable);

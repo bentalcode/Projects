@@ -1,7 +1,7 @@
 package base.core;
 
 import base.BaseException;
-import base.interfaces.IConstants;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public final class Files {
             "The path of a file resource.");
 
         byte[] bytes = Files.readAllBytes(path);
-        return new String(bytes, IConstants.DefaultEncoding);
+        return new String(bytes, Constants.DEFAULT_ENCODING);
     }
 
     /**

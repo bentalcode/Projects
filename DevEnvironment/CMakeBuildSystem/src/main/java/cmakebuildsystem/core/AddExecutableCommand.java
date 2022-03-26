@@ -13,7 +13,7 @@ public final class AddExecutableCommand extends AddBinaryCommand {
      */
     public AddExecutableCommand(String moduleName) {
         super(
-            ICMakeListsConstants.addExecutableCommand,
+            CMakeListsConstants.ADD_EXECUTABLE_COMMAND,
             moduleName,
             null);
     }

@@ -13,7 +13,6 @@ import base.interfaces.IReverseIterator;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedList;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.hashmap.interfaces.IHashMap;
-import datastructures.hashmap.interfaces.IHashMapConstants;
 import datastructures.node.core.KeyValueNode;
 import datastructures.node.interfaces.IKeyValueNode;
 import java.util.List;
@@ -36,8 +35,8 @@ public final class HashMap<TKey extends Comparable<TKey>, TValue>
      */
     public HashMap() {
         this(
-            IHashMapConstants.DefaultCapacity,
-            IHashMapConstants.DefaultLoadFactor,
+            HashMapConstants.DEFAULT_CAPACITY,
+            HashMapConstants.DEFAULT_LOAD_FACTOR,
             HashMap.defaultComparator(),
             base.core.Comparator.make());
     }

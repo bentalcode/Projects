@@ -12,7 +12,7 @@ public final class HttpConstants {
     public static final Duration DEFAULT_SOCKET_TIMEOUT = Duration.ofSeconds(1);
 
     /**
-     * The HttpConstants constructor - Disables the default constructor.
+     * Disables the default constructor - This is a static class.
      */
     private HttpConstants() {
     }

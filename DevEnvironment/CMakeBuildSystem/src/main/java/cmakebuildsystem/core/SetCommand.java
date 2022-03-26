@@ -31,7 +31,7 @@ public final class SetCommand extends CMakeBuildCommand {
      */
     private SetCommand(String subjectName, List<String> items) {
         super(
-            ICMakeListsConstants.setCommand,
+            CMakeListsConstants.SET_COMMAND,
             subjectName);
 
         Conditions.validateNotNull(

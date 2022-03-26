@@ -13,7 +13,7 @@ public final class TargetLinkLibrariesCommand extends CMakeBuildCommand {
      */
     public TargetLinkLibrariesCommand(String moduleName) {
         super(
-            ICMakeListsConstants.targetLinkLibrariesCommand,
+            CMakeListsConstants.TARGET_LINK_LIBRARIES_COMMAND,
             moduleName);
     }
 
@@ -39,7 +39,7 @@ public final class TargetLinkLibrariesCommand extends CMakeBuildCommand {
         this.begin(writer);
 
         String parameter =
-            ICMakeListsConstants.privateLinkLibrary + " " +
+            CMakeListsConstants.PRIVATE_LINK_LIBRARY + " " +
             getDependentModulesString(moduleContextData);
 
         this.addParameter(writer, parameter);

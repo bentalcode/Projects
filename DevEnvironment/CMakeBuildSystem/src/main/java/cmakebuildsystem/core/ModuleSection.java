@@ -362,7 +362,7 @@ public final class ModuleSection implements ICMakeBuildElement {
             UnixPath.DIRECTORY_SEPARATOR);
 
         String targetPath = new UnixPathBuilder(Paths.CURRENT_DIRECTORY)
-            .addComponent(ICMakeListsConstants.buildDirectoryName)
+            .addComponent(CMakeListsConstants.BUILD_DIRECTORY_NAME)
             .addComponent(transformedSourcePath)
             .build();
 

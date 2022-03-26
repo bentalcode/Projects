@@ -9,7 +9,7 @@ import basicio.core.LineReverseMatcher;
 import basicio.core.MatchingRecord;
 import base.interfaces.FileNameType;
 import base.core.FileNames;
-import base.interfaces.IConstants;
+import base.core.Constants;
 import basicio.core.UpdateRecord;
 import basicio.interfaces.IMatchingRecord;
 import basicio.interfaces.IMatchingRecordResult;
@@ -197,7 +197,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
      * Gets a regex of a file name.
      */
     private static String getFileNameRegex(String formattedFileName) {
-        return formattedFileName + FileNames.SNAKE_CASED_SEPARATOR + IConstants.guidRegex;
+        return formattedFileName + FileNames.SNAKE_CASED_SEPARATOR + Constants.GUID_REGEX;
     }
 
     /**

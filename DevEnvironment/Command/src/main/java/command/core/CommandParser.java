@@ -155,8 +155,8 @@ public final class CommandParser implements IParser<String[], ICommandParameters
 
         return
             namedParameters.size() == 1 &&
-            (namedParameters.containsKey(ICommandConstants.helpShortName) ||
-             namedParameters.containsKey(ICommandConstants.helpLongName));
+            (namedParameters.containsKey(CommandConstants.helpShortName) ||
+             namedParameters.containsKey(CommandConstants.helpLongName));
     }
 
     /**

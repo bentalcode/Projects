@@ -29,18 +29,18 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     private static final String PROJECT_VERSION = "1.0";
 
     private static final String PRESET_PATH = new ResourcePathBuilder()
-        .addComponent(ICMakeListsConstants.manifestDirectoryName)
-        .addComponent(ICMakeListsConstants.defaultCMakeListsPresetFileName)
+        .addComponent(CMakeListsConstants.MANIFEST_DIRECTORY_NAME)
+        .addComponent(CMakeListsConstants.DEFAULT_CMAKE_LISTS_PRESET_FILE_NAME)
         .build();
 
     private static final String POSTSET_PATH = new ResourcePathBuilder()
-        .addComponent(ICMakeListsConstants.manifestDirectoryName)
-        .addComponent(ICMakeListsConstants.defaultCMakeListsPostsetFileName)
+        .addComponent(CMakeListsConstants.MANIFEST_DIRECTORY_NAME)
+        .addComponent(CMakeListsConstants.DEFAULT_CMAKE_LISTS_POSTSET_FILE_NAME)
         .build();
 
     private static final String BUILD_PROPERTIES_PATH = new ResourcePathBuilder()
-        .addComponent(ICMakeListsConstants.manifestDirectoryName)
-        .addComponent(ICMakeListsConstants.defaultCMakeListsBuildPropertiesFileName)
+        .addComponent(CMakeListsConstants.MANIFEST_DIRECTORY_NAME)
+        .addComponent(CMakeListsConstants.DEFAULT_CMAKE_LISTS_BUILD_PROPERTIES_FILE_NAME)
         .build();
 
     private static final String INCLUDES_FILES_PROPERTY = "INCLUDES_FILES";
