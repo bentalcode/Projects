@@ -27,14 +27,10 @@ public final class Combination implements ICalculator<List<List<Integer>>> {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> currValues = new ArrayList<>(this.k);
 
-        int startValue = 1;
-        int endValue = this.n;
-        int numberOfSelectedValues = 0;
-
         this.findCombinations(
-            startValue,
-            endValue,
-            numberOfSelectedValues,
+            1,
+            this.n,
+            0,
             k,
             currValues,
             result);

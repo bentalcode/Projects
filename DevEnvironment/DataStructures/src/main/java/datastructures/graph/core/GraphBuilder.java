@@ -32,9 +32,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
         IGraphBuilder<TKey, TValue> graphBuilder = new GraphBuilder<>();
 
         graphBuilder.addGraphData(graphData);
-        IGraph<TKey, TValue> graph = graphBuilder.build();
-
-        return graph;
+        return graphBuilder.build();
     }
 
     /**

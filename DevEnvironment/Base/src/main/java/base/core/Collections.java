@@ -19,15 +19,11 @@ public final class Collections {
      * Converts an iterator to a string.
      */
     public static <T> String toString(IIterator<T> iterator) {
-        String prefix = PREFIX;
-        String postfix = POSTFIX;
-        String delimiter = DELIMITER;
-
         return toString(
-            prefix,
-            postfix,
+            PREFIX,
+            POSTFIX,
             iterator,
-            delimiter);
+            DELIMITER);
     }
 
     /**

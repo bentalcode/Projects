@@ -64,7 +64,7 @@ public final class HashCodeCommand extends AbstractCommand {
     /**
      * Processes a file.
      */
-    private boolean processFile(
+    private void processFile(
         Path filePath,
         IContentProvider hashCodeProvider) {
 
@@ -80,15 +80,11 @@ public final class HashCodeCommand extends AbstractCommand {
                 "; Skipping update of this file header.";
 
             this.log.warn(warningMessage);
-
-            return false;
         }
         else if (numberOfLinesUpdated >= 1) {
             String informationalMessage = "The hash code of file: " + filePath + " got updated.";
             this.log.info(informationalMessage);
         }
-
-        return true;
     }
 
     /**

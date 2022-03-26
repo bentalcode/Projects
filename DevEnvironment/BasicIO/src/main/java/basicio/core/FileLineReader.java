@@ -60,10 +60,7 @@ public final class FileLineReader implements ILineReader, ICloseable {
     @Override
     public String next() {
         assert(this.hasNext());
-
-        String currLine = this.nextLine();
-
-        return currLine;
+        return this.nextLine();
     }
 
     /**

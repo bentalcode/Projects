@@ -90,8 +90,8 @@ public final class JsonArray extends JsonElement implements IJsonArray {
     @Override
     public void setValue(String name, IJsonValue value) {
         Conditions.validate(
-                name == null,
-                "A Json Array does not support properties.");
+            name == null,
+            "A Json Array does not support properties.");
 
         this.array.add(value);
     }

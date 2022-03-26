@@ -52,10 +52,7 @@ public final class DoublyLinkedListKeyValueNodeReverseIterator<TKey extends Comp
     @Override
     public IKeyValueNode<TKey, TValue> next() {
         assert(this.hasNext());
-
-        IKeyValueNode<TKey, TValue> node = this.reverseIterator.next().getValue();
-
-        return node;
+        return this.reverseIterator.next().getValue();
     }
 
     /**

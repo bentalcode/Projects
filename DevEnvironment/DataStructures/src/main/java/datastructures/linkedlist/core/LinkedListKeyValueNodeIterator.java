@@ -49,10 +49,7 @@ public final class LinkedListKeyValueNodeIterator<TKey extends Comparable<TKey>,
     @Override
     public IKeyValueNode<TKey, TValue> next() {
         assert(this.hasNext());
-
-        IKeyValueNode<TKey, TValue> node = this.iterator.next().getValue();
-
-        return node;
+        return this.iterator.next().getValue();
     }
 
     /**

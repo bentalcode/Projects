@@ -196,7 +196,6 @@ public final class MatchingTriplets implements IMatchingTriplets {
         for (int thirdIndex = sorted.length - 1; thirdIndex >= 2; --thirdIndex) {
             int third = values[thirdIndex];
 
-            int matchingSum = third;
             int firstIndex = 0;
             int secondIndex = thirdIndex - 1;
 
@@ -206,14 +205,14 @@ public final class MatchingTriplets implements IMatchingTriplets {
 
                 int currSum = first + second;
 
-                if (currSum == matchingSum) {
+                if (currSum == third) {
                     ITriplet<Integer, Integer, Integer> newResult = Triplet.make(first, second, third);
                     this.addNewResult(newResult, results);
 
                     ++firstIndex;
                     --secondIndex;
                 }
-                else if (currSum < matchingSum) {
+                else if (currSum < third) {
                     ++firstIndex;
                 }
                 else {

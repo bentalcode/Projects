@@ -58,7 +58,7 @@ public final class CHeaderCommand extends AbstractCommand {
     /**
      * Processes a file.
      */
-    private boolean processFile(Path filePath) {
+    private void processFile(Path filePath) {
         IFileUpdater fileUpdater = new CHeaderFileUpdater(filePath);
 
         long numberOfLinesUpdated = fileUpdater.update();
@@ -69,11 +69,7 @@ public final class CHeaderCommand extends AbstractCommand {
                 "; Skipping update of this file header.";
 
             this.log.warn(warningMessage);
-
-            return false;
         }
-
-        return true;
     }
 
     /**

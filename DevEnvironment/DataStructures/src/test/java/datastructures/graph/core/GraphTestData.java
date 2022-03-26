@@ -65,9 +65,7 @@ public final class GraphTestData implements IGraphTestData {
         int key = this.randomGenerator.nextInteger();
         int value = this.randomGenerator.nextInteger();
 
-        IVertex<Integer, Integer> vertex = Vertex.make(key, value);
-
-        return vertex;
+        return Vertex.make(key, value);
     }
 
     /**
@@ -78,9 +76,7 @@ public final class GraphTestData implements IGraphTestData {
         double key = this.randomGenerator.nextDouble();
         double value = this.randomGenerator.nextDouble();
 
-        IVertex<Double, Double> vertex = Vertex.make(key, value);
-
-        return vertex;
+        return Vertex.make(key, value);
     }
 
     /**
@@ -91,9 +87,7 @@ public final class GraphTestData implements IGraphTestData {
         char key = this.randomGenerator.nextCharacter();
         char value = this.randomGenerator.nextCharacter();
 
-        IVertex<Character, Character> vertex = Vertex.make(key, value);
-
-        return vertex;
+        return Vertex.make(key, value);
     }
 
     /**

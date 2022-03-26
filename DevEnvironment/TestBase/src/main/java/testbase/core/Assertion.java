@@ -37,6 +37,19 @@ public final class Assertion implements IAssertion {
     }
 
     /**
+     * Asserts not null.
+     */
+    @Override
+    public void assertNotNull(
+        Object obj,
+        String message) {
+
+        Assert.assertNotNull(
+            message,
+            obj);
+    }
+
+    /**
      * Fails a test with the given message.
      */
     @Override

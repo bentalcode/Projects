@@ -116,8 +116,7 @@ public final class CacheProperties implements ICacheProperties {
      */
     @Override
     public long getReductionSizeInBytes() {
-        long size = (long)(this.sizeInBytes * this.reductionFactor);
-        return size;
+        return (long)(this.sizeInBytes * this.reductionFactor);
     }
 
     /**

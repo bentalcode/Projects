@@ -49,9 +49,7 @@ public final class ExpressionTree implements IExpressionTree {
 
         IExpressionTreeElement root = this.root;
 
-        double result = root.evaluate();
-
-        return result;
+        return root.evaluate();
     }
 
     /**

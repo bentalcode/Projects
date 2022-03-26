@@ -3,7 +3,7 @@ package base.core;
 /**
  * The MutableInteger class implements an integer which is mutable.
  */
-public class MutableInteger {
+public final class MutableInteger {
     private int value;
 
     /**

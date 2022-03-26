@@ -39,7 +39,9 @@ public final class CMakeBuildDeployerTest {
         ICMakeProjectManifest manifest = CMakeProjectManifest.fromJson(json);
 
         ICMakeBuildDeployer deployer = new CMakeBuildDeployer();
-        deployer.deploy(manifest);
+        ICMakeProjectDeploymentResult result = deployer.deploy(manifest);
+
+        this.assertion.assertNotNull(result, "Null deployment result.");
     }
 
     /**

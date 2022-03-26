@@ -257,12 +257,10 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
          */
         @Override
         public IKeyValueNode<TKey, TValue> build() {
-            IKeyValueNode<TKey, TValue> node = new KeyValueNode<>(
+            return new KeyValueNode<>(
                 this.key,
                 this.value,
                 KeyValueNode.defaultComparator());
-
-            return node;
         }
     }
 }

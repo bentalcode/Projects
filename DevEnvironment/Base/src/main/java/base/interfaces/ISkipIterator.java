@@ -33,9 +33,14 @@ public interface ISkipIterator<TElement> {
     boolean setSkipElementsStatus(boolean status);
 
     /*
-     * Gets the current status of skip elements.
+     * Returns whether processing an element.
      */
-    boolean getSkipElementsStatus();
+    boolean processingElement();
+
+    /*
+     * Returns whether skipping an element.
+     */
+    boolean skippingElement();
 
     /*
      * Checks whether this is a skip element.

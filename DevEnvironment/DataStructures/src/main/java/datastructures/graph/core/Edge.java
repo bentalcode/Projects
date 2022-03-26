@@ -314,13 +314,11 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
          */
         @Override
         public IEdge<TKey, TValue> build() {
-            IEdge<TKey, TValue> edge = new Edge<>(
+            return new Edge<>(
                 this.source,
                 this.destination,
                 this.directed,
                 Edge.defaultComparator());
-
-            return edge;
         }
     }
 }

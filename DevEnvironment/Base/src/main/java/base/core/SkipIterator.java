@@ -67,10 +67,18 @@ public final class SkipIterator<TElement> implements ISkipIterator<TElement> {
     }
 
     /*
-     * Gets the current status of skip elements.
+     * Returns whether processing an element.
      */
     @Override
-    public boolean getSkipElementsStatus() {
+    public boolean processingElement() {
+        return !this.skippingElement();
+    }
+
+    /*
+     * Returns whether skipping an element.
+     */
+    @Override
+    public boolean skippingElement() {
         return this.skipElements;
     }
 

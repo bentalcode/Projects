@@ -292,12 +292,13 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
                 continue;
             }
 
-            if (!this.topologicalSearch(
-                    nextVertex,
-                    visitedVertices,
-                    currPath,
-                    resultStack)) {
+            boolean status = this.topologicalSearch(
+                nextVertex,
+                visitedVertices,
+                currPath,
+                resultStack);
 
+            if (!status) {
                 return false;
             }
         }

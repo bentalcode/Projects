@@ -91,7 +91,7 @@ public final class BinaryTreeNodeListIterator<TKey extends Comparable<TKey>, TVa
     private int alignPosition(int position) {
         int currPosition = position;
 
-        if (!this.skipIterator.getSkipElementsStatus()) {
+        if (this.skipIterator.processingElement()) {
             return currPosition;
         }
 

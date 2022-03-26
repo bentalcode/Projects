@@ -224,9 +224,7 @@ public final class FileNames {
 
         assert(isKababCased(fileName));
 
-        String[] result = fileName.split(String.valueOf(KABAB_CASED_SEPARATOR));
-
-        return result;
+        return fileName.split(String.valueOf(KABAB_CASED_SEPARATOR));
     }
 
     /**
@@ -239,9 +237,7 @@ public final class FileNames {
 
         assert(isSnakeCased(fileName));
 
-        String[] result = fileName.split(String.valueOf(SNAKE_CASED_SEPARATOR));
-
-        return result;
+        return fileName.split(String.valueOf(SNAKE_CASED_SEPARATOR));
     }
 
     /**

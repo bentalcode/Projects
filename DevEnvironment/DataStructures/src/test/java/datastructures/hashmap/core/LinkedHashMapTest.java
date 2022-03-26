@@ -185,8 +185,6 @@ public final class LinkedHashMapTest {
 
         ILinkedHashMapBuilder<TKey, TValue> mapBuilder = new LinkedHashMapBuilder<>();
         mapBuilder.set(ListIterator.make(data.getCreationData()));
-        ILinkedHashMap<TKey, TValue> map = mapBuilder.build();
-
-        return map;
+        return mapBuilder.build();
     }
 }

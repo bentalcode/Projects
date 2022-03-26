@@ -90,9 +90,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         //
         // Updates the lines...
         //
-        int numberOfMatches = this.update(reader, updateRecords);
-
-        return numberOfMatches;
+        return this.update(reader, updateRecords);
     }
 
     /**
@@ -115,9 +113,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
         //
         // Updates the lines...
         //
-        int numberOfMatches = this.update(reader, updateRecords);
-
-        return numberOfMatches;
+        return this.update(reader, updateRecords);
     }
 
     /**

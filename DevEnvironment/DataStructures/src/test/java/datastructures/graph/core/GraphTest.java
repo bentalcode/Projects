@@ -216,7 +216,6 @@ public final class GraphTest {
      */
     private <TKey extends Comparable<TKey>, TValue> IGraph<TKey, TValue> createGraph(IGraphData<TKey, TValue> data) {
         IGraphDefinition<TKey, TValue> graphDefinition = GraphDefinition.make(data.vertices(), data.edges());
-        IGraph<TKey, TValue> graph = GraphBuilder.make(graphDefinition);
-        return graph;
+        return GraphBuilder.make(graphDefinition);
     }
 }

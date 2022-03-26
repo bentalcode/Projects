@@ -181,8 +181,6 @@ public final class HashMapTest {
 
         IHashMapBuilder<TKey, TValue> mapBuilder = new HashMapBuilder<>();
         mapBuilder.set(ListIterator.make(data.getCreationData()));
-        IHashMap<TKey, TValue> map = mapBuilder.build();
-
-        return map;
+        return mapBuilder.build();
     }
 }

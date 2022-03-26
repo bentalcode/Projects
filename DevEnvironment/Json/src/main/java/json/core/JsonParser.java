@@ -95,7 +95,6 @@ public final class JsonParser implements IJsonParser, ICloseable {
                 this.setFalseValue();
                 this.resetPropertyName();
             } else if (token.equals(JsonToken.VALUE_NULL)) {
-                this.setNullValue();
                 this.resetPropertyName();
             }
         }
@@ -233,12 +232,6 @@ public final class JsonParser implements IJsonParser, ICloseable {
     private void setFalseValue() {
         IJsonElement currentElement = this.currentElement();
         currentElement.setValue(this.currentPropertyName, new JsonBooleanValue(false));
-    }
-
-    /**
-     * Sets a null value.
-     */
-    private void setNullValue() {
     }
 
     /**

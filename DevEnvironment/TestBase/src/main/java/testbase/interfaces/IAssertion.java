@@ -20,6 +20,13 @@ public interface IAssertion {
         String message);
 
     /**
+     * Asserts not null.
+     */
+    void assertNotNull(
+        Object obj,
+        String message);
+
+    /**
      * Fails a test with the given message.
      */
     void fail(String message);

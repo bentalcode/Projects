@@ -24,12 +24,10 @@ public final class InterleavingStrings implements IInterleavingStrings {
             return false;
         }
 
-        boolean status = interleaving1(
+        return interleaving1(
             left.toCharArray(),
             right.toCharArray(),
             interleaving.toCharArray());
-
-        return status;
     }
 
     /**
@@ -49,12 +47,10 @@ public final class InterleavingStrings implements IInterleavingStrings {
             return false;
         }
 
-        boolean status = interleaving2(
+        return interleaving2(
             left.toCharArray(), 0,
             right.toCharArray(), 0,
             interleaving.toCharArray());
-
-        return status;
     }
 
     private boolean interleaving1(

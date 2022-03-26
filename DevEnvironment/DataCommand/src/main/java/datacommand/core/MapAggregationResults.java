@@ -35,8 +35,7 @@ public final class MapAggregationResults extends AbstractAggregationResults {
      */
     @Override
     protected IAggregationResult findResult(String key) {
-        IAggregationResult result = this.results.get(key);
-        return result;
+        return this.results.get(key);
     }
 
     /**

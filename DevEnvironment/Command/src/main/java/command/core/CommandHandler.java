@@ -157,8 +157,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
      */
     private IParsingResult<ICommandParameters> parseParameters(String[] arguments) {
         IParser<String[], ICommandParameters> parser = new CommandParser(this.manifest);
-        IParsingResult<ICommandParameters> result = parser.parse(arguments);
-        return result;
+        return parser.parse(arguments);
     }
 
     /**

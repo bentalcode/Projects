@@ -44,9 +44,7 @@ public final class EvenlyDistribution implements IEventlyDistribution {
             set2,
             minDiff);
 
-        IPair<int[], int[]> result = Pair.make(set1, set2);
-
-        return result;
+        return Pair.make(set1, set2);
     }
 
     /**
@@ -75,9 +73,7 @@ public final class EvenlyDistribution implements IEventlyDistribution {
             set1,
             set2);
 
-        IPair<int[], int[]> result = Pair.make(set1, set2);
-
-        return result;
+        return Pair.make(set1, set2);
     }
 
     /**

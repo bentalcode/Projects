@@ -79,8 +79,7 @@ public final class KeyValueNodes<TKey extends Comparable<TKey>, TValue> implemen
          */
         @Override
         public IKeyValueNodes<TKey, TValue> build() {
-            IKeyValueNodes<TKey, TValue> nodes = new KeyValueNodes<>(this.nodes);
-            return nodes;
+            return new KeyValueNodes<>(this.nodes);
         }
     }
 }

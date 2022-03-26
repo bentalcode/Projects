@@ -51,9 +51,7 @@ public final class DoublyLinkedListKeyValueNodeIterator<TKey extends Comparable<
         assert(this.hasNext());
 
         IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> listNode = this.iterator.next();
-        IKeyValueNode<TKey, TValue> node = listNode.getValue();
-
-        return node;
+        return listNode.getValue();
     }
 
     /**

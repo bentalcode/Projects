@@ -62,10 +62,7 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
     @Override
     public String next() {
         assert(this.hasNext());
-
-        String currLine = this.nextLine();
-
-        return currLine;
+        return this.nextLine();
     }
 
     /**

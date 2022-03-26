@@ -167,9 +167,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
 
         String endifRegex = createEndifRegex(fileNameRegex);
         String endifData = "#endif" + " // " + newFileName;
-        IUpdateRecord endifUpdateRecord = new UpdateRecord(endifRegex, endifData, MatchPolicyType.FirstMatch);
-
-        return endifUpdateRecord;
+        return new UpdateRecord(endifRegex, endifData, MatchPolicyType.FirstMatch);
     }
 
     /**

@@ -57,9 +57,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
 
         List<String> postfixTokens = this.transformInfixToPostfix(tokens);
 
-        IExpressionTree tree = this.buildExpressionTree(postfixTokens);
-
-        return tree;
+        return this.buildExpressionTree(postfixTokens);
     }
 
     /**
@@ -124,9 +122,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
             throw new ExpressionTreeException(errorMessage);
         }
 
-        IExpressionTree tree = new ExpressionTree(root);
-
-        return tree;
+        return new ExpressionTree(root);
     }
 
     /**
@@ -222,7 +218,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
     private List<String> transformInfixToPostfix(List<String> infix) {
         List<String> result = new ArrayList<>();
 
-        List<String> tokens = infix;
+        List<String> tokens = new ArrayList<>(infix);
 
         tokens.add(")");
 
@@ -351,9 +347,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
      * Tries to parse an integer.
      */
     private Integer tryParseInteger(String token) {
-        Integer result = Conversion.integerConversion().tryParse(token);
-
-        return result;
+        return Conversion.integerConversion().tryParse(token);
     }
 
     /**
@@ -407,8 +401,6 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
             fraction = numerator / denominator;
         }
 
-        double result = integer + fraction;
-
-        return result;
+        return integer + fraction;
     }
 }
