@@ -9,7 +9,7 @@ import json.interfaces.IJsonObjectWriter;
  * The BaseLogic class implements a base logic.
  */
 public abstract class BaseLogic implements ILogic {
-    private static final String propertyName = "name";
+    private static final String PROPERTY_NAME = "name";
 
     private final String name;
 
@@ -44,6 +44,6 @@ public abstract class BaseLogic implements ILogic {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(BaseLogic.propertyName, this.name);
+        writer.writeStringProperty(BaseLogic.PROPERTY_NAME, this.name);
     }
 }

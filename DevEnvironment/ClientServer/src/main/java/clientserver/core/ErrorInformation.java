@@ -12,9 +12,9 @@ import java.util.Date;
  * The ErrorInformation class implements an error information.
  */
 public final class ErrorInformation implements IErrorInformation {
-    private static final String propertyExceptionType = "exceptionType";
-    private static final String propertyExceptionMessage = "exceptionMessage";
-    private static final String propertyTime = "time";
+    private static final String PROPERTY_EXCEPTION_TYPE = "exceptionType";
+    private static final String PROPERTY_EXCEPTION_MESSAGE = "exceptionMessage";
+    private static final String PROPERTY_TIME = "time";
 
     private final Exception exception;
     private final Date time;
@@ -75,17 +75,17 @@ public final class ErrorInformation implements IErrorInformation {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(ErrorInformation.propertyExceptionType, ClassTypes.getName(this.exception));
-        writer.writeStringProperty(ErrorInformation.propertyExceptionMessage, this.exception.getMessage());
-        writer.writeDateProperty(ErrorInformation.propertyTime, this.getTime());
+        writer.writeStringProperty(ErrorInformation.PROPERTY_EXCEPTION_TYPE, ClassTypes.getName(this.exception));
+        writer.writeStringProperty(ErrorInformation.PROPERTY_EXCEPTION_MESSAGE, this.exception.getMessage());
+        writer.writeDateProperty(ErrorInformation.PROPERTY_TIME, this.getTime());
     }
 
     /**
      * Reads an object from a json reader.
      */
     public static IErrorInformation readJson(IJsonObjectReader reader) {
-        String exceptionMessage = reader.readStringProperty(ErrorInformation.propertyExceptionMessage);
-        Date date = reader.readDateProperty(ErrorInformation.propertyTime);
+        String exceptionMessage = reader.readStringProperty(ErrorInformation.PROPERTY_EXCEPTION_MESSAGE);
+        Date date = reader.readDateProperty(ErrorInformation.PROPERTY_TIME);
 
         CircuitBreakerException exception = new CircuitBreakerException(exceptionMessage);
         return new ErrorInformation(

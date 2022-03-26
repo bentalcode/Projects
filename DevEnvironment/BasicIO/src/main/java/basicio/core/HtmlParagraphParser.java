@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  * The HtmlParagraphParser class implements a parser of html paragraph.
  */
 public final class HtmlParagraphParser implements IHtmlParagraphParser {
-    private static final int defaultMostlyUsedWordsCapacity = 10;
+    private static final int DEFAULT_MOSTLY_USED_WORDS_CAPACITY = 10;
 
     private static final String TOKEN_SEPARATOR_REGEX = "[( )]";
     private static final String REFERENCE_REGEX = "(\\[[0-9]+\\])";
@@ -55,7 +55,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
      */
     public HtmlParagraphParser() {
         this(
-            defaultMostlyUsedWordsCapacity,
+                DEFAULT_MOSTLY_USED_WORDS_CAPACITY,
             HashSets.make());
     }
 

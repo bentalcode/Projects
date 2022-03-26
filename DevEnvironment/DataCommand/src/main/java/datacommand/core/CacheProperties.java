@@ -10,22 +10,25 @@ import datacommand.interfaces.ICacheProperties;
  * The CacheProperties class implements properties of a cache.
  */
 public final class CacheProperties implements ICacheProperties {
-    private static final long MinimumCacheSize = 1 << 10;
-    private static final long MaximumCacheSize = 1 << 30;
-    private static final long DefaultCacheSize = 1 << 20;
+    private static final long MINIMUM_CACHE_SIZE = 1 << 10;
+    private static final long MAXIMUM_CACHE_SIZE = 1 << 30;
+    private static final long DEFAULT_CACHE_SIZE = 1 << 20;
 
-    private static final double MinimumIntensityFactor = 0;
-    private static final double MaximumIntensityFactor = 1;
+    private static final double MINIMUM_INTENSITY_FACTOR = 0;
+    private static final double MAXIMUM_INTENSITY_FACTOR = 1;
 
-    private static final double DefaultCacheIntensityFactor = 0.8;
-    private static final double DefaultSecondaryIntensityFactor = 0.9;
-    private static final double DefaultReductionIntensityFactor = 0.4;
+    private static final double DEFAULT_CACHE_INTENSITY_FACTOR = 0.8;
+    private static final double DEFAULT_SECONDARY_INTENSITY_FACTOR = 0.9;
+    private static final double DEFAULT_REDUCTION_INTENSITY_FACTOR = 0.4;
 
-    private static final IRange<Long> CacheSizeRange = Range.make(
-        MinimumCacheSize, MaximumCacheSize);
+    private static final IRange<Long> CACHE_SIZE_RANGE = Range.make(
+        MINIMUM_CACHE_SIZE,
+        MAXIMUM_CACHE_SIZE);
 
-    private static final IRange<Double> IntensityFactorRange = Range.make(
-        RangeType.ExclusiveToExclusive, MinimumIntensityFactor, MaximumIntensityFactor);
+    private static final IRange<Double> INTENSITY_FACTOR_RANGE = Range.make(
+        RangeType.ExclusiveToExclusive,
+        MINIMUM_INTENSITY_FACTOR,
+        MAXIMUM_INTENSITY_FACTOR);
 
     private final long sizeInBytes;
     private final double intensityFactor;
@@ -44,10 +47,10 @@ public final class CacheProperties implements ICacheProperties {
      */
     public CacheProperties() {
         this(
-            CacheProperties.DefaultCacheSize,
-            CacheProperties.DefaultCacheIntensityFactor,
-            CacheProperties.DefaultSecondaryIntensityFactor,
-            CacheProperties.DefaultReductionIntensityFactor);
+            CacheProperties.DEFAULT_CACHE_SIZE,
+            CacheProperties.DEFAULT_CACHE_INTENSITY_FACTOR,
+            CacheProperties.DEFAULT_SECONDARY_INTENSITY_FACTOR,
+            CacheProperties.DEFAULT_REDUCTION_INTENSITY_FACTOR);
     }
 
     /**
@@ -60,23 +63,23 @@ public final class CacheProperties implements ICacheProperties {
         double reductionFactor) {
 
         Conditions.validate(
-            CacheSizeRange.inRange(sizeInBytes),
-            "The cache size for processing data is defined at range: " + CacheSizeRange);
+            CACHE_SIZE_RANGE.inRange(sizeInBytes),
+            "The cache size for processing data is defined at range: " + CACHE_SIZE_RANGE);
 
         Conditions.validate(
-            IntensityFactorRange.inRange(intensityFactor),
+            INTENSITY_FACTOR_RANGE.inRange(intensityFactor),
             "The intensity factor of a cache for processing data is defined at range: " +
-            IntensityFactorRange);
+            INTENSITY_FACTOR_RANGE);
 
         Conditions.validate(
-            IntensityFactorRange.inRange(secondaryIntensityFactor),
+            INTENSITY_FACTOR_RANGE.inRange(secondaryIntensityFactor),
             "The secondary intensity factor of a cache for processing data is defined at range: " +
-            IntensityFactorRange);
+            INTENSITY_FACTOR_RANGE);
 
         Conditions.validate(
-            IntensityFactorRange.inRange(reductionFactor),
+            INTENSITY_FACTOR_RANGE.inRange(reductionFactor),
             "The reduction factor of a cache for processing data is defined at range: " +
-            IntensityFactorRange);
+            INTENSITY_FACTOR_RANGE);
 
         this.sizeInBytes = sizeInBytes;
         this.intensityFactor = intensityFactor;

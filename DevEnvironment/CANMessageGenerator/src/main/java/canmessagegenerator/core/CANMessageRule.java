@@ -20,9 +20,9 @@ import java.util.List;
  * The sender is the name of the transmitting node, or Vector__XXX if no name is available
  */
 public final class CANMessageRule implements ICANMessageRule {
-    private static final String messageSyntax = "BO_";
-    private static final int minimumDataLength = 0;
-    private static final int maximumDataLength = 1785;
+    private static final String MESSAGE_SYNTAX = "BO_";
+    private static final int MINIMUM_DATA_LENGTH = 0;
+    private static final int MAXIMUM_DATA_LENGTH = 1785;
 
     private final ICANMessageId id;
     private final ICANMessageName name;
@@ -67,7 +67,7 @@ public final class CANMessageRule implements ICANMessageRule {
             "The name of the message is not defined.");
 
         Conditions.validateNotNull(
-            length >= minimumDataLength && length <=  maximumDataLength,
+            length >= MINIMUM_DATA_LENGTH && length <= MAXIMUM_DATA_LENGTH,
             "The length of the data is out of range.");
 
         Conditions.validate(
@@ -124,7 +124,7 @@ public final class CANMessageRule implements ICANMessageRule {
     @Override
     public String toString() {
         StringBuilder messageBuilder = new StringBuilder();
-        messageBuilder.append(messageSyntax);
+        messageBuilder.append(MESSAGE_SYNTAX);
         messageBuilder.append(" ");
         messageBuilder.append(this.id);
         messageBuilder.append(" ");

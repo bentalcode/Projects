@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
  * The FileNames class implements complementary APIs for file-names.
  */
 public final class FileNames {
-    public static final char extensionSeparator = '.';
-    public static final char kababCasedSeparator = '-';
-    public static final char snakeCasedSeparator = '_';
+    public static final char EXTENSION_SEPARATOR = '.';
+    public static final char KABAB_CASED_SEPARATOR = '-';
+    public static final char SNAKE_CASED_SEPARATOR = '_';
 
-    public static final Set<Character> invalidCharacters = HashSets.make(
+    public static final Set<Character> INVALID_CHARACTERS = HashSets.make(
         ':',
         '\\',
         '/',
@@ -90,9 +90,9 @@ public final class FileNames {
         while (currIndex <= endIndex) {
             char currCharacter = characters[currIndex];
 
-            if (invalidCharacters.contains(currCharacter) ||
-                currCharacter == kababCasedSeparator ||
-                currCharacter == snakeCasedSeparator) {
+            if (INVALID_CHARACTERS.contains(currCharacter) ||
+                currCharacter == KABAB_CASED_SEPARATOR ||
+                currCharacter == SNAKE_CASED_SEPARATOR) {
 
                 return false;
             }
@@ -123,9 +123,9 @@ public final class FileNames {
         while (currIndex <= endIndex) {
             char currCharacter = characters[currIndex];
 
-            if (invalidCharacters.contains(currCharacter) ||
-                currCharacter == kababCasedSeparator ||
-                currCharacter == snakeCasedSeparator) {
+            if (INVALID_CHARACTERS.contains(currCharacter) ||
+                currCharacter == KABAB_CASED_SEPARATOR ||
+                currCharacter == SNAKE_CASED_SEPARATOR) {
 
                 return false;
             }
@@ -154,8 +154,8 @@ public final class FileNames {
         while (currIndex <= endIndex) {
             char currCharacter = characters[currIndex];
 
-            if (invalidCharacters.contains(currCharacter) ||
-                currCharacter == snakeCasedSeparator ||
+            if (INVALID_CHARACTERS.contains(currCharacter) ||
+                currCharacter == SNAKE_CASED_SEPARATOR ||
                 Character.isLowerCase(currCharacter) != lowercase) {
 
                 return false;
@@ -185,8 +185,8 @@ public final class FileNames {
         while (currIndex <= endIndex) {
             char currCharacter = characters[currIndex];
 
-            if (invalidCharacters.contains(currCharacter) ||
-                currCharacter == kababCasedSeparator ||
+            if (INVALID_CHARACTERS.contains(currCharacter) ||
+                currCharacter == KABAB_CASED_SEPARATOR ||
                 Character.isLowerCase(currCharacter) != lowercase) {
 
                 return false;
@@ -224,7 +224,7 @@ public final class FileNames {
 
         assert(isKababCased(fileName));
 
-        String[] result = fileName.split(String.valueOf(kababCasedSeparator));
+        String[] result = fileName.split(String.valueOf(KABAB_CASED_SEPARATOR));
 
         return result;
     }
@@ -239,7 +239,7 @@ public final class FileNames {
 
         assert(isSnakeCased(fileName));
 
-        String[] result = fileName.split(String.valueOf(snakeCasedSeparator));
+        String[] result = fileName.split(String.valueOf(SNAKE_CASED_SEPARATOR));
 
         return result;
     }
@@ -359,7 +359,7 @@ public final class FileNames {
      */
     public static int getFileExtensionIndex(char[] fileName) {
         assert(fileName != null);
-        int endIndex = StringSearch.lastIndexOf(fileName, 0, fileName.length - 1, extensionSeparator);
+        int endIndex = StringSearch.lastIndexOf(fileName, 0, fileName.length - 1, EXTENSION_SEPARATOR);
         return endIndex - 1;
     }
 

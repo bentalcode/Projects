@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
  * The HashCodeProvider class implements a provider of a hash code.
  */
 public final class HashCodeProvider implements IContentProvider {
-    private static final int preCalculatedPrimes = 10000;
+    private static final int PRE_CALCULATED_PRIMES = 10000;
 
     private final Prime prime;
     private int currentPrime = 2;
@@ -19,7 +19,7 @@ public final class HashCodeProvider implements IContentProvider {
      */
     public HashCodeProvider(int initialPrime) {
         this(
-            preCalculatedPrimes,
+            PRE_CALCULATED_PRIMES,
             initialPrime);
     }
 

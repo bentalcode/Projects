@@ -19,7 +19,7 @@ public final class Conversion {
     private static final IStringConversion stringConversion = new StringConversion();
     private static final IBigIntegerConversion bigIntegerConversion = new BigIntegerConversion();
 
-    private static final Logger log = LoggerFactory.getLogger(Conversion.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Conversion.class);
 
     /**
      * Casts an object to a requested type.
@@ -33,7 +33,7 @@ public final class Conversion {
                 "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                 " to the requested type due to the following error: " + e.getMessage();
 
-            Conversion.log.error(errorMessage, e);
+            Conversion.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
     }
@@ -50,7 +50,7 @@ public final class Conversion {
                 "Failed to cast an instance of class type: " + ClassTypes.getName(obj) +
                 " to the requested type: " + requestedType.getName() + " due to the following error: " + e.getMessage();
 
-            Conversion.log.error(errorMessage, e);
+            Conversion.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
     }

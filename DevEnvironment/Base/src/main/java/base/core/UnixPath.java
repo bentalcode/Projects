@@ -10,8 +10,8 @@ public final class UnixPath extends AbstractPath {
     public static final char SEPARATOR = '/';
     public static final String ROOT_DIRECTORY = "/";
     public static final String DIRECTORY_SEPARATOR = String.valueOf(SEPARATOR);
-    public static final String CURRENT_DIRECTORY = Paths.currentDirectory;
-    public static final String PARENT_DIRECTORY = Paths.parentDirectory;
+    public static final String CURRENT_DIRECTORY = Paths.CURRENT_DIRECTORY;
+    public static final String PARENT_DIRECTORY = Paths.PARENT_DIRECTORY;
     public static final String HOME_DIRECTORY = "~";
 
     /**

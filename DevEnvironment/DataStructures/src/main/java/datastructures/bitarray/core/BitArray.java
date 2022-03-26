@@ -22,7 +22,7 @@ import base.core.Collections;
  * The BitArray class uses internally for each unit the Bit32Array class.
  */
 public final class BitArray implements IBitArray {
-    private static final int unitSizeInBits = IBit32Array.sizeInBits;
+    private static final int UNIT_SIZE_IN_BITS = IBit32Array.sizeInBits;
 
     private final IBit32Array[] data;
     private final int size;
@@ -256,7 +256,7 @@ public final class BitArray implements IBitArray {
             //
             // Update the start unit either as a whole or bit by bit...
             //
-            this.data[startUnitIndex].clear(startBitIndex, BitArray.unitSizeInBits - 1);
+            this.data[startUnitIndex].clear(startBitIndex, BitArray.UNIT_SIZE_IN_BITS - 1);
 
             //
             // Update the middle units as a whole...
@@ -334,7 +334,7 @@ public final class BitArray implements IBitArray {
             //
             // Update the start unit either as a whole or bit by bit...
             //
-            this.data[startUnitIndex].enable(startBitIndex, BitArray.unitSizeInBits - 1);
+            this.data[startUnitIndex].enable(startBitIndex, BitArray.UNIT_SIZE_IN_BITS - 1);
 
             //
             // Update the middle units as a whole...
@@ -439,7 +439,7 @@ public final class BitArray implements IBitArray {
         int lastUnitBitStartIndex = 0;
         int lastUnitBitEndIndex = this.bitIndexOf(numberOfBits - 1);
 
-        if (lastUnitBitEndIndex == BitArray.unitSizeInBits -1) {
+        if (lastUnitBitEndIndex == BitArray.UNIT_SIZE_IN_BITS -1) {
             lhsData[unitIndex].operate(bitOperator, rhsData[unitIndex]);
         }
         else {
@@ -476,7 +476,7 @@ public final class BitArray implements IBitArray {
         int lastUnitBitStartIndex = 0;
         int lastUnitBitEndIndex = this.bitIndexOf(this.size - 1);
 
-        if (lastUnitBitEndIndex == BitArray.unitSizeInBits -1) {
+        if (lastUnitBitEndIndex == BitArray.UNIT_SIZE_IN_BITS -1) {
             this.data[unitIndex].operate(bitOperator);
         }
         else {
@@ -696,23 +696,23 @@ public final class BitArray implements IBitArray {
      * Calculates the number of units.
      */
     private int numberOfUnits(int numberOfBits) {
-        return (numberOfBits % BitArray.unitSizeInBits) == 0 ?
-            (numberOfBits / BitArray.unitSizeInBits) :
-            (numberOfBits / BitArray.unitSizeInBits) + 1;
+        return (numberOfBits % BitArray.UNIT_SIZE_IN_BITS) == 0 ?
+            (numberOfBits / BitArray.UNIT_SIZE_IN_BITS) :
+            (numberOfBits / BitArray.UNIT_SIZE_IN_BITS) + 1;
     }
 
     /**
      * Calculates the index of a unit.
      */
     private int unitIndexOf(int index) {
-        return index / BitArray.unitSizeInBits;
+        return index / BitArray.UNIT_SIZE_IN_BITS;
     }
 
     /**
      * Calculates the index of a bit in a unit.
      */
     private int bitIndexOf(int index) {
-        return index % BitArray.unitSizeInBits;
+        return index % BitArray.UNIT_SIZE_IN_BITS;
     }
 
     /**

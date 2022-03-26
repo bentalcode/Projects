@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * The Enums class implements complementary APIs for enums.
  */
 public final class Enums {
-    private static final Logger log = LoggerFactory.getLogger(Enums.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Enums.class);
 
     /**
      * Parses a name of an enum.
@@ -32,7 +32,7 @@ public final class Enums {
                 "Enums failed to parse enum of class type: " + ClassTypes.getName(classType) +
                 ", for name: " + name;
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BaseException(errorMessage);
         }
 

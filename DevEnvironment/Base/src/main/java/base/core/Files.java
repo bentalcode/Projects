@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * The Files class implements complementary APIs for files.
  */
 public final class Files {
-    private static final Logger log = LoggerFactory.getLogger(Files.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Files.class);
 
     /**
      * Creates a new file from a path.
@@ -55,7 +55,7 @@ public final class Files {
                 "The Files class failed reading all the bytes from: " + path +
                 ", due to the following error: " + e.getMessage();
 
-          Files.log.error(errorMessage, e);
+          Files.LOG.error(errorMessage, e);
           throw new BaseException(errorMessage, e);
         }
 

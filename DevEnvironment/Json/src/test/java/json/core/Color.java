@@ -14,9 +14,9 @@ import json.interfaces.IJsonObjectWriter;
  * The Color class implements properties of a color.
  */
 public final class Color implements IColor {
-    private static final String PropertyName = "name";
-    private static final String PropertyHex = "hex";
-    private static final String PropertyRgb = "rgb";
+    private static final String PROPERTY_NAME = "name";
+    private static final String PROPERTY_HEX = "hex";
+    private static final String PROPERTY_RGB = "rgb";
 
     private final String name;
     private final String hex;
@@ -68,18 +68,18 @@ public final class Color implements IColor {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(Color.PropertyName, this.name);
-        writer.writeStringProperty(Color.PropertyHex, this.hex);
-        writer.writeStringProperty(Color.PropertyRgb, this.rgb);
+        writer.writeStringProperty(Color.PROPERTY_NAME, this.name);
+        writer.writeStringProperty(Color.PROPERTY_HEX, this.hex);
+        writer.writeStringProperty(Color.PROPERTY_RGB, this.rgb);
     }
 
     /**
      * Reads a json.
      */
     public static IColor readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(Color.PropertyName);
-        String hex = reader.readStringProperty(Color.PropertyHex);
-        String rgb = reader.readStringProperty(Color.PropertyRgb);
+        String name = reader.readStringProperty(Color.PROPERTY_NAME);
+        String hex = reader.readStringProperty(Color.PROPERTY_HEX);
+        String rgb = reader.readStringProperty(Color.PROPERTY_RGB);
 
         return new Color(
             name,

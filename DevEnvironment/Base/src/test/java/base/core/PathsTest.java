@@ -92,7 +92,7 @@ public final class PathsTest {
         String rootPath13 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\BaseTest";
         String result13 = "..\\Base\\BaseException.h";
 
-        String separator = String.valueOf(WindowsPath.separator);
+        String separator = String.valueOf(WindowsPath.SEPARATOR);
 
         this.testGetRelativePath(path1, rootPath1, separator, result1);
         this.testGetRelativePath(path2, rootPath2, separator, result2);
@@ -154,7 +154,7 @@ public final class PathsTest {
         String pathB10 = "\\BaseTest";
         int result10 = -1;
 
-        String separator = String.valueOf(WindowsPath.separator);
+        String separator = String.valueOf(WindowsPath.SEPARATOR);
 
         this.testFindCommonRootPathEndIndex(pathA1, pathB1, separator, result1);
         this.testFindCommonRootPathEndIndex(pathA2, pathB2, separator, result2);

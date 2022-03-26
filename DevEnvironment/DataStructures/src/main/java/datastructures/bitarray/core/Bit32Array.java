@@ -20,7 +20,7 @@ import base.core.Collections;
  * The Bit32Array class implements a bit array of size 32.
  */
 public final class Bit32Array implements IBit32Array {
-    private static final int allBitsMask = 0xFFFFFFFF;
+    private static final int ALL_BITS_MASK = 0xFFFFFFFF;
 
     private int bits;
     private final IBinaryComparator<IBit32Array> comparator;
@@ -251,7 +251,7 @@ public final class Bit32Array implements IBit32Array {
      */
     @Override
     public void enable() {
-        this.bits = allBitsMask;
+        this.bits = ALL_BITS_MASK;
     }
 
     /**
@@ -270,7 +270,7 @@ public final class Bit32Array implements IBit32Array {
         }
 
         if (length == IBit32Array.sizeInBits) {
-            this.bits = allBitsMask;
+            this.bits = ALL_BITS_MASK;
             return;
         }
 

@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  * The Readers class implements complementary APIs for readers.
  */
 public final class Readers {
-    private static final Logger log = LoggerFactory.getLogger(Files.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Files.class);
 
     /**
      * Creates a string reader.
@@ -64,7 +64,7 @@ public final class Readers {
                 "The Readers class failed creating an input stream reader to resource: " + path +
                 ", due to the following error: " + e.getMessage();
 
-            Readers.log.error(errorMessage, e);
+            Readers.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -122,7 +122,7 @@ public final class Readers {
                 "FileReader failed to be created from path: " + path +
                 ", due to the following error: " + e.getMessage();
 
-            Readers.log.error(errorMessage, e);
+            Readers.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -146,7 +146,7 @@ public final class Readers {
                 "The BufferedReader failed reading line due to the following error: " +
                 e.getMessage();
 
-            Readers.log.error(errorMessage, e);
+            Readers.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -168,7 +168,7 @@ public final class Readers {
                 "The Readers class failed closing a reader due to the following error: " +
                 e.getMessage();
 
-            Readers.log.warn(warningMessage);
+            Readers.LOG.warn(warningMessage);
         }
     }
 

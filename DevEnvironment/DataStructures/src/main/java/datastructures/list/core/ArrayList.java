@@ -19,7 +19,7 @@ import datastructures.list.interfaces.IList;
  * The ArrayList class implements a dynamic array (resizable array).
  */
 public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
-    private static final int defaultCapacity = 16;
+    private static final int DEFAULT_CAPACITY = 16;
 
     private final Class<?> classType;
     private final int capacity;
@@ -40,7 +40,7 @@ public final class ArrayList<T extends Comparable<T>> implements IArrayList<T> {
     public ArrayList(Class<?> classType) {
         this(
             classType,
-            ArrayList.defaultCapacity,
+            ArrayList.DEFAULT_CAPACITY,
             ArrayList.defaultComparator());
     }
 

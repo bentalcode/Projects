@@ -361,7 +361,7 @@ public final class ModuleSection implements ICMakeBuildElement {
             transformedSourcePath,
             UnixPath.DIRECTORY_SEPARATOR);
 
-        String targetPath = new UnixPathBuilder(Paths.currentDirectory)
+        String targetPath = new UnixPathBuilder(Paths.CURRENT_DIRECTORY)
             .addComponent(ICMakeListsConstants.buildDirectoryName)
             .addComponent(transformedSourcePath)
             .build();

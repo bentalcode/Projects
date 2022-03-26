@@ -5,7 +5,7 @@ package base.core;
  */
 public final class PathBuilder extends AbstractPathBuilder {
     private static final String ROOT_DIRECTORY = null;
-    private static final String SEPARATOR = WindowsPath.directorySeparator;
+    private static final String SEPARATOR = WindowsPath.DIRECTORY_SEPARATOR;
 
     /**
      * The PathBuilder constructor.

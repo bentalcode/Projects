@@ -19,7 +19,7 @@ import json.interfaces.IJsonObjectWriter;
  * The CommandHelpMetadata class implements meta-data of help of a command.
  */
 public final class CommandHelpMetadata implements ICommandHelpMetadata {
-    public static final int helpParameterSetIndex = -1;
+    public static final int HELP_PARAMETER_SET_INDEX = -1;
 
     private static final String PROPERTY_SHORT_NAME = "shortName";
     private static final String PROPERTY_LONG_NAME = "longName";

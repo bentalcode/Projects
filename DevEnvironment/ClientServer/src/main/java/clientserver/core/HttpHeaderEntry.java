@@ -9,7 +9,7 @@ import java.util.Collection;
  * The HttpHeaderEntry class implements an entry of a http header.
  */
 public final class HttpHeaderEntry implements IHttpHeaderEntry {
-    private static final char valueSeparator = ';';
+    private static final char VALUE_SEPARATOR = ';';
 
     private final String name;
     private final String value;
@@ -60,7 +60,7 @@ public final class HttpHeaderEntry implements IHttpHeaderEntry {
      * Creates a header entry.
      */
     public static IHttpHeaderEntry create(String name, Collection<String> values) {
-        String value = Strings.create(values, HttpHeaderEntry.valueSeparator);
+        String value = Strings.create(values, HttpHeaderEntry.VALUE_SEPARATOR);
         return new HttpHeaderEntry(name, value);
     }
 }

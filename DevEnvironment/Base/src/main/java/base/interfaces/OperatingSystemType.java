@@ -93,7 +93,7 @@ public enum OperatingSystemType {
         }
     };
 
-    private static final Logger log = LoggerFactory.getLogger(OperatingSystemType.class);
+    private static final Logger LOG = LoggerFactory.getLogger(OperatingSystemType.class);
 
     /**
      * The OperatingSystemType constructor.
@@ -126,7 +126,7 @@ public enum OperatingSystemType {
         }
         else {
             String errorMessage = "The operating system: " + value + " is not supported.";
-            log.error(errorMessage);
+            LOG.error(errorMessage);
 
             throw new BaseException(errorMessage);
         }

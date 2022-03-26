@@ -9,8 +9,8 @@ import java.util.Stack;
  * The Paths class implements complementary APIs for paths.
  */
 public final class Paths {
-    public static final String currentDirectory = ".";
-    public static final String parentDirectory = "..";
+    public static final String CURRENT_DIRECTORY = ".";
+    public static final String PARENT_DIRECTORY = "..";
 
     /**
      * Creates a new file path.
@@ -207,11 +207,11 @@ public final class Paths {
         while (!tokenStack.empty()) {
             String currComponent = tokenStack.pop();
 
-            if (currComponent.equals(Paths.currentDirectory)) {
+            if (currComponent.equals(Paths.CURRENT_DIRECTORY)) {
                 continue;
             }
 
-            if (currComponent.equals(Paths.parentDirectory)) {
+            if (currComponent.equals(Paths.PARENT_DIRECTORY)) {
                 tokenStack.pop();
             }
 
@@ -267,14 +267,14 @@ public final class Paths {
      * Converts separators of the path to Windows.
      */
     public static String separatorToWindows(String path) {
-        return convertSeparators(path, UnixPath.SEPARATOR, WindowsPath.separator);
+        return convertSeparators(path, UnixPath.SEPARATOR, WindowsPath.SEPARATOR);
     }
 
     /**
      * Converts separators of the path to Unix.
      */
     public static String separatorToUnix(String path) {
-        return convertSeparators(path, WindowsPath.separator, UnixPath.SEPARATOR);
+        return convertSeparators(path, WindowsPath.SEPARATOR, UnixPath.SEPARATOR);
     }
 
     /**
@@ -428,8 +428,8 @@ public final class Paths {
 
         int relativePathLengthOfRootPath =
             (numberOfSubDirectories > 0) ?
-            numberOfSubDirectories * (Paths.parentDirectory.length() + separator.length) :
-            Paths.currentDirectory.length() + separator.length;
+            numberOfSubDirectories * (Paths.PARENT_DIRECTORY.length() + separator.length) :
+            Paths.CURRENT_DIRECTORY.length() + separator.length;
 
         //
         // Calculate the relative path length of the path...
@@ -457,7 +457,7 @@ public final class Paths {
         // Add the relative path of the root path...
         //
         if (numberOfSubDirectories > 0) {
-            char[] parentDirectory = Paths.parentDirectory.toCharArray();
+            char[] parentDirectory = Paths.PARENT_DIRECTORY.toCharArray();
 
             for (int i = 0; i < numberOfSubDirectories; ++i) {
                 //
@@ -489,7 +489,7 @@ public final class Paths {
                 insertIndex += numberOfWrittenCharacters;
             }
         } else {
-            char[] currentDirectory = Paths.currentDirectory.toCharArray();
+            char[] currentDirectory = Paths.CURRENT_DIRECTORY.toCharArray();
 
             //
             // Add the current directory of the relative path of the root path...

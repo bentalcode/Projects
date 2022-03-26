@@ -18,8 +18,8 @@ import java.util.Base64;
  * The OAuthCredentials class implements credentials of OAuth.
  */
 public final class OAuthCredentials implements IOAuthCredentials {
-    private static final String propertyUserName = "userName";
-    private static final String propertyUserPassword = "userPassword";
+    private static final String PROPERTY_USER_NAME = "userName";
+    private static final String PROPERTY_USER_PASSWORD = "userPassword";
 
     private final String userName;
     private final String userPassword;
@@ -197,16 +197,16 @@ public final class OAuthCredentials implements IOAuthCredentials {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(OAuthCredentials.propertyUserName, this.getUserName());
-        writer.writeStringProperty(OAuthCredentials.propertyUserPassword, this.getUserPassword());
+        writer.writeStringProperty(OAuthCredentials.PROPERTY_USER_NAME, this.getUserName());
+        writer.writeStringProperty(OAuthCredentials.PROPERTY_USER_PASSWORD, this.getUserPassword());
     }
 
     /**
      * Reads an object from a json reader.
      */
     public static IOAuthCredentials readJson(IJsonObjectReader reader) {
-        String userName = reader.readStringProperty(OAuthCredentials.propertyUserName);
-        String userPassword = reader.readStringProperty(OAuthCredentials.propertyUserPassword);
+        String userName = reader.readStringProperty(OAuthCredentials.PROPERTY_USER_NAME);
+        String userPassword = reader.readStringProperty(OAuthCredentials.PROPERTY_USER_PASSWORD);
 
         return new OAuthCredentials(
             userName,

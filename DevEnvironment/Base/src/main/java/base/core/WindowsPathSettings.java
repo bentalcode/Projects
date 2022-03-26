@@ -19,7 +19,7 @@ public final class WindowsPathSettings implements IOperatingSystemPathSettings {
      */
     @Override
     public String getPathSeparator() {
-        return WindowsPath.directorySeparator;
+        return WindowsPath.DIRECTORY_SEPARATOR;
     }
 
     /**

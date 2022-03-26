@@ -8,7 +8,7 @@ import java.util.BitSet;
  * The Prime class implements a prime number.
  */
 public final class Prime implements IPrime {
-    private static final int maxCachedNumber = 10000;
+    private static final int MAX_CACHED_NUMBER = 10000;
 
     private final int primesLength;
     private final BitSet primes;
@@ -17,7 +17,7 @@ public final class Prime implements IPrime {
      * The Prime constructor.
      */
     public Prime() {
-        this(maxCachedNumber);
+        this(MAX_CACHED_NUMBER);
     }
 
     /**

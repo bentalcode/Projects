@@ -174,6 +174,6 @@ public final class CommandHandler implements Closeable, ICommandHandler {
      * Checks whether this is a help command.
      */
     private static boolean isHelpCommand(ICommandParameters parameters) {
-        return parameters.getParameterSet().getIndex() == CommandHelpMetadata.helpParameterSetIndex;
+        return parameters.getParameterSet().getIndex() == CommandHelpMetadata.HELP_PARAMETER_SET_INDEX;
     }
 }

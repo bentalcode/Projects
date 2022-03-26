@@ -7,7 +7,7 @@ import base.interfaces.IPrime;
  * The PrimeIterator class implements an iterator of a prime.
  */
 public final class PrimeIterator implements IIterator<Integer> {
-    private static final int initialPrime = 1;
+    private static final int INITIAL_PRIME = 1;
 
     private final Prime prime;
     private final int maxPrime;
@@ -17,7 +17,7 @@ public final class PrimeIterator implements IIterator<Integer> {
      * Creates a new iterator of a prime.
      */
     public static IIterator<Integer> make(Prime prime) {
-        return new PrimeIterator(prime, initialPrime);
+        return new PrimeIterator(prime, INITIAL_PRIME);
     }
 
     /**
@@ -33,7 +33,7 @@ public final class PrimeIterator implements IIterator<Integer> {
     private PrimeIterator(Prime prime) {
         this(
             prime,
-            initialPrime);
+            INITIAL_PRIME);
     }
 
     /**
@@ -75,7 +75,7 @@ public final class PrimeIterator implements IIterator<Integer> {
      */
     @Override
     public void reset() {
-        this.reset(initialPrime);
+        this.reset(INITIAL_PRIME);
     }
 
     /**

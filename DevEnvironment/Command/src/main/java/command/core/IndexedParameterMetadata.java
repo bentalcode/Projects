@@ -49,8 +49,8 @@ public final class IndexedParameterMetadata extends ParameterMetadata implements
      * Reads a json.
      */
     public static IIndexedParameterMetadata readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(propertyName);
-        String description = reader.readStringProperty(propertyDescription);
+        String name = reader.readStringProperty(PROPERTY_NAME);
+        String description = reader.readStringProperty(PROPERTY_DESCRIPTION);
 
         return new IndexedParameterMetadata(
             name,

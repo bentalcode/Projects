@@ -12,7 +12,7 @@ public final class CatalanNumber implements ICatalanNumber {
     public static final int MAX_CALCULATED_NUMBER = 35;
 
     private final long[] catalans;
-    private static final Logger log = LoggerFactory.getLogger(CatalanNumber.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CatalanNumber.class);
 
     /**
      * The CatalanNumber constructor.
@@ -137,7 +137,7 @@ public final class CatalanNumber implements ICatalanNumber {
         if (n < 0 || n > MAX_CALCULATED_NUMBER) {
             String errorMessage = "The number for calculating a catalan number is: (0-" + MAX_CALCULATED_NUMBER + "]";
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new ArithmeticException(errorMessage);
         }
     }

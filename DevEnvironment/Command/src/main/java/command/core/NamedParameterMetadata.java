@@ -188,7 +188,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
      * Reads a json.
      */
     public static INamedParameterMetadata readJson(IJsonObjectReader reader) {
-        String name = reader.readStringProperty(propertyName);
+        String name = reader.readStringProperty(PROPERTY_NAME);
 
         String shortName = reader.hasProperty(PROPERTY_SHORT_NAME) ?
             reader.readStringProperty(PROPERTY_SHORT_NAME) :
@@ -198,7 +198,7 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
             reader.readStringProperty(PROPERTY_LONG_NAME) :
             null;
 
-        String description = reader.readStringProperty(propertyDescription);
+        String description = reader.readStringProperty(PROPERTY_DESCRIPTION);
 
         boolean optional = reader.hasProperty(PROPERTY_OPTIONAL) ?
             reader.readBooleanProperty(PROPERTY_OPTIONAL) : DEFAULT_OPTIONAL_VALUE;

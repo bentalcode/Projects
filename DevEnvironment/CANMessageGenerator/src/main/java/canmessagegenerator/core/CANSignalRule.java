@@ -22,11 +22,11 @@ import java.io.PrintWriter;
  * The receiver is the name of the receiving node (again, Vector__XXX is used as default)
  */
 public final class CANSignalRule implements ICANSignalRule {
-    private static final String messageSyntax = "SG_";
-    private static final String byteOrderBigEndianSyntax = "@0";
-    private static final String byteOrderLittleEndianSyntax = "@1";
-    private static final String valueTypeUnsignedSyntax = "+";
-    private static final String valueTypeSignedSyntax = "-";
+    private static final String MESSAGE_SYNTAX = "SG_";
+    private static final String BYTE_ORDER_BIG_ENDIAN_SYNTAX = "@0";
+    private static final String BYTE_ORDER_LITTLE_ENDIAN_SYNTAX = "@1";
+    private static final String VALUE_TYPE_UNSIGNED_SYNTAX = "+";
+    private static final String VALUE_TYPE_SIGNED_SYNTAX = "-";
 
     private final ICANMessageName name;
     private final int bitStart;
@@ -215,15 +215,15 @@ public final class CANSignalRule implements ICANSignalRule {
     public String toString() {
         StringBuilder messageBuilder = new StringBuilder();
 
-        messageBuilder.append(messageSyntax);
+        messageBuilder.append(MESSAGE_SYNTAX);
         messageBuilder.append(" ");
         messageBuilder.append(this.name);
         messageBuilder.append(" : ");
         messageBuilder.append(this.bitStart);
         messageBuilder.append("|");
         messageBuilder.append(this.bitLength);
-        messageBuilder.append(this.byteOrderBigEndian ? byteOrderBigEndianSyntax : byteOrderLittleEndianSyntax);
-        messageBuilder.append(this.valueTypeUnsigned ? valueTypeUnsignedSyntax : valueTypeSignedSyntax);
+        messageBuilder.append(this.byteOrderBigEndian ? BYTE_ORDER_BIG_ENDIAN_SYNTAX : BYTE_ORDER_LITTLE_ENDIAN_SYNTAX);
+        messageBuilder.append(this.valueTypeUnsigned ? VALUE_TYPE_UNSIGNED_SYNTAX : VALUE_TYPE_SIGNED_SYNTAX);
         messageBuilder.append(" ");
         messageBuilder.append("(");
         messageBuilder.append(this.scale);

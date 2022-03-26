@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * The RandomAccessFiles class implements complementary APIs for random access files.
  */
 public final class RandomAccessFiles {
-    private static final Logger log = LoggerFactory.getLogger(RandomAccessFiles.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RandomAccessFiles.class);
 
     /**
      * Creates a random access file.
@@ -33,7 +33,7 @@ public final class RandomAccessFiles {
         catch (FileNotFoundException e) {
             String errorMessage = "Failed creating a random access file due to the following error: " + e;
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
         }
     }
@@ -55,7 +55,7 @@ public final class RandomAccessFiles {
                 "The RandomAccessFile failed setting file-pointer at position: " + position +
                 "due to following error: " + e;
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
         }
     }
@@ -74,7 +74,7 @@ public final class RandomAccessFiles {
         catch (IOException e) {
             String errorMessage = "The RandomAccessFile failed reading a line due to the following error: " + e;
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
         }
     }
@@ -93,7 +93,7 @@ public final class RandomAccessFiles {
         catch (IOException e) {
             String errorMessage = "The RandomAccessFile failed reading a byte due to the following error: " + e;
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
         }
     }
@@ -112,7 +112,7 @@ public final class RandomAccessFiles {
         catch (IOException e) {
             String errorMessage = "The RandomAccessFile failed reading a character due to the following error: " + e;
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
         }
     }
@@ -132,7 +132,7 @@ public final class RandomAccessFiles {
             String errorMessage =
                 "The RandomAccessFile failed getting file pointer due to the following error: " + e;
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
         }
     }
@@ -152,7 +152,7 @@ public final class RandomAccessFiles {
             String errorMessage =
                 "The RandomAccessFile failed getting it's length due to the following error: " + e;
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
         }
     }
@@ -173,7 +173,7 @@ public final class RandomAccessFiles {
                 "The RandomAccessFile failed writing string: " + content +
                 " due to the following error: " + e;
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new BasicIOException(errorMessage, e);
         }
     }

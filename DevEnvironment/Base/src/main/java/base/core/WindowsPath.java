@@ -7,12 +7,12 @@ import java.util.Stack;
  * The WindowsPath class implements a windows path.
  */
 public final class WindowsPath extends AbstractPath {
-    public static final char separator = '\\';
+    public static final char SEPARATOR = '\\';
 
-    public static final String directorySeparator = String.valueOf(separator);
-    public static final String directorySeparatorRegex = "\\\\";
-    public static final String currentDirectory = Paths.currentDirectory;
-    public static final String parentDirectory = Paths.parentDirectory;
+    public static final String DIRECTORY_SEPARATOR = String.valueOf(SEPARATOR);
+    public static final String DIRECTORY_SEPARATOR_REGEX = "\\\\";
+    public static final String CURRENT_DIRECTORY = Paths.CURRENT_DIRECTORY;
+    public static final String PARENT_DIRECTORY = Paths.PARENT_DIRECTORY;
 
     /**
      * The WindowsPath constructor.
@@ -25,7 +25,7 @@ public final class WindowsPath extends AbstractPath {
      * Gets the directory section of the path.
      */
     public static String getDirectory(String path) {
-        return Paths.getDirectory(path, WindowsPath.directorySeparator);
+        return Paths.getDirectory(path, WindowsPath.DIRECTORY_SEPARATOR);
     }
 
     /**
@@ -72,15 +72,15 @@ public final class WindowsPath extends AbstractPath {
      * Makes a canonical path.
      */
     private static String makeCanonical(String path) {
-        String[] components = path.split(WindowsPath.directorySeparatorRegex);
+        String[] components = path.split(WindowsPath.DIRECTORY_SEPARATOR_REGEX);
 
         Stack<String> stack = new Stack<>();
 
         for (String component : components) {
-            if (component.isEmpty() || component.equals(WindowsPath.currentDirectory)) {
+            if (component.isEmpty() || component.equals(WindowsPath.CURRENT_DIRECTORY)) {
                 continue;
             }
-            else if (component.equals(WindowsPath.parentDirectory)) {
+            else if (component.equals(WindowsPath.PARENT_DIRECTORY)) {
                 if (!stack.empty()) {
                     stack.pop();
                 }

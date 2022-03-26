@@ -197,7 +197,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
      * Gets a regex of a file name.
      */
     private static String getFileNameRegex(String formattedFileName) {
-        return formattedFileName + FileNames.snakeCasedSeparator + IConstants.guidRegex;
+        return formattedFileName + FileNames.SNAKE_CASED_SEPARATOR + IConstants.guidRegex;
     }
 
     /**
@@ -206,7 +206,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
     private static String newFileName(String formattedFileName) {
         String guid = UUID.randomUUID().toString();
         guid = guid.replace('-', '_');
-        return formattedFileName + FileNames.snakeCasedSeparator + guid;
+        return formattedFileName + FileNames.SNAKE_CASED_SEPARATOR + guid;
     }
 
     /**
@@ -223,7 +223,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
 
         for (int i = 0; i < tokens.length; ++i) {
             if (i > 0) {
-                stringBuilder.append(FileNames.snakeCasedSeparator);
+                stringBuilder.append(FileNames.SNAKE_CASED_SEPARATOR);
             }
 
             String token = tokens[i];
@@ -232,7 +232,7 @@ public final class CHeaderFileUpdater implements IFileUpdater {
         }
 
         if (stringBuilder.length() > 0) {
-            stringBuilder.append(FileNames.snakeCasedSeparator);
+            stringBuilder.append(FileNames.SNAKE_CASED_SEPARATOR);
         }
 
         extension = extension.toUpperCase();

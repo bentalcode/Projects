@@ -15,8 +15,8 @@ import java.time.Duration;
  * a concurrent single producer consumer lock free queue by using a circular buffer.
  */
 public final class ConcurrentSingleProducerConsumerCircularBufferQueue<T> extends AbstractRunnable {
-    private static final Duration defaultShutdownTimeout = Duration.ofSeconds(60);
-    private static final Duration defaultShutdownPollingDuration = Duration.ofSeconds(1);
+    private static final Duration DEFAULT_SHUTDOWN_TIMEOUT = Duration.ofSeconds(60);
+    private static final Duration DEFAULT_SHUTDOWN_POLLING_DURATION = Duration.ofSeconds(1);
 
     private final IConcurrentQueue<T> queue;
     private final IExecutorService executorService;
@@ -32,8 +32,8 @@ public final class ConcurrentSingleProducerConsumerCircularBufferQueue<T> extend
 
         return new ConcurrentSingleProducerConsumerCircularBufferQueue<>(
             queue,
-            defaultShutdownTimeout,
-            defaultShutdownPollingDuration,
+            DEFAULT_SHUTDOWN_TIMEOUT,
+            DEFAULT_SHUTDOWN_POLLING_DURATION,
             null);
     }
 
@@ -46,8 +46,8 @@ public final class ConcurrentSingleProducerConsumerCircularBufferQueue<T> extend
 
         return new ConcurrentSingleProducerConsumerCircularBufferQueue<>(
             queue,
-            defaultShutdownTimeout,
-            defaultShutdownPollingDuration,
+            DEFAULT_SHUTDOWN_TIMEOUT,
+            DEFAULT_SHUTDOWN_POLLING_DURATION,
             messageQueueTrackingInformation);
     }
 

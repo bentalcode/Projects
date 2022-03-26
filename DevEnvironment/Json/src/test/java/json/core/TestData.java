@@ -13,8 +13,8 @@ import java.util.List;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String dataDirectoryName = "data";
-    private static final String jsonDirectoryName = "json";
+    private static final String DATA_DIRECTORY_NAME = "data";
+    private static final String JSON_DIRECTORY_NAME = "json";
 
     private static final List<IPair<String, Class<?>>> jsonResourcesInformation = ArrayLists.make(
         Pair.make("propertyType.json", PropertyType.class),
@@ -36,8 +36,8 @@ public final class TestData implements ITestData {
 
         for (IPair<String, Class<?>> resourceInformation : jsonResourcesInformation) {
             Path path = ResourcePaths.create(
-                TestData.dataDirectoryName,
-                TestData.jsonDirectoryName,
+                DATA_DIRECTORY_NAME,
+                JSON_DIRECTORY_NAME,
                 resourceInformation.first());
 
             Class<?> classType = resourceInformation.second();

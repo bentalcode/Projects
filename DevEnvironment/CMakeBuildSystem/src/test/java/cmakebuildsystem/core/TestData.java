@@ -13,31 +13,31 @@ import java.util.List;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String dataDirectoryName = "data";
-    private static final String projectManifestsDirectoryName = "projectManifests";
-    private static final String moduleManifestsDirectoryName = "moduleManifests";
-    private static final String cmakeListsManifestsDirectoryName = "cmakeListsManifests";
-    private static final String projectsDirectoryName = "projects";
-    private static final String modulesDirectoryName = "modules";
-    private static final String projectDeploymentResultsDirectoryName = "projectDeploymentResults";
-    private static final String projectManifestDevEnvironment = "projectManifest1.json";
+    private static final String DATA_DIRECTORY_NAME = "data";
+    private static final String PROJECT_MANIFESTS_DIRECTORY_NAME = "projectManifests";
+    private static final String MODULE_MANIFESTS_DIRECTORY_NAME = "moduleManifests";
+    private static final String CMAKE_LISTS_MANIFESTS_DIRECTORY_NAME = "cmakeListsManifests";
+    private static final String PROJECTS_DIRECTORY_NAME = "projects";
+    private static final String MODULES_DIRECTORY_NAME = "modules";
+    private static final String PROJECT_DEPLOYMENT_RESULTS_DIRECTORY_NAME = "projectDeploymentResults";
+    private static final String PROJECT_MANIFEST_DEV_ENVIRONMENT = "projectManifest1.json";
 
-    private static final List<String> projectManifests = ArrayLists.make(
+    private static final List<String> PROJECT_MANIFESTS = ArrayLists.make(
         "projectManifest1.json");
 
-    private static final List<String> moduleManifests = ArrayLists.make(
+    private static final List<String> MODULE_MANIFESTS = ArrayLists.make(
         "moduleManifest1.json");
 
-    private static final List<String> cmakeListsManifests = ArrayLists.make(
+    private static final List<String> CMAKE_LISTS_MANIFESTS = ArrayLists.make(
         "cmakeListsManifest1.json");
 
-    private static final List<String> projects = ArrayLists.make(
+    private static final List<String> PROJECTS = ArrayLists.make(
         "project1.json");
 
-    private static final List<String> modules = ArrayLists.make(
+    private static final List<String> MODULES = ArrayLists.make(
         "module1.json");
 
-    private static final List<String> projectDeploymentResults = ArrayLists.make(
+    private static final List<String> PROJECT_DEPLOYMENT_RESULTS = ArrayLists.make(
         "projectDeploymentResult1.json");
 
     /**
@@ -53,8 +53,8 @@ public final class TestData implements ITestData {
     public Path getDevEnvironmentCMakeProjectManifestResource() {
         Path path = ResourcePaths.create(
             dataDirectory(),
-            projectManifestsDirectoryName,
-            projectManifestDevEnvironment);
+            PROJECT_MANIFESTS_DIRECTORY_NAME,
+            PROJECT_MANIFEST_DEV_ENVIRONMENT);
 
         return path;
     }
@@ -66,10 +66,10 @@ public final class TestData implements ITestData {
     public List<Path> getProjectManifestResources() {
         List<Path> result = new ArrayList<>();
 
-        for (String projectManifest : projectManifests) {
+        for (String projectManifest : PROJECT_MANIFESTS) {
             Path path = ResourcePaths.create(
                 dataDirectory(),
-                projectManifestsDirectoryName,
+                PROJECT_MANIFESTS_DIRECTORY_NAME,
                 projectManifest);
 
             result.add(path);
@@ -85,10 +85,10 @@ public final class TestData implements ITestData {
     public List<Path> getModuleManifestResources() {
         List<Path> result = new ArrayList<>();
 
-        for (String moduleManifest : moduleManifests) {
+        for (String moduleManifest : MODULE_MANIFESTS) {
             Path path = ResourcePaths.create(
                 dataDirectory(),
-                moduleManifestsDirectoryName,
+                MODULE_MANIFESTS_DIRECTORY_NAME,
                 moduleManifest);
 
             result.add(path);
@@ -104,10 +104,10 @@ public final class TestData implements ITestData {
     public List<Path> getCMakeListsManifestResources() {
         List<Path> result = new ArrayList<>();
 
-        for (String cmakeListsManifest : cmakeListsManifests) {
+        for (String cmakeListsManifest : CMAKE_LISTS_MANIFESTS) {
             Path path = ResourcePaths.create(
                 dataDirectory(),
-                cmakeListsManifestsDirectoryName,
+                CMAKE_LISTS_MANIFESTS_DIRECTORY_NAME,
                 cmakeListsManifest);
 
             result.add(path);
@@ -123,10 +123,10 @@ public final class TestData implements ITestData {
     public List<Path> getProjectResources() {
         List<Path> result = new ArrayList<>();
 
-        for (String project : projects) {
+        for (String project : PROJECTS) {
             Path path = ResourcePaths.create(
                 dataDirectory(),
-                projectsDirectoryName,
+                PROJECTS_DIRECTORY_NAME,
                 project);
 
             result.add(path);
@@ -142,10 +142,10 @@ public final class TestData implements ITestData {
     public List<Path> getModuleResources() {
         List<Path> result = new ArrayList<>();
 
-        for (String module : modules) {
+        for (String module : MODULES) {
             Path path = ResourcePaths.create(
                 dataDirectory(),
-                modulesDirectoryName,
+                MODULES_DIRECTORY_NAME,
                 module);
 
             result.add(path);
@@ -161,10 +161,10 @@ public final class TestData implements ITestData {
     public List<Path> getProjectDeploymentResultResources() {
         List<Path> result = new ArrayList<>();
 
-        for (String projectDeploymentResult : projectDeploymentResults) {
+        for (String projectDeploymentResult : PROJECT_DEPLOYMENT_RESULTS) {
             Path path = ResourcePaths.create(
                 dataDirectory(),
-                projectDeploymentResultsDirectoryName,
+                PROJECT_DEPLOYMENT_RESULTS_DIRECTORY_NAME,
                 projectDeploymentResult);
 
             result.add(path);
@@ -179,6 +179,6 @@ public final class TestData implements ITestData {
     private static String dataDirectory() {
         OperatingSystemType operatingSystemType = Environment.getOperatingSystem();
         String operatingSystemDirectory = operatingSystemType.toString().toLowerCase();
-        return ResourcePaths.create(operatingSystemDirectory, dataDirectoryName).toString();
+        return ResourcePaths.create(operatingSystemDirectory, DATA_DIRECTORY_NAME).toString();
     }
 }

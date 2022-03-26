@@ -17,18 +17,14 @@ import java.util.TreeMap;
  * The CANSignalRuleGenerator class implements a generator of CAN signal rules.
  */
 public final class CANSignalRuleGenerator extends CANRuleGenerator implements ICANRuleGenerator<ICANSignalRule> {
-    private static final int dataMinSizeInBits = 1;
-    private static final int dataMaxSizeInBits = 1024;
-
-    private static final double minPhysicalValue = 0.0;
-    private static final double maxPhysicalValue = 1000000.0;
-
-    private static final int maxRawValueSizeInBits = 32;
-
-    private static final int minValue = 0;
-    private static final int maxValue = 10;
-
-    private static final Map<String, List<String>> nameUnitsMap = createNameUnitsMap();
+    private static final int DATA_MIN_SIZE_IN_BITS = 1;
+    private static final int DATA_MAX_SIZE_IN_BITS = 1024;
+    private static final double MIN_PHYSICAL_VALUE = 0.0;
+    private static final double MAX_PHYSICAL_VALUE = 1000000.0;
+    private static final int MAX_RAW_VALUE_SIZE_IN_BITS = 32;
+    private static final int MIN_VALUE = 0;
+    private static final int MAX_VALUE = 10;
+    private static final Map<String, List<String>> NAME_UNITS_MAP = createNameUnitsMap();
 
     /**
      * The CANSignalRuleGenerator constructor.
@@ -49,14 +45,14 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         //
         // Generate a random data size...
         //
-        int dataSizeInBits = this.generateDataSize(dataMinSizeInBits, dataMaxSizeInBits);
+        int dataSizeInBits = this.generateDataSize(DATA_MIN_SIZE_IN_BITS, DATA_MAX_SIZE_IN_BITS);
 
         //
         // Generate a random bit start and bit length...
         //
         IPair<Integer, Integer> bitStartAndBitLength = this.generateBitStartAndBitLength(
             dataSizeInBits,
-            maxRawValueSizeInBits);
+                MAX_RAW_VALUE_SIZE_IN_BITS);
 
         int bitStart = bitStartAndBitLength.first();
         int bitLength = bitStartAndBitLength.second();
@@ -74,7 +70,7 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         //
         // Generate a random physical value in the specified range...
         //
-        double physicalValue = this.randomGenerator().nextDouble(minPhysicalValue, maxPhysicalValue);
+        double physicalValue = this.randomGenerator().nextDouble(MIN_PHYSICAL_VALUE, MAX_PHYSICAL_VALUE);
 
         //
         // Generate a random scale and offset...
@@ -90,12 +86,12 @@ public final class CANSignalRuleGenerator extends CANRuleGenerator implements IC
         //
         // Generate minimum and maximum values...
         //
-        IPair<Integer, Integer> minimumMaximumValues = this.generateMinimumMaximumValues(minValue, maxValue);
+        IPair<Integer, Integer> minimumMaximumValues = this.generateMinimumMaximumValues(MIN_VALUE, MAX_VALUE);
 
         int minimumValue = minimumMaximumValues.first();
         int maximumValue = minimumMaximumValues.second();
 
-        String unit = this.generateUnit(name, nameUnitsMap);
+        String unit = this.generateUnit(name, NAME_UNITS_MAP);
         String transmittingNodeName = this.generateTransmittingNodeName();
 
         return CANSignalRule.make(

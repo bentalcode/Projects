@@ -12,12 +12,12 @@ import testbase.core.ResourcePaths;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private static final String dataDirectoryName = "data";
-    private static final String manifestsDirectoryName = "manifests";
+    private static final String DATA_DIRECTORY_NAME = "data";
+    private static final String MANIFESTS_DIRECTORY_NAME = "manifests";
+    private static final String COMMAND_MANIFEST1 = "manifest1.json";
+    private static final String COMMAND_MANIFEST2 = "manifest2.json";
 
-    private static final String commandManifest1 = "manifest1.json";
-    private static final String commandManifest2 = "manifest2.json";
-    private static final List<String> commandLines1 = ArrayLists.make(
+    private static final List<String> COMMAND_LINES1 = ArrayLists.make(
         "-h",
         "--help",
         "C:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\interfaces\\DateTime.h",
@@ -28,7 +28,7 @@ public final class TestData implements ITestData {
         "--directory:=C:\\repositories\\Projects\\DevEnvironmentCLion\\Base --recurse"
     );
 
-    private static final List<String> commandLines2 = ArrayLists.make(
+    private static final List<String> COMMAND_LINES2 = ArrayLists.make(
         "-h",
         "--help",
         "C:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\interfaces\\DateTime.h",
@@ -65,11 +65,11 @@ public final class TestData implements ITestData {
      */
     private ICommandData getCommandData1() {
         Path manifestPath = ResourcePaths.create(
-            dataDirectoryName,
-            manifestsDirectoryName,
-            commandManifest1);
+                DATA_DIRECTORY_NAME,
+                MANIFESTS_DIRECTORY_NAME,
+                COMMAND_MANIFEST1);
 
-        return new CommandData(manifestPath, commandLines1);
+        return new CommandData(manifestPath, COMMAND_LINES1);
     }
 
     /**
@@ -77,10 +77,10 @@ public final class TestData implements ITestData {
      */
     private ICommandData getCommandData2() {
         Path manifestPath = ResourcePaths.create(
-            dataDirectoryName,
-            manifestsDirectoryName,
-            commandManifest2);
+                DATA_DIRECTORY_NAME,
+                MANIFESTS_DIRECTORY_NAME,
+                COMMAND_MANIFEST2);
 
-        return new CommandData(manifestPath, commandLines2);
+        return new CommandData(manifestPath, COMMAND_LINES2);
     }
 }

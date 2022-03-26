@@ -12,7 +12,7 @@ import java.util.Set;
  * The BaseRetryLogic class implements a base retry logic.
  */
 public abstract class BaseRetryLogic extends BaseLogic implements IRetryLogic {
-    private static final String propertyAbsorbedExceptions = "absorbedExceptions";
+    private static final String PROPERTY_ABSORBED_EXCEPTIONS = "absorbedExceptions";
 
     private final Set<Class<?>> absorbedExceptions;
 
@@ -63,7 +63,7 @@ public abstract class BaseRetryLogic extends BaseLogic implements IRetryLogic {
         super.writeJson(writer);
 
         writer.writeCollectionProperty(
-            BaseRetryLogic.propertyAbsorbedExceptions,
+            BaseRetryLogic.PROPERTY_ABSORBED_EXCEPTIONS,
             this.absorbedExceptions,
             ClassTypes::getName);
     }

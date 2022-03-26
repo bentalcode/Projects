@@ -17,19 +17,17 @@ import java.time.Duration;
  * The HttpHandlerConfiguration class implements a configuration for a Http Handler.
  */
 public final class HttpHandlerConfiguration implements IHttpHandlerConfiguration {
-    private static final String propertyRetryPolicy = "retryPolicy";
-    private static final String propertyConnectTimeout = "connectTimeout";
-    private static final String propertyWriteTimeout = "writeTimeout";
-    private static final String propertyReadTimeout = "readTimeout";
-    private static final String propertySocketTimeout = "socketTimeout";
+    private static final String PROPERTY_RETRY_POLICY = "retryPolicy";
+    private static final String PROPERTY_CONNECT_TIMEOUT = "connectTimeout";
+    private static final String PROPERTY_WRITE_TIMEOUT = "writeTimeout";
+    private static final String PROPERTY_READ_TIMEOUT = "readTimeout";
+    private static final String PROPERTY_SOCKET_TIMEOUT = "socketTimeout";
 
     private final IRetryPolicy retryPolicy;
-
     private final Duration connectTimeout;
     private final Duration writeTimeout;
     private final Duration readTimeout;
     private final Duration socketTimeout;
-
     private final IBinaryComparator<IHttpHandlerConfiguration> comparator = HttpHandlerConfiguration.defaultComparator();
 
     /**
@@ -38,10 +36,10 @@ public final class HttpHandlerConfiguration implements IHttpHandlerConfiguration
     public static IHttpHandlerConfiguration defaultConfiguration() {
         return new HttpHandlerConfiguration(
             RetryPolicy.defaultRetryPolicy(),
-            HttpConstants.defaultConnectTimeout,
-            HttpConstants.defaultWriteTimeout,
-            HttpConstants.defaultReadTimeout,
-            HttpConstants.defaultSocketTimeout);
+            HttpConstants.DEFAULT_CONNECT_TIMEOUT,
+            HttpConstants.DEFAULT_WRITE_TIMEOUT,
+            HttpConstants.DEFAULT_READ_TIMEOUT,
+            HttpConstants.DEFAULT_SOCKET_TIMEOUT);
     }
 
     /**
@@ -259,22 +257,22 @@ public final class HttpHandlerConfiguration implements IHttpHandlerConfiguration
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeObjectProperty(HttpHandlerConfiguration.propertyRetryPolicy, this.getRetryPolicy());
-        writer.writeDurationProperty(HttpHandlerConfiguration.propertyConnectTimeout, this.getConnectTimeout());
-        writer.writeDurationProperty(HttpHandlerConfiguration.propertyWriteTimeout, this.getWriteTimeout());
-        writer.writeDurationProperty(HttpHandlerConfiguration.propertyReadTimeout, this.getReadTimeout());
-        writer.writeDurationProperty(HttpHandlerConfiguration.propertySocketTimeout, this.getSocketTimeout());
+        writer.writeObjectProperty(HttpHandlerConfiguration.PROPERTY_RETRY_POLICY, this.getRetryPolicy());
+        writer.writeDurationProperty(HttpHandlerConfiguration.PROPERTY_CONNECT_TIMEOUT, this.getConnectTimeout());
+        writer.writeDurationProperty(HttpHandlerConfiguration.PROPERTY_WRITE_TIMEOUT, this.getWriteTimeout());
+        writer.writeDurationProperty(HttpHandlerConfiguration.PROPERTY_READ_TIMEOUT, this.getReadTimeout());
+        writer.writeDurationProperty(HttpHandlerConfiguration.PROPERTY_SOCKET_TIMEOUT, this.getSocketTimeout());
     }
 
     /**
      * Reads an object from a json reader.
      */
     public static IHttpHandlerConfiguration readJson(IJsonObjectReader reader) {
-        IRetryPolicy retryPolicy = reader.readObjectProperty(HttpHandlerConfiguration.propertyRetryPolicy, RetryPolicy.class);
-        Duration connectTimeout = reader.readDurationProperty(HttpHandlerConfiguration.propertyConnectTimeout);
-        Duration writeTimeout = reader.readDurationProperty(HttpHandlerConfiguration.propertyWriteTimeout);
-        Duration readTimeout = reader.readDurationProperty(HttpHandlerConfiguration.propertyReadTimeout);
-        Duration socketTimeout = reader.readDurationProperty(HttpHandlerConfiguration.propertySocketTimeout);
+        IRetryPolicy retryPolicy = reader.readObjectProperty(HttpHandlerConfiguration.PROPERTY_RETRY_POLICY, RetryPolicy.class);
+        Duration connectTimeout = reader.readDurationProperty(HttpHandlerConfiguration.PROPERTY_CONNECT_TIMEOUT);
+        Duration writeTimeout = reader.readDurationProperty(HttpHandlerConfiguration.PROPERTY_WRITE_TIMEOUT);
+        Duration readTimeout = reader.readDurationProperty(HttpHandlerConfiguration.PROPERTY_READ_TIMEOUT);
+        Duration socketTimeout = reader.readDurationProperty(HttpHandlerConfiguration.PROPERTY_SOCKET_TIMEOUT);
 
         return new HttpHandlerConfiguration(
             retryPolicy,

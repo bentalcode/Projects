@@ -16,8 +16,8 @@ import java.util.List;
  * The Colors class implements the properties of colors.
  */
 public final class Colors implements IColors {
-    private static final String PropertyCategory = "category";
-    private static final String PropertyColors = "colors";
+    private static final String PROPERTY_CATEGORY = "category";
+    private static final String PROPERTY_COLORS = "colors";
     
     private final String category;
     private final List<IColor> colors;
@@ -60,16 +60,16 @@ public final class Colors implements IColors {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(Colors.PropertyCategory, this.category);
-        writer.writeCollectionProperty(Colors.PropertyColors, this.colors);
+        writer.writeStringProperty(Colors.PROPERTY_CATEGORY, this.category);
+        writer.writeCollectionProperty(Colors.PROPERTY_COLORS, this.colors);
     }
 
     /**
      * Reads a json.
      */
     public static IColors readJson(IJsonObjectReader reader) {
-        String category = reader.readStringProperty(Colors.PropertyCategory);
-        List<IColor> colors = reader.readListProperty(Colors.PropertyColors, Color.class);
+        String category = reader.readStringProperty(Colors.PROPERTY_CATEGORY);
+        List<IColor> colors = reader.readListProperty(Colors.PROPERTY_COLORS, Color.class);
 
         return new Colors(
             category,

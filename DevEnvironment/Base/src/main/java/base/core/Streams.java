@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
  * The Streams class implements complementary APIs for streams.
  */
 public final class Streams {
-    private static final Logger log = LoggerFactory.getLogger(Streams.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Streams.class);
 
     /**
      * Creates an input stream from a string.
@@ -66,7 +66,7 @@ public final class Streams {
               ", due to the following error: " +
               e.getMessage();
 
-          Streams.log.error(errorMessage, e);
+          Streams.LOG.error(errorMessage, e);
           throw new BaseException(errorMessage, e);
         }
 
@@ -99,7 +99,7 @@ public final class Streams {
               ", due to the following error: " +
               e.getMessage();
 
-          Streams.log.error(errorMessage, e);
+          Streams.LOG.error(errorMessage, e);
           throw new BaseException(errorMessage, e);
       }
 
@@ -143,7 +143,7 @@ public final class Streams {
               "The Streams class failed closing a stream due to the following error: " +
               e.getMessage();
 
-            Streams.log.warn(warningMessage, e);
+            Streams.LOG.warn(warningMessage, e);
         }
     }
 

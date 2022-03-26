@@ -27,7 +27,7 @@ public final class HttpHeader implements IHttpHeader {
      */
     @Override
     public void setAuthorization(String value) {
-        this.set(HttpHeaderConstants.authorization, value);
+        this.set(HttpHeaderConstants.AUTHORIZATION, value);
     }
 
     /**
@@ -35,7 +35,7 @@ public final class HttpHeader implements IHttpHeader {
      */
     @Override
     public void setContentType(String value) {
-        this.set(HttpHeaderConstants.contentType, value);
+        this.set(HttpHeaderConstants.CONTENT_TYPE, value);
     }
 
     /**
@@ -43,7 +43,7 @@ public final class HttpHeader implements IHttpHeader {
      */
     @Override
     public void setContentTypeAsApplicationJson() {
-        this.setContentType(HttpHeaderConstants.applicationJson);
+        this.setContentType(HttpHeaderConstants.APPLICATION_JSON);
     }
 
     /**

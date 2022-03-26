@@ -14,22 +14,22 @@ import json.interfaces.IPropertyType;
  * The Types class implements various types of a property.
  */
 public final class PropertyType implements IPropertyType {
-    private static final String BooleanProperty = "boolean";
-    private static final String ShortProperty = "short";
-    private static final String IntegerProperty = "integer";
-    private static final String LongProperty = "long";
-    private static final String FloatProperty = "float";
-    private static final String DoubleProperty = "double";
-    private static final String StringProperty = "string";
+    private static final String BOOLEAN_PROPERTY = "boolean";
+    private static final String SHORT_PROPERTY = "short";
+    private static final String INTEGER_PROPERTY = "integer";
+    private static final String LONG_PROPERTY = "long";
+    private static final String FLOAT_PROPERTY = "float";
+    private static final String DOUBLE_PROPERTY = "double";
+    private static final String STRING_PROPERTY = "string";
 
-    private static final String BooleanArrayProperty = "booleanArray";
-    private static final String ShortArrayProperty = "shortArray";
-    private static final String IntegerArrayProperty = "integerArray";
-    private static final String LongArrayProperty = "longArray";
-    private static final String FloatArrayProperty = "floatArray";
-    private static final String DoubleArrayProperty = "doubleArray";
-    private static final String StringArrayProperty = "stringArray";
-    private static final String BlobProperty = "blob";
+    private static final String BOOLEAN_ARRAY_PROPERTY = "booleanArray";
+    private static final String SHORT_ARRAY_PROPERTY = "shortArray";
+    private static final String INTEGER_ARRAY_PROPERTY = "integerArray";
+    private static final String LONG_ARRAY_PROPERTY = "longArray";
+    private static final String FLOAT_ARRAY_PROPERTY = "floatArray";
+    private static final String DOUBLE_ARRAY_PROPERTY = "doubleArray";
+    private static final String STRING_ARRAY_PROPERTY = "stringArray";
+    private static final String BLOB_PROPERTY = "blob";
 
     private final boolean booleanValue;
     private final short shortValue;
@@ -253,44 +253,44 @@ public final class PropertyType implements IPropertyType {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeBooleanProperty(PropertyType.BooleanProperty, this.getBooleanProperty());
-        writer.writeShortProperty(PropertyType.ShortProperty, this.getShortProperty());
-        writer.writeIntegerProperty(PropertyType.IntegerProperty, this.getIntegerProperty());
-        writer.writeLongProperty(PropertyType.LongProperty, this.getLongProperty());
-        writer.writeFloatProperty(PropertyType.FloatProperty, this.getFloatProperty());
-        writer.writeDoubleProperty(PropertyType.DoubleProperty, this.getDoubleProperty());
-        writer.writeStringProperty(PropertyType.StringProperty, this.getStringProperty());
+        writer.writeBooleanProperty(PropertyType.BOOLEAN_PROPERTY, this.getBooleanProperty());
+        writer.writeShortProperty(PropertyType.SHORT_PROPERTY, this.getShortProperty());
+        writer.writeIntegerProperty(PropertyType.INTEGER_PROPERTY, this.getIntegerProperty());
+        writer.writeLongProperty(PropertyType.LONG_PROPERTY, this.getLongProperty());
+        writer.writeFloatProperty(PropertyType.FLOAT_PROPERTY, this.getFloatProperty());
+        writer.writeDoubleProperty(PropertyType.DOUBLE_PROPERTY, this.getDoubleProperty());
+        writer.writeStringProperty(PropertyType.STRING_PROPERTY, this.getStringProperty());
 
-        writer.writeArrayProperty(PropertyType.BooleanArrayProperty, this.getBooleanArrayProperty());
-        writer.writeArrayProperty(PropertyType.ShortArrayProperty, this.getShortArrayProperty());
-        writer.writeArrayProperty(PropertyType.IntegerArrayProperty, this.getIntegerArrayProperty());
-        writer.writeArrayProperty(PropertyType.LongArrayProperty, this.getLongArrayProperty());
-        writer.writeArrayProperty(PropertyType.FloatArrayProperty, this.getFloatArrayProperty());
-        writer.writeArrayProperty(PropertyType.DoubleArrayProperty, this.getDoubleArrayProperty());
-        writer.writeArrayProperty(PropertyType.StringArrayProperty, this.getStringArrayProperty());
-        writer.writeBlobProperty(PropertyType.BlobProperty, this.getBlobProperty());
+        writer.writeArrayProperty(PropertyType.BOOLEAN_ARRAY_PROPERTY, this.getBooleanArrayProperty());
+        writer.writeArrayProperty(PropertyType.SHORT_ARRAY_PROPERTY, this.getShortArrayProperty());
+        writer.writeArrayProperty(PropertyType.INTEGER_ARRAY_PROPERTY, this.getIntegerArrayProperty());
+        writer.writeArrayProperty(PropertyType.LONG_ARRAY_PROPERTY, this.getLongArrayProperty());
+        writer.writeArrayProperty(PropertyType.FLOAT_ARRAY_PROPERTY, this.getFloatArrayProperty());
+        writer.writeArrayProperty(PropertyType.DOUBLE_ARRAY_PROPERTY, this.getDoubleArrayProperty());
+        writer.writeArrayProperty(PropertyType.STRING_ARRAY_PROPERTY, this.getStringArrayProperty());
+        writer.writeBlobProperty(PropertyType.BLOB_PROPERTY, this.getBlobProperty());
     }
 
     /**
      * Reads a json.
      */
     public static PropertyType readJson(IJsonObjectReader reader) {
-        boolean booleanValue = reader.readBooleanProperty(PropertyType.BooleanProperty);
-        short shortValue = reader.readShortProperty(PropertyType.ShortProperty);
-        int integerValue = reader.readIntegerProperty(PropertyType.IntegerProperty);
-        long longValue = reader.readLongProperty(PropertyType.LongProperty);
-        float floatValue = reader.readFloatProperty(PropertyType.FloatProperty);
-        double doubleValue = reader.readDoubleProperty(PropertyType.DoubleProperty);
-        String stringValue = reader.readStringProperty(PropertyType.StringProperty);
+        boolean booleanValue = reader.readBooleanProperty(PropertyType.BOOLEAN_PROPERTY);
+        short shortValue = reader.readShortProperty(PropertyType.SHORT_PROPERTY);
+        int integerValue = reader.readIntegerProperty(PropertyType.INTEGER_PROPERTY);
+        long longValue = reader.readLongProperty(PropertyType.LONG_PROPERTY);
+        float floatValue = reader.readFloatProperty(PropertyType.FLOAT_PROPERTY);
+        double doubleValue = reader.readDoubleProperty(PropertyType.DOUBLE_PROPERTY);
+        String stringValue = reader.readStringProperty(PropertyType.STRING_PROPERTY);
 
-        boolean[] booleanArray = reader.readBooleanArrayProperty(PropertyType.BooleanArrayProperty);
-        short[] shortArray = reader.readShortArrayProperty(PropertyType.ShortArrayProperty);
-        int[] integerArray = reader.readIntegerArrayProperty(PropertyType.IntegerArrayProperty);
-        long[] longArray = reader.readLongArrayProperty(PropertyType.LongArrayProperty);
-        float[] floatArray = reader.readFloatArrayProperty(PropertyType.FloatArrayProperty);
-        double[] doubleArray = reader.readDoubleArrayProperty(PropertyType.DoubleArrayProperty);
-        String[] stringArray = reader.readStringArrayProperty(PropertyType.StringArrayProperty);
-        byte[] blob = reader.readBlobProperty(PropertyType.BlobProperty);
+        boolean[] booleanArray = reader.readBooleanArrayProperty(PropertyType.BOOLEAN_ARRAY_PROPERTY);
+        short[] shortArray = reader.readShortArrayProperty(PropertyType.SHORT_ARRAY_PROPERTY);
+        int[] integerArray = reader.readIntegerArrayProperty(PropertyType.INTEGER_ARRAY_PROPERTY);
+        long[] longArray = reader.readLongArrayProperty(PropertyType.LONG_ARRAY_PROPERTY);
+        float[] floatArray = reader.readFloatArrayProperty(PropertyType.FLOAT_ARRAY_PROPERTY);
+        double[] doubleArray = reader.readDoubleArrayProperty(PropertyType.DOUBLE_ARRAY_PROPERTY);
+        String[] stringArray = reader.readStringArrayProperty(PropertyType.STRING_ARRAY_PROPERTY);
+        byte[] blob = reader.readBlobProperty(PropertyType.BLOB_PROPERTY);
 
         return new PropertyType(
             booleanValue,

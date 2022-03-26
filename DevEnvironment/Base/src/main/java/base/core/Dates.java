@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * The Dates class implements complementary APIs for dates.
  */
 public final class Dates {
-    private static final Logger log = LoggerFactory.getLogger(Dates.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Dates.class);
 
     /**
      * Gets the current time.
@@ -52,7 +52,7 @@ public final class Dates {
                 "Failed to parse a date: " + value +
                 ", due to the following error: " + e.getMessage();
 
-            log.error(errorMessage);
+            LOG.error(errorMessage);
             throw new BaseException(errorMessage);
         }
 

@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * The Writers class implements complementary APIs for files.
  */
 public final class Writers {
-    private static final Logger log = LoggerFactory.getLogger(Writers.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Writers.class);
 
     /**
      * Creates a string writer.
@@ -112,7 +112,7 @@ public final class Writers {
                 "The Writers class failed writing to a writer " +
                 ", due to the following error: " + e.getMessage();
 
-            Writers.log.error(errorMessage, e);
+            Writers.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
     }
@@ -140,7 +140,7 @@ public final class Writers {
                 "The Writers class failed flushing written content of a writer" +
                 ", due to the following error: " + e.getMessage();
 
-            Writers.log.error(errorMessage, e);
+            Writers.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
     }
@@ -160,7 +160,7 @@ public final class Writers {
                 "The Writers class failed closing a writer" +
                 ", due to the following error: " + e.getMessage();
 
-                Writers.log.error(errorMessage, e);
+                Writers.LOG.error(errorMessage, e);
                 throw new BaseException(errorMessage, e);
         }
     }
@@ -180,7 +180,7 @@ public final class Writers {
                 "The Writers class failed closing a writer due to the following error: " +
                 e.getMessage();
 
-            Writers.log.warn(warningMessage);
+            Writers.LOG.warn(warningMessage);
         }
     }
 

@@ -17,11 +17,10 @@ import java.time.Duration;
  * The RetryPolicy class implements a retry policy.
  */
 public final class RetryPolicy implements IRetryPolicy {
-    private static final int defaultNumberOfIntervals = 5;
-    private static final Duration defaultIntervalDuration = Duration.ofMillis(1500);
-
-    private static final String propertyNumberOfAttempts = "numberOfAttempts";
-    private static final String propertyIntervalDuration = "intervalDuration";
+    private static final int DEFAULT_NUMBER_OF_INTERVALS = 5;
+    private static final Duration DEFAULT_INTERVAL_DURATION = Duration.ofMillis(1500);
+    private static final String PROPERTY_NUMBER_OF_ATTEMPTS = "numberOfAttempts";
+    private static final String PROPERTY_INTERVAL_DURATION = "intervalDuration";
 
     private final int numberOfAttempts;
     private final Duration intervalDuration;
@@ -31,7 +30,7 @@ public final class RetryPolicy implements IRetryPolicy {
      * Gets the default retry policy.
      */
     public static IRetryPolicy defaultRetryPolicy() {
-        return new RetryPolicy(defaultNumberOfIntervals, defaultIntervalDuration);
+        return new RetryPolicy(DEFAULT_NUMBER_OF_INTERVALS, DEFAULT_INTERVAL_DURATION);
     }
 
     /**
@@ -197,16 +196,16 @@ public final class RetryPolicy implements IRetryPolicy {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeIntegerProperty(RetryPolicy.propertyNumberOfAttempts, this.getNumberOfAttempts());
-        writer.writeDurationProperty(RetryPolicy.propertyIntervalDuration, this.getIntervalDuration());
+        writer.writeIntegerProperty(RetryPolicy.PROPERTY_NUMBER_OF_ATTEMPTS, this.getNumberOfAttempts());
+        writer.writeDurationProperty(RetryPolicy.PROPERTY_INTERVAL_DURATION, this.getIntervalDuration());
     }
 
     /**
      * Reads an object from a json reader.
      */
     public static IRetryPolicy readJson(IJsonObjectReader reader) {
-        int numberOfAttempts = reader.readIntegerProperty(RetryPolicy.propertyNumberOfAttempts);
-        Duration intervalDuration = reader.readDurationProperty(RetryPolicy.propertyIntervalDuration);
+        int numberOfAttempts = reader.readIntegerProperty(RetryPolicy.PROPERTY_NUMBER_OF_ATTEMPTS);
+        Duration intervalDuration = reader.readDurationProperty(RetryPolicy.PROPERTY_INTERVAL_DURATION);
 
         return new RetryPolicy(
             numberOfAttempts,

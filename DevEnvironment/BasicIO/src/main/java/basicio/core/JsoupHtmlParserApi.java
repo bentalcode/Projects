@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * The JsoupHtmlParserApi class implements complementary APIs for jsop html parser module.
  */
 public final class JsoupHtmlParserApi {
-    private static final Logger log = LoggerFactory.getLogger(JsoupHtmlParserApi.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JsoupHtmlParserApi.class);
 
     /**
      * Creates a new Connection to a URL
@@ -32,7 +32,7 @@ public final class JsoupHtmlParserApi {
                 "Failed to get document of connection: " + connection +
                 " due to the following error: " + e.getMessage();
 
-            log.error(errorMessage, e);
+            LOG.error(errorMessage, e);
             throw new JsoupHtmlParserException(errorMessage, e);
         }
 

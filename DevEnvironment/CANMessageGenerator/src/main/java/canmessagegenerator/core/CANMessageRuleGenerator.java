@@ -13,11 +13,10 @@ import java.util.List;
  * The ICANMessageRuleGenerator class implements a generator of CAN message rules.
  */
 public final class CANMessageRuleGenerator extends CANRuleGenerator implements ICANRuleGenerator<ICANMessageRule> {
-    private static final short minLength = 0;
-    private static final short maxLength = 1785;
-
-    private static final int minNumberOfSignalRules = 1;
-    private static final int maxNumberOfSignalRules = 10;
+    private static final short MIN_LENGTH = 0;
+    private static final short MAX_LENGTH = 1785;
+    private static final int MIN_NUMBER_OF_SIGNAL_RULES = 1;
+    private static final int MAX_NUMBER_OF_SIGNAL_RULES = 10;
 
     private final ICANRuleGenerator<ICANSignalRule> signalRuleGenerator = new CANSignalRuleGenerator();
 
@@ -79,7 +78,7 @@ public final class CANMessageRuleGenerator extends CANRuleGenerator implements I
      * Generates a new length.
      */
     private short generateLength() {
-        return (short)this.randomGenerator().nextInteger(minLength, maxLength);
+        return (short)this.randomGenerator().nextInteger(MIN_LENGTH, MAX_LENGTH);
     }
 
     /**
@@ -87,8 +86,8 @@ public final class CANMessageRuleGenerator extends CANRuleGenerator implements I
      */
     private List<ICANSignalRule> generateSignalRules(String name) {
         int numberOfRules = this.randomGenerator().nextInteger(
-            minNumberOfSignalRules,
-            maxNumberOfSignalRules);
+                MIN_NUMBER_OF_SIGNAL_RULES,
+                MAX_NUMBER_OF_SIGNAL_RULES);
 
         List<ICANSignalRule> rules = new ArrayList<>(numberOfRules);
 

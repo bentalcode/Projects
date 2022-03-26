@@ -17,26 +17,23 @@ import java.time.Duration;
  * The CircuitBreakerPolicy class implements a circuit breaker policy.
  */
 public final class CircuitBreakerPolicy implements ICircuitBreakerPolicy {
-    private static final int defaultFailureThreshold = 5;
-    private static final Duration defaultFailureThresholdTimeout = Duration.ofSeconds(300);
-    private static final int defaultSuccessThreshold = 3;
-    private static final Duration defaultSuccessThresholdTimeout = Duration.ofSeconds(300);
-    private static final Duration defaultRecoveryDuration = Duration.ofSeconds(30);
+    private static final int DEFAULT_FAILURE_THRESHOLD = 5;
+    private static final Duration DEFAULT_FAILURE_THRESHOLD_TIMEOUT = Duration.ofSeconds(300);
+    private static final int DEFAULT_SUCCESS_THRESHOLD = 3;
+    private static final Duration DEFAULT_SUCCESS_THRESHOLD_TIMEOUT = Duration.ofSeconds(300);
+    private static final Duration DEFAULT_RECOVERY_DURATION = Duration.ofSeconds(30);
 
-    private static final String propertyFailureThreshold = "failureThreshold";
-    private static final String propertyFailureThresholdTimeout = "failureThresholdTimeout";
-    private static final String propertySuccessThreshold = "successThreshold";
-    private static final String propertySuccessThresholdTimeout = "successThresholdTimeout";
-    private static final String propertyRecoveryDuration = "recoveryDuration";
+    private static final String PROPERTY_FAILURE_THRESHOLD = "failureThreshold";
+    private static final String PROPERTY_FAILURE_THRESHOLD_TIMEOUT = "failureThresholdTimeout";
+    private static final String PROPERTY_SUCCESS_THRESHOLD = "successThreshold";
+    private static final String PROPERTY_SUCCESS_THRESHOLD_TIMEOUT = "successThresholdTimeout";
+    private static final String PROPERTY_RECOVERY_DURATION = "recoveryDuration";
 
     private final int failureThreshold;
     private final Duration failureThresholdTimeout;
-
     private final int successThreshold;
     private final Duration successThresholdTimeout;
-
     private final Duration recoveryDuration;
-
     private final IBinaryComparator<ICircuitBreakerPolicy> comparator = CircuitBreakerPolicy.defaultComparator();
 
     /**
@@ -44,11 +41,11 @@ public final class CircuitBreakerPolicy implements ICircuitBreakerPolicy {
      */
     public static ICircuitBreakerPolicy defaultCircuitBreakerPolicy() {
         return new CircuitBreakerPolicy(
-            defaultFailureThreshold,
-            defaultFailureThresholdTimeout,
-            defaultSuccessThreshold,
-            defaultSuccessThresholdTimeout,
-            defaultRecoveryDuration);
+            DEFAULT_FAILURE_THRESHOLD,
+            DEFAULT_FAILURE_THRESHOLD_TIMEOUT,
+            DEFAULT_SUCCESS_THRESHOLD,
+            DEFAULT_SUCCESS_THRESHOLD_TIMEOUT,
+            DEFAULT_RECOVERY_DURATION);
     }
 
     /**
@@ -265,22 +262,22 @@ public final class CircuitBreakerPolicy implements ICircuitBreakerPolicy {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeIntegerProperty(CircuitBreakerPolicy.propertyFailureThreshold, this.getFailureThreshold());
-        writer.writeDurationProperty(CircuitBreakerPolicy.propertyFailureThresholdTimeout, this.getFailureThresholdTimeout());
-        writer.writeIntegerProperty(CircuitBreakerPolicy.propertySuccessThreshold, this.getSuccessThreshold());
-        writer.writeDurationProperty(CircuitBreakerPolicy.propertySuccessThresholdTimeout, this.getSuccessThresholdTimeout());
-        writer.writeDurationProperty(CircuitBreakerPolicy.propertyRecoveryDuration, this.getRecoveryDuration());
+        writer.writeIntegerProperty(CircuitBreakerPolicy.PROPERTY_FAILURE_THRESHOLD, this.getFailureThreshold());
+        writer.writeDurationProperty(CircuitBreakerPolicy.PROPERTY_FAILURE_THRESHOLD_TIMEOUT, this.getFailureThresholdTimeout());
+        writer.writeIntegerProperty(CircuitBreakerPolicy.PROPERTY_SUCCESS_THRESHOLD, this.getSuccessThreshold());
+        writer.writeDurationProperty(CircuitBreakerPolicy.PROPERTY_SUCCESS_THRESHOLD_TIMEOUT, this.getSuccessThresholdTimeout());
+        writer.writeDurationProperty(CircuitBreakerPolicy.PROPERTY_RECOVERY_DURATION, this.getRecoveryDuration());
     }
 
     /**
      * Reads an object from a json reader.
      */
     public static ICircuitBreakerPolicy readJson(IJsonObjectReader reader) {
-        int failureThreshold = reader.readIntegerProperty(CircuitBreakerPolicy.propertyFailureThreshold);
-        Duration failureThresholdTimeout = reader.readDurationProperty(CircuitBreakerPolicy.propertyFailureThresholdTimeout);
-        int successThreshold = reader.readIntegerProperty(CircuitBreakerPolicy.propertySuccessThreshold);
-        Duration successThresholdTimeout = reader.readDurationProperty(CircuitBreakerPolicy.propertySuccessThresholdTimeout);
-        Duration recoveryDuration = reader.readDurationProperty(CircuitBreakerPolicy.propertyRecoveryDuration);
+        int failureThreshold = reader.readIntegerProperty(CircuitBreakerPolicy.PROPERTY_FAILURE_THRESHOLD);
+        Duration failureThresholdTimeout = reader.readDurationProperty(CircuitBreakerPolicy.PROPERTY_FAILURE_THRESHOLD_TIMEOUT);
+        int successThreshold = reader.readIntegerProperty(CircuitBreakerPolicy.PROPERTY_SUCCESS_THRESHOLD);
+        Duration successThresholdTimeout = reader.readDurationProperty(CircuitBreakerPolicy.PROPERTY_SUCCESS_THRESHOLD_TIMEOUT);
+        Duration recoveryDuration = reader.readDurationProperty(CircuitBreakerPolicy.PROPERTY_RECOVERY_DURATION);
 
         return new CircuitBreakerPolicy(
             failureThreshold,

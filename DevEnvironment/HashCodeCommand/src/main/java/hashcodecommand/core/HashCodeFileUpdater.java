@@ -9,19 +9,16 @@ import basicio.interfaces.IUpdateRecord;
 import basicio.interfaces.MatchPolicyType;
 import hashcodecommand.interfaces.IHashCodeFileUpdater;
 import java.nio.file.Path;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The HashCodeFileUpdater class implements an updater of hash-codes in a file.
  */
 public final class HashCodeFileUpdater implements IHashCodeFileUpdater {
-    private static final String hashCodeRegex =
+    private static final String HASH_CODE_REGEX =
         "(.*)(new HashCodeBuilder)(\\([0-9]*, [0-9]*\\))(.*)";
 
     private final Path path;
     private final IContentProvider hashCodeProvider;
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The HashCodeFileUpdater constructor.
@@ -62,7 +59,7 @@ public final class HashCodeFileUpdater implements IHashCodeFileUpdater {
             destructorHandler.register(lineUpdater);
 
             IUpdateRecord updateRecord = new UpdateRecordProvider(
-                hashCodeRegex,
+                HASH_CODE_REGEX,
                 this.hashCodeProvider,
                 MatchPolicyType.AllMatches);
 

@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
  * The ReflectionHandler class implements a reflection handler.
  */
 public final class ReflectionHandler {
-    private static final Logger log = LoggerFactory.getLogger(ReflectionHandler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ReflectionHandler.class);
 
     /**
      * ReflectionHandler constructor.
@@ -39,7 +39,7 @@ public final class ReflectionHandler {
                 ClassTypes.getName(classType) +
                 "; Error Message: " + e.getMessage();
 
-            ReflectionHandler.log.error(errorMessage, e);
+            ReflectionHandler.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -70,7 +70,7 @@ public final class ReflectionHandler {
                 ClassTypes.getName(classType) +
                 "; Error Message: " + e.getMessage();
 
-            ReflectionHandler.log.error(errorMessage, e);
+            ReflectionHandler.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -102,7 +102,7 @@ public final class ReflectionHandler {
                 ClassTypes.getName(classType) +
                 "; Error Message: " + e.getMessage();
 
-            ReflectionHandler.log.error(errorMessage, e);
+            ReflectionHandler.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -209,7 +209,7 @@ public final class ReflectionHandler {
                 " for class type: " + ClassTypes.getName(classType) +
                 ", due to the following error: " + e.getMessage();
 
-            ReflectionHandler.log.error(errorMessage, e);
+            ReflectionHandler.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -231,7 +231,7 @@ public final class ReflectionHandler {
                 " for class type: " + ClassTypes.getName(classType) +
                 ", due to the following error: " + e.getMessage();
 
-            ReflectionHandler.log.error(errorMessage, e);
+            ReflectionHandler.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 
@@ -253,7 +253,7 @@ public final class ReflectionHandler {
                 " for class type: " + ClassTypes.getName(classType) +
                 ", due to the following error: " + e.getMessage();
 
-            ReflectionHandler.log.error(errorMessage, e);
+            ReflectionHandler.LOG.error(errorMessage, e);
             throw new BaseException(errorMessage, e);
         }
 

@@ -9,8 +9,8 @@ import json.interfaces.IJsonObjectWriter;
  * The ParameterMetadata abstract base class implements meta-data of a parameter.
  */
 public abstract class ParameterMetadata implements IParameterMetadata {
-    protected static final String propertyName = "name";
-    protected static final String propertyDescription = "description";
+    protected static final String PROPERTY_NAME = "name";
+    protected static final String PROPERTY_DESCRIPTION = "description";
 
     private final String name;
     private final String description;
@@ -63,7 +63,7 @@ public abstract class ParameterMetadata implements IParameterMetadata {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(propertyName, this.name);
-        writer.writeStringProperty(propertyDescription, this.description);
+        writer.writeStringProperty(PROPERTY_NAME, this.name);
+        writer.writeStringProperty(PROPERTY_DESCRIPTION, this.description);
     }
 }

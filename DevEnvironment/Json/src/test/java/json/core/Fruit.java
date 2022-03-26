@@ -14,10 +14,10 @@ import json.interfaces.IJsonObjectWriter;
  * The Fruit class implements properties of a fruit.
  */
 public final class Fruit implements IFruit {
-    private static final String PropertyKind = "kind";
-    private static final String PropertySize = "size";
-    private static final String PropertyColor = "color";
-    private static final String PropertyPrice = "price";
+    private static final String PROPERTY_KIND = "kind";
+    private static final String PROPERTY_SIZE = "size";
+    private static final String PROPERTY_COLOR = "color";
+    private static final String PROPERTY_PRICE = "price";
 
     private final String kind;
     private final int size;
@@ -93,20 +93,20 @@ public final class Fruit implements IFruit {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(Fruit.PropertyKind, this.kind);
-        writer.writeIntegerProperty(Fruit.PropertySize, this.size);
-        writer.writeStringProperty(Fruit.PropertyColor, this.color);
-        writer.writeDoubleProperty(Fruit.PropertyPrice, this.price);
+        writer.writeStringProperty(Fruit.PROPERTY_KIND, this.kind);
+        writer.writeIntegerProperty(Fruit.PROPERTY_SIZE, this.size);
+        writer.writeStringProperty(Fruit.PROPERTY_COLOR, this.color);
+        writer.writeDoubleProperty(Fruit.PROPERTY_PRICE, this.price);
     }
 
     /**
      * Reads a json.
      */
     public static Fruit readJson(IJsonObjectReader reader) {
-        String kind = reader.readStringProperty(Fruit.PropertyKind);
-        int size = reader.readIntegerProperty(Fruit.PropertySize);
-        String color = reader.readStringProperty(Fruit.PropertyColor);
-        double price = reader.readDoubleProperty(Fruit.PropertyPrice);
+        String kind = reader.readStringProperty(Fruit.PROPERTY_KIND);
+        int size = reader.readIntegerProperty(Fruit.PROPERTY_SIZE);
+        String color = reader.readStringProperty(Fruit.PROPERTY_COLOR);
+        double price = reader.readDoubleProperty(Fruit.PROPERTY_PRICE);
 
         return new Fruit(
             kind,
