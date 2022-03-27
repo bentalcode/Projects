@@ -40,9 +40,7 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
             this.merge(prevInterval, currInterval, stack);
         }
 
-        List<IInterval<Type>> result = Stacks.toArrayInReverseOrder(stack);
-
-        return result;
+        return Stacks.toArrayInReverseOrder(stack);
     }
 
     /**
@@ -105,9 +103,7 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
             ++index;
         }
 
-        List<IInterval<Type>> result = Stacks.toArrayInReverseOrder(stack);
-
-        return result;
+        return Stacks.toArrayInReverseOrder(stack);
     }
 
     /**

@@ -31,9 +31,8 @@ public final class SingleProducerConsumerLockFreeQueueTest {
     @Test
     public void singleProducerConsumerCircularBufferQueueTest() {
         for (int size = 1; size <= 100; ++size) {
-            int capacity = size;
             List<Integer> values = CollectionValues.createListValues(size);
-            this.testSingleProducerConsumerCircularBufferQueue(Integer.class, values, capacity);
+            this.testSingleProducerConsumerCircularBufferQueue(Integer.class, values, size);
         }
     }
 

@@ -2,8 +2,6 @@ package algorithms.core;
 
 import algorithms.interfaces.IGrayCode;
 import base.core.IntegerArrayIterator;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;

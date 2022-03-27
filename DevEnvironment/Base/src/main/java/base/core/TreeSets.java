@@ -8,13 +8,6 @@ import java.util.TreeSet;
  */
 public final class TreeSets {
     /**
-     * Creates a new instance of tree-set.
-     */
-    public static <TKey> TreeSet<TKey> newSet() {
-        return new TreeSet<>();
-    }
-
-    /**
      * Creates a new instance of a tree-set from a list.
      */
     public static <TKey> TreeSet<TKey> from(List<TKey> list) {

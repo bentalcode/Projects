@@ -23,7 +23,7 @@ public final class Adding implements IAdding {
             "The left number is not defined.");
 
         Conditions.validate(
-            right != null && left.length > 0,
+            right != null && right.length > 0,
             "The right number is not defined.");
 
         this.validateBase(base);
@@ -74,11 +74,11 @@ public final class Adding implements IAdding {
     @Override
     public String addStringNumbers(String left, String right, int base) {
         Conditions.validate(
-            left != null || left.length() > 0,
+            left != null && left.length() > 0,
             "The left number string is not defined");
 
         Conditions.validateNotNull(
-            right != null || right.length() > 0,
+            right != null && right.length() > 0,
             "The right number string is not defined");
 
         this.validateBase(base);

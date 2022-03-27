@@ -81,7 +81,7 @@ public final class BPlusTreeLeafNode<TKey extends Comparable<TKey>, TValue>
         TKey key,
         TValue value) {
 
-        int index = 0;
+        int index;
 
         for (index = 0; index < this.getKeyCount(); ++index) {
             TKey currKey = this.getKey(index);
@@ -143,7 +143,7 @@ public final class BPlusTreeLeafNode<TKey extends Comparable<TKey>, TValue>
     @Override
     public void deleteAt(int index) {
 
-        int i = index;
+        int i;
 
         for (i = index; i < this.getKeyCount() - 1; ++i) {
             this.setKey(i, this.getKey(i + 1));

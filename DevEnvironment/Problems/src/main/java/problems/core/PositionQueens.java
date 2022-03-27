@@ -28,9 +28,7 @@ public final class PositionQueens implements IPositionQueens {
             0,
             boards);
 
-        List<List<String>> results = this.createBoardsAsString(boards, size);
-
-        return results;
+        return this.createBoardsAsString(boards, size);
     }
 
     /**

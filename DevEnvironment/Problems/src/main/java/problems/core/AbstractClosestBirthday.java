@@ -82,14 +82,9 @@ public abstract class AbstractClosestBirthday implements IClosestBirthday {
 
             return 30;
         }
-        else if (month == 2) {
+        else {
             return isLeapYear(year) ? 29 : 28;
         }
-        else {
-            assert(false);
-        }
-
-        return 0;
     }
 
     /**

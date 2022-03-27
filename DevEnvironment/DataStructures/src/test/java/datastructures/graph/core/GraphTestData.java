@@ -120,9 +120,7 @@ public final class GraphTestData implements IGraphTestData {
         IVertex<Double, Double> sourceVertex = this.nextVertexByDouble();
         IVertex<Double, Double> destinationVertex = this.nextVertexByDouble();
 
-        IEdge<Double, Double> edge = Edge.newDirectedEdge(sourceVertex, destinationVertex);
-
-        return edge;
+        return Edge.newDirectedEdge(sourceVertex, destinationVertex);
     }
 
     /**

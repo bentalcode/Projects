@@ -307,7 +307,7 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
      *       24
      */
     private static List<List<IMultiLevelDoublyLinkedListNode<Integer>>> getNodesByDepthLevels1() {
-        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> result = ArrayLists.make(
+        return ArrayLists.make(
             ArrayLists.make(
                 MultiLevelDoublyLinkedListNode.make(1)),
             ArrayLists.make(
@@ -335,8 +335,6 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
             ArrayLists.make(
                 MultiLevelDoublyLinkedListNode.make(3),
                 MultiLevelDoublyLinkedListNode.make(4)));
-
-        return result;
     }
 
     /**
@@ -351,7 +349,7 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
      *       12
      */
     private static List<List<IMultiLevelDoublyLinkedListNode<Integer>>> getNodesByDepthLevels2() {
-        List<List<IMultiLevelDoublyLinkedListNode<Integer>>> result = ArrayLists.make(
+        return ArrayLists.make(
             ArrayLists.make(
                 MultiLevelDoublyLinkedListNode.make(1),
                 MultiLevelDoublyLinkedListNode.make(6),
@@ -367,7 +365,5 @@ public final class MultiLevelDoublyLinkedListTestData implements IMultiLevelDoub
             ArrayLists.make(
                 MultiLevelDoublyLinkedListNode.make(4),
                 MultiLevelDoublyLinkedListNode.make(5)));
-
-        return result;
     }
 }

@@ -8,11 +8,6 @@ import java.nio.charset.StandardCharsets;
  */
 public final class Constants {
     /**
-     * The version of the configuration.
-     */
-    public static final double CONFIGURATION_VERSION = 1.0;
-
-    /**
      * The default encoding.
      */
     public static final Charset DEFAULT_ENCODING = StandardCharsets.UTF_8;

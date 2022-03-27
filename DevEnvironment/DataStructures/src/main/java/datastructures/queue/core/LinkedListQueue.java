@@ -111,7 +111,7 @@ public final class LinkedListQueue<T extends Comparable<T>> implements IDequeue<
     @Override
     public T removeBack() {
         validateNotEmpty();
-        return this.removeBack();
+        return this.data.remove(this.size() - 1);
     }
 
     /**

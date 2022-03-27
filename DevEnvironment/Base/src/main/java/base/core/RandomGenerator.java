@@ -128,12 +128,9 @@ public final class RandomGenerator implements IRandomGenerator {
      */
     @Override
     public String nextString() {
-        int fromLength = 0;
-        int toLength = RandomGenerator.DEFAULT_STRING_MAX_LENGTH;
-
         return this.nextString(
-            fromLength,
-            toLength);
+            0,
+            DEFAULT_STRING_MAX_LENGTH);
     }
 
     /**

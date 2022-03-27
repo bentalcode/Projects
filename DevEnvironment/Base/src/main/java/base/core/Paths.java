@@ -355,9 +355,7 @@ public final class Paths {
             return false;
         }
 
-        int length = pathLength1;
-
-        return StringEquality.equals(path1, 0, path2, 0, length);
+        return StringEquality.equals(path1, 0, path2, 0, pathLength1);
     }
 
     /**
@@ -441,7 +439,6 @@ public final class Paths {
 
         if (relativePathLengthOfPath == 0) {
             pathEffectiveStartIndex = -1;
-            pathEffectiveEndIndex = -1;
         }
 
         //
@@ -451,7 +448,7 @@ public final class Paths {
         char[] result = new char[resultLength];
 
         int insertIndex = 0;
-        int numberOfWrittenCharacters = 0;
+        int numberOfWrittenCharacters;
 
         //
         // Add the relative path of the root path...
@@ -700,13 +697,11 @@ public final class Paths {
         int pathStartIndex = startIndex;
         int pathEndIndex = pathEffectiveEndIndex(path, endIndex, separator);
 
-        int counter = StringSearch.countSubStringFromEnd(
+        return StringSearch.countSubStringFromEnd(
             path,
             pathStartIndex, pathEndIndex,
             separator, 0, separator.length - 1,
             false);
-
-        return counter;
     }
 
     /**

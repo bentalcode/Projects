@@ -60,8 +60,7 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
             characterCounter);
 
         int minStartIndex = startIndex;
-        int minEndIndex = endIndex;
-        int minLength = Indexes.size(minStartIndex, minEndIndex);
+        int minLength = Indexes.size(startIndex, endIndex);
 
         for (int currIndex = endIndex + 1; currIndex < this.src.length; ++currIndex) {
             char currValue = this.src[currIndex];
@@ -85,7 +84,6 @@ public final class MinimumWindowSubstring implements ICalculator<String> {
 
             if (currLength < minLength) {
                 minStartIndex = startIndex;
-                minEndIndex = currIndex;
                 minLength = currLength;
             }
         }

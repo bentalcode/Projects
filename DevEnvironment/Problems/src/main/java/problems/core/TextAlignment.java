@@ -271,7 +271,7 @@ public final class TextAlignment implements ITextAlignment {
 
         int insertIndex = 0;
         int padLength = 1;
-        int numberOfWrittenCharacters = 0;
+        int numberOfWrittenCharacters;
 
         //
         // Write the words with a pad of size 1...

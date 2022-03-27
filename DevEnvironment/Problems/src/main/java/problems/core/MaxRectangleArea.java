@@ -36,18 +36,13 @@ public final class MaxRectangleArea implements ICalculator<Integer> {
 
         for (int row = 0; row < this.rows; ++row) {
             for (int col = 0; col < this.cols; ++col) {
+
                 if (this.validRectanglePosition(row, col)) {
-                    int leftUpperRow = row;
-                    int leftUpperCol = col;
-
-                    int rightBottomRow = row;
-                    int rightBottomCol = col;
-
                     int currSize = this.calculateMaxRectangleArea(
-                        leftUpperRow,
-                        leftUpperCol,
-                        rightBottomRow,
-                        rightBottomCol);
+                        row,
+                        col,
+                        row,
+                        col);
 
                     if (currSize > maxSize) {
                         maxSize = currSize;
@@ -71,7 +66,7 @@ public final class MaxRectangleArea implements ICalculator<Integer> {
             rightBottomRow, rightBottomCol);
 
         //
-        // Try move right...
+        // Try moving right...
         //
         if (this.validRectanglePosition(rightBottomRow, rightBottomCol + 1) &&
             this.validRectangleColumn(leftUpperRow, rightBottomCol + 1, length(leftUpperRow, rightBottomRow))) {
@@ -86,7 +81,7 @@ public final class MaxRectangleArea implements ICalculator<Integer> {
         }
 
         //
-        // Try move bottom...
+        // Try moving bottom...
         //
         if (this.validRectanglePosition(rightBottomRow + 1, rightBottomCol) &&
             this.validRectangleRow(rightBottomRow + 1, leftUpperCol, length(leftUpperCol, rightBottomCol))) {
@@ -101,7 +96,7 @@ public final class MaxRectangleArea implements ICalculator<Integer> {
         }
 
         //
-        // Try move down right-bottom diagonal...
+        // Try moving down right-bottom diagonal...
         //
         if (this.validRectanglePosition(rightBottomRow + 1, rightBottomCol + 1) &&
             this.validRectangleRow(rightBottomRow + 1, leftUpperCol, length(leftUpperCol, rightBottomCol)) &&
@@ -179,9 +174,7 @@ public final class MaxRectangleArea implements ICalculator<Integer> {
         int width = length(leftUpperCol, rightBottomCol);
         int height = length(leftUpperRow, rightBottomRow);
 
-        int size = width * height;
-
-        return size;
+        return width * height;
     }
 
     /**

@@ -148,13 +148,8 @@ public final class CANMessageGeneratorCommand extends AbstractCommand {
 
         IJitterMessageData messageData = this.messageHandler.getMessageData(messageName);
 
-        StringBuilder information = new StringBuilder();
-        information
-            .append(MESSAGE_NAME_TEXT).append(" ").append(messageName)
-            .append(", ")
-            .append(messageData);
-
-        messageWriter.writeInformationalMessage(information.toString());
+        String information = MESSAGE_NAME_TEXT + " " + messageName + ", " + messageData;
+        messageWriter.writeInformationalMessage(information);
     }
 
     /**

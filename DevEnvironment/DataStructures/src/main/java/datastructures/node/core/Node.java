@@ -202,11 +202,9 @@ public final class Node<T extends Comparable<T>> implements INode<T> {
          */
         @Override
         public INode<T> build() {
-            INode<T> node = new Node<>(
+            return new Node<>(
                 this.value,
                 base.core.Comparator.make());
-
-            return node;
         }
     }
 }

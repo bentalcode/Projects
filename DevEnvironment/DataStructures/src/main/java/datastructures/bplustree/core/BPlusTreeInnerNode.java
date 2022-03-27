@@ -83,7 +83,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
      */
     @Override
     public int findPosition(TKey key) {
-        int index = 0;
+        int index;
 
         for (index = 0; index < this.getKeyCount(); ++index) {
             TKey currKey = this.getKey(index);
@@ -319,7 +319,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
      */
     @Override
     public void deleteAt(int index) {
-        int i = 0;
+        int i;
 
         for (i = index; i < this.getKeyCount() - 1; ++i) {
             this.setKey(i, this.getKey(i + 1));

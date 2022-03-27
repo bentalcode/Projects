@@ -12,7 +12,7 @@ public final class HashCodeProvider implements IContentProvider {
     private static final int PRE_CALCULATED_PRIMES = 10000;
 
     private final Prime prime;
-    private int currentPrime = 2;
+    private int currentPrime;
 
     /**
      * The HashCodeProvider constructor.

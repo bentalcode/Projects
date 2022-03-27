@@ -84,9 +84,12 @@ public final class MapAggregationResults extends AbstractAggregationResults {
      */
     @Override
     protected void reduce(long reductionSize) {
+        assert(reductionSize >= 0);
+
         //
         // In this section serialize portion of the data into storage,
         // and keep into memory up to the specified size...
         //
+        throw new UnsupportedOperationException();
     }
 }

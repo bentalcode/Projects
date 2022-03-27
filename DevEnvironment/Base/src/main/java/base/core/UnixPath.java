@@ -100,7 +100,6 @@ public final class UnixPath extends AbstractPath {
 
         for (String component : components) {
             if (component.isEmpty() || component.equals(UnixPath.CURRENT_DIRECTORY)) {
-                continue;
             }
             else if (component.equals(UnixPath.PARENT_DIRECTORY)) {
                 if (!stack.empty()) {

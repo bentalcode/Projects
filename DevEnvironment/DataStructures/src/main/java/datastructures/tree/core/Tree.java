@@ -72,7 +72,7 @@ public final class Tree<TKey extends Comparable<TKey>, TValue> implements ITree<
      */
     @Override
     public ITreeTraversal<TKey , TValue> getTreeTraversal() {
-        return this.getTreeTraversal();
+        return new TreeTraversal<>();
     }
 
     /**

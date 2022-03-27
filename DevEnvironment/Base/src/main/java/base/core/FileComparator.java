@@ -50,7 +50,7 @@ public final class FileComparator implements IComparableComparator<Path> {
                 return compareStatus;
             }
 
-            if (lhsLine == null || rhs == null) {
+            if (lhsLine == null || rhsLine == null) {
                 assert(lhsLine == null && rhsLine == null);
                 break;
             }

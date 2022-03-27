@@ -49,7 +49,7 @@ public final class ModuleDeploymentSimulationLogic implements IModuleDeploymentL
             "The deployment data.");
 
         String cmakeListsPath = this.module.getCMakeListsFilePath().toString();
-        String cmakeListsData = new String(this.outputStream.toByteArray());
+        String cmakeListsData = this.outputStream.toString();
 
         deploymentData.setData(cmakeListsPath, cmakeListsData);
     }

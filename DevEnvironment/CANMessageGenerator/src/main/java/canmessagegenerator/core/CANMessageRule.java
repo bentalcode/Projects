@@ -123,18 +123,15 @@ public final class CANMessageRule implements ICANMessageRule {
 
     @Override
     public String toString() {
-        StringBuilder messageBuilder = new StringBuilder();
-        messageBuilder.append(MESSAGE_SYNTAX);
-        messageBuilder.append(" ");
-        messageBuilder.append(this.id);
-        messageBuilder.append(" ");
-        messageBuilder.append(this.name);
-        messageBuilder.append(": ");
-        messageBuilder.append(this.length);
-        messageBuilder.append(" ");
-        messageBuilder.append(this.transmittingNodeName);
+        String result =
+            MESSAGE_SYNTAX
+            + " " + this.id
+            + " " + this.name
+            + ": " + this.length
+            + " "
+            + this.transmittingNodeName;
 
-        return messageBuilder.toString();
+        return result;
     }
 
     /**
