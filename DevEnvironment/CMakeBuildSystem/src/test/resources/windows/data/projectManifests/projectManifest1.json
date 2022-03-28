@@ -8,8 +8,6 @@
         "MemoryManagement",
         "Command",
         "Json",
-        "CANMessageGenerator",
-        "CANMessageGeneratorCommand",
         "Problems",
         "BaseTest",
         "UnitTesting",
@@ -75,22 +73,6 @@
             "type": "library",
             "dependentModules": [
                 "Base"
-            ]
-        },
-        {
-            "name": "CANMessageGenerator",
-            "type": "library",
-            "dependentModules": [
-                "Base"
-            ]
-        },
-        {
-            "name": "CANMessageGeneratorCommand",
-            "type": "executable",
-            "dependentModules": [
-                "Base",
-                "Command",
-                "CANMessageGenerator"
             ]
         },
         {
