@@ -29,17 +29,7 @@ public final class Lists {
      * Creates a list from an array.
      */
     public static <T> List<T> fromArray(T[] array) {
-        if (array == null) {
-            return new ArrayList<>();
-        }
-
-        List<T> result = new ArrayList<>(array.length);
-
-        for (T item : array) {
-            result.add(item);
-        }
-
-        return result;
+        return new ArrayList<>(java.util.Arrays.asList(array));
     }
 
     /**

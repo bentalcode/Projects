@@ -107,7 +107,7 @@ public abstract class AbstractPathBuilder implements IPathBuilder {
         }
 
         if (!Strings.isNullOrEmpty(this.extension)) {
-            result.append("." + this.extension);
+            result.append(".").append(this.extension);
         }
 
         return result.toString();

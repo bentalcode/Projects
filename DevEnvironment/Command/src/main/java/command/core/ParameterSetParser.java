@@ -52,8 +52,6 @@ public final class ParameterSetParser implements IParser<IInputParameters, IPara
             inputParameters,
             "The input parameters.");
 
-        List<IParameter> parameters = new ArrayList<>();
-
         IParsingResult<List<IParameter>> result = this.parseIndexedParameters(
             this.metadata.getIndexedParameters(),
             inputParameters.getIndexedParameters());
@@ -62,7 +60,7 @@ public final class ParameterSetParser implements IParser<IInputParameters, IPara
             return ParsingResult.failureResult(result);
         }
 
-        parameters.addAll(result.getResult());
+        List<IParameter> parameters = new ArrayList<>(result.getResult());
 
         result = this.parseNamedParameters(
             this.metadata.getNamedParameters(),

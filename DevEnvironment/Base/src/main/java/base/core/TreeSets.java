@@ -22,27 +22,16 @@ public final class TreeSets {
      * Creates a new instance of a tree-set.
      */
     public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(TKey[] keys) {
-        TreeSet<TKey> tree = new TreeSet<>();
-
-        if (keys == null) {
-            return tree;
-        }
-
-        for (TKey key : keys) {
-            tree.add(key);
-        }
-
-        return tree;
+        return new TreeSet<>(java.util.Arrays.asList(keys));
     }
 
     /**
      * Creates a new instance of a tree-set.
      */
     public static <TKey extends Comparable<TKey>> TreeSet<TKey> make(TKey key) {
-        TreeSet<TKey> tree = new TreeSet<>();
-        tree.add(key);
-
-        return tree;
+        TreeSet<TKey> treeSet = new TreeSet<>();
+        treeSet.add(key);
+        return treeSet;
     }
 
     /**
@@ -52,11 +41,10 @@ public final class TreeSets {
         TKey key1,
         TKey key2) {
 
-        TreeSet<TKey> tree = new TreeSet<>();
-        tree.add(key1);
-        tree.add(key2);
-
-        return tree;
+        TreeSet<TKey> treeSet = new TreeSet<>();
+        treeSet.add(key1);
+        treeSet.add(key2);
+        return treeSet;
     }
 
     /**
@@ -67,12 +55,11 @@ public final class TreeSets {
         TKey key2,
         TKey key3) {
 
-        TreeSet<TKey> tree = new TreeSet<>();
-        tree.add(key1);
-        tree.add(key2);
-        tree.add(key3);
-
-        return tree;
+        TreeSet<TKey> treeSet = new TreeSet<>();
+        treeSet.add(key1);
+        treeSet.add(key2);
+        treeSet.add(key3);
+        return treeSet;
     }
 
     /**
@@ -89,7 +76,6 @@ public final class TreeSets {
         tree.add(key2);
         tree.add(key3);
         tree.add(key4);
-
         return tree;
     }
 
@@ -103,14 +89,13 @@ public final class TreeSets {
         TKey key4,
         TKey key5) {
 
-        TreeSet<TKey> tree = new TreeSet<>();
-        tree.add(key1);
-        tree.add(key2);
-        tree.add(key3);
-        tree.add(key4);
-        tree.add(key5);
-
-        return tree;
+        TreeSet<TKey> treeSet = new TreeSet<>();
+        treeSet.add(key1);
+        treeSet.add(key2);
+        treeSet.add(key3);
+        treeSet.add(key4);
+        treeSet.add(key5);
+        return treeSet;
     }
 
     /**
@@ -124,15 +109,14 @@ public final class TreeSets {
         TKey key5,
         TKey key6) {
 
-        TreeSet<TKey> tree = new TreeSet<>();
-        tree.add(key1);
-        tree.add(key2);
-        tree.add(key3);
-        tree.add(key4);
-        tree.add(key5);
-        tree.add(key6);
-
-        return tree;
+        TreeSet<TKey> treeSet = new TreeSet<>();
+        treeSet.add(key1);
+        treeSet.add(key2);
+        treeSet.add(key3);
+        treeSet.add(key4);
+        treeSet.add(key5);
+        treeSet.add(key6);
+        return treeSet;
     }
 
     /**
@@ -147,16 +131,15 @@ public final class TreeSets {
         TKey key6,
         TKey key7) {
 
-        TreeSet<TKey> tree = new TreeSet<>();
-        tree.add(key1);
-        tree.add(key2);
-        tree.add(key3);
-        tree.add(key4);
-        tree.add(key5);
-        tree.add(key6);
-        tree.add(key7);
-
-        return tree;
+        TreeSet<TKey> treeSet = new TreeSet<>();
+        treeSet.add(key1);
+        treeSet.add(key2);
+        treeSet.add(key3);
+        treeSet.add(key4);
+        treeSet.add(key5);
+        treeSet.add(key6);
+        treeSet.add(key7);
+        return treeSet;
     }
 
     /**
@@ -172,17 +155,16 @@ public final class TreeSets {
         TKey key7,
         TKey key8) {
 
-        TreeSet<TKey> tree = new TreeSet<>();
-        tree.add(key1);
-        tree.add(key2);
-        tree.add(key3);
-        tree.add(key4);
-        tree.add(key5);
-        tree.add(key6);
-        tree.add(key7);
-        tree.add(key8);
-
-        return tree;
+        TreeSet<TKey> treeSet = new TreeSet<>();
+        treeSet.add(key1);
+        treeSet.add(key2);
+        treeSet.add(key3);
+        treeSet.add(key4);
+        treeSet.add(key5);
+        treeSet.add(key6);
+        treeSet.add(key7);
+        treeSet.add(key8);
+        return treeSet;
     }
 
     /**
@@ -199,18 +181,17 @@ public final class TreeSets {
         TKey key8,
         TKey key9) {
 
-        TreeSet<TKey> tree = new TreeSet<>();
-        tree.add(key1);
-        tree.add(key2);
-        tree.add(key3);
-        tree.add(key4);
-        tree.add(key5);
-        tree.add(key6);
-        tree.add(key7);
-        tree.add(key8);
-        tree.add(key9);
-
-        return tree;
+        TreeSet<TKey> treeSet = new TreeSet<>();
+        treeSet.add(key1);
+        treeSet.add(key2);
+        treeSet.add(key3);
+        treeSet.add(key4);
+        treeSet.add(key5);
+        treeSet.add(key6);
+        treeSet.add(key7);
+        treeSet.add(key8);
+        treeSet.add(key9);
+        return treeSet;
     }
 
     /**

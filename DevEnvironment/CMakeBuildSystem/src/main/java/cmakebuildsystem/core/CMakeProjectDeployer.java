@@ -199,9 +199,7 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
             result.addAll(modules.keySet());
         }
         else {
-            for (String effectiveModule : effectiveModules) {
-                result.add(effectiveModule);
-            }
+            result.addAll(effectiveModules);
         }
 
         return result;

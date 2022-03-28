@@ -80,7 +80,7 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
      */
     @Override
     public List<TKey> getKeys() {
-        List<TKey> keys = new ArrayList<>();
+        List<TKey> keys = new ArrayList<>(this.getKeyCount());
 
         for (int i = 0; i < this.getKeyCount(); ++i) {
             TKey currKey = this.keys[i];
