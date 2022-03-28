@@ -16,7 +16,10 @@ import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.trie.interfaces.ITrie;
 import datastructures.trie.interfaces.ITrieNode;
 import datastructures.trie.interfaces.ITrieTraversal;
+
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * The Trie class implements a trie.
@@ -68,7 +71,26 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
      */
     @Override
     public String toString() {
-        return Collections.toString(this.getIterator());
+        StringBuilder stringBuilder = new StringBuilder();
+        serialize(this.root, stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    private static <TKey extends Comparable<TKey>> void serialize(
+        ITrieNode<TKey> root,
+        StringBuilder stringBuilder) {
+
+        if (root == null) {
+            return;
+        }
+
+        stringBuilder.append(root);
+
+        for (ITrieNode<TKey> childNode : root.getChildren()) {
+            serialize(childNode, stringBuilder);
+        }
+
+        stringBuilder.append(")");
     }
 
     /**

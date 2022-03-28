@@ -213,35 +213,34 @@ public final class CANSignalRule implements ICANSignalRule {
      */
     @Override
     public String toString() {
-        StringBuilder messageBuilder = new StringBuilder();
+        String message =
+            MESSAGE_SYNTAX +
+            " " +
+            this.name +
+            " : " +
+            this.bitStart +
+            "|" +
+            this.bitLength +
+            (this.byteOrderBigEndian ? BYTE_ORDER_BIG_ENDIAN_SYNTAX : BYTE_ORDER_LITTLE_ENDIAN_SYNTAX) +
+            (this.valueTypeUnsigned ? VALUE_TYPE_UNSIGNED_SYNTAX : VALUE_TYPE_SIGNED_SYNTAX) +
+            " " +
+            "(" +
+            this.scale +
+            "," +
+            this.offset +
+            ")" +
+            " " +
+            "[" +
+            this.minimum +
+            "|" +
+            this.maximum +
+            "]" +
+            " " +
+            Strings.wrapWithQuotes(this.unit) +
+            " " +
+            this.transmittingNodeName;
 
-        messageBuilder.append(MESSAGE_SYNTAX);
-        messageBuilder.append(" ");
-        messageBuilder.append(this.name);
-        messageBuilder.append(" : ");
-        messageBuilder.append(this.bitStart);
-        messageBuilder.append("|");
-        messageBuilder.append(this.bitLength);
-        messageBuilder.append(this.byteOrderBigEndian ? BYTE_ORDER_BIG_ENDIAN_SYNTAX : BYTE_ORDER_LITTLE_ENDIAN_SYNTAX);
-        messageBuilder.append(this.valueTypeUnsigned ? VALUE_TYPE_UNSIGNED_SYNTAX : VALUE_TYPE_SIGNED_SYNTAX);
-        messageBuilder.append(" ");
-        messageBuilder.append("(");
-        messageBuilder.append(this.scale);
-        messageBuilder.append(",");
-        messageBuilder.append(this.offset);
-        messageBuilder.append(")");
-        messageBuilder.append(" ");
-        messageBuilder.append("[");
-        messageBuilder.append(this.minimum);
-        messageBuilder.append("|");
-        messageBuilder.append(this.maximum);
-        messageBuilder.append("]");
-        messageBuilder.append(" ");
-        messageBuilder.append(Strings.wrapWithQuotes(this.unit));
-        messageBuilder.append(" ");
-        messageBuilder.append(this.transmittingNodeName);
-
-        return messageBuilder.toString();
+        return message;
     }
 
     /**

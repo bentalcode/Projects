@@ -94,8 +94,8 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
 
         int numberOfNodes = numberOfInnerNodes + numberOfLeafNodes;
 
-        BigInteger innerNodeCapacity = BigInteger.valueOf(this.calculateInnerNodeCapacity(properties) * numberOfInnerNodes);
-        BigInteger leafNodeCapacity = BigInteger.valueOf(this.calculateLeafNodeCapacity(properties) * numberOfLeafNodes);
+        BigInteger innerNodeCapacity = BigInteger.valueOf((long) this.calculateInnerNodeCapacity(properties) * numberOfInnerNodes);
+        BigInteger leafNodeCapacity = BigInteger.valueOf((long) this.calculateLeafNodeCapacity(properties) * numberOfLeafNodes);
 
         BigInteger capacityInBytes = innerNodeCapacity.add(leafNodeCapacity);
 

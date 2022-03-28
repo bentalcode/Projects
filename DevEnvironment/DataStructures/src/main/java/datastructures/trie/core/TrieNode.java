@@ -148,6 +148,14 @@ public final class TrieNode<TKey extends Comparable<TKey>> implements ITrieNode<
     }
 
     /**
+     * Gets the string representaion of this instance.
+     */
+    @Override
+    public String toString() {
+        return "{Key = " + this.key + ", EndNode = " + this.isEndNode + "}";
+    }
+
+    /**
      * Gets a hash code of this instance.
      */
     @Override

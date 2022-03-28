@@ -110,17 +110,13 @@ public final class JitterMessageData implements IJitterMessageData {
      */
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        result
-            .append(TRANSMITTING_TIME_TEXT).append(" ").append(this.transmittingTime)
-            .append(", " )
-            .append(DEVIATION_TEXT).append(" ").append(this.deviation)
-            .append(", " )
-            .append(NUMBER_OF_MESSAGES_SENT_TEXT).append(" ").append(this.numberOfMessagesSent)
-            .append(", " )
-            .append(NUMBER_OF_MESSAGES_RECEIVED_TEXT).append(" ").append(this.numberOfMessagesReceived);
-
-        return result.toString();
+        return
+            TRANSMITTING_TIME_TEXT + " " + this.transmittingTime +
+            ", " +
+            DEVIATION_TEXT + " " + this.deviation +
+            ", " +
+            NUMBER_OF_MESSAGES_SENT_TEXT + " " + this.numberOfMessagesSent +
+            ", " +
+            NUMBER_OF_MESSAGES_RECEIVED_TEXT + " " + this.numberOfMessagesReceived;
     }
 }

@@ -6,10 +6,9 @@ import base.interfaces.ITriple;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListNode;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListTestData;
 import datastructures.doublylinkedlist.interfaces.IDoublyLinkedListData;
-import testbase.core.CollectionValues;
-
 import java.util.ArrayList;
 import java.util.List;
+import testbase.core.CollectionValues;
 
 /**
  * The DoublyLinkedListTestData class implements data of tests of a doubly linked list.

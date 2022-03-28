@@ -46,7 +46,7 @@ public final class BPlusTreeTestData implements IBPlusTreeTestData {
             .withKeyComparator(keyComparator)
             .withNodeComparator(nodeComparator)
             .withKeySizeInBytes(IPrimitiveSize.InBytes.IntegerSize)
-            .withValueSizeInBytes(IPrimitiveSize.InBytes.CharacterSize * 1)
+            .withValueSizeInBytes(IPrimitiveSize.InBytes.CharacterSize)
             .build();
     }
 
