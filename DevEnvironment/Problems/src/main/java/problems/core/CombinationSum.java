@@ -90,10 +90,6 @@ public final class CombinationSum implements ICombinationSum {
 
         assert (currIndex >= 0 && currIndex <= values.length);
 
-        if (currIndex > values.length) {
-            return;
-        }
-
         if (currSum > sum) {
             return;
         }
@@ -136,10 +132,6 @@ public final class CombinationSum implements ICombinationSum {
         Set<List<Integer>> results) {
 
         assert (currIndex >= 0 && currIndex <= values.length);
-
-        if (currIndex > values.length) {
-            return;
-        }
 
         if (currSum > sum) {
             return;

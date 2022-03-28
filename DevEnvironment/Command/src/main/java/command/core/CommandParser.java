@@ -42,8 +42,8 @@ public final class CommandParser implements IParser<String[], ICommandParameters
      */
     @Override
     public IParsingResult<ICommandParameters> parse(String[] arguments) {
-        Conditions.validate(
-            arguments != null,
+        Conditions.validateNotNull(
+            arguments,
             "The arguments of a command.");
 
         //

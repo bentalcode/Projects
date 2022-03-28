@@ -93,10 +93,6 @@ public final class EvenlyDistribution implements IEventlyDistribution {
         assert(set1.length == setSize);
         assert(set2.length == setSize);
 
-        if (index > values.length) {
-            return;
-        }
-
         if (index == values.length) {
             int sum1 = this.calculateSubArraySum(values, 0, setSize - 1);
             int sum2 = this.calculateSubArraySum(values, setSize, values.length - 1);

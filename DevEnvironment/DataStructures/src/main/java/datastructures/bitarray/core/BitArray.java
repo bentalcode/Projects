@@ -225,14 +225,7 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public void clear(int startIndex, int endIndex) {
-        this.validateIndex(startIndex);
-        this.validateIndex(endIndex);
-
-        assert(startIndex <= endIndex);
-
-        if (startIndex > endIndex) {
-            return;
-        }
+        this.validateIndexes(startIndex, endIndex);
 
         int startUnitIndex = this.unitIndexOf(startIndex);
         int startBitIndex = this.bitIndexOf(startIndex);
@@ -303,14 +296,7 @@ public final class BitArray implements IBitArray {
      */
     @Override
     public void enable(int startIndex, int endIndex) {
-        this.validateIndex(startIndex);
-        this.validateIndex(endIndex);
-
-        assert(startIndex <= endIndex);
-
-        if (startIndex > endIndex) {
-            return;
-        }
+        this.validateIndexes(startIndex, endIndex);
 
         int startUnitIndex = this.unitIndexOf(startIndex);
         int startBitIndex = this.bitIndexOf(startIndex);
@@ -656,11 +642,9 @@ public final class BitArray implements IBitArray {
      * Creates a bit array.
      */
     private IBit32Array[] createBitArray(int numberOfBits) {
-        assert(numberOfBits > 0);
-
-        if (numberOfBits <= 0) {
-            return null;
-        }
+        Conditions.validate(
+            numberOfBits > 0,
+            "The number of bits has to be positive.");
 
         int numberOfUnits = this.numberOfUnits(numberOfBits);
         IBit32Array[] data = new IBit32Array[numberOfUnits];
@@ -719,8 +703,18 @@ public final class BitArray implements IBitArray {
      * Validates an index.
      */
     private void validateIndex(int index) {
-        int startIndex = 0;
-        int endIndex = this.size - 1;
-        Indexes.validateIndex(index, startIndex, endIndex);
+        int fromIndex = 0;
+        int toIndex = this.size - 1;
+        Indexes.validateIndex(index, fromIndex, toIndex);
+    }
+
+    /**
+     * Validates indexes.
+     */
+    private void validateIndexes(int startIndex, int endIndex) {
+        int fromIndex = 0;
+        int toIndex = this.size - 1;
+        Indexes.validateIndex(startIndex, fromIndex, toIndex);
+        Indexes.validateIndex(endIndex, startIndex, toIndex);
     }
 }

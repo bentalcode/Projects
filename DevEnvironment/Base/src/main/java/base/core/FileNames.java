@@ -311,10 +311,6 @@ public final class FileNames {
         assert(tokenStartIndex >= 0 && tokenStartIndex < characters.length);
         assert(endIndex >= tokenStartIndex && endIndex < characters.length);
 
-        if (tokenStartIndex > endIndex) {
-            return -1;
-        }
-
         if (tokenStartIndex == endIndex) {
             return tokenStartIndex;
         }
