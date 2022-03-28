@@ -64,8 +64,8 @@ public final class HtmlParagraphParserTest {
             Sorting.isSorted(counters, SortingOrder.Descending),
             "The word statistics is invalid.");
 
-        this.assertion.assertTrue(
-            statistics != null,
+        this.assertion.assertNotNull(
+            statistics,
             "Incorrect logic of parsing a html paragraph");
     }
 }

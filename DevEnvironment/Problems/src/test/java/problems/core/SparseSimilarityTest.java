@@ -2,7 +2,6 @@ package problems.core;
 
 import base.core.ArrayLists;
 import base.interfaces.ICalculator;
-import java.util.Collections;
 import java.util.List;
 import problems.interfaces.ISparseSimilarityResult;
 import testbase.core.Assertion;
@@ -87,7 +86,7 @@ public final class SparseSimilarityTest {
      * Sorts the result.
      */
     private void sortResult(List<ISparseSimilarityResult> result) {
-        Collections.sort(result, (left, right) -> {
+        result.sort((left, right) -> {
             if (left == null && right == null) {
                 return 0;
             }
@@ -100,7 +99,7 @@ public final class SparseSimilarityTest {
                 return 1;
             }
 
-            Integer status = Integer.compare(left.getCollectionId1(), right.getCollectionId1());
+            int status = Integer.compare(left.getCollectionId1(), right.getCollectionId1());
 
             if (status != 0) {
                 return status;

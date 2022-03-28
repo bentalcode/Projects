@@ -99,14 +99,12 @@ public final class UnixPath extends AbstractPath {
         Stack<String> stack = new Stack<>();
 
         for (String component : components) {
-            if (component.isEmpty() || component.equals(UnixPath.CURRENT_DIRECTORY)) {
+            if (component.equals(UnixPath.PARENT_DIRECTORY)) {
+                stack.pop();
             }
-            else if (component.equals(UnixPath.PARENT_DIRECTORY)) {
-                if (!stack.empty()) {
-                    stack.pop();
-                }
-            }
-            else {
+            else if (!component.isEmpty() &&
+                     !component.equals(UnixPath.CURRENT_DIRECTORY)) {
+
                 stack.push(component);
             }
         }

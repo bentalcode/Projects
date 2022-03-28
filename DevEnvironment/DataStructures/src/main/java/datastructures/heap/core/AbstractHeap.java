@@ -77,6 +77,8 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
             data != null && data.length > 0,
             "The initial data of the heap is not defined.");
 
+        assert(data != null && data.length > 0);
+
         Conditions.validate(
             size >= 0 && size <= data.length,
             "The size of the heap.");

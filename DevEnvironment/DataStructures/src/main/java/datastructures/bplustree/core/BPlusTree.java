@@ -178,6 +178,8 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
             for (int i = 0; i < currLevelSize; ++i) {
 
                 IBPlusTreeNode<TKey> currNode = queue.poll();
+                assert(currNode != null);
+
                 currLevelBuilder.addNode(currNode.getKeys());
 
                 if (currNode.getNodeType() == TreeNodeType.InnerNode) {

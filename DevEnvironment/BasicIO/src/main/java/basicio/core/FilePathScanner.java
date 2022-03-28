@@ -54,6 +54,8 @@ public final class FilePathScanner implements IFilePathScanner {
             extensions != null && !extensions.isEmpty(),
             "The extensions of the files are not defined.");
 
+        assert (extensions != null && !extensions.isEmpty());
+
         int size = extensions.size();
 
         List<List<Path>> result = createScanResult(size);

@@ -34,8 +34,6 @@ public final class BinaryTreeRecoveryTest {
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode());
 
-        boolean status1 = false;
-
         List<IBinaryTreeNode<Integer, String>> data2 = ArrayLists.make(
             BinaryTreeNodes.make(3, "c"),
             BinaryTreeNodes.make(1, "a"),
@@ -46,8 +44,6 @@ public final class BinaryTreeRecoveryTest {
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode(),
             BinaryTreeNodes.endNode());
-
-        boolean status2 = true;
 
         List<IBinaryTreeNode<Integer, String>> result2 = ArrayLists.make(
             BinaryTreeNodes.make(2, "b"),
@@ -77,8 +73,6 @@ public final class BinaryTreeRecoveryTest {
         data3.add(BinaryTreeNodes.endNode());
         data3.add(BinaryTreeNodes.endNode());
 
-        boolean status3 = true;
-
         List<IBinaryTreeNode<Integer, String>> result3 = new ArrayList<>(15);
         result3.add(BinaryTreeNodes.make(10, "d"));
         result3.add(BinaryTreeNodes.make(5, "b"));
@@ -96,9 +90,9 @@ public final class BinaryTreeRecoveryTest {
         result3.add(BinaryTreeNodes.endNode());
         result3.add(BinaryTreeNodes.endNode());
 
-        this.testBinaryTreeRecovery(data1, status1, data1);
-        this.testBinaryTreeRecovery(data2, status2, result2);
-        this.testBinaryTreeRecovery(data3, status3, result3);
+        this.testBinaryTreeRecovery(data1, false, data1);
+        this.testBinaryTreeRecovery(data2, true, result2);
+        this.testBinaryTreeRecovery(data3, true, result3);
     }
 
     /**

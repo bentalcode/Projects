@@ -47,6 +47,7 @@ public final class BinaryTreeLevelOrderWithEndNodesIterator<TKey extends Compara
         assert(this.hasNext());
 
         IBinaryTreeNode<TKey, TValue> currNode = this.queue.poll();
+        assert (currNode != null);
 
         if (currNode.getClass().isAssignableFrom(BinaryTreeEndNode.class)) {
             return currNode;

@@ -95,6 +95,8 @@ public final class IteratorOfIteratorCollection<T> implements IIterator<T> {
         assert(this.hasNext());
 
         IIterator<T> currIterator = this.iteratorsQueue.peek();
+        assert (currIterator != null);
+
         T currElement = currIterator.next();
 
         if (!currIterator.hasNext()) {

@@ -59,15 +59,12 @@ public final class BinaryTreeTest {
     public void binaryTreeEqualityTest() {
         List<IBinaryTreeNode<Integer, String>> tree1a = new ArrayList<>();
         List<IBinaryTreeNode<Integer, String>> tree1b = new ArrayList<>();
-        boolean status1 = true;
 
         List<IBinaryTreeNode<Integer, String>> tree2a = ArrayLists.make(BinaryTreeNodes.make(1, "a"));
         List<IBinaryTreeNode<Integer, String>> tree2b = ArrayLists.make(BinaryTreeNodes.make(1, "a"));
-        boolean status2 = true;
 
         List<IBinaryTreeNode<Integer, String>> tree3a = ArrayLists.make(BinaryTreeNodes.make(1, "a"));
         List<IBinaryTreeNode<Integer, String>> tree3b = ArrayLists.make(BinaryTreeNodes.make(2, "b"));
-        boolean status3 = false;
 
         List<IBinaryTreeNode<Integer, String>> tree4a = new ArrayList<>(11);
         tree4a.add(BinaryTreeNodes.make(1, "a"));
@@ -95,8 +92,6 @@ public final class BinaryTreeTest {
         tree4b.add(BinaryTreeNodes.endNode());
         tree4b.add(BinaryTreeNodes.endNode());
 
-        boolean status4 = true;
-
         List<IBinaryTreeNode<Integer, String>> tree5a = new ArrayList<>(11);
         tree5a.add(BinaryTreeNodes.make(1, "a"));
         tree5a.add(BinaryTreeNodes.make(2, "b"));
@@ -123,13 +118,11 @@ public final class BinaryTreeTest {
         tree5b.add(BinaryTreeNodes.endNode());
         tree5b.add(BinaryTreeNodes.endNode());
 
-        boolean status5 = false;
-
-        this.testEquality(tree1a, tree1b, status1);
-        this.testEquality(tree2a, tree2b, status2);
-        this.testEquality(tree3a, tree3b, status3);
-        this.testEquality(tree4a, tree4b, status4);
-        this.testEquality(tree5a, tree5b, status5);
+        this.testEquality(tree1a, tree1b, true);
+        this.testEquality(tree2a, tree2b, true);
+        this.testEquality(tree3a, tree3b, false);
+        this.testEquality(tree4a, tree4b, true);
+        this.testEquality(tree5a, tree5b, false);
     }
 
     /**

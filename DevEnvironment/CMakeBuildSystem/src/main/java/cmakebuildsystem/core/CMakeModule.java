@@ -181,7 +181,7 @@ public final class CMakeModule implements ICMakeModule {
             reader.readListProperty(PROPERTY_BUILD_FILES_PATHS, Paths::create) :
             new ArrayList<>();
 
-        Path cmakeListsFilePath = reader.readProperty(PROPERTY_CMAKE_LISTS_FILE_PATH, value -> Paths.create(value));
+        Path cmakeListsFilePath = reader.readProperty(PROPERTY_CMAKE_LISTS_FILE_PATH, Paths::create);
 
         List<String> dependentModules = reader.hasProperty(PROPERTY_DEPENDENT_MODULES) ?
             reader.readStringListProperty(PROPERTY_DEPENDENT_MODULES) :

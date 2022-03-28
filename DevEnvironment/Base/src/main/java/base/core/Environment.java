@@ -50,8 +50,7 @@ public final class Environment {
      * Expends system properties.
      */
     public static String expandSystemProperties(String name) {
-        IStringTransformer transformer = null;
-        return expandSystemProperties(name, transformer);
+        return expandSystemProperties(name, null);
     }
 
     /**

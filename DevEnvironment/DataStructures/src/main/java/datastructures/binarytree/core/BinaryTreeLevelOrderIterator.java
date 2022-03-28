@@ -44,6 +44,7 @@ public final class BinaryTreeLevelOrderIterator<TKey extends Comparable<TKey>, T
         assert(this.hasNext());
 
         IBinaryTreeNode<TKey, TValue> currNode = this.queue.poll();
+        assert (currNode != null);
 
         if (currNode.hasLeftChild()) {
             this.queue.offer(currNode.getLeftChild());

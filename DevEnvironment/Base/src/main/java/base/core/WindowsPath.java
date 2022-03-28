@@ -77,14 +77,12 @@ public final class WindowsPath extends AbstractPath {
         Stack<String> stack = new Stack<>();
 
         for (String component : components) {
-            if (component.isEmpty() || component.equals(WindowsPath.CURRENT_DIRECTORY)) {
+            if (component.equals(WindowsPath.PARENT_DIRECTORY)) {
+                stack.pop();
             }
-            else if (component.equals(WindowsPath.PARENT_DIRECTORY)) {
-                if (!stack.empty()) {
-                    stack.pop();
-                }
-            }
-            else {
+            else if (!component.isEmpty() &&
+                     !component.equals(WindowsPath.CURRENT_DIRECTORY)) {
+
                 stack.push(component);
             }
         }

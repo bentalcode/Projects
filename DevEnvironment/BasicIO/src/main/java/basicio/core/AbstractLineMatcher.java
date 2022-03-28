@@ -93,6 +93,7 @@ abstract class AbstractLineMatcher implements ILineMatcher {
 
             for (int i = 0; i < queueSize; ++i) {
                 IPair<IMatchingRecord, IMatchingRecordResult> recordInformation = queue.poll();
+                assert(recordInformation != null);
 
                 IMatchingRecord matchingRecord = recordInformation.first();
                 IMatchingRecordResult matchingRecordResult = recordInformation.second();

@@ -53,7 +53,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
      */
     public HtmlParagraphParser() {
         this(
-                DEFAULT_MOSTLY_USED_WORDS_CAPACITY,
+            DEFAULT_MOSTLY_USED_WORDS_CAPACITY,
             HashSets.make());
     }
 

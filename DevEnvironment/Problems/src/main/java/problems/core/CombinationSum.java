@@ -88,7 +88,7 @@ public final class CombinationSum implements ICombinationSum {
         List<Integer> currResult,
         Set<List<Integer>> results) {
 
-        assert(currIndex >= 0 && currIndex <= values.length);
+        assert (currIndex >= 0 && currIndex <= values.length);
 
         if (currIndex > values.length) {
             return;
@@ -135,7 +135,7 @@ public final class CombinationSum implements ICombinationSum {
         List<Integer> currResult,
         Set<List<Integer>> results) {
 
-        assert(currIndex >= 0 && currIndex <= values.length);
+        assert (currIndex >= 0 && currIndex <= values.length);
 
         if (currIndex > values.length) {
             return;

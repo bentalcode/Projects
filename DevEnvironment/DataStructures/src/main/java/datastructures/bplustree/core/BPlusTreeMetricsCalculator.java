@@ -71,6 +71,7 @@ public final class BPlusTreeMetricsCalculator<TKey extends Comparable<TKey>, TVa
 
             for (int i = 0; i < levelSize; ++i) {
                 IBPlusTreeNode<TKey> currNode = queue.poll();
+                assert(currNode != null);
 
                 if (currNode.getNodeType() == TreeNodeType.InnerNode) {
 

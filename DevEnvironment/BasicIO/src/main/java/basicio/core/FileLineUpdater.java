@@ -184,6 +184,7 @@ public final class FileLineUpdater implements ILineUpdater, ICloseable {
 
         for (int i = 0; i < numberOfUpdates; ++i) {
             IUpdateRecord updateRecord = updateRecords.poll();
+            assert (updateRecord != null);
 
             Matcher matcher = updateRecord.getMatchingRegex().matcher(line);
 

@@ -24,8 +24,7 @@ public final class BinaryTree<TKey extends Comparable<TKey>, TValue> implements 
      * Creates a new binary tree.
      */
     public static <TKey extends Comparable<TKey>, TValue> IBinaryTree<TKey, TValue> make() {
-        IBinaryTreeNode<TKey, TValue> root = null;
-        return new BinaryTree<>(root, BinaryTree.defaultComparator());
+        return new BinaryTree<TKey, TValue>(null, BinaryTree.defaultComparator());
     }
 
     /**

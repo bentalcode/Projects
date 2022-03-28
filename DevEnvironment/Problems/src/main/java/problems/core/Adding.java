@@ -62,7 +62,6 @@ public final class Adding implements IAdding {
 
         if (resultLastIndex == -1) {
             result = new int[1];
-            result[0] = 0;
             return result;
         }
 
