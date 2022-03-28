@@ -26,6 +26,9 @@ public final class Adding implements IAdding {
             right != null && right.length > 0,
             "The right number is not defined.");
 
+        assert(left != null && left.length > 0);
+        assert(right != null && right.length > 0);
+
         this.validateBase(base);
 
         int[] result = new int[Math.max(left.length, right.length) + 1];
@@ -80,6 +83,9 @@ public final class Adding implements IAdding {
         Conditions.validateNotNull(
             right != null && right.length() > 0,
             "The right number string is not defined");
+
+        assert(left != null && left.length() > 0);
+        assert(right != null && right.length() > 0);
 
         this.validateBase(base);
 

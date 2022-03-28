@@ -279,23 +279,13 @@ public final class Position implements IPosition {
                 return 1;
             }
 
-            if (lhs.getX() < rhs.getX()) {
-                return -1;
+            int status = Integer.compare(lhs.getX(), rhs.getX());
+
+            if (status != 0) {
+                return status;
             }
 
-            if (lhs.getX() > rhs.getX()) {
-                return 1;
-            }
-
-            if (lhs.getY() < rhs.getY()) {
-                return -1;
-            }
-
-            if (lhs.getY() > rhs.getY()) {
-                return 1;
-            }
-
-            return 0;
+            return Integer.compare(lhs.getY(), rhs.getY());
         }
     }
 

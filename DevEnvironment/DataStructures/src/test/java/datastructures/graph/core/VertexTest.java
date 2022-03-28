@@ -41,7 +41,7 @@ public final class VertexTest {
         IVertex<Integer, Integer> vertex1 = this.testData.nextVertexByInteger();
         IVertex<Integer, Integer> vertex2 = Vertex.make(vertex1.getKey());
 
-        Set<IVertex> vertices = new HashSet<>();
+        Set<IVertex<Integer, Integer>> vertices = new HashSet<>();
         vertices.add(vertex1);
         vertices.add(vertex2);
 
@@ -57,7 +57,7 @@ public final class VertexTest {
         IVertex<Double, Double> vertex1 = this.testData.nextVertexByDouble();
         IVertex<Double, Double> vertex2 = Vertex.make(vertex1.getKey());
 
-        Set<IVertex> vertices = new HashSet<>();
+        Set<IVertex<Double, Double>> vertices = new HashSet<>();
         vertices.add(vertex1);
         vertices.add(vertex2);
 
@@ -73,7 +73,7 @@ public final class VertexTest {
         IVertex<Character, Character> vertex1 = this.testData.nextVertexByCharacter();
         IVertex<Character, Character> vertex2 = Vertex.make(vertex1.getKey());
 
-        Set<IVertex> vertices = new HashSet<>();
+        Set<IVertex<Character, Character>> vertices = new HashSet<>();
         vertices.add(vertex1);
         vertices.add(vertex2);
 
@@ -89,7 +89,7 @@ public final class VertexTest {
         IVertex<String, String> vertex1 = this.testData.nextVertexByString();
         IVertex<String, String> vertex2 = Vertex.make(vertex1.getKey());
 
-        Set<IVertex> vertices = new HashSet<>();
+        Set<IVertex<String, String>> vertices = new HashSet<>();
         vertices.add(vertex1);
         vertices.add(vertex2);
 

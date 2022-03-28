@@ -169,15 +169,7 @@ public final class Direction implements IDirection {
                 return 1;
             }
 
-            if (lhs.getAngle() < rhs.getAngle()) {
-                return -1;
-            }
-
-            if (lhs.getAngle() > rhs.getAngle()) {
-                return 1;
-            }
-
-            return 0;
+            return Double.compare(lhs.getAngle(), rhs.getAngle());
         }
     }
 }

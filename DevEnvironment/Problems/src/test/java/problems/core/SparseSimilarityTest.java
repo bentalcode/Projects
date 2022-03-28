@@ -100,23 +100,13 @@ public final class SparseSimilarityTest {
                 return 1;
             }
 
-            if (left.getCollectionId1() < right.getCollectionId1()) {
-                return -1;
+            Integer status = Integer.compare(left.getCollectionId1(), right.getCollectionId1());
+
+            if (status != 0) {
+                return status;
             }
 
-            if (left.getCollectionId1() > right.getCollectionId1()) {
-                return 1;
-            }
-
-            if (left.getCollectionId2() < right.getCollectionId2()) {
-                return -1;
-            }
-
-            if (left.getCollectionId2() > right.getCollectionId2()) {
-                return 1;
-            }
-
-            return 0;
+            return Integer.compare(left.getCollectionId2(), right.getCollectionId2());
         });
     }
 }

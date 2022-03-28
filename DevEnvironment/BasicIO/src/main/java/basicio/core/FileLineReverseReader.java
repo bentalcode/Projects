@@ -8,6 +8,7 @@ import basicio.interfaces.ILineReverseReader;
 import basicio.interfaces.LineSeparatorType;
 import java.io.RandomAccessFile;
 import java.nio.file.Path;
+import java.util.Objects;
 
 /**
  * The FileLineReverseReader class implements a reader of lines of a file in reverse.
@@ -119,14 +120,9 @@ public final class FileLineReverseReader implements ILineReverseReader, ICloseab
             //
             // Read the current character...
             //
-            char currCharacter;
-
-            if (this.followingCharacter == null) {
-                currCharacter = this.readCurrCharacter();
-            }
-            else {
-                currCharacter = this.followingCharacter;
-            }
+            char currCharacter = Objects.requireNonNullElseGet(
+                this.followingCharacter,
+                this::readCurrCharacter);
 
             //
             // In case of a \n read the next one for having at least two characters

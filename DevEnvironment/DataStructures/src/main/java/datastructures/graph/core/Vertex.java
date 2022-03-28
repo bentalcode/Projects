@@ -250,7 +250,7 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
         /**
          * Sets the key of a vertex.
          */
-        public Builder setKey(TKey key) {
+        public Builder<TKey, TValue> setKey(TKey key) {
             this.key = key;
             return this;
         }
@@ -258,7 +258,7 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
         /**
          * Sets the value of a vertex.
          */
-        public Builder setValue(TValue value) {
+        public Builder<TKey, TValue> setValue(TValue value) {
             this.value = value;
             return this;
         }

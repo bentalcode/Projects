@@ -34,10 +34,7 @@ public final class Stacks {
             "The stack.");
 
         List<T> result = new ArrayList<>(stack.size());
-
-        for (T item : stack) {
-            result.add(item);
-        }
+        result.addAll(stack);
 
         return result;
     }

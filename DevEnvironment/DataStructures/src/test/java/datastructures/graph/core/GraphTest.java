@@ -129,7 +129,7 @@ public final class GraphTest {
         IGraph<TKey, TValue> graph = this.createGraph(data);
         IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
-        IPathFinder<TKey, TValue> pathFinder = route -> graphLogic.findPathsWithBreadthFirstSearch(route);
+        IPathFinder<TKey, TValue> pathFinder = graphLogic::findPathsWithBreadthFirstSearch;
 
         this.testFindPaths(
             pathFinder,
@@ -144,7 +144,7 @@ public final class GraphTest {
         IGraph<TKey, TValue> graph = this.createGraph(data);
         IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
-        IPathFinder<TKey, TValue> pathFinder = route -> graphLogic.findPathsWithDepthFirstSearch(route);
+        IPathFinder<TKey, TValue> pathFinder = graphLogic::findPathsWithDepthFirstSearch;
 
         this.testFindPaths(
             pathFinder,

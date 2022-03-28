@@ -350,7 +350,7 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
         /**
          * Adds a sequence to a trie.
          */
-        public Trie.Builder addSequence(List<TKey> sequence) {
+        public Trie.Builder<TKey> addSequence(List<TKey> sequence) {
             Conditions.validateNotNull(
                 sequence,
                 "The sequence to add to a trie.");
@@ -361,7 +361,7 @@ public final class Trie<TKey extends Comparable<TKey>> implements ITrie<TKey> {
         /**
          * Adds a sequence to a trie.
          */
-        public Trie.Builder addSequence(IIterator<TKey> iterator) {
+        public Trie.Builder<TKey> addSequence(IIterator<TKey> iterator) {
             Conditions.validateNotNull(
                 iterator,
                 "The iterator of a sequence to add to a trie.");

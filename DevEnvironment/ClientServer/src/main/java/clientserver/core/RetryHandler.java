@@ -8,6 +8,8 @@ import clientserver.interfaces.IRetryPolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 /**
  * The RetryHandler class implements a retry handler.
  */
@@ -36,11 +38,9 @@ public final class RetryHandler implements IRetryHandler {
 
         this.policy = policy;
 
-        if (idleLogic != null) {
-            this.idleLogic = idleLogic;
-        } else {
-            this.idleLogic = new IdleHandler(policy.getIntervalDuration());
-        }
+        this.idleLogic = Objects.requireNonNullElseGet(
+            idleLogic,
+            () -> new IdleHandler(policy.getIntervalDuration()));
     }
 
     /**

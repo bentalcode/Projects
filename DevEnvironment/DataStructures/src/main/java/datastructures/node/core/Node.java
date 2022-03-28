@@ -192,7 +192,7 @@ public final class Node<T extends Comparable<T>> implements INode<T> {
         /**
          * Sets the value of a node.
          */
-        public Builder setValue(T value) {
+        public Builder<T> setValue(T value) {
             this.value = value;
             return this;
         }

@@ -174,14 +174,14 @@ public final class CMakeModule implements ICMakeModule {
      */
     public static ICMakeModule readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(PROPERTY_NAME);
-        Path rootPath = reader.readProperty(PROPERTY_ROOT_PATH, value -> { return Paths.create(value); });
-        List<Path> headerFilesPaths = reader.readListProperty(PROPERTY_HEADER_FILES_PATHS, value -> { return Paths.create(value); });
-        List<Path> sourceFilesPaths = reader.readListProperty(PROPERTY_SOURCE_FILES_PATHS, value -> { return Paths.create(value); });
+        Path rootPath = reader.readProperty(PROPERTY_ROOT_PATH, Paths::create);
+        List<Path> headerFilesPaths = reader.readListProperty(PROPERTY_HEADER_FILES_PATHS, Paths::create);
+        List<Path> sourceFilesPaths = reader.readListProperty(PROPERTY_SOURCE_FILES_PATHS, Paths::create);
         List<Path> buildFilesPaths = reader.hasProperty(PROPERTY_BUILD_FILES_PATHS) ?
-            reader.readListProperty(PROPERTY_BUILD_FILES_PATHS, value -> { return Paths.create(value); }) :
+            reader.readListProperty(PROPERTY_BUILD_FILES_PATHS, Paths::create) :
             new ArrayList<>();
 
-        Path cmakeListsFilePath = reader.readProperty(PROPERTY_CMAKE_LISTS_FILE_PATH, value -> { return Paths.create(value); });
+        Path cmakeListsFilePath = reader.readProperty(PROPERTY_CMAKE_LISTS_FILE_PATH, value -> Paths.create(value));
 
         List<String> dependentModules = reader.hasProperty(PROPERTY_DEPENDENT_MODULES) ?
             reader.readStringListProperty(PROPERTY_DEPENDENT_MODULES) :
@@ -294,9 +294,9 @@ public final class CMakeModule implements ICMakeModule {
             return new EqualBuilder()
                 .withString(lhs.getName(), rhs.getName())
                 .withObject(lhs.getRootPath(), rhs.getRootPath())
-                .withCollection(lhs.getHeaderFilesPaths(), rhs.getHeaderFilesPaths(), (lhsPath, rhsPath) -> lhsPath.equals(rhsPath))
-                .withCollection(lhs.getSourceFilesPaths(), rhs.getSourceFilesPaths(), (lhsPath, rhsPath) -> lhsPath.equals(rhsPath))
-                .withCollection(lhs.getBuildFilesPaths(), rhs.getBuildFilesPaths(), (lhsPath, rhsPath) -> lhsPath.equals(rhsPath))
+                .withCollection(lhs.getHeaderFilesPaths(), rhs.getHeaderFilesPaths(), Path::equals)
+                .withCollection(lhs.getSourceFilesPaths(), rhs.getSourceFilesPaths(), Path::equals)
+                .withCollection(lhs.getBuildFilesPaths(), rhs.getBuildFilesPaths(), Path::equals)
                 .withObject(lhs.getCMakeListsFilePath(), rhs.getCMakeListsFilePath())
                 .withCollection(lhs.getDependentModules(), rhs.getDependentModules())
                 .build();
@@ -326,9 +326,9 @@ public final class CMakeModule implements ICMakeModule {
             return new CompareToBuilder()
                 .withString(lhs.getName(), rhs.getName())
                 .withObject(lhs.getRootPath(), rhs.getRootPath())
-                .withCollection(lhs.getHeaderFilesPaths(), rhs.getHeaderFilesPaths(), (lhsPath, rhsPath) -> lhsPath.compareTo(rhsPath))
-                .withCollection(lhs.getSourceFilesPaths(), rhs.getSourceFilesPaths(), (lhsPath, rhsPath) -> lhsPath.compareTo(rhsPath))
-                .withCollection(lhs.getBuildFilesPaths(), rhs.getBuildFilesPaths(), (lhsPath, rhsPath) -> lhsPath.compareTo(rhsPath))
+                .withCollection(lhs.getHeaderFilesPaths(), rhs.getHeaderFilesPaths(), Path::compareTo)
+                .withCollection(lhs.getSourceFilesPaths(), rhs.getSourceFilesPaths(), Path::compareTo)
+                .withCollection(lhs.getBuildFilesPaths(), rhs.getBuildFilesPaths(), Path::compareTo)
                 .withObject(lhs.getCMakeListsFilePath(), rhs.getCMakeListsFilePath())
                 .withCollection(lhs.getDependentModules(), rhs.getDependentModules())
                 .build();

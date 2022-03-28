@@ -231,7 +231,7 @@ public final class MultiLevelDoublyLinkedListTest {
         IMultiLevelDoublyLinkedList<T> list,
         List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByLevels) {
 
-        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
+        IMultiLevelDoublyLinkedListLogic<T> logic = list.getLogic();
         logic.flatten();
 
         this.assertion.assertEqualsWithIterators(
@@ -247,7 +247,7 @@ public final class MultiLevelDoublyLinkedListTest {
         IMultiLevelDoublyLinkedList<T> list,
         List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByLevels) {
 
-        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
+        IMultiLevelDoublyLinkedListLogic<T> logic = list.getLogic();
         logic.flattenByVerticalLevels();
 
         this.assertion.assertEqualsWithIterators(
@@ -263,7 +263,7 @@ public final class MultiLevelDoublyLinkedListTest {
         IMultiLevelDoublyLinkedList<T> list,
         List<List<IMultiLevelDoublyLinkedListNode<T>>> nodesByLevels) {
 
-        IMultiLevelDoublyLinkedListLogic logic = list.getLogic();
+        IMultiLevelDoublyLinkedListLogic<T> logic = list.getLogic();
         logic.flattenByDepthLevels();
 
         this.assertion.assertEqualsWithIterators(

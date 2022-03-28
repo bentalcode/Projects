@@ -183,7 +183,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
         @Override
         public int getHashCode(IAdjacencyMatrix<TKey, TValue> obj) {
             IHashCodeProvider<Set<IVertex<TKey, TValue>>> valueProvider =
-                (vertices) -> { return new HashCodeBuilder(457, 461).withCollection(vertices, this.vertexComparator).build(); };
+                (vertices) -> new HashCodeBuilder(457, 461).withCollection(vertices, this.vertexComparator).build();
 
             return new HashCodeBuilder(463, 467)
                 .withMap(
@@ -207,9 +207,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
             }
 
             IEquatableComparator<Set<IVertex<TKey, TValue>>> valueComparator =
-                (vertices1, vertices2) -> {
-                    return new EqualBuilder().withCollection(vertices1, vertices2, this.vertexComparator).build();
-                };
+                (vertices1, vertices2) -> new EqualBuilder().withCollection(vertices1, vertices2, this.vertexComparator).build();
 
             return new EqualBuilder()
                 .withMap(
@@ -242,9 +240,7 @@ public final class AdjacencyMatrix<TKey extends Comparable<TKey>, TValue> implem
             }
 
             IComparableComparator<Set<IVertex<TKey, TValue>>> valueComparator =
-                (vertices1, vertices2) -> {
-                    return new CompareToBuilder().withCollection(vertices1, vertices2, this.vertexComparator).build();
-                };
+                (vertices1, vertices2) -> new CompareToBuilder().withCollection(vertices1, vertices2, this.vertexComparator).build();
 
             return new CompareToBuilder()
                 .withMap(

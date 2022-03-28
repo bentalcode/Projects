@@ -270,23 +270,13 @@ public final class Line implements ILine {
                 return 1;
             }
 
-            if (this.pointComparator.compareTo(lhs.getStart() , rhs.getStart()) < 0) {
-                return -1;
+            int status = this.pointComparator.compareTo(lhs.getStart() , rhs.getStart());
+
+            if (status != 0) {
+                return status;
             }
 
-            if (this.pointComparator.compareTo(lhs.getStart() , rhs.getStart()) > 0) {
-                return 1;
-            }
-
-            if (this.pointComparator.compareTo(lhs.getEnd() , rhs.getEnd()) < 0) {
-                return -1;
-            }
-
-            if (this.pointComparator.compareTo(lhs.getEnd() , rhs.getEnd()) > 0) {
-                return 1;
-            }
-
-            return 0;
+            return this.pointComparator.compareTo(lhs.getEnd() , rhs.getEnd());
         }
     }
 

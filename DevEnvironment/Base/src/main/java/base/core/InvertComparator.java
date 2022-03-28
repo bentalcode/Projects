@@ -51,16 +51,6 @@ public final class InvertComparator<T> extends AbstractBinaryComparator<T> {
      */
     @Override
     public int compareTo(T lhs, T rhs) {
-        int compareStatus = this.comparator.compareTo(lhs, rhs);
-
-        if (compareStatus == 0) {
-            return 0;
-        }
-        else if (compareStatus < 0) {
-            return 1;
-        }
-        else {
-            return -1;
-        }
+        return this.comparator.compareTo(rhs, lhs);
     }
 }
