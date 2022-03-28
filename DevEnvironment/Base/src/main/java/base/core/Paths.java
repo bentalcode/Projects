@@ -415,13 +415,10 @@ public final class Paths {
         //
         // Calculate the relative path length of the root path...
         //
-        int rootPathEffectiveStartIndex = commonRootPathEndIndex;
-        int rootPathEffectiveEndIndex = rootPathEndIndex;
-
         int numberOfSubDirectories = getNumberOfSubDirectories(
             rootPath,
-            rootPathEffectiveStartIndex,
-            rootPathEffectiveEndIndex,
+            commonRootPathEndIndex,
+            rootPathEndIndex,
             separator);
 
         int relativePathLengthOfRootPath =
@@ -694,12 +691,11 @@ public final class Paths {
         assert(endIndex >= startIndex && endIndex < path.length);
         assert(separator != null);
 
-        int pathStartIndex = startIndex;
         int pathEndIndex = pathEffectiveEndIndex(path, endIndex, separator);
 
         return StringSearch.countSubStringFromEnd(
             path,
-            pathStartIndex, pathEndIndex,
+            startIndex, pathEndIndex,
             separator, 0, separator.length - 1,
             false);
     }

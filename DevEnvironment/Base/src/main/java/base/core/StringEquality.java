@@ -264,12 +264,10 @@ public final class StringEquality {
             return false;
         }
 
-        int length = leftLength;
-
         return equals(
             left, leftStartIndex,
             right, rightStartIndex,
-            length,
+            leftLength,
             ignoreCase);
     }
 

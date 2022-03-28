@@ -276,12 +276,10 @@ public final class StringComparable {
             return 1;
         }
 
-        int length = leftLength;
-
         return compare(
             left, leftStartIndex,
             right, rightStartIndex,
-            length,
+            leftLength,
             ignoreCase);
     }
 

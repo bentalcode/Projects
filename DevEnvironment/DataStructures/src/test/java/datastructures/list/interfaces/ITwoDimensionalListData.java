@@ -5,11 +5,6 @@ package datastructures.list.interfaces;
  */
 public interface ITwoDimensionalListData<T extends Comparable<T>> {
     /**
-     * Gets the creation data.
-     */
-    IList<IList<T>> getCreationData();
-
-    /**
      * Gets the data.
      */
     IList<IList<T>> getData();

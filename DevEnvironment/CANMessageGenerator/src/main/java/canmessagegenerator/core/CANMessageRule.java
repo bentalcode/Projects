@@ -123,15 +123,13 @@ public final class CANMessageRule implements ICANMessageRule {
 
     @Override
     public String toString() {
-        String result =
-            MESSAGE_SYNTAX
-            + " " + this.id
-            + " " + this.name
-            + ": " + this.length
-            + " "
-            + this.transmittingNodeName;
-
-        return result;
+        return
+            MESSAGE_SYNTAX +
+            " " + this.id +
+            " " + this.name +
+            ": " + this.length +
+            " " +
+            this.transmittingNodeName;
     }
 
     /**

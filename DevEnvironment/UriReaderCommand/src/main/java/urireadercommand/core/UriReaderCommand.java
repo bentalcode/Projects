@@ -71,9 +71,7 @@ public final class UriReaderCommand extends AbstractCommand {
             paragraphParser.processParagraph(paragraph);
         }
 
-        IHtmlStatistics statistics = paragraphParser.getHtmlStatistics();
-
-        return statistics;
+        return paragraphParser.getHtmlStatistics();
     }
 
     /**

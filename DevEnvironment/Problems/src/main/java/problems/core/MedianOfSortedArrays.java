@@ -82,13 +82,11 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 // then consider the middle two elements of the larger array,
                 // and the only element of the smaller array.
                 //
-                int leftFirstIndex = leftStartIndex;
-
                 int rightFirstIndex = rightStartIndex + (rightSize / 2) - 1;
                 int rightSecondIndex = rightFirstIndex + 1;
 
                 return this.medianOf(
-                    left[leftFirstIndex],
+                    left[leftStartIndex],
                     right[rightFirstIndex], right[rightSecondIndex]);
             }
             else {
@@ -97,14 +95,12 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 // then consider the middle three elements of the larger array,
                 // and the only element of the smaller array.
                 //
-                int leftFirstIndex = leftStartIndex;
-
                 int rightSecondIndex = rightStartIndex + rightSize / 2;
                 int rightFirstIndex = rightSecondIndex - 1;
                 int rightThirdIndex = rightSecondIndex + 1;
 
                 return this.medianOf(
-                    left[leftFirstIndex],
+                    left[leftStartIndex],
                     right[rightFirstIndex], right[rightSecondIndex], right[rightThirdIndex]);
             }
         }
@@ -113,15 +109,12 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             // Case 4: If both arrays are with size 2.
             //
             if (rightSize == 2) {
-                int leftFirstIndex = leftStartIndex;
-                int leftSecondIndex = leftFirstIndex + 1;
-
-                int rightFirstIndex = rightStartIndex;
-                int rightSecondIndex = rightFirstIndex + 1;
+                int leftSecondIndex = leftStartIndex + 1;
+                int rightSecondIndex = rightStartIndex + 1;
 
                 return this.medianOf(
-                    left[leftFirstIndex], left[leftSecondIndex],
-                    right[rightFirstIndex], right[rightSecondIndex]);
+                    left[leftStartIndex], left[leftSecondIndex],
+                    right[rightStartIndex], right[rightSecondIndex]);
             }
             if (rightSize % 2 == 0) {
                 //
@@ -134,16 +127,14 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 // 3. The min of second element of smaller array and element
                 //    just after the second middle in larger array.
                 //
-                int leftFirstIndex = leftStartIndex;
-                int leftSecondIndex = leftFirstIndex + 1;
-
+                int leftSecondIndex = leftStartIndex + 1;
                 int rightSecondIndex = rightStartIndex + (rightSize / 2) - 1;
                 int rightFirstIndex = rightSecondIndex - 1;
                 int rightThirdIndex = rightSecondIndex + 1;
                 int rightForthIndex = rightSecondIndex + 2;
 
                 return this.medianOf(
-                    Math.max(left[leftFirstIndex], right[rightFirstIndex]),
+                    Math.max(left[leftStartIndex], right[rightFirstIndex]),
                     right[rightSecondIndex],
                     right[rightThirdIndex],
                     Math.min(left[leftSecondIndex], right[rightForthIndex]));
@@ -158,15 +149,13 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 //    just before the middle element in larger array.
                 // 3. The min of second element of smaller array and element
                 //    just after the middle in larger array.
-                int leftFirstIndex = leftStartIndex;
-                int leftSecondIndex = leftFirstIndex + 1;
-
+                int leftSecondIndex = leftStartIndex + 1;
                 int rightSecondIndex = rightStartIndex + rightSize / 2;
                 int rightFirstIndex = rightSecondIndex - 1;
                 int rightThirdIndex = rightSecondIndex + 1;
 
                 return this.medianOf(
-                    Math.max(left[leftFirstIndex], right[rightFirstIndex]),
+                    Math.max(left[leftStartIndex], right[rightFirstIndex]),
                     right[rightSecondIndex],
                     Math.min(left[leftSecondIndex], right[rightThirdIndex]));
             }

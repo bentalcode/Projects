@@ -110,8 +110,7 @@ public final class Streams {
      * Creates a byte array output stream.
      */
     public static ByteArrayOutputStream createByteArrayOutputStream() {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        return stream;
+        return new ByteArrayOutputStream();
     }
 
     /**

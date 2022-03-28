@@ -273,11 +273,9 @@ public final class TreeLevels<TKey extends Comparable<TKey>, TValue> implements 
          */
         @Override
         public ITreeLevels<TKey, TValue> build() {
-            ITreeLevels<TKey, TValue> levels = new TreeLevels<>(
+            return new TreeLevels<>(
                 this.levels,
                 TreeLevels.defaultComparator());
-
-            return levels;
         }
     }
 }

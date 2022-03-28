@@ -51,27 +51,24 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
      * Gets the data of a two dimensional list1.
      */
     private ITwoDimensionalListData<Integer> getTwoDimensionalListData1() {
-        IList<IList<Integer>> creationData = this.createTwoDimensionalList(1, 2);
-        IList<IList<Integer>> data = creationData;
-        return new TwoDimensionalListData<>(creationData, data);
+        IList<IList<Integer>> data = this.createTwoDimensionalList(1, 2);
+        return new TwoDimensionalListData<>(data);
     }
 
     /**
      * Gets the data of a two dimensional list2.
      */
     private ITwoDimensionalListData<Integer> getTwoDimensionalListData2() {
-        IList<IList<Integer>> creationData = this.createTwoDimensionalList(10, 20);
-        IList<IList<Integer>> data = creationData;
-        return new TwoDimensionalListData<>(creationData, data);
+        IList<IList<Integer>> data = this.createTwoDimensionalList(10, 20);
+        return new TwoDimensionalListData<>(data);
     }
 
     /**
      * Gets the data of a two dimensional list3.
      */
     private ITwoDimensionalListData<Integer> getTwoDimensionalListData3() {
-        IList<IList<Integer>> creationData = this.createTwoDimensionalList(100, 200);
-        IList<IList<Integer>> data = creationData;
-        return new TwoDimensionalListData<>(creationData, data);
+        IList<IList<Integer>> data = this.createTwoDimensionalList(100, 200);
+        return new TwoDimensionalListData<>(data);
     }
 
     /**
@@ -86,10 +83,9 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
         int rowsSize = this.randomGenerator.nextInteger(fromRowSize, toRowSize);
         int columnSize = this.randomGenerator.nextInteger(fromColumnSize, toColumnSize);
 
-        IList<IList<Integer>> creationData = this.createTwoDimensionalList(rowsSize, columnSize);
-        IList<IList<Integer>> data = creationData;
+        IList<IList<Integer>> data = this.createTwoDimensionalList(rowsSize, columnSize);
 
-        return new TwoDimensionalListData<>(creationData, data);
+        return new TwoDimensionalListData<>(data);
     }
 
     /**

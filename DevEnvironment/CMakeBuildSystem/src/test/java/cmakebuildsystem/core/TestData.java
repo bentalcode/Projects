@@ -51,12 +51,10 @@ public final class TestData implements ITestData {
      */
     @Override
     public Path getDevEnvironmentCMakeProjectManifestResource() {
-        Path path = ResourcePaths.create(
+        return ResourcePaths.create(
             dataDirectory(),
             PROJECT_MANIFESTS_DIRECTORY_NAME,
             PROJECT_MANIFEST_DEV_ENVIRONMENT);
-
-        return path;
     }
 
     /**

@@ -268,12 +268,10 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
          */
         @Override
         public IVertex<TKey, TValue> build() {
-            IVertex<TKey, TValue> vertex = new Vertex<>(
+            return new Vertex<>(
                 this.key,
                 this.value,
                 Vertex.defaultComparator());
-
-            return vertex;
         }
     }
 }

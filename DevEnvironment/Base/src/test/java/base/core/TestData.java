@@ -26,12 +26,10 @@ public final class TestData implements ITestData {
      */
     @Override
     public Path getIsPrimeResourcePath() {
-        Path path = this.createResourcePath(
+        return this.createResourcePath(
             TestData.DATA_DIRECTORY_NAME,
             TestData.PRIMES_DIRECTORY_NAME,
             TestData.IS_PRIME_FILE_NAME);
-
-        return path;
     }
 
     /**
@@ -39,12 +37,10 @@ public final class TestData implements ITestData {
      */
     @Override
     public Path getPrimesResourcePath() {
-        Path path = this.createResourcePath(
+        return this.createResourcePath(
             TestData.DATA_DIRECTORY_NAME,
             TestData.PRIMES_DIRECTORY_NAME,
             TestData.PRIMES_FILE_NAME);
-
-        return path;
     }
 
     /**

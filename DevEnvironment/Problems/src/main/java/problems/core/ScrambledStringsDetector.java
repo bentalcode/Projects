@@ -117,36 +117,29 @@ public final class ScrambledStringsDetector implements IDetector {
             return false;
         }
 
-        int length = length1;
-        assert(length > 0);
+        assert(length1 > 0);
 
-        if (StringEquality.equals(s1, startIndex1, s2, startIndex2, length)) {
+        if (StringEquality.equals(s1, startIndex1, s2, startIndex2, length1)) {
             return true;
         }
 
-        if (length <= 1) {
+        if (length1 <= 1) {
             return false;
         }
 
-        int subLength = length / 2;
-
-        int leftStartIndex1 = startIndex1;
+        int subLength = length1 / 2;
         int leftEndIndex1 = startIndex1 + subLength - 1;
-
         int rightStartIndex1 = leftEndIndex1 + 1;
-        int rightEndIndex1 = endIndex1;
-
         int leftStartIndex2 = startIndex2;
         int leftEndIndex2 = startIndex2 + subLength - 1;
-
         int rightStartIndex2 = leftEndIndex2 + 1;
         int rightEndIndex2 = endIndex2;
 
         if (scrambledStrings(
-                s1, leftStartIndex1, leftEndIndex1,
+                s1, startIndex1, leftEndIndex1,
                 s2, leftStartIndex2, leftEndIndex2) &&
             scrambledStrings(
-                s1, rightStartIndex1, rightEndIndex1,
+                s1, rightStartIndex1, endIndex1,
                 s2, rightStartIndex2, rightEndIndex2)) {
 
             return true;
@@ -160,10 +153,10 @@ public final class ScrambledStringsDetector implements IDetector {
 
         return
             scrambledStrings(
-                s1, leftStartIndex1, leftEndIndex1,
+                s1, startIndex1, leftEndIndex1,
                 s2, leftStartIndex2, leftEndIndex2) &&
             scrambledStrings(
-                s1, rightStartIndex1, rightEndIndex1,
+                s1, rightStartIndex1, endIndex1,
                 s2, rightStartIndex2, rightEndIndex2);
     }
 

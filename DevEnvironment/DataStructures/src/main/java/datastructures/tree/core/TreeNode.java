@@ -151,11 +151,9 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
      */
     @Override
     public boolean isEqual(ITreeNode<TKey, TValue> other) {
-        boolean status = new EqualBuilder()
+        return new EqualBuilder()
             .withObject(this.getKey(), other.getKey(), this.keyComparator)
             .build();
-
-        return status;
     }
 
     /**
@@ -167,11 +165,9 @@ public final class TreeNode<TKey extends Comparable<TKey>, TValue> implements IT
      */
     @Override
     public int compareTo(ITreeNode<TKey, TValue> other) {
-        int status = new CompareToBuilder()
+        return new CompareToBuilder()
             .withObject(this.getKey(), other.getKey(), this.keyComparator)
             .build();
-
-        return status;
     }
 
     /**

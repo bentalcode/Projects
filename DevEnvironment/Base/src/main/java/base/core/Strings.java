@@ -367,9 +367,7 @@ public final class Strings {
         }
 
         int length = Indexes.size(startIndex, endIndex);
-        String result = length > 0 ? str.substring(startIndex, endIndex + 1) : "";
-
-        return result;
+        return length > 0 ? str.substring(startIndex, endIndex + 1) : "";
     }
 
     /**

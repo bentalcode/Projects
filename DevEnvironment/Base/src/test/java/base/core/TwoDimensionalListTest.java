@@ -92,7 +92,6 @@ public final class TwoDimensionalListTest {
      * Creates a two dimensional list.
      */
     private static <T extends Comparable<T>> ITwoDimensionalList<T> createTwoDimensionalList(List<List<T>> data) {
-        ITwoDimensionalList<T> result = new TwoDimensionalList<>(data);
-        return result;
+        return new TwoDimensionalList<>(data);
     }
 }

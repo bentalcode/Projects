@@ -24,11 +24,9 @@ public final class TestData implements ITestData {
     @Override
     public Path getCatalanResourcePath()
      {
-        Path path = ResourcePaths.create(
+        return ResourcePaths.create(
             TestData.DATA_DIRECTORY_NAME,
             TestData.CATALAN_DIRECTORY_NAME,
             TestData.CATALANS_FILE_NAME);
-
-        return path;
     }
 }

@@ -80,11 +80,12 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withShort(short value) {
-        int lowSection = value;
-        int highSection = value << IPrimitiveSize.InBits.ShortSize;
-
-        int currentCode = lowSection;
-        currentCode += highSection;
+        //
+        // Low Section: value
+        // High Section: value << IPrimitiveSize.InBits.ShortSize
+        //
+        int currentCode = value;
+        currentCode += (value << IPrimitiveSize.InBits.ShortSize);
 
         this.updateCode(currentCode);
 
