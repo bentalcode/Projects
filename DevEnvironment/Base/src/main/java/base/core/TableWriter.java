@@ -165,8 +165,7 @@ public final class TableWriter implements ITableWriter {
     private static int calculateTableWidth(List<Integer> columnsLengths) {
         int width = 2;
 
-        for (int columnIndex = 0; columnIndex < columnsLengths.size(); ++columnIndex) {
-            int columnLength = columnsLengths.get(columnIndex);
+        for (int columnLength : columnsLengths) {
             width += columnLength;
         }
 

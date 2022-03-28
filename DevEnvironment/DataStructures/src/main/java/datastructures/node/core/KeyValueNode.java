@@ -235,7 +235,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         /**
          * Sets the key of a node.
          */
-        public Builder setKey(TKey key) {
+        public Builder<TKey, TValue> setKey(TKey key) {
             Conditions.validateNotNull(
                 key,
                 "The key of a node.");
@@ -247,7 +247,7 @@ public final class KeyValueNode<TKey extends Comparable<TKey>, TValue> implement
         /**
          * Adds the value of a node.
          */
-        public Builder setValue(TValue value) {
+        public Builder<TKey, TValue> setValue(TValue value) {
             this.value = value;
             return this;
         }

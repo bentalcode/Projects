@@ -3,7 +3,6 @@ package problems.core;
 import base.core.ArrayLists;
 import base.interfaces.ICalculator;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import problems.interfaces.ISparseSimilarityResult;
 import testbase.core.Assertion;

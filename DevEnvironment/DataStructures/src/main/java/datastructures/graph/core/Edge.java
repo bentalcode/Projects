@@ -277,7 +277,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
         /**
          * Sets the source vertex.
          */
-        public Builder setSourceVertex(IVertex<TKey, TValue> source) {
+        public Builder<TKey, TValue> setSourceVertex(IVertex<TKey, TValue> source) {
             Conditions.validateNotNull(
                 source,
                 "The source vertex.");
@@ -290,7 +290,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
         /**
          * Sets the destination vertex.
          */
-        public Builder setDestinationVertex(IVertex<TKey, TValue> destination) {
+        public Builder<TKey, TValue> setDestinationVertex(IVertex<TKey, TValue> destination) {
             Conditions.validateNotNull(
                 destination,
                 "The destination vertex.");
@@ -303,7 +303,7 @@ public final class Edge<TKey extends Comparable<TKey>, TValue> implements IEdge<
         /**
          * Sets a directed edge.
          */
-        public Builder setDirected() {
+        public Builder<TKey, TValue> setDirected() {
             this.directed = true;
 
             return this;

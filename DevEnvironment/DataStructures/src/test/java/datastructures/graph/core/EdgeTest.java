@@ -61,7 +61,7 @@ public final class EdgeTest {
 
         assert !edge1.equals(edge2) || (edge1.hashCode() == edge2.hashCode());
 
-        Set<IEdge> edges = new HashSet<>();
+        Set<IEdge<Integer, Integer>> edges = new HashSet<>();
         edges.add(edge1);
         edges.add(edge2);
 
@@ -79,7 +79,7 @@ public final class EdgeTest {
             Vertex.make(edge1.source().getKey()),
             Vertex.make(edge1.destination().getKey()));
 
-        Set<IEdge> edges = new HashSet<>();
+        Set<IEdge<Double, Double>> edges = new HashSet<>();
         edges.add(edge1);
         edges.add(edge2);
 
@@ -97,7 +97,7 @@ public final class EdgeTest {
             Vertex.make(edge1.source().getKey()),
             Vertex.make(edge1.destination().getKey()));
 
-        Set<IEdge> edges = new HashSet<>();
+        Set<IEdge<Character, Character>> edges = new HashSet<>();
         edges.add(edge1);
         edges.add(edge2);
 
@@ -115,7 +115,7 @@ public final class EdgeTest {
             Vertex.make(edge1.source().getKey()),
             Vertex.make(edge1.destination().getKey()));
 
-        Set<IEdge> edges = new HashSet<>();
+        Set<IEdge<String, String>> edges = new HashSet<>();
         edges.add(edge1);
         edges.add(edge2);
 
