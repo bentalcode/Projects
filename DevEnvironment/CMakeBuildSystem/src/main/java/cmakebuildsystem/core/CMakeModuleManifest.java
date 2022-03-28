@@ -120,7 +120,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     public static ICMakeModuleManifest readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(PROPERTY_NAME);
 
-        CMakeModuleType type = reader.readEnumProperty(PROPERTY_TYPE, value -> { return CMakeModuleType.parse(value); });
+        CMakeModuleType type = reader.readEnumProperty(PROPERTY_TYPE, CMakeModuleType::parse);
 
         ICMakeModuleProperties properties = reader.hasProperty(PROPERTY_PROPERTIES) ?
             reader.readObjectProperty(PROPERTY_PROPERTIES, CMakeModuleProperties.class) :

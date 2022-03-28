@@ -70,12 +70,7 @@ public final class SingleProducerConsumerLockFreeQueueTest {
         int numberOfElements = data.size();
         List<T> receivedData = new ArrayList<>(numberOfElements);
 
-        IReceiver<T> receiver = new IReceiver<T>() {
-            @Override
-            public void receive(T element) {
-                receivedData.add(element);
-            }
-        };
+        IReceiver<T> receiver = element -> receivedData.add(element);
 
         concurrentQueue.publish(dataIterator);
         concurrentQueue.subscribe(receiver);

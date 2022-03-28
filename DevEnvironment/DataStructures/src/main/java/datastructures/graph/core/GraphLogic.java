@@ -176,11 +176,7 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
         // Create the priority queue based on minimum distance...
         //
         PriorityQueue<IPair<IVertex<TKey, TValue>, Integer>> queue = new PriorityQueue<>(
-            new Comparator<IPair<IVertex<TKey, TValue>, Integer>>() {
-                @Override
-                public int compare(
-                    IPair<IVertex<TKey, TValue>, Integer> left,
-                    IPair<IVertex<TKey, TValue>, Integer> right) {
+                (left, right) -> {
 
                     if (left == null && right == null) {
                         return 0;
@@ -199,7 +195,6 @@ public final class GraphLogic<TKey extends Comparable<TKey>, TValue> implements 
 
                     return Integer.compare(leftDistance, rightDistance);
                 }
-            }
         );
 
         queue.offer(Pair.make(src, 0));

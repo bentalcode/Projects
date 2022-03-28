@@ -88,39 +88,36 @@ public final class SparseSimilarityTest {
      * Sorts the result.
      */
     private void sortResult(List<ISparseSimilarityResult> result) {
-        Collections.sort(result, new Comparator<ISparseSimilarityResult>() {
-            @Override
-            public int compare(ISparseSimilarityResult left, ISparseSimilarityResult right) {
-                if (left == null && right == null) {
-                    return 0;
-                }
-
-                if (left == null) {
-                    return -1;
-                }
-
-                if (right == null) {
-                    return 1;
-                }
-
-                if (left.getCollectionId1() < right.getCollectionId1()) {
-                    return -1;
-                }
-
-                if (left.getCollectionId1() > right.getCollectionId1()) {
-                    return 1;
-                }
-
-                if (left.getCollectionId2() < right.getCollectionId2()) {
-                    return -1;
-                }
-
-                if (left.getCollectionId2() > right.getCollectionId2()) {
-                    return 1;
-                }
-
+        Collections.sort(result, (left, right) -> {
+            if (left == null && right == null) {
                 return 0;
             }
+
+            if (left == null) {
+                return -1;
+            }
+
+            if (right == null) {
+                return 1;
+            }
+
+            if (left.getCollectionId1() < right.getCollectionId1()) {
+                return -1;
+            }
+
+            if (left.getCollectionId1() > right.getCollectionId1()) {
+                return 1;
+            }
+
+            if (left.getCollectionId2() < right.getCollectionId2()) {
+                return -1;
+            }
+
+            if (left.getCollectionId2() > right.getCollectionId2()) {
+                return 1;
+            }
+
+            return 0;
         });
     }
 }

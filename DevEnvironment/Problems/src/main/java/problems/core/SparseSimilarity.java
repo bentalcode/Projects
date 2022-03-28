@@ -194,23 +194,20 @@ public final class SparseSimilarity<T extends Comparable<T>> implements ICalcula
      * Sorts the elements by value.
      */
     private static <T extends Comparable<T>> void sort(List<CollectionElement<T>> elements) {
-        Collections.sort(elements, new Comparator<CollectionElement<T>>() {
-            @Override
-            public int compare(CollectionElement<T> left, CollectionElement<T> right) {
-                if (left == null && right == null) {
-                    return 0;
-                }
-
-                if (left == null) {
-                    return -1;
-                }
-
-                if (right == null) {
-                    return 1;
-                }
-
-                return left.getValue().compareTo(right.getValue());
+        elements.sort((left, right) -> {
+            if (left == null && right == null) {
+                return 0;
             }
+
+            if (left == null) {
+                return -1;
+            }
+
+            if (right == null) {
+                return 1;
+            }
+
+            return left.getValue().compareTo(right.getValue());
         });
     }
 

@@ -105,7 +105,7 @@ public final class CMakeProject implements ICMakeProject {
      */
     public static ICMakeProject readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(PROPERTY_NAME);
-        Path rootPath = reader.readProperty(PROPERTY_ROOT_PATH, value -> { return Paths.create(value); });
+        Path rootPath = reader.readProperty(PROPERTY_ROOT_PATH, Paths::create);
         List<ICMakeModule> modules = reader.readListProperty(PROPERTY_MODULES, CMakeModule.class);
 
         return new CMakeProject(

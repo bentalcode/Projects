@@ -327,9 +327,9 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
         int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (boolean[] booleans : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withBoolean(array[row][column]);
+                this.withBoolean(booleans[column]);
             }
         }
 
@@ -341,12 +341,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withByteArray(byte[][] array) {
-        int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (byte[] bytes : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withByte(array[row][column]);
+                this.withByte(bytes[column]);
             }
         }
 
@@ -358,12 +357,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withShortArray(short[][] array) {
-        int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (short[] shorts : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withShort(array[row][column]);
+                this.withShort(shorts[column]);
             }
         }
 
@@ -378,9 +376,9 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
         int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (int[] ints : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withInteger(array[row][column]);
+                this.withInteger(ints[column]);
             }
         }
 
@@ -395,9 +393,9 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
         int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (long[] longs : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withLong(array[row][column]);
+                this.withLong(longs[column]);
             }
         }
 
@@ -412,9 +410,9 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
         int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (float[] floats : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withFloat(array[row][column]);
+                this.withFloat(floats[column]);
             }
         }
 
@@ -426,12 +424,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withDoubleArray(double[][] array) {
-        int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (double[] doubles : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withDouble(array[row][column]);
+                this.withDouble(doubles[column]);
             }
         }
 
@@ -443,12 +440,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withCharacterArray(char[][] array) {
-        int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (char[] chars : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withCharacter(array[row][column]);
+                this.withCharacter(chars[column]);
             }
         }
 
@@ -460,12 +456,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withStringArray(String[][] array) {
-        int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (String[] strings : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withString(array[row][column]);
+                this.withString(strings[column]);
             }
         }
 
@@ -477,12 +472,11 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
      */
     @Override
     public IHashCodeBuilder withBigIntegerArray(BigInteger[][] array) {
-        int rowsLength = array.length;
         int columnsLength = array[0].length;
 
-        for (int row = 0; row < rowsLength; ++row) {
+        for (BigInteger[] bigIntegers : array) {
             for (int column = 0; column < columnsLength; ++column) {
-                this.withBigInteger(array[row][column]);
+                this.withBigInteger(bigIntegers[column]);
             }
         }
 

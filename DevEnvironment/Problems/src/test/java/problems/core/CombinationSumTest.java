@@ -93,7 +93,7 @@ public final class CombinationSumTest {
         Set<List<Integer>> result = combinationSum.combinationSum(values, sum);
 
         this.assertion.assertEqualsWithIterators(
-            IteratorOfIteratorCollection.ofObjects(result, value -> { return ListIterator.make(value); }),
+            IteratorOfIteratorCollection.ofObjects(result, ListIterator::make),
             TwoDimensionalIntegerArrayIterator.make(expectedResult),
             "Incorrect logic for calculating the combination sum.");
     }
@@ -110,7 +110,7 @@ public final class CombinationSumTest {
         Set<List<Integer>> result = combinationSum.singleCombinationSum(values, sum);
 
         this.assertion.assertEqualsWithIterators(
-            IteratorOfIteratorCollection.ofObjects(result, value -> { return ListIterator.make(value); }),
+            IteratorOfIteratorCollection.ofObjects(result, ListIterator::make),
             TwoDimensionalIntegerArrayIterator.make(expectedResult),
             "Incorrect logic for calculating the single combination sum.");
 

@@ -113,25 +113,22 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             mostlyUsedWords.add(Pair.make(element.first(), element.second()));
         }
 
-        Collections.sort(mostlyUsedWords, new Comparator<IPair<String, Integer>>() {
-            @Override
-            public int compare(IPair<String, Integer> left, IPair<String, Integer> right) {
-                int leftCounter = left.second();
-                int rightCounter = right.second();
+        mostlyUsedWords.sort((left, right) -> {
+            int leftCounter = left.second();
+            int rightCounter = right.second();
 
-                if (leftCounter < rightCounter) {
-                    return 1;
-                }
-
-                if (leftCounter > rightCounter) {
-                    return -1;
-                }
-
-                String leftWord = left.first();
-                String rightWord = right.first();
-
-                return leftWord.compareTo(rightWord);
+            if (leftCounter < rightCounter) {
+                return 1;
             }
+
+            if (leftCounter > rightCounter) {
+                return -1;
+            }
+
+            String leftWord = left.first();
+            String rightWord = right.first();
+
+            return leftWord.compareTo(rightWord);
         });
 
         //

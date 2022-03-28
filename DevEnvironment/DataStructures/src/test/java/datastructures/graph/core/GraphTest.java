@@ -129,12 +129,7 @@ public final class GraphTest {
         IGraph<TKey, TValue> graph = this.createGraph(data);
         IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
-        IPathFinder<TKey, TValue> pathFinder = new IPathFinder<TKey, TValue>() {
-            @Override
-            public List<IWalk<TKey, TValue>> findPaths(IRoute<TKey, TValue> route) {
-                return graphLogic.findPathsWithBreadthFirstSearch(route);
-            }
-        };
+        IPathFinder<TKey, TValue> pathFinder = route -> graphLogic.findPathsWithBreadthFirstSearch(route);
 
         this.testFindPaths(
             pathFinder,
@@ -149,12 +144,7 @@ public final class GraphTest {
         IGraph<TKey, TValue> graph = this.createGraph(data);
         IGraphLogic<TKey, TValue> graphLogic = new GraphLogic<>(graph);
 
-        IPathFinder<TKey, TValue> pathFinder = new IPathFinder<TKey, TValue>() {
-            @Override
-            public List<IWalk<TKey, TValue>> findPaths(IRoute<TKey, TValue> route) {
-                return graphLogic.findPathsWithDepthFirstSearch(route);
-            }
-        };
+        IPathFinder<TKey, TValue> pathFinder = route -> graphLogic.findPathsWithDepthFirstSearch(route);
 
         this.testFindPaths(
             pathFinder,
