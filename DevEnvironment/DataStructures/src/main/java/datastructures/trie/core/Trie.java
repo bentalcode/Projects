@@ -11,15 +11,11 @@ import base.interfaces.IBinaryComparator;
 import base.interfaces.IHashCodeBuilder;
 import base.interfaces.IIterator;
 import base.interfaces.IVisitor;
-import base.core.Collections;
 import datastructures.node.interfaces.IKeyValueNode;
 import datastructures.trie.interfaces.ITrie;
 import datastructures.trie.interfaces.ITrieNode;
 import datastructures.trie.interfaces.ITrieTraversal;
-
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * The Trie class implements a trie.

@@ -305,13 +305,7 @@ public final class ArrayLists {
      * Creates a new instance of a list.
      */
     public static <T> List<T> make(T[] values) {
-        List<T> list = new ArrayList<>(values.length);
-
-        for (T value : values) {
-            list.add(value);
-        }
-
-        return list;
+        return new ArrayList<>(java.util.Arrays.asList(values));
     }
 
     /**
