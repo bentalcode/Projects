@@ -91,8 +91,8 @@ public final class NamedParameterMetadata extends ParameterMetadata implements I
 
         this.shortName = shortName;
         this.longName = longName;
-        this.shortNameKey = CommandConstants.shortNamedParameterPrefix + shortName;
-        this.longNameKey = CommandConstants.longNamedParameterPrefix + longName;
+        this.shortNameKey = CommandConstants.SHORT_NAMED_PARAMETER_PREFIX + shortName;
+        this.longNameKey = CommandConstants.LONG_NAMED_PARAMETER_PREFIX + longName;
         this.optional = optional;
         this.defaultValue = defaultValue;
 

@@ -198,39 +198,39 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     public static ICMakeListsManifest readJson(IJsonObjectReader reader) {
         String cmakeVersion = reader.hasProperty(PROPERTY_CMAKE_VERSION) ?
             reader.readStringProperty(PROPERTY_CMAKE_VERSION) :
-                CMAKE_VERSION;
+            CMAKE_VERSION;
 
         String projectVersion = reader.hasProperty(PROPERTY_PROJECT_VERSION) ?
             reader.readStringProperty(PROPERTY_PROJECT_VERSION) :
-                PROJECT_VERSION;
+            PROJECT_VERSION;
 
         String presetPath = reader.hasProperty(PROPERTY_PRESET_PATH) ?
             reader.readStringProperty(PROPERTY_PRESET_PATH) :
-                PRESET_PATH;
+            PRESET_PATH;
 
         String postsetPath = reader.hasProperty(PROPERTY_POSTSET_PATH) ?
             reader.readStringProperty(PROPERTY_POSTSET_PATH) :
-                POSTSET_PATH;
+            POSTSET_PATH;
 
         String buildPropertiesPath = reader.hasProperty(PROPERTY_BUILD_PROPERTIES_PATH) ?
             reader.readStringProperty(PROPERTY_BUILD_PROPERTIES_PATH) :
-                BUILD_PROPERTIES_PATH;
+            BUILD_PROPERTIES_PATH;
 
         String includesFilesProperty = reader.hasProperty(PROPERTY_INCLUDES_FILES_PROPERTY) ?
             reader.readStringProperty(PROPERTY_INCLUDES_FILES_PROPERTY) :
-                INCLUDES_FILES_PROPERTY;
+            INCLUDES_FILES_PROPERTY;
 
         String sourcesFilesProperty = reader.hasProperty(PROPERTY_SOURCES_FILES_PROPERTY) ?
             reader.readStringProperty(PROPERTY_SOURCES_FILES_PROPERTY) :
-                SOURCES_FILES_PROPERTY;
+            SOURCES_FILES_PROPERTY;
 
         String includesProperty = reader.hasProperty(PROPERTY_INCLUDES_PROPERTY) ?
             reader.readStringProperty(PROPERTY_INCLUDES_PROPERTY) :
-                INCLUDES_PROPERTY;
+            INCLUDES_PROPERTY;
 
         String sourcesProperty = reader.hasProperty(PROPERTY_SOURCES_PROPERTY) ?
             reader.readStringProperty(PROPERTY_SOURCES_PROPERTY) :
-                SOURCES_PROPERTY;
+            SOURCES_PROPERTY;
 
         return new CMakeListsManifest(
             cmakeVersion,

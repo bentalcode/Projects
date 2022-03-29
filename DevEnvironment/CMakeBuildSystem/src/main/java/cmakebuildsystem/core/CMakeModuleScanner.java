@@ -1,14 +1,18 @@
 package cmakebuildsystem.core;
 
 import base.core.ArrayLists;
+import base.core.Collections;
 import base.core.Conditions;
 import base.core.Environment;
 import base.core.Paths;
 import base.interfaces.IScanner;
 import basicio.core.FilePathScanner;
 import basicio.interfaces.IFilePathScanner;
+import cmakebuildsystem.CMakeBuildException;
 import cmakebuildsystem.interfaces.ICMakeModule;
 import cmakebuildsystem.interfaces.ICMakeModuleManifest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -18,6 +22,7 @@ import java.util.List;
 public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
     private final Path path;
     private final ICMakeModuleManifest manifest;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * The CMakeModuleScanner constructor.
@@ -60,6 +65,10 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
         List<Path> buildFilesPaths = pathsResult.get(2);
         List<Path> cmakeListsFilesPaths = pathsResult.get(3);
 
+        verifyScannedCMakeListsFiles(
+            cmakeListsFilesPaths,
+            cmakeListsTargetPath);
+
         return new CMakeModule(
             this.manifest.getName(),
             this.path,
@@ -83,5 +92,20 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
             .build();
 
         return Paths.create(path);
+    }
+
+    /**
+     * Verifies that the .
+     */
+    private void verifyScannedCMakeListsFiles(List<Path> paths, Path cmakeListsTargetPath) {
+        if (paths.size() != 1 && cmakeListsTargetPath.equals(paths.get(0))) {
+            String errorMessage =
+                "The CMake Module at path: " + this.path.toString() +
+                " should contain a single cmakefile: " + cmakeListsTargetPath +
+                ", found: " + Collections.toString(paths);
+
+            this.log.error(errorMessage);
+            throw new CMakeBuildException(errorMessage);
+        }
     }
 }

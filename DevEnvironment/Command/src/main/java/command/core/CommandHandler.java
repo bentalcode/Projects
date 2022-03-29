@@ -164,7 +164,7 @@ public final class CommandHandler implements Closeable, ICommandHandler {
      * Loads the manifest of the command.
      */
     private static ICommandManifest loadManifest() {
-        Path path = CommandConstants.defaultManifestPath;
+        Path path = CommandConstants.DEFAULT_MANIFEST_PATH;
         String json = ResourceReader.loadString(path);
         return CommandManifest.fromJson(json);
     }

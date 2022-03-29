@@ -17,19 +17,6 @@ abstract class CMakeBuildCommand implements ICMakeBuildCommand {
     /**
      * The CMakeBuildCommand constructor.
      */
-    protected CMakeBuildCommand(String name) {
-        Conditions.validateStringNotNullOrEmpty(
-            name,
-            "The name of a command.");
-
-        this.name = name;
-        this.subjectName = null;
-        this.properties = null;
-    }
-
-    /**
-     * The CMakeBuildCommand constructor.
-     */
     protected CMakeBuildCommand(
         String name,
         String subjectName) {

@@ -7,17 +7,17 @@ import java.nio.file.Paths;
  * The CommandConstants class implements defines constants of a command.
  */
 public final class CommandConstants {
-    public static final String manifestResourceName = "manifest.json";
-    public static final Path defaultManifestPath = Paths.get(manifestResourceName);
+    public static final String MANIFEST_RESOURCE_NAME = "manifest.json";
+    public static final Path DEFAULT_MANIFEST_PATH = Paths.get(MANIFEST_RESOURCE_NAME);
 
-    public static final String shortNamedParameterPrefix = "-";
-    public static final String longNamedParameterPrefix = "--";
-    public static final String namedParameterSeparator = ":=";
+    public static final String SHORT_NAMED_PARAMETER_PREFIX = "-";
+    public static final String LONG_NAMED_PARAMETER_PREFIX = "--";
+    public static final String NAMED_PARAMETER_SEPARATOR = ":=";
 
-    public static final String trueValue = "true";
+    public static final String TRUE_VALUE = "true";
 
-    public static final String helpShortName = "h";
-    public static final String helpLongName = "help";
+    public static final String HELP_SHORT_NAME = "h";
+    public static final String HELP_LONG_NAME = "help";
 
     /**
      * Disables the default constructor - This is a static class.

@@ -221,7 +221,11 @@ public final class CacheTest {
             cache.get(item.getKey());
         }
         else if (operation.equalsIgnoreCase("delete")) {
-            cache.delete(item.getKey());
+            boolean status = cache.delete(item.getKey());
+
+            this.assertion.assertTrue(
+                status,
+                "Incorrect logic of deleting an item from the cache.");
         }
     }
 }
