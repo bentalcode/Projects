@@ -42,7 +42,6 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
 
     private final int mostlyUsedWordsCapacity;
     private final Set<String> excludedWords;
-    private final List<String> words = new ArrayList<>();
     private final Map<String, Integer> wordCounterMap = new TreeMap<>();
     private final IPriorityQueue<IDoublet<String, Integer>> mostlyUsedWordsPriorityQueue;
 
@@ -305,11 +304,6 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
         if (Strings.isNullOrEmpty(word) || this.excludedWords.contains(word)) {
             return;
         }
-
-        //
-        // Update the words array for debugging...
-        //
-        this.words.add(word);
 
         //
         // Update the word counter map...
