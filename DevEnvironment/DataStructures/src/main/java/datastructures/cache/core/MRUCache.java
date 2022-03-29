@@ -25,6 +25,7 @@ public final class MRUCache<TKey extends Comparable<TKey>, TValue> extends Abstr
     protected void makeAvailableSpace(CacheData<TKey, TValue> cacheData, int numberOfItems) {
         for (int i = 0; i < numberOfItems; ++i) {
             IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> itemToRemove = cacheData.usedList().removeFromBack();
+            assert itemToRemove != null;
             cacheData.dataLookup().remove(itemToRemove.getValue().getKey());
         }
     }

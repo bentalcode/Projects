@@ -23,7 +23,7 @@ public final class Multiplication implements IMultiplication {
             "The left number is not defined.");
 
         Conditions.validate(
-            right != null && left.length > 0,
+            right != null && right.length > 0,
             "The right number is not defined.");
 
         int[] result = new int[left.length + right.length];
@@ -70,7 +70,6 @@ public final class Multiplication implements IMultiplication {
 
         if (resultEndIndex == -1) {
             result = new int[1];
-            result[0] = 0;
             return result;
         }
 

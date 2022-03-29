@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * The Environment class implements complementary APIs for current environment.
  */
 public final class Environment {
-    private static final String VARIABLE_PATTERN = "\\$\\{[A-Za-z0-9\\-\\_\\.]+\\}";
+    private static final Pattern VARIABLE_PATTERN = Pattern.compile("\\$\\{[A-Za-z0-9\\-_.]+}");
     private static final Logger LOG = LoggerFactory.getLogger(Enums.class);
 
     /**
@@ -61,8 +61,7 @@ public final class Environment {
             return name;
         }
 
-        Pattern pattern = Pattern.compile(VARIABLE_PATTERN);
-        Matcher matcher = pattern.matcher(name);
+        Matcher matcher = VARIABLE_PATTERN.matcher(name);
 
         StringBuilder result = new StringBuilder();
 

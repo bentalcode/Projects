@@ -22,51 +22,15 @@ public final class MinimumWindowSubstringTest {
      */
     @Test
     public void minimumWindowSubstringTest() {
-        String s1 = "";
-        String t1 = "a";
-        String result1 = null;
-
-        String s2 = "a";
-        String t2 = "b";
-        String result2 = null;
-
-        String s3 = "a";
-        String t3 = "";
-        String result3 = null;
-
-        String s4 = "hashtable";
-        String t4 = "hash";
-        String result4 = "has";
-
-        String s5 = "hashtable";
-        String t5 = "hash";
-        String result5 = "has";
-
-        String s6 = "datastructures";
-        String t6 = "struct";
-        String result6 = "struc";
-
-        String s7 = "transformation";
-        String t7 = "on";
-        String result7 = "on";
-
-        String s8 = "abdefbcdad";
-        String t8 = "abc";
-        String result8 = "bcda";
-
-        String s9 = "dataandmusic";
-        String t9 = "musicand";
-        String result9 = "andmusic";
-
-        this.testMinimumWindowSubstringTest(s1, t1, result1);
-        this.testMinimumWindowSubstringTest(s2, t2, result2);
-        this.testMinimumWindowSubstringTest(s3, t3, result3);
-        this.testMinimumWindowSubstringTest(s4, t4, result4);
-        this.testMinimumWindowSubstringTest(s5, t5, result5);
-        this.testMinimumWindowSubstringTest(s6, t6, result6);
-        this.testMinimumWindowSubstringTest(s7, t7, result7);
-        this.testMinimumWindowSubstringTest(s8, t8, result8);
-        this.testMinimumWindowSubstringTest(s9, t9, result9);
+        this.testMinimumWindowSubstringTest("", "a", null);
+        this.testMinimumWindowSubstringTest("a", "b", null);
+        this.testMinimumWindowSubstringTest("a", "", null);
+        this.testMinimumWindowSubstringTest("hashtable", "hash", "has");
+        this.testMinimumWindowSubstringTest("hashtable", "hash", "has");
+        this.testMinimumWindowSubstringTest("datastructures", "struct", "struc");
+        this.testMinimumWindowSubstringTest("transformation", "on", "on");
+        this.testMinimumWindowSubstringTest("abdefbcdad", "abc", "bcda");
+        this.testMinimumWindowSubstringTest("dataandmusic", "musicand", "andmusic");
     }
 
     /**

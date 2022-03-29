@@ -35,7 +35,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
     private static final int DEFAULT_MOSTLY_USED_WORDS_CAPACITY = 10;
 
     private static final String TOKEN_SEPARATOR_REGEX = "[( )]";
-    private static final String REFERENCE_REGEX = "(\\[[0-9]+\\])";
+    private static final String REFERENCE_REGEX = "(\\[[0-9]+])";
     private static final Pattern REFERENCE_PATTERN = Pattern.compile(REFERENCE_REGEX);
     private static final List<Character> SENTENCE_SEPARATORS = ArrayLists.make(',', '.', ';');
     private static final char SPECIAL_TOKEN = 65533;

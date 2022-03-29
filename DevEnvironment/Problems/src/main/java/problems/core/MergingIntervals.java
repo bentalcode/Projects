@@ -154,7 +154,7 @@ public final class MergingIntervals<Type extends Comparable<Type>> implements IM
             if (nextCompareStatus == 0) {
                 return afterMidIndex;
             }
-            else if (nextCompareStatus == -1) {
+            else if (nextCompareStatus < 0) {
                 return midIndex;
             }
             else {
