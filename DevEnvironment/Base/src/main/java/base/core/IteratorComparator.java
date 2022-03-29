@@ -80,14 +80,14 @@ public final class IteratorComparator<T> implements IIteratorComparator<T> {
             }
         }
 
-        if (!lhs.hasNext() && rhs.hasNext()) {
+        if (!lhs.hasNext() && !rhs.hasNext()) {
+            return 0;
+        }
+
+        if (!lhs.hasNext()) {
             return -1;
         }
 
-        if (lhs.hasNext() && !rhs.hasNext()) {
-            return 1;
-        }
-
-        return 0;
+        return 1;
     }
 }

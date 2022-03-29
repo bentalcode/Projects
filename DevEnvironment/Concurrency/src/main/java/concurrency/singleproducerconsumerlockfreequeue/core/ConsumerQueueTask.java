@@ -102,7 +102,6 @@ public final class ConsumerQueueTask<T> implements java.lang.Runnable {
 
             Optional<T> currElement = this.queue.dequeue();
             boolean status = currElement.isPresent();
-            assert (status);
 
             if (status) {
                 this.receiver.receive(currElement.get());
