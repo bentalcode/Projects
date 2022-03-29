@@ -18,6 +18,7 @@ import org.junit.Test;
  */
 public final class SingleProducerConsumerLockFreeQueueTest {
     private final IAssertion assertion = new Assertion();
+    private final Object syncronizedObject = new Object();
 
     /**
      * The LockFreeSingleProducerConsumerQueueTest constructor.
@@ -75,7 +76,7 @@ public final class SingleProducerConsumerLockFreeQueueTest {
         concurrentQueue.publish(dataIterator);
         concurrentQueue.subscribe(receiver);
 
-        synchronized (messageQueueTrackingInformation) {
+        synchronized (this.syncronizedObject) {
             while (messageQueueTrackingInformation.numberOfMessagesPublished() < numberOfElements ||
                     messageQueueTrackingInformation.numberOfMessagesReceived() < numberOfElements) {
                 try {
