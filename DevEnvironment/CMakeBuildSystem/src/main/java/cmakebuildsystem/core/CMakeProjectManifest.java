@@ -124,7 +124,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     }
 
     /**
-     * Gets the ignore rules.
+     * Gets to ignore rules.
      */
     @Override
     public IIgnoreRules getIgnoreRules() {

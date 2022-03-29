@@ -44,7 +44,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a boolean. (Size of the boolean in java is virtual machine dependent.)
+     * Includes a boolean. (Size of the boolean in java is virtual machine dependent.)
      */
     @Override
     public IHashCodeBuilder withBoolean(boolean value) {
@@ -320,7 +320,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a boolean two dimensional array.
+     * Includes a boolean two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withBooleanArray(boolean[][] array) {
@@ -337,7 +337,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a byte two dimensional array.
+     * Includes a byte two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withByteArray(byte[][] array) {
@@ -353,7 +353,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a short two dimensional array.
+     * Includes a short two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withShortArray(short[][] array) {
@@ -369,7 +369,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With an integer two dimensional array.
+     * Includes an integer two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withIntegerArray(int[][] array) {
@@ -386,7 +386,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a long two dimensional array.
+     * Includes a long two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withLongArray(long[][] array) {
@@ -403,7 +403,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a float two dimensional array.
+     * Includes a float two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withFloatArray(float[][] array) {
@@ -420,7 +420,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a double two dimensional array.
+     * Includes a double two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withDoubleArray(double[][] array) {
@@ -436,7 +436,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a character two dimensional array.
+     * Includes a character two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withCharacterArray(char[][] array) {
@@ -452,7 +452,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a string two dimensional array.
+     * Includes a string two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withStringArray(String[][] array) {
@@ -468,7 +468,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a big integer two dimensional array.
+     * Includes a big integer two-dimensional array.
      */
     @Override
     public IHashCodeBuilder withBigIntegerArray(BigInteger[][] array) {
@@ -520,7 +520,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a generic two dimensional array.
+     * Includes a generic two-dimensional array.
      */
     @Override
     public <T extends Comparable<T>> IHashCodeBuilder withArray(T[][] array) {
@@ -529,7 +529,7 @@ public final class HashCodeBuilder implements IHashCodeBuilder {
     }
 
     /**
-     * With a generic two dimensional array and a provider.
+     * Includes a generic two-dimensional array and a provider.
      */
     @Override
     public <T> IHashCodeBuilder withArray(T[][] array, IHashCodeProvider<T> provider) {

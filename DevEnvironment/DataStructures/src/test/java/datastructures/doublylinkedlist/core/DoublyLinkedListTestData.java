@@ -35,7 +35,7 @@ public final class DoublyLinkedListTestData implements IDoublyLinkedListTestData
     }
 
     /**
-     * Gets the updation data of a doubly linked list.
+     * Gets the update data of a doubly linked list.
      */
     @Override
     public List<ITriple<String, Integer, List<Integer>>> getUpdationData() {

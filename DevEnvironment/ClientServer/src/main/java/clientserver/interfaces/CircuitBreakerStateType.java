@@ -43,7 +43,7 @@ public enum CircuitBreakerStateType {
     };
 
     /**
-     * Creates a the corresponding state.
+     * Creates a corresponding state.
      */
     public abstract ICircuitBreakerState create(ICircuitBreakerPolicy policy);
 }

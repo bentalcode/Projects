@@ -57,7 +57,7 @@ public final class Fruit implements IFruit {
     }
 
     /**
-     * Gets the kind of a fruit.
+     * Gets the kind of fruit.
      */
     @Override
     public String getKind() {

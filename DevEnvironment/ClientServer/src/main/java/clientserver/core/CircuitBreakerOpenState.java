@@ -20,7 +20,7 @@ public final class CircuitBreakerOpenState extends CircuitBreakerState {
     }
 
     /**
-     * Gets the state type of a circuit breaker.
+     * Gets the state type of circuit breaker.
      */
     @Override
     public CircuitBreakerStateType getStateType() {

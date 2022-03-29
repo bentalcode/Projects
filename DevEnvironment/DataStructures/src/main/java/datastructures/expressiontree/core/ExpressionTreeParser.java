@@ -77,8 +77,8 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
             }
             else if (ExpressionTreeElement.isUnaryOperator(token)) {
                 //
-                // If the current token is an unary operator, then pop the operand from the stack,
-                // create an unary operator and push it back to the stack...
+                // If the current token is a unary operator, then pop the operand from the stack,
+                // create a unary operator and push it back to the stack...
                 //
                 IOperand operand = Casting.cast(stack.pop());
 
@@ -148,7 +148,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
     }
 
     /**
-     * Parses an unary operand.
+     * Parses a unary operand.
      */
     private IUnaryOperator parseUnaryOperator(String token, IOperand operand) {
         UnaryOperatorType operatorType = this.parseUnaryOperatorType(token);
@@ -168,7 +168,7 @@ public final class ExpressionTreeParser implements IExpressionTreeParser {
     }
 
     /**
-     * Parses an unary operand type.
+     * Parses a unary operand type.
      */
     private UnaryOperatorType parseUnaryOperatorType(String token) {
         if (SquareRootOperator.isOperator(token)) {

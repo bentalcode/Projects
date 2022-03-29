@@ -203,7 +203,7 @@ public final class GraphBuilder<TKey extends Comparable<TKey>, TValue> implement
     }
 
     /**
-     * Adds an vertex if not defined.
+     * Adds a vertex if not defined.
      */
     private void addVertexIfNotExist(IVertex<TKey, TValue> vertex) {
         if (!this.vertices.contains(vertex)) {

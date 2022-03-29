@@ -620,7 +620,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a boolean two dimensional array.
+     * With a boolean two-dimensional array.
      */
     @Override
     public ICompareToBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs) {
@@ -680,7 +680,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a byte two dimensional array.
+     * With a byte two-dimensional array.
      */
     @Override
     public ICompareToBuilder withByteArray(byte[][] lhs, byte[][] rhs) {
@@ -740,7 +740,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a short two dimensional array.
+     * With a short two-dimensional array.
      */
     @Override
     public ICompareToBuilder withShortArray(short[][] lhs, short[][] rhs) {
@@ -800,7 +800,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With an integer two dimensional array.
+     * With an integer two-dimensional array.
      */
     @Override
     public ICompareToBuilder withIntegerArray(int[][] lhs, int[][] rhs) {
@@ -860,7 +860,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a long two dimensional array.
+     * With a long two-dimensional array.
      */
     @Override
     public ICompareToBuilder withLongArray(long[][] lhs, long[][] rhs) {
@@ -920,7 +920,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a float two dimensional array.
+     * With a float two-dimensional array.
      */
     @Override
     public ICompareToBuilder withFloatArray(float[][] lhs, float[][] rhs) {
@@ -980,7 +980,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a double two dimensional array.
+     * With a double two-dimensional array.
      */
     @Override
     public ICompareToBuilder withDoubleArray(double[][] lhs, double[][] rhs) {
@@ -1040,7 +1040,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a character two dimensional array.
+     * With a character two-dimensional array.
      */
     @Override
     public ICompareToBuilder withCharacterArray(char[][] lhs, char[][] rhs) {
@@ -1100,7 +1100,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a string two dimensional array.
+     * With a string two-dimensional array.
      */
     @Override
     public ICompareToBuilder withStringArray(String[][] lhs, String[][] rhs) {
@@ -1110,7 +1110,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a big integer two dimensional array.
+     * With a big integer two-dimensional array.
      */
     @Override
     public ICompareToBuilder withBigIntegerArray(BigInteger[][] lhs, BigInteger[][] rhs) {
@@ -1167,7 +1167,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a generic two dimensional array.
+     * With a generic two-dimensional array.
      */
     @Override
     public <T extends Comparable<T>> ICompareToBuilder withArray(T[][] lhs, T[][] rhs) {
@@ -1176,7 +1176,7 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
-     * With a generic two dimensional array and a comparator.
+     * With a generic two-dimensional array and a comparator.
      */
     @Override
     public <T extends Comparable<T>> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator) {

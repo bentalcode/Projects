@@ -22,7 +22,7 @@ public enum BinaryOperatorType {
     },
 
     /**
-     * The subtract operator.
+     * To subtract operator.
      */
     SubtractOperator(String.valueOf(IExpressionTreeSymbols.SubtractOperator)) {
         /**

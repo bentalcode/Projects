@@ -32,7 +32,7 @@ abstract class AbstractLineMatcher implements ILineMatcher {
     }
 
     /**
-     * Matches lines by a matching record and returns it's matching result.
+     * Matches lines by a matching record and returns its matching result.
      */
     @Override
     public IMatchingRecordResult match(IMatchingRecord matchingRecord) {
@@ -57,7 +57,7 @@ abstract class AbstractLineMatcher implements ILineMatcher {
     }
 
     /**
-     * Matches lines by matching records and returns it's matching results.
+     * Matches lines by matching records and returns its matching results.
      */
     @Override
     public List<IMatchingRecordResult> match(List<IMatchingRecord> matchingRecords) {

@@ -542,7 +542,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a boolean two dimensional array.
+     * With a boolean two-dimensional array.
      */
     @Override
     public IEqualBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs) {
@@ -588,7 +588,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a byte two dimensional array.
+     * With a byte two-dimensional array.
      */
     @Override
     public IEqualBuilder withByteArray(byte[][] lhs, byte[][] rhs) {
@@ -634,7 +634,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a short two dimensional array.
+     * With a short two-dimensional array.
      */
     @Override
     public IEqualBuilder withShortArray(short[][] lhs, short[][] rhs) {
@@ -680,7 +680,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With an integer two dimensional array.
+     * With an integer two-dimensional array.
      */
     @Override
     public IEqualBuilder withIntegerArray(int[][] lhs, int[][] rhs) {
@@ -726,7 +726,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a long two dimensional array.
+     * With a long two-dimensional array.
      */
     @Override
     public IEqualBuilder withLongArray(long[][] lhs, long[][] rhs) {
@@ -772,7 +772,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a float two dimensional array.
+     * With a float two-dimensional array.
      */
     @Override
     public IEqualBuilder withFloatArray(float[][] lhs, float[][] rhs) {
@@ -818,7 +818,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a double two dimensional array.
+     * With a double two-dimensional array.
      */
     @Override
     public IEqualBuilder withDoubleArray(double[][] lhs, double[][] rhs) {
@@ -864,7 +864,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a character two dimensional array.
+     * With a character two-dimensional array.
      */
     @Override
     public IEqualBuilder withCharacterArray(char[][] lhs, char[][] rhs) {
@@ -910,7 +910,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a string two dimensional array.
+     * With a string two-dimensional array.
      */
     @Override
     public IEqualBuilder withStringArray(String[][] lhs, String[][] rhs) {
@@ -920,7 +920,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a big integer two dimensional array.
+     * With a big integer two-dimensional array.
      */
     @Override
     public IEqualBuilder withBigIntegerArray(BigInteger[][] lhs, BigInteger[][] rhs) {
@@ -977,7 +977,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a generic two dimensional array.
+     * With a generic two-dimensional array.
      */
     @Override
     public <T extends Comparable<T>> IEqualBuilder withArray(T[][] lhs, T[][] rhs) {
@@ -986,7 +986,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a generic two dimensional array and a comparator.
+     * With a generic two-dimensional array and a comparator.
      */
     @Override
     public <T> IEqualBuilder withArray(T[][] lhs, T[][] rhs, IEquatableComparator<T> comparator) {

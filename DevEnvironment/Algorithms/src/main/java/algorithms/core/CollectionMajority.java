@@ -9,7 +9,7 @@ import java.util.Objects;
 public final class CollectionMajority {
 
     /**
-     * Gets a majority value in an array with O(N) and O(1) memory.
+     * Gets a majority of value in an array with O(N) and O(1) memory.
      */
     public static Integer getMajorityValue(int[] values) {
         Conditions.validateNotNull(
@@ -26,7 +26,7 @@ public final class CollectionMajority {
     }
 
     /**
-     * Gets a majority value in a generic array with O(N) and O(1) memory.
+     * Gets a majority of value in a generic array with O(N) and O(1) memory.
      */
     public static <T> T getMajorityValue(T[] values) {
         Conditions.validateNotNull(
@@ -43,7 +43,7 @@ public final class CollectionMajority {
     }
 
     /**
-     * Finds a candidate for a majority value in an array.
+     * Finds a candidate for a majority of value in an array.
      */
     private static int findCandidate(int[] values) {
         assert(values != null && values.length != 0);
@@ -68,7 +68,7 @@ public final class CollectionMajority {
     }
 
     /**
-     * Finds a candidate for a majority value in an array.
+     * Finds a candidate for a majority of value in an array.
      */
     private static <T> T findCandidate(T[] values) {
         assert(values != null && values.length != 0);

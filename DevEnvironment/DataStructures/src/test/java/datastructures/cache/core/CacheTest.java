@@ -26,7 +26,7 @@ public final class CacheTest {
     }
 
     /**
-     * Tests the updation logic of a most recently used cache.
+     * Tests the update logic of a most recently used cache.
      */
     @Test
     public void mruCacheUpdationTest() {
@@ -39,7 +39,7 @@ public final class CacheTest {
     }
 
     /**
-     * Tests the updation logic of a least recently used cache.
+     * Tests the update logic of least recently used cache.
      */
     @Test
     public void lruCacheUpdationTest() {
@@ -65,7 +65,7 @@ public final class CacheTest {
     }
 
     /**
-     * Tests the iteration logic of a least recently used cache.
+     * Tests the iteration logic of least recently used cache.
      */
     @Test
     public void lruCacheIterationTest() {
@@ -78,7 +78,7 @@ public final class CacheTest {
     }
 
     /**
-     * Tests the updation logic of a cache.
+     * Tests the update logic of a cache.
      */
     private <TKey extends Comparable<TKey>, TValue> void testUpdation(
         ICache<TKey, TValue> cache,
@@ -110,7 +110,7 @@ public final class CacheTest {
     }
 
     /**
-     * Tests the updation logic of a cache.
+     * Tests the update logic of a cache.
      */
     private <TKey extends Comparable<TKey>, TValue> void testUpdation(
         ICache<TKey, TValue> cache,

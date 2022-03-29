@@ -62,7 +62,7 @@ public abstract class BPlusTreeNodeProperties<TKey extends Comparable<TKey>> imp
     }
 
     /**
-     * Gets the class type of a key.
+     * Gets the class type of key.
      */
     @Override
     public Class<TKey> getKeyClassType() {

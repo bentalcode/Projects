@@ -46,7 +46,7 @@ public final class BPlusTreeLeafNodeProperties<TKey extends Comparable<TKey>, TV
     }
 
     /**
-     * Gets the class type of a value.
+     * Gets the class type of value.
      */
     @Override
     public Class<TValue> getValueClassType() {

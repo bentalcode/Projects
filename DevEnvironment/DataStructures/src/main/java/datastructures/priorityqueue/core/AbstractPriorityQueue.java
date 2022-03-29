@@ -21,7 +21,7 @@ import datastructures.priorityqueue.interfaces.IPriorityQueue;
  *
  * The priority queue is implemented as a heap with a dynamic array.
  *
- * A complete binary tree can be uniquely represented by storing it's level order traversal in an array.
+ * A complete binary tree can be uniquely represented by storing its level order traversal in an array.
  * The left child of an element is located at index: 2 * index + 1.
  * The right child of an element is located at index: 2 * index + 2.
  * The parent of an element is located at index: (index - 1) / 2.

@@ -23,7 +23,7 @@ public final class CircuitBreakerClosedState extends CircuitBreakerState {
     }
 
     /**
-     * Gets the state type of a circuit breaker.
+     * Gets the state type of circuit breaker.
      */
     @Override
     public CircuitBreakerStateType getStateType() {
@@ -36,7 +36,7 @@ public final class CircuitBreakerClosedState extends CircuitBreakerState {
     @Override
     public void setLogicExecutionResult(ILogicRuntimeInformation logicRuntimeInformation) {
         //
-        // If the logic execution has succeeded or the timeout of the failures duration
+        // If the logic execution has succeeded or the timeout of the failures' duration
         // has expired, then reset the failures information...
         //
         if (logicRuntimeInformation.getStatus() || this.isFailuresDurationTimeoutExpired()) {

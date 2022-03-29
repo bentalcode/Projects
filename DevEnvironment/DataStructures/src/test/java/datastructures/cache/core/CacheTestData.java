@@ -20,7 +20,7 @@ public final class CacheTestData implements ICacheTestData {
     }
 
     /**
-     * Gets the updation data of a least recently used cache.
+     * Gets the update data of least recently used cache.
      */
     @Override
     public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getLruUpdationData() {
@@ -50,7 +50,7 @@ public final class CacheTestData implements ICacheTestData {
     }
 
     /**
-     * Gets the updation data of a most recently used cache.
+     * Gets the update data of a most recently used cache.
      */
     @Override
     public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getMruUpdationData()

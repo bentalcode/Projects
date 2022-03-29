@@ -275,7 +275,7 @@ public final class DoublyLinkedList<T extends Comparable<T>> implements IDoublyL
     }
 
     /**
-     * Removes the a node from the list.
+     * Removes the node from the list.
      */
     @Override
     public void remove(IDoublyLinkedListNode<T> nodeToRemove) {

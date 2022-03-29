@@ -37,7 +37,7 @@ public final class BinaryTreeRecovery<TKey extends Comparable<TKey>, TValue>
         }
 
         //
-        // Search the first and last out of order nodes in a binary search tree.
+        // Search the first and last out-of-order nodes in a binary search tree.
         //
         SearchResult<TKey, TValue> searchResult = new SearchResult<>();
         search(
@@ -62,7 +62,7 @@ public final class BinaryTreeRecovery<TKey extends Comparable<TKey>, TValue>
     }
 
     /**
-     * Searches the first and last out of order nodes in a binary search tree.
+     * Searches the first and last out-of-order nodes in a binary search tree.
      */
     private static <TKey extends Comparable<TKey>, TValue> void search(
         IBinaryTreeNode<TKey, TValue> root,

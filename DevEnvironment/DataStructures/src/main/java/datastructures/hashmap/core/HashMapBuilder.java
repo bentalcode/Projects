@@ -34,7 +34,7 @@ public final class HashMapBuilder<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Sets an key-value nodes with an iterator.
+     * Sets a key-value nodes with an iterator.
      */
     @Override
     public void set(IIterator<IKeyValueNode<TKey, TValue>> iterator) {

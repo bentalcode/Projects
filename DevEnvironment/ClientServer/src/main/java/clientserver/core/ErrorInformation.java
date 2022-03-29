@@ -47,7 +47,7 @@ public final class ErrorInformation implements IErrorInformation {
     }
 
     /**
-     * Gets an exception of the error.
+     * Gets an exception to the error.
      */
     @Override
     public Exception getException() {

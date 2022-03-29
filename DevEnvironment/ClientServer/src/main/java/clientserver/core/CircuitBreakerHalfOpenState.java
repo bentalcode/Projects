@@ -23,7 +23,7 @@ public final class CircuitBreakerHalfOpenState extends CircuitBreakerState {
     }
 
     /**
-     * Gets the state type of a circuit breaker.
+     * Gets the state type of circuit breaker.
      */
     @Override
     public CircuitBreakerStateType getStateType() {
@@ -79,7 +79,7 @@ public final class CircuitBreakerHalfOpenState extends CircuitBreakerState {
     }
 
     /**
-     * Checks whether the success count has reached it's threshold.
+     * Checks whether the success count has reached its threshold.
      */
     private boolean isSuccessCounterReachedThreshold() {
         assert(!this.isSuccessDurationTimeoutExpired());

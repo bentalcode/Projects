@@ -58,7 +58,7 @@ public final class BPlusTreeInnerNodeProperties<TKey extends Comparable<TKey>> i
     }
 
     /**
-     * Gets the class type of a key.
+     * Gets the class type of key.
      */
     @Override
     public Class<TKey> getKeyClassType() {

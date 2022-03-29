@@ -65,7 +65,7 @@ public final class CMakeListsWriter implements IWriter {
     }
 
     /**
-     * Writes a the CMake module.
+     * Writes a CMake module.
      */
     @Override
     public void write(Writer writer) {
@@ -144,7 +144,7 @@ public final class CMakeListsWriter implements IWriter {
         }
 
         //
-        // Add section for the include directories command...
+        // Add section for to include directories command...
         //
         ICMakeBuildElement includesDirectoriesCommand = new IncludesDirectoriesCommand(this.module.getName());
         elements.add(includesDirectoriesCommand);

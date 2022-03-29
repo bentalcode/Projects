@@ -336,7 +336,7 @@ public final class GraphTestData implements IGraphTestData {
     }
 
     /**
-     * Gets the paths data of graph1.
+     * Gets the paths' data of graph1.
      */
     private List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> getGraphPathsData1(
         List<IVertex<Integer, String>> vertices) {
@@ -391,7 +391,7 @@ public final class GraphTestData implements IGraphTestData {
     }
 
     /**
-     * Gets the paths data of graph2.
+     * Gets the paths' data of graph2.
      */
     private List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> getGraphPathsData2(
         List<IVertex<Integer, String>> vertices) {
@@ -448,7 +448,7 @@ public final class GraphTestData implements IGraphTestData {
     }
 
     /**
-     * Gets the paths data of graph3.
+     * Gets the paths' data of graph3.
      */
     private List<IPair<IRoute<Integer, String>, List<IWalk<Integer, String>>>> getGraphPathsData3(
         List<IVertex<Integer, String>> vertices) {

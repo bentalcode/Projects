@@ -228,7 +228,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
         IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currNode = this.findNode(key);
 
         //
-        // If the corresponding node is found, then simply update it's value and return...
+        // If the corresponding node is found, then simply update its value and return...
         //
         if (currNode != null) {
             currNode.getValue().setValue(value);
@@ -236,7 +236,7 @@ public abstract class AbstractHashMap<TKey extends Comparable<TKey>, TValue> imp
         }
 
         //
-        // If the hash-map has exceeded it's capacity, then rehashes the existing key-value nodes...
+        // If the hash-map has exceeded its capacity, then rehashes the existing key-value nodes...
         //
         if (this.overCapacity()) {
             this.rehash();

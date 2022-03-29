@@ -6,7 +6,7 @@ import base.interfaces.IPair;
 import java.util.Arrays;
 
 /**
- * The ClosestBirthday class implements a closest birthday problem.
+ * The ClosestBirthday class implements the closest birthday problem.
  */
 public final class ClosestBirthday extends AbstractClosestBirthday {
     private final int year;

@@ -76,7 +76,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
 
         if (this.has(key)) {
             //
-            // If the key is set in the cache, update it's value...
+            // If the key is set in the cache, update its value...
             //
             IDoublyLinkedListNode<IKeyValueNode<TKey, TValue>> currNode = this.data.getKeyValueNode(key);
             currNode.getValue().setValue(value);
@@ -85,7 +85,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
         }
         else {
             //
-            // If the cache is over it's capacity, then make available space for the new item...
+            // If the cache is over its capacity, then make available space for the new item...
             //
             if (this.overCapacity()) {
                 assert(this.properties.getNumberOfItemsForMakingAvailableSpace() <= this.size());
@@ -132,7 +132,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     }
 
     /**
-     * Deletes a key and it's associated value from the cache.
+     * Deletes a key, and it's associated value from the cache.
      *
      * Returns true if the key has been removed successfully from the cache.
      * Returns false if the key is not in the cache.
@@ -407,7 +407,7 @@ public abstract class AbstractCache<TKey extends Comparable<TKey>, TValue> imple
     }
 
     /**
-     * Determines whether the used-list has reached it's maximum capacity.
+     * Determines whether the used-list has reached its maximum capacity.
      */
     private boolean overCapacity() {
         return this.size() >= this.properties.getCapacity();

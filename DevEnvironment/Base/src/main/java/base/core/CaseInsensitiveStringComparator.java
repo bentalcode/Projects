@@ -3,7 +3,7 @@ package base.core;
 import java.util.Comparator;
 
 /**
- * The CaseInsensitiveStringComparator class implements a comparison of a case insensitive string.
+ * The CaseInsensitiveStringComparator class implements a comparison of a case-insensitive string.
  */
 public final class CaseInsensitiveStringComparator implements Comparator<String> {
     /**

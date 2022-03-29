@@ -40,7 +40,7 @@ public final class AlmostComparatorTest {
     }
 
     /**
-     * Tests the double almost comparator..
+     * Tests the double almost comparator.
      */
     private void testDoubleAlmostComparator(
         IBinaryComparator<Double> comparator,

@@ -33,7 +33,7 @@ public final class ClassTypes {
     }
 
     /**
-     * Parses the name of a class from it's name.
+     * Parses the name of a class from its name.
      */
     public static Class<?> parse(String className) {
         Class<?> classType;

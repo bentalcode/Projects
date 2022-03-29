@@ -54,7 +54,7 @@ public final class ComparatorFactory implements IComparatorFactory {
     }
 
     /**
-     * Creates a two dimensional array comparator.
+     * Creates a two-dimensional array comparator.
      */
     @Override
     public <T> ITwoDimensionalArrayComparator<T> createTwoDimensionalArrayComparator() {

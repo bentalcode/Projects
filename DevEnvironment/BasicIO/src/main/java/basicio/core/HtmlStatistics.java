@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The HtmlStatistics class implements statistics of an html.
+ * The HtmlStatistics class implements statistics of a html.
  */
 public final class HtmlStatistics implements IHtmlStatistics {
     private final Map<String, Integer> wordsUsageCounter;
@@ -33,7 +33,7 @@ public final class HtmlStatistics implements IHtmlStatistics {
     }
 
     /**
-     * Get the words usage counter.
+     * Get the words' usage counter.
      */
     @Override
     public Map<String, Integer> getWordsUsageCounter() {

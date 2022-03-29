@@ -33,7 +33,7 @@ public abstract class ExpressionTreeElement implements IExpressionTreeElement {
     }
 
     /**
-     * Checks whether this token is an unary operator.
+     * Checks whether this token is a unary operator.
      */
     public static boolean isUnaryOperator(String token) {
         return SquareRootOperator.isOperator(token);

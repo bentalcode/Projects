@@ -29,7 +29,7 @@ public final class BitArray implements IBitArray {
     private final IBinaryComparator<IBitArray> comparator;
 
     /**
-     * Creates a a bit array.
+     * Creates a bit array.
      */
     public static IBitArray make(int numberOfBits) {
         return new BitArray(numberOfBits, defaultComparator());

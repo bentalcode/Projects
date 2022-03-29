@@ -88,9 +88,9 @@ public final class HttpHandlerConfiguration implements IHttpHandlerConfiguration
     }
 
     /**
-     * Gets a connect timeout.
+     * Gets a timeout to connect.
      *
-     * A connect timeout defines a time period in which our client should establish a connection
+     * A connect-timeout defines a time period in which our client should establish a connection
      * with a target host.
      * By default, for the OkHttpClient, this timeout is set to 10 seconds.
      */
@@ -100,8 +100,8 @@ public final class HttpHandlerConfiguration implements IHttpHandlerConfiguration
     }
 
     /**
-     * Gets a write timeout.
-     * The write timeout is the maximum time for writing (sending) the request data to the service.
+     * Gets a timeout to write.
+     * The write-timeout is the maximum time for writing (sending) the request data to the service.
      */
     @Override
     public Duration getWriteTimeout() {

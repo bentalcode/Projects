@@ -79,7 +79,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Gets the size of of the data of nodes.
+     * Gets the size of the data of nodes.
      */
     @Override
     public int size() {
@@ -87,7 +87,7 @@ public final class BlockTreeLevel<TKey extends Comparable<TKey>, TValue> impleme
     }
 
     /**
-     * Checks whether the the data of nodes is empty.
+     * Checks whether the data of nodes is empty.
      */
     @Override
     public boolean empty() {

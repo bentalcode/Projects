@@ -54,7 +54,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
     }
 
     /**
-     * Inserts a new key and it's associated value into a B+ tree.
+     * Inserts a new key, and it's associated value into a B+ tree.
      * Complexity: O(LogN)
      */
     @Override
@@ -72,7 +72,7 @@ public final class BPlusTree<TKey extends Comparable<TKey>, TValue> implements I
     }
 
     /**
-     * Deletes a key and it's associated value from the tree.
+     * Deletes a key, and it's associated value from the tree.
      * Complexity: O(LogN)
      */
     @Override

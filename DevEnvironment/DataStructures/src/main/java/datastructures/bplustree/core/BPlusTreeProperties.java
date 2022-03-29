@@ -140,7 +140,7 @@ public final class BPlusTreeProperties<TKey extends Comparable<TKey>, TValue> im
         }
 
         /**
-         * Sets a class type of a key of the tree.
+         * Sets a class type of key of the tree.
          */
         public Builder<TKey, TValue> withKeyClassType(Class<TKey> keyClassType) {
             this.keyClassType = keyClassType;
@@ -148,7 +148,7 @@ public final class BPlusTreeProperties<TKey extends Comparable<TKey>, TValue> im
         }
 
         /**
-         * Sets a class type of a value of the tree.
+         * Sets a class type of value of the tree.
          */
         public Builder<TKey, TValue> withValueClassType(Class<TValue> valueClassType) {
             this.valueClassType = valueClassType;

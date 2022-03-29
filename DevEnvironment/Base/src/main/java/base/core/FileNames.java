@@ -27,7 +27,7 @@ public final class FileNames {
     private final static Logger LOG = LoggerFactory.getLogger(FileNameType.class);
 
     /**
-     * Gets a type of a file name.
+     * Gets a type of file name.
      */
     public static FileNameType getFileNameType(String fileName) {
         if (isCamelCased(fileName)) {
@@ -331,7 +331,7 @@ public final class FileNames {
     }
 
     /**
-     * Gets an end index of a name of a file (with out it's extension).
+     * Gets an end index of a name of a file (without its extension).
      * Returns -1 if the name is empty.
      */
     private static int getNameEndIndex(char[] fileName) {
@@ -346,7 +346,7 @@ public final class FileNames {
     }
 
     /**
-     * Gets an end index of a name of a file (with out it's extension).
+     * Gets an end index of a name of a file (without its extension).
      * Returns -1 if the name is empty.
      */
     public static int getFileExtensionIndex(char[] fileName) {

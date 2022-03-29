@@ -27,7 +27,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
     }
 
     /**
-     * Gets the type of a node.
+     * Gets the type of node.
      */
     @Override
     public TreeNodeType getNodeType() {
@@ -120,7 +120,7 @@ public final class BPlusTreeInnerNode<TKey extends Comparable<TKey>> extends BPl
         this.insertAt(index, key, leftChild, rightChild);
 
         //
-        // Check whether the current node is needed to be splitted...
+        // Check whether the current node is needed to be split...
         //
         IBPlusTreeNode<TKey> result = null;
 

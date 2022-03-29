@@ -105,7 +105,7 @@ public final class BinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> im
         visitor.visit(root);
 
         //
-        // Traverse the left sub tree...
+        // Traverse the left subtree...
         //
         this.inOrder(root.getLeftChild(), visitor);
 
@@ -130,7 +130,7 @@ public final class BinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> im
         }
 
         //
-        // Traverse the left sub tree...
+        // Traverse the left subtree...
         //
         this.inOrder(root.getLeftChild(), visitor);
 
@@ -160,7 +160,7 @@ public final class BinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> im
         }
 
         //
-        // Traverse the left sub tree...
+        // Traverse the left subtree...
         //
         this.inOrder(root.getLeftChild(), visitor);
 

@@ -11,7 +11,7 @@ import testbase.interfaces.IAssertion;
 import org.junit.Test;
 
 /**
- * The GraphTest class implements tests for a edges.
+ * The GraphTest class implements tests for an edge.
  */
 public final class EdgeTest {
     private final IGraphTestData testData = new GraphTestData();

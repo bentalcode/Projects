@@ -11,7 +11,7 @@ import concurrency.interfaces.IMessageQueueTrackingInformation;
 import java.time.Duration;
 
 /**
- * The ConcurrentSingleProducerConsumerCircularBufferQueue class implements a
+ * The ConcurrentSingleProducerConsumerCircularBufferQueue class implements
  * a concurrent single producer consumer lock free queue by using a circular buffer.
  */
 public final class ConcurrentSingleProducerConsumerCircularBufferQueue<T> extends AbstractRunnable {
@@ -124,7 +124,7 @@ public final class ConcurrentSingleProducerConsumerCircularBufferQueue<T> extend
      */
     public void shutdown() {
         //
-        // Signal the thread to shutdown gracefully...
+        // Signal the thread to shut down gracefully...
         //
         super.shutdown();
 

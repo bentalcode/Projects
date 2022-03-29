@@ -141,7 +141,7 @@ public final class Arrays {
     }
 
     /**
-     * Validates an class type.
+     * Validates a class type.
      */
     private static void validateClassType(Class<?> classType) {
         Conditions.validateNotNull(

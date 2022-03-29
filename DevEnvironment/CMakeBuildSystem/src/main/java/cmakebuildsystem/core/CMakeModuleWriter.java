@@ -48,7 +48,7 @@ public final class CMakeModuleWriter implements IWriter {
     }
 
     /**
-     * Writes a the CMake module.
+     * Writes a CMake module.
      */
     @Override
     public void write(Writer writer) {

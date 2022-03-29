@@ -169,7 +169,7 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     }
 
     /**
-     * Gets the sources property.
+     * Gets the sources' property.
      */
     @Override
     public String getSourcesProperty() {

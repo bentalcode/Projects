@@ -80,7 +80,7 @@ public final class GraphTest {
     }
 
     /**
-     * Tests the logic of finding shortest paths in a graph.
+     * Tests the logic of finding the shortest paths in a graph.
      */
     @Test
     public void graphFindShortestPathsTest() {
@@ -176,7 +176,7 @@ public final class GraphTest {
     }
 
     /**
-     * Tests the logic of finding shortest paths in a graph.
+     * Tests the logic of finding the shortest paths in a graph.
      */
     private <TKey extends Comparable<TKey>, TValue> void testFindShortestPaths(IGraphData<TKey, TValue> data) {
         IGraph<TKey, TValue> graph = this.createGraph(data);

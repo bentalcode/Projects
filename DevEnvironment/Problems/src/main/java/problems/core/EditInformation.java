@@ -37,7 +37,7 @@ public final class EditInformation<T extends Comparable<T>> implements IEditInfo
     }
 
     /**
-     * Creates a new replace information.
+     * Creates a new replacement information.
      */
     public static <T extends Comparable<T>> IEditInformation<T> createReplace(T currValue, T newValue) {
         return new EditInformation<>(EditType.Replace, currValue, newValue);
@@ -59,7 +59,7 @@ public final class EditInformation<T extends Comparable<T>> implements IEditInfo
     }
 
     /**
-     * Gets the type of an edit.
+     * Gets the type of edit.
      */
     @Override
     public EditType getType() {

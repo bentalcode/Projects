@@ -53,7 +53,7 @@ public final class DoublyLinkedListTest {
     }
 
     /**
-     * Tests the updation logic of a doubly linked list.
+     * Tests the update logic of a doubly linked list.
      */
     @Test
     public void doublyLinkedListUpdationTest() {
@@ -135,7 +135,7 @@ public final class DoublyLinkedListTest {
     }
 
     /**
-     * Tests the updation logic of a doubly linked list.
+     * Tests the update logic of a doubly linked list.
      */
     private <T extends Comparable<T>> void testUpdation(
         IDoublyLinkedList<T> list,
@@ -151,7 +151,7 @@ public final class DoublyLinkedListTest {
     }
 
     /**
-     * Tests the updation logic of a doubly linked list.
+     * Tests the update logic of a doubly linked list.
      */
     private <T extends Comparable<T>> void testUpdation(
         IDoublyLinkedList<T> list,

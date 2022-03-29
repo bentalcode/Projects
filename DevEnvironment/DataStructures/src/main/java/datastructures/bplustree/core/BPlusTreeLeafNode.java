@@ -27,7 +27,7 @@ public final class BPlusTreeLeafNode<TKey extends Comparable<TKey>, TValue>
     }
 
     /**
-     * Gets the type of a node.
+     * Gets the type of node.
      */
     @Override
     public TreeNodeType getNodeType() {

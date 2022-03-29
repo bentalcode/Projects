@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The ClosestBirthdayII class implements a closest birthday problem.
+ * The ClosestBirthdayII class implements the closest birthday problem.
  */
 public final class ClosestBirthdayII extends AbstractClosestBirthday {
     private final Map<Integer, Integer> dateToDaysMap;
@@ -61,7 +61,7 @@ public final class ClosestBirthdayII extends AbstractClosestBirthday {
     }
 
     /**
-     * Creates a mapping of of days to dates for a year.
+     * Creates a mapping of days to dates for a year.
      */
     private static Map<Integer, Integer> createDateToDaysMapForYear(int year) {
         Map<Integer, Integer> dateToDaysMap = new HashMap<>();
