@@ -26,6 +26,8 @@ public final class Multiplication implements IMultiplication {
             right != null && right.length > 0,
             "The right number is not defined.");
 
+        assert (left != null && left.length > 0);
+        assert (right != null && right.length > 0);
         int[] result = new int[left.length + right.length];
 
         int leftInsertIndex = 0;
@@ -73,7 +75,7 @@ public final class Multiplication implements IMultiplication {
             return result;
         }
 
-        result = this.getResultNumber(result, 0, resultEndIndex);
+        result = this.getResultNumber(result, resultEndIndex + 1);
 
         return result;
     }
@@ -82,15 +84,12 @@ public final class Multiplication implements IMultiplication {
      * Gets the number from the result.
      * The number is stored in reverse order.
      */
-    private int[] getResultNumber(int[] number, int startIndex, int endIndex) {
-        int length = endIndex - startIndex + 1;
-
+    private int[] getResultNumber(int[] number, int length) {
         int[] result = new int[length];
         int resultInsertIndex = 0;
 
-        for (int i = endIndex; i >= startIndex; --i) {
+        for (int i = length - 1; i >= 0; --i) {
             result[resultInsertIndex] = number[i];
-
             ++resultInsertIndex;
         }
 
