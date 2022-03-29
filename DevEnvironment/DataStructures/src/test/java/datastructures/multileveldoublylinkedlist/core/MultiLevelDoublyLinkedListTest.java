@@ -323,20 +323,13 @@ public final class MultiLevelDoublyLinkedListTest {
                 else  {
                     if (col > 0 && horizonticalConnections[row][col - 1]) {
                         assert(prevNode != null && currNode != null);
-
-                        if (prevNode != null && currNode != null) {
-                            result.addAfter(prevNode, currNode);
-                        }
+                        result.addAfter(prevNode, currNode);
                     }
 
                     if (row > 0 && verticalConnections[row - 1][col]) {
                         assert(aboveNode != null && currNode != null);
-
-                        if (aboveNode != null && currNode != null) {
-                            result.addBellow(aboveNode, currNode);
-                        }
+                        result.addBellow(aboveNode, currNode);
                     }
-
                 }
 
                 prevNode = (col == cols - 1) ? null : currNode;

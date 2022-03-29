@@ -25,73 +25,85 @@ public final class PathsTest {
      */
     @Test
     public void getRelativePathTest() {
-        String path1 = "\\";
-        String rootPath1 = "\\";
-        String result1 = null;
-
-        String path2 = "\\";
-        String rootPath2 = "\\a";
-        String result2 = null;
-
-        String path3 = "\\a";
-        String rootPath3 = "\\";
-        String result3 = null;
-
-        String path4 = "\\Base";
-        String rootPath4 = "\\Base";
-        String result4 = ".\\";
-
-        String path5 = "\\Base\\";
-        String rootPath5 = "\\Base";
-        String result5 = ".\\";
-
-        String path6 = "\\Base";
-        String rootPath6 = "\\Base\\";
-        String result6 = ".\\";
-
-        String path7 = "\\Base\\";
-        String rootPath7 = "\\Base\\";
-        String result7 = ".\\";
-
-        String path8 = "\\Base\\a";
-        String rootPath8 = "\\Base";
-        String result8 = ".\\a";
-
-        String path9 = "\\Base\\a";
-        String rootPath9 = "\\Base\\";
-        String result9 = ".\\a";
-
-        String path10 = "\\Base";
-        String rootPath10 = "\\BaseTest";
-        String result10 = null;
-
-        String path11 = "\\a\\Base";
-        String rootPath11 = "\\a\\BaseTest";
-        String result11 = "..\\Base";
-
-        String path12 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\core\\PreCompiled.h";
-        String rootPath12 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base";
-        String result12 = ".\\core\\PreCompiled.h";
-
-        String path13 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\BaseException.h";
-        String rootPath13 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\BaseTest";
-        String result13 = "..\\Base\\BaseException.h";
-
         String separator = String.valueOf(WindowsPath.SEPARATOR);
 
-        this.testGetRelativePath(path1, rootPath1, separator, result1);
-        this.testGetRelativePath(path2, rootPath2, separator, result2);
-        this.testGetRelativePath(path3, rootPath3, separator, result3);
-        this.testGetRelativePath(path4, rootPath4, separator, result4);
-        this.testGetRelativePath(path5, rootPath5, separator, result5);
-        this.testGetRelativePath(path6, rootPath6, separator, result6);
-        this.testGetRelativePath(path7, rootPath7, separator, result7);
-        this.testGetRelativePath(path8, rootPath8, separator, result8);
-        this.testGetRelativePath(path9, rootPath9, separator, result9);
-        this.testGetRelativePath(path10, rootPath10, separator, result10);
-        this.testGetRelativePath(path11, rootPath11, separator, result11);
-        this.testGetRelativePath(path12, rootPath12, separator, result12);
-        this.testGetRelativePath(path13, rootPath13, separator, result13);
+        this.testGetRelativePath(
+            "\\",
+            "\\",
+            separator,
+            null);
+
+        this.testGetRelativePath(
+            "\\",
+            "\\a",
+            separator,
+            null);
+
+        this.testGetRelativePath(
+            "\\a",
+            "\\",
+            separator,
+            null);
+
+        this.testGetRelativePath(
+            "\\Base",
+            "\\Base",
+            separator,
+            ".\\");
+
+        this.testGetRelativePath(
+            "\\Base\\",
+            "\\Base",
+            separator,
+            ".\\");
+
+        this.testGetRelativePath(
+            "\\Base",
+            "\\Base\\",
+            separator,
+            ".\\");
+
+        this.testGetRelativePath(
+            "\\Base\\",
+            "\\Base\\",
+            separator,
+            ".\\");
+
+        this.testGetRelativePath(
+            "\\Base\\a",
+            "\\Base",
+            separator,
+            ".\\a");
+
+        this.testGetRelativePath(
+            "\\Base\\a",
+            "\\Base\\",
+            separator,
+            ".\\a");
+
+        this.testGetRelativePath(
+            "\\Base",
+            "\\BaseTest",
+            separator,
+            null);
+
+        this.testGetRelativePath(
+            "\\a\\Base",
+            "\\a\\BaseTest",
+            separator,
+            "..\\Base");
+
+        this.testGetRelativePath(
+            "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\core\\PreCompiled.h",
+            "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base",
+            separator,
+            ".\\core\\PreCompiled.h");
+
+        this.testGetRelativePath(
+            "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\BaseException.h",
+            "c:\\repositories\\Projects\\DevEnvironmentCLion\\BaseTest",
+            separator,
+            "..\\Base\\BaseException.h");
     }
 
     /**
@@ -178,36 +190,35 @@ public final class PathsTest {
      */
     @Test
     public void pathMatcherTest() {
-        String path1 = ".\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
-        String pattern1 = "glob:**\\\\*build*\\\\**";
-        boolean status1 = true;
+        this.testPathMatcher(
+            ".\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp",
+            "glob:**\\\\*build*\\\\**",
+            true);
 
-        String path2 = "..\\Base\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
-        String pattern2 = "glob:**\\\\*build*\\\\**";
-        boolean status2 = true;
+        this.testPathMatcher(
+            "..\\Base\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp",
+            "glob:**\\\\*build*\\\\**",
+            true);
 
-        String path3 = "..\\UnitTesting\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
-        String pattern3 = "glob:**\\\\*build*\\\\**";
-        boolean status3 = true;
+        this.testPathMatcher(
+            "..\\UnitTesting\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp",
+            "glob:**\\\\*build*\\\\**",
+            true);
 
-        String path4 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
-        String pattern4 = "glob:**\\\\*build*\\\\**";
-        boolean status4 = true;
+        this.testPathMatcher(
+            "c:\\repositories\\Projects\\DevEnvironmentCLion\\Base\\build\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp",
+            "glob:**\\\\*build*\\\\**",
+            true);
 
-        String path5 = "c:\\repositories\\Projects\\DevEnvironmentCLion\\MemoryManagement\\cmake-build-debug\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp";
-        String pattern5 = "glob:**\\\\*build*\\\\**";
-        boolean status5 = true;
+        this.testPathMatcher(
+            "c:\\repositories\\Projects\\DevEnvironmentCLion\\MemoryManagement\\cmake-build-debug\\CMakeFiles\\3.15.3\\CompilerIdCXX\\CMakeCXXCompilerId.cpp",
+            "glob:**\\\\*build*\\\\**",
+            true);
 
-        String path6 = "/home/bental-linux/repositories/Projects/DevEnvironmentCLion/Base/build/CMakeFiles/3.16.0-rc1/CompilerIdCXX/CMakeCXXCompilerId.cpp";
-        String pattern6 = "glob:**/*build*/**";
-        boolean status6 = true;
-
-        this.testPathMatcher(path1, pattern1, status1);
-        this.testPathMatcher(path2, pattern2, status2);
-        this.testPathMatcher(path3, pattern3, status3);
-        this.testPathMatcher(path4, pattern4, status4);
-        this.testPathMatcher(path5, pattern5, status5);
-        this.testPathMatcher(path6, pattern6, status6);
+        this.testPathMatcher(
+            "/home/bental-linux/repositories/Projects/DevEnvironmentCLion/Base/build/CMakeFiles/3.16.0-rc1/CompilerIdCXX/CMakeCXXCompilerId.cpp",
+            "glob:**/*build*/**",
+            true);
     }
 
     /**

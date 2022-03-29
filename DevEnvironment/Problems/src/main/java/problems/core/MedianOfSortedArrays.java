@@ -60,14 +60,6 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 leftEndIndex);
         }
 
-        if (leftSize == 0) {
-            return this.median(right, rightStartIndex, rightEndIndex);
-        }
-
-        if (rightSize == 0) {
-            return this.median(left, leftStartIndex, leftEndIndex);
-        }
-
         if (leftSize == 1) {
 
             if (rightSize == 1) {
@@ -204,10 +196,6 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
 
         int length = endIndex - startIndex + 1;
 
-        if (length == 0) {
-            return 0.0;
-        }
-
         if (length % 2 == 0) {
             IPair<Integer, Integer> medians = this.medianValues(values, startIndex, endIndex);
             return (double)(medians.first() + medians.second()) / 2.0;
@@ -275,6 +263,8 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             third = temp;
         }
 
+        assert(third >= first && third >= second);
+
         //
         // Position the second value...
         //
@@ -283,6 +273,8 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             first = second;
             second = temp;
         }
+
+        assert(second >= first);
 
         return second;
     }
@@ -317,6 +309,8 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             fourth = temp;
         }
 
+        assert(fourth >= first && fourth >= second && fourth >= third);
+
         //
         // Position the third value...
         //
@@ -332,6 +326,8 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             third = temp;
         }
 
+        assert(third >= first && third >= second);
+
         //
         // Position the second value...
         //
@@ -340,6 +336,8 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             first = second;
             second = temp;
         }
+
+        assert(second >= first);
 
         return (double)(second + third) / 2.0;
     }

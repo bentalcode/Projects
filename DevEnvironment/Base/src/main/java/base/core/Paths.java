@@ -98,7 +98,7 @@ public final class Paths {
             return "";
         }
 
-        int fileNameStartIndex = (separatorStartIndex == -1) ? 0 : separatorStartIndex + separator.length();
+        int fileNameStartIndex = separatorStartIndex + separator.length();
         int fileNameEndIndex = extensionIndex - 1;
 
         return path.substring(fileNameStartIndex, fileNameEndIndex + 1);
@@ -649,10 +649,6 @@ public final class Paths {
         assert(startIndex >= 0 && startIndex < path.length);
         assert(endIndex >= startIndex && endIndex < path.length);
         assert(separator != null);
-
-        if (startIndex > endIndex) {
-            return -1;
-        }
 
         int currIndex = endIndex;
         int currSeparatorIndex = separator.length - 1;
