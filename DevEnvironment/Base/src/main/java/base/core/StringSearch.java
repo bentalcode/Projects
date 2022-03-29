@@ -389,8 +389,7 @@ public final class StringSearch {
         String str,
         String subString) {
 
-        boolean allowOverlapping = true;
-        return countSubString(str, subString, allowOverlapping);
+        return countSubString(str, subString, true);
     }
 
     /**
