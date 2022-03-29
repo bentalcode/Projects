@@ -37,10 +37,6 @@ public final class Permutation implements IPermutation {
     private <T extends Comparable<T>> void permute(T[] values, int index, List<List<T>> results) {
         assert(index >= 0 && index <= values.length);
 
-        if (index > values.length) {
-            return;
-        }
-
         if (index == values.length) {
             List<T> newResult = ArrayLists.make(values);
             results.add(newResult);
@@ -59,10 +55,6 @@ public final class Permutation implements IPermutation {
      */
     private <T extends Comparable<T>> void permuteUnique(T[] values, int index, List<List<T>> results) {
         assert(index >= 0 && index <= values.length);
-
-        if (index > values.length) {
-            return;
-        }
 
         if (index == values.length) {
             List<T> newResult = ArrayLists.make(values);

@@ -46,10 +46,6 @@ public final class PositionQueens implements IPositionQueens {
             return false;
         }
 
-        if (columnIndex > size) {
-            return false;
-        }
-
         if (columnIndex == size) {
             List<Integer> newBoard = new ArrayList<>(board);
             boards.add(newBoard);
@@ -141,7 +137,6 @@ public final class PositionQueens implements IPositionQueens {
         // Validates the lower column...
         //
         currRowIndex = rowIndex - 1;
-        currColumnIndex = columnIndex;
 
         while (currRowIndex >= 0) {
             if (this.hasQueen(board, currRowIndex, currColumnIndex)) {

@@ -84,6 +84,7 @@ public final class SortedCollectionsIterator<TKey extends Comparable<TKey>> impl
         assert(this.hasNext());
 
         IKeyValueNode<TKey, Integer> currElement = this.candidates.poll();
+        assert (currElement != null);
 
         int currCollectionIndex = currElement.getValue();
         IIterator<TKey> currCollectionIterator = this.collectionsIterators.get(currCollectionIndex);

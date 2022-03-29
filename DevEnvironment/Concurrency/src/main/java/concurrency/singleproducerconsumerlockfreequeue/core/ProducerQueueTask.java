@@ -103,24 +103,14 @@ public final class ProducerQueueTask<T> implements Runnable {
                 break;
             }
 
-            boolean status = this.queue.enqueue(currElement);
-            assert(status);
+            this.queue.enqueue(currElement);
 
-            if (status) {
-                if (this.messageQueueTrackingInformation != null) {
-                    this.messageQueueTrackingInformation.messagePublished();
-                }
-
-                synchronized (this.eventMessagePublished) {
-                    this.eventMessagePublished.notify();
-                }
+            if (this.messageQueueTrackingInformation != null) {
+                this.messageQueueTrackingInformation.messagePublished();
             }
-            else {
-                String warningMessage =
-                    "The ProducerQueueTask failed to enqueue an element to" +
-                    " the single producer consumer lock free queue.";
 
-                this.log.warn(warningMessage);
+            synchronized (this.eventMessagePublished) {
+                this.eventMessagePublished.notify();
             }
         }
 

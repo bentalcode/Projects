@@ -78,7 +78,7 @@ public final class ScrambledStringsDetector implements IDetector {
             return false;
         }
 
-        if (s1.length == 0 && s2.length == 0) {
+        if (s1.length == 0) {
             return true;
         }
 
@@ -175,14 +175,6 @@ public final class ScrambledStringsDetector implements IDetector {
         assert(endIndex1 >= startIndex1 && endIndex1 < s1.length);
         assert(startIndex2 >= 0 && startIndex2 < s2.length);
         assert(endIndex2 >= startIndex2 && endIndex2 < s2.length);
-
-        if (s1 == null && s2 == null) {
-            return true;
-        }
-
-        if (s1 == null || s2 == null) {
-            return false;
-        }
 
         int length1 = Indexes.size(startIndex1, endIndex1);
         int length2 = Indexes.size(startIndex2, endIndex2);

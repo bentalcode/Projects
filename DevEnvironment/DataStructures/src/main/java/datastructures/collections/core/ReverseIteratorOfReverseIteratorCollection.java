@@ -72,6 +72,8 @@ public final class ReverseIteratorOfReverseIteratorCollection<T> implements IRev
         assert(this.hasNext());
 
         IReverseIterator<T> currIterator = this.reverseIteratorsQueue.poll();
+        assert (currIterator != null);
+
         T currElement = currIterator.next();
 
         if (currIterator.hasNext()) {
