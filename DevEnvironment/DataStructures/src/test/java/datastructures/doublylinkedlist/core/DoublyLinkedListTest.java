@@ -60,9 +60,9 @@ public final class DoublyLinkedListTest {
         IDoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
         List<ITriple<String, Integer, List<Integer>>> data =
-            this.testData.getDoublyLinkedListData().getUpdationData();
+            this.testData.getDoublyLinkedListData().getUpdateData();
 
-        this.testUpdation(list, data);
+        this.testUpdate(list, data);
     }
 
     /**
@@ -137,12 +137,12 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the update logic of a doubly linked list.
      */
-    private <T extends Comparable<T>> void testUpdation(
+    private <T extends Comparable<T>> void testUpdate(
         IDoublyLinkedList<T> list,
         List<ITriple<String, T, List<T>>> data) {
 
         for (ITriple<String, T, List<T>> entry : data) {
-            this.testUpdation(
+            this.testUpdate(
                 list,
                 entry.first(),
                 entry.second(),
@@ -153,7 +153,7 @@ public final class DoublyLinkedListTest {
     /**
      * Tests the update logic of a doubly linked list.
      */
-    private <T extends Comparable<T>> void testUpdation(
+    private <T extends Comparable<T>> void testUpdate(
         IDoublyLinkedList<T> list,
         String operation,
         T item,

@@ -5,13 +5,13 @@ import base.core.MutableInteger;
 import base.core.Pair;
 import base.interfaces.IPair;
 import problems.ProblemsException;
-import problems.interfaces.IEventlyDistribution;
+import problems.interfaces.IEvenlyDistribution;
 import java.util.Arrays;
 
 /**
  * The EvenlyDistribution class implements an evenly-distribution problem.
  */
-public final class EvenlyDistribution implements IEventlyDistribution {
+public final class EvenlyDistribution implements IEvenlyDistribution {
 
     /**
      * Distributes the numbers evenly.

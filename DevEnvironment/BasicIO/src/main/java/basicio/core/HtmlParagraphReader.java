@@ -64,7 +64,7 @@ public final class HtmlParagraphReader implements IParagraphReader {
      */
     private void reset() {
         Connection connection = Jsoup.connect(this.uri);
-        Document document = JsoupHtmlParserApi.getDocument(connection);
+        Document document = JsonHtmlParserApi.getDocument(connection);
 
         this.paragraphs = document.select("p");
         this.paragraphIndex = 0;

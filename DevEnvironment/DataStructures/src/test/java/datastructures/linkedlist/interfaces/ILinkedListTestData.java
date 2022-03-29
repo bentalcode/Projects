@@ -15,5 +15,5 @@ public interface ILinkedListTestData {
     /**
      * Gets the update data of a linked list.
      */
-    List<ITriple<String, Integer, List<Integer>>> getUpdationData();
+    List<ITriple<String, Integer, List<Integer>>> getUpdateData();
 }

@@ -14,7 +14,7 @@ import json.interfaces.IJsonObjectWriter;
 import java.util.List;
 
 /**
- * The CMakeModuleProperties class implements proeprties of a CMake module.
+ * The CMakeModuleProperties class implements properties of a CMake module.
  */
 public final class CMakeModuleProperties implements ICMakeModuleProperties {
     private static final String PROPERTY_PATH = "path";

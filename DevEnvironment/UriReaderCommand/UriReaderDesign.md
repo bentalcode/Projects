@@ -137,8 +137,8 @@ Input: String word, int wordCounter
 
         mostlyUsedWordsPriorityQueue.offer(newWordCounter);
     2c. If the element is in the priority queue, then update it's current value, and 
-        perform a hypify down.
-        mostlyUsedWordsPriorityQueue.updateAndHypifyDown(index, newWordCounter)   
+        perform a heapify down.
+        mostlyUsedWordsPriorityQueue.updateAndHeapifyDown(index, newWordCounter)   
  
 
 Implementation:

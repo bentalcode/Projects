@@ -33,7 +33,7 @@ public interface ICircuitBreakerPolicy extends
      *
      * The success threshold that move the circuit breaker from a Half-Open State into a Closed State.
      * Once this threshold is reached, the circuit breaker will get reset.
-     * This threshold represents the last consecutive success attemps in the Half-Open State.
+     * This threshold represents the last consecutive success attempts in the Half-Open State.
      */
     int getSuccessThreshold();
 

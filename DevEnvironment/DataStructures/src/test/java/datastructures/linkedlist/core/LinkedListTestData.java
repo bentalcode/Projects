@@ -37,7 +37,7 @@ public final class LinkedListTestData implements ILinkedListTestData {
      * Gets the update data of a linked list.
      */
     @Override
-    public List<ITriple<String, Integer, List<Integer>>> getUpdationData() {
+    public List<ITriple<String, Integer, List<Integer>>> getUpdateData() {
         List<ITriple<String, Integer, List<Integer>>> data = new ArrayList<>();
 
         data.add(Triple.make("addToFront", 1, ArrayLists.make(1)));

@@ -9,10 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The JsoupHtmlParserApi class implements complementary APIs for jsop html parser module.
+ * The JsoupHtmlParserApi class implements complementary APIs for json html parser module.
  */
-public final class JsoupHtmlParserApi {
-    private static final Logger LOG = LoggerFactory.getLogger(JsoupHtmlParserApi.class);
+public final class JsonHtmlParserApi {
+    private static final Logger LOG = LoggerFactory.getLogger(JsonHtmlParserApi.class);
 
     /**
      * Creates a new Connection to a URL
@@ -42,6 +42,6 @@ public final class JsoupHtmlParserApi {
     /**
      * Disables the default constructor - This is a static class.
      */
-    private JsoupHtmlParserApi() {
+    private JsonHtmlParserApi() {
     }
 }

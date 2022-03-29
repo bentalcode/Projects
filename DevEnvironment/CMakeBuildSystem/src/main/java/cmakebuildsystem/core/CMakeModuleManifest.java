@@ -71,7 +71,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     }
 
     /**
-     * Gets the propertis of the module.
+     * Gets the properties of the module.
      */
     @Override
     public ICMakeModuleProperties getProperties() {

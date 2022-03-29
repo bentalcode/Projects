@@ -56,11 +56,11 @@ public final class LinkedListTest {
      * Tests the update logic of a linked list.
      */
     @Test
-    public void linkedListUpdationTest() {
+    public void linkedListUpdateTest() {
         ILinkedList<Integer> list = new LinkedList<>();
 
-        List<ITriple<String, Integer, List<Integer>>> data = this.testData.getLinkedListData().getUpdationData();
-        this.testUpdation(list, data);
+        List<ITriple<String, Integer, List<Integer>>> data = this.testData.getLinkedListData().getUpdateData();
+        this.testUpdate(list, data);
     }
 
     /**
@@ -119,12 +119,12 @@ public final class LinkedListTest {
     /**
      * Tests the update logic of a linked list.
      */
-    private <T extends Comparable<T>> void testUpdation(
+    private <T extends Comparable<T>> void testUpdate(
         ILinkedList<T> list,
         List<ITriple<String, T, List<T>>> data) {
 
         for (ITriple<String, T, List<T>> entry : data) {
-            this.testUpdation(
+            this.testUpdate(
                 list,
                 entry.first(),
                 entry.second(),
@@ -135,7 +135,7 @@ public final class LinkedListTest {
     /**
      * Tests the update logic of a linked list.
      */
-    private <T extends Comparable<T>> void testUpdation(
+    private <T extends Comparable<T>> void testUpdate(
         ILinkedList<T> list,
         String operation,
         T item,

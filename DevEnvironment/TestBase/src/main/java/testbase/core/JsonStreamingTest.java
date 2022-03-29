@@ -50,7 +50,7 @@ public final class JsonStreamingTest implements IJsonStreamingTest {
 
         this.assertion.assertTrue(
             status,
-            "Incorrect comparision logic" +
+            "Incorrect comparison logic" +
             " of object type: " + ClassTypes.getName(classType));
     }
 }

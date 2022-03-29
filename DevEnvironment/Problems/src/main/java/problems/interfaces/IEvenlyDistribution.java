@@ -3,9 +3,9 @@ package problems.interfaces;
 import base.interfaces.IPair;
 
 /**
- * The IEventlyDistribution interface defines an evently distribution of integers.
+ * The IEvenlyDistribution interface defines an evenly distribution of integers.
  */
-public interface IEventlyDistribution {
+public interface IEvenlyDistribution {
     /**
      * Distributes the numbers evenly.
      */

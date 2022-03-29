@@ -3,7 +3,7 @@ package problems.core;
 import base.core.Pair;
 import base.interfaces.IPair;
 import java.util.Arrays;
-import problems.interfaces.IEventlyDistribution;
+import problems.interfaces.IEvenlyDistribution;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import org.junit.Test;
@@ -53,7 +53,7 @@ public final class EvenlyDistributionTest {
      * Tests the even distribution logic.
      */
     private void testEvenlyDistributing(int[] values, IPair<int[], int[]> expectedResult) {
-        IEventlyDistribution evenlyDistribution = new EvenlyDistribution();
+        IEvenlyDistribution evenlyDistribution = new EvenlyDistribution();
         IPair<int[], int[]> result = evenlyDistribution.evenlyDistribute(values);
 
         int[] firstSet = result.first();
@@ -77,7 +77,7 @@ public final class EvenlyDistributionTest {
      * Tests the even distribution heuristic logic.
      */
     private void testEvenlyDistributingHeuristic(int[] values, IPair<int[], int[]> expectedResult) {
-        IEventlyDistribution evenlyDistribution = new EvenlyDistribution();
+        IEvenlyDistribution evenlyDistribution = new EvenlyDistribution();
         IPair<int[], int[]> result = evenlyDistribution.evenlyDistributeHeuristic(values);
 
         int[] firstSet = result.first();

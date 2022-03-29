@@ -15,5 +15,5 @@ public interface IDoublyLinkedListTestData {
     /**
      * Gets the update data of a doubly linked list.
      */
-    List<ITriple<String, Integer, List<Integer>>> getUpdationData();
+    List<ITriple<String, Integer, List<Integer>>> getUpdateData();
 }
