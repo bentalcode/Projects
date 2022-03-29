@@ -1,7 +1,7 @@
 package problems.interfaces;
 
 /**
- * The IMedianOfSortedArrays interface defines a median of sorted arrays problem.
+ * The IMedianOfSortedArrays interface defines a median of sorted arrays' problem.
  */
 public interface IMedianOfSortedArrays {
     /**

@@ -7,8 +7,8 @@ import base.interfaces.ITwoDimensionalList;
 import java.util.List;
 
 /**
- * The TwoDimensionalList class implements a generic two dimensional list.
- * The dimensional of a list can contains different sizes.
+ * The TwoDimensionalList class implements a generic two-dimensional list.
+ * The dimensional of a list can contain different sizes.
  */
 public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDimensionalList<T> {
     private final List<List<T>> data;
@@ -170,7 +170,7 @@ public final class TwoDimensionalList<T extends Comparable<T>> implements ITwoDi
     }
 
     /**
-     * The Comparator class implements a comparator of a generic two dimensional list.
+     * The Comparator class implements a comparator of a generic two-dimensional list.
      */
     public static final class Comparator<T extends Comparable<T>> extends AbstractBinaryComparator<ITwoDimensionalList<T>> {
         private final IBinaryComparator<T> elementComparator;

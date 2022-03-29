@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public interface IErrorInformation extends IJsonSerialization {
     /**
-     * Gets an exception of the error.
+     * Gets an exception to the error.
      */
     Exception getException();
 

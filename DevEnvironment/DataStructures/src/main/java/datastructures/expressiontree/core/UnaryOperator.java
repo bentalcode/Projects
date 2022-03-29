@@ -5,7 +5,7 @@ import datastructures.expressiontree.interfaces.IOperand;
 import datastructures.expressiontree.interfaces.IUnaryOperator;
 
 /**
- * The UnaryOperator class implements an unary operator of an expression tree.
+ * The UnaryOperator class implements a unary operator of an expression tree.
  */
 public abstract class UnaryOperator implements IUnaryOperator {
     private final IOperand operand;

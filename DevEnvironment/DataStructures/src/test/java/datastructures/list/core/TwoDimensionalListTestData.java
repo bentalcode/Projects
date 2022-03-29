@@ -8,7 +8,7 @@ import datastructures.list.interfaces.ITwoDimensionalListTestData;
 import java.util.List;
 
 /**
- * The TwoDimensionalListTestData class implements data of tests for a two dimensional list.
+ * The TwoDimensionalListTestData class implements data of tests for a two-dimensional list.
  */
 public final class TwoDimensionalListTestData implements ITwoDimensionalListTestData {
     private static final int RANDOM_COLLECTIONS_SIZE = 10;
@@ -26,7 +26,7 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
     }
 
     /**
-     * Gets data of the tests of a two dimensional list.
+     * Gets data of the tests of a two-dimensional list.
      */
     @Override
     public List<ITwoDimensionalListData<Integer>> getData() {
@@ -48,7 +48,7 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
     }
 
     /**
-     * Gets the data of a two dimensional list1.
+     * Gets the data of a two-dimensional list1.
      */
     private ITwoDimensionalListData<Integer> getTwoDimensionalListData1() {
         IList<IList<Integer>> data = this.createTwoDimensionalList(1, 2);
@@ -56,7 +56,7 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
     }
 
     /**
-     * Gets the data of a two dimensional list2.
+     * Gets the data of a two-dimensional list2.
      */
     private ITwoDimensionalListData<Integer> getTwoDimensionalListData2() {
         IList<IList<Integer>> data = this.createTwoDimensionalList(10, 20);
@@ -64,7 +64,7 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
     }
 
     /**
-     * Gets the data of a two dimensional list3.
+     * Gets the data of a two-dimensional list3.
      */
     private ITwoDimensionalListData<Integer> getTwoDimensionalListData3() {
         IList<IList<Integer>> data = this.createTwoDimensionalList(100, 200);
@@ -72,7 +72,7 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
     }
 
     /**
-     * Gets the random data of a two dimensional list..
+     * Gets the random data of a two-dimensional list..
      */
     private ITwoDimensionalListData<Integer> getRandomTwoDimensionalListData(
         int fromRowSize,
@@ -89,7 +89,7 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
     }
 
     /**
-     * Creates data of a two dimensional list.
+     * Creates data of a two-dimensional list.
      */
     private IList<IList<Integer>> createTwoDimensionalList(int rows, int columns)
     {

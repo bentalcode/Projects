@@ -18,7 +18,7 @@ public interface IMapBuilder<TKey extends Comparable<TKey>, TValue> {
     void set(IKeyValueNode<TKey, TValue> node);
 
     /**
-     * Sets an key-value nodes with an iterator.
+     * Sets a key-value nodes with an iterator.
      */
     void set(IIterator<IKeyValueNode<TKey, TValue>> iterator);
 }

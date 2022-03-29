@@ -5,8 +5,8 @@ import base.interfaces.IUnaryComparator;
 import base.interfaces.ISizableCollection;
 
 /**
- * The ITwoDimensionalList interface defines a generic two dimensional list.
- * The list can contains rows with different sizes.
+ * The ITwoDimensionalList interface defines a generic two-dimensional list.
+ * The list can contain rows with different sizes.
  */
 public interface ITwoDimensionalList<T extends Comparable<T>> extends
     ISizableCollection,

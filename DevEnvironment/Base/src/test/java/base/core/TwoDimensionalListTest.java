@@ -10,7 +10,7 @@ import testbase.interfaces.IIterationTest;
 import org.junit.Test;
 
 /**
- * The TwoDimensionalListTest class implements tests for a two dimensional list.
+ * The TwoDimensionalListTest class implements tests for a two-dimensional list.
  */
 public final class TwoDimensionalListTest {
     private final ITestData testData = new TestData();
@@ -23,7 +23,7 @@ public final class TwoDimensionalListTest {
     }
 
     /**
-     * Tests the creation logic of a two dimensional list.
+     * Tests the creation logic of a two-dimensional list.
      */
     @Test
     public void twoDimensionalListCreationTest() {
@@ -34,7 +34,7 @@ public final class TwoDimensionalListTest {
     }
 
     /**
-     * Tests the iteration logic of a two dimensional list.
+     * Tests the iteration logic of a two-dimensional list.
      */
     @Test
     public void twoDimensionalListIterationTest() {
@@ -44,7 +44,7 @@ public final class TwoDimensionalListTest {
     }
 
     /**
-     * Tests the creation logic of a two dimensional list.
+     * Tests the creation logic of a two-dimensional list.
      */
     private <T extends Comparable<T>> void testCreation(List<List<T>> data) {
         //
@@ -62,7 +62,7 @@ public final class TwoDimensionalListTest {
     }
 
     /**
-     * Tests the iteration logic of a two dimensional list.
+     * Tests the iteration logic of a two-dimensional list.
      */
     private <T extends Comparable<T>> void testIteration(List<List<T>> data) {
         //
@@ -89,7 +89,7 @@ public final class TwoDimensionalListTest {
     }
 
     /**
-     * Creates a two dimensional list.
+     * Creates a two-dimensional list.
      */
     private static <T extends Comparable<T>> ITwoDimensionalList<T> createTwoDimensionalList(List<List<T>> data) {
         return new TwoDimensionalList<>(data);

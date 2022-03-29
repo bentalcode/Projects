@@ -6,7 +6,7 @@ import testbase.interfaces.IAssertion;
 import org.junit.Test;
 
 /**
- * The KmpStringSearchTest class implements tests for string search string search
+ * The KmpStringSearchTest class implements tests for string search
  * by using an algorithm for KMP (Knuth Morris Pratt) Pattern Searching.
  */
 public final class KmpStringSearchTest {

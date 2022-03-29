@@ -3,7 +3,7 @@ package datastructures.graph.interfaces;
 import java.util.List;
 
 /**
- * The IPathFinder interface defines a path finder.
+ * The IPathFinder interface defines a pathfinder.
  */
 public interface IPathFinder<TKey extends Comparable<TKey>, TValue> {
     /**

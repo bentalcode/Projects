@@ -34,7 +34,7 @@ public interface ICMakeProjectManifest extends IUnaryComparator<ICMakeProjectMan
     IEditorSettings getEditorSettings();
 
     /**
-     * Gets the ignore rules.
+     * Gets to ignore rules.
      */
     IIgnoreRules getIgnoreRules();
 }

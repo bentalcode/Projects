@@ -7,7 +7,7 @@ import base.interfaces.IUnaryComparator;
  */
 public interface IFruit extends IUnaryComparator<IFruit>, IJsonSerialization {
     /**
-     * Gets the kind of a fruit.
+     * Gets the kind of fruit.
      */
     String getKind();
 

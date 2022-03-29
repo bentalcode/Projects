@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The UriReaderCommand class implements a command for reading a uri.
+ * The UriReaderCommand class implements a command for reading an uri.
  */
 public final class UriReaderCommand extends AbstractCommand {
     private IUriReaderCommandParameters parameters;

@@ -63,7 +63,7 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
     }
 
     /**
-     * Creates a new matrix, with a two dimensional list.
+     * Creates a new matrix, with a two-dimensional list.
      */
     public static <T extends Comparable<T>> IMatrix<T> create(List<List<T>> data) {
         return new Matrix<>(data);
@@ -121,14 +121,14 @@ public final class Matrix<T extends Comparable<T>> implements IMatrix<T> {
     }
 
     /**
-     * The Matrix constructor, with a two dimensional list.
+     * The Matrix constructor, with a two-dimensional list.
      */
     public Matrix(List<List<T>> data) {
         this(data, Matrix.defaultComparator());
     }
 
     /**
-     * The Matrix constructor, with a two dimensional list.
+     * The Matrix constructor, with a two-dimensional list.
      */
     public Matrix(
         List<List<T>> data,

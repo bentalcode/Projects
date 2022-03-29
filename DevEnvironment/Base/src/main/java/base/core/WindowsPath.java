@@ -4,7 +4,7 @@ import base.interfaces.IPathBuilder;
 import java.util.Stack;
 
 /**
- * The WindowsPath class implements a windows path.
+ * The WindowsPath class implements a Windows' path.
  */
 public final class WindowsPath extends AbstractPath {
     public static final char SEPARATOR = '\\';

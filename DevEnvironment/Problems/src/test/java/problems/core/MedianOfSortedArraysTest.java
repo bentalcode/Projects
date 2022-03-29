@@ -6,7 +6,7 @@ import testbase.interfaces.IAssertion;
 import org.junit.Test;
 
 /**
- * The MedianOfSortedArraysTest class implements tests for the median of sorted arrays problem.
+ * The MedianOfSortedArraysTest class implements tests for the median of sorted arrays' problem.
  */
 public final class MedianOfSortedArraysTest {
     private final IAssertion assertion = new Assertion();

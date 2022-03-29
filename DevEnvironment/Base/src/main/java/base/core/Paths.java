@@ -63,7 +63,7 @@ public final class Paths {
     }
 
     /**
-     * Gets an file name of a path.
+     * Gets a file name of a path.
      */
     public static String getFileName(String path) {
         return getFileName(
@@ -72,7 +72,7 @@ public final class Paths {
     }
 
     /**
-     * Gets an file name of a path.
+     * Gets a file name of a path.
      */
     public static String getFileName(
         String path,
@@ -678,7 +678,7 @@ public final class Paths {
     }
 
     /**
-     * Gets the number of sub directories.
+     * Gets the number of subdirectories.
      */
     private static int getNumberOfSubDirectories(
         char[] path,

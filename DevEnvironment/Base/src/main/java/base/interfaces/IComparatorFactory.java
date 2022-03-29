@@ -28,7 +28,7 @@ public interface IComparatorFactory {
     <T extends Comparable<T>> IArrayComparator<T> createArrayComparator();
 
     /**
-     * Creates a two dimensional array comparator.
+     * Creates a two-dimensional array comparator.
      */
     <T> ITwoDimensionalArrayComparator<T> createTwoDimensionalArrayComparator();
 

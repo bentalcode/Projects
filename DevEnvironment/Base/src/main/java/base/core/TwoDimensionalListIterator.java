@@ -4,7 +4,7 @@ import base.interfaces.IIterator;
 import java.util.List;
 
 /**
- * The TwoDimensionalListIterator class implements an iterator of a two dimensional list.
+ * The TwoDimensionalListIterator class implements an iterator of a two-dimensional list.
  */
 public final class TwoDimensionalListIterator<T> implements IIterator<T> {
     private final List<List<T>> data;
@@ -13,7 +13,7 @@ public final class TwoDimensionalListIterator<T> implements IIterator<T> {
     private int columnIndex;
 
     /**
-     * Creates a new iterator of a two dimensional list.
+     * Creates a new iterator of a two-dimensional list.
      */
     public static <T> IIterator<T> make(List<List<T>> data) {
         return new TwoDimensionalListIterator<>(data);

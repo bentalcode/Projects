@@ -8,21 +8,21 @@ public enum JsonTokenType {
      * NOT_AVAILABLE can be returned if JsonParser
      * implementation can not currently return the requested
      * token (usually next one), or even if any will be
-     * available, but that may be able to determine this in
-     * future. This is the case with non-blocking parsers --
+     * available, but that may be able to determine this in the future.
+     * This is the case with non-blocking parsers --
      * they can not block to wait for more data to parse and
      * must return something.
      */
     NOT_AVAILABLE,
 
     /**
-     * START_OBJECT is returned when encountering '{'
+     * START_OBJECT is returned when encountering "{"
      * which signals starting of an Object value.
      */
     START_OBJECT,
 
     /**
-     * END_OBJECT is returned when encountering '}'
+     * END_OBJECT is returned when encountering "}"
      * which signals ending of an Object value
      */
     END_OBJECT,

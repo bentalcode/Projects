@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The IHtmlStatistics interface defines statistics of an html.
+ * The IHtmlStatistics interface defines statistics of a html.
  */
 public interface IHtmlStatistics {
     /**
@@ -14,7 +14,7 @@ public interface IHtmlStatistics {
     List<IPair<String, Integer>> getMostlyUsedWords();
 
     /**
-     * Get the words usage counter.
+     * Get the words' usage counter.
      */
     Map<String, Integer> getWordsUsageCounter();
 }

@@ -18,7 +18,7 @@ public final class SkipIterator<TElement> implements ISkipIterator<TElement> {
     }
 
     /*
-     * Registers the class type of a generic skip element.
+     * Registers the class type of generic skip element.
      */
     @Override
     public void registerGenericSkipElement(Class<?> classTypeToSkip) {
@@ -26,7 +26,7 @@ public final class SkipIterator<TElement> implements ISkipIterator<TElement> {
     }
 
     /*
-     * Registers the class type of a skip element.
+     * Registers the class type of skip element.
      */
     @Override
     public <TSkipElement extends TElement> void registerSkipElement(Class<TSkipElement> classTypeToSkip) {

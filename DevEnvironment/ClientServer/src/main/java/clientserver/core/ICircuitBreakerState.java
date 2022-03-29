@@ -8,7 +8,7 @@ import clientserver.interfaces.ILogicRuntimeInformation;
  */
 public interface ICircuitBreakerState {
     /**
-     * Gets the state type of a circuit breaker.
+     * Gets the state type of circuit breaker.
      */
     CircuitBreakerStateType getStateType();
 

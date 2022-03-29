@@ -8,7 +8,7 @@ import urireadercommand.interfaces.IUriReaderCommandParameters;
 import java.util.Set;
 
 /**
- * The UriReaderCommandParameters class implements parameters of a uri reader command.
+ * The UriReaderCommandParameters class implements parameters of an uri reader command.
  */
 public final class UriReaderCommandParameters implements IUriReaderCommandParameters {
     private final String uri;
@@ -36,7 +36,7 @@ public final class UriReaderCommandParameters implements IUriReaderCommandParame
     }
 
     /**
-     * Gets a uri to read from.
+     * Gets an uri to read from.
      */
     @Override
     public String getUri() {

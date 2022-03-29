@@ -5,7 +5,7 @@ import base.interfaces.IPath;
 import base.interfaces.IPathBuilder;
 
 /**
- * The UnixPathSettings class implements path settings of a unix operating system.
+ * The UnixPathSettings class implements' path settings of a unix operating system.
  */
 public final class UnixPathSettings implements IOperatingSystemPathSettings {
     /**

@@ -35,7 +35,7 @@ public interface IBinaryTreeTraversal<TKey extends Comparable<TKey>, TValue> {
         IVisitor<IBinaryTreeNode<TKey, TValue>> visitor);
 
     /**
-     * Performs an Post-Order search.
+     * Performs a Post-Order search.
      */
     void postOrder(
         IBinaryTreeNode<TKey, TValue> root,

@@ -5,7 +5,7 @@ import base.interfaces.IIterator;
 import datastructures.list.interfaces.IList;
 
 /**
- * The TwoDimensionalListIterator class implements an iterator of a two dimensional list.
+ * The TwoDimensionalListIterator class implements an iterator of a two-dimensional list.
  */
 public class TwoDimensionalListIterator<T extends Comparable<T>> implements IIterator<T> {
     private final IList<IList<T>> data;
@@ -14,7 +14,7 @@ public class TwoDimensionalListIterator<T extends Comparable<T>> implements IIte
     private int columnIndex;
 
     /**
-     * Creates a new iterator of a two dimensional list.
+     * Creates a new iterator of a two-dimensional list.
      */
     public static <T extends Comparable<T>> IIterator<T> make(IList<IList<T>> data) {
         return new TwoDimensionalListIterator<>(data);

@@ -48,7 +48,7 @@ public interface ICMakeListsManifest extends IUnaryComparator<ICMakeListsManifes
     String getIncludesProperty();
 
     /**
-     * Gets the sources property.
+     * Gets the sources' property.
      */
     String getSourcesProperty();
 }

@@ -6,7 +6,7 @@ import base.interfaces.IIteratorComparator;
 import base.interfaces.ITwoDimensionalArrayComparator;
 
 /**
- * The TwoDimensionalArrayComparator class implements a comparator for a two dimensional array.
+ * The TwoDimensionalArrayComparator class implements a comparator for a two-dimensional array.
  */
 public final class TwoDimensionalArrayComparator<T> implements ITwoDimensionalArrayComparator<T> {
     private final IIteratorComparator<T> iteratorComparator = new IteratorComparator<>();

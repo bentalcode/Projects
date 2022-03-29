@@ -41,7 +41,7 @@ public interface ICache<TKey extends Comparable<TKey>, TValue> extends
     TValue get(TKey key);
 
     /**
-     * Deletes a key and it's associated value from the cache.
+     * Deletes a key, and it's associated value from the cache.
      *
      * Returns true if the key has been removed successfully from the cache.
      * Returns false if the key is not in the cache.

@@ -131,52 +131,52 @@ public interface IHashCodeBuilder {
     IHashCodeBuilder withBigIntegerArray(BigInteger[] array);
 
     /**
-     * With a boolean two dimensional array.
+     * With a boolean two-dimensional array.
      */
     IHashCodeBuilder withBooleanArray(boolean[][] array);
 
     /**
-     * With a byte two dimensional array.
+     * With a byte two-dimensional array.
      */
     IHashCodeBuilder withByteArray(byte[][] array);
 
     /**
-     * With a short two dimensional array.
+     * With a short two-dimensional array.
      */
     IHashCodeBuilder withShortArray(short[][] array);
 
     /**
-     * With an integer two dimensional array.
+     * With an integer two-dimensional array.
      */
     IHashCodeBuilder withIntegerArray(int[][] array);
 
     /**
-     * With a long two dimensional array.
+     * With a long two-dimensional array.
      */
     IHashCodeBuilder withLongArray(long[][] array);
 
     /**
-     * With a float two dimensional array.
+     * With a float two-dimensional array.
      */
     IHashCodeBuilder withFloatArray(float[][] array);
 
     /**
-     * With a double two dimensional array.
+     * With a double two-dimensional array.
      */
     IHashCodeBuilder withDoubleArray(double[][] array);
 
     /**
-     * With a character two dimensional array.
+     * With a character two-dimensional array.
      */
     IHashCodeBuilder withCharacterArray(char[][] array);
 
     /**
-     * With a string two dimensional array.
+     * With a string two-dimensional array.
      */
     IHashCodeBuilder withStringArray(String[][] array);
 
     /**
-     * With a big integer two dimensional array.
+     * With a big integer two-dimensional array.
      */
     IHashCodeBuilder withBigIntegerArray(BigInteger[][] array);
 

@@ -73,7 +73,7 @@ public final class TestData implements ITestData {
     }
 
     /**
-     * Gets the data of tests of a two dimensional list.
+     * Gets the data of tests of a two-dimensional list.
      */
     @Override
     public ITwoDimensionalListTestData getTwoDimensionalListData() {

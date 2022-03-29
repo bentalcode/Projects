@@ -6,7 +6,7 @@ package datastructures.bplustree.interfaces;
 public interface IBPlusTreeLeafNodeProperties<TKey extends Comparable<TKey>, TValue> extends IBPlusTreeNodeProperties<TKey> {
 
     /**
-     * Gets the class type of a value.
+     * Gets the class type of value.
      */
     Class<TValue> getValueClassType();
 

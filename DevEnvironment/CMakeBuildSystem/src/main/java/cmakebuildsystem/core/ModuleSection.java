@@ -98,7 +98,7 @@ public final class ModuleSection implements ICMakeBuildElement {
         writer.newLine();
 
         //
-        // Writes includes section...
+        // Write includes section...
         //
         ICMakeVariable includesVariable = this.writeModuleIncludesSection(
             writer,

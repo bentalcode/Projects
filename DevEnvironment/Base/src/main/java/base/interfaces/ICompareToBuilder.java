@@ -141,52 +141,52 @@ public interface ICompareToBuilder {
     ICompareToBuilder withBigIntegerArray(BigInteger[] lhs, BigInteger[] rhs);
 
     /**
-     * With a boolean two dimensional array.
+     * With a boolean two-dimensional array.
      */
     ICompareToBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs);
 
     /**
-     * With a byte two dimensional array.
+     * With a byte two-dimensional array.
      */
     ICompareToBuilder withByteArray(byte[][] lhs, byte[][] rhs);
 
     /**
-     * With a short two dimensional array.
+     * With a short two-dimensional array.
      */
     ICompareToBuilder withShortArray(short[][] lhs, short[][] rhs);
 
     /**
-     * With an integer two dimensional array.
+     * With an integer two-dimensional array.
      */
     ICompareToBuilder withIntegerArray(int[][] lhs, int[][] rhs);
 
     /**
-     * With a long two dimensional array.
+     * With a long two-dimensional array.
      */
     ICompareToBuilder withLongArray(long[][] lhs, long[][] rhs);
 
     /**
-     * With a float two dimensional array.
+     * With a float two-dimensional array.
      */
     ICompareToBuilder withFloatArray(float[][] lhs, float[][] rhs);
 
     /**
-     * With a double two dimensional array.
+     * With a double two-dimensional array.
      */
     ICompareToBuilder withDoubleArray(double[][] lhs, double[][] rhs);
 
     /**
-     * With a character two dimensional array.
+     * With a character two-dimensional array.
      */
     ICompareToBuilder withCharacterArray(char[][] lhs, char[][] rhs);
 
     /**
-     * With a string two dimensional array.
+     * With a string two-dimensional array.
      */
     ICompareToBuilder withStringArray(String[][] lhs, String[][] rhs);
 
     /**
-     * With a big integer two dimensional array.
+     * With a big integer two-dimensional array.
      */
     ICompareToBuilder withBigIntegerArray(BigInteger[][] lhs, BigInteger[][] rhs);
 

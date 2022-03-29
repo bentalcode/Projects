@@ -7,7 +7,7 @@ import base.interfaces.IUnaryComparator;
  */
 public interface IEditInformation<T extends Comparable<T>> extends IUnaryComparator<IEditInformation<T>> {
     /**
-     * Gets the type of an edit.
+     * Gets the type of edit.
      */
     EditType getType();
 

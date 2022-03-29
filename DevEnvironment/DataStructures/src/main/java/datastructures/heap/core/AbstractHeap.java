@@ -105,7 +105,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      * Offers an element to the priority queue.
      *
      * The new element is initially appended to the end of the heap (after the last element of the array),
-     * and performing heapifyUp() on the new added element for adjusting the heap.
+     * and performing heapify-Up() on the new added element for adjusting the heap.
      */
     @Override
     public void offer(T element) {

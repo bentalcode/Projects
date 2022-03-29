@@ -5,7 +5,7 @@ import base.interfaces.IPath;
 import base.interfaces.IPathBuilder;
 
 /**
- * The PosixUnixPathSettings class implements path settings of a posix-unix operating system.
+ * The PosixUnixPathSettings class implements' path settings of a posix-unix operating system.
  */
 public final class PosixUnixPathSettings implements IOperatingSystemPathSettings {
     /**

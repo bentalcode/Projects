@@ -1,7 +1,7 @@
 package problems.interfaces;
 
 /**
- * The IClosestBirthday interface defines a closest birthday problem.
+ * The IClosestBirthday interface defines the closest birthday problem.
  */
 public interface IClosestBirthday {
     /**

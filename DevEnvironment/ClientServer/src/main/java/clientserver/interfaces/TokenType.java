@@ -3,7 +3,7 @@ package clientserver.interfaces;
 import base.core.Enums;
 
 /**
- * The TokenType defines a token type of a Http protocol.
+ * The TokenType defines a token type of Http protocol.
  */
 public enum TokenType {
     Bearer("Bearer") {

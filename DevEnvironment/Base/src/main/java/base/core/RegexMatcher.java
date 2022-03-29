@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The RegexMatcher class implements regex matcher.
+ * The RegexMatcher class implements' regex matcher.
  */
 public final class RegexMatcher implements IRegexMatcher {
     private final Logger log = LoggerFactory.getLogger(this.getClass());

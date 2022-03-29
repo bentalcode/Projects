@@ -45,7 +45,7 @@ public final class OAuthCredentials implements IOAuthCredentials {
     }
 
     /**
-     * Gets the user name.
+     * Gets the username.
      */
     @Override
     public String getUserName() {

@@ -37,7 +37,7 @@ public final class CircuitBreakerClosedState extends CircuitBreakerState {
     public void setLogicExecutionResult(ILogicRuntimeInformation logicRuntimeInformation) {
         //
         // If the logic execution has succeeded or the timeout of the failures' duration
-        // has expired, then reset the failures information...
+        // has expired, then reset the failures' information...
         //
         if (logicRuntimeInformation.getStatus() || this.isFailuresDurationTimeoutExpired()) {
             this.resetFailuresInformation();
@@ -71,7 +71,7 @@ public final class CircuitBreakerClosedState extends CircuitBreakerState {
     }
 
     /**
-     * Checks whether the timeout of the failures duration has expired.
+     * Checks whether the timeout of the failures' duration has expired.
      */
     private boolean isFailuresDurationTimeoutExpired() {
         Duration failuresDuration = Dates.fromNow(this.failuresStartTime);
@@ -79,7 +79,7 @@ public final class CircuitBreakerClosedState extends CircuitBreakerState {
     }
 
     /**
-     * Checks whether the failures count has reached it's threshold.
+     * Checks whether the failures count has reached its threshold.
      */
     private boolean isFailuresCounterReachedThreshold() {
         assert(!this.isFailuresDurationTimeoutExpired());
@@ -87,7 +87,7 @@ public final class CircuitBreakerClosedState extends CircuitBreakerState {
     }
 
     /**
-     * Resets the failures information.
+     * Resets the failures' information.
      */
     private void resetFailuresInformation() {
         this.failuresStartTime = null;

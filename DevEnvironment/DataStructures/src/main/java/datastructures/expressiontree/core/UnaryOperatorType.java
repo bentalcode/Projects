@@ -6,7 +6,7 @@ import datastructures.expressiontree.interfaces.IOperand;
 import datastructures.expressiontree.interfaces.IUnaryOperator;
 
 /**
- * The UnaryOperatorType enum defines types of an unary operator of an expression tree.
+ * The UnaryOperatorType enum defines types of a unary operator of an expression tree.
  */
 public enum UnaryOperatorType {
     /**
@@ -15,7 +15,7 @@ public enum UnaryOperatorType {
     SquareRoot (IExpressionTreeSymbols.SquareRootOperator) {
 
         /**
-         * Creates an unary operator.
+         * Creates a unary operator.
          */
         public IUnaryOperator create(IOperand operand) {
             return new SquareRootOperator(operand);
@@ -32,7 +32,7 @@ public enum UnaryOperatorType {
     }
 
     /**
-     * Creates an unary operator.
+     * Creates a unary operator.
      */
     public abstract IUnaryOperator create(IOperand operand);
 
@@ -45,14 +45,14 @@ public enum UnaryOperatorType {
     }
 
     /**
-     * Parses an unary operator type.
+     * Parses a unary operator type.
      */
     public static UnaryOperatorType parse(String str) {
         return Enums.parse(UnaryOperatorType.class, str);
     }
 
     /**
-     * Tries to parse an unary operator type.
+     * Tries to parse a unary operator type.
      */
     public static UnaryOperatorType tryParse(String str) {
         return Enums.tryParse(UnaryOperatorType.class, str);

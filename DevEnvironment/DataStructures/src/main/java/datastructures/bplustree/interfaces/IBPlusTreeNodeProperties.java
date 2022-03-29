@@ -12,7 +12,7 @@ public interface IBPlusTreeNodeProperties<TKey extends Comparable<TKey>> {
     int getDegree();
 
     /**
-     * Gets the class type of a key.
+     * Gets the class type of key.
      */
     Class<TKey> getKeyClassType();
 

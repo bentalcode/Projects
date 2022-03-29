@@ -11,7 +11,7 @@ public interface IOAuthCredentials extends
     IJsonSerialization {
 
     /**
-     * Gets the user name.
+     * Gets the username.
      */
     String getUserName();
 

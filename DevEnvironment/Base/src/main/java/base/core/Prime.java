@@ -135,7 +135,7 @@ public final class Prime implements IPrime {
      */
     private void calculatePrimes(BitSet primes, int length) {
         //
-        // Set all number as primes besides zero and one...
+        // Set all number to prime besides zero and one...
         //
         primes.set(0, false);
         primes.set(1, false);
@@ -190,7 +190,7 @@ public final class Prime implements IPrime {
         //
         // A multiplier of a prime is not a prime.
         // Therefore, crosses-off the remaining multiples of prime.
-        // We starts after the currentPrime since this number is crossed off in the previous iteration...
+        // We start after the currentPrime since this number is crossed off in the previous iteration...
         //
         for (int i = currentPrime * currentPrime; i < length; i += currentPrime) {
             primes.set(i, false);

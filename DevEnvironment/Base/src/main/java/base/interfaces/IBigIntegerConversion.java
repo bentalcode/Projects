@@ -22,7 +22,7 @@ public interface IBigIntegerConversion {
     int toInteger(BigInteger value);
 
     /**
-     * Converts a big integer to an long.
+     * Converts a big integer to a long.
      */
     long toLong(BigInteger value);
 }

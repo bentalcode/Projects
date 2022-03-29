@@ -81,7 +81,7 @@ public final class ParameterSetParser implements IParser<IInputParameters, IPara
     }
 
     /**
-     * Parses indexed parameters of a parameter-set..
+     * Parses indexed parameters of a parameter-set.
      */
     private IParsingResult<List<IParameter>> parseIndexedParameters(
         List<IIndexedParameterMetadata> parametersMetadata,

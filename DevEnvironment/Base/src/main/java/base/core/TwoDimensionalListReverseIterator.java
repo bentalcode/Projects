@@ -4,7 +4,7 @@ import base.interfaces.IReverseIterator;
 import java.util.List;
 
 /**
- * The TwoDimensionalListReverseIterator class implements a reverse iterator of a two dimensional list.
+ * The TwoDimensionalListReverseIterator class implements a reverse iterator of a two-dimensional list.
  */
 public final class TwoDimensionalListReverseIterator<T> implements IReverseIterator<T> {
     private final List<List<T>> data;
@@ -13,7 +13,7 @@ public final class TwoDimensionalListReverseIterator<T> implements IReverseItera
     private int columnIndex;
 
     /**
-     * Creates a new reverse iterator of a two dimensional list.
+     * Creates a new reverse iterator of a two-dimensional list.
      */
     public static <T> IReverseIterator<T> make(List<List<T>> data) {
         return new TwoDimensionalListReverseIterator<>(data);

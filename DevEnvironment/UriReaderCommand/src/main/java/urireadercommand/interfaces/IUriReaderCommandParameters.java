@@ -3,11 +3,11 @@ package urireadercommand.interfaces;
 import java.util.Set;
 
 /**
- * The IUriReaderCommandParameters interface defines parameters of a uri-reader command.
+ * The IUriReaderCommandParameters interface defines parameters of an uri-reader command.
  */
 public interface IUriReaderCommandParameters {
     /**
-     * Gets a uri to read from.
+     * Gets an uri to read from.
      */
     String getUri();
 

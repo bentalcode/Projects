@@ -5,7 +5,7 @@ import base.interfaces.IPair;
 import problems.interfaces.IMedianOfSortedArrays;
 
 /**
- * The MedianOfSortedArrays class implements the median of sorted arrays problem.
+ * The MedianOfSortedArrays class implements the median of sorted arrays' problem.
  */
 public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
     /**
@@ -78,7 +78,7 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             }
             else if (rightSize % 2 == 0) {
                 //
-                // Case 2: If the larger array has even number of elements,
+                // Case 2: If the larger array has even numbed of elements,
                 // then consider the middle two elements of the larger array,
                 // and the only element of the smaller array.
                 //
@@ -118,7 +118,7 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             }
             if (rightSize % 2 == 0) {
                 //
-                // Case 5: If the larger array has even number of elements,
+                // Case 5: If the larger array has even numbed of elements,
                 // then median will be one of the following 4 elements:
                 //
                 // 1. The middle two elements of larger array.
@@ -288,7 +288,7 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
     }
 
     /**
-     * Gets the median of four values, by implementing bubble sort inline..
+     * Gets the median of four values, by implementing bubble sort inline.
      */
     private double medianOf(int value1, int value2, int value3, int value4) {
         int first = value1;

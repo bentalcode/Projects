@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IBPlusTreeNode<TKey extends Comparable<TKey>> extends IUnaryComparator<IBPlusTreeNode<TKey>> {
     /**
-     * Gets the type of a node.
+     * Gets the type of node.
      */
     TreeNodeType getNodeType();
 
@@ -75,7 +75,7 @@ public interface IBPlusTreeNode<TKey extends Comparable<TKey>> extends IUnaryCom
 
     /**
      * Finds a position of a key.
-     * If found the key, then return it's position, otherwise return -1.
+     * If found the key, then return its position, otherwise return -1.
      * For a leaf node, returns a child node index which should contain the key for an internal node.
      */
     int findPosition(TKey key);

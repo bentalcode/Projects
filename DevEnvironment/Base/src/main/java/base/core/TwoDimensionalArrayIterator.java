@@ -3,7 +3,7 @@ package base.core;
 import base.interfaces.IIterator;
 
 /**
- * The TwoDimensionalArrayIterator class implements an iterator of a two dimensional array.
+ * The TwoDimensionalArrayIterator class implements an iterator of a two-dimensional array.
  */
 public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     private final T[][] data;
@@ -12,7 +12,7 @@ public final class TwoDimensionalArrayIterator<T> implements IIterator<T> {
     private int columnIndex;
 
     /**
-     * Creates a new iterator of a two dimensional array.
+     * Creates a new iterator of a two-dimensional array.
      */
     public static <T> IIterator<T> make(T[][] data) {
         return new TwoDimensionalArrayIterator<>(data);

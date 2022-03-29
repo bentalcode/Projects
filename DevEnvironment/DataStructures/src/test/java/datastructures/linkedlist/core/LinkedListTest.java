@@ -53,7 +53,7 @@ public final class LinkedListTest {
     }
 
     /**
-     * Tests the updation logic of a linked list.
+     * Tests the update logic of a linked list.
      */
     @Test
     public void linkedListUpdationTest() {
@@ -117,7 +117,7 @@ public final class LinkedListTest {
     }
 
     /**
-     * Tests the updation logic of a linked list.
+     * Tests the update logic of a linked list.
      */
     private <T extends Comparable<T>> void testUpdation(
         ILinkedList<T> list,
@@ -133,7 +133,7 @@ public final class LinkedListTest {
     }
 
     /**
-     * Tests the updation logic of a linked list.
+     * Tests the update logic of a linked list.
      */
     private <T extends Comparable<T>> void testUpdation(
         ILinkedList<T> list,

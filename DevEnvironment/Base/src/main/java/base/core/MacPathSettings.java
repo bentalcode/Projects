@@ -5,7 +5,7 @@ import base.interfaces.IPath;
 import base.interfaces.IPathBuilder;
 
 /**
- * The MacPathSettings class implements path settings of a mac operating system.
+ * The MacPathSettings class implements' path settings of a Mac operating system.
  */
 public final class MacPathSettings implements IOperatingSystemPathSettings {
     /**

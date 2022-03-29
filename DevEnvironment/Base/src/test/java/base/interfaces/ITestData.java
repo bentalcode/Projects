@@ -8,12 +8,12 @@ import java.util.List;
  */
 public interface ITestData {
     /**
-     * Gets path of a is-prime resource.
+     * Gets path of an is-prime resource.
      */
     Path getIsPrimeResourcePath();
 
     /**
-     * Gets path of a primes resource.
+     * Gets path of a primes' resource.
      */
     Path getPrimesResourcePath();
 
@@ -23,7 +23,7 @@ public interface ITestData {
     List<IPair<Integer, String>> getIntegerStrings();
 
     /**
-     * Gets data of two dimensional lists.
+     * Gets data of two-dimensional lists.
      */
     List<List<List<Integer>>> getTwoDimensionalListsData();
 }

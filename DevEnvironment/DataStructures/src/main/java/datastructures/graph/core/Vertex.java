@@ -264,7 +264,7 @@ public final class Vertex<TKey extends Comparable<TKey>, TValue> implements IVer
         }
 
         /**
-         * Builds the a vertex.
+         * Builds the vertex.
          */
         @Override
         public IVertex<TKey, TValue> build() {

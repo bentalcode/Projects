@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The IncludesDirectoriesCommand class implements an include directories command of a CMake build.
+ * The IncludesDirectoriesCommand class implements an included directories command of a CMake build.
  */
 public final class IncludesDirectoriesCommand extends CMakeBuildCommand {
     /**
@@ -45,7 +45,7 @@ public final class IncludesDirectoriesCommand extends CMakeBuildCommand {
     }
 
     /**
-     * Gets the include directories variables.
+     * Gets to include directories variables.
      */
     private List<ICMakeVariable> getIncludeDirectoriesVariables(ICMakeBuildContextData contextData) {
         List<ICMakeVariable> variables = new ArrayList<>();

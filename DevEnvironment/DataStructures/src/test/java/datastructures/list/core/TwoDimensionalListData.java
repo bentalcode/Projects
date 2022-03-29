@@ -4,7 +4,7 @@ import datastructures.list.interfaces.IList;
 import datastructures.list.interfaces.ITwoDimensionalListData;
 
 /**
- * The TwoDimensionalListData class implements the data of a two dimensional list.
+ * The TwoDimensionalListData class implements the data of a two-dimensional list.
  */
 public final class TwoDimensionalListData<T extends Comparable<T>> implements ITwoDimensionalListData<T> {
     private final IList<IList<T>> data;

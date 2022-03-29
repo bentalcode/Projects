@@ -4,7 +4,7 @@ import base.interfaces.IIterator;
 
 /**
  * The TwoDimensionalCharacterArrayIterator class implements an iterator
- * of a two dimensional array of characters.
+ * of a two-dimensional array of characters.
  */
 public final class TwoDimensionalCharacterArrayIterator implements IIterator<Character> {
     private final char[][] data;
@@ -13,7 +13,7 @@ public final class TwoDimensionalCharacterArrayIterator implements IIterator<Cha
     private int columnIndex;
 
     /**
-     * Creates a new iterator of a two dimensional array of characters.
+     * Creates a new iterator of a two-dimensional array of characters.
      */
     public static IIterator<Character> make(char[][] data) {
         return new TwoDimensionalCharacterArrayIterator(data);

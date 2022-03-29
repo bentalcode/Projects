@@ -1,7 +1,7 @@
 package datastructures.list.interfaces;
 
 /**
- * The ITwoDimensionalListData interface defines the data of a two dimensional list.
+ * The ITwoDimensionalListData interface defines the data of a two-dimensional list.
  */
 public interface ITwoDimensionalListData<T extends Comparable<T>> {
     /**

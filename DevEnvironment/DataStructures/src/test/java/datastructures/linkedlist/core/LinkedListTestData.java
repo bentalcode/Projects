@@ -34,7 +34,7 @@ public final class LinkedListTestData implements ILinkedListTestData {
     }
 
     /**
-     * Gets the updation data of a linked list.
+     * Gets the update data of a linked list.
      */
     @Override
     public List<ITriple<String, Integer, List<Integer>>> getUpdationData() {

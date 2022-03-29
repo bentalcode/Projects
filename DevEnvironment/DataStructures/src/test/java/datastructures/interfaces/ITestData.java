@@ -39,7 +39,7 @@ public interface ITestData {
     IListTestData getListData();
 
     /**
-     * Gets the data of tests of a two dimensional list.
+     * Gets the data of tests of a two-dimensional list.
      */
     ITwoDimensionalListTestData getTwoDimensionalListData();
 

@@ -28,14 +28,14 @@ public final class RunTestOnOperatingSystemRule implements TestRule {
     }
 
     /**
-     * Creates a rule for running tests on windows.
+     * Creates a rule for running tests on Windows.
      */
     public static TestRule runOnWindowsRule() {
         return new RunTestOnOperatingSystemRule(ArrayLists.make(OperatingSystemType.Windows));
     }
 
     /**
-     * Creates a rule for running tests on mac.
+     * Creates a rule for running tests on Mac.
      */
     public static TestRule runOnMacRule() {
         return new RunTestOnOperatingSystemRule(ArrayLists.make(OperatingSystemType.Mac));

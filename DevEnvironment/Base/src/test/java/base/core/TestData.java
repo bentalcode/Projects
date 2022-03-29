@@ -22,7 +22,7 @@ public final class TestData implements ITestData {
     }
 
     /**
-     * Gets path of a is-primes resource.
+     * Gets path of is-primes resource.
      */
     @Override
     public Path getIsPrimeResourcePath() {
@@ -33,7 +33,7 @@ public final class TestData implements ITestData {
     }
 
     /**
-     * Gets path of a primes resource.
+     * Gets path of primes resource.
      */
     @Override
     public Path getPrimesResourcePath() {
@@ -60,7 +60,7 @@ public final class TestData implements ITestData {
     }
 
     /**
-     * Gets data of two dimensional lists.
+     * Gets data of two-dimensional lists.
      */
     @Override
     public List<List<List<Integer>>> getTwoDimensionalListsData() {
@@ -97,7 +97,7 @@ public final class TestData implements ITestData {
     }
 
     /**
-     * Creates data of a two dimensional list.
+     * Creates data of a two-dimensional list.
      */
     private List<List<Integer>> createTwoDimensionalListData(int rows, int columns)
     {

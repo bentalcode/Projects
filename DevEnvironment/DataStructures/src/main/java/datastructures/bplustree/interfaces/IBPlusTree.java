@@ -24,13 +24,13 @@ public interface IBPlusTree<TKey extends Comparable<TKey>, TValue> extends
     IBPlusTreeProperties<TKey, TValue> getProperties();
 
     /**
-     * Inserts a new key and it's associated value into the B+ tree.
+     * Inserts a new key, and it's associated value into the B+ tree.
      * Complexity: O(LogN)
      */
     void insert(TKey key, TValue value);
 
     /**
-     * Deletes a key and it's associated value from the tree.
+     * Deletes a key, and it's associated value from the tree.
      * Complexity: O(LogN)
      */
     void delete(TKey key);

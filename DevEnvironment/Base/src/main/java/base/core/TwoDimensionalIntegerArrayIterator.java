@@ -4,7 +4,7 @@ import base.interfaces.IIterator;
 
 /**
  * The TwoDimensionalIntegerArrayIterator class implements an iterator
- * of a two dimensional array of integers.
+ * of a two-dimensional array of integers.
  */
 public final class TwoDimensionalIntegerArrayIterator implements IIterator<Integer> {
     private final int[][] data;
@@ -13,7 +13,7 @@ public final class TwoDimensionalIntegerArrayIterator implements IIterator<Integ
     private int columnIndex;
 
     /**
-     * Creates a new iterator of a two dimensional array of integers.
+     * Creates a new iterator of a two-dimensional array of integers.
      */
     public static IIterator<Integer> make(int[][] data) {
         return new TwoDimensionalIntegerArrayIterator(data);

@@ -141,47 +141,47 @@ public interface IEqualBuilder {
     IEqualBuilder withBigIntegerArray(BigInteger[] lhs, BigInteger[] rhs);
 
     /**
-     * With a boolean two dimensional array.
+     * With a boolean two-dimensional array.
      */
     IEqualBuilder withBooleanArray(boolean[][] lhs, boolean[][] rhs);
 
     /**
-     * With a byte two dimensional array.
+     * With a byte two-dimensional array.
      */
     IEqualBuilder withByteArray(byte[][] lhs, byte[][] rhs);
 
     /**
-     * With a short two dimensional array.
+     * With a short two-dimensional array.
      */
     IEqualBuilder withShortArray(short[][] lhs, short[][] rhs);
 
     /**
-     * With an integer two dimensional array.
+     * With an integer two-dimensional array.
      */
     IEqualBuilder withIntegerArray(int[][] lhs, int[][] rhs);
 
     /**
-     * With a long two dimensional array.
+     * With a long two-dimensional array.
      */
     IEqualBuilder withLongArray(long[][] lhs, long[][] rhs);
 
     /**
-     * With a float two dimensional array.
+     * With a float two-dimensional array.
      */
     IEqualBuilder withFloatArray(float[][] lhs, float[][] rhs);
 
     /**
-     * With a double two dimensional array.
+     * With a double two-dimensional array.
      */
     IEqualBuilder withDoubleArray(double[][] lhs, double[][] rhs);
 
     /**
-     * With a character two dimensional array.
+     * With a character two-dimensional array.
      */
     IEqualBuilder withCharacterArray(char[][] lhs, char[][] rhs);
 
     /**
-     * With a string two dimensional array.
+     * With a string two-dimensional array.
      */
     IEqualBuilder withStringArray(String[][] lhs, String[][] rhs);
 

@@ -13,7 +13,7 @@ import testbase.interfaces.IAssertion;
 import org.junit.Test;
 
 /**
- * The MatchingTripletsTest class implements tests for the matching triplets problem.
+ * The MatchingTripletsTest class implements tests for the matching triplets' problem.
  */
 public final class MatchingTripletsTest {
     private final IAssertion assertion = new Assertion();

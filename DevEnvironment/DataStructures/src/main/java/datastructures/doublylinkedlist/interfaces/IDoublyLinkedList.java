@@ -83,7 +83,7 @@ public interface IDoublyLinkedList<T extends Comparable<T>> extends
     IDoublyLinkedListNode<T> removeFromBack();
 
     /**
-     * Removes the a node from the list.
+     * Removes the node from the list.
      */
     void remove(IDoublyLinkedListNode<T> nodeToRemove);
 

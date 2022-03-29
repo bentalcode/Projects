@@ -9,7 +9,7 @@ import testbase.interfaces.IAssertion;
 import org.junit.Test;
 
 /**
- * The PermutationTest class implements tests for the permutations problem.
+ * The PermutationTest class implements tests for the permutations' problem.
  */
 public final class PermutationTest {
     private final IAssertion assertion = new Assertion();
