@@ -706,6 +706,8 @@ public final class Paths {
 
         char[] pathBuffer = path.toCharArray();
         char[] resultPathBuffer = Strings.clone(pathBuffer, 0, pathBuffer.length);
+        assert (resultPathBuffer != null);
+
         convertSeparators(resultPathBuffer, fromSeparator, toSeparator);
 
         return new String(resultPathBuffer);

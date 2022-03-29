@@ -82,11 +82,15 @@ public abstract class BPlusTreeNode<TKey extends Comparable<TKey>> implements IB
     public List<TKey> getKeys() {
         List<TKey> keys = new ArrayList<>(this.getKeyCount());
 
-        for (int i = 0; i < this.getKeyCount(); ++i) {
-            TKey currKey = this.keys[i];
-            keys.add(currKey);
-        }
+        int index = 0;
 
+        while (index < this.getKeyCount()) {
+            TKey currKey = this.keys[index];
+            keys.add(currKey);
+
+            ++index;
+        }
+        
         return keys;
     }
 
