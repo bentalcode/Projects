@@ -53,7 +53,7 @@ public final class CacheTestData implements ICacheTestData {
      * Gets the update data of a most recently used cache.
      */
     @Override
-    public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getMruUpdationData()
+    public List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getMruUpdateData()
     {
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data = new ArrayList<>();
 

@@ -56,7 +56,7 @@ public final class DoublyLinkedListTest {
      * Tests the update logic of a doubly linked list.
      */
     @Test
-    public void doublyLinkedListUpdationTest() {
+    public void doublyLinkedListUpdateTest() {
         IDoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
         List<ITriple<String, Integer, List<Integer>>> data =

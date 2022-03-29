@@ -33,7 +33,7 @@ public final class CacheTest {
         ICache<Integer, String> cache = new MRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
-            this.testData.getCacheData().getMruUpdationData();
+            this.testData.getCacheData().getMruUpdateData();
 
         this.testUpdate(cache, data);
     }
@@ -42,7 +42,7 @@ public final class CacheTest {
      * Tests the update logic of least recently used cache.
      */
     @Test
-    public void lruCacheUpdationTest() {
+    public void lruCacheUpdateTest() {
         ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
@@ -59,7 +59,7 @@ public final class CacheTest {
         ICache<Integer, String> cache = new MRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
-            this.testData.getCacheData().getMruUpdationData();
+            this.testData.getCacheData().getMruUpdateData();
 
         this.testIteration(cache, data);
     }

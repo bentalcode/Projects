@@ -16,5 +16,5 @@ public interface ICacheTestData {
     /**
      * Gets the update data of a most recently used cache.
      */
-    List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getMruUpdationData();
+    List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> getMruUpdateData();
 }
