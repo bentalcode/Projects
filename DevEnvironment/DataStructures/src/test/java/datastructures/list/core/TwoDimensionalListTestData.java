@@ -72,7 +72,7 @@ public final class TwoDimensionalListTestData implements ITwoDimensionalListTest
     }
 
     /**
-     * Gets the random data of a two-dimensional list..
+     * Gets the random data of a two-dimensional list.
      */
     private ITwoDimensionalListData<Integer> getRandomTwoDimensionalListData(
         int fromRowSize,

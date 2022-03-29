@@ -4,7 +4,7 @@ import base.interfaces.ITriplet;
 import java.util.List;
 
 /**
- * The IMatchingTriplets interface defines a matching triplets problem.
+ * The IMatchingTriplets interface defines a matching triplets' problem.
  */
 public interface IMatchingTriplets {
     /**

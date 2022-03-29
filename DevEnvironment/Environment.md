@@ -32,7 +32,7 @@ Base Library:
 The base library implements basic logic for any project in Java and provides complimentary functionality.
 This library includes basic classes such as EqualBuilder for calculating equality of objects, CompareToBuilder for
 comparing objects, Comparators, DestructorHandler for registering objects for invoking their destructors automatically
- after usage and etc.    
+ after usage etc.    
 
 The code is defined at: DevEnvironment\Base
 

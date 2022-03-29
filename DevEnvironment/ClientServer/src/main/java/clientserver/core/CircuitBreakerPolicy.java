@@ -92,7 +92,7 @@ public final class CircuitBreakerPolicy implements ICircuitBreakerPolicy {
      *
      * The failure threshold that trips the circuit breaker from a Close State into an Open State.
      * This threshold is only reached when a specified number of failures have occurred during the
-     * specified failure threshold timout.
+     * specified failure threshold timeout.
      */
     @Override
     public int getFailureThreshold() {
@@ -115,7 +115,7 @@ public final class CircuitBreakerPolicy implements ICircuitBreakerPolicy {
      *
      * The success threshold that move the circuit breaker from a Half-Open State into a Closed State.
      * Once this threshold is reached, the circuit breaker will get reset.
-     * This threshold represents the last consecutive success attemps in the Half-Open State.
+     * This threshold represents the last consecutive success attempts in the Half-Open State.
      */
     @Override
     public int getSuccessThreshold() {

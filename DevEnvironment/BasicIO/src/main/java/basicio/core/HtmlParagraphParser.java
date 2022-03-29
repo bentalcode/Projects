@@ -362,7 +362,7 @@ public final class HtmlParagraphParser implements IHtmlParagraphParser {
             this.mostlyUsedWordsPriorityQueue.offer(newWordCounter);
         }
         else {
-            this.mostlyUsedWordsPriorityQueue.updateAndHypifyDown(index, newWordCounter);
+            this.mostlyUsedWordsPriorityQueue.updateAndHeapifyDown(index, newWordCounter);
         }
     }
 

@@ -144,7 +144,7 @@ public final class IgnoreRules implements IIgnoreRules {
     }
 
     /**
-     * The Comparator class implements a comparator of an ignore rules.
+     * The Comparator class implements a comparator of an ignored rules.
      */
     public static final class Comparator extends AbstractBinaryComparator<IIgnoreRules> {
         /**

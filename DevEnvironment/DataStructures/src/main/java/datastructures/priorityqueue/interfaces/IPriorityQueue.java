@@ -55,10 +55,10 @@ public interface IPriorityQueue<T extends Comparable<T>> extends
     /**
      * Updates a value of a specific element and heapify it up.
      */
-    void updateAndHypifyUp(int index, T element);
+    void updateAndHeapifyUp(int index, T element);
 
     /**
      * Updates a value of a specific element and heapify it down.
      */
-    void updateAndHypifyDown(int index, T element);
+    void updateAndHeapifyDown(int index, T element);
 }

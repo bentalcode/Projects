@@ -241,7 +241,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      * Updates a value of a specific element and heapify it up.
      */
     @Override
-    public void updateAndHypifyUp(int index, T element) {
+    public void updateAndHeapifyUp(int index, T element) {
         Indexes.validateIndex(index, 0, this.size - 1);
         this.data[index] = element;
         this.heapifyUp(index);
@@ -251,7 +251,7 @@ public abstract class AbstractHeap<T extends Comparable<T>> implements IPriority
      * Updates a value of a specific element and heapify it down.
      */
     @Override
-    public void updateAndHypifyDown(int index, T element) {
+    public void updateAndHeapifyDown(int index, T element) {
         Indexes.validateIndex(index, 0, this.size - 1);
         this.data[index] = element;
         this.heapifyDown(index);

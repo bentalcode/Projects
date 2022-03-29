@@ -16,25 +16,25 @@ public enum JsonToken {
     NOT_AVAILABLE,
 
     /**
-     * START_OBJECT is returned when encountering "{"
+     * START_OBJECT is returned when encountering an open curly bracket
      * which signals starting of an Object value.
      */
     START_OBJECT,
 
     /**
-     * END_OBJECT is returned when encountering "}"
+     * END_OBJECT is returned when encountering a close curly bracket
      * which signals ending of an Object value
      */
     END_OBJECT,
 
     /**
-     * START_ARRAY is returned when encountering '['
+     * START_ARRAY is returned when encountering an open square bracket
      * which signals starting of an Array value
      */
     START_ARRAY,
 
     /**
-     * END_ARRAY is returned when encountering ']'
+     * END_ARRAY is returned when encountering a close square bracket
      * which signals ending of an Array value
      */
     END_ARRAY,

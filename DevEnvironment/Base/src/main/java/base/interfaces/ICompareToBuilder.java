@@ -211,12 +211,12 @@ public interface ICompareToBuilder {
     <T extends Comparable<T>> ICompareToBuilder withArray(T[] lhs, T[] rhs, IComparableComparator<T> comparator);
 
     /**
-     * With a generic two dimensional array.
+     * With a generic two-dimensional array.
      */
     <T extends Comparable<T>> ICompareToBuilder withArray(T[][] lhs, T[][] rhs);
 
     /**
-     * With a generic two dimensional array and a comparator.
+     * With a generic two-dimensional array and a comparator.
      */
     <T extends Comparable<T>> ICompareToBuilder withArray(T[][] lhs, T[][] rhs, IComparableComparator<T> comparator);
 

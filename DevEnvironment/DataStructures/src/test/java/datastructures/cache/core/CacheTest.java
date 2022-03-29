@@ -29,13 +29,13 @@ public final class CacheTest {
      * Tests the update logic of a most recently used cache.
      */
     @Test
-    public void mruCacheUpdationTest() {
+    public void mruCacheUpdateTest() {
         ICache<Integer, String> cache = new MRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
             this.testData.getCacheData().getMruUpdationData();
 
-        this.testUpdation(cache, data);
+        this.testUpdate(cache, data);
     }
 
     /**
@@ -46,9 +46,9 @@ public final class CacheTest {
         ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
-            this.testData.getCacheData().getLruUpdationData();
+            this.testData.getCacheData().getLruUpdateData();
 
-        this.testUpdation(cache, data);
+        this.testUpdate(cache, data);
     }
 
     /**
@@ -72,7 +72,7 @@ public final class CacheTest {
         ICache<Integer, String> cache = new LRUCache<>(new CacheProperties(3, 1));
 
         List<ITriple<String, IKeyValueNode<Integer, String>, List<IKeyValueNode<Integer, String>>>> data =
-                this.testData.getCacheData().getLruUpdationData();
+                this.testData.getCacheData().getLruUpdateData();
 
         this.testIteration(cache, data);
     }
@@ -80,12 +80,12 @@ public final class CacheTest {
     /**
      * Tests the update logic of a cache.
      */
-    private <TKey extends Comparable<TKey>, TValue> void testUpdation(
+    private <TKey extends Comparable<TKey>, TValue> void testUpdate(
         ICache<TKey, TValue> cache,
         List<ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>>> data) {
 
         for (ITriple<String, IKeyValueNode<TKey, TValue>, List<IKeyValueNode<TKey, TValue>>> entry : data) {
-            this.testUpdation(
+            this.testUpdate(
                 cache,
                 entry.first(),
                 entry.second(),
@@ -112,7 +112,7 @@ public final class CacheTest {
     /**
      * Tests the update logic of a cache.
      */
-    private <TKey extends Comparable<TKey>, TValue> void testUpdation(
+    private <TKey extends Comparable<TKey>, TValue> void testUpdate(
         ICache<TKey, TValue> cache,
         String operation,
         IKeyValueNode<TKey, TValue> item,
@@ -123,7 +123,7 @@ public final class CacheTest {
         this.assertion.assertEqualsWithIterators(
             cache.getIterator(),
             Iterator.make(expectedContent),
-            "Invalid updation logic of a cache.");
+            "Invalid updating logic of a cache.");
     }
 
     /**

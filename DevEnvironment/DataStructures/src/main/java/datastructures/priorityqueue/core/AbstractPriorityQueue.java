@@ -197,7 +197,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
      * Updates a value of a specific element and heapify it up.
      */
     @Override
-    public void updateAndHypifyUp(int index, T element) {
+    public void updateAndHeapifyUp(int index, T element) {
         Indexes.validateIndex(index, 0, this.data.size() - 1);
         this.data.set(index, element);
         this.heapifyUp(index);
@@ -207,7 +207,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable<T>> implements 
      * Updates a value of a specific element and heapify it down.
      */
     @Override
-    public void updateAndHypifyDown(int index, T element) {
+    public void updateAndHeapifyDown(int index, T element) {
         Indexes.validateIndex(index, 0, this.data.size() - 1);
         this.data.set(index, element);
         this.heapifyDown(index);

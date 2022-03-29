@@ -2,7 +2,7 @@ Copyright © 2020 by Bental Tagor
 
 Design:
 =======
-This design is for a uri reader command for reading html and providing word-related statistics.
+This design is for an uri reader command for reading html and providing word-related statistics.
 
 Following is the flow of the design:
 
@@ -25,7 +25,7 @@ Input: String uri, int mostlyUsedWords, Set<String> excludedWords
 
 2. Read the paragraphs from the html uri, and process each paragraph.            
    List<Paragraph> paragraphs = HtmlParagraphReader.readParagraphs(uri);
-   for (Paragraph paragraph : paragraphs) {
+   for (Paragraph : paragraphs) {
        paragraphParser.processParagraph(paragraph);
    }
     
@@ -34,7 +34,7 @@ HtmlParagraphParser.processParagraph:
 Input: String content
 
 1. Create a line reader, and process each line in the paragraph.
-   LineReader lineReader(content);
+   LineReader(content);
    for (String line : paragraph) {
        processLine(line);
    }
@@ -97,7 +97,7 @@ Input: String word
 1. Have a mostly used word priority queue.  
     IPriorityQueue<IDoublet<String, Integer>> updateMostlyUsedWordsPriorityQueue = 
     Heap.createMinHeap(
-        IDoublet.class,
+        IDoublet.Class,
         mostlyUsedWordsCapacity,
         new MostlyUsedWordComparator());
             
@@ -157,7 +157,7 @@ Command Library:
 The Command library implements the framework and interfaces for implementing command-line tools. 
 The command library defines a manifest scheme for defining input parameters of a command-line and provides 
 the basic parsing functionality of those parameters.
-The library is a place holder for new and updated command features to be defined and implemented.
+The library is a placeholder for new and updated command features to be defined and implemented.
 
 Code: DevEnvironment\Command
 
@@ -179,7 +179,7 @@ The BasicIO library implements basic IO functionality for implementing readers a
 files or, other source objects. 
 An example of this functionality is the FileLineReader class which reads lines from a file, resource, 
 or a String object, or the FileLineReverseReader class which reads lines from a resource from top to bottom. 
-Another example is the HtmlParagraphParser class which parses words of an Html paragraph and 
+Another example is the HtmlParagraphParser class which parses words of a Html paragraph and 
 provides word-related statistics.
 
 Code: DevEnvironment\BasicIO
@@ -195,7 +195,7 @@ Code: DevEnvironment\Json
 Algorithm Library:
 ------------------ 
 The algorithm library implements basic algorithms. Currently, the library provides only basic sorting algorithms.
-The library is a place holder for implementing customized algorithms.    
+The library is a placeholder for implementing customized algorithms.    
 
 Code: DevEnvironment\Algorithms
 

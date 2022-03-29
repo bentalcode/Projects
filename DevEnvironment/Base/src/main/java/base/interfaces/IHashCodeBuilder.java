@@ -201,12 +201,12 @@ public interface IHashCodeBuilder {
     <T> IHashCodeBuilder withArray(T[] array, IHashCodeProvider<T> provider);
 
     /**
-     * With a generic two dimensional array.
+     * With a generic two-dimensional array.
      */
     <T extends Comparable<T>> IHashCodeBuilder withArray(T[][] array);
 
     /**
-     * With a generic two dimensional array and a provider.
+     * With a generic two-dimensional array and a provider.
      */
     <T> IHashCodeBuilder withArray(T[][] array, IHashCodeProvider<T> provider);
 

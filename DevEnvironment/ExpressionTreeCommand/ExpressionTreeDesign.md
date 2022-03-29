@@ -22,8 +22,8 @@ Construction of an Expression Tree:
 2. Now For constructing expression tree we use a stack.
    We loop through input expression and do following for every token.
    1) If the current token is an operand, then simply add it to the stack.
-   2) If the current token is an unary operator, then pop the operand from the stack,
-      create an unary operator and push it back to the stack.
+   2) If the current token is a unary operator, then pop the operand from the stack,
+      create a unary operator and push it back to the stack.
    3) If the current token is a binary operator, then pop two operands from the stack,
       create a binary operator and push it back to the stack.
 
@@ -92,7 +92,7 @@ Base Library:
 The base library implements basic logic for any project in Java and provides complimentary functionality.
 This library includes basic classes such as EqualBuilder for calculating equality of objects, CompareToBuilder for
 comparing objects, Comparators, DestructorHandler for registering objects for invoking their destructors automatically
- after usage and etc.    
+ after usage etc.    
 
 The code is defined at: DevEnvironment\Base
 
