@@ -20,6 +20,13 @@ public interface IAssertion {
         String message);
 
     /**
+     * Asserts false.
+     */
+    void assertFalse(
+        boolean expression,
+        String message);
+
+    /**
      * Asserts not null.
      */
     void assertNotNull(

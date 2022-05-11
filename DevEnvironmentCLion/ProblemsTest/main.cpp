@@ -1,4 +1,5 @@
 #include "UnitTestManager.h"
+#include "GenericUnitTest.h"
 #include "CombinationSumUnitTest.h"
 #include "MatchingTripletsUnitTest.h"
 #include "MatrixFinderUnitTest.h"
@@ -15,6 +16,9 @@ using namespace unit_testing;
 int main()
 {
     UnitTestManager testManager;
+
+    IUnitTestPtr genericUnitTest(new GenericUnitTest("GenericUnitTest"));
+    testManager.registerTest(genericUnitTest);
 
     IUnitTestPtr combinationSumUnitTest(new CombinationSumUnitTest("CombinationSum"));
     testManager.registerTest(combinationSumUnitTest);

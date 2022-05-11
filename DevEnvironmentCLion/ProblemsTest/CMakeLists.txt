@@ -41,6 +41,7 @@ set(PROBLEMS_TEST_INCLUDES_FILES
     ./core/PreCompiled.h
     ./interfaces/CombinationSumUnitTest.h
     ./interfaces/FlightRoutePlannerUnitTest.h
+    ./interfaces/GenericUnitTest.h
     ./interfaces/MatchingTripletsUnitTest.h
     ./interfaces/MatrixFinderUnitTest.h
     ./interfaces/MergingIntervalsUnitTest.h
@@ -54,6 +55,7 @@ set(PROBLEMS_TEST_INCLUDES_FILES
 set(PROBLEMS_TEST_SOURCES_FILES
     ./core/CombinationSumUnitTest.cpp
     ./core/FlightRoutePlannerUnitTest.cpp
+    ./core/GenericUnitTest.cpp
     ./core/MatchingTripletsUnitTest.cpp
     ./core/MatrixFinderUnitTest.cpp
     ./core/MergingIntervalsUnitTest.cpp

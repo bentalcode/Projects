@@ -37,6 +37,19 @@ public final class Assertion implements IAssertion {
     }
 
     /**
+     * Asserts false.
+     */
+    @Override
+    public void assertFalse(
+        boolean expression,
+        String message) {
+
+        Assert.assertFalse(
+            message,
+            expression);
+    }
+
+    /**
      * Asserts not null.
      */
     @Override
