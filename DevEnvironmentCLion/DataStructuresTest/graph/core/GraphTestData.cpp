@@ -6,6 +6,7 @@
 #include "Route.h"
 #include "Walk.h"
 #include "TwoDimensionalVector.h"
+#include "BaseLogic.h"
 
 using namespace test::datastructures::graph;
 

@@ -7,17 +7,17 @@ package base.interfaces;
  */
 public interface ITriplet<Type1 extends Comparable<Type1>, Type2 extends Comparable<Type2>, Type3 extends Comparable<Type3>> extends IUnaryComparator<ITriplet<Type1, Type2, Type3>> {
     /**
-     * Gets the first value.
+     * Gets first value.
      */
     Type1 first();
 
     /**
-     * Gets the second value.
+     * Gets second value.
      */
     Type2 second();
 
     /**
-     * Gets the third value.
+     * Gets third value.
      */
     Type3 third();
 }

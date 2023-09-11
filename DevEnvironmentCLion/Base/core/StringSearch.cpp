@@ -8,7 +8,7 @@ using namespace base;
 /**
  * The CaseInsensitiveCompare class implements a case insensitive character comparison.
  */
-class CaseInsensitiveCompare : public std::binary_function<char, char, bool>
+class CaseInsensitiveCompare final
 {
 public:
     bool operator()(char left, char right) const

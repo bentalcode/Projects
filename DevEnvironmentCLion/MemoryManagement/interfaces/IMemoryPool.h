@@ -10,7 +10,7 @@ namespace memory_management
     {
     public:
         using MemoryAddress = void*;
-        using MemoryRawAddress = std::uintptr_t;
+        using MemoryRawAddress = uintptr_t;
 
         /**
          * The constructor.

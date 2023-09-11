@@ -5,7 +5,7 @@ package base.interfaces;
  */
 public interface IValidator {
     /**
-     * Validates.
+     * Validates a condition.
      */
     boolean validate();
 }

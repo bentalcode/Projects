@@ -56,9 +56,14 @@ public interface ICompareToBuilder {
     ICompareToBuilder withDouble(double lhs, double rhs, double epsilon);
 
     /**
-     * With a double and a default epsilon.
+     * With an almost double.
      */
     ICompareToBuilder withAlmostDouble(double lhs, double rhs);
+
+    /**
+     * With an almost double and an epsilon.
+     */
+    ICompareToBuilder withAlmostDouble(double lhs, double rhs, double epsilon);
 
     /**
      * With a character.

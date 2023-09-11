@@ -5,17 +5,17 @@ package base.interfaces;
  */
 public interface IPath {
     /**
-     * Gets the path.
+     * Gets a path.
      */
     String getPath();
 
     /**
-     * Gets the absolute path.
+     * Gets an absolute path.
      */
     String getAbsolutePath();
 
     /**
-     * Gets the canonical path.
+     * Gets a canonical path.
      */
     String getCanonicalPath();
 }

@@ -5,12 +5,12 @@ package base.interfaces;
  */
 public interface IRange<T extends Comparable<T>> extends IUnaryComparator<IRange<T>> {
     /**
-     * Gets the first value.
+     * Gets start value.
      */
     T start();
 
     /**
-     * Gets the end value.
+     * Gets end value.
      */
     T end();
 

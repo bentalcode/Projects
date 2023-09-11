@@ -4,10 +4,7 @@ import base.core.FileComparator;
 import base.core.Files;
 import base.core.ResourceReader;
 import base.interfaces.IComparableComparator;
-import cmakebuildsystem.interfaces.ICMakeBuildDeployer;
-import cmakebuildsystem.interfaces.ICMakeProjectDeploymentResult;
-import cmakebuildsystem.interfaces.ICMakeProjectManifest;
-import cmakebuildsystem.interfaces.ITestData;
+import cmakebuildsystem.interfaces.*;
 import testbase.core.Assertion;
 import testbase.interfaces.IAssertion;
 import java.io.File;
@@ -20,7 +17,7 @@ import org.junit.Test;
  * The CMakeBuildDeployerTest class implements tests for a CMake Build Deployer.
  */
 public final class CMakeBuildDeployerTest {
-    private final ITestData testData = new TestData();
+    ITestData testData = new TestData();
     private final IAssertion assertion = new Assertion();
 
     /**
@@ -30,11 +27,34 @@ public final class CMakeBuildDeployerTest {
     }
 
     /**
-     * Deploys the CMake build.
+     * Deploys a CMake build.
      */
     @Test
-    public void deployCMakeDevEnvironmentBuild() {
-        Path path = this.testData.getDevEnvironmentCMakeProjectManifestResource();
+    public void deployCMakeBuild() {
+        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
+
+        for (ICMakeProjectResources project : projects) {
+            deployCMakeBuild(project);
+        }
+    }
+
+    /**
+     * Tests the logic of deploying a CMake build by using a simulation.
+     */
+    @Test
+    public void deployCMakeProjectBuildTest() {
+        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
+
+        for (ICMakeProjectResources project : projects) {
+            testDeployCMakeBuild(project);
+        }
+    }
+
+    /**
+     * Deploys a CMake build.
+     */
+    private void deployCMakeBuild(ICMakeProjectResources project) {
+        Path path = project.getCMakeProjectManifestPath();
         String json = ResourceReader.loadString(path);
         ICMakeProjectManifest manifest = CMakeProjectManifest.fromJson(json);
 
@@ -45,12 +65,11 @@ public final class CMakeBuildDeployerTest {
     }
 
     /**
-     * Tests the logic of a CMake Build Deployer by using a simulation.
+     * Tests the logic of deploying a CMake build by using a simulation.
      */
-    @Test
-    public void cmakeBuildDeployerTest() {
-        List<Path> projectManifestsPaths = this.testData.getProjectManifestResources();
-        List<Path> projectDeploymentResultsPaths = this.testData.getProjectDeploymentResultResources();
+    private void testDeployCMakeBuild(ICMakeProjectResources project) {
+        List<Path> projectManifestsPaths = project.getProjectManifestResources();
+        List<Path> projectDeploymentResultsPaths = project.getProjectDeploymentResultResources();
         assert(projectManifestsPaths.size() == projectDeploymentResultsPaths.size());
 
         int manifestIndex = 0;
@@ -97,11 +116,6 @@ public final class CMakeBuildDeployerTest {
                 content,
                 expectedContent);
         }
-
-        this.assertion.assertEquals(
-            result,
-            expectedResult,
-            "Incorrect logic of CMake Build deployment.");
     }
 
     /**

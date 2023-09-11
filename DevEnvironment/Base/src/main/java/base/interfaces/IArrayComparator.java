@@ -1,11 +1,11 @@
 package base.interfaces;
 
 /**
- * The IArrayComparator interface defines a comparator for generic arrays.
+ * The IArrayComparator interface defines a comparator of generic arrays.
  */
 public interface IArrayComparator<T> extends IBinaryComparator<T[]> {
     /**
-     * Checks whether the arrays are equals with an element comparator.
+     * Checks whether arrays are equals with an element comparator.
      */
     boolean isEqual(T[] lhs, T[] rhs, IEquatableComparator<T> comparator);
 

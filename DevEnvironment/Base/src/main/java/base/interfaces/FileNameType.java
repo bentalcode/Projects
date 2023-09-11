@@ -9,7 +9,7 @@ import base.core.FileNames;
 public enum FileNameType {
     Camel("camel") {
         /**
-         * Gets tokens of a file name.
+         * Gets tokens of file name.
          */
         public String[] getTokens(String fileName) {
             return FileNames.getCamelCasedTokens(fileName);
@@ -18,7 +18,7 @@ public enum FileNameType {
 
     Pascal("pascal") {
         /**
-         * Gets tokens of a file name.
+         * Gets tokens of file name.
          */
         public String[] getTokens(String fileName) {
             return FileNames.getPascalCasedTokens(fileName);
@@ -27,7 +27,7 @@ public enum FileNameType {
     
     Kabab("kabab") {
         /**
-         * Gets tokens of a file name.
+         * Gets tokens of file name.
          */
         public String[] getTokens(String fileName) {
             return FileNames.getKababCasedTokens(fileName);
@@ -36,7 +36,7 @@ public enum FileNameType {
 
     Snake("snake") {
         /**
-         * Gets tokens of a file name.
+         * Gets tokens of file name.
          */
         public String[] getTokens(String fileName) {
             return FileNames.getSnakeCasedTokens(fileName);
@@ -53,12 +53,12 @@ public enum FileNameType {
     }
 
     /**
-     * Gets tokens of a file name.
+     * Gets tokens of file name.
      */
     public abstract String[] getTokens(String fileName);
 
     /**
-     * Gets the string representation of a cmake module type.
+     * Gets string representation of file name type.
      */
     public String toString() {
         return this.name;
@@ -73,7 +73,7 @@ public enum FileNameType {
 
     /**
      * Tries to parse an enum string.
-     * Return null of the string value is not matching to a specific enum.
+     * Return null if string value is not matching to a specific enum.
      */
     public static FileNameType tryParse(String str) {
         return Enums.tryParse(FileNameType.class, str);

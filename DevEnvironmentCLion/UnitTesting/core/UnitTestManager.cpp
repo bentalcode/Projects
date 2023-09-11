@@ -7,7 +7,7 @@
 
 using namespace unit_testing;
 
-class UnitTestPredicate : public std::unary_function<IUnitTestPtr, bool>
+class UnitTestPredicate final
 {
 public:
     UnitTestPredicate(const std::string& name) :

@@ -7,7 +7,7 @@ import java.io.Closeable;
  */
 public interface IDestructorFactory {
     /**
-     * Creates a closeable destructor.
+     * Creates a destructor.
      */
     <T extends Closeable> IDestructor create(T obj);
 }

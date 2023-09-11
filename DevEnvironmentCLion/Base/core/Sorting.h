@@ -1,6 +1,8 @@
 #ifndef SORTING_H_6d32e854_ee98_4512_98e0_b388bf208164
 #define SORTING_H_6d32e854_ee98_4512_98e0_b388bf208164
 
+#include <functional>
+
 namespace base
 {
     /**
@@ -9,6 +11,15 @@ namespace base
     class Sorting final
     {
     public:
+        //
+        // Defines the SharedPtr of Sorting Functor...
+        //
+        template <typename CollectionType, typename ValueType = typename CollectionType::value_type>
+        using ISortingFunctor = std::function<bool(const ValueType&, const ValueType&)>;
+
+        template <typename CollectionType, typename ValueType = typename CollectionType::value_type>
+        using ISortingFunctorSharedPtr = std::shared_ptr<ISortingFunctor<CollectionType, ValueType>>;
+
         /**
          * Sorts the collection.
          */
@@ -21,7 +32,7 @@ namespace base
         template <typename CollectionType, typename ValueType = typename CollectionType::value_type>
         static void sort(
             CollectionType& intervals,
-            const std::binary_function<ValueType, ValueType, bool>& functor);
+            const ISortingFunctor<CollectionType, ValueType>& functor);
 
         /**
          * Sorts the collection by dereference it's pointers.
@@ -41,7 +52,7 @@ namespace base
      * Defines the dereference sort functor for pointers.
      */
     template <typename T>
-    struct DereferenceSortedFunctor final : public std::binary_function<T, T, bool>
+    struct DereferenceSortedFunctor final
     {
         bool operator()(T left, T right) const
         {
@@ -79,7 +90,7 @@ namespace base
     template<typename CollectionType, typename ValueType>
     void Sorting::sort(
         CollectionType& intervals,
-        const std::binary_function<ValueType, ValueType, bool>& functor)
+        const ISortingFunctor<CollectionType, ValueType>& functor)
     {
         std::sort(intervals.begin(), intervals.end(), functor);
     }

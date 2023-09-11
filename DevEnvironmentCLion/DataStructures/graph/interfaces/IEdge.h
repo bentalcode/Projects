@@ -70,7 +70,7 @@ namespace datastructures {
                 return true;
             }
 
-            if (*left.source() >  *right.source())
+            if (*left.source() > *right.source())
             {
                 return false;
             }

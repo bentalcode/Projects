@@ -53,12 +53,39 @@ namespace datastructures {
         using IVertexPtr = std::shared_ptr<IVertex<TKey, TValue>>;
 
         /**
-         * Defines the equivalent operator.
+         * Defines an operator less than.
          */
         template <typename TKey, typename TValue>
         bool operator<(const IVertex<TKey, TValue>& left, const IVertex<TKey, TValue>& right)
         {
             return left.getKey() < right.getKey();
+        }
+
+        /**
+         * Defines an operator less or equal than.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<=(const IVertex<TKey, TValue>& left, const IVertex<TKey, TValue>& right)
+        {
+            return !(right.getKey() < left.getKey());
+        }
+
+        /**
+         * Defines an operator grater than.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>(const IVertex<TKey, TValue>& left, const IVertex<TKey, TValue>& right)
+        {
+            return right.getKey() < left.getKey();
+        }
+
+        /**
+         * Defines an operator grater or equal than.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>=(const IVertex<TKey, TValue>& left, const IVertex<TKey, TValue>& right)
+        {
+            return !(left.getKey() < right.getKey());
         }
 
         /**

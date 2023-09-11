@@ -174,6 +174,22 @@ public final class CompareToBuilder implements ICompareToBuilder {
     }
 
     /**
+     * With an almost double and an epsilon.
+     */
+    @Override
+    public ICompareToBuilder withAlmostDouble(double lhs, double rhs, double epsilon)
+    {
+        if (this.compareStatus != 0) {
+            return this;
+        }
+
+        IComparableComparator<Double> comparator = this.comparatorFactory.createAlmostDoubleComparator(epsilon);
+        this.compareStatus = comparator.compareTo(lhs, rhs);
+
+        return this;
+    }
+
+    /**
      * With a character.
      */
     @Override

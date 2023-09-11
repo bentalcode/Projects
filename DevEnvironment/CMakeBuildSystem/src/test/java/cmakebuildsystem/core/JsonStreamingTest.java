@@ -1,18 +1,20 @@
 package cmakebuildsystem.core;
 
 import base.core.ResourceReader;
+import cmakebuildsystem.interfaces.ICMakeProjectResources;
 import cmakebuildsystem.interfaces.ITestData;
 import java.nio.file.Path;
+import java.util.List;
+import org.junit.Test;
 import testbase.core.JsonObjectStreamingTest;
 import testbase.interfaces.IJsonObjectStreamingTest;
-import org.junit.Test;
 
 /**
  * The JsonStreamTest class implements tests for reading writing from/to json streams.
  */
 public final class JsonStreamingTest {
-    private final IJsonObjectStreamingTest streamingTest = new JsonObjectStreamingTest();
     private final ITestData testData = new TestData();
+    private final IJsonObjectStreamingTest streamingTest = new JsonObjectStreamingTest();
 
     /**
      * The JsonStreamTest constructor.
@@ -25,10 +27,10 @@ public final class JsonStreamingTest {
      */
     @Test
     public void cmakeProjectManifestStreamingTest() {
-        for (Path path : this.testData.getProjectManifestResources()) {
-            String json = ResourceReader.loadString(path);
+        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
 
-            this.streamingTest.testStreaming(json, CMakeProjectManifest.class);
+        for (ICMakeProjectResources project : projects) {
+            testCMakeProjectManifestStreamingTest(project);
         }
     }
 
@@ -37,10 +39,10 @@ public final class JsonStreamingTest {
      */
     @Test
     public void cmakeModuleManifestStreamingTest() {
-        for (Path path : this.testData.getModuleManifestResources()) {
-            String json = ResourceReader.loadString(path);
+        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
 
-            this.streamingTest.testStreaming(json, CMakeModuleManifest.class);
+        for (ICMakeProjectResources project : projects) {
+            testCMakeModuleManifestStreaming(project);
         }
     }
 
@@ -49,10 +51,10 @@ public final class JsonStreamingTest {
      */
     @Test
     public void cmakeListsManifestStreamingTest() {
-        for (Path path : this.testData.getCMakeListsManifestResources()) {
-            String json = ResourceReader.loadString(path);
+        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
 
-            this.streamingTest.testStreaming(json, CMakeListsManifest.class);
+        for (ICMakeProjectResources project : projects) {
+            testCMakeListsManifestStreaming(project);
         }
     }
 
@@ -61,10 +63,10 @@ public final class JsonStreamingTest {
      */
     @Test
     public void cmakeProjectStreamingTest() {
-        for (Path path : this.testData.getProjectResources()) {
-            String json = ResourceReader.loadString(path);
+        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
 
-            this.streamingTest.testStreaming(json, CMakeProject.class);
+        for (ICMakeProjectResources project : projects) {
+            testCMakeProjectStreaming(project);
         }
     }
 
@@ -73,10 +75,10 @@ public final class JsonStreamingTest {
      */
     @Test
     public void cmakeModuleStreamingTest() {
-        for (Path path : this.testData.getModuleResources()) {
-            String json = ResourceReader.loadString(path);
+        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
 
-            this.streamingTest.testStreaming(json, CMakeModule.class);
+        for (ICMakeProjectResources project : projects) {
+            testCMakeModuleStreaming(project);
         }
     }
 
@@ -85,9 +87,69 @@ public final class JsonStreamingTest {
      */
     @Test
     public void cmakeProjectDeploymentResultStreamingTest() {
-        for (Path path : this.testData.getProjectDeploymentResultResources()) {
-            String json = ResourceReader.loadString(path);
+        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
 
+        for (ICMakeProjectResources project : projects) {
+            testCMakeProjectDeploymentResultStreaming(project);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CMakeProjectManifest class.
+     */
+    private void testCMakeProjectManifestStreamingTest(ICMakeProjectResources project) {
+        for (Path path : project.getProjectManifestResources()) {
+            String json = ResourceReader.loadString(path);
+            this.streamingTest.testStreaming(json, CMakeProjectManifest.class);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CMakeModuleManifest class.
+     */
+    private void testCMakeModuleManifestStreaming(ICMakeProjectResources project) {
+        for (Path path : project.getModuleManifestResources()) {
+            String json = ResourceReader.loadString(path);
+            this.streamingTest.testStreaming(json, CMakeModuleManifest.class);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CMakeListsManifest class.
+     */
+    private void testCMakeListsManifestStreaming(ICMakeProjectResources project) {
+        for (Path path : project.getCMakeListsManifestResources()) {
+            String json = ResourceReader.loadString(path);
+            this.streamingTest.testStreaming(json, CMakeListsManifest.class);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CMakeProject class.
+     */
+    private void testCMakeProjectStreaming(ICMakeProjectResources project) {
+        for (Path path : project.getProjectResources()) {
+            String json = ResourceReader.loadString(path);
+            this.streamingTest.testStreaming(json, CMakeProject.class);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CMakeModule class.
+     */
+    private void testCMakeModuleStreaming(ICMakeProjectResources project) {
+        for (Path path : project.getModuleResources()) {
+            String json = ResourceReader.loadString(path);
+            this.streamingTest.testStreaming(json, CMakeModule.class);
+        }
+    }
+
+    /**
+     * Tests streaming json for the CMakeProjectDeploymentResult class.
+     */
+    private void testCMakeProjectDeploymentResultStreaming(ICMakeProjectResources project) {
+        for (Path path : project.getProjectDeploymentResultResources()) {
+            String json = ResourceReader.loadString(path);
             this.streamingTest.testStreaming(json, CMakeProjectDeploymentResult.class);
         }
     }

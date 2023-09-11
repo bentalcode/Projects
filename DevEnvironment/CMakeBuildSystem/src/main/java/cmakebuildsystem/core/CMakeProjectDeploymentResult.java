@@ -18,7 +18,7 @@ import java.util.Map;
  * The CMakeProjectDeploymentResult class implements a deployment result of a CMake project.
  */
 public final class CMakeProjectDeploymentResult implements ICMakeProjectDeploymentResult {
-    private static final String PROPERTY_PROJECT = "propertyProject";
+    private static final String PROPERTY_PROJECT = "project";
     private static final String PROPERTY_DEPLOYMENT_DATA = "deploymentData";
 
     private final ICMakeProject project;

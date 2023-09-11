@@ -5,12 +5,12 @@ package base.interfaces;
  */
 public interface IPair<Type1, Type2> {
     /**
-     * Gets the first value.
+     * Gets first element.
      */
     Type1 first();
 
     /**
-     * Gets the second value.
+     * Gets second element.
      */
     Type2 second();
 }

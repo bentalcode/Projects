@@ -113,7 +113,7 @@ void MemoryAllocatorUnitTest::testAlignedMemoryAllocator(int size, int alignment
     {
         AlignedMemoryPtr memory(memoryAllocator.allocateAligned(size, alignment));
         void* memoryPtr = memory.get();
-        std::uintptr_t rawMemoryAddress = reinterpret_cast<std::uintptr_t>(memoryPtr);
+        uintptr_t rawMemoryAddress = reinterpret_cast<uintptr_t>(memoryPtr);
 
         getAssertion().assertTrue(
             rawMemoryAddress % alignment == 0,

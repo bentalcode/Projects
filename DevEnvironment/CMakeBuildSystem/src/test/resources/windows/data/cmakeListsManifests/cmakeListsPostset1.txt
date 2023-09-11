@@ -1,3 +1,0 @@
-include_directories(
-    ${BOOST_PATH}
-)

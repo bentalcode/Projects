@@ -160,7 +160,7 @@ public final class EqualBuilder implements IEqualBuilder {
     }
 
     /**
-     * With a double and a default epsilon.
+     * With an almost double.
      */
     @Override
     public IEqualBuilder withAlmostDouble(double lhs, double rhs) {
@@ -169,6 +169,22 @@ public final class EqualBuilder implements IEqualBuilder {
         }
 
         IEquatableComparator<Double> comparator = this.comparatorFactory.createAlmostDoubleComparator();
+        this.equalityStatus = comparator.isEqual(lhs, rhs);
+
+        return this;
+    }
+
+    /**
+     * With an almost double and epsilon.
+     */
+    @Override
+    public IEqualBuilder withAlmostDouble(double lhs, double rhs, double epsilon)
+    {
+        if (!this.equalityStatus) {
+            return this;
+        }
+
+        IEquatableComparator<Double> comparator = this.comparatorFactory.createAlmostDoubleComparator(epsilon);
         this.equalityStatus = comparator.isEqual(lhs, rhs);
 
         return this;
