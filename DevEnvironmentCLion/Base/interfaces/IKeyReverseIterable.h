@@ -35,11 +35,14 @@ namespace base
         /**
          * Gets the reverse iterator of keys.
          */
-        virtual IReverseIteratorPtr<T> getKeyReverseIterator() const = 0;
+        virtual IReverseIteratorSharedPtr<T> getKeyReverseIterator() const = 0;
     };
 
+    //
+    // Defines the SharedPtr of Key Reverse Iterable...
+    //
     template <typename T>
-    using IKeyReverseIterablePtr = std::shared_ptr<IKeyReverseIterable<T>>;
+    using IKeyReverseIterableSharedPtr = std::shared_ptr<IKeyReverseIterable<T>>;
 }
 
 #endif // I_KEY_REVERSE_ITERABLE_H_e4cf6b20_221f_4423_a192_b4087d657680

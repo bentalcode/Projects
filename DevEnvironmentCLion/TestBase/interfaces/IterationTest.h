@@ -44,8 +44,8 @@ namespace test_base {
          */
         template <typename T>
         void testForwardIteration(
-            base::IIterablePtr<T> container,
-            base::IIteratorPtr<T> expectedIterator,
+            base::IIterableSharedPtr<T> container,
+            base::IIteratorSharedPtr<T> expectedIterator,
             const std::string& containerName);
 
         /**
@@ -53,8 +53,8 @@ namespace test_base {
          */
         template <typename T>
         void testForwardIterationWithDereference(
-            base::IIterablePtr<T> container,
-            base::IIteratorPtr<T> expectedIterator,
+            base::IIterableSharedPtr<T> container,
+            base::IIteratorSharedPtr<T> expectedIterator,
             const std::string& containerName);
 
         /**
@@ -62,8 +62,8 @@ namespace test_base {
          */
         template <typename T>
         void testReverseIteration(
-            base::IReverseIterablePtr<T> container,
-            base::IReverseIteratorPtr<T> expectedReverseIterator,
+            base::IReverseIterableSharedPtr<T> container,
+            base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
             const std::string& containerName);
 
         /**
@@ -71,8 +71,8 @@ namespace test_base {
          */
         template <typename T>
         void testReverseIterationWithDereference(
-            base::IReverseIterablePtr<T> container,
-            base::IReverseIteratorPtr<T> expectedReverseIterator,
+            base::IReverseIterableSharedPtr<T> container,
+            base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
             const std::string& containerName);
 
         /**
@@ -80,8 +80,8 @@ namespace test_base {
          */
         template <typename T>
         void testKeyIteration(
-            base::IKeyIterablePtr<T> container,
-            base::IIteratorPtr<T> expectedIterator,
+            base::IKeyIterableSharedPtr<T> container,
+            base::IIteratorSharedPtr<T> expectedIterator,
             const std::string& containerName);
 
         /**
@@ -89,8 +89,8 @@ namespace test_base {
          */
         template <typename T>
         void testKeyIterationWithDereference(
-            base::IKeyIterablePtr<T> container,
-            base::IIteratorPtr<T> expectedIterator,
+            base::IKeyIterableSharedPtr<T> container,
+            base::IIteratorSharedPtr<T> expectedIterator,
             const std::string& containerName);
 
         /**
@@ -98,8 +98,8 @@ namespace test_base {
          */
         template <typename T>
         void testKeyReverseIteration(
-            base::IKeyReverseIterablePtr<T> container,
-            base::IReverseIteratorPtr<T> expectedReverseIterator,
+            base::IKeyReverseIterableSharedPtr<T> container,
+            base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
             const std::string& containerName);
 
         /**
@@ -107,8 +107,8 @@ namespace test_base {
          */
         template <typename T>
         void testValueIteration(
-            base::IValueIterablePtr<T> container,
-            base::IIteratorPtr<T> expectedIterator,
+            base::IValueIterableSharedPtr<T> container,
+            base::IIteratorSharedPtr<T> expectedIterator,
             const std::string& containerName);
 
         /**
@@ -116,8 +116,8 @@ namespace test_base {
          */
         template <typename T>
         void testValueIterationWithDereference(
-            base::IValueIterablePtr<T> container,
-            base::IIteratorPtr<T> expectedIterator,
+            base::IValueIterableSharedPtr<T> container,
+            base::IIteratorSharedPtr<T> expectedIterator,
             const std::string& containerName);
 
         /**
@@ -125,8 +125,8 @@ namespace test_base {
          */
         template <typename T>
         void testValueReverseIteration(
-            base::IValueReverseIterablePtr<T> container,
-            base::IReverseIteratorPtr<T> expectedReverseIterator,
+            base::IValueReverseIterableSharedPtr<T> container,
+            base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
             const std::string& containerName);
 
         /**
@@ -134,8 +134,8 @@ namespace test_base {
          */
         template <typename T>
         void testValueReverseIterationWithDereference(
-            base::IValueReverseIterablePtr<T> container,
-            base::IReverseIteratorPtr<T> expectedReverseIterator,
+            base::IValueReverseIterableSharedPtr<T> container,
+            base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
             const std::string& containerName);
 
     private:
@@ -147,11 +147,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testForwardIteration(
-        base::IIterablePtr<T> container,
-        base::IIteratorPtr<T> expectedIterator,
+        base::IIterableSharedPtr<T> container,
+        base::IIteratorSharedPtr<T> expectedIterator,
         const std::string& containerName)
     {
-        base::IIteratorPtr<T> iterator = container->getIterator();
+        base::IIteratorSharedPtr<T> iterator = container->getIterator();
 
         size_t index = 0;
 
@@ -179,11 +179,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testForwardIterationWithDereference(
-        base::IIterablePtr<T> container,
-        base::IIteratorPtr<T> expectedIterator,
+        base::IIterableSharedPtr<T> container,
+        base::IIteratorSharedPtr<T> expectedIterator,
         const std::string& containerName)
     {
-        base::IIteratorPtr<T> iterator = container->getIterator();
+        base::IIteratorSharedPtr<T> iterator = container->getIterator();
 
         size_t index = 0;
 
@@ -211,11 +211,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testReverseIteration(
-        base::IReverseIterablePtr<T> container,
-        base::IReverseIteratorPtr<T> expectedReverseIterator,
+        base::IReverseIterableSharedPtr<T> container,
+        base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::string& containerName)
     {
-        base::IReverseIteratorPtr<T> reverseIterator = container->getReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getReverseIterator();
 
         size_t index = 0;
 
@@ -243,11 +243,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testReverseIterationWithDereference(
-        base::IReverseIterablePtr<T> container,
-        base::IReverseIteratorPtr<T> expectedReverseIterator,
+        base::IReverseIterableSharedPtr<T> container,
+        base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::string& containerName)
     {
-        base::IReverseIteratorPtr<T> reverseIterator = container->getReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getReverseIterator();
 
         size_t index = 0;
 
@@ -274,11 +274,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testKeyIteration(
-        base::IKeyIterablePtr<T> container,
-        base::IIteratorPtr<T> expectedIterator,
+        base::IKeyIterableSharedPtr<T> container,
+        base::IIteratorSharedPtr<T> expectedIterator,
         const std::string& containerName)
     {
-        base::IIteratorPtr<T> iterator = container->getKeyIterator();
+        base::IIteratorSharedPtr<T> iterator = container->getKeyIterator();
 
         size_t index = 0;
 
@@ -306,11 +306,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testKeyIterationWithDereference(
-        base::IKeyIterablePtr<T> container,
-        base::IIteratorPtr<T> expectedIterator,
+        base::IKeyIterableSharedPtr<T> container,
+        base::IIteratorSharedPtr<T> expectedIterator,
         const std::string& containerName)
     {
-        base::IIteratorPtr<T> iterator = container->getKeyIterator();
+        base::IIteratorSharedPtr<T> iterator = container->getKeyIterator();
 
         size_t index = 0;
 
@@ -338,11 +338,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testKeyReverseIteration(
-        base::IKeyReverseIterablePtr<T> container,
-        base::IReverseIteratorPtr<T> expectedReverseIterator,
+        base::IKeyReverseIterableSharedPtr<T> container,
+        base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::string& containerName)
     {
-        base::IReverseIteratorPtr<T> reverseIterator = container->getKeyReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getKeyReverseIterator();
 
         size_t index = 0;
 
@@ -370,11 +370,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testValueIteration(
-        base::IValueIterablePtr<T> container,
-        base::IIteratorPtr<T> expectedIterator,
+        base::IValueIterableSharedPtr<T> container,
+        base::IIteratorSharedPtr<T> expectedIterator,
         const std::string& containerName)
     {
-        base::IIteratorPtr<T> iterator = container->getValueIterator();
+        base::IIteratorSharedPtr<T> iterator = container->getValueIterator();
 
         size_t index = 0;
 
@@ -402,11 +402,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testValueIterationWithDereference(
-        base::IValueIterablePtr<T> container,
-        base::IIteratorPtr<T> expectedIterator,
+        base::IValueIterableSharedPtr<T> container,
+        base::IIteratorSharedPtr<T> expectedIterator,
         const std::string& containerName)
     {
-        base::IIteratorPtr<T> iterator = container->getValueIterator();
+        base::IIteratorSharedPtr<T> iterator = container->getValueIterator();
 
         size_t index = 0;
 
@@ -434,11 +434,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testValueReverseIteration(
-        base::IValueReverseIterablePtr<T> container,
-        base::IReverseIteratorPtr<T> expectedReverseIterator,
+        base::IValueReverseIterableSharedPtr<T> container,
+        base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::string& containerName)
     {
-        base::IReverseIteratorPtr<T> reverseIterator = container->getValueReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getValueReverseIterator();
 
         size_t index = 0;
 
@@ -466,11 +466,11 @@ namespace test_base {
      */
     template <typename T>
     void IterationTest::testValueReverseIterationWithDereference(
-        base::IValueReverseIterablePtr<T> container,
-        base::IReverseIteratorPtr<T> expectedReverseIterator,
+        base::IValueReverseIterableSharedPtr<T> container,
+        base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::string& containerName)
     {
-        base::IReverseIteratorPtr<T> reverseIterator = container->getValueReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getValueReverseIterator();
 
         size_t index = 0;
 

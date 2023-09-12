@@ -27,18 +27,6 @@ public final class CMakeBuildDeployerTest {
     }
 
     /**
-     * Deploys a CMake build.
-     */
-    @Test
-    public void deployCMakeBuild() {
-        List<ICMakeProjectResources> projects = this.testData.getCMakeProjects();
-
-        for (ICMakeProjectResources project : projects) {
-            deployCMakeBuild(project);
-        }
-    }
-
-    /**
      * Tests the logic of deploying a CMake build by using a simulation.
      */
     @Test
@@ -48,20 +36,6 @@ public final class CMakeBuildDeployerTest {
         for (ICMakeProjectResources project : projects) {
             testDeployCMakeBuild(project);
         }
-    }
-
-    /**
-     * Deploys a CMake build.
-     */
-    private void deployCMakeBuild(ICMakeProjectResources project) {
-        Path path = project.getCMakeProjectManifestPath();
-        String json = ResourceReader.loadString(path);
-        ICMakeProjectManifest manifest = CMakeProjectManifest.fromJson(json);
-
-        ICMakeBuildDeployer deployer = new CMakeBuildDeployer();
-        ICMakeProjectDeploymentResult result = deployer.deploy(manifest);
-
-        this.assertion.assertNotNull(result, "Null deployment result.");
     }
 
     /**

@@ -88,12 +88,16 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
         Path projectPath,
         ICMakeModuleManifest moduleManifest) {
 
-        String modulePath = moduleManifest.getProperties().getPath();
+        String modulePath = moduleManifest.getPath();
+
+        if (modulePath == null) {
+            modulePath = moduleManifest.getProperties().getPath();
+        }
 
         if (modulePath == null) {
             modulePath = moduleManifest.getName();
         }
-
+        
         String path = Environment.getOperatingSystemControlSettings().pathSettings().createPathBuilder()
             .addComponent(projectPath.toString())
             .addComponent(modulePath)

@@ -39,8 +39,10 @@ namespace base
         virtual unsigned int evaluate(unsigned int lhs, unsigned int rhs) const = 0;
     };
 
-    using IBinaryBitOperatorPtr = std::shared_ptr<IBinaryBitOperator>;
-
+    //
+    // Defines the SharedPtr of Binary Bit Operator...
+    //
+    using IBinaryBitOperatorSharedPtr = std::shared_ptr<IBinaryBitOperator>;
 }
 
 #endif // I_BINARY_BIT_OPERATOR_H_44a03ef1_d410_4aef_bc5f_8cedbe314a8b

@@ -57,14 +57,17 @@ namespace base
         Type2 m_second;
     };
 
+    //
+    // Defines the SharedPtr of pairs...
+    //
     template <typename Type1, typename Type2>
-    using PairPtr = std::shared_ptr<Pair<Type1, Type2>>;
+    using PairSharedPtr = std::shared_ptr<Pair<Type1, Type2>>;
 
     /**
      * Creates a new pair.
      */
     template <typename Type1, typename Type2>
-    PairPtr<Type1, Type2> Pair<Type1, Type2>::make(const Type1& first, const Type2& second)
+    PairSharedPtr<Type1, Type2> Pair<Type1, Type2>::make(const Type1& first, const Type2& second)
     {
         return std::make_shared<Pair<Type1, Type2>>(first, second);
     }

@@ -103,12 +103,12 @@ namespace datastructures {
             /**
              * Gets the iterator.
              */
-            virtual base::IIteratorPtr<IVertexPtr<TKey, TValue>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> getIterator() const override;
 
             /**
              * Gets the reverse iterator.
              */
-            virtual base::IReverseIteratorPtr<IVertexPtr<TKey, TValue>> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<IVertexPtr<TKey, TValue>> getReverseIterator() const override;
 
             /**
              * Gets string representation of this instance.
@@ -281,7 +281,7 @@ namespace datastructures {
          * Gets the iterator.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<IVertexPtr<TKey, TValue>> Walk<TKey, TValue>::getIterator() const
+        base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> Walk<TKey, TValue>::getIterator() const
         {
             return base::ListIterator<IVertexPtr<TKey, TValue>>::make(m_vertices);
         }
@@ -290,7 +290,7 @@ namespace datastructures {
          * Gets the reverse iterator.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorPtr<IVertexPtr<TKey, TValue>> Walk<TKey, TValue>::getReverseIterator() const
+        base::IReverseIteratorSharedPtr<IVertexPtr<TKey, TValue>> Walk<TKey, TValue>::getReverseIterator() const
         {
             return base::ListReverseIterator<IVertexPtr<TKey, TValue>>::make(m_vertices);
         }

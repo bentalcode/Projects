@@ -7,7 +7,7 @@ using namespace base;
 /**
  * Creates a new resource reader.
  */
-IResourceReaderPtr ResourceReader::make(const std::string path)
+IResourceReaderSharedPtr ResourceReader::make(const std::string& path)
 {
     return std::make_shared<ResourceReader>(path);
 }
@@ -94,7 +94,6 @@ std::string ResourceReader::resolvePath(const std::string& path)
 
     base::ResourcePathBuilder builder;
     std::string result = builder
-        .addComponent("C:\\repositories\\Projects\\DevEnvironmentCLion\\JsonTest\\resources")
         .addComponent(path)
         .build();
 

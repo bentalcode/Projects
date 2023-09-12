@@ -31,7 +31,6 @@ namespace base
         IBitOperator& operator=(const IBitOperator&) = delete;
         IBitOperator& operator=(IBitOperator&&) = delete;
     };
-
 }
 
 #endif // I_BIT_OPERATOR_H_a487a0ee_6ac8_4f07_b7fa_6e399359b497

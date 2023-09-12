@@ -57,7 +57,7 @@ base::DateTimePtr TestRunningResults::getEndTime() const
 /**
  * Gets the duration of the tests.
  */
-base::DurationPtr TestRunningResults::getDuration() const
+base::DurationSharedPtr TestRunningResults::getDuration() const
 {
     if (!m_startTime || !m_endTime)
     {

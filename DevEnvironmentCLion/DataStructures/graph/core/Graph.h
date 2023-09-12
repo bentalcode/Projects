@@ -171,7 +171,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         std::string Graph<TKey, TValue>::toString() const
         {
-            base::IIteratorPtr<IEdgePtr<TKey, TValue>> edgeIterator = base::SetIterator<IEdgePtr<TKey, TValue>>::make(edges());
+            base::IIteratorSharedPtr<IEdgePtr<TKey, TValue>> edgeIterator = base::SetIterator<IEdgePtr<TKey, TValue>>::make(edges());
             std::string string = base::Collections::dereferenceIteratorToString(*edgeIterator);
             return string;
         }

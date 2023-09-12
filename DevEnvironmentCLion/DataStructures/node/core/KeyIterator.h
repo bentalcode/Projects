@@ -18,12 +18,12 @@ namespace datastructures {
             /**
              * Creates a new iterator of keys from key value nodes.
              */
-            static base::IIteratorPtr<TKey> make(base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> iterator);
+            static base::IIteratorSharedPtr<TKey> make(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator);
 
             /**
              * The KeyIterator constructor.
              */
-            explicit KeyIterator(base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> iterator);
+            explicit KeyIterator(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator);
 
             /**
              * The KeyIterator destructor.
@@ -58,14 +58,14 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> m_iterator;
+            base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> m_iterator;
         };
 
         /**
          * Creates a new iterator of keys from key value nodes.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<TKey> KeyIterator<TKey, TValue>::make(base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> iterator)
+        base::IIteratorSharedPtr<TKey> KeyIterator<TKey, TValue>::make(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator)
         {
             return std::make_shared<KeyIterator<TKey, TValue>>(iterator);
         }
@@ -74,7 +74,7 @@ namespace datastructures {
          * The KeyIterator constructor.
          */
         template <typename TKey, typename TValue>
-        KeyIterator<TKey, TValue>::KeyIterator(base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> iterator) :
+        KeyIterator<TKey, TValue>::KeyIterator(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator) :
             m_iterator(iterator)
         {
             base::SmartPointers::validate(iterator);

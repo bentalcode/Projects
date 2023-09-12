@@ -83,7 +83,7 @@ namespace base
         /**
          * Gets the iterator.
          */
-        virtual IIteratorPtr<T> getIterator() const override;
+        virtual IIteratorSharedPtr<T> getIterator() const override;
 
     private:
         std::list<T> m_data;
@@ -183,9 +183,9 @@ namespace base
     }
 
     template <typename T>
-    IIteratorPtr<T> List<T>::getIterator() const
+    IIteratorSharedPtr<T> List<T>::getIterator() const
     {
-        IIteratorPtr<T> iterator(new ListIterator<T>(m_data));
+        IIteratorSharedPtr<T> iterator(new ListIterator<T>(m_data));
         return iterator;
     }
 }

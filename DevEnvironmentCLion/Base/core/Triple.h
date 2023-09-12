@@ -53,6 +53,9 @@ namespace base
         Type2 m_third;
     };
 
+    /**
+     * The Triple constructor.
+     */
     template <typename Type1, typename Type2, typename Type3>
     Triple<Type1, Type2, Type3>::Triple(const Type1& first, const Type2& second, const Type3& third) :
         m_first(first),
@@ -61,29 +64,44 @@ namespace base
     {
     }
 
+    /**
+     * The Triple destructor.
+     */
     template <typename Type1, typename Type2, typename Type3>
     Triple<Type1, Type2, Type3>::~Triple()
     {
     }
 
+    /**
+     * Gets the first element.
+     */
     template <typename Type1, typename Type2, typename Type3>
     const Type1& Triple<Type1, Type2, Type3>::getFirst() const
     {
         return m_first;
     }
 
+    /**
+     * Gets the second element.
+     */
     template <typename Type1, typename Type2, typename Type3>
     const Type2& Triple<Type1, Type2, Type3>::getSecond() const
     {
         return m_second;
     }
 
+    /**
+     * Gets the third element.
+     */
     template <typename Type1, typename Type2, typename Type3>
     const Type3& Triple<Type1, Type2, Type3>::getThird() const
     {
         return m_third;
     }
 
+    /**
+     * Defines the operator less of triplets.
+     */
     template <typename Type1, typename Type2, typename Type3>
     bool operator<(const Triple<Type1, Type2, Type3>& left, const Triple<Type1, Type2, Type3>& right) {
         if (left.getFirst() < right.getFirst()) {

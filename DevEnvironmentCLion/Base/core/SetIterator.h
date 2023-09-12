@@ -15,7 +15,7 @@ namespace base
         /**
          * Creates an iterator of a set.
          */
-        static base::IIteratorPtr<T> make(const std::set<T>& data);
+        static base::IIteratorSharedPtr<T> make(const std::set<T>& data);
 
         /**
          * The constructor.
@@ -63,7 +63,7 @@ namespace base
      * Creates an iterator of a list.
      */
     template <typename T>
-    base::IIteratorPtr<T> SetIterator<T>::make(const std::set<T>& data)
+    base::IIteratorSharedPtr<T> SetIterator<T>::make(const std::set<T>& data)
     {
         return std::make_shared<SetIterator>(data);
     }

@@ -35,7 +35,7 @@ UnitTestManager::UnitTestManager() :
 /**
  * The UnitTestManager constructor.
  */
-UnitTestManager::UnitTestManager(base::IMessageWriterPtr messageWriter)
+UnitTestManager::UnitTestManager(base::IMessageWriterSharedPtr messageWriter)
 {
     if (!messageWriter)
     {

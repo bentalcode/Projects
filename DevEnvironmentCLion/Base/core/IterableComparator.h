@@ -53,8 +53,11 @@ namespace base {
         IteratorComparator<T> m_iteratorComparator;
     };
 
+    //
+    // Defines SharedPtr of IterableComparator.
+    //
     template <typename T>
-    using IterableComparatorPtr = std::shared_ptr<IterableComparator<T>>;
+    using IterableComparatorSharedPtr = std::shared_ptr<IterableComparator<T>>;
 
     /**
      * The IterableComparator constructor.

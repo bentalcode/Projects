@@ -35,8 +35,11 @@ namespace base
         IReverseIterator& operator=(IReverseIterator&&) = delete;
     };
 
+    //
+    // Defines the Shared Ptr of Reverse Iterator...
+    //
     template <typename T>
-    using IReverseIteratorPtr = std::shared_ptr<IReverseIterator<T>>;
+    using IReverseIteratorSharedPtr = std::shared_ptr<IReverseIterator<T>>;
 }
 
 #endif // I_REVERSE_ITERATOR_H_d00c568a_72e5_4e9e_8b14_bc9dcd856096

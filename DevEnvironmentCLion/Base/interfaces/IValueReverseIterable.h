@@ -38,11 +38,14 @@ namespace base
         /**
          * Gets the reverse iterator of values.
          */
-        virtual IReverseIteratorPtr<T> getValueReverseIterator() const = 0;
+        virtual IReverseIteratorSharedPtr<T> getValueReverseIterator() const = 0;
     };
 
+    //
+    // Defines SharedPtr of Value Reverse Iterable...
+    //
     template <typename T>
-    using IValueReverseIterablePtr = std::shared_ptr<IValueReverseIterable<T>>;
+    using IValueReverseIterableSharedPtr = std::shared_ptr<IValueReverseIterable<T>>;
 }
 
 #endif // I_VALUE_REVERSE_ITERABLE_H_00b60623_1c2a_442e_b0cc_32a545d9018b

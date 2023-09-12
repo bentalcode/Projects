@@ -54,7 +54,7 @@ ILogFactory& LogFactory::getInstance()
 /**
  * Gets a default log.
  */
-ILogPtr LogFactory::getLog()
+ILogSharedPtr LogFactory::getLog()
 {
     return Log::make(defaultLogName);
 }
@@ -62,7 +62,7 @@ ILogPtr LogFactory::getLog()
 /**
  * Gets a new log by name.
  */
-ILogPtr LogFactory::getLog(const std::string& name)
+ILogSharedPtr LogFactory::getLog(const std::string& name)
 {
     return Log::make(name);
 }

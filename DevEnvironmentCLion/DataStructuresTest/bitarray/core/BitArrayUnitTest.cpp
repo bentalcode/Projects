@@ -271,8 +271,8 @@ void BitArrayUnitTest::testIteration(const BitArrayData& data)
     //
     // Test the default iterator of the container...
     //
-    base::IIterablePtr<bool> containerIterable = container;
-    base::IIteratorPtr<bool> expectedIterator = base::VectorIterator<bool>::make(data.getData());
+    base::IIterableSharedPtr<bool> containerIterable = container;
+    base::IIteratorSharedPtr<bool> expectedIterator = base::VectorIterator<bool>::make(data.getData());
 
     test_base::IterationTest iterationTest;
     iterationTest.testForwardIteration(
@@ -293,8 +293,8 @@ void BitArrayUnitTest::testIteration(const BitArrayData& data)
     //
     // Test the reverse iterator of the container...
     //
-    base::IReverseIterablePtr<bool> containerReverseIterable = container;
-    base::IReverseIteratorPtr<bool> expectedReveseIterator = base::VectorReverseIterator<bool>::make(data.getData());
+    base::IReverseIterableSharedPtr<bool> containerReverseIterable = container;
+    base::IReverseIteratorSharedPtr<bool> expectedReveseIterator = base::VectorReverseIterator<bool>::make(data.getData());
 
     iterationTest.testReverseIteration(
         containerReverseIterable,

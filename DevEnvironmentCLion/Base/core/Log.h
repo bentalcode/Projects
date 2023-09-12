@@ -16,7 +16,7 @@ namespace base {
         /**
          * Creates a new log.
          */
-        static ILogPtr make(
+        static ILogSharedPtr make(
             const std::string name,
             LogLevelType logLevelType = LogLevelType::Informational);
 
@@ -26,7 +26,7 @@ namespace base {
         Log(
             const std::string& name,
             LogLevelType logLevelType,
-            base::IMessageWriterPtr messageWriter);
+            IMessageWriterSharedPtr messageWriter);
 
         /**
          * The Log Destructor.
@@ -78,7 +78,7 @@ namespace base {
 
         std::string m_name;
         LogLevelType m_logLevelType;
-        base::IMessageWriterPtr m_messageWriter;
+        base::IMessageWriterSharedPtr m_messageWriter;
     };
 }
 

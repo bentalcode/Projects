@@ -68,6 +68,9 @@ namespace base
         virtual bool isSkipElement(const std::type_index& classType) = 0;
     };
 
+    //
+    // Defines the Shared Ptr of Skip Iterator...
+    //
     using ISkipIteratorPtr = std::shared_ptr<ISkipIterator>;
 }
 

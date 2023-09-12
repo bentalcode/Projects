@@ -343,7 +343,7 @@ namespace base {
             return *this;
         }
 
-        IteratorComparatorPtr<T> iteratorComparator(new IteratorComparator<T>());
+        IteratorComparatorSharedPtr<T> iteratorComparator(new IteratorComparator<T>());
         m_compareStatus = iteratorComparator->compareTo(lhs, rhs, comparator);
 
         return *this;
@@ -409,7 +409,7 @@ namespace base {
             return *this;
         }
 
-        IterableComparatorPtr<T> iterableComparator(new IterableComparator<T>);
+        IterableComparatorSharedPtr<T> iterableComparator(new IterableComparator<T>);
         m_compareStatus = iterableComparator->compareTo(lhs, rhs, comparator);
 
         return *this;

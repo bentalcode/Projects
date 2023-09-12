@@ -4,7 +4,6 @@
 #include "IHashCodeProvider.h"
 #include "IEquatableComparator.h"
 #include "IComparableComparator.h"
-#include <memory>
 
 namespace base {
 
@@ -41,8 +40,11 @@ namespace base {
         IBinaryComparator& operator=(IBinaryComparator&&) = delete;
     };
 
+    //
+    // Defines the SharedPtr of Binary Comparator...
+    //
     template <typename T>
-    using IBinaryComparatorPtr = std::shared_ptr<IBinaryComparator<T>>;
+    using IBinaryComparatorSharedPtr = std::shared_ptr<IBinaryComparator<T>>;
 }
 
 #endif // I_BINARY_COMPARATOR_H_daa463f1_8170_47c6_88a5_5e7f79de9df5

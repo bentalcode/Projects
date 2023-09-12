@@ -46,7 +46,7 @@ void UnitTestBase::postRun()
 /**
  * Sets the message writer.
  */
-void UnitTestBase::setMessageWriter(base::IMessageWriterPtr messageWriter)
+void UnitTestBase::setMessageWriter(base::IMessageWriterSharedPtr messageWriter)
 {
     if (!messageWriter)
     {

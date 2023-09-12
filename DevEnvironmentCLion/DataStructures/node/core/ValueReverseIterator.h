@@ -19,12 +19,12 @@ namespace datastructures {
             /**
              * Creates a new reverse iterator of values from key value nodes.
              */
-            static base::IReverseIteratorPtr<TValue> make(base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
+            static base::IReverseIteratorSharedPtr<TValue> make(base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
 
             /**
              * The ValueReverseIterator constructor.
              */
-            explicit ValueReverseIterator(base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
+            explicit ValueReverseIterator(base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
 
             /**
              * The ValueReverseIterator destructor.
@@ -59,15 +59,15 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> m_reverseIterator;
+            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> m_reverseIterator;
         };
 
         /**
          * Creates a new reverse iterator of values from key value nodes.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorPtr<TValue> ValueReverseIterator<TKey, TValue>::make(
-            base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator)
+        base::IReverseIteratorSharedPtr<TValue> ValueReverseIterator<TKey, TValue>::make(
+            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator)
         {
             return std::make_shared<ValueReverseIterator<TKey, TValue>>(reverseIterator);
         }
@@ -77,7 +77,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         ValueReverseIterator<TKey, TValue>::ValueReverseIterator(
-            base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator) :
+            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
             base::SmartPointers::validate(reverseIterator);

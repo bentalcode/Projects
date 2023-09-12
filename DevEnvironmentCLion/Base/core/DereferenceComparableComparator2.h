@@ -48,12 +48,18 @@ namespace base {
         const IComparableComparator<TComparator>& m_comparator;
     };
 
+    /**
+     * The DereferenceComparableComparator2 constructor.
+     */
     template <typename T, typename TComparator>
     DereferenceComparableComparator2<T, TComparator>::DereferenceComparableComparator2(const IComparableComparator<TComparator>& comparator) :
         m_comparator(comparator)
     {
     }
 
+    /**
+     * The DereferenceComparableComparator2 destructor.
+     */
     template <typename T, typename TComparator>
     DereferenceComparableComparator2<T, TComparator>::~DereferenceComparableComparator2()
     {

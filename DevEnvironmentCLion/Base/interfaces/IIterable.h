@@ -37,11 +37,14 @@ namespace base
         /**
          * Gets the iterator.
          */
-        virtual IIteratorPtr<T> getIterator() const = 0;
+        virtual IIteratorSharedPtr<T> getIterator() const = 0;
     };
 
+    //
+    // Defines the SharedPtr of Iterable...
+    //
     template <typename T>
-    using IIterablePtr = std::shared_ptr<IIterable<T>>;
+    using IIterableSharedPtr = std::shared_ptr<IIterable<T>>;
 }
 
 #endif // I_ITERABLE_H_52f0856c_086f_4bbf_a6d2_ab608d9e6ba1

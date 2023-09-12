@@ -44,17 +44,26 @@ namespace base {
         const IEquatableComparator<TComparator>& m_comparator;
     };
 
+    /**
+     * The DereferenceEquatableComparator2 constructor.
+     */
     template <typename T, typename TComparator>
     DereferenceEquatableComparator2<T, TComparator>::DereferenceEquatableComparator2(const IEquatableComparator<TComparator>& comparator) :
         m_comparator(comparator)
     {
     }
 
+    /**
+     * The DereferenceEquatableComparator2 destructor.
+     */
     template <typename T, typename TComparator>
     DereferenceEquatableComparator2<T, TComparator>::~DereferenceEquatableComparator2()
     {
     }
 
+    /**
+     * Checks whether two instances are equals.
+     */
     template <typename T, typename TComparator>
     bool DereferenceEquatableComparator2<T, TComparator>::isEqual(const T& lhs, const T& rhs) const
     {

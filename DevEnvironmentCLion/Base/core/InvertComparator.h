@@ -16,12 +16,12 @@ namespace base
         /**
          * Creates an invert comparator.
          */
-        static IBinaryComparatorPtr<T> make(IBinaryComparatorPtr<T> comparator);
+        static IBinaryComparatorSharedPtr<T> make(IBinaryComparatorSharedPtr<T> comparator);
 
         /**
          * The InvertComparator constructor.
          */
-        explicit InvertComparator(IBinaryComparatorPtr<T> comparator);
+        explicit InvertComparator(IBinaryComparatorSharedPtr<T> comparator);
 
         /**
          * The InvertComparator destructor.
@@ -60,14 +60,14 @@ namespace base
         virtual int compareTo(const T& lhs, const T& rhs) const override;
 
     private:
-        IBinaryComparatorPtr<T> m_comparator;
+        IBinaryComparatorSharedPtr<T> m_comparator;
     };
 
     /**
      * Creates an invert comparator.
      */
     template <typename T>
-    IBinaryComparatorPtr<T> InvertComparator<T>::make(IBinaryComparatorPtr<T> comparator)
+    IBinaryComparatorSharedPtr<T> InvertComparator<T>::make(IBinaryComparatorSharedPtr<T> comparator)
     {
         return std::make_shared<InvertComparator>(comparator);
     }
@@ -76,7 +76,7 @@ namespace base
      * The InvertComparator constructor.
      */
     template <typename T>
-    InvertComparator<T>::InvertComparator(IBinaryComparatorPtr<T> comparator) :
+    InvertComparator<T>::InvertComparator(IBinaryComparatorSharedPtr<T> comparator) :
         m_comparator(comparator)
     {
         SmartPointers::validate(comparator);

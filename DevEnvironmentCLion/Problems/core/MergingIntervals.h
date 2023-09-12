@@ -37,43 +37,43 @@ namespace problems
         /**
          * Merges the intervals.
          */
-        virtual std::vector<base::IntervalPtr<T>> merge(const std::vector<base::IntervalPtr<T>>& intervals);
+        virtual std::vector<base::IntervalSharedPtr<T>> merge(const std::vector<base::IntervalSharedPtr<T>>& intervals);
 
     private:
         /**
          * Tries to merge the left and right sorted intervals.
          */
-        base::IntervalPtr<T> tryMerge(const base::Interval<T>& left, const base::Interval<T>& right);
+        base::IntervalSharedPtr<T> tryMerge(const base::Interval<T>& left, const base::Interval<T>& right);
 
         /**
          * Creates the results.
          */
-        std::vector<base::IntervalPtr<T>> createResults(std::stack<base::IntervalPtr<T>>& stack);
+        std::vector<base::IntervalSharedPtr<T>> createResults(std::stack<base::IntervalSharedPtr<T>>& stack);
     };
 
     template <typename T>
-    std::vector<base::IntervalPtr<T>> MergingIntervals<T>::merge(const std::vector<base::IntervalPtr<T>>& intervals)
+    std::vector<base::IntervalSharedPtr<T>> MergingIntervals<T>::merge(const std::vector<base::IntervalSharedPtr<T>>& intervals)
     {
-        std::vector<base::IntervalPtr<T>> result;
+        std::vector<base::IntervalSharedPtr<T>> result;
 
         if (intervals.empty())
         {
             return result;
         }
 
-        std::vector<base::IntervalPtr<T>> sortedIntervals(intervals.begin(), intervals.end());
+        std::vector<base::IntervalSharedPtr<T>> sortedIntervals(intervals.begin(), intervals.end());
         base::Sorting::dereferenceSort(sortedIntervals);
 
-        std::stack<base::IntervalPtr<T>> stack;
+        std::stack<base::IntervalSharedPtr<T>> stack;
         stack.push(sortedIntervals[0]);
 
         for (int i = 1; i < sortedIntervals.size(); ++i)
         {
-            base::IntervalPtr<T> currInterval = sortedIntervals[i];
-            base::IntervalPtr<T> prevInterval = stack.top();
+            base::IntervalSharedPtr<T> currInterval = sortedIntervals[i];
+            base::IntervalSharedPtr<T> prevInterval = stack.top();
             stack.pop();
 
-            base::IntervalPtr<T> mergedInterval = tryMerge(*prevInterval, *currInterval);
+            base::IntervalSharedPtr<T> mergedInterval = tryMerge(*prevInterval, *currInterval);
 
             if (mergedInterval)
             {
@@ -92,9 +92,9 @@ namespace problems
     }
 
     template <typename T>
-    base::IntervalPtr<T> MergingIntervals<T>::tryMerge(const base::Interval<T>& left, const base::Interval<T>& right)
+    base::IntervalSharedPtr<T> MergingIntervals<T>::tryMerge(const base::Interval<T>& left, const base::Interval<T>& right)
     {
-        base::IntervalPtr<T> mergedInterval = nullptr;
+        base::IntervalSharedPtr<T> mergedInterval = nullptr;
 
         if (base::Interval<T>::overlap(left, right))
         {
@@ -105,9 +105,9 @@ namespace problems
     }
 
     template <typename T>
-    std::vector<base::IntervalPtr<T>> MergingIntervals<T>::createResults(std::stack<base::IntervalPtr<T>>& stack)
+    std::vector<base::IntervalSharedPtr<T>> MergingIntervals<T>::createResults(std::stack<base::IntervalSharedPtr<T>>& stack)
     {
-        std::vector<base::IntervalPtr<T>> result(stack.size());
+        std::vector<base::IntervalSharedPtr<T>> result(stack.size());
 
         size_t insertIndex = stack.size() - 1;
 

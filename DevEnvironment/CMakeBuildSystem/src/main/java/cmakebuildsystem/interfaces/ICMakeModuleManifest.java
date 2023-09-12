@@ -14,6 +14,11 @@ public interface ICMakeModuleManifest extends IUnaryComparator<ICMakeModuleManif
     String getName();
 
     /**
+     * Gets the path of the module.
+     */
+    String getPath();
+
+    /**
      * Gets the type of the module.
      */
     CMakeModuleType getType();

@@ -137,8 +137,8 @@ namespace test {
                 //
                 test_base::IterationTest iterationTest;
 
-                base::IIterablePtr<ILinkedListNodePtr<T>> containerIterable = container;
-                base::IIteratorPtr<ILinkedListNodePtr<T>> expectedIterator =
+                base::IIterableSharedPtr<ILinkedListNodePtr<T>> containerIterable = container;
+                base::IIteratorSharedPtr<ILinkedListNodePtr<T>> expectedIterator =
                     base::VectorIterator<ILinkedListNodePtr<T>>::make(data.getNodes());
 
                 iterationTest.testForwardIterationWithDereference(
@@ -149,8 +149,8 @@ namespace test {
                 //
                 // Test the value iterator of the container...
                 //
-                base::IValueIterablePtr<T> valueIterable = container;
-                base::IIteratorPtr<T> expectedValueIterator = base::VectorIterator<T>::make(data.getValues());
+                base::IValueIterableSharedPtr<T> valueIterable = container;
+                base::IIteratorSharedPtr<T> expectedValueIterator = base::VectorIterator<T>::make(data.getValues());
 
                 iterationTest.testValueIteration(
                     valueIterable,

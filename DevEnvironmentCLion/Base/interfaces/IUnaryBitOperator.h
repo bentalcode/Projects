@@ -44,8 +44,10 @@ namespace base
         virtual unsigned int evaluateBit(unsigned int bitValue) const = 0;
     };
 
-    using IUnaryBitOperatorPtr = std::shared_ptr<IUnaryBitOperator>;
-
+    //
+    // Defines the SharedPtr of Unary Bit Operator...
+    //
+    using IUnaryBitOperatorSharedPtr = std::shared_ptr<IUnaryBitOperator>;
 }
 
 #endif // I_UNARY_BIT_OPERATOR_H_06a79415_6497_4355_8219_75b6d151a6a3

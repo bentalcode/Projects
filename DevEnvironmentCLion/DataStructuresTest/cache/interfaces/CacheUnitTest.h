@@ -149,8 +149,8 @@ namespace test {
             {
                 updateCache(cache, operation, item);
 
-                base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> nodeIterator = cache.getIterator();
-                base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> expectedIterator = base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent);
+                base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> nodeIterator = cache.getIterator();
+                base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> expectedIterator = base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent);
 
                 getAssertion().assertEqualsWithDereferenceIterators(
                     *nodeIterator,
@@ -176,8 +176,8 @@ namespace test {
                 //
                 // Test the forward iteration over nodes...
                 //
-                base::IIterablePtr<IKeyValueNodePtr<TKey, TValue>> containerIterable = cache;
-                base::IIteratorPtr<IKeyValueNodePtr<TKey, TValue>> expectedIterator =
+                base::IIterableSharedPtr<IKeyValueNodePtr<TKey, TValue>> containerIterable = cache;
+                base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> expectedIterator =
                     base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent);
 
                 test_base::IterationTest iterationTest;
@@ -189,8 +189,8 @@ namespace test {
                 //
                 // Test the reverse iteration over nodes...
                 //
-                base::IReverseIterablePtr<IKeyValueNodePtr<TKey, TValue>> containerReverseIterable = cache;
-                base::IReverseIteratorPtr<IKeyValueNodePtr<TKey, TValue>> expectedReverseIterator =
+                base::IReverseIterableSharedPtr<IKeyValueNodePtr<TKey, TValue>> containerReverseIterable = cache;
+                base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> expectedReverseIterator =
                     base::VectorReverseIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent);
 
                 iterationTest.testReverseIterationWithDereference(
@@ -201,8 +201,8 @@ namespace test {
                 //
                 // Test the forward iteration over keys...
                 //
-                base::IKeyIterablePtr<TKey> containerKeyIterable = cache;
-                base::IIteratorPtr<TKey> expectedKeyIterator = node::KeyIterator<TKey, TValue>::make(
+                base::IKeyIterableSharedPtr<TKey> containerKeyIterable = cache;
+                base::IIteratorSharedPtr<TKey> expectedKeyIterator = node::KeyIterator<TKey, TValue>::make(
                     base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent));
 
                 iterationTest.testKeyIteration(
@@ -213,8 +213,8 @@ namespace test {
                 //
                 // Test the reverse iteration over keys...
                 //
-                base::IKeyReverseIterablePtr<TKey> containerKeyReverseIterable = cache;
-                base::IReverseIteratorPtr<TKey> expectedKeyReverseIterator = node::KeyReverseIterator<TKey, TValue>::make(
+                base::IKeyReverseIterableSharedPtr<TKey> containerKeyReverseIterable = cache;
+                base::IReverseIteratorSharedPtr<TKey> expectedKeyReverseIterator = node::KeyReverseIterator<TKey, TValue>::make(
                     base::VectorReverseIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent));
 
                 iterationTest.testKeyReverseIteration(
@@ -225,8 +225,8 @@ namespace test {
                 //
                 // Test the forward iteration over values...
                 //
-                base::IValueIterablePtr<TValue> containerValueIterable = cache;
-                base::IIteratorPtr<TValue> expectedValueIterator = node::ValueIterator<TKey, TValue>::make(
+                base::IValueIterableSharedPtr<TValue> containerValueIterable = cache;
+                base::IIteratorSharedPtr<TValue> expectedValueIterator = node::ValueIterator<TKey, TValue>::make(
                     base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent));
 
                 iterationTest.testValueIteration(
@@ -237,8 +237,8 @@ namespace test {
                 //
                 // Test the reverse iteration over values...
                 //
-                base::IValueReverseIterablePtr<TValue> containerValueReverseIterable = cache;
-                base::IReverseIteratorPtr<TValue> expectedValueReverseIterator = node::ValueReverseIterator<TKey, TValue>::make(
+                base::IValueReverseIterableSharedPtr<TValue> containerValueReverseIterable = cache;
+                base::IReverseIteratorSharedPtr<TValue> expectedValueReverseIterator = node::ValueReverseIterator<TKey, TValue>::make(
                         base::VectorReverseIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent));
 
                 iterationTest.testValueReverseIteration(

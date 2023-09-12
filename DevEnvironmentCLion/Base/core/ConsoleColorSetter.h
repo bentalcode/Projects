@@ -16,7 +16,7 @@ namespace base
          * The ConsoleColorSetter constructor.
          */
         ConsoleColorSetter(
-            IConsoleColorHandlerPtr consoleColorHandler,
+            IConsoleColorHandlerSharedPtr consoleColorHandler,
             StandardFileDescriptor fileDescriptor,
             ColorType colorType);
 
@@ -24,7 +24,7 @@ namespace base
          * The ConsoleColorSetter constructor.
          */
         ConsoleColorSetter(
-            IConsoleColorHandlerPtr consoleColorHandler,
+            IConsoleColorHandlerSharedPtr consoleColorHandler,
             StandardFileDescriptor fileDescriptor,
             unsigned short attributes);
 
@@ -51,13 +51,13 @@ namespace base
          */
         bool initialize();
 
-        IConsoleColorHandlerPtr m_consoleColorHandler;
+        IConsoleColorHandlerSharedPtr m_consoleColorHandler;
         StandardFileDescriptor m_fileDescriptor;
         unsigned short m_newAttributes;
         unsigned short m_currAttributes;
         bool m_active;
 
-        ILogPtr m_log;
+        ILogSharedPtr m_log;
     };
 }
 

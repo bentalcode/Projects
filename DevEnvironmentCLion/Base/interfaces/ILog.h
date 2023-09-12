@@ -57,7 +57,10 @@ namespace base {
         virtual void writeDebugMessage(const std::string& message) = 0;
     };
 
-    using ILogPtr = std::shared_ptr<ILog>;
+    //
+    // Defines the SharedPtr of Log...
+    //
+    using ILogSharedPtr = std::shared_ptr<ILog>;
 }
 
 #endif // I_LOG_H_607081cb_2167_4438_97d5_2b07a634d861

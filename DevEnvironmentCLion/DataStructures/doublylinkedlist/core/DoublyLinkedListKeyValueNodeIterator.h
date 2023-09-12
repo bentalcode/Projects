@@ -19,14 +19,14 @@ namespace datastructures {
             /**
              * Creates a new doubly linked list.
              */
-            static base::IIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> make(
-                base::IIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator);
+            static base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> make(
+                base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator);
 
             /**
              * The DoublyLinkedListKeyValueNodeIterator constructor.
              */
             explicit DoublyLinkedListKeyValueNodeIterator(
-                base::IIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator);
+                base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator);
 
             /**
              * The DoublyLinkedListKeyValueNodeIterator destructor.
@@ -61,15 +61,15 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> m_iterator;
+            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> m_iterator;
         };
 
         /**
          * Creates a new doubly linked list.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::make(
-            base::IIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator)
+        base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::make(
+            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator)
         {
             return std::make_shared<DoublyLinkedListKeyValueNodeIterator<TKey, TValue>>(iterator);
         }
@@ -79,7 +79,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::DoublyLinkedListKeyValueNodeIterator(
-            base::IIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator) :
+            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator) :
             m_iterator(iterator)
         {
             base::SmartPointers::validate(iterator);

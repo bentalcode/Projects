@@ -39,8 +39,11 @@ namespace base {
         virtual bool isEqual(const T& lhs, const T& rhs) const = 0;
     };
 
+    //
+    // Defines the SharedPtr of Equatable Comparator...
+    //
     template <typename T>
-    using IEquatableComparatorPtr = std::shared_ptr<IEquatableComparator<T>>;
+    using IEquatableComparatorSharedPtr = std::shared_ptr<IEquatableComparator<T>>;
 }
 
 #endif // I_EQUATABLE_COMPARATOR_H_81616fbd_6fec_4342_b887_d77ae2735d01

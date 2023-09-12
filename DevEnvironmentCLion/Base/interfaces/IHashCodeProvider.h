@@ -37,6 +37,12 @@ namespace base {
          */
         virtual std::size_t getHashCode(const T& obj) const = 0;
     };
+
+    //
+    // Defines the SharedPtr of Hash Code Provider.
+    //
+    template <typename T>
+    using IHashCodeSharedPtr = std::shared_ptr<IHashCodeProvider<T>>;
 }
 
 #endif // I_HASH_CODE_PROVIDER_H_701134f5_4915_40aa_8a6d_24abea527432

@@ -25,7 +25,6 @@ namespace base
         Yellow,
         White
     };
-
 }
 
 #endif // COLOR_TYPE_ed625e5f_bdf5_4c52_b978_3ea43831b8ee

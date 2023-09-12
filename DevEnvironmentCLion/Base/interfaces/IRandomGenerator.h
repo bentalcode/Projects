@@ -109,8 +109,11 @@ namespace base
             size_t toLength) = 0;
     };
 
+    //
+    // Defines the Shared Ptr of Random Generator...
+    //
     template <typename T>
-    using IRandomGeneratorPtr = std::shared_ptr<IRandomGenerator>;
+    using IRandomGeneratorSharedPtr = std::shared_ptr<IRandomGenerator>;
 }
 
 #endif // I_RANDOM_GENERATOR_H_9f2fd989_72d0_4c38_9660_ade9b37b2ef8

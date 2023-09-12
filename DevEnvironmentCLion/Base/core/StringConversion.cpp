@@ -128,7 +128,7 @@ char StringConversion::toCharacter(const std::string& value) const
 /**
  * Converts a string to a duration.
  */
-DurationPtr StringConversion::toDuration(const std::string& value) const
+DurationSharedPtr StringConversion::toDuration(const std::string& value) const
 {
     throw NotImplementedException("StringConversion::toDuration");
 }

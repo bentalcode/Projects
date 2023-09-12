@@ -76,7 +76,7 @@ namespace base
         /**
          * Converts a string to a duration.
          */
-        virtual DurationPtr toDuration(const std::string& value) const = 0;
+        virtual DurationSharedPtr toDuration(const std::string& value) const = 0;
     };
 }
 

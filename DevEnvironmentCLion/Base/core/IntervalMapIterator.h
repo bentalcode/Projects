@@ -62,6 +62,9 @@ namespace base
         typename IntervalDataMap::const_iterator m_iterator;
     };
 
+    /**
+     * The IntervalMapIterator constructor.
+     */
     template <typename Key, typename Value>
     IntervalMapIterator<Key, Value>::IntervalMapIterator(const IntervalDataMap& data) :
         m_data(data),
@@ -70,17 +73,26 @@ namespace base
         reset();
     }
 
+    /**
+     * The IntervalMapIterator destructor.
+     */
     template <typename Key, typename Value>
     IntervalMapIterator<Key, Value>::~IntervalMapIterator()
     {
     }
 
+    /**
+     * Checks whether there is a next element.
+     */
     template <typename Key, typename Value>
     bool IntervalMapIterator<Key, Value>::hasNext() const
     {
         return m_index < m_data.size() - 1;
     }
 
+    /**
+     * Gets the next element.
+     */
     template <typename Key, typename Value>
     Pair<Interval<Key>, Value> IntervalMapIterator<Key, Value>::next()
     {
@@ -102,6 +114,9 @@ namespace base
         return currElement;
     }
 
+    /**
+     * Resets the iterator.
+     */
     template <typename Key, typename Value>
     void IntervalMapIterator<Key, Value>::reset()
     {

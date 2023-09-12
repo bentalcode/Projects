@@ -40,18 +40,30 @@ namespace base
         SharedPtr(const SharedPtr&&) = delete;
         SharedPtr& operator=(SharedPtr&&) = delete;
 
+        /**
+         * Dereferences an internal pointer.
+         */
         T* operator->();
         const T* operator->() const;
 
+        /**
+         * Dereferences an internal object.
+         */
         T& operator*();
         const T& operator*() const;
 
     private:
+        /**
+         * Initializes shared ptr.
+         */
         void initialize();
 
         ReferenceCountHolder<T>* m_holder;
     };
 
+    /**
+     * The SharedPtr constructor.
+     */
     template <class T>
     SharedPtr<T>::SharedPtr(T* pointer)
     {
@@ -79,6 +91,9 @@ namespace base
         initialize();
     }
 
+    /**
+     * The SharedPtr copy constructor.
+     */
     template <class T>
     SharedPtr<T>::SharedPtr(const SharedPtr& rhs) :
         m_holder(rhs.m_holder)
@@ -86,12 +101,18 @@ namespace base
         initialize();
     }
 
+    /**
+     * The SharedPtr destructor.
+     */
     template <class T>
     SharedPtr<T>::~SharedPtr()
     {
         m_holder->removeReference();
     }
 
+    /**
+     * The assignment operator.
+     */
     template <class T>
     SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr& rhs)
     {
@@ -107,30 +128,45 @@ namespace base
         return *this;
     }
 
+    /**
+     * Dereferences an internal pointer.
+     */
     template <class T>
     T* SharedPtr<T>::operator->()
     {
         return m_holder->getPointee();
     }
 
+    /**
+     * Dereferences an internal pointer.
+     */
     template <class T>
     const T* SharedPtr<T>::operator->() const
     {
         return m_holder->getPointee();
     }
 
+    /**
+     * Dereferences an internal object.
+     */
     template <class T>
     T& SharedPtr<T>::operator*()
     {
         return *this->operator->();
     }
 
+    /**
+     * Dereferences an internal object.
+     */
     template <class T>
     const T& SharedPtr<T>::operator*() const
     {
         return *this->operator->();
     }
 
+    /**
+     * Initializes shared ptr.
+     */
     template <class T>
     void SharedPtr<T>::initialize()
     {

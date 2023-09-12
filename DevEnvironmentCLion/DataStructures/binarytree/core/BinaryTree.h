@@ -59,32 +59,32 @@ namespace datastructures {
             /**
              * Gets an iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> getIterator() const override;
 
             /**
              * Gets a reverse iterator of a tree.
              */
-            virtual base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> getReverseIterator() const override;
 
             /**
              * Gets a level order iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getLevelOrderIterator() const override;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> getLevelOrderIterator() const override;
 
             /**
              * Gets an inorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getInorderIterator() const override;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> getInorderIterator() const override;
 
             /**
              * Gets a preorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getPreorderIterator() const override;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> getPreorderIterator() const override;
 
             /**
              * Gets a postorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getPostorderIterator() const override;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> getPostorderIterator() const override;
 
         private:
             IBinaryTreeNodePtr<TKey, TValue> m_root;
@@ -138,7 +138,7 @@ namespace datastructures {
          * Gets an iterator of a tree.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> BinaryTree<TKey, TValue>::getIterator() const
+        base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> BinaryTree<TKey, TValue>::getIterator() const
         {
             return BinaryTreeInorderIterator<TKey, TValue>::make(m_root);
         }
@@ -147,7 +147,7 @@ namespace datastructures {
          * Gets a reverse iterator of a tree.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> BinaryTree<TKey, TValue>::getReverseIterator() const
+        base::IReverseIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> BinaryTree<TKey, TValue>::getReverseIterator() const
         {
             return std::make_shared<BinaryTreeInorderReverseIterator<TKey, TValue>>(m_root);
         }
@@ -156,7 +156,7 @@ namespace datastructures {
          * Gets a level order iterator of a tree.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getLevelOrderIterator() const
+        base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getLevelOrderIterator() const
         {
             return std::make_shared<BinaryTreeLevelOrderIterator<TKey, TValue>>(m_root);
         }
@@ -165,7 +165,7 @@ namespace datastructures {
          * Gets an inorder iterator of a tree.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getInorderIterator() const
+        base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getInorderIterator() const
         {
             return BinaryTreeInorderIterator<TKey, TValue>::make(m_root);
         }
@@ -174,7 +174,7 @@ namespace datastructures {
          * Gets a preorder iterator of a tree.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getPreorderIterator() const
+        base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getPreorderIterator() const
         {
             return std::make_shared<BinaryTreePreorderIterator<TKey, TValue>>(m_root);
         }
@@ -183,7 +183,7 @@ namespace datastructures {
          * Gets a postorder iterator of a tree.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getPostorderIterator() const
+        base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTree<TKey, TValue>::getPostorderIterator() const
         {
             return std::make_shared<BinaryTreePostorderIterator<TKey, TValue>>(m_root);
         }

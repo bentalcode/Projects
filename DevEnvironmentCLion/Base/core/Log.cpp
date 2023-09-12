@@ -7,11 +7,11 @@ using namespace base;
 /**
  * Creates a new log.
  */
-ILogPtr Log::make(
+ILogSharedPtr Log::make(
     const std::string name,
     LogLevelType logLevelType)
 {
-    IMessageWriterPtr messageWriter = MessageWriter::makeLight();
+    IMessageWriterSharedPtr messageWriter = MessageWriter::makeLight();
 
     return std::make_shared<Log>(
         name,
@@ -25,7 +25,7 @@ ILogPtr Log::make(
 Log::Log(
     const std::string& name,
     LogLevelType logLevelType,
-    base::IMessageWriterPtr messageWriter) :
+    IMessageWriterSharedPtr messageWriter) :
     m_name(name),
     m_logLevelType(logLevelType),
     m_messageWriter(messageWriter)

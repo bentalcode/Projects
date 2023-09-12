@@ -51,8 +51,11 @@ namespace base {
         int compareTo(IIterator<T>& lhs, IIterator<T>& rhs, const IComparableComparator<T>& comparator);
     };
 
+    //
+    // Defines the SharedPtr of Iterator Comparator...
+    //
     template <typename T>
-    using IteratorComparatorPtr = std::shared_ptr<IteratorComparator<T>>;
+    using IteratorComparatorSharedPtr = std::shared_ptr<IteratorComparator<T>>;
 
     /**
      * The IteratorComparator constructor.

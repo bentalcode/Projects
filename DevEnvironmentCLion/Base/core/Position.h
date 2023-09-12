@@ -46,16 +46,25 @@ namespace base
         long m_column;
     };
 
+    /**
+     * Gets the row of a specific position.
+     */
     inline long Position::getRow() const
     {
         return m_row;
     }
 
+    /**
+     * Gets the column of a specific position.
+     */
     inline long Position::getColumn() const
     {
         return m_column;
     }
 
+    /**
+     * Defines operator less than of positions.
+     */
     inline bool operator<(const Position& left, const Position& right)
     {
         if (left.getRow() < right.getRow())
@@ -71,6 +80,9 @@ namespace base
         return left.getColumn() < right.getColumn();
     }
 
+    /**
+     * Defines operator add of positions.
+     */
     inline Position operator+(const Position& left, const Position& right)
     {
         Position result(
@@ -80,6 +92,9 @@ namespace base
         return result;
     }
 
+    /**
+     * Defines operator minus of positions.
+     */
     inline Position operator-(const Position& left, const Position& right)
     {
         Position result(

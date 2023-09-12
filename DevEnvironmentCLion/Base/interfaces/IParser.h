@@ -37,11 +37,14 @@ namespace base
         /**
          * Parses an object.
          */
-        virtual IParsingResultPtr<TResult> parse(const T& obj) = 0;
+        virtual IParsingResultSharedPtr<TResult> parse(const T& obj) = 0;
     };
 
+    //
+    // Defines the Shared Ptr of Parser...
+    //
     template <typename T, typename TResult>
-    using IParserPtr = std::shared_ptr<IParser<T, TResult>>;
+    using IParserSharedPtr = std::shared_ptr<IParser<T, TResult>>;
 }
 
 #endif // I_PARSER_H_9a3b0f34_296b_4f64_8a07_829eb1cda7e4

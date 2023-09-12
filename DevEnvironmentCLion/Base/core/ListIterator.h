@@ -15,7 +15,7 @@ namespace base
         /**
          * Creates an iterator of a list.
          */
-        static base::IIteratorPtr<T> make(const std::list<T>& data);
+        static base::IIteratorSharedPtr<T> make(const std::list<T>& data);
 
         /**
          * The constructor.
@@ -63,7 +63,7 @@ namespace base
      * Creates an iterator of a list.
      */
     template <typename T>
-    base::IIteratorPtr<T> ListIterator<T>::make(const std::list<T>& data)
+    base::IIteratorSharedPtr<T> ListIterator<T>::make(const std::list<T>& data)
     {
         return std::make_shared<ListIterator>(data);
     }

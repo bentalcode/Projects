@@ -8,7 +8,7 @@ using namespace base;
  * The WindowsConsoleColorHandler constructor.
  */
 ConsoleColorSetter::ConsoleColorSetter(
-    IConsoleColorHandlerPtr consoleColorHandler,
+    IConsoleColorHandlerSharedPtr consoleColorHandler,
     StandardFileDescriptor fileDescriptor,
     ColorType colorType) :
     ConsoleColorSetter(
@@ -22,7 +22,7 @@ ConsoleColorSetter::ConsoleColorSetter(
  * The ConsoleColorSetter constructor.
  */
 ConsoleColorSetter::ConsoleColorSetter(
-    IConsoleColorHandlerPtr consoleColorHandler,
+    IConsoleColorHandlerSharedPtr consoleColorHandler,
     StandardFileDescriptor fileDescriptor,
     unsigned short attributes) :
     m_consoleColorHandler(consoleColorHandler),

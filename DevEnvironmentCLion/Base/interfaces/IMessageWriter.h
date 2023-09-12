@@ -52,7 +52,10 @@ namespace base {
         virtual void writeDebugMessage(const std::string& message) = 0;
     };
 
-    using IMessageWriterPtr = std::shared_ptr<IMessageWriter>;
+    //
+    // Defines the SharedPtr of Message Writer...
+    //
+    using IMessageWriterSharedPtr = std::shared_ptr<IMessageWriter>;
 }
 
 #endif // I_MESSAGE_WRITER_H_01c54c66_a0c8_4a91_b03f_99f0876f5e18

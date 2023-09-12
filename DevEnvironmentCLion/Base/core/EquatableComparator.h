@@ -14,7 +14,7 @@ namespace base {
         /**
          * Creates a new instance of an equatable comparator.
          */
-        static IEquatableComparatorPtr<T> make();
+        static IEquatableComparatorSharedPtr<T> make();
 
         /**
          * The EquatableComparator constructor.
@@ -48,7 +48,7 @@ namespace base {
      * Creates a new instance of an equatable comparator.
      */
     template <typename T>
-    IEquatableComparatorPtr<T> EquatableComparator<T>::make()
+    IEquatableComparatorSharedPtr<T> EquatableComparator<T>::make()
     {
         return std::make_shared<EquatableComparator<T>>();
     }

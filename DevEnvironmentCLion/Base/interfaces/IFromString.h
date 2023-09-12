@@ -38,6 +38,9 @@ namespace base
         virtual T fromString(const std::string& value) const = 0;
     };
 
+    //
+    // Defines the SharedPtr of From String...
+    //
     template <typename T>
     using IFromStringPtr = std::shared_ptr<IFromString<T>>;
 }

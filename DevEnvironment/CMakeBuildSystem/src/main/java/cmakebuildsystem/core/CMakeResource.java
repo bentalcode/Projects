@@ -5,22 +5,23 @@ import base.core.ResourceReader;
 import cmakebuildsystem.interfaces.ICMakeBuildElement;
 import cmakebuildsystem.interfaces.ICMakeWriter;
 import java.nio.file.Path;
+import java.util.List;
 
 /**
  * The CMakeResource class implements a resource of a CMake.
  */
 public final class CMakeResource implements ICMakeBuildElement {
-    private final Path path;
+    private final List<Path> paths;
 
     /**
      * The CMakeResource constructor.
      */
-    public CMakeResource(Path path) {
-        Conditions.validatePathNotNullOrEmpty(
-            path,
-            "The path of a cmake resource.");
+    public CMakeResource(List<Path> paths) {
+        Conditions.validateNotNull(
+            paths,
+            "The paths of a cmake resource.");
 
-        this.path = path;
+        this.paths = paths;
     }
 
     /**
@@ -39,11 +40,9 @@ public final class CMakeResource implements ICMakeBuildElement {
             contextData,
             "The context data.");
 
-        if (this.path == null) {
-            return;
+        for (Path path : this.paths) {
+            String content = ResourceReader.loadString(path);
+            writer.write(content);
         }
-
-        String content = ResourceReader.loadString(this.path);
-        writer.write(content);
     }
 }

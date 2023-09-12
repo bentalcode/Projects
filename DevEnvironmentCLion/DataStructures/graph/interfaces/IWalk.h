@@ -77,8 +77,8 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         bool operator<(const IWalk<TKey, TValue>& left, const IWalk<TKey, TValue>& right)
         {
-            base::IIteratorPtr<IVertexPtr<TKey, TValue>> leftIterator = left.getIterator();
-            base::IIteratorPtr<IVertexPtr<TKey, TValue>> rightIterator = right.getIterator();
+            base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> leftIterator = left.getIterator();
+            base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> rightIterator = right.getIterator();
 
             base::CompareToBuilder compareToBuilder;
             bool status = compareToBuilder.withDereferenceIterator(

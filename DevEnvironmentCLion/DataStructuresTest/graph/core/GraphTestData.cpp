@@ -175,7 +175,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData1()
     std::vector<std::pair<IRoutePtr<int, std::string>, std::vector<IWalkPtr<int, std::string>>>> paths;
     getGraphPathsData1(vertices, paths);
 
-    base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData1(
+    base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData1(
         vertices);
 
     GraphShortestPathsMap<int, std::string> shortestPaths;
@@ -248,7 +248,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData2()
     std::vector<std::pair<IRoutePtr<int, std::string>, std::vector<IWalkPtr<int, std::string>>>> paths;
     getGraphPathsData2(vertices, paths);
 
-    base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData2(
+    base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData2(
         vertices);
 
     GraphShortestPathsMap<int, std::string> shortestPaths;
@@ -312,7 +312,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData3()
     std::vector<std::pair<IRoutePtr<int, std::string>, std::vector<IWalkPtr<int, std::string>>>> paths;
     getGraphPathsData3(vertices, paths);
 
-    base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData3(
+    base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> topologicalSearch = getGraphTopologicalSearchData3(
         vertices);
 
     GraphShortestPathsMap<int, std::string> shortestPaths;
@@ -611,7 +611,7 @@ void GraphTestData::getGraphPathsData3(
 /**
  * Gets the topological search data of graph1.
  */
-base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getGraphTopologicalSearchData1(
+base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> GraphTestData::getGraphTopologicalSearchData1(
     const std::vector<IVertexPtr<int, std::string>>& vertices)
 {
     assert(vertices.size() == 4);
@@ -620,7 +620,7 @@ base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getG
     IVertexPtr<int, std::string> vertex3 = vertices[2];
     IVertexPtr<int, std::string> vertex4 = vertices[3];
 
-    base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> result =
+    base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> result =
         TwoDimensionalVector<IVertexPtr<int, std::string>>::make();
 
     result->addRow({vertex1});
@@ -634,7 +634,7 @@ base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getG
 /**
  * Gets the topological search data of graph2.
  */
-base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getGraphTopologicalSearchData2(
+base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> GraphTestData::getGraphTopologicalSearchData2(
     const std::vector<IVertexPtr<int, std::string>>& vertices)
 {
     assert(vertices.size() == 6);
@@ -645,7 +645,7 @@ base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getG
     IVertexPtr<int, std::string> vertex5 = vertices[4];
     IVertexPtr<int, std::string> vertex6 = vertices[5];
 
-    base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> result =
+    base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> result =
         TwoDimensionalVector<IVertexPtr<int, std::string>>::make();
 
     result->addRow({vertex1});
@@ -661,7 +661,7 @@ base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getG
 /**
  * Gets the topological search data of graph3.
  */
-base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getGraphTopologicalSearchData3(
+base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> GraphTestData::getGraphTopologicalSearchData3(
     const std::vector<IVertexPtr<int, std::string>>& vertices)
 {
     assert(vertices.size() == 5);
@@ -671,7 +671,7 @@ base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> GraphTestData::getG
     IVertexPtr<int, std::string> vertex4 = vertices[3];
     IVertexPtr<int, std::string> vertex5 = vertices[4];
 
-    base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> result =
+    base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> result =
         TwoDimensionalVector<IVertexPtr<int, std::string>>::make();
 
     result->addRow({vertex4});

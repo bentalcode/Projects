@@ -38,8 +38,11 @@ namespace base
         virtual T build() = 0;
     };
 
+    //
+    // Defines the SharedPtr of Builder...
+    //
     template <typename T>
-    using IBuilderPtr = std::shared_ptr<IBuilder<T>>;
+    using IBuilderSharedPtr = std::shared_ptr<IBuilder<T>>;
 }
 
 #endif // I_BUILDER_H_f837d9c4_e7e2_4bb8_acbe_d7eb5429521c

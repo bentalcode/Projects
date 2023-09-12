@@ -9,7 +9,8 @@ import java.util.List;
  * The TestData class implements the data of the tests.
  */
 public final class TestData implements ITestData {
-    private final ICMakeProjectResources projectResources = new CMakeProjectResources();
+    private final ICMakeProjectResources devEnvironmentProject = new DevEnvironmentCMakeProjectResources();
+    private final ICMakeProjectResources videoRenderingVisualizerProject = new VideoRenderingVisualizerCMakeProjectResources();
 
     /**
      * The TestData constructor.
@@ -23,8 +24,9 @@ public final class TestData implements ITestData {
     @Override
     public List<ICMakeProjectResources> getCMakeProjects()
     {
-        List<ICMakeProjectResources> projects = new ArrayList<>(1);
-        projects.add(this.projectResources);
+        List<ICMakeProjectResources> projects = new ArrayList<>(2);
+        //projects.add(this.projectResources);
+        projects.add(this.videoRenderingVisualizerProject);
         return projects;
     }
 }

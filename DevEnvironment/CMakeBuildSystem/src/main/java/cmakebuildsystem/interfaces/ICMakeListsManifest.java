@@ -3,6 +3,8 @@ package cmakebuildsystem.interfaces;
 import base.interfaces.IUnaryComparator;
 import json.interfaces.IJsonSerialization;
 
+import java.util.List;
+
 /**
  * The ICMakeListsManifest interface defines a manifest of a CMakeLists file.
  */
@@ -18,14 +20,14 @@ public interface ICMakeListsManifest extends IUnaryComparator<ICMakeListsManifes
     String getProjectVersion();
 
     /**
-     * Gets the path of preset.
+     * Gets the paths of preset.
      */
-    String getPresetPath();
+    List<String> getPresetPaths();
 
     /**
-     * Gets the path of postset.
+     * Gets the paths of postset.
      */
-    String getPostsetPath();
+    List<String> getPostsetPaths();
 
     /**
      * Gets the path of build properties.

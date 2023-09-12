@@ -56,7 +56,10 @@ namespace base
         virtual unsigned short getForegroundColorAttributes(ColorType colorType) const = 0;
     };
 
-    using IConsoleColorHandlerPtr = std::shared_ptr<IConsoleColorHandler>;
+    //
+    // Defines the SharedPtr of Console Color Handler...
+    //
+    using IConsoleColorHandlerSharedPtr = std::shared_ptr<IConsoleColorHandler>;
 }
 
 #endif // I_CONSOLE_COLOR_HANDLER_H_2f5c7933_f285_43de_a789_00f4c4e91797

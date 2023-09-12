@@ -15,17 +15,17 @@ namespace base
         /**
          * Creates a comparator.
          */
-        static IBinaryComparatorPtr<T> make();
+        static IBinaryComparatorSharedPtr<T> make();
 
         /**
          * Creates an invert comparator.
          */
-        static IBinaryComparatorPtr<T> makeInvert();
+        static IBinaryComparatorSharedPtr<T> makeInvert();
 
         /**
          * Creates an invert comparator.
          */
-        static IBinaryComparatorPtr<T> makeInvert(IBinaryComparatorPtr<T> comparator);
+        static IBinaryComparatorSharedPtr<T> makeInvert(IBinaryComparatorSharedPtr<T> comparator);
 
         /**
          * The Comparator constructor.
@@ -73,7 +73,7 @@ namespace base
      * Creates a comparator.
      */
     template <typename T>
-    IBinaryComparatorPtr<T> Comparator<T>::make()
+    IBinaryComparatorSharedPtr<T> Comparator<T>::make()
     {
         return std::make_shared<Comparator>();
     }
@@ -82,9 +82,9 @@ namespace base
      * Creates an invert comparator.
      */
     template <typename T>
-    IBinaryComparatorPtr<T> Comparator<T>::makeInvert()
+    IBinaryComparatorSharedPtr<T> Comparator<T>::makeInvert()
     {
-        IBinaryComparatorPtr<T> comparator = Comparator<T>::make();
+        IBinaryComparatorSharedPtr<T> comparator = Comparator<T>::make();
         return makeInvert(comparator);
     }
 
@@ -92,7 +92,7 @@ namespace base
      * Creates an invert comparator.
      */
     template <typename T>
-    IBinaryComparatorPtr<T> Comparator<T>::makeInvert(IBinaryComparatorPtr<T> comparator)
+    IBinaryComparatorSharedPtr<T> Comparator<T>::makeInvert(IBinaryComparatorSharedPtr<T> comparator)
     {
         return InvertComparator<T>::make(comparator);
     }

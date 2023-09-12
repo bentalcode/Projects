@@ -48,8 +48,11 @@ namespace base
         virtual void reset() = 0;
     };
 
+    //
+    // Defines the SharedPtr of Iterator...
+    //
     template <typename T>
-    using IIteratorPtr = std::shared_ptr<IIterator<T>>;
+    using IIteratorSharedPtr = std::shared_ptr<IIterator<T>>;
 }
 
 #endif // I_ITERATOR_H_da695435_2fd0_478e_bb92_e964718207af

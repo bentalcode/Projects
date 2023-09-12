@@ -15,6 +15,7 @@ import cmakebuildsystem.interfaces.IEditorSettings;
 import cmakebuildsystem.interfaces.IIgnoreRules;
 import java.io.Writer;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -115,8 +116,8 @@ public final class CMakeListsWriter implements IWriter {
         //
         // Add the preset section...
         //
-        Path presetPath = resolveResourcePath(this.moduleManifest.getCMakeListsManifest().getPresetPath());
-        ICMakeBuildElement presetSection = new CMakeResource(presetPath);
+        List<Path> presetPaths = resolveResourcePaths(this.moduleManifest.getCMakeListsManifest().getPresetPaths());
+        ICMakeBuildElement presetSection = new CMakeResource(presetPaths);
         elements.add(presetSection);
 
         //
@@ -162,15 +163,29 @@ public final class CMakeListsWriter implements IWriter {
         //
         // Add section for the postset section...
         //
-        Path postsetPath = resolveResourcePath(this.moduleManifest.getCMakeListsManifest().getPostsetPath());
-        ICMakeBuildElement postsetSection = new CMakeResource(postsetPath);
+        List<Path> postsetPaths = resolveResourcePaths(this.moduleManifest.getCMakeListsManifest().getPostsetPaths());
+        ICMakeBuildElement postsetSection = new CMakeResource(postsetPaths);
         elements.add(postsetSection);
 
         return new CMakeListsFile(elements);
     }
 
     /**
-     * Resolves the resource path.
+     * Resolves resource paths.
+     */
+    private static List<Path> resolveResourcePaths(List<String> paths) {
+        List<Path> resolvedPaths = new ArrayList<>(paths.size());
+
+        for (String path : paths) {
+            Path resolvedPath = resolveResourcePath(path);
+            resolvedPaths.add(resolvedPath);
+        }
+
+        return resolvedPaths;
+    }
+
+    /**
+     * Resolves resource path.
      */
     private static Path resolveResourcePath(String path) {
         String resolvedPath = Environment.expandSystemProperties(path, Environment.operatingSystemTransformer());

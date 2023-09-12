@@ -15,18 +15,18 @@ namespace base
         /**
          * Creates a new successful result.
          */
-        static IParsingResultPtr<T> successfulResult(T result);
+        static IParsingResultSharedPtr<T> successfulResult(T result);
 
         /**
          * Creates a new failure result.
          */
-        static IParsingResultPtr<T> failureResult(const std::string& errorMessage);
+        static IParsingResultSharedPtr<T> failureResult(const std::string& errorMessage);
 
         /**
          * Creates a new failure result from a previous one.
          */
         template <typename T1>
-        static IParsingResultPtr<T> failureResult(IParsingResultPtr<T1> result)
+        static IParsingResultSharedPtr<T> failureResult(IParsingResultPtr<T1> result)
         {
             return std::make_shared<ParsingResult>(false, nullptr, result->getErrorMessage());
         }
@@ -91,7 +91,7 @@ namespace base
      * Creates a new successful result.
      */
     template <typename T>
-    IParsingResultPtr<T> ParsingResult<T>::successfulResult(T result)
+    IParsingResultSharedPtr<T> ParsingResult<T>::successfulResult(T result)
     {
         return std::make_shared<ParsingResult>(true, result, "");
     }
@@ -100,7 +100,7 @@ namespace base
      * Creates a new failure result.
      */
     template <typename T>
-    IParsingResultPtr<T> ParsingResult<T>::failureResult(const std::string& errorMessage)
+    IParsingResultSharedPtr<T> ParsingResult<T>::failureResult(const std::string& errorMessage)
     {
         return std::make_shared<ParsingResult>(false, nullptr, errorMessage);
     }

@@ -17,7 +17,7 @@ namespace datastructures {
             /**
              * Creates a new iterator of a doubly linked list.
              */
-            static base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> make(IDoublyLinkedListNodePtr<T> head);
+            static base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> make(IDoublyLinkedListNodePtr<T> head);
 
             /**
              * The DoublyLinkedListNodeIterator constructor.
@@ -65,7 +65,7 @@ namespace datastructures {
          * Creates a new iterator of a doubly linked list.
          */
         template <typename T>
-        base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedListNodeIterator<T>::make(IDoublyLinkedListNodePtr<T> head)
+        base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedListNodeIterator<T>::make(IDoublyLinkedListNodePtr<T> head)
         {
             return std::make_shared<DoublyLinkedListNodeIterator<T>>(head);
         }

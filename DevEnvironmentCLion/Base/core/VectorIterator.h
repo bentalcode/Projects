@@ -15,7 +15,7 @@ namespace base
         /**
          * Creates an iterator of a vector.
          */
-        static base::IIteratorPtr<T> make(const std::vector<T>& data);
+        static base::IIteratorSharedPtr<T> make(const std::vector<T>& data);
 
         /**
          * The constructor.
@@ -63,7 +63,7 @@ namespace base
      * Creates an iterator of a list.
      */
     template <typename T>
-    base::IIteratorPtr<T> VectorIterator<T>::make(const std::vector<T>& data)
+    base::IIteratorSharedPtr<T> VectorIterator<T>::make(const std::vector<T>& data)
     {
         return std::make_shared<VectorIterator>(data);
     }

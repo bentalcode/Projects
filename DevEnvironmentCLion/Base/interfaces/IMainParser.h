@@ -37,9 +37,12 @@ namespace base
         /**
          * Parses the parameters of main.
          */
-        virtual IParsingResultPtr<T> parse(int argc, char *argv[]) = 0;
+        virtual IParsingResultSharedPtr<T> parse(int argc, char *argv[]) = 0;
     };
 
+    //
+    // Defines the Shared Ptr of Main Parser...
+    //
     template <typename T>
     using IMainParserPtr = std::shared_ptr<IMainParser<T>>;
 }

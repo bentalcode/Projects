@@ -15,7 +15,7 @@ namespace base {
         /**
          * Creates a new resource reader.
          */
-        static IResourceReaderPtr make(const std::string path);
+        static IResourceReaderSharedPtr make(const std::string& path);
 
         /**
          * The ResourceReader constructor.
@@ -66,7 +66,6 @@ namespace base {
          * Resolves a path of a resource.
          */
         static std::string resolvePath(const std::string& path);
-
 
         std::string m_path;
         std::ifstream m_stream;

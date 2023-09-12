@@ -45,16 +45,29 @@ namespace base {
         virtual int compareTo(const T& lhs, const T& rhs) const;
     };
 
+    /**
+     * The ComparableComparator constructor.
+     */
     template <typename T>
     ComparableComparator<T>::ComparableComparator()
     {
     }
 
+    /**
+     * The ComparableComparator destructor.
+     */
     template <typename T>
     ComparableComparator<T>::~ComparableComparator()
     {
     }
 
+    /**
+     * Determines the relative order of two instances.
+     *
+     * Returns -1 if the left hand side value is less than the right hand side value.
+     * Returns 0 if the left hand side value is equal to the right hand side value.
+     * Returns 1 if the left hand side value is greater than the right hand side value.
+     */
     template <typename T>
     int ComparableComparator<T>::compareTo(const T& lhs, const T& rhs) const
     {

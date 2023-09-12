@@ -167,12 +167,12 @@ namespace datastructures {
             /**
              * Gets the iterator.
              */
-            virtual base::IIteratorPtr<bool> getIterator() const override;
+            virtual base::IIteratorSharedPtr<bool> getIterator() const override;
 
             /**
              * Gets the reverse iterator.
              */
-            virtual base::IReverseIteratorPtr<bool> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<bool> getReverseIterator() const override;
 
         private:
             static const size_t unitSizeInBits = IBit32Array::sizeInBits;

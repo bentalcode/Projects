@@ -8,7 +8,7 @@ using namespace base;
 /**
  * Creates a new message writer.
  */
-IMessageWriterPtr MessageWriter::make()
+IMessageWriterSharedPtr MessageWriter::make()
 {
     return std::make_shared<MessageWriter>(
         std::cout,
@@ -21,7 +21,7 @@ IMessageWriterPtr MessageWriter::make()
 /**
  * Creates a new message writer with no console color handler.
  */
-IMessageWriterPtr MessageWriter::makeLight()
+IMessageWriterSharedPtr MessageWriter::makeLight()
 {
     return std::make_shared<MessageWriter>(
         std::cout,
@@ -39,7 +39,7 @@ MessageWriter::MessageWriter(
     std::ostream& warningStream,
     std::ostream& errorStream,
     std::ostream& debugStream,
-    base::IConsoleColorHandlerPtr consoleColorHandler) :
+    base::IConsoleColorHandlerSharedPtr consoleColorHandler) :
     m_informationalStream(informationalStream),
     m_warningStream(warningStream),
     m_errorStream(errorStream),
@@ -120,7 +120,7 @@ void MessageWriter::writeMessage(
 /**
  * Creates a console color handler.
  */
-base::IConsoleColorHandlerPtr MessageWriter::createConsoleColorHandler()
+base::IConsoleColorHandlerSharedPtr MessageWriter::createConsoleColorHandler()
 {
     #if defined(WIN32)
         return std::make_shared<base::WindowsConsoleColorHandler>();

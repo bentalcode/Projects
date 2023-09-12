@@ -36,9 +36,13 @@ public final class CMakeBuildProperties implements ICMakeBuildElement {
     private CMakeBuildProperties(Path path) {
         this.addVariables(this.variables);
 
+        List<Path> paths = new ArrayList<>();
+
         if (path != null) {
-            this.properties = new CMakeResource(path);
+            paths.add(path);
         }
+
+        this.properties = new CMakeResource(paths);
     }
 
     /**

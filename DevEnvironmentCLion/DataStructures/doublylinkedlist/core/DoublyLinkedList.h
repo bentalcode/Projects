@@ -149,22 +149,22 @@ namespace datastructures {
             /**
              * Gets an iterator of nodes.
              */
-            virtual base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> getIterator() const override;
 
             /**
              * Gets a reverse iterator of nodes.
              */
-            virtual base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> getReverseIterator() const override;
             
             /**
              * Gets an iterator of values of a list.
              */
-            virtual base::IIteratorPtr<T> getValueIterator() const override;
+            virtual base::IIteratorSharedPtr<T> getValueIterator() const override;
 
             /**
              * Gets a reverse iterator of values of a list.
              */
-            virtual base::IReverseIteratorPtr<T> getValueReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<T> getValueReverseIterator() const override;
 
             /**
              * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
@@ -510,7 +510,7 @@ namespace datastructures {
          * Gets an iterator of nodes.
          */
         template <typename T>
-        base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedList<T>::getIterator() const
+        base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedList<T>::getIterator() const
         {
             return DoublyLinkedListNodeIterator<T>::make(m_head);
         }
@@ -519,7 +519,7 @@ namespace datastructures {
          * Gets a reverse iterator of nodes.
          */
         template <typename T>
-        base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedList<T>::getReverseIterator() const
+        base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedList<T>::getReverseIterator() const
         {
             return DoublyLinkedListNodeReverseIterator<T>::make(m_tail);
         }
@@ -528,7 +528,7 @@ namespace datastructures {
          * Gets an iterator of values of a list.
          */
         template <typename T>
-        base::IIteratorPtr<T> DoublyLinkedList<T>::getValueIterator() const
+        base::IIteratorSharedPtr<T> DoublyLinkedList<T>::getValueIterator() const
         {
             return DoublyLinkedListNodeValueIterator<T>::make(getIterator());
         }
@@ -537,7 +537,7 @@ namespace datastructures {
          * Gets a reverse iterator of values of a list.
          */
         template <typename T>
-        base::IReverseIteratorPtr<T> DoublyLinkedList<T>::getValueReverseIterator() const
+        base::IReverseIteratorSharedPtr<T> DoublyLinkedList<T>::getValueReverseIterator() const
         {
             return DoublyLinkedListNodeValueReverseIterator<T>::make(getReverseIterator());
         }

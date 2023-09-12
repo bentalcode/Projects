@@ -15,12 +15,12 @@ namespace base {
         /**
          * Creates a new message writer.
          */
-        static IMessageWriterPtr make();
+        static IMessageWriterSharedPtr make();
 
         /**
          * Creates a new message writer with no console color handler.
          */
-        static IMessageWriterPtr makeLight();
+        static IMessageWriterSharedPtr makeLight();
 
         /**
          * The CommandMessageWriter Constructor.
@@ -30,7 +30,7 @@ namespace base {
             std::ostream& warningStream,
             std::ostream& informationalStream,
             std::ostream& debugStream,
-            base::IConsoleColorHandlerPtr consoleColorHandler);
+            IConsoleColorHandlerSharedPtr consoleColorHandler);
 
         /**
          * The MessageWriter Destructor.
@@ -80,13 +80,13 @@ namespace base {
         /**
          * Creates a console color handler.
          */
-        static base::IConsoleColorHandlerPtr createConsoleColorHandler();
+        static IConsoleColorHandlerSharedPtr createConsoleColorHandler();
 
         std::ostream& m_informationalStream;
         std::ostream& m_warningStream;
         std::ostream& m_errorStream;
         std::ostream& m_debugStream;
-        base::IConsoleColorHandlerPtr m_consoleColorHandler;
+        IConsoleColorHandlerSharedPtr m_consoleColorHandler;
     };
 }
 

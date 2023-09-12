@@ -45,11 +45,17 @@ namespace base {
         virtual int compareTo(const T& lhs, const T& rhs) const;
     };
 
+    /**
+     * The DereferenceComparableComparator constructor.
+     */
     template <typename T>
     DereferenceComparableComparator<T>::DereferenceComparableComparator()
     {
     }
 
+    /**
+     * The DereferenceComparableComparator destructor.
+     */
     template <typename T>
     DereferenceComparableComparator<T>::~DereferenceComparableComparator()
     {

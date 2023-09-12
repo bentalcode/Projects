@@ -51,56 +51,56 @@ void MergingIntervalsUnitTest::registerTests(unit_testing::ITestRegistration& re
  */
 void MergingIntervalsUnitTest::mergingIntervalsTest()
 {
-    std::vector<base::IntervalPtr<int>> intervals1 = {
+    std::vector<base::IntervalSharedPtr<int>> intervals1 = {
     };
 
-    std::vector<base::IntervalPtr<int>> result1 = {
+    std::vector<base::IntervalSharedPtr<int>> result1 = {
     };
 
-    std::vector<base::IntervalPtr<int>> intervals2 = {
-        base::IntervalPtr<int>(new base::Interval<int>(3, 5)),
-        base::IntervalPtr<int>(new base::Interval<int>(1, 2)),
-        base::IntervalPtr<int>(new base::Interval<int>(6, 7))
+    std::vector<base::IntervalSharedPtr<int>> intervals2 = {
+        base::IntervalSharedPtr<int>(new base::Interval<int>(3, 5)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 2)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(6, 7))
     };
 
-    std::vector<base::IntervalPtr<int>> result2 = {
-        base::IntervalPtr<int>(new base::Interval<int>(1, 2)),
-        base::IntervalPtr<int>(new base::Interval<int>(3, 5)),
-        base::IntervalPtr<int>(new base::Interval<int>(6, 7))
+    std::vector<base::IntervalSharedPtr<int>> result2 = {
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 2)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(3, 5)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(6, 7))
     };
 
-    std::vector<base::IntervalPtr<int>> intervals3 = {
-        base::IntervalPtr<int>(new base::Interval<int>(2, 4)),
-        base::IntervalPtr<int>(new base::Interval<int>(1, 2)),
-        base::IntervalPtr<int>(new base::Interval<int>(4, 7))
+    std::vector<base::IntervalSharedPtr<int>> intervals3 = {
+        base::IntervalSharedPtr<int>(new base::Interval<int>(2, 4)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 2)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(4, 7))
     };
 
-    std::vector<base::IntervalPtr<int>> result3 = {
-        base::IntervalPtr<int>(new base::Interval<int>(1, 7))
+    std::vector<base::IntervalSharedPtr<int>> result3 = {
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 7))
     };
 
-    std::vector<base::IntervalPtr<int>> intervals4 = {
-        base::IntervalPtr<int>(new base::Interval<int>(2, 3)),
-        base::IntervalPtr<int>(new base::Interval<int>(1, 2)),
-        base::IntervalPtr<int>(new base::Interval<int>(4, 7)),
-        base::IntervalPtr<int>(new base::Interval<int>(2, 4))
+    std::vector<base::IntervalSharedPtr<int>> intervals4 = {
+        base::IntervalSharedPtr<int>(new base::Interval<int>(2, 3)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 2)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(4, 7)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(2, 4))
     };
 
-    std::vector<base::IntervalPtr<int>> result4 = {
-        base::IntervalPtr<int>(new base::Interval<int>(1, 7))
+    std::vector<base::IntervalSharedPtr<int>> result4 = {
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 7))
     };
 
-    std::vector<base::IntervalPtr<int>> intervals5 = {
-        base::IntervalPtr<int>(new base::Interval<int>(1, 3)),
-        base::IntervalPtr<int>(new base::Interval<int>(1, 2)),
-        base::IntervalPtr<int>(new base::Interval<int>(4, 5)),
-        base::IntervalPtr<int>(new base::Interval<int>(10, 12))
+    std::vector<base::IntervalSharedPtr<int>> intervals5 = {
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 3)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 2)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(4, 5)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(10, 12))
     };
 
-    std::vector<base::IntervalPtr<int>> result5 = {
-        base::IntervalPtr<int>(new base::Interval<int>(1, 3)),
-        base::IntervalPtr<int>(new base::Interval<int>(4, 5)),
-        base::IntervalPtr<int>(new base::Interval<int>(10, 12))
+    std::vector<base::IntervalSharedPtr<int>> result5 = {
+        base::IntervalSharedPtr<int>(new base::Interval<int>(1, 3)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(4, 5)),
+        base::IntervalSharedPtr<int>(new base::Interval<int>(10, 12))
     };
 
     testMergingIntervals<int>(intervals1, result1);

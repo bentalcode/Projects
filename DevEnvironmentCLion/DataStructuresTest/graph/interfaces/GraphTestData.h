@@ -133,19 +133,19 @@ namespace test {
                 /**
                  * Gets the topological search data of graph1.
                  */
-                base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData1(
+                base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData1(
                     const std::vector<IVertexPtr<int, std::string>>& vertices);
 
                 /**
                  * Gets the topological search data of graph2.
                  */
-                base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData2(
+                base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData2(
                     const std::vector<IVertexPtr<int, std::string>>& vertices);
 
                 /**
                  * Gets the topological search data of graph3.
                  */
-                base::ITwoDimensionalVectorPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData3(
+                base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData3(
                     const std::vector<IVertexPtr<int, std::string>>& vertices);
 
                 /**

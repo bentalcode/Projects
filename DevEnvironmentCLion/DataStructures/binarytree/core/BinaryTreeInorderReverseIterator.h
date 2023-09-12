@@ -18,7 +18,7 @@ namespace datastructures {
             /**
              * Creates an inorder reverse iterator of a binary tree.
              */
-            static base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
+            static base::IReverseIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
 
             /**
              * The BinaryTreeInorderReverseIterator constructor.
@@ -67,7 +67,7 @@ namespace datastructures {
          * Creates an inorder reverse iterator of a binary tree.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeInorderReverseIterator<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
+        base::IReverseIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeInorderReverseIterator<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
         {
             return std::make_shared<BinaryTreeInorderReverseIterator<TKey, TValue>>(root);
         }

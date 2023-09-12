@@ -5,24 +5,36 @@
 
 namespace base {
 
+    /**
+     * Defines operator equal.
+     */
     template <typename T>
     bool operator==(const T& left, const T& right)
     {
         return !(left < right) && !(right < left);
     }
 
+    /**
+     * Defines operator greater than.
+     */
     template <typename T>
     bool operator>(const T& left, const T& right)
     {
         return right < left;
     }
 
+    /**
+     * Defines operator less than.
+     */
     template <typename T>
     bool operator<=(const T& left, const T& right)
     {
         return !(right < left);
     }
 
+    /**
+     * Defines operator greater than.
+     */
     template <typename T>
     bool operator>=(const T& left, const T& right)
     {

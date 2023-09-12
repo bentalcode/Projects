@@ -58,8 +58,11 @@ namespace base
         virtual const std::string& getErrorMessage() const = 0;
     };
 
+    //
+    // Defines the SharedPtr of Parsing Result...
+    //
     template <typename T>
-    using IParsingResultPtr = std::shared_ptr<IParsingResult<T>>;
+    using IParsingResultSharedPtr = std::shared_ptr<IParsingResult<T>>;
 }
 
 #endif // I_PARSING_RESULT_H_263cddc4_2091_4baa_ba82_ec78fd33267f

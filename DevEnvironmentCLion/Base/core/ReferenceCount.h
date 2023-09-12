@@ -33,34 +33,59 @@ namespace base
         ReferenceCount& operator=(const ReferenceCount&) = delete;
         ReferenceCount& operator=(ReferenceCount&&) = delete;
 
-        void addReference();
-        void removeReference();
+        /**
+         * Increments reference.
+         */
+        inline void incrementReference();
 
+        /**
+         * Decrements reference.
+         */
+        inline void decrementReference();
+
+        /**
+         * Gets counter.
+         */
         inline int getCounter() const;
 
     private:
         int m_counter;
     };
 
+    /**
+     * The ReferenceCount constructor.
+     */
     ReferenceCount::ReferenceCount() :
         m_counter(0)
     {
     }
 
+    /**
+     * The ReferenceCount destructor.
+     */
     ReferenceCount::~ReferenceCount()
     {
     }
 
-    void ReferenceCount::addReference()
+    /**
+     * Increments reference.
+     */
+    void ReferenceCount::incrementReference()
     {
         ++m_counter;
     }
 
-    void ReferenceCount::removeReference()
+    /**
+     * Decrements reference.
+     */
+    void ReferenceCount::decrementReference()
     {
         --m_counter;
     }
 
+    /**
+     * Gets counter.
+     */
     int ReferenceCount::getCounter() const
     {
         return m_counter;

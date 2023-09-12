@@ -60,7 +60,7 @@ namespace unit_testing
         /**
          * Sets the message writer.
          */
-        virtual void setMessageWriter(base::IMessageWriterPtr messageWriter) = 0;
+        virtual void setMessageWriter(base::IMessageWriterSharedPtr messageWriter) = 0;
     };
 }
 

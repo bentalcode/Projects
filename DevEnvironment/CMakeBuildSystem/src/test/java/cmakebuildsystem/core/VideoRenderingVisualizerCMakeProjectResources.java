@@ -6,14 +6,16 @@ import base.core.ResourcePathBuilder;
 import base.interfaces.OperatingSystemType;
 import cmakebuildsystem.interfaces.ICMakeProjectResources;
 import testbase.core.ResourcePaths;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The CMakeProjectResources class implements CMAKE resources of project.
+ * The VideoRenderingVisualizerCMakeProjectResources class implements CMAKE resources of
+ * VideoRenderingVisualizer project.
  */
-public final class CMakeProjectResources implements ICMakeProjectResources {
+public final class VideoRenderingVisualizerCMakeProjectResources implements ICMakeProjectResources {
     private static final String DATA_DIRECTORY_NAME = "data";
     private static final String PROJECT_MANIFESTS_DIRECTORY_NAME = "projectManifests";
     private static final String MODULE_MANIFESTS_DIRECTORY_NAME = "moduleManifests";
@@ -24,27 +26,27 @@ public final class CMakeProjectResources implements ICMakeProjectResources {
     private static final String PROJECT_MANIFEST = "projectManifest.json";
 
     private static final List<String> PROJECT_MANIFESTS = ArrayLists.make(
-            "projectManifest.json");
+        "projectManifest.json");
 
     private static final List<String> MODULE_MANIFESTS = ArrayLists.make(
-            "baseTestManifest.json");
+        "baseTestManifest.json");
 
     private static final List<String> CMAKE_LISTS_MANIFESTS = ArrayLists.make(
-            "cmakeListsManifest.json");
+        "cmakeListsManifest.json");
 
     private static final List<String> PROJECTS = ArrayLists.make(
-            "project.json");
+        "project.json");
 
     private static final List<String> MODULES = ArrayLists.make(
-            "baseModule.json");
+        "baseModule.json");
 
     private static final List<String> PROJECT_DEPLOYMENT_RESULTS = ArrayLists.make(
-            "projectDeploymentResult.json");
+        "projectDeploymentResult.json");
 
     /**
      * The CMakeProjectResources constructor.
      */
-    public CMakeProjectResources() {
+    public VideoRenderingVisualizerCMakeProjectResources() {
     }
 
     /**
@@ -53,7 +55,7 @@ public final class CMakeProjectResources implements ICMakeProjectResources {
     @Override
     public Path getCMakeProjectManifestPath() {
         return ResourcePaths.create(
-            dataDirectory("devEnvironment"),
+            dataDirectory("videoRenderingVisualizer"),
             PROJECT_MANIFESTS_DIRECTORY_NAME,
             PROJECT_MANIFEST);
     }
@@ -67,7 +69,7 @@ public final class CMakeProjectResources implements ICMakeProjectResources {
 
         for (String projectManifest : PROJECT_MANIFESTS) {
             Path path = ResourcePaths.create(
-                dataDirectory("devEnvironment"),
+                dataDirectory("videoRenderingVisualizer"),
                 PROJECT_MANIFESTS_DIRECTORY_NAME,
                 projectManifest);
 
@@ -86,7 +88,7 @@ public final class CMakeProjectResources implements ICMakeProjectResources {
 
         for (String projectDeploymentResult : PROJECT_DEPLOYMENT_RESULTS) {
             Path path = ResourcePaths.create(
-                    dataDirectory("devEnvironment"),
+                    dataDirectory("videoRenderingVisualizer"),
                     PROJECT_DEPLOYMENT_RESULTS_DIRECTORY_NAME,
                     projectDeploymentResult);
 
@@ -105,7 +107,7 @@ public final class CMakeProjectResources implements ICMakeProjectResources {
 
         for (String moduleManifest : MODULE_MANIFESTS) {
             Path path = ResourcePaths.create(
-                dataDirectory("devEnvironment"),
+                dataDirectory("videoRenderingVisualizer"),
                 MODULE_MANIFESTS_DIRECTORY_NAME,
                 moduleManifest);
 
@@ -124,7 +126,7 @@ public final class CMakeProjectResources implements ICMakeProjectResources {
 
         for (String cmakeListsManifest : CMAKE_LISTS_MANIFESTS) {
             Path path = ResourcePaths.create(
-                dataDirectory("devEnvironment"),
+                dataDirectory("videoRenderingVisualizer"),
                 CMAKE_LISTS_MANIFESTS_DIRECTORY_NAME,
                 cmakeListsManifest);
 
@@ -143,7 +145,7 @@ public final class CMakeProjectResources implements ICMakeProjectResources {
 
         for (String project : PROJECTS) {
             Path path = ResourcePaths.create(
-                dataDirectory("devEnvironment"),
+                dataDirectory("videoRenderingVisualizer"),
                 PROJECTS_DIRECTORY_NAME,
                 project);
 
@@ -162,7 +164,7 @@ public final class CMakeProjectResources implements ICMakeProjectResources {
 
         for (String module : MODULES) {
             Path path = ResourcePaths.create(
-                dataDirectory("devEnvironment"),
+                dataDirectory("videoRenderingVisualizer"),
                 MODULES_DIRECTORY_NAME,
                 module);
 

@@ -63,15 +63,24 @@ namespace base
         T m_end;
     };
 
+    //
+    // Define the SharedPtr of Interval...
+    //
     template <typename T>
-    using IntervalPtr = std::shared_ptr<Interval<T>>;
+    using IntervalSharedPtr = std::shared_ptr<Interval<T>>;
 
+    /**
+     * Creates an interval.
+     */
     template <typename T>
     Interval<T> Interval<T>::make(const T& start, const T& end)
     {
         return Interval<T>(start, end);
     }
 
+    /**
+     * The Interval constructor.
+     */
     template <typename T>
     Interval<T>::Interval(const T& start, const T& end) :
         m_start(start),
@@ -80,23 +89,35 @@ namespace base
         validate(start, end);
     }
 
+    /**
+     * The Interval destructor.
+     */
     template <typename T>
     Interval<T>::~Interval()
     {
     }
 
+    /**
+     * Gets the start point of an interval.
+     */
     template <typename T>
     const T& Interval<T>::getStart() const
     {
         return m_start;
     }
 
+    /**
+     * Gets the end point of an interval.
+     */
     template <typename T>
     const T& Interval<T>::getEnd() const
     {
         return m_end;
     }
 
+    /**
+     * Defines operator less of intervals.
+     */
     template <typename T>
     bool operator<(const Interval<T>& left, const Interval<T>& right)
     {
@@ -113,6 +134,9 @@ namespace base
         return left.getEnd() < right.getEnd();
     }
 
+    /**
+     * Determines whether the sorted intervals overlap.
+     */
     template <typename T>
     bool Interval<T>::overlap(const base::Interval<T>& left, const base::Interval<T>& right)
     {
@@ -121,6 +145,9 @@ namespace base
         return (right.getStart() <= left.getEnd());
     }
 
+    /**
+     * Validates the interval start and end points.
+     */
     template <typename T>
     void Interval<T>::validate(const T& start, const T& end)
     {

@@ -15,7 +15,7 @@ namespace base
         /**
          * Creates a new reverse iterator of a list.
          */
-        static base::IReverseIteratorPtr<T> make(const std::list<T>& data);
+        static base::IReverseIteratorSharedPtr<T> make(const std::list<T>& data);
 
         /**
          * The constructor.
@@ -63,7 +63,7 @@ namespace base
      * Creates a reverse iterator of a list.
      */
     template <typename T>
-    base::IReverseIteratorPtr<T> ListReverseIterator<T>::make(const std::list<T>& data)
+    base::IReverseIteratorSharedPtr<T> ListReverseIterator<T>::make(const std::list<T>& data)
     {
         return std::make_shared<ListReverseIterator>(data);
     }

@@ -36,7 +36,7 @@ namespace test {
                     const std::vector<IEdgePtr<TKey, TValue>>& edges,
                     const EdgeWeightMap<TKey, TValue>& weights,
                     const RoutesPaths<TKey, TValue>& paths,
-                    base::ITwoDimensionalVectorPtr<IVertexPtr<TKey, TValue>> topologicalSearch,
+                    base::ITwoDimensionalVectorSharedPtr<IVertexPtr<TKey, TValue>> topologicalSearch,
                     const GraphShortestPathsMap<TKey, TValue>& result);
 
                 /**
@@ -54,7 +54,7 @@ namespace test {
                     const std::vector<IEdgePtr<TKey, TValue>>& edges,
                     const EdgeWeightMap<TKey, TValue>& weights,
                     const RoutesPaths<TKey, TValue>& paths,
-                    base::ITwoDimensionalVectorPtr<IVertexPtr<TKey, TValue>> topologicalSearch,
+                    base::ITwoDimensionalVectorSharedPtr<IVertexPtr<TKey, TValue>> topologicalSearch,
                     const GraphShortestPathsMap<TKey, TValue>& shortestPaths);
 
                 /**
@@ -109,7 +109,7 @@ namespace test {
                 std::vector<IEdgePtr<TKey, TValue>> m_edges;
                 EdgeWeightMap<TKey, TValue> m_weights;
                 RoutesPaths<TKey, TValue> m_paths;
-                base::ITwoDimensionalVectorPtr<IVertexPtr<TKey, TValue>> m_topologicalSearch;
+                base::ITwoDimensionalVectorSharedPtr<IVertexPtr<TKey, TValue>> m_topologicalSearch;
                 GraphShortestPathsMap<TKey, TValue> m_shortestPaths;
             };
 
@@ -138,7 +138,7 @@ namespace test {
                 const std::vector<IEdgePtr<TKey, TValue>>& edges,
                 const EdgeWeightMap<TKey, TValue>& weights,
                 const RoutesPaths<TKey, TValue>& paths,
-                base::ITwoDimensionalVectorPtr<IVertexPtr<TKey, TValue>> topologicalSearch,
+                base::ITwoDimensionalVectorSharedPtr<IVertexPtr<TKey, TValue>> topologicalSearch,
                 const GraphShortestPathsMap<TKey, TValue>& shortestPaths)
             {
                 return std::make_shared<GraphData<TKey, TValue>>(
@@ -171,7 +171,7 @@ namespace test {
                 const std::vector<IEdgePtr<TKey, TValue>>& edges,
                 const EdgeWeightMap<TKey, TValue>& weights,
                 const RoutesPaths<TKey, TValue>& paths,
-                const base::ITwoDimensionalVectorPtr<IVertexPtr<TKey, TValue>> topologicalSearch,
+                const base::ITwoDimensionalVectorSharedPtr<IVertexPtr<TKey, TValue>> topologicalSearch,
                 const GraphShortestPathsMap<TKey, TValue>& shortestPaths) :
                 m_vertices(vertices),
                 m_edges(edges),

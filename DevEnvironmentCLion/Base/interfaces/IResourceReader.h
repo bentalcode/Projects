@@ -44,7 +44,10 @@ namespace base
         virtual std::string readString() = 0;
     };
 
-    using IResourceReaderPtr = std::shared_ptr<IResourceReader>;
+    //
+    // Defines the SharedPtr of Resource Reader...
+    //
+    using IResourceReaderSharedPtr = std::shared_ptr<IResourceReader>;
 }
 
 #endif // I_RESOURCE_READER_H_daebde72_07e6_4f9c_9261_becfcd505d5b

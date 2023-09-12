@@ -20,14 +20,14 @@ namespace datastructures {
             /**
              * Creates a new reverse iterator of a key-value node.
              */
-            static base::IReverseIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> make(
-                base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator);
+            static base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> make(
+                base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator);
 
             /**
              * The DoublyLinkedListKeyValueNodeReverseIterator constructor.
              */
             explicit DoublyLinkedListKeyValueNodeReverseIterator(
-                base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator);
+                base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator);
 
             /**
              * The DoublyLinkedListKeyValueNodeReverseIterator destructor.
@@ -62,15 +62,15 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> m_reverseIterator;
+            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> m_reverseIterator;
         };
 
         /**
          * Creates a new reverse iterator of a key-value node.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> DoublyLinkedListKeyValueNodeReverseIterator<TKey, TValue>::make(
-            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator)
+        base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> DoublyLinkedListKeyValueNodeReverseIterator<TKey, TValue>::make(
+            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator)
         {
             return std::make_shared<DoublyLinkedListKeyValueNodeReverseIterator<TKey, TValue>>(reverseIterator);
         }
@@ -80,7 +80,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         DoublyLinkedListKeyValueNodeReverseIterator<TKey, TValue>::DoublyLinkedListKeyValueNodeReverseIterator(
-            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator) :
+            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
             base::SmartPointers::validate(reverseIterator);

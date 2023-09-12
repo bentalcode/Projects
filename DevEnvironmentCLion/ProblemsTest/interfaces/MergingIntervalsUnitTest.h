@@ -53,8 +53,8 @@ namespace problems_test {
          */
         template <typename T>
         void testMergingIntervals(
-            const std::vector<base::IntervalPtr<T>>& intervals,
-            const std::vector<base::IntervalPtr<T>>& expectedResult);
+            const std::vector<base::IntervalSharedPtr<T>>& intervals,
+            const std::vector<base::IntervalSharedPtr<T>>& expectedResult);
     };
 
     /**
@@ -62,14 +62,14 @@ namespace problems_test {
      */
     template <typename T>
     void MergingIntervalsUnitTest::testMergingIntervals(
-        const std::vector<base::IntervalPtr<T>>& intervals,
-        const std::vector<base::IntervalPtr<T>>& expectedResult)
+        const std::vector<base::IntervalSharedPtr<T>>& intervals,
+        const std::vector<base::IntervalSharedPtr<T>>& expectedResult)
     {
         problems::MergingIntervals<T> mergingIntervals;
-        std::vector<base::IntervalPtr<T>> result = mergingIntervals.merge(intervals);
+        std::vector<base::IntervalSharedPtr<T>> result = mergingIntervals.merge(intervals);
 
-        base::VectorIterator<base::IntervalPtr<T>> resultIterator(result);
-        base::VectorIterator<base::IntervalPtr<T>> expectedResultIterator(expectedResult);
+        base::VectorIterator<base::IntervalSharedPtr<T>> resultIterator(result);
+        base::VectorIterator<base::IntervalSharedPtr<T>> expectedResultIterator(expectedResult);
 
         getAssertion().assertEqualsWithDereferenceIterators(
            resultIterator,

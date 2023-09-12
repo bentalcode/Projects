@@ -38,8 +38,11 @@ namespace base
         virtual T calculate() = 0;
     };
 
+    //
+    // Defines the SharedPtr of Calculator...
+    //
     template <typename T>
-    using ICalculatorPtr = std::shared_ptr<ICalculator<T>>;
+    using ICalculatorSharedPtr = std::shared_ptr<ICalculator<T>>;
 }
 
 #endif // I_CALCULATOR_H_2026be97_e589_4b76_95eb_5bb7726d79c5

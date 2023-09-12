@@ -17,7 +17,7 @@ namespace datastructures {
             /**
              * Creates a new iterator of a doubly linked list.
              */
-            static base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> make(IDoublyLinkedListNodePtr<T> tail);
+            static base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> make(IDoublyLinkedListNodePtr<T> tail);
 
             /**
              * The DoublyLinkedListNodeReverseIterator constructor.
@@ -65,7 +65,7 @@ namespace datastructures {
          * Creates a new reverse iterator of a doubly linked list.
          */
         template <typename T>
-        base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedListNodeReverseIterator<T>::make(
+        base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedListNodeReverseIterator<T>::make(
             IDoublyLinkedListNodePtr<T> tail)
         {
             return std::make_shared<DoublyLinkedListNodeReverseIterator<T>>(tail);

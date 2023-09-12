@@ -37,7 +37,7 @@ namespace problems
         /**
          * Merges the intervals.
          */
-        virtual std::vector<base::IntervalPtr<T>> merge(const std::vector<base::IntervalPtr<T>>& intervals) = 0;
+        virtual std::vector<base::IntervalSharedPtr<T>> merge(const std::vector<base::IntervalSharedPtr<T>>& intervals) = 0;
     };
 
 }

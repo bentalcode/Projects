@@ -394,7 +394,7 @@ void Bit32Array::validateIndex(size_t index) const
 /**
  * Gets the iterator.
  */
-base::IIteratorPtr<bool> Bit32Array::getIterator() const
+base::IIteratorSharedPtr<bool> Bit32Array::getIterator() const
 {
     return Bit32ArrayIterator::make(*this);
 }
@@ -402,7 +402,7 @@ base::IIteratorPtr<bool> Bit32Array::getIterator() const
 /**
  * Gets the reverse iterator.
  */
-base::IReverseIteratorPtr<bool> Bit32Array::getReverseIterator() const
+base::IReverseIteratorSharedPtr<bool> Bit32Array::getReverseIterator() const
 {
     return Bit32ArrayReverseIterator::make(*this);
 }

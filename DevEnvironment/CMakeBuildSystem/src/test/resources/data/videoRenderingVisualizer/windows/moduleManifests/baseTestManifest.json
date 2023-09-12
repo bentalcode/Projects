@@ -1,0 +1,19 @@
+{
+    "name": "BaseTest",
+    "type": "executable",
+    "path": "BaseTest",
+    "cmakeListsTargetPath": "CMakeLists.txt",
+    "headerFileExtensions": ["h", "hpp"],
+    "sourceFileExtensions": ["c", "cpp"],
+    "cmakeListsFileExtensions": ["CMakeLists.txt"],
+    "cmakeListsManifest": {
+        "cmakeVersion": "3.6",
+        "projectVersion": "1.0",
+        "presetPath": "cmakeListsPreset.txt",
+        "postsetPath": "cmakeListsPostset.txt",
+        "includesFilesProperty": "INCLUDES_FILES",
+        "sourcesFilesProperty": "SOURCES_FILES",
+        "includesProperty": "INCLUDES",
+        "sourcesProperty": "SOURCES"
+    }
+}

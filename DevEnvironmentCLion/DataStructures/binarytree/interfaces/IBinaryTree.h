@@ -53,32 +53,32 @@ namespace datastructures {
             /**
              * Gets an iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getIterator() const = 0;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> getIterator() const = 0;
 
             /**
              * Gets a reverse iterator of a tree.
              */
-            virtual base::IReverseIteratorPtr<IBinaryTreeNodePtr<TKey , TValue>> getReverseIterator() const = 0;
+            virtual base::IReverseIteratorSharedPtr<IBinaryTreeNodePtr<TKey , TValue>> getReverseIterator() const = 0;
 
             /**
              * Gets a level order iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> getLevelOrderIterator() const = 0;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> getLevelOrderIterator() const = 0;
 
             /**
              * Gets an inorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> getInorderIterator() const = 0;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> getInorderIterator() const = 0;
 
             /**
              * Gets a preorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> getPreorderIterator() const = 0;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> getPreorderIterator() const = 0;
 
             /**
              * Gets a postorder iterator of a tree.
              */
-            virtual base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> getPostorderIterator() const = 0;
+            virtual base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> getPostorderIterator() const = 0;
         };
 
         template <typename TKey, typename TValue>
@@ -87,10 +87,10 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         bool operator<(const IBinaryTree<TKey, TValue>& left, const IBinaryTree<TKey, TValue>& right)
         {
-            base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> lhsIterator =
+            base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> lhsIterator =
                 BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(left.getRoot());
 
-            base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> rhsIterator =
+            base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> rhsIterator =
                 BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(right.getRoot());
 
             base::CompareToBuilder compareToBuilder;

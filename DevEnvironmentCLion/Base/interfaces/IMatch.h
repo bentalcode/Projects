@@ -38,8 +38,11 @@ namespace base
         virtual bool match(const T& element) const = 0;
     };
 
+    //
+    // Defines the Shared Ptr of Match...
+    //
     template <typename T>
-    using IMatchPtr = std::shared_ptr<IMatch<T>>;
+    using IMatchSharedPtr = std::shared_ptr<IMatch<T>>;
 }
 
 #endif // I_MATCH_H_a0f1a51e_5a7f_4ec4_960a_efcc35becf1e

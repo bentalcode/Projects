@@ -43,12 +43,12 @@ namespace base {
         /**
          * Gets a default log.
          */
-        virtual ILogPtr getLog() override;
+        virtual ILogSharedPtr getLog() override;
 
         /**
          * Gets a new log by name.
          */
-        virtual ILogPtr getLog(const std::string& name) override;
+        virtual ILogSharedPtr getLog(const std::string& name) override;
 
         /**
          * Sets the default log level.

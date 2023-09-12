@@ -18,12 +18,12 @@ namespace datastructures {
             /**
              * Creates a new reverse iterator of values of a doubly linked list.
              */
-            static base::IReverseIteratorPtr<T> make(base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator);
+            static base::IReverseIteratorSharedPtr<T> make(base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> reverseIterator);
 
             /**
              * The DoublyLinkedListNodeValueReverseIterator constructor.
              */
-            explicit DoublyLinkedListNodeValueReverseIterator(base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator);
+            explicit DoublyLinkedListNodeValueReverseIterator(base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> reverseIterator);
 
             /**
              * The DoublyLinkedListNodeValueReverseIterator destructor.
@@ -58,15 +58,15 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> m_reverseIterator;
+            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> m_reverseIterator;
         };
 
         /**
          * Creates a new reverse iterator of values of a doubly linked list.
          */
         template <typename T>
-        base::IReverseIteratorPtr<T> DoublyLinkedListNodeValueReverseIterator<T>::make(
-            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator)
+        base::IReverseIteratorSharedPtr<T> DoublyLinkedListNodeValueReverseIterator<T>::make(
+            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> reverseIterator)
         {
             return std::make_shared<DoublyLinkedListNodeValueReverseIterator<T>>(reverseIterator);
         }
@@ -76,7 +76,7 @@ namespace datastructures {
          */
         template <typename T>
         DoublyLinkedListNodeValueReverseIterator<T>::DoublyLinkedListNodeValueReverseIterator(
-            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> reverseIterator) :
+            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
             base::SmartPointers::validate(reverseIterator);

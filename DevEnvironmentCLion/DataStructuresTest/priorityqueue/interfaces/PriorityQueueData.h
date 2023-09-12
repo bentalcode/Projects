@@ -18,7 +18,7 @@ namespace test {
                  * The PriorityQueueData constructor.
                  */
                 PriorityQueueData(
-                    base::IBinaryComparatorPtr<T> elementComparator,
+                    base::IBinaryComparatorSharedPtr<T> elementComparator,
                     const std::vector<T>& creationData,
                     const std::vector<T>& data);
 
@@ -42,7 +42,7 @@ namespace test {
                 /**
                  * Gets the comparator of an element.
                  */
-                base::IBinaryComparatorPtr<T> getElementComparator() const;
+                base::IBinaryComparatorSharedPtr<T> getElementComparator() const;
 
                 /**
                  * Gets the creation data of a priority queue.
@@ -55,7 +55,7 @@ namespace test {
                 const std::vector<T>& getData() const;
 
             private:
-                base::IBinaryComparatorPtr<T> m_elementComparator;
+                base::IBinaryComparatorSharedPtr<T> m_elementComparator;
                 std::vector<T> m_creationData;
                 std::vector<T> m_data;
             };
@@ -68,7 +68,7 @@ namespace test {
              */
             template <typename T>
             PriorityQueueData<T>::PriorityQueueData(
-                base::IBinaryComparatorPtr<T> elementComparator,
+                base::IBinaryComparatorSharedPtr<T> elementComparator,
                 const std::vector<T>& creationData,
                 const std::vector<T>& data) :
                 m_elementComparator(elementComparator),
@@ -89,7 +89,7 @@ namespace test {
              * Gets the comparator of an element.
              */
             template <typename T>
-            base::IBinaryComparatorPtr<T> PriorityQueueData<T>::getElementComparator() const
+            base::IBinaryComparatorSharedPtr<T> PriorityQueueData<T>::getElementComparator() const
             {
                 return m_elementComparator;
             }

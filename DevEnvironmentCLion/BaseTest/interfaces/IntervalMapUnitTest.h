@@ -125,7 +125,7 @@ namespace test {
                 intervalMap.assign(interval.getStart(), interval.getEnd(), value);
             }
 
-            IIteratorPtr<Pair<Interval<Key>, Value>> iterator = intervalMap.getIterator();
+            IIteratorSharedPtr<Pair<Interval<Key>, Value>> iterator = intervalMap.getIterator();
 
             size_t index = 0;
             while (iterator->hasNext()) {

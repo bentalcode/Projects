@@ -37,11 +37,14 @@ namespace base
         /**
          * Gets the reverse iterator.
          */
-        virtual IReverseIteratorPtr<T> getReverseIterator() const = 0;
+        virtual IReverseIteratorSharedPtr<T> getReverseIterator() const = 0;
     };
 
+    //
+    // Defines the Shared Ptr of Reverse Iterable...
+    //
     template <typename T>
-    using IReverseIterablePtr = std::shared_ptr<IReverseIterable<T>>;
+    using IReverseIterableSharedPtr = std::shared_ptr<IReverseIterable<T>>;
 }
 
 #endif // I_REVERSE_ITERABLE_H_1cbec0f8_8bab_4509_9bdf_e2e4a02f062b

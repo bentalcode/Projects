@@ -17,7 +17,7 @@ Assertion::Assertion() :
 /**
  * The Assertion constructor.
  */
-Assertion::Assertion(base::IMessageWriterPtr messageWriter) :
+Assertion::Assertion(base::IMessageWriterSharedPtr messageWriter) :
     m_messageWriter(messageWriter)
 {
 }
@@ -50,7 +50,7 @@ void Assertion::assertTrue(
 /**
  * Sets the message writer.
  */
-void Assertion::setMessageWriter(base::IMessageWriterPtr messageWriter)
+void Assertion::setMessageWriter(base::IMessageWriterSharedPtr messageWriter)
 {
     if (!messageWriter)
     {

@@ -77,8 +77,11 @@ namespace base
         virtual std::vector<T>& operator[](size_t index) = 0;
     };
 
+    //
+    // Defines the SharedPtr of Two Dimensional Vector...
+    //
     template <typename T>
-    using ITwoDimensionalVectorPtr = std::shared_ptr<ITwoDimensionalVector<T>>;
+    using ITwoDimensionalVectorSharedPtr = std::shared_ptr<ITwoDimensionalVector<T>>;
 }
 
 #endif // I_TWO_DIMENSIONAL_VECTOR_H_3331e1a1_fbae_4274_9ebb_14375696a297

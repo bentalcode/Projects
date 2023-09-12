@@ -17,7 +17,7 @@ namespace datastructures {
             /**
              * Creates an iterator of a bit array.
              */
-            static base::IIteratorPtr<bool> make(const IBitArray& bitArray);
+            static base::IIteratorSharedPtr<bool> make(const IBitArray& bitArray);
 
             /**
              * The BitArrayIterator constructor.

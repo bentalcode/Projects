@@ -71,7 +71,7 @@ void ListUnitTest::testList(size_t size)
 
     int index = 0;
 
-    IIteratorPtr<int> iterator = list.getIterator();
+    IIteratorSharedPtr<int> iterator = list.getIterator();
     while (iterator->hasNext())
     {
         int currentValue = iterator->next();

@@ -90,32 +90,32 @@ namespace datastructures {
             /**
              * Gets the iterator.
              */
-            virtual base::IIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> getIterator() const override;
 
             /**
              * Gets the reverse iterator.
              */
-            virtual base::IReverseIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> getReverseIterator() const override;
 
             /**
              * Gets the iterator of keys.
              */
-            virtual base::IIteratorPtr<TKey> getKeyIterator() const override;
+            virtual base::IIteratorSharedPtr<TKey> getKeyIterator() const override;
 
             /**
              * Gets the reverse iterator of keys.
              */
-            virtual base::IReverseIteratorPtr<TKey> getKeyReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<TKey> getKeyReverseIterator() const override;
 
             /**
              * Gets the iterator of values.
              */
-            virtual base::IIteratorPtr<TValue> getValueIterator() const override;
+            virtual base::IIteratorSharedPtr<TValue> getValueIterator() const override;
 
             /**
              * Gets the reverse iterator of values.
              */
-            virtual base::IReverseIteratorPtr<TValue> getValueReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<TValue> getValueReverseIterator() const override;
 
         protected:
 
@@ -357,9 +357,9 @@ namespace datastructures {
          * Gets the iterator.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> AbstractCache<TKey, TValue>::getIterator() const
+        base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> AbstractCache<TKey, TValue>::getIterator() const
         {
-            base::IIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator =
+            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator =
                 m_data.usedList().getIterator();
 
             return DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::make(iterator);
@@ -369,9 +369,9 @@ namespace datastructures {
          * Gets the reverse iterator.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> AbstractCache<TKey, TValue>::getReverseIterator() const
+        base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> AbstractCache<TKey, TValue>::getReverseIterator() const
         {
-            base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator =
+            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator =
                 m_data.usedList().getReverseIterator();
 
             return DoublyLinkedListKeyValueNodeReverseIterator<TKey, TValue>::make(reverseIterator);
@@ -381,9 +381,9 @@ namespace datastructures {
          * Gets the iterator of keys.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<TKey> AbstractCache<TKey, TValue>::getKeyIterator() const
+        base::IIteratorSharedPtr<TKey> AbstractCache<TKey, TValue>::getKeyIterator() const
         {
-            base::IIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeIterator = getIterator();
+            base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeIterator = getIterator();
             return node::KeyIterator<TKey, TValue>::make(keyValueNodeIterator);
         }
 
@@ -391,9 +391,9 @@ namespace datastructures {
          * Gets the reverse iterator of keys.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorPtr<TKey> AbstractCache<TKey, TValue>::getKeyReverseIterator() const
+        base::IReverseIteratorSharedPtr<TKey> AbstractCache<TKey, TValue>::getKeyReverseIterator() const
         {
-            base::IReverseIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeReverseIterator = getReverseIterator();
+            base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeReverseIterator = getReverseIterator();
             return node::KeyReverseIterator<TKey, TValue>::make(keyValueNodeReverseIterator);
         }
 
@@ -401,9 +401,9 @@ namespace datastructures {
          * Gets the iterator of values.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<TValue> AbstractCache<TKey, TValue>::getValueIterator() const
+        base::IIteratorSharedPtr<TValue> AbstractCache<TKey, TValue>::getValueIterator() const
         {
-            base::IIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeIterator = getIterator();
+            base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeIterator = getIterator();
             return node::ValueIterator<TKey, TValue>::make(keyValueNodeIterator);
         }
 
@@ -411,9 +411,9 @@ namespace datastructures {
          * Gets the reverse iterator of values.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorPtr<TValue> AbstractCache<TKey, TValue>::getValueReverseIterator() const
+        base::IReverseIteratorSharedPtr<TValue> AbstractCache<TKey, TValue>::getValueReverseIterator() const
         {
-            base::IReverseIteratorPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeReverseIterator = getReverseIterator();
+            base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeReverseIterator = getReverseIterator();
             return node::ValueReverseIterator<TKey, TValue>::make(keyValueNodeReverseIterator);
         }
 

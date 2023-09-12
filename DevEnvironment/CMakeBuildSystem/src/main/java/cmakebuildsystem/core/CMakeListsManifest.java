@@ -1,15 +1,13 @@
 package cmakebuildsystem.core;
 
-import base.core.AbstractBinaryComparator;
-import base.core.Casting;
-import base.core.CompareToBuilder;
-import base.core.EqualBuilder;
-import base.core.HashCodeBuilder;
-import base.core.ResourcePathBuilder;
+import base.core.*;
 import base.interfaces.IBinaryComparator;
 import cmakebuildsystem.interfaces.ICMakeListsManifest;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The CMakeListsManifest class implements a manifest of a CMakeLists file.
@@ -17,8 +15,8 @@ import json.interfaces.IJsonObjectWriter;
 public final class CMakeListsManifest implements ICMakeListsManifest {
     private static final String PROPERTY_CMAKE_VERSION = "cmakeVersion";
     private static final String PROPERTY_PROJECT_VERSION = "projectVersion";
-    private static final String PROPERTY_PRESET_PATH = "presetPath";
-    private static final String PROPERTY_POSTSET_PATH = "postsetPath";
+    private static final String PROPERTY_PRESET_PATHS = "presetPaths";
+    private static final String PROPERTY_POSTSET_PATHS = "postsetPaths";
     private static final String PROPERTY_BUILD_PROPERTIES_PATH = "buildPropertiesPath";
     private static final String PROPERTY_INCLUDES_FILES_PROPERTY = "includesFilesProperty";
     private static final String PROPERTY_SOURCES_FILES_PROPERTY = "sourcesFilesProperty";
@@ -28,15 +26,19 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     private static final String CMAKE_VERSION = "3.6";
     private static final String PROJECT_VERSION = "1.0";
 
-    private static final String PRESET_PATH = new ResourcePathBuilder()
+    private static final String DEFAULT_PRESET_PATH = new ResourcePathBuilder()
         .addComponent(CMakeListsConstants.MANIFEST_DIRECTORY_NAME)
         .addComponent(CMakeListsConstants.DEFAULT_CMAKE_LISTS_PRESET_FILE_NAME)
         .build();
 
-    private static final String POSTSET_PATH = new ResourcePathBuilder()
+    private static final String DEFAULT_POSTSET_PATH = new ResourcePathBuilder()
         .addComponent(CMakeListsConstants.MANIFEST_DIRECTORY_NAME)
         .addComponent(CMakeListsConstants.DEFAULT_CMAKE_LISTS_POSTSET_FILE_NAME)
         .build();
+
+    private static final List<String> DEFAULT_PRESET_PATHS = ArrayLists.make(DEFAULT_PRESET_PATH);
+
+    private static final List<String> DEFAULT_POSTSET_PATHS = ArrayLists.make(DEFAULT_POSTSET_PATH);
 
     private static final String BUILD_PROPERTIES_PATH = new ResourcePathBuilder()
         .addComponent(CMakeListsConstants.MANIFEST_DIRECTORY_NAME)
@@ -50,8 +52,8 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
 
     private final String cmakeVersion;
     private final String projectVersion;
-    private final String presetPath;
-    private final String postsetPath;
+    private final List<String> presetPaths;
+    private final List<String> postsetPaths;
     private final String buildPropertiesPath;
     private final String includesFilesProperty;
     private final String sourcesFilesProperty;
@@ -66,15 +68,15 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
      */
     public static ICMakeListsManifest defaultManifest() {
         return new CMakeListsManifest(
-                CMAKE_VERSION,
-                PROJECT_VERSION,
-                PRESET_PATH,
-                POSTSET_PATH,
-                BUILD_PROPERTIES_PATH,
-                INCLUDES_FILES_PROPERTY,
-                SOURCES_FILES_PROPERTY,
-                INCLUDES_PROPERTY,
-                SOURCES_PROPERTY);
+            CMAKE_VERSION,
+            PROJECT_VERSION,
+            DEFAULT_PRESET_PATHS,
+            DEFAULT_POSTSET_PATHS,
+            BUILD_PROPERTIES_PATH,
+            INCLUDES_FILES_PROPERTY,
+            SOURCES_FILES_PROPERTY,
+            INCLUDES_PROPERTY,
+            SOURCES_PROPERTY);
     }
 
     /**
@@ -83,18 +85,34 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     public CMakeListsManifest(
         String cmakeVersion,
         String projectVersion,
-        String presetPath,
-        String postsetPath,
+        List<String> presetPaths,
+        List<String> postsetPaths,
         String buildPropertiesPath,
         String includesFilesProperty,
         String sourcesFilesProperty,
         String includesProperty,
         String sourcesProperty) {
 
+        Conditions.validateStringNotNullOrEmpty(
+            cmakeVersion,
+            "CMake Version");
+
+        Conditions.validateStringNotNullOrEmpty(
+            projectVersion,
+            "Project Version");
+
+        Conditions.validateNotNull(
+            presetPaths,
+            "Preset Paths");
+
+        Conditions.validateNotNull(
+            postsetPaths,
+            "Postset Paths");
+
         this.cmakeVersion = cmakeVersion;
         this.projectVersion = projectVersion;
-        this.presetPath = presetPath;
-        this.postsetPath = postsetPath;
+        this.presetPaths = presetPaths;
+        this.postsetPaths = postsetPaths;
         this.buildPropertiesPath = buildPropertiesPath;
         this.includesFilesProperty = includesFilesProperty;
         this.sourcesFilesProperty = sourcesFilesProperty;
@@ -121,19 +139,19 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     }
 
     /**
-     * Gets the path of preset.
+     * Gets the paths of preset.
      */
     @Override
-    public String getPresetPath() {
-        return this.presetPath;
+    public List<String> getPresetPaths() {
+        return this.presetPaths;
     }
 
     /**
-     * Gets the path of postset.
+     * Gets the paths of postset.
      */
     @Override
-    public String getPostsetPath() {
-        return this.postsetPath;
+    public List<String> getPostsetPaths() {
+        return this.postsetPaths;
     }
 
     /**
@@ -183,8 +201,8 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(PROPERTY_CMAKE_VERSION, this.cmakeVersion);
         writer.writeStringProperty(PROPERTY_PROJECT_VERSION, this.projectVersion);
-        writer.writeStringProperty(PROPERTY_PRESET_PATH, this.presetPath);
-        writer.writeStringProperty(PROPERTY_POSTSET_PATH, this.postsetPath);
+        writer.writeCollectionProperty(PROPERTY_PRESET_PATHS, this.presetPaths);
+        writer.writeCollectionProperty(PROPERTY_POSTSET_PATHS, this.postsetPaths);
         writer.writeStringProperty(PROPERTY_BUILD_PROPERTIES_PATH, this.buildPropertiesPath);
         writer.writeStringProperty(PROPERTY_INCLUDES_FILES_PROPERTY, this.includesFilesProperty);
         writer.writeStringProperty(PROPERTY_SOURCES_FILES_PROPERTY, this.sourcesFilesProperty);
@@ -204,13 +222,13 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             reader.readStringProperty(PROPERTY_PROJECT_VERSION) :
             PROJECT_VERSION;
 
-        String presetPath = reader.hasProperty(PROPERTY_PRESET_PATH) ?
-            reader.readStringProperty(PROPERTY_PRESET_PATH) :
-            PRESET_PATH;
+        List<String> presetPaths = reader.hasProperty(PROPERTY_PRESET_PATHS) ?
+            reader.readStringListProperty(PROPERTY_PRESET_PATHS) :
+            DEFAULT_PRESET_PATHS;
 
-        String postsetPath = reader.hasProperty(PROPERTY_POSTSET_PATH) ?
-            reader.readStringProperty(PROPERTY_POSTSET_PATH) :
-            POSTSET_PATH;
+        List<String> postsetPaths = reader.hasProperty(PROPERTY_POSTSET_PATHS) ?
+            reader.readStringListProperty(PROPERTY_POSTSET_PATHS) :
+            DEFAULT_POSTSET_PATHS;
 
         String buildPropertiesPath = reader.hasProperty(PROPERTY_BUILD_PROPERTIES_PATH) ?
             reader.readStringProperty(PROPERTY_BUILD_PROPERTIES_PATH) :
@@ -235,8 +253,8 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
         return new CMakeListsManifest(
             cmakeVersion,
             projectVersion,
-            presetPath,
-            postsetPath,
+            presetPaths,
+            postsetPaths,
             buildPropertiesPath,
             includesFilesProperty,
             sourcesFilesProperty,
@@ -317,8 +335,8 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             return new HashCodeBuilder(101, 103)
                 .withString(obj.getCMakeVersion())
                 .withString(obj.getProjectVersion())
-                .withString(obj.getPresetPath())
-                .withString(obj.getPostsetPath())
+                .withCollection(obj.getPresetPaths())
+                .withCollection(obj.getPostsetPaths())
                 .withString(obj.getBuildPropertiesPath())
                 .withString(obj.getIncludesFilesProperty())
                 .withString(obj.getSourcesFilesProperty())
@@ -343,8 +361,8 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             return new EqualBuilder()
                 .withString(lhs.getCMakeVersion(), rhs.getCMakeVersion())
                 .withString(lhs.getProjectVersion(), rhs.getProjectVersion())
-                .withString(lhs.getPresetPath(), rhs.getPresetPath())
-                .withString(lhs.getPostsetPath(), rhs.getPostsetPath())
+                .withCollection(lhs.getPresetPaths(), rhs.getPresetPaths())
+                .withCollection(lhs.getPostsetPaths(), rhs.getPostsetPaths())
                 .withString(lhs.getBuildPropertiesPath(), rhs.getBuildPropertiesPath())
                 .withString(lhs.getIncludesFilesProperty(), rhs.getIncludesFilesProperty())
                 .withString(lhs.getSourcesFilesProperty(), rhs.getSourcesFilesProperty())
@@ -377,8 +395,8 @@ public final class CMakeListsManifest implements ICMakeListsManifest {
             return new CompareToBuilder()
                 .withString(lhs.getCMakeVersion(), rhs.getCMakeVersion())
                 .withString(lhs.getProjectVersion(), rhs.getProjectVersion())
-                .withString(lhs.getPresetPath(), rhs.getPresetPath())
-                .withString(lhs.getPostsetPath(), rhs.getPostsetPath())
+                .withCollection(lhs.getPresetPaths(), rhs.getPresetPaths())
+                .withCollection(lhs.getPostsetPaths(), rhs.getPostsetPaths())
                 .withString(lhs.getBuildPropertiesPath(), rhs.getBuildPropertiesPath())
                 .withString(lhs.getIncludesFilesProperty(), rhs.getIncludesFilesProperty())
                 .withString(lhs.getSourcesFilesProperty(), rhs.getSourcesFilesProperty())

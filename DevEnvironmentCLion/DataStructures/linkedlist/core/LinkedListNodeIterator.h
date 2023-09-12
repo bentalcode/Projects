@@ -17,7 +17,7 @@ namespace datastructures {
             /**
              * Creates a new iterator of a linked list.
              */
-            static base::IIteratorPtr<ILinkedListNodePtr<T>> make(ILinkedListNodePtr<T> head);
+            static base::IIteratorSharedPtr<ILinkedListNodePtr<T>> make(ILinkedListNodePtr<T> head);
 
             /**
              * The LinkedListNodeIterator constructor.
@@ -65,7 +65,7 @@ namespace datastructures {
          * Creates a new iterator of a linked list.
          */
         template <typename T>
-        base::IIteratorPtr<ILinkedListNodePtr<T>> LinkedListNodeIterator<T>::make(ILinkedListNodePtr<T> head)
+        base::IIteratorSharedPtr<ILinkedListNodePtr<T>> LinkedListNodeIterator<T>::make(ILinkedListNodePtr<T> head)
         {
             return std::make_shared<LinkedListNodeIterator<T>>(head);
         }

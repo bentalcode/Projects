@@ -151,10 +151,10 @@ namespace test {
                 const base::ITwoDimensionalVector<IVertexPtr<TKey, TValue>>& expectedTopologicalSearch =
                     data.getTopologicalSearch();
 
-                base::IIteratorPtr<IVertexPtr<TKey, TValue>> iterator =
+                base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> iterator =
                     base::ListIterator<IVertexPtr<TKey, TValue>>::make(result);
 
-                base::IIteratorPtr<IVertexPtr<TKey, TValue>> expectedIterator =
+                base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> expectedIterator =
                     expectedTopologicalSearch.getIterator();
 
                 std::string topologicalSearchResult =
@@ -275,10 +275,10 @@ namespace test {
 
                     paths.sort();
 
-                    base::IIteratorPtr<IWalkPtr<TKey, TValue>> pathIterator =
+                    base::IIteratorSharedPtr<IWalkPtr<TKey, TValue>> pathIterator =
                     base::ListIterator<IWalkPtr<TKey, TValue>>::make(paths);
 
-                    base::IIteratorPtr<IWalkPtr<TKey, TValue>> expectedPathIterator =
+                    base::IIteratorSharedPtr<IWalkPtr<TKey, TValue>> expectedPathIterator =
                     base::VectorIterator<IWalkPtr<TKey, TValue>>::make(expectedPaths);
 
                     getAssertion().assertEqualsWithDereferenceIterators(
@@ -313,10 +313,10 @@ namespace test {
 
                     const VertexShortestPathsMap<TKey, TValue>& expectedResult = vertexShortestPathsIterator->second;
 
-                    IEquatableComparatorPtr<IVertexPtr<TKey, TValue>> keyComparator =
+                    IEquatableComparatorSharedPtr<IVertexPtr<TKey, TValue>> keyComparator =
                         DereferenceEquatableComparator<IVertexPtr<TKey, TValue>>::make();
 
-                    IEquatableComparatorPtr<long> valueComparator = EquatableComparator<long>::make();
+                    IEquatableComparatorSharedPtr<long> valueComparator = EquatableComparator<long>::make();
 
                     base::EqualBuilder equalBuilder;
                     bool status = equalBuilder.withMap(

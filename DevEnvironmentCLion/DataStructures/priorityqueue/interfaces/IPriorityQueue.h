@@ -108,8 +108,8 @@ namespace datastructures {
                 return false;
             }
 
-            base::IIteratorPtr<T> leftIterator = left.getIterator();
-            base::IIteratorPtr<T> rightIterator = right.getIterator();
+            base::IIteratorSharedPtr<T> leftIterator = left.getIterator();
+            base::IIteratorSharedPtr<T> rightIterator = right.getIterator();
 
             while (leftIterator->hasNext() && rightIterator->hasNext())
             {

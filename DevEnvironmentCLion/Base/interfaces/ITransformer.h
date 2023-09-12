@@ -38,8 +38,11 @@ namespace base
         virtual TToObject transform(const TFromObject& obj) const = 0;
     };
 
+    //
+    // Defines the SharedPtr of Transformer...
+    //
     template <typename T>
-    using ITransformerPtr = std::shared_ptr<ITransformer<T>>;
+    using ITransformerSharedPtr = std::shared_ptr<ITransformer<T>>;
 }
 
 #endif // I_TO_STRING_H_14d08249_40ab_449a_ac4f_aab15cea5793

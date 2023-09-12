@@ -36,12 +36,12 @@ namespace base {
         /**
          * Gets a default log.
          */
-        virtual ILogPtr getLog() = 0;
+        virtual ILogSharedPtr getLog() = 0;
 
         /**
          * Gets a new log by name.
          */
-        virtual ILogPtr getLog(const std::string& name) = 0;
+        virtual ILogSharedPtr getLog(const std::string& name) = 0;
 
         /**
          * Sets the default log level.

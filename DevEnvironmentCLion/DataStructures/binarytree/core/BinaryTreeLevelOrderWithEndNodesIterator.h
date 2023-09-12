@@ -18,7 +18,7 @@ namespace datastructures {
             /**
              * Creates a level order iterator with end nodes of a binary tree.
              */
-            static base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
+            static base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
 
             /**
              * The BinaryTreeLevelOrderWithEndNodesIterator constructor.
@@ -66,7 +66,7 @@ namespace datastructures {
          * Creates a level order iterator with end nodes of a binary tree.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
+        base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
         {
             return std::make_shared<BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>>(root);
         }

@@ -37,7 +37,10 @@ namespace base
         virtual bool validate() const = 0;
     };
 
-    using IValidatorPtr = std::shared_ptr<IValidator>;
+    //
+    // Defines the SharedPtr of Validator...
+    //
+    using IValidatorSharedPtr = std::shared_ptr<IValidator>;
 }
 
 #endif // I_VALIDATOR_H_827ca24c_230f_4ed3_bc43_e510d4638c77

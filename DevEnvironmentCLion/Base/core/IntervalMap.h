@@ -51,7 +51,7 @@ namespace base {
         /**
          * Gets the iterator.
          */
-        virtual IIteratorPtr<Pair<base::Interval<Key>, Value>> getIterator() const override;
+        virtual IIteratorSharedPtr<Pair<base::Interval<Key>, Value>> getIterator() const override;
 
     private:
         /**
@@ -219,9 +219,9 @@ namespace base {
     }
 
     template <typename Key, typename Value>
-    IIteratorPtr<Pair<base::Interval<Key>, Value>> IntervalMap<Key, Value>::getIterator() const
+    IIteratorSharedPtr<Pair<base::Interval<Key>, Value>> IntervalMap<Key, Value>::getIterator() const
     {
-        IIteratorPtr<Pair<base::Interval<Key>, Value>> iterator(new IntervalMapIterator<Key, Value>(m_map));
+        IIteratorSharedPtr<Pair<base::Interval<Key>, Value>> iterator(new IntervalMapIterator<Key, Value>(m_map));
         return iterator;
     }
 }

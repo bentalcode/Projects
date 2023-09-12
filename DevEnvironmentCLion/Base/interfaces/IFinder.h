@@ -38,8 +38,11 @@ namespace base
         virtual T find() = 0;
     };
 
+    //
+    // Defines the SharedPtr of Finder...
+    //
     template <typename T>
-    using IFinderPtr = std::shared_ptr<IFinder<T>>;
+    using IFinderSharedPtr = std::shared_ptr<IFinder<T>>;
 }
 
 #endif // I_FINDER_H_c51a9ffe_92b8_4187_8bb2_1c969137e9ca

@@ -21,7 +21,7 @@ namespace unit_testing
         /**
          * The constructor.
          */
-        explicit UnitTestManager(base::IMessageWriterPtr messageWriter);
+        explicit UnitTestManager(base::IMessageWriterSharedPtr messageWriter);
 
         /**
          * The destructor.
@@ -61,7 +61,7 @@ namespace unit_testing
          */
         void runUnitTest(IUnitTest& unitTest);
 
-        base::IMessageWriterPtr m_messageWriter;
+        base::IMessageWriterSharedPtr m_messageWriter;
 
         using UnitTestList = std::list<IUnitTestPtr>;
         UnitTestList m_unitTests;

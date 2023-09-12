@@ -128,12 +128,12 @@ namespace datastructures {
             /**
             * Gets an iterator of nodes.
             */
-            virtual base::IIteratorPtr<ILinkedListNodePtr<T>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<ILinkedListNodePtr<T>> getIterator() const override;
 
             /**
              * Gets an iterator of values of a list.
              */
-            virtual base::IIteratorPtr<T> getValueIterator() const override;
+            virtual base::IIteratorSharedPtr<T> getValueIterator() const override;
 
             /**
              * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
@@ -429,7 +429,7 @@ namespace datastructures {
          * Gets an iterator of nodes.
          */
         template <typename T>
-        base::IIteratorPtr<ILinkedListNodePtr<T>> LinkedList<T>::getIterator() const
+        base::IIteratorSharedPtr<ILinkedListNodePtr<T>> LinkedList<T>::getIterator() const
         {
             return LinkedListNodeIterator<T>::make(m_head);
         }
@@ -438,7 +438,7 @@ namespace datastructures {
          * Gets an iterator of values of a list.
          */
         template <typename T>
-        base::IIteratorPtr<T> LinkedList<T>::getValueIterator() const
+        base::IIteratorSharedPtr<T> LinkedList<T>::getValueIterator() const
         {
             return LinkedListNodeValueIterator<T>::make(getIterator());
         }

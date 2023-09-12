@@ -51,7 +51,7 @@ namespace unit_testing {
         /**
          * Sets the message writer.
          */
-        virtual void setMessageWriter(base::IMessageWriterPtr messageWriter) override;
+        virtual void setMessageWriter(base::IMessageWriterSharedPtr messageWriter) override;
 
     protected:
         /**
@@ -66,7 +66,7 @@ namespace unit_testing {
 
     private:
         std::string m_name;
-        base::IMessageWriterPtr m_messageWriter;
+        base::IMessageWriterSharedPtr m_messageWriter;
         test_base::Assertion m_assertion;
     };
 }

@@ -70,13 +70,13 @@ namespace base
     template <class T>
     void ReferenceCountHolder<T>::addReference()
     {
-        m_counter.addReference();
+        m_counter.incrementReference();
     }
 
     template <class T>
     void ReferenceCountHolder<T>::removeReference()
     {
-        m_counter.removeReference();
+        m_counter.decrementReference();
 
         if (m_counter.getCounter() == 0)
         {

@@ -99,7 +99,7 @@ namespace base
         /**
          * Gets the iterator.
          */
-        virtual IIteratorPtr<T> getIterator() const override;
+        virtual IIteratorSharedPtr<T> getIterator() const override;
 
         /**
          * Checks if a specific position is inbound.
@@ -129,8 +129,11 @@ namespace base
         size_t m_columnsSize;
     };
 
+    //
+    // Defines the SharedPtr of Matrix...
+    //
     template <typename T>
-    using MatrixPtr = std::shared_ptr<Matrix<T>>;
+    using MatrixSharedPtr = std::shared_ptr<Matrix<T>>;
 
     /**
      * The Matrix constructor, with an initial sizes: rowSize x colSize.
@@ -317,9 +320,9 @@ namespace base
      * Gets the iterator.
      */
     template <typename T>
-    IIteratorPtr<T> Matrix<T>::getIterator() const
+    IIteratorSharedPtr<T> Matrix<T>::getIterator() const
     {
-        IIteratorPtr<T> iterator(new TwoDimensionalVectorIterator<T>(m_data));
+        IIteratorSharedPtr<T> iterator(new TwoDimensionalVectorIterator<T>(m_data));
         return iterator;
     }
 
@@ -403,8 +406,8 @@ namespace base
             return false;
         }
 
-        IIteratorPtr<T> leftIterator = left.getIterator();
-        IIteratorPtr<T> rightIterator = right.getIterator();
+        IIteratorSharedPtr<T> leftIterator = left.getIterator();
+        IIteratorSharedPtr<T> rightIterator = right.getIterator();
 
         while (leftIterator->hasNext() && rightIterator->hasNext())
         {

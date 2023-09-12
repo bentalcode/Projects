@@ -563,7 +563,7 @@ void BitArray::validateIndex(size_t index) const
 /**
  * Gets the iterator.
  */
-base::IIteratorPtr<bool> BitArray::getIterator() const
+base::IIteratorSharedPtr<bool> BitArray::getIterator() const
 {
     return BitArrayIterator::make(*this);
 }
@@ -571,7 +571,7 @@ base::IIteratorPtr<bool> BitArray::getIterator() const
 /**
  * Gets the reverse iterator.
  */
-base::IReverseIteratorPtr<bool> BitArray::getReverseIterator() const
+base::IReverseIteratorSharedPtr<bool> BitArray::getReverseIterator() const
 {
     return BitArrayReverseIterator::make(*this);
 }

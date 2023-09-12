@@ -55,14 +55,14 @@ namespace test {
             const std::vector<T>& oneDimensionalArray,
             const std::vector<std::vector<T>>& twoDimensionalArray)
         {
-            base::IIteratorPtr<T> oneDimensionalArrayIterator(new base::VectorIterator<T>(oneDimensionalArray));
-            base::IIteratorPtr<T> twoDimensionalArrayIterator(new base::TwoDimensionalVectorIterator<T>(twoDimensionalArray));
+            base::IIteratorSharedPtr<T> oneDimensionalArrayIterator(new base::VectorIterator<T>(oneDimensionalArray));
+            base::IIteratorSharedPtr<T> twoDimensionalArrayIterator(new base::TwoDimensionalVectorIterator<T>(twoDimensionalArray));
 
-            std::vector<base::IIteratorPtr<T>> iterators;
+            std::vector<base::IIteratorSharedPtr<T>> iterators;
             iterators.push_back(oneDimensionalArrayIterator);
             iterators.push_back(twoDimensionalArrayIterator);
 
-            base::IIteratorPtr<int> iteratorOfIterators(new data_structures::IteratorOfIteratorCollection<int>(iterators));
+            base::IIteratorSharedPtr<int> iteratorOfIterators(new data_structures::IteratorOfIteratorCollection<int>(iterators));
 
             std::vector<T> data;
             data.insert(data.end(), oneDimensionalArray.begin(), oneDimensionalArray.end());
@@ -71,7 +71,7 @@ namespace test {
                 data.insert(data.end(), row.begin(), row.end());
             }
 
-            base::IIteratorPtr<T> dataIterator(new base::VectorIterator<T>(data));
+            base::IIteratorSharedPtr<T> dataIterator(new base::VectorIterator<T>(data));
 
             getAssertion().assertEqualsWithIterators(
                 *iteratorOfIterators,

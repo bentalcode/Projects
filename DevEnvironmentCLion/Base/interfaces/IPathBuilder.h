@@ -54,6 +54,9 @@ namespace base
         virtual IPathBuilder& setExtension(const std::string& extension) = 0;
     };
 
+    //
+    // Defines the SharedPtr of Path Builder...
+    //
     using IPathBuilderPtr = std::shared_ptr<IPathBuilder>;
 }
 

@@ -29,14 +29,14 @@ namespace datastructures {
             /**
              * The AbstractPriorityQueue constructor with an element comparator.
              */
-            explicit AbstractPriorityQueue(base::IBinaryComparatorPtr<T> elementComparator);
+            explicit AbstractPriorityQueue(base::IBinaryComparatorSharedPtr<T> elementComparator);
 
             /**
              * The AbstractPriorityQueue constructor with an element comparator and initial data.
              */
             AbstractPriorityQueue(
                 const std::vector<T>& data,
-                base::IBinaryComparatorPtr<T> elementComparator);
+                base::IBinaryComparatorSharedPtr<T> elementComparator);
 
         public:
             /**
@@ -116,12 +116,12 @@ namespace datastructures {
             /**
             * Gets an iterator.
             */
-            virtual base::IIteratorPtr<T> getIterator() const override;
+            virtual base::IIteratorSharedPtr<T> getIterator() const override;
 
             /**
              * Gets a reverse iterator.
              */
-            virtual base::IReverseIteratorPtr<T> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<T> getReverseIterator() const override;
 
         protected:
             /**
@@ -132,7 +132,7 @@ namespace datastructures {
             /**
              * Gets the comparator of an element.
              */
-            base::IBinaryComparatorPtr<T> getElementComparator() const;
+            base::IBinaryComparatorSharedPtr<T> getElementComparator() const;
 
         private:
             /**
@@ -175,14 +175,14 @@ namespace datastructures {
 
             typedef std::vector<T> DataType;
             DataType m_data;
-            base::IBinaryComparatorPtr<T> m_elementComparator;
+            base::IBinaryComparatorSharedPtr<T> m_elementComparator;
         };
 
         /**
          * The AbstractPriorityQueue constructor.
          */
         template <typename T>
-        AbstractPriorityQueue<T>::AbstractPriorityQueue(base::IBinaryComparatorPtr<T> elementComparator) :
+        AbstractPriorityQueue<T>::AbstractPriorityQueue(base::IBinaryComparatorSharedPtr<T> elementComparator) :
             m_elementComparator(elementComparator)
         {
         }
@@ -193,7 +193,7 @@ namespace datastructures {
         template <typename T>
         AbstractPriorityQueue<T>::AbstractPriorityQueue(
             const std::vector<T>& data,
-            base::IBinaryComparatorPtr<T> elementComparator) :
+            base::IBinaryComparatorSharedPtr<T> elementComparator) :
             m_data(data),
             m_elementComparator(elementComparator)
         {
@@ -370,7 +370,7 @@ namespace datastructures {
         * Gets an iterator.
         */
         template <typename T>
-        base::IIteratorPtr<T> AbstractPriorityQueue<T>::getIterator() const
+        base::IIteratorSharedPtr<T> AbstractPriorityQueue<T>::getIterator() const
         {
             return base::VectorIterator<T>::make(m_data);
         }
@@ -379,7 +379,7 @@ namespace datastructures {
          * Gets a reverse iterator.
          */
         template <typename T>
-        base::IReverseIteratorPtr<T> AbstractPriorityQueue<T>::getReverseIterator() const
+        base::IReverseIteratorSharedPtr<T> AbstractPriorityQueue<T>::getReverseIterator() const
         {
             return base::VectorReverseIterator<T>::make(m_data);
         }
@@ -397,7 +397,7 @@ namespace datastructures {
          * Gets the comparator of an element.
          */
         template <typename T>
-        base::IBinaryComparatorPtr<T> AbstractPriorityQueue<T>::getElementComparator() const
+        base::IBinaryComparatorSharedPtr<T> AbstractPriorityQueue<T>::getElementComparator() const
         {
             return m_elementComparator;
         }

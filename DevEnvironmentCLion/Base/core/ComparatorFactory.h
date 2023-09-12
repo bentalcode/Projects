@@ -45,13 +45,13 @@ namespace base {
          * Creates an iterator comparator.
          */
         template <typename T>
-        IteratorComparatorPtr<T> createIteratorComparator() const;
+        IteratorComparatorSharedPtr<T> createIteratorComparator() const;
 
         /**
          * Creates an iterable comparator.
          */
         template <typename T>
-        IterableComparatorPtr<T> createIterableComparator() const;
+        IterableComparatorSharedPtr<T> createIterableComparator() const;
     };
 
     /**
@@ -68,9 +68,9 @@ namespace base {
      * Creates an iterator comparator.
      */
     template <typename T>
-    IteratorComparatorPtr<T> ComparatorFactory::createIteratorComparator() const
+    IteratorComparatorSharedPtr<T> ComparatorFactory::createIteratorComparator() const
     {
-        IteratorComparatorPtr<T> comparator(new IterableComparator<T>());
+        IteratorComparatorSharedPtr<T> comparator(new IterableComparator<T>());
         return comparator;
     }
 
@@ -78,7 +78,7 @@ namespace base {
      * Creates an iterable comparator.
      */
     template <typename T>
-    IterableComparatorPtr<T> ComparatorFactory::createIterableComparator() const
+    IterableComparatorSharedPtr<T> ComparatorFactory::createIterableComparator() const
     {
         return new IterableComparator<T>();
     }

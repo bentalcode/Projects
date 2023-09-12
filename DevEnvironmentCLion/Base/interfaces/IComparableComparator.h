@@ -43,8 +43,11 @@ namespace base {
         virtual int compareTo(const T& lhs, const T& rhs) const = 0;
     };
 
+    //
+    // Defines the SharedPtr of Comparable Comparator.
+    //
     template <typename T>
-    using IComparableComparatorPtr = std::shared_ptr<IComparableComparator<T>>;
+    using IComparableComparatorSharedPtr = std::shared_ptr<IComparableComparator<T>>;
 }
 
 #endif // I_COMPARABLE_COMPARATOR_H_3453af25_a6c9_4a19_af43_3209bda86588

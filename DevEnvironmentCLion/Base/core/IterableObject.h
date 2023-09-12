@@ -15,7 +15,7 @@ namespace base
         /**
          * The IterableObject constructor.
          */
-        explicit IterableObject(IIteratorPtr<T> iterator);
+        explicit IterableObject(IIteratorSharedPtr<T> iterator);
 
         /**
          * The IterableObject destructor.
@@ -44,7 +44,7 @@ namespace base
              * The IteratorObject constructor.
              */
             IteratorObject(
-                IIteratorPtr<T> iterator,
+                IIteratorSharedPtr<T> iterator,
                 T currElement);
 
             /**
@@ -68,7 +68,7 @@ namespace base
             const T operator*() const;
 
         private:
-            IIteratorPtr<T> m_iterator;
+            IIteratorSharedPtr<T> m_iterator;
             T m_currElement;
         };
 
@@ -83,14 +83,14 @@ namespace base
         IteratorObject end() const;
 
     private:
-        IIteratorPtr<T> m_iterator;
+        IIteratorSharedPtr<T> m_iterator;
     };
 
     /**
      * The IterableObject constructor.
      */
     template <typename T>
-    IterableObject<T>::IterableObject(IIteratorPtr<T> iterator) :
+    IterableObject<T>::IterableObject(IIteratorSharedPtr<T> iterator) :
         m_iterator(iterator)
     {
     }
@@ -129,11 +129,11 @@ namespace base
     }
 
     /**
-     * The IterableObject::IteratorObject constructor.
+     * The IteratorObject constructor.
      */
     template <typename T>
     IterableObject<T>::IteratorObject::IteratorObject(
-        IIteratorPtr<T> iterator,
+        IIteratorSharedPtr<T> iterator,
         T currElement) :
         m_iterator(iterator),
         m_currElement(currElement)
@@ -141,7 +141,7 @@ namespace base
     }
 
     /**
-     * The IterableObject::IteratorObject destructor.
+     * The IteratorObject destructor.
      */
     template <typename T>
     IterableObject<T>::IteratorObject::~IteratorObject()
@@ -149,7 +149,7 @@ namespace base
     }
 
     /**
-     * The IterableObject::IteratorObject::operator++ for implementing a range-based loop.
+     * The operator++ for implementing a range-based loop.
      */
     template <typename T>
     typename IterableObject<T>::IteratorObject& IterableObject<T>::IteratorObject::operator++()
@@ -166,7 +166,7 @@ namespace base
     }
 
     /**
-     * The IterableObject::IteratorObject::operator!= for implementing a range-based loop.
+     * The operator!= for implementing a range-based loop.
      */
     template <typename T>
     bool IterableObject<T>::IteratorObject::operator!=(const IterableObject<T>::IteratorObject& other) const
@@ -175,7 +175,7 @@ namespace base
     }
 
     /**
-     * The IterableObject::IteratorObject::operator* for implementing a range-based loop.
+     * The operator* for implementing a range-based loop.
      */
     template <typename T>
     const T IterableObject<T>::IteratorObject::operator*() const
@@ -183,8 +183,11 @@ namespace base
         return m_currElement;
     }
 
+    //
+    // Defines the SharedPtr of Iterable Object...
+    //
     template <typename T>
-    using IIterableObjectPtr = std::shared_ptr<IterableObject<T>>;
+    using IIterableObjectSharedPtr = std::shared_ptr<IterableObject<T>>;
 }
 
 #endif // ITERABLE_OBJECT_H_eb689d3f_66fd_4733_b1d3_656abb7d59c7

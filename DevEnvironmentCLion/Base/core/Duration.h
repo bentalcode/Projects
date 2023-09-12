@@ -84,7 +84,7 @@ namespace base
     };
 
     using Duration = base::DurationType<double>;
-    using DurationPtr = std::shared_ptr<Duration>;
+    using DurationSharedPtr = std::shared_ptr<Duration>;
 
     template <typename ArithmeticType, typename PeriodType>
     DurationType<ArithmeticType, PeriodType>::DurationType(const std::chrono::duration<ArithmeticType, PeriodType>& duration) :

@@ -23,7 +23,7 @@ namespace test_base {
         /**
          * The constructor.
          */
-        explicit Assertion(base::IMessageWriterPtr messageWriter);
+        explicit Assertion(base::IMessageWriterSharedPtr messageWriter);
 
         /**
          * The destructor.
@@ -147,10 +147,10 @@ namespace test_base {
         /**
          * Sets the message writer.
          */
-        void setMessageWriter(base::IMessageWriterPtr messageWriter);
+        void setMessageWriter(base::IMessageWriterSharedPtr messageWriter);
 
     private:
-        base::IMessageWriterPtr m_messageWriter;
+        base::IMessageWriterSharedPtr m_messageWriter;
     };
 
     /**

@@ -38,8 +38,11 @@ namespace base
         virtual std::string toString(const T& obj) const = 0;
     };
 
+    //
+    // Defines the Share Ptr of To String...
+    //
     template <typename T>
-    using IToStringPtr = std::shared_ptr<IToString<T>>;
+    using IToStringSharedPtr = std::shared_ptr<IToString<T>>;
 }
 
 #endif // I_TO_STRING_H_14d08249_40ab_449a_ac4f_aab15cea5793

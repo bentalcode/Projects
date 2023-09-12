@@ -38,11 +38,14 @@ namespace base
         /**
          * Gets the iterator of values.
          */
-        virtual base::IIteratorPtr<T> getValueIterator() const = 0;
+        virtual base::IIteratorSharedPtr<T> getValueIterator() const = 0;
     };
 
+    //
+    // Defines SharedPtr of Value Iterable...
+    //
     template <typename T>
-    using IValueIterablePtr = std::shared_ptr<IValueIterable<T>>;
+    using IValueIterableSharedPtr = std::shared_ptr<IValueIterable<T>>;
 }
 
 #endif // I_VALUE_ITERABLE_H_9bb965c2_1faa_4959_9fd1_2212cd577671

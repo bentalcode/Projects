@@ -66,6 +66,9 @@ namespace base {
             const IComparableComparator<TValue>& valueComparator);
     };
 
+    //
+    // Defines the SharedPtr of Map Comparator...
+    //
     template <typename TKey, typename TValue, typename TCompare>
     using MapComparatorPtr = std::shared_ptr<MapComparator<TKey, TValue, TCompare>>;
 

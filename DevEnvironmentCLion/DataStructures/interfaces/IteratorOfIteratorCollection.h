@@ -16,15 +16,15 @@ namespace data_structures
         /**
          * Creates a new iterator from a collection of iterators.
          */
-        static base::IIteratorPtr<T> of(const std::vector<base::IIteratorPtr<T>>& iterators) {
+        static base::IIteratorSharedPtr<T> of(const std::vector<base::IIteratorSharedPtr<T>>& iterators) {
             return new IteratorOfIteratorCollection<T>(iterators);
         }
 
         /**
          * Creates a new iterator from a collection of iterables.
          */
-        static base::IIteratorPtr<T> ofIterables(const std::vector<base::IIterable<T>>& iterables) {
-            std::vector<base::IIteratorPtr<T>> iterators;
+        static base::IIteratorSharedPtr<T> ofIterables(const std::vector<base::IIterable<T>>& iterables) {
+            std::vector<base::IIteratorSharedPtr<T>> iterators;
 
             for (T iterable : iterables) {
                 iterators.push_back(iterable.getIterator());
@@ -36,7 +36,7 @@ namespace data_structures
         /**
          * The constructor.
          */
-        explicit IteratorOfIteratorCollection(const std::vector<base::IIteratorPtr<T>>& iterators);
+        explicit IteratorOfIteratorCollection(const std::vector<base::IIteratorSharedPtr<T>>& iterators);
 
         /**
          * The destructor.
@@ -71,12 +71,12 @@ namespace data_structures
         virtual void reset() override;
 
     private:
-        std::vector<base::IIteratorPtr<T>> m_iterators;
-        std::queue<base::IIteratorPtr<T>> m_iteratorsQueue;
+        std::vector<base::IIteratorSharedPtr<T>> m_iterators;
+        std::queue<base::IIteratorSharedPtr<T>> m_iteratorsQueue;
     };
 
     template <typename T>
-    IteratorOfIteratorCollection<T>::IteratorOfIteratorCollection(const std::vector<base::IIteratorPtr<T>>& iterators) :
+    IteratorOfIteratorCollection<T>::IteratorOfIteratorCollection(const std::vector<base::IIteratorSharedPtr<T>>& iterators) :
         m_iterators(iterators)
     {
         reset();
@@ -98,7 +98,7 @@ namespace data_structures
     {
         assert(hasNext());
 
-        base::IIteratorPtr<T> currIterator = m_iteratorsQueue.front();
+        base::IIteratorSharedPtr<T> currIterator = m_iteratorsQueue.front();
         T currElement = currIterator->next();
 
         if (!currIterator->hasNext()) {
@@ -111,7 +111,7 @@ namespace data_structures
     template <typename T>
     void IteratorOfIteratorCollection<T>::reset()
     {
-        for (base::IIteratorPtr<T> iterator : m_iterators) {
+        for (base::IIteratorSharedPtr<T> iterator : m_iterators) {
             if (iterator->hasNext()) {
                 m_iteratorsQueue.push(iterator);
             }

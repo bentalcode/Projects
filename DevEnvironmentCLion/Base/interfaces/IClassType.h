@@ -46,12 +46,18 @@ namespace base
         virtual int compare(const IClassType& classType) const = 0;
     };
 
+    /**
+     * Implements operator less than.
+     */
     inline bool operator<(const IClassType& left, const IClassType& right)
     {
         return left.compare(right) < 0;
     }
 
-    using IClassTypePtr = std::shared_ptr<IClassType>;
+    //
+    // Defines the SharedPtr of Class Type...
+    //
+    using IClassTypeSharedPtr = std::shared_ptr<IClassType>;
 }
 
 #endif // I_CLASS_TYPE_H_336fb880_9817_40c3_8a48_2f083391252c

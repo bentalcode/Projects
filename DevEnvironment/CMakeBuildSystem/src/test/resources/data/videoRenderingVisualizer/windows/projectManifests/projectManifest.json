@@ -1,0 +1,83 @@
+{
+    "name": "VideoRenderingVisualizer",
+    "rootPath": "c:\\git\\repositories\\Projects\\VideoRenderingVisualizer",
+    "effectiveModules": [
+        "VideoRenderingVisualizerUtilities",
+        "VideoRenderingVisualizerTestingUtilities",
+        "VideoRenderingVisualizerUtilitiesTest"
+    ],
+    "modules": [
+        {
+            "name": "VideoRenderingVisualizerUtilities",
+            "path": "Src/Utilities",
+            "type": "library",
+            "properties": {
+                "cmakeListsTargetPath": "CMakeLists.txt",
+                "headerFileExtensions": [
+                    "h"
+                ],
+                "sourceFileExtensions": [
+                    "cpp"
+                ],
+                "cmakeListsFileExtensions": [
+                    "CMakeLists.txt"
+                ]
+            },
+            "cmakeListsManifest": {
+                "cmakeVersion": "3.6",
+                "projectVersion": "1.0",
+                "presetPaths": [
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt",
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\utilitiesCMakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "VideoRenderingVisualizerTestingUtilities",
+            "path": "Src/TestingUtilities",
+            "type": "library",
+            "properties": {
+                "cmakeListsTargetPath": "CMakeLists.txt",
+                "headerFileExtensions": [
+                    "h"
+                ],
+                "sourceFileExtensions": [
+                    "cpp"
+                ],
+                "cmakeListsFileExtensions": [
+                    "CMakeLists.txt"
+                ]
+            },
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt",
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\utilitiesCMakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "VideoRenderingVisualizerUtilitiesTest",
+            "path": "Testing/Utilities/UtilitiesTest",
+            "type": "executable",
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt",
+                    "data\\videoRenderingVisualizer\\${os.name}\\cmakeListsManifests\\utilitiesTestCMakeListsPostset.txt"
+                ]
+            },
+            "dependentModules": [
+                "VideoRenderingVisualizerUtilities",
+                "VideoRenderingVisualizerTestingUtilities"
+            ]
+        }
+    ]
+}

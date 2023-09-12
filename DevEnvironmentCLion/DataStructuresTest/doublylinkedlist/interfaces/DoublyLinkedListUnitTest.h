@@ -136,8 +136,8 @@ namespace test {
                 //
                 test_base::IterationTest iterationTest;
 
-                base::IIterablePtr<IDoublyLinkedListNodePtr<T>> containerIterable = container;
-                base::IIteratorPtr<IDoublyLinkedListNodePtr<T>> expectedIterator = base::VectorIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
+                base::IIterableSharedPtr<IDoublyLinkedListNodePtr<T>> containerIterable = container;
+                base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> expectedIterator = base::VectorIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
 
                 iterationTest.testForwardIterationWithDereference(
                     containerIterable,
@@ -147,8 +147,8 @@ namespace test {
                 //
                 // Test the reverse iterator of the container...
                 //
-                base::IReverseIterablePtr<IDoublyLinkedListNodePtr<T>> containerReverseIterable = container;
-                base::IReverseIteratorPtr<IDoublyLinkedListNodePtr<T>> expectedReverseIterator =
+                base::IReverseIterableSharedPtr<IDoublyLinkedListNodePtr<T>> containerReverseIterable = container;
+                base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> expectedReverseIterator =
                     base::VectorReverseIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
 
                 iterationTest.testReverseIterationWithDereference(
@@ -159,8 +159,8 @@ namespace test {
                 //
                 // Test the value iterator of the container...
                 //
-                base::IValueIterablePtr<T> valueIterable = container;
-                base::IIteratorPtr<T> expectedValueIterator = base::VectorIterator<T>::make(data.getValues());
+                base::IValueIterableSharedPtr<T> valueIterable = container;
+                base::IIteratorSharedPtr<T> expectedValueIterator = base::VectorIterator<T>::make(data.getValues());
 
                 iterationTest.testValueIteration(
                     valueIterable,
@@ -170,8 +170,8 @@ namespace test {
                 //
                 // Test the value reverse iterator of the container...
                 //
-                base::IValueReverseIterablePtr<T> valueReverseIterable = container;
-                base::IReverseIteratorPtr<T> expectedValueReverseIterator = base::VectorReverseIterator<T>::make(data.getValues());
+                base::IValueReverseIterableSharedPtr<T> valueReverseIterable = container;
+                base::IReverseIteratorSharedPtr<T> expectedValueReverseIterator = base::VectorReverseIterator<T>::make(data.getValues());
 
                 iterationTest.testValueReverseIteration(
                     valueReverseIterable,
