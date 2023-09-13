@@ -39,7 +39,10 @@ namespace command {
         //virtual const IParameterMetadata& getMetadata() const = 0;
     };
 
-    using IIndexedParameterMetadataPtr = std::shared_ptr<IIndexedParameterMetadata>;
+    //
+    // Defines the SharedPtr of Indexed Parameter Metadata...
+    //
+    using IIndexedParameterMetadataSharedPtr = std::shared_ptr<IIndexedParameterMetadata>;
 }
 
 #endif // I_INDEXED_PARAMETER_METADATA_H_5bb1cdf8_1336_41eb_854a_c2550e0cb9b7

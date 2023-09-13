@@ -41,9 +41,9 @@ void* MemoryPool::acquireElement()
     //
     // First, try to find a pool with an available element...
     //
-    FixedMemoryPoolPtr availablePool;
+    FixedMemoryPoolSharedPtr availablePool;
 
-    for (FixedMemoryPoolPtr pool : m_poolList)
+    for (FixedMemoryPoolSharedPtr pool : m_poolList)
     {
         if (!pool->overCapacity())
         {
@@ -82,7 +82,7 @@ void MemoryPool::releaseElement(MemoryAddress elementPtr)
     //
     std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
-    FixedMemoryPoolPtr elementPool = getElementPool(elementPtr);
+    FixedMemoryPoolSharedPtr elementPool = getElementPool(elementPtr);
 
     elementPool->releaseElement(elementPtr);
     removeElementPool(elementPtr);
@@ -132,7 +132,7 @@ std::size_t MemoryPool::size() const
     //
     // Include the size of each pool...
     //
-    for (FixedMemoryPoolPtr pool : m_poolList)
+    for (FixedMemoryPoolSharedPtr pool : m_poolList)
     {
         size += pool->size();
     }
@@ -151,13 +151,13 @@ std::size_t MemoryPool::size() const
     //
     // Include the size of the pool list...
     //
-    size_t poolListSize = m_poolList.size() * sizeof(FixedMemoryPoolPtr);
+    size_t poolListSize = m_poolList.size() * sizeof(FixedMemoryPoolSharedPtr);
     size += sizeof(poolListSize);
 
     //
     // Include the size of the element-pool lookup...
     //
-    size_t poolMapEntry = sizeof(MemoryRawAddress) + sizeof(FixedMemoryPoolPtr);
+    size_t poolMapEntry = sizeof(MemoryRawAddress) + sizeof(FixedMemoryPoolSharedPtr);
     size_t poolMapSize = m_elementToPoolMap.size() * poolMapEntry;
 
     size += poolMapSize;
@@ -168,9 +168,9 @@ std::size_t MemoryPool::size() const
 /**
  * Adds a new pool.
  */
-FixedMemoryPoolPtr MemoryPool::addPool()
+FixedMemoryPoolSharedPtr MemoryPool::addPool()
 {
-    FixedMemoryPoolPtr poolPtr(new FixedMemoryPool(
+    FixedMemoryPoolSharedPtr poolPtr(new FixedMemoryPool(
         m_initialNumberOfElements,
         m_elementSizeInBytes,
         m_alignment));
@@ -194,7 +194,7 @@ bool MemoryPool::hasElement(MemoryAddress elementPtr) const
 /**
  * Gets the corresponding pool of an element.
  */
-FixedMemoryPoolPtr MemoryPool::getElementPool(MemoryAddress elementPtr) const
+FixedMemoryPoolSharedPtr MemoryPool::getElementPool(MemoryAddress elementPtr) const
 {
     MemoryRawAddress elementRawPtr = reinterpret_cast<MemoryRawAddress>(elementPtr);
     ElementAddressToPoolMap::const_iterator i = m_elementToPoolMap.find(elementRawPtr);
@@ -211,7 +211,7 @@ FixedMemoryPoolPtr MemoryPool::getElementPool(MemoryAddress elementPtr) const
 /**
  * Sets the corresponding pool of an element.
  */
-void MemoryPool::setElementPool(MemoryAddress elementPtr, FixedMemoryPoolPtr poolPtr)
+void MemoryPool::setElementPool(MemoryAddress elementPtr, FixedMemoryPoolSharedPtr poolPtr)
 {
     MemoryRawAddress elementRawPtr = reinterpret_cast<MemoryRawAddress>(elementPtr);
     m_elementToPoolMap[elementRawPtr] = poolPtr;
@@ -245,7 +245,7 @@ void MemoryPool::getPoolInformation(std::ostream& stream) const
     stream << std::endl << "Sub Pools:" << std::endl;
 
     int index = 0;
-    for (FixedMemoryPoolPtr pool : m_poolList)
+    for (FixedMemoryPoolSharedPtr pool : m_poolList)
     {
         ++index;
 

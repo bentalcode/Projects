@@ -120,5 +120,3 @@ void MemoryAllocatorUnitTest::testAlignedMemoryAllocator(int size, int alignment
             "Invalid alignment allocation logic.");
     }
 }
-
-

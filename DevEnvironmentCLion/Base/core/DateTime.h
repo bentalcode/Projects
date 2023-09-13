@@ -5,8 +5,11 @@
 
 namespace base
 {
+    //
+    // Defines the SharedPtr of Date Time...
+    //
     class DateTime;
-    using DateTimePtr = std::shared_ptr<DateTime>;
+    using DateTimeSharedPtr = std::shared_ptr<DateTime>;
 
     /**
      * The DateTime class template implements a date time.
@@ -17,7 +20,7 @@ namespace base
         /**
          * Creates a new date-time.
          */
-        static DateTimePtr make(const std::chrono::system_clock::time_point& timePoint);
+        static DateTimeSharedPtr make(const std::chrono::system_clock::time_point& timePoint);
 
         /**
          * The constructor.
@@ -54,7 +57,7 @@ namespace base
         /**
          * Gets the current time.
          */
-        static DateTimePtr now();
+        static DateTimeSharedPtr now();
 
         /**
          * Gets the current time point.

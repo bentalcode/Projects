@@ -16,17 +16,17 @@ namespace command {
         /**
          * Creates a help parameter.
          */
-        static IParameterPtr createHelpParameter();
+        static IParameterSharedPtr createHelpParameter();
 
         /**
          * Creates meta-data of a help parameter.
          */
-        static INamedParameterMetadataPtr createHelpParameterMetadata();
+        static INamedParameterMetadataSharedPtr createHelpParameterMetadata();
 
         /**
          * Creates a new command help metadata.
          */
-        static ICommandHelpMetadataPtr make(
+        static ICommandHelpMetadataSharedPtr make(
             const std::string& usageMessage,
             const std::string& shortName = CommandConstants::helpShortName,
             const std::string& longName = CommandConstants::helpLongName);
@@ -78,7 +78,10 @@ namespace command {
         std::string m_usageMessage;
     };
 
-    using ICommandHelpMetadataPtr = std::shared_ptr<ICommandHelpMetadata>;
+    //
+    // Defines the SharedPtr of Command Help Metadata...
+    //
+    using ICommandHelpMetadataSharedPtr = std::shared_ptr<ICommandHelpMetadata>;
 }
 
 #endif // COMMAND_HELP_METADATA_H_efed9bb8_5f12_455c_88f5_076e86ddf7f4

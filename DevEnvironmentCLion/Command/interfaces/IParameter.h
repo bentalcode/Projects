@@ -91,7 +91,7 @@ namespace command {
         /**
          * Gets a duration value of a parameter.
          */
-        virtual base::DurationPtr getDurationValue() const = 0;
+        virtual base::DurationSharedPtr getDurationValue() const = 0;
 
         /**
          * Gets a string array value of a parameter.
@@ -99,7 +99,10 @@ namespace command {
         virtual void getStringArrayValue(std::vector<std::string>& result) const = 0;
     };
 
-    using IParameterPtr = std::shared_ptr<IParameter>;
+    //
+    // Defines the SharedPtr of Parameter...
+    //
+    using IParameterSharedPtr = std::shared_ptr<IParameter>;
 }
 
 #endif // I_PARAMETER_b9351446_1760_4431_9260_ae23a3d040bf

@@ -38,33 +38,33 @@ namespace test {
                 /**
                  * Gets data of the tests of a priority queue.
                  */
-                std::vector<PriorityQueueDataPtr<int>> getData() const;
+                std::vector<PriorityQueueDataSharedPtr<int>> getData() const;
 
             private:
                 /**
                  * Gets the data of priority queue1.
                  */
-                static PriorityQueueDataPtr<int> getPriorityQueueData1();
+                static PriorityQueueDataSharedPtr<int> getPriorityQueueData1();
 
                 /**
                  * Gets the data of priority queue2.
                  */
-                static PriorityQueueDataPtr<int> getPriorityQueueData2();
+                static PriorityQueueDataSharedPtr<int> getPriorityQueueData2();
 
                 /**
                  * Gets the data of priority queue3.
                  */
-                static PriorityQueueDataPtr<int> getPriorityQueueData3();
+                static PriorityQueueDataSharedPtr<int> getPriorityQueueData3();
 
                 /**
                  * Gets the data of priority queue4.
                  */
-                static PriorityQueueDataPtr<int> getPriorityQueueData4();
+                static PriorityQueueDataSharedPtr<int> getPriorityQueueData4();
 
                 /**
                  * Gets the data of priority queue5.
                  */
-                static PriorityQueueDataPtr<int> getPriorityQueueData5();
+                static PriorityQueueDataSharedPtr<int> getPriorityQueueData5();
             };
 
             //

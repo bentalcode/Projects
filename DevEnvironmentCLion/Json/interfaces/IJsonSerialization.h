@@ -39,7 +39,10 @@ namespace json
         virtual void writeJson(IJsonObjectWriter& writer) = 0;
     };
 
-    using IJsonSerializationPtr = std::shared_ptr<IJsonSerialization>;
+    //
+    // Defines the SharedPtr of Json Serialization...
+    //
+    using IJsonSerializationSharedPtr = std::shared_ptr<IJsonSerialization>;
 }
 
 #endif // I_JSON_SERIALIZATION_H_5095abab_87b5_42fe_9bb9_d09925af3352

@@ -14,16 +14,16 @@ namespace command {
         /**
          * Creates a new parameter set.
          */
-        static IParameterSetPtr make(
+        static IParameterSetSharedPtr make(
             int index,
-            const std::vector<IParameterPtr>& parameters);
+            const std::vector<IParameterSharedPtr>& parameters);
 
         /**
          * The ParameterSet constructor.
          */
         ParameterSet(
             int index,
-            const std::vector<IParameterPtr>& parameters);
+            const std::vector<IParameterSharedPtr>& parameters);
 
         /**
          * The ParameterSet destructor.
@@ -50,14 +50,14 @@ namespace command {
         /**
          * Gets parameters map of a parameter-set.
          */
-        using ParameterMap = std::map<std::string, IParameterPtr>;
+        using ParameterMap = std::map<std::string, IParameterSharedPtr>;
         virtual const ParameterMap& getParameters() const override;
 
         /**
          * Gets a parameter by a manifest name.
          * The parameter can be null.
          */
-        virtual IParameterPtr getParameter(const std::string& name) const override;
+        virtual IParameterSharedPtr getParameter(const std::string& name) const override;
 
         /**
          * Checks whether a parameter exists by a manifest name.
@@ -68,13 +68,16 @@ namespace command {
         /**
          * Creates the parameter map.
          */
-        void createParameterMap(const std::vector<IParameterPtr>& parameters);
+        void createParameterMap(const std::vector<IParameterSharedPtr>& parameters);
 
         int m_index;
         ParameterMap m_parameters;
     };
 
-    using IParameterSetPtr = std::shared_ptr<IParameterSet>;
+    //
+    // Defines the SharedPtr of Parameter Set...
+    //
+    using IParameterSetSharedPtr = std::shared_ptr<IParameterSet>;
 }
 
 #endif // PARAMETER_SET_H_cba42bfc_3623_49b6_84da_19383ce899ba

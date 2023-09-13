@@ -41,30 +41,33 @@ namespace test {
                 /**
                  * Gets the data of the trees.
                  */
-                std::vector<BinaryTreeDataPtr<int, std::string>> getData() const;
+                std::vector<BinaryTreeDataSharedPtr<int, std::string>> getData() const;
 
                 /**
                  * Gets the data of tree1.
                  */
-                BinaryTreeDataPtr<int, std::string> getTreeData1() const;
+                BinaryTreeDataSharedPtr<int, std::string> getTreeData1() const;
 
                 /**
                  * Gets the data of tree2.
                  */
-                BinaryTreeDataPtr<int, std::string> getTreeData2() const;
+                BinaryTreeDataSharedPtr<int, std::string> getTreeData2() const;
 
                 /**
                  * Gets the data of tree3.
                  */
-                BinaryTreeDataPtr<int, std::string> getTreeData3() const;
+                BinaryTreeDataSharedPtr<int, std::string> getTreeData3() const;
 
                 /**
                  * Gets the data of tree4.
                  */
-                BinaryTreeDataPtr<int, std::string> getTreeData4() const;
+                BinaryTreeDataSharedPtr<int, std::string> getTreeData4() const;
             };
 
-            using BinaryTreeTestDataPtr = std::shared_ptr<BinaryTreeTestData>;
+            //
+            // Defines the SharedPtr of Binary Tree Test Data...
+            //
+            using BinaryTreeTestDataSharedPtr = std::shared_ptr<BinaryTreeTestData>;
         }
     }
 }

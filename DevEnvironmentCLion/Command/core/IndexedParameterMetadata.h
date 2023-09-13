@@ -15,7 +15,7 @@ namespace command {
         /**
          * Creates an indexed parameter meta-data.
          */
-        static IIndexedParameterMetadataPtr make(
+        static IIndexedParameterMetadataSharedPtr make(
             const std::string& name,
             const std::string& description);
 

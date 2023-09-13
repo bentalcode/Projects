@@ -8,8 +8,11 @@
 
 namespace memory_management
 {
+    //
+    // Defines the SharedPtr of Fixed Memory Pool...
+    //
     class FixedMemoryPool;
-    using FixedMemoryPoolPtr = std::shared_ptr<FixedMemoryPool>;
+    using FixedMemoryPoolSharedPtr = std::shared_ptr<FixedMemoryPool>;
 
     /**
      * The FixedMemoryPool class implements a fixed memory pool.

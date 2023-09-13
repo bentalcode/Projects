@@ -14,7 +14,7 @@ namespace command {
         /**
          * Creates a new message writer.
          */
-        static ICommandMessageWriterPtr make(const std::string& usageMessage);
+        static ICommandMessageWriterSharedPtr make(const std::string& usageMessage);
 
         /**
          * The CommandMessageWriter Constructor.
@@ -51,11 +51,11 @@ namespace command {
         /**
          * Gets the message writer.
          */
-        virtual base::IMessageWriterPtr getMessageWriter() override;
+        virtual base::IMessageWriterSharedPtr getMessageWriter() override;
 
     private:
         std::string m_usageMessage;
-        base::IMessageWriterPtr m_messageWriter;
+        base::IMessageWriterSharedPtr m_messageWriter;
     };
 }
 

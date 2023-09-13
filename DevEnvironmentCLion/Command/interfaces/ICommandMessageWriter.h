@@ -46,10 +46,13 @@ namespace command {
         /**
          * Gets the message writer.
          */
-        virtual base::IMessageWriterPtr getMessageWriter() = 0;
+        virtual base::IMessageWriterSharedPtr getMessageWriter() = 0;
     };
 
-    using ICommandMessageWriterPtr = std::shared_ptr<ICommandMessageWriter>;
+    //
+    // Define the Shared Ptr Command Message Writer...
+    //
+    using ICommandMessageWriterSharedPtr = std::shared_ptr<ICommandMessageWriter>;
 }
 
 #endif // I_COMMAND_MESSAGE_WRITER_H_c1629ca1_1995_4761_a17d_cfd8c4c2b4bd

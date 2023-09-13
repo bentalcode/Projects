@@ -44,7 +44,10 @@ namespace command {
         virtual const NamedParameters& getNamedParameters() const = 0;
     };
 
-    using IInputParametersPtr = std::shared_ptr<IInputParameters>;
+    //
+    // Defines the SharedPtr of Input Parameters...
+    //
+    using IInputParametersSharedPtr = std::shared_ptr<IInputParameters>;
 }
 
 #endif // I_INPUT_PARAMETERS_H_a7aa3483_3e17_4c82_8883_fda8cdfa930b

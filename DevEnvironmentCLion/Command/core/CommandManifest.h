@@ -14,7 +14,7 @@ namespace command {
         /**
          * Creates a new command manifest.
          */
-        static ICommandManifestPtr make(
+        static ICommandManifestSharedPtr make(
             const std::string& name,
             const std::string& description,
             const std::string& usageMessage);
@@ -22,11 +22,11 @@ namespace command {
         /**
          * Creates a new command manifest.
          */
-        static ICommandManifestPtr make(
+        static ICommandManifestSharedPtr make(
             const std::string& name,
             const std::string& description,
             const std::string& usageMessage,
-            const std::vector<IParameterSetMetadataPtr>& parameterSetMetadata);
+            const std::vector<IParameterSetMetadataSharedPtr>& parameterSetMetadata);
 
 
         /**
@@ -36,8 +36,8 @@ namespace command {
             const std::string& name,
             const std::string& description,
             const std::string& usageMessage,
-            ICommandHelpMetadataPtr helpMetadata,
-            const std::vector<IParameterSetMetadataPtr>& parameterSetMetadata);
+            ICommandHelpMetadataSharedPtr helpMetadata,
+            const std::vector<IParameterSetMetadataSharedPtr>& parameterSetMetadata);
 
         /**
          * The CommandManifest destructor.
@@ -74,17 +74,20 @@ namespace command {
         /**
          * Gets parameter-sets metadata of a command.
          */
-        virtual void getParameterSets(std::vector<IParameterSetMetadataPtr>& parameterSets) const override;
+        virtual void getParameterSets(std::vector<IParameterSetMetadataSharedPtr>& parameterSets) const override;
 
     private:
         std::string m_name;
         std::string m_description;
         std::string m_usageMessage;
-        ICommandHelpMetadataPtr m_helpMetadata;
-        std::vector<IParameterSetMetadataPtr> m_parameterSetMetadata;
+        ICommandHelpMetadataSharedPtr m_helpMetadata;
+        std::vector<IParameterSetMetadataSharedPtr> m_parameterSetMetadata;
     };
 
-    using ICommandManifestPtr = std::shared_ptr<ICommandManifest>;
+    //
+    // Defines the SharedPtr of Command Manifest...
+    //
+    using ICommandManifestSharedPtr = std::shared_ptr<ICommandManifest>;
 }
 
 #endif // COMMAND_MANIFEST_H_63cfd33a_1faf_4890_a86b_008a5188f122

@@ -14,12 +14,12 @@ namespace command {
         /**
          * Creates a new command parameters.
          */
-        static ICommandParametersPtr make(IParameterSetPtr parameterSet);
+        static ICommandParametersSharedPtr make(IParameterSetSharedPtr parameterSet);
 
         /**
          * The CommandParameters Constructor.
          */
-        explicit CommandParameters(IParameterSetPtr parameterSet);
+        explicit CommandParameters(IParameterSetSharedPtr parameterSet);
 
         /**
          * The CommandParameters destructor.
@@ -44,7 +44,7 @@ namespace command {
         virtual const IParameterSet& getParameterSet() const override;
 
     private:
-        IParameterSetPtr m_parameterSet;
+        IParameterSetSharedPtr m_parameterSet;
     };
 }
 

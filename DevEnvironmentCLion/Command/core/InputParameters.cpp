@@ -6,7 +6,7 @@ using namespace command;
 /**
  * Makes new input parameters.
  */
-IInputParametersPtr InputParameters::make(
+IInputParametersSharedPtr InputParameters::make(
     const std::vector<std::string>& indexedParameters,
     const std::map<std::string, std::string>& namedParameters)
 {

@@ -21,7 +21,7 @@ AbstractCommand::~AbstractCommand()
 /**
  * Sets parameters of a command.
  */
-void AbstractCommand::setParameters(ICommandParametersPtr parameters)
+void AbstractCommand::setParameters(ICommandParametersSharedPtr parameters)
 {
     if (!parameters)
     {
@@ -43,7 +43,7 @@ const ICommandParameters& AbstractCommand::getParameters() const
 /**
  * Sets a message writer of a command.
  */
-void AbstractCommand::setMessageWriter(base::IMessageWriterPtr messageWriter)
+void AbstractCommand::setMessageWriter(base::IMessageWriterSharedPtr messageWriter)
 {
     if (!messageWriter)
     {

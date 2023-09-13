@@ -52,7 +52,10 @@ namespace test {
             virtual std::string getRgb() const = 0;
         };
 
-        using IColorPtr = std::shared_ptr<IColor>;
+        //
+        // Defines the SharePtr of Color...
+        //
+        using IColorSharedPtr = std::shared_ptr<IColor>;
     }
 }
 

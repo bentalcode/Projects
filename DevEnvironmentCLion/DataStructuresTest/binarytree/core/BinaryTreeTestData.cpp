@@ -23,9 +23,9 @@ BinaryTreeTestData::~BinaryTreeTestData()
 /**
  * Gets the data of the trees.
  */
-std::vector<BinaryTreeDataPtr<int, std::string>> BinaryTreeTestData::getData() const
+std::vector<BinaryTreeDataSharedPtr<int, std::string>> BinaryTreeTestData::getData() const
 {
-    std::vector<BinaryTreeDataPtr<int, std::string>> data;
+    std::vector<BinaryTreeDataSharedPtr<int, std::string>> data;
 
     data.push_back(getTreeData1());
     data.push_back(getTreeData2());
@@ -38,7 +38,7 @@ std::vector<BinaryTreeDataPtr<int, std::string>> BinaryTreeTestData::getData() c
 /**
  * Gets the data of tree1.
  */
-BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData1() const
+BinaryTreeDataSharedPtr<int, std::string> BinaryTreeTestData::getTreeData1() const
 {
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> creationData;
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> levelOrder;
@@ -46,7 +46,7 @@ BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData1() const
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> preorder;
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> postorder;
 
-    return BinaryTreeDataPtr<int, std::string>(
+    return BinaryTreeDataSharedPtr<int, std::string>(
         new BinaryTreeData<int, std::string>(
             creationData,
             levelOrder,
@@ -58,7 +58,7 @@ BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData1() const
 /**
  * Gets the data of tree2.
  */
-BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData2() const
+BinaryTreeDataSharedPtr<int, std::string> BinaryTreeTestData::getTreeData2() const
 {
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> creationData = {BinaryTreeNodes::make<int, std::string>(1, "a")};
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> levelOrder = {BinaryTreeNodes::make<int, std::string>(1, "a")};
@@ -66,7 +66,7 @@ BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData2() const
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> preorder = {BinaryTreeNodes::make<int, std::string>(1, "a")};
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> postorder = {BinaryTreeNodes::make<int, std::string>(1, "a")};
 
-    return BinaryTreeDataPtr<int, std::string>(
+    return BinaryTreeDataSharedPtr<int, std::string>(
         new BinaryTreeData<int, std::string>(
             creationData,
             levelOrder,
@@ -78,7 +78,7 @@ BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData2() const
 /**
  * Gets the data of tree3.
  */
-BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData3() const
+BinaryTreeDataSharedPtr<int, std::string> BinaryTreeTestData::getTreeData3() const
 {
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> creationData;
 
@@ -130,7 +130,7 @@ BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData3() const
         BinaryTreeNodes::make<int, std::string>(1, "a")
     };
 
-    return BinaryTreeDataPtr<int, std::string>(
+    return BinaryTreeDataSharedPtr<int, std::string>(
         new BinaryTreeData<int, std::string>(
             creationData,
             levelOrder,
@@ -142,7 +142,7 @@ BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData3() const
 /**
  * Gets the data of tree4.
  */
-BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData4() const
+BinaryTreeDataSharedPtr<int, std::string> BinaryTreeTestData::getTreeData4() const
 {
     std::vector<IBinaryTreeNodeSharedPtr<int, std::string>> creationData;
 
@@ -206,7 +206,7 @@ BinaryTreeDataPtr<int, std::string> BinaryTreeTestData::getTreeData4() const
         BinaryTreeNodes::make<int, std::string>(1, "a")
     };
 
-    return BinaryTreeDataPtr<int, std::string>(
+    return BinaryTreeDataSharedPtr<int, std::string>(
         new BinaryTreeData<int, std::string>(
             creationData,
             levelOrder,

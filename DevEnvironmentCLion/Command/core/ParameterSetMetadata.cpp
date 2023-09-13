@@ -8,10 +8,10 @@ using namespace command;
 /**
  * Creates help parameter-set.
  */
-IParameterSetMetadataPtr ParameterSetMetadata::createHelpParameterSet()
+IParameterSetMetadataSharedPtr ParameterSetMetadata::createHelpParameterSet()
 {
-    std::vector<IIndexedParameterMetadataPtr> indexedParameters;
-    std::vector<INamedParameterMetadataPtr> namedParameters;
+    std::vector<IIndexedParameterMetadataSharedPtr> indexedParameters;
+    std::vector<INamedParameterMetadataSharedPtr> namedParameters;
     namedParameters.push_back(CommandHelpMetadata::createHelpParameterMetadata());
 
     return std::make_shared<ParameterSetMetadata>(
@@ -23,17 +23,17 @@ IParameterSetMetadataPtr ParameterSetMetadata::createHelpParameterSet()
  * The ParameterSetMetadata constructor.
  */
 ParameterSetMetadata::ParameterSetMetadata(
-    const std::vector<IIndexedParameterMetadataPtr> indexedParameters,
-    const std::vector<INamedParameterMetadataPtr> namedParameters) :
+    const std::vector<IIndexedParameterMetadataSharedPtr> indexedParameters,
+    const std::vector<INamedParameterMetadataSharedPtr> namedParameters) :
     m_indexedParameters(indexedParameters),
     m_namedParameters(namedParameters)
 {
-    for (IIndexedParameterMetadataPtr parameterMetadata : m_indexedParameters)
+    for (IIndexedParameterMetadataSharedPtr parameterMetadata : m_indexedParameters)
     {
         m_parameters.push_back(parameterMetadata.get());
     }
 
-    for (INamedParameterMetadataPtr parameterMetadata : m_namedParameters)
+    for (INamedParameterMetadataSharedPtr parameterMetadata : m_namedParameters)
     {
         m_parameters.push_back(parameterMetadata.get());
     }
@@ -49,7 +49,7 @@ ParameterSetMetadata::~ParameterSetMetadata()
 /**
  * Gets indexed parameters of a parameter-set.
  */
-void ParameterSetMetadata::getIndexedParameters(std::vector<IIndexedParameterMetadataPtr>& parameters) const
+void ParameterSetMetadata::getIndexedParameters(std::vector<IIndexedParameterMetadataSharedPtr>& parameters) const
 {
     parameters.insert(parameters.begin(), m_indexedParameters.begin(), m_indexedParameters.end());
 }
@@ -57,7 +57,7 @@ void ParameterSetMetadata::getIndexedParameters(std::vector<IIndexedParameterMet
 /**
  * Gets named parameters of a parameter-set.
  */
-void ParameterSetMetadata::getNamedParameters(std::vector<INamedParameterMetadataPtr>& parameters) const
+void ParameterSetMetadata::getNamedParameters(std::vector<INamedParameterMetadataSharedPtr>& parameters) const
 {
     parameters.insert(parameters.begin(), m_namedParameters.begin(), m_namedParameters.end());
 }
@@ -65,7 +65,7 @@ void ParameterSetMetadata::getNamedParameters(std::vector<INamedParameterMetadat
 /**
  * Gets the iterator.
  */
-base::IIteratorPtr<const IParameterMetadata*> ParameterSetMetadata::getIterator() const
+base::IIteratorSharedPtr<const IParameterMetadata*> ParameterSetMetadata::getIterator() const
 {
     return base::VectorIterator<const IParameterMetadata*>::make(m_parameters);
 }

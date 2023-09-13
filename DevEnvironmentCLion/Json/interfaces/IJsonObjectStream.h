@@ -44,7 +44,10 @@ namespace json
         virtual std::shared_ptr<T> fromJson(const std::string& json) = 0;
     };
 
-    using IJsonObjectStreamPtr = std::shared_ptr<IJsonObjectStream>;
+    //
+    // Defines the SharedPtr of Json Object Stream...
+    //
+    using IJsonObjectStreamSharedPtr = std::shared_ptr<IJsonObjectStream>;
 }
 
 #endif // I_JSON_OBJECT_STREAM_H_6006acf3_1433_4f31_b7d8_9450f7888851

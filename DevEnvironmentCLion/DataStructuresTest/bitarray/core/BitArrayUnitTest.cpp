@@ -152,7 +152,7 @@ void BitArrayUnitTest::registerTests(unit_testing::ITestRegistration& registrati
  */
 void BitArrayUnitTest::bitArrayCreationTest()
 {
-    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+    for (BitArrayDataSharedPtr data : m_testData.getBitArrayData()->getData()) {
         testCreation(*data);
     }
 }
@@ -162,7 +162,7 @@ void BitArrayUnitTest::bitArrayCreationTest()
  */
 void BitArrayUnitTest::bitArrayTurnOnOffTest()
 {
-    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+    for (BitArrayDataSharedPtr data : m_testData.getBitArrayData()->getData()) {
         testTurnOnOff(*data);
     }
 }
@@ -172,7 +172,7 @@ void BitArrayUnitTest::bitArrayTurnOnOffTest()
  */
 void BitArrayUnitTest::bitArrayIterationTest()
 {
-    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+    for (BitArrayDataSharedPtr data : m_testData.getBitArrayData()->getData()) {
         testIteration(*data);
     }
 }
@@ -182,7 +182,7 @@ void BitArrayUnitTest::bitArrayIterationTest()
  */
 void BitArrayUnitTest::bitArrayCardinalityTest()
 {
-    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+    for (BitArrayDataSharedPtr data : m_testData.getBitArrayData()->getData()) {
         testCardinality(*data);
     }
 }
@@ -192,7 +192,7 @@ void BitArrayUnitTest::bitArrayCardinalityTest()
  */
 void BitArrayUnitTest::bitArrayClearingTest()
 {
-    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+    for (BitArrayDataSharedPtr data : m_testData.getBitArrayData()->getData()) {
         testClearing(*data);
     }
 }
@@ -202,7 +202,7 @@ void BitArrayUnitTest::bitArrayClearingTest()
  */
 void BitArrayUnitTest::bitArrayEnablingTest()
 {
-    for (BitArrayDataPtr data : m_testData.getBitArrayData()->getData()) {
+    for (BitArrayDataSharedPtr data : m_testData.getBitArrayData()->getData()) {
         testEnabling(*data);
     }
 }

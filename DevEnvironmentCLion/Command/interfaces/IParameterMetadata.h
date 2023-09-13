@@ -42,7 +42,10 @@ namespace command {
         virtual const std::string& getDescription() const = 0;
     };
 
-    using IParameterMetadataPtr = std::shared_ptr<IParameterMetadata>;
+    //
+    // Defines the SharedPtr of Parameter Metadata...
+    //
+    using IParameterMetadataSharedPtr = std::shared_ptr<IParameterMetadata>;
 }
 
 #endif // I_PARAMETER_METADATA_H_fbec8048_3517_4c85_ab1e_585d55896b41

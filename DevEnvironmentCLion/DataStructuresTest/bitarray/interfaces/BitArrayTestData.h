@@ -38,13 +38,13 @@ namespace test {
                 /**
                  * Gets data of the tests of a bit array.
                  */
-                std::vector<BitArrayDataPtr> getData() const;
+                std::vector<BitArrayDataSharedPtr> getData() const;
 
             private:
                 /**
                  * Creates data of a bit array.
                  */
-                BitArrayDataPtr createBitArrayData(size_t size) const;
+                BitArrayDataSharedPtr createBitArrayData(size_t size) const;
 
                 /**
                  * Creates a bit array.
@@ -52,7 +52,10 @@ namespace test {
                 std::vector<bool> createBitArray(size_t size) const;
             };
 
-            using BitArrayTestDataPtr = std::shared_ptr<BitArrayTestData>;
+            //
+            // Defines the SharedPtr of Bit Array Test Data...
+            //
+            using BitArrayTestDataSharedPtr = std::shared_ptr<BitArrayTestData>;
         }
     }
 }

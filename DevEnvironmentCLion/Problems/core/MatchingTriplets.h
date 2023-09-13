@@ -7,8 +7,11 @@
 
 namespace problems
 {
+    //
+    // Defines the SharedPtr of Index List...
+    //
     using IndexList = std::list<size_t>;
-    using IndexListPtr = std::shared_ptr<IndexList>;
+    using IndexListSharedPtr = std::shared_ptr<IndexList>;
 
     /**
      * The MatchingTriplets class implements the matching triplets problem.

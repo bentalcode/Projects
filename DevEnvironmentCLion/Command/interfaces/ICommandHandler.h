@@ -39,7 +39,10 @@ namespace command {
         virtual int run(ICommand& command, int argc, char *argv[]) = 0;
     };
 
-    using ICommandHandlerPtr = std::shared_ptr<ICommandHandler>;
+    //
+    // Defines the SharedPtr of Command Handler...
+    //
+    using ICommandHandlerSharedPtr = std::shared_ptr<ICommandHandler>;
 }
 
 #endif // I_COMMAND_HANDLER_H_abff03ab_9fa0_46af_b8e2_2360be28d365

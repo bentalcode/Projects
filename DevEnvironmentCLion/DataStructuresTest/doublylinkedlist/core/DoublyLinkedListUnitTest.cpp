@@ -91,9 +91,9 @@ void DoublyLinkedListUnitTest::registerTests(unit_testing::ITestRegistration& re
  */
 void DoublyLinkedListUnitTest::doublyLinkedListCreationTest()
 {
-    std::vector<DoublyLinkedListDataPtr<int>> data = m_testData.getDoublyLinkedListData()->getData();
+    std::vector<DoublyLinkedListDataSharedPtr<int>> data = m_testData.getDoublyLinkedListData()->getData();
 
-    for (DoublyLinkedListDataPtr<int> listData : data)
+    for (DoublyLinkedListDataSharedPtr<int> listData : data)
     {
         testCreation(*listData);
     }
@@ -104,9 +104,9 @@ void DoublyLinkedListUnitTest::doublyLinkedListCreationTest()
  */
 void DoublyLinkedListUnitTest::doublyLinkedListIterationTest()
 {
-    std::vector<DoublyLinkedListDataPtr<int>> data = m_testData.getDoublyLinkedListData()->getData();
+    std::vector<DoublyLinkedListDataSharedPtr<int>> data = m_testData.getDoublyLinkedListData()->getData();
 
-    for (DoublyLinkedListDataPtr<int> listData : data)
+    for (DoublyLinkedListDataSharedPtr<int> listData : data)
     {
         testIteration(*listData);
     }

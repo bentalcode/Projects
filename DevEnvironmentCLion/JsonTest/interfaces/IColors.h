@@ -47,7 +47,10 @@ namespace test {
             virtual void getColors(std::vector<IColor>& colors) const = 0;
         };
 
-        using IColorsPtr = std::shared_ptr<IColors>;
+        //
+        // Defines the SharedPtr of Colors...
+        //
+        using IColorsSharedPtr = std::shared_ptr<IColors>;
     }
 }
 

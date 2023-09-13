@@ -40,7 +40,7 @@ namespace test {
                 /**
                  * Gets the data of linked lists.
                  */
-                std::vector<LinkedListDataPtr<int>> getData() const;
+                std::vector<LinkedListDataSharedPtr<int>> getData() const;
 
                 /**
                  * Gets the updation data of a linked list.
@@ -51,7 +51,7 @@ namespace test {
                 /**
                  * Gets the data of a list.
                  */
-                LinkedListDataPtr<int> getListData(size_t size) const;
+                LinkedListDataSharedPtr<int> getListData(size_t size) const;
 
                 /**
                  * Creates values of a list.

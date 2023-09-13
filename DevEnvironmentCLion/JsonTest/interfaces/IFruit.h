@@ -57,7 +57,10 @@ namespace test {
             virtual double getPrice() const = 0;
         };
 
-        using IFruitPtr = std::shared_ptr<IFruit>;
+        //
+        // Defines the SharedPtr of Fruit...
+        //
+        using IFruitSharedPtr = std::shared_ptr<IFruit>;
     }
 }
 

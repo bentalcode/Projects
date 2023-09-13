@@ -5,8 +5,11 @@
 
 namespace unit_testing {
 
+    //
+    // Defines the SharedPtr of Test Function...
+    //
     class ITestFunction;
-    using ITestFunctionPtr = std::shared_ptr<ITestFunction>;
+    using ITestFunctionSharedPtr = std::shared_ptr<ITestFunction>;
 
     /**
      * The ITestFunction interface defines a test function.

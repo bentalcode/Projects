@@ -54,8 +54,11 @@ namespace test {
                 std::vector<ILinkedListNodeSharedPtr<T>> m_nodes;
             };
 
+            //
+            // Defines the SharedPtr of Linked List Data...
+            //
             template <typename T>
-            using LinkedListDataPtr = std::shared_ptr<LinkedListData<T>>;
+            using LinkedListDataSharedPtr = std::shared_ptr<LinkedListData<T>>;
 
             /**
              * The LinkedListData constructor.

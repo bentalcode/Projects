@@ -26,7 +26,7 @@ namespace base
          * Creates a new failure result from a previous one.
          */
         template <typename T1>
-        static IParsingResultSharedPtr<T> failureResult(IParsingResultPtr<T1> result)
+        static IParsingResultSharedPtr<T> failureResult(IParsingResultSharedPtr<T1> result)
         {
             return std::make_shared<ParsingResult>(false, nullptr, result->getErrorMessage());
         }

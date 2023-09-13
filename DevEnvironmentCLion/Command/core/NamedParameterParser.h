@@ -10,7 +10,7 @@ namespace command {
     /**
      * The NamedParameterParser class implements a parser of a named parameter.
      */
-    class NamedParameterParser final : public base::IParser<std::string, base::PairPtr<std::string, std::string>>
+    class NamedParameterParser final : public base::IParser<std::string, base::PairSharedPtr<std::string, std::string>>
     {
     public:
         /**
@@ -38,7 +38,7 @@ namespace command {
         /**
          * Parses a named parameter.
          */
-        virtual base::IParsingResultPtr<base::PairPtr<std::string, std::string>> parse(const std::string& arg) override;
+        virtual base::IParsingResultSharedPtr<base::PairSharedPtr<std::string, std::string>> parse(const std::string& arg) override;
 
         /**
          * Checks if a parameter is named parameter.
@@ -49,7 +49,7 @@ namespace command {
         /**
          * Parses a named parameter.
          */
-        static base::IParsingResultPtr<base::PairPtr<std::string, std::string>> parseNamedParameter(
+        static base::IParsingResultSharedPtr<base::PairSharedPtr<std::string, std::string>> parseNamedParameter(
             const std::string& arg,
             const std::string& prefix);
 

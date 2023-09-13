@@ -102,8 +102,11 @@ namespace test {
                 std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>> m_postorder;
             };
 
+            //
+            // Defines the SharedPtr of Binary Tree...
+            //
             template <typename TKey, typename TValue>
-            using BinaryTreeDataPtr = std::shared_ptr<BinaryTreeData<TKey, TValue>>;
+            using BinaryTreeDataSharedPtr = std::shared_ptr<BinaryTreeData<TKey, TValue>>;
 
             /**
              * The BinaryTreeData constructor.

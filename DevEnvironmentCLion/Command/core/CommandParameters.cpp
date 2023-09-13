@@ -7,7 +7,7 @@ using namespace command;
 /**
  * Creates a new command parameters.
  */
-ICommandParametersPtr CommandParameters::make(IParameterSetPtr parameterSet)
+ICommandParametersSharedPtr CommandParameters::make(IParameterSetSharedPtr parameterSet)
 {
     return std::make_shared<CommandParameters>(parameterSet);
 }
@@ -15,7 +15,7 @@ ICommandParametersPtr CommandParameters::make(IParameterSetPtr parameterSet)
 /**
  * The CommandParameters constructor.
  */
-CommandParameters::CommandParameters(IParameterSetPtr parameterSet) :
+CommandParameters::CommandParameters(IParameterSetSharedPtr parameterSet) :
     m_parameterSet(parameterSet)
 {
     if (!parameterSet)

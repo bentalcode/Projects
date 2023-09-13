@@ -23,9 +23,9 @@ DoublyLinkedListTestData::~DoublyLinkedListTestData()
 /**
  * Gets the data of doubly linked lists.
  */
-std::vector<DoublyLinkedListDataPtr<int>> DoublyLinkedListTestData::getData() const
+std::vector<DoublyLinkedListDataSharedPtr<int>> DoublyLinkedListTestData::getData() const
 {
-    std::vector<DoublyLinkedListDataPtr<int>> data;
+    std::vector<DoublyLinkedListDataSharedPtr<int>> data;
 
     data.push_back(getListData(0));
     data.push_back(getListData(50));
@@ -59,12 +59,12 @@ std::vector<std::tuple<std::string, int, std::vector<int>>> DoublyLinkedListTest
 /**
  * Gets the data of a list.
  */
-DoublyLinkedListDataPtr<int> DoublyLinkedListTestData::getListData(size_t size) const
+DoublyLinkedListDataSharedPtr<int> DoublyLinkedListTestData::getListData(size_t size) const
 {
     std::vector<int> values = createListValues(size);
     std::vector<IDoublyLinkedListNodeSharedPtr<int>> nodes = createListNodes(values);
 
-    DoublyLinkedListDataPtr<int> data(new DoublyLinkedListData<int>(
+    DoublyLinkedListDataSharedPtr<int> data(new DoublyLinkedListData<int>(
         values,
         nodes));
 

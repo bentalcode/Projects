@@ -8,13 +8,13 @@ using namespace command;
 /**
  * Creates a new manifest.
  */
-ICommandManifestPtr CommandManifest::make(
+ICommandManifestSharedPtr CommandManifest::make(
     const std::string& name,
     const std::string& description,
     const std::string& usageMessage)
 {
-    ICommandHelpMetadataPtr helpMetadata = CommandHelpMetadata::make(usageMessage);
-    std::vector<IParameterSetMetadataPtr> parameterSetMetadata;
+    ICommandHelpMetadataSharedPtr helpMetadata = CommandHelpMetadata::make(usageMessage);
+    std::vector<IParameterSetMetadataSharedPtr> parameterSetMetadata;
 
     return std::make_shared<CommandManifest>(
         name,
@@ -27,13 +27,13 @@ ICommandManifestPtr CommandManifest::make(
 /**
  * Creates a new manifest.
  */
-ICommandManifestPtr CommandManifest::make(
+ICommandManifestSharedPtr CommandManifest::make(
     const std::string& name,
     const std::string& description,
     const std::string& usageMessage,
-    const std::vector<IParameterSetMetadataPtr>& parameterSetMetadata)
+    const std::vector<IParameterSetMetadataSharedPtr>& parameterSetMetadata)
 {
-    ICommandHelpMetadataPtr helpMetadata = CommandHelpMetadata::make(usageMessage);
+    ICommandHelpMetadataSharedPtr helpMetadata = CommandHelpMetadata::make(usageMessage);
     return std::make_shared<CommandManifest>(
         name,
         description,
@@ -49,8 +49,8 @@ CommandManifest::CommandManifest(
     const std::string& name,
     const std::string& description,
     const std::string& usageMessage,
-    ICommandHelpMetadataPtr helpMetadata,
-    const std::vector<IParameterSetMetadataPtr>& parameterSetMetadata) :
+    ICommandHelpMetadataSharedPtr helpMetadata,
+    const std::vector<IParameterSetMetadataSharedPtr>& parameterSetMetadata) :
     m_name(name),
     m_description(description),
     m_usageMessage(usageMessage),
@@ -94,7 +94,7 @@ const ICommandHelpMetadata& CommandManifest::getHelpMetadata() const
 /**
  * Gets parameter-sets metadata of a command.
  */
-void CommandManifest::getParameterSets(std::vector<IParameterSetMetadataPtr>& parameterSets) const
+void CommandManifest::getParameterSets(std::vector<IParameterSetMetadataSharedPtr>& parameterSets) const
 {
     parameterSets.insert(parameterSets.end(), m_parameterSetMetadata.begin(), m_parameterSetMetadata.end());
 }

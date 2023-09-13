@@ -41,13 +41,13 @@ namespace command {
         /**
          * Gets parameters map of a parameter-set.
          */
-        virtual const std::map<std::string, IParameterPtr>& getParameters() const = 0;
+        virtual const std::map<std::string, IParameterSharedPtr>& getParameters() const = 0;
 
         /**
          * Gets a parameter by a manifest name.
          * The parameter can be null.
          */
-        virtual IParameterPtr getParameter(const std::string& name) const = 0;
+        virtual IParameterSharedPtr getParameter(const std::string& name) const = 0;
 
         /**
          * Checks whether a parameter exists by a manifest name.
@@ -55,7 +55,10 @@ namespace command {
         virtual bool hasParameter(const std::string& name) const = 0;
     };
 
-    using IParameterSetPtr = std::shared_ptr<IParameterSet>;
+    //
+    // Defines the SharedPtr of Parameter Set...
+    //
+    using IParameterSetSharedPtr = std::shared_ptr<IParameterSet>;
 }
 
 #endif // I_PARAMETERS_SET_H_6e941b19_9b59_4ec6_a11f_02edc3e944d1

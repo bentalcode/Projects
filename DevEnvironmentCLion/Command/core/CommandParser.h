@@ -10,7 +10,7 @@ namespace command {
     /**
      * The CommandParser class implements a parser of the command.
      */
-    class CommandParser final : public base::IMainParser<ICommandParametersPtr>
+    class CommandParser final : public base::IMainParser<ICommandParametersSharedPtr>
     {
     public:
         /**
@@ -38,18 +38,18 @@ namespace command {
         /**
          * Parses the parameters of the command.
          */
-        virtual base::IParsingResultPtr<ICommandParametersPtr> parse(int argc, char *argv[]) override;
+        virtual base::IParsingResultSharedPtr<ICommandParametersSharedPtr> parse(int argc, char *argv[]) override;
 
     private:
         /**
          * Parses input parameters of a command.
          */
-        base::IParsingResultPtr<IInputParametersPtr> parseInputParameters(int argc, char *argv[]);
+        base::IParsingResultSharedPtr<IInputParametersSharedPtr> parseInputParameters(int argc, char *argv[]);
 
         /**
          * Parses parameter-sets of a command.
          */
-        base::IParsingResultPtr<IParameterSetPtr> parseParameterSets(const IInputParameters& inputParameters);
+        base::IParsingResultSharedPtr<IParameterSetSharedPtr> parseParameterSets(const IInputParameters& inputParameters);
 
         /**
          * Checks if a parameter is named parameter.
@@ -74,7 +74,7 @@ namespace command {
         /**
          * Creates a result of a help command.
          */
-        static base::IParsingResultPtr<ICommandParametersPtr> createHelpCommandResult();
+        static base::IParsingResultSharedPtr<ICommandParametersSharedPtr> createHelpCommandResult();
     };
 }
 

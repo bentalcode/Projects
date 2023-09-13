@@ -6,7 +6,7 @@ using namespace command;
 /**
  * Creates a parameter meta-data.
  */
-IIndexedParameterMetadataPtr IndexedParameterMetadata::make(
+IIndexedParameterMetadataSharedPtr IndexedParameterMetadata::make(
     const std::string& name,
     const std::string& description)
 {

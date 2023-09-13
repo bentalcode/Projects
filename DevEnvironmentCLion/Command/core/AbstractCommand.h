@@ -37,7 +37,7 @@ namespace command {
         /**
          * Sets parameters of a command.
          */
-        virtual void setParameters(ICommandParametersPtr parameters) override;
+        virtual void setParameters(ICommandParametersSharedPtr parameters) override;
 
         /**
          * Gets parameters of a command.
@@ -47,7 +47,7 @@ namespace command {
         /**
          * Sets a message writer of a command.
          */
-        virtual void setMessageWriter(base::IMessageWriterPtr messageWriter) override;
+        virtual void setMessageWriter(base::IMessageWriterSharedPtr messageWriter) override;
 
         /**
          * Gets a message writer of a command.
@@ -55,8 +55,8 @@ namespace command {
         virtual base::IMessageWriter& getMessageWriter() override;
 
     private:
-        ICommandParametersPtr m_parameters;
-        base::IMessageWriterPtr m_messageWriter;
+        ICommandParametersSharedPtr m_parameters;
+        base::IMessageWriterSharedPtr m_messageWriter;
     };
 }
 

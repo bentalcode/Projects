@@ -6,8 +6,11 @@
 
 namespace unit_testing
 {
+    //
+    // Defines the SharedPtr of Test Running Result...
+    //
     class ITestRunningResult;
-    using ITestRunningResultPtr = std::shared_ptr<ITestRunningResult>;
+    using ITestRunningResultSharedPtr = std::shared_ptr<ITestRunningResult>;
 
     /**
      * The ITestRunningResult interface defines result of a single test.

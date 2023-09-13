@@ -62,8 +62,11 @@ namespace base
         T m_end;
     };
 
+    //
+    // Defines the SharedPtr of Range...
+    //
     template <typename T>
-    using RangePtr = std::shared_ptr<Range<T>>;
+    using RangeSharedPtr = std::shared_ptr<Range<T>>;
 
     /**
      * Creates a range.

@@ -240,7 +240,10 @@ namespace json
             const IToString<TValue>& valueTransformer) = 0;
     };
 
-    using IJsonObjectWriterPtr = std::shared_ptr<IJsonObjectWriter>;
+    //
+    // Defines the SharedPtr of Json Object Writer...
+    //
+    using IJsonObjectWriterSharedPtr = std::shared_ptr<IJsonObjectWriter>;
 }
 
 #endif // I_JSON_OBJECT_WRITER_H_aaada994_33b0_4597_aa9c_d21d00f1d471

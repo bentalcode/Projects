@@ -64,8 +64,10 @@ namespace command {
         virtual const std::string& getDefaultValue() const = 0;
     };
 
-    using INamedParameterMetadataPtr = std::shared_ptr<INamedParameterMetadata>;
-
+    //
+    // Defines the SharedPtr of Named Parameter Metadata...
+    //
+    using INamedParameterMetadataSharedPtr = std::shared_ptr<INamedParameterMetadata>;
 }
 
 #endif // I_NAMED_PARAMETER_METADATA_H_edf0365e_d4b5_460f_9be2_c0535206213a

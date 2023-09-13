@@ -15,7 +15,7 @@ public:
     {
     }
 
-    bool operator()(IUnitTestPtr unitTest)
+    bool operator()(IUnitTestSharedPtr unitTest)
     {
         return m_name == unitTest->getName();
     }
@@ -56,7 +56,7 @@ UnitTestManager::~UnitTestManager()
 /**
  * Registers a test.
  */
-void UnitTestManager::registerTest(IUnitTestPtr unitTest)
+void UnitTestManager::registerTest(IUnitTestSharedPtr unitTest)
 {
     if (!unitTest)
     {
@@ -71,7 +71,7 @@ void UnitTestManager::registerTest(IUnitTestPtr unitTest)
 /**
  * Unregisters a test.
  */
-void UnitTestManager::unregisterTest(IUnitTestPtr unitTest)
+void UnitTestManager::unregisterTest(IUnitTestSharedPtr unitTest)
 {
     if (!unitTest)
     {
@@ -92,7 +92,7 @@ void UnitTestManager::run()
 {
     m_unitTestRunningResults.setStartTime();
 
-    for (IUnitTestPtr unitTest : m_unitTests)
+    for (IUnitTestSharedPtr unitTest : m_unitTests)
     {
         runUnitTest(*unitTest);
     }

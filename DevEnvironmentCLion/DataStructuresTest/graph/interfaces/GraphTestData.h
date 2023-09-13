@@ -41,12 +41,12 @@ namespace test {
                 /**
                  * Gets data of graphs.
                  */
-                void getGraphsData(std::vector<GraphDataPtr<int, std::string>>& result);
+                void getGraphsData(std::vector<GraphDataSharedPtr<int, std::string>>& result);
 
                 /**
                  * Gets data of graphs with loops.
                  */
-                void getGraphsDataWithLoops(std::vector<GraphDataPtr<int, std::string>>& result);
+                void getGraphsDataWithLoops(std::vector<GraphDataSharedPtr<int, std::string>>& result);
 
                 /**
                  * Generates a random vertex by integer.
@@ -92,22 +92,22 @@ namespace test {
                 /**
                  * Gets data of graph1.
                  */
-                GraphDataPtr<int, std::string> getGraphData1();
+                GraphDataSharedPtr<int, std::string> getGraphData1();
 
                 /**
                  * Gets data of graph2.
                  */
-                GraphDataPtr<int, std::string> getGraphData2();
+                GraphDataSharedPtr<int, std::string> getGraphData2();
 
                 /**
                  * Gets data of graph3.
                  */
-                GraphDataPtr<int, std::string> getGraphData3();
+                GraphDataSharedPtr<int, std::string> getGraphData3();
 
                 /**
                  * Gets data of graph1.
                  */
-                GraphDataPtr<int, std::string> getGraphDataWithLoop1();
+                GraphDataSharedPtr<int, std::string> getGraphDataWithLoop1();
 
                 /**
                  * Gets the paths data of graph1.

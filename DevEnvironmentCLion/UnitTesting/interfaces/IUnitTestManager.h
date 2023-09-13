@@ -34,12 +34,12 @@ namespace unit_testing
         /**
          * Registers a test.
          */
-        virtual void registerTest(IUnitTestPtr unitTest) = 0;
+        virtual void registerTest(IUnitTestSharedPtr unitTest) = 0;
 
         /**
          * Unregisters a test.
          */
-        virtual void unregisterTest(IUnitTestPtr unitTest) = 0;
+        virtual void unregisterTest(IUnitTestSharedPtr unitTest) = 0;
 
         /**
          * Runs the registered tests.

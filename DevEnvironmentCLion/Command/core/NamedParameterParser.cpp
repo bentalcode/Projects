@@ -25,7 +25,7 @@ NamedParameterParser::~NamedParameterParser()
 /**
  * Parses a named parameter.
  */
-base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterParser::parse(const std::string& arg)
+base::IParsingResultSharedPtr<base::PairSharedPtr<std::string, std::string>> NamedParameterParser::parse(const std::string& arg)
 {
     if (isShortNamedParameter(arg))
     {
@@ -33,11 +33,11 @@ base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterP
                 arg, CommandConstants::shortNamedParameterPrefix.size(), arg.size() - 1,
                 CommandConstants::helpShortName, 0, CommandConstants::helpShortName.size() - 1))
         {
-            base::PairPtr<std::string, std::string> nameAndValue = base::Pair<std::string, std::string>::make(
+            base::PairSharedPtr<std::string, std::string> nameAndValue = base::Pair<std::string, std::string>::make(
                 CommandConstants::helpShortName,
                 CommandConstants::trueValue);
 
-            return base::ParsingResult<base::PairPtr<std::string, std::string>>::successfulResult(nameAndValue);
+            return base::ParsingResult<base::PairSharedPtr<std::string, std::string>>::successfulResult(nameAndValue);
         }
         else
         {
@@ -50,11 +50,11 @@ base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterP
                 arg, CommandConstants::longNamedParameterPrefix.length(), arg.length() - 1,
                 CommandConstants::helpLongName, 0, CommandConstants::helpLongName.length() - 1))
         {
-            base::PairPtr<std::string, std::string> nameAndValue = base::Pair<std::string, std::string>::make(
+            base::PairSharedPtr<std::string, std::string> nameAndValue = base::Pair<std::string, std::string>::make(
                 CommandConstants::helpLongName,
                 CommandConstants::trueValue);
 
-            return base::ParsingResult<base::PairPtr<std::string, std::string>>::successfulResult(nameAndValue);
+            return base::ParsingResult<base::PairSharedPtr<std::string, std::string>>::successfulResult(nameAndValue);
         }
         else
         {
@@ -64,14 +64,14 @@ base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterP
     else
     {
         std::string errorMessage = "The argument: " + arg + " is not a named parameter.";
-        return base::ParsingResult<base::PairPtr<std::string, std::string>>::failureResult(errorMessage);
+        return base::ParsingResult<base::PairSharedPtr<std::string, std::string>>::failureResult(errorMessage);
     }
 }
 
 /**
  * Parses a named parameter.
  */
-base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterParser::parseNamedParameter(
+base::IParsingResultSharedPtr<base::PairSharedPtr<std::string, std::string>> NamedParameterParser::parseNamedParameter(
     const std::string& arg,
     const std::string& prefix)
 {
@@ -108,8 +108,8 @@ base::IParsingResultPtr<base::PairPtr<std::string, std::string>> NamedParameterP
         value = arg.substr(valueStartIndex, valueLength);
     }
 
-    base::PairPtr<std::string, std::string> namedParameter = base::Pair<std::string, std::string>::make(name, value);
-    return base::ParsingResult<base::PairPtr<std::string, std::string>>::successfulResult(namedParameter);
+    base::PairSharedPtr<std::string, std::string> namedParameter = base::Pair<std::string, std::string>::make(name, value);
+    return base::ParsingResult<base::PairSharedPtr<std::string, std::string>>::successfulResult(namedParameter);
 }
 
 /**

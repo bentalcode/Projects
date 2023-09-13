@@ -7,7 +7,7 @@ using namespace command;
 /**
  * Creates a new message writer.
  */
-ICommandMessageWriterPtr CommandMessageWriter::make(const std::string& usageMessage)
+ICommandMessageWriterSharedPtr CommandMessageWriter::make(const std::string& usageMessage)
 {
     return std::make_shared<CommandMessageWriter>(usageMessage);
 }
@@ -55,7 +55,7 @@ void CommandMessageWriter::CommandMessageWriter::writeUsageMessage(bool status)
 /**
  * Gets the message writer.
  */
-base::IMessageWriterPtr CommandMessageWriter::getMessageWriter()
+base::IMessageWriterSharedPtr CommandMessageWriter::getMessageWriter()
 {
     return m_messageWriter;
 }

@@ -14,7 +14,7 @@ namespace command {
         /**
          * Makes new input parameters.
          */
-        static IInputParametersPtr make(
+        static IInputParametersSharedPtr make(
             const std::vector<std::string>& indexedParameters,
             const std::map<std::string, std::string>& namedParameters);
 
@@ -57,7 +57,10 @@ namespace command {
         std::map<std::string, std::string> m_namedParameters;
     };
 
-    using IInputParametersPtr = std::shared_ptr<IInputParameters>;
+    //
+    // Defines the SharedPtr of Input Parameter...
+    //
+    using IInputParametersSharedPtr = std::shared_ptr<IInputParameters>;
 }
 
 #endif // INPUT_PARAMETERS_H_d6e509a4_0789_4690_9505_1de4baa68b2b

@@ -4,14 +4,13 @@
 #include "CommandParser.h"
 #include "CommandMessageWriter.h"
 #include "CommandConstants.h"
-#include "JitterMessageHandlerException.h"
 
 using namespace command;
 
 /**
  * Creates a new command handler.
  */
-ICommandHandlerPtr CommandHandler::make(ICommandManifestPtr manifest)
+ICommandHandlerSharedPtr CommandHandler::make(ICommandManifestSharedPtr manifest)
 {
     return std::make_shared<CommandHandler>(manifest);
 }
@@ -20,7 +19,7 @@ ICommandHandlerPtr CommandHandler::make(ICommandManifestPtr manifest)
  * The CommandHandler constructor.
  */
 CommandHandler::CommandHandler(
-    ICommandManifestPtr manifest) :
+    ICommandManifestSharedPtr manifest) :
     m_manifest(manifest)
 {
     if (!manifest)
@@ -90,7 +89,7 @@ bool CommandHandler::runCommand(ICommand& command, int argc, char *argv[])
     //
     // Parse parameters of the command...
     //
-    base::IParsingResultPtr<ICommandParametersPtr> parametersResult = parseParameters(argc, argv);
+    base::IParsingResultSharedPtr<ICommandParametersSharedPtr> parametersResult = parseParameters(argc, argv);
 
     if (parametersResult->failed() || isHelpCommand(*parametersResult->getResult())) {
 
@@ -127,10 +126,10 @@ bool CommandHandler::runCommand(ICommand& command, int argc, char *argv[])
 /**
  * Parses the parameters of a command.
  */
-base::IParsingResultPtr<ICommandParametersPtr> CommandHandler::parseParameters(int argc, char *argv[])
+base::IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandHandler::parseParameters(int argc, char *argv[])
 {
     CommandParser parser;
-    base::IParsingResultPtr<ICommandParametersPtr> result = parser.parse(argc, argv);
+    base::IParsingResultSharedPtr<ICommandParametersSharedPtr> result = parser.parse(argc, argv);
     return result;
 }
 

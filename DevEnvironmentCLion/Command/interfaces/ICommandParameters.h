@@ -39,7 +39,10 @@ namespace command {
         virtual const IParameterSet& getParameterSet() const = 0;
     };
 
-    using ICommandParametersPtr = std::shared_ptr<ICommandParameters>;
+    //
+    // Defines the SharedPtr of Command Parameters...
+    //
+    using ICommandParametersSharedPtr = std::shared_ptr<ICommandParameters>;
 }
 
 #endif // I_COMMAND_PARAMETERS_H_c3c9c854_be81_40a0_82fc_8c3422abb36b

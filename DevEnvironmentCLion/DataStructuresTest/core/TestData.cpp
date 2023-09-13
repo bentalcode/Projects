@@ -23,7 +23,7 @@ TestData::~TestData()
 /**
  * Gets the data of tests of a bit array.
  */
-BitArrayTestDataPtr TestData::getBitArrayData() const
+BitArrayTestDataSharedPtr TestData::getBitArrayData() const
 {
     return std::make_shared<BitArrayTestData>();
 }
@@ -47,7 +47,7 @@ DoublyLinkedListTestDataSharedPtr TestData::getDoublyLinkedListData() const
 /**
  * Gets the data of tests of a binary tree.
  */
-BinaryTreeTestDataPtr TestData::getBinaryTreeData() const
+BinaryTreeTestDataSharedPtr TestData::getBinaryTreeData() const
 {
     return std::make_shared<BinaryTreeTestData>();
 }

@@ -23,9 +23,9 @@ LinkedListTestData::~LinkedListTestData()
 /**
  * Gets the data of linked lists.
  */
-std::vector<LinkedListDataPtr<int>> LinkedListTestData::getData() const
+std::vector<LinkedListDataSharedPtr<int>> LinkedListTestData::getData() const
 {
-    std::vector<LinkedListDataPtr<int>> data;
+    std::vector<LinkedListDataSharedPtr<int>> data;
 
     data.push_back(getListData(0));
     data.push_back(getListData(50));
@@ -62,12 +62,12 @@ std::vector<std::tuple<std::string, int, std::vector<int>>> LinkedListTestData::
 /**
  * Gets the data of list.
  */
-LinkedListDataPtr<int> LinkedListTestData::getListData(size_t size) const
+LinkedListDataSharedPtr<int> LinkedListTestData::getListData(size_t size) const
 {
     std::vector<int> values = createListValues(size);
     std::vector<ILinkedListNodeSharedPtr<int>> nodes = createListNodes(values);
 
-    LinkedListDataPtr<int> data(new LinkedListData<int>(
+    LinkedListDataSharedPtr<int> data(new LinkedListData<int>(
         values,
         nodes));
 

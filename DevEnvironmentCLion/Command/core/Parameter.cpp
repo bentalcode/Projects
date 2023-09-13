@@ -9,7 +9,7 @@ using namespace command;
 /**
  * Creates a new parameter.
  */
-IParameterPtr Parameter::make(
+IParameterSharedPtr Parameter::make(
     const std::string& name,
     const std::string& value,
     bool defined)
@@ -128,7 +128,7 @@ const std::string& Parameter::getStringValue() const
 /**
  * Gets a duration value of a parameter.
  */
-base::DurationPtr Parameter::getDurationValue() const
+base::DurationSharedPtr Parameter::getDurationValue() const
 {
     return base::Conversion::stringConversion().toDuration(m_value);
 }

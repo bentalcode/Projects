@@ -36,7 +36,7 @@ namespace unit_testing
         /**
          * Registers a test.
          */
-        virtual void registerTest(ITestFunctionPtr testFunction) = 0;
+        virtual void registerTest(ITestFunctionSharedPtr testFunction) = 0;
     };
 }
 

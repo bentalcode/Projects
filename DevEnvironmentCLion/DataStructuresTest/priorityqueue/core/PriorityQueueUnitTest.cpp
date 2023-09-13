@@ -71,7 +71,7 @@ void PriorityQueueUnitTest::registerTests(unit_testing::ITestRegistration& regis
  */
 void PriorityQueueUnitTest::priorityQueueCreationTest()
 {
-    for (PriorityQueueDataPtr<int> data : m_testData.getPriorityQueueData()->getData())
+    for (PriorityQueueDataSharedPtr<int> data : m_testData.getPriorityQueueData()->getData())
     {
         testCreation(*data);
     }
@@ -82,7 +82,7 @@ void PriorityQueueUnitTest::priorityQueueCreationTest()
  */
 void PriorityQueueUnitTest::peekAndPollTest()
 {
-    for (PriorityQueueDataPtr<int> data : m_testData.getPriorityQueueData()->getData())
+    for (PriorityQueueDataSharedPtr<int> data : m_testData.getPriorityQueueData()->getData())
     {
         testPeekAndPoll(*data);
     }

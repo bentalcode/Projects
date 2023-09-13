@@ -41,7 +41,10 @@ namespace test {
                 std::vector<bool> m_data;
             };
 
-            using BitArrayDataPtr = std::shared_ptr<BitArrayData>;
+            //
+            // Defines the SharedPtr of Bit Array...
+            //
+            using BitArrayDataSharedPtr = std::shared_ptr<BitArrayData>;
 
             /**
              * Gets the data of a bit array.

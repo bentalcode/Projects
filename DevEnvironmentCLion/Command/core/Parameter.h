@@ -14,7 +14,7 @@ namespace command {
         /**
          * Creates a new parameter.
          */
-        static IParameterPtr make(
+        static IParameterSharedPtr make(
             const std::string& name,
             const std::string& value,
             bool defined);
@@ -102,7 +102,7 @@ namespace command {
         /**
          * Gets a duration value of a parameter.
          */
-        virtual base::DurationPtr getDurationValue() const override;
+        virtual base::DurationSharedPtr getDurationValue() const override;
 
         /**
          * Gets a string array value of a parameter.
@@ -115,7 +115,10 @@ namespace command {
         bool m_defined;
     };
 
-    using IParameterPtr = std::shared_ptr<IParameter>;
+    //
+    // Defines the SharedPtr of Parameter...
+    //
+    using IParameterSharedPtr = std::shared_ptr<IParameter>;
 }
 
 #endif // PARAMETER_H_8af139ca_12c8_4a9a_ba9a_49cf7970f7c4

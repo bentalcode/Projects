@@ -38,15 +38,18 @@ namespace command {
         /**
          * Gets indexed parameters of a parameter-set.
          */
-        virtual void getIndexedParameters(std::vector<IIndexedParameterMetadataPtr>& parameters) const = 0;
+        virtual void getIndexedParameters(std::vector<IIndexedParameterMetadataSharedPtr>& parameters) const = 0;
 
         /**
          * Gets named parameters of a parameter-set.
          */
-        virtual void getNamedParameters(std::vector<INamedParameterMetadataPtr>& parameters) const = 0;
+        virtual void getNamedParameters(std::vector<INamedParameterMetadataSharedPtr>& parameters) const = 0;
     };
 
-    using IParameterSetMetadataPtr = std::shared_ptr<IParameterSetMetadata>;
+    //
+    // Defines the SharedPtr of Parameter Set Metadata...
+    //
+    using IParameterSetMetadataSharedPtr = std::shared_ptr<IParameterSetMetadata>;
 }
 
 #endif // I_PARAMETER_SET_METADATA_H_H_31a8df57_dd05_4fae_81d9_88273fdb5832

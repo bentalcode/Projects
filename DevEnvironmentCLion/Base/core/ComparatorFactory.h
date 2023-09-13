@@ -39,7 +39,7 @@ namespace base {
          * Creates a vector comparator.
          */
         template <typename CollectionType>
-        CollectionComparatorPtr<CollectionType> createCollectionComparator() const;
+        CollectionComparatorSharedPtr<CollectionType> createCollectionComparator() const;
 
         /**
          * Creates an iterator comparator.
@@ -58,9 +58,9 @@ namespace base {
      * Creates a collection comparator.
      */
     template <typename CollectionType>
-    CollectionComparatorPtr<CollectionType> ComparatorFactory::createCollectionComparator() const
+    CollectionComparatorSharedPtr<CollectionType> ComparatorFactory::createCollectionComparator() const
     {
-        CollectionComparatorPtr<CollectionType> comparator(new CollectionComparator<CollectionType>());
+        CollectionComparatorSharedPtr<CollectionType> comparator(new CollectionComparator<CollectionType>());
         return comparator;
     }
 

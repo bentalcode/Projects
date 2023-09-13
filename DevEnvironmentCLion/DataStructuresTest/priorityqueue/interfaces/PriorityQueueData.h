@@ -60,8 +60,11 @@ namespace test {
                 std::vector<T> m_data;
             };
 
+            //
+            // Defines the SharedPtr of Priority Queue Data...
+            //
             template <typename T>
-            using PriorityQueueDataPtr = std::shared_ptr<PriorityQueueData<T>>;
+            using PriorityQueueDataSharedPtr = std::shared_ptr<PriorityQueueData<T>>;
 
             /**
              * The PriorityQueueData constructor.

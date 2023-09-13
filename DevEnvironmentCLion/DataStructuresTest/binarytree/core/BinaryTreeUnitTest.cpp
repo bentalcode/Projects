@@ -70,9 +70,9 @@ void BinaryTreeUnitTest::registerTests(unit_testing::ITestRegistration& registra
  */
 void BinaryTreeUnitTest::binaryTreeCreationTest()
 {
-    std::vector<BinaryTreeDataPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
+    std::vector<BinaryTreeDataSharedPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
 
-    for (BinaryTreeDataPtr<int, std::string> treeData : data)
+    for (BinaryTreeDataSharedPtr<int, std::string> treeData : data)
     {
         testCreation(*treeData);
     }
@@ -83,9 +83,9 @@ void BinaryTreeUnitTest::binaryTreeCreationTest()
  */
 void BinaryTreeUnitTest::binaryTreeIterationTest()
 {
-    std::vector<BinaryTreeDataPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
+    std::vector<BinaryTreeDataSharedPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
 
-    for (BinaryTreeDataPtr<int, std::string> treeData : data)
+    for (BinaryTreeDataSharedPtr<int, std::string> treeData : data)
     {
         testIteration(*treeData);
     }

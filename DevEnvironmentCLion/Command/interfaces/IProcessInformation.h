@@ -70,7 +70,10 @@ namespace command {
         virtual const base::Duration& totalCpuTime() const = 0;
     };
 
-    using IProcessInformationPtr = std::shared_ptr<IProcessInformation>;
+    //
+    // Defines the SharedPtr of Process Information...
+    //
+    using IProcessInformationSharedPtr = std::shared_ptr<IProcessInformation>;
 }
 
 #endif // I_PROCESS_INFORMATION_H_66b6d8af_1a81_44b0_b484_da9e147f0f2d

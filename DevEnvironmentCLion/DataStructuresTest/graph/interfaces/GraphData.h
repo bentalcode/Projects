@@ -113,8 +113,11 @@ namespace test {
                 GraphShortestPathsMap<TKey, TValue> m_shortestPaths;
             };
 
+            //
+            // Defines the SharedPtr of Graph Data...
+            //
             template <typename TKey, typename TValue>
-            using GraphDataPtr = std::shared_ptr<GraphData<TKey, TValue>>;
+            using GraphDataSharedPtr = std::shared_ptr<GraphData<TKey, TValue>>;
 
             /**
              * Creates a new graph data.

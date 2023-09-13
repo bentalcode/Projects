@@ -79,7 +79,7 @@ namespace memory_management
         /**
          * Adds a new pool.
          */
-        FixedMemoryPoolPtr addPool();
+        FixedMemoryPoolSharedPtr addPool();
 
         /**
          * Checks whether an element is in the pool.
@@ -89,12 +89,12 @@ namespace memory_management
         /**
          * Gets the corresponding pool of an element.
          */
-        FixedMemoryPoolPtr getElementPool(MemoryAddress elementPtr) const;
+        FixedMemoryPoolSharedPtr getElementPool(MemoryAddress elementPtr) const;
 
         /**
          * Sets the corresponding pool of an element.
          */
-        void setElementPool(MemoryAddress elementPtr, FixedMemoryPoolPtr poolPtr);
+        void setElementPool(MemoryAddress elementPtr, FixedMemoryPoolSharedPtr poolPtr);
 
         /**
          * Removes the corresponding pool of an element.
@@ -117,11 +117,11 @@ namespace memory_management
         std::size_t m_alignment;
 
         // The list of fixed memory pools.
-        using MemoryPoolList = std::list<FixedMemoryPoolPtr>;
+        using MemoryPoolList = std::list<FixedMemoryPoolSharedPtr>;
         MemoryPoolList m_poolList;
 
         // The mapping of an element address to it's corresponding pool.
-        using ElementAddressToPoolMap = std::map<MemoryRawAddress, FixedMemoryPoolPtr>;
+        using ElementAddressToPoolMap = std::map<MemoryRawAddress, FixedMemoryPoolSharedPtr>;
         ElementAddressToPoolMap m_elementToPoolMap;
     };
 

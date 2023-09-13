@@ -85,7 +85,10 @@ namespace command {
         base::Duration m_totalCpuTime;
     };
 
-    using IProcessInformationPtr = std::shared_ptr<IProcessInformation>;
+    //
+    // Defines the SharedPtr of Process Information...
+    //
+    using IProcessInformationSharedPtr = std::shared_ptr<IProcessInformation>;
 }
 
 #endif // PROCESS_INFORMATION_H_d168b642_eb11_4dc5_b62a_55ab2522610b

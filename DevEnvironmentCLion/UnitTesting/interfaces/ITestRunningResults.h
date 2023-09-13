@@ -6,10 +6,13 @@
 
 namespace unit_testing
 {
+    //
+    // Defines the SharedPtr of Test Running Results...
+    //
     class ITestRunningResults;
-    using ITestRunningResultsPtr = std::shared_ptr<ITestRunningResults>;
+    using ITestRunningResultsSharedPtr = std::shared_ptr<ITestRunningResults>;
 
-    using ITestRunningResultList = std::list<ITestRunningResultPtr>;
+    using ITestRunningResultList = std::list<ITestRunningResultSharedPtr>;
 
     /**
      * The ITestRunningResults interface defines the results of tests.
@@ -45,12 +48,12 @@ namespace unit_testing
         /**
          * Gets the start time of the tests.
          */
-        virtual base::DateTimePtr getStartTime() const = 0;
+        virtual base::DateTimeSharedPtr getStartTime() const = 0;
 
         /**
          * Gets the end time of the tests.
          */
-        virtual base::DateTimePtr getEndTime() const = 0;
+        virtual base::DateTimeSharedPtr getEndTime() const = 0;
 
         /**
          * Gets the duration of the tests.

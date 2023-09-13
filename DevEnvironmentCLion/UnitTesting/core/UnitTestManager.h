@@ -43,12 +43,12 @@ namespace unit_testing
         /**
          * Registers a test.
          */
-        virtual void registerTest(IUnitTestPtr unitTest) override;
+        virtual void registerTest(IUnitTestSharedPtr unitTest) override;
 
         /**
          * Unregisters a test.
          */
-        virtual void unregisterTest(IUnitTestPtr unitTest) override;
+        virtual void unregisterTest(IUnitTestSharedPtr unitTest) override;
 
         /**
          * Runs the registered tests.
@@ -63,7 +63,7 @@ namespace unit_testing
 
         base::IMessageWriterSharedPtr m_messageWriter;
 
-        using UnitTestList = std::list<IUnitTestPtr>;
+        using UnitTestList = std::list<IUnitTestSharedPtr>;
         UnitTestList m_unitTests;
 
         TestRunningResults m_unitTestRunningResults;

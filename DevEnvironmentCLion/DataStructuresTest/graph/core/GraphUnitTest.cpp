@@ -127,18 +127,18 @@ void GraphUnitTest::registerTests(unit_testing::ITestRegistration& registration)
  */
 void GraphUnitTest::loopDetectionTest()
 {
-    std::vector<GraphDataPtr<int, std::string>> graphsData;
+    std::vector<GraphDataSharedPtr<int, std::string>> graphsData;
     m_testData.getGraphData()->getGraphsData(graphsData);
 
-    for (GraphDataPtr<int, std::string> graphData : graphsData)
+    for (GraphDataSharedPtr<int, std::string> graphData : graphsData)
     {
         testLoopDetection(*graphData, false);
     }
 
-    std::vector<GraphDataPtr<int, std::string>> graphsDataWithLoops;
+    std::vector<GraphDataSharedPtr<int, std::string>> graphsDataWithLoops;
     m_testData.getGraphData()->getGraphsDataWithLoops(graphsDataWithLoops);
 
-    for (GraphDataPtr<int, std::string> graphData : graphsDataWithLoops)
+    for (GraphDataSharedPtr<int, std::string> graphData : graphsDataWithLoops)
     {
         testLoopDetection(*graphData, true);
     }
@@ -149,10 +149,10 @@ void GraphUnitTest::loopDetectionTest()
  */
 void GraphUnitTest::topologicalSearchTest()
 {
-    std::vector<GraphDataPtr<int, std::string>> graphsData;
+    std::vector<GraphDataSharedPtr<int, std::string>> graphsData;
     m_testData.getGraphData()->getGraphsData(graphsData);
 
-    for (GraphDataPtr<int, std::string> graphData : graphsData)
+    for (GraphDataSharedPtr<int, std::string> graphData : graphsData)
     {
         testTopologicalSearch(*graphData);
     }
@@ -163,10 +163,10 @@ void GraphUnitTest::topologicalSearchTest()
  */
 void GraphUnitTest::findPathsWithBreadthFirstSearchTest()
 {
-    std::vector<GraphDataPtr<int, std::string>> graphsData;
+    std::vector<GraphDataSharedPtr<int, std::string>> graphsData;
     m_testData.getGraphData()->getGraphsData(graphsData);
 
-    for (GraphDataPtr<int, std::string> graphData : graphsData)
+    for (GraphDataSharedPtr<int, std::string> graphData : graphsData)
     {
         testFindPathsWithBreadthFirstSearch(*graphData);
     }
@@ -177,10 +177,10 @@ void GraphUnitTest::findPathsWithBreadthFirstSearchTest()
  */
 void GraphUnitTest::findPathsWithDepthFirstSearchTest()
 {
-    std::vector<GraphDataPtr<int, std::string>> graphsData;
+    std::vector<GraphDataSharedPtr<int, std::string>> graphsData;
     m_testData.getGraphData()->getGraphsData(graphsData);
 
-    for (GraphDataPtr<int, std::string> graphData : graphsData)
+    for (GraphDataSharedPtr<int, std::string> graphData : graphsData)
     {
         testFindPathsWithDepthFirstSearch(*graphData);
     }
@@ -191,10 +191,10 @@ void GraphUnitTest::findPathsWithDepthFirstSearchTest()
  */
 void GraphUnitTest::findShortestPathsTest()
 {
-    std::vector<GraphDataPtr<int, std::string>> graphsData;
+    std::vector<GraphDataSharedPtr<int, std::string>> graphsData;
     m_testData.getGraphData()->getGraphsData(graphsData);
 
-    for (GraphDataPtr<int, std::string> graphData : graphsData)
+    for (GraphDataSharedPtr<int, std::string> graphData : graphsData)
     {
         testFindShortestPaths(*graphData);
     }

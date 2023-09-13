@@ -40,7 +40,7 @@ namespace test {
                 /**
                  * Gets the data of doubly linked lists.
                  */
-                std::vector<DoublyLinkedListDataPtr<int>> getData() const;
+                std::vector<DoublyLinkedListDataSharedPtr<int>> getData() const;
 
                 /**
                  * Gets the updation data of a doubly linked list.
@@ -51,7 +51,7 @@ namespace test {
                 /**
                  * Gets the data of list.
                  */
-                DoublyLinkedListDataPtr<int> getListData(size_t size) const;
+                DoublyLinkedListDataSharedPtr<int> getListData(size_t size) const;
 
                 /**
                  * Gets the values of a doubly linked list.

@@ -27,18 +27,18 @@ CommandParser::~CommandParser()
 /**
  * Parses the parameters of the command.
  */
-base::IParsingResultPtr<ICommandParametersPtr> CommandParser::parse(int argc, char *argv[])
+base::IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::parse(int argc, char *argv[])
 {
     //
     // Parse the parameters of the command...
     //
-    base::IParsingResultPtr<IInputParametersPtr> inputParametersResult = parseInputParameters(argc, argv);
+    base::IParsingResultSharedPtr<IInputParametersSharedPtr> inputParametersResult = parseInputParameters(argc, argv);
 
     if (inputParametersResult->failed()) {
-        return base::ParsingResult<ICommandParametersPtr>::failureResult(inputParametersResult);
+        return base::ParsingResult<ICommandParametersSharedPtr>::failureResult(inputParametersResult);
     }
 
-    IInputParametersPtr inputParameters = inputParametersResult->getResult();
+    IInputParametersSharedPtr inputParameters = inputParametersResult->getResult();
 
     //
     // Return if this is a help command...
@@ -51,21 +51,21 @@ base::IParsingResultPtr<ICommandParametersPtr> CommandParser::parse(int argc, ch
     //
     // Parse the parameter-sets of the command...
     //
-    base::IParsingResultPtr<IParameterSetPtr> parameterSetResult = parseParameterSets(*inputParameters);
+    base::IParsingResultSharedPtr<IParameterSetSharedPtr> parameterSetResult = parseParameterSets(*inputParameters);
 
     if (parameterSetResult->failed()) {
-        return base::ParsingResult<ICommandParametersPtr>::failureResult(parameterSetResult);
+        return base::ParsingResult<ICommandParametersSharedPtr>::failureResult(parameterSetResult);
     }
 
-    ICommandParametersPtr commandParameters = CommandParameters::make(parameterSetResult->getResult());
+    ICommandParametersSharedPtr commandParameters = CommandParameters::make(parameterSetResult->getResult());
 
-    return base::ParsingResult<ICommandParametersPtr>::successfulResult(commandParameters);
+    return base::ParsingResult<ICommandParametersSharedPtr>::successfulResult(commandParameters);
 }
 
 /**
  * Parses input parameters of a command.
  */
-base::IParsingResultPtr<IInputParametersPtr> CommandParser::parseInputParameters(int argc, char* argv[])
+base::IParsingResultSharedPtr<IInputParametersSharedPtr> CommandParser::parseInputParameters(int argc, char* argv[])
 {
     std::vector<std::string> indexedParameters;
     std::map<std::string, std::string> namedParameters;
@@ -76,12 +76,12 @@ base::IParsingResultPtr<IInputParametersPtr> CommandParser::parseInputParameters
         std::string arg(argv[i]);
 
         if (NamedParameterParser::isNamedParameter(arg)) {
-            base::IParsingResultPtr<base::PairPtr<std::string, std::string>> namedParameterResult =
+            base::IParsingResultSharedPtr<base::PairSharedPtr<std::string, std::string>> namedParameterResult =
                 namedParameterParser.parse(arg);
 
             if (namedParameterResult->failed())
             {
-                return base::ParsingResult<IInputParametersPtr>::failureResult(namedParameterResult);
+                return base::ParsingResult<IInputParametersSharedPtr>::failureResult(namedParameterResult);
             }
 
             const std::string& name = namedParameterResult->getResult()->getFirst();
@@ -91,7 +91,7 @@ base::IParsingResultPtr<IInputParametersPtr> CommandParser::parseInputParameters
                 std::string errorMessage =
                     "The named parameter: " + name + " + already exists in command line.";
 
-                return base::ParsingResult<IInputParametersPtr>::failureResult(errorMessage);
+                return base::ParsingResult<IInputParametersSharedPtr>::failureResult(errorMessage);
             }
 
             namedParameters.insert(std::make_pair(name, value));
@@ -102,17 +102,17 @@ base::IParsingResultPtr<IInputParametersPtr> CommandParser::parseInputParameters
         }
     }
 
-    IInputParametersPtr inputParameters = InputParameters::make(indexedParameters, namedParameters);
+    IInputParametersSharedPtr inputParameters = InputParameters::make(indexedParameters, namedParameters);
 
-    return base::ParsingResult<IInputParametersPtr>::successfulResult(inputParameters);
+    return base::ParsingResult<IInputParametersSharedPtr>::successfulResult(inputParameters);
 }
 
 /**
  * Parses parameter-sets of a command.
  */
-base::IParsingResultPtr<IParameterSetPtr> CommandParser::parseParameterSets(const IInputParameters& inputParameters)
+base::IParsingResultSharedPtr<IParameterSetSharedPtr> CommandParser::parseParameterSets(const IInputParameters& inputParameters)
 {
-    std::vector<IParameterPtr> parameters;
+    std::vector<IParameterSharedPtr> parameters;
 
     const IInputParameters::NamedParameters& namedParameters = inputParameters.getNamedParameters();
 
@@ -120,12 +120,12 @@ base::IParsingResultPtr<IParameterSetPtr> CommandParser::parseParameterSets(cons
          i != namedParameters.end();
          ++i)
     {
-        IParameterPtr parameter = Parameter::make(i->first, i->second, true);
+        IParameterSharedPtr parameter = Parameter::make(i->first, i->second, true);
         parameters.push_back(parameter);
     }
 
-    IParameterSetPtr parameterSet = ParameterSet::make(0, parameters);
-    return base::ParsingResult<IParameterSetPtr>::successfulResult(parameterSet);
+    IParameterSetSharedPtr parameterSet = ParameterSet::make(0, parameters);
+    return base::ParsingResult<IParameterSetSharedPtr>::successfulResult(parameterSet);
 }
 
 /**
@@ -144,16 +144,16 @@ bool CommandParser::isHelpCommand(const IInputParameters& inputParameters)
 /**
  * Creates a result of a help command.
  */
-base::IParsingResultPtr<ICommandParametersPtr> CommandParser::createHelpCommandResult()
+base::IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::createHelpCommandResult()
 {
-    std::vector<IParameterPtr> parameters;
+    std::vector<IParameterSharedPtr> parameters;
     parameters.push_back(CommandHelpMetadata::createHelpParameter());
 
-    IParameterSetPtr parameterSet = ParameterSet::make(
+    IParameterSetSharedPtr parameterSet = ParameterSet::make(
         CommandConstants::helpParameterSetIndex,
         parameters);
 
-    ICommandParametersPtr commandParameters = CommandParameters::make(parameterSet);
+    ICommandParametersSharedPtr commandParameters = CommandParameters::make(parameterSet);
 
-    return base::ParsingResult<ICommandParametersPtr>::successfulResult(commandParameters);
+    return base::ParsingResult<ICommandParametersSharedPtr>::successfulResult(commandParameters);
 }

@@ -47,12 +47,12 @@ namespace unit_testing
         /**
          * Gets the start time of the tests.
          */
-        virtual base::DateTimePtr getStartTime() const override;
+        virtual base::DateTimeSharedPtr getStartTime() const override;
 
         /**
          * Gets the end time of the tests.
          */
-        virtual base::DateTimePtr getEndTime() const override;
+        virtual base::DateTimeSharedPtr getEndTime() const override;
 
         /**
          * Gets the duration of the tests.
@@ -109,8 +109,8 @@ namespace unit_testing
     private:
         size_t m_numberOfSuccessfulTests;
         size_t m_numberOfFailedTests;
-        base::DateTimePtr m_startTime;
-        base::DateTimePtr m_endTime;
+        base::DateTimeSharedPtr m_startTime;
+        base::DateTimeSharedPtr m_endTime;
         ITestRunningResultList m_runningResults;
     };
 }

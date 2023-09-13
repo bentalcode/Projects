@@ -49,7 +49,10 @@ namespace command {
         virtual const std::string& getUsageMessage() const = 0;
     };
 
-    using ICommandHelpMetadataPtr = std::shared_ptr<ICommandHelpMetadata>;
+    //
+    // Defines the SharedPtr of Command Help Metadata...
+    //
+    using ICommandHelpMetadataSharedPtr = std::shared_ptr<ICommandHelpMetadata>;
 }
 
 #endif // I_COMMAND_HELP_METADATA_H_03286718_f72f_46c0_841f_7d81827af3a0

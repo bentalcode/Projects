@@ -39,7 +39,7 @@ namespace test {
             /**
              * Gets the data of tests of a bit array.
              */
-            BitArrayTestDataPtr getBitArrayData() const;
+            BitArrayTestDataSharedPtr getBitArrayData() const;
 
             /**
              * Gets the data of tests of a linked list.
@@ -54,7 +54,7 @@ namespace test {
             /**
              * Gets the data of tests of a binary tree.
              */
-            BinaryTreeTestDataPtr getBinaryTreeData() const;
+            BinaryTreeTestDataSharedPtr getBinaryTreeData() const;
 
             /**
              * Gets the data of tests of a priority queue.

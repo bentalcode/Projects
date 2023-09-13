@@ -59,8 +59,11 @@ namespace base {
             const IComparableComparator<ValueType>& comparator);
     };
 
+    //
+    // Defines the SharedPtr of Collection Comparator...
+    //
     template <typename CollectionType>
-    using CollectionComparatorPtr = std::shared_ptr<CollectionComparator<CollectionType>>;
+    using CollectionComparatorSharedPtr = std::shared_ptr<CollectionComparator<CollectionType>>;
 
     /**
      * The SetComparator constructor.

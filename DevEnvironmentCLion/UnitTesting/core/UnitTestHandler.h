@@ -45,7 +45,7 @@ namespace unit_testing
         /**
          * Registers a test.
          */
-        virtual void registerTest(ITestFunctionPtr testFunction) override;
+        virtual void registerTest(ITestFunctionSharedPtr testFunction) override;
 
         /**
          * Runs the unit test.
@@ -66,7 +66,7 @@ namespace unit_testing
         IUnitTest& m_unitTest;
         base::IMessageWriter& m_messageWriter;
 
-        using TestList = std::list<ITestFunctionPtr>;
+        using TestList = std::list<ITestFunctionSharedPtr>;
         TestList m_unitTests;
 
         TestRunningResults m_unitTestRunningResults;

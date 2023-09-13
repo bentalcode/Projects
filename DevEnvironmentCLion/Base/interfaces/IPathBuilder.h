@@ -57,7 +57,7 @@ namespace base
     //
     // Defines the SharedPtr of Path Builder...
     //
-    using IPathBuilderPtr = std::shared_ptr<IPathBuilder>;
+    using IPathBuilderSharedPtr = std::shared_ptr<IPathBuilder>;
 }
 
 #endif // I_PATH_BUILDER_H_bed6caa1_4360_4918_85de_39b46a66818f

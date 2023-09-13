@@ -27,7 +27,7 @@ GraphTestData::~GraphTestData()
 /**
  * Gets data of graphs.
  */
-void GraphTestData::getGraphsData(std::vector<GraphDataPtr<int, std::string>>& result)
+void GraphTestData::getGraphsData(std::vector<GraphDataSharedPtr<int, std::string>>& result)
 {
     result.push_back(getGraphData1());
     result.push_back(getGraphData2());
@@ -37,9 +37,9 @@ void GraphTestData::getGraphsData(std::vector<GraphDataPtr<int, std::string>>& r
 /**
  * Gets data of graphs with loops.
  */
-void GraphTestData::getGraphsDataWithLoops(std::vector<GraphDataPtr<int, std::string>>& result)
+void GraphTestData::getGraphsDataWithLoops(std::vector<GraphDataSharedPtr<int, std::string>>& result)
 {
-    GraphDataPtr<int, std::string> graphData = getGraphDataWithLoop1();
+    GraphDataSharedPtr<int, std::string> graphData = getGraphDataWithLoop1();
     result.push_back(graphData);
 }
 
@@ -138,7 +138,7 @@ IEdgeSharedPtr<std::string, std::string> GraphTestData::nextDirectedEdgeByString
 /**
  * Gets data of graph1.
  */
-GraphDataPtr<int, std::string> GraphTestData::getGraphData1()
+GraphDataSharedPtr<int, std::string> GraphTestData::getGraphData1()
 {
     IVertexSharedPtr<int, std::string> vertex1 = Vertex<int, std::string>::make(1, "a");
     IVertexSharedPtr<int, std::string> vertex2 = Vertex<int, std::string>::make(2, "b");
@@ -195,7 +195,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData1()
 /**
  * Gets data of graph2.
  */
-GraphDataPtr<int, std::string> GraphTestData::getGraphData2()
+GraphDataSharedPtr<int, std::string> GraphTestData::getGraphData2()
 {
     IVertexSharedPtr<int, std::string> vertex1 = Vertex<int, std::string>::make(1, "a");
     IVertexSharedPtr<int, std::string> vertex2 = Vertex<int, std::string>::make(2, "b");
@@ -268,7 +268,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData2()
 /**
  * Gets data of graph3.
  */
-GraphDataPtr<int, std::string> GraphTestData::getGraphData3()
+GraphDataSharedPtr<int, std::string> GraphTestData::getGraphData3()
 {
     IVertexSharedPtr<int, std::string> vertex1 = Vertex<int, std::string>::make(1, "a");
     IVertexSharedPtr<int, std::string> vertex2 = Vertex<int, std::string>::make(2, "b");
@@ -332,7 +332,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphData3()
 /**
  * Gets data of graph1.
  */
-GraphDataPtr<int, std::string> GraphTestData::getGraphDataWithLoop1()
+GraphDataSharedPtr<int, std::string> GraphTestData::getGraphDataWithLoop1()
 {
     IVertexSharedPtr<int, std::string> vertex1 = Vertex<int, std::string>::make(1, "a");
     IVertexSharedPtr<int, std::string> vertex2 = Vertex<int, std::string>::make(2, "b");
@@ -357,7 +357,7 @@ GraphDataPtr<int, std::string> GraphTestData::getGraphDataWithLoop1()
         Edge<int, std::string>::makeDirected(vertex4, vertex4)
     };
 
-    GraphDataPtr<int, std::string> graphDataPtr = std::make_shared<GraphData<int, std::string>>(
+    GraphDataSharedPtr<int, std::string> graphDataPtr = std::make_shared<GraphData<int, std::string>>(
         vertices,
         edges);
 

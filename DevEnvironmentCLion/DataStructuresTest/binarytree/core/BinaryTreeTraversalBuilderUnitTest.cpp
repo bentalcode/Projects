@@ -71,9 +71,9 @@ void BinaryTreeTraversalBuilderUnitTest::registerTests(unit_testing::ITestRegist
  */
 void BinaryTreeTraversalBuilderUnitTest::binaryTreePreorderInorderTraversalBuilderTest()
 {
-    std::vector<BinaryTreeDataPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
+    std::vector<BinaryTreeDataSharedPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
 
-    for (BinaryTreeDataPtr<int, std::string> treeData : data)
+    for (BinaryTreeDataSharedPtr<int, std::string> treeData : data)
     {
         testPreorderInorderTraversalBuilder(*treeData);
     }
@@ -84,9 +84,9 @@ void BinaryTreeTraversalBuilderUnitTest::binaryTreePreorderInorderTraversalBuild
  */
 void BinaryTreeTraversalBuilderUnitTest::binaryTreePreorderPostorderTraversalBuilderTest()
 {
-    std::vector<BinaryTreeDataPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
+    std::vector<BinaryTreeDataSharedPtr<int, std::string>> data = m_testData.getBinaryTreeData()->getData();
 
-    for (BinaryTreeDataPtr<int, std::string> treeData : data)
+    for (BinaryTreeDataSharedPtr<int, std::string> treeData : data)
     {
         testPreorderPostorderTraversalBuilder(*treeData);
     }

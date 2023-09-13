@@ -7,7 +7,7 @@ using namespace base;
 /**
  * Creates a new date-time.
  */
-DateTimePtr DateTime::make(const std::chrono::system_clock::time_point& timePoint)
+DateTimeSharedPtr DateTime::make(const std::chrono::system_clock::time_point& timePoint)
 {
     return std::make_shared<DateTime>(timePoint);
 }
@@ -30,7 +30,7 @@ DateTime::~DateTime()
 /**
  * Gets the current time.
  */
-DateTimePtr DateTime::now()
+DateTimeSharedPtr DateTime::now()
 {
     return DateTime::make(DateTime::currentTimePoint());
 }

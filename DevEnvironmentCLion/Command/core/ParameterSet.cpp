@@ -6,9 +6,9 @@ using namespace command;
 /**
  * Creates a new parameter set.
  */
-IParameterSetPtr ParameterSet::make(
+IParameterSetSharedPtr ParameterSet::make(
     int index,
-    const std::vector<IParameterPtr>& parameters)
+    const std::vector<IParameterSharedPtr>& parameters)
 {
     return std::make_shared<ParameterSet>(index, parameters);
 }
@@ -18,7 +18,7 @@ IParameterSetPtr ParameterSet::make(
  */
 ParameterSet::ParameterSet(
     int index,
-    const std::vector<IParameterPtr>& parameters) :
+    const std::vector<IParameterSharedPtr>& parameters) :
     m_index(index)
 {
     createParameterMap(parameters);
@@ -51,7 +51,7 @@ const ParameterSet::ParameterMap& ParameterSet::getParameters() const
  * Gets a parameter by manifest name.
  * The parameter can be null.
  */
-IParameterPtr ParameterSet::getParameter(const std::string& name) const
+IParameterSharedPtr ParameterSet::getParameter(const std::string& name) const
 {
     ParameterMap::const_iterator parameterIterator = m_parameters.find(name);
 
@@ -75,9 +75,9 @@ bool ParameterSet::hasParameter(const std::string& name) const
 /**
  * Creates the parameter map.
  */
-void ParameterSet::createParameterMap(const std::vector<IParameterPtr>& parameters)
+void ParameterSet::createParameterMap(const std::vector<IParameterSharedPtr>& parameters)
 {
-    for (IParameterPtr parameter : parameters)
+    for (IParameterSharedPtr parameter : parameters)
     {
         m_parameters.insert(std::make_pair(parameter->getName(), parameter));
     }

@@ -44,7 +44,7 @@ namespace base
     // Defines the Shared Ptr of Main Parser...
     //
     template <typename T>
-    using IMainParserPtr = std::shared_ptr<IMainParser<T>>;
+    using IMainParserSharedPtr = std::shared_ptr<IMainParser<T>>;
 }
 
 #endif // I_MAIN_PARSER_H_564707ff_e4b7_49e8_b403_9fbb5a18a50d

@@ -29,7 +29,7 @@ UnitTestHandler::~UnitTestHandler()
 /**
  * Registers a test.
  */
-void UnitTestHandler::registerTest(ITestFunctionPtr testFunction)
+void UnitTestHandler::registerTest(ITestFunctionSharedPtr testFunction)
 {
     if (!testFunction)
     {
@@ -55,7 +55,7 @@ const ITestRunningResults& UnitTestHandler::run()
     //
     m_unitTestRunningResults.getStartTime();
 
-    for (ITestFunctionPtr unitTestFunction : m_unitTests)
+    for (ITestFunctionSharedPtr unitTestFunction : m_unitTests)
     {
         processTest(*unitTestFunction);
     }
@@ -70,7 +70,7 @@ const ITestRunningResults& UnitTestHandler::run()
  */
 void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
 {
-    base::DateTimePtr startTime = base::DateTime::now();
+    base::DateTimeSharedPtr startTime = base::DateTime::now();
 
     std::stringstream testStartStream;
     testStartStream
@@ -82,7 +82,7 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
     std::string errorMessage;
     bool resultStatus = runTest(unitTestFunction, errorMessage);
 
-    base::DateTimePtr endTime = base::DateTime::now();
+    base::DateTimeSharedPtr endTime = base::DateTime::now();
 
     std::stringstream testResultStream;
     testResultStream << "Unit Test: " + unitTestFunction.getName();

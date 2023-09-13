@@ -52,10 +52,13 @@ namespace command {
         /**
          * Gets parameter-sets metadata of a command.
          */
-        virtual void getParameterSets(std::vector<IParameterSetMetadataPtr>& parameterSets) const = 0;
+        virtual void getParameterSets(std::vector<IParameterSetMetadataSharedPtr>& parameterSets) const = 0;
     };
 
-    using ICommandManifestPtr = std::shared_ptr<ICommandManifest>;
+    //
+    // Defines the SharedPtr of Command Manifest...
+    //
+    using ICommandManifestSharedPtr = std::shared_ptr<ICommandManifest>;
 }
 
 #endif // I_COMMAND_MANIFEST_H_27391c05_d0d0_4424_b93b_d03a73606520

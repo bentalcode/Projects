@@ -112,7 +112,10 @@ namespace test {
             virtual const std::vector<std::byte>& getBlobProperty() const = 0;
         };
 
-        using IPropertyTypePtr = std::shared_ptr<IPropertyType>;
+        //
+        // Defines the SharedPtr of Property Type...
+        //
+        using IPropertyTypeSharedPtr = std::shared_ptr<IPropertyType>;
     }
 }
 

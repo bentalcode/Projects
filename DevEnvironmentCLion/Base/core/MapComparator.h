@@ -70,7 +70,7 @@ namespace base {
     // Defines the SharedPtr of Map Comparator...
     //
     template <typename TKey, typename TValue, typename TCompare>
-    using MapComparatorPtr = std::shared_ptr<MapComparator<TKey, TValue, TCompare>>;
+    using MapComparatorSharedPtr = std::shared_ptr<MapComparator<TKey, TValue, TCompare>>;
 
     /**
      * The MapComparator constructor.

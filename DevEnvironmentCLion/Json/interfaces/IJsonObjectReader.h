@@ -242,7 +242,10 @@ namespace json
             std::map<TKey, TValue>& result);
     };
 
-    using IJsonObjectReaderPtr = std::shared_ptr<IJsonObjectReader>;
+    //
+    // Defines the SharedPtr of Json Object Reader...
+    //
+    using IJsonObjectReaderSharedPtr = std::shared_ptr<IJsonObjectReader>;
 }
 
 #endif // I_JSON_OBJECT_READER_H_1ba919f5_ecab_4880_b939_7112695f92fe

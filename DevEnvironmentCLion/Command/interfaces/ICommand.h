@@ -37,7 +37,7 @@ namespace command {
         /**
          * Sets parameters of a command.
          */
-        virtual void setParameters(ICommandParametersPtr parameters) = 0;
+        virtual void setParameters(ICommandParametersSharedPtr parameters) = 0;
 
         /**
          * Gets parameters of a command.
@@ -47,7 +47,7 @@ namespace command {
         /**
          * Sets a message writer of a command.
          */
-        virtual void setMessageWriter(base::IMessageWriterPtr messageWriter) = 0;
+        virtual void setMessageWriter(base::IMessageWriterSharedPtr messageWriter) = 0;
 
         /**
          * Gets a message writer of a command.
@@ -60,7 +60,10 @@ namespace command {
         virtual void run() = 0;
     };
 
-    using ICommandPtr = std::shared_ptr<ICommand>;
+    //
+    // Defines the SharedPtr of Command...
+    //
+    using ICommandSharedPtr = std::shared_ptr<ICommand>;
 }
 
 #endif // I_COMMAND_H_7331e91c_6adf_416a_b19e_3180f8f9b285

@@ -8,7 +8,7 @@ using namespace command;
 /**
  * Creates a help parameter.
  */
-IParameterPtr CommandHelpMetadata::createHelpParameter()
+IParameterSharedPtr CommandHelpMetadata::createHelpParameter()
 {
     return std::make_shared<Parameter>(CommandConstants::helpShortName, "", false);
 }
@@ -16,7 +16,7 @@ IParameterPtr CommandHelpMetadata::createHelpParameter()
 /**
  * Creates meta-data of a help parameter.
  */
-INamedParameterMetadataPtr CommandHelpMetadata::createHelpParameterMetadata() {
+INamedParameterMetadataSharedPtr CommandHelpMetadata::createHelpParameterMetadata() {
     return NamedParameterMetadata::make(
         "Help",
         CommandConstants::helpShortName,
@@ -27,7 +27,7 @@ INamedParameterMetadataPtr CommandHelpMetadata::createHelpParameterMetadata() {
 /**
  * Creates a new command help metadata.
  */
-ICommandHelpMetadataPtr CommandHelpMetadata::make(
+ICommandHelpMetadataSharedPtr CommandHelpMetadata::make(
     const std::string& usageMessage,
     const std::string& shortName,
     const std::string& longName)

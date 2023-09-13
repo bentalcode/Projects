@@ -41,7 +41,7 @@ size_t TestRunningResults::numberOfFailedTests() const
 /**
  * Gets the start time of the tests.
  */
-base::DateTimePtr TestRunningResults::getStartTime() const
+base::DateTimeSharedPtr TestRunningResults::getStartTime() const
 {
     return m_startTime;
 }
@@ -49,7 +49,7 @@ base::DateTimePtr TestRunningResults::getStartTime() const
 /**
  * Gets the end time of the tests.
  */
-base::DateTimePtr TestRunningResults::getEndTime() const
+base::DateTimeSharedPtr TestRunningResults::getEndTime() const
 {
     return m_endTime;
 }
@@ -99,7 +99,7 @@ void TestRunningResults::setSuccessfulRunningResult(
     const base::DateTime& startTime,
     const base::DateTime& endTime)
 {
-    ITestRunningResultPtr runningResultPtr(new TestRunningResult(
+    ITestRunningResultSharedPtr runningResultPtr(new TestRunningResult(
         testName,
         startTime,
         endTime,
@@ -120,7 +120,7 @@ void TestRunningResults::setFailedRunningResult(
     const base::DateTime& endTime,
     const std::string& errorMessage)
 {
-    ITestRunningResultPtr runningResultPtr(new TestRunningResult(
+    ITestRunningResultSharedPtr runningResultPtr(new TestRunningResult(
         testName,
         startTime,
         endTime,
@@ -155,7 +155,7 @@ std::string TestRunningResults::toString() const
 
     size_t index = 0;
 
-    for (ITestRunningResultPtr runningResultPtr : m_runningResults)
+    for (ITestRunningResultSharedPtr runningResultPtr : m_runningResults)
     {
         ++index;
         stream << "[" << index << "] " << *runningResultPtr << std::endl << std::endl;
@@ -190,7 +190,7 @@ void TestRunningResults::write(base::IMessageWriter& messageWriter) const
 
     size_t index = 0;
 
-    for (ITestRunningResultPtr testRunningResultPtr : m_runningResults)
+    for (ITestRunningResultSharedPtr testRunningResultPtr : m_runningResults)
     {
         ++index;
         std::stringstream testResultStream;

@@ -17,12 +17,12 @@ namespace command {
         /**
          * Creates a new command handler.
          */
-        static ICommandHandlerPtr make(ICommandManifestPtr manifest);
+        static ICommandHandlerSharedPtr make(ICommandManifestSharedPtr manifest);
 
         /**
          * The CommandHandler constructor.
          */
-        explicit CommandHandler(ICommandManifestPtr manifest);
+        explicit CommandHandler(ICommandManifestSharedPtr manifest);
 
         /**
          * The CommandHandler destructor.
@@ -58,15 +58,15 @@ namespace command {
         /**
          * Parses the parameters of a command.
          */
-        static base::IParsingResultPtr<ICommandParametersPtr> parseParameters(int argc, char *argv[]);
+        static base::IParsingResultSharedPtr<ICommandParametersSharedPtr> parseParameters(int argc, char *argv[]);
 
         /**
          * Checks whether this is a help command.
          */
         static bool isHelpCommand(const ICommandParameters& parameters);
 
-        ICommandManifestPtr m_manifest;
-        ICommandMessageWriterPtr m_commandMessageWriter;
+        ICommandManifestSharedPtr m_manifest;
+        ICommandMessageWriterSharedPtr m_commandMessageWriter;
     };
 }
 

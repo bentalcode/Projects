@@ -42,7 +42,7 @@ namespace base
     // Defines the SharedPtr of From String...
     //
     template <typename T>
-    using IFromStringPtr = std::shared_ptr<IFromString<T>>;
+    using IFromStringSharedPtr = std::shared_ptr<IFromString<T>>;
 }
 
 #endif // I_FROM_STRING_H_69006faf_17df_4745_8cc6_9e5ba7dcd7ac

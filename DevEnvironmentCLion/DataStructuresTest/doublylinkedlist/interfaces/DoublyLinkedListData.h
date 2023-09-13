@@ -54,8 +54,11 @@ namespace test {
                 std::vector<IDoublyLinkedListNodeSharedPtr<T>> m_nodes;
             };
 
+            //
+            // Defines the SharedPtr of Doubly Linked List Data...
+            //
             template <typename T>
-            using DoublyLinkedListDataPtr = std::shared_ptr<DoublyLinkedListData<T>>;
+            using DoublyLinkedListDataSharedPtr = std::shared_ptr<DoublyLinkedListData<T>>;
 
             /**
              * The DoublyLinkedListData constructor.

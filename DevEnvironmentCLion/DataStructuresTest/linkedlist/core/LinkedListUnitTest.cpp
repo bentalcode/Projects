@@ -91,9 +91,9 @@ void LinkedListUnitTest::registerTests(unit_testing::ITestRegistration& registra
  */
 void LinkedListUnitTest::linkedListCreationTest()
 {
-    std::vector<LinkedListDataPtr<int>> data = m_testData.getLinkedListData()->getData();
+    std::vector<LinkedListDataSharedPtr<int>> data = m_testData.getLinkedListData()->getData();
 
-    for (LinkedListDataPtr<int> listData : data)
+    for (LinkedListDataSharedPtr<int> listData : data)
     {
         testCreation(*listData);
     }
@@ -104,9 +104,9 @@ void LinkedListUnitTest::linkedListCreationTest()
  */
 void LinkedListUnitTest::linkedListIterationTest()
 {
-    std::vector<LinkedListDataPtr<int>> data = m_testData.getLinkedListData()->getData();
+    std::vector<LinkedListDataSharedPtr<int>> data = m_testData.getLinkedListData()->getData();
 
-    for (LinkedListDataPtr<int> listData : data)
+    for (LinkedListDataSharedPtr<int> listData : data)
     {
         testIteration(*listData);
     }
