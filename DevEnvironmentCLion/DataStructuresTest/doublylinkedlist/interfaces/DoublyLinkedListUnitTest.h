@@ -95,7 +95,7 @@ namespace test {
                  * Creates a doubly linked list.
                  */
                 template <typename T>
-                static IDoublyLinkedListPtr<T> createDoublyLinkedList(const std::vector<T>& data);
+                static IDoublyLinkedListSharedPtr<T> createDoublyLinkedList(const std::vector<T>& data);
 
                 TestData m_testData;
             };
@@ -109,14 +109,14 @@ namespace test {
                 //
                 // Create the container...
                 //
-                IDoublyLinkedListPtr<T> container = createDoublyLinkedList(data.getValues());
+                IDoublyLinkedListSharedPtr<T> container = createDoublyLinkedList(data.getValues());
 
                 //
                 // Test the data of the container...
                 //
                 getAssertion().assertEqualsWithDereferenceIterators(
                     *container->getIterator(),
-                    *base::VectorIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes()),
+                    *base::VectorIterator<IDoublyLinkedListNodeSharedPtr<T>>::make(data.getNodes()),
                     "Invalid creation logic of a doubly linked list.");
             }
 
@@ -129,15 +129,15 @@ namespace test {
                 //
                 // Create the container...
                 //
-                IDoublyLinkedListPtr<T> container = createDoublyLinkedList(data.getValues());
+                IDoublyLinkedListSharedPtr<T> container = createDoublyLinkedList(data.getValues());
 
                 //
                 // Test the forward iterator of the container...
                 //
                 test_base::IterationTest iterationTest;
 
-                base::IIterableSharedPtr<IDoublyLinkedListNodePtr<T>> containerIterable = container;
-                base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> expectedIterator = base::VectorIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
+                base::IIterableSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> containerIterable = container;
+                base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> expectedIterator = base::VectorIterator<IDoublyLinkedListNodeSharedPtr<T>>::make(data.getNodes());
 
                 iterationTest.testForwardIterationWithDereference(
                     containerIterable,
@@ -147,9 +147,9 @@ namespace test {
                 //
                 // Test the reverse iterator of the container...
                 //
-                base::IReverseIterableSharedPtr<IDoublyLinkedListNodePtr<T>> containerReverseIterable = container;
-                base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> expectedReverseIterator =
-                    base::VectorReverseIterator<IDoublyLinkedListNodePtr<T>>::make(data.getNodes());
+                base::IReverseIterableSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> containerReverseIterable = container;
+                base::IReverseIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> expectedReverseIterator =
+                    base::VectorReverseIterator<IDoublyLinkedListNodeSharedPtr<T>>::make(data.getNodes());
 
                 iterationTest.testReverseIterationWithDereference(
                     containerReverseIterable,
@@ -246,9 +246,9 @@ namespace test {
              * Creates a doubly linked list.
              */
             template <typename T>
-            IDoublyLinkedListPtr<T> DoublyLinkedListUnitTest::createDoublyLinkedList(const std::vector<T>& data)
+            IDoublyLinkedListSharedPtr<T> DoublyLinkedListUnitTest::createDoublyLinkedList(const std::vector<T>& data)
             {
-                IDoublyLinkedListPtr<T> result(new DoublyLinkedList<T>());
+                IDoublyLinkedListSharedPtr<T> result(new DoublyLinkedList<T>());
 
                 for (T element : data)
                 {

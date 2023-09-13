@@ -16,7 +16,7 @@ namespace datastructures {
             /**
              * Creates a new linked list node.
              */
-            static ILinkedListNodePtr<T> make(const T& value)
+            static ILinkedListNodeSharedPtr<T> make(const T& value)
             {
                 return std::make_shared<LinkedListNode<T>>(value);
             }
@@ -24,9 +24,9 @@ namespace datastructures {
             /**
              * Creates a new linked list node.
              */
-            static ILinkedListNodePtr<T> make(
-                const T& value,
-                ILinkedListNodePtr<T> next)
+            static ILinkedListNodeSharedPtr<T> make(
+                    const T& value,
+                    ILinkedListNodeSharedPtr<T> next)
             {
                 return std::make_shared<LinkedListNode<T>>(
                     value,
@@ -47,8 +47,8 @@ namespace datastructures {
              * The LinkedListNode constructor with value and a next node.
              */
             LinkedListNode(
-                const T& value,
-                ILinkedListNodePtr<T> nextNode);
+                    const T& value,
+                    ILinkedListNodeSharedPtr<T> nextNode);
 
             /**
              * The LinkedListNode destructor.
@@ -80,12 +80,12 @@ namespace datastructures {
             /**
              * Gets a next node.
              */
-            virtual ILinkedListNodePtr<T> next() const;
+            virtual ILinkedListNodeSharedPtr<T> next() const;
 
             /**
              * Sets a next node.
              */
-            virtual void setNext(ILinkedListNodePtr<T> node);
+            virtual void setNext(ILinkedListNodeSharedPtr<T> node);
 
             /**
              * Checks whether there is a next node.
@@ -99,7 +99,7 @@ namespace datastructures {
 
         private:
             T m_value;
-            ILinkedListNodePtr<T> m_nextNode;
+            ILinkedListNodeSharedPtr<T> m_nextNode;
         };
 
         /**
@@ -126,8 +126,8 @@ namespace datastructures {
          */
         template <typename T>
         LinkedListNode<T>::LinkedListNode(
-            const T& value,
-            ILinkedListNodePtr<T> nextNode) :
+                const T& value,
+                ILinkedListNodeSharedPtr<T> nextNode) :
             m_value(value),
             m_nextNode(nextNode)
         {
@@ -163,7 +163,7 @@ namespace datastructures {
          * Gets a next node.
          */
         template <typename T>
-        ILinkedListNodePtr<T> LinkedListNode<T>::next() const
+        ILinkedListNodeSharedPtr<T> LinkedListNode<T>::next() const
         {
             return m_nextNode;
         }
@@ -172,7 +172,7 @@ namespace datastructures {
          * Sets a next node.
          */
         template <typename T>
-        void LinkedListNode<T>::setNext(ILinkedListNodePtr<T> node)
+        void LinkedListNode<T>::setNext(ILinkedListNodeSharedPtr<T> node)
         {
             m_nextNode = node;
         }

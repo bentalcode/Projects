@@ -49,8 +49,11 @@ namespace datastructures {
             virtual void setValue(const TValue& value) = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Key Value Node.
+         */
         template <typename TKey, typename TValue>
-        using IKeyValueNodePtr = std::shared_ptr<IKeyValueNode<TKey, TValue>>;
+        using IKeyValueNodeSharedPtr = std::shared_ptr<IKeyValueNode<TKey, TValue>>;
 
         /**
          * Defines the equivalent operator.

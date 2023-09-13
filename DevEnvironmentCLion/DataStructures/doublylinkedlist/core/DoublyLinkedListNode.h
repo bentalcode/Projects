@@ -16,7 +16,7 @@ namespace datastructures {
             /**
              * Creates a new doubly linked list node.
              */
-            static IDoublyLinkedListNodePtr<T> make(const T& value)
+            static IDoublyLinkedListNodeSharedPtr<T> make(const T& value)
             {
                 return std::make_shared<DoublyLinkedListNode<T>>(value);
             }
@@ -24,10 +24,10 @@ namespace datastructures {
             /**
              * Creates a new doubly linked list node.
              */
-            static IDoublyLinkedListNodePtr<T> make(
-                const T& value,
-                IDoublyLinkedListNodePtr<T> previous,
-                IDoublyLinkedListNodePtr<T> next)
+            static IDoublyLinkedListNodeSharedPtr<T> make(
+                    const T& value,
+                    IDoublyLinkedListNodeSharedPtr<T> previous,
+                    IDoublyLinkedListNodeSharedPtr<T> next)
             {
                 return std::make_shared<DoublyLinkedListNode<T>>(
                     value,
@@ -49,9 +49,9 @@ namespace datastructures {
              * The DoublyLinkedListNode constructor with value and prev and next nodes.
              */
             DoublyLinkedListNode(
-                const T &value,
-                IDoublyLinkedListNodePtr<T> prevNode,
-                IDoublyLinkedListNodePtr<T> nextNode);
+                    const T &value,
+                    IDoublyLinkedListNodeSharedPtr<T> prevNode,
+                    IDoublyLinkedListNodeSharedPtr<T> nextNode);
 
             /**
              * The DoublyLinkedListNode destructor.
@@ -83,12 +83,12 @@ namespace datastructures {
             /**
              * Gets a next node.
              */
-            virtual IDoublyLinkedListNodePtr<T> next() const;
+            virtual IDoublyLinkedListNodeSharedPtr<T> next() const;
 
             /**
              * Sets a next node.
              */
-            virtual void setNext(IDoublyLinkedListNodePtr<T> node);
+            virtual void setNext(IDoublyLinkedListNodeSharedPtr<T> node);
 
             /**
              * Checks whether there is a next node.
@@ -98,12 +98,12 @@ namespace datastructures {
             /**
              * Gets a previous node.
              */
-            virtual IDoublyLinkedListNodePtr<T> previous() const;
+            virtual IDoublyLinkedListNodeSharedPtr<T> previous() const;
 
             /**
              * Sets a previous node.
              */
-            virtual void setPrevious(IDoublyLinkedListNodePtr<T> node);
+            virtual void setPrevious(IDoublyLinkedListNodeSharedPtr<T> node);
 
             /**
              * Checks whether there is a previous node.
@@ -117,8 +117,8 @@ namespace datastructures {
 
         private:
             T m_value;
-            IDoublyLinkedListNodePtr<T> m_nextNode;
-            IDoublyLinkedListNodePtr<T> m_previousNode;
+            IDoublyLinkedListNodeSharedPtr<T> m_nextNode;
+            IDoublyLinkedListNodeSharedPtr<T> m_previousNode;
         };
 
         /**
@@ -147,9 +147,9 @@ namespace datastructures {
          */
         template <typename T>
         DoublyLinkedListNode<T>::DoublyLinkedListNode(
-            const T& value,
-            IDoublyLinkedListNodePtr<T> prevNode,
-            IDoublyLinkedListNodePtr<T> nextNode) :
+                const T& value,
+                IDoublyLinkedListNodeSharedPtr<T> prevNode,
+                IDoublyLinkedListNodeSharedPtr<T> nextNode) :
             m_value(value),
             m_nextNode(nextNode),
             m_previousNode(prevNode)
@@ -186,7 +186,7 @@ namespace datastructures {
          * Gets a next node.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedListNode<T>::next() const
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedListNode<T>::next() const
         {
             return m_nextNode;
         }
@@ -195,7 +195,7 @@ namespace datastructures {
          * Sets a next node.
          */
         template <typename T>
-        void DoublyLinkedListNode<T>::setNext(IDoublyLinkedListNodePtr<T> node)
+        void DoublyLinkedListNode<T>::setNext(IDoublyLinkedListNodeSharedPtr<T> node)
         {
             m_nextNode = node;
         }
@@ -213,7 +213,7 @@ namespace datastructures {
          * Gets a previous node.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedListNode<T>::previous() const
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedListNode<T>::previous() const
         {
             return m_previousNode;
         }
@@ -222,7 +222,7 @@ namespace datastructures {
          * Sets a previous node.
          */
         template <typename T>
-        void DoublyLinkedListNode<T>::setPrevious(IDoublyLinkedListNodePtr<T> node)
+        void DoublyLinkedListNode<T>::setPrevious(IDoublyLinkedListNodeSharedPtr<T> node)
         {
             m_previousNode = node;
         }

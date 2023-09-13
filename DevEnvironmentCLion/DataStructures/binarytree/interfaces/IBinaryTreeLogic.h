@@ -38,26 +38,26 @@ namespace datastructures {
             /**
              * Gets the minimum node.
              */
-            virtual IBinaryTreeNodePtr<TKey, TValue> getMinimumNode(IBinaryTreeNodePtr<TKey, TValue> root) = 0;
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getMinimumNode(IBinaryTreeNodeSharedPtr<TKey, TValue> root) = 0;
 
             /**
              * Moves to the minimum node by storing the nodes in the stack.
              */
             virtual void moveMinimumNode(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                std::stack<IBinaryTreeNodePtr<TKey, TValue>>& stack) = 0;
+                IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack) = 0;
 
             /**
              * Gets the maximum node.
              */
-            virtual IBinaryTreeNodePtr<TKey, TValue> getMaximumNode(IBinaryTreeNodePtr<TKey, TValue> root) = 0;
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getMaximumNode(IBinaryTreeNodeSharedPtr<TKey, TValue> root) = 0;
 
             /**
              * Moves to the maximum node by storing the nodes in the stack.
              */
             virtual void moveMaximumNode(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                std::stack<IBinaryTreeNodePtr<TKey, TValue>>& stack) = 0;
+                IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack) = 0;
         };
     }
 }

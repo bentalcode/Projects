@@ -49,8 +49,11 @@ namespace datastructures {
             virtual std::string toString() const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Vertex.
+         */
         template <typename TKey, typename TValue>
-        using IVertexPtr = std::shared_ptr<IVertex<TKey, TValue>>;
+        using IVertexSharedPtr = std::shared_ptr<IVertex<TKey, TValue>>;
 
         /**
          * Defines an operator less than.

@@ -17,22 +17,22 @@ namespace datastructures {
             /**
              * Creates a priority queue.
              */
-            static IPriorityQueuePtr<T> make();
+            static IPriorityQueueSharedPtr<T> make();
 
             /**
              * Creates a priority queue and an element comparator.
              */
-            static IPriorityQueuePtr<T> make(base::IBinaryComparatorSharedPtr<T> elementComparator);
+            static IPriorityQueueSharedPtr<T> make(base::IBinaryComparatorSharedPtr<T> elementComparator);
 
             /**
              * Creates a priority queue with an initial data.
              */
-            static IPriorityQueuePtr<T> make(const std::vector<T>& data);
+            static IPriorityQueueSharedPtr<T> make(const std::vector<T>& data);
 
             /**
              * Creates a priority queue with an initial data and an element comparator.
              */
-            static IPriorityQueuePtr<T> make(
+            static IPriorityQueueSharedPtr<T> make(
                 const std::vector<T>& data,
                 base::IBinaryComparatorSharedPtr<T> elementComparator);
 
@@ -67,13 +67,13 @@ namespace datastructures {
         };
 
         template <typename T>
-        using IPriorityQueuePtr = std::shared_ptr<IPriorityQueue<T>>;
+        using IPriorityQueueSharedPtr = std::shared_ptr<IPriorityQueue<T>>;
 
         /**
          * Creates a priority queue.
          */
         template <typename T>
-        IPriorityQueuePtr<T> PriorityQueue<T>::make()
+        IPriorityQueueSharedPtr<T> PriorityQueue<T>::make()
         {
             return std::make_shared<PriorityQueue>(base::Comparator<T>::make());
         }
@@ -82,7 +82,7 @@ namespace datastructures {
          * Creates a priority queue and an element comparator.
          */
         template <typename T>
-        IPriorityQueuePtr<T> PriorityQueue<T>::make(base::IBinaryComparatorSharedPtr<T> elementComparator)
+        IPriorityQueueSharedPtr<T> PriorityQueue<T>::make(base::IBinaryComparatorSharedPtr<T> elementComparator)
         {
             return std::make_shared<PriorityQueue>(elementComparator);
         }
@@ -91,7 +91,7 @@ namespace datastructures {
          * Creates a priority queue with an initial data.
          */
         template <typename T>
-        IPriorityQueuePtr<T> PriorityQueue<T>::make(const std::vector<T>& data)
+        IPriorityQueueSharedPtr<T> PriorityQueue<T>::make(const std::vector<T>& data)
         {
             return std::make_shared<PriorityQueue>(
                 data,
@@ -102,7 +102,7 @@ namespace datastructures {
          * Creates a min priority queue with an initial data and an element comparator.
          */
         template <typename T>
-        IPriorityQueuePtr<T> PriorityQueue<T>::make(
+        IPriorityQueueSharedPtr<T> PriorityQueue<T>::make(
             const std::vector<T>& data,
             base::IBinaryComparatorSharedPtr<T> elementComparator)
         {

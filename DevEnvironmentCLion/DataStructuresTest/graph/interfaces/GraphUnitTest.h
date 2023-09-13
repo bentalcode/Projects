@@ -112,7 +112,7 @@ namespace test {
                  * Creates a graph.
                  */
                 template <typename TKey, typename TValue>
-                IGraphPtr<TKey, TValue> createGraph(const GraphData<TKey, TValue>& data);
+                IGraphSharedPtr<TKey, TValue> createGraph(const GraphData<TKey, TValue>& data);
 
                 TestData m_testData;
             };
@@ -125,7 +125,7 @@ namespace test {
                 const GraphData<TKey, TValue>& data,
                 bool expectedStatus)
             {
-                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                IGraphSharedPtr<TKey, TValue> graph = createGraph(data);
 
                 GraphLogic<TKey, TValue> graphLogic(*graph);
                 bool status = graphLogic.detectLoop();
@@ -142,19 +142,19 @@ namespace test {
             template <typename TKey, typename TValue>
             void GraphUnitTest::testTopologicalSearch(const GraphData<TKey, TValue>& data)
             {
-                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                IGraphSharedPtr<TKey, TValue> graph = createGraph(data);
                 GraphLogic<TKey, TValue> graphLogic(*graph);
 
-                std::list<IVertexPtr<TKey, TValue>> result;
+                std::list<IVertexSharedPtr<TKey, TValue>> result;
                 graphLogic.topologicalSearch(result);
 
-                const base::ITwoDimensionalVector<IVertexPtr<TKey, TValue>>& expectedTopologicalSearch =
+                const base::ITwoDimensionalVector<IVertexSharedPtr<TKey, TValue>>& expectedTopologicalSearch =
                     data.getTopologicalSearch();
 
-                base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> iterator =
-                    base::ListIterator<IVertexPtr<TKey, TValue>>::make(result);
+                base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> iterator =
+                    base::ListIterator<IVertexSharedPtr<TKey, TValue>>::make(result);
 
-                base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> expectedIterator =
+                base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> expectedIterator =
                     expectedTopologicalSearch.getIterator();
 
                 std::string topologicalSearchResult =
@@ -194,7 +194,7 @@ namespace test {
                      */
                     virtual void findPaths(
                         const IRoute<TKey, TValue>& route,
-                        std::list<IWalkPtr<TKey, TValue>>& result) override
+                        std::list<IWalkSharedPtr<TKey, TValue>>& result) override
                     {
                         GraphLogic<TKey, TValue> graphLogic(m_graph);
                         graphLogic.findPathsWithBreadthFirstSearch(route, result);
@@ -204,7 +204,7 @@ namespace test {
                     const IGraph<TKey, TValue>& m_graph;
                 };
 
-                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                IGraphSharedPtr<TKey, TValue> graph = createGraph(data);
                 PathFinder pathFinder(*graph);
                 std::string method("Breadth First Search");
 
@@ -236,7 +236,7 @@ namespace test {
                      */
                     virtual void findPaths(
                         const IRoute<TKey, TValue>& route,
-                        std::list<IWalkPtr<TKey, TValue>>& result) override
+                        std::list<IWalkSharedPtr<TKey, TValue>>& result) override
                     {
                         GraphLogic<TKey, TValue> graphLogic(m_graph);
                         graphLogic.findPathsWithDepthFirstSearch(route, result);
@@ -246,7 +246,7 @@ namespace test {
                     const IGraph<TKey, TValue>& m_graph;
                 };
 
-                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                IGraphSharedPtr<TKey, TValue> graph = createGraph(data);
                 PathFinder pathFinder(*graph);
                 std::string method("Breadth First Search");
 
@@ -265,21 +265,21 @@ namespace test {
                 const RoutesPaths<TKey, TValue>& routesData,
                 const std::string& method)
             {
-                for (const std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>& routeData : routesData)
+                for (const std::pair<IRouteSharedPtr<TKey, TValue>, std::vector<IWalkSharedPtr<TKey, TValue>>>& routeData : routesData)
                 {
-                    IRoutePtr<TKey, TValue> route = routeData.first;
-                    const std::vector<IWalkPtr<TKey, TValue>>& expectedPaths = routeData.second;
+                    IRouteSharedPtr<TKey, TValue> route = routeData.first;
+                    const std::vector<IWalkSharedPtr<TKey, TValue>>& expectedPaths = routeData.second;
 
-                    std::list<IWalkPtr<TKey, TValue>> paths;
+                    std::list<IWalkSharedPtr<TKey, TValue>> paths;
                     pathFinder.findPaths(*route, paths);
 
                     paths.sort();
 
-                    base::IIteratorSharedPtr<IWalkPtr<TKey, TValue>> pathIterator =
-                    base::ListIterator<IWalkPtr<TKey, TValue>>::make(paths);
+                    base::IIteratorSharedPtr<IWalkSharedPtr<TKey, TValue>> pathIterator =
+                    base::ListIterator<IWalkSharedPtr<TKey, TValue>>::make(paths);
 
-                    base::IIteratorSharedPtr<IWalkPtr<TKey, TValue>> expectedPathIterator =
-                    base::VectorIterator<IWalkPtr<TKey, TValue>>::make(expectedPaths);
+                    base::IIteratorSharedPtr<IWalkSharedPtr<TKey, TValue>> expectedPathIterator =
+                    base::VectorIterator<IWalkSharedPtr<TKey, TValue>>::make(expectedPaths);
 
                     getAssertion().assertEqualsWithDereferenceIterators(
                         *pathIterator,
@@ -294,13 +294,13 @@ namespace test {
             template <typename TKey, typename TValue>
             void GraphUnitTest::testFindShortestPaths(const GraphData<TKey, TValue>& data)
             {
-                IGraphPtr<TKey, TValue> graph = createGraph(data);
+                IGraphSharedPtr<TKey, TValue> graph = createGraph(data);
                 GraphLogic<TKey, TValue> graphLogic(*graph);
 
                 const EdgeWeightMap<TKey, TValue>& weights = data.getWeights();
                 const GraphShortestPathsMap<TKey, TValue>& graphShortestPaths = data.getShortestPaths();
 
-                for (IVertexPtr<TKey, TValue> vertex : data.vertices())
+                for (IVertexSharedPtr<TKey, TValue> vertex : data.vertices())
                 {
                     VertexShortestPathsMap<TKey, TValue> result;
                     graphLogic.findShortestPaths(
@@ -313,8 +313,8 @@ namespace test {
 
                     const VertexShortestPathsMap<TKey, TValue>& expectedResult = vertexShortestPathsIterator->second;
 
-                    IEquatableComparatorSharedPtr<IVertexPtr<TKey, TValue>> keyComparator =
-                        DereferenceEquatableComparator<IVertexPtr<TKey, TValue>>::make();
+                    IEquatableComparatorSharedPtr<IVertexSharedPtr<TKey, TValue>> keyComparator =
+                        DereferenceEquatableComparator<IVertexSharedPtr<TKey, TValue>>::make();
 
                     IEquatableComparatorSharedPtr<long> valueComparator = EquatableComparator<long>::make();
 
@@ -335,10 +335,10 @@ namespace test {
              * Creates a graph.
              */
             template <typename TKey, typename TValue>
-            IGraphPtr<TKey, TValue> GraphUnitTest::createGraph(const GraphData<TKey, TValue>& data)
+            IGraphSharedPtr<TKey, TValue> GraphUnitTest::createGraph(const GraphData<TKey, TValue>& data)
             {
-                IGraphDefinitionPtr<TKey, TValue> graphDefinition = GraphDefinition<TKey, TValue>::make(data.vertices(), data.edges());
-                IGraphPtr<TKey, TValue> graph = GraphBuilder<TKey, TValue>::make(*graphDefinition);
+                IGraphDefinitionSharedPtr<TKey, TValue> graphDefinition = GraphDefinition<TKey, TValue>::make(data.vertices(), data.edges());
+                IGraphSharedPtr<TKey, TValue> graph = GraphBuilder<TKey, TValue>::make(*graphDefinition);
 
                 std::string informationalMessage = "Created Graph: " + graph->toString();
                 getMessageWriter().writeInformationalMessage(informationalMessage);

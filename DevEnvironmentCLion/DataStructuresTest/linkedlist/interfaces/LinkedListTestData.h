@@ -62,10 +62,13 @@ namespace test {
                  * Creates nodes of a list.
                  */
                 template <typename T>
-                std::vector<ILinkedListNodePtr<T>> createListNodes(const std::vector<T>& values) const;
+                std::vector<ILinkedListNodeSharedPtr<T>> createListNodes(const std::vector<T>& values) const;
             };
 
-            using LinkedListTestDataPtr = std::shared_ptr<LinkedListTestData>;
+            //
+            // Defines the SharedPtr of Linked List Test Data...
+            //
+            using LinkedListTestDataSharedPtr = std::shared_ptr<LinkedListTestData>;
         }
     }
 }

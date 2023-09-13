@@ -12,18 +12,18 @@ namespace datastructures {
          * The BinaryTreeInorderReverseIterator class implements an inorder reverse iterator of a binary tree.
          */
         template <typename TKey, typename TValue>
-        class BinaryTreeInorderReverseIterator : public base::IReverseIterator<IBinaryTreeNodePtr<TKey, TValue>>
+        class BinaryTreeInorderReverseIterator : public base::IReverseIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>
         {
         public:
             /**
              * Creates an inorder reverse iterator of a binary tree.
              */
-            static base::IReverseIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
+            static base::IReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> make(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * The BinaryTreeInorderReverseIterator constructor.
              */
-            explicit BinaryTreeInorderReverseIterator(IBinaryTreeNodePtr<TKey, TValue> root);
+            explicit BinaryTreeInorderReverseIterator(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * The destructor.
@@ -50,7 +50,7 @@ namespace datastructures {
             /**
              * Gets the next element.
              */
-            virtual IBinaryTreeNodePtr<TKey, TValue> next();
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> next();
 
             /**
              * Resets the iterator.
@@ -58,8 +58,8 @@ namespace datastructures {
             virtual void reset();
 
         private:
-            IBinaryTreeNodePtr<TKey, TValue> m_root;
-            std::unique_ptr<std::stack<IBinaryTreeNodePtr<TKey, TValue>>> m_stack;
+            IBinaryTreeNodeSharedPtr<TKey, TValue> m_root;
+            std::unique_ptr<std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>> m_stack;
             BinaryTreeLogic<TKey, TValue> m_logic;
         };
 
@@ -67,7 +67,7 @@ namespace datastructures {
          * Creates an inorder reverse iterator of a binary tree.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeInorderReverseIterator<TKey, TValue>::make(IBinaryTreeNodePtr<TKey, TValue> root)
+        base::IReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeInorderReverseIterator<TKey, TValue>::make(IBinaryTreeNodeSharedPtr<TKey, TValue> root)
         {
             return std::make_shared<BinaryTreeInorderReverseIterator<TKey, TValue>>(root);
         }
@@ -76,7 +76,7 @@ namespace datastructures {
          * The BinaryTreeInorderReverseIterator constructor.
          */
         template <typename TKey, typename TValue>
-        BinaryTreeInorderReverseIterator<TKey, TValue>::BinaryTreeInorderReverseIterator(IBinaryTreeNodePtr<TKey, TValue> root) :
+        BinaryTreeInorderReverseIterator<TKey, TValue>::BinaryTreeInorderReverseIterator(IBinaryTreeNodeSharedPtr<TKey, TValue> root) :
             m_root(root)
         {
             reset();
@@ -103,10 +103,10 @@ namespace datastructures {
          * Gets the next element.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeInorderReverseIterator<TKey, TValue>::next()
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeInorderReverseIterator<TKey, TValue>::next()
         {
             assert(hasNext());
-            IBinaryTreeNodePtr<TKey, TValue> currNode = m_stack->top();
+            IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = m_stack->top();
             m_stack->pop();
 
             if (currNode->hasLeftChild())
@@ -123,7 +123,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void BinaryTreeInorderReverseIterator<TKey, TValue>::reset()
         {
-            m_stack = std::make_unique<std::stack<IBinaryTreeNodePtr<TKey, TValue>>>();
+            m_stack = std::make_unique<std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>>();
 
             if (m_root.get() != nullptr)
             {

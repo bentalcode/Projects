@@ -75,6 +75,9 @@ namespace data_structures
         std::queue<base::IIteratorSharedPtr<T>> m_iteratorsQueue;
     };
 
+    /**
+     * The IteratorOfIteratorCollection constructor.
+     */
     template <typename T>
     IteratorOfIteratorCollection<T>::IteratorOfIteratorCollection(const std::vector<base::IIteratorSharedPtr<T>>& iterators) :
         m_iterators(iterators)
@@ -82,17 +85,26 @@ namespace data_structures
         reset();
     }
 
+    /**
+     * The IteratorOfIteratorCollection destructor.
+     */
     template <typename T>
     IteratorOfIteratorCollection<T>::~IteratorOfIteratorCollection()
     {
     }
 
+    /**
+     * Checks whether there is a next element.
+     */
     template <typename T>
     bool IteratorOfIteratorCollection<T>::hasNext() const
     {
         return !m_iteratorsQueue.empty();
     }
 
+    /**
+     * Gets the next element.
+     */
     template <typename T>
     T IteratorOfIteratorCollection<T>::next()
     {
@@ -108,6 +120,9 @@ namespace data_structures
         return currElement;
     }
 
+    /**
+     * Resets the iterator.
+     */
     template <typename T>
     void IteratorOfIteratorCollection<T>::reset()
     {

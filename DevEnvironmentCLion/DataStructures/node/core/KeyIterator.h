@@ -18,12 +18,12 @@ namespace datastructures {
             /**
              * Creates a new iterator of keys from key value nodes.
              */
-            static base::IIteratorSharedPtr<TKey> make(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator);
+            static base::IIteratorSharedPtr<TKey> make(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator);
 
             /**
              * The KeyIterator constructor.
              */
-            explicit KeyIterator(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator);
+            explicit KeyIterator(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator);
 
             /**
              * The KeyIterator destructor.
@@ -58,14 +58,14 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> m_iterator;
+            base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> m_iterator;
         };
 
         /**
          * Creates a new iterator of keys from key value nodes.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorSharedPtr<TKey> KeyIterator<TKey, TValue>::make(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator)
+        base::IIteratorSharedPtr<TKey> KeyIterator<TKey, TValue>::make(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator)
         {
             return std::make_shared<KeyIterator<TKey, TValue>>(iterator);
         }
@@ -74,7 +74,7 @@ namespace datastructures {
          * The KeyIterator constructor.
          */
         template <typename TKey, typename TValue>
-        KeyIterator<TKey, TValue>::KeyIterator(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator) :
+        KeyIterator<TKey, TValue>::KeyIterator(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator) :
             m_iterator(iterator)
         {
             base::SmartPointers::validate(iterator);

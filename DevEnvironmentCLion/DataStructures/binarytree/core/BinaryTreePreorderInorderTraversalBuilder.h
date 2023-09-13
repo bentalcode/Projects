@@ -42,13 +42,13 @@ namespace datastructures {
             /**
              * Builds the binary tree.
              */
-            virtual IBinaryTreePtr<TKey, TValue> build() override;
+            virtual IBinaryTreeSharedPtr<TKey, TValue> build() override;
 
         private:
             /**
              * Builds the binary tree.
              */
-            static IBinaryTreeNodePtr<TKey, TValue> build(
+            static IBinaryTreeNodeSharedPtr<TKey, TValue> build(
                 const std::vector<std::pair<TKey, TValue>>& preorder,
                 const std::vector<std::pair<TKey, TValue>>& inorder,
                 size_t preorderStartIndex,
@@ -90,7 +90,7 @@ namespace datastructures {
          * Builds the binary tree.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreePtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::build()
+        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::build()
         {
             std::map<TKey, size_t> inorderIndexMap;
             BinaryTreeTraversalBuilder<TKey, TValue>::createIndexMap(m_inorder, inorderIndexMap);
@@ -99,7 +99,7 @@ namespace datastructures {
                 return BinaryTree<TKey, TValue>::make();
             }
 
-            IBinaryTreeNodePtr<TKey, TValue> root = build(
+            IBinaryTreeNodeSharedPtr<TKey, TValue> root = build(
                 m_preorder,
                 m_inorder,
                 0,
@@ -115,7 +115,7 @@ namespace datastructures {
          * Builds the binary tree.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::build(
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::build(
             const std::vector<std::pair<TKey, TValue>>& preorder,
             const std::vector<std::pair<TKey, TValue>>& inorder,
             size_t preorderStartIndex,
@@ -136,7 +136,7 @@ namespace datastructures {
             }
 
             const std::pair<TKey, TValue>& rootData = preorder[preorderStartIndex];
-            IBinaryTreeNodePtr<TKey, TValue> root = BinaryTreeNodes::make(rootData.first, rootData.second);
+            IBinaryTreeNodeSharedPtr<TKey, TValue> root = BinaryTreeNodes::make(rootData.first, rootData.second);
 
             if (length == 1)
             {
@@ -156,7 +156,7 @@ namespace datastructures {
             size_t inorderRightStartIndex = rootIndex + 1;
             size_t inorderRightEndIndex = inorderEndIndex;
 
-            IBinaryTreeNodePtr<TKey, TValue> leftChild = build(
+            IBinaryTreeNodeSharedPtr<TKey, TValue> leftChild = build(
                 preorder,
                 inorder,
                 preorderLeftStartIndex,
@@ -165,7 +165,7 @@ namespace datastructures {
                 inorderLeftEndIndex,
                 inorderIndexMap);
 
-            IBinaryTreeNodePtr<TKey, TValue> rightChild = build(
+            IBinaryTreeNodeSharedPtr<TKey, TValue> rightChild = build(
                 preorder,
                 inorder,
                 preorderRightStartIndex,

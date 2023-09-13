@@ -18,13 +18,13 @@ namespace datastructures {
              * Creates a new binary tree node.
              */
             template <typename TKey, typename TValue>
-            static IBinaryTreeNodePtr<TKey, TValue> make(TKey key, TValue value);
+            static IBinaryTreeNodeSharedPtr<TKey, TValue> make(TKey key, TValue value);
 
             /**
              * Creates a new binary tree end node.
              */
             template <typename TKey, typename TValue>
-            static IBinaryTreeNodePtr<TKey, TValue> endNode();
+            static IBinaryTreeNodeSharedPtr<TKey, TValue> endNode();
 
         private:
             /**
@@ -38,16 +38,16 @@ namespace datastructures {
          * Creates a new binary tree node.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodes::make(TKey key, TValue value) {
-            return IBinaryTreeNodePtr<TKey, TValue>(new BinaryTreeNode<TKey, TValue>(key, value));
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNodes::make(TKey key, TValue value) {
+            return IBinaryTreeNodeSharedPtr<TKey, TValue>(new BinaryTreeNode<TKey, TValue>(key, value));
         }
 
         /**
          * Creates a new binary tree end node.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodes::endNode() {
-            return IBinaryTreeNodePtr<TKey, TValue>(new BinaryTreeEndNode<TKey, TValue>());
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNodes::endNode() {
+            return IBinaryTreeNodeSharedPtr<TKey, TValue>(new BinaryTreeEndNode<TKey, TValue>());
         }
     }
 }

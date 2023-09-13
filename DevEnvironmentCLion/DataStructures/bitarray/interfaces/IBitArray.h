@@ -145,25 +145,28 @@ namespace datastructures {
             /**
              * Converts the bits to a bit 32 array.
              */
-            virtual const std::vector<IBit32ArrayPtr>& toBit32Array() const = 0;
+            virtual const std::vector<IBit32ArraySharedPtr>& toBit32Array() const = 0;
         };
 
-        using IBitArrayPtr = std::shared_ptr<IBitArray>;
+        /**
+         * Defines the SharedPtr of Bit Array.
+         */
+        using IBitArraySharedPtr = std::shared_ptr<IBitArray>;
 
         /**
          * Defines the equivalent operator.
          */
         inline bool operator<(const IBitArray& left, const IBitArray& right)
         {
-            const std::vector<IBit32ArrayPtr>& leftArray = left.toBit32Array();
-            const std::vector<IBit32ArrayPtr>& rightArray = right.toBit32Array();
+            const std::vector<IBit32ArraySharedPtr>& leftArray = left.toBit32Array();
+            const std::vector<IBit32ArraySharedPtr>& rightArray = right.toBit32Array();
 
             return std::lexicographical_compare(
                 leftArray.begin(),
                 leftArray.end(),
                 rightArray.begin(),
                 rightArray.end(),
-                base::DereferenceLess<IBit32ArrayPtr>());
+                base::DereferenceLess<IBit32ArraySharedPtr>());
         }
     }
 }

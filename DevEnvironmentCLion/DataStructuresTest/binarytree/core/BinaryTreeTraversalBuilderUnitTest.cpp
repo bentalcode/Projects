@@ -101,14 +101,14 @@ void BinaryTreeTraversalBuilderUnitTest::testPreorderInorderTraversalBuilder(con
     //
     // Create the tree...
     //
-    IBinaryTreePtr<TKey, TValue> tree = BinaryTreeTraversalsBuilder<TKey, TValue>::buildFromPreorderInorderTraversal(
+    IBinaryTreeSharedPtr<TKey, TValue> tree = BinaryTreeTraversalsBuilder<TKey, TValue>::buildFromPreorderInorderTraversal(
         treeData.getPreorderData(),
         treeData.getInorderData());
 
     //
     // Test the data of the tree...
     //
-    base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderIterator =
+    base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> levelOrderIterator =
         BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getLevelOrder());
 
     getAssertion().assertEqualsWithDereferenceIterators(
@@ -126,14 +126,14 @@ void BinaryTreeTraversalBuilderUnitTest::testPreorderPostorderTraversalBuilder(c
     //
     // Create the tree...
     //
-    IBinaryTreePtr<TKey, TValue> tree = BinaryTreeTraversalsBuilder<TKey, TValue>::buildFromPreorderPostorderTraversal(
+    IBinaryTreeSharedPtr<TKey, TValue> tree = BinaryTreeTraversalsBuilder<TKey, TValue>::buildFromPreorderPostorderTraversal(
         treeData.getPreorderData(),
         treeData.getPostorderData());
 
     //
     // Test the data of the tree...
     //
-    base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderIterator =
+    base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> levelOrderIterator =
         BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getLevelOrder());
 
     getAssertion().assertEqualsWithDereferenceIterators(

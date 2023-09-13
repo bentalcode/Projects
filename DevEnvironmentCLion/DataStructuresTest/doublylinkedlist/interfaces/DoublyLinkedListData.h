@@ -20,7 +20,7 @@ namespace test {
                  */
                 DoublyLinkedListData(
                     const std::vector<T>& values,
-                    const std::vector<IDoublyLinkedListNodePtr<T>>& nodes);
+                    const std::vector<IDoublyLinkedListNodeSharedPtr<T>>& nodes);
 
                 /**
                  * The DoublyLinkedListData destructor.
@@ -47,11 +47,11 @@ namespace test {
                 /**
                  * Gets the nodes of the list.
                  */
-                const std::vector<IDoublyLinkedListNodePtr<T>>& getNodes() const;
+                const std::vector<IDoublyLinkedListNodeSharedPtr<T>>& getNodes() const;
 
             private:
                 std::vector<T> m_values;
-                std::vector<IDoublyLinkedListNodePtr<T>> m_nodes;
+                std::vector<IDoublyLinkedListNodeSharedPtr<T>> m_nodes;
             };
 
             template <typename T>
@@ -63,7 +63,7 @@ namespace test {
             template <typename T>
             DoublyLinkedListData<T>::DoublyLinkedListData(
                 const std::vector<T>& values,
-                const std::vector<IDoublyLinkedListNodePtr<T>>& nodes) :
+                const std::vector<IDoublyLinkedListNodeSharedPtr<T>>& nodes) :
                 m_values(values),
                 m_nodes(nodes)
             {
@@ -90,7 +90,7 @@ namespace test {
              * Gets the nodes of the list.
              */
             template <typename T>
-            const std::vector<IDoublyLinkedListNodePtr<T>>& DoublyLinkedListData<T>::getNodes() const
+            const std::vector<IDoublyLinkedListNodeSharedPtr<T>>& DoublyLinkedListData<T>::getNodes() const
             {
                 return m_nodes;
             }

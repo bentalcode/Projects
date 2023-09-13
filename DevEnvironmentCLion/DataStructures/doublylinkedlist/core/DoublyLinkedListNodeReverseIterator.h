@@ -11,18 +11,18 @@ namespace datastructures {
          * The DoublyLinkedListNodeReverseIterator class implements a reverse iterator of nodes of a doubly linked list.
          */
         template <typename T>
-        class DoublyLinkedListNodeReverseIterator final : public base::IReverseIterator<IDoublyLinkedListNodePtr<T>>
+        class DoublyLinkedListNodeReverseIterator final : public base::IReverseIterator<IDoublyLinkedListNodeSharedPtr<T>>
         {
         public:
             /**
              * Creates a new iterator of a doubly linked list.
              */
-            static base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> make(IDoublyLinkedListNodePtr<T> tail);
+            static base::IReverseIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> make(IDoublyLinkedListNodeSharedPtr<T> tail);
 
             /**
              * The DoublyLinkedListNodeReverseIterator constructor.
              */
-            explicit DoublyLinkedListNodeReverseIterator(IDoublyLinkedListNodePtr<T> head);
+            explicit DoublyLinkedListNodeReverseIterator(IDoublyLinkedListNodeSharedPtr<T> head);
 
             /**
              * The DoublyLinkedListNodeReverseIterator destructor.
@@ -49,7 +49,7 @@ namespace datastructures {
             /**
              * Gets the next node.
              */
-            IDoublyLinkedListNodePtr<T> next();
+            IDoublyLinkedListNodeSharedPtr<T> next();
 
             /**
              * Resets the iterator.
@@ -57,16 +57,16 @@ namespace datastructures {
             void reset();
 
         private:
-            IDoublyLinkedListNodePtr<T> m_tail;
-            IDoublyLinkedListNodePtr<T> m_currNode;
+            IDoublyLinkedListNodeSharedPtr<T> m_tail;
+            IDoublyLinkedListNodeSharedPtr<T> m_currNode;
         };
 
         /**
          * Creates a new reverse iterator of a doubly linked list.
          */
         template <typename T>
-        base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedListNodeReverseIterator<T>::make(
-            IDoublyLinkedListNodePtr<T> tail)
+        base::IReverseIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> DoublyLinkedListNodeReverseIterator<T>::make(
+                IDoublyLinkedListNodeSharedPtr<T> tail)
         {
             return std::make_shared<DoublyLinkedListNodeReverseIterator<T>>(tail);
         }
@@ -75,7 +75,7 @@ namespace datastructures {
          * The DoublyLinkedListNodeReverseIterator constructor.
          */
         template <typename T>
-        DoublyLinkedListNodeReverseIterator<T>::DoublyLinkedListNodeReverseIterator(IDoublyLinkedListNodePtr<T> tail) :
+        DoublyLinkedListNodeReverseIterator<T>::DoublyLinkedListNodeReverseIterator(IDoublyLinkedListNodeSharedPtr<T> tail) :
             m_tail(tail)
         {
             reset();
@@ -102,11 +102,11 @@ namespace datastructures {
          * Gets the next node.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedListNodeReverseIterator<T>::next()
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedListNodeReverseIterator<T>::next()
         {
             assert(hasNext());
 
-            IDoublyLinkedListNodePtr<T> currNode = m_currNode;
+            IDoublyLinkedListNodeSharedPtr<T> currNode = m_currNode;
             m_currNode = m_currNode->previous();
 
             return currNode;

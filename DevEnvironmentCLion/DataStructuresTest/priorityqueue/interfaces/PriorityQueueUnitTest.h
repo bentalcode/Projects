@@ -60,7 +60,7 @@ namespace test {
                  * Creates a priority queue.
                  */
                 template <typename T>
-                static IPriorityQueuePtr<T> createPriorityQueue(const PriorityQueueData<T>& data);
+                static IPriorityQueueSharedPtr<T> createPriorityQueue(const PriorityQueueData<T>& data);
 
                 TestData m_testData;
             };
@@ -71,7 +71,7 @@ namespace test {
             template <typename T>
             void PriorityQueueUnitTest::testCreation(const PriorityQueueData<T>& data)
             {
-                IPriorityQueuePtr<T> priorityQueue = createPriorityQueue(data);
+                IPriorityQueueSharedPtr<T> priorityQueue = createPriorityQueue(data);
 
                 getAssertion().assertEqualsWithIterators(
                     *priorityQueue->getIterator(),
@@ -85,7 +85,7 @@ namespace test {
             template <typename T>
             void PriorityQueueUnitTest::testPeekAndPoll(const PriorityQueueData<T>& data)
             {
-                IPriorityQueuePtr<T> priorityQueue = createPriorityQueue(data);
+                IPriorityQueueSharedPtr<T> priorityQueue = createPriorityQueue(data);
 
                 getAssertion().assertEqualsWithIterators(
                     *priorityQueue->getIterator(),
@@ -115,9 +115,9 @@ namespace test {
              * Creates a priority queue.
              */
             template <typename T>
-            IPriorityQueuePtr<T> PriorityQueueUnitTest::createPriorityQueue(const PriorityQueueData<T>& data)
+            IPriorityQueueSharedPtr<T> PriorityQueueUnitTest::createPriorityQueue(const PriorityQueueData<T>& data)
             {
-                IPriorityQueuePtr<T> priorityQueue = PriorityQueue<T>::make(data.getElementComparator());
+                IPriorityQueueSharedPtr<T> priorityQueue = PriorityQueue<T>::make(data.getElementComparator());
 
                 for (const T& item : data.getCreationData())
                 {

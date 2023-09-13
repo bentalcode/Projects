@@ -7,7 +7,7 @@ using namespace datastructures::cache;
 /**
  * Creates properties of a cache.
  */
-ICachePropertiesPtr CacheProperties::make(
+ICachePropertiesSharedPtr CacheProperties::make(
     size_t capacity,
     size_t numberOfItemsForMakingAvailableSpace) {
 

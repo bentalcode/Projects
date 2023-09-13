@@ -65,15 +65,15 @@ namespace test {
                 template <typename TKey, typename TValue>
                 void testDefaultIteration(
                     const IBinaryTree<TKey, TValue>& tree,
-                    base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& dataIterator);
+                    base::IIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>& dataIterator);
 
                 /**
                  * Tests the logic of iteration of a binary tree.
                  */
                 template <typename TKey, typename TValue>
                 void testIteration(
-                    base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& treeIterator,
-                    base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& dataIterator,
+                    base::IIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>& treeIterator,
+                    base::IIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>& dataIterator,
                     const std::string& iteratorName);
 
                 TestData m_testData;
@@ -88,12 +88,12 @@ namespace test {
                 //
                 // Create the tree...
                 //
-                IBinaryTreePtr<TKey, TValue> tree = BinaryTreeStreamBuilder<TKey, TValue>::build(treeData.getCreationData());
+                IBinaryTreeSharedPtr<TKey, TValue> tree = BinaryTreeStreamBuilder<TKey, TValue>::build(treeData.getCreationData());
 
                 //
                 // Test the data of the tree...
                 //
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderIterator =
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> levelOrderIterator =
                     BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getLevelOrder());
 
                 getAssertion().assertEqualsWithDereferenceIterators(
@@ -111,47 +111,47 @@ namespace test {
                 //
                 // Create the tree...
                 //
-                IBinaryTreePtr<TKey, TValue> tree = BinaryTreeStreamBuilder<TKey, TValue>::build(treeData.getCreationData());
+                IBinaryTreeSharedPtr<TKey, TValue> tree = BinaryTreeStreamBuilder<TKey, TValue>::build(treeData.getCreationData());
 
                 //
                 // Test the logic of a default iteration...
                 //
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> dataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getInorder());
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> dataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getInorder());
                 testDefaultIteration(*tree, *dataIterator);
 
                 //
                 // Test the logic of a reverse iteration...
                 //
-                base::IReverseIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> reverseIterator = tree->getReverseIterator();
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> reverseDataIterator = BinaryTreeNodeListReverseIterator<TKey, TValue>::make(treeData.getInorder());
+                base::IReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> reverseIterator = tree->getReverseIterator();
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> reverseDataIterator = BinaryTreeNodeListReverseIterator<TKey, TValue>::make(treeData.getInorder());
                 testIteration(*reverseIterator, *reverseDataIterator, "Reverse Iterator");
 
                 //
                 // Test the logic of a level order iteration...
                 //
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderIterator = tree->getLevelOrderIterator();
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> levelOrderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getLevelOrder());
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> levelOrderIterator = tree->getLevelOrderIterator();
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> levelOrderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getLevelOrder());
                 testIteration(*levelOrderIterator, *levelOrderDataIterator, "Level Order Iterator");
 
                 //
                 // Test the logic of an inorder iteration...
                 //
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> inorderIterator = tree->getInorderIterator();
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> inorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getInorder());
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> inorderIterator = tree->getInorderIterator();
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> inorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getInorder());
                 testIteration(*inorderIterator, *inorderDataIterator, "Inorder Iterator");
 
                 //
                 // Test the logic of a preorder iteration...
                 //
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> preorderIterator = tree->getPreorderIterator();
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> preorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getPreorder());
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> preorderIterator = tree->getPreorderIterator();
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> preorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getPreorder());
                 testIteration(*preorderIterator, *preorderDataIterator, "Preorder Iterator");
 
                 //
                 // Test the logic of a postorder iteration...
                 //
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> postorderIterator = tree->getPostorderIterator();
-                base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> postorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getPostorder());
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> postorderIterator = tree->getPostorderIterator();
+                base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> postorderDataIterator = BinaryTreeNodeListIterator<TKey, TValue>::make(treeData.getPostorder());
                 testIteration(*postorderIterator, *postorderDataIterator, "Postorder Iterator");
             }
 
@@ -161,13 +161,13 @@ namespace test {
             template <typename TKey, typename TValue>
             void BinaryTreeUnitTest::testDefaultIteration(
                 const IBinaryTree<TKey, TValue>& tree,
-                base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& dataIterator)
+                base::IIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>& dataIterator)
             {
-                base::IterableObject<IBinaryTreeNodePtr<TKey, TValue>> iterableObject(tree.getIterator());
+                base::IterableObject<IBinaryTreeNodeSharedPtr<TKey, TValue>> iterableObject(tree.getIterator());
 
-                for (IBinaryTreeNodePtr<TKey, TValue> currNode : iterableObject)
+                for (IBinaryTreeNodeSharedPtr<TKey, TValue> currNode : iterableObject)
                 {
-                    IBinaryTreeNodePtr<TKey, TValue> dataNode = dataIterator.next();
+                    IBinaryTreeNodeSharedPtr<TKey, TValue> dataNode = dataIterator.next();
 
                     getAssertion().assertEqualsWithDereference(
                         currNode,
@@ -181,8 +181,8 @@ namespace test {
              */
             template <typename TKey, typename TValue>
             void BinaryTreeUnitTest::testIteration(
-                base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& treeIterator,
-                base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>& dataIterator,
+                base::IIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>& treeIterator,
+                base::IIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>& dataIterator,
                 const std::string& iteratorName)
             {
                 getAssertion().assertEqualsWithDereferenceIterators(

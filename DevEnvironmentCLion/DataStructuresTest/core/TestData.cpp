@@ -31,7 +31,7 @@ BitArrayTestDataPtr TestData::getBitArrayData() const
 /**
  * Gets the data of tests of a linked list.
  */
-LinkedListTestDataPtr TestData::getLinkedListData() const
+LinkedListTestDataSharedPtr TestData::getLinkedListData() const
 {
     return std::make_shared<LinkedListTestData>();
 }
@@ -39,7 +39,7 @@ LinkedListTestDataPtr TestData::getLinkedListData() const
 /**
  * Gets the data of tests of a doubly linked list.
  */
-DoublyLinkedListTestDataPtr TestData::getDoublyLinkedListData() const
+DoublyLinkedListTestDataSharedPtr TestData::getDoublyLinkedListData() const
 {
     return std::make_shared<DoublyLinkedListTestData>();
 }
@@ -55,7 +55,7 @@ BinaryTreeTestDataPtr TestData::getBinaryTreeData() const
 /**
  * Gets the data of tests of a priority queue.
  */
-PriorityQueueTestDataPtr TestData::getPriorityQueueData() const
+PriorityQueueTestDataSharedPtr TestData::getPriorityQueueData() const
 {
     return std::make_shared<PriorityQueueTestData>();
 }
@@ -63,7 +63,7 @@ PriorityQueueTestDataPtr TestData::getPriorityQueueData() const
 /**
  * Gets the data of tests of a graph.
  */
-GraphTestDataPtr TestData::getGraphData() const
+GraphTestDataSharedPtr TestData::getGraphData() const
 {
     return std::make_shared<GraphTestData>();
 }
@@ -71,7 +71,7 @@ GraphTestDataPtr TestData::getGraphData() const
 /**
  * Gets the data of tests of a cache.
  */
-CacheTestDataPtr TestData::getCacheData() const
+CacheTestDataSharedPtr TestData::getCacheData() const
 {
     return std::make_shared<CacheTestData>();
 }

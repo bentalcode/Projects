@@ -212,7 +212,7 @@ void BitArrayUnitTest::bitArrayEnablingTest()
  */
 void BitArrayUnitTest::testCreation(const BitArrayData& data)
 {
-    IBitArrayPtr bitArray = createBitArray(data);
+    IBitArraySharedPtr bitArray = createBitArray(data);
 
     getAssertion().assertEquals(
         bitArray->size(),
@@ -230,8 +230,8 @@ void BitArrayUnitTest::testCreation(const BitArrayData& data)
  */
 void BitArrayUnitTest::testTurnOnOff(const BitArrayData& data)
 {
-    IBitArrayPtr bitArray = createBitArray(data);
-    IBitArrayPtr expectedBitArray = BitArray::copy(*bitArray);
+    IBitArraySharedPtr bitArray = createBitArray(data);
+    IBitArraySharedPtr expectedBitArray = BitArray::copy(*bitArray);
     expectedBitArray->flip();
 
     for (size_t i = 0; i < bitArray->size(); ++i) {
@@ -266,7 +266,7 @@ void BitArrayUnitTest::testIteration(const BitArrayData& data)
     //
     // Create the container...
     //
-    IBitArrayPtr container = createBitArray(data);
+    IBitArraySharedPtr container = createBitArray(data);
 
     //
     // Test the default iterator of the container...
@@ -307,7 +307,7 @@ void BitArrayUnitTest::testIteration(const BitArrayData& data)
  */
 void BitArrayUnitTest::testClearing(const BitArrayData& data)
 {
-    IBitArrayPtr bitArray = createBitArray(data);
+    IBitArraySharedPtr bitArray = createBitArray(data);
 
     bitArray->clear();
     size_t numberOfOnes = bitArray->cardinality();
@@ -340,7 +340,7 @@ void BitArrayUnitTest::testClearing(const BitArrayData& data)
  */
 void BitArrayUnitTest::testEnabling(const BitArrayData& data)
 {
-    IBitArrayPtr bitArray = createBitArray(data);
+    IBitArraySharedPtr bitArray = createBitArray(data);
 
     bitArray->enable();
     size_t numberOfOnes = bitArray->cardinality();
@@ -373,7 +373,7 @@ void BitArrayUnitTest::testEnabling(const BitArrayData& data)
  */
 void BitArrayUnitTest::testCardinality(const BitArrayData& data)
 {
-    IBitArrayPtr bitArray = createBitArray(data);
+    IBitArraySharedPtr bitArray = createBitArray(data);
 
     size_t result = bitArray->cardinality();
 
@@ -394,9 +394,9 @@ void BitArrayUnitTest::testCardinality(const BitArrayData& data)
 /**
  * Creates a bit array.
  */
-IBitArrayPtr BitArrayUnitTest::createBitArray(const BitArrayData& data)
+IBitArraySharedPtr BitArrayUnitTest::createBitArray(const BitArrayData& data)
 {
-    IBitArrayPtr bitArray = BitArray::make(data.getData().size());
+    IBitArraySharedPtr bitArray = BitArray::make(data.getData().size());
 
     for (size_t i = 0; i < bitArray->size(); ++i)
     {

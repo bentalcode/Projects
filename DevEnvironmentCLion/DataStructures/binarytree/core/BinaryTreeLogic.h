@@ -38,26 +38,26 @@ namespace datastructures {
             /**
              * Gets the minimum node.
              */
-            virtual IBinaryTreeNodePtr<TKey, TValue> getMinimumNode(IBinaryTreeNodePtr<TKey, TValue> root);
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getMinimumNode(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * Moves to the minimum node by storing the nodes in the stack.
              */
             virtual void moveMinimumNode(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                std::stack<IBinaryTreeNodePtr<TKey, TValue>>& stack);
+                IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack);
 
             /**
              * Gets the maximum node.
              */
-            virtual IBinaryTreeNodePtr<TKey, TValue> getMaximumNode(IBinaryTreeNodePtr<TKey, TValue> root);
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getMaximumNode(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * Moves to the maximum node by storing the nodes in the stack.
              */
             virtual void moveMaximumNode(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                std::stack<IBinaryTreeNodePtr<TKey, TValue>>& stack);
+                IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack);
         };
 
         /**
@@ -80,10 +80,10 @@ namespace datastructures {
          * Gets the minimum node.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::getMinimumNode(
-            IBinaryTreeNodePtr<TKey, TValue> root)
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::getMinimumNode(
+            IBinaryTreeNodeSharedPtr<TKey, TValue> root)
         {
-            IBinaryTreeNodePtr<TKey, TValue> currNode = root;
+            IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = root;
 
             while (currNode.get() != nullptr && currNode->hasLeftChild())
             {
@@ -98,10 +98,10 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void BinaryTreeLogic<TKey, TValue>::moveMinimumNode(
-            IBinaryTreeNodePtr<TKey, TValue> root,
-            std::stack<IBinaryTreeNodePtr<TKey, TValue>>& stack)
+            IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+            std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack)
         {
-            IBinaryTreeNodePtr<TKey, TValue> currNode = root;
+            IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = root;
 
             while (currNode.get() != nullptr)
             {
@@ -114,10 +114,10 @@ namespace datastructures {
          * Gets the maximum node.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::getMaximumNode(
-            IBinaryTreeNodePtr<TKey, TValue> root)
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::getMaximumNode(
+            IBinaryTreeNodeSharedPtr<TKey, TValue> root)
         {
-            IBinaryTreeNodePtr<TKey, TValue> currNode = root;
+            IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = root;
 
             while (currNode.get() != nullptr && currNode->hasRightChild())
             {
@@ -132,10 +132,10 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void BinaryTreeLogic<TKey, TValue>::moveMaximumNode(
-            IBinaryTreeNodePtr<TKey, TValue> root,
-            std::stack<IBinaryTreeNodePtr<TKey, TValue>>& stack)
+            IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+            std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack)
         {
-            IBinaryTreeNodePtr<TKey, TValue> currNode = root;
+            IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = root;
 
             while (currNode.get() != nullptr)
             {

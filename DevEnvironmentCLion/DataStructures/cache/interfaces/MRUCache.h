@@ -18,12 +18,12 @@ namespace datastructures {
             /**
              * Creates a most recently used cache.
              */
-            static ICachePtr<TKey, TValue> make(ICachePropertiesPtr properties);
+            static ICacheSharedPtr<TKey, TValue> make(ICachePropertiesSharedPtr properties);
 
             /**
              * The MRUCache constructor.
              */
-            explicit MRUCache(ICachePropertiesPtr properties);
+            explicit MRUCache(ICachePropertiesSharedPtr properties);
 
             /**
              * The MRUCache destructor.
@@ -55,7 +55,7 @@ namespace datastructures {
          * Creates a least recently used cache.
          */
         template <typename TKey, typename TValue>
-        ICachePtr<TKey, TValue> MRUCache<TKey, TValue>::make(ICachePropertiesPtr properties)
+        ICacheSharedPtr<TKey, TValue> MRUCache<TKey, TValue>::make(ICachePropertiesSharedPtr properties)
         {
             return std::make_shared<MRUCache<TKey, TValue>>(properties);
         }
@@ -64,7 +64,7 @@ namespace datastructures {
          * The MRUCache constructor.
          */
         template <typename TKey, typename TValue>
-        MRUCache<TKey, TValue>::MRUCache(ICachePropertiesPtr properties) :
+        MRUCache<TKey, TValue>::MRUCache(ICachePropertiesSharedPtr properties) :
             AbstractCache<TKey, TValue>(properties)
         {
         }
@@ -85,12 +85,12 @@ namespace datastructures {
             typename AbstractCache<TKey, TValue>::CacheData& cacheData,
             size_t numberOfItems)
         {
-            DoublyLinkedList<IKeyValueNodePtr<TKey, TValue>>& usedList = cacheData.usedList();
-            std::map<TKey, IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>>& dataLookup = cacheData.dataLookup();
+            DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>>& usedList = cacheData.usedList();
+            std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>& dataLookup = cacheData.dataLookup();
 
             for (size_t i = 0; i < numberOfItems; ++i)
             {
-                IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> itemToRemove = usedList.removeFromBack();
+                IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> itemToRemove = usedList.removeFromBack();
                 dataLookup.erase(itemToRemove->getValue()->getKey());
             }
         }

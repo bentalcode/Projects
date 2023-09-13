@@ -15,7 +15,7 @@ namespace datastructures {
         template <typename T>
         class ILinkedList :
             public base::ISizableCollection,
-            public base::IIterable<ILinkedListNodePtr<T>>,
+            public base::IIterable<ILinkedListNodeSharedPtr<T>>,
             public base::IValueIterable<T>
         {
         public:
@@ -44,12 +44,12 @@ namespace datastructures {
             /**
              * Gets the head node of the list.
              */
-            virtual ILinkedListNodePtr<T> getHead() const = 0;
+            virtual ILinkedListNodeSharedPtr<T> getHead() const = 0;
 
             /**
              * Gets the tail node of the list.
              */
-            virtual ILinkedListNodePtr<T> getTail() const = 0;
+            virtual ILinkedListNodeSharedPtr<T> getTail() const = 0;
 
             /**
              * Adds a new value to the front of the list.
@@ -65,36 +65,36 @@ namespace datastructures {
              * Adds a new value after a specific node of the list.
              */
             virtual void addAfter(
-                ILinkedListNodePtr<T> currNode,
+                ILinkedListNodeSharedPtr<T> currNode,
                 const T& valueToAdd) = 0;
 
             /**
              * Adds a new node to the front of the list.
              */
-            virtual void addToFront(ILinkedListNodePtr<T> node) = 0;
+            virtual void addToFront(ILinkedListNodeSharedPtr<T> node) = 0;
 
             /**
               * Adds a new node to the back of the list.
               */
-            virtual void addToBack(ILinkedListNodePtr<T> node) = 0;
+            virtual void addToBack(ILinkedListNodeSharedPtr<T> node) = 0;
 
             /**
              * Adds a new node after a specific node of the list.
              */
             virtual void addAfter(
-                ILinkedListNodePtr<T> currNode,
-                ILinkedListNodePtr<T> nodeToAdd) = 0;
+                ILinkedListNodeSharedPtr<T> currNode,
+                ILinkedListNodeSharedPtr<T> nodeToAdd) = 0;
 
             /**
              * Removes the front node from the list.
              * Returns the removed node or null if the list is empty.
              */
-            virtual ILinkedListNodePtr<T> removeFromFront() = 0;
+            virtual ILinkedListNodeSharedPtr<T> removeFromFront() = 0;
 
             /**
              * Removes a node after a specific node of the list.
              */
-            virtual void removeAfter(ILinkedListNodePtr<T> currNode) = 0;
+            virtual void removeAfter(ILinkedListNodeSharedPtr<T> currNode) = 0;
 
             /**
              * Clears the list.
@@ -104,11 +104,14 @@ namespace datastructures {
             /**
              * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
              */
-            virtual ILinkedListNodePtr<T> getNode(size_t index) const = 0;
+            virtual ILinkedListNodeSharedPtr<T> getNode(size_t index) const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Linked List.
+         */
         template <typename T>
-        using ILinkedListPtr = std::shared_ptr<ILinkedList<T>>;
+        using ILinkedListSharedPtr = std::shared_ptr<ILinkedList<T>>;
     }
 }
 

@@ -13,7 +13,7 @@ namespace datastructures {
          * from various traversals.
          */
         template <typename TKey, typename TValue>
-        class BinaryTreeTraversalBuilder : public base::IBuilder<IBinaryTreePtr<TKey, TValue>>
+        class BinaryTreeTraversalBuilder : public base::IBuilder<IBinaryTreeSharedPtr<TKey, TValue>>
         {
         public:
             /**

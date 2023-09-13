@@ -67,7 +67,10 @@ namespace test {
                 static PriorityQueueDataPtr<int> getPriorityQueueData5();
             };
 
-            using PriorityQueueTestDataPtr = std::shared_ptr<PriorityQueueTestData>;
+            //
+            // Defines the SharedPtr of Priority Queue Test Data...
+            //
+            using PriorityQueueTestDataSharedPtr = std::shared_ptr<PriorityQueueTestData>;
         }
     }
 }

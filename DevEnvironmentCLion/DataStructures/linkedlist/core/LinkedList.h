@@ -21,12 +21,12 @@ namespace datastructures {
             /**
              * Creates a new linked list.
              */
-            static ILinkedListPtr<T> make();
+            static ILinkedListSharedPtr<T> make();
 
             /**
              * Creates a new linked list from a node list.
              */
-            static ILinkedListNodePtr<T> make(ILinkedListNodePtr<T> head);
+            static ILinkedListNodeSharedPtr<T> make(ILinkedListNodeSharedPtr<T> head);
 
             /**
              * The LinkedList constructor.
@@ -36,7 +36,7 @@ namespace datastructures {
             /**
              * The LinkedList constructor with a list.
              */
-            LinkedList(ILinkedListNodePtr<T> head);
+            LinkedList(ILinkedListNodeSharedPtr<T> head);
 
             /**
              * The LinkedList destructor.
@@ -58,12 +58,12 @@ namespace datastructures {
             /**
              * Gets the head node of the list.
              */
-            virtual ILinkedListNodePtr<T> getHead() const override;
+            virtual ILinkedListNodeSharedPtr<T> getHead() const override;
 
             /**
              * Gets the tail node of the list.
              */
-            virtual ILinkedListNodePtr<T> getTail() const override;
+            virtual ILinkedListNodeSharedPtr<T> getTail() const override;
 
             /**
              * Gets the size of the list.
@@ -89,36 +89,36 @@ namespace datastructures {
              * Adds a new value after a specific node of the list.
              */
             virtual void addAfter(
-                ILinkedListNodePtr<T> currNode,
-                const T& valueToAdd) override;
+                    ILinkedListNodeSharedPtr<T> currNode,
+                    const T& valueToAdd) override;
 
             /**
              * Adds a new node to the front of the list.
              */
-            virtual void addToFront(ILinkedListNodePtr<T> node) override;
+            virtual void addToFront(ILinkedListNodeSharedPtr<T> node) override;
 
             /**
               * Adds a new node to the back of the list.
               */
-            virtual void addToBack(ILinkedListNodePtr<T> node) override;
+            virtual void addToBack(ILinkedListNodeSharedPtr<T> node) override;
 
             /**
              * Adds a new node after a specific node of the list.
              */
             virtual void addAfter(
-                ILinkedListNodePtr<T> currNode,
-                ILinkedListNodePtr<T> nodeToAdd) override;
+                    ILinkedListNodeSharedPtr<T> currNode,
+                    ILinkedListNodeSharedPtr<T> nodeToAdd) override;
 
             /**
              * Removes the front node from the list.
              * Returns the removed node or null if the list is empty.
              */
-            virtual ILinkedListNodePtr<T> removeFromFront() override;
+            virtual ILinkedListNodeSharedPtr<T> removeFromFront() override;
 
             /**
              * Removes a node after a specific node of the list.
              */
-            virtual void removeAfter(ILinkedListNodePtr<T> currNode) override;
+            virtual void removeAfter(ILinkedListNodeSharedPtr<T> currNode) override;
 
             /**
              * Clears the list.
@@ -128,7 +128,7 @@ namespace datastructures {
             /**
             * Gets an iterator of nodes.
             */
-            virtual base::IIteratorSharedPtr<ILinkedListNodePtr<T>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> getIterator() const override;
 
             /**
              * Gets an iterator of values of a list.
@@ -138,13 +138,13 @@ namespace datastructures {
             /**
              * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
              */
-            virtual ILinkedListNodePtr<T> getNode(size_t index) const override;
+            virtual ILinkedListNodeSharedPtr<T> getNode(size_t index) const override;
 
         private:
             /**
              * Linked nodes.
              */
-            void linkedNodes(ILinkedListNodePtr<T> left, ILinkedListNodePtr<T> right);
+            void linkedNodes(ILinkedListNodeSharedPtr<T> left, ILinkedListNodeSharedPtr<T> right);
 
             /**
              * Node added.
@@ -156,19 +156,19 @@ namespace datastructures {
              */
             void nodeRemoved(ILinkedListNode<T>& node);
 
-            ILinkedListNodePtr<T> m_head;
-            ILinkedListNodePtr<T> m_tail;
+            ILinkedListNodeSharedPtr<T> m_head;
+            ILinkedListNodeSharedPtr<T> m_tail;
             size_t m_size;
         };
 
         template <typename T>
-        using ILinkedListPtr = std::shared_ptr<ILinkedList<T>>;
+        using ILinkedListSharedPtr = std::shared_ptr<ILinkedList<T>>;
 
         /**
          * Creates a new doubly linked list.
          */
         template <typename T>
-        ILinkedListPtr<T> LinkedList<T>::make()
+        ILinkedListSharedPtr<T> LinkedList<T>::make()
         {
             return std::make_shared<LinkedList<T>>();
         }
@@ -177,7 +177,7 @@ namespace datastructures {
          * Creates a new doubly linked list from a node list.
          */
         template <typename T>
-        ILinkedListNodePtr<T> LinkedList<T>::make(ILinkedListNodePtr<T> head)
+        ILinkedListNodeSharedPtr<T> LinkedList<T>::make(ILinkedListNodeSharedPtr<T> head)
         {
             return std::make_shared<LinkedListNode<T>>(head);
         }
@@ -195,14 +195,14 @@ namespace datastructures {
          * The LinkedList constructor with a node list.
          */
         template <typename T>
-        LinkedList<T>::LinkedList(ILinkedListNodePtr<T> head) :
+        LinkedList<T>::LinkedList(ILinkedListNodeSharedPtr<T> head) :
             m_size(0)
         {
-            ILinkedListNodePtr<T> currNode = head;
+            ILinkedListNodeSharedPtr<T> currNode = head;
 
             while (currNode)
             {
-                ILinkedListNodePtr<T> nextNode = currNode->next();
+                ILinkedListNodeSharedPtr<T> nextNode = currNode->next();
                 addToBack(currNode);
 
                 currNode = nextNode;
@@ -221,7 +221,7 @@ namespace datastructures {
          * Gets the head node of the list.
          */
         template <typename T>
-        ILinkedListNodePtr<T> LinkedList<T>::getHead() const
+        ILinkedListNodeSharedPtr<T> LinkedList<T>::getHead() const
         {
             return m_head;
         }
@@ -230,7 +230,7 @@ namespace datastructures {
          * Gets the tail node of the list.
          */
         template <typename T>
-        ILinkedListNodePtr<T> LinkedList<T>::getTail() const
+        ILinkedListNodeSharedPtr<T> LinkedList<T>::getTail() const
         {
             return m_tail;
         }
@@ -276,8 +276,8 @@ namespace datastructures {
          */
         template <typename T>
         void LinkedList<T>::addAfter(
-            ILinkedListNodePtr<T> currNode,
-            const T& valueToAdd)
+                ILinkedListNodeSharedPtr<T> currNode,
+                const T& valueToAdd)
         {
             addAfter(currNode, LinkedListNode<T>::make(valueToAdd));
         }
@@ -286,7 +286,7 @@ namespace datastructures {
          * Adds a new node to the front of the list.
          */
         template <typename T>
-        void LinkedList<T>::addToFront(ILinkedListNodePtr<T> node)
+        void LinkedList<T>::addToFront(ILinkedListNodeSharedPtr<T> node)
         {
             base::SmartPointers::validate(node);
 
@@ -311,7 +311,7 @@ namespace datastructures {
          * Adds a new node to the back of the list.
          */
         template <typename T>
-        void LinkedList<T>::addToBack(ILinkedListNodePtr<T> node)
+        void LinkedList<T>::addToBack(ILinkedListNodeSharedPtr<T> node)
         {
             base::SmartPointers::validate(node);
 
@@ -337,15 +337,15 @@ namespace datastructures {
          */
         template <typename T>
         void LinkedList<T>::addAfter(
-            ILinkedListNodePtr<T> currNode,
-            ILinkedListNodePtr<T> nodeToAdd)
+                ILinkedListNodeSharedPtr<T> currNode,
+                ILinkedListNodeSharedPtr<T> nodeToAdd)
         {
             base::SmartPointers::validate(currNode);
             base::SmartPointers::validate(nodeToAdd);
 
             nodeToAdd->unlinked();
 
-            ILinkedListNodePtr<T> nextNode = currNode->next();
+            ILinkedListNodeSharedPtr<T> nextNode = currNode->next();
 
             linkedNodes(currNode, nodeToAdd);
 
@@ -366,7 +366,7 @@ namespace datastructures {
          * Returns the removed node or null if the list is empty.
          */
         template <typename T>
-        ILinkedListNodePtr<T> LinkedList<T>::removeFromFront()
+        ILinkedListNodeSharedPtr<T> LinkedList<T>::removeFromFront()
         {
             if (!m_head)
             {
@@ -374,8 +374,8 @@ namespace datastructures {
                 return nullptr;
             }
 
-            ILinkedListNodePtr<T> nodeToRemove = m_head;
-            ILinkedListNodePtr<T> nextNode = m_head->next();
+            ILinkedListNodeSharedPtr<T> nodeToRemove = m_head;
+            ILinkedListNodeSharedPtr<T> nextNode = m_head->next();
 
             m_head = nextNode;
 
@@ -392,18 +392,18 @@ namespace datastructures {
          * Removes a node after a specific node of the list.
          */
         template <typename T>
-        void LinkedList<T>::removeAfter(ILinkedListNodePtr<T> currNode)
+        void LinkedList<T>::removeAfter(ILinkedListNodeSharedPtr<T> currNode)
         {
             base::SmartPointers::validate(currNode);
 
-            ILinkedListNodePtr<T> nodeToRemove = currNode->next();
+            ILinkedListNodeSharedPtr<T> nodeToRemove = currNode->next();
 
             if (nodeToRemove == nullptr)
             {
                 return;
             }
 
-            ILinkedListNodePtr<T> nextNode = nodeToRemove->next();
+            ILinkedListNodeSharedPtr<T> nextNode = nodeToRemove->next();
 
             linkedNodes(currNode, nextNode);
 
@@ -429,7 +429,7 @@ namespace datastructures {
          * Gets an iterator of nodes.
          */
         template <typename T>
-        base::IIteratorSharedPtr<ILinkedListNodePtr<T>> LinkedList<T>::getIterator() const
+        base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> LinkedList<T>::getIterator() const
         {
             return LinkedListNodeIterator<T>::make(m_head);
         }
@@ -447,7 +447,7 @@ namespace datastructures {
          * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
          */
         template <typename T>
-        ILinkedListNodePtr<T> LinkedList<T>::getNode(size_t index) const
+        ILinkedListNodeSharedPtr<T> LinkedList<T>::getNode(size_t index) const
         {
             if (index >= size())
             {
@@ -455,7 +455,7 @@ namespace datastructures {
                 throw LinkedListException(errorMessage);
             }
 
-            ILinkedListNodePtr<T> currNode = m_head;
+            ILinkedListNodeSharedPtr<T> currNode = m_head;
 
             size_t currIndex = 0;
 
@@ -479,7 +479,7 @@ namespace datastructures {
          * Linked nodes.
          */
         template <typename T>
-        void LinkedList<T>::linkedNodes(ILinkedListNodePtr<T> left, ILinkedListNodePtr<T> right)
+        void LinkedList<T>::linkedNodes(ILinkedListNodeSharedPtr<T> left, ILinkedListNodeSharedPtr<T> right)
         {
             if (left != nullptr)
             {

@@ -22,12 +22,12 @@ namespace datastructures {
             /**
              * Creates a new doubly linked list.
              */
-            static IDoublyLinkedListPtr<T> make();
+            static IDoublyLinkedListSharedPtr<T> make();
 
             /**
              * Creates a new doubly linked list from a node list.
              */
-            static IDoublyLinkedListNodePtr<T> make(IDoublyLinkedListNodePtr<T> head);
+            static IDoublyLinkedListNodeSharedPtr<T> make(IDoublyLinkedListNodeSharedPtr<T> head);
 
             /**
              * The DoublyLinkedList constructor.
@@ -37,7 +37,7 @@ namespace datastructures {
             /**
              * The DoublyLinkedList constructor with a list.
              */
-            DoublyLinkedList(IDoublyLinkedListNodePtr<T> head);
+            DoublyLinkedList(IDoublyLinkedListNodeSharedPtr<T> head);
 
             /**
              * The DoublyLinkedList destructor.
@@ -59,12 +59,12 @@ namespace datastructures {
             /**
              * Gets the head node of the list.
              */
-            virtual IDoublyLinkedListNodePtr<T> getHead() const override;
+            virtual IDoublyLinkedListNodeSharedPtr<T> getHead() const override;
 
             /**
              * Gets the tail node of the list.
              */
-            virtual IDoublyLinkedListNodePtr<T> getTail() const override;
+            virtual IDoublyLinkedListNodeSharedPtr<T> getTail() const override;
 
             /**
              * Gets the size of the list.
@@ -90,56 +90,56 @@ namespace datastructures {
              * Adds a new value after a specific node of the list.
              */
             virtual void addAfter(
-                IDoublyLinkedListNodePtr<T> currNode,
-                const T& valueToAdd) override;
+                    IDoublyLinkedListNodeSharedPtr<T> currNode,
+                    const T& valueToAdd) override;
 
             /**
              * Adds a new value before a specific node of the list.
              */
             virtual void addBefore(
-                IDoublyLinkedListNodePtr<T> currNode,
-                const T& valueToAdd) override;
+                    IDoublyLinkedListNodeSharedPtr<T> currNode,
+                    const T& valueToAdd) override;
 
             /**
              * Adds a new node to the front of the list.
              */
-            virtual void addToFront(IDoublyLinkedListNodePtr<T> node) override;
+            virtual void addToFront(IDoublyLinkedListNodeSharedPtr<T> node) override;
 
             /**
              * Adds a new node to the back of the list.
              */
-            virtual void addToBack(IDoublyLinkedListNodePtr<T> node) override;
+            virtual void addToBack(IDoublyLinkedListNodeSharedPtr<T> node) override;
 
             /**
              * Adds a new node after a specific node of the list.
              */
             virtual void addAfter(
-                IDoublyLinkedListNodePtr<T> currNode,
-                IDoublyLinkedListNodePtr<T> nodeToAdd) override;
+                    IDoublyLinkedListNodeSharedPtr<T> currNode,
+                    IDoublyLinkedListNodeSharedPtr<T> nodeToAdd) override;
 
             /**
              * Adds a new node before a specific node of the list.
              */
             virtual void addBefore(
-                IDoublyLinkedListNodePtr<T> currNode,
-                IDoublyLinkedListNodePtr<T> nodeToAdd) override;
+                    IDoublyLinkedListNodeSharedPtr<T> currNode,
+                    IDoublyLinkedListNodeSharedPtr<T> nodeToAdd) override;
 
             /**
              * Removes the front node from the list.
              * Returns the removed node or null if the list is empty.
              */
-            virtual IDoublyLinkedListNodePtr<T> removeFromFront() override;
+            virtual IDoublyLinkedListNodeSharedPtr<T> removeFromFront() override;
 
             /**
              * Removes the back node from the list.
              * Returns the removed node or null if the list is empty.
              */
-            virtual IDoublyLinkedListNodePtr<T> removeFromBack() override;
+            virtual IDoublyLinkedListNodeSharedPtr<T> removeFromBack() override;
 
             /**
              * Removes the a node from the list.
              */
-            virtual void remove(IDoublyLinkedListNodePtr<T> nodeToRemove) override;
+            virtual void remove(IDoublyLinkedListNodeSharedPtr<T> nodeToRemove) override;
 
             /**
              * Clears the list.
@@ -149,12 +149,12 @@ namespace datastructures {
             /**
              * Gets an iterator of nodes.
              */
-            virtual base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> getIterator() const override;
 
             /**
              * Gets a reverse iterator of nodes.
              */
-            virtual base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> getReverseIterator() const override;
             
             /**
              * Gets an iterator of values of a list.
@@ -169,13 +169,13 @@ namespace datastructures {
             /**
              * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
              */
-            virtual IDoublyLinkedListNodePtr<T> getNode(size_t index) const override;
+            virtual IDoublyLinkedListNodeSharedPtr<T> getNode(size_t index) const override;
 
         private:
             /**
              * Linked nodes.
              */
-            void linkedNodes(IDoublyLinkedListNodePtr<T> left, IDoublyLinkedListNodePtr<T> right);
+            void linkedNodes(IDoublyLinkedListNodeSharedPtr<T> left, IDoublyLinkedListNodeSharedPtr<T> right);
 
             /**
              * Node added.
@@ -187,19 +187,19 @@ namespace datastructures {
              */
             void nodeRemoved(IDoublyLinkedListNode<T>& node);
 
-            IDoublyLinkedListNodePtr<T> m_head;
-            IDoublyLinkedListNodePtr<T> m_tail;
+            IDoublyLinkedListNodeSharedPtr<T> m_head;
+            IDoublyLinkedListNodeSharedPtr<T> m_tail;
             size_t m_size;
         };
 
         template <typename T>
-        using IDoublyLinkedListPtr = std::shared_ptr<IDoublyLinkedList<T>>;
+        using IDoublyLinkedListSharedPtr = std::shared_ptr<IDoublyLinkedList<T>>;
 
         /**
          * Creates a new doubly linked list.
          */
         template <typename T>
-        IDoublyLinkedListPtr<T> DoublyLinkedList<T>::make()
+        IDoublyLinkedListSharedPtr<T> DoublyLinkedList<T>::make()
         {
             return std::make_shared<DoublyLinkedList<T>>();
         }
@@ -208,7 +208,7 @@ namespace datastructures {
          * Creates a new doubly linked list from a node list.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedList<T>::make(IDoublyLinkedListNodePtr<T> head)
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedList<T>::make(IDoublyLinkedListNodeSharedPtr<T> head)
         {
             return std::make_shared<DoublyLinkedListNode<T>>(head);
         }
@@ -226,14 +226,14 @@ namespace datastructures {
          * The DoublyLinkedList constructor with a node list.
          */
         template <typename T>
-        DoublyLinkedList<T>::DoublyLinkedList(IDoublyLinkedListNodePtr<T> head) :
+        DoublyLinkedList<T>::DoublyLinkedList(IDoublyLinkedListNodeSharedPtr<T> head) :
             m_size(0)
         {
-            IDoublyLinkedListNodePtr<T> currNode = head;
+            IDoublyLinkedListNodeSharedPtr<T> currNode = head;
 
             while (currNode)
             {
-                IDoublyLinkedListNodePtr<T> nextNode = currNode->next();
+                IDoublyLinkedListNodeSharedPtr<T> nextNode = currNode->next();
                 addToBack(currNode);
 
                 currNode = nextNode;
@@ -252,7 +252,7 @@ namespace datastructures {
          * Gets the head node of the list.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedList<T>::getHead() const
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedList<T>::getHead() const
         {
             return m_head;
         }
@@ -261,7 +261,7 @@ namespace datastructures {
          * Gets the tail node of the list.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedList<T>::getTail() const
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedList<T>::getTail() const
         {
             return m_tail;
         }
@@ -307,8 +307,8 @@ namespace datastructures {
          */
         template <typename T>
         void DoublyLinkedList<T>::addAfter(
-            IDoublyLinkedListNodePtr<T> currNode,
-            const T& valueToAdd)
+                IDoublyLinkedListNodeSharedPtr<T> currNode,
+                const T& valueToAdd)
         {
             addAfter(currNode, DoublyLinkedListNode<T>::make(valueToAdd));
         }
@@ -318,8 +318,8 @@ namespace datastructures {
          */
         template <typename T>
         void DoublyLinkedList<T>::addBefore(
-            IDoublyLinkedListNodePtr<T> currNode,
-            const T& valueToAdd)
+                IDoublyLinkedListNodeSharedPtr<T> currNode,
+                const T& valueToAdd)
         {
             addBefore(currNode, DoublyLinkedListNode<T>::make(valueToAdd));
         }
@@ -328,7 +328,7 @@ namespace datastructures {
          * Adds a new node to the front of the list.
          */
         template <typename T>
-        void DoublyLinkedList<T>::addToFront(IDoublyLinkedListNodePtr<T> node)
+        void DoublyLinkedList<T>::addToFront(IDoublyLinkedListNodeSharedPtr<T> node)
         {
             base::SmartPointers::validate(node);
 
@@ -353,7 +353,7 @@ namespace datastructures {
          * Adds a new node to the back of the list.
          */
         template <typename T>
-        void DoublyLinkedList<T>::addToBack(IDoublyLinkedListNodePtr<T> node)
+        void DoublyLinkedList<T>::addToBack(IDoublyLinkedListNodeSharedPtr<T> node)
         {
             base::SmartPointers::validate(node);
 
@@ -379,15 +379,15 @@ namespace datastructures {
          */
         template <typename T>
         void DoublyLinkedList<T>::addAfter(
-            IDoublyLinkedListNodePtr<T> currNode,
-            IDoublyLinkedListNodePtr<T> nodeToAdd)
+                IDoublyLinkedListNodeSharedPtr<T> currNode,
+                IDoublyLinkedListNodeSharedPtr<T> nodeToAdd)
         {
             base::SmartPointers::validate(currNode);
             base::SmartPointers::validate(nodeToAdd);
 
             nodeToAdd->unlinked();
 
-            IDoublyLinkedListNodePtr<T> nextNode = currNode->next();
+            IDoublyLinkedListNodeSharedPtr<T> nextNode = currNode->next();
 
             linkedNodes(currNode, nodeToAdd);
 
@@ -408,15 +408,15 @@ namespace datastructures {
          */
         template <typename T>
         void DoublyLinkedList<T>::addBefore(
-            IDoublyLinkedListNodePtr<T> currNode,
-            IDoublyLinkedListNodePtr<T> nodeToAdd)
+                IDoublyLinkedListNodeSharedPtr<T> currNode,
+                IDoublyLinkedListNodeSharedPtr<T> nodeToAdd)
         {
             base::SmartPointers::validate(currNode);
             base::SmartPointers::validate(nodeToAdd);
 
             nodeToAdd->unlinked();
 
-            IDoublyLinkedListNodePtr<T> previousNode = currNode->previous();
+            IDoublyLinkedListNodeSharedPtr<T> previousNode = currNode->previous();
 
             if (previousNode)
             {
@@ -437,7 +437,7 @@ namespace datastructures {
          * Returns the removed node or null if the list is empty.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedList<T>::removeFromFront()
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedList<T>::removeFromFront()
         {
             if (!m_head)
             {
@@ -445,7 +445,7 @@ namespace datastructures {
                 return nullptr;
             }
 
-            IDoublyLinkedListNodePtr<T> nodeToRemove = m_head;
+            IDoublyLinkedListNodeSharedPtr<T> nodeToRemove = m_head;
             remove(nodeToRemove);
 
             return nodeToRemove;
@@ -456,14 +456,14 @@ namespace datastructures {
          * Returns the removed node or null if the list is empty.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedList<T>::removeFromBack()
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedList<T>::removeFromBack()
         {
             if (!m_tail) {
                 assert(!m_head && empty());
                 return nullptr;
             }
 
-            IDoublyLinkedListNodePtr<T> nodeToRemove = m_tail;
+            IDoublyLinkedListNodeSharedPtr<T> nodeToRemove = m_tail;
             remove(nodeToRemove);
 
             return nodeToRemove;
@@ -473,12 +473,12 @@ namespace datastructures {
          * Removes the a node from the list.
          */
         template <typename T>
-        void DoublyLinkedList<T>::remove(IDoublyLinkedListNodePtr<T> nodeToRemove)
+        void DoublyLinkedList<T>::remove(IDoublyLinkedListNodeSharedPtr<T> nodeToRemove)
         {
             base::SmartPointers::validate(nodeToRemove);
 
-            IDoublyLinkedListNodePtr<T> previousNode = nodeToRemove->previous();
-            IDoublyLinkedListNodePtr<T> nextNode = nodeToRemove->next();
+            IDoublyLinkedListNodeSharedPtr<T> previousNode = nodeToRemove->previous();
+            IDoublyLinkedListNodeSharedPtr<T> nextNode = nodeToRemove->next();
 
             linkedNodes(previousNode, nextNode);
 
@@ -510,7 +510,7 @@ namespace datastructures {
          * Gets an iterator of nodes.
          */
         template <typename T>
-        base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedList<T>::getIterator() const
+        base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> DoublyLinkedList<T>::getIterator() const
         {
             return DoublyLinkedListNodeIterator<T>::make(m_head);
         }
@@ -519,7 +519,7 @@ namespace datastructures {
          * Gets a reverse iterator of nodes.
          */
         template <typename T>
-        base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedList<T>::getReverseIterator() const
+        base::IReverseIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> DoublyLinkedList<T>::getReverseIterator() const
         {
             return DoublyLinkedListNodeReverseIterator<T>::make(m_tail);
         }
@@ -546,7 +546,7 @@ namespace datastructures {
          * Gets a specific node by index. Index: [0, 1, 2, ... , size -1]
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedList<T>::getNode(size_t index) const
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedList<T>::getNode(size_t index) const
         {
             if (index >= size())
             {
@@ -554,7 +554,7 @@ namespace datastructures {
                 throw DoublyLinkedListException(errorMessage);
             }
 
-            IDoublyLinkedListNodePtr<T> currNode = m_head;
+            IDoublyLinkedListNodeSharedPtr<T> currNode = m_head;
 
             size_t currIndex = 0;
 
@@ -578,7 +578,7 @@ namespace datastructures {
          * Linked nodes.
          */
         template <typename T>
-        void DoublyLinkedList<T>::linkedNodes(IDoublyLinkedListNodePtr<T> left, IDoublyLinkedListNodePtr<T> right)
+        void DoublyLinkedList<T>::linkedNodes(IDoublyLinkedListNodeSharedPtr<T> left, IDoublyLinkedListNodeSharedPtr<T> right)
         {
             if (left != nullptr)
             {

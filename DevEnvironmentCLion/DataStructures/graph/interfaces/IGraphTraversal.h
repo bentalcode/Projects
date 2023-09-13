@@ -51,8 +51,11 @@ namespace datastructures {
                 base::IVisitorPtr<IVertexPtr<TKey, TValue>> visitor) const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Graph Traversal.
+         */
         template <typename TKey, typename TValue>
-        using IGraphTraversalPtr = std::shared_ptr<IGraphTraversal<TKey, TValue>>;
+        using IGraphTraversalSharedPtr = std::shared_ptr<IGraphTraversal<TKey, TValue>>;
 
     }
 }

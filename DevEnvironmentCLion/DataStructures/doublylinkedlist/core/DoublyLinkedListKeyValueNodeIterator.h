@@ -13,20 +13,20 @@ namespace datastructures {
          * The DoublyLinkedListKeyValueNodeIterator class implements an iterator of key-value nodes of a doubly linked list.
          */
         template <typename TKey, typename TValue>
-        class DoublyLinkedListKeyValueNodeIterator final : public base::IIterator<node::IKeyValueNodePtr<TKey, TValue>>
+        class DoublyLinkedListKeyValueNodeIterator final : public base::IIterator<node::IKeyValueNodeSharedPtr<TKey, TValue>>
         {
         public:
             /**
              * Creates a new doubly linked list.
              */
-            static base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> make(
-                base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator);
+            static base::IIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> make(
+                base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr < TKey, TValue>>> iterator);
 
             /**
              * The DoublyLinkedListKeyValueNodeIterator constructor.
              */
             explicit DoublyLinkedListKeyValueNodeIterator(
-                base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator);
+                base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr < TKey, TValue>>> iterator);
 
             /**
              * The DoublyLinkedListKeyValueNodeIterator destructor.
@@ -53,7 +53,7 @@ namespace datastructures {
             /**
              * Gets the next node.
              */
-            virtual node::IKeyValueNodePtr<TKey, TValue> next() override;
+            virtual node::IKeyValueNodeSharedPtr<TKey, TValue> next() override;
 
             /**
              * Resets the iterator.
@@ -61,15 +61,15 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> m_iterator;
+            base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr < TKey, TValue>>> m_iterator;
         };
 
         /**
          * Creates a new doubly linked list.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::make(
-            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator)
+        base::IIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::make(
+            base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr < TKey, TValue>>> iterator)
         {
             return std::make_shared<DoublyLinkedListKeyValueNodeIterator<TKey, TValue>>(iterator);
         }
@@ -79,7 +79,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::DoublyLinkedListKeyValueNodeIterator(
-            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator) :
+            base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>> iterator) :
             m_iterator(iterator)
         {
             base::SmartPointers::validate(iterator);
@@ -108,12 +108,12 @@ namespace datastructures {
          * Gets the next node.
          */
         template <typename TKey, typename TValue>
-        node::IKeyValueNodePtr<TKey, TValue> DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::next()
+        node::IKeyValueNodeSharedPtr<TKey, TValue> DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::next()
         {
             assert(hasNext());
 
-            IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> listNode = m_iterator->next();
-            node::IKeyValueNodePtr<TKey, TValue> node = listNode->getValue();
+            IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> listNode = m_iterator->next();
+            node::IKeyValueNodeSharedPtr<TKey, TValue> node = listNode->getValue();
 
             return node;
         }

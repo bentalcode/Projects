@@ -17,16 +17,16 @@ namespace datastructures {
             /**
              * Creates new graph definition.
              */
-            static IGraphDefinitionPtr<TKey, TValue> make(
-                const std::vector<IVertexPtr<TKey, TValue>>& vertices,
-                const std::vector<IEdgePtr<TKey, TValue>>& edges);
+            static IGraphDefinitionSharedPtr<TKey, TValue> make(
+                const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices,
+                const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges);
 
             /**
              * The GraphDefinition constructor.
              */
             GraphDefinition(
-                const std::vector<IVertexPtr<TKey, TValue>>& vertices,
-                const std::vector<IEdgePtr<TKey, TValue>>& edges);
+                const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices,
+                const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges);
 
             /**
              * The GraphDefinition destructor.
@@ -48,25 +48,25 @@ namespace datastructures {
             /**
              * Gets the vertices of the graph.
              */
-            virtual const std::vector<IVertexPtr<TKey, TValue>>& vertices() const override;
+            virtual const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices() const override;
 
             /**
              * Gets the edges of the graph.
              */
-            virtual const std::vector<IEdgePtr<TKey, TValue>>& edges() const override;
+            virtual const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges() const override;
 
         private:
-            std::vector<IVertexPtr<TKey, TValue>> m_vertices;
-            std::vector<IEdgePtr<TKey, TValue>> m_edges;
+            std::vector<IVertexSharedPtr<TKey, TValue>> m_vertices;
+            std::vector<IEdgeSharedPtr<TKey, TValue>> m_edges;
         };
 
         /**
          * Creates new graph definition.
          */
         template <typename TKey, typename TValue>
-        IGraphDefinitionPtr<TKey, TValue> GraphDefinition<TKey, TValue>::make(
-            const std::vector<IVertexPtr<TKey, TValue>>& vertices,
-            const std::vector<IEdgePtr<TKey, TValue>>& edges)
+        IGraphDefinitionSharedPtr<TKey, TValue> GraphDefinition<TKey, TValue>::make(
+            const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices,
+            const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges)
         {
             return std::make_shared<GraphDefinition>(vertices, edges);
         }
@@ -76,8 +76,8 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         GraphDefinition<TKey, TValue>::GraphDefinition(
-            const std::vector<IVertexPtr<TKey, TValue>>& vertices,
-            const std::vector<IEdgePtr<TKey, TValue>>& edges) :
+            const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices,
+            const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges) :
             m_vertices(vertices),
             m_edges(edges)
         {
@@ -95,7 +95,7 @@ namespace datastructures {
          * Gets the vertices of the graph.
          */
         template <typename TKey, typename TValue>
-        const std::vector<IVertexPtr<TKey, TValue>>& GraphDefinition<TKey, TValue>::vertices() const
+        const std::vector<IVertexSharedPtr<TKey, TValue>>& GraphDefinition<TKey, TValue>::vertices() const
         {
             return m_vertices;
         }
@@ -104,7 +104,7 @@ namespace datastructures {
          * Gets the edges of the graph.
          */
         template <typename TKey, typename TValue>
-        const std::vector<IEdgePtr<TKey, TValue>>& GraphDefinition<TKey, TValue>::edges() const
+        const std::vector<IEdgeSharedPtr<TKey, TValue>>& GraphDefinition<TKey, TValue>::edges() const
         {
             return m_edges;
         }

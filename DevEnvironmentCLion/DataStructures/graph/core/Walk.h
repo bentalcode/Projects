@@ -22,26 +22,26 @@ namespace datastructures {
             /**
              * Creates a new walk.
              */
-            static IWalkPtr<TKey, TValue> make();
+            static IWalkSharedPtr<TKey, TValue> make();
 
             /**
              * Creates a new walk.
              */
-            static IWalkPtr<TKey, TValue> make(
-                const std::list<IVertexPtr<TKey, TValue>>& vertices);
+            static IWalkSharedPtr<TKey, TValue> make(
+                const std::list<IVertexSharedPtr<TKey, TValue>>& vertices);
 
             /**
              * Copies a walk.
              */
-            static IWalkPtr<TKey, TValue> copy(
+            static IWalkSharedPtr<TKey, TValue> copy(
                 const IWalk<TKey, TValue>& walk);
 
             /**
              * Creates a new list of walks.
              */
             static void makeWalks(
-                const std::vector<std::list<IVertexPtr<TKey, TValue>>>& verticeLists,
-                std::vector<IWalkPtr<TKey, TValue>>& result);
+                const std::vector<std::list<IVertexSharedPtr<TKey, TValue>>>& verticeLists,
+                std::vector<IWalkSharedPtr<TKey, TValue>>& result);
 
             /**
              * The Walk constructor.
@@ -51,7 +51,7 @@ namespace datastructures {
             /**
              * The Walk constructor.
              */
-            explicit Walk(const std::list<IVertexPtr<TKey, TValue>>& vertices);
+            explicit Walk(const std::list<IVertexSharedPtr<TKey, TValue>>& vertices);
 
             /**
              * The Walk destructor.
@@ -73,7 +73,7 @@ namespace datastructures {
             /**
              * Adds a vertex.
              */
-            virtual void addVertex(IVertexPtr<TKey, TValue> vertex) override;
+            virtual void addVertex(IVertexSharedPtr<TKey, TValue> vertex) override;
 
             /**
              * Removes the last vertex.
@@ -83,7 +83,7 @@ namespace datastructures {
             /**
              * Gets the vertices.
              */
-            virtual const std::list<IVertexPtr<TKey, TValue>>& getVertices() const override;
+            virtual const std::list<IVertexSharedPtr<TKey, TValue>>& getVertices() const override;
 
             /**
              * Checks whether a vertex has been visited before.
@@ -103,12 +103,12 @@ namespace datastructures {
             /**
              * Gets the iterator.
              */
-            virtual base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> getIterator() const override;
 
             /**
              * Gets the reverse iterator.
              */
-            virtual base::IReverseIteratorSharedPtr<IVertexPtr<TKey, TValue>> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> getReverseIterator() const override;
 
             /**
              * Gets string representation of this instance.
@@ -116,14 +116,14 @@ namespace datastructures {
             virtual std::string toString() const override;
 
         private:
-            std::list<IVertexPtr<TKey, TValue>> m_vertices;
+            std::list<IVertexSharedPtr<TKey, TValue>> m_vertices;
         };
 
         /**
          * Creates a new walk.
          */
         template <typename TKey, typename TValue>
-        IWalkPtr<TKey, TValue> Walk<TKey, TValue>::make()
+        IWalkSharedPtr<TKey, TValue> Walk<TKey, TValue>::make()
         {
             return std::make_shared<Walk<TKey, TValue>>();
         }
@@ -132,7 +132,7 @@ namespace datastructures {
          * Creates a new walk.
          */
         template <typename TKey, typename TValue>
-        IWalkPtr<TKey, TValue> Walk<TKey, TValue>::make(const std::list<IVertexPtr<TKey, TValue>>& vertices)
+        IWalkSharedPtr<TKey, TValue> Walk<TKey, TValue>::make(const std::list<IVertexSharedPtr<TKey, TValue>>& vertices)
         {
             return std::make_shared<Walk<TKey, TValue>>(vertices);
         }
@@ -141,7 +141,7 @@ namespace datastructures {
          * Copies a walk.
          */
         template <typename TKey, typename TValue>
-        IWalkPtr<TKey, TValue> Walk<TKey, TValue>::copy(const IWalk<TKey, TValue>& walk)
+        IWalkSharedPtr<TKey, TValue> Walk<TKey, TValue>::copy(const IWalk<TKey, TValue>& walk)
         {
             return std::make_shared<Walk<TKey, TValue>>(walk);
         }
@@ -151,12 +151,12 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void Walk<TKey, TValue>::makeWalks(
-            const std::vector<std::list<IVertexPtr<TKey, TValue>>>& verticeLists,
-            std::vector<IWalkPtr<TKey, TValue>>& result)
+            const std::vector<std::list<IVertexSharedPtr<TKey, TValue>>>& verticeLists,
+            std::vector<IWalkSharedPtr<TKey, TValue>>& result)
         {
-            for (const std::list<IVertexPtr<TKey, TValue>>& verticeList : verticeLists)
+            for (const std::list<IVertexSharedPtr<TKey, TValue>>& verticeList : verticeLists)
             {
-                IWalkPtr<TKey, TValue> walk = Walk<TKey, TValue>::make(verticeList);
+                IWalkSharedPtr<TKey, TValue> walk = Walk<TKey, TValue>::make(verticeList);
                 result.push_back(walk);
             }
         }
@@ -173,7 +173,7 @@ namespace datastructures {
          * The Walk constructor.
          */
         template <typename TKey, typename TValue>
-        Walk<TKey, TValue>::Walk(const std::list<IVertexPtr<TKey, TValue>>& vertices) :
+        Walk<TKey, TValue>::Walk(const std::list<IVertexSharedPtr<TKey, TValue>>& vertices) :
             m_vertices(vertices)
         {
         }
@@ -215,7 +215,7 @@ namespace datastructures {
          * Adds a vertex.
          */
         template <typename TKey, typename TValue>
-        void Walk<TKey, TValue>::addVertex(IVertexPtr<TKey, TValue> vertex)
+        void Walk<TKey, TValue>::addVertex(IVertexSharedPtr<TKey, TValue> vertex)
         {
             m_vertices.push_back(vertex);
         }
@@ -233,7 +233,7 @@ namespace datastructures {
          * Gets the vertices.
          */
         template <typename TKey, typename TValue>
-        const std::list<IVertexPtr<TKey, TValue>>& Walk<TKey, TValue>::getVertices() const
+        const std::list<IVertexSharedPtr<TKey, TValue>>& Walk<TKey, TValue>::getVertices() const
         {
             return m_vertices;
         }
@@ -244,11 +244,11 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         bool Walk<TKey, TValue>::visited(const IVertex<TKey, TValue>& vertex) const
         {
-            for (typename std::list<IVertexPtr<TKey, TValue>>::const_reverse_iterator vertexIterator = m_vertices.rbegin();
+            for (typename std::list<IVertexSharedPtr<TKey, TValue>>::const_reverse_iterator vertexIterator = m_vertices.rbegin();
                  vertexIterator != m_vertices.rend();
                  ++vertexIterator)
             {
-                IVertexPtr<TKey, TValue> currVertex = *vertexIterator;
+                IVertexSharedPtr<TKey, TValue> currVertex = *vertexIterator;
 
                 if (*currVertex == vertex)
                 {
@@ -281,18 +281,18 @@ namespace datastructures {
          * Gets the iterator.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> Walk<TKey, TValue>::getIterator() const
+        base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> Walk<TKey, TValue>::getIterator() const
         {
-            return base::ListIterator<IVertexPtr<TKey, TValue>>::make(m_vertices);
+            return base::ListIterator<IVertexSharedPtr<TKey, TValue>>::make(m_vertices);
         }
 
         /**
          * Gets the reverse iterator.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorSharedPtr<IVertexPtr<TKey, TValue>> Walk<TKey, TValue>::getReverseIterator() const
+        base::IReverseIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> Walk<TKey, TValue>::getReverseIterator() const
         {
-            return base::ListReverseIterator<IVertexPtr<TKey, TValue>>::make(m_vertices);
+            return base::ListReverseIterator<IVertexSharedPtr<TKey, TValue>>::make(m_vertices);
         }
 
         /**

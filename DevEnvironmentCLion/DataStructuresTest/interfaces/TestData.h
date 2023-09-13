@@ -44,12 +44,12 @@ namespace test {
             /**
              * Gets the data of tests of a linked list.
              */
-            LinkedListTestDataPtr getLinkedListData() const;
+            LinkedListTestDataSharedPtr getLinkedListData() const;
 
             /**
              * Gets the data of tests of a doubly linked list.
              */
-            DoublyLinkedListTestDataPtr getDoublyLinkedListData() const;
+            DoublyLinkedListTestDataSharedPtr getDoublyLinkedListData() const;
 
             /**
              * Gets the data of tests of a binary tree.
@@ -59,17 +59,17 @@ namespace test {
             /**
              * Gets the data of tests of a priority queue.
              */
-            PriorityQueueTestDataPtr getPriorityQueueData() const;
+            PriorityQueueTestDataSharedPtr getPriorityQueueData() const;
 
             /**
              * Gets the data of tests of a graph.
              */
-            GraphTestDataPtr getGraphData() const;
+            GraphTestDataSharedPtr getGraphData() const;
 
             /**
              * Gets the data of tests of a cache.
              */
-            CacheTestDataPtr getCacheData() const;
+            CacheTestDataSharedPtr getCacheData() const;
 
             /**
              * Creates a vector.

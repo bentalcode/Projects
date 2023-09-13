@@ -15,12 +15,12 @@ namespace datastructures {
             /**
              * Creates a bit array.
              */
-            static IBitArrayPtr make(size_t numberOfBits);
+            static IBitArraySharedPtr make(size_t numberOfBits);
 
             /**
              * Copies a bit array.
              */
-            static IBitArrayPtr copy(const IBitArray& bitArray);
+            static IBitArraySharedPtr copy(const IBitArray& bitArray);
 
             /**
              * The BitArray constructor.
@@ -162,7 +162,7 @@ namespace datastructures {
             /**
              * Converts the bits to a bit 32 array.
              */
-            virtual const std::vector<IBit32ArrayPtr>& toBit32Array() const override;
+            virtual const std::vector<IBit32ArraySharedPtr>& toBit32Array() const override;
 
             /**
              * Gets the iterator.
@@ -180,7 +180,7 @@ namespace datastructures {
             /**
              * Creates a bit array.
              */
-            std::vector<IBit32ArrayPtr> createBitArray(size_t numberOfBits) const;
+            std::vector<IBit32ArraySharedPtr> createBitArray(size_t numberOfBits) const;
 
             /**
              * Gets the number of units.
@@ -207,11 +207,11 @@ namespace datastructures {
              */
             void validateIndex(size_t index) const;
 
-            std::vector<IBit32ArrayPtr> m_data;
+            std::vector<IBit32ArraySharedPtr> m_data;
             size_t m_size;
         };
 
-        using IBitArrayPtr = std::shared_ptr<IBitArray>;
+        using IBitArraySharedPtr = std::shared_ptr<IBitArray>;
     }
 }
 

@@ -39,28 +39,43 @@ namespace datastructures {
             /**
              * Gets the vertices of the graph.
              */
-            virtual const std::vector<IVertexPtr<TKey, TValue>>& vertices() const = 0;
+            virtual const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices() const = 0;
 
             /**
              * Gets the edges of the graph.
              */
-            virtual const std::vector<IEdgePtr<TKey, TValue>>& edges() const = 0;
+            virtual const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges() const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Graph Definition.
+         */
         template <typename TKey, typename TValue>
-        using IGraphDefinitionPtr = std::shared_ptr<IGraphDefinition<TKey, TValue>>;
+        using IGraphDefinitionSharedPtr = std::shared_ptr<IGraphDefinition<TKey, TValue>>;
 
+        /**
+         * Defines Vertex Shortest Paths Map.
+         */
         template <typename TKey, typename TValue>
-        using VertexShortestPathsMap = std::map<IVertexPtr<TKey, TValue>, long, base::DereferenceLess<IVertexPtr<TKey, TValue>>>;
+        using VertexShortestPathsMap = std::map<IVertexSharedPtr<TKey, TValue>, long, base::DereferenceLess<IVertexSharedPtr<TKey, TValue>>>;
 
+        /**
+         * Defines Graph Shortest Paths Map.
+         */
         template <typename TKey, typename TValue>
-        using GraphShortestPathsMap = std::map<IVertexPtr<TKey, TValue>, VertexShortestPathsMap<TKey, TValue>>;
+        using GraphShortestPathsMap = std::map<IVertexSharedPtr<TKey, TValue>, VertexShortestPathsMap<TKey, TValue>>;
 
+        /**
+         * Defines Edge Weight Map.
+         */
         template <typename TKey, typename TValue>
-        using EdgeWeightMap = std::map<IEdgePtr<TKey, TValue>, long, base::DereferenceLess<IEdgePtr<TKey, TValue>>>;
+        using EdgeWeightMap = std::map<IEdgeSharedPtr<TKey, TValue>, long, base::DereferenceLess<IEdgeSharedPtr<TKey, TValue>>>;
 
+        /**
+         * Defines Routs Paths.
+         */
         template <typename TKey, typename TValue>
-        using RoutesPaths = std::vector<std::pair<IRoutePtr<TKey, TValue>, std::vector<IWalkPtr<TKey, TValue>>>>;
+        using RoutesPaths = std::vector<std::pair<IRouteSharedPtr<TKey, TValue>, std::vector<IWalkSharedPtr<TKey, TValue>>>>;
     }
 }
 

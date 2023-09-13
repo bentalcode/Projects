@@ -38,12 +38,12 @@ namespace datastructures {
             /**
              * Gets a source vertex.
              */
-            virtual IVertexPtr<TKey, TValue> source() const = 0;
+            virtual IVertexSharedPtr<TKey, TValue> source() const = 0;
 
             /**
              * Gets a destination vertex.
              */
-            virtual IVertexPtr<TKey, TValue> destination() const = 0;
+            virtual IVertexSharedPtr<TKey, TValue> destination() const = 0;
 
             /**
              * returns whether an edge is directed.
@@ -56,8 +56,11 @@ namespace datastructures {
             virtual std::string toString() const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Edge.
+         */
         template <typename TKey, typename TValue>
-        using IEdgePtr = std::shared_ptr<IEdge<TKey, TValue>>;
+        using IEdgeSharedPtr = std::shared_ptr<IEdge<TKey, TValue>>;
 
         /**
          * Defines the equivalent operator.

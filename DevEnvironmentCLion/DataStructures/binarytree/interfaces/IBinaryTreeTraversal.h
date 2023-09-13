@@ -39,36 +39,36 @@ namespace datastructures {
              * Performs a Breadth-First search.
              */
             virtual void breadthFirstSearch(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                IVisitor<IBinaryTreeNodePtr<TKey, TValue>> visitor) = 0;
+                    IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                    IVisitor<IBinaryTreeNodeSharedPtr<TKey, TValue>> visitor) = 0;
 
             /**
              * Performs a Depth-First search.
              */
             virtual void depthFirstSearch(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                IVisitor<IBinaryTreeNodePtr<TKey, TValue>> visitor) = 0;
+                    IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                    IVisitor<IBinaryTreeNodeSharedPtr<TKey, TValue>> visitor) = 0;
 
             /**
              * Performs a Pre-Order search.
              */
             virtual void preOrder(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                IVisitor<IBinaryTreeNodePtr<TKey, TValue>> visitor) = 0;
+                    IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                    IVisitor<IBinaryTreeNodeSharedPtr<TKey, TValue>> visitor) = 0;
 
             /**
              * Performs an In-Order search.
              */
             virtual void inOrder(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                IVisitor<IBinaryTreeNodePtr<TKey, TValue>> visitor) = 0;
+                    IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                    IVisitor<IBinaryTreeNodeSharedPtr<TKey, TValue>> visitor) = 0;
 
             /**
              * Performs an Post-Order search.
              */
             virtual void postOrder(
-                IBinaryTreeNodePtr<TKey, TValue> root,
-                IVisitor<IBinaryTreeNodePtr<TKey, TValue>> visitor) = 0;
+                    IBinaryTreeNodeSharedPtr<TKey, TValue> root,
+                    IVisitor<IBinaryTreeNodeSharedPtr<TKey, TValue>> visitor) = 0;
         };
     }
 }

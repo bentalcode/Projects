@@ -17,24 +17,24 @@ namespace datastructures {
             /**
              * Creates a new instance of an edge.
              */
-            static IEdgePtr<TKey, TValue> make(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination);
+            static IEdgeSharedPtr<TKey, TValue> make(
+                    IVertexSharedPtr<TKey, TValue> source,
+                    IVertexSharedPtr<TKey, TValue> destination);
 
             /**
              * Creates a new instance of a directed edge.
              */
-            static IEdgePtr<TKey, TValue> makeDirected(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination);
+            static IEdgeSharedPtr<TKey, TValue> makeDirected(
+                    IVertexSharedPtr<TKey, TValue> source,
+                    IVertexSharedPtr<TKey, TValue> destination);
 
             /**
              * The Edge constructor.
              */
             Edge(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination,
-                bool directed);
+                    IVertexSharedPtr<TKey, TValue> source,
+                    IVertexSharedPtr<TKey, TValue> destination,
+                    bool directed);
 
             /**
              * The Edge destructor.
@@ -56,12 +56,12 @@ namespace datastructures {
             /**
              * Gets a source vertex.
              */
-            virtual IVertexPtr<TKey, TValue> source() const override;
+            virtual IVertexSharedPtr<TKey, TValue> source() const override;
 
             /**
              * Gets a destination vertex.
              */
-            virtual IVertexPtr<TKey, TValue> destination() const override;
+            virtual IVertexSharedPtr<TKey, TValue> destination() const override;
 
             /**
              * returns whether an edge is directed.
@@ -74,8 +74,8 @@ namespace datastructures {
             virtual std::string toString() const override;
 
         private:
-            IVertexPtr<TKey, TValue> m_source;
-            IVertexPtr<TKey, TValue> m_destination;
+            IVertexSharedPtr<TKey, TValue> m_source;
+            IVertexSharedPtr<TKey, TValue> m_destination;
             bool m_directed;
         };
 
@@ -83,9 +83,9 @@ namespace datastructures {
          * Creates a new instance of an edge.
          */
         template <typename TKey, typename TValue>
-        IEdgePtr<TKey, TValue> Edge<TKey, TValue>::make(
-            IVertexPtr<TKey, TValue> source,
-            IVertexPtr<TKey, TValue> destination)
+        IEdgeSharedPtr<TKey, TValue> Edge<TKey, TValue>::make(
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination)
         {
             return std::make_shared<Edge>(
                 source,
@@ -97,9 +97,9 @@ namespace datastructures {
          * Creates a new instance of a directed edge.
          */
         template <typename TKey, typename TValue>
-        IEdgePtr<TKey, TValue> Edge<TKey, TValue>::makeDirected(
-            IVertexPtr<TKey, TValue> source,
-            IVertexPtr<TKey, TValue> destination)
+        IEdgeSharedPtr<TKey, TValue> Edge<TKey, TValue>::makeDirected(
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination)
         {
             return std::make_shared<Edge>(
                 source,
@@ -112,9 +112,9 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         Edge<TKey, TValue>::Edge(
-            IVertexPtr<TKey, TValue> source,
-            IVertexPtr<TKey, TValue> destination,
-            bool directed) :
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination,
+                bool directed) :
             m_source(source),
             m_destination(destination),
             m_directed(directed)
@@ -133,7 +133,7 @@ namespace datastructures {
          * Gets a source vertex.
          */
         template <typename TKey, typename TValue>
-        IVertexPtr<TKey, TValue> Edge<TKey, TValue>::source() const
+        IVertexSharedPtr<TKey, TValue> Edge<TKey, TValue>::source() const
         {
             return m_source;
         }
@@ -142,7 +142,7 @@ namespace datastructures {
          * Gets a destination vertex.
          */
         template <typename TKey, typename TValue>
-        IVertexPtr<TKey, TValue> Edge<TKey, TValue>::destination() const
+        IVertexSharedPtr<TKey, TValue> Edge<TKey, TValue>::destination() const
         {
             return m_destination;
         }

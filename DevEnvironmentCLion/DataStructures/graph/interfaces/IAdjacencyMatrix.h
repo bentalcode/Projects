@@ -41,41 +41,53 @@ namespace datastructures {
             /**
              * Gets the connections of an adjacency matrix.
              */
-            virtual const std::map<IVertexPtr<TKey, TValue>, std::set<IVertexPtr<TKey, TValue>>>& connections() const = 0;
+            virtual const std::map<IVertexSharedPtr<TKey, TValue>, std::set<IVertexSharedPtr<TKey, TValue>>>& connections() const = 0;
 
             /**
              * Checks whether two vertices are connected.
              */
             virtual bool connected(
-                IVertexPtr<TKey, TValue> sourceVertex,
-                IVertexPtr<TKey, TValue> destinationVertex) const = 0;
+                IVertexSharedPtr<TKey, TValue> sourceVertex,
+                IVertexSharedPtr<TKey, TValue> destinationVertex) const = 0;
 
             /**
              * Gets the adjacent vertices of a vertex.
              */
             virtual void getAdjacentVertices(
-                IVertexPtr<TKey, TValue> vertex,
-                std::set<IVertexPtr<TKey, TValue>>& result) const = 0;
+                IVertexSharedPtr<TKey, TValue> vertex,
+                std::set<IVertexSharedPtr<TKey, TValue>>& result) const = 0;
 
             /**
              * Gets the adjacent edges of a vertex.
              */
             virtual void getAdjacentEdges(
-                IVertexPtr<TKey, TValue> vertex,
-                std::set<IEdgePtr<TKey, TValue>>& result) const = 0;
+                IVertexSharedPtr<TKey, TValue> vertex,
+                std::set<IEdgeSharedPtr<TKey, TValue>>& result) const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Adjacency Matrix.
+         */
         template <typename TKey, typename TValue>
-        using IAdjacencyMatrixPtr = std::shared_ptr<IAdjacencyMatrix<TKey, TValue>>;
+        using IAdjacencyMatrixSharedPtr = std::shared_ptr<IAdjacencyMatrix<TKey, TValue>>;
 
+        /**
+         * Defines Vertex Set.
+         */
         template <typename TKey, typename TValue>
-        using VertexSet = std::set<IVertexPtr<TKey, TValue>>;
+        using VertexSet = std::set<IVertexSharedPtr<TKey, TValue>>;
 
+        /**
+         * Defines Edge Set.
+         */
         template <typename TKey, typename TValue>
-        using EdgeSet = std::set<IEdgePtr<TKey, TValue>>;
+        using EdgeSet = std::set<IEdgeSharedPtr<TKey, TValue>>;
 
+        /**
+         * Defines Adjacency Map.
+         */
         template <typename TKey, typename TValue>
-        using AdjacencyMap = std::map<IVertexPtr<TKey, TValue>, VertexSet<TKey, TValue>>;
+        using AdjacencyMap = std::map<IVertexSharedPtr<TKey, TValue>, VertexSet<TKey, TValue>>;
 
         /**
          * Defines the equivalent operator.
@@ -85,11 +97,11 @@ namespace datastructures {
         {
             base::ComparableComparator<TKey> keyComparator;
 
-            class ValueComparator final : public base::IComparableComparator<IVertexPtr<TKey, TValue>>
+            class ValueComparator final : public base::IComparableComparator<IVertexSharedPtr<TKey, TValue>>
             {
                 virtual int compareTo(
-                    const IVertexPtr<TKey, TValue>& lhs,
-                    const IVertexPtr<TKey, TValue>& rhs) const override
+                    const IVertexSharedPtr<TKey, TValue>& lhs,
+                    const IVertexSharedPtr<TKey, TValue>& rhs) const override
                 {
                     base::CompareToBuilder compareToBuilder;
                     return compareToBuilder.withSet(lhs, rhs).build();

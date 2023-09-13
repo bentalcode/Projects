@@ -18,12 +18,12 @@ namespace datastructures {
             /**
              * Creates a new iterator of values from key value nodes.
              */
-            static base::IIteratorSharedPtr<TValue> make(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator);
+            static base::IIteratorSharedPtr<TValue> make(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator);
 
             /**
              * The ValueIterator constructor.
              */
-            explicit ValueIterator(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator);
+            explicit ValueIterator(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator);
 
             /**
              * The ValueIterator destructor.
@@ -58,14 +58,14 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> m_iterator;
+            base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> m_iterator;
         };
 
         /**
          * Creates a new iterator of values from key value nodes.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorSharedPtr<TValue> ValueIterator<TKey, TValue>::make(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator)
+        base::IIteratorSharedPtr<TValue> ValueIterator<TKey, TValue>::make(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator)
         {
             return std::make_shared<ValueIterator<TKey, TValue>>(iterator);
         }
@@ -74,7 +74,7 @@ namespace datastructures {
          * The ValueIterator constructor.
          */
         template <typename TKey, typename TValue>
-        ValueIterator<TKey, TValue>::ValueIterator(base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> iterator) :
+        ValueIterator<TKey, TValue>::ValueIterator(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator) :
             m_iterator(iterator)
         {
             base::SmartPointers::validate(iterator);

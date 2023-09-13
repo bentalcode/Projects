@@ -13,7 +13,7 @@ namespace datastructures {
          * The IGraphBuilder interface defines a builder of a graph.
          */
         template <typename TKey, typename TValue>
-        class IGraphBuilder : public base::IBuilder<IGraphPtr<TKey, TValue>>
+        class IGraphBuilder : public base::IBuilder<IGraphSharedPtr<TKey, TValue>>
         {
         public:
             /**
@@ -48,39 +48,39 @@ namespace datastructures {
              * Adds a vertex.
              */
             virtual IGraphBuilder<TKey, TValue>& addVertex(
-                IVertexPtr<TKey, TValue> vertex) = 0;
+                IVertexSharedPtr<TKey, TValue> vertex) = 0;
 
             /**
              * Adds vertices.
              */
             virtual IGraphBuilder<TKey, TValue>& addVertices(
-                const std::vector<IVertexPtr<TKey, TValue>>& vertices) = 0;
+                const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices) = 0;
 
             /**
              * Adds an edge.
              */
             virtual IGraphBuilder<TKey, TValue>& addEdge(
-                IEdgePtr<TKey, TValue> edge) = 0;
+                    IEdgeSharedPtr<TKey, TValue> edge) = 0;
 
             /**
              * Adds an edge by vertices.
              */
             virtual IGraphBuilder<TKey, TValue>& addEdge(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination) = 0;
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination) = 0;
 
             /**
              * Adds a directed edge by vertices.
              */
             virtual IGraphBuilder<TKey, TValue>& addDirectedEdge(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination) = 0;
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination) = 0;
 
             /**
              * Adds edges.
              */
             virtual IGraphBuilder<TKey, TValue>& addEdges(
-                const std::vector<IEdgePtr<TKey, TValue>>& edges) = 0;
+                const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges) = 0;
         };
 
     }

@@ -61,7 +61,7 @@ namespace datastructures {
              * Gets the degree.
              * A vertex degree is the number of edges incident to a vertex. Notated as d(V).
              */
-            virtual size_t getDegree(IVertexPtr<TKey, TValue> vertex) const = 0;
+            virtual size_t getDegree(IVertexSharedPtr<TKey, TValue> vertex) const = 0;
 
             /**
              * Gets string representation of this instance.
@@ -69,8 +69,11 @@ namespace datastructures {
             virtual std::string toString() const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Graph.
+         */
         template <typename TKey, typename TValue>
-        using IGraphPtr = std::shared_ptr<IGraph<TKey, TValue>>;
+        using IGraphSharedPtr = std::shared_ptr<IGraph<TKey, TValue>>;
 
         /**
          * Defines the equivalent operator.

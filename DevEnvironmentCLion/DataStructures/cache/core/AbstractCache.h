@@ -25,7 +25,7 @@ namespace datastructures {
             /**
              * The AbstractCache constructor.
              */
-            explicit AbstractCache(ICachePropertiesPtr properties);
+            explicit AbstractCache(ICachePropertiesSharedPtr properties);
 
             /**
              * The AbstractCache destructor.
@@ -90,12 +90,12 @@ namespace datastructures {
             /**
              * Gets the iterator.
              */
-            virtual base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> getIterator() const override;
+            virtual base::IIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> getIterator() const override;
 
             /**
              * Gets the reverse iterator.
              */
-            virtual base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> getReverseIterator() const override;
+            virtual base::IReverseIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> getReverseIterator() const override;
 
             /**
              * Gets the iterator of keys.
@@ -138,24 +138,24 @@ namespace datastructures {
                 /**
                  * Gets the data lookup.
                  */
-                const std::map<TKey, IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>>& dataLookup() const;
-                std::map<TKey, IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>>& dataLookup();
+                const std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>& dataLookup() const;
+                std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>& dataLookup();
 
                 /**
                  * Gets the data lookup.
                  */
-                const DoublyLinkedList<IKeyValueNodePtr<TKey, TValue>>& usedList() const;
-                DoublyLinkedList<IKeyValueNodePtr<TKey, TValue>>& usedList();
+                const DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>>& usedList() const;
+                DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>>& usedList();
 
                 /**
                  * Gets the key-value node.
                  */
-                IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> getKeyValueNode(const TKey& key) const;
+                IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> getKeyValueNode(const TKey& key) const;
 
                 /**
                  * Removes the key-value node.
                  */
-                void removeKeyValueNode(IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> node);
+                void removeKeyValueNode(IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> node);
 
                 /**
                  * Checks whether the key exists.
@@ -163,8 +163,8 @@ namespace datastructures {
                 bool hasKey(const TKey& key) const;
 
             private:
-                std::map<TKey, IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> m_dataLookup;
-                DoublyLinkedList<IKeyValueNodePtr<TKey, TValue>> m_usedList;
+                std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>> m_dataLookup;
+                DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>> m_usedList;
             };
 
             /**
@@ -178,12 +178,12 @@ namespace datastructures {
             /**
              * Processes accessing a current item.
              */
-            void currentItemAccessed(IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> node);
+            void currentItemAccessed(IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> node);
 
             /**
              * Processes accessing a new item.
              */
-            void newItemAccessed(IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> node);
+            void newItemAccessed(IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> node);
 
             /**
              * Determines whether the used-list has reached it's maximum capacity.
@@ -195,7 +195,7 @@ namespace datastructures {
              */
             void validateKeyExists(const TKey& key) const;
 
-            ICachePropertiesPtr m_properties;
+            ICachePropertiesSharedPtr m_properties;
             CacheData m_data;
         };
 
@@ -203,7 +203,7 @@ namespace datastructures {
          * The AbstractCache constructor.
          */
         template <typename TKey, typename TValue>
-        AbstractCache<TKey, TValue>::AbstractCache(ICachePropertiesPtr properties) :
+        AbstractCache<TKey, TValue>::AbstractCache(ICachePropertiesSharedPtr properties) :
             m_properties(properties)
         {
             if (!properties)
@@ -242,7 +242,7 @@ namespace datastructures {
                 //
                 // If the key is set in the cache, update it's value...
                 //
-                IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> currNode = m_data.getKeyValueNode(key);
+                IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> currNode = m_data.getKeyValueNode(key);
                 currNode->getValue()->setValue(value);
 
                 currentItemAccessed(currNode);
@@ -267,11 +267,11 @@ namespace datastructures {
                     }
                 }
 
-                node::IKeyValueNodePtr<TKey, TValue> keyValueNode =
+                node::IKeyValueNodeSharedPtr<TKey, TValue> keyValueNode =
                     node::KeyValueNode<TKey, TValue>::make(key, value);
 
-                IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> currNode =
-                    DoublyLinkedListNode<node::IKeyValueNodePtr<TKey, TValue>>::make(keyValueNode);
+                IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> currNode =
+                    DoublyLinkedListNode<node::IKeyValueNodeSharedPtr<TKey, TValue>>::make(keyValueNode);
 
                 newItemAccessed(currNode);
             }
@@ -292,7 +292,7 @@ namespace datastructures {
             //
             // Get the current value of the node...
             //
-            IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> currNode = m_data.getKeyValueNode(key);
+            IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> currNode = m_data.getKeyValueNode(key);
             const TValue& currValue = currNode->getValue()->getValue();
 
             //
@@ -319,7 +319,7 @@ namespace datastructures {
                 return false;
             }
 
-            IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> node = m_data.getKeyValueNode(key);
+            IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> node = m_data.getKeyValueNode(key);
             m_data.removeKeyValueNode(node);
 
             return true;
@@ -357,9 +357,9 @@ namespace datastructures {
          * Gets the iterator.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> AbstractCache<TKey, TValue>::getIterator() const
+        base::IIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> AbstractCache<TKey, TValue>::getIterator() const
         {
-            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> iterator =
+            base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>> iterator =
                 m_data.usedList().getIterator();
 
             return DoublyLinkedListKeyValueNodeIterator<TKey, TValue>::make(iterator);
@@ -369,9 +369,9 @@ namespace datastructures {
          * Gets the reverse iterator.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> AbstractCache<TKey, TValue>::getReverseIterator() const
+        base::IReverseIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> AbstractCache<TKey, TValue>::getReverseIterator() const
         {
-            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>> reverseIterator =
+            base::IReverseIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>> reverseIterator =
                 m_data.usedList().getReverseIterator();
 
             return DoublyLinkedListKeyValueNodeReverseIterator<TKey, TValue>::make(reverseIterator);
@@ -383,7 +383,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         base::IIteratorSharedPtr<TKey> AbstractCache<TKey, TValue>::getKeyIterator() const
         {
-            base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeIterator = getIterator();
+            base::IIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> keyValueNodeIterator = getIterator();
             return node::KeyIterator<TKey, TValue>::make(keyValueNodeIterator);
         }
 
@@ -393,7 +393,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         base::IReverseIteratorSharedPtr<TKey> AbstractCache<TKey, TValue>::getKeyReverseIterator() const
         {
-            base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeReverseIterator = getReverseIterator();
+            base::IReverseIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> keyValueNodeReverseIterator = getReverseIterator();
             return node::KeyReverseIterator<TKey, TValue>::make(keyValueNodeReverseIterator);
         }
 
@@ -403,7 +403,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         base::IIteratorSharedPtr<TValue> AbstractCache<TKey, TValue>::getValueIterator() const
         {
-            base::IIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeIterator = getIterator();
+            base::IIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> keyValueNodeIterator = getIterator();
             return node::ValueIterator<TKey, TValue>::make(keyValueNodeIterator);
         }
 
@@ -413,7 +413,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         base::IReverseIteratorSharedPtr<TValue> AbstractCache<TKey, TValue>::getValueReverseIterator() const
         {
-            base::IReverseIteratorSharedPtr<node::IKeyValueNodePtr<TKey, TValue>> keyValueNodeReverseIterator = getReverseIterator();
+            base::IReverseIteratorSharedPtr<node::IKeyValueNodeSharedPtr<TKey, TValue>> keyValueNodeReverseIterator = getReverseIterator();
             return node::ValueReverseIterator<TKey, TValue>::make(keyValueNodeReverseIterator);
         }
 
@@ -421,9 +421,9 @@ namespace datastructures {
          * Processes accessing a current item.
          */
         template <typename TKey, typename TValue>
-        void AbstractCache<TKey, TValue>::currentItemAccessed(IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> node)
+        void AbstractCache<TKey, TValue>::currentItemAccessed(IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> node)
         {
-            DoublyLinkedList<IKeyValueNodePtr<TKey, TValue>>& usedList = m_data.usedList();
+            DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>>& usedList = m_data.usedList();
 
             usedList.remove(node);
             usedList.addToBack(node);
@@ -433,9 +433,9 @@ namespace datastructures {
          * Processes accessing a new item.
          */
         template <typename TKey, typename TValue>
-        void AbstractCache<TKey, TValue>::newItemAccessed(IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> node)
+        void AbstractCache<TKey, TValue>::newItemAccessed(IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> node)
         {
-            std::map<TKey, IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>>& dataLookup = m_data.dataLookup();
+            std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>& dataLookup = m_data.dataLookup();
 
             dataLookup.insert(std::make_pair(node->getValue()->getKey(), node));
             m_data.usedList().addToBack(node);
@@ -483,7 +483,7 @@ namespace datastructures {
          * Gets the data lookup.
          */
         template <typename TKey, typename TValue>
-        const std::map<TKey, IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>>& AbstractCache<TKey, TValue>::CacheData::dataLookup() const
+        const std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>& AbstractCache<TKey, TValue>::CacheData::dataLookup() const
         {
             return m_dataLookup;
         }
@@ -492,7 +492,7 @@ namespace datastructures {
          * Gets the data lookup.
          */
         template <typename TKey, typename TValue>
-        std::map<TKey, IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>>>& AbstractCache<TKey, TValue>::CacheData::dataLookup()
+        std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>& AbstractCache<TKey, TValue>::CacheData::dataLookup()
         {
             return m_dataLookup;
         }
@@ -501,7 +501,7 @@ namespace datastructures {
          * Gets the data lookup.
          */
         template <typename TKey, typename TValue>
-        const DoublyLinkedList<IKeyValueNodePtr<TKey, TValue>>& AbstractCache<TKey, TValue>::CacheData::usedList() const
+        const DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>>& AbstractCache<TKey, TValue>::CacheData::usedList() const
         {
             return m_usedList;
         }
@@ -510,7 +510,7 @@ namespace datastructures {
          * Gets the data lookup.
          */
         template <typename TKey, typename TValue>
-        DoublyLinkedList<IKeyValueNodePtr<TKey, TValue>>& AbstractCache<TKey, TValue>::CacheData::usedList()
+        DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>>& AbstractCache<TKey, TValue>::CacheData::usedList()
         {
             return m_usedList;
         }
@@ -519,7 +519,7 @@ namespace datastructures {
          * Gets the key-value node.
          */
         template <typename TKey, typename TValue>
-        IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> AbstractCache<TKey, TValue>::CacheData::getKeyValueNode(const TKey& key) const
+        IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> AbstractCache<TKey, TValue>::CacheData::getKeyValueNode(const TKey& key) const
         {
             return m_dataLookup.at(key);
         }
@@ -529,7 +529,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void AbstractCache<TKey, TValue>::CacheData::removeKeyValueNode(
-            IDoublyLinkedListNodePtr<IKeyValueNodePtr<TKey, TValue>> node)
+            IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> node)
         {
             m_dataLookup.erase(node->getValue()->getKey());
             m_usedList.remove(node);

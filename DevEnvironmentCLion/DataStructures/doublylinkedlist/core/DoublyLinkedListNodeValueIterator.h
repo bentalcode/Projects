@@ -19,12 +19,12 @@ namespace datastructures {
             /**
              * Creates a new iterator of values of a doubly linked list.
              */
-            static base::IIteratorSharedPtr<T> make(base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> iterator);
+            static base::IIteratorSharedPtr<T> make(base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> iterator);
 
             /**
              * The DoublyLinkedListNodeValueIterator constructor.
              */
-            explicit DoublyLinkedListNodeValueIterator(base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> iterator);
+            explicit DoublyLinkedListNodeValueIterator(base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> iterator);
 
             /**
              * The DoublyLinkedListNodeValueIterator destructor.
@@ -59,14 +59,14 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> m_iterator;
+            base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> m_iterator;
         };
 
         /**
          * Creates a new iterator of values of a doubly linked list.
          */
         template <typename T>
-        base::IIteratorSharedPtr<T> DoublyLinkedListNodeValueIterator<T>::make(base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> iterator)
+        base::IIteratorSharedPtr<T> DoublyLinkedListNodeValueIterator<T>::make(base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> iterator)
         {
             return std::make_shared<DoublyLinkedListNodeValueIterator<T>>(iterator);
         }
@@ -75,7 +75,7 @@ namespace datastructures {
          * The DoublyLinkedListNodeValueIterator constructor.
          */
         template <typename T>
-        DoublyLinkedListNodeValueIterator<T>::DoublyLinkedListNodeValueIterator(base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> iterator) :
+        DoublyLinkedListNodeValueIterator<T>::DoublyLinkedListNodeValueIterator(base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> iterator) :
             m_iterator(iterator)
         {
             base::SmartPointers::validate(iterator);

@@ -13,19 +13,19 @@ namespace datastructures {
          * The BinaryTreeNodeListIterator class implements an iterator of a list of binary nodes.
          */
         template <typename TKey, typename TValue>
-        class BinaryTreeNodeListIterator final : public IBinaryTreeNodeIterator<IBinaryTreeNodePtr<TKey, TValue>>
+        class BinaryTreeNodeListIterator final : public IBinaryTreeNodeIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>
         {
         public:
             /**
              * Creates a new iterator of a list of binary nodes.
              */
-            static IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> make(
-                const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes);
+            static IBinaryTreeNodeIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> make(
+                const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes);
 
             /**
              * The BinaryTreeNodeListIterator constructor.
              */
-            BinaryTreeNodeListIterator(const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes);
+            BinaryTreeNodeListIterator(const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes);
 
             /**
              * The BinaryTreeNodeListIterator destructor.
@@ -52,7 +52,7 @@ namespace datastructures {
             /**
              * Gets the next element.
              */
-            virtual IBinaryTreeNodePtr<TKey, TValue> next();
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> next();
 
             /**
              * Resets the iterator.
@@ -62,7 +62,7 @@ namespace datastructures {
             /**
              * Gets the skip iterator.
              */
-            virtual base::ISkipIteratorPtr getSkipIterator() const;
+            virtual base::ISkipIteratorSharedPtr getSkipIterator() const;
 
         private:
             /*
@@ -75,20 +75,20 @@ namespace datastructures {
              */
             size_t alignPosition(size_t position);
 
-            std::vector<IBinaryTreeNodePtr<TKey, TValue>> m_nodes;
+            std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>> m_nodes;
             size_t m_position;
 
-            base::ISkipIteratorPtr m_skipIterator;
+            base::ISkipIteratorSharedPtr m_skipIterator;
         };
 
         /**
          * Creates a new iterator of a list of binary nodes.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeNodeListIterator<TKey, TValue>::make(
-            const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes) {
+        IBinaryTreeNodeIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeNodeListIterator<TKey, TValue>::make(
+            const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes) {
 
-            return IBinaryTreeNodeIteratorPtr<IBinaryTreeNodePtr<TKey, TValue>>(
+            return IBinaryTreeNodeIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>>(
                 new BinaryTreeNodeListIterator<TKey, TValue>(nodes));
         }
 
@@ -97,7 +97,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         BinaryTreeNodeListIterator<TKey, TValue>::BinaryTreeNodeListIterator(
-            const std::vector<IBinaryTreeNodePtr<TKey, TValue>>& nodes) :
+            const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes) :
             m_nodes(nodes),
             m_skipIterator(std::make_shared<base::SkipIterator>())
         {
@@ -128,11 +128,11 @@ namespace datastructures {
          * Gets the next element.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeNodeListIterator<TKey, TValue>::next()
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNodeListIterator<TKey, TValue>::next()
         {
             assert(hasNext());
 
-            IBinaryTreeNodePtr<TKey, TValue> currElement = m_nodes[m_position];
+            IBinaryTreeNodeSharedPtr<TKey, TValue> currElement = m_nodes[m_position];
             m_position = nextPosition(m_position);
 
             return currElement;
@@ -151,7 +151,7 @@ namespace datastructures {
          * Gets the skip iterator.
          */
         template <typename TKey, typename TValue>
-        base::ISkipIteratorPtr BinaryTreeNodeListIterator<TKey, TValue>::getSkipIterator() const
+        base::ISkipIteratorSharedPtr BinaryTreeNodeListIterator<TKey, TValue>::getSkipIterator() const
         {
             return m_skipIterator;
         }
@@ -180,7 +180,7 @@ namespace datastructures {
 
             while (currPosition < m_nodes.size())
             {
-                IBinaryTreeNodePtr<TKey, TValue> currNode = m_nodes[currPosition];
+                IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = m_nodes[currPosition];
 
                 if (!m_skipIterator->isSkipElement(typeid(*currNode)))
                 {

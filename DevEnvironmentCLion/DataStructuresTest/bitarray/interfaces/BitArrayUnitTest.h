@@ -98,7 +98,7 @@ namespace test {
                 /**
                  * Creates a bit array.
                  */
-                IBitArrayPtr createBitArray(const BitArrayData& data);
+                IBitArraySharedPtr createBitArray(const BitArrayData& data);
 
                 TestData m_testData;
             };

@@ -71,7 +71,7 @@ namespace base
     //
     // Defines the Shared Ptr of Skip Iterator...
     //
-    using ISkipIteratorPtr = std::shared_ptr<ISkipIterator>;
+    using ISkipIteratorSharedPtr = std::shared_ptr<ISkipIterator>;
 }
 
 #endif // I_SKIP_ITERATOR_H_01927b89_1f9e_49f2_a5fd_a765f58bfdf0

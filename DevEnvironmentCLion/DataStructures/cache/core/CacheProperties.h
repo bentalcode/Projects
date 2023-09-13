@@ -15,7 +15,7 @@ namespace datastructures {
             /**
              * Creates properties of a cache.
              */
-            static ICachePropertiesPtr make(
+            static ICachePropertiesSharedPtr make(
                 size_t capacity,
                 size_t numberOfItemsForMakingAvailableSpace);
 

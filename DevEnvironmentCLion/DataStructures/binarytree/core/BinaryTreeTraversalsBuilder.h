@@ -19,14 +19,14 @@ namespace datastructures {
             /**
              * Builds a binary tree from a preorder and an inorder traversal.
              */
-            static IBinaryTreePtr<TKey, TValue> buildFromPreorderInorderTraversal(
+            static IBinaryTreeSharedPtr<TKey, TValue> buildFromPreorderInorderTraversal(
                 const std::vector<std::pair<TKey, TValue>>& preorder,
                 const std::vector<std::pair<TKey, TValue>>& inorder);
 
             /**
              * Builds a binary tree from a preorder and a postorder traversal.
              */
-            static IBinaryTreePtr<TKey, TValue> buildFromPreorderPostorderTraversal(
+            static IBinaryTreeSharedPtr<TKey, TValue> buildFromPreorderPostorderTraversal(
                 const std::vector<std::pair<TKey, TValue>>& preorder,
                 const std::vector<std::pair<TKey, TValue>>& postorder);
 
@@ -42,12 +42,12 @@ namespace datastructures {
          * Builds a binary tree from a preorder and an inorder traversal.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreePtr<TKey, TValue> BinaryTreeTraversalsBuilder<TKey, TValue>::buildFromPreorderInorderTraversal(
+        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreeTraversalsBuilder<TKey, TValue>::buildFromPreorderInorderTraversal(
             const std::vector<std::pair<TKey, TValue>>& preorder,
             const std::vector<std::pair<TKey, TValue>>& inorder)
         {
             BinaryTreePreorderInorderTraversalBuilder<TKey, TValue> builder(preorder, inorder);
-            IBinaryTreePtr<TKey, TValue> tree = builder.build();
+            IBinaryTreeSharedPtr<TKey, TValue> tree = builder.build();
 
             return tree;
         }
@@ -56,12 +56,12 @@ namespace datastructures {
          * Builds a binary tree from a preorder and an inorder traversal.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreePtr<TKey, TValue> BinaryTreeTraversalsBuilder<TKey, TValue>::buildFromPreorderPostorderTraversal(
+        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreeTraversalsBuilder<TKey, TValue>::buildFromPreorderPostorderTraversal(
             const std::vector<std::pair<TKey, TValue>>& preorder,
             const std::vector<std::pair<TKey, TValue>>& postorder)
         {
             BinaryTreePreorderPostorderTraversalBuilder<TKey, TValue> builder(preorder, postorder);
-            IBinaryTreePtr<TKey, TValue> tree = builder.build();
+            IBinaryTreeSharedPtr<TKey, TValue> tree = builder.build();
 
             return tree;
         }

@@ -112,13 +112,13 @@ void CacheUnitTest::registerTests(unit_testing::ITestRegistration& registration)
  */
 void CacheUnitTest::lruCacheUpdationTest()
 {
-    ICachePropertiesPtr properties = CacheProperties::make(3, 1);
+    ICachePropertiesSharedPtr properties = CacheProperties::make(3, 1);
     LRUCache<int, std::string> cache(properties);
 
-    std::vector<std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>> data =
+    std::vector<std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>> data =
         m_testData.getCacheData()->getLruUpdationData();
 
-    for (const std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>& cacheData : data)
+    for (const std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>& cacheData : data)
     {
         testUpdation(cache, cacheData);
     }
@@ -129,13 +129,13 @@ void CacheUnitTest::lruCacheUpdationTest()
  */
 void CacheUnitTest::mruCacheUpdationTest()
 {
-    ICachePropertiesPtr properties = CacheProperties::make(3, 1);
+    ICachePropertiesSharedPtr properties = CacheProperties::make(3, 1);
     MRUCache<int, std::string> cache(properties);
 
-    std::vector<std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>> data =
+    std::vector<std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>> data =
         m_testData.getCacheData()->getMruUpdationData();
 
-    for (const std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>& cacheData : data)
+    for (const std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>& cacheData : data)
     {
         testUpdation(cache, cacheData);
     }
@@ -146,13 +146,13 @@ void CacheUnitTest::mruCacheUpdationTest()
  */
 void CacheUnitTest::lruCacheIterationTest()
 {
-    ICachePropertiesPtr properties = CacheProperties::make(3, 1);
-    ICachePtr<int, std::string> cache = LRUCache<int, std::string>::make(properties);
+    ICachePropertiesSharedPtr properties = CacheProperties::make(3, 1);
+    ICacheSharedPtr<int, std::string> cache = LRUCache<int, std::string>::make(properties);
 
-    std::vector<std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>> data =
+    std::vector<std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>> data =
         m_testData.getCacheData()->getLruUpdationData();
 
-    for (const std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>& cacheData : data)
+    for (const std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>& cacheData : data)
     {
         testIteration(cache, cacheData);
     }
@@ -163,13 +163,13 @@ void CacheUnitTest::lruCacheIterationTest()
  */
 void CacheUnitTest::mruCacheIterationTest()
 {
-    ICachePropertiesPtr properties = CacheProperties::make(3, 1);
-    ICachePtr<int, std::string> cache = MRUCache<int, std::string>::make(properties);
+    ICachePropertiesSharedPtr properties = CacheProperties::make(3, 1);
+    ICacheSharedPtr<int, std::string> cache = MRUCache<int, std::string>::make(properties);
 
-    std::vector<std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>> data =
+    std::vector<std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>> data =
         m_testData.getCacheData()->getMruUpdationData();
 
-    for (const std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>& cacheData : data)
+    for (const std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>& cacheData : data)
     {
         testIteration(cache, cacheData);
     }

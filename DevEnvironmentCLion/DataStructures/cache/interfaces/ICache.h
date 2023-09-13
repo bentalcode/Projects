@@ -21,8 +21,8 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         class ICache :
             public base::ISizableCollection,
-            public base::IIterable<node::IKeyValueNodePtr<TKey, TValue>>,
-            public base::IReverseIterable<node::IKeyValueNodePtr<TKey, TValue>>,
+            public base::IIterable<node::IKeyValueNodeSharedPtr<TKey, TValue>>,
+            public base::IReverseIterable<node::IKeyValueNodeSharedPtr<TKey, TValue>>,
             public base::IKeyIterable<TKey>,
             public base::IKeyReverseIterable<TKey>,
             public base::IValueIterable<TValue>,
@@ -85,8 +85,11 @@ namespace datastructures {
             virtual bool has(const TKey& key) const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Cache.
+         */
         template <typename TKey, typename TValue>
-        using ICachePtr = std::shared_ptr<ICache<TKey, TValue>>;
+        using ICacheSharedPtr = std::shared_ptr<ICache<TKey, TValue>>;
     }
 }
 

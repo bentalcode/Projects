@@ -39,12 +39,12 @@ namespace datastructures {
             /**
              * Gets the source vertex.
              */
-            virtual IVertexPtr<TKey, TValue> source() const = 0;
+            virtual IVertexSharedPtr<TKey, TValue> source() const = 0;
 
             /**
              * Gets the destination vertex.
              */
-            virtual IVertexPtr<TKey, TValue> destination() const = 0;
+            virtual IVertexSharedPtr<TKey, TValue> destination() const = 0;
 
             /**
              * Gets string representation of this instance.
@@ -52,8 +52,11 @@ namespace datastructures {
             virtual std::string toString() const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Route.
+         */
         template <typename TKey, typename TValue>
-        using IRoutePtr = std::shared_ptr<IRoute<TKey, TValue>>;
+        using IRouteSharedPtr = std::shared_ptr<IRoute<TKey, TValue>>;
 
         /**
          * Defines the equivalent operator.

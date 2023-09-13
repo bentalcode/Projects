@@ -20,7 +20,7 @@ namespace test {
                  */
                 LinkedListData(
                     const std::vector<T>& values,
-                    const std::vector<ILinkedListNodePtr<T>>& nodes);
+                    const std::vector<ILinkedListNodeSharedPtr<T>>& nodes);
 
                 /**
                  * The LinkedListData destructor.
@@ -47,11 +47,11 @@ namespace test {
                 /**
                  * Gets the nodes of the list.
                  */
-                const std::vector<ILinkedListNodePtr<T>>& getNodes() const;
+                const std::vector<ILinkedListNodeSharedPtr<T>>& getNodes() const;
 
             private:
                 std::vector<T> m_values;
-                std::vector<ILinkedListNodePtr<T>> m_nodes;
+                std::vector<ILinkedListNodeSharedPtr<T>> m_nodes;
             };
 
             template <typename T>
@@ -63,7 +63,7 @@ namespace test {
             template <typename T>
             LinkedListData<T>::LinkedListData(
                 const std::vector<T>& values,
-                const std::vector<ILinkedListNodePtr<T>>& nodes) :
+                const std::vector<ILinkedListNodeSharedPtr<T>>& nodes) :
                 m_values(values),
                 m_nodes(nodes)
             {
@@ -90,7 +90,7 @@ namespace test {
              * Gets the nodes of the list.
              */
             template <typename T>
-            const std::vector<ILinkedListNodePtr<T>>& LinkedListData<T>::getNodes() const
+            const std::vector<ILinkedListNodeSharedPtr<T>>& LinkedListData<T>::getNodes() const
             {
                 return m_nodes;
             }

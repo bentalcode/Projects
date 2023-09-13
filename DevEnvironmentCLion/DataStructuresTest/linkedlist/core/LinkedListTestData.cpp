@@ -65,7 +65,7 @@ std::vector<std::tuple<std::string, int, std::vector<int>>> LinkedListTestData::
 LinkedListDataPtr<int> LinkedListTestData::getListData(size_t size) const
 {
     std::vector<int> values = createListValues(size);
-    std::vector<ILinkedListNodePtr<int>> nodes = createListNodes(values);
+    std::vector<ILinkedListNodeSharedPtr<int>> nodes = createListNodes(values);
 
     LinkedListDataPtr<int> data(new LinkedListData<int>(
         values,
@@ -93,9 +93,9 @@ std::vector<int> LinkedListTestData::createListValues(size_t size) const
  * Creates nodes of a list.
  */
 template <typename T>
-std::vector<ILinkedListNodePtr<T>> LinkedListTestData::createListNodes(const std::vector<T>& values) const
+std::vector<ILinkedListNodeSharedPtr<T>> LinkedListTestData::createListNodes(const std::vector<T>& values) const
 {
-    std::vector<ILinkedListNodePtr<T>> result(values.size());
+    std::vector<ILinkedListNodeSharedPtr<T>> result(values.size());
 
     for (size_t i = 0; i < values.size(); ++i)
     {

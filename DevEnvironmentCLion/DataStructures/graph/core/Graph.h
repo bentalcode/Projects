@@ -22,18 +22,18 @@ namespace datastructures {
             /**
              * Creates a new graph.
              */
-            static IGraphPtr<TKey, TValue> make(
-                const VertexSet<TKey, TValue>& vertices,
-                const EdgeSet<TKey, TValue>& edges,
-                IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix);
+            static IGraphSharedPtr<TKey, TValue> make(
+                    const VertexSet<TKey, TValue>& vertices,
+                    const EdgeSet<TKey, TValue>& edges,
+                    IAdjacencyMatrixSharedPtr<TKey, TValue> adjacencyMatrix);
 
             /**
              * The Graph constructor.
              */
             Graph(
-                const VertexSet<TKey, TValue>& vertices,
-                const EdgeSet<TKey, TValue>& edges,
-                IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix);
+                    const VertexSet<TKey, TValue>& vertices,
+                    const EdgeSet<TKey, TValue>& edges,
+                    IAdjacencyMatrixSharedPtr<TKey, TValue> adjacencyMatrix);
 
             /**
              * The Graph destructor.
@@ -65,7 +65,7 @@ namespace datastructures {
              * Gets the degree.
              * A vertex degree is the number of edges incident to a vertex. Notated as d(V).
              */
-            virtual size_t getDegree(IVertexPtr<TKey, TValue> vertex) const override;
+            virtual size_t getDegree(IVertexSharedPtr<TKey, TValue> vertex) const override;
 
             /**
              * Gets string representation of this instance.
@@ -75,17 +75,17 @@ namespace datastructures {
         private:
             VertexSet<TKey, TValue> m_vertices;
             EdgeSet<TKey, TValue> m_edges;
-            IAdjacencyMatrixPtr<TKey, TValue> m_adjacencyMatrix;
+            IAdjacencyMatrixSharedPtr<TKey, TValue> m_adjacencyMatrix;
         };
 
         /**
          * Creates a new graph.
          */
         template <typename TKey, typename TValue>
-        IGraphPtr<TKey, TValue> Graph<TKey, TValue>::make(
-            const VertexSet<TKey, TValue>& vertices,
-            const EdgeSet<TKey, TValue>& edges,
-            IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix)
+        IGraphSharedPtr<TKey, TValue> Graph<TKey, TValue>::make(
+                const VertexSet<TKey, TValue>& vertices,
+                const EdgeSet<TKey, TValue>& edges,
+                IAdjacencyMatrixSharedPtr<TKey, TValue> adjacencyMatrix)
         {
             return std::make_shared<Graph<TKey, TValue>>(
                 vertices,
@@ -98,9 +98,9 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         Graph<TKey, TValue>::Graph(
-            const VertexSet<TKey, TValue>& vertices,
-            const EdgeSet<TKey, TValue>& edges,
-            IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix) :
+                const VertexSet<TKey, TValue>& vertices,
+                const EdgeSet<TKey, TValue>& edges,
+                IAdjacencyMatrixSharedPtr<TKey, TValue> adjacencyMatrix) :
             m_vertices(vertices),
             m_edges(edges),
             m_adjacencyMatrix(adjacencyMatrix)
@@ -158,7 +158,7 @@ namespace datastructures {
          * A vertex degree is the number of edges incident to a vertex. Notated as d(V).
          */
         template <typename TKey, typename TValue>
-        size_t Graph<TKey, TValue>::getDegree(IVertexPtr<TKey, TValue> vertex) const
+        size_t Graph<TKey, TValue>::getDegree(IVertexSharedPtr<TKey, TValue> vertex) const
         {
             VertexSet<TKey, TValue> adjacentVertices;
             m_adjacencyMatrix->getAdjacentVertices(vertex, adjacentVertices);
@@ -171,7 +171,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         std::string Graph<TKey, TValue>::toString() const
         {
-            base::IIteratorSharedPtr<IEdgePtr<TKey, TValue>> edgeIterator = base::SetIterator<IEdgePtr<TKey, TValue>>::make(edges());
+            base::IIteratorSharedPtr<IEdgeSharedPtr<TKey, TValue>> edgeIterator = base::SetIterator<IEdgeSharedPtr<TKey, TValue>>::make(edges());
             std::string string = base::Collections::dereferenceIteratorToString(*edgeIterator);
             return string;
         }

@@ -65,7 +65,7 @@ namespace test {
                 template <typename TKey, typename TValue>
                 void testUpdation(
                     ICache<TKey, TValue>& cache,
-                    const std::tuple<std::string, IKeyValueNodePtr<TKey, TValue>, std::vector<IKeyValueNodePtr<TKey, TValue>>>& data);
+                    const std::tuple<std::string, IKeyValueNodeSharedPtr<TKey, TValue>, std::vector<IKeyValueNodeSharedPtr<TKey, TValue>>>& data);
 
                 /**
                  * Tests the updation logic of a cache.
@@ -75,25 +75,25 @@ namespace test {
                     ICache<TKey, TValue>& cache,
                     const std::string& operation,
                     const IKeyValueNode<TKey, TValue>& item,
-                    const std::vector<IKeyValueNodePtr<TKey, TValue>>& expectedContent);
+                    const std::vector<IKeyValueNodeSharedPtr<TKey, TValue>>& expectedContent);
 
                 /**
                  * Tests the iteration logic of a cache.
                  */
                 template <typename TKey, typename TValue>
                 void testIteration(
-                    ICachePtr<TKey, TValue> cache,
-                    const std::tuple<std::string, IKeyValueNodePtr<TKey, TValue>, std::vector<IKeyValueNodePtr<TKey, TValue>>>& data);
+                    ICacheSharedPtr<TKey, TValue> cache,
+                    const std::tuple<std::string, IKeyValueNodeSharedPtr<TKey, TValue>, std::vector<IKeyValueNodeSharedPtr<TKey, TValue>>>& data);
 
                 /**
                  * Tests the iteration logic of a cache.
                  */
                 template <typename TKey, typename TValue>
                 void testIteration(
-                    ICachePtr<TKey, TValue> cache,
+                    ICacheSharedPtr<TKey, TValue> cache,
                     const std::string& operation,
                     const IKeyValueNode<TKey, TValue>& item,
-                    const std::vector<IKeyValueNodePtr<TKey, TValue>>& expectedContent);
+                    const std::vector<IKeyValueNodeSharedPtr<TKey, TValue>>& expectedContent);
 
                 /**
                  * Updates the cache.
@@ -113,7 +113,7 @@ namespace test {
             template <typename TKey, typename TValue>
             void CacheUnitTest::testUpdation(
                 ICache<TKey, TValue>& cache,
-                const std::tuple<std::string, IKeyValueNodePtr<TKey, TValue>, std::vector<IKeyValueNodePtr<TKey, TValue>>>& data)
+                const std::tuple<std::string, IKeyValueNodeSharedPtr<TKey, TValue>, std::vector<IKeyValueNodeSharedPtr<TKey, TValue>>>& data)
             {
                 testUpdation<TKey, TValue>(
                     cache,
@@ -127,8 +127,8 @@ namespace test {
              */
             template <typename TKey, typename TValue>
             void CacheUnitTest::testIteration(
-                ICachePtr<TKey, TValue> cache,
-                const std::tuple<std::string, IKeyValueNodePtr<TKey, TValue>, std::vector<IKeyValueNodePtr<TKey, TValue>>>& data)
+                ICacheSharedPtr<TKey, TValue> cache,
+                const std::tuple<std::string, IKeyValueNodeSharedPtr<TKey, TValue>, std::vector<IKeyValueNodeSharedPtr<TKey, TValue>>>& data)
             {
                 testIteration<TKey, TValue>(
                     cache,
@@ -145,12 +145,12 @@ namespace test {
                 ICache<TKey, TValue>& cache,
                 const std::string& operation,
                 const IKeyValueNode<TKey, TValue>& item,
-                const std::vector<IKeyValueNodePtr<TKey, TValue>>& expectedContent)
+                const std::vector<IKeyValueNodeSharedPtr<TKey, TValue>>& expectedContent)
             {
                 updateCache(cache, operation, item);
 
-                base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> nodeIterator = cache.getIterator();
-                base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> expectedIterator = base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent);
+                base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> nodeIterator = cache.getIterator();
+                base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> expectedIterator = base::VectorIterator<IKeyValueNodeSharedPtr<TKey, TValue>>::make(expectedContent);
 
                 getAssertion().assertEqualsWithDereferenceIterators(
                     *nodeIterator,
@@ -163,10 +163,10 @@ namespace test {
              */
             template <typename TKey, typename TValue>
             void CacheUnitTest::testIteration(
-                ICachePtr<TKey, TValue> cache,
+                ICacheSharedPtr<TKey, TValue> cache,
                 const std::string& operation,
                 const IKeyValueNode<TKey, TValue>& item,
-                const std::vector<IKeyValueNodePtr<TKey, TValue>>& expectedContent)
+                const std::vector<IKeyValueNodeSharedPtr<TKey, TValue>>& expectedContent)
             {
                 //
                 // Update the cache with the data...
@@ -176,9 +176,9 @@ namespace test {
                 //
                 // Test the forward iteration over nodes...
                 //
-                base::IIterableSharedPtr<IKeyValueNodePtr<TKey, TValue>> containerIterable = cache;
-                base::IIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> expectedIterator =
-                    base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent);
+                base::IIterableSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> containerIterable = cache;
+                base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> expectedIterator =
+                    base::VectorIterator<IKeyValueNodeSharedPtr<TKey, TValue>>::make(expectedContent);
 
                 test_base::IterationTest iterationTest;
                 iterationTest.testForwardIterationWithDereference(
@@ -189,9 +189,9 @@ namespace test {
                 //
                 // Test the reverse iteration over nodes...
                 //
-                base::IReverseIterableSharedPtr<IKeyValueNodePtr<TKey, TValue>> containerReverseIterable = cache;
-                base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> expectedReverseIterator =
-                    base::VectorReverseIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent);
+                base::IReverseIterableSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> containerReverseIterable = cache;
+                base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> expectedReverseIterator =
+                    base::VectorReverseIterator<IKeyValueNodeSharedPtr<TKey, TValue>>::make(expectedContent);
 
                 iterationTest.testReverseIterationWithDereference(
                     containerReverseIterable,
@@ -203,7 +203,7 @@ namespace test {
                 //
                 base::IKeyIterableSharedPtr<TKey> containerKeyIterable = cache;
                 base::IIteratorSharedPtr<TKey> expectedKeyIterator = node::KeyIterator<TKey, TValue>::make(
-                    base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent));
+                    base::VectorIterator<IKeyValueNodeSharedPtr<TKey, TValue>>::make(expectedContent));
 
                 iterationTest.testKeyIteration(
                     containerKeyIterable,
@@ -215,7 +215,7 @@ namespace test {
                 //
                 base::IKeyReverseIterableSharedPtr<TKey> containerKeyReverseIterable = cache;
                 base::IReverseIteratorSharedPtr<TKey> expectedKeyReverseIterator = node::KeyReverseIterator<TKey, TValue>::make(
-                    base::VectorReverseIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent));
+                    base::VectorReverseIterator<IKeyValueNodeSharedPtr<TKey, TValue>>::make(expectedContent));
 
                 iterationTest.testKeyReverseIteration(
                     containerKeyReverseIterable,
@@ -227,7 +227,7 @@ namespace test {
                 //
                 base::IValueIterableSharedPtr<TValue> containerValueIterable = cache;
                 base::IIteratorSharedPtr<TValue> expectedValueIterator = node::ValueIterator<TKey, TValue>::make(
-                    base::VectorIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent));
+                    base::VectorIterator<IKeyValueNodeSharedPtr<TKey, TValue>>::make(expectedContent));
 
                 iterationTest.testValueIteration(
                     containerValueIterable,
@@ -239,7 +239,7 @@ namespace test {
                 //
                 base::IValueReverseIterableSharedPtr<TValue> containerValueReverseIterable = cache;
                 base::IReverseIteratorSharedPtr<TValue> expectedValueReverseIterator = node::ValueReverseIterator<TKey, TValue>::make(
-                        base::VectorReverseIterator<IKeyValueNodePtr<TKey, TValue>>::make(expectedContent));
+                        base::VectorReverseIterator<IKeyValueNodeSharedPtr<TKey, TValue>>::make(expectedContent));
 
                 iterationTest.testValueReverseIteration(
                     containerValueReverseIterable,

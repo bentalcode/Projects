@@ -19,12 +19,12 @@ namespace datastructures {
             /**
              * Creates a new reverse iterator of values from key value nodes.
              */
-            static base::IReverseIteratorSharedPtr<TValue> make(base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
+            static base::IReverseIteratorSharedPtr<TValue> make(base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator);
 
             /**
              * The ValueReverseIterator constructor.
              */
-            explicit ValueReverseIterator(base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
+            explicit ValueReverseIterator(base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator);
 
             /**
              * The ValueReverseIterator destructor.
@@ -59,7 +59,7 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> m_reverseIterator;
+            base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> m_reverseIterator;
         };
 
         /**
@@ -67,7 +67,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         base::IReverseIteratorSharedPtr<TValue> ValueReverseIterator<TKey, TValue>::make(
-            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator)
+            base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator)
         {
             return std::make_shared<ValueReverseIterator<TKey, TValue>>(reverseIterator);
         }
@@ -77,7 +77,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         ValueReverseIterator<TKey, TValue>::ValueReverseIterator(
-            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator) :
+            base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
             base::SmartPointers::validate(reverseIterator);

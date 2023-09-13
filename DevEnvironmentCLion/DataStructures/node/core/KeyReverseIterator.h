@@ -18,12 +18,12 @@ namespace datastructures {
             /**
              * Creates a new reverse iterator of keys from key value nodes.
              */
-            static base::IReverseIteratorSharedPtr<TKey> make(base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
+            static base::IReverseIteratorSharedPtr<TKey> make(base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator);
 
             /**
              * The KeyReverseIterator constructor.
              */
-            explicit KeyReverseIterator(base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator);
+            explicit KeyReverseIterator(base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator);
 
             /**
              * The KeyReverseIterator destructor.
@@ -58,7 +58,7 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> m_reverseIterator;
+            base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> m_reverseIterator;
         };
 
         /**
@@ -66,7 +66,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         base::IReverseIteratorSharedPtr<TKey> KeyReverseIterator<TKey, TValue>::make(
-            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator)
+            base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator)
         {
             return std::make_shared<KeyReverseIterator<TKey, TValue>>(reverseIterator);
         }
@@ -76,7 +76,7 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         KeyReverseIterator<TKey, TValue>::KeyReverseIterator(
-            base::IReverseIteratorSharedPtr<IKeyValueNodePtr<TKey, TValue>> reverseIterator) :
+            base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
             base::SmartPointers::validate(reverseIterator);

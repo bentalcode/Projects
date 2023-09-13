@@ -15,7 +15,7 @@ using namespace datastructures::bitarray;
 /**
  * Creates a bit 32 array.
  */
-IBit32ArrayPtr Bit32Array::make(unsigned int bits)
+IBit32ArraySharedPtr Bit32Array::make(unsigned int bits)
 {
     return std::make_shared<Bit32Array>(bits);
 }

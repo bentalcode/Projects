@@ -20,7 +20,7 @@ namespace datastructures {
             /**
              * Creates a new graph from it's data.
              */
-            static IGraphPtr<TKey, TValue> make(const IGraphDefinition<TKey, TValue>& graphData);
+            static IGraphSharedPtr<TKey, TValue> make(const IGraphDefinition<TKey, TValue>& graphData);
 
             /**
              * The GraphBuilder constructor.
@@ -52,70 +52,70 @@ namespace datastructures {
             /**
              * Adds a vertex.
              */
-            virtual IGraphBuilder<TKey, TValue>& addVertex(IVertexPtr<TKey, TValue> vertex) override;
+            virtual IGraphBuilder<TKey, TValue>& addVertex(IVertexSharedPtr<TKey, TValue> vertex) override;
 
             /**
              * Adds vertices.
              */
-            virtual IGraphBuilder<TKey, TValue>& addVertices(const std::vector<IVertexPtr<TKey, TValue>>& vertices) override;
+            virtual IGraphBuilder<TKey, TValue>& addVertices(const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices) override;
 
             /**
              * Adds an edge.
              */
-            virtual IGraphBuilder<TKey, TValue>& addEdge(IEdgePtr<TKey, TValue> edge) override;
+            virtual IGraphBuilder<TKey, TValue>& addEdge(IEdgeSharedPtr<TKey, TValue> edge) override;
 
             /**
              * Adds an edge by vertices.
              */
             virtual IGraphBuilder<TKey, TValue>& addEdge(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination) override;
+                    IVertexSharedPtr<TKey, TValue> source,
+                    IVertexSharedPtr<TKey, TValue> destination) override;
 
             /**
              * Adds a directed edge by vertices.
              */
             virtual IGraphBuilder<TKey, TValue>& addDirectedEdge(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination) override;
+                    IVertexSharedPtr<TKey, TValue> source,
+                    IVertexSharedPtr<TKey, TValue> destination) override;
 
             /**
              * Adds edges.
              */
             virtual IGraphBuilder<TKey, TValue>& addEdges(
-                const std::vector<IEdgePtr<TKey, TValue>>& edges) override;
+                const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges) override;
 
             /**
              * Builds the graph.
              */
-            virtual IGraphPtr<TKey, TValue> build() override;
+            virtual IGraphSharedPtr<TKey, TValue> build() override;
 
         private:
             /**
              * Adds an vertex if not defined.
              */
-            void addVertexIfNotExist(IVertexPtr<TKey, TValue> vertex);
+            void addVertexIfNotExist(IVertexSharedPtr<TKey, TValue> vertex);
 
             //
             // Adds a connection to the adjacency matrix.
             //
             void addConnection(
-                IVertexPtr<TKey, TValue> sourceVertex,
-                IVertexPtr<TKey, TValue> destinationVertex);
+                    IVertexSharedPtr<TKey, TValue> sourceVertex,
+                    IVertexSharedPtr<TKey, TValue> destinationVertex);
 
-            std::set<IVertexPtr<TKey, TValue>> m_vertices;
-            std::set<IEdgePtr<TKey, TValue>> m_edges;
-            std::map<IVertexPtr<TKey, TValue>, std::set<IVertexPtr<TKey, TValue>>> m_connections;
+            std::set<IVertexSharedPtr<TKey, TValue>> m_vertices;
+            std::set<IEdgeSharedPtr<TKey, TValue>> m_edges;
+            std::map<IVertexSharedPtr<TKey, TValue>, std::set<IVertexSharedPtr<TKey, TValue>>> m_connections;
         };
 
         /**
          * Creates a new graph from it's data.
          */
         template <typename TKey, typename TValue>
-        IGraphPtr<TKey, TValue> GraphBuilder<TKey, TValue>::make(const IGraphDefinition<TKey, TValue>& graphData)
+        IGraphSharedPtr<TKey, TValue> GraphBuilder<TKey, TValue>::make(const IGraphDefinition<TKey, TValue>& graphData)
         {
             GraphBuilder<TKey, TValue> graphBuilder;
             graphBuilder.addGraphData(graphData);
-            IGraphPtr<TKey, TValue> graph = graphBuilder.build();
+            IGraphSharedPtr<TKey, TValue> graph = graphBuilder.build();
             return graph;
         }
 
@@ -151,7 +151,7 @@ namespace datastructures {
          * Adds a vertex.
          */
         template <typename TKey, typename TValue>
-        IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addVertex(IVertexPtr<TKey, TValue> vertex)
+        IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addVertex(IVertexSharedPtr<TKey, TValue> vertex)
         {
             m_vertices.insert(vertex);
             return *this;
@@ -161,9 +161,9 @@ namespace datastructures {
          * Adds vertices.
          */
         template <typename TKey, typename TValue>
-        IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addVertices(const std::vector<IVertexPtr<TKey, TValue>>& vertices)
+        IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addVertices(const std::vector<IVertexSharedPtr<TKey, TValue>>& vertices)
         {
-            for (IVertexPtr<TKey, TValue> vertex : vertices)
+            for (IVertexSharedPtr<TKey, TValue> vertex : vertices)
             {
                 addVertex(vertex);
             }
@@ -175,10 +175,10 @@ namespace datastructures {
          * Adds an edge.
          */
         template <typename TKey, typename TValue>
-        IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addEdge(IEdgePtr<TKey, TValue> edge)
+        IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addEdge(IEdgeSharedPtr<TKey, TValue> edge)
         {
-            IVertexPtr<TKey, TValue> sourceVertex = edge->source();
-            IVertexPtr<TKey, TValue> destinationVertex = edge->destination();
+            IVertexSharedPtr<TKey, TValue> sourceVertex = edge->source();
+            IVertexSharedPtr<TKey, TValue> destinationVertex = edge->destination();
 
             //
             // Add the new vertices if required...
@@ -209,10 +209,10 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addEdge(
-            IVertexPtr<TKey, TValue> source,
-            IVertexPtr<TKey, TValue> destination)
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination)
         {
-            IEdgePtr<TKey, TValue> edge = Edge<TKey, TValue>::make(source, destination);
+            IEdgeSharedPtr<TKey, TValue> edge = Edge<TKey, TValue>::make(source, destination);
             addEdge(edge);
 
             return *this;
@@ -223,10 +223,10 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addDirectedEdge(
-            IVertexPtr<TKey, TValue> source,
-            IVertexPtr<TKey, TValue> destination)
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination)
         {
-            IEdgePtr<TKey, TValue> edge = Edge<TKey, TValue>::make(source, destination);
+            IEdgeSharedPtr<TKey, TValue> edge = Edge<TKey, TValue>::make(source, destination);
             addEdge(edge);
 
             return *this;
@@ -237,9 +237,9 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         IGraphBuilder<TKey, TValue>& GraphBuilder<TKey, TValue>::addEdges(
-            const std::vector<IEdgePtr<TKey, TValue>>& edges)
+            const std::vector<IEdgeSharedPtr<TKey, TValue>>& edges)
         {
-            for (IEdgePtr<TKey, TValue> edge : edges)
+            for (IEdgeSharedPtr<TKey, TValue> edge : edges)
             {
                 addEdge(edge);
             }
@@ -251,9 +251,9 @@ namespace datastructures {
          * Builds the graph.
          */
         template <typename TKey, typename TValue>
-        IGraphPtr<TKey, TValue> GraphBuilder<TKey, TValue>::build()
+        IGraphSharedPtr<TKey, TValue> GraphBuilder<TKey, TValue>::build()
         {
-            IAdjacencyMatrixPtr<TKey, TValue> adjacencyMatrix = AdjacencyMatrix<TKey, TValue>::make(m_connections);
+            IAdjacencyMatrixSharedPtr<TKey, TValue> adjacencyMatrix = AdjacencyMatrix<TKey, TValue>::make(m_connections);
 
             return Graph<TKey, TValue>::make(
                 m_vertices,
@@ -266,10 +266,10 @@ namespace datastructures {
         //
         template <typename TKey, typename TValue>
         void GraphBuilder<TKey, TValue>::addConnection(
-            IVertexPtr<TKey, TValue> sourceVertex,
-            IVertexPtr<TKey, TValue> destinationVertex)
+                IVertexSharedPtr<TKey, TValue> sourceVertex,
+                IVertexSharedPtr<TKey, TValue> destinationVertex)
         {
-            typename std::map<IVertexPtr<TKey, TValue>, std::set<IVertexPtr<TKey, TValue>>>::iterator vertexIterator =
+            typename std::map<IVertexSharedPtr<TKey, TValue>, std::set<IVertexSharedPtr<TKey, TValue>>>::iterator vertexIterator =
                 m_connections.find(sourceVertex);
 
             if (vertexIterator == m_connections.end())
@@ -278,7 +278,7 @@ namespace datastructures {
                 throw GraphException(errorMessage);
             }
 
-            std::set<IVertexPtr<TKey, TValue>>& connections = vertexIterator->second;
+            std::set<IVertexSharedPtr<TKey, TValue>>& connections = vertexIterator->second;
             connections.insert(destinationVertex);
         }
 
@@ -286,9 +286,9 @@ namespace datastructures {
          * Adds an vertex if not defined.
          */
         template <typename TKey, typename TValue>
-        void GraphBuilder<TKey, TValue>::addVertexIfNotExist(IVertexPtr<TKey, TValue> vertex)
+        void GraphBuilder<TKey, TValue>::addVertexIfNotExist(IVertexSharedPtr<TKey, TValue> vertex)
         {
-            typename std::set<IVertexPtr<TKey, TValue>>::iterator vertexIterator = m_vertices.find(vertex);
+            typename std::set<IVertexSharedPtr<TKey, TValue>>::iterator vertexIterator = m_vertices.find(vertex);
 
             if (vertexIterator != m_vertices.end())
             {
@@ -296,7 +296,7 @@ namespace datastructures {
             }
 
             m_vertices.insert(vertex);
-            std::set<IVertexPtr<TKey, TValue>> connections;
+            std::set<IVertexSharedPtr<TKey, TValue>> connections;
             m_connections.insert(std::make_pair(vertex, connections));
         }
 

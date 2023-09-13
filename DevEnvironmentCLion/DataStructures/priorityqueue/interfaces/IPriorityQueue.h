@@ -89,8 +89,11 @@ namespace datastructures {
             virtual void updateAndHypifyDown(size_t index, const T& element) = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Priority Queue.
+         */
         template <typename T>
-        using IPriorityQueuePtr = std::shared_ptr<IPriorityQueue<T>>;
+        using IPriorityQueueSharedPtr = std::shared_ptr<IPriorityQueue<T>>;
 
         /**
          * Defines the equivalent operator.

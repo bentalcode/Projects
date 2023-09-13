@@ -11,18 +11,18 @@ namespace datastructures {
          * The DoublyLinkedListNodeIterator class implements an iterator of nodes of a doubly linked list.
          */
         template <typename T>
-        class DoublyLinkedListNodeIterator final : public base::IIterator<IDoublyLinkedListNodePtr<T>>
+        class DoublyLinkedListNodeIterator final : public base::IIterator<IDoublyLinkedListNodeSharedPtr<T>>
         {
         public:
             /**
              * Creates a new iterator of a doubly linked list.
              */
-            static base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> make(IDoublyLinkedListNodePtr<T> head);
+            static base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> make(IDoublyLinkedListNodeSharedPtr<T> head);
 
             /**
              * The DoublyLinkedListNodeIterator constructor.
              */
-            explicit DoublyLinkedListNodeIterator(IDoublyLinkedListNodePtr<T> head);
+            explicit DoublyLinkedListNodeIterator(IDoublyLinkedListNodeSharedPtr<T> head);
 
             /**
              * The DoublyLinkedListNodeIterator destructor.
@@ -49,7 +49,7 @@ namespace datastructures {
             /**
              * Gets the next node.
              */
-            IDoublyLinkedListNodePtr<T> next();
+            IDoublyLinkedListNodeSharedPtr<T> next();
 
             /**
              * Resets the iterator.
@@ -57,15 +57,15 @@ namespace datastructures {
             void reset();
 
         private:
-            IDoublyLinkedListNodePtr<T> m_head;
-            IDoublyLinkedListNodePtr<T> m_currNode;
+            IDoublyLinkedListNodeSharedPtr<T> m_head;
+            IDoublyLinkedListNodeSharedPtr<T> m_currNode;
         };
 
         /**
          * Creates a new iterator of a doubly linked list.
          */
         template <typename T>
-        base::IIteratorSharedPtr<IDoublyLinkedListNodePtr<T>> DoublyLinkedListNodeIterator<T>::make(IDoublyLinkedListNodePtr<T> head)
+        base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> DoublyLinkedListNodeIterator<T>::make(IDoublyLinkedListNodeSharedPtr<T> head)
         {
             return std::make_shared<DoublyLinkedListNodeIterator<T>>(head);
         }
@@ -74,7 +74,7 @@ namespace datastructures {
          * The DoublyLinkedListNodeIterator constructor.
          */
         template <typename T>
-        DoublyLinkedListNodeIterator<T>::DoublyLinkedListNodeIterator(IDoublyLinkedListNodePtr<T> head) :
+        DoublyLinkedListNodeIterator<T>::DoublyLinkedListNodeIterator(IDoublyLinkedListNodeSharedPtr<T> head) :
             m_head(head)
         {
             reset();
@@ -101,11 +101,11 @@ namespace datastructures {
          * Gets the next node.
          */
         template <typename T>
-        IDoublyLinkedListNodePtr<T> DoublyLinkedListNodeIterator<T>::next()
+        IDoublyLinkedListNodeSharedPtr<T> DoublyLinkedListNodeIterator<T>::next()
         {
             assert(hasNext());
 
-            IDoublyLinkedListNodePtr<T> currNode = m_currNode;
+            IDoublyLinkedListNodeSharedPtr<T> currNode = m_currNode;
             m_currNode = m_currNode->next();
 
             return currNode;

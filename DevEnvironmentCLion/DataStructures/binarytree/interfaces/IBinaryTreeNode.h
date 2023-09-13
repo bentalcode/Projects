@@ -84,8 +84,11 @@ namespace datastructures {
             virtual bool hasRightChild() const = 0;
         };
 
+        /**
+         * Defines SharedPtr of Binary Tree Node.
+         */
         template <typename TKey, typename TValue>
-        using IBinaryTreeNodePtr = std::shared_ptr<IBinaryTreeNode<TKey, TValue>>;
+        using IBinaryTreeNodeSharedPtr = std::shared_ptr<IBinaryTreeNode<TKey, TValue>>;
 
         /**
          * Defines the equivalent operator.

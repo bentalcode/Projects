@@ -17,12 +17,12 @@ namespace datastructures {
             /**
              * Creates a new iterator of values of a doubly linked list.
              */
-            static base::IIteratorSharedPtr<T> make(base::IIteratorSharedPtr<ILinkedListNodePtr<T>> iterator);
+            static base::IIteratorSharedPtr<T> make(base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> iterator);
 
             /**
              * The LinkedListNodeValueIterator constructor.
              */
-            explicit LinkedListNodeValueIterator(base::IIteratorSharedPtr<ILinkedListNodePtr<T>> iterator);
+            explicit LinkedListNodeValueIterator(base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> iterator);
 
             /**
              * The LinkedListNodeValueIterator destructor.
@@ -57,14 +57,14 @@ namespace datastructures {
             virtual void reset() override;
 
         private:
-            base::IIteratorSharedPtr<ILinkedListNodePtr<T>> m_iterator;
+            base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> m_iterator;
         };
 
         /**
          * Creates a new iterator of values of a doubly linked list.
          */
         template <typename T>
-        base::IIteratorSharedPtr<T> LinkedListNodeValueIterator<T>::make(base::IIteratorSharedPtr<ILinkedListNodePtr<T>> iterator)
+        base::IIteratorSharedPtr<T> LinkedListNodeValueIterator<T>::make(base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> iterator)
         {
             return std::make_shared<LinkedListNodeValueIterator<T>>(iterator);
         }
@@ -73,7 +73,7 @@ namespace datastructures {
          * The LinkedListNodeValueIterator constructor.
          */
         template <typename T>
-        LinkedListNodeValueIterator<T>::LinkedListNodeValueIterator(base::IIteratorSharedPtr<ILinkedListNodePtr<T>> iterator) :
+        LinkedListNodeValueIterator<T>::LinkedListNodeValueIterator(base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> iterator) :
             m_iterator(iterator)
         {
             reset();

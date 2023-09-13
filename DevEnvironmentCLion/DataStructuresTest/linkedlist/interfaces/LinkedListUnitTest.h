@@ -96,7 +96,7 @@ namespace test {
                  * Creates a linked list.
                  */
                 template <typename T>
-                static ILinkedListPtr<T> createLinkedList(const std::vector<T>& data);
+                static ILinkedListSharedPtr<T> createLinkedList(const std::vector<T>& data);
 
                 TestData m_testData;
             };
@@ -110,14 +110,14 @@ namespace test {
                 //
                 // Create the container...
                 //
-                ILinkedListPtr<T> container = createLinkedList(data.getValues());
+                ILinkedListSharedPtr<T> container = createLinkedList(data.getValues());
 
                 //
                 // Test the data of the container...
                 //
                 getAssertion().assertEqualsWithDereferenceIterators(
                     *container->getIterator(),
-                    *base::VectorIterator<ILinkedListNodePtr<T>>::make(data.getNodes()),
+                    *base::VectorIterator<ILinkedListNodeSharedPtr<T>>::make(data.getNodes()),
                     "Invalid creation logic of a linked list.");
             }
 
@@ -130,16 +130,16 @@ namespace test {
                 //
                 // Create the container...
                 //
-                ILinkedListPtr<T> container = createLinkedList(data.getValues());
+                ILinkedListSharedPtr<T> container = createLinkedList(data.getValues());
 
                 //
                 // Test the forward iterator of the container...
                 //
                 test_base::IterationTest iterationTest;
 
-                base::IIterableSharedPtr<ILinkedListNodePtr<T>> containerIterable = container;
-                base::IIteratorSharedPtr<ILinkedListNodePtr<T>> expectedIterator =
-                    base::VectorIterator<ILinkedListNodePtr<T>>::make(data.getNodes());
+                base::IIterableSharedPtr<ILinkedListNodeSharedPtr<T>> containerIterable = container;
+                base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> expectedIterator =
+                    base::VectorIterator<ILinkedListNodeSharedPtr<T>>::make(data.getNodes());
 
                 iterationTest.testForwardIterationWithDereference(
                     containerIterable,
@@ -217,7 +217,7 @@ namespace test {
                 }
                 else if (base::StringEquality::equalsIgnoreCase(operation, "removeAfter"))
                 {
-                    ILinkedListNodePtr<T> currNode = list.getNode(0);
+                    ILinkedListNodeSharedPtr<T> currNode = list.getNode(0);
                     list.removeAfter(currNode);
                 }
                 else
@@ -231,8 +231,8 @@ namespace test {
              * Creates a linked list.
              */
             template <typename T>
-            ILinkedListPtr<T> LinkedListUnitTest::createLinkedList(const std::vector<T>& data) {
-                ILinkedListPtr<T> result(new LinkedList<T>());
+            ILinkedListSharedPtr<T> LinkedListUnitTest::createLinkedList(const std::vector<T>& data) {
+                ILinkedListSharedPtr<T> result(new LinkedList<T>());
 
                 for (T element : data) {
                     result->addToBack(element);

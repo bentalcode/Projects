@@ -16,14 +16,14 @@ namespace datastructures {
             /**
              * Creates a new instance of a vertex.
              */
-            static IVertexPtr<TKey, TValue> make(
+            static IVertexSharedPtr<TKey, TValue> make(
                 const TKey& key,
                 const TValue& value);
 
             /**
              * Copies an instance of a vertex.
              */
-            static IVertexPtr<TKey, TValue> copy(const IVertex<TKey, TValue>& vertex);
+            static IVertexSharedPtr<TKey, TValue> copy(const IVertex<TKey, TValue>& vertex);
 
             /**
              * The Vertex constructor.
@@ -71,7 +71,7 @@ namespace datastructures {
          * Creates a new instance of a vertex.
          */
         template <typename TKey, typename TValue>
-        IVertexPtr<TKey, TValue> Vertex<TKey, TValue>::make(const TKey& key, const TValue& value)
+        IVertexSharedPtr<TKey, TValue> Vertex<TKey, TValue>::make(const TKey& key, const TValue& value)
         {
             return std::make_shared<Vertex<TKey, TValue>>(key, value);
         }
@@ -80,7 +80,7 @@ namespace datastructures {
          * Copies an instance of a vertex.
          */
         template <typename TKey, typename TValue>
-        IVertexPtr<TKey, TValue> Vertex<TKey, TValue>::copy(const IVertex<TKey, TValue>& vertex)
+        IVertexSharedPtr<TKey, TValue> Vertex<TKey, TValue>::copy(const IVertex<TKey, TValue>& vertex)
         {
             return std::make_shared<Vertex<TKey, TValue>>(vertex.getkey(), vertex.getValue());
         }

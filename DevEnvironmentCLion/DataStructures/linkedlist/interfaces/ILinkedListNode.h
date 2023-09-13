@@ -64,8 +64,11 @@ namespace datastructures {
             virtual void unlinked() = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Linked List Node.
+         */
         template <typename T>
-        using ILinkedListNodePtr = std::shared_ptr<ILinkedListNode<T>>;
+        using ILinkedListNodeSharedPtr = std::shared_ptr<ILinkedListNode<T>>;
 
         /**
          * Defines the equivalent operator.

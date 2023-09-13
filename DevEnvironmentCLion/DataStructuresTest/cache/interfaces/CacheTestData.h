@@ -44,15 +44,18 @@ namespace test {
                 /**
                  * Gets the updation data of a least recently used cache.
                  */
-                std::vector<std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>> getLruUpdationData() const;
+                std::vector<std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>> getLruUpdationData() const;
 
                 /**
                  * Gets the updation data of a most recently used cache.
                  */
-                std::vector<std::tuple<std::string, IKeyValueNodePtr<int, std::string>, std::vector<IKeyValueNodePtr<int, std::string>>>> getMruUpdationData() const;
+                std::vector<std::tuple<std::string, IKeyValueNodeSharedPtr<int, std::string>, std::vector<IKeyValueNodeSharedPtr<int, std::string>>>> getMruUpdationData() const;
             };
 
-            using CacheTestDataPtr = std::shared_ptr<CacheTestData>;
+            //
+            // Defines the SharedPtr of Cache Test Data...
+            //
+            using CacheTestDataSharedPtr = std::shared_ptr<CacheTestData>;
         }
     }
 }

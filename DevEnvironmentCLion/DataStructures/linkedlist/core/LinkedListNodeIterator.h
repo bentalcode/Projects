@@ -11,18 +11,18 @@ namespace datastructures {
          * The LinkedListNodeIterator class implements an iterator of nodes of a linked list.
          */
         template <typename T>
-        class LinkedListNodeIterator final : public base::IIterator<ILinkedListNodePtr<T>>
+        class LinkedListNodeIterator final : public base::IIterator<ILinkedListNodeSharedPtr<T>>
         {
         public:
             /**
              * Creates a new iterator of a linked list.
              */
-            static base::IIteratorSharedPtr<ILinkedListNodePtr<T>> make(ILinkedListNodePtr<T> head);
+            static base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> make(ILinkedListNodeSharedPtr<T> head);
 
             /**
              * The LinkedListNodeIterator constructor.
              */
-            explicit LinkedListNodeIterator(ILinkedListNodePtr<T> head);
+            explicit LinkedListNodeIterator(ILinkedListNodeSharedPtr<T> head);
 
             /**
              * The LinkedListNodeIterator destructor.
@@ -49,7 +49,7 @@ namespace datastructures {
             /**
              * Gets the next node.
              */
-            ILinkedListNodePtr<T> next();
+            ILinkedListNodeSharedPtr<T> next();
 
             /**
              * Resets the iterator.
@@ -57,15 +57,15 @@ namespace datastructures {
             void reset();
 
         private:
-            ILinkedListNodePtr<T> m_head;
-            ILinkedListNodePtr<T> m_currNode;
+            ILinkedListNodeSharedPtr<T> m_head;
+            ILinkedListNodeSharedPtr<T> m_currNode;
         };
 
         /**
          * Creates a new iterator of a linked list.
          */
         template <typename T>
-        base::IIteratorSharedPtr<ILinkedListNodePtr<T>> LinkedListNodeIterator<T>::make(ILinkedListNodePtr<T> head)
+        base::IIteratorSharedPtr<ILinkedListNodeSharedPtr<T>> LinkedListNodeIterator<T>::make(ILinkedListNodeSharedPtr<T> head)
         {
             return std::make_shared<LinkedListNodeIterator<T>>(head);
         }
@@ -74,7 +74,7 @@ namespace datastructures {
          * The LinkedListNodeIterator constructor.
          */
         template <typename T>
-        LinkedListNodeIterator<T>::LinkedListNodeIterator(ILinkedListNodePtr<T> head) :
+        LinkedListNodeIterator<T>::LinkedListNodeIterator(ILinkedListNodeSharedPtr<T> head) :
             m_head(head)
         {
             reset();
@@ -101,11 +101,11 @@ namespace datastructures {
          * Gets the next node.
          */
         template <typename T>
-        ILinkedListNodePtr<T> LinkedListNodeIterator<T>::next()
+        ILinkedListNodeSharedPtr<T> LinkedListNodeIterator<T>::next()
         {
             assert(hasNext());
 
-            ILinkedListNodePtr<T> currNode = m_currNode;
+            ILinkedListNodeSharedPtr<T> currNode = m_currNode;
             m_currNode = m_currNode->next();
 
             return currNode;

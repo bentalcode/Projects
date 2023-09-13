@@ -15,8 +15,8 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         class IWalk :
-            public base::IIterable<IVertexPtr<TKey, TValue>>,
-            public base::IReverseIterable<IVertexPtr<TKey, TValue>>,
+            public base::IIterable<IVertexSharedPtr<TKey, TValue>>,
+            public base::IReverseIterable<IVertexSharedPtr<TKey, TValue>>,
             public base::ISizableCollection
         {
         public:
@@ -45,7 +45,7 @@ namespace datastructures {
             /**
              * Adds a vertex.
              */
-            virtual void addVertex(IVertexPtr<TKey, TValue> vertex) = 0;
+            virtual void addVertex(IVertexSharedPtr<TKey, TValue> vertex) = 0;
 
             /**
              * Removes the last vertex.
@@ -55,7 +55,7 @@ namespace datastructures {
             /**
              * Gets the vertices.
              */
-            virtual const std::list<IVertexPtr<TKey, TValue>>& getVertices() const = 0;
+            virtual const std::list<IVertexSharedPtr<TKey, TValue>>& getVertices() const = 0;
 
             /**
              * Checks whether a vertex has been visited before.
@@ -68,8 +68,11 @@ namespace datastructures {
             virtual std::string toString() const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Walk.
+         */
         template <typename TKey, typename TValue>
-        using IWalkPtr = std::shared_ptr<IWalk<TKey, TValue>>;
+        using IWalkSharedPtr = std::shared_ptr<IWalk<TKey, TValue>>;
 
         /**
          * Defines the equivalent operator.
@@ -77,8 +80,8 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         bool operator<(const IWalk<TKey, TValue>& left, const IWalk<TKey, TValue>& right)
         {
-            base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> leftIterator = left.getIterator();
-            base::IIteratorSharedPtr<IVertexPtr<TKey, TValue>> rightIterator = right.getIterator();
+            base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> leftIterator = left.getIterator();
+            base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> rightIterator = right.getIterator();
 
             base::CompareToBuilder compareToBuilder;
             bool status = compareToBuilder.withDereferenceIterator(

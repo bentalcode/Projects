@@ -17,7 +17,7 @@ using namespace datastructures::bitarray;
 /**
  * Creates a bit array.
  */
-IBitArrayPtr BitArray::make(size_t numberOfBits)
+IBitArraySharedPtr BitArray::make(size_t numberOfBits)
 {
     return std::make_shared<BitArray>(numberOfBits);
 }
@@ -25,7 +25,7 @@ IBitArrayPtr BitArray::make(size_t numberOfBits)
 /**
  * Copies a bit array.
  */
-IBitArrayPtr BitArray::copy(const IBitArray& bitArray)
+IBitArraySharedPtr BitArray::copy(const IBitArray& bitArray)
 {
     return std::make_shared<BitArray>(bitArray);
 }
@@ -402,8 +402,8 @@ void BitArray::operate(const base::IBinaryBitOperator& bitOperator, const IBitAr
     size_t lhsSize = size();
     size_t rhsSize = other.size();
 
-    std::vector<IBit32ArrayPtr>& lhsData = m_data;
-    const std::vector<IBit32ArrayPtr>& rhsData = other.toBit32Array();
+    std::vector<IBit32ArraySharedPtr>& lhsData = m_data;
+    const std::vector<IBit32ArraySharedPtr>& rhsData = other.toBit32Array();
 
     size_t lhsNumOfUnits = lhsData.size();
     size_t rhsNumOfUnits = rhsData.size();
@@ -495,7 +495,7 @@ std::vector<unsigned int> BitArray::toArray() const
 /**
  * Converts the bits to a 32 bit array.
  */
-const std::vector<IBit32ArrayPtr>& BitArray::toBit32Array() const
+const std::vector<IBit32ArraySharedPtr>& BitArray::toBit32Array() const
 {
     return m_data;
 }
@@ -503,10 +503,10 @@ const std::vector<IBit32ArrayPtr>& BitArray::toBit32Array() const
 /**
  * Creates a bit array.
  */
-std::vector<IBit32ArrayPtr> BitArray::createBitArray(size_t numberOfBits) const
+std::vector<IBit32ArraySharedPtr> BitArray::createBitArray(size_t numberOfBits) const
 {
     size_t numberOfUnits = getNumberOfUnits(numberOfBits);
-    std::vector<IBit32ArrayPtr> data(numberOfUnits);
+    std::vector<IBit32ArraySharedPtr> data(numberOfUnits);
 
     for (size_t i = 0; i < data.size(); ++i)
     {

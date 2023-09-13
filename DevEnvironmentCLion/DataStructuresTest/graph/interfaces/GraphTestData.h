@@ -51,42 +51,42 @@ namespace test {
                 /**
                  * Generates a random vertex by integer.
                  */
-                IVertexPtr<int, int> nextVertexByInteger();
+                IVertexSharedPtr<int, int> nextVertexByInteger();
 
                 /**
                  * Generates a random vertex by double.
                  */
-                IVertexPtr<double, double> nextVertexByDouble();
+                IVertexSharedPtr<double, double> nextVertexByDouble();
 
                 /**
                  * Generates a random vertex by character.
                  */
-                IVertexPtr<char, char> nextVertexByCharacter();
+                IVertexSharedPtr<char, char> nextVertexByCharacter();
 
                 /**
                  * Generates a random vertex by string.
                  */
-                IVertexPtr<std::string, std::string> nextVertexByString();
+                IVertexSharedPtr<std::string, std::string> nextVertexByString();
 
                 /**
                  * Generates a random edge by integer.
                  */
-                IEdgePtr<int, int> nextDirectedEdgeByInteger();
+                IEdgeSharedPtr<int, int> nextDirectedEdgeByInteger();
 
                 /**
                  * Generates a random edge by double.
                  */
-                IEdgePtr<double, double> nextDirectedEdgeByDouble();
+                IEdgeSharedPtr<double, double> nextDirectedEdgeByDouble();
 
                 /**
                  * Generates a random edge by character.
                  */
-                IEdgePtr<char, char> nextDirectedEdgeByCharacter();
+                IEdgeSharedPtr<char, char> nextDirectedEdgeByCharacter();
 
                 /**
                  * Generates a random edge by string.
                  */
-                IEdgePtr<std::string, std::string> nextDirectedEdgeByString();
+                IEdgeSharedPtr<std::string, std::string> nextDirectedEdgeByString();
 
             private:
                 /**
@@ -113,67 +113,69 @@ namespace test {
                  * Gets the paths data of graph1.
                  */
                 void getGraphPathsData1(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices,
-                    std::vector<std::pair<IRoutePtr<int, std::string>, std::vector<IWalkPtr<int, std::string>>>>& result);
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices,
+                    std::vector<std::pair<IRouteSharedPtr<int, std::string>, std::vector<IWalkSharedPtr<int, std::string>>>>& result);
 
                 /**
                  * Gets the paths data of graph2.
                  */
                 void getGraphPathsData2(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices,
-                    std::vector<std::pair<IRoutePtr<int, std::string>, std::vector<IWalkPtr<int, std::string>>>>& result);
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices,
+                    std::vector<std::pair<IRouteSharedPtr<int, std::string>, std::vector<IWalkSharedPtr<int, std::string>>>>& result);
 
                 /**
                  * Gets the paths data of graph3.
                  */
                 void getGraphPathsData3(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices,
-                    std::vector<std::pair<IRoutePtr<int, std::string>, std::vector<IWalkPtr<int, std::string>>>>& result);
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices,
+                    std::vector<std::pair<IRouteSharedPtr<int, std::string>, std::vector<IWalkSharedPtr<int, std::string>>>>& result);
 
                 /**
                  * Gets the topological search data of graph1.
                  */
-                base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData1(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices);
+                base::ITwoDimensionalVectorSharedPtr<IVertexSharedPtr<int, std::string>> getGraphTopologicalSearchData1(
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices);
 
                 /**
                  * Gets the topological search data of graph2.
                  */
-                base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData2(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices);
+                base::ITwoDimensionalVectorSharedPtr<IVertexSharedPtr<int, std::string>> getGraphTopologicalSearchData2(
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices);
 
                 /**
                  * Gets the topological search data of graph3.
                  */
-                base::ITwoDimensionalVectorSharedPtr<IVertexPtr<int, std::string>> getGraphTopologicalSearchData3(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices);
+                base::ITwoDimensionalVectorSharedPtr<IVertexSharedPtr<int, std::string>> getGraphTopologicalSearchData3(
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices);
 
                 /**
                  * Gets the shortest paths of graph1.
                  */
                 void getGraphShortestPaths1(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices,
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices,
                     GraphShortestPathsMap<int, std::string>& result);
 
                 /**
                  * Gets the shortest paths of graph2.
                  */
                 void getGraphShortestPaths2(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices,
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices,
                     GraphShortestPathsMap<int, std::string>& result);
 
                 /**
                  * Gets the shortest paths of graph3.
                  */
                 void getGraphShortestPaths3(
-                    const std::vector<IVertexPtr<int, std::string>>& vertices,
+                    const std::vector<IVertexSharedPtr<int, std::string>>& vertices,
                     GraphShortestPathsMap<int, std::string>& result);
 
                 base::RandomGenerator m_randomGenerator;
             };
 
-            using GraphTestDataPtr = std::shared_ptr<GraphTestData>;
-
+            //
+            // Defines the Shared Ptr of Graph Test Data...
+            //
+            using GraphTestDataSharedPtr = std::shared_ptr<GraphTestData>;
         }
     }
 }

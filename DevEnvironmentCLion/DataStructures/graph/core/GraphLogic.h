@@ -46,79 +46,79 @@ namespace datastructures {
              * Performs a topological search of a graph.
              */
             virtual void topologicalSearch(
-                std::list<IVertexPtr<TKey, TValue>>& result) const override;
+                std::list<IVertexSharedPtr<TKey, TValue>>& result) const override;
 
             /**
              * Finds paths by performing a Breadth-First search.
              */
             virtual void findPathsWithBreadthFirstSearch(
                 const IRoute<TKey, TValue>& route,
-                std::list<IWalkPtr<TKey, TValue>>& result) const override;
+                std::list<IWalkSharedPtr<TKey, TValue>>& result) const override;
 
             /**
              * Finds paths by performing a Depth-First search.
              */
             virtual void findPathsWithDepthFirstSearch(
                 const IRoute<TKey, TValue>& route,
-                std::list<IWalkPtr<TKey, TValue>>& result) const override;
+                std::list<IWalkSharedPtr<TKey, TValue>>& result) const override;
 
             /**
              * Finds the shortest paths from the source vertex to all other vertices in the given graph.
              */
             virtual void findShortestPaths(
-                IVertexPtr<TKey, TValue> src,
-                const EdgeWeightMap<TKey, TValue>& weights,
-                VertexShortestPathsMap<TKey, TValue>& result) const override;
+                    IVertexSharedPtr<TKey, TValue> src,
+                    const EdgeWeightMap<TKey, TValue>& weights,
+                    VertexShortestPathsMap<TKey, TValue>& result) const override;
 
         private:
             /**
              * Detects whether a graph contains a loop.
              */
             bool detectLoop(
-                IVertexPtr<TKey, TValue> vertex,
-                VertexSet<TKey, TValue>& visitedVertices,
-                VertexSet<TKey, TValue>& searchVertices) const;
+                    IVertexSharedPtr<TKey, TValue> vertex,
+                    VertexSet<TKey, TValue>& visitedVertices,
+                    VertexSet<TKey, TValue>& searchVertices) const;
 
             /**
              * Tries to perform a topological search of a graph.
              */
             bool topologicalSearch(
-                IVertexPtr<TKey, TValue> vertex,
-                std::set<IVertexPtr<TKey, TValue>>& visitedVertices,
-                std::set<IVertexPtr<TKey, TValue>>& currPath,
-                std::stack<IVertexPtr<TKey, TValue>>& result) const;
+                    IVertexSharedPtr<TKey, TValue> vertex,
+                    std::set<IVertexSharedPtr<TKey, TValue>>& visitedVertices,
+                    std::set<IVertexSharedPtr<TKey, TValue>>& currPath,
+                    std::stack<IVertexSharedPtr<TKey, TValue>>& result) const;
 
             /**
              * Finds paths by performing a Breadth-First search.
              */
             void findPathsWithBreadthFirstSearch(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination,
-                std::list<IWalkPtr<TKey, TValue>>& result) const;
+                    IVertexSharedPtr<TKey, TValue> source,
+                    IVertexSharedPtr<TKey, TValue> destination,
+                    std::list<IWalkSharedPtr<TKey, TValue>>& result) const;
 
             /**
              * Finds paths by performing a Depth-First search.
              */
             void findPathsWithDepthFirstSearch(
-                IVertexPtr<TKey, TValue> source,
-                IVertexPtr<TKey, TValue> destination,
-                IWalk<TKey, TValue>& currPath,
-                std::set<IVertexPtr<TKey, TValue>>& visited,
-                std::list<IWalkPtr<TKey, TValue>>& result) const;
+                    IVertexSharedPtr<TKey, TValue> source,
+                    IVertexSharedPtr<TKey, TValue> destination,
+                    IWalk<TKey, TValue>& currPath,
+                    std::set<IVertexSharedPtr<TKey, TValue>>& visited,
+                    std::list<IWalkSharedPtr<TKey, TValue>>& result) const;
 
             /**
              * Gets weight of an edge.
              */
             static long getEdgeWeight(
-                const EdgeWeightMap<TKey, TValue>& weights,
-                IEdgePtr<TKey, TValue> edge);
+                    const EdgeWeightMap<TKey, TValue>& weights,
+                    IEdgeSharedPtr<TKey, TValue> edge);
 
             /**
              * Gets shortest distance of a vertex.
              */
             static long getShortestDistance(
-                const VertexShortestPathsMap<TKey, TValue>& shortestPathsMap,
-                IVertexPtr<TKey, TValue> vertex);
+                    const VertexShortestPathsMap<TKey, TValue>& shortestPathsMap,
+                    IVertexSharedPtr<TKey, TValue> vertex);
 
             const IGraph<TKey, TValue>& m_graph;
         };
@@ -150,7 +150,7 @@ namespace datastructures {
             VertexSet<TKey, TValue> searchVertices;
 
             const VertexSet<TKey, TValue>& vertices = m_graph.vertices();
-            for (IVertexPtr<TKey, TValue> vertex : vertices)
+            for (IVertexSharedPtr<TKey, TValue> vertex : vertices)
             {
                 if (visitedVertices.find(vertex) != visitedVertices.end())
                 {
@@ -172,14 +172,14 @@ namespace datastructures {
          * Performs a topological search of a graph.
          */
         template <typename TKey, typename TValue>
-        void GraphLogic<TKey, TValue>::topologicalSearch(std::list<IVertexPtr<TKey, TValue>>& result) const
+        void GraphLogic<TKey, TValue>::topologicalSearch(std::list<IVertexSharedPtr<TKey, TValue>>& result) const
         {
-            std::stack<IVertexPtr<TKey, TValue>> resultStack;
-            std::set<IVertexPtr<TKey, TValue>> visitedVertices;
-            std::set<IVertexPtr<TKey, TValue>> currPath;
+            std::stack<IVertexSharedPtr<TKey, TValue>> resultStack;
+            std::set<IVertexSharedPtr<TKey, TValue>> visitedVertices;
+            std::set<IVertexSharedPtr<TKey, TValue>> currPath;
 
             const VertexSet<TKey, TValue>& vertices = m_graph.vertices();
-            for (IVertexPtr<TKey, TValue> vertex : vertices)
+            for (IVertexSharedPtr<TKey, TValue> vertex : vertices)
             {
                 if (visitedVertices.find(vertex) != visitedVertices.end())
                 {
@@ -214,7 +214,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void GraphLogic<TKey, TValue>::findPathsWithBreadthFirstSearch(
             const IRoute<TKey, TValue>& route,
-            std::list<IWalkPtr<TKey, TValue>>& result) const
+            std::list<IWalkSharedPtr<TKey, TValue>>& result) const
         {
             findPathsWithBreadthFirstSearch(route.source(), route.destination(), result);
         }
@@ -225,13 +225,13 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void GraphLogic<TKey, TValue>::findPathsWithDepthFirstSearch(
             const IRoute<TKey, TValue>& route,
-            std::list<IWalkPtr<TKey, TValue>>& result) const
+            std::list<IWalkSharedPtr<TKey, TValue>>& result) const
         {
-            IVertexPtr<TKey, TValue> source = route.source();
-            IVertexPtr<TKey, TValue> destination = route.destination();
+            IVertexSharedPtr<TKey, TValue> source = route.source();
+            IVertexSharedPtr<TKey, TValue> destination = route.destination();
 
-            IWalkPtr<TKey, TValue> currPath = Walk<TKey, TValue>::make();
-            std::set<IVertexPtr<TKey, TValue>> visited;
+            IWalkSharedPtr<TKey, TValue> currPath = Walk<TKey, TValue>::make();
+            std::set<IVertexSharedPtr<TKey, TValue>> visited;
 
             findPathsWithDepthFirstSearch(
                 source,
@@ -246,22 +246,22 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void GraphLogic<TKey, TValue>::findShortestPaths(
-            IVertexPtr<TKey, TValue> src,
-            const EdgeWeightMap<TKey, TValue>& weights,
-            VertexShortestPathsMap<TKey, TValue>& result) const
+                IVertexSharedPtr<TKey, TValue> src,
+                const EdgeWeightMap<TKey, TValue>& weights,
+                VertexShortestPathsMap<TKey, TValue>& result) const
         {
             base::SmartPointers::validate(src);
 
             //
             // Initializes the distances map...
             //
-            for (IVertexPtr<TKey, TValue> vertex : m_graph.vertices())
+            for (IVertexSharedPtr<TKey, TValue> vertex : m_graph.vertices())
             {
                 long initializedDistance = *vertex == *src ? 0 : std::numeric_limits<long>::max();
                 result.insert(std::make_pair(vertex, initializedDistance));
             }
 
-            using Dqueue = std::deque<std::pair<IVertexPtr<TKey, TValue>, long>>;
+            using Dqueue = std::deque<std::pair<IVertexSharedPtr<TKey, TValue>, long>>;
             Dqueue queue;
             queue.push_back(std::make_pair(src, 0));
 
@@ -269,7 +269,7 @@ namespace datastructures {
             std::function<void(const typename Dqueue::value_type& value, std::ostream& stream)> queueFunctor =
                 [](const typename Dqueue::value_type& value, std::ostream& stream)
             {
-                IVertexPtr<TKey, TValue> vertex = value.first;
+                IVertexSharedPtr<TKey, TValue> vertex = value.first;
                 long distance = value.second;
                 stream << "Vertex=" << *vertex << ", Distance=" << distance;
             };
@@ -277,7 +277,7 @@ namespace datastructures {
             std::function<void(const typename VertexShortestPathsMap<TKey, TValue>::value_type& value, std::ostream& stream)> resultFunctor =
                 [](const typename VertexShortestPathsMap<TKey, TValue>::value_type& value, std::ostream& stream)
             {
-                IVertexPtr<TKey, TValue> vertex = value.first;
+                IVertexSharedPtr<TKey, TValue> vertex = value.first;
                 long distance = value.second;
                 stream << "Vertex=" << *vertex << ", Distance=" << distance;
             };
@@ -288,18 +288,18 @@ namespace datastructures {
 
             while (!queue.empty())
             {
-                std::pair<IVertexPtr<TKey, TValue>, long> currElement = queue.front();
+                std::pair<IVertexSharedPtr<TKey, TValue>, long> currElement = queue.front();
                 queue.pop_front();
 
-                IVertexPtr<TKey, TValue> currVertex = currElement.first;
+                IVertexSharedPtr<TKey, TValue> currVertex = currElement.first;
                 long currDistance = currElement.second;
 
                 EdgeSet<TKey, TValue> adjacentEdges;
                 m_graph.getAdjacencyMatrix().getAdjacentEdges(currVertex, adjacentEdges);
 
-                for (IEdgePtr<TKey, TValue> adjacentEdge : adjacentEdges)
+                for (IEdgeSharedPtr<TKey, TValue> adjacentEdge : adjacentEdges)
                 {
-                    IVertexPtr<TKey, TValue> nextVertex = adjacentEdge->destination();
+                    IVertexSharedPtr<TKey, TValue> nextVertex = adjacentEdge->destination();
                     long edgeWeight = getEdgeWeight(weights, adjacentEdge);
 
                     long nextDistance = currDistance + edgeWeight;
@@ -323,9 +323,9 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         bool GraphLogic<TKey, TValue>::detectLoop(
-            IVertexPtr<TKey, TValue> vertex,
-            VertexSet<TKey, TValue>& visitedVertices,
-            VertexSet<TKey, TValue>& searchVertices) const
+                IVertexSharedPtr<TKey, TValue> vertex,
+                VertexSet<TKey, TValue>& visitedVertices,
+                VertexSet<TKey, TValue>& searchVertices) const
         {
             typename VertexSet<TKey, TValue>::iterator visitedVertexIterator = visitedVertices.find(vertex);
 
@@ -340,7 +340,7 @@ namespace datastructures {
             VertexSet<TKey, TValue> adjacentVertices;
             m_graph.getAdjacencyMatrix().getAdjacentVertices(vertex, adjacentVertices);
 
-            for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
+            for (IVertexSharedPtr<TKey, TValue> nextVertex : adjacentVertices)
             {
                 if (searchVertices.find(nextVertex) != searchVertices.end())
                 {
@@ -368,10 +368,10 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         bool GraphLogic<TKey, TValue>::topologicalSearch(
-            IVertexPtr<TKey, TValue> vertex,
-            std::set<IVertexPtr<TKey, TValue>>& visitedVertices,
-            std::set<IVertexPtr<TKey, TValue>>& currPath,
-            std::stack<IVertexPtr<TKey, TValue>>& result) const
+                IVertexSharedPtr<TKey, TValue> vertex,
+                std::set<IVertexSharedPtr<TKey, TValue>>& visitedVertices,
+                std::set<IVertexSharedPtr<TKey, TValue>>& currPath,
+                std::stack<IVertexSharedPtr<TKey, TValue>>& result) const
         {
             if (visitedVertices.find(vertex) != visitedVertices.end())
             {
@@ -384,7 +384,7 @@ namespace datastructures {
             VertexSet<TKey, TValue> adjacentVertices;
             m_graph.getAdjacencyMatrix().getAdjacentVertices(vertex, adjacentVertices);
 
-            for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
+            for (IVertexSharedPtr<TKey, TValue> nextVertex : adjacentVertices)
             {
                 if (currPath.find(nextVertex) != currPath.end())
                 {
@@ -417,26 +417,26 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void GraphLogic<TKey, TValue>::findPathsWithBreadthFirstSearch(
-            IVertexPtr<TKey, TValue> source,
-            IVertexPtr<TKey, TValue> destination,
-            std::list<IWalkPtr<TKey, TValue>>& result) const
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination,
+                std::list<IWalkSharedPtr<TKey, TValue>>& result) const
         {
-            std::queue<std::pair<IVertexPtr<TKey, TValue>, IWalkPtr<TKey, TValue>>> queue;
+            std::queue<std::pair<IVertexSharedPtr<TKey, TValue>, IWalkSharedPtr<TKey, TValue>>> queue;
             queue.push(std::make_pair(source, Walk<TKey, TValue>::make()));
 
             while (!queue.empty())
             {
-                std::pair<IVertexPtr<TKey, TValue>, IWalkPtr<TKey, TValue>> currElement = queue.front();
+                std::pair<IVertexSharedPtr<TKey, TValue>, IWalkSharedPtr<TKey, TValue>> currElement = queue.front();
                 queue.pop();
 
-                IVertexPtr<TKey, TValue> currVertex = currElement.first;
-                IWalkPtr<TKey, TValue> currPath = currElement.second;
+                IVertexSharedPtr<TKey, TValue> currVertex = currElement.first;
+                IWalkSharedPtr<TKey, TValue> currPath = currElement.second;
 
                 currPath->addVertex(currVertex);
 
                 if (*currVertex == *destination)
                 {
-                    IWalkPtr<TKey, TValue> newResult = Walk<TKey, TValue>::copy(*currPath);
+                    IWalkSharedPtr<TKey, TValue> newResult = Walk<TKey, TValue>::copy(*currPath);
                     result.push_back(newResult);
                 }
                 else
@@ -444,14 +444,14 @@ namespace datastructures {
                     VertexSet<TKey, TValue> adjacentVertices;
                     m_graph.getAdjacencyMatrix().getAdjacentVertices(currVertex, adjacentVertices);
 
-                    for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
+                    for (IVertexSharedPtr<TKey, TValue> nextVertex : adjacentVertices)
                     {
                         if (currPath->visited(*nextVertex))
                         {
                             continue;
                         }
 
-                        IWalkPtr<TKey, TValue> nextWalk = Walk<TKey, TValue>::copy(*currPath);
+                        IWalkSharedPtr<TKey, TValue> nextWalk = Walk<TKey, TValue>::copy(*currPath);
                         nextWalk->addVertex(nextVertex);
 
                         queue.push(std::make_pair(nextVertex, nextWalk));
@@ -465,11 +465,11 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         void GraphLogic<TKey, TValue>::findPathsWithDepthFirstSearch(
-            IVertexPtr<TKey, TValue> source,
-            IVertexPtr<TKey, TValue> destination,
-            IWalk<TKey, TValue>& currPath,
-            std::set<IVertexPtr<TKey, TValue>>& visited,
-            std::list<IWalkPtr<TKey, TValue>>& result) const
+                IVertexSharedPtr<TKey, TValue> source,
+                IVertexSharedPtr<TKey, TValue> destination,
+                IWalk<TKey, TValue>& currPath,
+                std::set<IVertexSharedPtr<TKey, TValue>>& visited,
+                std::list<IWalkSharedPtr<TKey, TValue>>& result) const
         {
             if (visited.find(source) != visited.end())
             {
@@ -478,7 +478,7 @@ namespace datastructures {
 
             if (*source == *destination)
             {
-                IWalkPtr<TKey, TValue> newResult = Walk<TKey, TValue>::copy(currPath);
+                IWalkSharedPtr<TKey, TValue> newResult = Walk<TKey, TValue>::copy(currPath);
                 newResult->addVertex(source);
                 result.push_back(newResult);
 
@@ -491,7 +491,7 @@ namespace datastructures {
             VertexSet<TKey, TValue> adjacentVertices;
             m_graph.getAdjacencyMatrix().getAdjacentVertices(source, adjacentVertices);
 
-            for (IVertexPtr<TKey, TValue> nextVertex : adjacentVertices)
+            for (IVertexSharedPtr<TKey, TValue> nextVertex : adjacentVertices)
             {
                 if (visited.find(nextVertex) != visited.end())
                 {
@@ -517,7 +517,7 @@ namespace datastructures {
     template <typename TKey, typename TValue>
     long GraphLogic<TKey, TValue>::getEdgeWeight(
         const EdgeWeightMap<TKey, TValue>& weights,
-        IEdgePtr<TKey, TValue> edge)
+        IEdgeSharedPtr<TKey, TValue> edge)
     {
         typename EdgeWeightMap<TKey, TValue>::const_iterator edgeIterator = weights.find(edge);
 
@@ -536,7 +536,7 @@ namespace datastructures {
     template <typename TKey, typename TValue>
     long GraphLogic<TKey, TValue>::getShortestDistance(
         const VertexShortestPathsMap<TKey, TValue>& shortestDistancesMap,
-        IVertexPtr<TKey, TValue> vertex)
+        IVertexSharedPtr<TKey, TValue> vertex)
     {
         typename VertexShortestPathsMap<TKey, TValue>::const_iterator vertexIterator = shortestDistancesMap.find(vertex);
 

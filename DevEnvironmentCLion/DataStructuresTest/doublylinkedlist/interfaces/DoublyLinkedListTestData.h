@@ -62,10 +62,13 @@ namespace test {
                  * Creates the nodes of a doubly linked list.
                  */
                 template <typename T>
-                std::vector<IDoublyLinkedListNodePtr<T>> createListNodes(const std::vector<T>& values) const;
+                std::vector<IDoublyLinkedListNodeSharedPtr<T>> createListNodes(const std::vector<T>& values) const;
             };
 
-            using DoublyLinkedListTestDataPtr = std::shared_ptr<DoublyLinkedListTestData>;
+            //
+            // Defines the SharedPtr of Doubly Linked List Test Data...
+            //
+            using DoublyLinkedListTestDataSharedPtr = std::shared_ptr<DoublyLinkedListTestData>;
         }
     }
 }

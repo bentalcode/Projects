@@ -180,7 +180,10 @@ namespace datastructures {
             virtual unsigned int toInteger() const = 0;
         };
 
-        using IBit32ArrayPtr = std::shared_ptr<IBit32Array>;
+        /**
+         * Defines the SharedPtr of Bit 32 Array.
+         */
+        using IBit32ArraySharedPtr = std::shared_ptr<IBit32Array>;
 
         /**
          * Defines the equivalent operator.

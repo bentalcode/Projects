@@ -37,11 +37,14 @@ namespace datastructures {
             /**
              * Gets the skip iterator.
              */
-            virtual base::ISkipIteratorPtr getSkipIterator() const = 0;
+            virtual base::ISkipIteratorSharedPtr getSkipIterator() const = 0;
         };
 
+        /**
+         * Defines SharedPtr of Binary Tree Node Reverse Iterator.
+         */
         template <typename T>
-        using IBinaryTreeNodeReverseIteratorPtr = std::shared_ptr<IBinaryTreeNodeReverseIterator<T>>;
+        using IBinaryTreeNodeReverseIteratorSharedPtr = std::shared_ptr<IBinaryTreeNodeReverseIterator<T>>;
     }
 }
 

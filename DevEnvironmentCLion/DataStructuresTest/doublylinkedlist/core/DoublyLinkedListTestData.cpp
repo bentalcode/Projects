@@ -62,7 +62,7 @@ std::vector<std::tuple<std::string, int, std::vector<int>>> DoublyLinkedListTest
 DoublyLinkedListDataPtr<int> DoublyLinkedListTestData::getListData(size_t size) const
 {
     std::vector<int> values = createListValues(size);
-    std::vector<IDoublyLinkedListNodePtr<int>> nodes = createListNodes(values);
+    std::vector<IDoublyLinkedListNodeSharedPtr<int>> nodes = createListNodes(values);
 
     DoublyLinkedListDataPtr<int> data(new DoublyLinkedListData<int>(
         values,
@@ -91,9 +91,9 @@ std::vector<int> DoublyLinkedListTestData::createListValues(size_t size) const
  * Creates nodes of a doubly linked list.
  */
 template <typename T>
-std::vector<IDoublyLinkedListNodePtr<T>> DoublyLinkedListTestData::createListNodes(const std::vector<T>& values) const
+std::vector<IDoublyLinkedListNodeSharedPtr<T>> DoublyLinkedListTestData::createListNodes(const std::vector<T>& values) const
 {
-    std::vector<IDoublyLinkedListNodePtr<T>> result(values.size());
+    std::vector<IDoublyLinkedListNodeSharedPtr<T>> result(values.size());
 
     for (size_t i = 0; i < values.size(); ++i)
     {

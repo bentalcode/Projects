@@ -16,7 +16,7 @@ namespace datastructures {
             /**
              * Creates a new instance of a key-value node.
              */
-            static IKeyValueNodePtr<TKey, TValue> make(const TKey& key, const TValue& value);
+            static IKeyValueNodeSharedPtr<TKey, TValue> make(const TKey& key, const TValue& value);
 
             /**
              * The KeyValueNode constructor.
@@ -66,7 +66,7 @@ namespace datastructures {
          * Creates a new instance of a key-value node.
          */
         template <typename TKey, typename TValue>
-        IKeyValueNodePtr<TKey, TValue> KeyValueNode<TKey, TValue>::make(const TKey& key, const TValue& value)
+        IKeyValueNodeSharedPtr<TKey, TValue> KeyValueNode<TKey, TValue>::make(const TKey& key, const TValue& value)
         {
             return std::make_shared<KeyValueNode<TKey, TValue>>(key, value);
         }

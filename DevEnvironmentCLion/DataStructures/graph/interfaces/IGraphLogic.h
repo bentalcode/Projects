@@ -44,33 +44,36 @@ namespace datastructures {
              * Performs a topological search of a graph.
              */
             virtual void topologicalSearch(
-                std::list<IVertexPtr<TKey, TValue>>& result) const = 0;
+                std::list<IVertexSharedPtr<TKey, TValue>>& result) const = 0;
 
             /**
              * Finds paths by performing a Breadth-First search.
              */
             virtual void findPathsWithBreadthFirstSearch(
                 const IRoute<TKey, TValue>& route,
-                std::list<IWalkPtr<TKey, TValue>>& result) const = 0;
+                std::list<IWalkSharedPtr<TKey, TValue>>& result) const = 0;
 
             /**
              * Finds paths by performing a Depth-First search.
              */
             virtual void findPathsWithDepthFirstSearch(
                 const IRoute<TKey, TValue>& route,
-                std::list<IWalkPtr<TKey, TValue>>& result) const = 0;
+                std::list<IWalkSharedPtr<TKey, TValue>>& result) const = 0;
 
             /**
              * Finds the shortest paths from the source vertex to all other vertices in the given graph.
              */
             virtual void findShortestPaths(
-                IVertexPtr<TKey, TValue> src,
+                IVertexSharedPtr<TKey, TValue> src,
                 const EdgeWeightMap<TKey, TValue>& weights,
                 VertexShortestPathsMap<TKey, TValue>& result) const = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Graph Logic.
+         */
         template <typename TKey, typename TValue>
-        using IGraphLogicPtr = std::shared_ptr<IGraphLogic<TKey, TValue>>;
+        using IGraphLogicSharedPtr = std::shared_ptr<IGraphLogic<TKey, TValue>>;
     }
 }
 

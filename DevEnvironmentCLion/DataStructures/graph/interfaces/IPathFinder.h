@@ -40,11 +40,14 @@ namespace datastructures {
              */
             virtual void findPaths(
                 const IRoute<TKey, TValue>& route,
-                std::list<IWalkPtr<TKey, TValue>>& result) = 0;
+                std::list<IWalkSharedPtr<TKey, TValue>>& result) = 0;
         };
 
+        /**
+         * Defines the SharedPtr of Path Finder.
+         */
         template <typename TKey, typename TValue>
-        using IPathFinderPtr = std::shared_ptr<IPathFinder<TKey, TValue>>;
+        using IPathFinderSharedPtr = std::shared_ptr<IPathFinder<TKey, TValue>>;
 
     }
 }

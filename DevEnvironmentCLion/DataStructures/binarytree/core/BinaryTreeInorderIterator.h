@@ -12,18 +12,18 @@ namespace datastructures {
          * The BinaryTreeInorderIterator class implements an inorder iterator of a binary tree.
          */
         template <typename TKey, typename TValue>
-        class BinaryTreeInorderIterator : public base::IIterator<IBinaryTreeNodePtr<TKey, TValue>>
+        class BinaryTreeInorderIterator : public base::IIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>
         {
         public:
             /**
              * Creates an inorder iterator of a binary tree.
              */
-            static base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> make(IBinaryTreeNodePtr<TKey, TValue> root);
+            static base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> make(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * The BinaryTreeInorderIterator constructor.
              */
-            explicit BinaryTreeInorderIterator(IBinaryTreeNodePtr<TKey, TValue> root);
+            explicit BinaryTreeInorderIterator(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * The destructor.
@@ -50,7 +50,7 @@ namespace datastructures {
             /**
              * Gets the next element.
              */
-            virtual IBinaryTreeNodePtr<TKey, TValue> next();
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> next();
 
             /**
              * Resets the iterator.
@@ -58,8 +58,8 @@ namespace datastructures {
             virtual void reset();
 
         private:
-            IBinaryTreeNodePtr<TKey, TValue> m_root;
-            std::unique_ptr<std::stack<IBinaryTreeNodePtr<TKey, TValue>>> m_stack;
+            IBinaryTreeNodeSharedPtr<TKey, TValue> m_root;
+            std::unique_ptr<std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>> m_stack;
             BinaryTreeLogic<TKey, TValue> m_logic;
         };
 
@@ -67,8 +67,8 @@ namespace datastructures {
          * Creates an inorder iterator of a binary tree.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorSharedPtr<IBinaryTreeNodePtr<TKey, TValue>> BinaryTreeInorderIterator<TKey, TValue>::make(
-            IBinaryTreeNodePtr<TKey, TValue> root)
+        base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeInorderIterator<TKey, TValue>::make(
+                IBinaryTreeNodeSharedPtr<TKey, TValue> root)
         {
             return std::make_shared<BinaryTreeInorderIterator<TKey, TValue>>(root);
         }
@@ -77,7 +77,7 @@ namespace datastructures {
          * The BinaryTreeInorderIterator constructor.
          */
         template <typename TKey, typename TValue>
-        BinaryTreeInorderIterator<TKey, TValue>::BinaryTreeInorderIterator(IBinaryTreeNodePtr<TKey, TValue> root) :
+        BinaryTreeInorderIterator<TKey, TValue>::BinaryTreeInorderIterator(IBinaryTreeNodeSharedPtr<TKey, TValue> root) :
             m_root(root)
         {
             reset();
@@ -104,10 +104,10 @@ namespace datastructures {
          * Gets the next element.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodePtr<TKey, TValue> BinaryTreeInorderIterator<TKey, TValue>::next()
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeInorderIterator<TKey, TValue>::next()
         {
             assert(hasNext());
-            IBinaryTreeNodePtr<TKey, TValue> currNode = m_stack->top();
+            IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = m_stack->top();
             m_stack->pop();
 
             if (currNode->hasRightChild())
@@ -124,7 +124,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void BinaryTreeInorderIterator<TKey, TValue>::reset()
         {
-            m_stack = std::make_unique<std::stack<IBinaryTreeNodePtr<TKey, TValue>>>();
+            m_stack = std::make_unique<std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>>();
 
             if (m_root.get() != nullptr)
             {
