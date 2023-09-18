@@ -45,7 +45,7 @@ PositionQueensUnitTest::~PositionQueensUnitTest()
  */
 void PositionQueensUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestPositionQueensFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestPositionQueensFunction(*this)));
 }
 
 /**

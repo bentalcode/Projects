@@ -61,8 +61,8 @@ CombinationSumUnitTest::~CombinationSumUnitTest()
  */
 void CombinationSumUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestCombinationSumFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestSingleCombinationSumFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestCombinationSumFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestSingleCombinationSumFunction(*this)));
 }
 
 /**

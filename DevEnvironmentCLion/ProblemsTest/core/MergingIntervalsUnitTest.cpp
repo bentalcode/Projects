@@ -43,7 +43,7 @@ MergingIntervalsUnitTest::~MergingIntervalsUnitTest()
  */
 void MergingIntervalsUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMergingIntervalsFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMergingIntervalsFunction(*this)));
 }
 
 /**

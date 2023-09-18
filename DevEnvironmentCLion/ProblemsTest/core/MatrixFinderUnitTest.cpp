@@ -44,7 +44,7 @@ MatrixFinderUnitTest::~MatrixFinderUnitTest()
  */
 void MatrixFinderUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMatrixFinderFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMatrixFinderFunction(*this)));
 }
 
 /**

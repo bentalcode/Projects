@@ -39,7 +39,7 @@ IteratorOfIteratorCollectionUnitTest::~IteratorOfIteratorCollectionUnitTest()
  */
 void IteratorOfIteratorCollectionUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestIteratorOfIteratorCollectionFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestIteratorOfIteratorCollectionFunction(*this)));
 }
 
 /**

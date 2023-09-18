@@ -41,7 +41,7 @@ ConcurrentQueueUnitTest::~ConcurrentQueueUnitTest()
  */
 void ConcurrentQueueUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new ConcurrentQueueTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new ConcurrentQueueTestFunction(*this)));
 }
 
 /**

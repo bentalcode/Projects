@@ -41,7 +41,7 @@ ListUnitTest::~ListUnitTest()
  */
 void ListUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new ListTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new ListTestFunction(*this)));
 }
 
 /**

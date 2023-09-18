@@ -7,8 +7,8 @@ using namespace unit_testing;
 
 int main() {
     UnitTestManager testManager;
-    IUnitTestPtr memoryAllocatorUnitTest(new MemoryAllocatorUnitTest("MemoryAllocator"));
-    IUnitTestPtr objectPoolUnitTest(new ObjectPoolUnitTest("ObjectPool"));
+    IUnitTestSharedPtr memoryAllocatorUnitTest(new MemoryAllocatorUnitTest("MemoryAllocator"));
+    IUnitTestSharedPtr objectPoolUnitTest(new ObjectPoolUnitTest("ObjectPool"));
 
     testManager.registerTest(memoryAllocatorUnitTest);
     testManager.registerTest(objectPoolUnitTest);

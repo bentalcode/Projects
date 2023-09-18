@@ -45,7 +45,7 @@ FlightRoutePlannerUnitTest::~FlightRoutePlannerUnitTest()
  */
 void FlightRoutePlannerUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestFindShortestRouteFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestFindShortestRouteFunction(*this)));
 }
 
 /**

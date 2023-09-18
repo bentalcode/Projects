@@ -54,8 +54,8 @@ MemoryAllocatorUnitTest::~MemoryAllocatorUnitTest()
  */
 void MemoryAllocatorUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMemoryAllocatorFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestAlignedMemoryAllocatorFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMemoryAllocatorFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestAlignedMemoryAllocatorFunction(*this)));
 }
 
 /**

@@ -16,22 +16,22 @@ int main()
 
     UnitTestManager testManager;
 
-    IUnitTestPtr twoDimensionalListUnitTest(new TwoDimensionalVectorUnitTest("TwoDimensionalVector"));
+    IUnitTestSharedPtr twoDimensionalListUnitTest(new TwoDimensionalVectorUnitTest("TwoDimensionalVector"));
     testManager.registerTest(twoDimensionalListUnitTest);
 
-    IUnitTestPtr matrixUnitTest(new MatrixUnitTest("Matrix"));
+    IUnitTestSharedPtr matrixUnitTest(new MatrixUnitTest("Matrix"));
     testManager.registerTest(matrixUnitTest);
 
-    IUnitTestPtr intervalMapUnitTest(new IntervalMapUnitTest("IntervalMap"));
+    IUnitTestSharedPtr intervalMapUnitTest(new IntervalMapUnitTest("IntervalMap"));
     testManager.registerTest(intervalMapUnitTest);
 
-    IUnitTestPtr stringsUnitTest(new StringsUnitTest("Strings"));
+    IUnitTestSharedPtr stringsUnitTest(new StringsUnitTest("Strings"));
     testManager.registerTest(stringsUnitTest);
 
-    IUnitTestPtr kmpStringSearchUnitTest(new KmpStringSearchUnitTest("KmpStringSearch"));
+    IUnitTestSharedPtr kmpStringSearchUnitTest(new KmpStringSearchUnitTest("KmpStringSearch"));
     testManager.registerTest(kmpStringSearchUnitTest);
 
-    IUnitTestPtr randomGeneratorUnitTest(new RandomGeneratorUnitTest("RandomGenerator"));
+    IUnitTestSharedPtr randomGeneratorUnitTest(new RandomGeneratorUnitTest("RandomGenerator"));
     testManager.registerTest(randomGeneratorUnitTest);
 
     testManager.run();

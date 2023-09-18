@@ -40,7 +40,7 @@ ObjectPoolUnitTest::~ObjectPoolUnitTest()
  */
 void ObjectPoolUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestPoolFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestPoolFunction(*this)));
 }
 
 /**

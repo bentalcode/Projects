@@ -24,31 +24,31 @@ int main()
 {
     UnitTestManager testManager;
 
-    IUnitTestPtr linkedListUnitTest(new LinkedListUnitTest("LinkedList"));
+    IUnitTestSharedPtr linkedListUnitTest(new LinkedListUnitTest("LinkedList"));
     testManager.registerTest(linkedListUnitTest);
 
-    IUnitTestPtr doublyLinkedListUnitTest(new DoublyLinkedListUnitTest("DoublyLinkedList"));
+    IUnitTestSharedPtr doublyLinkedListUnitTest(new DoublyLinkedListUnitTest("DoublyLinkedList"));
     testManager.registerTest(doublyLinkedListUnitTest);
 
-    IUnitTestPtr binaryTreeUnitTest(new BinaryTreeUnitTest("BinaryTree"));
+    IUnitTestSharedPtr binaryTreeUnitTest(new BinaryTreeUnitTest("BinaryTree"));
     testManager.registerTest(binaryTreeUnitTest);
 
-    IUnitTestPtr binaryTreeTraversalBuilderUnitTest(new BinaryTreeTraversalBuilderUnitTest("BinaryTreeTraversalsBuilder"));
+    IUnitTestSharedPtr binaryTreeTraversalBuilderUnitTest(new BinaryTreeTraversalBuilderUnitTest("BinaryTreeTraversalsBuilder"));
     testManager.registerTest(binaryTreeTraversalBuilderUnitTest);
 
-    IUnitTestPtr bitArrayUnitTest(new BitArrayUnitTest("BitArray"));
+    IUnitTestSharedPtr bitArrayUnitTest(new BitArrayUnitTest("BitArray"));
     testManager.registerTest(bitArrayUnitTest);
 
-    IUnitTestPtr priorityQueueUnitTest(new PriorityQueueUnitTest("PriorityQueue"));
+    IUnitTestSharedPtr priorityQueueUnitTest(new PriorityQueueUnitTest("PriorityQueue"));
     testManager.registerTest(priorityQueueUnitTest);
 
-    IUnitTestPtr graphUnitTest(new GraphUnitTest("Graph"));
+    IUnitTestSharedPtr graphUnitTest(new GraphUnitTest("Graph"));
     testManager.registerTest(graphUnitTest);
 
-    IUnitTestPtr cacheUnitTest(new CacheUnitTest("Cache"));
+    IUnitTestSharedPtr cacheUnitTest(new CacheUnitTest("Cache"));
     testManager.registerTest(cacheUnitTest);
 
-    IUnitTestPtr iteratorOfIteratorCollectionUnitTest(new IteratorOfIteratorCollectionUnitTest("IteratorOfIteratorCollection"));
+    IUnitTestSharedPtr iteratorOfIteratorCollectionUnitTest(new IteratorOfIteratorCollectionUnitTest("IteratorOfIteratorCollection"));
     testManager.registerTest(iteratorOfIteratorCollectionUnitTest);
 
     testManager.run();

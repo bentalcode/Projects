@@ -101,10 +101,10 @@ CacheUnitTest::~CacheUnitTest()
  */
 void CacheUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLruCacheUpdationTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMruCacheUpdationTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLruCacheIterationTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMruCacheIterationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestLruCacheUpdationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMruCacheUpdationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestLruCacheIterationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMruCacheIterationTestFunction(*this)));
 }
 
 /**

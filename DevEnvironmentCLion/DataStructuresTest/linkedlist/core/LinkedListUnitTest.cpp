@@ -81,9 +81,9 @@ LinkedListUnitTest::~LinkedListUnitTest()
  */
 void LinkedListUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLinkedListCreationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLinkedListIterationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestLinkedListUpdationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestLinkedListCreationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestLinkedListIterationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestLinkedListUpdationFunction(*this)));
 }
 
 /**

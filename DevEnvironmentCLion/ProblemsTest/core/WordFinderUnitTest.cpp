@@ -45,7 +45,7 @@ WordFinderUnitTest::~WordFinderUnitTest()
  */
 void WordFinderUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestWordFinderFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestWordFinderFunction(*this)));
 }
 
 /**

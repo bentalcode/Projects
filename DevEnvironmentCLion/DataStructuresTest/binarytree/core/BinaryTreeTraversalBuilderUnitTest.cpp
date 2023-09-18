@@ -62,8 +62,8 @@ BinaryTreeTraversalBuilderUnitTest::~BinaryTreeTraversalBuilderUnitTest()
  */
 void BinaryTreeTraversalBuilderUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBinaryTreePreorderInorderTraversalBuilderUnitTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBinaryTreePreorderPostorderTraversalBuilderUnitTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBinaryTreePreorderInorderTraversalBuilderUnitTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBinaryTreePreorderPostorderTraversalBuilderUnitTestFunction(*this)));
 }
 
 /**

@@ -115,11 +115,11 @@ GraphUnitTest::~GraphUnitTest()
  */
 void GraphUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new LoopDetectionTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TopologicalSearchTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new FindPathsWithBreadthFirstSearchTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new FindPathsWithDepthFirstSearchTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new FindShortestPathsTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new LoopDetectionTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TopologicalSearchTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new FindPathsWithBreadthFirstSearchTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new FindPathsWithDepthFirstSearchTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new FindShortestPathsTestFunction(*this)));
 }
 
 /**

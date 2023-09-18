@@ -139,12 +139,12 @@ BitArrayUnitTest::~BitArrayUnitTest()
  */
 void BitArrayUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBitArrayCreationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBitArrayTurnOnOffFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBitArrayIterationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBitArrayCardinalityTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBitArrayClearingTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBitArrayEnablingTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBitArrayCreationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBitArrayTurnOnOffFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBitArrayIterationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBitArrayCardinalityTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBitArrayClearingTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBitArrayEnablingTestFunction(*this)));
 }
 
 /**

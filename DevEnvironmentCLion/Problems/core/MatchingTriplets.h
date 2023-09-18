@@ -58,7 +58,7 @@ namespace problems
         virtual std::list<base::Triple<size_t, size_t, size_t>> getMatchingTripletsIndexes(const std::vector<T>& values, T sum) override;
 
     private:
-        using ElementIndexesMap = std::map<T, IndexListPtr>;
+        using ElementIndexesMap = std::map<T, IndexListSharedPtr>;
 
         /**
          * Gets the matching pairs values.
@@ -298,7 +298,7 @@ namespace problems
 
             if (matchingValueIterator != indexesMap.end())
             {
-                IndexListPtr matchingIndexes = matchingValueIterator->second;
+                IndexListSharedPtr matchingIndexes = matchingValueIterator->second;
                 size_t firstIndex = i;
 
                 for (size_t secondIndex : *matchingIndexes) {
@@ -377,7 +377,7 @@ namespace problems
         {
             T currValue = values[i];
 
-            IndexListPtr indexList;
+            IndexListSharedPtr indexList;
 
             typename ElementIndexesMap::iterator valueIterator = indexesMap.find(currValue);
 

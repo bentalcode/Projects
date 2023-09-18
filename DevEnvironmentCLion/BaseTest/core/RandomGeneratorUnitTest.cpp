@@ -117,11 +117,11 @@ RandomGeneratorUnitTest::~RandomGeneratorUnitTest()
  */
 void RandomGeneratorUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomBooleanTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomIntegerTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomSizeTTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomFloatTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new RandomDoubleTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new RandomBooleanTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new RandomIntegerTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new RandomSizeTTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new RandomFloatTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new RandomDoubleTestFunction(*this)));
 }
 
 /**

@@ -56,8 +56,8 @@ TwoDimensionalVectorUnitTest::~TwoDimensionalVectorUnitTest()
  */
 void TwoDimensionalVectorUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TwoDimensionalVectorCreationTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TwoDimensionalVectorIterationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TwoDimensionalVectorCreationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TwoDimensionalVectorIterationTestFunction(*this)));
 }
 
 /**

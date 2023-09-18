@@ -43,7 +43,7 @@ GenericUnitTest::~GenericUnitTest()
  */
 void GenericUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestingFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestingFunction(*this)));
 }
 
 /**

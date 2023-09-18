@@ -62,8 +62,8 @@ PriorityQueueUnitTest::~PriorityQueueUnitTest()
  */
 void PriorityQueueUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestPriorityQueueCreationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestPeekAndPollFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestPriorityQueueCreationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestPeekAndPollFunction(*this)));
 }
 
 /**

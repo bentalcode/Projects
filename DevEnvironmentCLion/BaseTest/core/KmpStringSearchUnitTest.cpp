@@ -62,8 +62,8 @@ KmpStringSearchUnitTest::~KmpStringSearchUnitTest()
  */
 void KmpStringSearchUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new FindSubStringTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new FindAllFindSubStringTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new FindSubStringTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new FindAllFindSubStringTestFunction(*this)));
 }
 
 /**

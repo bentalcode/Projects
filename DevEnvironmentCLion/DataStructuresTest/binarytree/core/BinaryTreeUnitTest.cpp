@@ -61,8 +61,8 @@ BinaryTreeUnitTest::~BinaryTreeUnitTest()
  */
 void BinaryTreeUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBinaryTreeCreationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestBinaryTreeIterationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBinaryTreeCreationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestBinaryTreeIterationFunction(*this)));
 }
 
 /**

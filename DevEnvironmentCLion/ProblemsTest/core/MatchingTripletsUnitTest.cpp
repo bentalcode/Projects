@@ -79,9 +79,9 @@ MatchingTripletsUnitTest::~MatchingTripletsUnitTest()
  */
 void MatchingTripletsUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMatchingTripletsFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMatchingTripletsIndexesFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMatchingClosestTripletFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMatchingTripletsFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMatchingTripletsIndexesFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMatchingClosestTripletFunction(*this)));
 }
 
 /**

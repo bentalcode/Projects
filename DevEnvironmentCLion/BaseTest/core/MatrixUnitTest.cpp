@@ -63,8 +63,8 @@ MatrixUnitTest::~MatrixUnitTest()
  */
 void MatrixUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new MatrixTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new MatrixIterationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new MatrixTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new MatrixIterationTestFunction(*this)));
 }
 
 /**

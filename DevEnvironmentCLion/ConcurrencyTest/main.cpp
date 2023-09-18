@@ -8,7 +8,7 @@ int main()
 {
     UnitTestManager testManager;
 
-    IUnitTestPtr jsonStreamingUnitTest(new ConcurrentQueueUnitTest("ConcurrentQueue"));
+    IUnitTestSharedPtr jsonStreamingUnitTest(new ConcurrentQueueUnitTest("ConcurrentQueue"));
     testManager.registerTest(jsonStreamingUnitTest);
 
     testManager.run();

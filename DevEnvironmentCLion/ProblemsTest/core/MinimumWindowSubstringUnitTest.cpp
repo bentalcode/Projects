@@ -44,7 +44,7 @@ MinimumWindowSubstringUnitTest::~MinimumWindowSubstringUnitTest()
  */
 void MinimumWindowSubstringUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestMinimumWindowSubstringFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestMinimumWindowSubstringFunction(*this)));
 }
 
 /**

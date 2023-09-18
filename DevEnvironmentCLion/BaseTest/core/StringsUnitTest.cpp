@@ -61,8 +61,8 @@ StringsUnitTest::~StringsUnitTest()
  */
 void StringsUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new SplitStringTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new SplitStringWithRegexTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new SplitStringTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new SplitStringWithRegexTestFunction(*this)));
 }
 
 /**

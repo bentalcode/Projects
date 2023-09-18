@@ -60,8 +60,8 @@ IntervalMapUnitTest::~IntervalMapUnitTest()
  */
 void IntervalMapUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new IntervalMapCreationTestFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new IntervalMapIterationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new IntervalMapCreationTestFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new IntervalMapIterationTestFunction(*this)));
 }
 
 /**

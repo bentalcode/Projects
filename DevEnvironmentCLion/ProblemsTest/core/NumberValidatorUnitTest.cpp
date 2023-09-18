@@ -44,7 +44,7 @@ NumberValidatorUnitTest::~NumberValidatorUnitTest()
  */
 void NumberValidatorUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestNumberValidatorFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestNumberValidatorFunction(*this)));
 }
 
 /**

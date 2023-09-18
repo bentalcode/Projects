@@ -81,9 +81,9 @@ DoublyLinkedListUnitTest::~DoublyLinkedListUnitTest()
  */
 void DoublyLinkedListUnitTest::registerTests(unit_testing::ITestRegistration& registration)
 {
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestDoublyLinkedListCreationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestDoublyLinkedListIterationFunction(*this)));
-    registration.registerTest(unit_testing::ITestFunctionPtr(new TestDoublyLinkedListUpdationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestDoublyLinkedListCreationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestDoublyLinkedListIterationFunction(*this)));
+    registration.registerTest(unit_testing::ITestFunctionSharedPtr(new TestDoublyLinkedListUpdationFunction(*this)));
 }
 
 /**

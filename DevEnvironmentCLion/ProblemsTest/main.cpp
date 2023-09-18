@@ -17,34 +17,34 @@ int main()
 {
     UnitTestManager testManager;
 
-    IUnitTestPtr genericUnitTest(new GenericUnitTest("GenericUnitTest"));
+    IUnitTestSharedPtr genericUnitTest(new GenericUnitTest("GenericUnitTest"));
     testManager.registerTest(genericUnitTest);
 
-    IUnitTestPtr combinationSumUnitTest(new CombinationSumUnitTest("CombinationSum"));
+    IUnitTestSharedPtr combinationSumUnitTest(new CombinationSumUnitTest("CombinationSum"));
     testManager.registerTest(combinationSumUnitTest);
 
-    IUnitTestPtr matchingTripletsUnitTest(new MatchingTripletsUnitTest("MatchingTriplets"));
+    IUnitTestSharedPtr matchingTripletsUnitTest(new MatchingTripletsUnitTest("MatchingTriplets"));
     testManager.registerTest(matchingTripletsUnitTest);
 
-    IUnitTestPtr matrixFinderUnitTest(new MatrixFinderUnitTest("MatrixFinder"));
+    IUnitTestSharedPtr matrixFinderUnitTest(new MatrixFinderUnitTest("MatrixFinder"));
     testManager.registerTest(matrixFinderUnitTest);
 
-    IUnitTestPtr minimumWindowSubstringUnitTest(new MinimumWindowSubstringUnitTest("minimumWindowSubstring"));
+    IUnitTestSharedPtr minimumWindowSubstringUnitTest(new MinimumWindowSubstringUnitTest("minimumWindowSubstring"));
     testManager.registerTest(minimumWindowSubstringUnitTest);
 
-    IUnitTestPtr mergingIntervalsUnitTest(new MergingIntervalsUnitTest("MergingIntervals"));
+    IUnitTestSharedPtr mergingIntervalsUnitTest(new MergingIntervalsUnitTest("MergingIntervals"));
     testManager.registerTest(mergingIntervalsUnitTest);
 
-    IUnitTestPtr numberValidatorUnitTest(new NumberValidatorUnitTest("NumberValidator"));
+    IUnitTestSharedPtr numberValidatorUnitTest(new NumberValidatorUnitTest("NumberValidator"));
     testManager.registerTest(numberValidatorUnitTest);
 
-    IUnitTestPtr positionQueensUnitTest(new PositionQueensUnitTest("PositionQueens"));
+    IUnitTestSharedPtr positionQueensUnitTest(new PositionQueensUnitTest("PositionQueens"));
     testManager.registerTest(positionQueensUnitTest);
 
-    IUnitTestPtr wordFinderUnitTest(new WordFinderUnitTest("WordFinder"));
+    IUnitTestSharedPtr wordFinderUnitTest(new WordFinderUnitTest("WordFinder"));
     testManager.registerTest(wordFinderUnitTest);
 
-    IUnitTestPtr flightRoutePlannerUnitTest(new FlightRoutePlannerUnitTest("FlightRoutePlanner"));
+    IUnitTestSharedPtr flightRoutePlannerUnitTest(new FlightRoutePlannerUnitTest("FlightRoutePlanner"));
     testManager.registerTest(flightRoutePlannerUnitTest);
 
     testManager.run();
