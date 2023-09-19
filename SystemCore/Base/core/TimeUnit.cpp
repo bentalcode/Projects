@@ -1,6 +1,5 @@
 #include "TimeUnit.h"
 #include "BaseException.h"
-#include "assert.h"
 
 using namespace base;
 

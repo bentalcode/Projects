@@ -32,12 +32,6 @@
                 "cmakeListsFileExtensions": [
                     "CMakeLists.txt"
                 ]
-            },
-            "cmakeListsManifest": {
-                "cmakeVersion": "3.6",
-                "projectVersion": "1.0",
-                "presetPath": "data\\devEnvironment\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt",
-                "postsetPath": "data\\devEnvironment\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
             }
         },
         {

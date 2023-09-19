@@ -11,7 +11,7 @@ namespace base {
     class NotImplementedException : public base::BaseException
     {
     public:
-        explicit NotImplementedException(const std::string &errorMessage) :
+        explicit NotImplementedException(const std::wstring &errorMessage) :
             BaseException(
                 ErrorCodes::NOT_IMPLEMENTED,
                 errorMessage)

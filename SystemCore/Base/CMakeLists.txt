@@ -10,6 +10,8 @@ set(RESOURCES_DIRECTORY_NAME
 )
 
 
+set(CMAKE_CXX_STANDARD 14)
+
 macro(print_all_variables)
     message(STATUS "print_all_variables------------------------------------------{")
     get_cmake_property(_variableNames VARIABLES)
@@ -30,14 +32,34 @@ else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
 
+add_compile_definitions(WINDOWS=1)
+
 
 set(BASE_INCLUDES_FILES
     ./core/BaseException.h
     ./core/ErrorCodes.h
     ./core/ErrorMessages.h
+    ./core/Indexes.h
     ./core/NotImplementedException.h
+    ./core/ReferenceCounterHolder.h
+    ./core/StringUtils.h
+    ./core/ToString.h
+    ./core/Uuid.h
+    ./interfaces/Colors.h
     ./interfaces/DateTime.h
     ./interfaces/Duration.h
+    ./interfaces/IBinaryComparator.h
+    ./interfaces/IClone.h
+    ./interfaces/IComparatorFactory.h
+    ./interfaces/IEquatableComparator.h
+    ./interfaces/IHashCodeProvider.h
+    ./interfaces/IIterable.h
+    ./interfaces/IIterator.h
+    ./interfaces/IToString.h
+    ./interfaces/IUuid.h
+    ./interfaces/ReferenceCounter.h
+    ./interfaces/ReferenceCounterHolder.h
+    ./interfaces/SmartPointers.h
     ./interfaces/TimeUnit.h
     ./interfaces/TimeUtils.h
 )
@@ -46,8 +68,12 @@ set(BASE_SOURCES_FILES
     ./core/DateTime.cpp
     ./core/ErrorCodes.cpp
     ./core/ErrorMessages.cpp
+    ./core/ReferenceCounter.cpp
+    ./core/StringUtils.cpp
     ./core/TimeUnit.cpp
     ./core/TimeUtils.cpp
+    ./core/ToString.cpp
+    ./core/Uuid.cpp
 )
 
 set(BASE_INCLUDES
