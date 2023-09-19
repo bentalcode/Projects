@@ -10,7 +10,7 @@ import java.util.List;
  */
 public final class TestData implements ITestData {
     private final ICMakeProjectResources devEnvironmentProject = new DevEnvironmentCMakeProjectResources();
-    private final ICMakeProjectResources videoRenderingVisualizerProject = new VideoRenderingVisualizerCMakeProjectResources();
+    private final ICMakeProjectResources systemCoreProject = new SystemCoreCMakeProjectResources();
 
     /**
      * The TestData constructor.
@@ -26,7 +26,7 @@ public final class TestData implements ITestData {
     {
         List<ICMakeProjectResources> projects = new ArrayList<>(2);
         projects.add(this.devEnvironmentProject);
-        //projects.add(this.videoRenderingVisualizerProject);
+        //projects.add(this.systemCoreProject);
         return projects;
     }
 }

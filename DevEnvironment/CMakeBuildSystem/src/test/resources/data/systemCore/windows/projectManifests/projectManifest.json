@@ -1,0 +1,13 @@
+{
+    "name": "VideoRenderingVisualizer",
+    "rootPath": "c:\\git\\repositories\\Projects\\SystemCore",
+    "effectiveModules": [
+        "Base"
+    ],
+    "modules": [
+        {
+            "name": "Base",
+            "type": "library"
+        }
+    ]
+}
