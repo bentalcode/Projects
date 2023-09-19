@@ -29,7 +29,7 @@ namespace base {
         /**
          * Gets an error code of an exception.
          */
-        inline long getStatusCode()
+        inline long GetStatusCode()
         {
             return m_statusCode;
         }
@@ -37,7 +37,7 @@ namespace base {
         /**
          * Gets an error message of an exception.
          */
-        inline std::wstring getErrorMessage()
+        inline std::wstring GetErrorMessage()
         {
             return m_errorMessage;
         }

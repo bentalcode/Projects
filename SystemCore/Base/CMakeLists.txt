@@ -36,15 +36,23 @@ set(BASE_INCLUDES_FILES
     ./core/ErrorCodes.h
     ./core/ErrorMessages.h
     ./core/NotImplementedException.h
+    ./interfaces/DateTime.h
+    ./interfaces/Duration.h
+    ./interfaces/TimeUnit.h
+    ./interfaces/TimeUtils.h
 )
 
 set(BASE_SOURCES_FILES
+    ./core/DateTime.cpp
     ./core/ErrorCodes.cpp
     ./core/ErrorMessages.cpp
+    ./core/TimeUnit.cpp
+    ./core/TimeUtils.cpp
 )
 
 set(BASE_INCLUDES
     ./core
+    ./interfaces
 )
 
 set(BASE_SOURCES

@@ -36,8 +36,8 @@ public final class GenericTest {
         int[] interval3 = new int[2];
         int[] interval4 = new int[2];
 
-        interval1[0] = 1; interval1[1] = 3;
-        interval2[0] = 2; interval2[1] = 6;
+        interval1[0] = 2; interval1[1] = 6;
+        interval2[0] = 1; interval2[1] = 3;
         interval3[0] = 8; interval3[1] = 10;
         interval4[0] = 15; interval4[1] = 18;
 
@@ -50,149 +50,168 @@ public final class GenericTest {
         int[][] results = new Solution().merge(intervals);
     }
 
-    class Solution {
-        public int[][] merge(int[][] intervals) {
-            if (intervals == null) {
-                throw new IllegalArgumentException("The array of input intervals are null.");
+        class Solution {
+            public int[][] merge(int[][] intervals) {
+                if (intervals == null) {
+                    throw new IllegalArgumentException("The input intervals can not be null.");
+                }
+
+                int length = intervals.length;
+
+                if (length <= 1) {
+                    return intervals;
+                }
+
+                int[][] sorted = sortIntervals(intervals);
+
+                Stack<int[]> stack = new Stack<>();
+                stack.push(sorted[0]);
+
+                for (int index = 1; index < length; ++index) {
+                    int[] currInterval = sorted[index];
+                    int[] prevInterval = stack.pop();
+
+                    if (intervalsOverlap(prevInterval, currInterval)) {
+                        int[] mergedInterval = mergeIntervals(prevInterval, currInterval);
+
+                        stack.push(mergedInterval);
+                    }
+                    else {
+                        stack.push(prevInterval);
+                        stack.push(currInterval);
+                    }
+                }
+
+                int[][] result = getIntervals(stack);
+
+                return result;
             }
 
-            int length = intervals.length;
+            private boolean intervalsOverlap(int[] left, int[] right) {
+                int leftEnd = left[1];
+                int rightStart = right[0];
 
-            if (length <= 1) {
+                return rightStart <= leftEnd;
+            }
+
+            private int[] mergeIntervals(int[] left, int[] right) {
+                int leftStart = left[0];
+                int leftEnd = left[1];
+
+                int rightEnd = right[1];
+
+                int start = leftStart;
+                int end = Math.max(leftEnd, rightEnd);
+
+                return createInterval(start, end);
+            }
+
+            private int[] createInterval(int start, int end) {
+                int[] interval = new int[2];
+                interval[0] = start;
+                interval[1] = end;
+                return interval;
+            }
+
+            private int[][] getIntervals(Stack<int[]> stack) {
+                if (stack.isEmpty()) {
+                    return null;
+                }
+
+                int length = stack.size();
+
+                int[][] intervals = new int[length][];
+                int insertIndex = length - 1;
+
+                while (!stack.empty()) {
+                    int[] currInterval = stack.pop();
+                    intervals[insertIndex] = currInterval;
+
+                    --insertIndex;
+                }
+
                 return intervals;
             }
 
-            int[][] sorted = sort(intervals);
+            private int[][] sortIntervals(int[][] intervals) {
+                int[][] sorted = copyIntervals(intervals);
 
-            Stack<int[]> stack = new Stack<>();
-            stack.push(sorted[0]);
-
-            for (int index = 1; index < length; ++index) {
-                int[] currInterval = sorted[index];
-                int[] prevInterval = stack.pop();
-
-                if (intervalOverlap(prevInterval, currInterval)) {
-                    int[] mergedInterval = merge(prevInterval, currInterval);
-                    stack.push(mergedInterval);
+                if (sorted == null) {
+                    return null;
                 }
-                else {
-                    stack.push(prevInterval);
-                    stack.push(currInterval);
-                }
-            }
 
-            int[][] mergedIntervals = getMergedIntervals(stack);
-            return mergedIntervals;
-        }
+                Arrays.sort(sorted, new Comparator<int[]>() {
+                    public int compare(int[] left, int[] right) {
+                        if (left == null && right == null) {
+                            return 0;
+                        }
 
-        private boolean intervalOverlap(int[] left, int[] right) {
-            int leftEndIndex = left[1];
-            int rightStartIndex = right[0];
+                        if (left == null) {
+                            return -1;
+                        }
 
-            return rightStartIndex <= leftEndIndex;
-        }
+                        if (right == null) {
+                            return 1;
+                        }
 
-        private int[] merge(int[] left, int[] right) {
-            assert(intervalOverlap(left, right));
+                        int leftStart = left[0];
+                        int leftEnd = left[1];
 
-            int leftStartIndex = left[0];
-            int rightEndIndex = right[1];
+                        int rightStart = right[0];
+                        int rightEnd = right[1];
 
-            int[] mergedInterval = new int[2];
-            mergedInterval[0] = leftStartIndex;
-            mergedInterval[1] = rightEndIndex;
-            return mergedInterval;
-        }
+                        if (leftStart < rightStart) {
+                            return -1;
+                        }
 
-        private int[][] getMergedIntervals(Stack<int[]> stack) {
-            int length = stack.size();
+                        if (leftStart > rightStart) {
+                            return 1;
+                        }
 
-            if (length == 0) {
-                return null;
-            }
+                        if (leftEnd < rightEnd) {
+                            return -1;
+                        }
 
-            int[][] result = new int[length][];
-            int insertIndex = length - 1;
+                        if (leftEnd > rightEnd) {
+                            return 1;
+                        }
 
-            while (!stack.isEmpty()) {
-                int[] interval = stack.pop();
-                result[insertIndex] = interval;
-                --insertIndex;
-            }
-
-            return result;
-        }
-
-        private int[][] sort(int[][] intervals) {
-            int[][] sorted = copy(intervals);
-
-            Arrays.sort(sorted, new Comparator<int[]>() {
-                public int compare(int[] left, int[] right) {
-                    if (left == null && right == null) {
                         return 0;
                     }
+                });
 
-                    if (left == null) {
-                        return -1;
-                    }
+                return sorted;
+            }
 
-                    if (right == null) {
-                        return 1;
-                    }
-
-                    int leftStartIndex = left[0];
-                    int leftEndIndex = left[1];
-
-                    int rightStartIndex = right[0];
-                    int rightEndIndex = right[1];
-
-                    if (leftStartIndex < rightStartIndex) {
-                        return -1;
-                    }
-
-                    if (leftStartIndex > rightStartIndex) {
-                        return 1;
-                    }
-
-                    if (leftEndIndex < rightEndIndex) {
-                        return -1;
-                    }
-
-                    if (leftEndIndex > rightEndIndex) {
-                        return 1;
-                    }
-
-                    return 0;
+            private int[][] copyIntervals(int[][] intervals) {
+                if (intervals == null) {
+                    return null;
                 }
-            });
 
-            return sorted;
-        }
+                int length = intervals.length;
 
-        private int[][] copy(int[][] intervals) {
-            if (intervals == null) {
-                return null;
+                int[][] result = new int[length][];
+
+                for (int index = 0; index < length; ++index) {
+                    int[] interval = intervals[index];
+                    int[] clonedInterval = copyInterval(interval);
+
+                    result[index] = clonedInterval;
+                }
+
+                return result;
             }
 
-            int length = intervals.length;
+            private int[] copyInterval(int[] interval) {
+                if (interval == null) {
+                    return null;
+                }
 
-            int[][] result = new int[length][];
+                int[] result = new int[2];
+                result[0] = interval[0];
+                result[1] = interval[1];
 
-            for (int index = 0; index < length; ++index) {
-                int[] interval = intervals[index];
-                int[] intervalCopy = copy(interval);
-
-                result[index] = intervalCopy;
+                return result;
             }
-
-            return result;
-        }
-
-        private int[] copy(int[] interval) {
-            int[] result = new int[2];
-            result[0] = interval[0];
-            result[1] = interval[1];
-            return result;
         }
     }
-}

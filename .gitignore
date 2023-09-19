@@ -9,6 +9,7 @@
 .gradle/
 gradle/
 build/
+cmake-build-debug/
 out/
 gradlew.bat
 
