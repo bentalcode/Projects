@@ -9,6 +9,7 @@ set(RESOURCES_DIRECTORY_NAME
     resources
 )
 
+
 macro(print_all_variables)
     message(STATUS "print_all_variables------------------------------------------{")
     get_cmake_property(_variableNames VARIABLES)
@@ -28,6 +29,7 @@ if (NOT $ENV{BOOST_ROOT})
 else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
+
 
 set(JSON_INCLUDES_FILES
     ./JsonException.h

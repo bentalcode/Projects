@@ -48,10 +48,6 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
             name,
             "The module name.");
 
-        Conditions.validateNotNull(
-            name,
-            "The path.");
-
         this.name = name;
         this.path = path;
         this.type = type;
@@ -125,7 +121,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(PROPERTY_NAME, this.name);
 
-        if (!this.path.isEmpty()) {
+        if (this.path != null) {
             writer.writeStringProperty(PROPERTY_PATH, this.path);
         }
 
@@ -141,7 +137,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     public static ICMakeModuleManifest readJson(IJsonObjectReader reader) {
         String name = reader.readStringProperty(PROPERTY_NAME);
 
-        String path = "";
+        String path = null;
         if (reader.hasProperty(PROPERTY_PATH)) {
             path = reader.readStringProperty(PROPERTY_PATH);
         }

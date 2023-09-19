@@ -9,7 +9,6 @@ set(RESOURCES_DIRECTORY_NAME
     resources
 )
 
-set(CMAKE_CXX_STANDARD 14)
 
 macro(print_all_variables)
     message(STATUS "print_all_variables------------------------------------------{")
@@ -30,6 +29,7 @@ if (NOT $ENV{BOOST_ROOT})
 else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
+
 
 set(BASE_INCLUDES_FILES
     ./BaseException.h

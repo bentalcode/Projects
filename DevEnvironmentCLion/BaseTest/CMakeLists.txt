@@ -37,6 +37,7 @@ else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
 
+
 set(BASE_TEST_INCLUDES_FILES
     ./core/PreCompiled.h
     ./interfaces/IntervalMapUnitTest.h

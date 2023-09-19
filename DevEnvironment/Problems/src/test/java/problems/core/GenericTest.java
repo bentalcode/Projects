@@ -31,135 +31,168 @@ public final class GenericTest {
      */
     @Test
     public void test() {
-        int[] values = {1, 2, 3, 4};
+        int[] interval1 = new int[2];
+        int[] interval2= new int[2];
+        int[] interval3 = new int[2];
+        int[] interval4 = new int[2];
 
-        for (int i = 0; i < 10; ++i) {
-            new Solution().nextPermutation(values);
-        }
+        interval1[0] = 1; interval1[1] = 3;
+        interval2[0] = 2; interval2[1] = 6;
+        interval3[0] = 8; interval3[1] = 10;
+        interval4[0] = 15; interval4[1] = 18;
+
+        int[][] intervals = new int[4][];
+        intervals[0] = interval1;
+        intervals[1] = interval2;
+        intervals[2] = interval3;
+        intervals[3] = interval4;
+
+        int[][] results = new Solution().merge(intervals);
     }
 
     class Solution {
-        public void nextPermutation(int[] nums) {
-            if (nums == null || nums.length == 0) {
-                throw new IllegalArgumentException("The input array of numbers can not be null or empty.");
+        public int[][] merge(int[][] intervals) {
+            if (intervals == null) {
+                throw new IllegalArgumentException("The array of input intervals are null.");
             }
 
-            int length = nums.length;
+            int length = intervals.length;
 
             if (length <= 1) {
-                return;
+                return intervals;
             }
 
-            int startIndex = 0;
-            int endIndex = length - 1;
+            int[][] sorted = sort(intervals);
 
-            int firstDecreasingIndex = findFirstDecreasingIndex(nums, startIndex, endIndex);
+            Stack<int[]> stack = new Stack<>();
+            stack.push(sorted[0]);
 
-            if (firstDecreasingIndex == -1) {
-                sort(nums);
-                return;
-            }
+            for (int index = 1; index < length; ++index) {
+                int[] currInterval = sorted[index];
+                int[] prevInterval = stack.pop();
 
-            int firstDecreasingValue = nums[firstDecreasingIndex];
-            int swapIndex = findSwapIndex(nums, firstDecreasingIndex + 1, endIndex, firstDecreasingValue);
-
-            if (swapIndex == -1) {
-                assert(false);
-                throw new RuntimeException("The swap index has not been found.");
-            }
-
-            swap(nums, firstDecreasingIndex, swapIndex);
-            sort(nums, firstDecreasingIndex + 1, endIndex);
-        }
-
-        private int findFirstDecreasingIndex(int[] values, int startIndex, int endIndex) {
-            assert(startIndex <= endIndex);
-
-            if (startIndex == endIndex) {
-                return -1;
-            }
-
-            int prevValue = values[endIndex];
-
-            for (int index = endIndex - 1; index >= startIndex; --index) {
-                int currValue = values[index];
-
-                if (currValue < prevValue) {
-                    return index;
+                if (intervalOverlap(prevInterval, currInterval)) {
+                    int[] mergedInterval = merge(prevInterval, currInterval);
+                    stack.push(mergedInterval);
                 }
-
-                prevValue = currValue;
-            }
-
-            return -1;
-        }
-
-        private int findSwapIndex(int[] values, int startIndex, int endIndex, int firstDecreasingValue) {
-            int swapIndex = -1;
-            int swapValue = Integer.MAX_VALUE;
-
-            for (int index = startIndex; index <= endIndex; ++index) {
-                int currValue = values[index];
-
-                if (currValue > firstDecreasingValue && currValue < swapValue) {
-                    swapIndex = index;
-                    swapValue = currValue;
+                else {
+                    stack.push(prevInterval);
+                    stack.push(currInterval);
                 }
             }
 
-            return swapIndex;
+            int[][] mergedIntervals = getMergedIntervals(stack);
+            return mergedIntervals;
         }
 
-        private void swap(int[] values, int index1, int index2) {
-            int temp = values[index1];
-            values[index1] = values[index2];
-            values[index2] = temp;
+        private boolean intervalOverlap(int[] left, int[] right) {
+            int leftEndIndex = left[1];
+            int rightStartIndex = right[0];
+
+            return rightStartIndex <= leftEndIndex;
         }
 
-        private void sort(int[] values) {
-            if (values.length <= 1) {
-                return;
+        private int[] merge(int[] left, int[] right) {
+            assert(intervalOverlap(left, right));
+
+            int leftStartIndex = left[0];
+            int rightEndIndex = right[1];
+
+            int[] mergedInterval = new int[2];
+            mergedInterval[0] = leftStartIndex;
+            mergedInterval[1] = rightEndIndex;
+            return mergedInterval;
+        }
+
+        private int[][] getMergedIntervals(Stack<int[]> stack) {
+            int length = stack.size();
+
+            if (length == 0) {
+                return null;
             }
 
-            quicksort(values, 0, values.length - 1);
-        }
+            int[][] result = new int[length][];
+            int insertIndex = length - 1;
 
-        private void sort(int[] values, int startIndex, int endIndex) {
-            quicksort(values, startIndex, endIndex);
-        }
-
-        private void quicksort(int[] values, int startIndex, int endIndex) {
-            if (startIndex >= endIndex) {
-                return;
+            while (!stack.isEmpty()) {
+                int[] interval = stack.pop();
+                result[insertIndex] = interval;
+                --insertIndex;
             }
 
-            int pivotIndex = startIndex + ((endIndex - startIndex) >> 1);
-            int partitionIndex = partition(values, startIndex, endIndex, pivotIndex);
-
-            quicksort(values, startIndex, partitionIndex - 1);
-            quicksort(values, partitionIndex + 1, endIndex);
+            return result;
         }
 
-        private int partition(int[] values, int startIndex, int endIndex, int pivotIndex) {
-            assert(startIndex <= endIndex);
-            assert(pivotIndex >= startIndex && pivotIndex <= endIndex);
+        private int[][] sort(int[][] intervals) {
+            int[][] sorted = copy(intervals);
 
-            int pivotValue = values[pivotIndex];
-            swap(values, pivotIndex, endIndex);
+            Arrays.sort(sorted, new Comparator<int[]>() {
+                public int compare(int[] left, int[] right) {
+                    if (left == null && right == null) {
+                        return 0;
+                    }
 
-            int insertIndex = startIndex;
+                    if (left == null) {
+                        return -1;
+                    }
 
-            for (int index = startIndex; index <= endIndex - 1; ++index) {
-                int currValue = values[index];
+                    if (right == null) {
+                        return 1;
+                    }
 
-                if (currValue < pivotValue) {
-                    swap(values, index, insertIndex);
-                    ++insertIndex;
+                    int leftStartIndex = left[0];
+                    int leftEndIndex = left[1];
+
+                    int rightStartIndex = right[0];
+                    int rightEndIndex = right[1];
+
+                    if (leftStartIndex < rightStartIndex) {
+                        return -1;
+                    }
+
+                    if (leftStartIndex > rightStartIndex) {
+                        return 1;
+                    }
+
+                    if (leftEndIndex < rightEndIndex) {
+                        return -1;
+                    }
+
+                    if (leftEndIndex > rightEndIndex) {
+                        return 1;
+                    }
+
+                    return 0;
                 }
+            });
+
+            return sorted;
+        }
+
+        private int[][] copy(int[][] intervals) {
+            if (intervals == null) {
+                return null;
             }
 
-            swap(values, insertIndex, endIndex);
-            return insertIndex;
+            int length = intervals.length;
+
+            int[][] result = new int[length][];
+
+            for (int index = 0; index < length; ++index) {
+                int[] interval = intervals[index];
+                int[] intervalCopy = copy(interval);
+
+                result[index] = intervalCopy;
+            }
+
+            return result;
+        }
+
+        private int[] copy(int[] interval) {
+            int[] result = new int[2];
+            result[0] = interval[0];
+            result[1] = interval[1];
+            return result;
         }
     }
 }

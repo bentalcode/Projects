@@ -25,8 +25,8 @@ public final class TestData implements ITestData {
     public List<ICMakeProjectResources> getCMakeProjects()
     {
         List<ICMakeProjectResources> projects = new ArrayList<>(2);
-        //projects.add(this.projectResources);
-        projects.add(this.videoRenderingVisualizerProject);
+        projects.add(this.devEnvironmentProject);
+        //projects.add(this.videoRenderingVisualizerProject);
         return projects;
     }
 }
