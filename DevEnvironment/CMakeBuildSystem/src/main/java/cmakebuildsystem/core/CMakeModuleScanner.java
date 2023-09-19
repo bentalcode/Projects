@@ -65,10 +65,6 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
         List<Path> buildFilesPaths = pathsResult.get(2);
         List<Path> cmakeListsFilesPaths = pathsResult.get(3);
 
-        verifyScannedCMakeListsFiles(
-            cmakeListsFilesPaths,
-            cmakeListsTargetPath);
-
         return new CMakeModule(
             this.manifest.getName(),
             this.path,
@@ -92,20 +88,5 @@ public final class CMakeModuleScanner implements IScanner<ICMakeModule> {
             .build();
 
         return Paths.create(path);
-    }
-
-    /**
-     * Verifies that the .
-     */
-    private void verifyScannedCMakeListsFiles(List<Path> paths, Path cmakeListsTargetPath) {
-        if (paths.size() != 1 && cmakeListsTargetPath.equals(paths.get(0))) {
-            String errorMessage =
-                "The CMake Module at path: " + this.path.toString() +
-                " should contain a single cmakefile: " + cmakeListsTargetPath +
-                ", found: " + Collections.toString(paths);
-
-            this.log.error(errorMessage);
-            throw new CMakeBuildException(errorMessage);
-        }
     }
 }
