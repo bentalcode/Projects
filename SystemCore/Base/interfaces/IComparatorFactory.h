@@ -1,35 +1,38 @@
-#pragma once
+#ifndef I_COMPARATOR_FACTORY_H_3bec5bc8_57d0_11ee_8c99_0242ac120002
+#define I_COMPARATOR_FACTORY_H_3bec5bc8_57d0_11ee_8c99_0242ac120002
 
-#include "AlmostComparator.h"
+#include "IBinaryComparator.h"
 
-namespace Utilities {
-
-/**
- * The IComparatorFactory interface defines a factory for generting comparators.
- */
-class IComparatorFactory {
-public:
-    static const double DEFAULT_EPSILON; 
-
-    IComparatorFactory() = default;
-    virtual ~IComparatorFactory() = default;
+namespace base {
 
     /**
-     * Gets an almost comparator of type integer.
+     * The IComparatorFactory interface defines a factory for generating comparators.
      */
-    virtual IBinaryComparatorSharedPtr<int> GetAlmostIntegerComparator(double epsilon = DEFAULT_EPSILON) const = 0;
+    class IComparatorFactory {
+    public:
+        static const double DEFAULT_EPSILON;
+
+        IComparatorFactory() = default;
+        virtual ~IComparatorFactory() = default;
+
+        /**
+         * Gets an almost comparator of type integer.
+         */
+        virtual IBinaryComparatorSharedPtr<int> GetAlmostIntegerComparator(double epsilon = DEFAULT_EPSILON) const = 0;
+
+        /**
+         * Gets an almost comparator of type double.
+         */
+        virtual IBinaryComparatorSharedPtr<double> GetAlmostDoubleComparator(double epsilon = DEFAULT_EPSILON) const = 0;
+    };
+
+    const double IComparatorFactory::DEFAULT_EPSILON = 0.0001;
 
     /**
-     * Gets an almost comparator of type double.
+     * Defines the Shared Ptr of Comparator Factory.
      */
-    virtual IBinaryComparatorSharedPtr<double> GetAlmostDoubleComparator(double epsilon = DEFAULT_EPSILON) const = 0;
-};
+    using IComparatorFactorySharedPtr = std::shared_ptr<IComparatorFactory>;
 
-inline const double IComparatorFactory::DEFAULT_EPSILON = 0.0001;
+}  // namespace base
 
-/**
- * Defines the Shared Ptr of Comparator Factory.
- */
-using IComparatorFactorySharedPtr = std::shared_ptr<IComparatorFactory>;
-
-}  // namespace Utilities
+#endif // I_COMPARATOR_FACTORY_H_3bec5bc8_57d0_11ee_8c99_0242ac120002

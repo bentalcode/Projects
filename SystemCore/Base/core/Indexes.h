@@ -37,9 +37,9 @@ namespace base {
 
             std::wstringstream errorMessageStream;
             errorMessageStream
-                << L"Index: " << std::to_string(index) << L" is out of range."
-                << L" Specified range: [" << std::to_string(startIndex) << L"-" << std::to_string(endIndex) << L"]"
-                << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+                << L"Index: " << std::to_wstring(index) << L" is out of range."
+                << L" Specified range: [" << std::to_wstring(startIndex) << L"-" << std::to_wstring(endIndex) << L"]"
+                << ErrorMessages::GetErrorCodeMessage(errorCode);
 
             std::wstring errorMessage = errorMessageStream.str();
             throw BaseException(errorCode, errorMessage);
@@ -52,11 +52,7 @@ namespace base {
     template <typename T>
     size_t Indexes::Size(T startIndex, T endIndex)
     {
-        if (startIndex < 0 || endIndex < 0 || startIndex > endIndex) {
-            return 0;
-        }
-
-        return endIndex - startIndex + 1;
+        return startIndex <= endIndex ? endIndex - startIndex + 1 : 0;
     }
 
 }  // namespace base

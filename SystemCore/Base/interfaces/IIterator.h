@@ -1,39 +1,42 @@
-#pragma once
+#ifndef I_ITERATOR_H_8eefa834_57d0_11ee_8c99_0242ac120002
+#define I_ITERATOR_H_8eefa834_57d0_11ee_8c99_0242ac120002
 
 #include <memory>
 
-namespace Utilities {
-
-/**
- * The IIterator interface defines an iterator.
- */
-template <typename T>
-class IIterator
-{
-public:
-    IIterator() = default;
-    virtual ~IIterator() = default;
+namespace base {
 
     /**
-     * Checks whether there is a next element.
+     * The IIterator interface defines an iterator.
      */
-    virtual bool HasNext() const = 0;
+    template <typename T>
+    class IIterator
+    {
+    public:
+        IIterator() = default;
+        virtual ~IIterator() = default;
+
+        /**
+         * Checks whether there is a Next element.
+         */
+        virtual bool HasNext() const = 0;
+
+        /**
+         * Gets the Next element.
+         */
+        virtual T Next() = 0;
+
+        /**
+         * Resets the iterator.
+         */
+        virtual void Reset() = 0;
+    };
 
     /**
-     * Gets the next element.
+     * Defines the Shared Ptr of IIterator.
      */
-    virtual T Next() = 0;
+    template <typename T>
+    using IIteratorSharedPtr = std::shared_ptr<IIterator<T>>;
 
-    /**
-     * Resets the iterator.
-     */
-    virtual void Reset() = 0;
-};
+} // namespace base
 
-/**
- * Defines the Shared Ptr of IIterator.
- */
-template <typename T>
-using IIteratorSharedPtr = std::shared_ptr<IIterator<T>>;
-
-}  // namespace Utilities
+#endif // namespace I_ITERATOR_H_8eefa834_57d0_11ee_8c99_0242ac120002

@@ -82,7 +82,7 @@ namespace base {
     }
 
     /**
-     * The ReferenceCounterHolder constructor.
+     * The ReferenceCounterHolder destructor.
      */
     template <typename T>
     ReferenceCounterHolder<T>::~ReferenceCounterHolder()

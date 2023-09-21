@@ -83,7 +83,7 @@ std::wstring TimeUtils::TmToString(
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The TimeUtils has failed converting a struct tm to a string" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw BaseException(errorCode, errorMessage);
@@ -207,7 +207,7 @@ void TimeUtils::ParseTm(
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The TimeUtils has failed parsing a struct tm from a string" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw BaseException(errorCode, errorMessage);
@@ -250,7 +250,7 @@ void TimeUtils::TimeTToTm(time_t timeT, std::tm& time)
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The TimeUtils has failed converting a time_t to a struct tm" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw BaseException(errorCode, errorMessage);

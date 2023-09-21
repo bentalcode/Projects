@@ -1,10 +1,10 @@
 #include "StringUtils.h"
 #include "ErrorCodes.h"
 #include "Indexes.h"
-#include "NotImplementedException.h"
 #include <functional>
 #include <algorithm>
 #include <stack>
+#include "NotImplementedException.h"
 #include <assert.h>
 
 #if WINDOWS
@@ -103,7 +103,7 @@ std::wstring StringUtils::StringToWideString(const std::string& str)
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The StringUtils has failed converting a string to a wide string" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw BaseException(errorCode, errorMessage);
@@ -129,7 +129,7 @@ std::wstring StringUtils::StringToWideString(const std::string& str)
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The StringUtils has failed converting a string to a wide string" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw utilities_exception(errorCode, errorMessage);
@@ -178,7 +178,7 @@ std::string StringUtils::WideStringToString(const std::wstring& str)
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The StringUtils has failed converting a wide string to a string" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw BaseException(errorCode, errorMessage);
@@ -205,7 +205,7 @@ std::string StringUtils::WideStringToString(const std::wstring& str)
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The StringUtils has failed converting a wide string to a string" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw utilities_exception(errorCode, errorMessage);

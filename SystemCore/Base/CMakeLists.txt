@@ -36,27 +36,72 @@ add_compile_definitions(WINDOWS=1)
 
 
 set(BASE_INCLUDES_FILES
+    ./core/AlmostComparator.h
+    ./core/AndBitOperator.h
     ./core/BaseException.h
+    ./core/Bits.h
+    ./core/ClassType.h
+    ./core/ClassTypes.h
+    ./core/CollectionComparator.h
+    ./core/ComparatorFactory.h
     ./core/ErrorCodes.h
     ./core/ErrorMessages.h
     ./core/Indexes.h
+    ./core/IterableComparator.h
+    ./core/List.h
+    ./core/ListIterator.h
+    ./core/ListReverseIterator.h
+    ./core/NotBitOperator.h
     ./core/NotImplementedException.h
     ./core/ReferenceCounterHolder.h
+    ./core/SetIterator.h
+    ./core/SharedPtr.h
+    ./core/SkipIterator.h
+    ./core/StringComparable.h
+    ./core/StringEquality.h
+    ./core/StringSearch.h
     ./core/StringUtils.h
+    ./core/Strings.h
     ./core/ToString.h
+    ./core/TwoDimensionalVector.h
+    ./core/TwoDimensionalVectorIterator.h
+    ./core/UnexpectedException.h
     ./core/Uuid.h
+    ./core/VectorIterator.h
+    ./core/VectorReverseIterator.h
+    ./core/XorBitOperator.h
     ./interfaces/Colors.h
     ./interfaces/DateTime.h
+    ./interfaces/DateTimeInterval.h
     ./interfaces/Duration.h
+    ./interfaces/IBinaryBitOperator.h
     ./interfaces/IBinaryComparator.h
+    ./interfaces/IBitOperator.h
+    ./interfaces/IBuilder.h
+    ./interfaces/ICalculator.h
+    ./interfaces/IClassType.h
     ./interfaces/IClone.h
+    ./interfaces/ICollection.h
+    ./interfaces/IComparableComparator.h
     ./interfaces/IComparatorFactory.h
     ./interfaces/IEquatableComparator.h
     ./interfaces/IHashCodeProvider.h
     ./interfaces/IIterable.h
     ./interfaces/IIterator.h
+    ./interfaces/IList.h
+    ./interfaces/IRandomGenerator.h
+    ./interfaces/IResourceReader.h
+    ./interfaces/IReverseIterable.h
+    ./interfaces/IReverseIterator.h
+    ./interfaces/ISizableCollection.h
+    ./interfaces/ISkipIterator.h
     ./interfaces/IToString.h
+    ./interfaces/ITwoDimensionalVector.h
+    ./interfaces/IUnaryBitOperator.h
     ./interfaces/IUuid.h
+    ./interfaces/IValueIterable.h
+    ./interfaces/IValueReverseIterable.h
+    ./interfaces/IVisitor.h
     ./interfaces/ReferenceCounter.h
     ./interfaces/ReferenceCounterHolder.h
     ./interfaces/SmartPointers.h
@@ -65,15 +110,27 @@ set(BASE_INCLUDES_FILES
 )
 
 set(BASE_SOURCES_FILES
+    ./core/AndBitOperator.cpp
+    ./core/Bits.cpp
+    ./core/ClassType.cpp
+    ./core/ComparatorFactory.cpp
     ./core/DateTime.cpp
     ./core/ErrorCodes.cpp
     ./core/ErrorMessages.cpp
+    ./core/NotBitOperator.cpp
     ./core/ReferenceCounter.cpp
+    ./core/SkipIterator.cpp
+    ./core/StringComparable.cpp
+    ./core/StringEquality.cpp
+    ./core/StringSearch.cpp
     ./core/StringUtils.cpp
+    ./core/Strings.cpp
+    ./core/Tests.cpp
     ./core/TimeUnit.cpp
     ./core/TimeUtils.cpp
     ./core/ToString.cpp
     ./core/Uuid.cpp
+    ./core/XorBitOperator.cpp
 )
 
 set(BASE_INCLUDES

@@ -26,7 +26,8 @@ namespace base {
         /**
          * Creates a duration.
          */
-        static std::shared_ptr<DurationType<ArithmeticType, PeriodType>> Make(const std::chrono::system_clock::time_point& timePoint);
+        static std::shared_ptr<DurationType<ArithmeticType, PeriodType>> Make(
+            const std::chrono::system_clock::time_point& timePoint);
 
         /**
          * The DurationType Constructor.
@@ -163,7 +164,8 @@ namespace base {
      * The DurationType Constructor.
      */
     template <typename ArithmeticType, typename PeriodType>
-    DurationType<ArithmeticType, PeriodType>::DurationType(const std::chrono::duration<ArithmeticType, PeriodType>& duration) :
+    DurationType<ArithmeticType, PeriodType>::DurationType(
+        const std::chrono::duration<ArithmeticType, PeriodType>& duration) :
         m_duration(duration)
     {
     }
@@ -344,7 +346,8 @@ namespace base {
      * Creates duration from days.
      */
     template <typename ArithmeticType, typename PeriodType>
-    std::shared_ptr<DurationType<ArithmeticType, PeriodType>> DurationType<ArithmeticType, PeriodType>::FromDays(long double days)
+    std::shared_ptr<DurationType<ArithmeticType, PeriodType>>
+    DurationType<ArithmeticType, PeriodType>::FromDays(long double days)
     {
         DayTick durationDays(days);
         return std::make_shared<Duration>(durationDays);
@@ -354,7 +357,8 @@ namespace base {
      * Creates duration from years.
      */
     template <typename ArithmeticType, typename PeriodType>
-    std::shared_ptr<DurationType<ArithmeticType, PeriodType>> DurationType<ArithmeticType, PeriodType>::FromYears(long double years)
+    std::shared_ptr<DurationType<ArithmeticType, PeriodType>>
+    DurationType<ArithmeticType, PeriodType>::FromYears(long double years)
     {
         YearTick durationYears(years);
         return std::make_shared<Duration>(durationYears);
@@ -376,8 +380,9 @@ namespace base {
      * Implements an operator equal for duration.
      */
     template <typename ArithmeticType, typename PeriodType>
-    inline bool operator==(const DurationType<ArithmeticType, PeriodType>& lhs,
-                           const DurationType<ArithmeticType, PeriodType>& rhs)
+    inline bool operator==(
+        const DurationType<ArithmeticType, PeriodType>& lhs,
+        const DurationType<ArithmeticType, PeriodType>& rhs)
     {
         return lhs.GetDuration() == rhs.GetDuration();
     }
@@ -386,8 +391,9 @@ namespace base {
      * Implements an operator not equal for duration.
      */
     template <typename ArithmeticType, typename PeriodType>
-    inline bool operator!=(const DurationType<ArithmeticType, PeriodType>& lhs,
-                           const DurationType<ArithmeticType, PeriodType>& rhs)
+    inline bool operator!=(
+        const DurationType<ArithmeticType, PeriodType>& lhs,
+        const DurationType<ArithmeticType, PeriodType>& rhs)
     {
         return !(lhs == rhs);
     }
@@ -396,8 +402,9 @@ namespace base {
      * Implements an operator less than for duration.
      */
     template <typename ArithmeticType, typename PeriodType>
-    inline bool operator<(const DurationType<ArithmeticType, PeriodType>& lhs,
-                          const DurationType<ArithmeticType, PeriodType>& rhs)
+    inline bool operator<(
+        const DurationType<ArithmeticType, PeriodType>& lhs,
+        const DurationType<ArithmeticType, PeriodType>& rhs)
     {
         return lhs.GetDuration() < rhs.GetDuration();
     }
@@ -406,8 +413,9 @@ namespace base {
      * Implements an operator less or equal than for duration.
      */
     template <typename ArithmeticType, typename PeriodType>
-    inline bool operator<=(const DurationType<ArithmeticType, PeriodType>& lhs,
-                           const DurationType<ArithmeticType, PeriodType>& rhs)
+    inline bool operator<=(
+        const DurationType<ArithmeticType, PeriodType>& lhs,
+        const DurationType<ArithmeticType, PeriodType>& rhs)
     {
         return !(rhs < lhs);
     }
@@ -416,8 +424,9 @@ namespace base {
      * Implements an operator greater than for duration.
      */
     template <typename ArithmeticType, typename PeriodType>
-    inline bool operator>(const DurationType<ArithmeticType, PeriodType>& lhs,
-                          const DurationType<ArithmeticType, PeriodType>& rhs)
+    inline bool operator>(
+        const DurationType<ArithmeticType, PeriodType>& lhs,
+        const DurationType<ArithmeticType, PeriodType>& rhs)
     {
         return rhs < lhs;
     }
@@ -426,8 +435,9 @@ namespace base {
      * Implements an operator greater than or equal for duration.
      */
     template <typename ArithmeticType, typename PeriodType>
-    inline bool operator>=(const DurationType<ArithmeticType, PeriodType>& lhs,
-                           const DurationType<ArithmeticType, PeriodType>& rhs)
+    inline bool operator>=(
+        const DurationType<ArithmeticType, PeriodType>& lhs,
+        const DurationType<ArithmeticType, PeriodType>& rhs)
     {
         return !(lhs < rhs);
     }

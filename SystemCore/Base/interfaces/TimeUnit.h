@@ -30,7 +30,7 @@ namespace base {
         };
 
         //
-        // Defines a unit functor mapping between a time unit to it's functor...
+        // Defines a unit functor mapping between a time unit to its functor...
         //
         using UnitFunctorMap = std::map<TimeUnit::Unit, TimeUnit::IUnitFunctorSharedPtr>;
         using UnitFunctorMapSharedPtr = std::shared_ptr<UnitFunctorMap>;

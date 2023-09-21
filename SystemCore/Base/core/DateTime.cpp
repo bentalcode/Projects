@@ -14,7 +14,7 @@ DateTimeSharedPtr DateTime::Make(const std::chrono::system_clock::time_point& ti
  * The DateTime default constructor.
  */
 DateTime::DateTime(const std::chrono::system_clock::time_point& timePoint) :
-        m_timePoint(timePoint)
+    m_timePoint(timePoint)
 {
 }
 

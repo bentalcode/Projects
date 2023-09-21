@@ -2,6 +2,7 @@
 #define BASE_EXCEPTION_H_865da64a_61f3_4334_9825_a69df087d9e4
 
 #include "ErrorCodes.h"
+#include "ErrorMessages.h"
 
 namespace base {
 

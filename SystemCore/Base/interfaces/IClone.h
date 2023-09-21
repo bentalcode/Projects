@@ -1,33 +1,38 @@
-#pragma once
+#ifndef I_CLONE_H_c0180a9c_57cf_11ee_8c99_0242ac120002
+#define I_CLONE_H_c0180a9c_57cf_11ee_8c99_0242ac120002
 
-namespace Utilities {
+#include <memory>
 
-/**
- * The IClone interface clones an object.
- */
-template <typename T, typename ResultT = T>
-class IClone {
-public:
-    /**
-     * The List constructor.
-     */
-    IClone() = default;
+namespace base {
 
     /**
-     * The List destructor.
+     * The IClone interface clones an object.
      */
-    virtual ~IClone() = default;
+    template <typename T, typename ResultT = T>
+    class IClone {
+    public:
+        /**
+         * The List constructor.
+         */
+        IClone() = default;
+
+        /**
+         * The List destructor.
+         */
+        virtual ~IClone() = default;
+
+        /**
+         * Clones an object.
+         */
+        virtual ResultT Clone(const T& obj);
+    };
 
     /**
-     * Clones an object.
+     * Defines the Shared Ptr of Clone.
      */
-    virtual ResultT Clone(const T& obj);
-};
+    template<typename T, typename ResultT = T>
+    using ICloneSharedPtr = std::shared_ptr<IClone<T, ResultT>>;
 
-/**
- * Defines the Shared Ptr of Clone.
- */
-template<typename T, typename ResultT = T>
-using ICloneSharedPtr = std::shared_ptr<IClone<T, ResultT>>;
+} // namespace base
 
-}  // namespace Utilities
+#endif // I_CLONE_H_c0180a9c_57cf_11ee_8c99_0242ac120002

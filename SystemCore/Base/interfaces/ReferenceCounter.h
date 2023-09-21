@@ -3,9 +3,9 @@
 
 namespace base {
 
-/**
- * The ReferenceCounter class implements a thread-safe reference counter.
- */
+    /**
+     * The ReferenceCounter class implements a thread-safe reference counter.
+     */
     class ReferenceCounter final {
     public:
         /**

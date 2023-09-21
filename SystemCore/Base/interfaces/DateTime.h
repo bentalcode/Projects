@@ -2,7 +2,6 @@
 #define DATE_TIME_H_ca5f50c0_ecf2_435c_b137_480c1d3b2bcb
 
 #include <chrono>
-#include <memory>
 #include "Duration.h"
 
 namespace base {
@@ -193,6 +192,9 @@ namespace base {
         return result;
     }
 
+    /**
+     * Implements an addition minus for date time and duration.
+     */
     inline DateTimeSharedPtr operator-(const DateTime& time, const Duration& duration)
     {
         DateTimeSharedPtr result = DateTime::Make(time);

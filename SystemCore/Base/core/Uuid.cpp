@@ -56,7 +56,7 @@ std::wstring Uuid::ToString() const
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The Uuid class has failed converting a UUID to a String" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw BaseException(errorCode, errorMessage);
@@ -84,7 +84,7 @@ IUuidSharedPtr Uuid::Parse(const std::wstring& str)
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The Uuid class has failed converting a UUID to a String" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw BaseException(errorCode, errorMessage);
@@ -140,7 +140,7 @@ void Uuid::CreateUuid(_GUID& guid)
         std::wstringstream errorMessageStream;
         errorMessageStream 
             << L"The Uuid class has failed generating a new UUID" 
-            << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+            << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
         throw BaseException(errorCode, errorMessage);

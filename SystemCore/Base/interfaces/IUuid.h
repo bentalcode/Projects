@@ -6,31 +6,31 @@
 
 namespace base {
 
-/**
- * The IUuid interface defines a uuid.
- */
-class IUuid {
-public:
     /**
-     * The IUuid constructor.
+     * The IUuid interface defines a uuid.
      */
-    IUuid() = default;
+    class IUuid {
+    public:
+        /**
+         * The IUuid constructor.
+         */
+        IUuid() = default;
+
+        /**
+         * The IUuid destructor.
+         */
+        virtual ~IUuid() = default;
+
+        /**
+         * Gets the string representation of this instance.
+         */
+        virtual std::wstring ToString() const = 0;
+    };
 
     /**
-     * The IUuid destructor.
+     * Defines the Shared Ptr of Uuid.
      */
-    virtual ~IUuid() = default;
-
-    /**
-     * Gets the string representation of this instance.
-     */
-    virtual std::wstring ToString() const = 0;
-};
-
-/**
- * Defines the Shared Ptr of Uuid.
- */
-using IUuidSharedPtr = std::shared_ptr<IUuid>;
+    using IUuidSharedPtr = std::shared_ptr<IUuid>;
 
 }  // namespace base
 

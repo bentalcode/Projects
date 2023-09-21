@@ -314,7 +314,7 @@ void TimeUnit::UnsupportedUnit() {
     std::wstringstream errorMessageStream;
     errorMessageStream 
         << L"Time Unit has processed unknown time unit" 
-        << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+        << ErrorMessages::GetErrorCodeMessage(errorCode);
 
     std::wstring errorMessage = errorMessageStream.str();
     throw BaseException(errorCode, errorMessage);

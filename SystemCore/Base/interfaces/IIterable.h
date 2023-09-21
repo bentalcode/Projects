@@ -1,29 +1,32 @@
-#pragma once
+#ifndef I_ITERABLE_H_6e14c892_57d0_11ee_8c99_0242ac120002
+#define I_ITERABLE_H_6e14c892_57d0_11ee_8c99_0242ac120002
 
 #include "IIterator.h"
 
-namespace Utilities {
-
-/**
- * The IIterable interface defines an iterable object.
- */
-template <typename T>
-class IIterable
-{
-public:
-    IIterable() = default;
-    virtual ~IIterable() = default;
+namespace base {
 
     /**
-     * Gets an iterator.
+     * The IIterable interface defines an iterable object.
      */
-    virtual IIteratorSharedPtr<T> GetIterator() const = 0;
-};
+    template <typename T>
+    class IIterable
+    {
+    public:
+        IIterable() = default;
+        virtual ~IIterable() = default;
 
-/**
- * Defines the Shared Ptr of IIterable.
- */
-template <typename T>
-using IIterableSharedPtr = std::shared_ptr<IIterable<T>>;
+        /**
+         * Gets an iterator.
+         */
+        virtual IIteratorSharedPtr<T> GetIterator() const = 0;
+    };
 
-}  // namespace Utilities
+    /**
+     * Defines the Shared Ptr of IIterable.
+     */
+    template <typename T>
+    using IIterableSharedPtr = std::shared_ptr<IIterable<T>>;
+
+} // namespace base
+
+#endif // I_ITERABLE_H_6e14c892_57d0_11ee_8c99_0242ac120002

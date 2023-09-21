@@ -190,8 +190,8 @@ namespace base {
             std::wstringstream errorMessageStream;
             errorMessageStream
                 << L"StringUtils::CopyString() has failed copying a string"
-                << L" since the size of the destination buffer is not sufficient"
-                << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+                << L" since the Size of the destination buffer is not sufficient"
+                << ErrorMessages::GetErrorCodeMessage(errorCode);
 
             std::wstring errorMessage = errorMessageStream.str();
             throw BaseException(errorCode, errorMessage);
@@ -222,8 +222,8 @@ namespace base {
                 std::wstringstream errorMessageStream;
                 errorMessageStream
                     << L"StringUtils::GetStringLength()  has failed retrieving length of an input string"
-                    << L" since it's size is larger than maxLegnth"
-                    << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
+                    << L" since it's Size is larger than maxLegnth"
+                    << ErrorMessages::GetErrorCodeMessage(errorCode);
 
                 std::wstring errorMessage = errorMessageStream.str();
                 throw BaseException(errorCode, errorMessage);

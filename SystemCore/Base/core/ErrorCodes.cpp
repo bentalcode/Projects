@@ -26,7 +26,6 @@ long ErrorCodes::HResultToErrorCode(HRESULT hr)
  */
 long ErrorCodes::GetLastErrorCode()
 {
-
     DWORD errorCode = GetLastError();
     return HRESULT_FROM_WIN32(errorCode);
 }

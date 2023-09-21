@@ -1,5 +1,5 @@
 #include "ErrorMessages.h"
-#include "ErrorCodes.h"
+#include <sstream>
 
 using namespace base;
 
@@ -9,7 +9,6 @@ using namespace base;
 const std::wstring ErrorMessages::GetErrorCodeMessage(long errorCode) 
 {
     std::wstringstream stream;
-    stream << L"; ErrorCode: " << ErrorCodes::GetErrorCodeString(errorCode);
-
+    stream << ErrorMessages::GetErrorCodeMessage(errorCode);
     return stream.str();
 }
