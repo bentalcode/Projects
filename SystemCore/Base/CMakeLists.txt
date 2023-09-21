@@ -44,13 +44,22 @@ set(BASE_INCLUDES_FILES
     ./core/ClassTypes.h
     ./core/CollectionComparator.h
     ./core/ComparatorFactory.h
+    ./core/DereferenceComparableComparator.h
+    ./core/DereferenceComparableComparator2.h
+    ./core/DereferenceEquatableComparator.h
+    ./core/DereferenceEquatableComparator2.h
+    ./core/EqualBuilder.h
+    ./core/EquatableComparator.h
     ./core/ErrorCodes.h
     ./core/ErrorMessages.h
     ./core/Indexes.h
     ./core/IterableComparator.h
+    ./core/IteratorComparator.h
     ./core/List.h
     ./core/ListIterator.h
     ./core/ListReverseIterator.h
+    ./core/MapComparator.h
+    ./core/MessageWriter.h
     ./core/NotBitOperator.h
     ./core/NotImplementedException.h
     ./core/ReferenceCounterHolder.h
@@ -69,7 +78,9 @@ set(BASE_INCLUDES_FILES
     ./core/Uuid.h
     ./core/VectorIterator.h
     ./core/VectorReverseIterator.h
+    ./core/WindowsConsoleColorHandler.h
     ./core/XorBitOperator.h
+    ./interfaces/ColorType.h
     ./interfaces/Colors.h
     ./interfaces/DateTime.h
     ./interfaces/DateTimeInterval.h
@@ -84,11 +95,13 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ICollection.h
     ./interfaces/IComparableComparator.h
     ./interfaces/IComparatorFactory.h
+    ./interfaces/IConsoleColorHandler.h
     ./interfaces/IEquatableComparator.h
     ./interfaces/IHashCodeProvider.h
     ./interfaces/IIterable.h
     ./interfaces/IIterator.h
     ./interfaces/IList.h
+    ./interfaces/IMessageWriter.h
     ./interfaces/IRandomGenerator.h
     ./interfaces/IResourceReader.h
     ./interfaces/IReverseIterable.h
@@ -105,6 +118,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ReferenceCounter.h
     ./interfaces/ReferenceCounterHolder.h
     ./interfaces/SmartPointers.h
+    ./interfaces/StandardFileDescriptor.h
     ./interfaces/TimeUnit.h
     ./interfaces/TimeUtils.h
 )
@@ -115,8 +129,10 @@ set(BASE_SOURCES_FILES
     ./core/ClassType.cpp
     ./core/ComparatorFactory.cpp
     ./core/DateTime.cpp
+    ./core/EqualBuilder.cpp
     ./core/ErrorCodes.cpp
     ./core/ErrorMessages.cpp
+    ./core/MessageWriter.cpp
     ./core/NotBitOperator.cpp
     ./core/ReferenceCounter.cpp
     ./core/SkipIterator.cpp
@@ -130,6 +146,7 @@ set(BASE_SOURCES_FILES
     ./core/TimeUtils.cpp
     ./core/ToString.cpp
     ./core/Uuid.cpp
+    ./core/WindowsConsoleColorHandler.cpp
     ./core/XorBitOperator.cpp
 )
 

@@ -2,12 +2,28 @@
     "name": "SystemCore",
     "rootPath": "c:\\git\\repositories\\Projects\\SystemCore",
     "effectiveModules": [
-        "Base"
+        "Base",
+        "TestBase"
     ],
     "modules": [
         {
             "name": "Base",
-             "type": "library",
+            "type": "library",
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "TestBase",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ],
             "cmakeListsManifest": {
                 "presetPaths": [
                     "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
