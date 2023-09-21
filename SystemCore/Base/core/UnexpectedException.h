@@ -11,7 +11,7 @@ namespace base {
     class UnexpectedException : public base::BaseException
     {
     public:
-        explicit UnexpectedException(const std::wstring &errorMessage) :
+        explicit UnexpectedException(const std::wstring& errorMessage) :
             BaseException(
                 ErrorCodes::UNEXPECTED,
                 errorMessage)

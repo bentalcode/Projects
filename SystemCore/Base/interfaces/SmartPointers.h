@@ -35,7 +35,7 @@ namespace base {
             std::wstringstream errorMessageStream;
             errorMessageStream
                 << L"The Shared Ptr of type: " << typeName << L" is not defined"
-                << ErrorMessages::GetErrorCodeString(errorCode);
+                << ErrorMessages::GetErrorCodeMessage(errorCode);
 
             std::wstring errorMessage = errorMessageStream.str();
             throw BaseException(errorCode, errorMessage);

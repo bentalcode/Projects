@@ -146,7 +146,7 @@ namespace base {
         typename CollectionType::const_iterator rhsIterator = rhs.begin();
 
         while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
-            if (!comparator.AreEquals(*lhsIterator, *rhsIterator)) {
+            if (!equatable.AreEquals(*lhsIterator, *rhsIterator)) {
                 return false;
             }
         }

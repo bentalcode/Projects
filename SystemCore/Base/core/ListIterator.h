@@ -41,12 +41,12 @@ namespace base
         ListIterator& operator=(ListIterator&&) = delete;
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         virtual T Next() override;
 

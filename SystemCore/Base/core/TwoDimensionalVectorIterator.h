@@ -41,12 +41,12 @@ namespace base
         TwoDimensionalVectorIterator& operator=(TwoDimensionalVectorIterator&&) = delete;
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         virtual bool hasNext() const override;
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         virtual T next() override;
 
@@ -57,7 +57,7 @@ namespace base
 
     private:
         /**
-         * Moves to the Next element.
+         * Moves to the next element.
          */
         void moveNext();
 
@@ -102,7 +102,7 @@ namespace base
     }
 
     /**
-     * Checks whether there is a Next element.
+     * Checks whether there is a next element.
      */
     template <typename T>
     bool TwoDimensionalVectorIterator<T>::hasNext() const
@@ -111,7 +111,7 @@ namespace base
     }
 
     /**
-     * Gets the Next element.
+     * Gets the next element.
      */
     template <typename T>
     T TwoDimensionalVectorIterator<T>::next()
@@ -135,7 +135,7 @@ namespace base
     }
 
     /**
-     * Moves to the Next element.
+     * Moves to the next element.
      */
     template <typename T>
     void TwoDimensionalVectorIterator<T>::moveNext()

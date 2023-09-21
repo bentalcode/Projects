@@ -44,6 +44,7 @@ set(BASE_INCLUDES_FILES
     ./core/ClassTypes.h
     ./core/CollectionComparator.h
     ./core/ComparatorFactory.h
+    ./core/ConsoleColorSetter.h
     ./core/DereferenceComparableComparator.h
     ./core/DereferenceComparableComparator2.h
     ./core/DereferenceEquatableComparator.h
@@ -62,11 +63,13 @@ set(BASE_INCLUDES_FILES
     ./core/MessageWriter.h
     ./core/NotBitOperator.h
     ./core/NotImplementedException.h
+    ./core/Pair.h
     ./core/ReferenceCounterHolder.h
     ./core/SetIterator.h
     ./core/SharedPtr.h
     ./core/SkipIterator.h
     ./core/StringComparable.h
+    ./core/StringConversion.h
     ./core/StringEquality.h
     ./core/StringSearch.h
     ./core/StringUtils.h
@@ -108,6 +111,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IReverseIterator.h
     ./interfaces/ISizableCollection.h
     ./interfaces/ISkipIterator.h
+    ./interfaces/IStringConversion.h
     ./interfaces/IToString.h
     ./interfaces/ITwoDimensionalVector.h
     ./interfaces/IUnaryBitOperator.h
@@ -128,6 +132,7 @@ set(BASE_SOURCES_FILES
     ./core/Bits.cpp
     ./core/ClassType.cpp
     ./core/ComparatorFactory.cpp
+    ./core/ConsoleColorSetter.cpp
     ./core/DateTime.cpp
     ./core/EqualBuilder.cpp
     ./core/ErrorCodes.cpp
@@ -137,6 +142,7 @@ set(BASE_SOURCES_FILES
     ./core/ReferenceCounter.cpp
     ./core/SkipIterator.cpp
     ./core/StringComparable.cpp
+    ./core/StringConversion.cpp
     ./core/StringEquality.cpp
     ./core/StringSearch.cpp
     ./core/StringUtils.cpp

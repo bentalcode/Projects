@@ -40,12 +40,12 @@ namespace base
         VectorReverseIterator& operator=(VectorReverseIterator&&) = delete;
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         virtual bool hasNext() const override;
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         virtual T next() override;
 
@@ -87,7 +87,7 @@ namespace base
     }
 
     /**
-     * Checks whether there is a Next element.
+     * Checks whether there is a next element.
      */
     template <typename T>
     bool VectorReverseIterator<T>::hasNext() const
@@ -96,7 +96,7 @@ namespace base
     }
 
     /**
-     * Gets the Next element.
+     * Gets the next element.
      */
     template <typename T>
     T VectorReverseIterator<T>::next()

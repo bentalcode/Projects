@@ -2,6 +2,8 @@
 #define VECTOR_ITERATOR_H_90fd931a_c1c2_47bb_8348_1e2c5a6509df
 
 #include "IIterator.h"
+#include <vector>
+#include <assert.h>
 
 namespace base
 {
@@ -15,7 +17,7 @@ namespace base
         /**
          * Creates an iterator of a vector.
          */
-        static base::IIteratorSharedPtr<T> make(const std::vector<T>& data);
+        static base::IIteratorSharedPtr<T> Make(const std::vector<T>& data);
 
         /**
          * The constructor.
@@ -40,19 +42,19 @@ namespace base
         VectorIterator& operator=(VectorIterator&&) = delete;
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
-        virtual bool hasNext() const override;
+        virtual bool HasNext() const override;
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
-        virtual T next() override;
+        virtual T Next() override;
 
         /**
          * Resets the iterator.
          */
-        virtual void reset() override;
+        virtual void Reset() override;
 
     private:
         const std::vector<T>& m_data;
@@ -63,7 +65,7 @@ namespace base
      * Creates an iterator of a list.
      */
     template <typename T>
-    base::IIteratorSharedPtr<T> VectorIterator<T>::make(const std::vector<T>& data)
+    base::IIteratorSharedPtr<T> VectorIterator<T>::Make(const std::vector<T>& data)
     {
         return std::make_shared<VectorIterator>(data);
     }
@@ -72,7 +74,7 @@ namespace base
     VectorIterator<T>::VectorIterator(const std::vector<T>& data) :
         m_data(data)
     {
-        reset();
+        Reset();
     }
 
     template <typename T>
@@ -81,15 +83,15 @@ namespace base
     }
 
     template <typename T>
-    bool VectorIterator<T>::hasNext() const
+    bool VectorIterator<T>::HasNext() const
     {
         return m_iterator != m_data.end();
     }
 
     template <typename T>
-    T VectorIterator<T>::next()
+    T VectorIterator<T>::Next()
     {
-        assert(hasNext());
+        assert(HasNext());
 
         const T& currElement = *m_iterator;
         ++m_iterator;
@@ -98,7 +100,7 @@ namespace base
     }
 
     template <typename T>
-    void VectorIterator<T>::reset()
+    void VectorIterator<T>::Reset()
     {
         m_iterator = m_data.begin();
     }
