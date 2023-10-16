@@ -111,7 +111,7 @@ namespace base
     template <typename T>
     const T& List<T>::Front() const
     {
-        return m_data.Front();
+        return m_data.front();
     }
 
     /**
@@ -120,7 +120,7 @@ namespace base
     template <typename T>
     const T& List<T>::Back() const
     {
-        return m_data.Back();
+        return m_data.back();
     }
 
     /**
@@ -173,13 +173,13 @@ namespace base
     template <typename T>
     bool List<T>::Empty() const
     {
-        return m_data.Empty();
+        return m_data.empty();
     }
 
     template <typename T>
     std::size_t List<T>::Size() const
     {
-        return m_data.Size();
+        return m_data.size();
     }
 
     template <typename T>

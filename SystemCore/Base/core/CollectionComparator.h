@@ -35,7 +35,7 @@ namespace base {
         /**
          * Checks whether collections are equals.
          */
-        virtual bool AreEquals(
+        virtual bool AreEqual(
             const CollectionType& lhs,
             const CollectionType& rhs) const override;
 
@@ -53,7 +53,7 @@ namespace base {
         /**
          * Checks whether the collections are equals with an equatable.
          */
-        bool AreEquals(
+        bool AreEqual(
             const CollectionType& lhs,
             const CollectionType& rhs,
             const IEquatableComparator<ValueType>& equatable) const;
@@ -106,7 +106,7 @@ namespace base {
      * Checks whether collections are equals.
      */
     template <typename CollectionType>
-    bool CollectionComparator<CollectionType>::AreEquals(
+    bool CollectionComparator<CollectionType>::AreEqual(
         const CollectionType& lhs,
         const CollectionType& rhs) const
     {
@@ -133,7 +133,7 @@ namespace base {
      * Checks whether the collections are equals with an equatable.
      */
     template <typename CollectionType>
-    bool CollectionComparator<CollectionType>::AreEquals(
+    bool CollectionComparator<CollectionType>::AreEqual(
         const CollectionType& lhs,
         const CollectionType& rhs,
         const IEquatableComparator<ValueType>& equatable) const
@@ -146,7 +146,7 @@ namespace base {
         typename CollectionType::const_iterator rhsIterator = rhs.begin();
 
         while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
-            if (!equatable.AreEquals(*lhsIterator, *rhsIterator)) {
+            if (!equatable.AreEqual(*lhsIterator, *rhsIterator)) {
                 return false;
             }
         }

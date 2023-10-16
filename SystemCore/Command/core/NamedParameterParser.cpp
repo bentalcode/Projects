@@ -28,11 +28,11 @@ IParsingResultSharedPtr<base::PairSharedPtr<std::wstring, std::wstring>> NamedPa
 {
     if (isShortNamedParameter(arg))
     {
-        if (base::StringEquality::EqualsIgnoreCase(
+        if (base::StringEquality::AreEqualIgnoreCase(
                 arg, CommandConstants::SHORT_NAMED_PARAMETER_PREFIX.size(), arg.size() - 1,
                 CommandConstants::HELP_SHORT_NAME, 0, CommandConstants::HELP_SHORT_NAME.size() - 1))
         {
-            base::PairSharedPtr<std::wstring, std::wstring> nameAndValue = base::Pair<std::wstring, std::wstring>::make(
+            base::PairSharedPtr<std::wstring, std::wstring> nameAndValue = base::Pair<std::wstring, std::wstring>::Make(
                 CommandConstants::HELP_SHORT_NAME,
                 CommandConstants::TRUE_VALUE);
 
@@ -45,11 +45,11 @@ IParsingResultSharedPtr<base::PairSharedPtr<std::wstring, std::wstring>> NamedPa
     }
     else if (isLongNamedParameter(arg))
     {
-        if (base::StringEquality::EqualsIgnoreCase(
+        if (base::StringEquality::AreEqualIgnoreCase(
                 arg, CommandConstants::LONG_NAMED_PARAMETER_PREFIX.length(), arg.length() - 1,
                 CommandConstants::HELP_LONG_NAME, 0, CommandConstants::HELP_LONG_NAME.length() - 1))
         {
-            base::PairSharedPtr<std::wstring, std::wstring> nameAndValue = base::Pair<std::wstring, std::wstring>::make(
+            base::PairSharedPtr<std::wstring, std::wstring> nameAndValue = base::Pair<std::wstring, std::wstring>::Make(
                 CommandConstants::HELP_LONG_NAME,
                 CommandConstants::TRUE_VALUE);
 
@@ -114,7 +114,7 @@ IParsingResultSharedPtr<base::PairSharedPtr<std::wstring, std::wstring>> NamedPa
         value = arg.substr(valueStartIndex, valueLength);
     }
 
-    base::PairSharedPtr<std::wstring, std::wstring> namedParameter = base::Pair<std::wstring, std::wstring>::make(name, value);
+    base::PairSharedPtr<std::wstring, std::wstring> namedParameter = base::Pair<std::wstring, std::wstring>::Make(name, value);
     return ParsingResult<base::PairSharedPtr<std::wstring, std::wstring>>::SuccessfulResult(namedParameter);
 }
 

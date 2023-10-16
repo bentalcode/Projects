@@ -54,16 +54,23 @@ set(BASE_INCLUDES_FILES
     ./core/ErrorCodes.h
     ./core/ErrorMessages.h
     ./core/Indexes.h
+    ./core/Interval.h
+    ./core/IntervalMap.h
+    ./core/IntervalMapIterator.h
     ./core/IterableComparator.h
     ./core/IteratorComparator.h
+    ./core/KmpStringSearch.h
     ./core/List.h
     ./core/ListIterator.h
     ./core/ListReverseIterator.h
     ./core/MapComparator.h
+    ./core/Matrix.h
     ./core/MessageWriter.h
     ./core/NotBitOperator.h
     ./core/NotImplementedException.h
     ./core/Pair.h
+    ./core/RandomGenerator.h
+    ./core/Range.h
     ./core/ReferenceCounterHolder.h
     ./core/SetIterator.h
     ./core/SharedPtr.h
@@ -101,9 +108,13 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IConsoleColorHandler.h
     ./interfaces/IEquatableComparator.h
     ./interfaces/IHashCodeProvider.h
+    ./interfaces/IIntervalMap.h
     ./interfaces/IIterable.h
     ./interfaces/IIterator.h
+    ./interfaces/IKeyIterable.h
+    ./interfaces/IKeyReverseIterable.h
     ./interfaces/IList.h
+    ./interfaces/IMatrix.h
     ./interfaces/IMessageWriter.h
     ./interfaces/IRandomGenerator.h
     ./interfaces/IResourceReader.h
@@ -123,6 +134,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ReferenceCounterHolder.h
     ./interfaces/SmartPointers.h
     ./interfaces/StandardFileDescriptor.h
+    ./interfaces/StringComparisonType.h
     ./interfaces/TimeUnit.h
     ./interfaces/TimeUtils.h
 )
@@ -137,8 +149,10 @@ set(BASE_SOURCES_FILES
     ./core/EqualBuilder.cpp
     ./core/ErrorCodes.cpp
     ./core/ErrorMessages.cpp
+    ./core/KmpStringSearch.cpp
     ./core/MessageWriter.cpp
     ./core/NotBitOperator.cpp
+    ./core/RandomGenerator.cpp
     ./core/ReferenceCounter.cpp
     ./core/SkipIterator.cpp
     ./core/StringComparable.cpp

@@ -277,7 +277,7 @@ unsigned int StringSearch::CountSubString(
     size_t effectiveEndIndex = endIndex - subStringLength + 1;
 
     while (currIndex <= effectiveEndIndex) {
-        if (StringEquality::Equals(str, currIndex, subString, subStringStartIndex, subStringLength)) {
+        if (StringEquality::AreEqual(str, currIndex, subString, subStringStartIndex, subStringLength)) {
             ++counter;
 
             currIndex = (allowOverlapping) ? currIndex + 1 : currIndex + subStringLength;
@@ -321,7 +321,7 @@ unsigned int StringSearch::CountSubStringFromEnd(
     size_t currIndex = endIndex - subStringLength + 1;
 
     while (currIndex >= startIndex) {
-        if (StringEquality::Equals(str, currIndex, subString, subStringStartIndex, subStringLength)) {
+        if (StringEquality::AreEqual(str, currIndex, subString, subStringStartIndex, subStringLength)) {
             ++counter;
 
             currIndex = (allowOverlapping) ? currIndex - 1 : currIndex - subStringLength;

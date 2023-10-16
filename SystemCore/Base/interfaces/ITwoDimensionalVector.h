@@ -12,7 +12,7 @@ namespace base
      * The data structure can contains rows with different sizes.
      */
     template <typename T>
-    class ITwoDimensionalVector : public ISizableCollection<T>, public IIterable<T>
+    class ITwoDimensionalVector : public ISizableCollection<T>
     {
     public:
         /**

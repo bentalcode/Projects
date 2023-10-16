@@ -40,14 +40,14 @@ namespace base {
         /**
          * Checks whether the iterators are equals.
          */
-        bool IsEqual(
+        bool AreEqual(
             const std::map<TKey, TValue, TCompare>& lhs,
             const std::map<TKey, TValue, TCompare>& rhs);
 
         /**
          * Checks whether the iterators are equals with an element comparator.
          */
-        bool IsEqual(
+        bool AreEqual(
             const std::map<TKey, TValue, TCompare>& lhs,
             const std::map<TKey, TValue, TCompare>& rhs,
             const IEquatableComparator<TKey>& keyComparator,
@@ -93,7 +93,7 @@ namespace base {
      * Checks whether the iterators are equals with an element comparator.
      */
     template <typename TKey, typename TValue, typename TCompare>
-    bool MapComparator<TKey, TValue, TCompare>::IsEqual(
+    bool MapComparator<TKey, TValue, TCompare>::AreEqual(
         const std::map<TKey, TValue, TCompare>& lhs,
         const std::map<TKey, TValue, TCompare>& rhs)
     {
@@ -129,7 +129,7 @@ namespace base {
      * Checks whether the iterators are equals with an element comparator.
      */
     template <typename TKey, typename TValue, typename TCompare>
-    bool MapComparator<TKey, TValue, TCompare>::IsEqual(
+    bool MapComparator<TKey, TValue, TCompare>::AreEqual(
         const std::map<TKey, TValue, TCompare>& lhs,
         const std::map<TKey, TValue, TCompare>& rhs,
         const IEquatableComparator<TKey>& keyComparator,
@@ -151,8 +151,8 @@ namespace base {
             const TKey& rightKey = rhsIterator->first;
             const TValue& rightValue = rhsIterator->second;
 
-            if (!keyComparator.isEqual(leftKey, rightKey) ||
-                !valueComparator.isEqual(leftValue, rightValue))
+            if (!keyComparator.AreEqual(leftKey, rightKey) ||
+                !valueComparator.AreEqual(leftValue, rightValue))
             {
                 return false;
             }

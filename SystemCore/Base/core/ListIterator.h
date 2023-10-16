@@ -3,6 +3,7 @@
 
 #include "IIterator.h"
 #include <list>
+#include <assert.h>
 
 namespace base
 {

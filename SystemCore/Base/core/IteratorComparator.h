@@ -13,20 +13,20 @@ namespace base {
     class IteratorComparator final
     {
     public:
-        IteratorComparator() = delete;
-        ~IteratorComparator() = delete;
+        IteratorComparator() = default;
+        ~IteratorComparator() = default;
 
         /**
          * Checks for equality with iterators.
          */
-        static bool Equals(
+        static bool AreEqual(
             IIterator<T>& lhs,
             IIterator<T>& rhs);
 
         /**
-         * Checks for equality with iterators and compartor.
+         * Checks for equality with iterators and comparator.
          */
-        static bool Equals(
+        static bool AreEqual(
             IIterator<T>& lhs,
             IIterator<T>& rhs,
             IEquatableComparator<T>& comparator);
@@ -34,14 +34,14 @@ namespace base {
         /**
          * Checks for equality with iterables.
          */
-        static bool Equals(
+        static bool AreEqual(
             IIterable<T>& lhs,
             IIterable<T>& rhs);
 
         /**
          * Checks for equality with iterables and compartor.
          */
-        static bool Equals(
+        static bool AreEqual(
             IIterable<T>& lhs,
             IIterable<T>& rhs,
             IEquatableComparator<T>& comparator);
@@ -51,7 +51,7 @@ namespace base {
      * Checks for equality with iterators.
      */
     template <typename T>
-    bool IteratorComparator<T>::Equals(
+    bool IteratorComparator<T>::AreEqual(
         IIterator<T>& lhs,
         IIterator<T>& rhs)
     {
@@ -68,10 +68,10 @@ namespace base {
     }
 
     /**
-     * Checks for equality with iterators and compartor.
+     * Checks for equality with iterators and comparator.
      */
     template <typename T>
-    bool IteratorComparator<T>::Equals(
+    bool IteratorComparator<T>::AreEqual(
         IIterator<T>& lhs,
         IIterator<T>& rhs,
         IEquatableComparator<T>& comparator)
@@ -80,7 +80,7 @@ namespace base {
             T lhsValue = lhs.Next();
             T rhsValue = rhs.Next();
 
-            bool status = comparator.AreEquals(lhsValue, rhsValue);
+            bool status = comparator.AreEqual(lhsValue, rhsValue);
 
             if (!status) {
                 return false;
@@ -94,23 +94,23 @@ namespace base {
      * Checks for equality with iterables.
      */
     template <typename T>
-    bool IteratorComparator<T>::Equals(
+    bool IteratorComparator<T>::AreEqual(
         IIterable<T>& lhs,
         IIterable<T>& rhs)
     {
-        return Equals(*lhs.GetIterator(), *rhs.GetIterator());
+        return AreEqual(*lhs.GetIterator(), *rhs.GetIterator());
     }
 
     /**
-     * Checks for equality with iterables and compartor.
+     * Checks for equality with iterables and comparator.
      */
     template <typename T>
-    bool IteratorComparator<T>::Equals(
+    bool IteratorComparator<T>::AreEqual(
         IIterable<T>& lhs,
         IIterable<T>& rhs,
         IEquatableComparator<T>& comparator)
     {
-        return Equals(*lhs.GetIterator(), *rhs.GetIterator(), comparator);
+        return AreEqual(*lhs.GetIterator(), *rhs.GetIterator(), comparator);
     }
 
 } // namespace base

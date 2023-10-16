@@ -14,14 +14,14 @@ namespace base
         /**
          * Checks whether strings are equals. (Ignore case)
          */
-        static bool EqualsIgnoreCase(
+        static bool AreEqualIgnoreCase(
             const std::wstring& left,
             const std::wstring& right);
 
         /**
          * Checks whether strings are equals with start and end indexes.
          */
-        static bool Equals(
+        static bool AreEqual(
             const std::wstring& left,
             size_t leftStartIndex,
             size_t leftEndIndex,
@@ -32,7 +32,7 @@ namespace base
         /**
          * Checks whether strings are equals with start and end indexes. (Ignore case)
          */
-        static bool EqualsIgnoreCase(
+        static bool AreEqualIgnoreCase(
             const std::wstring& left,
             size_t leftStartIndex,
             size_t leftEndIndex,
@@ -43,7 +43,7 @@ namespace base
         /**
          * Checks whether strings are equals with start index and length.
          */
-        static bool Equals(
+        static bool AreEqual(
             const std::wstring& left,
             size_t leftStartIndex,
             const std::wstring& right,
@@ -53,7 +53,7 @@ namespace base
         /**
          * Checks whether strings are equals with start index and length. (Ignore case)
          */
-        static bool EqualsIgnoreCase(
+        static bool AreEqualIgnoreCase(
             const std::wstring& left,
             size_t leftStartIndex,
             const std::wstring& right,
@@ -63,7 +63,7 @@ namespace base
         /**
          * Checks whether buffer strings are equals with start and end indexes.
          */
-        static bool Equals(
+        static bool AreEqual(
             const std::wstring::value_type* left,
             size_t leftStartIndex,
             size_t leftEndIndex,
@@ -74,7 +74,7 @@ namespace base
         /**
          * Checks whether buffer strings are equals with start and end indexes. (Ignore case)
          */
-        static bool EqualsIgnoreCase(
+        static bool AreEqualIgnoreCase(
             const std::wstring::value_type* left,
             size_t leftStartIndex,
             size_t leftEndIndex,
@@ -85,7 +85,7 @@ namespace base
         /**
          * Checks whether buffer strings are equals with start index and length.
          */
-        static bool Equals(
+        static bool AreEqual(
             const std::wstring::value_type* left,
             size_t leftStartIndex,
             const std::wstring::value_type* right,
@@ -95,7 +95,7 @@ namespace base
         /**
          * Checks whether buffer strings are equals with start index and length. (Ignore case)
          */
-        static bool EqualsIgnoreCase(
+        static bool AreEqualIgnoreCase(
             const std::wstring::value_type* left,
             size_t leftStartIndex,
             const std::wstring::value_type* right,
@@ -105,7 +105,7 @@ namespace base
         /**
          * Checks whether strings are equals with start and end indexes.
          */
-        static bool Equals(
+        static bool AreEqual(
             const std::wstring& left,
             size_t leftStartIndex,
             size_t leftEndIndex,
@@ -117,7 +117,7 @@ namespace base
         /**
          * Checks whether strings are equals with start index and length.
          */
-        static bool Equals(
+        static bool AreEqual(
             const std::wstring& left,
             size_t leftStartIndex,
             const std::wstring& right,
@@ -128,7 +128,7 @@ namespace base
         /**
          * Checks whether buffer strings are equals with start and end indexes.
          */
-        static bool Equals(
+        static bool AreEqual(
             const std::wstring::value_type* left,
             size_t leftStartIndex,
             size_t leftEndIndex,
@@ -140,7 +140,7 @@ namespace base
         /**
          * Checks whether buffer strings are equals with start index and length.
          */
-        static bool Equals(
+        static bool AreEqual(
             const std::wstring::value_type* left,
             size_t leftStartIndex,
             const std::wstring::value_type* right,

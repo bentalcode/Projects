@@ -3,6 +3,7 @@
 
 #include "IIterator.h"
 #include <vector>
+#include <assert.h>
 
 namespace base
 {
@@ -16,7 +17,7 @@ namespace base
         /**
          * Creates a new iterator of a two dimensional vector.
          */
-        static IIteratorSharedPtr<T> make(const std::vector<std::vector<T>>& data);
+        static IIteratorSharedPtr<T> Make(const std::vector<std::vector<T>>& data);
 
         /**
          * The TwoDimensionalVectorIterator constructor.
@@ -43,28 +44,28 @@ namespace base
         /**
          * Checks whether there is a next element.
          */
-        virtual bool hasNext() const override;
+        virtual bool HasNext() const override;
 
         /**
          * Gets the next element.
          */
-        virtual T next() override;
+        virtual T Next() override;
 
         /**
          * Resets the iterator.
          */
-        virtual void reset() override;
+        virtual void Reset() override;
 
     private:
         /**
          * Moves to the next element.
          */
-        void moveNext();
+        void MoveNext();
 
         /**
          * Gets the Size of a specific column.
          */
-        std::size_t columnSize(std::size_t rowIndex) const;
+        std::size_t ColumnSize(std::size_t rowIndex) const;
 
         const std::vector<std::vector<T>>& m_data;
         size_t m_rowsSize;
@@ -76,7 +77,7 @@ namespace base
      * Creates a new iterator of a two dimensional vector.
      */
     template <typename T>
-    IIteratorSharedPtr<T> TwoDimensionalVectorIterator<T>::make(const std::vector<std::vector<T>>& data)
+    IIteratorSharedPtr<T> TwoDimensionalVectorIterator<T>::Make(const std::vector<std::vector<T>>& data)
     {
         return std::make_shared<TwoDimensionalVectorIterator<T>>(data);
     }
@@ -87,7 +88,7 @@ namespace base
     template <typename T>
     TwoDimensionalVectorIterator<T>::TwoDimensionalVectorIterator(const std::vector<std::vector<T>>& data) :
         m_data(data),
-        m_rowsSize(data.Size()),
+        m_rowsSize(data.size()),
         m_rowIndex(0),
         m_columnIndex(0)
     {
@@ -105,21 +106,21 @@ namespace base
      * Checks whether there is a next element.
      */
     template <typename T>
-    bool TwoDimensionalVectorIterator<T>::hasNext() const
+    bool TwoDimensionalVectorIterator<T>::HasNext() const
     {
-        return m_rowIndex < m_rowsSize && m_columnIndex < columnSize(m_rowIndex);
+        return m_rowIndex < m_rowsSize && m_columnIndex < ColumnSize(m_rowIndex);
     }
 
     /**
      * Gets the next element.
      */
     template <typename T>
-    T TwoDimensionalVectorIterator<T>::next()
+    T TwoDimensionalVectorIterator<T>::Next()
     {
-        assert(hasNext());
+        assert(HasNext());
         const T& currElement = m_data[m_rowIndex][m_columnIndex];
 
-        moveNext();
+        MoveNext();
 
         return currElement;
     }
@@ -128,7 +129,7 @@ namespace base
      * Resets the iterator.
      */
     template <typename T>
-    void TwoDimensionalVectorIterator<T>::reset()
+    void TwoDimensionalVectorIterator<T>::Reset()
     {
         m_rowIndex = 0;
         m_columnIndex = 0;
@@ -138,9 +139,9 @@ namespace base
      * Moves to the next element.
      */
     template <typename T>
-    void TwoDimensionalVectorIterator<T>::moveNext()
+    void TwoDimensionalVectorIterator<T>::MoveNext()
     {
-        if (m_columnIndex < columnSize(m_rowIndex) - 1)
+        if (m_columnIndex < ColumnSize(m_rowIndex) - 1)
         {
             ++m_columnIndex;
         }
@@ -155,9 +156,9 @@ namespace base
      * Gets the Size of a specific column.
      */
     template <typename T>
-    size_t TwoDimensionalVectorIterator<T>::columnSize(std::size_t rowIndex) const
+    size_t TwoDimensionalVectorIterator<T>::ColumnSize(std::size_t rowIndex) const
     {
-        return m_data[rowIndex].Size();
+        return m_data[rowIndex].size();
     }
 
 } // namespace base

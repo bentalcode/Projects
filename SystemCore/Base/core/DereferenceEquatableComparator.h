@@ -43,7 +43,7 @@ namespace base {
         /**
          * Checks whether two instances are equals.
          */
-        virtual bool IsEqual(const T& lhs, const T& rhs) const override;
+        virtual bool AreEqual(const T& lhs, const T& rhs) const override;
     };
 
     /**
@@ -75,7 +75,7 @@ namespace base {
      * Checks whether two instances are equals.
      */
     template <typename T>
-    bool DereferenceEquatableComparator<T>::IsEqual(const T& lhs, const T& rhs) const
+    bool DereferenceEquatableComparator<T>::AreEqual(const T& lhs, const T& rhs) const
     {
         return *lhs == *rhs;
     }

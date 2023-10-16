@@ -10,7 +10,7 @@ namespace base {
      */
     class IComparatorFactory {
     public:
-        static const double DEFAULT_EPSILON;
+        static constexpr double DEFAULT_EPSILON = 0.0001;
 
         IComparatorFactory() = default;
         virtual ~IComparatorFactory() = default;
@@ -25,8 +25,6 @@ namespace base {
          */
         virtual IBinaryComparatorSharedPtr<double> GetAlmostDoubleComparator(double epsilon = DEFAULT_EPSILON) const = 0;
     };
-
-    const double IComparatorFactory::DEFAULT_EPSILON = 0.0001;
 
     /**
      * Defines the Shared Ptr of Comparator Factory.

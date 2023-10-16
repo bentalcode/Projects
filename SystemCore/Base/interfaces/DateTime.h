@@ -209,8 +209,7 @@ namespace base {
     {
         const std::chrono::system_clock::time_point& lhsTime = lhs.GetTimePoint();
         const std::chrono::system_clock::time_point& rhsTime = rhs.GetTimePoint();
-        std::chrono::system_clock::time_point duration = static_cast<std::chrono::system_clock::time_point>(lhsTime - rhsTime);
-        return Duration::Make(duration);
+        return std::make_shared<Duration>(lhsTime - rhsTime);
     }
 
 } // namespace base

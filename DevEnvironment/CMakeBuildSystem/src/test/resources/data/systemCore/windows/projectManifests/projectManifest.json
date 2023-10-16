@@ -4,7 +4,9 @@
     "effectiveModules": [
         "Base",
         "Command",
-        "TestBase"
+        "TestBase",
+        "UnitTesting",
+        "BaseTest"
     ],
     "modules": [
         {
@@ -39,6 +41,39 @@
             "type": "library",
             "dependentModules": [
                 "Base"
+            ],
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "UnitTesting",
+            "type": "library",
+            "dependentModules": [
+                "Base",
+                "TestBase"
+            ],
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "BaseTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting"
             ],
             "cmakeListsManifest": {
                 "presetPaths": [

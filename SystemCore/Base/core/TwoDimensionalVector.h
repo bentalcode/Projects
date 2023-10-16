@@ -22,12 +22,12 @@ namespace base
         /**
          * Creates a two dimensional vector, with an initial sizes: GetColumnsSize x colSize.
          */
-        static ITwoDimensionalVectorSharedPtr<T> make(size_t rowsSize, size_t columnsSize);
+        static ITwoDimensionalVectorSharedPtr<T> Make(size_t rowsSize, size_t columnsSize);
 
         /**
          * Creates a two dimensional vector, with a two dimensional vector.
          */
-        static ITwoDimensionalVectorSharedPtr<T> make(const std::vector<std::vector<T>>& data);
+        static ITwoDimensionalVectorSharedPtr<T> Make(const std::vector<std::vector<T>>& data);
 
         /**
          * The constructor.
@@ -109,17 +109,17 @@ namespace base
         /**
          * Returns whether the collection is Empty.
          */
-        virtual bool empty() const override;
+        virtual bool Empty() const override;
 
         /**
          * Gets the Size of the collection.
          */
-        virtual size_t size() const override;
+        virtual size_t Size() const override;
 
         /**
          * Gets the iterator.
          */
-        virtual IIteratorSharedPtr<T> getIterator() const override;
+        virtual IIteratorSharedPtr<T> GetIterator() const override;
 
     private:
         std::vector<std::vector<T>> m_data;
@@ -138,7 +138,7 @@ namespace base
      * Creates a two dimensional vector, with an initial sizes: GetColumnsSize x colSize.
      */
     template <typename T>
-    ITwoDimensionalVectorSharedPtr<T> TwoDimensionalVector<T>::make(size_t rowsSize, size_t columnsSize)
+    ITwoDimensionalVectorSharedPtr<T> TwoDimensionalVector<T>::Make(size_t rowsSize, size_t columnsSize)
     {
         return std::make_shared<TwoDimensionalVector<T>>(rowsSize, columnsSize);
     }
@@ -147,7 +147,7 @@ namespace base
      * Creates a two dimensional vector, with a two dimensional vector.
      */
     template <typename T>
-    ITwoDimensionalVectorSharedPtr<T> TwoDimensionalVector<T>::make(const std::vector<std::vector<T>>& data)
+    ITwoDimensionalVectorSharedPtr<T> TwoDimensionalVector<T>::Make(const std::vector<std::vector<T>>& data)
     {
         return std::make_shared<TwoDimensionalVector<T>>(data);
     }
@@ -283,7 +283,7 @@ namespace base
      * Returns whether the collection is Empty.
      */
     template <typename T>
-    bool TwoDimensionalVector<T>::empty() const
+    bool TwoDimensionalVector<T>::Empty() const
     {
         return m_data.empty();
     }
@@ -292,7 +292,7 @@ namespace base
      * Gets the Size of the collection.
      */
     template <typename T>
-    size_t TwoDimensionalVector<T>::size() const
+    size_t TwoDimensionalVector<T>::Size() const
     {
         size_t size = 0;
 
@@ -307,7 +307,7 @@ namespace base
      * Gets the iterator.
      */
     template <typename T>
-    IIteratorSharedPtr<T> TwoDimensionalVector<T>::getIterator() const
+    IIteratorSharedPtr<T> TwoDimensionalVector<T>::GetIterator() const
     {
         IIteratorSharedPtr<T> iterator(new TwoDimensionalVectorIterator<T>(m_data));
         return iterator;

@@ -14,7 +14,7 @@ namespace base {
         /**
          * Creates a new instance of an equatable comparator.
          */
-        static IEquatableComparatorSharedPtr<T> make();
+        static IEquatableComparatorSharedPtr<T> Make();
 
         /**
          * The EquatableComparator constructor.
@@ -41,14 +41,14 @@ namespace base {
         /**
          * Checks whether two instances are equals.
          */
-        virtual bool isEqual(const T& lhs, const T& rhs) const override;
+        virtual bool AreEqual(const T& lhs, const T& rhs) const override;
     };
 
     /**
      * Creates a new instance of an equatable comparator.
      */
     template <typename T>
-    IEquatableComparatorSharedPtr<T> EquatableComparator<T>::make()
+    IEquatableComparatorSharedPtr<T> EquatableComparator<T>::Make()
     {
         return std::make_shared<EquatableComparator<T>>();
     }
@@ -73,7 +73,7 @@ namespace base {
      * Checks whether two instances are equals.
      */
     template <typename T>
-    bool EquatableComparator<T>::isEqual(const T& lhs, const T& rhs) const
+    bool EquatableComparator<T>::AreEqual(const T& lhs, const T& rhs) const
     {
         return lhs == rhs;
     }

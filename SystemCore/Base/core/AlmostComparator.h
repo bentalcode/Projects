@@ -37,7 +37,7 @@ namespace base {
         /**
          * Checks whether two instances are equals.
          */
-        virtual bool AreEquals(const Type& lhs, const Type& rhs) const override;
+        virtual bool AreEqual(const Type& lhs, const Type& rhs) const override;
 
         /**
          * Determines the comparision relative order between two instances.
@@ -91,7 +91,7 @@ namespace base {
      * Checks whether two instances are equals.
      */
     template <typename Type, typename EpsilonType>
-    bool AlmostComparator<Type, EpsilonType>::AreEquals(const Type& lhs, const Type& rhs) const
+    bool AlmostComparator<Type, EpsilonType>::AreEqual(const Type& lhs, const Type& rhs) const
     {
         if (lhs == rhs) {
             return true;
@@ -112,7 +112,7 @@ namespace base {
     template <typename Type, typename EpsilonType>
     int AlmostComparator<Type, EpsilonType>::CompareTo(const Type& lhs, const Type& rhs) const
     {
-        if (AreEquals(lhs, rhs)) {
+        if (AreEqual(lhs, rhs)) {
             return 0;
         }
 

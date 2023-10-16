@@ -48,8 +48,8 @@ namespace base {
         /**
          * The DurationType Copy/Move Assignment Operators.
          */
-        DurationType& operator=(const DurationType&) = default;
-        DurationType& operator=(DurationType&&) = delete;
+        DurationType<ArithmeticType, PeriodType>& operator=(const DurationType<ArithmeticType, PeriodType>&) = default;
+        DurationType<ArithmeticType, PeriodType>& operator=(DurationType<ArithmeticType, PeriodType>&&) = delete;
 
         /**
          * Gets a duration.
@@ -150,15 +150,6 @@ namespace base {
      */
     using Duration = DurationType<double>;
     using DurationSharedPtr = std::shared_ptr<Duration>;
-
-    /**
-     * Creates a duration.
-     */
-    template <typename ArithmeticType, typename PeriodType>
-    std::shared_ptr<DurationType<double>> Make(const std::chrono::system_clock::time_point& timePoint)
-    {
-        return std::make_shared<DurationType<ArithmeticType, PeriodType>>(timePoint);
-    }
 
     /**
      * The DurationType Constructor.

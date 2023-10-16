@@ -164,7 +164,7 @@ namespace base {
             return *this;
         }
 
-        m_equalityStatus = comparator.isEqual(lhs, rhs);
+        m_equalityStatus = comparator.AreEqual(lhs, rhs);
 
         return *this;
     }
@@ -184,7 +184,7 @@ namespace base {
 
         MapComparator<TKey, TValue, TCompare> mapComparator;
 
-        m_equalityStatus = mapComparator.IsEqual(
+        m_equalityStatus = mapComparator.AreEqual(
             lhs,
             rhs);
 
@@ -207,11 +207,11 @@ namespace base {
         }
 
         MapComparator<TKey, TValue, TCompare> mapComparator;
-        m_equalityStatus = mapComparator.IsEqual(
-                lhs,
-                rhs,
-                keyComparator,
-                valueComparator);
+        m_equalityStatus = mapComparator.AreEqual(
+            lhs,
+            rhs,
+            keyComparator,
+            valueComparator);
 
         return *this;
     }
@@ -243,7 +243,7 @@ namespace base {
         }
 
         IteratorComparator<T> iteratorComparator;
-        m_equalityStatus = iteratorComparator.IsEqual(lhs, rhs, comparator);
+        m_equalityStatus = iteratorComparator.AreEqual(lhs, rhs, comparator);
 
         return *this;
     }
@@ -310,7 +310,7 @@ namespace base {
         }
 
         IterableComparator<T> iterableComparator;
-        m_equalityStatus = iterableComparator->IsEqual(lhs, rhs, comparator);
+        m_equalityStatus = iterableComparator->AreEqual(lhs, rhs, comparator);
 
         return *this;
     }

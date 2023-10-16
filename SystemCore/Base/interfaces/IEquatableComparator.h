@@ -19,7 +19,7 @@ namespace base {
         /**
          * Checks whether two instances are equals.
          */
-        virtual bool AreEquals(const T& lhs, const T& rhs) const = 0;
+        virtual bool AreEqual(const T& lhs, const T& rhs) const = 0;
     };
 
     /**

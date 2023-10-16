@@ -85,8 +85,8 @@ IParsingResultSharedPtr<IInputParametersSharedPtr> CommandParser::ParseInputPara
                 return ParsingResult<IInputParametersSharedPtr>::FailureResult(namedParameterResult);
             }
 
-            const std::wstring& name = namedParameterResult->GetResult()->getFirst();
-            const std::wstring& value = namedParameterResult->GetResult()->getSecond();
+            const std::wstring& name = namedParameterResult->GetResult()->GetFirst();
+            const std::wstring& value = namedParameterResult->GetResult()->GetSecond();
 
             if (namedParameters.find(name) != namedParameters.end()) {
                 long errorCode = base::ErrorCodes::INVALID_ARG;

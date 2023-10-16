@@ -23,11 +23,11 @@ StringConversion::~StringConversion()
  */
 bool StringConversion::ToBoolean(const std::wstring& value) const
 {
-    if (StringEquality::EqualsIgnoreCase(value, L"true"))
+    if (StringEquality::AreEqualIgnoreCase(value, L"true"))
     {
         return true;
     }
-    else if (StringEquality::EqualsIgnoreCase(value, L"false"))
+    else if (StringEquality::AreEqualIgnoreCase(value, L"false"))
     {
         return false;
     }

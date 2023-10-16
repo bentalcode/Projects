@@ -7,7 +7,7 @@ using namespace base;
 /**
  * Checks whether strings are equals. (Ignore case)
  */
-bool StringEquality::EqualsIgnoreCase(
+bool StringEquality::AreEqualIgnoreCase(
     const std::wstring& left,
     const std::wstring& right)
 {
@@ -21,7 +21,7 @@ bool StringEquality::EqualsIgnoreCase(
         return true;
     }
 
-    return Equals(
+    return AreEqual(
         left, 0, left.size() - 1,
         right, 0, right.size() - 1,
         true);
@@ -30,7 +30,7 @@ bool StringEquality::EqualsIgnoreCase(
 /**
  * Checks whether strings are equals with start and end indexes.
  */
-bool StringEquality::Equals(
+bool StringEquality::AreEqual(
     const std::wstring& left,
     size_t leftStartIndex,
     size_t leftEndIndex,
@@ -38,7 +38,7 @@ bool StringEquality::Equals(
     size_t rightStartIndex,
     size_t rightEndIndex)
 {
-    return Equals(
+    return AreEqual(
         left, leftStartIndex, leftEndIndex,
         right, rightStartIndex, rightEndIndex,
         false);
@@ -47,7 +47,7 @@ bool StringEquality::Equals(
 /**
  * Checks whether strings are equals with start and end indexes. (Ignore case)
  */
-bool StringEquality::EqualsIgnoreCase(
+bool StringEquality::AreEqualIgnoreCase(
     const std::wstring& left,
     size_t leftStartIndex,
     size_t leftEndIndex,
@@ -55,7 +55,7 @@ bool StringEquality::EqualsIgnoreCase(
     size_t rightStartIndex,
     size_t rightEndIndex)
 {
-    return Equals(
+    return AreEqual(
         left, leftStartIndex, leftEndIndex,
         right, rightStartIndex, rightEndIndex,
         true);
@@ -64,14 +64,14 @@ bool StringEquality::EqualsIgnoreCase(
 /**
  * Checks whether strings are equals with start index and length.
  */
-bool StringEquality::Equals(
+bool StringEquality::AreEqual(
     const std::wstring& left,
     size_t leftStartIndex,
     const std::wstring& right,
     size_t rightStartIndex,
     size_t length)
 {
-    return Equals(
+    return AreEqual(
         left, leftStartIndex,
         right, rightStartIndex,
         length,
@@ -81,14 +81,14 @@ bool StringEquality::Equals(
 /**
  * Checks whether strings are equals with start index and length. (Ignore case)
  */
-bool StringEquality::EqualsIgnoreCase(
+bool StringEquality::AreEqualIgnoreCase(
     const std::wstring& left,
     size_t leftStartIndex,
     const std::wstring& right,
     size_t rightStartIndex,
     size_t length)
 {
-    return Equals(
+    return AreEqual(
         left, leftStartIndex,
         right, rightStartIndex,
         length,
@@ -98,7 +98,7 @@ bool StringEquality::EqualsIgnoreCase(
 /**
  * Checks whether buffer strings are equals with start and end indexes.
  */
-bool StringEquality::Equals(
+bool StringEquality::AreEqual(
     const std::wstring::value_type* left,
     size_t leftStartIndex,
     size_t leftEndIndex,
@@ -106,7 +106,7 @@ bool StringEquality::Equals(
     size_t rightStartIndex,
     size_t rightEndIndex)
 {
-    return Equals(
+    return AreEqual(
         left, leftStartIndex, leftEndIndex,
         right, rightStartIndex, rightEndIndex,
         false);
@@ -115,7 +115,7 @@ bool StringEquality::Equals(
 /**
  * Checks whether buffer strings are equals with start and end indexes. (Ignore case)
  */
-bool StringEquality::EqualsIgnoreCase(
+bool StringEquality::AreEqualIgnoreCase(
     const std::wstring::value_type* left,
     size_t leftStartIndex,
     size_t leftEndIndex,
@@ -123,7 +123,7 @@ bool StringEquality::EqualsIgnoreCase(
     size_t rightStartIndex,
     size_t rightEndIndex)
 {
-    return Equals(
+    return AreEqual(
         left, leftStartIndex, leftEndIndex,
         right, rightStartIndex, rightEndIndex,
         true);
@@ -132,14 +132,14 @@ bool StringEquality::EqualsIgnoreCase(
 /**
  * Checks whether buffer strings are equals with start index and length.
  */
-bool StringEquality::Equals(
+bool StringEquality::AreEqual(
     const std::wstring::value_type* left,
     size_t leftStartIndex,
     const std::wstring::value_type* right,
     size_t rightStartIndex,
     size_t length)
 {
-    return Equals(
+    return AreEqual(
         left, leftStartIndex,
         right, rightStartIndex,
         length,
@@ -149,14 +149,14 @@ bool StringEquality::Equals(
 /**
  * Checks whether buffer strings are equals with start index and length. (Ignore case)
  */
-bool StringEquality::EqualsIgnoreCase(
+bool StringEquality::AreEqualIgnoreCase(
     const std::wstring::value_type* left,
     size_t leftStartIndex,
     const std::wstring::value_type* right,
     size_t rightStartIndex,
     size_t length)
 {
-    return Equals(
+    return AreEqual(
         left, leftStartIndex,
         right, rightStartIndex,
         length,
@@ -166,7 +166,7 @@ bool StringEquality::EqualsIgnoreCase(
 /**
  * Checks whether strings are equals with start and end indexes.
  */
-bool StringEquality::Equals(
+bool StringEquality::AreEqual(
     const std::wstring& left,
     size_t leftStartIndex,
     size_t leftEndIndex,
@@ -178,7 +178,7 @@ bool StringEquality::Equals(
     const std::wstring::value_type* leftStr = left.c_str();
     const std::wstring::value_type* rightStr = right.c_str();
 
-    return Equals(
+    return AreEqual(
         leftStr, leftStartIndex, leftEndIndex,
         rightStr, rightStartIndex, rightEndIndex,
         ignoreCase);
@@ -187,7 +187,7 @@ bool StringEquality::Equals(
 /**
  * Checks whether strings are equals with start index and length.
  */
-bool StringEquality::Equals(
+bool StringEquality::AreEqual(
     const std::wstring& left,
     size_t leftStartIndex,
     const std::wstring& right,
@@ -198,7 +198,7 @@ bool StringEquality::Equals(
     const std::wstring::value_type* leftStr = left.c_str();
     const std::wstring::value_type* rightStr = right.c_str();
 
-    return Equals(
+    return AreEqual(
         leftStr, leftStartIndex,
         rightStr, rightStartIndex,
         length,
@@ -208,7 +208,7 @@ bool StringEquality::Equals(
 /**
  * Checks whether buffer strings are equals with start and end indexes.
  */
-bool StringEquality::Equals(
+bool StringEquality::AreEqual(
     const wchar_t* left,
     size_t leftStartIndex,
     size_t leftEndIndex,
@@ -233,7 +233,7 @@ bool StringEquality::Equals(
 
     size_t length = leftLength;
 
-    return Equals(
+    return AreEqual(
         left, leftStartIndex,
         right, rightStartIndex,
         length,
@@ -243,7 +243,7 @@ bool StringEquality::Equals(
 /**
  * Checks whether buffer strings are equals with start index and length.
  */
-bool StringEquality::Equals(
+bool StringEquality::AreEqual(
     const std::wstring::value_type* left,
     size_t leftStartIndex,
     const std::wstring::value_type* right,

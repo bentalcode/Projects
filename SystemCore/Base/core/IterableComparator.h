@@ -38,7 +38,7 @@ namespace base {
         /**
          * Checks whether the iterators are equals with an element comparator.
          */
-        bool IsEqual(const IIterable<T>& lhs, const IIterable<T>& rhs, const IEquatableComparator<T>& comparator);
+        bool AreEqual(const IIterable<T>& lhs, const IIterable<T>& rhs, const IEquatableComparator<T>& comparator);
 
         /**
          * Determines the relative order of iterators with an element comparator.
@@ -79,12 +79,12 @@ namespace base {
      * Checks whether the iterables are equals with an element comparator.
      */
     template <typename T>
-    bool IterableComparator<T>::IsEqual(
+    bool IterableComparator<T>::AreEqual(
         const IIterable<T>& lhs,
         const IIterable<T>& rhs,
         const IEquatableComparator<T>& comparator)
     {
-        return m_iteratorComparator.IsEqual(lhs.getIterator(), rhs.getIterator(), comparator);
+        return m_iteratorComparator.AreEqual(lhs.getIterator(), rhs.getIterator(), comparator);
     }
 
     /**

@@ -124,16 +124,23 @@ set(BASE_INCLUDES_FILES
     ../Base/core/ErrorCodes.h
     ../Base/core/ErrorMessages.h
     ../Base/core/Indexes.h
+    ../Base/core/Interval.h
+    ../Base/core/IntervalMap.h
+    ../Base/core/IntervalMapIterator.h
     ../Base/core/IterableComparator.h
     ../Base/core/IteratorComparator.h
+    ../Base/core/KmpStringSearch.h
     ../Base/core/List.h
     ../Base/core/ListIterator.h
     ../Base/core/ListReverseIterator.h
     ../Base/core/MapComparator.h
+    ../Base/core/Matrix.h
     ../Base/core/MessageWriter.h
     ../Base/core/NotBitOperator.h
     ../Base/core/NotImplementedException.h
     ../Base/core/Pair.h
+    ../Base/core/RandomGenerator.h
+    ../Base/core/Range.h
     ../Base/core/ReferenceCounterHolder.h
     ../Base/core/SetIterator.h
     ../Base/core/SharedPtr.h
@@ -171,9 +178,13 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IConsoleColorHandler.h
     ../Base/interfaces/IEquatableComparator.h
     ../Base/interfaces/IHashCodeProvider.h
+    ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
     ../Base/interfaces/IIterator.h
+    ../Base/interfaces/IKeyIterable.h
+    ../Base/interfaces/IKeyReverseIterable.h
     ../Base/interfaces/IList.h
+    ../Base/interfaces/IMatrix.h
     ../Base/interfaces/IMessageWriter.h
     ../Base/interfaces/IRandomGenerator.h
     ../Base/interfaces/IResourceReader.h
@@ -193,6 +204,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ReferenceCounterHolder.h
     ../Base/interfaces/SmartPointers.h
     ../Base/interfaces/StandardFileDescriptor.h
+    ../Base/interfaces/StringComparisonType.h
     ../Base/interfaces/TimeUnit.h
     ../Base/interfaces/TimeUtils.h
 )
@@ -207,8 +219,10 @@ set(BASE_SOURCES_FILES
     ../Base/core/EqualBuilder.cpp
     ../Base/core/ErrorCodes.cpp
     ../Base/core/ErrorMessages.cpp
+    ../Base/core/KmpStringSearch.cpp
     ../Base/core/MessageWriter.cpp
     ../Base/core/NotBitOperator.cpp
+    ../Base/core/RandomGenerator.cpp
     ../Base/core/ReferenceCounter.cpp
     ../Base/core/SkipIterator.cpp
     ../Base/core/StringComparable.cpp

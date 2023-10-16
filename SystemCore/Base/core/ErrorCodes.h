@@ -31,6 +31,7 @@ namespace base {
         static const long ACCESS_DENIED = 0x80070005L;
         static const long HANDLE = 0x80070006L;
         static const long OUT_OF_MEMORY = 0x8007000EL;
+        static const long OUT_OF_RANGE = 0x80070057L;
         static const long RESOURCE_NOT_FOUND = 0x490L;
         static const long RESOURCE_ALREADY_EXISTS = 0xb7L;
         static const long RESOURCE_TEMPLATE_NOT_FOUND = 0x490L;

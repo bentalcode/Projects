@@ -38,7 +38,7 @@ namespace base {
         /**
          * Checks whether two instances are equals.
          */
-        virtual bool IsEqual(const T& lhs, const T& rhs) const;
+        virtual bool AreEqual(const T& lhs, const T& rhs) const;
 
     private:
         const IEquatableComparator<TComparator>& m_comparator;
@@ -65,9 +65,9 @@ namespace base {
      * Checks whether two instances are equals.
      */
     template <typename T, typename TComparator>
-    bool DereferenceEquatableComparator2<T, TComparator>::IsEqual(const T& lhs, const T& rhs) const
+    bool DereferenceEquatableComparator2<T, TComparator>::AreEqual(const T& lhs, const T& rhs) const
     {
-        return m_comparator.IsEqual(*lhs, *rhs);
+        return m_comparator.AreEqual(*lhs, *rhs);
     }
 
 } // namespace base

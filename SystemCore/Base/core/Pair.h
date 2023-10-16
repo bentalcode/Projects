@@ -15,12 +15,16 @@ namespace base
         /**
          * Creates a new pair.
          */
-        static std::shared_ptr<Pair<Type1, Type2>> make(const Type1& first, const Type2& second);
+        static std::shared_ptr<Pair<Type1, Type2>> Make(
+            const Type1& first,
+            const Type2& second);
 
         /**
          * The constructor.
          */
-        Pair(const Type1& first, const Type2& second);
+        Pair(
+            const Type1& first,
+            const Type2& second);
 
         /**
          * The destructor.
@@ -42,12 +46,12 @@ namespace base
         /**
          * Gets the first element.
          */
-        const Type1& getFirst() const;
+        const Type1& GetFirst() const;
 
         /**
          * Gets the second element.
          */
-        const Type2& getSecond() const;
+        const Type2& GetSecond() const;
 
         /**
          * Gets the string representation of this instance.
@@ -69,7 +73,9 @@ namespace base
      * Creates a new pair.
      */
     template <typename Type1, typename Type2>
-    PairSharedPtr<Type1, Type2> Pair<Type1, Type2>::make(const Type1& first, const Type2& second)
+    PairSharedPtr<Type1, Type2> Pair<Type1, Type2>::Make(
+        const Type1& first,
+        const Type2& second)
     {
         return std::make_shared<Pair<Type1, Type2>>(first, second);
     }
@@ -78,7 +84,9 @@ namespace base
      * The constructor.
      */
     template <typename Type1, typename Type2>
-    Pair<Type1, Type2>::Pair(const Type1& first, const Type2& second) :
+    Pair<Type1, Type2>::Pair(
+        const Type1& first,
+        const Type2& second) :
         m_first(first),
         m_second(second)
     {
@@ -96,7 +104,7 @@ namespace base
      * Gets the first element.
      */
     template <typename Type1, typename Type2>
-    const Type1& Pair<Type1, Type2>::getFirst() const
+    const Type1& Pair<Type1, Type2>::GetFirst() const
     {
         return m_first;
     }
@@ -105,7 +113,7 @@ namespace base
      * Gets the second element.
      */
     template <typename Type1, typename Type2>
-    const Type2& Pair<Type1, Type2>::getSecond() const
+    const Type2& Pair<Type1, Type2>::GetSecond() const
     {
         return m_second;
     }
@@ -122,19 +130,79 @@ namespace base
     }
 
     /**
-     * The operator< for implementing equivalence relation.
+     * Implements an operator not equals for intervals.
      */
     template <typename Type1, typename Type2>
-    bool operator<(const Pair<Type1, Type2>& left, const Pair<Type1, Type2>& right) {
-        if (left.getFirst() < right.getFirst()) {
+    inline bool operator==(
+        const Pair<Type1, Type2>& lhs,
+        const Pair<Type1, Type2>& rhs)
+    {
+        return
+            lhs.GetFirst() == rhs.GetFirst() &&
+            lhs.GetSecond() == rhs.GetSecond();
+    }
+
+    /**
+     * Implements an operator not equals for intervals.
+     */
+    template <typename Type1, typename Type2>
+    inline bool operator!=(
+        const Pair<Type1, Type2>& lhs,
+        const Pair<Type1, Type2>& rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+    /**
+     * Implements an operator less than for intervals.
+     */
+    template <typename Type1, typename Type2>
+    bool operator<(
+        const Pair<Type1, Type2>& lhs,
+        const Pair<Type1, Type2>& rhs)
+    {
+        if (lhs.getFirst() < rhs.getFirst()) {
             return true;
         }
 
-        if (left.getFirst() > right.getFirst()) {
+        if (lhs.getFirst() > rhs.getFirst()) {
             return false;
         }
 
-        return left.getSecond() < right.getSecond();
+        return lhs.getSecond() < rhs.getSecond();
+    }
+
+    /**
+     * Implements an operator less than or equal for date time.
+     */
+    template <typename Type1, typename Type2>
+    inline bool operator<=(
+        const Pair<Type1, Type2>& lhs,
+        const Pair<Type1, Type2>& rhs)
+    {
+        return !(rhs < lhs);
+    }
+
+    /**
+     * Implements an operator greater than for date time.
+     */
+    template <typename Type1, typename Type2>
+    inline bool operator>(
+        const Pair<Type1, Type2>& lhs,
+        const Pair<Type1, Type2>& rhs)
+    {
+        return rhs < lhs;
+    }
+
+    /**
+     * Implements an operator greater than or equal for date time.
+     */
+    template <typename Type1, typename Type2>
+    inline bool operator>=(
+        const Pair<Type1, Type2>& lhs,
+        const Pair<Type1, Type2>& rhs)
+    {
+        return !(lhs < rhs);
     }
 }
 
