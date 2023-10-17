@@ -22,13 +22,13 @@ namespace base {
         virtual ~StringConversion();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         StringConversion(const StringConversion&) = delete;
         StringConversion(StringConversion&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         StringConversion& operator=(const StringConversion&) = delete;
         StringConversion& operator=(StringConversion&&) = delete;

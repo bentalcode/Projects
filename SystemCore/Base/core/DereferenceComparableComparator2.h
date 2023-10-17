@@ -24,19 +24,19 @@ namespace base {
         virtual ~DereferenceComparableComparator2();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         DereferenceComparableComparator2(const DereferenceComparableComparator2&) = delete;
         DereferenceComparableComparator2(DereferenceComparableComparator2&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         DereferenceComparableComparator2& operator=(const DereferenceComparableComparator2&) = delete;
         DereferenceComparableComparator2& operator=(DereferenceComparableComparator2&&) = delete;
 
         /**
-         * Determines the relative order of two instances.
+         * Determines the relative order Of two instances.
          *
          * Returns -1 if the left hand side value is less than the right hand side value.
          * Returns 0 if the left hand side value is equal to the right hand side value.
@@ -66,7 +66,7 @@ namespace base {
     }
 
     /**
-     * Determines the relative order of two instances.
+     * Determines the relative order Of two instances.
      *
      * Returns -1 if the left hand side value is less than the right hand side value.
      * Returns 0 if the left hand side value is equal to the right hand side value.

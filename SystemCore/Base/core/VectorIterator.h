@@ -30,24 +30,24 @@ namespace base
         virtual ~VectorIterator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         VectorIterator(const VectorIterator&) = delete;
         VectorIterator(VectorIterator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         VectorIterator& operator=(const VectorIterator&) = delete;
         VectorIterator& operator=(VectorIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a Next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the Next element.
          */
         virtual T Next() override;
 

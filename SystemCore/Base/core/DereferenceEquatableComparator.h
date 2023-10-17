@@ -29,13 +29,13 @@ namespace base {
         virtual ~DereferenceEquatableComparator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         DereferenceEquatableComparator(const DereferenceEquatableComparator&) = delete;
         DereferenceEquatableComparator(DereferenceEquatableComparator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         DereferenceEquatableComparator& operator=(const DereferenceEquatableComparator&) = delete;
         DereferenceEquatableComparator& operator=(DereferenceEquatableComparator&&) = delete;

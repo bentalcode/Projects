@@ -98,7 +98,7 @@ namespace base {
             size_t offset = 0);
 
         /**
-         * Checks whether a string has valid parantheses.
+         * Checks whether a string Has valid parantheses.
          */
         static bool HasValidParentheses(
             const std::wstring& str,
@@ -189,8 +189,8 @@ namespace base {
 
             std::wstringstream errorMessageStream;
             errorMessageStream
-                << L"StringUtils::CopyString() has failed copying a string"
-                << L" since the Size of the destination buffer is not sufficient"
+                << L"StringUtils::CopyString() Has failed copying a string"
+                << L" since the Size of the Destination buffer is not sufficient"
                 << ErrorMessages::GetErrorCodeMessage(errorCode);
 
             std::wstring errorMessage = errorMessageStream.str();
@@ -221,7 +221,7 @@ namespace base {
 
                 std::wstringstream errorMessageStream;
                 errorMessageStream
-                    << L"StringUtils::GetStringLength()  has failed retrieving length of an input string"
+                    << L"StringUtils::GetStringLength()  Has failed retrieving length of an input string"
                     << L" since it's Size is larger than maxLegnth"
                     << ErrorMessages::GetErrorCodeMessage(errorCode);
 

@@ -37,7 +37,7 @@ namespace base
         /**
          * Gets the reverse iterator.
          */
-        virtual IReverseIteratorSharedPtr<T> getReverseIterator() const = 0;
+        virtual IReverseIteratorSharedPtr<T> GetReverseIterator() const = 0;
     };
 
     //

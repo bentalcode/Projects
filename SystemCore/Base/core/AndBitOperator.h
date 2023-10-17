@@ -22,13 +22,13 @@ namespace base
         virtual ~AndBitOperator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         AndBitOperator(const AndBitOperator&) = delete;
         AndBitOperator(AndBitOperator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         AndBitOperator& operator=(const AndBitOperator&) = delete;
         AndBitOperator& operator=(AndBitOperator&&) = delete;
@@ -38,7 +38,6 @@ namespace base
          */
         virtual unsigned int Evaluate(unsigned int lhs, unsigned int rhs) const override;
     };
-
-} // namespace base
+}
 
 #endif // AND_BIT_OPERATOR_H_1e506d82_76d8_4f53_b4ce_b9573cfc8ad3

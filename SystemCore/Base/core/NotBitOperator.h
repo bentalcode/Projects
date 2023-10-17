@@ -22,13 +22,13 @@ namespace base
         virtual ~NotBitOperator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         NotBitOperator(const NotBitOperator&) = delete;
         NotBitOperator(NotBitOperator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         NotBitOperator& operator=(const NotBitOperator&) = delete;
         NotBitOperator& operator=(NotBitOperator&&) = delete;

@@ -26,13 +26,13 @@ namespace base {
         ~MapComparator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         MapComparator(const MapComparator&) = delete;
         MapComparator(MapComparator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         MapComparator& operator=(const MapComparator&) = delete;
         MapComparator& operator=(MapComparator&&) = delete;
@@ -54,7 +54,7 @@ namespace base {
             const IEquatableComparator<TValue>& valueComparator);
 
         /**
-         * Determines the relative order of iterators with an element comparator.
+         * Determines the relative order Of iterators with an element comparator.
          *
          * Returns -1 if the left hand side value is less than the right hand side value.
          * Returns 0 if the left hand side value is equal to the right hand side value.
@@ -165,7 +165,7 @@ namespace base {
     }
 
     /**
-     * Determines the relative order of iterators with an element comparator.
+     * Determines the relative order Of iterators with an element comparator.
      *
      * Returns -1 if the left hand side value is less than the right hand side value.
      * Returns 0 if the left hand side value is equal to the right hand side value.

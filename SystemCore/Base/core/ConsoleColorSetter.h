@@ -33,13 +33,13 @@ namespace base
         ~ConsoleColorSetter();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         ConsoleColorSetter(const ConsoleColorSetter&) = delete;
         ConsoleColorSetter(ConsoleColorSetter&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         ConsoleColorSetter& operator=(const ConsoleColorSetter&) = delete;
         ConsoleColorSetter& operator=(ConsoleColorSetter&&) = delete;

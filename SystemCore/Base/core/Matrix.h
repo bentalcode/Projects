@@ -35,24 +35,24 @@ namespace base
         virtual ~Matrix();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         Matrix(const Matrix&);
         Matrix(Matrix&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         Matrix& operator=(const Matrix&);
         Matrix& operator=(Matrix&&) = delete;
 
         /**
-         * Gets the number of rows.
+         * Gets the number Of rows.
          */
         virtual std::size_t GetRowsSize() const override;
 
         /**
-         * Gets the number of columns.
+         * Gets the number Of columns.
          */
         virtual std::size_t GetColumnsSize() const override;
 
@@ -156,7 +156,7 @@ namespace base
         Validate();
 
         m_rowsSize = m_data.size();
-        m_columnsSize = m_data[0].size();
+        m_columnsSize = m_data[0].Size();
     }
 
     /**
@@ -178,7 +178,7 @@ namespace base
     }
 
     /**
-     * The Matrix copy constructor.
+     * The Matrix Copy constructor.
      */
     template <typename T>
     Matrix<T>::Matrix(const Matrix<T>& other) :
@@ -215,7 +215,7 @@ namespace base
     }
 
     /**
-     * Gets the number of rows.
+     * Gets the number Of rows.
      */
     template <typename T>
     std::size_t Matrix<T>::GetRowsSize() const
@@ -224,7 +224,7 @@ namespace base
     }
 
     /**
-     * Gets the number of columns.
+     * Gets the number Of columns.
      */
     template <typename T>
     std::size_t Matrix<T>::GetColumnsSize() const {
@@ -268,7 +268,7 @@ namespace base
         if (row.size() != GetRowsSize())
         {
             long statusCode = ErrorCodes::INVALID_ARG;
-            std::wstring errorMessage = L"The size of the row is not in the correct Size.";
+            std::wstring errorMessage = L"The Size of the row is not in the correct Size.";
             throw BaseException(statusCode, errorMessage);
         }
 
@@ -357,11 +357,11 @@ namespace base
         }
 
         std::size_t rows = data.size();
-        std::size_t cols = data[0].size();
+        std::size_t cols = data[0].Size();
 
         for (std::size_t row = 1; row < rows; ++row)
         {
-            std::size_t currCols = data[row].size();
+            std::size_t currCols = data[row].Size();
 
             if (cols != currCols)
             {

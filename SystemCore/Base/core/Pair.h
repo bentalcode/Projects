@@ -32,13 +32,13 @@ namespace base
         ~Pair();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         Pair(const Pair& rhs) = default;
         Pair(Pair&&) = default;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         Pair& operator=(const Pair&) = default;
         Pair& operator=(Pair&&) = default;
@@ -54,7 +54,7 @@ namespace base
         const Type2& GetSecond() const;
 
         /**
-         * Gets the string representation of this instance.
+         * Gets the string representation Of this instance.
          */
         std::wstring toString() const;
 
@@ -119,7 +119,7 @@ namespace base
     }
 
     /**
-     * Gets the string representation of this instance.
+     * Gets the string representation Of this instance.
      */
     template <typename Type1, typename Type2>
     std::wstring Pair<Type1, Type2>::toString() const

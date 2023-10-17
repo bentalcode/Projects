@@ -7,7 +7,7 @@
 namespace base
 {
     /**
-     * The SkipIterator class implements a skip iterator of elements.
+     * The SkipIterator class implements a skip iterator Of elements.
      */
     class SkipIterator : public ISkipIterator
     {
@@ -23,13 +23,13 @@ namespace base
         virtual ~SkipIterator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         SkipIterator(const SkipIterator&) = delete;
         SkipIterator(SkipIterator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         SkipIterator& operator=(const SkipIterator&) = delete;
         SkipIterator& operator=(SkipIterator&&) = delete;

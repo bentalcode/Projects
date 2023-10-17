@@ -8,7 +8,7 @@ namespace base
 {
     /**
      * The TwoDimensionalVector class implements a generic two dimensional vector.
-     * The dimensional of a vector can contains different sizes.
+     * The dimensional of a vector can Contains different sizes.
      */
     template <typename T>
     class TwoDimensionalVector final : public ITwoDimensionalVector<T>
@@ -55,24 +55,24 @@ namespace base
         virtual ~TwoDimensionalVector();
 
         /**
-         * The copy/move constructor.
+         * The Copy/move constructor.
          */
         TwoDimensionalVector(TwoDimensionalVector&) = default;
         TwoDimensionalVector(TwoDimensionalVector&&) = default;
 
         /**
-         * The copy/move assignment operator.
+         * The Copy/move assignment operator.
          */
         TwoDimensionalVector& operator=(TwoDimensionalVector&) = default;
         TwoDimensionalVector& operator=(TwoDimensionalVector&&) = default;
 
         /**
-         * Gets the number of rows.
+         * Gets the number Of rows.
          */
         virtual size_t GetRowsSize() const override;
 
         /**
-         * Gets the number of columns in a specific row.
+         * Gets the number Of columns in a specific row.
          */
         virtual size_t GetColumnsSize(size_t rowIndex) const override;
 
@@ -207,7 +207,7 @@ namespace base
     }
 
     /**
-     * Gets the number of rows.
+     * Gets the number Of rows.
      */
     template <typename T>
     size_t TwoDimensionalVector<T>::GetRowsSize() const
@@ -216,7 +216,7 @@ namespace base
     }
 
     /**
-     * Gets the number of columns in a specific row.
+     * Gets the number Of columns in a specific row.
      */
     template <typename T>
     size_t TwoDimensionalVector<T>::GetColumnsSize(size_t rowIndex) const {

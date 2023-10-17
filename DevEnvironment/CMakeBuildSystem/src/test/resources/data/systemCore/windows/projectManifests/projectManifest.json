@@ -3,6 +3,7 @@
     "rootPath": "c:\\git\\repositories\\Projects\\SystemCore",
     "effectiveModules": [
         "Base",
+        "DataStructures",
         "Command",
         "TestBase",
         "UnitTesting",
@@ -12,6 +13,21 @@
         {
             "name": "Base",
             "type": "library",
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "DataStructures",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ],
             "cmakeListsManifest": {
                 "presetPaths": [
                     "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"

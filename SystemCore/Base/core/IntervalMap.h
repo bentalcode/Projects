@@ -61,7 +61,7 @@ namespace base {
         bool FindEndKeyValue(const Key& key, Value& result) const;
 
         /**
-         * Finds the next smaller or equal key of a specified key.
+         * Finds the Next smaller or equal key of a specified key.
          */
         typename IntervalDataMap::const_iterator FindNextSmallerOrEqualKey(const Key& key) const;
 
@@ -165,7 +165,7 @@ namespace base {
     }
 
     /**
-     * Finds the next smaller or equal key of a specified key.
+     * Finds the Next smaller or equal key of a specified key.
      * Returns end() if no key was found.
      */
     template <typename Key, typename Value>

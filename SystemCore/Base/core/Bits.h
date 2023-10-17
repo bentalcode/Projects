@@ -67,7 +67,7 @@ namespace base
         static unsigned int Flip(unsigned int bit);
 
         /**
-         * Sets the bit at the specified index to the complement of its current value.
+         * Sets the bit at the specified index to the complement Of its current value.
          */
         static unsigned int Flip(unsigned int value, size_t index);
 

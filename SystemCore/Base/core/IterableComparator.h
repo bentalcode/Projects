@@ -24,13 +24,13 @@ namespace base {
         ~IterableComparator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         IterableComparator(const IterableComparator&) = delete;
         IterableComparator(IterableComparator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         IterableComparator& operator=(const IterableComparator&) = delete;
         IterableComparator& operator=(IterableComparator&&) = delete;
@@ -41,7 +41,7 @@ namespace base {
         bool AreEqual(const IIterable<T>& lhs, const IIterable<T>& rhs, const IEquatableComparator<T>& comparator);
 
         /**
-         * Determines the relative order of iterators with an element comparator.
+         * Determines the relative order Of iterators with an element comparator.
          *
          * Returns -1 if the left hand side value is less than the right hand side value.
          * Returns 0 if the left hand side value is equal to the right hand side value.
@@ -88,7 +88,7 @@ namespace base {
     }
 
     /**
-     * Determines the relative order of iterables with an element comparator.
+     * Determines the relative order Of iterables with an element comparator.
      *
      * Returns -1 if the left hand side value is less than the right hand side value.
      * Returns 0 if the left hand side value is equal to the right hand side value.

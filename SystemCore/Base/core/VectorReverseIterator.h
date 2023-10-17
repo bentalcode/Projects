@@ -28,24 +28,24 @@ namespace base
         virtual ~VectorReverseIterator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         VectorReverseIterator(const VectorReverseIterator&) = delete;
         VectorReverseIterator(VectorReverseIterator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         VectorReverseIterator& operator=(const VectorReverseIterator&) = delete;
         VectorReverseIterator& operator=(VectorReverseIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a Next element.
          */
         virtual bool hasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the Next element.
          */
         virtual T next() override;
 
@@ -87,7 +87,7 @@ namespace base
     }
 
     /**
-     * Checks whether there is a next element.
+     * Checks whether there is a Next element.
      */
     template <typename T>
     bool VectorReverseIterator<T>::hasNext() const
@@ -96,7 +96,7 @@ namespace base
     }
 
     /**
-     * Gets the next element.
+     * Gets the Next element.
      */
     template <typename T>
     T VectorReverseIterator<T>::next()

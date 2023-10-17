@@ -22,13 +22,13 @@ namespace base
         virtual ~XorBitOperator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         XorBitOperator(const XorBitOperator&) = delete;
         XorBitOperator(XorBitOperator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         XorBitOperator& operator=(const XorBitOperator&) = delete;
         XorBitOperator& operator=(XorBitOperator&&) = delete;

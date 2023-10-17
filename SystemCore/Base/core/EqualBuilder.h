@@ -28,13 +28,13 @@ namespace base {
         ~EqualBuilder();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         EqualBuilder(const EqualBuilder&) = delete;
         EqualBuilder(EqualBuilder&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         EqualBuilder& operator=(const EqualBuilder&) = delete;
         EqualBuilder& operator=(EqualBuilder&&) = delete;

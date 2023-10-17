@@ -20,7 +20,7 @@ namespace base
         explicit SharedPtr(T* pointer = nullptr);
 
         /**
-         * The copy constructor.
+         * The Copy constructor.
          */
         SharedPtr(const SharedPtr& rhs);
 
@@ -97,7 +97,7 @@ namespace base
     }
 
     /**
-     * The SharedPtr copy constructor.
+     * The SharedPtr Copy constructor.
      */
     template <class T>
     SharedPtr<T>::SharedPtr(const SharedPtr& rhs) :

@@ -26,13 +26,13 @@ namespace base
         ~Range();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         Range(const Range&) = default;
         Range(Range&&) = default;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         Range& operator=(const Range&) = default;
         Range& operator=(Range&&) = default;
@@ -48,7 +48,7 @@ namespace base
         const T& GetEnd() const;
 
         /**
-         * Gets the string representation of this instance.
+         * Gets the string representation Of this instance.
          */
         std::wstring ToString() const;
 
@@ -115,7 +115,7 @@ namespace base
     }
 
     /**
-     * Gets the string representation of this instance.
+     * Gets the string representation Of this instance.
      */
     template <typename T>
     std::wstring Range<T>::ToString() const

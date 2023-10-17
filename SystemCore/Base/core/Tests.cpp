@@ -1,5 +1,7 @@
 #include "AlmostComparator.h"
+#include "BaseLogic.h"
 #include "AndBitOperator.h"
+#include "OrBitOperator.h"
 #include "BaseException.h"
 #include "Bits.h"
 #include "ClassType.h"

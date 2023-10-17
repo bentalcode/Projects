@@ -24,17 +24,17 @@ namespace base {
         ~ReferenceCounterHolder();
 
         /**
-         * The copy constructor.
+         * The Copy constructor.
          */
         ReferenceCounterHolder(const ReferenceCounterHolder&) = delete;
 
         /**
-         * The copy assignment operator.
+         * The Copy assignment operator.
          */
         ReferenceCounterHolder& operator=(const ReferenceCounterHolder&) = delete;
 
         /**
-         * The move copy constructor.
+         * The move Copy constructor.
          */
         ReferenceCounterHolder(const ReferenceCounterHolder&&) = delete;
 

@@ -42,7 +42,7 @@ Uuid::~Uuid()
 }
 
 /**
- * Gets a string representation of this instance.
+ * Gets a string representation Of this instance.
  */
 std::wstring Uuid::ToString() const
 {
@@ -55,7 +55,7 @@ std::wstring Uuid::ToString() const
 
         std::wstringstream errorMessageStream;
         errorMessageStream 
-            << L"The Uuid class has failed converting a UUID to a String" 
+            << L"The Uuid class Has failed converting a UUID to a String"
             << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
@@ -83,7 +83,7 @@ IUuidSharedPtr Uuid::Parse(const std::wstring& str)
     if (errorCode != ErrorCodes::SUCCESS) {
         std::wstringstream errorMessageStream;
         errorMessageStream 
-            << L"The Uuid class has failed converting a UUID to a String" 
+            << L"The Uuid class Has failed converting a UUID to a String"
             << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
@@ -139,7 +139,7 @@ void Uuid::CreateUuid(_GUID& guid)
         
         std::wstringstream errorMessageStream;
         errorMessageStream 
-            << L"The Uuid class has failed generating a new UUID" 
+            << L"The Uuid class Has failed generating a new UUID"
             << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();

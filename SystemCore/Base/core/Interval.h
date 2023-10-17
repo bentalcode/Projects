@@ -30,13 +30,13 @@ namespace base
         ~Interval();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         Interval(const Interval&) = default;
         Interval(Interval&&) = default;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         Interval& operator=(const Interval&) = default;
         Interval& operator=(Interval&&) = default;
@@ -119,7 +119,7 @@ namespace base
     }
 
     /**
-     * Defines operator less of intervals.
+     * Defines operator less Of intervals.
      */
     template <typename T>
     bool operator<(const Interval<T>& left, const Interval<T>& right)

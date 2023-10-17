@@ -1,0 +1,342 @@
+cmake_minimum_required(VERSION 3.6)
+
+project(DataStructures VERSION 1.0)
+
+set(CMAKE_CXX_STANDARD
+    14
+)
+set(RESOURCES_DIRECTORY_NAME
+    resources
+)
+
+
+set(CMAKE_CXX_STANDARD 14)
+
+macro(print_all_variables)
+    message(STATUS "print_all_variables------------------------------------------{")
+    get_cmake_property(_variableNames VARIABLES)
+    foreach (_variableName ${_variableNames})
+        message(STATUS "${_variableName}=${${_variableName}}")
+    endforeach()
+    message(STATUS "print_all_variables------------------------------------------}")
+endmacro()
+
+print_all_variables()
+
+#
+# Configure boost library...
+#
+if (NOT $ENV{BOOST_ROOT})
+    set(BOOST_PATH $ENV{BOOST_ROOT})
+else()
+    set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
+endif()
+
+add_compile_definitions(WINDOWS=1)
+
+
+set(DATA_STRUCTURES_INCLUDES_FILES
+    ./binarytree/BinaryTreeException.h
+    ./binarytree/core/BinaryTree.h
+    ./binarytree/core/BinaryTreeEndNode.h
+    ./binarytree/core/BinaryTreeInorderIterator.h
+    ./binarytree/core/BinaryTreeInorderReverseIterator.h
+    ./binarytree/core/BinaryTreeLevelOrderIterator.h
+    ./binarytree/core/BinaryTreeLevelOrderWithEndNodesIterator.h
+    ./binarytree/core/BinaryTreeLogic.h
+    ./binarytree/core/BinaryTreeNode.h
+    ./binarytree/core/BinaryTreeNodeListIterator.h
+    ./binarytree/core/BinaryTreeNodeListReverseIterator.h
+    ./binarytree/core/BinaryTreeNodes.h
+    ./binarytree/core/BinaryTreePostorderIterator.h
+    ./binarytree/core/BinaryTreePreorderInorderTraversalBuilder.h
+    ./binarytree/core/BinaryTreePreorderIterator.h
+    ./binarytree/core/BinaryTreePreorderPostorderTraversalBuilder.h
+    ./binarytree/core/BinaryTreeStreamBuilder.h
+    ./binarytree/core/BinaryTreeTraversalBuilder.h
+    ./binarytree/core/BinaryTreeTraversalsBuilder.h
+    ./binarytree/interfaces/IBinaryTree.h
+    ./binarytree/interfaces/IBinaryTreeLogic.h
+    ./binarytree/interfaces/IBinaryTreeNode.h
+    ./binarytree/interfaces/IBinaryTreeNodeIterator.h
+    ./binarytree/interfaces/IBinaryTreeNodeReverseIterator.h
+    ./binarytree/interfaces/IBinaryTreeTraversal.h
+    ./bitarray/BitArrayException.h
+    ./bitarray/core/Bit32Array.h
+    ./bitarray/core/Bit32ArrayIterator.h
+    ./bitarray/core/Bit32ArrayReverseIterator.h
+    ./bitarray/core/BitArray.h
+    ./bitarray/core/BitArrayIterator.h
+    ./bitarray/core/BitArrayReverseIterator.h
+    ./bitarray/interfaces/IBit32Array.h
+    ./bitarray/interfaces/IBitArray.h
+    ./cache/CacheException.h
+    ./cache/core/AbstractCache.h
+    ./cache/core/CacheProperties.h
+    ./cache/interfaces/ICache.h
+    ./cache/interfaces/ICacheProperties.h
+    ./cache/interfaces/LRUCache.h
+    ./cache/interfaces/MRUCache.h
+    ./core/DataStructureException.h
+    ./doublylinkedlist/DoublyLinkedListException.h
+    ./doublylinkedlist/core/DoublyLinkedList.h
+    ./doublylinkedlist/core/DoublyLinkedListKeyValueNodeIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListKeyValueNodeReverseIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListNode.h
+    ./doublylinkedlist/core/DoublyLinkedListNodeIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListNodeReverseIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListNodeValueIterator.h
+    ./doublylinkedlist/core/DoublyLinkedListNodeValueReverseIterator.h
+    ./doublylinkedlist/interfaces/IDoublyLinkedList.h
+    ./doublylinkedlist/interfaces/IDoublyLinkedListNode.h
+    ./graph/GraphException.h
+    ./graph/core/AdjacencyMatrix.h
+    ./graph/core/Edge.h
+    ./graph/core/Graph.h
+    ./graph/core/GraphBuilder.h
+    ./graph/core/GraphDefinition.h
+    ./graph/core/GraphLogic.h
+    ./graph/core/Route.h
+    ./graph/core/Vertex.h
+    ./graph/core/Walk.h
+    ./graph/interfaces/IAdjacencyMatrix.h
+    ./graph/interfaces/IEdge.h
+    ./graph/interfaces/IGraph.h
+    ./graph/interfaces/IGraphBuilder.h
+    ./graph/interfaces/IGraphDefinition.h
+    ./graph/interfaces/IGraphLogic.h
+    ./graph/interfaces/IGraphTraversal.h
+    ./graph/interfaces/IPathFinder.h
+    ./graph/interfaces/IRoute.h
+    ./graph/interfaces/IVertex.h
+    ./graph/interfaces/IWalk.h
+    ./interfaces/IteratorOfIteratorCollection.h
+    ./linkedlist/LinkedListException.h
+    ./linkedlist/core/LinkedList.h
+    ./linkedlist/core/LinkedListNode.h
+    ./linkedlist/core/LinkedListNodeIterator.h
+    ./linkedlist/core/LinkedListNodeValueIterator.h
+    ./linkedlist/interfaces/ILinkedList.h
+    ./linkedlist/interfaces/ILinkedListNode.h
+    ./node/NodeException.h
+    ./node/core/KeyIterator.h
+    ./node/core/KeyReverseIterator.h
+    ./node/core/KeyValueNode.h
+    ./node/core/ValueIterator.h
+    ./node/core/ValueReverseIterator.h
+    ./node/interfaces/IKeyValueNode.h
+    ./priorityqueue/PriorityQueueException.h
+    ./priorityqueue/core/AbstractPriorityQueue.h
+    ./priorityqueue/core/PriorityQueue.h
+    ./priorityqueue/interfaces/IPriorityQueue.h
+)
+
+set(DATA_STRUCTURES_SOURCES_FILES
+    ./bitarray/core/Bit32Array.cpp
+    ./bitarray/core/Bit32ArrayIterator.cpp
+    ./bitarray/core/Bit32ArrayReverseIterator.cpp
+    ./bitarray/core/BitArray.cpp
+    ./bitarray/core/BitArrayIterator.cpp
+    ./bitarray/core/BitArrayReverseIterator.cpp
+    ./cache/core/CacheProperties.cpp
+)
+
+set(DATA_STRUCTURES_INCLUDES
+    ./binarytree
+    ./binarytree/core
+    ./binarytree/interfaces
+    ./bitarray
+    ./bitarray/core
+    ./bitarray/interfaces
+    ./cache
+    ./cache/core
+    ./cache/interfaces
+    ./core
+    ./doublylinkedlist
+    ./doublylinkedlist/core
+    ./doublylinkedlist/interfaces
+    ./graph
+    ./graph/core
+    ./graph/interfaces
+    ./interfaces
+    ./linkedlist
+    ./linkedlist/core
+    ./linkedlist/interfaces
+    ./node
+    ./node/core
+    ./node/interfaces
+    ./priorityqueue
+    ./priorityqueue/core
+    ./priorityqueue/interfaces
+)
+
+set(DATA_STRUCTURES_SOURCES
+    ${DATA_STRUCTURES_INCLUDES_FILES}
+    ${DATA_STRUCTURES_SOURCES_FILES}
+)
+
+set(BASE_INCLUDES_FILES
+    ../Base/core/AlmostComparator.h
+    ../Base/core/AndBitOperator.h
+    ../Base/core/BaseException.h
+    ../Base/core/BaseLogic.h
+    ../Base/core/Bits.h
+    ../Base/core/ClassType.h
+    ../Base/core/ClassTypes.h
+    ../Base/core/CollectionComparator.h
+    ../Base/core/ComparatorFactory.h
+    ../Base/core/ConsoleColorSetter.h
+    ../Base/core/DereferenceComparableComparator.h
+    ../Base/core/DereferenceComparableComparator2.h
+    ../Base/core/DereferenceEquatableComparator.h
+    ../Base/core/DereferenceEquatableComparator2.h
+    ../Base/core/EqualBuilder.h
+    ../Base/core/EquatableComparator.h
+    ../Base/core/ErrorCodes.h
+    ../Base/core/ErrorMessages.h
+    ../Base/core/Indexes.h
+    ../Base/core/Interval.h
+    ../Base/core/IntervalMap.h
+    ../Base/core/IntervalMapIterator.h
+    ../Base/core/IterableComparator.h
+    ../Base/core/IteratorComparator.h
+    ../Base/core/KmpStringSearch.h
+    ../Base/core/List.h
+    ../Base/core/ListIterator.h
+    ../Base/core/ListReverseIterator.h
+    ../Base/core/MapComparator.h
+    ../Base/core/Matrix.h
+    ../Base/core/MessageWriter.h
+    ../Base/core/NotBitOperator.h
+    ../Base/core/NotImplementedException.h
+    ../Base/core/OrBitOperator.h
+    ../Base/core/Pair.h
+    ../Base/core/RandomGenerator.h
+    ../Base/core/Range.h
+    ../Base/core/ReferenceCounterHolder.h
+    ../Base/core/SetIterator.h
+    ../Base/core/SharedPtr.h
+    ../Base/core/SkipIterator.h
+    ../Base/core/StringComparable.h
+    ../Base/core/StringConversion.h
+    ../Base/core/StringEquality.h
+    ../Base/core/StringSearch.h
+    ../Base/core/StringUtils.h
+    ../Base/core/Strings.h
+    ../Base/core/ToString.h
+    ../Base/core/TwoDimensionalVector.h
+    ../Base/core/TwoDimensionalVectorIterator.h
+    ../Base/core/UnexpectedException.h
+    ../Base/core/Uuid.h
+    ../Base/core/VectorIterator.h
+    ../Base/core/VectorReverseIterator.h
+    ../Base/core/WindowsConsoleColorHandler.h
+    ../Base/core/XorBitOperator.h
+    ../Base/interfaces/ColorType.h
+    ../Base/interfaces/Colors.h
+    ../Base/interfaces/DateTime.h
+    ../Base/interfaces/DateTimeInterval.h
+    ../Base/interfaces/Duration.h
+    ../Base/interfaces/IBinaryBitOperator.h
+    ../Base/interfaces/IBinaryComparator.h
+    ../Base/interfaces/IBitOperator.h
+    ../Base/interfaces/IBuilder.h
+    ../Base/interfaces/ICalculator.h
+    ../Base/interfaces/IClassType.h
+    ../Base/interfaces/IClone.h
+    ../Base/interfaces/ICollection.h
+    ../Base/interfaces/IComparableComparator.h
+    ../Base/interfaces/IComparatorFactory.h
+    ../Base/interfaces/IConsoleColorHandler.h
+    ../Base/interfaces/IEquatableComparator.h
+    ../Base/interfaces/IHashCodeProvider.h
+    ../Base/interfaces/IIntervalMap.h
+    ../Base/interfaces/IIterable.h
+    ../Base/interfaces/IIterator.h
+    ../Base/interfaces/IKeyIterable.h
+    ../Base/interfaces/IKeyReverseIterable.h
+    ../Base/interfaces/IList.h
+    ../Base/interfaces/IMatrix.h
+    ../Base/interfaces/IMessageWriter.h
+    ../Base/interfaces/IRandomGenerator.h
+    ../Base/interfaces/IResourceReader.h
+    ../Base/interfaces/IReverseIterable.h
+    ../Base/interfaces/IReverseIterator.h
+    ../Base/interfaces/ISizableCollection.h
+    ../Base/interfaces/ISkipIterator.h
+    ../Base/interfaces/IStringConversion.h
+    ../Base/interfaces/IToString.h
+    ../Base/interfaces/ITwoDimensionalVector.h
+    ../Base/interfaces/IUnaryBitOperator.h
+    ../Base/interfaces/IUuid.h
+    ../Base/interfaces/IValueIterable.h
+    ../Base/interfaces/IValueReverseIterable.h
+    ../Base/interfaces/IVisitor.h
+    ../Base/interfaces/ReferenceCounter.h
+    ../Base/interfaces/ReferenceCounterHolder.h
+    ../Base/interfaces/SmartPointers.h
+    ../Base/interfaces/StandardFileDescriptor.h
+    ../Base/interfaces/StringComparisonType.h
+    ../Base/interfaces/TimeUnit.h
+    ../Base/interfaces/TimeUtils.h
+)
+
+set(BASE_SOURCES_FILES
+    ../Base/core/AndBitOperator.cpp
+    ../Base/core/Bits.cpp
+    ../Base/core/ClassType.cpp
+    ../Base/core/ComparatorFactory.cpp
+    ../Base/core/ConsoleColorSetter.cpp
+    ../Base/core/DateTime.cpp
+    ../Base/core/EqualBuilder.cpp
+    ../Base/core/ErrorCodes.cpp
+    ../Base/core/ErrorMessages.cpp
+    ../Base/core/KmpStringSearch.cpp
+    ../Base/core/MessageWriter.cpp
+    ../Base/core/NotBitOperator.cpp
+    ../Base/core/OrBitOperator.cpp
+    ../Base/core/RandomGenerator.cpp
+    ../Base/core/ReferenceCounter.cpp
+    ../Base/core/SkipIterator.cpp
+    ../Base/core/StringComparable.cpp
+    ../Base/core/StringConversion.cpp
+    ../Base/core/StringEquality.cpp
+    ../Base/core/StringSearch.cpp
+    ../Base/core/StringUtils.cpp
+    ../Base/core/Strings.cpp
+    ../Base/core/Tests.cpp
+    ../Base/core/TimeUnit.cpp
+    ../Base/core/TimeUtils.cpp
+    ../Base/core/ToString.cpp
+    ../Base/core/Uuid.cpp
+    ../Base/core/WindowsConsoleColorHandler.cpp
+    ../Base/core/XorBitOperator.cpp
+)
+
+set(BASE_INCLUDES
+    ../Base/core
+    ../Base/interfaces
+)
+
+set(BASE_SOURCES
+    ${BASE_INCLUDES_FILES}
+    ${BASE_SOURCES_FILES}
+)
+
+add_library(Base STATIC
+    ${BASE_SOURCES}
+)
+
+include_directories(DataStructures
+    ${BASE_INCLUDES}
+    ${DATA_STRUCTURES_INCLUDES}
+)
+
+add_library(DataStructures STATIC
+    ${BASE_SOURCES}
+    ${DATA_STRUCTURES_SOURCES}
+)
+
+include_directories(
+    ${BOOST_PATH}
+)

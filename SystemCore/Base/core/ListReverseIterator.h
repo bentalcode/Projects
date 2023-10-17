@@ -28,24 +28,24 @@ namespace base
         virtual ~ListReverseIterator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         ListReverseIterator(const ListReverseIterator&) = delete;
         ListReverseIterator(ListReverseIterator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         ListReverseIterator& operator=(const ListReverseIterator&) = delete;
         ListReverseIterator& operator=(ListReverseIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a Next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the Next element.
          */
         virtual T Next() override;
 
@@ -87,7 +87,7 @@ namespace base
     }
 
     /**
-     * Checks whether there is a next element.
+     * Checks whether there is a Next element.
      */
     template <typename T>
     bool ListReverseIterator<T>::HasNext() const
@@ -96,7 +96,7 @@ namespace base
     }
 
     /**
-     * Gets the next element.
+     * Gets the Next element.
      */
     template <typename T>
     T ListReverseIterator<T>::Next()

@@ -26,13 +26,13 @@ namespace base {
         virtual ~ComparatorFactory();
 
         /**
-         * Gets an almost comparator of type integer.
+         * Gets an almost comparator Of type integer.
          */
         virtual IBinaryComparatorSharedPtr<int> GetAlmostIntegerComparator(
             double epsilon = DEFAULT_EPSILON) const override;
 
         /**
-         * Gets an almost comparator of type double.
+         * Gets an almost comparator Of type double.
          */
         virtual IBinaryComparatorSharedPtr<double> GetAlmostDoubleComparator(
             double epsilon = DEFAULT_EPSILON) const override;

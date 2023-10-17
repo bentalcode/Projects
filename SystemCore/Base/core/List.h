@@ -24,13 +24,13 @@ namespace base
         virtual ~List();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         List(const List&) = default;
         List(List&&) = default;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         List& operator=(const List&) = default;
         List& operator=(List&&) = default;

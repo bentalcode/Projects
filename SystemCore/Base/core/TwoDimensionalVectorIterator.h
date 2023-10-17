@@ -30,24 +30,24 @@ namespace base
         virtual ~TwoDimensionalVectorIterator();
 
         /**
-         * The copy/move constructor.
+         * The Copy/move constructor.
          */
         TwoDimensionalVectorIterator(TwoDimensionalVectorIterator&) = delete;
         TwoDimensionalVectorIterator(TwoDimensionalVectorIterator&&) = delete;
 
         /**
-         * The copy/move assignment operator.
+         * The Copy/move assignment operator.
          */
         TwoDimensionalVectorIterator& operator=(TwoDimensionalVectorIterator&) = delete;
         TwoDimensionalVectorIterator& operator=(TwoDimensionalVectorIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a Next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the Next element.
          */
         virtual T Next() override;
 
@@ -58,7 +58,7 @@ namespace base
 
     private:
         /**
-         * Moves to the next element.
+         * Moves to the Next element.
          */
         void MoveNext();
 
@@ -103,7 +103,7 @@ namespace base
     }
 
     /**
-     * Checks whether there is a next element.
+     * Checks whether there is a Next element.
      */
     template <typename T>
     bool TwoDimensionalVectorIterator<T>::HasNext() const
@@ -112,7 +112,7 @@ namespace base
     }
 
     /**
-     * Gets the next element.
+     * Gets the Next element.
      */
     template <typename T>
     T TwoDimensionalVectorIterator<T>::Next()
@@ -136,7 +136,7 @@ namespace base
     }
 
     /**
-     * Moves to the next element.
+     * Moves to the Next element.
      */
     template <typename T>
     void TwoDimensionalVectorIterator<T>::MoveNext()
@@ -158,7 +158,7 @@ namespace base
     template <typename T>
     size_t TwoDimensionalVectorIterator<T>::ColumnSize(std::size_t rowIndex) const
     {
-        return m_data[rowIndex].size();
+        return m_data[rowIndex].Size();
     }
 
 } // namespace base

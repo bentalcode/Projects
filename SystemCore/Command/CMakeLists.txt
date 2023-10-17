@@ -109,6 +109,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/AlmostComparator.h
     ../Base/core/AndBitOperator.h
     ../Base/core/BaseException.h
+    ../Base/core/BaseLogic.h
     ../Base/core/Bits.h
     ../Base/core/ClassType.h
     ../Base/core/ClassTypes.h
@@ -138,6 +139,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/MessageWriter.h
     ../Base/core/NotBitOperator.h
     ../Base/core/NotImplementedException.h
+    ../Base/core/OrBitOperator.h
     ../Base/core/Pair.h
     ../Base/core/RandomGenerator.h
     ../Base/core/Range.h
@@ -222,6 +224,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/KmpStringSearch.cpp
     ../Base/core/MessageWriter.cpp
     ../Base/core/NotBitOperator.cpp
+    ../Base/core/OrBitOperator.cpp
     ../Base/core/RandomGenerator.cpp
     ../Base/core/ReferenceCounter.cpp
     ../Base/core/SkipIterator.cpp

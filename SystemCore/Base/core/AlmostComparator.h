@@ -130,7 +130,7 @@ namespace base {
 
         std::wstringstream errorMessageStream;
         errorMessageStream
-            << L"AlmostComparator has failed comparing relative order between two instances with en epsilon"
+            << L"AlmostComparator Has failed comparing relative order between two instances with en epsilon"
             << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();

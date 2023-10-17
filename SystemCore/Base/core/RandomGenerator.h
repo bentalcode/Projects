@@ -23,13 +23,13 @@ namespace base
         virtual ~RandomGenerator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         RandomGenerator(const RandomGenerator&) = delete;
         RandomGenerator(RandomGenerator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         RandomGenerator& operator=(const RandomGenerator&) = delete;
         RandomGenerator& operator=(RandomGenerator&&) = delete;

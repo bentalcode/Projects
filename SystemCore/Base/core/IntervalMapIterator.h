@@ -30,24 +30,24 @@ namespace base
         virtual ~IntervalMapIterator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         IntervalMapIterator(const IntervalMapIterator&) = delete;
         IntervalMapIterator(IntervalMapIterator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         IntervalMapIterator& operator=(const IntervalMapIterator&) = delete;
         IntervalMapIterator& operator=(IntervalMapIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a Next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the Next element.
          */
         virtual Pair<Interval<Key>, Value> Next() override;
 
@@ -83,7 +83,7 @@ namespace base
     }
 
     /**
-     * Checks whether there is a next element.
+     * Checks whether there is a Next element.
      */
     template <typename Key, typename Value>
     bool IntervalMapIterator<Key, Value>::HasNext() const
@@ -92,7 +92,7 @@ namespace base
     }
 
     /**
-     * Gets the next element.
+     * Gets the Next element.
      */
     template <typename Key, typename Value>
     Pair<Interval<Key>, Value> IntervalMapIterator<Key, Value>::Next()

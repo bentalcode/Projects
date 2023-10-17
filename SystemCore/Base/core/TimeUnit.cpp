@@ -12,7 +12,7 @@ TimeUnitSharedPtr TimeUnit::Make(Unit unit)
 }
 
 /**
- * Creates a new time unit of type milliseconds.
+ * Creates a new time unit Of type milliseconds.
  */
 TimeUnitSharedPtr TimeUnit::MakeMilliseconds()
 {
@@ -20,7 +20,7 @@ TimeUnitSharedPtr TimeUnit::MakeMilliseconds()
 }
 
 /**
- * Creates a new time unit of type centiseconds.
+ * Creates a new time unit Of type centiseconds.
  */
 TimeUnitSharedPtr TimeUnit::MakeCentiseconds()
 {
@@ -28,7 +28,7 @@ TimeUnitSharedPtr TimeUnit::MakeCentiseconds()
 }
 
 /**
- * Creates a new time unit of type deciseconds.
+ * Creates a new time unit Of type deciseconds.
  */
 TimeUnitSharedPtr TimeUnit::MakeDeciseconds()
 {
@@ -36,7 +36,7 @@ TimeUnitSharedPtr TimeUnit::MakeDeciseconds()
 }
 
 /**
- * Creates a new time unit of type seconds.
+ * Creates a new time unit Of type seconds.
  */
 TimeUnitSharedPtr TimeUnit::MakeSeconds()
 {
@@ -44,7 +44,7 @@ TimeUnitSharedPtr TimeUnit::MakeSeconds()
 }
 
 /**
- * Creates a new time unit of type minutes.
+ * Creates a new time unit Of type minutes.
  */
 TimeUnitSharedPtr TimeUnit::MakeMinutes()
 {
@@ -52,7 +52,7 @@ TimeUnitSharedPtr TimeUnit::MakeMinutes()
 }
 
 /**
- * Creates a new time unit of type hours.
+ * Creates a new time unit Of type hours.
  */
 TimeUnitSharedPtr TimeUnit::MakeHours()
 {
@@ -60,7 +60,7 @@ TimeUnitSharedPtr TimeUnit::MakeHours()
 }
 
 /**
- * Creates a new time unit of type days.
+ * Creates a new time unit Of type days.
  */
 TimeUnitSharedPtr TimeUnit::MakeDays()
 {
@@ -313,7 +313,7 @@ void TimeUnit::UnsupportedUnit() {
 
     std::wstringstream errorMessageStream;
     errorMessageStream 
-        << L"Time Unit has processed unknown time unit" 
+        << L"Time Unit Has processed unknown time unit"
         << ErrorMessages::GetErrorCodeMessage(errorCode);
 
     std::wstring errorMessage = errorMessageStream.str();
@@ -321,7 +321,7 @@ void TimeUnit::UnsupportedUnit() {
 }
 
 /**
- * Gets number of units.
+ * Gets number Of units.
  */
 double TimeUnit::InUnits(const Duration& duration) const
 {

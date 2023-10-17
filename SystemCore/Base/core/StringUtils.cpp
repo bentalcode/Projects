@@ -102,7 +102,7 @@ std::wstring StringUtils::StringToWideString(const std::string& str)
 
         std::wstringstream errorMessageStream;
         errorMessageStream 
-            << L"The StringUtils has failed converting a string to a wide string" 
+            << L"The StringUtils Has failed converting a string to a wide string"
             << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
@@ -177,7 +177,7 @@ std::string StringUtils::WideStringToString(const std::wstring& str)
 
         std::wstringstream errorMessageStream;
         errorMessageStream 
-            << L"The StringUtils has failed converting a wide string to a string" 
+            << L"The StringUtils Has failed converting a wide string to a string"
             << ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
@@ -341,7 +341,7 @@ bool StringUtils::StartWith(
 }
 
 /**
- * Checks whether a string has valid parantheses.
+ * Checks whether a string Has valid parantheses.
  */
 bool StringUtils::HasValidParentheses(
     const std::wstring& str,

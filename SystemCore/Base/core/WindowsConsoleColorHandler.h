@@ -24,13 +24,13 @@ namespace base
         virtual ~WindowsConsoleColorHandler();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         WindowsConsoleColorHandler(const WindowsConsoleColorHandler&) = delete;
         WindowsConsoleColorHandler(WindowsConsoleColorHandler&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         WindowsConsoleColorHandler& operator=(const WindowsConsoleColorHandler&) = delete;
         WindowsConsoleColorHandler& operator=(WindowsConsoleColorHandler&&) = delete;

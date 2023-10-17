@@ -38,13 +38,13 @@ namespace base {
         virtual ~MessageWriter();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         MessageWriter(const MessageWriter&) = delete;
         MessageWriter(MessageWriter&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         MessageWriter& operator=(const MessageWriter&) = delete;
         MessageWriter& operator=(MessageWriter&&) = delete;

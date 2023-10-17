@@ -103,7 +103,7 @@ unsigned int Bits::Flip(unsigned int bit)
 }
 
 /**
- * Sets the bit at the specified index to the complement of its current value.
+ * Sets the bit at the specified index to the complement Of its current value.
  */
 unsigned int Bits::Flip(unsigned int value, size_t index)
 {

@@ -29,24 +29,24 @@ namespace base
         virtual ~SetIterator();
 
         /**
-         * The copy/move constructors.
+         * The Copy/move constructors.
          */
         SetIterator(const SetIterator&) = delete;
         SetIterator(SetIterator&&) = delete;
 
         /**
-         * The copy/move assignment operators.
+         * The Copy/move assignment operators.
          */
         SetIterator& operator=(const SetIterator&) = delete;
         SetIterator& operator=(SetIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a Next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the Next element.
          */
         virtual T Next() override;
 

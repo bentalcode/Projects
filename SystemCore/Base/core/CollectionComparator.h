@@ -72,7 +72,7 @@ namespace base {
     };
 
     /**
-     * Defines the Shared Ptr of Collection Comparator.
+     * Defines the Shared Ptr Of Collection Comparator.
      */
     template <typename CollectionType>
     using CollectionComparatorSharedPtr = std::shared_ptr<CollectionComparator<CollectionType>>;
@@ -194,7 +194,7 @@ namespace base {
     }
 
     /**
-     * Determines the relative order of collections with a comparator.
+     * Determines the relative order Of collections with a comparator.
      *
      * Returns -1 if the left hand side value is less than the right hand side value.
      * Returns 0 if the left hand side value is equal to the right hand side value.
