@@ -3,6 +3,7 @@
 
 #include "BinaryTreeTraversalBuilder.h"
 #include "Indexes.h"
+#include <assert.h>
 
 namespace datastructures {
     namespace binarytree {
@@ -74,7 +75,7 @@ namespace datastructures {
             if (m_preorder.size() != m_inorder.size())
             {
                 long statusCode = base::ErrorCodes::INVALID_ARG;
-                std::wstring errorMessage = L"The length of a preorder and an inorder traversals do not match.";
+                std::wstring errorMessage = L"The length of a preorder and an inorder traversals does not match.";
 
                 throw BinaryTreeException(statusCode, errorMessage);
             }
@@ -95,7 +96,7 @@ namespace datastructures {
         IBinaryTreeSharedPtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::Build()
         {
             std::map<TKey, size_t> inorderIndexMap;
-            BinaryTreeTraversalBuilder<TKey, TValue>::createIndexMap(m_inorder, inorderIndexMap);
+            BinaryTreeTraversalBuilder<TKey, TValue>::CreateIndexMap(m_inorder, inorderIndexMap);
 
             if (m_preorder.empty()) {
                 return BinaryTree<TKey, TValue>::Make();
@@ -145,7 +146,7 @@ namespace datastructures {
                 return root;
             }
 
-            size_t rootIndex = BinaryTreeTraversalBuilder<TKey, TValue>::getNodeIndex(inorderIndexMap, rootData.first);
+            size_t rootIndex = BinaryTreeTraversalBuilder<TKey, TValue>::GetNodeIndex(inorderIndexMap, rootData.first);
             size_t leftSize = base::Indexes::Size(inorderStartIndex, rootIndex - 1);
 
             size_t preorderLeftStartIndex = preorderStartIndex + 1;

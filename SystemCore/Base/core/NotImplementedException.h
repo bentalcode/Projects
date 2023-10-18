@@ -11,6 +11,9 @@ namespace base {
     class NotImplementedException : public base::BaseException
     {
     public:
+        /**
+         * The NotImplementedException constructor.
+         */
         explicit NotImplementedException(const std::wstring& errorMessage) :
             BaseException(
                 ErrorCodes::NOT_IMPLEMENTED,

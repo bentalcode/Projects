@@ -77,6 +77,10 @@ namespace base {
          * Converts a string to a duration.
          */
         virtual DurationSharedPtr ToDuration(const std::wstring& value) const override;
+
+    private:
+        static const std::wstring BOOLEAN_TRUE_VALUE;
+        static const std::wstring BOOLEAN_FALSE_VALUE;
     };
 }
 

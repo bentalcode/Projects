@@ -7,7 +7,7 @@ namespace datastructures {
     namespace binarytree {
 
         /**
-         * The IBinaryTreeNodeReverseIterator interface defines a reverse iterator ofbinary nodes.
+         * The IBinaryTreeNodeReverseIterator interface defines a reverse iterator of binary nodes.
          */
         template <typename T>
         class IBinaryTreeNodeReverseIterator : public base::IReverseIterator<T> {
@@ -41,7 +41,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines SharedPtr ofBinary Tree Node Reverse Iterator.
+         * Defines SharedPtr of Binary Tree Node Reverse Iterator.
          */
         template <typename T>
         using IBinaryTreeNodeReverseIteratorSharedPtr = std::shared_ptr<IBinaryTreeNodeReverseIterator<T>>;

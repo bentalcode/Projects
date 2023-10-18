@@ -12,6 +12,9 @@ namespace base {
     class BaseException
     {
     public:
+        /**
+         * The BaseException constructor.
+         */
         explicit BaseException(
             const std::wstring& errorMessage) :
             m_statusCode(ErrorCodes::FAIL),
@@ -19,6 +22,9 @@ namespace base {
         {
         }
 
+        /**
+         * The BaseException constructor.
+         */
         BaseException(
             long statusCode,
             const std::wstring& errorMessage) :

@@ -4,6 +4,7 @@
 #include "IReverseIterator.h"
 #include "IBinaryTreeNode.h"
 #include "BinaryTreeLogic.h"
+#include <stack>
 
 namespace datastructures {
     namespace binarytree {
@@ -43,12 +44,12 @@ namespace datastructures {
             BinaryTreeInorderReverseIterator& operator=(BinaryTreeInorderReverseIterator&&) = delete;
 
             /**
-             * Checks whether there is a Next element.
+             * Checks whether there is a next element.
              */
             virtual bool HasNext() const;
 
             /**
-             * Gets the Next element.
+             * Gets the next element.
              */
             virtual IBinaryTreeNodeSharedPtr<TKey, TValue> Next();
 
@@ -91,7 +92,7 @@ namespace datastructures {
         }
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         template <typename TKey, typename TValue>
         bool BinaryTreeInorderReverseIterator<TKey, TValue>::HasNext() const
@@ -100,7 +101,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         template <typename TKey, typename TValue>
         IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeInorderReverseIterator<TKey, TValue>::Next()

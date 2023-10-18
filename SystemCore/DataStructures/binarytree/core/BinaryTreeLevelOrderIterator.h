@@ -3,6 +3,7 @@
 
 #include "IIterator.h"
 #include "IBinaryTreeNode.h"
+#include <queue>
 
 namespace datastructures {
     namespace binarytree {
@@ -42,12 +43,12 @@ namespace datastructures {
             BinaryTreeLevelOrderIterator& operator=(BinaryTreeLevelOrderIterator&&) = delete;
 
             /**
-             * Checks whether there is a Next element.
+             * Checks whether there is a next element.
              */
             virtual bool HasNext() const;
 
             /**
-             * Gets the Next element.
+             * Gets the next element.
              */
             virtual IBinaryTreeNodeSharedPtr<TKey, TValue> Next();
 
@@ -89,7 +90,7 @@ namespace datastructures {
         }
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         template <typename TKey, typename TValue>
         bool BinaryTreeLevelOrderIterator<TKey, TValue>::HasNext() const
@@ -98,7 +99,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         template <typename TKey, typename TValue>
         IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLevelOrderIterator<TKey, TValue>::Next()

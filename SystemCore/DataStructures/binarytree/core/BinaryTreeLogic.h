@@ -2,6 +2,7 @@
 #define BINARY_TREE_LOGIC_H_2164cf62_fb7a_456a_9a43_fca1f9e228c4
 
 #include "IBinaryTreeLogic.h"
+#include <stack>
 
 namespace datastructures {
     namespace binarytree {

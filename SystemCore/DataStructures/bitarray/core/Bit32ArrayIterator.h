@@ -42,12 +42,12 @@ namespace datastructures {
             Bit32ArrayIterator& operator=(Bit32ArrayIterator&&) = delete;
 
             /**
-             * Checks whether there is a Next element.
+             * Checks whether there is a next element.
              */
             virtual bool HasNext() const override;
 
             /**
-             * Gets the Next element.
+             * Gets the next element.
              */
             virtual bool Next() override;
 

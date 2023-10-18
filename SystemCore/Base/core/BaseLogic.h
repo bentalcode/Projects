@@ -9,8 +9,7 @@ namespace base {
     template<typename T>
     struct DereferenceLess final
     {
-        bool operator()(T leftPtr, T rightPtr)
-        const
+        bool operator()(T leftPtr, T rightPtr) const
         {
             return *leftPtr < *rightPtr;
         }

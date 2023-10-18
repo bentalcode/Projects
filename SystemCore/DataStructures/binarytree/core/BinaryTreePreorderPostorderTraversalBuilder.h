@@ -74,7 +74,7 @@ namespace datastructures {
             if (m_preorder.size() != m_postorder.size())
             {
                 long statusCode = base::ErrorCodes::INVALID_ARG;
-                std::wstring errorMessage = L"The length of a preorder and a postorder traversals do not match.";
+                std::wstring errorMessage = L"The length of a preorder and a postorder traversals does not match.";
 
                 throw BinaryTreeException(statusCode, errorMessage);
             }
@@ -95,7 +95,7 @@ namespace datastructures {
         IBinaryTreeSharedPtr<TKey, TValue> BinaryTreePreorderPostorderTraversalBuilder<TKey, TValue>::Build()
         {
             std::map<TKey, size_t> postorderIndexMap;
-            BinaryTreeTraversalBuilder<TKey, TValue>::createIndexMap(m_postorder, postorderIndexMap);
+            BinaryTreeTraversalBuilder<TKey, TValue>::CreateIndexMap(m_postorder, postorderIndexMap);
 
             if (m_preorder.empty()) {
                 return BinaryTree<TKey, TValue>::Make();
@@ -147,7 +147,8 @@ namespace datastructures {
 
             const std::pair<TKey, TValue>& leftRootData = preorder[preorderStartIndex + 1];
 
-            size_t leftRootIndex = BinaryTreeTraversalBuilder<TKey, TValue>::getNodeIndex(postorderIndexMap, leftRootData.first);
+            size_t leftRootIndex = BinaryTreeTraversalBuilder<TKey, TValue>::GetNodeIndex(postorderIndexMap,
+                                                                                          leftRootData.first);
             size_t leftSize = base::Indexes::Size(postorderStartIndex, leftRootIndex);
 
             size_t preorderLeftStartIndex = preorderStartIndex + 1;

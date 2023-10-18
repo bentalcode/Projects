@@ -196,6 +196,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/AndBitOperator.cpp
     ../Base/core/Bits.cpp
     ../Base/core/ClassType.cpp
+    ../Base/core/Collections.cpp
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/ConsoleColorSetter.cpp
     ../Base/core/Conversion.cpp

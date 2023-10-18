@@ -170,7 +170,9 @@ namespace base
         const Interval<T>& lhs,
         const Interval<T>& rhs)
     {
-        return lhs.GetStart() == rhs.GetStart() && lhs.GetEnd() == rhs.GetEnd();
+        return
+            lhs.GetStart() == rhs.GetStart() &&
+            lhs.GetEnd() == rhs.GetEnd();
     }
 
     /**

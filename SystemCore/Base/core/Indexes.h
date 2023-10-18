@@ -33,7 +33,7 @@ namespace base {
     void Indexes::ValidateIndex(T index, T startIndex, T endIndex)
     {
         if (index < startIndex || index > endIndex) {
-            long errorCode = ErrorCodes::INVALID_ARG;
+            long errorCode = ErrorCodes::OUT_OF_RANGE;
 
             std::wstringstream errorMessageStream;
             errorMessageStream

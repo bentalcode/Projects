@@ -20,12 +20,12 @@ namespace base
         static base::IIteratorSharedPtr<T> Make(const std::list<T>& data);
 
         /**
-         * The constructor.
+         * The ListIterator constructor.
          */
         explicit ListIterator(const std::list<T>& data);
 
         /**
-         * The destructor.
+         * The ListIterator destructor.
          */
         virtual ~ListIterator();
 
@@ -42,12 +42,12 @@ namespace base
         ListIterator& operator=(ListIterator&&) = delete;
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         virtual T Next() override;
 
@@ -70,6 +70,9 @@ namespace base
         return std::make_shared<ListIterator>(data);
     }
 
+    /**
+     * The ListIterator constructor.
+     */
     template <typename T>
     ListIterator<T>::ListIterator(const std::list<T>& data) :
         m_data(data)
@@ -77,17 +80,26 @@ namespace base
         Reset();
     }
 
+    /**
+     * The ListIterator destructor.
+     */
     template <typename T>
     ListIterator<T>::~ListIterator()
     {
     }
 
+    /**
+     * Checks whether there is a next element.
+     */
     template <typename T>
     bool ListIterator<T>::HasNext() const
     {
         return m_iterator != m_data.end();
     }
 
+    /**
+     * Gets the next element.
+     */
     template <typename T>
     T ListIterator<T>::Next()
     {
@@ -99,6 +111,9 @@ namespace base
         return currElement;
     }
 
+    /**
+     * Resets the iterator.
+     */
     template <typename T>
     void ListIterator<T>::Reset()
     {

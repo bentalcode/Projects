@@ -63,22 +63,81 @@ namespace datastructures {
         using IEdgeSharedPtr = std::shared_ptr<IEdge<TKey, TValue>>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for edges.
          */
         template <typename TKey, typename TValue>
-        bool operator<(const IEdge<TKey, TValue>& left, const IEdge<TKey, TValue>& right)
+        inline bool operator==(
+            const IEdge<TKey, TValue>& lhs,
+            const IEdge<TKey, TValue>& rhs)
         {
-            if (*left.Source() < *right.Source())
+            return
+                lhs.Source() == rhs.Source() &&
+                lhs.Destination() == rhs.Destination();
+        }
+
+        /**
+         * Implements an operator not equals for edges.
+         */
+        template <typename TKey, typename TValue>
+        inline bool operator!=(
+            const IEdge<TKey, TValue>& lhs,
+            const IEdge<TKey, TValue>& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Defines an operator less than for edges.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<(
+            const IEdge<TKey, TValue>& lhs,
+            const IEdge<TKey, TValue>& rhs)
+        {
+            if (*lhs.Source() < *rhs.Source())
             {
                 return true;
             }
 
-            if (*left.Source() > *right.Source())
+            if (*lhs.Source() > *rhs.Source())
             {
                 return false;
             }
 
-            return *left.Destination() < *right.Destination();
+            return *lhs.Destination() < *rhs.Destination();
+        }
+
+        /**
+         * Defines an operator less or equal than for edges.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<=(
+            const IEdge<TKey, TValue>& lhs,
+            const IEdge<TKey, TValue>& rhs)
+        {
+            return !(rhs.GetKey() < lhs.GetKey());
+        }
+
+        /**
+         * Defines an operator grater than for edges.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>(
+            const IEdge<TKey, TValue>& lhs,
+            const IEdge<TKey, TValue>& rhs)
+        {
+            return rhs.GetKey() < lhs.GetKey();
+        }
+
+        /**
+         * Defines an operator grater or equal than for edges.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>=(
+            const IEdge<TKey, TValue>& lhs,
+            const IEdge<TKey, TValue>& rhs)
+        {
+            return !(lhs.GetKey() < rhs.GetKey());
         }
 
         /**

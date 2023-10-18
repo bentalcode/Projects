@@ -87,7 +87,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines SharedPtr ofBinary Tree Node.
+         * Defines SharedPtr of Binary Tree Node.
          */
         template <typename TKey, typename TValue>
         using IBinaryTreeNodeSharedPtr = std::shared_ptr<IBinaryTreeNode<TKey, TValue>>;

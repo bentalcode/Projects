@@ -44,12 +44,12 @@ namespace datastructures {
             BinaryTreeLevelOrderWithEndNodesIterator& operator=(BinaryTreeLevelOrderWithEndNodesIterator&&) = delete;
 
             /**
-             * Checks whether there is a Next element.
+             * Checks whether there is a next element.
              */
             virtual bool HasNext() const;
 
             /**
-             * Gets the Next element.
+             * Gets the next element.
              */
             virtual IBinaryTreeNodeSharedPtr<TKey, TValue> Next();
 
@@ -93,7 +93,7 @@ namespace datastructures {
         }
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         template <typename TKey, typename TValue>
         bool BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::HasNext() const
@@ -102,7 +102,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         template <typename TKey, typename TValue>
         IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::Next()

@@ -21,7 +21,7 @@ namespace base {
         virtual bool HasNext() const = 0;
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         virtual T Next() = 0;
 

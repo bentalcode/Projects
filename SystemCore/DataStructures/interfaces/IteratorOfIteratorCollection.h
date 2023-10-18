@@ -56,12 +56,12 @@ namespace data_structures
         IteratorOfIteratorCollection& operator=(IteratorOfIteratorCollection&&) = delete;
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         virtual T Next() override;
 
@@ -94,7 +94,7 @@ namespace data_structures
     }
 
     /**
-     * Checks whether there is a Next element.
+     * Checks whether there is a next element.
      */
     template <typename T>
     bool IteratorOfIteratorCollection<T>::HasNext() const
@@ -103,7 +103,7 @@ namespace data_structures
     }
 
     /**
-     * Gets the Next element.
+     * Gets the next element.
      */
     template <typename T>
     T IteratorOfIteratorCollection<T>::Next()

@@ -31,12 +31,12 @@ namespace base
             const std::wstring& delimiter = DEFAULT_DELIMITER);
 
         /**
-         * Converts a vector to a string.
+         * Converts a vector to a string with a functor.
          */
         template <typename T>
         static std::wstring ToString(
             const std::vector<T>& collection,
-            const std::function<void(const T &, std::wostream &)> &functor,
+            const std::function<void(const T &, std::wostream &)>& functor,
             const std::wstring& prefix = DEFAULT_PREFIX,
             const std::wstring& postfix = DEFAULT_POSTFIX,
             const std::wstring& delimiter = DEFAULT_DELIMITER);
@@ -52,12 +52,12 @@ namespace base
             const std::wstring& delimiter = DEFAULT_DELIMITER);
 
         /**
-         * Converts a list to a string.
+         * Converts a list to a string with a functor.
          */
         template <typename T>
         static std::wstring ToString(
             const std::list<T>& collection,
-            const std::function<void(const T &, std::wostream &)> &functor,
+            const std::function<void(const T &, std::wostream &)>& functor,
             const std::wstring& prefix = DEFAULT_PREFIX,
             const std::wstring& postfix = DEFAULT_POSTFIX,
             const std::wstring& delimiter = DEFAULT_DELIMITER);
@@ -73,12 +73,12 @@ namespace base
             const std::wstring& delimiter = DEFAULT_DELIMITER);
 
         /**
-         * Converts a set to a string.
+         * Converts a set to a string with a functor.
          */
         template <typename T>
         static std::wstring ToString(
             const std::set<T>& collection,
-            const std::function<void(const T &, std::wostream &)> &functor,
+            const std::function<void(const T &, std::wostream &)>& functor,
             const std::wstring& prefix = DEFAULT_PREFIX,
             const std::wstring& postfix = DEFAULT_POSTFIX,
             const std::wstring& delimiter = DEFAULT_DELIMITER);
@@ -94,12 +94,12 @@ namespace base
             const std::wstring& delimiter = DEFAULT_DELIMITER);
 
         /**
-         * Converts a queue to a string.
+         * Converts a queue to a string with a functor.
          */
         template <typename T>
         static std::wstring ToString(
             const std::queue<T>& collection,
-            const std::function<void(const T &, std::wostream &)> &functor,
+            const std::function<void(const T &, std::wostream &)>& functor,
             const std::wstring& prefix = DEFAULT_PREFIX,
             const std::wstring& postfix = DEFAULT_POSTFIX,
             const std::wstring& delimiter = DEFAULT_DELIMITER);
@@ -115,12 +115,12 @@ namespace base
             const std::wstring& delimiter = DEFAULT_DELIMITER);
 
         /**
-         * Converts a deque to a string.
+         * Converts a deque to a string with a functor..
          */
         template <typename T>
         static std::wstring ToString(
             const std::deque<T>& collection,
-            const std::function<void(const T &, std::wostream &)> &functor,
+            const std::function<void(const T &, std::wostream &)>& functor,
             const std::wstring& prefix = DEFAULT_PREFIX,
             const std::wstring& postfix = DEFAULT_POSTFIX,
             const std::wstring& delimiter = DEFAULT_DELIMITER);
@@ -136,7 +136,7 @@ namespace base
             const std::wstring& delimiter = DEFAULT_DELIMITER);
 
         /**
-         * Converts a map to a string.
+         * Converts a map to a string with a functor.
          */
         template <typename TKey, typename TValue, typename TCompare = std::less<TKey>>
         static std::wstring toString(
@@ -210,7 +210,7 @@ namespace base
             const std::wstring& delimiter = DEFAULT_DELIMITER);
 
         /**
-         * Converts a collection to a string.
+         * Converts a collection to a string with a functor.
          */
         template <typename CollectionType, typename ValueType = typename CollectionType::value_type>
         static std::wstring CollectionToString(
@@ -228,7 +228,7 @@ namespace base
     };
 
     /**
-     * Converts a vector to a string.
+     * Converts a vector to a string with a functor.
      */
     template <typename T>
     std::wstring Collections::ToString(
@@ -263,7 +263,7 @@ namespace base
     }
 
     /**
-     * Converts a vector to a string.
+     * Converts a vector to a string with a functor.
      */
     template <typename T>
     std::wstring Collections::ToString(
@@ -298,7 +298,7 @@ namespace base
     }
 
     /**
-     * Converts a set to a string.
+     * Converts a set to a string with a functor.
      */
     template <typename T>
     std::wstring Collections::ToString(
@@ -333,7 +333,7 @@ namespace base
     }
 
     /**
-     * Converts a queue to a string.
+     * Converts a queue to a string with a functor.
      */
     template <typename T>
     std::wstring Collections::ToString(
@@ -368,7 +368,7 @@ namespace base
     }
 
     /**
-     * Converts a queue to a string.
+     * Converts a queue to a string with a functor.
      */
     template <typename T>
     std::wstring Collections::ToString(
@@ -427,7 +427,7 @@ namespace base
     }
 
     /**
-     * Converts a map to a string.
+     * Converts a map to a string with a functor.
      */
     template <typename TKey, typename TValue, typename TCompare>
     std::wstring Collections::toString(
@@ -588,7 +588,7 @@ namespace base
     }
 
     /**
-     * Converts a collection to a string.
+     * Converts a collection to a string with a functor.
      */
     template <typename CollectionType, typename ValueType>
     std::wstring Collections::CollectionToString(

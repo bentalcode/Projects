@@ -112,10 +112,10 @@ namespace datastructures {
 
             base::CompareToBuilder compareToBuilder;
             int status = compareToBuilder.WithMap(
-                    left.Connections(),
-                    right.Connections(),
-                    keyComparator,
-                    valueComparator).Build();
+                left.Connections(),
+                right.Connections(),
+                keyComparator,
+                valueComparator).Build();
 
             return status < 0;
         }

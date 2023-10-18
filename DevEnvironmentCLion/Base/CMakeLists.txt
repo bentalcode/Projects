@@ -166,6 +166,7 @@ set(BASE_SOURCES_FILES
     ./core/AndBitOperator.cpp
     ./core/Bits.cpp
     ./core/ClassType.cpp
+    ./core/Collections.cpp
     ./core/CompareToBuilder.cpp
     ./core/ConsoleColorSetter.cpp
     ./core/Conversion.cpp

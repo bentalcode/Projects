@@ -139,7 +139,7 @@ namespace base {
         typename IntervalDataMap::const_iterator iterator = FindNextSmallerOrEqualKey(key);
 
         if (iterator == m_map.end()) {
-            long statusCode = ErrorCodes::FAIL;
+            long statusCode = ErrorCodes::RESOURCE_NOT_FOUND;
             std::wstring errorMessage = L"The Interval Map is in invalid state: No intervals were defined.";
 
             throw BaseException(statusCode, errorMessage);

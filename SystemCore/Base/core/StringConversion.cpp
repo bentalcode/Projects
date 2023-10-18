@@ -4,6 +4,9 @@
 
 using namespace base;
 
+const std::wstring StringConversion::BOOLEAN_TRUE_VALUE = L"true";
+const std::wstring StringConversion::BOOLEAN_FALSE_VALUE = L"false";
+
 /**
  * The StringConversion constructor.
  */
@@ -23,11 +26,11 @@ StringConversion::~StringConversion()
  */
 bool StringConversion::ToBoolean(const std::wstring& value) const
 {
-    if (StringEquality::AreEqualIgnoreCase(value, L"true"))
+    if (StringEquality::AreEqualIgnoreCase(value, BOOLEAN_TRUE_VALUE))
     {
         return true;
     }
-    else if (StringEquality::AreEqualIgnoreCase(value, L"false"))
+    else if (StringEquality::AreEqualIgnoreCase(value, BOOLEAN_FALSE_VALUE))
     {
         return false;
     }
@@ -153,5 +156,5 @@ char StringConversion::ToCharacter(const std::wstring& value) const
  */
 DurationSharedPtr StringConversion::ToDuration(const std::wstring& value) const
 {
-    throw NotImplementedException(L"StringConversion::ToDuration");
+    return Duration::Parse(value);
 }

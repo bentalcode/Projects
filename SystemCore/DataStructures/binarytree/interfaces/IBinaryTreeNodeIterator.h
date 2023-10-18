@@ -8,7 +8,7 @@ namespace datastructures {
     namespace binarytree {
 
         /**
-         * The IBinaryTreeNodeIterator interface defines an iterator ofbinary tree nodes.
+         * The IBinaryTreeNodeIterator interface defines an iterator of binary tree nodes.
          */
         template <typename T>
         class IBinaryTreeNodeIterator : public base::IIterator<T>
@@ -43,7 +43,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines SharedPtr ofBinary Tree Node Iterator.
+         * Defines SharedPtr of Binary Tree Node Iterator.
          */
         template <typename T>
         using IBinaryTreeNodeIteratorSharedPtr = std::shared_ptr<IBinaryTreeNodeIterator<T>>;

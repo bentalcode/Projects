@@ -1,7 +1,7 @@
 #ifndef I_KEY_REVERSE_ITERABLE_H_e4cf6b20_221f_4423_a192_b4087d657680
 #define I_KEY_REVERSE_ITERABLE_H_e4cf6b20_221f_4423_a192_b4087d657680
 
-#include <memory>
+#include "IReverseIterator.h"
 
 namespace base
 {

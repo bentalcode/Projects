@@ -156,7 +156,7 @@ namespace base
         Validate();
 
         m_rowsSize = m_data.size();
-        m_columnsSize = m_data[0].Size();
+        m_columnsSize = m_data[0].size();
     }
 
     /**
@@ -357,11 +357,11 @@ namespace base
         }
 
         std::size_t rows = data.size();
-        std::size_t cols = data[0].Size();
+        std::size_t cols = data[0].size();
 
         for (std::size_t row = 1; row < rows; ++row)
         {
-            std::size_t currCols = data[row].Size();
+            std::size_t currCols = data[row].size();
 
             if (cols != currCols)
             {

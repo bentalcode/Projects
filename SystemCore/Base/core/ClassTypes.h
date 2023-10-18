@@ -10,7 +10,7 @@ namespace base
     {
     public:
         /**
-         * Checks whether whether the object is an instance of the specified type (class or subclass or interface).
+         * Checks whether whether an object is an instance of the specified type (class or subclass or interface).
          */
         template <typename Base, typename T>
         static bool InstanceOf(const T*);
@@ -24,7 +24,7 @@ namespace base
     };
 
     /**
-     * Checks whether whether the object is an instance of the specified type (class or subclass or interface).
+     * Checks whether whether an object is an instance of the specified type (class or subclass or interface).
      */
     template <typename Base, typename T>
     bool ClassTypes::InstanceOf(const T*) {

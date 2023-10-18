@@ -11,14 +11,14 @@ namespace datastructures {
     namespace binarytree {
 
         /**
-         * The BinaryTreeNodeListIterator class implements an iterator of a list ofbinary nodes.
+         * The BinaryTreeNodeListIterator class implements an iterator of a list of binary nodes.
          */
         template <typename TKey, typename TValue>
         class BinaryTreeNodeListIterator final : public IBinaryTreeNodeIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>
         {
         public:
             /**
-             * Creates a new iterator of a list ofbinary nodes.
+             * Creates a new iterator of a list of binary nodes.
              */
             static IBinaryTreeNodeIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> Make(
                 const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes);
@@ -46,12 +46,12 @@ namespace datastructures {
             BinaryTreeNodeListIterator& operator=(BinaryTreeNodeListIterator&&) = delete;
 
             /**
-             * Checks whether there is a Next element.
+             * Checks whether there is a next element.
              */
             virtual bool HasNext() const;
 
             /**
-             * Gets the Next element.
+             * Gets the next element.
              */
             virtual IBinaryTreeNodeSharedPtr<TKey, TValue> Next();
 
@@ -83,7 +83,7 @@ namespace datastructures {
         };
 
         /**
-         * Creates a new iterator of a list ofbinary nodes.
+         * Creates a new iterator of a list of binary nodes.
          */
         template <typename TKey, typename TValue>
         IBinaryTreeNodeIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeNodeListIterator<TKey, TValue>::Make(
@@ -117,7 +117,7 @@ namespace datastructures {
         }
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         template <typename TKey, typename TValue>
         bool BinaryTreeNodeListIterator<TKey, TValue>::HasNext() const
@@ -126,7 +126,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         template <typename TKey, typename TValue>
         IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNodeListIterator<TKey, TValue>::Next()

@@ -30,14 +30,14 @@ namespace datastructures {
             /**
              * Creates an index map.
              */
-            static void createIndexMap(
+            static void CreateIndexMap(
                 const std::vector<std::pair<TKey, TValue>>& data,
                 std::map<TKey, size_t>& indexMap);
 
             /**
              * Gets an index of a node by a key.
              */
-            static size_t getNodeIndex(
+            static size_t GetNodeIndex(
                 const std::map<TKey, size_t>& indexMap,
                 const TKey& key);
         };
@@ -62,7 +62,7 @@ namespace datastructures {
          * Creates an index map.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeTraversalBuilder<TKey, TValue>::createIndexMap(
+        void BinaryTreeTraversalBuilder<TKey, TValue>::CreateIndexMap(
             const std::vector<std::pair<TKey, TValue>>& data,
             std::map<TKey, size_t>& indexMap)
         {
@@ -76,7 +76,7 @@ namespace datastructures {
          * Gets an index of a node by a key.
          */
         template <typename TKey, typename TValue>
-        size_t BinaryTreeTraversalBuilder<TKey, TValue>::getNodeIndex(
+        size_t BinaryTreeTraversalBuilder<TKey, TValue>::GetNodeIndex(
             const std::map<TKey, size_t>& indexMap,
             const TKey& key)
         {

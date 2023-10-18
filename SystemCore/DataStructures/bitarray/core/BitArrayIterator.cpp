@@ -29,7 +29,7 @@ BitArrayIterator::~BitArrayIterator()
 }
 
 /**
- * Checks whether there is a Next element.
+ * Checks whether there is a next element.
  */
 bool BitArrayIterator::HasNext() const
 {
@@ -37,7 +37,7 @@ bool BitArrayIterator::HasNext() const
 }
 
 /**
- * Gets the Next element.
+ * Gets the next element.
  */
 bool BitArrayIterator::Next()
 {

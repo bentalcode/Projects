@@ -5,6 +5,8 @@
 #include "IIterable.h"
 #include "IReverseIterable.h"
 #include "IMatch.h"
+#include "EqualBuilder.h"
+#include "CompareToBuilder.h"
 
 namespace datastructures {
     namespace priority_queue {
@@ -95,43 +97,96 @@ namespace datastructures {
         using IPriorityQueueSharedPtr = std::shared_ptr<IPriorityQueue<T>>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for priorities queues.
          */
         template <typename T>
-        inline bool operator<(const IPriorityQueue<T>& left, const IPriorityQueue<T>& right)
+        inline bool operator==(
+            const IPriorityQueue<T>& lhs,
+            const IPriorityQueue<T>& rhs)
         {
-            if (left.size() < right.size())
-            {
-                return true;
-            }
-
-            if (left.size() > right.size())
+            if (lhs.size() != rhs.size())
             {
                 return false;
             }
 
-            base::IIteratorSharedPtr<T> leftIterator = left.GetIterator();
-            base::IIteratorSharedPtr<T> rightIterator = right.GetIterator();
+            base::IIteratorSharedPtr<T> lhsIterator = lhs.GetIterator();
+            base::IIteratorSharedPtr<T> rhsIterator = rhs.GetIterator();
 
-            while (leftIterator->HasNext() && rightIterator->HasNext())
+            base::EqualBuilder equalBuilder;
+            bool status = equalBuilder.WithIterator(lhsIterator, rhsIterator).Build();
+
+            return status;
+        }
+
+        /**
+         * Implements an operator not equals for priorities queues.
+         */
+        template <typename T>
+        inline bool operator!=(
+            const IPriorityQueue<T>& lhs,
+            const IPriorityQueue<T>& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Implements an operator less than for priorities queues.
+         */
+        template <typename T>
+        bool operator<(
+            const IPriorityQueue<T>& lhs,
+            const IPriorityQueue<T>& rhs)
+        {
+            if (lhs.size() < rhs.size())
             {
-                const T& leftValue = leftIterator->next();
-                const T& rightValue = rightIterator->next();
-
-                if (leftValue < rightValue)
-                {
-                    return true;
-                }
-
-                if (leftValue > rightValue)
-                {
-                    return false;
-                }
+                return true;
             }
 
-            assert(!leftIterator->HasNext() && !rightIterator->HasNext());
+            if (lhs.size() > rhs.size())
+            {
+                return false;
+            }
 
-            return false;
+            base::IIteratorSharedPtr<T> lhsIterator = lhs.GetIterator();
+            base::IIteratorSharedPtr<T> rhsIterator = rhs.GetIterator();
+
+            base::CompareToBuilder compareToBuilder;
+            int status = compareToBuilder.WithIterator(lhsIterator, rhsIterator).Build();
+
+            return status < 0;
+        }
+
+        /**
+         * Implements an operator less than or equal for priorities queues.
+         */
+        template <typename T>
+        bool operator<=(
+            const IPriorityQueue<T>& lhs,
+            const IPriorityQueue<T>& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        /**
+         * Implements an operator greater than for priorities queues.
+         */
+        template <typename T>
+        inline bool operator>(
+            const IPriorityQueue<T>& lhs,
+            const IPriorityQueue<T>& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        /**
+         * Implements an operator greater than or equal for priorities queues.
+         */
+        template <typename T>
+        bool operator>=(
+            const IPriorityQueue<T>& lhs,
+            const IPriorityQueue<T>& rhs)
+        {
+            return !(lhs < rhs);
         }
     }
 }

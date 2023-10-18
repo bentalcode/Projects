@@ -170,18 +170,27 @@ namespace base
         return m_data.pop_front();
     }
 
+    /**
+     * Returns whether the collection is Empty.
+     */
     template <typename T>
     bool List<T>::Empty() const
     {
         return m_data.empty();
     }
 
+    /**
+     * Gets the Size of the collection.
+     */
     template <typename T>
     std::size_t List<T>::Size() const
     {
         return m_data.size();
     }
 
+    /**
+     * Gets the iterator.
+     */
     template <typename T>
     IIteratorSharedPtr<T> List<T>::GetIterator() const
     {

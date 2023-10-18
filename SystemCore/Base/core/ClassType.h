@@ -14,7 +14,7 @@ namespace base
         /**
          * The ClassType constructor.
          */
-        ClassType(const std::wstring& className);
+        explicit ClassType(const std::wstring& className);
 
         /**
          * The ClassType destructor.

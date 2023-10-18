@@ -4,6 +4,7 @@
 #include "IIterable.h"
 #include "IReverseIterable.h"
 #include "BinaryTreeLevelOrderWithEndNodesIterator.h"
+#include "EqualBuilder.h"
 #include "CompareToBuilder.h"
 
 namespace datastructures {
@@ -82,22 +83,57 @@ namespace datastructures {
         };
 
         /**
-         * Defines SharedPtr ofBinary Tree.
+         * Defines SharedPtr of binary tree.
          */
         template <typename TKey, typename TValue>
         using IBinaryTreeSharedPtr = std::shared_ptr<IBinaryTree<TKey, TValue>>;
 
         /**
-         * Defines operator less for binary trees.
+         * Implements an operator equals for binary trees.
          */
         template <typename TKey, typename TValue>
-        bool operator<(const IBinaryTree<TKey, TValue>& left, const IBinaryTree<TKey, TValue>& right)
+        inline bool operator==(
+            const IBinaryTree<TKey, TValue>& lhs,
+            const IBinaryTree<TKey, TValue>& rhs)
         {
             base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> lhsIterator =
-                BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(left.GetRoot());
+                BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(lhs.GetRoot());
 
             base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> rhsIterator =
-                BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(right.GetRoot());
+                BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(rhs.GetRoot());
+
+            base::EqualBuilder equalBuilder;
+            int status = equalBuilder.WithDereferenceIterator(
+                *lhsIterator,
+                *rhsIterator).Build();
+
+            return status < 0;
+        }
+
+        /**
+         * Implements an operator not equals for binary trees.
+         */
+        template <typename TKey, typename TValue>
+        inline bool operator!=(
+            const IBinaryTree<TKey, TValue>& lhs,
+            const IBinaryTree<TKey, TValue>& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Implements an operator less than for binary trees.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<(
+            const IBinaryTree<TKey, TValue>& lhs,
+            const IBinaryTree<TKey, TValue>& rhs)
+        {
+            base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> lhsIterator =
+                BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(lhs.GetRoot());
+
+            base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> rhsIterator =
+                BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(rhs.GetRoot());
 
             base::CompareToBuilder compareToBuilder;
             int status = compareToBuilder.WithDereferenceIterator(
@@ -105,6 +141,39 @@ namespace datastructures {
                 *rhsIterator).Build();
 
             return status < 0;
+        }
+
+        /**
+         * Implements an operator less than or equal for binary trees.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<=(
+            const IBinaryTree<TKey, TValue>& lhs,
+            const IBinaryTree<TKey, TValue>& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        /**
+         * Implements an operator greater than for binary trees.
+         */
+        template <typename TKey, typename TValue>
+        inline bool operator>(
+            const IBinaryTree<TKey, TValue>& lhs,
+            const IBinaryTree<TKey, TValue>& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        /**
+         * Implements an operator greater than or equal for binary trees.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>=(
+            const IBinaryTree<TKey, TValue>& lhs,
+            const IBinaryTree<TKey, TValue>& rhs)
+        {
+            return !(lhs < rhs);
         }
     }
 }

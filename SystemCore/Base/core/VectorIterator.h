@@ -42,12 +42,12 @@ namespace base
         VectorIterator& operator=(VectorIterator&&) = delete;
 
         /**
-         * Checks whether there is a Next element.
+         * Checks whether there is a next element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the Next element.
+         * Gets the next element.
          */
         virtual T Next() override;
 
@@ -70,6 +70,9 @@ namespace base
         return std::make_shared<VectorIterator>(data);
     }
 
+    /**
+     * The constructor.
+     */
     template <typename T>
     VectorIterator<T>::VectorIterator(const std::vector<T>& data) :
         m_data(data)
@@ -77,17 +80,26 @@ namespace base
         Reset();
     }
 
+    /**
+     * The destructor.
+     */
     template <typename T>
     VectorIterator<T>::~VectorIterator()
     {
     }
 
+    /**
+     * Checks whether there is a next element.
+     */
     template <typename T>
     bool VectorIterator<T>::HasNext() const
     {
         return m_iterator != m_data.end();
     }
 
+    /**
+     * Gets the next element.
+     */
     template <typename T>
     T VectorIterator<T>::Next()
     {
@@ -99,6 +111,9 @@ namespace base
         return currElement;
     }
 
+    /**
+     * Resets the iterator.
+     */
     template <typename T>
     void VectorIterator<T>::Reset()
     {
