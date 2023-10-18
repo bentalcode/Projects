@@ -7,16 +7,16 @@ namespace datastructures {
     namespace binarytree {
 
         /**
-         * The BinaryTreeNodeListReverseIterator class implements a reverse iterator of a list Of binary nodes.
+         * The BinaryTreeNodeListReverseIterator class implements a reverse iterator of a list ofbinary nodes.
          */
         template <typename TKey, typename TValue>
         class BinaryTreeNodeListReverseIterator final : public IBinaryTreeNodeReverseIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>
         {
         public:
             /**
-             * Creates a new reverse iterator of a list Of binary nodes.
+             * Creates a new reverse iterator of a list ofbinary nodes.
              */
-            static IBinaryTreeNodeReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr < TKey, TValue>> make(
+            static IBinaryTreeNodeReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr < TKey, TValue>> Make(
                 const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes);
 
         private:
@@ -46,28 +46,28 @@ namespace datastructures {
             /**
              * Checks whether there is a Next element.
              */
-            virtual bool hasNext() const;
+            virtual bool HasNext() const;
 
             /**
              * Gets the Next element.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> next();
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> Next();
 
             /**
              * Resets the iterator.
              */
-            virtual void reset();
+            virtual void Reset();
 
             /**
              * Gets the skip iterator.
              */
-            virtual base::ISkipIteratorSharedPtr getSkipIterator() const;
+            virtual base::ISkipIteratorSharedPtr GetSkipIterator() const;
 
         private:
             /*
              * Gets the next position.
              */
-            void nextPosition(
+            void NextPosition(
                 size_t position,
                 bool& endPosition,
                 size_t& nextPosition);
@@ -75,7 +75,7 @@ namespace datastructures {
             /*
              * Aligns the position.
              */
-            void alignPosition(
+            void AlignPosition(
                 size_t position,
                 bool& endPosition,
                 size_t& alignedPosition);
@@ -89,10 +89,10 @@ namespace datastructures {
         };
 
         /**
-         * Creates a new reverse iterator of a list Of binary nodes.
+         * Creates a new reverse iterator of a list ofbinary nodes.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeNodeListReverseIterator<TKey, TValue>::make(
+        IBinaryTreeNodeReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeNodeListReverseIterator<TKey, TValue>::Make(
             const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes) {
 
             return IBinaryTreeNodeReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>>(
@@ -108,10 +108,10 @@ namespace datastructures {
             m_nodes(nodes),
             m_skipIterator(std::make_shared<base::SkipIterator>())
         {
-            m_skipIterator->enableSkipElements();
-            m_skipIterator->registerGenericSkipElement(typeid(BinaryTreeEndNode<TKey, TValue>));
+            m_skipIterator->EnableSkipElements();
+            m_skipIterator->RegisterGenericSkipElement(typeid(BinaryTreeEndNode<TKey, TValue>));
 
-            reset();
+            Reset();
         }
 
         /**
@@ -126,7 +126,7 @@ namespace datastructures {
          * Checks whether there is a Next element.
          */
         template <typename TKey, typename TValue>
-        bool BinaryTreeNodeListReverseIterator<TKey, TValue>::hasNext() const
+        bool BinaryTreeNodeListReverseIterator<TKey, TValue>::HasNext() const
         {
             return !m_endPosition;
         }
@@ -135,16 +135,16 @@ namespace datastructures {
          * Gets the Next element.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNodeListReverseIterator<TKey, TValue>::next()
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNodeListReverseIterator<TKey, TValue>::Next()
         {
-            assert(hasNext());
+            assert(HasNext());
 
             IBinaryTreeNodeSharedPtr<TKey, TValue> currElement = m_nodes[m_position];
 
             bool endPositionResult = false;
             size_t nextPositionResult = 0;
 
-            nextPosition(m_position, endPositionResult, nextPositionResult);
+            NextPosition(m_position, endPositionResult, nextPositionResult);
 
             m_endPosition = endPositionResult;
             m_position = nextPositionResult;
@@ -158,9 +158,9 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void BinaryTreeNodeListReverseIterator<TKey, TValue>::Reset()
         {
-            if (!m_nodes.Empty())
+            if (!m_nodes.empty())
             {
-                alignPosition(m_nodes.Size() - 1, m_endPosition, m_position);
+                AlignPosition(m_nodes.size() - 1, m_endPosition, m_position);
             }
             else {
                 m_endPosition = true;
@@ -172,7 +172,7 @@ namespace datastructures {
          * Gets the skip iterator.
          */
         template <typename TKey, typename TValue>
-        base::ISkipIteratorSharedPtr BinaryTreeNodeListReverseIterator<TKey, TValue>::getSkipIterator() const
+        base::ISkipIteratorSharedPtr BinaryTreeNodeListReverseIterator<TKey, TValue>::GetSkipIterator() const
         {
             return m_skipIterator;
         }
@@ -181,14 +181,14 @@ namespace datastructures {
          * Gets the next position.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeNodeListReverseIterator<TKey, TValue>::nextPosition(
+        void BinaryTreeNodeListReverseIterator<TKey, TValue>::NextPosition(
             size_t position,
             bool& endPosition,
             size_t& nextPosition)
         {
             if (position >= 1)
             {
-                alignPosition(position - 1, endPosition, nextPosition);
+                AlignPosition(position - 1, endPosition, nextPosition);
             }
             else
             {
@@ -201,14 +201,14 @@ namespace datastructures {
          * Aligns the position.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeNodeListReverseIterator<TKey, TValue>::alignPosition(
+        void BinaryTreeNodeListReverseIterator<TKey, TValue>::AlignPosition(
             size_t position,
             bool& endPosition,
             size_t& alignedPosition)
         {
             size_t currPosition = position;
 
-            if (!m_skipIterator->getSkipElementsStatus())
+            if (!m_skipIterator->GetSkipElementsStatus())
             {
                 endPosition = false;
                 alignedPosition = currPosition;
@@ -220,7 +220,7 @@ namespace datastructures {
             {
                 IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = m_nodes[currPosition];
 
-                if (!m_skipIterator->isSkipElement(typeid(*currNode)))
+                if (!m_skipIterator->IsSkipElement(typeid(*currNode)))
                 {
                     endPosition = false;
                     alignedPosition = currPosition;

@@ -7,21 +7,21 @@
 namespace data_structures
 {
     /**
-     * The IteratorOfIteratorCollection class implements an iterator of a collection Of iterators.
+     * The IteratorOfIteratorCollection class implements an iterator of a collection ofiterators.
      */
     template <typename T>
     class IteratorOfIteratorCollection final : public base::IIterator<T>
     {
     public:
         /**
-         * Creates a new iterator from a collection Of iterators.
+         * Creates a new iterator from a collection ofiterators.
          */
         static base::IIteratorSharedPtr<T> Of(const std::vector<base::IIteratorSharedPtr<T>>& iterators) {
             return new IteratorOfIteratorCollection<T>(iterators);
         }
 
         /**
-         * Creates a new iterator from a collection Of iterables.
+         * Creates a new iterator from a collection ofiterables.
          */
         static base::IIteratorSharedPtr<T> OfIterables(const std::vector<base::IIterable<T>>& iterables) {
             std::vector<base::IIteratorSharedPtr<T>> iterators;
@@ -99,7 +99,7 @@ namespace data_structures
     template <typename T>
     bool IteratorOfIteratorCollection<T>::HasNext() const
     {
-        return !m_iteratorsQueue.Empty();
+        return !m_iteratorsQueue.empty();
     }
 
     /**
@@ -111,9 +111,9 @@ namespace data_structures
         assert(HasNext());
 
         base::IIteratorSharedPtr<T> currIterator = m_iteratorsQueue.front();
-        T currElement = currIterator->next();
+        T currElement = currIterator->Next();
 
-        if (!currIterator->hasNext()) {
+        if (!currIterator->HasNext()) {
             m_iteratorsQueue.pop();
         }
 
@@ -127,7 +127,7 @@ namespace data_structures
     void IteratorOfIteratorCollection<T>::Reset()
     {
         for (base::IIteratorSharedPtr<T> iterator : m_iterators) {
-            if (iterator->hasNext()) {
+            if (iterator->HasNext()) {
                 m_iteratorsQueue.push(iterator);
             }
         }

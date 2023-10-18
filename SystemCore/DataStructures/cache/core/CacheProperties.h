@@ -15,7 +15,7 @@ namespace datastructures {
             /**
              * Creates properties of a cache.
              */
-            static ICachePropertiesSharedPtr make(
+            static ICachePropertiesSharedPtr Make(
                 size_t capacity,
                 size_t numberOfItemsForMakingAvailableSpace);
 
@@ -49,7 +49,7 @@ namespace datastructures {
             virtual size_t GetCapacity() const override;
 
             /**
-             * Gets the number Of items for making available space in the cache.
+             * Gets the number ofitems for making available space in the cache.
              */
             virtual size_t GetNumberOfItemsForMakingAvailableSpace() const override;
 

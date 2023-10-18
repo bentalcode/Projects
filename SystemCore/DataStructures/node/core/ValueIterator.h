@@ -45,17 +45,17 @@ namespace datastructures {
             /**
              * Checks whether there is a Next node.
              */
-            virtual bool hasNext() const override;
+            virtual bool HasNext() const override;
 
             /**
              * Gets the Next node.
              */
-            virtual TValue next() override;
+            virtual TValue Next() override;
 
             /**
              * Resets the iterator.
              */
-            virtual void reset() override;
+            virtual void Reset() override;
 
         private:
             base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> m_iterator;
@@ -77,9 +77,9 @@ namespace datastructures {
         ValueIterator<TKey, TValue>::ValueIterator(base::IIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> iterator) :
             m_iterator(iterator)
         {
-            base::SmartPointers::validate(iterator);
+            base::SmartPointers::Validate<base::IIterator<IKeyValueNodeSharedPtr<TKey, TValue>>>(iterator);
 
-            reset();
+            Reset();
         }
 
         /**
@@ -94,29 +94,29 @@ namespace datastructures {
          * Checks whether there is a Next node.
          */
         template <typename TKey, typename TValue>
-        bool ValueIterator<TKey, TValue>::hasNext() const
+        bool ValueIterator<TKey, TValue>::HasNext() const
         {
-            return m_iterator->hasNext();
+            return m_iterator->HasNext();
         }
 
         /**
          * Gets the Next node.
          */
         template <typename TKey, typename TValue>
-        TValue ValueIterator<TKey, TValue>::next()
+        TValue ValueIterator<TKey, TValue>::Next()
         {
-            assert(hasNext());
+            assert(HasNext());
 
-            return m_iterator->next()->GetValue();
+            return m_iterator->Next()->GetValue();
         }
 
         /**
          * Resets the iterator.
          */
         template <typename TKey, typename TValue>
-        void ValueIterator<TKey, TValue>::reset()
+        void ValueIterator<TKey, TValue>::Reset()
         {
-            m_iterator->reset();
+            m_iterator->Reset();
         }
     }
 }

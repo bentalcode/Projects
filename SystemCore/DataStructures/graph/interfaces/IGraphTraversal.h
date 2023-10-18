@@ -52,7 +52,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Graph Traversal.
+         * Defines the SharedPtr ofGraph Traversal.
          */
         template <typename TKey, typename TValue>
         using IGraphTraversalSharedPtr = std::shared_ptr<IGraphTraversal<TKey, TValue>>;

@@ -79,7 +79,7 @@ namespace datastructures {
             base::IReverseIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<T>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
-            base::SmartPointers::validate<base::IReverseIterator<IDoublyLinkedListNodeSharedPtr<T>>>(reverseIterator);
+            base::SmartPointers::Validate<base::IReverseIterator<IDoublyLinkedListNodeSharedPtr<T>>>(reverseIterator);
 
             Reset();
         }
@@ -98,7 +98,7 @@ namespace datastructures {
         template <typename T>
         bool DoublyLinkedListNodeValueReverseIterator<T>::HasNext() const
         {
-            return m_reverseIterator->hasNext();
+            return m_reverseIterator->HasNext();
         }
 
         /**
@@ -109,7 +109,7 @@ namespace datastructures {
         {
             assert(HasNext());
 
-            return m_reverseIterator->next()->GetValue();
+            return m_reverseIterator->Next()->GetValue();
         }
 
         /**

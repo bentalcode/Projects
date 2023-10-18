@@ -43,17 +43,17 @@ namespace base
         const T& GetStart() const;
 
         /**
-         * Gets the end point of a range.
+         * Gets the End point of a range.
          */
         const T& GetEnd() const;
 
         /**
-         * Gets the string representation Of this instance.
+         * Gets the string representation ofthis instance.
          */
         std::wstring ToString() const;
 
         /**
-         * Validates the the range start and end points.
+         * Validates the the range start and End points.
          */
         static void Validate(const T& start, const T& end);
 
@@ -106,7 +106,7 @@ namespace base
     }
 
     /**
-     * Gets the end point of a range.
+     * Gets the End point of a range.
      */
     template <typename T>
     const T& Range<T>::GetEnd() const
@@ -115,7 +115,7 @@ namespace base
     }
 
     /**
-     * Gets the string representation Of this instance.
+     * Gets the string representation ofthis instance.
      */
     template <typename T>
     std::wstring Range<T>::ToString() const
@@ -126,7 +126,7 @@ namespace base
     }
 
     /**
-     * Validates the the range start and end points.
+     * Validates the the range start and End points.
      */
     template <typename T>
     void Range<T>::Validate(const T& start, const T& end)
@@ -134,7 +134,7 @@ namespace base
         if (start > end)
         {
             long statusCode = base::ErrorCodes::OUT_OF_RANGE;
-            std::wstring errorMessage = L"Invalid range start and end points.";
+            std::wstring errorMessage = L"Invalid range start and End points.";
             throw BaseException(statusCode, errorMessage);
         }
     }

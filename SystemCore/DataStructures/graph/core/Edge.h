@@ -69,7 +69,7 @@ namespace datastructures {
             virtual bool Directed() const override;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
             virtual std::wstring ToString() const override;
 
@@ -157,7 +157,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets string representation Of this instance.
+         * Gets string representation ofthis instance.
          */
         template <typename TKey, typename TValue>
         std::wstring Edge<TKey, TValue>::ToString() const

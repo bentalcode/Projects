@@ -152,14 +152,14 @@ namespace test_base {
         base::IIteratorSharedPtr<T> expectedIterator,
         const std::wstring& containerName)
     {
-        base::IIteratorSharedPtr<T> iterator = container->getIterator();
+        base::IIteratorSharedPtr<T> iterator = container->GetIterator();
 
         size_t index = 0;
 
-        while (iterator->hasNext() && expectedIterator->hasNext())
+        while (iterator->HasNext() && expectedIterator->HasNext())
         {
-            T element = iterator->next();
-            T expectedElement = expectedIterator->next();
+            T element = iterator->Next();
+            T expectedElement = expectedIterator->Next();
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -167,9 +167,9 @@ namespace test_base {
                 << L" Invalid element found in index: " << std::to_wstring(index);
 
             m_assertion.AssertEquals(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -184,14 +184,14 @@ namespace test_base {
         base::IIteratorSharedPtr<T> expectedIterator,
         const std::wstring& containerName)
     {
-        base::IIteratorSharedPtr<T> iterator = container->getIterator();
+        base::IIteratorSharedPtr<T> iterator = container->GetIterator();
 
         size_t index = 0;
 
-        while (iterator->hasNext() && expectedIterator->hasNext())
+        while (iterator->HasNext() && expectedIterator->HasNext())
         {
-            T element = iterator->next();
-            T expectedElement = expectedIterator->next();
+            T element = iterator->Next();
+            T expectedElement = expectedIterator->Next();
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -199,9 +199,9 @@ namespace test_base {
                 << L" Invalid element found in index: " << std::to_wstring(index);
 
             m_assertion.AssertEqualsWithDereference(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -216,14 +216,14 @@ namespace test_base {
         base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::wstring& containerName)
     {
-        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->GetReverseIterator();
 
         size_t index = 0;
 
-        while (reverseIterator->hasNext() && expectedReverseIterator->hasNext())
+        while (reverseIterator->HasNext() && expectedReverseIterator->HasNext())
         {
-            T element = reverseIterator->next();
-            T expectedElement = expectedReverseIterator->next();
+            T element = reverseIterator->Next();
+            T expectedElement = expectedReverseIterator->Next();
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -231,9 +231,9 @@ namespace test_base {
                 << L" Invalid element found in reverse index: " << std::to_wstring(index);
 
             m_assertion.AssertEquals(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -248,13 +248,13 @@ namespace test_base {
         base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::wstring& containerName)
     {
-        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->GetReverseIterator();
 
         size_t index = 0;
 
-        while (reverseIterator->hasNext() && expectedReverseIterator->hasNext()) {
-            T element = reverseIterator->next();
-            T expectedElement = expectedReverseIterator->next();
+        while (reverseIterator->HasNext() && expectedReverseIterator->HasNext()) {
+            T element = reverseIterator->Next();
+            T expectedElement = expectedReverseIterator->Next();
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -262,9 +262,9 @@ namespace test_base {
                 << L" Invalid element found in reverse index: " << std::to_wstring(index);
 
             m_assertion.AssertEqualsWithDereference(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -279,14 +279,14 @@ namespace test_base {
         base::IIteratorSharedPtr<T> expectedIterator,
         const std::wstring& containerName)
     {
-        base::IIteratorSharedPtr<T> iterator = container->getKeyIterator();
+        base::IIteratorSharedPtr<T> iterator = container->GetKeyIterator();
 
         size_t index = 0;
 
-        while (iterator->hasNext() && expectedIterator->hasNext())
+        while (iterator->HasNext() && expectedIterator->HasNext())
         {
-            T element = iterator->next();
-            T expectedElement = expectedIterator->next();
+            T element = iterator->Next();
+            T expectedElement = expectedIterator->Next();
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -294,9 +294,9 @@ namespace test_base {
                 << L" Invalid element found in index: " << std::to_wstring(index);
 
             m_assertion.AssertEquals(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -311,11 +311,11 @@ namespace test_base {
         base::IIteratorSharedPtr<T> expectedIterator,
         const std::wstring& containerName)
     {
-        base::IIteratorSharedPtr<T> iterator = container->getKeyIterator();
+        base::IIteratorSharedPtr<T> iterator = container->GetKeyIterator();
 
         size_t index = 0;
 
-        while (iterator->hasNext() && expectedIterator->hasNext())
+        while (iterator->HasNext() && expectedIterator->HasNext())
         {
             T element = iterator->next();
             T expectedElement = expectedIterator->next();
@@ -326,9 +326,9 @@ namespace test_base {
                 << L" Invalid element found in index: " << std::to_wstring(index);
 
             m_assertion.AssertEqualsWithDereference(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -343,14 +343,14 @@ namespace test_base {
         base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::wstring& containerName)
     {
-        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getKeyReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->GetKeyReverseIterator();
 
         size_t index = 0;
 
-        while (reverseIterator->hasNext() && expectedReverseIterator->hasNext())
+        while (reverseIterator->HasNext() && expectedReverseIterator->HasNext())
         {
-            T element = reverseIterator->next();
-            T expectedElement = expectedReverseIterator->next();
+            T element = reverseIterator->Next();
+            T expectedElement = expectedReverseIterator->Next();
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -358,9 +358,9 @@ namespace test_base {
                 << L" Invalid element found in reverse index: " << std::to_wstring(index);
 
             m_assertion.AssertEquals(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -375,14 +375,14 @@ namespace test_base {
         base::IIteratorSharedPtr<T> expectedIterator,
         const std::wstring& containerName)
     {
-        base::IIteratorSharedPtr<T> iterator = container->getValueIterator();
+        base::IIteratorSharedPtr<T> iterator = container->GetValueIterator();
 
         size_t index = 0;
 
-        while (iterator->hasNext() && expectedIterator->hasNext())
+        while (iterator->HasNext() && expectedIterator->HasNext())
         {
-            T element = iterator->next();
-            T expectedElement = expectedIterator->next();
+            T element = iterator->Next();
+            T expectedElement = expectedIterator->Next();
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -390,9 +390,9 @@ namespace test_base {
                 << L" Invalid element found in index: " << std::to_wstring(index);
 
             m_assertion.AssertEquals(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -407,11 +407,11 @@ namespace test_base {
         base::IIteratorSharedPtr<T> expectedIterator,
         const std::wstring& containerName)
     {
-        base::IIteratorSharedPtr<T> iterator = container->getValueIterator();
+        base::IIteratorSharedPtr<T> iterator = container->GetValueIterator();
 
         size_t index = 0;
 
-        while (iterator->hasNext() && expectedIterator->hasNext())
+        while (iterator->HasNext() && expectedIterator->HasNext())
         {
             T element = iterator->next();
             T expectedElement = expectedIterator->next();
@@ -422,9 +422,9 @@ namespace test_base {
                 << L" Invalid element found in index: " << std::to_wstring(index);
 
             m_assertion.AssertEqualsWithDereference(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -439,14 +439,14 @@ namespace test_base {
         base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::wstring& containerName)
     {
-        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getValueReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->GetValueReverseIterator();
 
         size_t index = 0;
 
-        while (reverseIterator->hasNext() && expectedReverseIterator->hasNext())
+        while (reverseIterator->HasNext() && expectedReverseIterator->HasNext())
         {
-            T element = reverseIterator->next();
-            T expectedElement = expectedReverseIterator->next();
+            T element = reverseIterator->Next();
+            T expectedElement = expectedReverseIterator->Next();
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -454,9 +454,9 @@ namespace test_base {
                 << L" Invalid element found in reverse index: " << std::to_wstring(index);
 
             m_assertion.AssertEquals(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }
@@ -471,11 +471,11 @@ namespace test_base {
         base::IReverseIteratorSharedPtr<T> expectedReverseIterator,
         const std::wstring& containerName)
     {
-        base::IReverseIteratorSharedPtr<T> reverseIterator = container->getValueReverseIterator();
+        base::IReverseIteratorSharedPtr<T> reverseIterator = container->GetValueReverseIterator();
 
         size_t index = 0;
 
-        while (reverseIterator->hasNext() && expectedReverseIterator->hasNext())
+        while (reverseIterator->HasNext() && expectedReverseIterator->HasNext())
         {
             T element = reverseIterator->next();
             T expectedElement = expectedReverseIterator->next();
@@ -486,9 +486,9 @@ namespace test_base {
                 << L" Invalid element found in reverse index: " << std::to_wstring(index);
 
             m_assertion.AssertEqualsWithDereference(
-                    element,
-                    expectedElement,
-                    errorMessageStream.str());
+                element,
+                expectedElement,
+                errorMessageStream.str());
 
             ++index;
         }

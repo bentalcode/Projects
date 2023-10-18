@@ -48,7 +48,7 @@ namespace unit_testing
         /**
          * Unregisters a test.
          */
-        virtual void UnregisterTest(IUnitTestSharedPtr unitTest) override;
+        virtual void UnRegisterTest(IUnitTestSharedPtr unitTest) override;
 
         /**
          * Runs the registered tests.

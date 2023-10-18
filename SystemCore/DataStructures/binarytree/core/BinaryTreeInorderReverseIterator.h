@@ -18,7 +18,7 @@ namespace datastructures {
             /**
              * Creates an inorder reverse iterator of a binary tree.
              */
-            static base::IReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> make(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
+            static base::IReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> Make(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * The BinaryTreeInorderReverseIterator constructor.
@@ -45,17 +45,17 @@ namespace datastructures {
             /**
              * Checks whether there is a Next element.
              */
-            virtual bool hasNext() const;
+            virtual bool HasNext() const;
 
             /**
              * Gets the Next element.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> next();
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> Next();
 
             /**
              * Resets the iterator.
              */
-            virtual void reset();
+            virtual void Reset();
 
         private:
             IBinaryTreeNodeSharedPtr<TKey, TValue> m_root;
@@ -67,7 +67,7 @@ namespace datastructures {
          * Creates an inorder reverse iterator of a binary tree.
          */
         template <typename TKey, typename TValue>
-        base::IReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeInorderReverseIterator<TKey, TValue>::make(IBinaryTreeNodeSharedPtr<TKey, TValue> root)
+        base::IReverseIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeInorderReverseIterator<TKey, TValue>::Make(IBinaryTreeNodeSharedPtr<TKey, TValue> root)
         {
             return std::make_shared<BinaryTreeInorderReverseIterator<TKey, TValue>>(root);
         }
@@ -79,7 +79,7 @@ namespace datastructures {
         BinaryTreeInorderReverseIterator<TKey, TValue>::BinaryTreeInorderReverseIterator(IBinaryTreeNodeSharedPtr<TKey, TValue> root) :
             m_root(root)
         {
-            reset();
+            Reset();
         }
 
         /**
@@ -94,24 +94,24 @@ namespace datastructures {
          * Checks whether there is a Next element.
          */
         template <typename TKey, typename TValue>
-        bool BinaryTreeInorderReverseIterator<TKey, TValue>::hasNext() const
+        bool BinaryTreeInorderReverseIterator<TKey, TValue>::HasNext() const
         {
-            return !m_stack->Empty();
+            return !m_stack->empty();
         }
 
         /**
          * Gets the Next element.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeInorderReverseIterator<TKey, TValue>::next()
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeInorderReverseIterator<TKey, TValue>::Next()
         {
-            assert(hasNext());
+            assert(HasNext());
             IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = m_stack->top();
             m_stack->pop();
 
             if (currNode->HasLeftChild())
             {
-                m_logic.moveMaximumNode(currNode->GetLeftChild(), *m_stack);
+                m_logic.MoveMaximumNode(currNode->GetLeftChild(), *m_stack);
             }
 
             return currNode;
@@ -121,13 +121,13 @@ namespace datastructures {
          * Resets the iterator.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeInorderReverseIterator<TKey, TValue>::reset()
+        void BinaryTreeInorderReverseIterator<TKey, TValue>::Reset()
         {
             m_stack = std::make_unique<std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>>();
 
             if (m_root.get() != nullptr)
             {
-                m_logic.moveMaximumNode(m_root, *m_stack);
+                m_logic.MoveMaximumNode(m_root, *m_stack);
             }
         }
     }

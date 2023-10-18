@@ -46,17 +46,17 @@ namespace datastructures {
             /**
              * Checks whether there is a Next node.
              */
-            virtual bool hasNext() const override;
+            virtual bool HasNext() const override;
 
             /**
              * Gets the Next node.
              */
-            virtual TKey next() override;
+            virtual TKey Next() override;
 
             /**
              * Resets the iterator.
              */
-            virtual void reset() override;
+            virtual void Reset() override;
 
         private:
             base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> m_reverseIterator;
@@ -80,8 +80,8 @@ namespace datastructures {
             base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
-            base::SmartPointers::validate(reverseIterator);
-            reset();
+            base::SmartPointers::Validate<base::IReverseIterator<IKeyValueNodeSharedPtr<TKey, TValue>>>(reverseIterator);
+            Reset();
         }
 
         /**
@@ -96,29 +96,29 @@ namespace datastructures {
          * Checks whether there is a Next node.
          */
         template <typename TKey, typename TValue>
-        bool KeyReverseIterator<TKey, TValue>::hasNext() const
+        bool KeyReverseIterator<TKey, TValue>::HasNext() const
         {
-            return m_reverseIterator->hasNext();
+            return m_reverseIterator->HasNext();
         }
 
         /**
          * Gets the Next node.
          */
         template <typename TKey, typename TValue>
-        TKey KeyReverseIterator<TKey, TValue>::next()
+        TKey KeyReverseIterator<TKey, TValue>::Next()
         {
-            assert(hasNext());
+            assert(HasNext());
 
-            return m_reverseIterator->next()->GetKey();
+            return m_reverseIterator->Next()->GetKey();
         }
 
         /**
          * Resets the iterator.
          */
         template <typename TKey, typename TValue>
-        void KeyReverseIterator<TKey, TValue>::reset()
+        void KeyReverseIterator<TKey, TValue>::Reset()
         {
-            m_reverseIterator->reset();
+            m_reverseIterator->Reset();
         }
     }
 }

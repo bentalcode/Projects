@@ -93,7 +93,7 @@ namespace datastructures {
         template <typename T>
         bool LinkedListNodeValueIterator<T>::HasNext() const
         {
-            return m_iterator->hasNext();
+            return m_iterator->HasNext();
         }
 
         /**
@@ -104,7 +104,7 @@ namespace datastructures {
         {
             assert(HasNext());
 
-            return m_iterator->next()->GetValue();
+            return m_iterator->Next()->GetValue();
         }
 
         /**
@@ -113,7 +113,7 @@ namespace datastructures {
         template <typename T>
         void LinkedListNodeValueIterator<T>::Reset()
         {
-            m_iterator->reset();
+            m_iterator->Reset();
         }
     }
 }

@@ -57,22 +57,22 @@ namespace datastructures {
             /**
              * Gets the node of a left child.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getLeftChild() const override;
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> GetLeftChild() const override;
 
             /**
              * Sets the node of a left child.
              */
-            virtual void setLeftChild(IBinaryTreeNodeSharedPtr<TKey, TValue> node) override;
+            virtual void SetLeftChild(IBinaryTreeNodeSharedPtr<TKey, TValue> node) override;
 
             /**
              * Gets the node of a right child.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getRightChild() const override;
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> GetRightChild() const override;
 
             /**
              * Sets the node of a right child.
              */
-            virtual void setRightChild(IBinaryTreeNodeSharedPtr<TKey, TValue> node) override;
+            virtual void SetRightChild(IBinaryTreeNodeSharedPtr<TKey, TValue> node) override;
 
             /**
              * Checks whether there is a left child.
@@ -149,7 +149,7 @@ namespace datastructures {
          * Gets the node of a left child.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNode<TKey, TValue>::getLeftChild() const
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNode<TKey, TValue>::GetLeftChild() const
         {
             return m_leftChild;
         }
@@ -158,7 +158,7 @@ namespace datastructures {
          * Sets the node of a left child.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeNode<TKey, TValue>::setLeftChild(IBinaryTreeNodeSharedPtr<TKey, TValue> child)
+        void BinaryTreeNode<TKey, TValue>::SetLeftChild(IBinaryTreeNodeSharedPtr<TKey, TValue> child)
         {
             m_leftChild = child;
         }
@@ -167,7 +167,7 @@ namespace datastructures {
          * Gets the node of a right child.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNode<TKey, TValue>::getRightChild() const
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeNode<TKey, TValue>::GetRightChild() const
         {
             return m_rightChild;
         }
@@ -176,7 +176,7 @@ namespace datastructures {
          * Sets the node of a right child.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeNode<TKey, TValue>::setRightChild(IBinaryTreeNodeSharedPtr<TKey, TValue> child)
+        void BinaryTreeNode<TKey, TValue>::SetRightChild(IBinaryTreeNodeSharedPtr<TKey, TValue> child)
         {
             m_rightChild = child;
         }

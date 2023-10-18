@@ -242,8 +242,7 @@ namespace base {
             return *this;
         }
 
-        IteratorComparator<T> iteratorComparator;
-        m_equalityStatus = iteratorComparator.AreEqual(lhs, rhs, comparator);
+        m_equalityStatus = IteratorComparator<T>::AreEqual(lhs, rhs, comparator);
 
         return *this;
     }

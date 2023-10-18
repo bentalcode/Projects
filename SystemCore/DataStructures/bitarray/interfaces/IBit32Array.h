@@ -17,7 +17,7 @@ namespace datastructures {
         class UnaryBitOperator;
 
         /**
-         * The IBit32Array interface defines a bit array Of Size 32.
+         * The IBit32Array interface defines a bit array ofSize 32.
          */
         class IBit32Array :
             public base::ISizableCollection<bool>,
@@ -79,17 +79,17 @@ namespace datastructures {
             virtual unsigned int Get(size_t index) const = 0;
 
             /**
-             * Sets the bit at the specified index to the complement Of its current value.
+             * Sets the bit at the specified index to the complement ofits current value.
              */
             virtual void Flip(size_t index) = 0;
 
             /**
-             * Returns the number Of bits Set to true.
+             * Returns the number ofbits Set to true.
              */
             virtual size_t Cardinality() const = 0;
 
             /**
-             * Returns the number Of bits Set to true in the specified range.
+             * Returns the number ofbits Set to true in the specified range.
              */
             virtual size_t Cardinality(size_t startIndex, size_t endIndex) const = 0;
 
@@ -180,16 +180,68 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Bit 32 Array.
+         * Defines the SharedPtr of Bit 32 Array.
          */
         using IBit32ArraySharedPtr = std::shared_ptr<IBit32Array>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for bit32 arrays.
          */
-        inline bool operator<(const IBit32Array& left, const IBit32Array& right)
+        inline bool operator==(
+            const IBit32Array& lhs,
+            const IBit32Array& rhs)
+        {
+            return lhs.ToInteger() == rhs.ToInteger();
+        }
+
+        /**
+         * Implements an operator not equals for bit32 arrays.
+         */
+        inline bool operator!=(
+            const IBit32Array& lhs,
+            const IBit32Array& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Implements an operator less than for bit32 arrays.
+         */
+        inline bool operator<(
+            const IBit32Array& left,
+            const IBit32Array& right)
         {
             return left.ToInteger() < right.ToInteger();
+        }
+
+        /**
+         * Implements an operator less than or equal for bit32 arrays.
+         */
+        inline bool operator<=(
+            const IBit32Array& lhs,
+            const IBit32Array& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        /**
+         * Implements an operator greater than for bit32 arrays.
+         */
+        inline bool operator>(
+            const IBit32Array& lhs,
+            const IBit32Array& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        /**
+         * Implements an operator greater than or equal for bit32 arrays.
+         */
+        inline bool operator>=(
+            const IBit32Array& lhs,
+            const IBit32Array& rhs)
+        {
+            return !(lhs < rhs);
         }
     }
 }

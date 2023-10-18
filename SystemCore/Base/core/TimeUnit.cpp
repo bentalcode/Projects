@@ -12,7 +12,7 @@ TimeUnitSharedPtr TimeUnit::Make(Unit unit)
 }
 
 /**
- * Creates a new time unit Of type milliseconds.
+ * Creates a new time unit oftype milliseconds.
  */
 TimeUnitSharedPtr TimeUnit::MakeMilliseconds()
 {
@@ -20,7 +20,7 @@ TimeUnitSharedPtr TimeUnit::MakeMilliseconds()
 }
 
 /**
- * Creates a new time unit Of type centiseconds.
+ * Creates a new time unit oftype centiseconds.
  */
 TimeUnitSharedPtr TimeUnit::MakeCentiseconds()
 {
@@ -28,7 +28,7 @@ TimeUnitSharedPtr TimeUnit::MakeCentiseconds()
 }
 
 /**
- * Creates a new time unit Of type deciseconds.
+ * Creates a new time unit oftype deciseconds.
  */
 TimeUnitSharedPtr TimeUnit::MakeDeciseconds()
 {
@@ -36,7 +36,7 @@ TimeUnitSharedPtr TimeUnit::MakeDeciseconds()
 }
 
 /**
- * Creates a new time unit Of type seconds.
+ * Creates a new time unit oftype seconds.
  */
 TimeUnitSharedPtr TimeUnit::MakeSeconds()
 {
@@ -44,7 +44,7 @@ TimeUnitSharedPtr TimeUnit::MakeSeconds()
 }
 
 /**
- * Creates a new time unit Of type minutes.
+ * Creates a new time unit oftype minutes.
  */
 TimeUnitSharedPtr TimeUnit::MakeMinutes()
 {
@@ -52,7 +52,7 @@ TimeUnitSharedPtr TimeUnit::MakeMinutes()
 }
 
 /**
- * Creates a new time unit Of type hours.
+ * Creates a new time unit oftype hours.
  */
 TimeUnitSharedPtr TimeUnit::MakeHours()
 {
@@ -60,7 +60,7 @@ TimeUnitSharedPtr TimeUnit::MakeHours()
 }
 
 /**
- * Creates a new time unit Of type days.
+ * Creates a new time unit oftype days.
  */
 TimeUnitSharedPtr TimeUnit::MakeDays()
 {
@@ -321,7 +321,7 @@ void TimeUnit::UnsupportedUnit() {
 }
 
 /**
- * Gets number Of units.
+ * Gets number ofunits.
  */
 double TimeUnit::InUnits(const Duration& duration) const
 {

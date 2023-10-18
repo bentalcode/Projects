@@ -55,7 +55,7 @@ namespace base {
 
     private:
         /**
-         * Finds the value of an end key.
+         * Finds the value of an End key.
          * Returns true if found the value in the map.
          */
         bool FindEndKeyValue(const Key& key, Value& result) const;
@@ -99,8 +99,9 @@ namespace base {
         //
         Value keyEndValue;
         if (!FindEndKeyValue(keyEnd, keyEndValue)) {
-            std::string errorMessage = "The Interval Map failed finding an end key value.";
-            throw std::logic_error(errorMessage);
+            long statusCode = base::ErrorCodes::RESOURCE_NOT_FOUND;
+            std::wstring errorMessage = L"The Interval Map failed finding an End key value.";
+            throw BaseException(statusCode, errorMessage);
         }
 
         //
@@ -148,7 +149,7 @@ namespace base {
     }
 
     /**
-     * Finds the value of an end key.
+     * Finds the value of an End key.
      * Returns true if found the value in the map.
      */
     template <typename Key, typename Value>
@@ -166,7 +167,7 @@ namespace base {
 
     /**
      * Finds the Next smaller or equal key of a specified key.
-     * Returns end() if no key was found.
+     * Returns End() if no key was found.
      */
     template <typename Key, typename Value>
     typename IntervalMap<Key, Value>::IntervalDataMap::const_iterator IntervalMap<Key, Value>::FindNextSmallerOrEqualKey(const Key& key) const {

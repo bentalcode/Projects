@@ -7,7 +7,7 @@ namespace datastructures {
     namespace bitarray {
 
         /**
-         * The Bit32Array class implements a bit array Of Size 32.
+         * The Bit32Array class implements a bit array ofSize 32.
          */
         class Bit32Array final : public IBit32Array
         {
@@ -15,7 +15,7 @@ namespace datastructures {
             /**
              * Creates a bit 32 array.
              */
-            static IBit32ArraySharedPtr make(unsigned int bits = 0);
+            static IBit32ArraySharedPtr Make(unsigned int bits = 0);
 
             /**
              * The Bit32Array constructor from an integer.
@@ -70,17 +70,17 @@ namespace datastructures {
             virtual unsigned int Get(size_t index) const override;
 
             /**
-             * Sets the bit at the specified index to the complement Of its current value.
+             * Sets the bit at the specified index to the complement ofits current value.
              */
             virtual void Flip(size_t index) override;
 
             /**
-             * Returns the number Of bits Set to true.
+             * Returns the number ofbits Set to true.
              */
             virtual size_t Cardinality() const override;
 
             /**
-             * Returns the number Of bits Set to true in the specified range.
+             * Returns the number ofbits Set to true in the specified range.
              */
             virtual size_t Cardinality(size_t startIndex, size_t endIndex) const override;
 

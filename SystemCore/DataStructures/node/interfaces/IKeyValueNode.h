@@ -50,30 +50,88 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Key Value Node.
+         * Defines the SharedPtr ofKey Value Node.
          */
         template <typename TKey, typename TValue>
         using IKeyValueNodeSharedPtr = std::shared_ptr<IKeyValueNode<TKey, TValue>>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for key value nodes.
          */
         template <typename TKey, typename TValue>
-        inline bool operator<(const IKeyValueNode<TKey, TValue>& left, const IKeyValueNode<TKey, TValue>& right)
+        inline bool operator==(
+            const IKeyValueNode<TKey, TValue>& lhs,
+            const IKeyValueNode<TKey, TValue>& rhs)
         {
-            if (left.GetKey() < right.GetKey())
+            return
+                lhs.GetValue() == rhs.GetValue() &&
+                lhs.GetValue() == rhs.GetValue();
+        }
+
+        /**
+         * Implements an operator not equals for key value nodes.
+         */
+        template <typename TKey, typename TValue>
+        inline bool operator!=(
+            const IKeyValueNode<TKey, TValue>& lhs,
+            const IKeyValueNode<TKey, TValue>& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Implements an operator less than for key value nodes.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<(
+            const IKeyValueNode<TKey, TValue>& lhs,
+            const IKeyValueNode<TKey, TValue>& rhs)
+        {
+            if (lhs.GetKey() < rhs.GetKey())
             {
                 return true;
             }
 
-            if (left.GetKey() > right.GetKey())
+            if (lhs.GetKey() > rhs.GetKey())
             {
                 return false;
             }
 
-            return left.GetValue() < right.GetValue();
+            return lhs.GetValue() < rhs.GetValue();
         }
 
+        /**
+         * Implements an operator less than or equal for key value nodes.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<=(
+            const IKeyValueNode<TKey, TValue>& lhs,
+            const IKeyValueNode<TKey, TValue>& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        /**
+         * Implements an operator greater than for key value nodes.
+         */
+        template <typename TKey, typename TValue>
+        inline bool operator>(
+            const IKeyValueNode<TKey, TValue>& lhs,
+            const IKeyValueNode<TKey, TValue>& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        /**
+         * Implements an operator greater than or equal for key value nodes.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>=(
+            const IKeyValueNode<TKey, TValue>& lhs,
+            const IKeyValueNode<TKey, TValue>& rhs)
+        {
+            return !(lhs < rhs);
+        }
     }
 }
 

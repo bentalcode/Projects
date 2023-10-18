@@ -39,7 +39,7 @@ namespace base
 
         /**
          * Reads a string.
-         * The stream will reach the end after this method is invoked.
+         * The stream will reach the End after this method is invoked.
          */
         virtual std::wstring readString() = 0;
     };

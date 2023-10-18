@@ -51,13 +51,13 @@ namespace datastructures {
             virtual bool Directed() const = 0;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
             virtual std::wstring ToString() const = 0;
         };
 
         /**
-         * Defines the SharedPtr Of Edge.
+         * Defines the SharedPtr ofEdge.
          */
         template <typename TKey, typename TValue>
         using IEdgeSharedPtr = std::shared_ptr<IEdge<TKey, TValue>>;
@@ -85,7 +85,7 @@ namespace datastructures {
          * Serializes the object to an output stream.
          */
         template <typename TKey, typename TValue>
-        std::ostream& operator<<(std::ostream& stream, const IEdge<TKey, TValue>& edge)
+        std::wostream& operator<<(std::wostream& stream, const IEdge<TKey, TValue>& edge)
         {
             stream << edge.ToString();
             return stream;

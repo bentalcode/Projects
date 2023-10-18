@@ -47,13 +47,13 @@ namespace datastructures {
             virtual IVertexSharedPtr<TKey, TValue> Destination() const = 0;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
             virtual std::wstring ToString() const = 0;
         };
 
         /**
-         * Defines the SharedPtr Of Route.
+         * Defines the SharedPtr ofRoute.
          */
         template <typename TKey, typename TValue>
         using IRouteSharedPtr = std::shared_ptr<IRoute<TKey, TValue>>;

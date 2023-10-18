@@ -45,17 +45,17 @@ namespace base {
         const DateTimeSharedPtr GetStartTime() const;
 
         /**
-         * Sets an end time of an interval.
+         * Sets an End time of an interval.
          */
         void SetEndTime(DateTimeSharedPtr time);
 
         /**
-         * Gets an end time of an interval.
+         * Gets an End time of an interval.
          */
         DateTimeSharedPtr GetEndTime();
 
         /**
-         * Gets an end time of an interval.
+         * Gets an End time of an interval.
          */
         const DateTimeSharedPtr GetEndTime() const;
 

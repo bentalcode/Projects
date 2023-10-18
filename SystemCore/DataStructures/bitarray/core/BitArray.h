@@ -15,7 +15,7 @@ namespace datastructures {
             /**
              * Creates a bit array.
              */
-            static IBitArraySharedPtr make(size_t numberOfBits);
+            static IBitArraySharedPtr Make(size_t numberOfBits);
 
             /**
              * Copies a bit array.
@@ -80,17 +80,17 @@ namespace datastructures {
             virtual size_t Get(size_t index) const override;
 
             /**
-             * Sets the bits to the complement Of its current value.
+             * Sets the bits to the complement ofits current value.
              */
             virtual void Flip() override;
 
             /**
-             * Sets the bit at the specified index to the complement Of its current value.
+             * Sets the bit at the specified index to the complement ofits current value.
              */
             virtual void Flip(size_t index) override;
 
             /**
-             * Returns the number Of bits Set to true.
+             * Returns the number ofbits Set to true.
              */
             virtual size_t Cardinality() const override;
 
@@ -183,12 +183,12 @@ namespace datastructures {
             std::vector<IBit32ArraySharedPtr> CreateBitArray(size_t numberOfBits) const;
 
             /**
-             * Gets the number Of units.
+             * Gets the number ofunits.
              */
             size_t GetNumberOfUnits() const;
 
             /**
-             * Calculates the number Of units.
+             * Calculates the number ofunits.
              */
             size_t GetNumberOfUnits(size_t numberOfBits) const;
 

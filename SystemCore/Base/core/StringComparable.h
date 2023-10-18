@@ -12,7 +12,7 @@ namespace base
     {
     public:
         /**
-         * Compares strings with start and end indexes.
+         * Compares strings with start and End indexes.
          */
         static int Compare(
             const std::wstring& left,
@@ -23,7 +23,7 @@ namespace base
             size_t rightEndIndex);
 
         /**
-         * Compares strings with start and end indexes. (Ignore case)
+         * Compares strings with start and End indexes. (Ignore case)
          */
         static int CompareIgnoreCase(
             const std::wstring& left,
@@ -54,7 +54,7 @@ namespace base
             size_t length);
 
         /**
-         * Compares strings with start and end indexes.
+         * Compares strings with start and End indexes.
          */
         static int Compare(
             wchar_t left[],
@@ -65,7 +65,7 @@ namespace base
             size_t rightEndIndex);
 
         /**
-         * Compares buffer strings with start and end indexes. (Ignore case)
+         * Compares buffer strings with start and End indexes. (Ignore case)
          */
         static int CompareIgnoreCase(
             wchar_t left[],
@@ -96,7 +96,7 @@ namespace base
             size_t length);
 
         /**
-         * Compares strings with start and end indexes.
+         * Compares strings with start and End indexes.
          */
         static int Compare(
             const std::wstring& left,
@@ -119,7 +119,7 @@ namespace base
             bool ignoreCase);
 
         /**
-         * Compares buffer strings with start and end indexes.
+         * Compares buffer strings with start and End indexes.
          */
         static int Compare(
             wchar_t left[],

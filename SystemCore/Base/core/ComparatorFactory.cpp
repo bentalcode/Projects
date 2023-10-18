@@ -27,7 +27,7 @@ ComparatorFactory::~ComparatorFactory()
 }
 
 /**
- * Gets an almost comparator Of type integer.
+ * Gets an almost comparator of type integer.
  */
 IBinaryComparatorSharedPtr<int> ComparatorFactory::GetAlmostIntegerComparator(double epsilon) const
 {
@@ -35,7 +35,7 @@ IBinaryComparatorSharedPtr<int> ComparatorFactory::GetAlmostIntegerComparator(do
 }
 
 /**
- * Gets an almost comparator Of type double.
+ * Gets an almost comparator of type double.
  */
 IBinaryComparatorSharedPtr<double> ComparatorFactory::GetAlmostDoubleComparator(double epsilon) const
 {

@@ -17,9 +17,8 @@ namespace datastructures {
              */
             LinkedListException(
                 long statusCode,
-                const std::string& errorMessage,
-                std::exception& innerException) :
-                DataStructureException(statusCode, innerException)
+                const std::wstring& errorMessage) :
+                DataStructureException(statusCode, errorMessage)
             {
             }
         };

@@ -80,7 +80,7 @@ namespace datastructures {
             base::IReverseIteratorSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
-            base::SmartPointers::validate(reverseIterator);
+            base::SmartPointers::Validate<base::IReverseIterator<IKeyValueNodeSharedPtr<TKey, TValue>>>(reverseIterator);
             Reset();
         }
 
@@ -98,7 +98,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         bool ValueReverseIterator<TKey, TValue>::HasNext() const
         {
-            return m_reverseIterator->hasNext();
+            return m_reverseIterator->HasNext();
         }
 
         /**
@@ -109,7 +109,7 @@ namespace datastructures {
         {
             assert(HasNext());
 
-            return m_reverseIterator->next()->GetValue();
+            return m_reverseIterator->Next()->GetValue();
         }
 
         /**
@@ -118,7 +118,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void ValueReverseIterator<TKey, TValue>::Reset()
         {
-            m_reverseIterator->reset();
+            m_reverseIterator->Reset();
         }
     }
 }

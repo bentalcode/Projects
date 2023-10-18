@@ -15,7 +15,7 @@ namespace base
         /**
          * Creates a new reverse iterator of a vector.
          */
-        static base::IReverseIteratorSharedPtr<T> make(const std::vector<T>& data);
+        static base::IReverseIteratorSharedPtr<T> Make(const std::vector<T>& data);
 
         /**
          * The constructor.
@@ -42,17 +42,17 @@ namespace base
         /**
          * Checks whether there is a Next element.
          */
-        virtual bool hasNext() const override;
+        virtual bool HasNext() const override;
 
         /**
          * Gets the Next element.
          */
-        virtual T next() override;
+        virtual T Next() override;
 
         /**
          * Resets the iterator.
          */
-        virtual void reset() override;
+        virtual void Reset() override;
 
     private:
         const std::vector<T>& m_data;
@@ -63,7 +63,7 @@ namespace base
      * Creates a reverse iterator of a list.
      */
     template <typename T>
-    base::IReverseIteratorSharedPtr<T> VectorReverseIterator<T>::make(const std::vector<T>& data)
+    base::IReverseIteratorSharedPtr<T> VectorReverseIterator<T>::Make(const std::vector<T>& data)
     {
         return std::make_shared<VectorReverseIterator>(data);
     }
@@ -75,7 +75,7 @@ namespace base
     VectorReverseIterator<T>::VectorReverseIterator(const std::vector<T>& data) :
         m_data(data)
     {
-        reset();
+        Reset();
     }
 
     /**
@@ -90,7 +90,7 @@ namespace base
      * Checks whether there is a Next element.
      */
     template <typename T>
-    bool VectorReverseIterator<T>::hasNext() const
+    bool VectorReverseIterator<T>::HasNext() const
     {
         return m_reverseIterator != m_data.rend();
     }
@@ -99,9 +99,9 @@ namespace base
      * Gets the Next element.
      */
     template <typename T>
-    T VectorReverseIterator<T>::next()
+    T VectorReverseIterator<T>::Next()
     {
-        assert(hasNext());
+        assert(HasNext());
 
         T currElement = *m_reverseIterator;
         ++m_reverseIterator;
@@ -113,7 +113,7 @@ namespace base
      * Resets the iterator.
      */
     template <typename T>
-    void VectorReverseIterator<T>::reset()
+    void VectorReverseIterator<T>::Reset()
     {
         m_reverseIterator = m_data.rbegin();
     }

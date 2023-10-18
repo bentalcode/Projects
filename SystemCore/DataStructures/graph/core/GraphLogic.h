@@ -152,7 +152,7 @@ namespace datastructures {
             const VertexSet<TKey, TValue>& vertices = m_graph.Vertices();
             for (IVertexSharedPtr<TKey, TValue> vertex : vertices)
             {
-                if (visitedVertices.Find(vertex) != visitedVertices.end())
+                if (visitedVertices.find(vertex) != visitedVertices.end())
                 {
                     continue;
                 }
@@ -162,7 +162,7 @@ namespace datastructures {
                     return true;
                 }
 
-                assert(searchVertices.Empty());
+                assert(searchVertices.empty());
             }
 
             return false;
@@ -181,7 +181,7 @@ namespace datastructures {
             const VertexSet<TKey, TValue>& vertices = m_graph.Vertices();
             for (IVertexSharedPtr<TKey, TValue> vertex : vertices)
             {
-                if (visitedVertices.Find(vertex) != visitedVertices.end())
+                if (visitedVertices.find(vertex) != visitedVertices.end())
                 {
                     continue;
                 }
@@ -192,16 +192,18 @@ namespace datastructures {
                         currPath,
                         resultStack))
                 {
-                    std::string errorMessage =
-                        "The graph Contains a loop, aborting topological search. No topological search is possible.";
+                    long statusCode = base::ErrorCodes::INVALID_ARG;
 
-                    throw GraphException(errorMessage);
+                    std::wstring errorMessage =
+                        L"The graph Contains a loop, aborting topological search. No topological search is possible.";
+
+                    throw GraphException(statusCode, errorMessage);
                 }
 
-                assert(currPath.Empty());
+                assert(currPath.empty());
             }
 
-            while (!resultStack.Empty())
+            while (!resultStack.empty())
             {
                 result.push_back(resultStack.top());
                 resultStack.pop();
@@ -250,7 +252,7 @@ namespace datastructures {
                 const EdgeWeightMap<TKey, TValue>& weights,
                 VertexShortestPathsMap<TKey, TValue>& result) const
         {
-            base::SmartPointers::validate(src);
+            base::SmartPointers::Validate<IVertex<TKey, TValue>>(src);
 
             //
             // Initializes the distances map...
@@ -286,7 +288,7 @@ namespace datastructures {
             std::string resultContent = base::Collections::toString(result, resultFunctor);
 #endif
 
-            while (!queue.Empty())
+            while (!queue.empty())
             {
                 std::pair<IVertexSharedPtr<TKey, TValue>, long> currElement = queue.front();
                 queue.pop_front();
@@ -327,7 +329,7 @@ namespace datastructures {
                 VertexSet<TKey, TValue>& visitedVertices,
                 VertexSet<TKey, TValue>& searchVertices) const
         {
-            typename VertexSet<TKey, TValue>::iterator visitedVertexIterator = visitedVertices.Find(vertex);
+            typename VertexSet<TKey, TValue>::iterator visitedVertexIterator = visitedVertices.find(vertex);
 
             if (visitedVertexIterator != visitedVertices.end())
             {
@@ -342,12 +344,12 @@ namespace datastructures {
 
             for (IVertexSharedPtr<TKey, TValue> nextVertex : adjacentVertices)
             {
-                if (searchVertices.Find(nextVertex) != searchVertices.end())
+                if (searchVertices.find(nextVertex) != searchVertices.end())
                 {
                     return true;
                 }
 
-                if (visitedVertices.Find(nextVertex) != visitedVertices.end())
+                if (visitedVertices.find(nextVertex) != visitedVertices.end())
                 {
                     continue;
                 }
@@ -373,7 +375,7 @@ namespace datastructures {
                 std::set<IVertexSharedPtr<TKey, TValue>>& currPath,
                 std::stack<IVertexSharedPtr<TKey, TValue>>& result) const
         {
-            if (visitedVertices.Find(vertex) != visitedVertices.end())
+            if (visitedVertices.find(vertex) != visitedVertices.end())
             {
                 return true;
             }
@@ -386,12 +388,12 @@ namespace datastructures {
 
             for (IVertexSharedPtr<TKey, TValue> nextVertex : adjacentVertices)
             {
-                if (currPath.Find(nextVertex) != currPath.end())
+                if (currPath.find(nextVertex) != currPath.end())
                 {
                     return false;
                 }
 
-                if (visitedVertices.Find(nextVertex) != visitedVertices.end())
+                if (visitedVertices.find(nextVertex) != visitedVertices.end())
                 {
                     continue;
                 }
@@ -424,7 +426,7 @@ namespace datastructures {
             std::queue<std::pair<IVertexSharedPtr<TKey, TValue>, IWalkSharedPtr<TKey, TValue>>> queue;
             queue.push(std::make_pair(source, Walk<TKey, TValue>::Make()));
 
-            while (!queue.Empty())
+            while (!queue.empty())
             {
                 std::pair<IVertexSharedPtr<TKey, TValue>, IWalkSharedPtr<TKey, TValue>> currElement = queue.front();
                 queue.pop();
@@ -471,7 +473,7 @@ namespace datastructures {
                 std::set<IVertexSharedPtr<TKey, TValue>>& visited,
                 std::list<IWalkSharedPtr<TKey, TValue>>& result) const
         {
-            if (visited.Find(source) != visited.end())
+            if (visited.find(source) != visited.end())
             {
                 return;
             }
@@ -493,7 +495,7 @@ namespace datastructures {
 
             for (IVertexSharedPtr<TKey, TValue> nextVertex : adjacentVertices)
             {
-                if (visited.Find(nextVertex) != visited.end())
+                if (visited.find(nextVertex) != visited.end())
                 {
                     return;
                 }
@@ -519,12 +521,14 @@ namespace datastructures {
         const EdgeWeightMap<TKey, TValue>& weights,
         IEdgeSharedPtr<TKey, TValue> edge)
     {
-        typename EdgeWeightMap<TKey, TValue>::const_iterator edgeIterator = weights.Find(edge);
+        typename EdgeWeightMap<TKey, TValue>::const_iterator edgeIterator = weights.find(edge);
 
         if (edgeIterator == weights.end())
         {
-            std::string errorMessage = "The weight of an edge is not defined in the adjacent matrix of the graph.";
-            throw GraphException(errorMessage);
+            long statusCode = base::ErrorCodes::RESOURCE_NOT_FOUND;
+            std::wstring errorMessage = L"The weight of an edge is not defined in the adjacent matrix of the graph.";
+
+            throw GraphException(statusCode, errorMessage);
         }
 
         return edgeIterator->second;
@@ -538,12 +542,13 @@ namespace datastructures {
         const VertexShortestPathsMap<TKey, TValue>& shortestDistancesMap,
         IVertexSharedPtr<TKey, TValue> vertex)
     {
-        typename VertexShortestPathsMap<TKey, TValue>::const_iterator vertexIterator = shortestDistancesMap.Find(vertex);
+        typename VertexShortestPathsMap<TKey, TValue>::const_iterator vertexIterator = shortestDistancesMap.find(vertex);
 
         if (vertexIterator == shortestDistancesMap.end())
         {
-            std::string errorMessage = "The vertex does not exist in the shortest distances map.";
-            throw GraphException(errorMessage);
+            long statusCode = base::ErrorCodes::RESOURCE_NOT_FOUND;
+            std::wstring errorMessage = L"The vertex does not exist in the shortest distances map.";
+            throw GraphException(statusCode, errorMessage);
         }
 
         return vertexIterator->second;

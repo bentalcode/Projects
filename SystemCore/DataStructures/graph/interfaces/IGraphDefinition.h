@@ -3,6 +3,7 @@
 
 #include "IVertex.h"
 #include "IEdge.h"
+#include "BaseLogic.h"
 
 namespace datastructures {
     namespace graph {
@@ -48,7 +49,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Graph Definition.
+         * Defines the SharedPtr ofGraph Definition.
          */
         template <typename TKey, typename TValue>
         using IGraphDefinitionSharedPtr = std::shared_ptr<IGraphDefinition<TKey, TValue>>;

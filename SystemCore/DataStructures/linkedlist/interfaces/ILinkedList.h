@@ -14,8 +14,7 @@ namespace datastructures {
          */
         template <typename T>
         class ILinkedList :
-            public base::ISizableCollection,
-            public base::IIterable<ILinkedListNodeSharedPtr<T>>,
+            public base::ISizableCollection<ILinkedListNodeSharedPtr<T>>,
             public base::IValueIterable<T>
         {
         public:
@@ -108,7 +107,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Linked List.
+         * Defines the SharedPtr ofLinked List.
          */
         template <typename T>
         using ILinkedListSharedPtr = std::shared_ptr<ILinkedList<T>>;

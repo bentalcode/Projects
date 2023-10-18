@@ -70,7 +70,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Graph Logic.
+         * Defines the SharedPtr ofGraph Logic.
          */
         template <typename TKey, typename TValue>
         using IGraphLogicSharedPtr = std::shared_ptr<IGraphLogic<TKey, TValue>>;

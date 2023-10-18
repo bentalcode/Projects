@@ -14,7 +14,7 @@ namespace datastructures {
     namespace bitarray {
 
         /**
-         * The IBitArray interface defines a bit array, which manages a compact array Of bits.
+         * The IBitArray interface defines a bit array, which manages a compact array ofbits.
          */
         class IBitArray :
             public base::ISizableCollection<bool>,
@@ -74,17 +74,17 @@ namespace datastructures {
             virtual size_t Get(size_t index) const = 0;
 
             /**
-             * Sets the bits to the complement Of its current value.
+             * Sets the bits to the complement ofits current value.
              */
             virtual void Flip() = 0;
 
             /**
-             * Sets the bit at the specified index to the complement Of its current value.
+             * Sets the bit at the specified index to the complement ofits current value.
              */
             virtual void Flip(size_t index) = 0;
 
             /**
-             * Returns the number Of bits Set to true.
+             * Returns the number ofbits Set to true.
              */
             virtual size_t Cardinality() const = 0;
 
@@ -150,12 +150,35 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Bit Array.
+         * Defines the SharedPtr of Bit Array.
          */
         using IBitArraySharedPtr = std::shared_ptr<IBitArray>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for bit arrays.
+         */
+        inline bool operator==(
+            const IBitArray& lhs,
+            const IBitArray& rhs)
+        {
+            const std::vector<IBit32ArraySharedPtr>& leftArray = lhs.ToBit32Array();
+            const std::vector<IBit32ArraySharedPtr>& rightArray = rhs.ToBit32Array();
+
+            return leftArray == rightArray;
+        }
+
+        /**
+         * Implements an operator not equals for bit arrays.
+         */
+        inline bool operator!=(
+            const IBitArray& lhs,
+            const IBitArray& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Implements an operator less than for bit arrays.
          */
         inline bool operator<(const IBitArray& left, const IBitArray& right)
         {
@@ -168,6 +191,36 @@ namespace datastructures {
                 rightArray.begin(),
                 rightArray.end(),
                 base::DereferenceLess<IBit32ArraySharedPtr>());
+        }
+
+        /**
+         * Implements an operator less than or equal for bit arrays.
+         */
+        inline bool operator<=(
+            const IBitArray& lhs,
+            const IBitArray& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        /**
+         * Implements an operator greater than for bit arrays.
+         */
+        inline bool operator>(
+            const IBitArray& lhs,
+            const IBitArray& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        /**
+         * Implements an operator greater than or equal for bit arrays.
+         */
+        inline bool operator>=(
+            const IBitArray& lhs,
+            const IBitArray& rhs)
+        {
+            return !(lhs < rhs);
         }
     }
 }

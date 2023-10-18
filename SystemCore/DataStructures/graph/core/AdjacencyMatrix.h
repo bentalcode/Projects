@@ -128,10 +128,10 @@ namespace datastructures {
             IVertexSharedPtr<TKey, TValue> sourceVertex,
             IVertexSharedPtr<TKey, TValue> destinationVertex) const
         {
-            base::SmartPointers::validate<IVertex>(sourceVertex);
-            base::SmartPointers::validate<IVertex>(destinationVertex);
+            base::SmartPointers::Validate<IVertex<TKey, TValue>>(sourceVertex);
+            base::SmartPointers::Validate<IVertex<TKey, TValue>>(destinationVertex);
 
-            typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator = m_connections.Find(sourceVertex);
+            typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator = m_connections.find(sourceVertex);
 
             if (sourceVertexIterator == m_connections.end())
             {
@@ -141,7 +141,7 @@ namespace datastructures {
             const VertexSet<TKey, TValue>& destinationVertices = sourceVertexIterator->second;
 
             typename VertexSet<TKey, TValue>::const_iterator destinationVertexIterator =
-                    destinationVertices.Find(destinationVertex);
+                destinationVertices.find(destinationVertex);
 
             return destinationVertexIterator != destinationVertices.end();
         }
@@ -154,7 +154,7 @@ namespace datastructures {
             IVertexSharedPtr<TKey, TValue> vertex,
             VertexSet<TKey, TValue>& result) const
         {
-            base::SmartPointers::validate<IVertex<TKey, TValue>>(vertex);
+            base::SmartPointers::Validate<IVertex<TKey, TValue>>(vertex);
 
             const VertexSet<TKey, TValue>& connections = GetVertexConnections(vertex);
             result = connections;
@@ -168,7 +168,7 @@ namespace datastructures {
                 IVertexSharedPtr<TKey, TValue> vertex,
                 EdgeSet<TKey, TValue>& result) const
         {
-            base::SmartPointers::validate(vertex);
+            base::SmartPointers::Validate<IVertex<TKey, TValue>>(vertex);
 
             const VertexSet<TKey, TValue>& adjacentVertices = GetVertexConnections(vertex);
 
@@ -193,10 +193,12 @@ namespace datastructures {
 
             if (vertexConnections == nullptr)
             {
-                std::string errorMessage =
-                        "The vertex: " + vertex->ToString() + " is not defined in the adjacency matrix.";
+                long statusCode = base::ErrorCodes::RESOURCE_NOT_FOUND;
 
-                throw GraphException(errorMessage);
+                std::wstring errorMessage =
+                    L"The vertex: " + vertex->ToString() + L" is not defined in the adjacency matrix.";
+
+                throw GraphException(statusCode, errorMessage);
             }
 
             return *vertexConnections;
@@ -209,7 +211,7 @@ namespace datastructures {
         const VertexSet<TKey, TValue>* AdjacencyMatrix<TKey, TValue>::FindVertexConnections(
                 IVertexSharedPtr<TKey, TValue> vertex) const
         {
-            typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator = m_connections.Find(vertex);
+            typename AdjacencyMap<TKey, TValue>::const_iterator sourceVertexIterator = m_connections.find(vertex);
             return sourceVertexIterator != m_connections.end() ? &sourceVertexIterator->second : nullptr;
         }
 

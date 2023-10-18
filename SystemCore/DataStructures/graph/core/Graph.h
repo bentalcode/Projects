@@ -8,6 +8,7 @@
 #include "SetIterator.h"
 #include "Collections.h"
 #include "SmartPointers.h"
+#include "BaseLogic.h"
 
 namespace datastructures {
     namespace graph {
@@ -56,21 +57,21 @@ namespace datastructures {
             virtual const IAdjacencyMatrix<TKey, TValue>& GetAdjacencyMatrix() const override;
 
             /**
-             * Gets the number Of Vertices in the graph.
+             * Gets the number ofVertices in the graph.
              * The order is equal to |V(G)|.
              */
             virtual size_t GetOrder() const override;
 
             /**
              * Gets the degree.
-             * A vertex degree is the number Of Edges incident to a vertex. Notated as d(V).
+             * A vertex degree is the number ofEdges incident to a vertex. Notated as d(V).
              */
             virtual size_t GetDegree(IVertexSharedPtr<TKey, TValue> vertex) const override;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
-            virtual std::string ToString() const override;
+            virtual std::wstring ToString() const override;
 
         private:
             VertexSet<TKey, TValue> m_vertices;
@@ -105,7 +106,7 @@ namespace datastructures {
             m_edges(edges),
             m_adjacencyMatrix(adjacencyMatrix)
         {
-            base::SmartPointers::validate(adjacencyMatrix);
+            base::SmartPointers::Validate<IAdjacencyMatrix<TKey, TValue>>(adjacencyMatrix);
         }
 
         /**
@@ -144,7 +145,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the number Of Vertices in the graph.
+         * Gets the number ofVertices in the graph.
          * The order is equal to |V(G)|.
          */
         template <typename TKey, typename TValue>
@@ -155,7 +156,7 @@ namespace datastructures {
 
         /**
          * Gets the degree.
-         * A vertex degree is the number Of Edges incident to a vertex. Notated as d(V).
+         * A vertex degree is the number ofEdges incident to a vertex. Notated as d(V).
          */
         template <typename TKey, typename TValue>
         size_t Graph<TKey, TValue>::GetDegree(IVertexSharedPtr<TKey, TValue> vertex) const
@@ -166,15 +167,17 @@ namespace datastructures {
         }
 
         /**
-         * Gets string representation Of this instance.
+         * Gets string representation ofthis instance.
          */
         template <typename TKey, typename TValue>
-        std::string Graph<TKey, TValue>::ToString() const
+        std::wstring Graph<TKey, TValue>::ToString() const
         {
-            base::IIteratorSharedPtr<IEdgeSharedPtr<TKey, TValue>> edgeIterator = base::SetIterator<IEdgeSharedPtr<TKey, TValue>>::make(
-                    Edges());
-            std::string string = base::Collections::dereferenceIteratorToString(*edgeIterator);
-            return string;
+            base::IIteratorSharedPtr<IEdgeSharedPtr<TKey, TValue>> edgeIterator =
+                base::SetIterator<IEdgeSharedPtr<TKey, TValue>>::Make(Edges());
+
+            std::wstring result = base::Collections::DereferenceIteratorToString(*edgeIterator);
+
+            return result;
         }
     }
 }

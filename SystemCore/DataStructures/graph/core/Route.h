@@ -57,9 +57,9 @@ namespace datastructures {
             virtual IVertexSharedPtr<TKey, TValue> Destination() const override;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
-            virtual std::string ToString() const override;
+            virtual std::wstring ToString() const override;
 
         private:
             IVertexSharedPtr<TKey, TValue> m_source;
@@ -90,8 +90,8 @@ namespace datastructures {
             m_source(source),
             m_destination(destination)
         {
-            base::SmartPointers::validate(source);
-            base::SmartPointers::validate(destination);
+            base::SmartPointers::Validate<IVertex<TKey, TValue>>(source);
+            base::SmartPointers::Validate<IVertex<TKey, TValue>>(destination);
         }
 
         /**
@@ -121,13 +121,13 @@ namespace datastructures {
         }
 
         /**
-         * Gets string representation Of this instance.
+         * Gets string representation ofthis instance.
          */
         template <typename TKey, typename TValue>
-        std::string Route<TKey, TValue>::ToString() const
+        std::wstring Route<TKey, TValue>::ToString() const
         {
-            std::stringstream stream;
-            stream << m_source << "->" << m_destination;
+            std::wstringstream stream;
+            stream << m_source << L"->" << m_destination;
             return stream.str();
         }
     }

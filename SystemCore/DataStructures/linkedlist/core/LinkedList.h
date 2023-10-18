@@ -7,6 +7,7 @@
 #include "LinkedListNodeValueIterator.h"
 #include "SmartPointers.h"
 #include "LinkedListException.h"
+#include <assert.h>
 
 namespace datastructures {
     namespace linkedlist {
@@ -288,7 +289,7 @@ namespace datastructures {
         template <typename T>
         void LinkedList<T>::AddToFront(ILinkedListNodeSharedPtr<T> node)
         {
-            base::SmartPointers::validate(node);
+            base::SmartPointers::Validate<ILinkedListNode<T>>(node);
 
             node->Unlinked();
 
@@ -313,7 +314,7 @@ namespace datastructures {
         template <typename T>
         void LinkedList<T>::AddToBack(ILinkedListNodeSharedPtr<T> node)
         {
-            base::SmartPointers::validate(node);
+            base::SmartPointers::Validate<ILinkedListNode<T>>(node);
 
             node->Unlinked();
 
@@ -340,8 +341,8 @@ namespace datastructures {
                 ILinkedListNodeSharedPtr<T> currNode,
                 ILinkedListNodeSharedPtr<T> nodeToAdd)
         {
-            base::SmartPointers::validate(currNode);
-            base::SmartPointers::validate(nodeToAdd);
+            base::SmartPointers::Validate<ILinkedListNode<T>>(currNode);
+            base::SmartPointers::Validate<ILinkedListNode<T>>(nodeToAdd);
 
             nodeToAdd->Unlinked();
 
@@ -394,7 +395,7 @@ namespace datastructures {
         template <typename T>
         void LinkedList<T>::RemoveAfter(ILinkedListNodeSharedPtr<T> currNode)
         {
-            base::SmartPointers::validate(currNode);
+            base::SmartPointers::Validate<ILinkedListNode<T>>(currNode);
 
             ILinkedListNodeSharedPtr<T> nodeToRemove = currNode->Next();
 
@@ -451,8 +452,10 @@ namespace datastructures {
         {
             if (index >= Size())
             {
-                std::string errorMessage = "The index: " + std::to_string(index) + " is out Of range.";
-                throw LinkedListException(errorMessage);
+                long statusCode = base::ErrorCodes::OUT_OF_RANGE;
+                std::wstring errorMessage = L"The index: " + std::to_wstring(index) + L" is out ofrange.";
+
+                throw LinkedListException(statusCode, errorMessage);
             }
 
             ILinkedListNodeSharedPtr<T> currNode = m_head;

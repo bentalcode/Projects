@@ -62,8 +62,8 @@ bool KmpStringSearch::FindSubString(
     size_t subStringIndex = subStringStartIndex;
 
     while (strIndex <= strEndIndex && subStringIndex <= subStringEndIndex) {
-        std::string::value_type strCharacter = str[strIndex];
-        std::string::value_type subStringCharacter = subString[subStringIndex];
+        std::wstring::value_type strCharacter = str[strIndex];
+        std::wstring::value_type subStringCharacter = subString[subStringIndex];
 
         if (strCharacter == subStringCharacter) {
             if (subStringIndex == subStringEndIndex) {
@@ -144,8 +144,8 @@ void KmpStringSearch::FindAllSubString(
     size_t subStringIndex = subStringStartIndex;
 
     while (strIndex <= strEndIndex && subStringIndex <= subStringEndIndex) {
-        std::string::value_type strCharacter = str[strIndex];
-        std::string::value_type subStringCharacter = subString[subStringIndex];
+        std::wstring::value_type strCharacter = str[strIndex];
+        std::wstring::value_type subStringCharacter = subString[subStringIndex];
 
         if (strCharacter == subStringCharacter)
         {

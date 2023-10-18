@@ -82,7 +82,7 @@ namespace datastructures {
             base::IIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>> iterator) :
             m_iterator(iterator)
         {
-            base::SmartPointers::validate<base::IIterator<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>>(iterator);
+            base::SmartPointers::Validate<base::IIterator<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>>(iterator);
 
             Reset();
         }

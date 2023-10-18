@@ -42,13 +42,13 @@ namespace datastructures {
             /**
              * Builds the binary tree.
              */
-            virtual IBinaryTreeSharedPtr<TKey, TValue> build() override;
+            virtual IBinaryTreeSharedPtr<TKey, TValue> Build() override;
 
         private:
             /**
              * Builds the binary tree.
              */
-            static IBinaryTreeNodeSharedPtr<TKey, TValue> build(
+            static IBinaryTreeNodeSharedPtr<TKey, TValue> Build(
                 const std::vector<std::pair<TKey, TValue>>& preorder,
                 const std::vector<std::pair<TKey, TValue>>& inorder,
                 size_t preorderStartIndex,
@@ -71,10 +71,12 @@ namespace datastructures {
                 m_preorder(preorder),
                 m_inorder(inorder)
         {
-            if (m_preorder.Size() != m_inorder.Size())
+            if (m_preorder.size() != m_inorder.size())
             {
-                std::string errorMessage = "The length of a preorder and an inorder traversals do not match.";
-                throw BinaryTreeException(errorMessage);
+                long statusCode = base::ErrorCodes::INVALID_ARG;
+                std::wstring errorMessage = L"The length of a preorder and an inorder traversals do not match.";
+
+                throw BinaryTreeException(statusCode, errorMessage);
             }
         }
 
@@ -90,32 +92,32 @@ namespace datastructures {
          * Builds the binary tree.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::build()
+        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::Build()
         {
             std::map<TKey, size_t> inorderIndexMap;
             BinaryTreeTraversalBuilder<TKey, TValue>::createIndexMap(m_inorder, inorderIndexMap);
 
-            if (m_preorder.Empty()) {
-                return BinaryTree<TKey, TValue>::make();
+            if (m_preorder.empty()) {
+                return BinaryTree<TKey, TValue>::Make();
             }
 
-            IBinaryTreeNodeSharedPtr<TKey, TValue> root = build(
+            IBinaryTreeNodeSharedPtr<TKey, TValue> root = Build(
                 m_preorder,
                 m_inorder,
                 0,
-                m_preorder.Size() - 1,
+                m_preorder.size() - 1,
                 0,
-                m_inorder.Size() - 1,
+                m_inorder.size() - 1,
                 inorderIndexMap);
 
-            return BinaryTree<TKey, TValue>::make(root);
+            return BinaryTree<TKey, TValue>::Make(root);
         }
 
         /**
          * Builds the binary tree.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::build(
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreePreorderInorderTraversalBuilder<TKey, TValue>::Build(
             const std::vector<std::pair<TKey, TValue>>& preorder,
             const std::vector<std::pair<TKey, TValue>>& inorder,
             size_t preorderStartIndex,
@@ -124,8 +126,8 @@ namespace datastructures {
             size_t inorderEndIndex,
             const std::map<TKey, size_t>& inorderIndexMap)
         {
-            size_t preorderLength = base::Indexes::size(preorderStartIndex, preorderEndIndex);
-            size_t inorderLength = base::Indexes::size(inorderStartIndex, inorderEndIndex);
+            size_t preorderLength = base::Indexes::Size(preorderStartIndex, preorderEndIndex);
+            size_t inorderLength = base::Indexes::Size(inorderStartIndex, inorderEndIndex);
             assert(preorderLength == inorderLength);
 
             size_t length = preorderLength;
@@ -136,7 +138,7 @@ namespace datastructures {
             }
 
             const std::pair<TKey, TValue>& rootData = preorder[preorderStartIndex];
-            IBinaryTreeNodeSharedPtr<TKey, TValue> root = BinaryTreeNodes::make(rootData.first, rootData.second);
+            IBinaryTreeNodeSharedPtr<TKey, TValue> root = BinaryTreeNodes::Make(rootData.first, rootData.second);
 
             if (length == 1)
             {
@@ -144,7 +146,7 @@ namespace datastructures {
             }
 
             size_t rootIndex = BinaryTreeTraversalBuilder<TKey, TValue>::getNodeIndex(inorderIndexMap, rootData.first);
-            size_t leftSize = base::Indexes::size(inorderStartIndex, rootIndex - 1);
+            size_t leftSize = base::Indexes::Size(inorderStartIndex, rootIndex - 1);
 
             size_t preorderLeftStartIndex = preorderStartIndex + 1;
             size_t preorderLeftEndIndex = preorderStartIndex + leftSize;
@@ -156,7 +158,7 @@ namespace datastructures {
             size_t inorderRightStartIndex = rootIndex + 1;
             size_t inorderRightEndIndex = inorderEndIndex;
 
-            IBinaryTreeNodeSharedPtr<TKey, TValue> leftChild = build(
+            IBinaryTreeNodeSharedPtr<TKey, TValue> leftChild = Build(
                 preorder,
                 inorder,
                 preorderLeftStartIndex,
@@ -165,7 +167,7 @@ namespace datastructures {
                 inorderLeftEndIndex,
                 inorderIndexMap);
 
-            IBinaryTreeNodeSharedPtr<TKey, TValue> rightChild = build(
+            IBinaryTreeNodeSharedPtr<TKey, TValue> rightChild = Build(
                 preorder,
                 inorder,
                 preorderRightStartIndex,
@@ -174,7 +176,7 @@ namespace datastructures {
                 inorderRightEndIndex,
                 inorderIndexMap);
 
-            root->GetLeftChild(leftChild);
+            root->SetLeftChild(leftChild);
             root->SetRightChild(rightChild);
 
             return root;

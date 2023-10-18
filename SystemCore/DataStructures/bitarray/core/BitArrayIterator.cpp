@@ -7,7 +7,7 @@ using namespace datastructures::bitarray;
 /**
  * Creates an iterator of a bit array.
  */
-base::IIteratorSharedPtr<bool> BitArrayIterator::make(const IBitArray& bitArray)
+base::IIteratorSharedPtr<bool> BitArrayIterator::Make(const IBitArray& bitArray)
 {
     return std::make_shared<BitArrayIterator>(bitArray);
 }

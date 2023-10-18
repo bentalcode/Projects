@@ -14,7 +14,7 @@ namespace command {
         /**
          * Creates a new parameter set.
          */
-        static IParameterSetSharedPtr make(
+        static IParameterSetSharedPtr Make(
             int index,
             const std::vector<IParameterSharedPtr>& parameters);
 

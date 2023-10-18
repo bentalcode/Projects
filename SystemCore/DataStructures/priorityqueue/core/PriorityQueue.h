@@ -75,7 +75,7 @@ namespace datastructures {
         template <typename T>
         IPriorityQueueSharedPtr<T> PriorityQueue<T>::Make()
         {
-            return std::make_shared<PriorityQueue>(base::Comparator<T>::make());
+            return std::make_shared<PriorityQueue>(base::Comparator<T>::Make());
         }
 
         /**
@@ -95,7 +95,7 @@ namespace datastructures {
         {
             return std::make_shared<PriorityQueue>(
                 data,
-                base::Comparator<T>::make());
+                base::Comparator<T>::Make());
         }
 
         /**

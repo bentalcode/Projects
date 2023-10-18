@@ -38,24 +38,24 @@ namespace datastructures {
             /**
              * Gets the minimum node.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getMinimumNode(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> GetMinimumNode(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * Moves to the minimum node by storing the nodes in the stack.
              */
-            virtual void moveMinimumNode(
+            virtual void MoveMinimumNode(
                 IBinaryTreeNodeSharedPtr<TKey, TValue> root,
                 std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack);
 
             /**
              * Gets the maximum node.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getMaximumNode(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> GetMaximumNode(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * Moves to the maximum node by storing the nodes in the stack.
              */
-            virtual void moveMaximumNode(
+            virtual void MoveMaximumNode(
                 IBinaryTreeNodeSharedPtr<TKey, TValue> root,
                 std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack);
         };
@@ -80,12 +80,12 @@ namespace datastructures {
          * Gets the minimum node.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::getMinimumNode(
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::GetMinimumNode(
             IBinaryTreeNodeSharedPtr<TKey, TValue> root)
         {
             IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = root;
 
-            while (currNode.Get() != nullptr && currNode->HasLeftChild())
+            while (currNode.get() != nullptr && currNode->HasLeftChild())
             {
                 currNode = currNode->GetLeftChild();
             }
@@ -97,13 +97,13 @@ namespace datastructures {
          * Moves to the minimum node by storing the nodes in the stack.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeLogic<TKey, TValue>::moveMinimumNode(
+        void BinaryTreeLogic<TKey, TValue>::MoveMinimumNode(
             IBinaryTreeNodeSharedPtr<TKey, TValue> root,
             std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack)
         {
             IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = root;
 
-            while (currNode.Get() != nullptr)
+            while (currNode.get() != nullptr)
             {
                 stack.push(currNode);
                 currNode = currNode->GetLeftChild();
@@ -114,12 +114,12 @@ namespace datastructures {
          * Gets the maximum node.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::getMaximumNode(
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLogic<TKey, TValue>::GetMaximumNode(
             IBinaryTreeNodeSharedPtr<TKey, TValue> root)
         {
             IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = root;
 
-            while (currNode.Get() != nullptr && currNode->HasRightChild())
+            while (currNode.get() != nullptr && currNode->HasRightChild())
             {
                 currNode = currNode->GetRightChild();
             }
@@ -131,13 +131,13 @@ namespace datastructures {
          * Moves to the maximum node by storing the nodes in the stack.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeLogic<TKey, TValue>::moveMaximumNode(
+        void BinaryTreeLogic<TKey, TValue>::MoveMaximumNode(
             IBinaryTreeNodeSharedPtr<TKey, TValue> root,
             std::stack<IBinaryTreeNodeSharedPtr<TKey, TValue>>& stack)
         {
             IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = root;
 
-            while (currNode.Get() != nullptr)
+            while (currNode.get() != nullptr)
             {
                 stack.push(currNode);
                 currNode = currNode->GetRightChild();

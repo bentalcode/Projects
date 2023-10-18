@@ -12,7 +12,7 @@ namespace base {
     class DefaultToString final : public IToString<std::wstring> {
     public:
         /**
-         * Creates an instance Of ToString.
+         * Creates an instance ofToString.
          */
         static IToStringSharedPtr<std::wstring> Make();
 
@@ -38,7 +38,7 @@ namespace base {
     class HResultToString final : public IToString<long> {
     public:
         /**
-         * Creates an instance Of ToString.
+         * Creates an instance ofToString.
          */
         static IToStringSharedPtr<long> Make();
 

@@ -83,9 +83,9 @@ namespace datastructures {
             base::IReverseIteratorSharedPtr<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>> reverseIterator) :
             m_reverseIterator(reverseIterator)
         {
-            base::SmartPointers::validate(reverseIterator);
+            base::SmartPointers::Validate<base::IReverseIterator<IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>>(reverseIterator);
 
-            reset();
+            Reset();
         }
 
         /**

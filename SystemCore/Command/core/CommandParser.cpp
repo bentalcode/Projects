@@ -127,11 +127,11 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> CommandParser::ParseParameterSet
          i != namedParameters.end();
          ++i)
     {
-        IParameterSharedPtr parameter = Parameter::make(i->first, i->second, true);
+        IParameterSharedPtr parameter = Parameter::Make(i->first, i->second, true);
         parameters.push_back(parameter);
     }
 
-    IParameterSetSharedPtr parameterSet = ParameterSet::make(0, parameters);
+    IParameterSetSharedPtr parameterSet = ParameterSet::Make(0, parameters);
     return ParsingResult<IParameterSetSharedPtr>::SuccessfulResult(parameterSet);
 }
 
@@ -156,7 +156,7 @@ IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::CreateHelpCo
     std::vector<IParameterSharedPtr> parameters;
     parameters.push_back(CommandHelpMetadata::CreateHelpParameter());
 
-    IParameterSetSharedPtr parameterSet = ParameterSet::make(
+    IParameterSetSharedPtr parameterSet = ParameterSet::Make(
         CommandConstants::HELP_PARAMETER_SET_INDEX,
         parameters);
 

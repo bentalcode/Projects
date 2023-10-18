@@ -47,12 +47,12 @@ namespace base
         Matrix& operator=(Matrix&&) = delete;
 
         /**
-         * Gets the number Of rows.
+         * Gets the number ofrows.
          */
         virtual std::size_t GetRowsSize() const override;
 
         /**
-         * Gets the number Of columns.
+         * Gets the number ofcolumns.
          */
         virtual std::size_t GetColumnsSize() const override;
 
@@ -215,7 +215,7 @@ namespace base
     }
 
     /**
-     * Gets the number Of rows.
+     * Gets the number ofrows.
      */
     template <typename T>
     std::size_t Matrix<T>::GetRowsSize() const
@@ -224,7 +224,7 @@ namespace base
     }
 
     /**
-     * Gets the number Of columns.
+     * Gets the number ofcolumns.
      */
     template <typename T>
     std::size_t Matrix<T>::GetColumnsSize() const {
@@ -397,10 +397,10 @@ namespace base
         IIteratorSharedPtr<T> leftIterator = left.GetIterator();
         IIteratorSharedPtr<T> rightIterator = right.GetIterator();
 
-        while (leftIterator->hasNext() && rightIterator->hasNext())
+        while (leftIterator->HasNext() && rightIterator->HasNext())
         {
-            T leftValue = leftIterator->next();
-            T rightValue = rightIterator->next();
+            T leftValue = leftIterator->Next();
+            T rightValue = rightIterator->Next();
 
             if (leftValue < rightValue)
             {
@@ -412,7 +412,7 @@ namespace base
             }
         }
 
-        assert(!leftIterator->hasNext() && !rightIterator->hasNext());
+        assert(!leftIterator->HasNext() && !rightIterator->HasNext());
 
         return false;
     }

@@ -8,7 +8,7 @@ using namespace command;
 /**
  * Creates a new parameter.
  */
-IParameterSharedPtr Parameter::make(
+IParameterSharedPtr Parameter::Make(
     const std::wstring& name,
     const std::wstring& value,
     bool defined)

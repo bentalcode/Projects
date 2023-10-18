@@ -62,7 +62,7 @@ void UnitTestManager::RegisterTest(IUnitTestSharedPtr unitTest)
 /**
  * Unregisters a test.
  */
-void UnitTestManager::UnregisterTest(IUnitTestSharedPtr unitTest)
+void UnitTestManager::UnRegisterTest(IUnitTestSharedPtr unitTest)
 {
     base::SmartPointers::Validate<IUnitTest>(unitTest);
 

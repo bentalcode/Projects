@@ -270,12 +270,14 @@ namespace datastructures {
                 IVertexSharedPtr<TKey, TValue> destinationVertex)
         {
             typename std::map<IVertexSharedPtr<TKey, TValue>, std::set<IVertexSharedPtr<TKey, TValue>>>::iterator vertexIterator =
-                    m_connections.Find(sourceVertex);
+                    m_connections.find(sourceVertex);
 
             if (vertexIterator == m_connections.end())
             {
-                std::string errorMessage = "The Source vertex does not exist in the Connections of the adjacency matrix.";
-                throw GraphException(errorMessage);
+                long statusCode = base::ErrorCodes::RESOURCE_NOT_FOUND;
+                std::wstring errorMessage = L"The Source vertex does not exist in the Connections of the adjacency matrix.";
+
+                throw GraphException(statusCode, errorMessage);
             }
 
             std::set<IVertexSharedPtr<TKey, TValue>>& connections = vertexIterator->second;

@@ -5,7 +5,7 @@ using namespace command;
 /**
  * Creates a new parameter set.
  */
-IParameterSetSharedPtr ParameterSet::make(
+IParameterSetSharedPtr ParameterSet::Make(
     int index,
     const std::vector<IParameterSharedPtr>& parameters)
 {

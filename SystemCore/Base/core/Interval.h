@@ -17,7 +17,7 @@ namespace base
         /**
          * Creates an interval.
          */
-        static Interval<T> make(const T& start, const T& end);
+        static Interval<T> Make(const T& start, const T& end);
 
         /**
          * The constructor.
@@ -47,7 +47,7 @@ namespace base
         const T& GetStart() const;
 
         /**
-         * Gets the end point of an interval.
+         * Gets the End point of an interval.
          */
         const T& GetEnd() const;
 
@@ -58,7 +58,7 @@ namespace base
 
     private:
         /**
-         * Validates the interval start and end points.
+         * Validates the interval start and End points.
          */
         static void Validate(const T& start, const T& end);
 
@@ -76,7 +76,7 @@ namespace base
      * Creates an interval.
      */
     template <typename T>
-    Interval<T> Interval<T>::make(const T& start, const T& end)
+    Interval<T> Interval<T>::Make(const T& start, const T& end)
     {
         return Interval<T>(start, end);
     }
@@ -110,7 +110,7 @@ namespace base
     }
 
     /**
-     * Gets the end point of an interval.
+     * Gets the End point of an interval.
      */
     template <typename T>
     const T& Interval<T>::GetEnd() const
@@ -119,7 +119,7 @@ namespace base
     }
 
     /**
-     * Defines operator less Of intervals.
+     * Defines operator less ofintervals.
      */
     template <typename T>
     bool operator<(const Interval<T>& left, const Interval<T>& right)
@@ -149,7 +149,7 @@ namespace base
     }
 
     /**
-     * Validates the interval start and end points.
+     * Validates the interval start and End points.
      */
     template <typename T>
     void Interval<T>::Validate(const T& start, const T& end)
@@ -157,7 +157,7 @@ namespace base
         if (start > end)
         {
             long statusCode = ErrorCodes::OUT_OF_RANGE;
-            std::wstring errorMessage = L"Invalid interval start and end points.";
+            std::wstring errorMessage = L"Invalid interval start and End points.";
             throw BaseException(statusCode, errorMessage);
         }
     }

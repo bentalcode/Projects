@@ -17,7 +17,7 @@ namespace base
         /**
          * Creates a two dimensional vector.
          */
-        static ITwoDimensionalVectorSharedPtr<T> make();
+        static ITwoDimensionalVectorSharedPtr<T> Make();
 
         /**
          * Creates a two dimensional vector, with an initial sizes: GetColumnsSize x colSize.
@@ -67,12 +67,12 @@ namespace base
         TwoDimensionalVector& operator=(TwoDimensionalVector&&) = default;
 
         /**
-         * Gets the number Of rows.
+         * Gets the number of rows.
          */
         virtual size_t GetRowsSize() const override;
 
         /**
-         * Gets the number Of columns in a specific row.
+         * Gets the number of columns in a specific row.
          */
         virtual size_t GetColumnsSize(size_t rowIndex) const override;
 
@@ -129,7 +129,7 @@ namespace base
      * Creates a two dimensional vector.
      */
     template <typename T>
-    ITwoDimensionalVectorSharedPtr<T> TwoDimensionalVector<T>::make()
+    ITwoDimensionalVectorSharedPtr<T> TwoDimensionalVector<T>::Make()
     {
         return std::make_shared<TwoDimensionalVector<T>>();
     }
@@ -207,7 +207,7 @@ namespace base
     }
 
     /**
-     * Gets the number Of rows.
+     * Gets the number of rows.
      */
     template <typename T>
     size_t TwoDimensionalVector<T>::GetRowsSize() const
@@ -216,7 +216,7 @@ namespace base
     }
 
     /**
-     * Gets the number Of columns in a specific row.
+     * Gets the number of columns in a specific row.
      */
     template <typename T>
     size_t TwoDimensionalVector<T>::GetColumnsSize(size_t rowIndex) const {

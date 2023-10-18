@@ -13,7 +13,7 @@ namespace datastructures {
 
         /**
          * The Walk class implements a walk in a graph.
-         * A walk is a finite or infinite sequence of Edges which joins a sequence Of Vertices.
+         * A walk is a finite or infinite sequence of Edges which joins a sequence ofVertices.
          */
         template <typename TKey, typename TValue>
         class Walk final : public IWalk<TKey, TValue>
@@ -37,7 +37,7 @@ namespace datastructures {
                 const IWalk<TKey, TValue>& walk);
 
             /**
-             * Creates a new list Of walks.
+             * Creates a new list ofwalks.
              */
             static void MakeWalks(
                 const std::vector<std::list<IVertexSharedPtr<TKey, TValue>>>& verticeLists,
@@ -111,9 +111,9 @@ namespace datastructures {
             virtual base::IReverseIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> GetReverseIterator() const override;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
-            virtual std::string ToString() const override;
+            virtual std::wstring ToString() const override;
 
         private:
             std::list<IVertexSharedPtr<TKey, TValue>> m_vertices;
@@ -147,7 +147,7 @@ namespace datastructures {
         }
 
         /**
-         * Creates a new list Of walks.
+         * Creates a new list ofwalks.
          */
         template <typename TKey, typename TValue>
         void Walk<TKey, TValue>::MakeWalks(
@@ -296,12 +296,12 @@ namespace datastructures {
         }
 
         /**
-         * Gets string representation Of this instance.
+         * Gets string representation of this instance.
          */
         template <typename TKey, typename TValue>
-        std::string Walk<TKey, TValue>::ToString() const
+        std::wstring Walk<TKey, TValue>::ToString() const
         {
-            return Collections::toString(m_vertices);
+            return Collections::ToString(m_vertices);
         }
     }
 }

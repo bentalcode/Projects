@@ -8,6 +8,7 @@
 #include "DoublyLinkedListNodeValueIterator.h"
 #include "DoublyLinkedListNodeValueReverseIterator.h"
 #include "DoublyLinkedListException.h"
+#include <assert.h>
 
 namespace datastructures {
     namespace doublylinkedlist {
@@ -175,7 +176,9 @@ namespace datastructures {
             /**
              * Linked nodes.
              */
-            void linkedNodes(IDoublyLinkedListNodeSharedPtr<T> left, IDoublyLinkedListNodeSharedPtr<T> right);
+            void linkedNodes(
+                IDoublyLinkedListNodeSharedPtr<T> left,
+                IDoublyLinkedListNodeSharedPtr<T> right);
 
             /**
              * Node added.
@@ -330,7 +333,7 @@ namespace datastructures {
         template <typename T>
         void DoublyLinkedList<T>::AddToFront(IDoublyLinkedListNodeSharedPtr<T> node)
         {
-            base::SmartPointers::Validate<IDoublyLinkedListNode>(node);
+            base::SmartPointers::Validate<IDoublyLinkedListNode<T>>(node);
 
             node->Unlinked();
 
@@ -355,7 +358,7 @@ namespace datastructures {
         template <typename T>
         void DoublyLinkedList<T>::AddToBack(IDoublyLinkedListNodeSharedPtr<T> node)
         {
-            base::SmartPointers::Validate<IDoublyLinkedListNode>(node);
+            base::SmartPointers::Validate<IDoublyLinkedListNode<T>>(node);
 
             node->Unlinked();
 
@@ -382,8 +385,8 @@ namespace datastructures {
             IDoublyLinkedListNodeSharedPtr<T> currNode,
             IDoublyLinkedListNodeSharedPtr<T> nodeToAdd)
         {
-            base::SmartPointers::Validate<IDoublyLinkedListNode>(currNode);
-            base::SmartPointers::Validate<IDoublyLinkedListNode>(nodeToAdd);
+            base::SmartPointers::Validate<IDoublyLinkedListNode<T>>(currNode);
+            base::SmartPointers::Validate<IDoublyLinkedListNode<T>>(nodeToAdd);
 
             nodeToAdd->Unlinked();
 
@@ -411,8 +414,8 @@ namespace datastructures {
             IDoublyLinkedListNodeSharedPtr<T> currNode,
             IDoublyLinkedListNodeSharedPtr<T> nodeToAdd)
         {
-            base::SmartPointers::Validate<IDoublyLinkedListNode>(currNode);
-            base::SmartPointers::Validate<IDoublyLinkedListNode>(nodeToAdd);
+            base::SmartPointers::Validate<IDoublyLinkedListNode<T>>(currNode);
+            base::SmartPointers::Validate<IDoublyLinkedListNode<T>>(nodeToAdd);
 
             nodeToAdd->Unlinked();
 
@@ -475,7 +478,7 @@ namespace datastructures {
         template <typename T>
         void DoublyLinkedList<T>::Remove(IDoublyLinkedListNodeSharedPtr<T> nodeToRemove)
         {
-            base::SmartPointers::Validate<IDoublyLinkedListNode>(nodeToRemove);
+            base::SmartPointers::Validate<IDoublyLinkedListNode<T>>(nodeToRemove);
 
             IDoublyLinkedListNodeSharedPtr<T> previousNode = nodeToRemove->Previous();
             IDoublyLinkedListNodeSharedPtr<T> nextNode = nodeToRemove->Next();
@@ -551,7 +554,7 @@ namespace datastructures {
             if (index >= Size())
             {
                 long statusCode = base::ErrorCodes::OUT_OF_RANGE;
-                std::wstring errorMessage = L"The index: " + std::to_wstring(index) + L" is out Of range.";
+                std::wstring errorMessage = L"The index: " + std::to_wstring(index) + L" is out ofrange.";
                 throw DoublyLinkedListException(statusCode, errorMessage);
             }
 

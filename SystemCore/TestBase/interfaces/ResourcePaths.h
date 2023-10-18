@@ -56,7 +56,7 @@ namespace test {
             std::string path = pathBuilder
                 .addComponent(rootDirectory)
                 .addComponent(subDirectory)
-                .build();
+                .Build();
 
             return path;
         }
@@ -75,7 +75,7 @@ namespace test {
                 .addComponent(rootDirectory)
                 .addComponent(subDirectory)
                 .addComponent(resourceName)
-                .build();
+                .Build();
 
             return path;
         }
@@ -96,7 +96,7 @@ namespace test {
                 .addComponent(subDirectory1)
                 .addComponent(subDirectory2)
                 .addComponent(resourceName)
-                .build();
+                .Build();
 
             return path;
         }

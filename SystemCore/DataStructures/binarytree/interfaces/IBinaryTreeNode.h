@@ -1,6 +1,8 @@
 #ifndef I_BINARY_TREE_NODE_H_d20c8d2a_2381_4b5b_b0eb_0bad8074f48b
 #define I_BINARY_TREE_NODE_H_d20c8d2a_2381_4b5b_b0eb_0bad8074f48b
 
+#include <memory>
+
 namespace datastructures {
     namespace binarytree {
 
@@ -61,7 +63,7 @@ namespace datastructures {
             /**
              * Sets the node of a left child.
              */
-            virtual void GetLeftChild(std::shared_ptr<IBinaryTreeNode<TKey, TValue>> node) = 0;
+            virtual void SetLeftChild(std::shared_ptr<IBinaryTreeNode<TKey, TValue>> node) = 0;
 
             /**
              * Gets the node of a right child.
@@ -85,26 +87,85 @@ namespace datastructures {
         };
 
         /**
-         * Defines SharedPtr Of Binary Tree Node.
+         * Defines SharedPtr ofBinary Tree Node.
          */
         template <typename TKey, typename TValue>
         using IBinaryTreeNodeSharedPtr = std::shared_ptr<IBinaryTreeNode<TKey, TValue>>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for binary tree nodes.
          */
         template <typename TKey, typename TValue>
-        bool operator<(const IBinaryTreeNode<TKey, TValue>& left, const IBinaryTreeNode<TKey, TValue>& right)
+        inline bool operator==(
+            const IBinaryTreeNode<TKey, TValue>& lhs,
+            const IBinaryTreeNode<TKey, TValue>& rhs)
         {
-            if (left.GetKey() < right.GetKey()) {
+            return
+                lhs.GetKey() == rhs.GetKey() &&
+                lhs.GetValue() == rhs.GetValue();
+        }
+
+        /**
+         * Implements an operator not equals for binary tree nodes.
+         */
+        template <typename TKey, typename TValue>
+        inline bool operator!=(
+            const IBinaryTreeNode<TKey, TValue>& lhs,
+            const IBinaryTreeNode<TKey, TValue>& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Implements an operator less than for binary tree nodes.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<(
+            const IBinaryTreeNode<TKey, TValue>& lhs,
+            const IBinaryTreeNode<TKey, TValue>& rhs)
+        {
+            if (lhs.GetKey() < rhs.GetKey()) {
                 return true;
             }
 
-            if (left.GetKey() > right.GetKey()) {
+            if (lhs.GetKey() > rhs.GetKey()) {
                 return false;
             }
 
-            return left.GetValue() < right.GetValue();
+            return lhs.GetValue() < rhs.GetValue();
+        }
+
+        /**
+         * Implements an operator less than or equal for binary tree nodes.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<=(
+            const IBinaryTreeNode<TKey, TValue>& lhs,
+            const IBinaryTreeNode<TKey, TValue>& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        /**
+         * Implements an operator greater than for binary tree nodes.
+         */
+        template <typename TKey, typename TValue>
+        inline bool operator>(
+            const IBinaryTreeNode<TKey, TValue>& lhs,
+            const IBinaryTreeNode<TKey, TValue>& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        /**
+         * Implements an operator greater than or equal for binary tree nodes.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>=(
+            const IBinaryTreeNode<TKey, TValue>& lhs,
+            const IBinaryTreeNode<TKey, TValue>& rhs)
+        {
+            return !(lhs < rhs);
         }
     }
 }

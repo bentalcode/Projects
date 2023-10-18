@@ -17,7 +17,7 @@ namespace datastructures {
             /**
              * Creates a level order iterator of a binary tree.
              */
-            static base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> make(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
+            static base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> Make(IBinaryTreeNodeSharedPtr<TKey, TValue> root);
 
             /**
              * The BinaryTreeLevelOrderIterator constructor.
@@ -44,17 +44,17 @@ namespace datastructures {
             /**
              * Checks whether there is a Next element.
              */
-            virtual bool hasNext() const;
+            virtual bool HasNext() const;
 
             /**
              * Gets the Next element.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> next();
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> Next();
 
             /**
              * Resets the iterator.
              */
-            virtual void reset();
+            virtual void Reset();
 
         private:
             IBinaryTreeNodeSharedPtr<TKey, TValue> m_root;
@@ -65,7 +65,7 @@ namespace datastructures {
          * Creates a level order iterator of a binary tree.
          */
         template <typename TKey, typename TValue>
-        base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeLevelOrderIterator<TKey, TValue>::make(IBinaryTreeNodeSharedPtr<TKey, TValue> root)
+        base::IIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> BinaryTreeLevelOrderIterator<TKey, TValue>::Make(IBinaryTreeNodeSharedPtr<TKey, TValue> root)
         {
             return std::make_shared<BinaryTreeLevelOrderIterator<TKey, TValue>>(root);
         }
@@ -77,7 +77,7 @@ namespace datastructures {
         BinaryTreeLevelOrderIterator<TKey, TValue>::BinaryTreeLevelOrderIterator(IBinaryTreeNodeSharedPtr<TKey, TValue> root) :
             m_root(root)
         {
-            reset();
+            Reset();
         }
 
         /**
@@ -92,18 +92,18 @@ namespace datastructures {
          * Checks whether there is a Next element.
          */
         template <typename TKey, typename TValue>
-        bool BinaryTreeLevelOrderIterator<TKey, TValue>::hasNext() const
+        bool BinaryTreeLevelOrderIterator<TKey, TValue>::HasNext() const
         {
-            return !m_queue->Empty();
+            return !m_queue->empty();
         }
 
         /**
          * Gets the Next element.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLevelOrderIterator<TKey, TValue>::next()
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeLevelOrderIterator<TKey, TValue>::Next()
         {
-            assert(hasNext());
+            assert(HasNext());
             IBinaryTreeNodeSharedPtr<TKey, TValue> currNode = m_queue->front();
             m_queue->pop();
 
@@ -124,7 +124,7 @@ namespace datastructures {
          * Resets the iterator.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeLevelOrderIterator<TKey, TValue>::reset()
+        void BinaryTreeLevelOrderIterator<TKey, TValue>::Reset()
         {
             m_queue = std::make_unique<std::queue<IBinaryTreeNodeSharedPtr<TKey, TValue>>>();
 

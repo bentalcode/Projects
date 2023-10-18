@@ -17,7 +17,6 @@ namespace datastructures {
         template <typename T>
         class IDoublyLinkedList :
             public base::ISizableCollection<IDoublyLinkedListNodeSharedPtr<T>>,
-            public base::IIterable<IDoublyLinkedListNodeSharedPtr<T>>,
             public base::IReverseIterable<IDoublyLinkedListNodeSharedPtr<T>>,
             public base::IValueIterable<T>,
             public base::IValueReverseIterable<T>
@@ -132,7 +131,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Doubly Linked List.
+         * Defines the SharedPtr ofDoubly Linked List.
          */
         template <typename T>
         using IDoublyLinkedListSharedPtr = std::shared_ptr<IDoublyLinkedList<T>>;

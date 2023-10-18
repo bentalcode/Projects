@@ -58,9 +58,9 @@ namespace datastructures {
             virtual const TValue& GetValue() const override;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
-            virtual std::string ToString() const override;
+            virtual std::wstring ToString() const override;
 
         private:
             TKey m_key;
@@ -122,13 +122,13 @@ namespace datastructures {
         }
 
         /**
-         * Gets string representation Of this instance.
+         * Gets string representation ofthis instance.
          */
         template <typename TKey, typename TValue>
-        std::string Vertex<TKey, TValue>::ToString() const
+        std::wstring Vertex<TKey, TValue>::ToString() const
         {
-            std::stringstream stream;
-            stream << "(Key = " << m_key << ", Value = " << m_value << ")";
+            std::wstringstream stream;
+            stream << L"(Key = " << m_key << L", Value = " << m_value << L")";
             return stream.str();
         }
     }

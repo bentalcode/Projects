@@ -15,7 +15,7 @@ using namespace datastructures::bitarray;
 /**
  * Creates a bit 32 array.
  */
-IBit32ArraySharedPtr Bit32Array::make(unsigned int bits)
+IBit32ArraySharedPtr Bit32Array::Make(unsigned int bits)
 {
     return std::make_shared<Bit32Array>(bits);
 }
@@ -103,7 +103,7 @@ unsigned int Bit32Array::Get(size_t index) const
 }
 
 /**
- * Sets the bit at the specified index to the complement Of its current value.
+ * Sets the bit at the specified index to the complement ofits current value.
  */
 void Bit32Array::Flip(size_t index)
 {
@@ -115,7 +115,7 @@ void Bit32Array::Flip(size_t index)
 }
 
 /**
- * Returns the number Of bits Set to true.
+ * Returns the number ofbits Set to true.
  */
 size_t Bit32Array::Cardinality() const
 {
@@ -133,7 +133,7 @@ size_t Bit32Array::Cardinality() const
 }
 
 /**
- * Returns the number Of bits Set to true in the specified range.
+ * Returns the number ofbits Set to true in the specified range.
  */
 size_t Bit32Array::Cardinality(size_t startIndex, size_t endIndex) const
 {
@@ -396,7 +396,7 @@ void Bit32Array::ValidateIndex(size_t index) const
  */
 base::IIteratorSharedPtr<bool> Bit32Array::GetIterator() const
 {
-    return Bit32ArrayIterator::make(*this);
+    return Bit32ArrayIterator::Make(*this);
 }
 
 /**
@@ -404,5 +404,5 @@ base::IIteratorSharedPtr<bool> Bit32Array::GetIterator() const
  */
 base::IReverseIteratorSharedPtr<bool> Bit32Array::GetReverseIterator() const
 {
-    return Bit32ArrayReverseIterator::make(*this);
+    return Bit32ArrayReverseIterator::Make(*this);
 }

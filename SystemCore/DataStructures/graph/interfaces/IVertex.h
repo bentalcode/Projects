@@ -1,6 +1,9 @@
 #ifndef I_VERTEX_H_ae4664b1_aabd_4dc5_9490_0c42c1740f0a
 #define I_VERTEX_H_ae4664b1_aabd_4dc5_9490_0c42c1740f0a
 
+#include <string>
+#include <memory>
+
 namespace datastructures {
     namespace graph {
 
@@ -44,58 +47,88 @@ namespace datastructures {
             virtual const TValue& GetValue() const = 0;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
             virtual std::wstring ToString() const = 0;
         };
 
         /**
-         * Defines the SharedPtr Of Vertex.
+         * Defines the SharedPtr ofVertex.
          */
         template <typename TKey, typename TValue>
         using IVertexSharedPtr = std::shared_ptr<IVertex<TKey, TValue>>;
 
         /**
-         * Defines an operator less than.
+         * Implements an operator equals for vertexes.
          */
         template <typename TKey, typename TValue>
-        bool operator<(const IVertex<TKey, TValue>& left, const IVertex<TKey, TValue>& right)
+        inline bool operator==(
+            const IVertex<TKey, TValue>& lhs,
+            const IVertex<TKey, TValue>& rhs)
         {
-            return left.GetKey() < right.GetKey();
+            return lhs.GetKey() == rhs.GetKey();
         }
 
         /**
-         * Defines an operator less or equal than.
+         * Implements an operator not equals for vertexes.
          */
         template <typename TKey, typename TValue>
-        bool operator<=(const IVertex<TKey, TValue>& left, const IVertex<TKey, TValue>& right)
+        inline bool operator!=(
+            const IVertex<TKey, TValue>& lhs,
+            const IVertex<TKey, TValue>& rhs)
         {
-            return !(right.GetKey() < left.GetKey());
+            return !(lhs == rhs);
+        }
+        
+        /**
+         * Defines an operator less than for vertexes.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<(
+            const IVertex<TKey, TValue>& lhs, 
+            const IVertex<TKey, TValue>& rhs)
+        {
+            return lhs.GetKey() < rhs.GetKey();
         }
 
         /**
-         * Defines an operator grater than.
+         * Defines an operator less or equal than for vertexes.
          */
         template <typename TKey, typename TValue>
-        bool operator>(const IVertex<TKey, TValue>& left, const IVertex<TKey, TValue>& right)
+        bool operator<=(
+            const IVertex<TKey, TValue>& lhs, 
+            const IVertex<TKey, TValue>& rhs)
         {
-            return right.GetKey() < left.GetKey();
+            return !(rhs.GetKey() < lhs.GetKey());
         }
 
         /**
-         * Defines an operator grater or equal than.
+         * Defines an operator grater than for vertexes.
          */
         template <typename TKey, typename TValue>
-        bool operator>=(const IVertex<TKey, TValue>& left, const IVertex<TKey, TValue>& right)
+        bool operator>(
+            const IVertex<TKey, TValue>& lhs,
+            const IVertex<TKey, TValue>& rhs)
         {
-            return !(left.GetKey() < right.GetKey());
+            return rhs.GetKey() < lhs.GetKey();
+        }
+
+        /**
+         * Defines an operator grater or equal than for vertexes.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>=(
+            const IVertex<TKey, TValue>& lhs,
+            const IVertex<TKey, TValue>& rhs)
+        {
+            return !(lhs.GetKey() < rhs.GetKey());
         }
 
         /**
          * Serializes the object to an output stream.
          */
         template <typename TKey, typename TValue>
-        std::ostream& operator<<(std::ostream& stream, const IVertex<TKey, TValue>& vertex)
+        std::wostream& operator<<(std::wostream& stream, const IVertex<TKey, TValue>& vertex)
         {
             stream << vertex.ToString();
             return stream;

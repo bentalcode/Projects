@@ -72,7 +72,7 @@ namespace base {
     };
 
     /**
-     * Defines the Shared Ptr Of Collection Comparator.
+     * Defines the Shared Ptr of Collection Comparator.
      */
     template <typename CollectionType>
     using CollectionComparatorSharedPtr = std::shared_ptr<CollectionComparator<CollectionType>>;
@@ -114,10 +114,10 @@ namespace base {
             return false;
         }
 
-        typename CollectionType::const_iterator lhsIterator = lhs.begin();
-        typename CollectionType::const_iterator rhsIterator = rhs.begin();
+        typename CollectionType::const_iterator lhsIterator = lhs.Begin();
+        typename CollectionType::const_iterator rhsIterator = rhs.Begin();
 
-        while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
+        while (lhsIterator != lhs.End() && rhsIterator != rhs.End()) {
             const ValueType& leftValue = *lhsIterator;
             const ValueType& rightValue = *rhsIterator;
 
@@ -126,7 +126,7 @@ namespace base {
             }
         }
 
-        return lhsIterator == lhs.end() && rhsIterator == rhs.end();
+        return lhsIterator == lhs.End() && rhsIterator == rhs.End();
     }
 
     /**
@@ -142,16 +142,16 @@ namespace base {
             return false;
         }
 
-        typename CollectionType::const_iterator lhsIterator = lhs.begin();
-        typename CollectionType::const_iterator rhsIterator = rhs.begin();
+        typename CollectionType::const_iterator lhsIterator = lhs.Begin();
+        typename CollectionType::const_iterator rhsIterator = rhs.Begin();
 
-        while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
+        while (lhsIterator != lhs.End() && rhsIterator != rhs.End()) {
             if (!equatable.AreEqual(*lhsIterator, *rhsIterator)) {
                 return false;
             }
         }
 
-        return lhsIterator == lhs.end() && rhsIterator == rhs.end();
+        return lhsIterator == lhs.End() && rhsIterator == rhs.End();
     }
 
     /**
@@ -174,10 +174,10 @@ namespace base {
             return 1;
         }
 
-        typename CollectionType::const_iterator lhsIterator = lhs.begin();
-        typename CollectionType::const_iterator rhsIterator = rhs.begin();
+        typename CollectionType::const_iterator lhsIterator = lhs.Begin();
+        typename CollectionType::const_iterator rhsIterator = rhs.Begin();
 
-        while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
+        while (lhsIterator != lhs.End() && rhsIterator != rhs.End()) {
             const ValueType& leftValue = *lhsIterator;
             const ValueType& rightValue = *rhsIterator;
 
@@ -194,7 +194,7 @@ namespace base {
     }
 
     /**
-     * Determines the relative order Of collections with a comparator.
+     * Determines the relative order of collections with a comparator.
      *
      * Returns -1 if the left hand side value is less than the right hand side value.
      * Returns 0 if the left hand side value is equal to the right hand side value.
@@ -214,12 +214,12 @@ namespace base {
             return 1;
         }
 
-        typename CollectionType::const_iterator lhsIterator = lhs.begin();
-        typename CollectionType::const_iterator rhsIterator = rhs.begin();
+        typename CollectionType::const_iterator lhsIterator = lhs.Begin();
+        typename CollectionType::const_iterator rhsIterator = rhs.Begin();
 
         int status = 0;
 
-        while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
+        while (lhsIterator != lhs.End() && rhsIterator != rhs.End()) {
             status = comparator.CompareTo(*lhsIterator, *rhsIterator);
 
             if (status != 0) {

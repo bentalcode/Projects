@@ -3,6 +3,7 @@
 
 #include "IIterator.h"
 #include "IDoublyLinkedListNode.h"
+#include <assert.h>
 
 namespace datastructures {
     namespace doublylinkedlist {

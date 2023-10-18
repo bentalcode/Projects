@@ -41,13 +41,13 @@ namespace datastructures {
             virtual size_t GetCapacity() const = 0;
 
             /**
-             * Gets the number Of items for making available space in the cache.
+             * Gets the number ofitems for making available space in the cache.
              */
             virtual size_t GetNumberOfItemsForMakingAvailableSpace() const = 0;
         };
 
         /**
-         * Defines the SharedPtr Of Cache Properties.
+         * Defines the SharedPtr ofCache Properties.
          */
         using ICachePropertiesSharedPtr = std::shared_ptr<ICacheProperties>;
     }

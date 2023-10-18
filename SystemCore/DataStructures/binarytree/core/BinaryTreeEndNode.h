@@ -59,22 +59,22 @@ namespace datastructures {
             /**
              * Gets the node of a left child.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getLeftChild() const override;
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> GetLeftChild() const override;
 
             /**
              * Sets the node of a left child.
              */
-            virtual void setLeftChild(IBinaryTreeNodeSharedPtr<TKey, TValue> node) override;
+            virtual void SetLeftChild(IBinaryTreeNodeSharedPtr<TKey, TValue> node) override;
 
             /**
              * Gets the node of a right child.
              */
-            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> getRightChild() const override;
+            virtual IBinaryTreeNodeSharedPtr<TKey, TValue> GetRightChild() const override;
 
             /**
              * Sets the node of a right child.
              */
-            virtual void setRightChild(IBinaryTreeNodeSharedPtr<TKey, TValue> node) override;
+            virtual void SetRightChild(IBinaryTreeNodeSharedPtr<TKey, TValue> node) override;
 
             /**
              * Checks whether there is a left child.
@@ -109,7 +109,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         const TKey& BinaryTreeEndNode<TKey, TValue>::GetKey() const
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::GetKey()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::GetKey()");
         }
 
         /**
@@ -118,7 +118,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void BinaryTreeEndNode<TKey, TValue>::SetKey(const TKey& key)
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::SetKey()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::SetKey()");
         }
 
         /**
@@ -127,7 +127,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         const TValue& BinaryTreeEndNode<TKey, TValue>::GetValue() const
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::GetValue()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::GetValue()");
         }
 
         /**
@@ -136,43 +136,43 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         void BinaryTreeEndNode<TKey, TValue>::SetValue(const TValue& value)
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::SetValue()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::SetValue()");
         }
 
         /**
          * Gets the node of a left child.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeEndNode<TKey, TValue>::getLeftChild() const
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeEndNode<TKey, TValue>::GetLeftChild() const
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::GetLeftChild()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::GetLeftChild()");
         }
 
         /**
          * Sets the node of a left child.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeEndNode<TKey, TValue>::setLeftChild(IBinaryTreeNodeSharedPtr<TKey, TValue> child)
+        void BinaryTreeEndNode<TKey, TValue>::SetLeftChild(IBinaryTreeNodeSharedPtr<TKey, TValue> child)
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::GetLeftChild()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::GetLeftChild()");
         }
 
         /**
          * Gets the node of a right child.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeEndNode<TKey, TValue>::getRightChild() const
+        IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeEndNode<TKey, TValue>::GetRightChild() const
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::GetRightChild()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::GetRightChild()");
         }
 
         /**
          * Sets the node of a right child.
          */
         template <typename TKey, typename TValue>
-        void BinaryTreeEndNode<TKey, TValue>::setRightChild(IBinaryTreeNodeSharedPtr<TKey, TValue> child)
+        void BinaryTreeEndNode<TKey, TValue>::SetRightChild(IBinaryTreeNodeSharedPtr<TKey, TValue> child)
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::SetRightChild()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::SetRightChild()");
         }
 
         /**
@@ -181,7 +181,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         bool BinaryTreeEndNode<TKey, TValue>::HasLeftChild() const
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::HasLeftChild()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::HasLeftChild()");
         }
 
         /**
@@ -190,7 +190,7 @@ namespace datastructures {
         template <typename TKey, typename TValue>
         bool BinaryTreeEndNode<TKey, TValue>::HasRightChild() const
         {
-            throw base::NotImplementedException("BinaryTreeEndNode::HasRightChild()");
+            throw base::NotImplementedException(L"BinaryTreeEndNode::HasRightChild()");
         }
     }
 }

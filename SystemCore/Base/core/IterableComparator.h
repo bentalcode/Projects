@@ -41,7 +41,7 @@ namespace base {
         bool AreEqual(const IIterable<T>& lhs, const IIterable<T>& rhs, const IEquatableComparator<T>& comparator);
 
         /**
-         * Determines the relative order Of iterators with an element comparator.
+         * Determines the relative order ofiterators with an element comparator.
          *
          * Returns -1 if the left hand side value is less than the right hand side value.
          * Returns 0 if the left hand side value is equal to the right hand side value.
@@ -84,11 +84,11 @@ namespace base {
         const IIterable<T>& rhs,
         const IEquatableComparator<T>& comparator)
     {
-        return m_iteratorComparator.AreEqual(lhs.getIterator(), rhs.getIterator(), comparator);
+        return m_iteratorComparator.AreEqual(lhs.GetIterator(), rhs.GetIterator(), comparator);
     }
 
     /**
-     * Determines the relative order Of iterables with an element comparator.
+     * Determines the relative order ofiterables with an element comparator.
      *
      * Returns -1 if the left hand side value is less than the right hand side value.
      * Returns 0 if the left hand side value is equal to the right hand side value.
@@ -100,7 +100,7 @@ namespace base {
         const IIterable<T>& rhs,
         const IComparableComparator<T>& comparator)
     {
-        return m_iteratorComparator.CompareTo(lhs.getIterator(), rhs.getIterator(), comparator);
+        return m_iteratorComparator.CompareTo(lhs.GetIterator(), rhs.GetIterator(), comparator);
     }
 
 } // namespace base

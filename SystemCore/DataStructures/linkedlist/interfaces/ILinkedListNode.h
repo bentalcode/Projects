@@ -67,18 +67,75 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Linked List Node.
+         * Defines the SharedPtr of Linked List Node.
          */
         template <typename T>
         using ILinkedListNodeSharedPtr = std::shared_ptr<ILinkedListNode<T>>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for linked list nodes.
          */
         template <typename T>
-        bool operator<(const ILinkedListNode<T>& left, const ILinkedListNode<T>& right)
+        inline bool operator==(
+            const ILinkedListNode<T>& lhs,
+            const ILinkedListNode<T>& rhs)
         {
-            return left.GetValue() < right.GetValue();
+            return lhs.GetValue() == rhs.GetValue();
+        }
+
+        /**
+         * Implements an operator not equals for linked list nodes.
+         */
+        template <typename T>
+        inline bool operator!=(
+            const ILinkedListNode<T>& lhs,
+            const ILinkedListNode<T>& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Implements an operator less than for linked list nodes.
+         */
+        template <typename T>
+        bool operator<(
+            const ILinkedListNode<T>& lhs,
+            const ILinkedListNode<T>& rhs)
+        {
+            return lhs.GetValue() < rhs.GetValue();
+        }
+
+        /**
+         * Implements an operator less than or equal for linked list nodes.
+         */
+        template <typename T>
+        bool operator<=(
+            const ILinkedListNode<T>& lhs,
+            const ILinkedListNode<T>& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        /**
+         * Implements an operator greater than for linked list nodes.
+         */
+        template <typename T>
+        inline bool operator>(
+            const ILinkedListNode<T>& lhs,
+            const ILinkedListNode<T>& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        /**
+         * Implements an operator greater than or equal for linked list nodes.
+         */
+        template <typename T>
+        bool operator>=(
+            const ILinkedListNode<T>& lhs,
+            const ILinkedListNode<T>& rhs)
+        {
+            return !(lhs < rhs);
         }
     }
 }

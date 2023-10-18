@@ -19,7 +19,7 @@ namespace base
             const std::wstring& right);
 
         /**
-         * Checks whether strings are equals with start and end indexes.
+         * Checks whether strings are equals with start and End indexes.
          */
         static bool AreEqual(
             const std::wstring& left,
@@ -30,7 +30,7 @@ namespace base
             size_t rightEndIndex);
 
         /**
-         * Checks whether strings are equals with start and end indexes. (Ignore case)
+         * Checks whether strings are equals with start and End indexes. (Ignore case)
          */
         static bool AreEqualIgnoreCase(
             const std::wstring& left,
@@ -61,7 +61,7 @@ namespace base
             size_t length);
 
         /**
-         * Checks whether buffer strings are equals with start and end indexes.
+         * Checks whether buffer strings are equals with start and End indexes.
          */
         static bool AreEqual(
             const std::wstring::value_type* left,
@@ -72,7 +72,7 @@ namespace base
             size_t rightEndIndex);
 
         /**
-         * Checks whether buffer strings are equals with start and end indexes. (Ignore case)
+         * Checks whether buffer strings are equals with start and End indexes. (Ignore case)
          */
         static bool AreEqualIgnoreCase(
             const std::wstring::value_type* left,
@@ -103,7 +103,7 @@ namespace base
             size_t length);
 
         /**
-         * Checks whether strings are equals with start and end indexes.
+         * Checks whether strings are equals with start and End indexes.
          */
         static bool AreEqual(
             const std::wstring& left,
@@ -126,7 +126,7 @@ namespace base
             bool ignoreCase);
 
         /**
-         * Checks whether buffer strings are equals with start and end indexes.
+         * Checks whether buffer strings are equals with start and End indexes.
          */
         static bool AreEqual(
             const std::wstring::value_type* left,

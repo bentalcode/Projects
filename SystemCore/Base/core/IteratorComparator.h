@@ -29,7 +29,7 @@ namespace base {
         static bool AreEqual(
             IIterator<T>& lhs,
             IIterator<T>& rhs,
-            IEquatableComparator<T>& comparator);
+            const IEquatableComparator<T>& comparator);
 
         /**
          * Checks for equality with iterables.
@@ -44,7 +44,7 @@ namespace base {
         static bool AreEqual(
             IIterable<T>& lhs,
             IIterable<T>& rhs,
-            IEquatableComparator<T>& comparator);
+            const IEquatableComparator<T>& comparator);
     };
 
     /**
@@ -74,7 +74,7 @@ namespace base {
     bool IteratorComparator<T>::AreEqual(
         IIterator<T>& lhs,
         IIterator<T>& rhs,
-        IEquatableComparator<T>& comparator)
+        const IEquatableComparator<T>& comparator)
     {
         while (lhs.HasNext() && rhs.HasNext()) {
             T lhsValue = lhs.Next();
@@ -108,7 +108,7 @@ namespace base {
     bool IteratorComparator<T>::AreEqual(
         IIterable<T>& lhs,
         IIterable<T>& rhs,
-        IEquatableComparator<T>& comparator)
+        const IEquatableComparator<T>& comparator)
     {
         return AreEqual(*lhs.GetIterator(), *rhs.GetIterator(), comparator);
     }

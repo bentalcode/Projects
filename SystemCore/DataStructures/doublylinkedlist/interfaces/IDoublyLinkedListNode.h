@@ -1,6 +1,8 @@
 #ifndef I_DOUBLY_LINKED_LIST_NODE_H_33e7d433_2539_49ae_81fe_d3a082c4c7d5
 #define I_DOUBLY_LINKED_LIST_NODE_H_33e7d433_2539_49ae_81fe_d3a082c4c7d5
 
+#include <memory>
+
 namespace datastructures {
     namespace doublylinkedlist {
 
@@ -80,18 +82,75 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Doubly Linked List Node.
+         * Defines the SharedPtr of Doubly Linked List Node.
          */
         template <typename T>
         using IDoublyLinkedListNodeSharedPtr = std::shared_ptr<IDoublyLinkedListNode<T>>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for doubly linked list nodes.
          */
         template <typename T>
-        bool operator<(const IDoublyLinkedListNode<T>& left, const IDoublyLinkedListNode<T>& right)
+        inline bool operator==(
+            const IDoublyLinkedListNode<T>& lhs,
+            const IDoublyLinkedListNode<T>& rhs)
         {
-            return left.GetValue() < right.GetValue();
+            return lhs.GetValue() == rhs.GetValue();
+        }
+
+        /**
+         * Implements an operator not equals for doubly linked list nodes.
+         */
+        template <typename T>
+        inline bool operator!=(
+                const IDoublyLinkedListNode<T>& lhs,
+                const IDoublyLinkedListNode<T>& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Implements an operator less than for doubly linked list nodes.
+         */
+        template <typename T>
+        bool operator<(
+                const IDoublyLinkedListNode<T>& lhs,
+                const IDoublyLinkedListNode<T>& rhs)
+        {
+            return lhs.GetValue() < rhs.GetValue();
+        }
+
+        /**
+         * Implements an operator less than or equal for doubly linked list nodes.
+         */
+        template <typename T>
+        bool operator<=(
+            const IDoublyLinkedListNode<T>& lhs,
+            const IDoublyLinkedListNode<T>& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        /**
+         * Implements an operator greater than for doubly linked list nodes.
+         */
+        template <typename T>
+        inline bool operator>(
+            const IDoublyLinkedListNode<T>& lhs,
+            const IDoublyLinkedListNode<T>& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        /**
+         * Implements an operator greater than or equal for doubly linked list nodes.
+         */
+        template <typename T>
+        bool operator>=(
+            const IDoublyLinkedListNode<T>& lhs,
+            const IDoublyLinkedListNode<T>& rhs)
+        {
+            return !(lhs < rhs);
         }
     }
 }

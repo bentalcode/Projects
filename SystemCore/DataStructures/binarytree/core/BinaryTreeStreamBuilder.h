@@ -20,7 +20,7 @@ namespace datastructures {
             /**
              * Builds a binary tree from a list of nodes.
              */
-            static IBinaryTreeSharedPtr<TKey, TValue> build(const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes);
+            static IBinaryTreeSharedPtr<TKey, TValue> Build(const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes);
 
         private:
             /**
@@ -49,7 +49,7 @@ namespace datastructures {
             /**
              * Builds the binary tree.
              */
-            IBinaryTreeSharedPtr<TKey, TValue> build();
+            virtual IBinaryTreeSharedPtr<TKey, TValue> Build() override;
 
         private:
             /**
@@ -64,13 +64,13 @@ namespace datastructures {
          * Builds a binary tree from a list of nodes.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::build(const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes)
+        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::Build(const std::vector<IBinaryTreeNodeSharedPtr<TKey, TValue>>& nodes)
         {
             IBinaryTreeNodeIteratorSharedPtr<IBinaryTreeNodeSharedPtr<TKey, TValue>> iterator =
-                BinaryTreeNodeListIterator<TKey, TValue>::make(nodes);
+                BinaryTreeNodeListIterator<TKey, TValue>::Make(nodes);
 
             BinaryTreeStreamBuilder builder(*iterator);
-            IBinaryTreeSharedPtr<TKey, TValue> tree = builder.build();
+            IBinaryTreeSharedPtr<TKey, TValue> tree = builder.Build();
 
             return tree;
         }
@@ -96,11 +96,11 @@ namespace datastructures {
          * Builds the binary tree.
          */
         template <typename TKey, typename TValue>
-        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::build()
+        IBinaryTreeSharedPtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::Build()
         {
-            bool previousStatus = m_iterator.GetSkipIterator()->disableSkipElements();
+            bool previousStatus = m_iterator.GetSkipIterator()->DisableSkipElements();
             IBinaryTreeNodeSharedPtr<TKey, TValue> rootNode = read(m_iterator);
-            m_iterator.GetSkipIterator()->setSkipElementsStatus(previousStatus);
+            m_iterator.GetSkipIterator()->SetSkipElementsStatus(previousStatus);
 
             IBinaryTreeSharedPtr<TKey, TValue> tree(new BinaryTree<TKey, TValue>(rootNode));
 
@@ -114,25 +114,25 @@ namespace datastructures {
         IBinaryTreeNodeSharedPtr<TKey, TValue> BinaryTreeStreamBuilder<TKey, TValue>::read(
             IBinaryTreeNodeIterator<IBinaryTreeNodeSharedPtr<TKey, TValue>>& iterator)
         {
-            if (!iterator.hasNext()) {
+            if (!iterator.HasNext()) {
                 return nullptr;
             }
 
-            IBinaryTreeNodeSharedPtr<TKey, TValue> rootNode = iterator.next();
+            IBinaryTreeNodeSharedPtr<TKey, TValue> rootNode = iterator.Next();
 
-            if (iterator.GetSkipIterator()->isSkipElement(typeid(*rootNode))) {
+            if (iterator.GetSkipIterator()->IsSkipElement(typeid(*rootNode))) {
                 return nullptr;
             }
 
-            if (iterator.hasNext()) {
+            if (iterator.HasNext()) {
                 IBinaryTreeNodeSharedPtr<TKey, TValue> childNode = read(iterator);
 
                 if (childNode != nullptr) {
-                    rootNode->GetLeftChild(childNode);
+                    rootNode->SetLeftChild(childNode);
                 }
             }
 
-            if (iterator.hasNext()) {
+            if (iterator.HasNext()) {
                 IBinaryTreeNodeSharedPtr<TKey, TValue> childNode = read(iterator);
 
                 if (childNode != nullptr) {

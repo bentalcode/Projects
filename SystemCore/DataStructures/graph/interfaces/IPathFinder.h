@@ -44,7 +44,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Path Finder.
+         * Defines the SharedPtr ofPath Finder.
          */
         template <typename TKey, typename TValue>
         using IPathFinderSharedPtr = std::shared_ptr<IPathFinder<TKey, TValue>>;

@@ -5,7 +5,7 @@
 using namespace base;
 
 /**
- * Compares strings with start and end indexes.
+ * Compares strings with start and End indexes.
  */
 int StringComparable::Compare(
     const std::wstring& left,
@@ -22,7 +22,7 @@ int StringComparable::Compare(
 }
 
 /**
- * Compares strings with start and end indexes. (Ignore case)
+ * Compares strings with start and End indexes. (Ignore case)
  */
 int StringComparable::CompareIgnoreCase(
     const std::wstring& left,
@@ -73,7 +73,7 @@ int StringComparable::CompareIgnoreCase(
 }
 
 /**
- * Compares buffer strings with start and end indexes.
+ * Compares buffer strings with start and End indexes.
  */
 int StringComparable::Compare(
     wchar_t left[],
@@ -90,7 +90,7 @@ int StringComparable::Compare(
 }
 
 /**
- * Compares buffer strings with start and end indexes. (Ignore case)
+ * Compares buffer strings with start and End indexes. (Ignore case)
  */
 int StringComparable::CompareIgnoreCase(
     wchar_t left[],
@@ -141,7 +141,7 @@ int StringComparable::CompareIgnoreCase(
 }
 
 /**
- * Compares strings with start and end indexes.
+ * Compares strings with start and End indexes.
  */
 int StringComparable::Compare(
     const std::wstring& left,
@@ -177,7 +177,7 @@ int StringComparable::Compare(
 }
 
 /**
- * Compares buffer strings with start and end indexes.
+ * Compares buffer strings with start and End indexes.
  */
 int StringComparable::Compare(
     wchar_t left[],

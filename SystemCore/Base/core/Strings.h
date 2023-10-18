@@ -18,7 +18,7 @@ namespace base
         static void LeftTrim(std::wstring& str);
 
         /**
-         * Trims from end (in place).
+         * Trims from End (in place).
          */
         static void RightTrim(std::wstring& str);
 
@@ -33,7 +33,7 @@ namespace base
         static std::wstring GetLeftTrimed(const std::wstring& str);
 
         /**
-         * Trims from end (copying).
+         * Trims from End (copying).
          */
         static std::wstring GetRightTrimed(const std::wstring& str);
 

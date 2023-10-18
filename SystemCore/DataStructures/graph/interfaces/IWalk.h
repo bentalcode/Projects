@@ -5,7 +5,9 @@
 #include "IReverseIterable.h"
 #include "ISizableCollection.h"
 #include "IVertex.h"
+#include "EqualBuilder.h"
 #include "CompareToBuilder.h"
+#include <list>
 
 namespace datastructures {
     namespace graph {
@@ -15,9 +17,8 @@ namespace datastructures {
          */
         template <typename TKey, typename TValue>
         class IWalk :
-            public base::IIterable<IVertexSharedPtr<TKey, TValue>>,
-            public base::IReverseIterable<IVertexSharedPtr<TKey, TValue>>,
-            public base::ISizableCollection
+            public base::ISizableCollection<IVertexSharedPtr<TKey, TValue>>,
+            public base::IReverseIterable<IVertexSharedPtr<TKey, TValue>>
         {
         public:
             /**
@@ -63,39 +64,104 @@ namespace datastructures {
             virtual bool Visited(const IVertex<TKey, TValue>& vertex) const = 0;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
             virtual std::wstring ToString() const = 0;
         };
 
         /**
-         * Defines the SharedPtr Of Walk.
+         * Defines the SharedPtr ofWalk.
          */
         template <typename TKey, typename TValue>
         using IWalkSharedPtr = std::shared_ptr<IWalk<TKey, TValue>>;
 
         /**
-         * Defines the equivalent operator.
+         * Implements an operator equals for walks.
          */
         template <typename TKey, typename TValue>
-        bool operator<(const IWalk<TKey, TValue>& left, const IWalk<TKey, TValue>& right)
+        inline bool operator==(
+            const IWalk<TKey, TValue>& lhs,
+            const IWalk<TKey, TValue>& rhs)
         {
-            base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> leftIterator = left.getIterator();
-            base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> rightIterator = right.getIterator();
+            base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> lhsIterator = lhs.GetIterator();
+            base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> rhsIterator = rhs.GetIterator();
+
+            base::EqualBuilder equalBuilder;
+            bool status = equalBuilder.WithDereferenceIterator(
+                *lhsIterator,
+                *rhsIterator).Build();
+
+            return status;
+        }
+
+        /**
+         * Implements an operator not equals for walks.
+         */
+        template <typename TKey, typename TValue>
+        inline bool operator!=(
+            const IWalk<TKey, TValue>& lhs,
+            const IWalk<TKey, TValue>& rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        /**
+         * Defines an operator less than for walks.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<(
+            const IWalk<TKey, TValue>& lhs,
+            const IWalk<TKey, TValue>& rhs)
+        {
+            base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> lhsIterator = lhs.GetIterator();
+            base::IIteratorSharedPtr<IVertexSharedPtr<TKey, TValue>> rhsIterator = rhs.GetIterator();
 
             base::CompareToBuilder compareToBuilder;
-            bool status = compareToBuilder.withDereferenceIterator(
-                    *leftIterator,
-                    *rightIterator).Build();
+            int status = compareToBuilder.WithDereferenceIterator(
+                *lhsIterator,
+                *rhsIterator).Build();
 
             return status < 0;
+        }
+
+        /**
+         * Defines an operator less or equal than for walks.
+         */
+        template <typename TKey, typename TValue>
+        bool operator<=(
+            const IWalk<TKey, TValue>& lhs,
+            const IWalk<TKey, TValue>& rhs)
+        {
+            return !(rhs.GetKey() < lhs.GetKey());
+        }
+
+        /**
+         * Defines an operator grater than for walks.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>(
+            const IWalk<TKey, TValue>& lhs,
+            const IWalk<TKey, TValue>& rhs)
+        {
+            return rhs.GetKey() < lhs.GetKey();
+        }
+
+        /**
+         * Defines an operator grater or equal than for walks.
+         */
+        template <typename TKey, typename TValue>
+        bool operator>=(
+            const IWalk<TKey, TValue>& lhs,
+            const IWalk<TKey, TValue>& rhs)
+        {
+            return !(lhs.GetKey() < rhs.GetKey());
         }
 
         /**
          * Serializes the object to an output stream.
          */
         template <typename TKey, typename TValue>
-        std::ostream& operator<<(std::ostream& stream, const IWalk<TKey, TValue>& walk)
+        std::wostream& operator<<(std::wostream& stream, const IWalk<TKey, TValue>& walk)
         {
             stream << walk.ToString();
             return stream;

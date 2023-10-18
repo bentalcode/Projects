@@ -208,7 +208,7 @@ bool StringSearch::EndsWith(
 }
 
 /**
- * Counts the number Of instances of a substring.
+ * Counts the number ofinstances of a substring.
  */
 unsigned int StringSearch::CountSubString(
     const std::wstring& str,
@@ -247,7 +247,7 @@ unsigned int StringSearch::CountSubString(
 }
 
 /**
- * Counts the number Of instances of a substring.
+ * Counts the number ofinstances of a substring.
  */
 unsigned int StringSearch::CountSubString(
     const std::wstring& str,
@@ -291,7 +291,7 @@ unsigned int StringSearch::CountSubString(
 }
 
 /**
- * Counts the number Of instances of a substring from end.
+ * Counts the number ofinstances of a substring from End.
  * Avoid overlapping.
  */
 unsigned int StringSearch::CountSubStringFromEnd(

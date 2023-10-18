@@ -19,7 +19,7 @@ void Strings::LeftTrim(std::wstring& str)
 }
 
 /**
- * Trims from end (in place).
+ * Trims from End (in place).
  */
 void Strings::RightTrim(std::wstring& str)
 {
@@ -52,7 +52,7 @@ std::wstring Strings::GetLeftTrimed(const std::wstring& str)
 }
 
 /**
- * Trims from end (copying).
+ * Trims from End (copying).
  */
 std::wstring Strings::GetRightTrimed(const std::wstring& str)
 {

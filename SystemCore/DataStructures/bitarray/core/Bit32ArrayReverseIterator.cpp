@@ -7,7 +7,7 @@ using namespace datastructures::bitarray;
 /**
  * Creates a reverse iterator of a bit 32 array.
  */
-base::IReverseIteratorSharedPtr<bool> Bit32ArrayReverseIterator::make(const IBit32Array& bitArray)
+base::IReverseIteratorSharedPtr<bool> Bit32ArrayReverseIterator::Make(const IBit32Array& bitArray)
 {
     return std::make_shared<Bit32ArrayReverseIterator>(bitArray);
 }

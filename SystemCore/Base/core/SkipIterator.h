@@ -7,7 +7,7 @@
 namespace base
 {
     /**
-     * The SkipIterator class implements a skip iterator Of elements.
+     * The SkipIterator class implements a skip iterator ofelements.
      */
     class SkipIterator : public ISkipIterator
     {

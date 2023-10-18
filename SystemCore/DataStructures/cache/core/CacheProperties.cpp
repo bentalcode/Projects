@@ -6,7 +6,7 @@ using namespace datastructures::cache;
 /**
  * Creates properties of a cache.
  */
-ICachePropertiesSharedPtr CacheProperties::make(
+ICachePropertiesSharedPtr CacheProperties::Make(
     size_t capacity,
     size_t numberOfItemsForMakingAvailableSpace) {
 
@@ -26,7 +26,7 @@ CacheProperties::CacheProperties(
     {
         long statusCode = base::ErrorCodes::OUT_OF_RANGE;
         std::wstring errorMessage =
-            L"The number Of items for making available space can not exceed the cache capacity.";
+            L"The number ofitems for making available space can not exceed the cache capacity.";
 
         throw CacheException(statusCode, errorMessage);
     }
@@ -48,7 +48,7 @@ size_t CacheProperties::GetCapacity() const
 }
 
 /**
- * Gets the number Of items for making available space in the cache.
+ * Gets the number ofitems for making available space in the cache.
  */
 size_t CacheProperties::GetNumberOfItemsForMakingAvailableSpace() const
 {

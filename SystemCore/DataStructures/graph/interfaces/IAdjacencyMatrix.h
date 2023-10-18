@@ -66,7 +66,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Adjacency Matrix.
+         * Defines the SharedPtr ofAdjacency Matrix.
          */
         template <typename TKey, typename TValue>
         using IAdjacencyMatrixSharedPtr = std::shared_ptr<IAdjacencyMatrix<TKey, TValue>>;
@@ -104,7 +104,7 @@ namespace datastructures {
                     const IVertexSharedPtr<TKey, TValue>& rhs) const override
                 {
                     base::CompareToBuilder compareToBuilder;
-                    return compareToBuilder.withSet(lhs, rhs).Build();
+                    return compareToBuilder.WithSet(lhs, rhs).Build();
                 }
             };
 

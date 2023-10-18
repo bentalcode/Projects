@@ -42,7 +42,7 @@ Uuid::~Uuid()
 }
 
 /**
- * Gets a string representation Of this instance.
+ * Gets a string representation ofthis instance.
  */
 std::wstring Uuid::ToString() const
 {

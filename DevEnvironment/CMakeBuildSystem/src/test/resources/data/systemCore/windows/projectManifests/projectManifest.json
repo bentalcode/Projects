@@ -7,7 +7,8 @@
         "Command",
         "TestBase",
         "UnitTesting",
-        "BaseTest"
+        "BaseTest",
+        "DataStructuresTest"
     ],
     "modules": [
         {
@@ -90,6 +91,24 @@
                 "Base",
                 "TestBase",
                 "UnitTesting"
+            ],
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "DataStructuresTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting",
+                "DataStructures"
             ],
             "cmakeListsManifest": {
                 "presetPaths": [

@@ -37,7 +37,7 @@ namespace base
         /**
          * Builds a new object of type T.
          */
-        virtual T build() = 0;
+        virtual T Build() = 0;
     };
 
     //

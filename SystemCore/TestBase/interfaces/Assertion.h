@@ -273,8 +273,8 @@ namespace test_base {
         const std::wstring& message)
     {
         AssertEqualsWithIterators<T>(
-            *lhs.getIterator(),
-            *rhs.getIterator(),
+            *lhs.GetIterator(),
+            *rhs.GetIterator(),
             message);
     }
 
@@ -289,8 +289,8 @@ namespace test_base {
         const std::wstring& message)
     {
         AssertEqualsWithIterators<T>(
-            *lhs.getIterator(),
-            *rhs.getIterator(),
+            *lhs.GetIterator(),
+            *rhs.GetIterator(),
             comparator,
             message);
     }

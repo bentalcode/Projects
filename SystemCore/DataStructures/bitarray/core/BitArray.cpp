@@ -17,7 +17,7 @@ using namespace datastructures::bitarray;
 /**
  * Creates a bit array.
  */
-IBitArraySharedPtr BitArray::make(size_t numberOfBits)
+IBitArraySharedPtr BitArray::Make(size_t numberOfBits)
 {
     return std::make_shared<BitArray>(numberOfBits);
 }
@@ -40,7 +40,7 @@ BitArray::BitArray(size_t numberOfBits) :
     if (m_size == 0)
     {
         long statusCode = base::ErrorCodes::INVALID_ARG;
-        std::wstring errorMessage = L"The number Of bits Has to be positive.";
+        std::wstring errorMessage = L"The number ofbits Has to be positive.";
 
         throw BitArrayException(statusCode, errorMessage);
     }
@@ -124,7 +124,7 @@ size_t BitArray::Get(size_t index) const
 }
 
 /**
- * Sets the bits to the complement Of its current value.
+ * Sets the bits to the complement ofits current value.
  */
 void BitArray::Flip()
 {
@@ -133,7 +133,7 @@ void BitArray::Flip()
 }
 
 /**
- * Sets the bit at the specified index to the complement Of its current value.
+ * Sets the bit at the specified index to the complement ofits current value.
  */
 void BitArray::Flip(size_t index)
 {
@@ -146,7 +146,7 @@ void BitArray::Flip(size_t index)
 }
 
 /**
- * Returns the number Of bits Set to true.
+ * Returns the number ofbits Set to true.
  */
 size_t BitArray::Cardinality() const
 {
@@ -512,14 +512,14 @@ std::vector<IBit32ArraySharedPtr> BitArray::CreateBitArray(size_t numberOfBits) 
 
     for (size_t i = 0; i < data.size(); ++i)
     {
-        data[i] = Bit32Array::make();
+        data[i] = Bit32Array::Make();
     }
 
     return data;
 }
 
 /**
- * Gets the number Of units.
+ * Gets the number ofunits.
  */
 size_t BitArray::GetNumberOfUnits() const
 {
@@ -527,7 +527,7 @@ size_t BitArray::GetNumberOfUnits() const
 }
 
 /**
- * Calculates the number Of units.
+ * Calculates the number ofunits.
  */
 size_t BitArray::GetNumberOfUnits(size_t numberOfBits) const
 {
@@ -567,7 +567,7 @@ void BitArray::ValidateIndex(size_t index) const
  */
 base::IIteratorSharedPtr<bool> BitArray::GetIterator() const
 {
-    return BitArrayIterator::make(*this);
+    return BitArrayIterator::Make(*this);
 }
 
 /**
@@ -575,5 +575,5 @@ base::IIteratorSharedPtr<bool> BitArray::GetIterator() const
  */
 base::IReverseIteratorSharedPtr<bool> BitArray::GetReverseIterator() const
 {
-    return BitArrayReverseIterator::make(*this);
+    return BitArrayReverseIterator::Make(*this);
 }

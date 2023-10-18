@@ -20,7 +20,7 @@ namespace base {
         static void ValidateIndex(T index, T startIndex, T endIndex);
 
         /**
-         * Gets number Of indexes in a dimension.
+         * Gets number ofindexes in a dimension.
          */
         template <typename T>
         static size_t Size(T startIndex, T endIndex);
@@ -37,7 +37,7 @@ namespace base {
 
             std::wstringstream errorMessageStream;
             errorMessageStream
-                << L"Index: " << std::to_wstring(index) << L" is out Of range."
+                << L"Index: " << std::to_wstring(index) << L" is out ofrange."
                 << L" Specified range: [" << std::to_wstring(startIndex) << L"-" << std::to_wstring(endIndex) << L"]"
                 << ErrorMessages::GetErrorCodeMessage(errorCode);
 
@@ -47,7 +47,7 @@ namespace base {
     }
 
     /**
-     * Gets number Of indexes in a dimension.
+     * Gets number ofindexes in a dimension.
      */
     template <typename T>
     size_t Indexes::Size(T startIndex, T endIndex)

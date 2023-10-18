@@ -54,7 +54,7 @@ namespace base {
             const IEquatableComparator<TValue>& valueComparator);
 
         /**
-         * Determines the relative order Of iterators with an element comparator.
+         * Determines the relative order ofiterators with an element comparator.
          *
          * Returns -1 if the left hand side value is less than the right hand side value.
          * Returns 0 if the left hand side value is equal to the right hand side value.
@@ -165,7 +165,7 @@ namespace base {
     }
 
     /**
-     * Determines the relative order Of iterators with an element comparator.
+     * Determines the relative order ofiterators with an element comparator.
      *
      * Returns -1 if the left hand side value is less than the right hand side value.
      * Returns 0 if the left hand side value is equal to the right hand side value.

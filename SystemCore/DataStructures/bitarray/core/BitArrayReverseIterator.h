@@ -17,7 +17,7 @@ namespace datastructures {
             /**
              * Creates a reverse iterator of a bit array.
              */
-            static base::IReverseIteratorSharedPtr<bool> make(const IBitArray& bitArray);
+            static base::IReverseIteratorSharedPtr<bool> Make(const IBitArray& bitArray);
 
             /**
              * The BitArrayReverseIterator constructor.

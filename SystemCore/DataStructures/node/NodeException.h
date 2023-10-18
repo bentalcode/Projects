@@ -17,8 +17,8 @@ namespace datastructures {
              */
             NodeException(
                 long statusCode,
-                const std::string& statusCode) :
-                DataStructureException(statusCode, statusCode)
+                const std::wstring& errorMessage) :
+                DataStructureException(statusCode, errorMessage)
             {
             }
         };

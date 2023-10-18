@@ -11,7 +11,7 @@ namespace datastructures {
          * The IGraph interface defines a graph.
          */
         template <typename TKey, typename TValue>
-        class IGraph : public base::ICollection
+        class IGraph
         {
         public:
             /**
@@ -52,25 +52,25 @@ namespace datastructures {
             virtual const IAdjacencyMatrix<TKey, TValue>& GetAdjacencyMatrix() const = 0;
 
             /**
-             * Gets the number Of Vertices in the graph.
+             * Gets the number ofVertices in the graph.
              * The order is equal to |V(G)|.
              */
             virtual size_t GetOrder() const = 0;
 
             /**
              * Gets the degree.
-             * A vertex degree is the number Of Edges incident to a vertex. Notated as d(V).
+             * A vertex degree is the number ofEdges incident to a vertex. Notated as d(V).
              */
             virtual size_t GetDegree(IVertexSharedPtr<TKey, TValue> vertex) const = 0;
 
             /**
-             * Gets string representation Of this instance.
+             * Gets string representation ofthis instance.
              */
             virtual std::wstring ToString() const = 0;
         };
 
         /**
-         * Defines the SharedPtr Of Graph.
+         * Defines the SharedPtr ofGraph.
          */
         template <typename TKey, typename TValue>
         using IGraphSharedPtr = std::shared_ptr<IGraph<TKey, TValue>>;

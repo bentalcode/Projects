@@ -54,7 +54,7 @@ namespace base
         const Type2& GetSecond() const;
 
         /**
-         * Gets the string representation Of this instance.
+         * Gets the string representation ofthis instance.
          */
         std::wstring toString() const;
 
@@ -119,7 +119,7 @@ namespace base
     }
 
     /**
-     * Gets the string representation Of this instance.
+     * Gets the string representation ofthis instance.
      */
     template <typename Type1, typename Type2>
     std::wstring Pair<Type1, Type2>::toString() const
@@ -130,7 +130,7 @@ namespace base
     }
 
     /**
-     * Implements an operator not equals for intervals.
+     * Implements an operator not equals for pairs.
      */
     template <typename Type1, typename Type2>
     inline bool operator==(
@@ -143,7 +143,7 @@ namespace base
     }
 
     /**
-     * Implements an operator not equals for intervals.
+     * Implements an operator not equals for pairs.
      */
     template <typename Type1, typename Type2>
     inline bool operator!=(
@@ -154,7 +154,7 @@ namespace base
     }
 
     /**
-     * Implements an operator less than for intervals.
+     * Implements an operator less than for pairs.
      */
     template <typename Type1, typename Type2>
     bool operator<(
@@ -173,7 +173,7 @@ namespace base
     }
 
     /**
-     * Implements an operator less than or equal for date time.
+     * Implements an operator less than or equal for pairs.
      */
     template <typename Type1, typename Type2>
     inline bool operator<=(
@@ -184,7 +184,7 @@ namespace base
     }
 
     /**
-     * Implements an operator greater than for date time.
+     * Implements an operator greater than for pairs.
      */
     template <typename Type1, typename Type2>
     inline bool operator>(
@@ -195,7 +195,7 @@ namespace base
     }
 
     /**
-     * Implements an operator greater than or equal for date time.
+     * Implements an operator greater than or equal for pairs.
      */
     template <typename Type1, typename Type2>
     inline bool operator>=(

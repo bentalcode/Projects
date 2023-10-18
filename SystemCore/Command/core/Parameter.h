@@ -14,7 +14,7 @@ namespace command {
         /**
          * Creates a new parameter.
          */
-        static IParameterSharedPtr make(
+        static IParameterSharedPtr Make(
             const std::wstring& name,
             const std::wstring& value,
             bool defined);

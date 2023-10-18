@@ -28,7 +28,7 @@ bool StringEquality::AreEqualIgnoreCase(
 }
 
 /**
- * Checks whether strings are equals with start and end indexes.
+ * Checks whether strings are equals with start and End indexes.
  */
 bool StringEquality::AreEqual(
     const std::wstring& left,
@@ -45,7 +45,7 @@ bool StringEquality::AreEqual(
 }
 
 /**
- * Checks whether strings are equals with start and end indexes. (Ignore case)
+ * Checks whether strings are equals with start and End indexes. (Ignore case)
  */
 bool StringEquality::AreEqualIgnoreCase(
     const std::wstring& left,
@@ -96,7 +96,7 @@ bool StringEquality::AreEqualIgnoreCase(
 }
 
 /**
- * Checks whether buffer strings are equals with start and end indexes.
+ * Checks whether buffer strings are equals with start and End indexes.
  */
 bool StringEquality::AreEqual(
     const std::wstring::value_type* left,
@@ -113,7 +113,7 @@ bool StringEquality::AreEqual(
 }
 
 /**
- * Checks whether buffer strings are equals with start and end indexes. (Ignore case)
+ * Checks whether buffer strings are equals with start and End indexes. (Ignore case)
  */
 bool StringEquality::AreEqualIgnoreCase(
     const std::wstring::value_type* left,
@@ -164,7 +164,7 @@ bool StringEquality::AreEqualIgnoreCase(
 }
 
 /**
- * Checks whether strings are equals with start and end indexes.
+ * Checks whether strings are equals with start and End indexes.
  */
 bool StringEquality::AreEqual(
     const std::wstring& left,
@@ -206,7 +206,7 @@ bool StringEquality::AreEqual(
 }
 
 /**
- * Checks whether buffer strings are equals with start and end indexes.
+ * Checks whether buffer strings are equals with start and End indexes.
  */
 bool StringEquality::AreEqual(
     const wchar_t* left,

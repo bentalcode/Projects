@@ -44,7 +44,7 @@ namespace datastructures {
 
         protected:
             /**
-             * Makes available space for the specified number Of items.
+             * Makes available space for the specified number ofitems.
              */
             virtual void MakeAvailableSpace(
                 typename AbstractCache<TKey, TValue>::CacheData& cacheData,
@@ -78,15 +78,16 @@ namespace datastructures {
         }
 
         /**
-         * Makes available space for the specified number Of items.
+         * Makes available space for the specified number ofitems.
          */
         template <typename TKey, typename TValue>
         void MRUCache<TKey, TValue>::MakeAvailableSpace(
             typename AbstractCache<TKey, TValue>::CacheData& cacheData,
             size_t numberOfItems)
         {
-            DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>>& usedList = cacheData.usedList();
-            std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>& dataLookup = cacheData.dataLookup();
+            DoublyLinkedList<IKeyValueNodeSharedPtr<TKey, TValue>>& usedList = cacheData.UsedList();
+            std::map<TKey, IDoublyLinkedListNodeSharedPtr<IKeyValueNodeSharedPtr<TKey, TValue>>>& dataLookup =
+                cacheData.DataLookup();
 
             for (size_t i = 0; i < numberOfItems; ++i)
             {

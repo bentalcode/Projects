@@ -66,7 +66,7 @@ namespace datastructures {
             const std::vector<std::pair<TKey, TValue>>& data,
             std::map<TKey, size_t>& indexMap)
         {
-            for (size_t i = 0; i < data.Size(); ++i)
+            for (size_t i = 0; i < data.size(); ++i)
             {
                 indexMap.insert(std::make_pair(data[i].first, i));
             }
@@ -80,15 +80,17 @@ namespace datastructures {
             const std::map<TKey, size_t>& indexMap,
             const TKey& key)
         {
-            typename std::map<TKey, size_t>::const_iterator nodeIterator = indexMap.Find(key);
+            typename std::map<TKey, size_t>::const_iterator nodeIterator = indexMap.find(key);
 
             if (nodeIterator == indexMap.end())
             {
-                std::string errorMessage =
-                    "The index Of node with key: " + std::to_string(key) +
-                    " was not found in the index map.";
+                long statusCode = base::ErrorCodes::OUT_OF_RANGE;
 
-                throw BinaryTreeException(errorMessage);
+                std::wstring errorMessage =
+                    L"The index ofnode with key: " + std::to_wstring(key) +
+                    L" was not found in the index map.";
+
+                throw BinaryTreeException(statusCode, errorMessage);
             }
 
             return nodeIterator->second;

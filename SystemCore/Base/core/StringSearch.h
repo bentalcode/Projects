@@ -97,7 +97,7 @@ namespace base
             bool allowOverlapping);
 
         /**
-         * Counts the number Of instances of a substring.
+         * Counts the number ofinstances of a substring.
          */
         static unsigned int CountSubString(
             const std::wstring& str,
@@ -109,7 +109,7 @@ namespace base
             bool allowOverlapping);
 
         /**
-         * Counts the number of instances of a substring from end.
+         * Counts the number of instances of a substring from End.
          * Avoid overlapping.
          */
         static unsigned int CountSubStringFromEnd(

@@ -44,7 +44,11 @@ set(BASE_INCLUDES_FILES
     ./core/ClassType.h
     ./core/ClassTypes.h
     ./core/CollectionComparator.h
+    ./core/Collections.h
+    ./core/ComparableComparator.h
+    ./core/Comparator.h
     ./core/ComparatorFactory.h
+    ./core/CompareToBuilder.h
     ./core/ConsoleColorSetter.h
     ./core/DereferenceComparableComparator.h
     ./core/DereferenceComparableComparator2.h
@@ -58,7 +62,9 @@ set(BASE_INCLUDES_FILES
     ./core/Interval.h
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
+    ./core/InvertComparator.h
     ./core/IterableComparator.h
+    ./core/IterableObject.h
     ./core/IteratorComparator.h
     ./core/KmpStringSearch.h
     ./core/List.h
@@ -77,6 +83,7 @@ set(BASE_INCLUDES_FILES
     ./core/SetIterator.h
     ./core/SharedPtr.h
     ./core/SkipIterator.h
+    ./core/Sorting.h
     ./core/StringComparable.h
     ./core/StringConversion.h
     ./core/StringEquality.h
@@ -116,6 +123,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IKeyIterable.h
     ./interfaces/IKeyReverseIterable.h
     ./interfaces/IList.h
+    ./interfaces/IMatch.h
     ./interfaces/IMatrix.h
     ./interfaces/IMessageWriter.h
     ./interfaces/IRandomGenerator.h
@@ -145,7 +153,9 @@ set(BASE_SOURCES_FILES
     ./core/AndBitOperator.cpp
     ./core/Bits.cpp
     ./core/ClassType.cpp
+    ./core/Collections.cpp
     ./core/ComparatorFactory.cpp
+    ./core/CompareToBuilder.cpp
     ./core/ConsoleColorSetter.cpp
     ./core/DateTime.cpp
     ./core/EqualBuilder.cpp

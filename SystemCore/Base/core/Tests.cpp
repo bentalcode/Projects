@@ -96,3 +96,5 @@
 #include "ColorType.h"
 #include "KmpStringSearch.h"
 #include "Matrix.h"
+#include "Collections.h"
+#include "Sorting.h"

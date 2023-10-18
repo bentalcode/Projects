@@ -82,7 +82,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines SharedPtr Of Binary Tree.
+         * Defines SharedPtr ofBinary Tree.
          */
         template <typename TKey, typename TValue>
         using IBinaryTreeSharedPtr = std::shared_ptr<IBinaryTree<TKey, TValue>>;
@@ -100,9 +100,9 @@ namespace datastructures {
                 BinaryTreeLevelOrderWithEndNodesIterator<TKey, TValue>::of(right.GetRoot());
 
             base::CompareToBuilder compareToBuilder;
-            bool status = compareToBuilder.withDereferenceIterator(
-                    *lhsIterator,
-                    *rhsIterator).Build();
+            int status = compareToBuilder.WithDereferenceIterator(
+                *lhsIterator,
+                *rhsIterator).Build();
 
             return status < 0;
         }

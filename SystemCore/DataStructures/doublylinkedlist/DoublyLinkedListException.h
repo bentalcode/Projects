@@ -17,7 +17,7 @@ namespace datastructures {
              */
             DoublyLinkedListException(
                 long statusCode,
-                const std::string& errorMessage) :
+                const std::wstring& errorMessage) :
                 DataStructureException(statusCode, errorMessage)
             {
             }

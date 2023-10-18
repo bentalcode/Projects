@@ -14,8 +14,7 @@ namespace datastructures {
          */
         template <typename T>
         class IPriorityQueue :
-            public base::ISizableCollection,
-            public base::IIterable<T>,
+            public base::ISizableCollection<T>,
             public base::IReverseIterable<T>
         {
         public:
@@ -90,7 +89,7 @@ namespace datastructures {
         };
 
         /**
-         * Defines the SharedPtr Of Priority Queue.
+         * Defines the SharedPtr ofPriority Queue.
          */
         template <typename T>
         using IPriorityQueueSharedPtr = std::shared_ptr<IPriorityQueue<T>>;
@@ -111,10 +110,10 @@ namespace datastructures {
                 return false;
             }
 
-            base::IIteratorSharedPtr<T> leftIterator = left.getIterator();
-            base::IIteratorSharedPtr<T> rightIterator = right.getIterator();
+            base::IIteratorSharedPtr<T> leftIterator = left.GetIterator();
+            base::IIteratorSharedPtr<T> rightIterator = right.GetIterator();
 
-            while (leftIterator->hasNext() && rightIterator->hasNext())
+            while (leftIterator->HasNext() && rightIterator->HasNext())
             {
                 const T& leftValue = leftIterator->next();
                 const T& rightValue = rightIterator->next();
@@ -130,7 +129,7 @@ namespace datastructures {
                 }
             }
 
-            assert(!leftIterator->hasNext() && !rightIterator->hasNext());
+            assert(!leftIterator->HasNext() && !rightIterator->HasNext());
 
             return false;
         }

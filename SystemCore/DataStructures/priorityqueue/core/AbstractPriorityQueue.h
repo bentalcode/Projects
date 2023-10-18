@@ -8,6 +8,8 @@
 #include "VectorReverseIterator.h"
 #include "Indexes.h"
 #include "SmartPointers.h"
+#include "PriorityQueueException.h"
+#include <algorithm>
 
 namespace datastructures {
     namespace priority_queue {
@@ -197,7 +199,7 @@ namespace datastructures {
             m_data(data),
             m_elementComparator(elementComparator)
         {
-            base::SmartPointers::validate(elementComparator);
+            base::SmartPointers::Validate<base::IBinaryComparator<T>>(elementComparator);
         }
 
         /**
@@ -233,8 +235,9 @@ namespace datastructures {
         {
             if (Empty())
             {
-                std::string errorMessage = "The priority queue is Empty.";
-                throw PriorityQueueException(errorMessage);
+                long statusCode = base::ErrorCodes::OUT_OF_RANGE;
+                std::wstring errorMessage = L"The priority queue is empty.";
+                throw PriorityQueueException(statusCode, errorMessage);
             }
 
             const T& currentElement = m_data[0];
@@ -258,8 +261,9 @@ namespace datastructures {
         {
             if (Empty())
             {
-                std::string errorMessage = "The priority queue is Empty.";
-                throw PriorityQueueException(errorMessage);
+                long statusCode = base::ErrorCodes::OUT_OF_RANGE;
+                std::wstring errorMessage = L"The priority queue is empty.";
+                throw PriorityQueueException(statusCode, errorMessage);
             }
 
             return m_data[0];
@@ -350,7 +354,7 @@ namespace datastructures {
         template <typename T>
         void AbstractPriorityQueue<T>::UpdateAndHypifyUp(size_t index, const T& element)
         {
-            base::Indexes::validateIndex<size_t>(index, 0, m_data.size() - 1);
+            base::Indexes::ValidateIndex<size_t>(index, 0, m_data.size() - 1);
             m_data[index] = element;
             HeapifyUp(index);
         }
@@ -361,7 +365,7 @@ namespace datastructures {
         template <typename T>
         void AbstractPriorityQueue<T>::UpdateAndHypifyDown(size_t index, const T& element)
         {
-            base::Indexes::validateIndex<size_t>(index, 0, m_data.size() - 1);
+            base::Indexes::ValidateIndex<size_t>(index, 0, m_data.size() - 1);
             m_data[index] = element;
             HeapifyDown(index);
         }
@@ -372,7 +376,7 @@ namespace datastructures {
         template <typename T>
         base::IIteratorSharedPtr<T> AbstractPriorityQueue<T>::GetIterator() const
         {
-            return base::VectorIterator<T>::make(m_data);
+            return base::VectorIterator<T>::Make(m_data);
         }
 
         /**
@@ -381,7 +385,7 @@ namespace datastructures {
         template <typename T>
         base::IReverseIteratorSharedPtr<T> AbstractPriorityQueue<T>::GetReverseIterator() const
         {
-            return base::VectorReverseIterator<T>::make(m_data);
+            return base::VectorReverseIterator<T>::Make(m_data);
         }
 
         /**
@@ -424,7 +428,7 @@ namespace datastructures {
                 const T& currParentValue = m_data[currParentIndex];
                 const T& currChildValue = m_data[currChildIndex];
 
-                int compareStatus = m_elementComparator->compareTo(currParentValue, currChildValue);
+                int compareStatus = m_elementComparator->CompareTo(currParentValue, currChildValue);
 
                 if (compareStatus <= 0)
                 {
@@ -469,7 +473,7 @@ namespace datastructures {
                 {
                     const T& currRightChildValue = m_data[currRightChildIndex];
 
-                    if (m_elementComparator->compareTo(currLeftChildValue, currRightChildValue) <= 0)
+                    if (m_elementComparator->CompareTo(currLeftChildValue, currRightChildValue) <= 0)
                     {
                         currChildIndex = currLeftChildIndex;
                         currChildValue = &currLeftChildValue;
@@ -488,7 +492,7 @@ namespace datastructures {
 
                 const T& currParentValue = m_data[currParentIndex];
 
-                int compareStatus = m_elementComparator->compareTo(currParentValue, *currChildValue);
+                int compareStatus = m_elementComparator->CompareTo(currParentValue, *currChildValue);
 
                 if (compareStatus <= 0)
                 {
