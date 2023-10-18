@@ -341,7 +341,7 @@ public final class CMakeModule implements ICMakeModule {
     public static ICMakeVariable createIncludesVariable(ICMakeModuleContextData contextData) {
         return CMakeVariable.createVariable(
             contextData.getModule().getName(),
-            contextData.getManifest().getCMakeListsManifest().getIncludesProperty());
+            contextData.getCMakeListsManifest().getIncludesProperty());
     }
 
     /**
@@ -350,7 +350,7 @@ public final class CMakeModule implements ICMakeModule {
     public static String createIncludesVariableName(ICMakeModuleContextData contextData) {
         return CMakeVariable.createVariableName(
             contextData.getModule().getName(),
-            contextData.getManifest().getCMakeListsManifest().getIncludesProperty());
+            contextData.getCMakeListsManifest().getIncludesProperty());
     }
 
     /**
@@ -359,7 +359,7 @@ public final class CMakeModule implements ICMakeModule {
     public static ICMakeVariable createSourcesVariable(ICMakeModuleContextData contextData) {
         return CMakeVariable.createVariable(
             contextData.getModule().getName(),
-            contextData.getManifest().getCMakeListsManifest().getSourcesProperty());
+            contextData.getCMakeListsManifest().getSourcesProperty());
     }
 
     /**
@@ -368,6 +368,6 @@ public final class CMakeModule implements ICMakeModule {
     public static String createSourcesVariableName(ICMakeModuleContextData contextData) {
         return CMakeVariable.createVariableName(
             contextData.getModule().getName(),
-            contextData.getManifest().getCMakeListsManifest().getSourcesProperty());
+            contextData.getCMakeListsManifest().getSourcesProperty());
     }
 }

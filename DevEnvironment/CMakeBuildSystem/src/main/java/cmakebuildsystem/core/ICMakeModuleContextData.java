@@ -1,5 +1,6 @@
 package cmakebuildsystem.core;
 
+import cmakebuildsystem.interfaces.ICMakeListsManifest;
 import cmakebuildsystem.interfaces.ICMakeModule;
 import cmakebuildsystem.interfaces.ICMakeModuleManifest;
 import cmakebuildsystem.interfaces.ICMakeVariable;
@@ -18,6 +19,11 @@ public interface ICMakeModuleContextData {
      * Gets the manifest of a module.
      */
     ICMakeModuleManifest getManifest();
+
+    /**
+     * Gets the manifest of a cmakelists.
+     */
+    ICMakeListsManifest getCMakeListsManifest();
 
     /**
      * Gets the dependencies of a module.

@@ -4,15 +4,8 @@ import base.core.Conditions;
 import base.core.Environment;
 import base.core.Paths;
 import base.interfaces.IWriter;
-import cmakebuildsystem.interfaces.ICMakeBuildElement;
-import cmakebuildsystem.interfaces.ICMakeBuildElementList;
-import cmakebuildsystem.interfaces.ICMakeBuildCommand;
-import cmakebuildsystem.interfaces.ICMakeListsFile;
-import cmakebuildsystem.interfaces.ICMakeModule;
-import cmakebuildsystem.interfaces.ICMakeModuleManifest;
-import cmakebuildsystem.interfaces.ICMakeWriter;
-import cmakebuildsystem.interfaces.IEditorSettings;
-import cmakebuildsystem.interfaces.IIgnoreRules;
+import cmakebuildsystem.interfaces.*;
+
 import java.io.Writer;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -91,10 +84,13 @@ public final class CMakeListsWriter implements IWriter {
     private ICMakeListsFile createCMakeListsFile() {
         ICMakeBuildElementList elements = new CMakeBuildElementList();
 
+        ICMakeModuleContextData cmakeModuleContextData = this.contextData.getModuleContextData(this.module.getName());
+        ICMakeListsManifest cmakeListsManifest = cmakeModuleContextData.getCMakeListsManifest();
+
         //
         // Add the cmake version section...
         //
-        ICMakeBuildElement cmakeVersion = new CMakeVersion(this.moduleManifest.getCMakeListsManifest().getCMakeVersion());
+        ICMakeBuildElement cmakeVersion = new CMakeVersion(cmakeListsManifest.getCMakeVersion());
         elements.add(cmakeVersion);
 
         //
@@ -102,21 +98,21 @@ public final class CMakeListsWriter implements IWriter {
         //
         ICMakeBuildElement projectVersion = new ProjectVersion(
             this.module.getName(),
-            this.moduleManifest.getCMakeListsManifest().getProjectVersion());
+            cmakeListsManifest.getProjectVersion());
 
         elements.add(projectVersion);
 
         //
         // Add the build properties section...
         //
-        Path buildPropertiesPath = resolveResourcePath(this.moduleManifest.getCMakeListsManifest().getBuildPropertiesPath());
+        Path buildPropertiesPath = resolveResourcePath(cmakeListsManifest.getBuildPropertiesPath());
         ICMakeBuildElement buildPropertiesSection = this.moduleManifest.getType().createBuildProperties(buildPropertiesPath);
         elements.add(buildPropertiesSection);
 
         //
         // Add the preset section...
         //
-        List<Path> presetPaths = resolveResourcePaths(this.moduleManifest.getCMakeListsManifest().getPresetPaths());
+        List<Path> presetPaths = resolveResourcePaths(cmakeListsManifest.getPresetPaths());
         ICMakeBuildElement presetSection = new CMakeResource(presetPaths);
         elements.add(presetSection);
 
@@ -126,6 +122,7 @@ public final class CMakeListsWriter implements IWriter {
         ICMakeBuildElement moduleSection = new ModuleSection(
             null,
             this.module,
+            cmakeListsManifest,
             this.ignoreRules);
 
         elements.add(moduleSection);
@@ -139,6 +136,7 @@ public final class CMakeListsWriter implements IWriter {
             ICMakeBuildElement dependentModuleLibrary = new ModuleLibrarySection(
                 this.module,
                 dependentModule,
+                cmakeListsManifest,
                 this.ignoreRules);
 
             elements.add(dependentModuleLibrary);
@@ -163,7 +161,7 @@ public final class CMakeListsWriter implements IWriter {
         //
         // Add section for the postset section...
         //
-        List<Path> postsetPaths = resolveResourcePaths(this.moduleManifest.getCMakeListsManifest().getPostsetPaths());
+        List<Path> postsetPaths = resolveResourcePaths(cmakeListsManifest.getPostsetPaths());
         ICMakeBuildElement postsetSection = new CMakeResource(postsetPaths);
         elements.add(postsetSection);
 

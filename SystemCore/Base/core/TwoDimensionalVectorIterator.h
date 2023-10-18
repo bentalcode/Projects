@@ -63,7 +63,7 @@ namespace base
         void MoveNext();
 
         /**
-         * Gets the size of a specific column.
+         * Gets the Size of a specific column.
          */
         std::size_t ColumnSize(std::size_t rowIndex) const;
 
@@ -153,12 +153,12 @@ namespace base
     }
 
     /**
-     * Gets the size of a specific column.
+     * Gets the Size of a specific column.
      */
     template <typename T>
     size_t TwoDimensionalVectorIterator<T>::ColumnSize(std::size_t rowIndex) const
     {
-        return m_data[rowIndex].size();
+        return m_data[rowIndex].Size();
     }
 
 } // namespace base

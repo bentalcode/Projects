@@ -1,11 +1,7 @@
 package cmakebuildsystem.core;
 
 import base.core.Conditions;
-import cmakebuildsystem.interfaces.ICMakeBuildElement;
-import cmakebuildsystem.interfaces.ICMakeBuildElementList;
-import cmakebuildsystem.interfaces.ICMakeModule;
-import cmakebuildsystem.interfaces.ICMakeWriter;
-import cmakebuildsystem.interfaces.IIgnoreRules;
+import cmakebuildsystem.interfaces.*;
 
 /**
  * The ModuleLibrarySection class implements a section of a module library.
@@ -13,6 +9,7 @@ import cmakebuildsystem.interfaces.IIgnoreRules;
 public final class ModuleLibrarySection implements ICMakeBuildElement {
     private final ICMakeModule rootModule;
     private final ICMakeModule module;
+    private final ICMakeListsManifest cmakeListsManifest;
     private final IIgnoreRules ignoreRules;
 
     /**
@@ -21,6 +18,7 @@ public final class ModuleLibrarySection implements ICMakeBuildElement {
     public ModuleLibrarySection(
         ICMakeModule rootModule,
         ICMakeModule module,
+        ICMakeListsManifest cmakeListsManifest,
         IIgnoreRules ignoreRules) {
 
         Conditions.validateNotNull(
@@ -28,11 +26,16 @@ public final class ModuleLibrarySection implements ICMakeBuildElement {
             "The CMake module.");
 
         Conditions.validateNotNull(
+            cmakeListsManifest,
+            "The CMake Lists manifest.");
+
+        Conditions.validateNotNull(
             ignoreRules,
             "The ignore rules.");
 
         this.rootModule = rootModule;
         this.module = module;
+        this.cmakeListsManifest = cmakeListsManifest;
         this.ignoreRules = ignoreRules;
     }
 
@@ -60,6 +63,7 @@ public final class ModuleLibrarySection implements ICMakeBuildElement {
         ICMakeBuildElement module = new ModuleSection(
             this.rootModule,
             this.module,
+            this.cmakeListsManifest,
             this.ignoreRules);
 
         elements.add(module);

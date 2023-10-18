@@ -146,6 +146,7 @@ public final class CMakeProjectDeployer implements IMakeProjectDeployer {
         Set<String> effectiveModules = this.createEffectiveModulesSet(modules, this.manifest.getEffectiveModules());
 
         return new CMakeBuildContextData(
+            this.manifest,
             modules,
             modulesManifests,
             modulesDependencies,

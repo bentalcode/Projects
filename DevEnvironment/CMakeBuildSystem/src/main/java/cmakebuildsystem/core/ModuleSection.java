@@ -31,6 +31,7 @@ import java.util.Set;
 public final class ModuleSection implements ICMakeBuildElement {
     private final ICMakeModule rootModule;
     private final ICMakeModule module;
+    private final ICMakeListsManifest cmakeListsManifest;
     private final IIgnoreRules ignoreRules;
 
     /**
@@ -39,6 +40,7 @@ public final class ModuleSection implements ICMakeBuildElement {
     public ModuleSection(
         ICMakeModule rootModule,
         ICMakeModule module,
+        ICMakeListsManifest cmakeListsManifest,
         IIgnoreRules ignoreRules) {
 
         Conditions.validateNotNull(
@@ -46,11 +48,16 @@ public final class ModuleSection implements ICMakeBuildElement {
             "The CMake module.");
 
         Conditions.validateNotNull(
+            cmakeListsManifest,
+            "The CMake Lists manifest.");
+
+        Conditions.validateNotNull(
             ignoreRules,
             "The ignore rules.");
 
         this.rootModule = rootModule;
         this.module = module;
+        this.cmakeListsManifest = cmakeListsManifest;
         this.ignoreRules = ignoreRules;
     }
 
@@ -102,7 +109,7 @@ public final class ModuleSection implements ICMakeBuildElement {
         //
         ICMakeVariable includesVariable = this.writeModuleIncludesSection(
             writer,
-            moduleContextData.getManifest().getCMakeListsManifest(),
+            this.cmakeListsManifest,
             contextData,
             includesDirectories);
 
@@ -143,7 +150,7 @@ public final class ModuleSection implements ICMakeBuildElement {
 
         ICMakeVariable variable = CMakeVariable.createVariable(
             this.module.getName(),
-            manifest.getCMakeListsManifest().getIncludesFilesProperty());
+            this.cmakeListsManifest.getIncludesFilesProperty());
 
         List<String> filePaths = this.normalizeFilePaths(this.module.getHeaderFilesPaths());
 
@@ -181,7 +188,7 @@ public final class ModuleSection implements ICMakeBuildElement {
 
         ICMakeVariable variable = CMakeVariable.createVariable(
             this.module.getName(),
-            manifest.getCMakeListsManifest().getSourcesFilesProperty());
+            this.cmakeListsManifest.getSourcesFilesProperty());
 
         List<String> files = this.normalizeFilePaths(this.module.getSourceFilesPaths());
 

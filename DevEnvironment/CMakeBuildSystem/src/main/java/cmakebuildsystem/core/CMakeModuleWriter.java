@@ -2,6 +2,7 @@ package cmakebuildsystem.core;
 
 import base.core.Conditions;
 import base.interfaces.IWriter;
+import cmakebuildsystem.interfaces.ICMakeListsManifest;
 import cmakebuildsystem.interfaces.ICMakeModule;
 import cmakebuildsystem.interfaces.ICMakeModuleManifest;
 import cmakebuildsystem.interfaces.ICMakeProjectManifest;

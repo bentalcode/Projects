@@ -48,6 +48,10 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
             name,
             "The module name.");
 
+        Conditions.validateNotNull(
+            properties,
+            "The properties of CMake module.");
+
         this.name = name;
         this.path = path;
         this.type = type;
@@ -148,9 +152,11 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
             reader.readObjectProperty(PROPERTY_PROPERTIES, CMakeModuleProperties.class) :
             CMakeModuleProperties.defaultProperties();
 
-        ICMakeListsManifest cmakeListsManifest = reader.hasProperty(PROPERTY_CMAKE_LISTS_MANIFEST) ?
-            reader.readObjectProperty(PROPERTY_CMAKE_LISTS_MANIFEST, CMakeListsManifest.class) :
-            CMakeListsManifest.defaultManifest();
+        ICMakeListsManifest cmakeListsManifest = null;
+
+        if (reader.hasProperty(PROPERTY_CMAKE_LISTS_MANIFEST)) {
+            cmakeListsManifest = reader.readObjectProperty(PROPERTY_CMAKE_LISTS_MANIFEST, CMakeListsManifest.class);
+        }
 
         List<String> dependentModules = reader.hasProperty(PROPERTY_DEPENDENT_MODULES) ?
             reader.readStringListProperty(PROPERTY_DEPENDENT_MODULES) :

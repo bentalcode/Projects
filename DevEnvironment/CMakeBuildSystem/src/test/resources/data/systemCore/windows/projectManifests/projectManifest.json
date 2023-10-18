@@ -5,85 +5,62 @@
         "Base",
         "DataStructures",
         "MemoryManagement",
+        "Concurrency",
         "Command",
         "TestBase",
         "UnitTesting",
         "BaseTest",
         "DataStructuresTest",
-        "MemoryManagementTest"
+        "MemoryManagementTest",
+        "ConcurrencyTest"
     ],
+    "cmakeListsManifest": {
+        "presetPaths": [
+            "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+        ],
+        "postsetPaths": [
+            "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
+        ]
+    },
     "modules": [
         {
             "name": "Base",
-            "type": "library",
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            "type": "library"
         },
         {
             "name": "DataStructures",
             "type": "library",
             "dependentModules": [
                 "Base"
-            ],
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            ]
         },
         {
             "name": "MemoryManagement",
             "type": "library",
             "dependentModules": [
                 "Base"
-            ],
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            ]
+        },
+        {
+            "name": "Concurrency",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ]
         },
         {
             "name": "Command",
             "type": "library",
             "dependentModules": [
                 "Base"
-            ],
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            ]
         },
         {
             "name": "TestBase",
             "type": "library",
             "dependentModules": [
                 "Base"
-            ],
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            ]
         },
         {
             "name": "UnitTesting",
@@ -91,15 +68,7 @@
             "dependentModules": [
                 "Base",
                 "TestBase"
-            ],
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            ]
         },
         {
             "name": "BaseTest",
@@ -108,15 +77,7 @@
                 "Base",
                 "TestBase",
                 "UnitTesting"
-            ],
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            ]
         },
         {
             "name": "DataStructuresTest",
@@ -126,15 +87,7 @@
                 "TestBase",
                 "UnitTesting",
                 "DataStructures"
-            ],
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            ]
         },
         {
             "name": "MemoryManagementTest",
@@ -144,15 +97,17 @@
                 "TestBase",
                 "UnitTesting",
                 "MemoryManagement"
-            ],
-            "cmakeListsManifest": {
-                "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
-                ],
-                "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
-                ]
-            }
+            ]
+        },
+        {
+            "name": "ConcurrencyTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting",
+                "Concurrency"
+            ]
         }
     ]
 }

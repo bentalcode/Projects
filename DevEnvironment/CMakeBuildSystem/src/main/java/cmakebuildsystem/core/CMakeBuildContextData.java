@@ -2,12 +2,15 @@ package cmakebuildsystem.core;
 
 import base.core.Conditions;
 import cmakebuildsystem.CMakeBuildException;
+import cmakebuildsystem.interfaces.ICMakeListsManifest;
 import cmakebuildsystem.interfaces.ICMakeModule;
 import cmakebuildsystem.interfaces.ICMakeModuleManifest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import cmakebuildsystem.interfaces.ICMakeProjectManifest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +18,7 @@ import org.slf4j.LoggerFactory;
  * The CMakeBuildContextData class implements context data of a cmake build.
  */
 public final class CMakeBuildContextData implements ICMakeBuildContextData {
+    private final ICMakeProjectManifest projectManifest;
     private final Map<String, ICMakeModuleContextData> modulesContextData = new HashMap<>();
     private final Map<String, String> data = new HashMap<>();
 
@@ -24,10 +28,15 @@ public final class CMakeBuildContextData implements ICMakeBuildContextData {
      * The CMakeBuildContextData constructor.
      */
     public CMakeBuildContextData(
+        ICMakeProjectManifest projectManifest,
         Map<String, ICMakeModule> modules,
         Map<String, ICMakeModuleManifest> modulesManifests,
         Map<String, List<ICMakeModule>> modulesDependencies,
         Set<String> effectiveModules) {
+
+        Conditions.validateNotNull(
+            projectManifest,
+            "The project manifest.");
 
         Conditions.validateNotNull(
             modules,
@@ -44,6 +53,8 @@ public final class CMakeBuildContextData implements ICMakeBuildContextData {
         Conditions.validateNotNull(
             effectiveModules,
             "The effective modules set.");
+
+        this.projectManifest = projectManifest;
 
         this.createModulesContextData(
             modules,
@@ -100,13 +111,38 @@ public final class CMakeBuildContextData implements ICMakeBuildContextData {
             List<ICMakeModule> moduleDependencies = modulesDependencies.get(moduleName);
             boolean effectiveModule = effectiveModules.contains(moduleName);
 
+            ICMakeListsManifest cmakeListsManifest = calculateCMakeListManifest(
+                projectManifest,
+                moduleManifest);
+
             ICMakeModuleContextData contextData = new CMakeModuleContextData(
                 module,
                 moduleManifest,
+                cmakeListsManifest,
                 moduleDependencies,
                 effectiveModule);
 
             this.modulesContextData.put(moduleName, contextData);
         }
+    }
+
+    /**
+     * Calculate manifest of CMake Lists.
+     */
+    private static ICMakeListsManifest calculateCMakeListManifest(
+        ICMakeProjectManifest projectManifest,
+        ICMakeModuleManifest moduleManifest) {
+
+        ICMakeListsManifest manifest = moduleManifest.getCMakeListsManifest();
+
+        if (manifest == null) {
+            manifest = projectManifest.getCMakeListsManifest();
+        }
+
+        if (manifest == null) {
+            manifest = CMakeListsManifest.defaultManifest();
+        }
+
+        return manifest;
     }
 }

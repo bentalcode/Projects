@@ -2,6 +2,7 @@ package cmakebuildsystem.core;
 
 import base.core.Conditions;
 import cmakebuildsystem.CMakeBuildException;
+import cmakebuildsystem.interfaces.ICMakeListsManifest;
 import cmakebuildsystem.interfaces.ICMakeModule;
 import cmakebuildsystem.interfaces.ICMakeModuleManifest;
 import cmakebuildsystem.interfaces.ICMakeVariable;
@@ -17,6 +18,7 @@ import org.slf4j.LoggerFactory;
 public final class CMakeModuleContextData implements ICMakeModuleContextData {
     private final ICMakeModule module;
     private final ICMakeModuleManifest manifest;
+    private final ICMakeListsManifest cmakeListsManifest;
     private final List<ICMakeModule> dependencies;
     private final boolean effective;
     private final Map<String, ICMakeVariable> variables = new HashMap<>();
@@ -28,6 +30,7 @@ public final class CMakeModuleContextData implements ICMakeModuleContextData {
     public CMakeModuleContextData(
         ICMakeModule module,
         ICMakeModuleManifest manifest,
+        ICMakeListsManifest cmakeListsManifest,
         List<ICMakeModule> dependencies,
         boolean effective) {
 
@@ -40,11 +43,16 @@ public final class CMakeModuleContextData implements ICMakeModuleContextData {
             "The manifest.");
 
         Conditions.validateNotNull(
+            cmakeListsManifest,
+            "The CMake Lists manifest.");
+
+        Conditions.validateNotNull(
             dependencies,
             "The dependencies.");
 
         this.module = module;
         this.manifest = manifest;
+        this.cmakeListsManifest = cmakeListsManifest;
         this.dependencies = dependencies;
         this.effective = effective;
     }
@@ -63,6 +71,14 @@ public final class CMakeModuleContextData implements ICMakeModuleContextData {
     @Override
     public ICMakeModuleManifest getManifest() {
         return this.manifest;
+    }
+
+    /**
+     * Gets the manifest of a cmakelists.
+     */
+    @Override
+    public ICMakeListsManifest getCMakeListsManifest() {
+        return this.cmakeListsManifest;
     }
 
     /**

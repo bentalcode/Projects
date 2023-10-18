@@ -7,10 +7,7 @@ import base.core.Conditions;
 import base.core.EqualBuilder;
 import base.core.HashCodeBuilder;
 import base.interfaces.IBinaryComparator;
-import cmakebuildsystem.interfaces.ICMakeModuleManifest;
-import cmakebuildsystem.interfaces.ICMakeProjectManifest;
-import cmakebuildsystem.interfaces.IEditorSettings;
-import cmakebuildsystem.interfaces.IIgnoreRules;
+import cmakebuildsystem.interfaces.*;
 import json.core.JsonObjectStream;
 import json.interfaces.IJsonObjectReader;
 import json.interfaces.IJsonObjectWriter;
@@ -25,6 +22,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     private static final String PROPERTY_ROOT_PATH = "rootPath";
     private static final String PROPERTY_EFFECTIVE_MODULES = "effectiveModules";
     private static final String PROPERTY_MODULES = "modules";
+    private static final String PROPERTY_CMAKE_LISTS_MANIFEST = "cmakeListsManifest";
     private static final String PROPERTY_EDITOR_SETTINGS = "editorSettings";
     private static final String PROPERTY_IGNORE_RULES = "ignoreRules";
 
@@ -32,6 +30,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     private final String rootPath;
     private final List<String> effectiveModules;
     private final List<ICMakeModuleManifest> modules;
+    private final ICMakeListsManifest cmakeListsManifest;
     private final IEditorSettings editorSettings;
     private final IIgnoreRules ignoreRules;
 
@@ -46,6 +45,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
         String rootPath,
         List<String> effectiveModules,
         List<ICMakeModuleManifest> modules,
+        ICMakeListsManifest cmakeListsManifest,
         IEditorSettings editorSettings,
         IIgnoreRules ignoreRules) {
 
@@ -77,6 +77,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
         this.rootPath = rootPath;
         this.effectiveModules = effectiveModules;
         this.modules = modules;
+        this.cmakeListsManifest = cmakeListsManifest;
         this.editorSettings = editorSettings;
         this.ignoreRules = ignoreRules;
 
@@ -113,6 +114,14 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
     @Override
     public List<ICMakeModuleManifest> getModulesManifests() {
         return this.modules;
+    }
+
+    /**
+     * Gets the manifest of a CMakeLists file.
+     */
+    @Override
+    public ICMakeListsManifest getCMakeListsManifest() {
+        return this.cmakeListsManifest;
     }
 
     /**
@@ -155,6 +164,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
         writer.writeStringProperty(PROPERTY_ROOT_PATH, this.rootPath);
         writer.writeCollectionProperty(PROPERTY_EFFECTIVE_MODULES, this.effectiveModules);
         writer.writeCollectionProperty(PROPERTY_MODULES, this.modules);
+        writer.writeObjectProperty(PROPERTY_CMAKE_LISTS_MANIFEST, this.cmakeListsManifest);
         writer.writeObjectProperty(PROPERTY_EDITOR_SETTINGS, this.editorSettings);
         writer.writeObjectProperty(PROPERTY_IGNORE_RULES, this.ignoreRules);
     }
@@ -170,7 +180,15 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
             reader.readStringListProperty(PROPERTY_EFFECTIVE_MODULES) :
             new ArrayList<>();
 
-        List<ICMakeModuleManifest> modules = reader.readListProperty(PROPERTY_MODULES, CMakeModuleManifest.class);
+        List<ICMakeModuleManifest> modules = reader.readListProperty(
+            PROPERTY_MODULES,
+            CMakeModuleManifest.class);
+
+        ICMakeListsManifest cmakeListsManifest = null;
+
+        if (reader.hasProperty(PROPERTY_CMAKE_LISTS_MANIFEST)) {
+            cmakeListsManifest = reader.readObjectProperty(PROPERTY_CMAKE_LISTS_MANIFEST, CMakeListsManifest.class);
+        }
 
         IEditorSettings editorSettings = reader.hasProperty(PROPERTY_EDITOR_SETTINGS) ?
             reader.readObjectProperty(PROPERTY_EDITOR_SETTINGS, EditorSettings.class) :
@@ -185,6 +203,7 @@ public final class CMakeProjectManifest implements ICMakeProjectManifest {
             rootPath,
             effectiveModules,
             modules,
+            cmakeListsManifest,
             editorSettings,
             ignoreRules);
     }

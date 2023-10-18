@@ -29,6 +29,11 @@ public interface ICMakeProjectManifest extends IUnaryComparator<ICMakeProjectMan
     List<ICMakeModuleManifest> getModulesManifests();
 
     /**
+     * Gets the manifest of a CMakeLists file.
+     */
+    ICMakeListsManifest getCMakeListsManifest();
+
+    /**
      * Gets settings of an editor.
      */
     IEditorSettings getEditorSettings();

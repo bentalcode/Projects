@@ -190,7 +190,7 @@ namespace base {
             std::wstringstream errorMessageStream;
             errorMessageStream
                 << L"StringUtils::CopyString() Has failed copying a string"
-                << L" since the size of the Destination buffer is not sufficient"
+                << L" since the Size of the Destination buffer is not sufficient"
                 << ErrorMessages::GetErrorCodeMessage(errorCode);
 
             std::wstring errorMessage = errorMessageStream.str();

@@ -44,7 +44,7 @@ namespace base {
         virtual bool Empty() const override;
 
         /**
-         * Gets the size of the collection.
+         * Gets the Size of the collection.
          */
         virtual std::size_t Size() const override;
 

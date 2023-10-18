@@ -92,7 +92,7 @@ namespace base
         virtual bool Empty() const override;
 
         /**
-         * Gets the size of a collection.
+         * Gets the Size of a collection.
          */
         virtual std::size_t Size() const override;
 
@@ -156,7 +156,7 @@ namespace base
         Validate();
 
         m_rowsSize = m_data.size();
-        m_columnsSize = m_data[0].size();
+        m_columnsSize = m_data[0].Size();
     }
 
     /**
@@ -268,7 +268,7 @@ namespace base
         if (row.size() != GetRowsSize())
         {
             long statusCode = ErrorCodes::INVALID_ARG;
-            std::wstring errorMessage = L"The size of the row is not in the correct Size.";
+            std::wstring errorMessage = L"The Size of the row is not in the correct Size.";
             throw BaseException(statusCode, errorMessage);
         }
 
@@ -304,7 +304,7 @@ namespace base
     }
 
     /**
-     * Gets the size of a collection.
+     * Gets the Size of a collection.
      */
     template <typename T>
     std::size_t Matrix<T>::Size() const
@@ -357,11 +357,11 @@ namespace base
         }
 
         std::size_t rows = data.size();
-        std::size_t cols = data[0].size();
+        std::size_t cols = data[0].Size();
 
         for (std::size_t row = 1; row < rows; ++row)
         {
-            std::size_t currCols = data[row].size();
+            std::size_t currCols = data[row].Size();
 
             if (cols != currCols)
             {
