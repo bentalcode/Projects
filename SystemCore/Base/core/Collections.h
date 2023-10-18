@@ -171,13 +171,13 @@ namespace base
             const std::wstring& delimiter);
 
         /**
-         * Converts an iterator to a string by dereferencing it's element.
+         * Converts an iterator to a string by dereferencing it's Element.
          */
         template <typename T>
         static std::wstring DereferenceIteratorToString(IIterator<T>& iterator);
 
         /**
-         * Converts an iterator to a string by dereferencing it's element.
+         * Converts an iterator to a string by dereferencing it's Element.
          */
         template <typename T>
         static std::wstring DereferenceIteratorToString(
@@ -185,7 +185,7 @@ namespace base
             const std::wstring& delimiter);
 
         /**
-         * Converts an iterator to a string by dereferencing it's element.
+         * Converts an iterator to a string by dereferencing it's Element.
          */
         template <typename T>
         static std::wstring DereferenceIteratorToString(
@@ -503,7 +503,7 @@ namespace base
     }
 
     /**
-     * Converts an iterator to a string by dereferencing it's element.
+     * Converts an iterator to a string by dereferencing it's Element.
      */
     template <typename T>
     std::wstring Collections::DereferenceIteratorToString(IIterator<T>& iterator)
@@ -516,7 +516,7 @@ namespace base
     }
 
     /**
-     * Converts an iterator to a string by dereferencing it's element.
+     * Converts an iterator to a string by dereferencing it's Element.
      */
     template <typename T>
     std::wstring Collections::DereferenceIteratorToString(
@@ -531,7 +531,7 @@ namespace base
     }
 
     /**
-     * Converts an iterator to a string by dereferencing it's element.
+     * Converts an iterator to a string by dereferencing it's Element.
      */
     template <typename T>
     std::wstring Collections::DereferenceIteratorToString(

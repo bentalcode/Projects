@@ -42,12 +42,12 @@ namespace base
         IntervalMapIterator& operator=(IntervalMapIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a next Element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the next Element.
          */
         virtual Pair<Interval<Key>, Value> Next() override;
 
@@ -83,7 +83,7 @@ namespace base
     }
 
     /**
-     * Checks whether there is a next element.
+     * Checks whether there is a next Element.
      */
     template <typename Key, typename Value>
     bool IntervalMapIterator<Key, Value>::HasNext() const
@@ -92,7 +92,7 @@ namespace base
     }
 
     /**
-     * Gets the next element.
+     * Gets the next Element.
      */
     template <typename Key, typename Value>
     Pair<Interval<Key>, Value> IntervalMapIterator<Key, Value>::Next()

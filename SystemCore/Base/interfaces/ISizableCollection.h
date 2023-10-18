@@ -35,7 +35,7 @@ namespace base
         ISizableCollection& operator=(ISizableCollection&&) = delete;
 
         /**
-         * Gets the Size of the collection.
+         * Gets the size of the collection.
          */
         virtual size_t Size() const = 0;
 

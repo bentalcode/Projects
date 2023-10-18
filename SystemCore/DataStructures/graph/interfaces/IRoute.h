@@ -81,7 +81,7 @@ namespace datastructures {
          * Serializes the object to an output stream.
          */
         template <typename TKey, typename TValue>
-        std::ostream& operator<<(std::ostream& stream, const IRoute<TKey, TValue>& route)
+        std::wostream& operator<<(std::wostream& stream, const IRoute<TKey, TValue>& route)
         {
             stream << route.ToString();
             return stream;

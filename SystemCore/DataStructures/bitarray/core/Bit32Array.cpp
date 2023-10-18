@@ -245,7 +245,7 @@ void Bit32Array::Enable(size_t startIndex, size_t endIndex)
 }
 
 /**
- * Gets the Size of the bit array.
+ * Gets the size of the bit array.
  */
 size_t Bit32Array::Size() const
 {

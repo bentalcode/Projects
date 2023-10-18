@@ -41,12 +41,12 @@ namespace base
         SetIterator& operator=(SetIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a next Element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the next Element.
          */
         virtual T Next() override;
 

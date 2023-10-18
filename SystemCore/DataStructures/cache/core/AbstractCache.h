@@ -78,7 +78,7 @@ namespace datastructures {
             virtual bool Has(const TKey& key) const override;
 
             /**
-             * Gets the Size of the collection.
+             * Gets the size of the collection.
              */
             virtual size_t Size() const override;
 
@@ -336,7 +336,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the Size of the collection.
+         * Gets the size of the collection.
          */
         template <typename TKey, typename TValue>
         size_t AbstractCache<TKey, TValue>::Size() const

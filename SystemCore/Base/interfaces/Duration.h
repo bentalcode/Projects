@@ -59,7 +59,7 @@ namespace base {
         /**
          * Gets an information of duration.
          */
-        void GetDurationInformation(std::ostream& stream) const;
+        void GetDurationInformation(std::wostream& stream) const;
 
         /**
          * Gets microseconds of duration.
@@ -182,7 +182,7 @@ namespace base {
      * Gets an information of duration.
      */
     template <typename ArithmeticType, typename PeriodType>
-    inline void DurationType<ArithmeticType, PeriodType>::GetDurationInformation(std::ostream& stream) const
+    inline void DurationType<ArithmeticType, PeriodType>::GetDurationInformation(std::wostream& stream) const
     {
         stream << m_duration.count();
     }
@@ -359,8 +359,8 @@ namespace base {
      * Writes information of a duration to an output stream.
      */
     template <typename ArithmeticType, typename PeriodType>
-    inline std::ostream& operator<<(
-        std::ostream& stream,
+    inline std::wostream& operator<<(
+        std::wostream& stream,
         const DurationType<ArithmeticType, PeriodType>& duration)
     {
         duration.GetDurationInformation(stream);

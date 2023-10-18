@@ -74,7 +74,7 @@ namespace datastructures {
             virtual const T& Peek() const override;
 
             /**
-             * Gets the Size of the list.
+             * Gets the size of the list.
              */
             size_t Size() const override;
 
@@ -270,7 +270,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the Size of the list.
+         * Gets the size of the list.
          */
         template <typename T>
         size_t AbstractPriorityQueue<T>::Size() const

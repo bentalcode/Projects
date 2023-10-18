@@ -268,16 +268,16 @@ namespace datastructures {
             queue.push_back(std::make_pair(src, 0));
 
 #ifdef _DEBUG
-            std::function<void(const typename Dqueue::value_type& value, std::ostream& stream)> queueFunctor =
-                [](const typename Dqueue::value_type& value, std::ostream& stream)
+            std::function<void(const typename Dqueue::value_type& value, std::wostream& stream)> queueFunctor =
+                [](const typename Dqueue::value_type& value, std::wostream& stream)
             {
                 IVertexSharedPtr<TKey, TValue> vertex = value.first;
                 long distance = value.second;
                 stream << "Vertex=" << *vertex << ", Distance=" << distance;
             };
 
-            std::function<void(const typename VertexShortestPathsMap<TKey, TValue>::value_type& value, std::ostream& stream)> resultFunctor =
-                [](const typename VertexShortestPathsMap<TKey, TValue>::value_type& value, std::ostream& stream)
+            std::function<void(const typename VertexShortestPathsMap<TKey, TValue>::value_type& value, std::wostream& stream)> resultFunctor =
+                [](const typename VertexShortestPathsMap<TKey, TValue>::value_type& value, std::wostream& stream)
             {
                 IVertexSharedPtr<TKey, TValue> vertex = value.first;
                 long distance = value.second;

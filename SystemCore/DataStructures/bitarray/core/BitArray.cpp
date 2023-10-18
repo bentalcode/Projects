@@ -345,7 +345,7 @@ void BitArray::Enable(size_t startIndex, size_t endIndex)
 }
 
 /**
- * Gets the Size of the collection.
+ * Gets the size of the collection.
  */
 size_t BitArray::Size() const
 {

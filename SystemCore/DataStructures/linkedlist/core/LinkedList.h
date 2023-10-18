@@ -67,7 +67,7 @@ namespace datastructures {
             virtual ILinkedListNodeSharedPtr<T> GetTail() const override;
 
             /**
-             * Gets the Size of the list.
+             * Gets the size of the list.
              */
             virtual size_t Size() const override;
 
@@ -237,7 +237,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the Size of the list.
+         * Gets the size of the list.
          */
         template <typename T>
         size_t LinkedList<T>::Size() const

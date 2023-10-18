@@ -105,7 +105,7 @@ namespace datastructures {
             virtual void Enable(size_t startIndex, size_t endIndex) override;
 
             /**
-             * Gets the Size of the collection.
+             * Gets the size of the collection.
              */
             virtual size_t Size() const override;
 

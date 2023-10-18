@@ -4,11 +4,13 @@
     "effectiveModules": [
         "Base",
         "DataStructures",
+        "MemoryManagement",
         "Command",
         "TestBase",
         "UnitTesting",
         "BaseTest",
-        "DataStructuresTest"
+        "DataStructuresTest",
+        "MemoryManagementTest"
     ],
     "modules": [
         {
@@ -25,6 +27,21 @@
         },
         {
             "name": "DataStructures",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ],
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "MemoryManagement",
             "type": "library",
             "dependentModules": [
                 "Base"
@@ -109,6 +126,24 @@
                 "TestBase",
                 "UnitTesting",
                 "DataStructures"
+            ],
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\cmakeListsPostset.txt"
+                ]
+            }
+        },
+        {
+            "name": "MemoryManagementTest",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "TestBase",
+                "UnitTesting",
+                "MemoryManagement"
             ],
             "cmakeListsManifest": {
                 "presetPaths": [

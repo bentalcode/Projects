@@ -45,7 +45,7 @@ namespace base {
         EqualBuilder& WithStatus(bool status);
 
         /**
-         * With a generic element.
+         * With a generic Element.
          */
         template <typename T>
         EqualBuilder& WithElement(
@@ -53,7 +53,7 @@ namespace base {
             const T& rhs);
 
         /**
-         * With a generic element and a comparator.
+         * With a generic Element and a comparator.
          */
         template <typename T>
         EqualBuilder& WithElement(
@@ -141,7 +141,7 @@ namespace base {
     };
 
     /**
-     * With a generic element.
+     * With a generic Element.
      */
     template <typename T>
     EqualBuilder& EqualBuilder::WithElement(const T& lhs, const T& rhs)
@@ -151,7 +151,7 @@ namespace base {
     }
 
     /**
-     * With a generic element and a comparator.
+     * With a generic Element and a comparator.
      */
     template <typename T>
     EqualBuilder& EqualBuilder::WithElement(

@@ -91,7 +91,7 @@ namespace datastructures {
             virtual bool Visited(const IVertex<TKey, TValue>& vertex) const override;
 
             /**
-             * Gets the Size of the collection.
+             * Gets the size of the collection.
              */
             virtual size_t Size() const override;
 
@@ -260,7 +260,7 @@ namespace datastructures {
         }
 
         /**
-         * Gets the Size of the collection.
+         * Gets the size of the collection.
          */
         template <typename TKey, typename TValue>
         size_t Walk<TKey, TValue>::Size() const

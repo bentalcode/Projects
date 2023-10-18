@@ -49,7 +49,7 @@ namespace base {
         CompareToBuilder& WithStatus(int status);
 
         /**
-         * With a generic element.
+         * With a generic Element.
          */
         template <typename T>
         CompareToBuilder& WithElement(
@@ -57,7 +57,7 @@ namespace base {
             const T& rhs);
 
         /**
-         * With a generic element and a comparator.
+         * With a generic Element and a comparator.
          */
         template <typename T>
         CompareToBuilder& WithElement(
@@ -179,7 +179,7 @@ namespace base {
     };
 
     /**
-     * With a generic element.
+     * With a generic Element.
      */
     template <typename T>
     CompareToBuilder& CompareToBuilder::WithElement(const T& lhs, const T& rhs)
@@ -189,7 +189,7 @@ namespace base {
     }
 
     /**
-     * With a generic element and a comparator.
+     * With a generic Element and a comparator.
      */
     template <typename T>
     CompareToBuilder& CompareToBuilder::WithElement(

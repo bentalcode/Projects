@@ -44,12 +44,12 @@ namespace base
         Pair& operator=(Pair&&) = default;
 
         /**
-         * Gets the first element.
+         * Gets the first Element.
          */
         const Type1& GetFirst() const;
 
         /**
-         * Gets the second element.
+         * Gets the second Element.
          */
         const Type2& GetSecond() const;
 
@@ -101,7 +101,7 @@ namespace base
     }
 
     /**
-     * Gets the first element.
+     * Gets the first Element.
      */
     template <typename Type1, typename Type2>
     const Type1& Pair<Type1, Type2>::GetFirst() const
@@ -110,7 +110,7 @@ namespace base
     }
 
     /**
-     * Gets the second element.
+     * Gets the second Element.
      */
     template <typename Type1, typename Type2>
     const Type2& Pair<Type1, Type2>::GetSecond() const

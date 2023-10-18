@@ -42,12 +42,12 @@ namespace base
         TwoDimensionalVectorIterator& operator=(TwoDimensionalVectorIterator&&) = delete;
 
         /**
-         * Checks whether there is a next element.
+         * Checks whether there is a next Element.
          */
         virtual bool HasNext() const override;
 
         /**
-         * Gets the next element.
+         * Gets the next Element.
          */
         virtual T Next() override;
 
@@ -58,12 +58,12 @@ namespace base
 
     private:
         /**
-         * Moves to the next element.
+         * Moves to the next Element.
          */
         void MoveNext();
 
         /**
-         * Gets the Size of a specific column.
+         * Gets the size of a specific column.
          */
         std::size_t ColumnSize(std::size_t rowIndex) const;
 
@@ -103,7 +103,7 @@ namespace base
     }
 
     /**
-     * Checks whether there is a next element.
+     * Checks whether there is a next Element.
      */
     template <typename T>
     bool TwoDimensionalVectorIterator<T>::HasNext() const
@@ -112,7 +112,7 @@ namespace base
     }
 
     /**
-     * Gets the next element.
+     * Gets the next Element.
      */
     template <typename T>
     T TwoDimensionalVectorIterator<T>::Next()
@@ -136,7 +136,7 @@ namespace base
     }
 
     /**
-     * Moves to the next element.
+     * Moves to the next Element.
      */
     template <typename T>
     void TwoDimensionalVectorIterator<T>::MoveNext()
@@ -153,7 +153,7 @@ namespace base
     }
 
     /**
-     * Gets the Size of a specific column.
+     * Gets the size of a specific column.
      */
     template <typename T>
     size_t TwoDimensionalVectorIterator<T>::ColumnSize(std::size_t rowIndex) const

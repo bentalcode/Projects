@@ -88,7 +88,7 @@ namespace datastructures {
          * Serializes the object to an output stream.
          */
         template <typename TKey, typename TValue>
-        std::ostream& operator<<(std::ostream& stream, const IGraph<TKey, TValue>& graph)
+        std::wostream& operator<<(std::wostream& stream, const IGraph<TKey, TValue>& graph)
         {
             stream << graph.ToString();
             return stream;

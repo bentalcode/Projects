@@ -112,7 +112,7 @@ namespace base
         virtual bool Empty() const override;
 
         /**
-         * Gets the Size of the collection.
+         * Gets the size of the collection.
          */
         virtual size_t Size() const override;
 
@@ -289,7 +289,7 @@ namespace base
     }
 
     /**
-     * Gets the Size of the collection.
+     * Gets the size of the collection.
      */
     template <typename T>
     size_t TwoDimensionalVector<T>::Size() const

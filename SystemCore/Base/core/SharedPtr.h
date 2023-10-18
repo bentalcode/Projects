@@ -84,7 +84,7 @@ namespace base
 
             std::wstringstream errorMessageStream;
             errorMessageStream
-                << L"SharedPtr failed to allocate a reference count holder due to the following error: " << e.what()
+                << L"SharedPtr failed to Allocate a reference count holder due to the following error: " << e.what()
                 << ErrorMessages::GetErrorCodeMessage(errorCode);
 
             std::wstring errorMessage = errorMessageStream.str();
