@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(DataStructuresTest VERSION 1.0)
+project(ConsoleFileFinder VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
     14
@@ -42,68 +42,25 @@ endif()
 add_compile_definitions(WINDOWS=1)
 
 
-set(DATA_STRUCTURES_TEST_INCLUDES_FILES
-    ./binarytree/interfaces/BinaryTreeData.h
-    ./binarytree/interfaces/BinaryTreeTestData.h
-    ./binarytree/interfaces/BinaryTreeTraversalBuilderUnitTest.h
-    ./binarytree/interfaces/BinaryTreeUnitTest.h
-    ./bitarray/interfaces/BitArrayData.h
-    ./bitarray/interfaces/BitArrayTestData.h
-    ./bitarray/interfaces/BitArrayUnitTest.h
-    ./cache/interfaces/CacheTestData.h
-    ./cache/interfaces/CacheUnitTest.h
-    ./doublylinkedlist/interfaces/DoublyLinkedListData.h
-    ./doublylinkedlist/interfaces/DoublyLinkedListTestData.h
-    ./doublylinkedlist/interfaces/DoublyLinkedListUnitTest.h
-    ./graph/interfaces/GraphData.h
-    ./graph/interfaces/GraphTestData.h
-    ./graph/interfaces/GraphUnitTest.h
-    ./interfaces/IteratorOfIteratorCollectionUnitTest.h
-    ./interfaces/TestData.h
-    ./linkedlist/interfaces/LinkedListData.h
-    ./linkedlist/interfaces/LinkedListTestData.h
-    ./linkedlist/interfaces/LinkedListUnitTest.h
-    ./priorityqueue/interfaces/PriorityQueueData.h
-    ./priorityqueue/interfaces/PriorityQueueTestData.h
-    ./priorityqueue/interfaces/PriorityQueueUnitTest.h
+set(CONSOLE_FILE_FINDER_INCLUDES_FILES
+    ./core/ConsoleFileFinderException.h
+    ./core/FileFinder.h
+    ./interfaces/IFileFinder.h
 )
 
-set(DATA_STRUCTURES_TEST_SOURCES_FILES
-    ./binarytree/core/BinaryTreeTestData.cpp
-    ./binarytree/core/BinaryTreeTraversalBuilderUnitTest.cpp
-    ./binarytree/core/BinaryTreeUnitTest.cpp
-    ./bitarray/core/BitArrayData.cpp
-    ./bitarray/core/BitArrayTestData.cpp
-    ./bitarray/core/BitArrayUnitTest.cpp
-    ./cache/core/CacheTestData.cpp
-    ./cache/core/CacheUnitTest.cpp
-    ./core/IteratorOfIteratorCollectionUnitTest.cpp
-    ./core/TestData.cpp
-    ./doublylinkedlist/core/DoublyLinkedListTestData.cpp
-    ./doublylinkedlist/core/DoublyLinkedListUnitTest.cpp
-    ./graph/core/GraphTestData.cpp
-    ./graph/core/GraphUnitTest.cpp
-    ./linkedlist/core/LinkedListTestData.cpp
-    ./linkedlist/core/LinkedListUnitTest.cpp
+set(CONSOLE_FILE_FINDER_SOURCES_FILES
+    ./core/FileFinder.cpp
     ./main.cpp
-    ./priorityqueue/core/PriorityQueueTestData.cpp
-    ./priorityqueue/core/PriorityQueueUnitTest.cpp
 )
 
-set(DATA_STRUCTURES_TEST_INCLUDES
-    ./binarytree/interfaces
-    ./bitarray/interfaces
-    ./cache/interfaces
-    ./doublylinkedlist/interfaces
-    ./graph/interfaces
+set(CONSOLE_FILE_FINDER_INCLUDES
+    ./core
     ./interfaces
-    ./linkedlist/interfaces
-    ./priorityqueue/interfaces
 )
 
-set(DATA_STRUCTURES_TEST_SOURCES
-    ${DATA_STRUCTURES_TEST_INCLUDES_FILES}
-    ${DATA_STRUCTURES_TEST_SOURCES_FILES}
+set(CONSOLE_FILE_FINDER_SOURCES
+    ${CONSOLE_FILE_FINDER_INCLUDES_FILES}
+    ${CONSOLE_FILE_FINDER_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -275,77 +232,6 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
-set(TEST_BASE_INCLUDES_FILES
-    ../TestBase/core/TestBaseException.h
-    ../TestBase/interfaces/Assertion.h
-    ../TestBase/interfaces/IterationTest.h
-    ../TestBase/interfaces/ResourcePaths.h
-)
-
-set(TEST_BASE_SOURCES_FILES
-    ../TestBase/core/Assertion.cpp
-    ../TestBase/core/IterationTest.cpp
-)
-
-set(TEST_BASE_INCLUDES
-    ../TestBase/core
-    ../TestBase/interfaces
-)
-
-set(TEST_BASE_SOURCES
-    ${TEST_BASE_INCLUDES_FILES}
-    ${TEST_BASE_SOURCES_FILES}
-)
-
-add_library(TestBase STATIC
-    ${BASE_SOURCES}
-    ${TEST_BASE_SOURCES}
-)
-
-set(UNIT_TESTING_INCLUDES_FILES
-    ../UnitTesting/core/TestRunningResult.h
-    ../UnitTesting/core/TestRunningResults.h
-    ../UnitTesting/core/UnitTestFunction.h
-    ../UnitTesting/core/UnitTestHandler.h
-    ../UnitTesting/core/UnitTestManager.h
-    ../UnitTesting/core/UnitTestingConsts.h
-    ../UnitTesting/core/UnitTestingException.h
-    ../UnitTesting/interfaces/ITestFunction.h
-    ../UnitTesting/interfaces/ITestRegistration.h
-    ../UnitTesting/interfaces/ITestRunningResult.h
-    ../UnitTesting/interfaces/ITestRunningResults.h
-    ../UnitTesting/interfaces/IUnitTest.h
-    ../UnitTesting/interfaces/IUnitTestHandler.h
-    ../UnitTesting/interfaces/IUnitTestManager.h
-    ../UnitTesting/interfaces/UnitTestBase.h
-    ../UnitTesting/interfaces/UnitTestException.h
-)
-
-set(UNIT_TESTING_SOURCES_FILES
-    ../UnitTesting/core/TestRunningResult.cpp
-    ../UnitTesting/core/TestRunningResults.cpp
-    ../UnitTesting/core/UnitTestBase.cpp
-    ../UnitTesting/core/UnitTestHandler.cpp
-    ../UnitTesting/core/UnitTestManager.cpp
-    ../UnitTesting/core/UnitTestingConsts.cpp
-)
-
-set(UNIT_TESTING_INCLUDES
-    ../UnitTesting/core
-    ../UnitTesting/interfaces
-)
-
-set(UNIT_TESTING_SOURCES
-    ${UNIT_TESTING_INCLUDES_FILES}
-    ${UNIT_TESTING_SOURCES_FILES}
-)
-
-add_library(UnitTesting STATIC
-    ${BASE_SOURCES}
-    ${TEST_BASE_SOURCES}
-    ${UNIT_TESTING_SOURCES}
-)
-
 set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/binarytree/BinaryTreeException.h
     ../DataStructures/binarytree/core/BinaryTree.h
@@ -491,24 +377,97 @@ add_library(DataStructures STATIC
     ${DATA_STRUCTURES_SOURCES}
 )
 
-include_directories(DataStructuresTest
-    ${BASE_INCLUDES}
-    ${DATA_STRUCTURES_INCLUDES}
-    ${DATA_STRUCTURES_TEST_INCLUDES}
-    ${TEST_BASE_INCLUDES}
-    ${UNIT_TESTING_INCLUDES}
+set(COMMAND_INCLUDES_FILES
+    ../Command/core/AbstractCommand.h
+    ../Command/core/CommandConstants.h
+    ../Command/core/CommandException.h
+    ../Command/core/CommandHandler.h
+    ../Command/core/CommandHelpMetadata.h
+    ../Command/core/CommandManifest.h
+    ../Command/core/CommandMessageWriter.h
+    ../Command/core/CommandParameters.h
+    ../Command/core/CommandParser.h
+    ../Command/core/IndexedParameterMetadata.h
+    ../Command/core/InputParameters.h
+    ../Command/core/NamedParameterMetadata.h
+    ../Command/core/NamedParameterParser.h
+    ../Command/core/Parameter.h
+    ../Command/core/ParameterMetadata.h
+    ../Command/core/ParameterSet.h
+    ../Command/core/ParameterSetMetadata.h
+    ../Command/core/ParsingResult.h
+    ../Command/core/ProcessInformation.h
+    ../Command/interfaces/ICommand.h
+    ../Command/interfaces/ICommandHandler.h
+    ../Command/interfaces/ICommandHelpMetadata.h
+    ../Command/interfaces/ICommandManifest.h
+    ../Command/interfaces/ICommandMessageWriter.h
+    ../Command/interfaces/ICommandParameters.h
+    ../Command/interfaces/IIndexedParameterMetadata.h
+    ../Command/interfaces/IInputParameters.h
+    ../Command/interfaces/IMainParser.h
+    ../Command/interfaces/INamedParameterMetadata.h
+    ../Command/interfaces/IParameter.h
+    ../Command/interfaces/IParameterMetadata.h
+    ../Command/interfaces/IParameterSet.h
+    ../Command/interfaces/IParameterSetMetadata.h
+    ../Command/interfaces/IParser.h
+    ../Command/interfaces/IParsingResult.h
+    ../Command/interfaces/IProcessInformation.h
 )
 
-add_executable(DataStructuresTest
+set(COMMAND_SOURCES_FILES
+    ../Command/core/AbstractCommand.cpp
+    ../Command/core/CommandConstants.cpp
+    ../Command/core/CommandHandler.cpp
+    ../Command/core/CommandHelpMetadata.cpp
+    ../Command/core/CommandManifest.cpp
+    ../Command/core/CommandMessageWriter.cpp
+    ../Command/core/CommandParameters.cpp
+    ../Command/core/CommandParser.cpp
+    ../Command/core/IndexedParameterMetadata.cpp
+    ../Command/core/InputParameters.cpp
+    ../Command/core/NamedParameterMetadata.cpp
+    ../Command/core/NamedParameterParser.cpp
+    ../Command/core/Parameter.cpp
+    ../Command/core/ParameterMetadata.cpp
+    ../Command/core/ParameterSet.cpp
+    ../Command/core/ParameterSetMetadata.cpp
+    ../Command/core/ProcessInformation.cpp
+    ../Command/core/Tests.cpp
+)
+
+set(COMMAND_INCLUDES
+    ../Command/core
+    ../Command/interfaces
+)
+
+set(COMMAND_SOURCES
+    ${COMMAND_INCLUDES_FILES}
+    ${COMMAND_SOURCES_FILES}
+)
+
+add_library(Command STATIC
     ${BASE_SOURCES}
-    ${DATA_STRUCTURES_SOURCES}
-    ${DATA_STRUCTURES_TEST_SOURCES}
-    ${TEST_BASE_SOURCES}
-    ${UNIT_TESTING_SOURCES}
+    ${COMMAND_SOURCES}
 )
 
-target_link_libraries(DataStructuresTest
-    PRIVATE Base TestBase UnitTesting DataStructures
+include_directories(ConsoleFileFinder
+    ${BASE_INCLUDES}
+    ${COMMAND_INCLUDES}
+    ${CONSOLE_FILE_FINDER_INCLUDES}
+    ${DATA_STRUCTURES_INCLUDES}
+)
+
+add_executable(ConsoleFileFinder
+    ${BASE_SOURCES}
+    ${COMMAND_SOURCES}
+    ${CONSOLE_FILE_FINDER_SOURCES}
+    ${DATA_STRUCTURES_SOURCES}
+)
+
+target_link_libraries(ConsoleFileFinder
+    PRIVATE Base DataStructures Command
 )
 
 include_directories(

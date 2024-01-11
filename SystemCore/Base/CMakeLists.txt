@@ -36,6 +36,7 @@ add_compile_definitions(WINDOWS=1)
 
 
 set(BASE_INCLUDES_FILES
+    ./core/AbstractPathBuilder.h
     ./core/AlmostComparator.h
     ./core/AndBitOperator.h
     ./core/BaseException.h
@@ -77,6 +78,7 @@ set(BASE_INCLUDES_FILES
     ./core/NotImplementedException.h
     ./core/OrBitOperator.h
     ./core/Pair.h
+    ./core/PathBuilder.h
     ./core/RandomGenerator.h
     ./core/Range.h
     ./core/ReferenceCounterHolder.h
@@ -104,6 +106,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/DateTime.h
     ./interfaces/DateTimeInterval.h
     ./interfaces/Duration.h
+    ./interfaces/Handle.h
     ./interfaces/IBinaryBitOperator.h
     ./interfaces/IBinaryComparator.h
     ./interfaces/IBitOperator.h
@@ -126,6 +129,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IMatch.h
     ./interfaces/IMatrix.h
     ./interfaces/IMessageWriter.h
+    ./interfaces/IPathBuilder.h
     ./interfaces/IRandomGenerator.h
     ./interfaces/IResourceReader.h
     ./interfaces/IReverseIterable.h
@@ -147,9 +151,11 @@ set(BASE_INCLUDES_FILES
     ./interfaces/StringComparisonType.h
     ./interfaces/TimeUnit.h
     ./interfaces/TimeUtils.h
+    ./interfaces/WinHandle.h
 )
 
 set(BASE_SOURCES_FILES
+    ./core/AbstractPathBuilder.cpp
     ./core/AndBitOperator.cpp
     ./core/Bits.cpp
     ./core/ClassType.cpp
@@ -165,6 +171,7 @@ set(BASE_SOURCES_FILES
     ./core/MessageWriter.cpp
     ./core/NotBitOperator.cpp
     ./core/OrBitOperator.cpp
+    ./core/PathBuilder.cpp
     ./core/RandomGenerator.cpp
     ./core/ReferenceCounter.cpp
     ./core/SkipIterator.cpp

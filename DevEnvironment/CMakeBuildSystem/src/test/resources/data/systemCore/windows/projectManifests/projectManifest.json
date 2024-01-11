@@ -12,7 +12,8 @@
         "BaseTest",
         "DataStructuresTest",
         "MemoryManagementTest",
-        "ConcurrencyTest"
+        "ConcurrencyTest",
+        "ConsoleFileFinder"
     ],
     "cmakeListsManifest": {
         "presetPaths": [
@@ -107,6 +108,15 @@
                 "TestBase",
                 "UnitTesting",
                 "Concurrency"
+            ]
+        },
+        {
+            "name": "ConsoleFileFinder",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "DataStructures",
+                "Command"
             ]
         }
     ]

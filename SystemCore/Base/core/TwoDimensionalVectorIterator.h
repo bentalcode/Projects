@@ -158,7 +158,7 @@ namespace base
     template <typename T>
     size_t TwoDimensionalVectorIterator<T>::ColumnSize(std::size_t rowIndex) const
     {
-        return m_data[rowIndex].Size();
+        return m_data[rowIndex].size();
     }
 
 } // namespace base
