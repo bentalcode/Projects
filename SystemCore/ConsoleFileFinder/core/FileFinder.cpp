@@ -9,16 +9,21 @@
 
 using namespace consolefilefinder;
 
-namespace FileFinderFunctors {
+namespace FileFinderImpl {
     /**
-     * The FindHandleReleaserFunctor class implements a functor for releasing a find handle.
+     * The FindHandleReleaser class implements a releaser for releasing a find handle.
      */
-    class FindHandleReleaserFunctor final {
+    class FindHandleReleaser final {
     public:
-        void operator()(HANDLE value) {
-            ::FindClose(value);
+        /**
+         * Releases the handle.
+         */
+        static void Release(HANDLE handle) {
+            ::FindClose(handle);
         }
     };
+
+    using FindHandle = base::Handle<HANDLE, FindHandleReleaser>;
 }
 
 /**
@@ -82,17 +87,11 @@ void FileFinder::FindFilesAndSubDirectories(
     WIN32_FIND_DATAW findDirData;
     HANDLE hSearch = ::FindFirstFileW(dirPattern.c_str(), &findDirData);
 
-    base::Handle<HANDLE>::IReleaserFunctorSharedPtr releaserFunctor =
-        std::make_shared<base::Handle<HANDLE>::IReleaserFunctor>(
-            FileFinderFunctors::FindHandleReleaserFunctor{});
-
-    base::windows::WinHandle findHandle(
-        hSearch,
-        releaserFunctor);
+    FileFinderImpl::FindHandle findHandle(hSearch);
 
     while (true) {
         WIN32_FIND_DATAW findFileData;
-        BOOL status = ::FindNextFileW(findHandle.get(), &findFileData);
+        BOOL status = ::FindNextFileW(findHandle, &findFileData);
 
         if (!status) {
             long errorCode = GetLastError();

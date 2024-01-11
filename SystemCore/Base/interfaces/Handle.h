@@ -1,29 +1,19 @@
 #ifndef HANDLE_H_6b728a41_95bf_4e58_8e60_44222b897716
 #define HANDLE_H_6b728a41_95bf_4e58_8e60_44222b897716
 
-#include <functional>
-#include <memory>
-
 namespace base {
 
     /**
-     * The Handle class implements a generic handle which requires to be released after usage.
+     * The Handle class implements a generic handle which being released automatically
+     * in the destructor of this handle class by using its custom releaser.
      */
-    template<typename HANDLE>
+    template<typename HANDLE, typename RELEASER>
     class Handle {
     public:
-        //
-        // Defines the releaser type...
-        //
-        using IReleaserFunctor = std::function<void(HANDLE)>;
-        using IReleaserFunctorSharedPtr = std::shared_ptr<IReleaserFunctor>;
-
         /**
          * The Handle constructor.
          */
-        Handle(
-            HANDLE value,
-            IReleaserFunctorSharedPtr releaser);
+        explicit Handle(HANDLE handle);
 
         /**
          * The Handle destructor.
@@ -41,45 +31,41 @@ namespace base {
         operator HANDLE() const;
 
     private:
-        HANDLE m_value;
-        IReleaserFunctorSharedPtr m_releaser;
+        HANDLE m_handle;
     };
 
     /**
      * The Handle constructor.
      */
-    template <typename HANDLE>
-    Handle<HANDLE>::Handle(
-        HANDLE value,
-        IReleaserFunctorSharedPtr releaser) :
-        m_value(value),
-        m_releaser(releaser)
+    template <typename HANDLE, typename RELEASER>
+    Handle<HANDLE, RELEASER>::Handle(HANDLE handle) :
+        m_handle(handle)
     {
     }
 
     /**
      * The Handle destructor.
      */
-    template <typename HANDLE>
-    Handle<HANDLE>::~Handle()
+    template <typename HANDLE, typename RELEASER>
+    Handle<HANDLE, RELEASER>::~Handle()
     {
-        m_releaser->operator()(m_value);
+        RELEASER::Release(m_handle);
     }
 
     /**
      * Gets the internal handle.
      */
-    template <typename HANDLE>
-    HANDLE Handle<HANDLE>::get() const {
-        return m_value;
+    template <typename HANDLE, typename RELEASER>
+    HANDLE Handle<HANDLE, RELEASER>::get() const {
+        return m_handle;
     }
 
     /**
      * Gets the internal handle implicitly.
      */
-    template <typename HANDLE>
-    Handle<HANDLE>::operator HANDLE() const {
-        return m_value;
+    template <typename HANDLE, typename RELEASER>
+    Handle<HANDLE, RELEASER>::operator HANDLE() const {
+        return m_handle;
     }
 
 }  // namespace base

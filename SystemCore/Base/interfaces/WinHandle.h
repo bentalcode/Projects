@@ -9,56 +9,20 @@ namespace base {
     namespace windows {
 
         /**
-         * The Handle Releaser functor releases a windows handle.
+         * The Handle Releaser releases a windows handle.
          */
-        class HandleReleaserFunctor final {
+        class HandleReleaser final {
         public:
             /**
-             * The functor logic.
+             * Releases the handle.
              */
-            void operator()(HANDLE value)
+            static void Release(HANDLE handle)
             {
-                ::CloseHandle(value);
+                ::CloseHandle(handle);
             }
         };
 
-        /**
-         * The WinHandle class implements an auto releaser for a HANDLE type.
-         */
-        class WinHandle : public Handle<HANDLE> {
-        public:
-            /**
-             * The WinHandle constructor.
-             */
-            WinHandle(
-                HANDLE handle,
-                IReleaserFunctorSharedPtr releaser =
-                    std::make_shared<Handle<HANDLE>::IReleaserFunctor>(HandleReleaserFunctor{}));
-
-            /**
-             * The WinHandle destructor.
-             */
-            virtual ~WinHandle();
-        };
-
-        /**
-         * The WinHandle constructor.
-         */
-        WinHandle::WinHandle(
-            HANDLE handle,
-            IReleaserFunctorSharedPtr releaser) :
-                Handle<HANDLE>(
-                    handle,
-                    releaser)
-        {
-        }
-
-        /**
-         * The WinHandle destructor.
-         */
-        WinHandle::~WinHandle()
-        {
-        }
+        using WinHandle = Handle<HANDLE, HandleReleaser>;
 
     }  // namespace windows
 
