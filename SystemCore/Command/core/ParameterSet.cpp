@@ -1,4 +1,5 @@
 #include "ParameterSet.h"
+#include "SmartPointers.h"
 
 using namespace command;
 
@@ -7,9 +8,13 @@ using namespace command;
  */
 IParameterSetSharedPtr ParameterSet::Make(
     int index,
+    IParameterSetMetadataSharedPtr metadata,
     const std::vector<IParameterSharedPtr>& parameters)
 {
-    return std::make_shared<ParameterSet>(index, parameters);
+    return std::make_shared<ParameterSet>(
+        index,
+        metadata,
+        parameters);
 }
 
 /**
@@ -17,9 +22,13 @@ IParameterSetSharedPtr ParameterSet::Make(
  */
 ParameterSet::ParameterSet(
     int index,
+    IParameterSetMetadataSharedPtr metadata,
     const std::vector<IParameterSharedPtr>& parameters) :
     m_index(index)
 {
+    base::SmartPointers::Validate(metadata);
+    m_metadata = metadata;
+
     createParameterMap(parameters);
 }
 
@@ -36,6 +45,14 @@ ParameterSet::~ParameterSet()
 int ParameterSet::GetIndex() const
 {
     return m_index;
+}
+
+/**
+ * Gets metadata of a parameter-set.
+ */
+IParameterSetMetadata& ParameterSet::GetMetadata() const
+{
+    return *m_metadata;
 }
 
 /**

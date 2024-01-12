@@ -163,7 +163,7 @@ public final class CommandParser implements IParser<String[], ICommandParameters
      * Checks a result of a help command.
      */
     private IParsingResult<ICommandParameters> createHelpCommandResult() {
-        IParameterSetMetadata parameterSetMetadata = ParameterSetMetadata.createHelpParameterSet();
+        IParameterSetMetadata parameterSetMetadata = ParameterSetMetadata.createHelpMetadata();
         List<IParameter> parameters = ArrayLists.make(CommandHelpMetadata.createHelpParameter());
         IParameterSet parameterSet = new ParameterSet(CommandHelpMetadata.HELP_PARAMETER_SET_INDEX, parameterSetMetadata, parameters);
         return ParsingResult.successfulResult(new CommandParameters(parameterSet));

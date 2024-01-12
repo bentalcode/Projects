@@ -17,15 +17,15 @@ IParameterSetMetadataSharedPtr ParameterSetMetadata::Make(
 /**
  * Creates help parameter-set.
  */
-IParameterSetMetadataSharedPtr ParameterSetMetadata::CreateHelpParameterSet()
+IParameterSetMetadataSharedPtr ParameterSetMetadata::CreateHelpMetadata()
 {
-    std::vector<IIndexedParameterMetadataSharedPtr> indexedParameters;
-    std::vector<INamedParameterMetadataSharedPtr> namedParameters;
-    namedParameters.push_back(CommandHelpMetadata::CreateHelpParameterMetadata());
+    std::vector<IIndexedParameterMetadataSharedPtr> indexedParametersMetadata;
+    std::vector<INamedParameterMetadataSharedPtr> namedParametersMetadata;
+    namedParametersMetadata.push_back(CommandHelpMetadata::CreateHelpParameterMetadata());
 
     return std::make_shared<ParameterSetMetadata>(
-        indexedParameters,
-        namedParameters);
+        indexedParametersMetadata,
+        namedParametersMetadata);
 }
 
 /**

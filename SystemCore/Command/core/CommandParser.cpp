@@ -6,6 +6,7 @@
 #include "InputParameters.h"
 #include "Parameter.h"
 #include "ParameterSet.h"
+#include "ParameterSetMetadata.h"
 #include "CommandHelpMetadata.h"
 #include "ErrorCodes.h"
 
@@ -131,7 +132,7 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> CommandParser::ParseParameterSet
         parameters.push_back(parameter);
     }
 
-    IParameterSetSharedPtr parameterSet = ParameterSet::Make(0, parameters);
+    IParameterSetSharedPtr parameterSet = ParameterSet::Make(0, nullptr, parameters);
     return ParsingResult<IParameterSetSharedPtr>::SuccessfulResult(parameterSet);
 }
 
@@ -153,14 +154,17 @@ bool CommandParser::IsHelpCommand(const IInputParameters& inputParameters)
  */
 IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::CreateHelpCommandResult()
 {
+    int index = CommandConstants::HELP_PARAMETER_SET_INDEX;
+    IParameterSetMetadataSharedPtr metadata = ParameterSetMetadata::CreateHelpMetadata();
+
     std::vector<IParameterSharedPtr> parameters;
     parameters.push_back(CommandHelpMetadata::CreateHelpParameter());
 
     IParameterSetSharedPtr parameterSet = ParameterSet::Make(
-        CommandConstants::HELP_PARAMETER_SET_INDEX,
+        index,
+        metadata,
         parameters);
 
     ICommandParametersSharedPtr commandParameters = CommandParameters::Make(parameterSet);
-
     return ParsingResult<ICommandParametersSharedPtr>::SuccessfulResult(commandParameters);
 }

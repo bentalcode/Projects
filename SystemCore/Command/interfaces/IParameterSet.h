@@ -1,7 +1,8 @@
-#ifndef I_PARAMETERS_SET_H_6e941b19_9b59_4ec6_a11f_02edc3e944d1
-#define I_PARAMETERS_SET_H_6e941b19_9b59_4ec6_a11f_02edc3e944d1
+#ifndef I_PARAMETER_SET_H_6e941b19_9b59_4ec6_a11f_02edc3e944d1
+#define I_PARAMETER_SET_H_6e941b19_9b59_4ec6_a11f_02edc3e944d1
 
 #include "IParameter.h"
+#include "IParameterSetMetadata.h"
 #include <map>
 
 namespace command {
@@ -40,6 +41,11 @@ namespace command {
         virtual int GetIndex() const = 0;
 
         /**
+         * Gets metadata of a parameter-set.
+         */
+        virtual IParameterSetMetadata& GetMetadata() const = 0;
+
+        /**
          * Gets parameters map of a parameter-set.
          */
         virtual const std::map<std::wstring, IParameterSharedPtr>& GetParameters() const = 0;
@@ -63,4 +69,4 @@ namespace command {
 
 } // namespace command
 
-#endif // I_PARAMETERS_SET_H_6e941b19_9b59_4ec6_a11f_02edc3e944d1
+#endif // I_PARAMETER_SET_H_6e941b19_9b59_4ec6_a11f_02edc3e944d1

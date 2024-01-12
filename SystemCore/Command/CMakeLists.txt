@@ -53,6 +53,7 @@ set(COMMAND_INCLUDES_FILES
     ./core/ParameterMetadata.h
     ./core/ParameterSet.h
     ./core/ParameterSetMetadata.h
+    ./core/ParameterSetParser.h
     ./core/ParsingResult.h
     ./core/ProcessInformation.h
     ./interfaces/ICommand.h
@@ -69,6 +70,7 @@ set(COMMAND_INCLUDES_FILES
     ./interfaces/IParameterMetadata.h
     ./interfaces/IParameterSet.h
     ./interfaces/IParameterSetMetadata.h
+    ./interfaces/IParameterSetParser.h
     ./interfaces/IParser.h
     ./interfaces/IParsingResult.h
     ./interfaces/IProcessInformation.h
@@ -91,6 +93,7 @@ set(COMMAND_SOURCES_FILES
     ./core/ParameterMetadata.cpp
     ./core/ParameterSet.cpp
     ./core/ParameterSetMetadata.cpp
+    ./core/ParameterSetParser.cpp
     ./core/ProcessInformation.cpp
     ./core/Tests.cpp
 )

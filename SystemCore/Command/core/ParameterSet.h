@@ -16,6 +16,7 @@ namespace command {
          */
         static IParameterSetSharedPtr Make(
             int index,
+            IParameterSetMetadataSharedPtr metadata,
             const std::vector<IParameterSharedPtr>& parameters);
 
         /**
@@ -23,6 +24,7 @@ namespace command {
          */
         ParameterSet(
             int index,
+            IParameterSetMetadataSharedPtr metadata,
             const std::vector<IParameterSharedPtr>& parameters);
 
         /**
@@ -48,6 +50,11 @@ namespace command {
         virtual int GetIndex() const override;
 
         /**
+         * Gets metadata of a parameter-set.
+         */
+        virtual IParameterSetMetadata& GetMetadata() const override;
+
+        /**
          * Gets parameters map of a parameter-set.
          */
         using ParameterMap = std::map<std::wstring, IParameterSharedPtr>;
@@ -71,6 +78,7 @@ namespace command {
         void createParameterMap(const std::vector<IParameterSharedPtr>& parameters);
 
         int m_index;
+        IParameterSetMetadataSharedPtr m_metadata;
         ParameterMap m_parameters;
     };
 

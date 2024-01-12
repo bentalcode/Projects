@@ -35,15 +35,15 @@ public final class ParameterSetMetadata implements IParameterSetMetadata {
     private final int hashCode;
 
     /**
-     * Creates help parameter-set.
+     * Creates help parameter-set metadata.
      */
-    public static IParameterSetMetadata createHelpParameterSet() {
+    public static IParameterSetMetadata createHelpMetadata() {
         List<IIndexedParameterMetadata> indexedParameterMetadata = ArrayLists.make();
-        List<INamedParameterMetadata> namedParameters = ArrayLists.make(CommandHelpMetadata.createHelpParameterMetadata());
+        List<INamedParameterMetadata> namedParametersMetadata = ArrayLists.make(CommandHelpMetadata.createHelpParameterMetadata());
 
         return new ParameterSetMetadata(
             indexedParameterMetadata,
-            namedParameters);
+            namedParametersMetadata);
     }
 
     /**

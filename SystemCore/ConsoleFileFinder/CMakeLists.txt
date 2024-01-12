@@ -403,6 +403,7 @@ set(COMMAND_INCLUDES_FILES
     ../Command/core/ParameterMetadata.h
     ../Command/core/ParameterSet.h
     ../Command/core/ParameterSetMetadata.h
+    ../Command/core/ParameterSetParser.h
     ../Command/core/ParsingResult.h
     ../Command/core/ProcessInformation.h
     ../Command/interfaces/ICommand.h
@@ -419,6 +420,7 @@ set(COMMAND_INCLUDES_FILES
     ../Command/interfaces/IParameterMetadata.h
     ../Command/interfaces/IParameterSet.h
     ../Command/interfaces/IParameterSetMetadata.h
+    ../Command/interfaces/IParameterSetParser.h
     ../Command/interfaces/IParser.h
     ../Command/interfaces/IParsingResult.h
     ../Command/interfaces/IProcessInformation.h
@@ -441,6 +443,7 @@ set(COMMAND_SOURCES_FILES
     ../Command/core/ParameterMetadata.cpp
     ../Command/core/ParameterSet.cpp
     ../Command/core/ParameterSetMetadata.cpp
+    ../Command/core/ParameterSetParser.cpp
     ../Command/core/ProcessInformation.cpp
     ../Command/core/Tests.cpp
 )

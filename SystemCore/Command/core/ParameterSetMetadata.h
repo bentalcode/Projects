@@ -21,9 +21,9 @@ namespace command {
             const std::vector<INamedParameterMetadataSharedPtr> namedParameters);
 
         /**
-         * Creates help parameter-set.
+         * Creates help parameter-set metadata.
          */
-        static IParameterSetMetadataSharedPtr CreateHelpParameterSet();
+        static IParameterSetMetadataSharedPtr CreateHelpMetadata();
 
         /**
          * The ParameterSetMetadata constructor.
