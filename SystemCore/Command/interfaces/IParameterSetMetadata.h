@@ -11,7 +11,7 @@ namespace command {
     /**
      * The IParameterSetMetadata interface defines a metadata of a parameter set.
      */
-    class IParameterSetMetadata : public base::IIterable<const IParameterMetadata*>
+    class IParameterSetMetadata : public base::IIterable<IParameterMetadataSharedPtr>
     {
     public:
         /**
@@ -39,12 +39,12 @@ namespace command {
         /**
          * Gets indexed parameters of a parameter-set.
          */
-        virtual void GetIndexedParameters(std::vector<IIndexedParameterMetadataSharedPtr>& parameters) const = 0;
+        virtual void GetIndexedParameters(std::vector<IParameterMetadataSharedPtr>& parameters) const = 0;
 
         /**
          * Gets named parameters of a parameter-set.
          */
-        virtual void GetNamedParameters(std::vector<INamedParameterMetadataSharedPtr>& parameters) const = 0;
+        virtual void GetNamedParameters(std::vector<IParameterMetadataSharedPtr>& parameters) const = 0;
     };
 
     //

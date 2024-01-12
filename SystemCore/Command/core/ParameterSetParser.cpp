@@ -49,7 +49,7 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> ParameterSetParser::Parse(const 
     //
     // Parse indexed parameters...
     //
-    std::vector<IIndexedParameterMetadataSharedPtr> indexedParametersMetadata;
+    std::vector<IParameterMetadataSharedPtr> indexedParametersMetadata;
     m_metadata->GetIndexedParameters(indexedParametersMetadata);
 
     const IInputParameters::IndexedParameters& indexedParameters = inputParameters.GetIndexedParameters();
@@ -65,7 +65,7 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> ParameterSetParser::Parse(const 
     //
     // Parse named parameters...
     //
-    std::vector<INamedParameterMetadataSharedPtr> namedParametersMetadata;
+    std::vector<IParameterMetadataSharedPtr> namedParametersMetadata;
     m_metadata->GetNamedParameters(namedParametersMetadata);
 
     const IInputParameters::NamedParameters& namedParameters = inputParameters.GetNamedParameters();
@@ -95,51 +95,15 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> ParameterSetParser::Parse(const 
         m_metadata,
         parameters);
 
-    /*
-
-
-
-
-    IParameterSet parameterSet = new ParameterSet(
-            this.parameterSetIndex,
-            this.metadata,
-            parameters);
-
-    return ParsingResult.successfulResult(parameterSet);*/
+    return ParsingResult<IParameterSetSharedPtr>::SuccessfulResult(parameterSet);
 }
 
 /**
  * Parses indexed parameters of a parameter-set.
  */
 IParsingResultSharedPtr<std::vector<IParameterSharedPtr>> ParameterSetParser::ParseIndexedParameters(
-    const std::vector<IIndexedParameterMetadataSharedPtr>& parametersMetadata,
+    const std::vector<IParameterMetadataSharedPtr>& parametersMetadata,
     const std::vector<std::wstring>& indexedParameters) {
-
-    /*
-if (indexedParameters.size() != parametersMetadata.size()) {
-String errorMessage =
-        "The input parameters for ParameterSet " + this.parameterSetIndex +
-        " of command: " + this.commandName +
-        " includes " + indexedParameters.size() + " indexed parameters," +
-        " while it's metadata includes " + parametersMetadata.size() +
-        "; Exactly " + parametersMetadata.size() + " are required.";
-
-return ParsingResult.failureResult(errorMessage);
-}
-
-List<IParameter> parameters = new ArrayList<>();
-
-int size = indexedParameters.size();
-for (int i = 0; i < size; ++i) {
-String parameterValue = indexedParameters.get(i);
-IIndexedParameterMetadata parameterMetadata = parametersMetadata.get(i);
-
-IParameter parameter = new Parameter(parameterMetadata, parameterValue);
-parameters.add(parameter);
-}
-
-return ParsingResult.successfulResult(parameters);
-     */
 
     return nullptr;
 }
@@ -148,38 +112,8 @@ return ParsingResult.successfulResult(parameters);
  * Parses named parameters of a parameter-set.
  */
 IParsingResultSharedPtr<std::vector<IParameterSharedPtr>> ParameterSetParser::ParseNamedParameters(
-    const std::vector<INamedParameterMetadataSharedPtr>& parametersMetadata,
+    const std::vector<IParameterMetadataSharedPtr>& parametersMetadata,
     const std::map<std::wstring, std::wstring>& namedParameters) {
 
-    /*
-List<IParameter> parameters = new ArrayList<>();
-
-for (INamedParameterMetadata parameterMetadata : parametersMetadata) {
-String parameterValue;
-
-if (namedParameters.containsKey(parameterMetadata.getShortName())) {
-parameterValue = namedParameters.get(parameterMetadata.getShortName());
-}
-else if (namedParameters.containsKey(parameterMetadata.getLongName())) {
-parameterValue = namedParameters.get(parameterMetadata.getLongName());
-}
-else if (parameterMetadata.optional()) {
-parameterValue = parameterMetadata.getDefaultValue();
-}
-else {
-String errorMessage =
-        "The input parameters for ParameterSet " + this.parameterSetIndex +
-        " of command: " + this.commandName +
-        " missing the following named parameter: " + parameterMetadata;
-
-return ParsingResult.failureResult(errorMessage);
-}
-
-IParameter parameter = new Parameter(parameterMetadata, parameterValue);
-parameters.add(parameter);
-}
-
-return ParsingResult.successfulResult(parameters);
-     */
     return nullptr;
 }

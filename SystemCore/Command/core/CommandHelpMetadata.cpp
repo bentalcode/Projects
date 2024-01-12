@@ -18,7 +18,7 @@ IParameterSharedPtr CommandHelpMetadata::CreateHelpParameter()
 /**
  * Creates meta-data of a help parameter.
  */
-INamedParameterMetadataSharedPtr CommandHelpMetadata::CreateHelpParameterMetadata() {
+IParameterMetadataSharedPtr CommandHelpMetadata::CreateHelpParameterMetadata() {
     return NamedParameterMetadata::Make(
         L"Help",
         CommandConstants::HELP_SHORT_NAME,

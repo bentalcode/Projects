@@ -6,7 +6,7 @@ using namespace command;
 /**
  * Creates a parameter meta-data.
  */
-INamedParameterMetadataSharedPtr NamedParameterMetadata::Make(
+IParameterMetadataSharedPtr NamedParameterMetadata::Make(
     const std::wstring& name,
     const std::wstring& shortName,
     const std::wstring& longName,
@@ -24,7 +24,7 @@ INamedParameterMetadataSharedPtr NamedParameterMetadata::Make(
 /**
  * Creates an Optional parameter meta-data.
  */
-INamedParameterMetadataSharedPtr NamedParameterMetadata::MakeOptional(
+IParameterMetadataSharedPtr NamedParameterMetadata::MakeOptional(
     const std::wstring& name,
     const std::wstring& shortName,
     const std::wstring& longName,

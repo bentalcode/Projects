@@ -69,11 +69,6 @@ namespace command {
         virtual const std::wstring& GetDefaultValue() const = 0;
     };
 
-    //
-    // Defines the SharedPtr of Named Parameter Metadata...
-    //
-    using INamedParameterMetadataSharedPtr = std::shared_ptr<INamedParameterMetadata>;
-
 } // namespace command
 
 #endif // I_NAMED_PARAMETER_METADATA_H_edf0365e_d4b5_460f_9be2_c0535206213a

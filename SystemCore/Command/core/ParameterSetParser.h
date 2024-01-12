@@ -56,14 +56,14 @@ namespace command {
          * Parses indexed parameters of a parameter-set.
          */
         IParsingResultSharedPtr<std::vector<IParameterSharedPtr>> ParseIndexedParameters(
-            const std::vector<IIndexedParameterMetadataSharedPtr>& parametersMetadata,
+            const std::vector<IParameterMetadataSharedPtr>& parametersMetadata,
             const std::vector<std::wstring>& indexedParameters);
 
         /**
          * Parses named parameters of a parameter-set.
          */
         IParsingResultSharedPtr<std::vector<IParameterSharedPtr>> ParseNamedParameters(
-            const std::vector<INamedParameterMetadataSharedPtr>& parametersMetadata,
+            const std::vector<IParameterMetadataSharedPtr>& parametersMetadata,
             const std::map<std::wstring, std::wstring>& namedParameters);
 
         std::wstring m_commandName;

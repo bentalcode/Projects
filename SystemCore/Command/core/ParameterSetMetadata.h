@@ -17,8 +17,8 @@ namespace command {
          * Creates parameter set metadata.
          */
         static IParameterSetMetadataSharedPtr Make(
-            const std::vector<IIndexedParameterMetadataSharedPtr> indexedParameters,
-            const std::vector<INamedParameterMetadataSharedPtr> namedParameters);
+            const std::vector<IParameterMetadataSharedPtr> indexedParameters,
+            const std::vector<IParameterMetadataSharedPtr> namedParameters);
 
         /**
          * Creates help parameter-set metadata.
@@ -29,8 +29,8 @@ namespace command {
          * The ParameterSetMetadata constructor.
          */
         ParameterSetMetadata(
-            const std::vector<IIndexedParameterMetadataSharedPtr> indexedParameters,
-            const std::vector<INamedParameterMetadataSharedPtr> namedParameters);
+            const std::vector<IParameterMetadataSharedPtr> indexedParameters,
+            const std::vector<IParameterMetadataSharedPtr> namedParameters);
 
         /**
          * The destructor.
@@ -52,22 +52,22 @@ namespace command {
         /**
          * Gets indexed parameters of a parameter-set.
          */
-        virtual void GetIndexedParameters(std::vector<IIndexedParameterMetadataSharedPtr>& parameters) const override;
+        virtual void GetIndexedParameters(std::vector<IParameterMetadataSharedPtr>& parameters) const override;
 
         /**
          * Gets named parameters of a parameter-set.
          */
-        virtual void GetNamedParameters(std::vector<INamedParameterMetadataSharedPtr>& parameters) const override;
+        virtual void GetNamedParameters(std::vector<IParameterMetadataSharedPtr>& parameters) const override;
 
         /**
          * Gets the iterator.
          */
-        virtual base::IIteratorSharedPtr<const IParameterMetadata*> GetIterator() const override;
+        virtual base::IIteratorSharedPtr<IParameterMetadataSharedPtr> GetIterator() const override;
 
     private:
-        std::vector<IIndexedParameterMetadataSharedPtr> m_indexedParameters;
-        std::vector<INamedParameterMetadataSharedPtr> m_namedParameters;
-        std::vector<const IParameterMetadata*> m_parameters;
+        std::vector<IParameterMetadataSharedPtr> m_indexedParameters;
+        std::vector<IParameterMetadataSharedPtr> m_namedParameters;
+        std::vector<IParameterMetadataSharedPtr> m_parameters;
     };
 
 } // namespace command

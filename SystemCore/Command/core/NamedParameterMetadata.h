@@ -15,7 +15,7 @@ namespace command {
         /**
          * Creates a parameter meta-data.
          */
-        static INamedParameterMetadataSharedPtr Make(
+        static IParameterMetadataSharedPtr Make(
             const std::wstring& name,
             const std::wstring& shortName,
             const std::wstring& longName,
@@ -24,7 +24,7 @@ namespace command {
         /**
          * Creates an Optional parameter meta-data.
          */
-        static INamedParameterMetadataSharedPtr MakeOptional(
+        static IParameterMetadataSharedPtr MakeOptional(
             const std::wstring& name,
             const std::wstring& shortName,
             const std::wstring& longName,

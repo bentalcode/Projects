@@ -22,7 +22,7 @@ namespace command {
         /**
          * Creates meta-data of a help parameter.
          */
-        static INamedParameterMetadataSharedPtr CreateHelpParameterMetadata();
+        static IParameterMetadataSharedPtr CreateHelpParameterMetadata();
 
         /**
          * Creates a new Command help metadata.
