@@ -21,7 +21,7 @@ ConsoleFileFinderCommandParameters::ConsoleFileFinderCommandParameters(const com
     m_path = pathParameter->GetStringValue();
 
     command::IParameterSharedPtr filePatternsParameter = parameterSet.GetParameter(L"filePatterns");
-    filePatternsParameter->GetStringArrayValue(m_filePatterns);
+    //filePatternsParameter->GetStringArrayValue(m_filePatterns);
 }
 
 /**

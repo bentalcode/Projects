@@ -152,7 +152,70 @@ IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> ParameterS
  */
 IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> ParameterSetParser::ParseNamedParameters(
     const std::vector<IParameterMetadataSharedPtr>& parametersMetadata,
-    const std::map<std::wstring, std::wstring>& namedParameters) {
+    const std::map<std::wstring, std::wstring>& namedParameters)
+{
+    size_t numOfParameters = parametersMetadata.size();
+    std::vector<IParameterSharedPtr> parameters;
+    parameters.reserve(numOfParameters);
 
-    return nullptr;
+    for (const IParameterMetadataSharedPtr& parameterMetadata : parametersMetadata) {
+
+        INamedParameterMetadata* namedParameterMetadata;
+        std::wstring parameterValue;
+
+        bool status = ParseNamedParameterValue(
+            *namedParameterMetadata,
+            namedParameters,
+            parameterValue);
+
+        if (!status) {
+            std::wstringstream errorMessageStream;
+            errorMessageStream
+                << L"The input parameters for ParameterSet " << m_parameterSetIndex
+                << L" of command: " << m_commandName
+                << L" missing the following named parameter: " << namedParameterMetadata->GetShortName();
+
+            std::wstring errorMessage = errorMessageStream.str();
+            return ParsingResult<ParameterSetParser::ParameterVectorSharedPtr>::FailureResult(errorMessage);
+        }
+
+        IParameterSharedPtr parameter = Parameter::Make(
+            parameterMetadata,
+            parameterValue);
+
+        parameters.push_back(parameter);
+    }
+
+    ParameterVectorSharedPtr parametersSharedPtr = std::make_shared<ParameterVector>(parameters);
+    return ParsingResult<ParameterVectorSharedPtr>::SuccessfulResult(parametersSharedPtr);
+}
+
+/**
+ * Parses value of parameter.
+ */
+bool ParameterSetParser::ParseNamedParameterValue(
+    INamedParameterMetadata& metadata,
+    const std::map<std::wstring, std::wstring>& namedParameters,
+    std::wstring& value)
+{
+    std::map<std::wstring, std::wstring>::const_iterator parameterIterator = namedParameters.find(L"");
+
+    if (parameterIterator != namedParameters.end()) {
+        value = parameterIterator->second;
+        return true;
+    }
+
+    parameterIterator = namedParameters.find(L"");
+
+    if (parameterIterator != namedParameters.end()) {
+        value = parameterIterator->second;
+        return true;
+    }
+
+    if (metadata.Optional()) {
+        value = metadata.GetDefaultValue();
+        return true;
+    }
+
+    return false;
 }

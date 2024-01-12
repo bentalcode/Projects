@@ -182,7 +182,7 @@ IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::CreateHelpCo
 
     IParameterSetSharedPtr parameterSet = ParameterSet::Make(
         index,
-        metadata,errorMessage
+        metadata,
         parameters);
 
     ICommandParametersSharedPtr commandParameters = CommandParameters::Make(parameterSet);

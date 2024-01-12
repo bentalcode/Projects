@@ -41,10 +41,11 @@ class ConsoleFileFinderCommandManifest final : public command::ICommandManifest
          */
         virtual const command::ICommandHelpMetadata& GetHelpMetadata() const override;
 
-        /**
-         * Gets parameter-sets metadata of a command.
-         */
-        virtual void GetParameterSets(std::vector<command::IParameterSetMetadataSharedPtr>& parameterSets) const override;
+    /**
+     * Gets parameter-sets metadata of a command.
+     */
+    virtual void GetParameterSetsMetadata(
+        std::vector<command::IParameterSetMetadataSharedPtr>& parameterSetsMetadata) const override;
 
     private:
         /**
