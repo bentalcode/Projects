@@ -22,6 +22,6 @@ namespace consolefilefinder {
         }
     };
 
-}
+} // namespace consolefilefinder
 
 #endif // CONSOLE_FILE_FINDER_EXCEPTION_H_d57de0f4_e6a5_4675_aa50_9ce84121077b

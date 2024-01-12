@@ -5,9 +5,19 @@
 using namespace command;
 
 /**
+ * Creates parameter set metadata.
+ */
+IParameterSetMetadataSharedPtr ParameterSetMetadata::Make(
+    const std::vector<IIndexedParameterMetadataSharedPtr> indexedParameters,
+    const std::vector<INamedParameterMetadataSharedPtr> namedParameters)
+{
+    return std::make_shared<ParameterSetMetadata>(indexedParameters, namedParameters);
+}
+
+/**
  * Creates help parameter-set.
  */
-IParameterSetMetadataSharedPtr ParameterSetMetadata::createHelpParameterSet()
+IParameterSetMetadataSharedPtr ParameterSetMetadata::CreateHelpParameterSet()
 {
     std::vector<IIndexedParameterMetadataSharedPtr> indexedParameters;
     std::vector<INamedParameterMetadataSharedPtr> namedParameters;

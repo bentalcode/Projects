@@ -12,6 +12,11 @@ namespace consolefilefinder {
     {
     public:
         /**
+         * Creates a file finder.
+         */
+        static IFileFinderSharedPtr Make();
+
+        /**
          * The FileFinder constructor.
          */
         FileFinder();
@@ -63,6 +68,7 @@ namespace consolefilefinder {
             const std::wstring& left,
             const std::wstring& right);
     };
-}
+
+} // namespace consolefilefinder
 
 #endif // FILE_FINDER_H_4b83d98d_0af2_4c2e_ba3f_c90d98fa5755

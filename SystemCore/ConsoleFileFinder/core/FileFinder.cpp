@@ -27,6 +27,14 @@ namespace FileFinderImpl {
 }
 
 /**
+ * Creates a file finder.
+ */
+IFileFinderSharedPtr FileFinder::Make()
+{
+    return std::make_shared<FileFinder>();
+}
+
+/**
  * The FileFinder constructor.
  */
 FileFinder::FileFinder()

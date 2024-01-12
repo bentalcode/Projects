@@ -14,9 +14,16 @@ namespace command {
     {
     public:
         /**
+         * Creates parameter set metadata.
+         */
+        static IParameterSetMetadataSharedPtr Make(
+            const std::vector<IIndexedParameterMetadataSharedPtr> indexedParameters,
+            const std::vector<INamedParameterMetadataSharedPtr> namedParameters);
+
+        /**
          * Creates help parameter-set.
          */
-        static IParameterSetMetadataSharedPtr createHelpParameterSet();
+        static IParameterSetMetadataSharedPtr CreateHelpParameterSet();
 
         /**
          * The ParameterSetMetadata constructor.
