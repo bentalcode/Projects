@@ -146,7 +146,7 @@ bool CommandHandler::RunCommand(ICommand& command, int argc, wchar_t* argv[])
  */
 IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandHandler::ParseParameters(int argc, wchar_t* argv[])
 {
-    CommandParser parser;
+    CommandParser parser(m_manifest);
     IParsingResultSharedPtr<ICommandParametersSharedPtr> result = parser.Parse(argc, argv);
     return result;
 }
@@ -157,5 +157,5 @@ IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandHandler::ParseParame
 bool CommandHandler::IsHelpCommand(const ICommandParameters& parameters)
 {
     const IParameterSet& parameterSet = parameters.GetParameterSet();
-    return parameters.GetParameterSet().GetIndex() == CommandConstants::HELP_PARAMETER_SET_INDEX;
+    return parameterSet.GetIndex() == CommandConstants::HELP_PARAMETER_SET_INDEX;
 }

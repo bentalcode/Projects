@@ -5,6 +5,7 @@
 #include <vector>
 
 namespace command {
+    class IParameterMetadata;
 
     /**
      * The IParameter interface defines a parameter.
@@ -35,9 +36,9 @@ namespace command {
         IParameter& operator=(IParameter&&) = delete;
 
         /**
-         * Gets the name of the parameter.
+         * Gets metadata of the parameter.
          */
-        virtual const std::wstring& GetName() const = 0;
+        virtual const IParameterMetadata& GetMetadata() const = 0;
 
         /**
          * Checks whether the value of the parameter is defined.

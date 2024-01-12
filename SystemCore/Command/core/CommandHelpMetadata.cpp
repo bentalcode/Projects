@@ -9,9 +9,12 @@ using namespace command;
  */
 IParameterSharedPtr CommandHelpMetadata::CreateHelpParameter()
 {
+    IParameterMetadataSharedPtr metadata = CreateHelpParameterMetadata();
+    std::wstring value;
+
     return std::make_shared<Parameter>(
-        CommandConstants::HELP_SHORT_NAME,
-        CommandConstants::HELP_LONG_NAME,
+        metadata,
+        value,
         false);
 }
 

@@ -93,7 +93,10 @@ const ICommandHelpMetadata& CommandManifest::GetHelpMetadata() const
 /**
  * Gets parameter-sets metadata of a command.
  */
-void CommandManifest::GetParameterSets(std::vector<IParameterSetMetadataSharedPtr>& parameterSets) const
+void CommandManifest::GetParameterSetsMetadata(std::vector<IParameterSetMetadataSharedPtr>& parameterSetsMetadata) const
 {
-    parameterSets.insert(parameterSets.end(), m_parameterSetMetadata.begin(), m_parameterSetMetadata.end());
+    parameterSetsMetadata.insert(
+        parameterSetsMetadata.end(),
+        m_parameterSetMetadata.begin(),
+        m_parameterSetMetadata.end());
 }

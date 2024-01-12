@@ -4,6 +4,7 @@
 #include "IMainParser.h"
 #include "ICommandParameters.h"
 #include "IInputParameters.h"
+#include "ICommandManifest.h"
 
 namespace command {
 
@@ -16,7 +17,7 @@ namespace command {
         /**
          * The CommandParser Constructor.
          */
-        CommandParser();
+        explicit CommandParser(ICommandManifestSharedPtr manifest);
 
         /**
          * The CommandParser destructor.
@@ -75,6 +76,11 @@ namespace command {
          * Creates a result of a help Command.
          */
         static IParsingResultSharedPtr<ICommandParametersSharedPtr> CreateHelpCommandResult();
+
+        //
+        // The manifest of command...
+        //
+        ICommandManifestSharedPtr m_manifest;
     };
 
 } // namespace command

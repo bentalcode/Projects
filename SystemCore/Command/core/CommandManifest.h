@@ -74,7 +74,7 @@ namespace command {
         /**
          * Gets parameter-sets metadata of a command.
          */
-        virtual void GetParameterSets(std::vector<IParameterSetMetadataSharedPtr>& parameterSets) const override;
+        virtual void GetParameterSetsMetadata(std::vector<IParameterSetMetadataSharedPtr>& parameterSets) const override;
 
     private:
         std::wstring m_name;

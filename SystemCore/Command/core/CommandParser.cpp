@@ -7,7 +7,9 @@
 #include "Parameter.h"
 #include "ParameterSet.h"
 #include "ParameterSetMetadata.h"
+#include "ParameterSetParser.h"
 #include "CommandHelpMetadata.h"
+#include "SmartPointers.h"
 #include "ErrorCodes.h"
 
 using namespace command;
@@ -15,8 +17,10 @@ using namespace command;
 /**
  * The CommandParser constructor.
  */
-CommandParser::CommandParser()
+CommandParser::CommandParser(ICommandManifestSharedPtr manifest)
 {
+    base::SmartPointers::Validate(manifest);
+    m_manifest = manifest;
 }
 
 /**
@@ -74,8 +78,8 @@ IParsingResultSharedPtr<IInputParametersSharedPtr> CommandParser::ParseInputPara
 
     NamedParameterParser namedParameterParser;
 
-    for (int i = 1; i < argc; ++i) {
-        std::wstring arg(argv[i]);
+    for (size_t index = 1; index < argc; ++index) {
+        std::wstring arg(argv[index]);
 
         if (NamedParameterParser::IsNamedParameter(arg)) {
             IParsingResultSharedPtr<base::PairSharedPtr<std::wstring, std::wstring>> namedParameterResult =
@@ -110,7 +114,9 @@ IParsingResultSharedPtr<IInputParametersSharedPtr> CommandParser::ParseInputPara
         }
     }
 
-    IInputParametersSharedPtr inputParameters = InputParameters::Make(indexedParameters, namedParameters);
+    IInputParametersSharedPtr inputParameters = InputParameters::Make(
+        indexedParameters,
+        namedParameters);
 
     return ParsingResult<IInputParametersSharedPtr>::SuccessfulResult(inputParameters);
 }
@@ -120,20 +126,34 @@ IParsingResultSharedPtr<IInputParametersSharedPtr> CommandParser::ParseInputPara
  */
 IParsingResultSharedPtr<IParameterSetSharedPtr> CommandParser::ParseParameterSets(const IInputParameters& inputParameters)
 {
-    std::vector<IParameterSharedPtr> parameters;
+    int parameterSetIndex = 0;
 
-    const IInputParameters::NamedParameters& namedParameters = inputParameters.GetNamedParameters();
+    std::vector<IParameterSetMetadataSharedPtr> parameterSetsMetadata;
+    m_manifest->GetParameterSetsMetadata(parameterSetsMetadata);
 
-    for (IInputParameters::NamedParameters::const_iterator i = namedParameters.begin();
-         i != namedParameters.end();
-         ++i)
-    {
-        IParameterSharedPtr parameter = Parameter::Make(i->first, i->second, true);
-        parameters.push_back(parameter);
+    for (const IParameterSetMetadataSharedPtr& parameterSetMetadata : parameterSetsMetadata) {
+        IParameterSetParserSharedPtr parameterSetParser = ParameterSetParser::Make(
+            m_manifest->GetName(),
+            parameterSetIndex,
+            parameterSetMetadata);
+
+        IParsingResultSharedPtr<IParameterSetSharedPtr> parameterSetResult = parameterSetParser->Parse(
+            inputParameters);
+
+        if (parameterSetResult->Succeeded()) {
+            return parameterSetResult;
+        }
+
+        ++parameterSetIndex;
     }
 
-    IParameterSetSharedPtr parameterSet = ParameterSet::Make(0, nullptr, parameters);
-    return ParsingResult<IParameterSetSharedPtr>::SuccessfulResult(parameterSet);
+    std::wstringstream errorMessageStream;
+    errorMessageStream
+        << L"The input parameters of command: " << m_manifest->GetName()
+        << L" do not match any of the defined parameter sets in the manifest of the command.";
+
+    std::wstring errorMessage = errorMessageStream.str();
+    return ParsingResult<IParameterSetSharedPtr>::FailureResult(errorMessage);
 }
 
 /**
@@ -162,7 +182,7 @@ IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::CreateHelpCo
 
     IParameterSetSharedPtr parameterSet = ParameterSet::Make(
         index,
-        metadata,
+        metadata,errorMessage
         parameters);
 
     ICommandParametersSharedPtr commandParameters = CommandParameters::Make(parameterSet);

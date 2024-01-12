@@ -1,8 +1,10 @@
 #include "ParameterSetParser.h"
 #include "IInputParameters.h"
 #include "ParameterSet.h"
+#include "Parameter.h"
 #include "ParsingResult.h"
 #include "SmartPointers.h"
+#include <sstream>
 
 using namespace command;
 
@@ -52,9 +54,10 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> ParameterSetParser::Parse(const 
     std::vector<IParameterMetadataSharedPtr> indexedParametersMetadata;
     m_metadata->GetIndexedParameters(indexedParametersMetadata);
 
-    const IInputParameters::IndexedParameters& indexedParameters = inputParameters.GetIndexedParameters();
+    const IInputParameters::IndexedParameters& indexedParameters =
+        inputParameters.GetIndexedParameters();
 
-    IParsingResultSharedPtr<std::vector<IParameterSharedPtr>> indexedParametersResult = ParseIndexedParameters(
+    IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> indexedParametersResult = ParseIndexedParameters(
         indexedParametersMetadata,
         indexedParameters);
 
@@ -70,7 +73,7 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> ParameterSetParser::Parse(const 
 
     const IInputParameters::NamedParameters& namedParameters = inputParameters.GetNamedParameters();
 
-    IParsingResultSharedPtr<std::vector<IParameterSharedPtr>> namedParametersResult = ParseNamedParameters(
+    IParsingResultSharedPtr<ParameterVectorSharedPtr> namedParametersResult = ParseNamedParameters(
         namedParametersMetadata,
         namedParameters);
 
@@ -82,13 +85,13 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> ParameterSetParser::Parse(const 
     // Create resultant parameter set...
     //
     std::vector<IParameterSharedPtr> parameters(
-        indexedParametersResult->GetResult().begin(),
-        indexedParametersResult->GetResult().end());
+        indexedParametersResult->GetResult()->begin(),
+        indexedParametersResult->GetResult()->end());
 
     parameters.insert(
         parameters.end(),
-        namedParametersResult->GetResult().begin(),
-        namedParametersResult->GetResult().end());
+        namedParametersResult->GetResult()->begin(),
+        namedParametersResult->GetResult()->end());
 
     IParameterSetSharedPtr parameterSet = ParameterSet::Make(
         m_parameterSetIndex,
@@ -101,17 +104,53 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> ParameterSetParser::Parse(const 
 /**
  * Parses indexed parameters of a parameter-set.
  */
-IParsingResultSharedPtr<std::vector<IParameterSharedPtr>> ParameterSetParser::ParseIndexedParameters(
+IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> ParameterSetParser::ParseIndexedParameters(
     const std::vector<IParameterMetadataSharedPtr>& parametersMetadata,
     const std::vector<std::wstring>& indexedParameters) {
 
-    return nullptr;
+    //
+    // Validate parameters size with metadata definition...
+    //
+    if (indexedParameters.size() != parametersMetadata.size()) {
+        std::wstringstream errorMessageStream;
+
+        errorMessageStream
+            << L"The input parameters for ParameterSet " << m_parameterSetIndex
+            << L" of command: " << m_commandName
+            << L" includes " << indexedParameters.size() << L" indexed parameters,"
+            << L" while it's metadata includes " + parametersMetadata.size()
+            << L"; Exactly " << parametersMetadata.size() << L" are required.";
+
+        std::wstring errorMessage = errorMessageStream.str();
+        return ParsingResult<ParameterSetParser::ParameterVectorSharedPtr>::FailureResult(errorMessage);
+    }
+
+    //
+    // Create parameters...
+    //
+    size_t numOfParameters = indexedParameters.size();
+    std::vector<IParameterSharedPtr> parameters;
+    parameters.reserve(numOfParameters);
+
+    for (size_t index = 0; index < numOfParameters; ++index) {
+        std::wstring parameterValue = indexedParameters.at(index);
+        IParameterMetadataSharedPtr parameterMetadata = parametersMetadata.at(index);
+
+        IParameterSharedPtr parameter = Parameter::Make(
+            parameterMetadata,
+            parameterValue);
+
+        parameters.push_back(parameter);
+    }
+
+    ParameterVectorSharedPtr parametersSharedPtr = std::make_shared<ParameterVector>(parameters);
+    return ParsingResult<ParameterVectorSharedPtr>::SuccessfulResult(parametersSharedPtr);
 }
 
 /**
  * Parses named parameters of a parameter-set.
  */
-IParsingResultSharedPtr<std::vector<IParameterSharedPtr>> ParameterSetParser::ParseNamedParameters(
+IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> ParameterSetParser::ParseNamedParameters(
     const std::vector<IParameterMetadataSharedPtr>& parametersMetadata,
     const std::map<std::wstring, std::wstring>& namedParameters) {
 

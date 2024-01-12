@@ -95,6 +95,6 @@ void ParameterSet::createParameterMap(const std::vector<IParameterSharedPtr>& pa
 {
     for (IParameterSharedPtr parameter : parameters)
     {
-        m_parameters.insert(std::make_pair(parameter->GetName(), parameter));
+        m_parameters.insert(std::make_pair(parameter->GetMetadata().GetName(), parameter));
     }
 }

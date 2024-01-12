@@ -2,6 +2,7 @@
 #define PARAMETER_H_8af139ca_12c8_4a9a_ba9a_49cf7970f7c4
 
 #include "IParameter.h"
+#include "IParameterMetadata.h"
 
 namespace command {
 
@@ -15,15 +16,15 @@ namespace command {
          * Creates a new parameter.
          */
         static IParameterSharedPtr Make(
-            const std::wstring& name,
+            IParameterMetadataSharedPtr metadata,
             const std::wstring& value,
-            bool defined);
+            bool defined = true);
 
         /**
          * The Parameter constructor.
          */
         Parameter(
-            const std::wstring& name,
+            IParameterMetadataSharedPtr metadata,
             const std::wstring& value,
             bool defined);
 
@@ -45,9 +46,9 @@ namespace command {
         Parameter& operator=(Parameter&&) = delete;
 
         /**
-         * Gets the name of the parameter.
+         * Gets metadata of the parameter.
          */
-        virtual const std::wstring& GetName() const override;
+        virtual const IParameterMetadata& GetMetadata() const override;
 
         /**
          * Checks whether the value of the parameter is defined.
@@ -110,7 +111,7 @@ namespace command {
         virtual void GetStringArrayValue(std::vector<std::wstring>& result) const override;
 
     private:
-        std::wstring m_name;
+        IParameterMetadataSharedPtr m_metadata;
         std::wstring m_value;
         bool m_defined;
     };

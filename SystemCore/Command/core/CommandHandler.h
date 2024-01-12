@@ -58,7 +58,7 @@ namespace command {
         /**
          * Parses the parameters of a command.
          */
-        static IParsingResultSharedPtr<ICommandParametersSharedPtr> ParseParameters(int argc, wchar_t* argv[]);
+        IParsingResultSharedPtr<ICommandParametersSharedPtr> ParseParameters(int argc, wchar_t* argv[]);
 
         /**
          * Checks whether this is a help command.

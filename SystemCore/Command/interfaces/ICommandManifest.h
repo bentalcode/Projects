@@ -52,7 +52,7 @@ namespace command {
         /**
          * Gets parameter-sets metadata of a command.
          */
-        virtual void GetParameterSets(std::vector<IParameterSetMetadataSharedPtr>& parameterSets) const = 0;
+        virtual void GetParameterSetsMetadata(std::vector<IParameterSetMetadataSharedPtr>& parameterSetsMetadata) const = 0;
     };
 
     //

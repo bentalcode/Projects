@@ -2,6 +2,7 @@
 #include "CommandConstants.h"
 #include "Strings.h"
 #include "StringConversion.h"
+#include "SmartPointers.h"
 
 using namespace command;
 
@@ -9,24 +10,28 @@ using namespace command;
  * Creates a new parameter.
  */
 IParameterSharedPtr Parameter::Make(
-    const std::wstring& name,
+    IParameterMetadataSharedPtr metadata,
     const std::wstring& value,
     bool defined)
 {
-    return std::make_shared<Parameter>(name, value, defined);
+    return std::make_shared<Parameter>(
+        metadata,
+        value,
+        defined);
 }
 
 /**
  * The Parameter constructor.
  */
 Parameter::Parameter(
-    const std::wstring& name,
+    IParameterMetadataSharedPtr metadata,
     const std::wstring& value,
     bool defined) :
-    m_name(name),
     m_value(value),
     m_defined(defined)
 {
+    base::SmartPointers::Validate(metadata);
+    m_metadata = metadata;
 }
 
 /**
@@ -37,11 +42,11 @@ Parameter::~Parameter()
 }
 
 /**
- * Gets the name of the parameter.
+ * Gets metadata of the parameter.
  */
-const std::wstring& Parameter::GetName() const
+const IParameterMetadata& Parameter::GetMetadata() const
 {
-    return m_name;
+    return *m_metadata;
 }
 
 /**
