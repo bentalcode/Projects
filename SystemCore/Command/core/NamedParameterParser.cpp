@@ -45,9 +45,10 @@ IParsingResultSharedPtr<base::PairSharedPtr<std::wstring, std::wstring>> NamedPa
     }
     else if (isLongNamedParameter(arg))
     {
-        if (base::StringEquality::AreEqualIgnoreCase(
-                arg, CommandConstants::LONG_NAMED_PARAMETER_PREFIX.length(), arg.length() - 1,
-                CommandConstants::HELP_LONG_NAME, 0, CommandConstants::HELP_LONG_NAME.length() - 1))
+        if (!arg.empty() && base::StringEquality::AreEqualIgnoreCase(
+                arg, 0,
+                CommandConstants::HELP_LONG_NAME, 0,
+                CommandConstants::HELP_LONG_NAME.length()))
         {
             base::PairSharedPtr<std::wstring, std::wstring> nameAndValue = base::Pair<std::wstring, std::wstring>::Make(
                 CommandConstants::HELP_LONG_NAME,
@@ -132,8 +133,8 @@ bool NamedParameterParser::IsNamedParameter(const std::wstring& arg)
 bool NamedParameterParser::isShortNamedParameter(const std::wstring& arg)
 {
     return
-            base::StringSearch::StartsWith(arg, CommandConstants::SHORT_NAMED_PARAMETER_PREFIX) &&
-            !base::StringSearch::StartsWith(arg, CommandConstants::LONG_NAMED_PARAMETER_PREFIX);
+        base::StringSearch::StartsWith(arg, CommandConstants::SHORT_NAMED_PARAMETER_PREFIX) &&
+        !base::StringSearch::StartsWith(arg, CommandConstants::LONG_NAMED_PARAMETER_PREFIX);
 }
 
 /**

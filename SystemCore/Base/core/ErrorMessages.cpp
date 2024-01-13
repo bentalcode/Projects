@@ -9,6 +9,6 @@ using namespace base;
 const std::wstring ErrorMessages::GetErrorCodeMessage(long errorCode) 
 {
     std::wstringstream stream;
-    stream << ErrorMessages::GetErrorCodeMessage(errorCode);
+    stream << L"0x" << std::hex << errorCode;
     return stream.str();
 }

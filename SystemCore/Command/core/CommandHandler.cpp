@@ -112,10 +112,10 @@ bool CommandHandler::RunCommand(ICommand& command, int argc, wchar_t* argv[])
 
             std::wstringstream errorMessageStream;
             errorMessageStream
-                << L"he Command: " << m_manifest->GetName()
+                << L"The Command: " << m_manifest->GetName()
                 << L" has Failed to Parse the parameters due to parsing error: " << parametersResult->GetErrorMessage()
                 << ", Exit Status: 0"
-                << base::ErrorMessages::GetErrorCodeMessage(errorCode);
+                << "; ErrorCode: " << base::ErrorMessages::GetErrorCodeMessage(errorCode);
 
             std::wstring errorMessage = errorMessageStream.str();
             m_commandMessageWriter->GetMessageWriter()->WriteErrorMessage(errorMessage);

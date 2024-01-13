@@ -168,7 +168,7 @@ bool StringSearch::StartsWith(
 {
     if (str.empty() || prefix.empty() || prefix.size() > str.size() - startIndex)
     {
-        return std::wstring::npos;
+        return false;
     }
 
     size_t prefixStartIndex = str.find(prefix.c_str(), startIndex);
