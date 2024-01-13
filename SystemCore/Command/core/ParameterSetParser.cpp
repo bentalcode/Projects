@@ -57,9 +57,10 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> ParameterSetParser::Parse(const 
     const IInputParameters::IndexedParameters& indexedParameters =
         inputParameters.GetIndexedParameters();
 
-    IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> indexedParametersResult = ParseIndexedParameters(
-        indexedParametersMetadata,
-        indexedParameters);
+    IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> indexedParametersResult =
+        ParseIndexedParameters(
+            indexedParametersMetadata,
+            indexedParameters);
 
     if (indexedParametersResult->Failed()) {
         return ParsingResult<IParameterSetSharedPtr>::FailureResult(indexedParametersResult);
@@ -159,29 +160,20 @@ IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> ParameterS
     parameters.reserve(numOfParameters);
 
     for (const IParameterMetadataSharedPtr& parameterMetadata : parametersMetadata) {
+        IParameterSharedPtr parameter = TryParseNamedParameter(
+            parameterMetadata,
+            namedParameters);
 
-        INamedParameterMetadata* namedParameterMetadata;
-        std::wstring parameterValue;
-
-        bool status = ParseNamedParameterValue(
-            *namedParameterMetadata,
-            namedParameters,
-            parameterValue);
-
-        if (!status) {
+        if (!parameter) {
             std::wstringstream errorMessageStream;
             errorMessageStream
                 << L"The input parameters for ParameterSet " << m_parameterSetIndex
                 << L" of command: " << m_commandName
-                << L" missing the following named parameter: " << namedParameterMetadata->GetShortName();
+                << L" missing the following named parameter: " << parameterMetadata->GetName();
 
             std::wstring errorMessage = errorMessageStream.str();
             return ParsingResult<ParameterSetParser::ParameterVectorSharedPtr>::FailureResult(errorMessage);
         }
-
-        IParameterSharedPtr parameter = Parameter::Make(
-            parameterMetadata,
-            parameterValue);
 
         parameters.push_back(parameter);
     }
@@ -191,31 +183,23 @@ IParsingResultSharedPtr<ParameterSetParser::ParameterVectorSharedPtr> ParameterS
 }
 
 /**
- * Parses value of parameter.
+ * Tries to parse named parameter.
+ * Returns nullptr in case the parameter is not found.
  */
-bool ParameterSetParser::ParseNamedParameterValue(
-    INamedParameterMetadata& metadata,
-    const std::map<std::wstring, std::wstring>& namedParameters,
-    std::wstring& value)
+IParameterSharedPtr ParameterSetParser::TryParseNamedParameter(
+    const IParameterMetadataSharedPtr metadata,
+    const std::map<std::wstring, std::wstring>& namedParameters)
 {
-    std::map<std::wstring, std::wstring>::const_iterator parameterIterator = namedParameters.find(L"");
+    std::wstring parameterValue;
+    bool status = metadata->TryParseValue(namedParameters, parameterValue);
 
-    if (parameterIterator != namedParameters.end()) {
-        value = parameterIterator->second;
-        return true;
+    if (!status) {
+        return nullptr;
     }
 
-    parameterIterator = namedParameters.find(L"");
+    IParameterSharedPtr parameter = Parameter::Make(
+        metadata,
+        parameterValue);
 
-    if (parameterIterator != namedParameters.end()) {
-        value = parameterIterator->second;
-        return true;
-    }
-
-    if (metadata.Optional()) {
-        value = metadata.GetDefaultValue();
-        return true;
-    }
-
-    return false;
+    return parameter;
 }

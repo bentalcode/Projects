@@ -17,11 +17,18 @@ IConsoleFileFinderCommandParametersSharedPtr ConsoleFileFinderCommandParameters:
 ConsoleFileFinderCommandParameters::ConsoleFileFinderCommandParameters(const command::ICommandParameters& parameters)
 {
     const command::IParameterSet& parameterSet = parameters.GetParameterSet();
-    command::IParameterSharedPtr pathParameter = parameterSet.GetParameter(L"path");
+    command::IParameterSharedPtr pathParameter = parameterSet.GetParameter(L"dirPath");
     m_path = pathParameter->GetStringValue();
 
-    command::IParameterSharedPtr filePatternsParameter = parameterSet.GetParameter(L"filePatterns");
-    //filePatternsParameter->GetStringArrayValue(m_filePatterns);
+    command::IParameterSharedPtr filePatternsParameter = parameterSet.GetParameter(L"fileNamePatterns");
+
+    if (parameters.GetParameterSet().GetIndex() == 0) {
+        std::wstring filePattern = filePatternsParameter->GetStringValue();
+        m_filePatterns.push_back(filePattern);
+    }
+    else {
+        filePatternsParameter->GetStringArrayValue(m_filePatterns);
+    }
 }
 
 /**

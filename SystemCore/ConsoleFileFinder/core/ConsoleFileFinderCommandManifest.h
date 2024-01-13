@@ -68,6 +68,11 @@ class ConsoleFileFinderCommandManifest final : public command::ICommandManifest
          */
         static command::IParameterSetMetadataSharedPtr CreateDefaultParameterSet();
 
+        /**
+         * Creates a parameter set1.
+         */
+        static command::IParameterSetMetadataSharedPtr CreateParameterSet1();
+
         std::wstring m_name;
         std::wstring m_description;
         command::ICommandHelpMetadataSharedPtr m_helpMetadata;

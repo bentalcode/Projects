@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include <map>
 
 namespace command {
 
@@ -43,6 +44,13 @@ namespace command {
          * Gets description of a parameter.
          */
         virtual const std::wstring& GetDescription() const = 0;
+
+        /**
+         * Try to parse value.
+         */
+        virtual bool TryParseValue(
+            const std::map<std::wstring, std::wstring>& parameters,
+            std::wstring& value) const = 0;
     };
 
     //

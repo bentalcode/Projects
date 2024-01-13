@@ -122,3 +122,32 @@ const std::wstring& NamedParameterMetadata::GetDefaultValue() const
 {
     return m_defaultValue;
 }
+
+/**
+ * Try to parse value.
+ */
+bool NamedParameterMetadata::TryParseValue(
+    const std::map<std::wstring, std::wstring>& parameters,
+    std::wstring& value) const
+{
+    std::map<std::wstring, std::wstring>::const_iterator parameterIterator = parameters.find(GetShortName());
+
+    if (parameterIterator != parameters.end()) {
+        value = parameterIterator->second;
+        return true;
+    }
+
+    parameterIterator = parameters.find(GetLongName());
+
+    if (parameterIterator != parameters.end()) {
+        value = parameterIterator->second;
+        return true;
+    }
+
+    if (Optional()) {
+        value = GetDefaultValue();
+        return true;
+    }
+
+    return false;
+}

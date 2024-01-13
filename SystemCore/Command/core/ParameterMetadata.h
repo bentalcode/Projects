@@ -45,6 +45,13 @@ namespace command {
          */
         virtual const std::wstring& GetDescription() const override;
 
+        /**
+         * Try to parse value.
+         */
+        virtual bool TryParseValue(
+            const std::map<std::wstring, std::wstring>& parameters,
+            std::wstring& value) const override;
+
     private:
         std::wstring m_name;
         std::wstring m_description;

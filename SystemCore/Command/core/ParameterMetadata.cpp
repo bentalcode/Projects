@@ -35,3 +35,13 @@ const std::wstring& ParameterMetadata::GetDescription() const
 {
     return m_description;
 }
+
+/**
+ * Try to parse value.
+ */
+bool ParameterMetadata::TryParseValue(
+    const std::map<std::wstring, std::wstring>& parameters,
+    std::wstring& value) const
+{
+    return false;
+}

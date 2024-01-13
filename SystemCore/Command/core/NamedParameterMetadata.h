@@ -94,6 +94,13 @@ namespace command {
          */
         virtual const std::wstring& GetDefaultValue() const override;
 
+        /**
+         * Try to parse value.
+         */
+        virtual bool TryParseValue(
+            const std::map<std::wstring, std::wstring>& parameters,
+            std::wstring& value) const override;
+
     private:
         std::wstring m_shortName;
         std::wstring m_longName;
