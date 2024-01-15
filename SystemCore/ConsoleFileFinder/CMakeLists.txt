@@ -44,6 +44,7 @@ add_compile_definitions(WINDOWS=1)
 
 set(CONSOLE_FILE_FINDER_INCLUDES_FILES
     ./core/ConsoleFileFinderCommand.h
+    ./core/ConsoleFileFinderCommandConstants.h
     ./core/ConsoleFileFinderCommandManifest.h
     ./core/ConsoleFileFinderCommandParameters.h
     ./core/ConsoleFileFinderException.h
@@ -55,6 +56,7 @@ set(CONSOLE_FILE_FINDER_INCLUDES_FILES
 
 set(CONSOLE_FILE_FINDER_SOURCES_FILES
     ./core/ConsoleFileFinderCommand.cpp
+    ./core/ConsoleFileFinderCommandConstants.cpp
     ./core/ConsoleFileFinderCommandManifest.cpp
     ./core/ConsoleFileFinderCommandParameters.cpp
     ./core/FileFinder.cpp

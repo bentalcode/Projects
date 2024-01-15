@@ -59,6 +59,11 @@ class ConsoleFileFinderCommandManifest final : public command::ICommandManifest
         static command::ICommandHelpMetadataSharedPtr CreateHelpMetadata();
 
         /**
+         * Creates usage message.
+         */
+        static std::wstring CreateUsageMessage();
+
+        /**
          * Creates parameter sets.
          */
         static void CreateParameterSets(std::vector<command::IParameterSetMetadataSharedPtr>& parameterSets);
@@ -72,6 +77,11 @@ class ConsoleFileFinderCommandManifest final : public command::ICommandManifest
          * Creates a parameter set1.
          */
         static command::IParameterSetMetadataSharedPtr CreateParameterSet1();
+
+        /**
+         * Creates a parameter set2.
+         */
+        static command::IParameterSetMetadataSharedPtr CreateParameterSet2();
 
         std::wstring m_name;
         std::wstring m_description;
