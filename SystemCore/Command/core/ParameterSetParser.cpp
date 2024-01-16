@@ -6,7 +6,7 @@
 #include "SmartPointers.h"
 #include <sstream>
 
-using namespace command;
+using namespace Command;
 
 /**
  * Creates a new parameter set parser.

@@ -5,7 +5,7 @@
 #include "IInputParameters.h"
 #include "Pair.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The NamedParameterParser class implements a parser of a named parameter.
@@ -64,6 +64,6 @@ namespace command {
         static bool isShortNamedParameter(const std::wstring& arg);
     };
 
-} // namespace command
+} // namespace Command
 
 #endif // NAMED_PARAMETER_PARSER_H_fa9858c9_d9a0_4234_9161_18b863fe7420

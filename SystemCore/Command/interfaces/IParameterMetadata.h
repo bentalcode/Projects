@@ -5,7 +5,7 @@
 #include <memory>
 #include <map>
 
-namespace command {
+namespace Command {
 
     /**
      * The IParameterMetadata interface defines metadata of a parameter.
@@ -58,6 +58,6 @@ namespace command {
     //
     using IParameterMetadataSharedPtr = std::shared_ptr<IParameterMetadata>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_PARAMETER_METADATA_H_fbec8048_3517_4c85_ab1e_585d55896b41

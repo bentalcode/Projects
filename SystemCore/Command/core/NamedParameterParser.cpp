@@ -5,7 +5,7 @@
 #include "Indexes.h"
 #include "CommandConstants.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * The NamedParameterParser constructor.

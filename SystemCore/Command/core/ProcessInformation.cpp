@@ -1,6 +1,6 @@
 #include "ProcessInformation.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * The ProcessInformation constructor.

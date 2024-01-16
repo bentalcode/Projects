@@ -3,7 +3,7 @@
 
 #include "IParameterMetadata.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The INamedParameterMetadata interface defines meta-data of a named parameter.
@@ -69,6 +69,6 @@ namespace command {
         virtual const std::wstring& GetDefaultValue() const = 0;
     };
 
-} // namespace command
+} // namespace Command
 
 #endif // I_NAMED_PARAMETER_METADATA_H_edf0365e_d4b5_460f_9be2_c0535206213a

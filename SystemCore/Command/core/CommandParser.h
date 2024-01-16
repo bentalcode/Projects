@@ -6,7 +6,7 @@
 #include "IInputParameters.h"
 #include "ICommandManifest.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The CommandParser class implements a parser of the Command.
@@ -68,12 +68,12 @@ namespace command {
         static bool IsLongNamedParameter(const std::wstring& arg);
 
         /**
-         * Checks whether this is a help Command.
+         * Checks whether this is a help command.
         */
         static bool IsHelpCommand(const IInputParameters& inputParameters);
 
         /**
-         * Creates a result of a help Command.
+         * Creates a result of a help command.
          */
         static IParsingResultSharedPtr<ICommandParametersSharedPtr> CreateHelpCommandResult();
 
@@ -83,6 +83,6 @@ namespace command {
         ICommandManifestSharedPtr m_manifest;
     };
 
-} // namespace command
+} // namespace Command
 
 #endif // COMMAND_PARSER_H_71982c11_e589_49dc_a280_b8ea2c24daad

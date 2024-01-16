@@ -1,6 +1,6 @@
 #include "InputParameters.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * Makes new input parameters.

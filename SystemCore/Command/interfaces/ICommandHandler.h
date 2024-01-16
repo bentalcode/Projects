@@ -3,7 +3,7 @@
 
 #include "ICommand.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The ICommandHandler interface defines a command handler for running commands.
@@ -44,6 +44,6 @@ namespace command {
     //
     using ICommandHandlerSharedPtr = std::shared_ptr<ICommandHandler>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_COMMAND_HANDLER_H_abff03ab_9fa0_46af_b8e2_2360be28d365

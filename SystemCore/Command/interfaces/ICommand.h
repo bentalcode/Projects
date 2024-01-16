@@ -4,7 +4,7 @@
 #include "ICommandParameters.h"
 #include "IMessageWriter.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The ICommand interface defines a command.
@@ -65,6 +65,6 @@ namespace command {
     //
     using ICommandSharedPtr = std::shared_ptr<ICommand>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_COMMAND_H_7331e91c_6adf_416a_b19e_3180f8f9b285

@@ -6,7 +6,7 @@
 #include "INamedParameterMetadata.h"
 #include "CommandConstants.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The CommandHelpMetadata class implements a command handler for running commands.
@@ -25,7 +25,7 @@ namespace command {
         static IParameterMetadataSharedPtr CreateHelpParameterMetadata();
 
         /**
-         * Creates a new Command help metadata.
+         * Creates a new command help metadata.
          */
         static ICommandHelpMetadataSharedPtr Make(
             const std::wstring& usageMessage,
@@ -84,6 +84,6 @@ namespace command {
     //
     using ICommandHelpMetadataSharedPtr = std::shared_ptr<ICommandHelpMetadata>;
 
-} // namespace command
+} // namespace Command
 
 #endif // COMMAND_HELP_METADATA_H_efed9bb8_5f12_455c_88f5_076e86ddf7f4

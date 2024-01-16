@@ -3,7 +3,7 @@
 
 #include "ICommand.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The AbstractCommand class implements an abstract Command.
@@ -59,6 +59,6 @@ namespace command {
         base::IMessageWriterSharedPtr m_messageWriter;
     };
 
-} // namespace command
+} // namespace Command
 
 #endif // ABSTRACT_COMMAND_H_adb4b1ac_1907_42b1_8dae_f9e0c3a69523

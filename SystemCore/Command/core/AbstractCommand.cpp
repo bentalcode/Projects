@@ -2,7 +2,7 @@
 #include "CommandException.h"
 #include "SmartPointers.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * The AbstractCommand constructor.

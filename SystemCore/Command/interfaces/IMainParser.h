@@ -3,7 +3,7 @@
 
 #include "IParsingResult.h"
 
-namespace command
+namespace Command
 {
     /**
      * The IMainParser interface defines a parser of main parameters.
@@ -46,6 +46,6 @@ namespace command
     template <typename T>
     using IMainParserSharedPtr = std::shared_ptr<IMainParser<T>>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_MAIN_PARSER_H_564707ff_e4b7_49e8_b403_9fbb5a18a50d

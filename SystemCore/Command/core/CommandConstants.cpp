@@ -1,6 +1,6 @@
 #include "CommandConstants.h"
 
-using namespace command;
+using namespace Command;
 
 const std::wstring CommandConstants::MANIFEST_RESOURCE_NAME = L"manifest.json";
 

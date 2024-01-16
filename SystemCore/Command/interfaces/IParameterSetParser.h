@@ -4,7 +4,7 @@
 #include "IParsingResult.h"
 #include "IParameterSet.h"
 
-namespace command {
+namespace Command {
 
     class IInputParameters;
 
@@ -47,6 +47,6 @@ namespace command {
     //
     using IParameterSetParserSharedPtr = std::shared_ptr<IParameterSetParser>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_PARAMETER_SET_PARSER_H_a078e19a_ac9d_4e4a_bfce_06aeeceabf58

@@ -1,6 +1,6 @@
 #include "ParameterMetadata.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * The ParameterMetadata constructor.

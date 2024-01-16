@@ -15,12 +15,12 @@ namespace consolefilefinder {
         /**
          * Creates a console file finder command parameters.
          */
-         static IConsoleFileFinderCommandParametersSharedPtr Make(const command::ICommandParameters& parameters);
+         static IConsoleFileFinderCommandParametersSharedPtr Make(const Command::ICommandParameters& parameters);
 
         /**
          * The ConsoleFileFinderCommandParameters constructor.
          */
-        explicit ConsoleFileFinderCommandParameters(const command::ICommandParameters& parameters);
+        explicit ConsoleFileFinderCommandParameters(const Command::ICommandParameters& parameters);
 
         /**
          * The ConsoleFileFinderCommandParameters destructor.

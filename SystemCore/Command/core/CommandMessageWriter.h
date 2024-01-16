@@ -3,7 +3,7 @@
 
 #include "ICommandMessageWriter.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The CommandMessageWriter class implements a writer of a command message.
@@ -58,6 +58,6 @@ namespace command {
         base::IMessageWriterSharedPtr m_messageWriter;
     };
 
-} // namespace command
+} // namespace Command
 
 #endif // COMMAND_MESSAGE_WRITER_H_198ccbba_d9c5_4624_930e_9c8fa785344c

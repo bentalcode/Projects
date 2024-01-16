@@ -6,7 +6,7 @@
 #include "ICommandMessageWriter.h"
 #include "ParsingResult.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The CommandHandler class implements a command handler for running commands.
@@ -15,7 +15,7 @@ namespace command {
     {
     public:
         /**
-         * Creates a new Command handler.
+         * Creates a new command handler.
          */
         static ICommandHandlerSharedPtr Make(ICommandManifestSharedPtr manifest);
 
@@ -48,7 +48,7 @@ namespace command {
 
     private:
         /**
-         * Runs a Command.
+         * Runs a command.
          *
          * Returns true if running the Command successfully.
          * Returns false if failing to Run the Command.
@@ -69,6 +69,6 @@ namespace command {
         ICommandMessageWriterSharedPtr m_commandMessageWriter;
     };
 
-} // namespace command
+} // namespace Command
 
 #endif // COMMAND_HANDLER_H_1b5a366f_f0f5_40c8_900b_241bbaba13bf

@@ -2,10 +2,10 @@
 #include "CommandException.h"
 #include "SmartPointers.h"
 
-using namespace command;
+using namespace Command;
 
 /**
- * Creates a new Command parameters.
+ * Creates a new command parameters.
  */
 ICommandParametersSharedPtr CommandParameters::Make(IParameterSetSharedPtr parameterSet)
 {

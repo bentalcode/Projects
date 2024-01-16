@@ -8,13 +8,13 @@ namespace consolefilefinder {
 /**
  * The ConsoleFileFinderCommandManifest class implements a console file finder command manifest.
  */
-class ConsoleFileFinderCommandManifest final : public command::ICommandManifest
+class ConsoleFileFinderCommandManifest final : public Command::ICommandManifest
     {
     public:
         /**
          * Creates a manifest.
          */
-        static command::ICommandManifestSharedPtr Make();
+        static Command::ICommandManifestSharedPtr Make();
 
         /**
          * The ConsoleFileFinderCommandManifest constructor.
@@ -39,13 +39,13 @@ class ConsoleFileFinderCommandManifest final : public command::ICommandManifest
         /**
          * Gets help metadata of a command.
          */
-        virtual const command::ICommandHelpMetadata& GetHelpMetadata() const override;
+        virtual const Command::ICommandHelpMetadata& GetHelpMetadata() const override;
 
     /**
      * Gets parameter-sets metadata of a command.
      */
     virtual void GetParameterSetsMetadata(
-        std::vector<command::IParameterSetMetadataSharedPtr>& parameterSetsMetadata) const override;
+        std::vector<Command::IParameterSetMetadataSharedPtr>& parameterSetsMetadata) const override;
 
     private:
         /**
@@ -56,7 +56,7 @@ class ConsoleFileFinderCommandManifest final : public command::ICommandManifest
         /**
          * Creates a help metadata.
          */
-        static command::ICommandHelpMetadataSharedPtr CreateHelpMetadata();
+        static Command::ICommandHelpMetadataSharedPtr CreateHelpMetadata();
 
         /**
          * Creates usage message.
@@ -66,27 +66,27 @@ class ConsoleFileFinderCommandManifest final : public command::ICommandManifest
         /**
          * Creates parameter sets.
          */
-        static void CreateParameterSets(std::vector<command::IParameterSetMetadataSharedPtr>& parameterSets);
+        static void CreateParameterSets(std::vector<Command::IParameterSetMetadataSharedPtr>& parameterSets);
 
         /**
          * Creates a default parameter set.
          */
-        static command::IParameterSetMetadataSharedPtr CreateDefaultParameterSet();
+        static Command::IParameterSetMetadataSharedPtr CreateDefaultParameterSet();
 
         /**
          * Creates a parameter set1.
          */
-        static command::IParameterSetMetadataSharedPtr CreateParameterSet1();
+        static Command::IParameterSetMetadataSharedPtr CreateParameterSet1();
 
         /**
          * Creates a parameter set2.
          */
-        static command::IParameterSetMetadataSharedPtr CreateParameterSet2();
+        static Command::IParameterSetMetadataSharedPtr CreateParameterSet2();
 
         std::wstring m_name;
         std::wstring m_description;
-        command::ICommandHelpMetadataSharedPtr m_helpMetadata;
-        std::vector<command::IParameterSetMetadataSharedPtr> m_parameterSets;
+        Command::ICommandHelpMetadataSharedPtr m_helpMetadata;
+        std::vector<Command::IParameterSetMetadataSharedPtr> m_parameterSets;
     };
 
 } // namespace consolefilefinder

@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 
-namespace command {
+namespace Command {
 
     /**
      * The InputParameters class implements input parameters of a command.
@@ -65,6 +65,6 @@ namespace command {
     //
     using IInputParametersSharedPtr = std::shared_ptr<IInputParameters>;
 
-} // namespace command
+} // namespace Command
 
 #endif // INPUT_PARAMETERS_H_d6e509a4_0789_4690_9505_1de4baa68b2b

@@ -12,7 +12,7 @@ using namespace consolefilefinder;
 /**
  * Creates a manifest.
  */
-command::ICommandManifestSharedPtr ConsoleFileFinderCommandManifest::Make()
+Command::ICommandManifestSharedPtr ConsoleFileFinderCommandManifest::Make()
 {
     return std::make_shared<ConsoleFileFinderCommandManifest>();
 }
@@ -45,7 +45,7 @@ const std::wstring& ConsoleFileFinderCommandManifest::GetDescription() const
 /**
  * Gets help metadata of a command.
  */
-const command::ICommandHelpMetadata& ConsoleFileFinderCommandManifest::GetHelpMetadata() const
+const Command::ICommandHelpMetadata& ConsoleFileFinderCommandManifest::GetHelpMetadata() const
 {
     return *m_helpMetadata;
 }
@@ -54,7 +54,7 @@ const command::ICommandHelpMetadata& ConsoleFileFinderCommandManifest::GetHelpMe
  * Gets parameter-sets metadata of a command.
  */
 void ConsoleFileFinderCommandManifest::GetParameterSetsMetadata(
-    std::vector<command::IParameterSetMetadataSharedPtr>& parameterSets) const
+    std::vector<Command::IParameterSetMetadataSharedPtr>& parameterSets) const
 {
     assert(parameterSets.empty());
 
@@ -78,14 +78,14 @@ void ConsoleFileFinderCommandManifest::Initialize()
 /**
  * Creates a help metadata.
  */
-command::ICommandHelpMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateHelpMetadata()
+Command::ICommandHelpMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateHelpMetadata()
 {
     std::wstring usageMessage = CreateUsageMessage();
     L"file-finder <dirPath> <filePatterns: pattern1, pattern2 ... patternN>";
     std::wstring shortName = L"file-finder";
     std::wstring longName = L"console-file-finder";
 
-    return command::CommandHelpMetadata::Make(
+    return Command::CommandHelpMetadata::Make(
         usageMessage,
         shortName,
         longName);
@@ -95,12 +95,12 @@ command::ICommandHelpMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateH
  * Creates parameter sets.
  */
 void ConsoleFileFinderCommandManifest::CreateParameterSets(
-    std::vector<command::IParameterSetMetadataSharedPtr>& parameterSets)
+    std::vector<Command::IParameterSetMetadataSharedPtr>& parameterSets)
 {
     assert(parameterSets.empty());
-    command::IParameterSetMetadataSharedPtr defaultParameterSet = CreateDefaultParameterSet();
-    command::IParameterSetMetadataSharedPtr parameterSet1 = CreateParameterSet1();
-    command::IParameterSetMetadataSharedPtr parameterSet2 = CreateParameterSet2();
+    Command::IParameterSetMetadataSharedPtr defaultParameterSet = CreateDefaultParameterSet();
+    Command::IParameterSetMetadataSharedPtr parameterSet1 = CreateParameterSet1();
+    Command::IParameterSetMetadataSharedPtr parameterSet2 = CreateParameterSet2();
     parameterSets.push_back(defaultParameterSet);
     parameterSets.push_back(parameterSet1);
     parameterSets.push_back(parameterSet2);
@@ -121,23 +121,23 @@ std::wstring ConsoleFileFinderCommandManifest::CreateUsageMessage()
 /**
  * Creates a default parameter set.
  */
-command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateDefaultParameterSet()
+Command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateDefaultParameterSet()
 {
-    std::vector<command::IParameterMetadataSharedPtr> indexedParameters;
-    std::vector<command::IParameterMetadataSharedPtr> namedParameters;
+    std::vector<Command::IParameterMetadataSharedPtr> indexedParameters;
+    std::vector<Command::IParameterMetadataSharedPtr> namedParameters;
 
-    command::IParameterMetadataSharedPtr pathParameter = command::IndexedParameterMetadata::Make(
+    Command::IParameterMetadataSharedPtr pathParameter = Command::IndexedParameterMetadata::Make(
         ConsoleFileFinderCommandConstants::PARAMETER_PATH_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_PATH_DESCRIPTION);
 
-    command::IParameterMetadataSharedPtr fileNamePatternParameter = command::IndexedParameterMetadata::Make(
+    Command::IParameterMetadataSharedPtr fileNamePatternParameter = Command::IndexedParameterMetadata::Make(
         ConsoleFileFinderCommandConstants::PARAMETER_FILE_PATTERNS_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_FILE_PATTERNS_DESCRIPTION);
 
     indexedParameters.push_back(pathParameter);
     indexedParameters.push_back(fileNamePatternParameter);
 
-    return command::ParameterSetMetadata::Make(
+    return Command::ParameterSetMetadata::Make(
         indexedParameters,
         namedParameters);
 }
@@ -145,16 +145,16 @@ command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::Create
 /**
  * Creates parameter set1.
  */
-command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateParameterSet1()
+Command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateParameterSet1()
 {
-    std::vector<command::IParameterMetadataSharedPtr> indexedParameters;
-    std::vector<command::IParameterMetadataSharedPtr> namedParameters;
+    std::vector<Command::IParameterMetadataSharedPtr> indexedParameters;
+    std::vector<Command::IParameterMetadataSharedPtr> namedParameters;
 
-    command::IParameterMetadataSharedPtr pathParameter = command::IndexedParameterMetadata::Make(
+    Command::IParameterMetadataSharedPtr pathParameter = Command::IndexedParameterMetadata::Make(
         ConsoleFileFinderCommandConstants::PARAMETER_PATH_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_PATH_DESCRIPTION);
 
-    command::IParameterMetadataSharedPtr fileNamePatternParameter = command::NamedParameterMetadata::Make(
+    Command::IParameterMetadataSharedPtr fileNamePatternParameter = Command::NamedParameterMetadata::Make(
         ConsoleFileFinderCommandConstants::PARAMETER_FILE_PATTERNS_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_FILE_PATTERNS_SHORT_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_FILE_PATTERNS_LONG_NAME,
@@ -163,7 +163,7 @@ command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::Create
     indexedParameters.push_back(pathParameter);
     namedParameters.push_back(fileNamePatternParameter);
 
-    return command::ParameterSetMetadata::Make(
+    return Command::ParameterSetMetadata::Make(
         indexedParameters,
         namedParameters);
 }
@@ -171,18 +171,18 @@ command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::Create
 /**
  * Creates parameter set2.
  */
-command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateParameterSet2()
+Command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::CreateParameterSet2()
 {
-    std::vector<command::IParameterMetadataSharedPtr> indexedParameters;
-    std::vector<command::IParameterMetadataSharedPtr> namedParameters;
+    std::vector<Command::IParameterMetadataSharedPtr> indexedParameters;
+    std::vector<Command::IParameterMetadataSharedPtr> namedParameters;
 
-    command::IParameterMetadataSharedPtr pathParameter = command::NamedParameterMetadata::Make(
+    Command::IParameterMetadataSharedPtr pathParameter = Command::NamedParameterMetadata::Make(
         ConsoleFileFinderCommandConstants::PARAMETER_PATH_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_PATH_SHORT_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_PATH_LONG_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_PATH_DESCRIPTION);
 
-    command::IParameterMetadataSharedPtr fileNamePatternParameter = command::NamedParameterMetadata::Make(
+    Command::IParameterMetadataSharedPtr fileNamePatternParameter = Command::NamedParameterMetadata::Make(
         ConsoleFileFinderCommandConstants::PARAMETER_FILE_PATTERNS_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_FILE_PATTERNS_SHORT_NAME,
         ConsoleFileFinderCommandConstants::PARAMETER_FILE_PATTERNS_LONG_NAME,
@@ -191,7 +191,7 @@ command::IParameterSetMetadataSharedPtr ConsoleFileFinderCommandManifest::Create
     namedParameters.push_back(pathParameter);
     namedParameters.push_back(fileNamePatternParameter);
 
-    return command::ParameterSetMetadata::Make(
+    return Command::ParameterSetMetadata::Make(
         indexedParameters,
         namedParameters);
 }

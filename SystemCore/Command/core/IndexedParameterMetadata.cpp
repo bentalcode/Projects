@@ -1,6 +1,6 @@
 #include "IndexedParameterMetadata.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * Creates a parameter meta-data.

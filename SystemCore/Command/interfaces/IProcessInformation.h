@@ -5,7 +5,7 @@
 #include "Duration.h"
 #include <vector>
 
-namespace command {
+namespace Command {
 
     /**
      * The IProcessInformation interface defines an information of a process.
@@ -76,6 +76,6 @@ namespace command {
     //
     using IProcessInformationSharedPtr = std::shared_ptr<IProcessInformation>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_PROCESS_INFORMATION_H_66b6d8af_1a81_44b0_b484_da9e147f0f2d

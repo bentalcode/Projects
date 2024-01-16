@@ -3,7 +3,7 @@
 
 #include "IProcessInformation.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The ProcessInformation class implements an information of a process.
@@ -90,6 +90,6 @@ namespace command {
     //
     using IProcessInformationSharedPtr = std::shared_ptr<IProcessInformation>;
 
-} // namespace command
+} // namespace Command
 
 #endif // PROCESS_INFORMATION_H_d168b642_eb11_4dc5_b62a_55ab2522610b

@@ -3,7 +3,7 @@
 
 #include <memory>
 
-namespace command {
+namespace Command {
 
     /**
      * The ICommandHelpMetadata interface defines meta-data of help of a command.
@@ -54,6 +54,6 @@ namespace command {
     //
     using ICommandHelpMetadataSharedPtr = std::shared_ptr<ICommandHelpMetadata>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_COMMAND_HELP_METADATA_H_03286718_f72f_46c0_841f_7d81827af3a0

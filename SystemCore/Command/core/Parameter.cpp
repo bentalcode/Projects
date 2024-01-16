@@ -4,7 +4,7 @@
 #include "StringConversion.h"
 #include "SmartPointers.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * Creates a new parameter.

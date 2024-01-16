@@ -7,10 +7,10 @@
 #include "StringUtils.h"
 #include <iostream>
 
-using namespace command;
+using namespace Command;
 
 /**
- * Creates a new Command handler.
+ * Creates a new command handler.
  */
 ICommandHandlerSharedPtr CommandHandler::Make(ICommandManifestSharedPtr manifest)
 {
@@ -152,7 +152,7 @@ IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandHandler::ParseParame
 }
 
 /**
- * Checks whether this is a help Command.
+ * Checks whether this is a help command.
  */
 bool CommandHandler::IsHelpCommand(const ICommandParameters& parameters)
 {

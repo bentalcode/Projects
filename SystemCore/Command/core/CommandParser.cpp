@@ -12,7 +12,7 @@
 #include "SmartPointers.h"
 #include "ErrorCodes.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * The CommandParser constructor.
@@ -47,7 +47,7 @@ IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::Parse(int ar
     IInputParametersSharedPtr inputParameters = inputParametersResult->GetResult();
 
     //
-    // Return if this is a help Command...
+    // Return if this is a help command...
     //
     if (IsHelpCommand(*inputParameters))
     {
@@ -150,14 +150,14 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> CommandParser::ParseParameterSet
     std::wstringstream errorMessageStream;
     errorMessageStream
         << L"The input parameters of command: " << m_manifest->GetName()
-        << L" do not match any of the defined parameter sets in the manifest of the command.";
+        << L" do not match any of the defined parameter sets in the manifest of the Command.";
 
     std::wstring errorMessage = errorMessageStream.str();
     return ParsingResult<IParameterSetSharedPtr>::FailureResult(errorMessage);
 }
 
 /**
- * Checks whether this is a help Command.
+ * Checks whether this is a help command.
  */
 bool CommandParser::IsHelpCommand(const IInputParameters& inputParameters)
 {
@@ -170,7 +170,7 @@ bool CommandParser::IsHelpCommand(const IInputParameters& inputParameters)
 }
 
 /**
- * Creates a result of a help Command.
+ * Creates a result of a help command.
  */
 IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::CreateHelpCommandResult()
 {

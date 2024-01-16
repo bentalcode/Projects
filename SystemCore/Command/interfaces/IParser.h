@@ -3,7 +3,7 @@
 
 #include "IParsingResult.h"
 
-namespace command
+namespace Command
 {
     /**
      * The IParser interface defines a generic parser.
@@ -46,6 +46,6 @@ namespace command
     template <typename T, typename TResult>
     using IParserSharedPtr = std::shared_ptr<IParser<T, TResult>>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_PARSER_H_9a3b0f34_296b_4f64_8a07_829eb1cda7e4

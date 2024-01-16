@@ -3,7 +3,7 @@
 
 #include "ICommandManifest.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The CommandManifest class implements a command manifest for defining commands.
@@ -12,7 +12,7 @@ namespace command {
     {
     public:
         /**
-         * Creates a new Command manifest.
+         * Creates a new command manifest.
          */
         static ICommandManifestSharedPtr Make(
             const std::wstring& name,
@@ -20,7 +20,7 @@ namespace command {
             const std::wstring& usageMessage);
 
         /**
-         * Creates a new Command manifest.
+         * Creates a new command manifest.
          */
         static ICommandManifestSharedPtr Make(
             const std::wstring& name,
@@ -89,6 +89,6 @@ namespace command {
     //
     using ICommandManifestSharedPtr = std::shared_ptr<ICommandManifest>;
 
-} // namespace command
+} // namespace Command
 
 #endif // COMMAND_MANIFEST_H_63cfd33a_1faf_4890_a86b_008a5188f122

@@ -4,7 +4,7 @@
 #include "ICommandHelpMetadata.h"
 #include "IParameterSetMetadata.h"
 
-namespace command {
+namespace Command {
 
     /**
      * The ICommandManifest interface defines a manifest of a command.
@@ -60,6 +60,6 @@ namespace command {
     //
     using ICommandManifestSharedPtr = std::shared_ptr<ICommandManifest>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_COMMAND_MANIFEST_H_27391c05_d0d0_4424_b93b_d03a73606520

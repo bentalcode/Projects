@@ -10,7 +10,7 @@ namespace consolefilefinder {
     /**
      * The ConsoleFileFinderCommand class implements a console file finder command.
      */
-    class ConsoleFileFinderCommand final : public command::AbstractCommand, public IConsoleFileFinderCommand
+    class ConsoleFileFinderCommand final : public Command::AbstractCommand, public IConsoleFileFinderCommand
     {
     public:
         /**
@@ -36,7 +36,7 @@ namespace consolefilefinder {
         /**
          * Gets the command.
          */
-        virtual command::ICommand& GetCommand() override;
+        virtual Command::ICommand& GetCommand() override;
 
     private:
         /**

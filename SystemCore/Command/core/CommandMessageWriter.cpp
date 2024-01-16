@@ -1,7 +1,7 @@
 #include "CommandMessageWriter.h"
 #include "MessageWriter.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * Creates a new message writer.

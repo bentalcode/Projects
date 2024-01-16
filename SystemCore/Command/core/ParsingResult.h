@@ -3,7 +3,7 @@
 
 #include "IParsingResult.h"
 
-namespace command
+namespace Command
 {
     /**
      * The ParsingResult class implements a parsing result.
@@ -172,6 +172,6 @@ namespace command
         return m_errorMessage;
     }
 
-} // namespace command
+} // namespace Command
 
 #endif // PARSING_RESULT_H_8b2afa42_8a63_4247_9b75_90c2a16adb27

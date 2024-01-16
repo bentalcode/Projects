@@ -2,7 +2,7 @@
 #include "Parameter.h"
 #include "NamedParameterMetadata.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * Creates a help parameter.
@@ -30,7 +30,7 @@ IParameterMetadataSharedPtr CommandHelpMetadata::CreateHelpParameterMetadata() {
 }
 
 /**
- * Creates a new Command help metadata.
+ * Creates a new command help metadata.
  */
 ICommandHelpMetadataSharedPtr CommandHelpMetadata::Make(
     const std::wstring& usageMessage,

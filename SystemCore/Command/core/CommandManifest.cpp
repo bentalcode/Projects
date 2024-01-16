@@ -2,7 +2,7 @@
 #include "SmartPointers.h"
 #include "CommandHelpMetadata.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * Creates a new manifest.

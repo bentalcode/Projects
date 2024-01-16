@@ -56,7 +56,7 @@ void ConsoleFileFinderCommand::Run()
 /**
  * Gets the command.
  */
-command::ICommand& ConsoleFileFinderCommand::GetCommand()
+Command::ICommand& ConsoleFileFinderCommand::GetCommand()
 {
     return *this;
 }
@@ -66,7 +66,7 @@ command::ICommand& ConsoleFileFinderCommand::GetCommand()
  */
 void ConsoleFileFinderCommand::Initialize()
 {
-    m_parameters = ConsoleFileFinderCommandParameters::Make(command::AbstractCommand::GetParameters());
+    m_parameters = ConsoleFileFinderCommandParameters::Make(Command::AbstractCommand::GetParameters());
 }
 
 /**

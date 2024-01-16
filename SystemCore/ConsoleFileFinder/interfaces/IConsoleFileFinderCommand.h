@@ -36,7 +36,7 @@ namespace consolefilefinder
         /**
          * Gets the command.
          */
-        virtual command::ICommand& GetCommand() = 0;
+        virtual Command::ICommand& GetCommand() = 0;
     };
 
     //

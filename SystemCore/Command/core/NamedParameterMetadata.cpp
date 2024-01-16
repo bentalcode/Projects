@@ -1,7 +1,7 @@
 #include "NamedParameterMetadata.h"
 #include "CommandConstants.h"
 
-using namespace command;
+using namespace Command;
 
 /**
  * Creates a parameter meta-data.

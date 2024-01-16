@@ -5,7 +5,7 @@
 #include "IParameterSetMetadata.h"
 #include <map>
 
-namespace command {
+namespace Command {
 
     /**
      * The IParameterSet interface defines a parameter-set.
@@ -67,6 +67,6 @@ namespace command {
     //
     using IParameterSetSharedPtr = std::shared_ptr<IParameterSet>;
 
-} // namespace command
+} // namespace Command
 
 #endif // I_PARAMETER_SET_H_6e941b19_9b59_4ec6_a11f_02edc3e944d1
