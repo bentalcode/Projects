@@ -3,7 +3,7 @@
 
 #include "IMessageWriter.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The ICommandMessageWriter interface defines a writer of a command messages.
@@ -54,6 +54,6 @@ namespace Command {
     //
     using ICommandMessageWriterSharedPtr = std::shared_ptr<ICommandMessageWriter>;
 
-} // namespace Command
+} // namespace command
 
 #endif // I_COMMAND_MESSAGE_WRITER_H_c1629ca1_1995_4761_a17d_cfd8c4c2b4bd

@@ -13,9 +13,9 @@ namespace consolefilefinder {
     static void RunCommand(int argc, wchar_t** argv)
     {
         IConsoleFileFinderCommandSharedPtr consoleFileFinderCommand = ConsoleFileFinderCommand::Make();
-        Command::ICommand& command = consoleFileFinderCommand->GetCommand();
-        Command::ICommandManifestSharedPtr manifest = ConsoleFileFinderCommandManifest::Make();
-        Command::ICommandHandlerSharedPtr commandHandler = Command::CommandHandler::Make(manifest);
+        command::ICommand& command = consoleFileFinderCommand->GetCommand();
+        command::ICommandManifestSharedPtr manifest = ConsoleFileFinderCommandManifest::Make();
+        command::ICommandHandlerSharedPtr commandHandler = command::CommandHandler::Make(manifest);
         commandHandler->Run(command, argc, argv);
     }
 }

@@ -6,7 +6,7 @@
 #include "SmartPointers.h"
 #include "TabularDataException.h"
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates a Tabular File.
@@ -29,7 +29,7 @@ TabularFile::TabularFile(
     const std::wstring& path, 
     ITabularHeaderParserSharedPtr headerParser, 
     ITabularRecordParserSharedPtr recordParser) : 
-    m_file(TabularData::File::Make(path))
+    m_file(tabular_data::File::Make(path))
 {
     base::SmartPointers::Validate<ITabularHeaderParser>(headerParser);
     base::SmartPointers::Validate<ITabularRecordParser>(recordParser);

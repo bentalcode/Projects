@@ -3,7 +3,7 @@
 #include "IIterator.h"
 #include "IRecord.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The IFile interface defines a File.
@@ -39,4 +39,4 @@ public:
  */
 using IFileSharedPtr = std::shared_ptr<IFile>;
 
-} // namespace TabularData
+} // namespace tabular_data

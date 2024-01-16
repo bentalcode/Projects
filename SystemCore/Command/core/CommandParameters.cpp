@@ -2,7 +2,7 @@
 #include "CommandException.h"
 #include "SmartPointers.h"
 
-using namespace Command;
+using namespace command;
 
 /**
  * Creates a new command parameters.
@@ -29,7 +29,7 @@ CommandParameters::~CommandParameters()
 }
 
 /**
- * Gets the parameter-set of the Command.
+ * Gets the parameter-set of the command.
  */
 const IParameterSet& CommandParameters::GetParameterSet() const
 {

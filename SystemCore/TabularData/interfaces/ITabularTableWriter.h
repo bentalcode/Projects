@@ -3,7 +3,7 @@
 #include "ITabularHeader.h"
 #include "ITabularRecord.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ITabularTableWriter interface defines a writer of a Tabular Table.
@@ -34,4 +34,4 @@ public:
  */
 using ITabularTableWriterSharedPtr = std::shared_ptr<ITabularTableWriter>;
 
-} // namespace TabularData
+} // namespace tabular_data

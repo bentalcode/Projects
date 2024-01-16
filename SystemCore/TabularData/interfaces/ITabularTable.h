@@ -4,7 +4,7 @@
 #include "ITabularRecord.h"
 #include "IIterator.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ITabularTable interface defines a Tabular Table.
@@ -30,4 +30,4 @@ public:
  */
 using ITabularTableSharedPtr = std::shared_ptr<ITabularTable>;
 
-} // namespace TabularData
+} // namespace tabular_data

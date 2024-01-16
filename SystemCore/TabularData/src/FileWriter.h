@@ -5,7 +5,7 @@
 #include <string>
 #include <filesystem>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The FileWriter class implements a writer.
@@ -53,4 +53,4 @@ private:
     std::wofstream m_stream;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

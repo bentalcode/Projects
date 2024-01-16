@@ -2,7 +2,7 @@
 
 #include "IRecord.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The IFileInformation interface defines information of a file.
@@ -33,4 +33,4 @@ public:
  */
 using IFileInformationSharedPtr = std::shared_ptr<IFileInformation>;
 
-} // namespace TabularData
+} // namespace tabular_data

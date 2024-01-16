@@ -2,7 +2,7 @@
 
 #include "IFileInformation.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The FileInformation class implements information of a file.
@@ -51,4 +51,4 @@ private:
     size_t m_numberOfRecords;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

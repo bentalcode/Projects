@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The EventType enum defines types of an event.
@@ -32,4 +32,4 @@ inline static std::wstring EventTypeToString(EventType eventType)
     return result;
 }
 
-} // namespace TabularData
+} // namespace tabular_data

@@ -3,7 +3,7 @@
 
 #include "IProcessInformation.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The ProcessInformation class implements an information of a process.
@@ -61,7 +61,7 @@ namespace Command {
         virtual const std::wstring& Command() const override;
 
         /**
-         * Gets the Command line of the process.
+         * Gets the command line of the process.
          */
         virtual const std::wstring& CommandLine() const override;
 
@@ -90,6 +90,6 @@ namespace Command {
     //
     using IProcessInformationSharedPtr = std::shared_ptr<IProcessInformation>;
 
-} // namespace Command
+} // namespace command
 
 #endif // PROCESS_INFORMATION_H_d168b642_eb11_4dc5_b62a_55ab2522610b

@@ -2,7 +2,7 @@
 #include <vector>
 #include <assert.h>
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates a Tabular Header.

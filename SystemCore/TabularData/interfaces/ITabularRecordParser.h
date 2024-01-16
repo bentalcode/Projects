@@ -2,7 +2,7 @@
 
 #include "ITabularRecord.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ITabularRecordParser interface defines a parser of a Tabular Record.
@@ -25,5 +25,5 @@ public:
  */
 using ITabularRecordParserSharedPtr = std::shared_ptr<ITabularRecordParser>;
 
-}  // namespace TabularData
+}  // namespace tabular_data
 

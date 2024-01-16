@@ -17,7 +17,7 @@ IFileConsoleSharedPtr FileConsole::Make(const std::wstring& path)
  * The FileConsole constructor.
  */
 FileConsole::FileConsole(const std::wstring& path) :
-    m_file(TabularData::File::Make(path)),
+    m_file(tabular_data::File::Make(path)),
     m_console(Console::Make(std::wcout))
 {
 }
@@ -34,10 +34,10 @@ FileConsole::~FileConsole()
  */
 void FileConsole::Display()
 {
-    base::IIteratorSharedPtr<TabularData::IRecordSharedPtr> iterator = m_file->GetIterator();
+    base::IIteratorSharedPtr<tabular_data::IRecordSharedPtr> iterator = m_file->GetIterator();
 
     while (iterator->HasNext()) {
-        TabularData::IRecordSharedPtr record = iterator->Next();
+        tabular_data::IRecordSharedPtr record = iterator->Next();
         const std::wstring line = record->GetContent();
         m_console->WriteLine(line);
     }

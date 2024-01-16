@@ -1,7 +1,7 @@
 #include "TokensParser.h"
 #include <assert.h>
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates a Tokens Parser.

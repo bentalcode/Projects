@@ -2,7 +2,7 @@
 
 #include "IFile.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The LogFile class implements a File.
@@ -48,4 +48,4 @@ private:
     std::wstring m_path;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

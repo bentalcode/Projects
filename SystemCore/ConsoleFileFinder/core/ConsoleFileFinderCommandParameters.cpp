@@ -6,7 +6,7 @@ using namespace consolefilefinder;
  * Creates a console file finder command parameters.
  */
 IConsoleFileFinderCommandParametersSharedPtr ConsoleFileFinderCommandParameters::Make(
-    const Command::ICommandParameters& parameters)
+    const command::ICommandParameters& parameters)
 {
     return std::make_shared<ConsoleFileFinderCommandParameters>(parameters);
 }
@@ -14,13 +14,13 @@ IConsoleFileFinderCommandParametersSharedPtr ConsoleFileFinderCommandParameters:
 /**
  * The ConsoleFileFinderCommandParameters constructor.
  */
-ConsoleFileFinderCommandParameters::ConsoleFileFinderCommandParameters(const Command::ICommandParameters& parameters)
+ConsoleFileFinderCommandParameters::ConsoleFileFinderCommandParameters(const command::ICommandParameters& parameters)
 {
-    const Command::IParameterSet& parameterSet = parameters.GetParameterSet();
-    Command::IParameterSharedPtr pathParameter = parameterSet.GetParameter(L"dirPath");
+    const command::IParameterSet& parameterSet = parameters.GetParameterSet();
+    command::IParameterSharedPtr pathParameter = parameterSet.GetParameter(L"dirPath");
     m_path = pathParameter->GetStringValue();
 
-    Command::IParameterSharedPtr filePatternsParameter = parameterSet.GetParameter(L"fileNamePatterns");
+    command::IParameterSharedPtr filePatternsParameter = parameterSet.GetParameter(L"fileNamePatterns");
 
     if (parameters.GetParameterSet().GetIndex() == 0) {
         std::wstring filePattern = filePatternsParameter->GetStringValue();

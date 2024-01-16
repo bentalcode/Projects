@@ -4,7 +4,7 @@
 #include "INamedParameterMetadata.h"
 #include "ParameterMetadata.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The NamedParameterMetadata class implements meta-data of a named parameter.
@@ -110,6 +110,6 @@ namespace Command {
         std::wstring m_defaultValue;
     };
 
-} // namespace Command
+} // namespace command
 
 #endif // NAMED_PARAMETER_METADATA_H_b2cddf38_a9c6_44c8_a2ff_9ebc28031ae3

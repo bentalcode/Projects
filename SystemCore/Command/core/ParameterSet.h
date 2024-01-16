@@ -3,7 +3,7 @@
 
 #include "IParameterSet.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The ParameterSet class implements a parameter-set.
@@ -87,6 +87,6 @@ namespace Command {
     //
     using IParameterSetSharedPtr = std::shared_ptr<IParameterSet>;
 
-} // namespace Command
+} // namespace command
 
 #endif // PARAMETER_SET_H_cba42bfc_3623_49b6_84da_19383ce899ba

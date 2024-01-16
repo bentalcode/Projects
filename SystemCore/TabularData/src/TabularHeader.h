@@ -2,7 +2,7 @@
 
 #include "ITabularHeader.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularHeader class implements a Tabular Header.
@@ -43,4 +43,4 @@ private:
     std::vector<std::wstring> m_headers;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

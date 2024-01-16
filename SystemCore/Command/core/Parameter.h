@@ -4,7 +4,7 @@
 #include "IParameter.h"
 #include "IParameterMetadata.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The Parameter class implements a parameter.
@@ -121,6 +121,6 @@ namespace Command {
     //
     using IParameterSharedPtr = std::shared_ptr<IParameter>;
 
-} // namespace Command
+} // namespace command
 
 #endif // PARAMETER_H_8af139ca_12c8_4a9a_ba9a_49cf7970f7c4

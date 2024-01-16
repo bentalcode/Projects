@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ITokensParser interface defines a parser of tokens.
@@ -27,4 +27,4 @@ public:
  */
 using ITokensParserSharedPtr = std::shared_ptr<ITokensParser>;
 
-} // namespace TabularData
+} // namespace tabular_data

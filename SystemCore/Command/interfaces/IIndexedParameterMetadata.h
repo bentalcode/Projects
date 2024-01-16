@@ -3,7 +3,7 @@
 
 #include "IParameterMetadata.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The IIndexedParameterMetadata interface defines metadata of an index parameter.
@@ -39,6 +39,6 @@ namespace Command {
         virtual const IParameterMetadata& GetParameterMetadata() const = 0;
     };
 
-} // namespace Command
+} // namespace command
 
 #endif // I_INDEXED_PARAMETER_METADATA_H_5bb1cdf8_1336_41eb_854a_c2550e0cb9b7

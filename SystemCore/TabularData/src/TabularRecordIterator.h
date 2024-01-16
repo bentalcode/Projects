@@ -4,7 +4,7 @@
 #include "ITabularRecord.h"
 #include "ITabularRecordParser.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularRecordIterator class implements a Tabular Record Iterator.
@@ -62,4 +62,4 @@ private:
     size_t m_currRecordIndex;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

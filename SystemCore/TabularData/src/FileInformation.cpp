@@ -1,6 +1,6 @@
 #include "FileInformation.h"
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates File Information.

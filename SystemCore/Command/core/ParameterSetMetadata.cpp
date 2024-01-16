@@ -2,7 +2,7 @@
 #include "CommandHelpMetadata.h"
 #include "VectorIterator.h"
 
-using namespace Command;
+using namespace command;
 
 /**
  * Creates parameter set metadata.

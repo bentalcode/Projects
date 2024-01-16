@@ -6,10 +6,10 @@
 #include "IInputParameters.h"
 #include "ICommandManifest.h"
 
-namespace Command {
+namespace command {
 
     /**
-     * The CommandParser class implements a parser of the Command.
+     * The CommandParser class implements a parser of the command.
      */
     class CommandParser final : public IMainParser<ICommandParametersSharedPtr>
     {
@@ -83,6 +83,6 @@ namespace Command {
         ICommandManifestSharedPtr m_manifest;
     };
 
-} // namespace Command
+} // namespace command
 
 #endif // COMMAND_PARSER_H_71982c11_e589_49dc_a280_b8ea2c24daad

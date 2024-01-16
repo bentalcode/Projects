@@ -2,7 +2,7 @@
 
 #include "IEventLog.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The EventLog class implements an Event Log.
@@ -80,4 +80,4 @@ private:
     EventList m_errorEvents;
 };
 
-}  // namespace TabularData
+}  // namespace tabular_data

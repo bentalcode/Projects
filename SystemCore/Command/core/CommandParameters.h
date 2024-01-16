@@ -3,10 +3,10 @@
 
 #include "ICommandParameters.h"
 
-namespace Command {
+namespace command {
 
     /**
-     * The CommandParameters class implements the parameters of the Command.
+     * The CommandParameters class implements the parameters of the command.
      */
     class CommandParameters final : public ICommandParameters
     {
@@ -47,6 +47,6 @@ namespace Command {
         IParameterSetSharedPtr m_parameterSet;
     };
 
-} // namespace Command
+} // namespace command
 
 #endif // COMMAND_PARAMETERS_H_772e5f14_fafb_4eb7_ba0b_95c46c28817e

@@ -2,7 +2,7 @@
 
 #include "IEvent.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The IEventLog interface defines an event log.
@@ -59,4 +59,4 @@ public:
  */
 using IEventLogSharedPtr = std::shared_ptr<IEventLog>;
 
-} // namespace TabularData
+} // namespace tabular_data

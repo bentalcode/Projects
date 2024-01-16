@@ -3,7 +3,7 @@
 #include "TabularDataException.h"
 #include <sstream>
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates a File Writer.

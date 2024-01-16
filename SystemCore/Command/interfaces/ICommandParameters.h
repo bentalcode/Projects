@@ -3,10 +3,10 @@
 
 #include "IParameterSet.h"
 
-namespace Command {
+namespace command {
 
     /**
-     * The ICommandParameters interface defines parameters of the Command.
+     * The ICommandParameters interface defines parameters of the command.
      */
     class ICommandParameters
     {
@@ -44,6 +44,6 @@ namespace Command {
     //
     using ICommandParametersSharedPtr = std::shared_ptr<ICommandParameters>;
 
-} // namespace Command
+} // namespace command
 
 #endif // I_COMMAND_PARAMETERS_H_c3c9c854_be81_40a0_82fc_8c3422abb36b

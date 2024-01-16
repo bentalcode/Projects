@@ -2,7 +2,7 @@
 
 #include "IEvent.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The Event class implements an event of Event Log.
@@ -75,4 +75,4 @@ private:
     base::DateTimeSharedPtr m_time;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

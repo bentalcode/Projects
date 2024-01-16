@@ -2,7 +2,7 @@
 
 #include "BaseException.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularDataException class implements an exception in the Tabular Data module.
@@ -35,4 +35,4 @@ public:
     virtual ~TabularDataException() = default;
 };
 
-}  // namespace TabularData
+}  // namespace tabular_data

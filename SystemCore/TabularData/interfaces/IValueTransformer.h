@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The IValueTransformer interface defines a Value Transformer.
@@ -26,4 +26,4 @@ public:
 template <typename T>
 using IValueTransformerSharedPtr = std::shared_ptr<IValueTransformer<T>>;
 
-} // namespace TabularData
+} // namespace tabular_data

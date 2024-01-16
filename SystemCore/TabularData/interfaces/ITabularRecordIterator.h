@@ -2,7 +2,7 @@
 
 #include "IIterator.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ITabularRecordIterator interface defines a Tabular Record Iterator.
@@ -23,4 +23,4 @@ public:
  */
 using ITabularRecordIteratorSharedPtr = std::shared_ptr<ITabularRecordIterator>;
 
-} // namespace TabularData
+} // namespace tabular_data

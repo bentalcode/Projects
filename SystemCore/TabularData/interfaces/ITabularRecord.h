@@ -3,7 +3,7 @@
 #include "IRecord.h"
 #include <vector>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ITabularRecord interface defines a Tabular Record.
@@ -34,4 +34,4 @@ public:
  */
 using ITabularRecordSharedPtr = std::shared_ptr<ITabularRecord>;
 
-} // namespace TabularData
+} // namespace tabular_data

@@ -5,7 +5,7 @@
 #include "IParameterSetMetadata.h"
 #include <vector>
 
-namespace Command {
+namespace command {
 
     /**
      * The ParameterSetParser class implements a parameter-set parser.
@@ -90,6 +90,6 @@ namespace Command {
     //
     using IParameterSetParserSharedPtr = std::shared_ptr<IParameterSetParser>;
 
-} // namespace Command
+} // namespace command
 
 #endif // PARAMETER_SET_PARSER_H_965a7fed_a43f_4426_9787_456324f9bc68

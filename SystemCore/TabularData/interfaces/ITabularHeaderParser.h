@@ -2,7 +2,7 @@
 
 #include "ITabularHeader.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ITabularHeaderParser interface defines a parser of a Tabular Header.
@@ -23,5 +23,5 @@ public:
  */
 using ITabularHeaderParserSharedPtr = std::shared_ptr<ITabularHeaderParser>;
 
-}  // namespace TabularData
+}  // namespace tabular_data
 

@@ -2,7 +2,7 @@
 
 #include "ITabularTable.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularTable class implements a Tabular Table.
@@ -43,4 +43,4 @@ private:
     base::IIteratorSharedPtr<ITabularRecordSharedPtr> m_recordIterator;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

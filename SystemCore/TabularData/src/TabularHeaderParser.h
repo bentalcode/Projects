@@ -5,7 +5,7 @@
 #include "TokensParser.h"
 #include "EventLog.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularHeaderParser class implements a Tokens Header Parser.
@@ -44,4 +44,4 @@ private:
     IEventLogSharedPtr m_eventLog;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

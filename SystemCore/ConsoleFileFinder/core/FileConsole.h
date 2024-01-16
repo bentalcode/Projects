@@ -34,7 +34,7 @@ namespace consolefilefinder {
         virtual void Display() override;
 
     private:
-        TabularData::IFileSharedPtr m_file;
+        tabular_data::IFileSharedPtr m_file;
         IConsoleSharedPtr m_console;
     };
 

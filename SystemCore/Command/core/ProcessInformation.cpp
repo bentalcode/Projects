@@ -1,6 +1,6 @@
 #include "ProcessInformation.h"
 
-using namespace Command;
+using namespace command;
 
 /**
  * The ProcessInformation constructor.
@@ -63,7 +63,7 @@ const std::wstring& ProcessInformation::Command() const
 }
 
 /**
- * Gets the Command line of the process.
+ * Gets the command line of the process.
  */
 const std::wstring& ProcessInformation::CommandLine() const
 {

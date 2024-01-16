@@ -12,7 +12,7 @@
 #include "SmartPointers.h"
 #include "ErrorCodes.h"
 
-using namespace Command;
+using namespace command;
 
 /**
  * The CommandParser constructor.
@@ -31,12 +31,12 @@ CommandParser::~CommandParser()
 }
 
 /**
- * Parses the parameters of the Command.
+ * Parses the parameters of the command.
  */
 IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::Parse(int argc, wchar_t* argv[])
 {
     //
-    // Parse the parameters of the Command...
+    // Parse the parameters of the command...
     //
     IParsingResultSharedPtr<IInputParametersSharedPtr> inputParametersResult = ParseInputParameters(argc, argv);
 
@@ -55,7 +55,7 @@ IParsingResultSharedPtr<ICommandParametersSharedPtr> CommandParser::Parse(int ar
     }
 
     //
-    // Parse the parameter-sets of the Command...
+    // Parse the parameter-sets of the command...
     //
     IParsingResultSharedPtr<IParameterSetSharedPtr> parameterSetResult = ParseParameterSets(*inputParameters);
 
@@ -98,7 +98,7 @@ IParsingResultSharedPtr<IInputParametersSharedPtr> CommandParser::ParseInputPara
 
                 std::wstringstream errorMessageStream;
                 errorMessageStream
-                    << L"The named parameter: " << name << L" already exists in Command line"
+                    << L"The named parameter: " << name << L" already exists in command line"
                     << base::ErrorMessages::GetErrorCodeMessage(errorCode);
 
                 std::wstring errorMessage = errorMessageStream.str();
@@ -150,7 +150,7 @@ IParsingResultSharedPtr<IParameterSetSharedPtr> CommandParser::ParseParameterSet
     std::wstringstream errorMessageStream;
     errorMessageStream
         << L"The input parameters of command: " << m_manifest->GetName()
-        << L" do not match any of the defined parameter sets in the manifest of the Command.";
+        << L" do not match any of the defined parameter sets in the manifest of the command.";
 
     std::wstring errorMessage = errorMessageStream.str();
     return ParsingResult<IParameterSetSharedPtr>::FailureResult(errorMessage);

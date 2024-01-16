@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ITabularHeader interface defines a Tabular Header.
@@ -35,4 +35,4 @@ public:
  */
 using ITabularHeaderSharedPtr = std::shared_ptr<ITabularHeader>;
 
-} // namespace TabularData
+} // namespace tabular_data

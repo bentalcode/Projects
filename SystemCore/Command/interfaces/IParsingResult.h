@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 
-namespace Command
+namespace command
 {
     /**
      * The IParsingResult interface defines a parsing result.
@@ -67,6 +67,6 @@ namespace Command
     template <typename T>
     using IParsingResultSharedPtr = std::shared_ptr<IParsingResult<T>>;
 
-} // namespace Command
+} // namespace command
 
 #endif // I_PARSING_RESULT_H_263cddc4_2091_4baa_ba82_ec78fd33267f

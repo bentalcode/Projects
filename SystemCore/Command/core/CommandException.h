@@ -3,7 +3,7 @@
 
 #include "BaseException.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The CommandException class implements an exception for capturing errors in the Command module.
@@ -18,6 +18,6 @@ namespace Command {
         }
     };
 
-} // namespace Command
+} // namespace command
 
 #endif // COMMAND_EXCEPTION_H_332eb58f_317e_4562_ba1e_ba80df3e0ac6

@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace Command {
+namespace command {
 
     /**
      * The CommandConstants interface defines constants of a command.
@@ -32,6 +32,6 @@ namespace Command {
         ~CommandConstants() = delete;
     };
 
-} // namespace Command
+} // namespace command
 
 #endif // I_COMMAND_CONSTANTS_H_153e383c_762e_4d0e_baee_ee98cdc5b9d5

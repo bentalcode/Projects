@@ -3,7 +3,7 @@
 #include "TabularRecord.h"
 #include "TabularDataException.h"
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates a Tabular Record Parser.

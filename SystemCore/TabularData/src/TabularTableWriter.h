@@ -4,7 +4,7 @@
 #include "IWriter.h"
 #include <filesystem>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularTableWriter class implements a writer of a Tabular Table.
@@ -57,4 +57,4 @@ private:
     std::wstring m_separator;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

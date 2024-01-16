@@ -7,7 +7,7 @@
 #include "StringUtils.h"
 #include <iostream>
 
-using namespace Command;
+using namespace command;
 
 /**
  * Creates a new command handler.
@@ -46,7 +46,8 @@ int CommandHandler::Run(ICommand& command, int argc, wchar_t* argv[])
         if(!RunCommand(command, argc, argv)) {
             std::wstringstream errorMessageStream;
             errorMessageStream
-                << L"The Command: " << m_manifest->GetName() << L" has Failed to Run, Exit Status: -1";
+                << L"The Command: " << m_manifest->GetName()
+                << L" has failed to run, Exit Status: -1";
 
             std::wstring errorMessage = errorMessageStream.str();
 
@@ -62,7 +63,7 @@ int CommandHandler::Run(ICommand& command, int argc, wchar_t* argv[])
         std::wstringstream errorMessageStream;
         errorMessageStream
             << L"The Command: " << m_manifest->GetName()
-            << L" has Failed to Run due to runtime error: " << e.GetErrorMessage()
+            << L" has failed to run due to runtime error: " << e.GetErrorMessage()
             << L", Exit Status: -1"
             << base::ErrorMessages::GetErrorCodeMessage(errorCode);
 
@@ -78,7 +79,7 @@ int CommandHandler::Run(ICommand& command, int argc, wchar_t* argv[])
         std::wstringstream errorMessageStream;
         errorMessageStream
             << L"The Command: " << m_manifest->GetName()
-            << L" has Failed to Run due to unexpected error: " << base::StringUtils::StringToWideString(e.what())
+            << L" has failed to run due to unexpected error: " << base::StringUtils::StringToWideString(e.what())
             << L", Exit Status: -1"
             << base::ErrorMessages::GetErrorCodeMessage(errorCode);
 
@@ -94,13 +95,13 @@ int CommandHandler::Run(ICommand& command, int argc, wchar_t* argv[])
 /**
  * Runs a command.
  *
- * Returns true if running the Command successfully.
- * Returns false if failing to Run the Command.
+ * Returns true if running the command successfully.
+ * Returns false if failing to run the command.
  */
 bool CommandHandler::RunCommand(ICommand& command, int argc, wchar_t* argv[])
 {
     //
-    // Parse parameters of the Command...
+    // Parse parameters of the command...
     //
     IParsingResultSharedPtr<ICommandParametersSharedPtr> parametersResult = ParseParameters(argc, argv);
 
@@ -113,7 +114,7 @@ bool CommandHandler::RunCommand(ICommand& command, int argc, wchar_t* argv[])
             std::wstringstream errorMessageStream;
             errorMessageStream
                 << L"The Command: " << m_manifest->GetName()
-                << L" has Failed to Parse the parameters due to parsing error: " << parametersResult->GetErrorMessage()
+                << L" has failed to Parse the parameters due to parsing error: " << parametersResult->GetErrorMessage()
                 << ", Exit Status: 0"
                 << "; ErrorCode: " << base::ErrorMessages::GetErrorCodeMessage(errorCode);
 
@@ -127,14 +128,14 @@ bool CommandHandler::RunCommand(ICommand& command, int argc, wchar_t* argv[])
     }
 
     //
-    // Set the information of the Command...
+    // Set the information of the command...
     //
     command.SetParameters(parametersResult->GetResult());
 
     command.SetMessageWriter(m_commandMessageWriter->GetMessageWriter());
 
     //
-    // Run the logic of the Command...
+    // Run the logic of the command...
     //
     command.Run();
 

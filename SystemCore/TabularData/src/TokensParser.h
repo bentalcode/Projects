@@ -3,7 +3,7 @@
 #include "ITokensParser.h"
 #include <regex>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TokensParser class implements a Tokens Parser.
@@ -36,4 +36,4 @@ private:
     std::wregex m_regexSeparator;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

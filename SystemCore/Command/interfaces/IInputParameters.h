@@ -6,7 +6,7 @@
 #include <map>
 #include <memory>
 
-namespace Command {
+namespace command {
 
     class IndexedParameters;
     class NamedParameters;
@@ -57,6 +57,6 @@ namespace Command {
     //
     using IInputParametersSharedPtr = std::shared_ptr<IInputParameters>;
 
-} // namespace Command
+} // namespace command
 
 #endif // I_INPUT_PARAMETERS_H_a7aa3483_3e17_4c82_8883_fda8cdfa930b

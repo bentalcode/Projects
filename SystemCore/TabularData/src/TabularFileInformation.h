@@ -3,7 +3,7 @@
 #include "ITabularFileInformation.h"
 #include "IFileInformation.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularFileInformation class implements information of a tabular file.
@@ -44,4 +44,4 @@ private:
     size_t m_numberOfTabularRecords;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

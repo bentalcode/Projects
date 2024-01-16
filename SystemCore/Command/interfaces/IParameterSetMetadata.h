@@ -6,7 +6,7 @@
 #include "INamedParameterMetadata.h"
 #include <vector>
 
-namespace Command {
+namespace command {
 
     /**
      * The IParameterSetMetadata interface defines a metadata of a parameter set.
@@ -52,6 +52,6 @@ namespace Command {
     //
     using IParameterSetMetadataSharedPtr = std::shared_ptr<IParameterSetMetadata>;
 
-} // namespace Command
+} // namespace command
 
 #endif // I_PARAMETER_SET_METADATA_H_H_31a8df57_dd05_4fae_81d9_88273fdb5832

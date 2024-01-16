@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The IWriter interface defines a writer.
@@ -29,4 +29,4 @@ public:
  */
 using IWriterSharedPtr = std::shared_ptr<IWriter>;
 
-} // namespace TabularData
+} // namespace tabular_data

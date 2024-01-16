@@ -6,7 +6,7 @@
 #include "IFile.h"
 #include "ITabularTable.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularFile class implements a Tabular File.
@@ -76,4 +76,4 @@ private:
     ITabularRecordParserSharedPtr m_recordParser;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

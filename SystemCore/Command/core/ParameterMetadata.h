@@ -3,7 +3,7 @@
 
 #include "IParameterMetadata.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The ParameterMetadata abstract base class implements meta-data of a parameter.
@@ -57,6 +57,6 @@ namespace Command {
         std::wstring m_description;
     };
 
-} // namespace Command
+} // namespace command
 
 #endif // PARAMETER_METADATA_H_44292319_2df4_4668_97a8_53704e85b8bf

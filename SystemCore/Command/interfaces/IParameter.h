@@ -4,7 +4,7 @@
 #include "Duration.h"
 #include <vector>
 
-namespace Command {
+namespace command {
     class IParameterMetadata;
 
     /**
@@ -106,6 +106,6 @@ namespace Command {
     //
     using IParameterSharedPtr = std::shared_ptr<IParameter>;
 
-} // namespace Command
+} // namespace command
 
 #endif // I_PARAMETER_b9351446_1760_4431_9260_ae23a3d040bf

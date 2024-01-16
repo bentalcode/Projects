@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace TabularData {
+namespace tabular_data {
 
 class IFile;
 class ITabularTable;
@@ -31,4 +31,4 @@ public:
  */
 using ITabularFileSharedPtr = std::shared_ptr<ITabularFile>;
 
-} // namespace TabularData
+} // namespace tabular_data

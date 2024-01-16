@@ -5,7 +5,7 @@
 #include "TabularDataException.h"
 #include <filesystem>
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates a File Line Iterator.

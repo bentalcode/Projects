@@ -7,7 +7,7 @@
 #include "Handle.h"
 #include <stdio.h>
 
-using namespace TabularData;
+using namespace tabular_data;
 
 namespace windows {
 
@@ -107,7 +107,7 @@ size_t File::GetNumberOfRecords() const
 {
     size_t numberOfRecords = 0;
 
-    base::IIteratorSharedPtr<TabularData::IRecordSharedPtr> recordIterator = GetIterator();
+    base::IIteratorSharedPtr<tabular_data::IRecordSharedPtr> recordIterator = GetIterator();
 
     while (recordIterator->HasNext()) {
         ++numberOfRecords;
@@ -119,7 +119,7 @@ size_t File::GetNumberOfRecords() const
 /**
  * Gets an iterator of records of file.
  */
-base::IIteratorSharedPtr<TabularData::IRecordSharedPtr> File::GetIterator() const
+base::IIteratorSharedPtr<tabular_data::IRecordSharedPtr> File::GetIterator() const
 {
-    return TabularData::FileLineIterator::Make(m_path);
+    return tabular_data::FileLineIterator::Make(m_path);
 }

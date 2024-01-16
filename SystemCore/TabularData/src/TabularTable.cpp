@@ -1,7 +1,7 @@
 #include "TabularTable.h"
 #include "SmartPointers.h"
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates a Tabular Table.

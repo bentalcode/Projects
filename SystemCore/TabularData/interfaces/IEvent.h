@@ -4,7 +4,7 @@
 #include "DateTime.h"
 #include <list>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The IEvent interface defines an event of Event Log.
@@ -55,4 +55,4 @@ using IEventSharedPtr = std::shared_ptr<IEvent>;
 //
 using EventList = std::list<IEventSharedPtr>;
 
-} // namespace TabularData
+} // namespace tabular_data

@@ -4,7 +4,7 @@
 #include "IRecord.h"
 #include <fstream>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The FileLineIterator class implements a File Line Iterator.
@@ -60,4 +60,4 @@ private:
     FileStreamUniquePtr m_fileStream;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

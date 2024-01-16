@@ -2,7 +2,7 @@
 
 #include "ITabularRecord.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The TabularRecord class implements a Tabular Record.
@@ -61,4 +61,4 @@ private:
     std::vector<std::wstring> m_values;
 };
 
-}  // namespace TabularData
+}  // namespace tabular_data

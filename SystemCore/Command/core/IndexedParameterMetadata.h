@@ -4,7 +4,7 @@
 #include "IIndexedParameterMetadata.h"
 #include "ParameterMetadata.h"
 
-namespace Command {
+namespace command {
 
     /**
      * The IndexedParameterMetadata class implements meta-data of an indexed parameter.
@@ -49,6 +49,6 @@ namespace Command {
         virtual const IParameterMetadata& GetParameterMetadata() const override;
     };
 
-} // namespace Command
+} // namespace command
 
 #endif // INDEXED_PARAMETER_METADATA_H_7b8f2e24_b7aa_4f01_9b3e_0640bb825003

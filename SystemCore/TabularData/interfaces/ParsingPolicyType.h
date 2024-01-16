@@ -1,6 +1,6 @@
 #pragma once
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The ParsingPolicyType class defines various types of Parsing policies.
@@ -11,4 +11,4 @@ enum class ParsingPolicyType {
 	FAIL_ON_ERROR_THRESHOLD 
 };
 
-} // namespace TabularData
+} // namespace tabular_data

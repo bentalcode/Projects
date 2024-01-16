@@ -2,7 +2,7 @@
 
 #include "IRecord.h"
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The Record class implements a Record.
@@ -43,4 +43,4 @@ private:
     std::wstring m_content;
 };
 
-} // namespace TabularData
+} // namespace tabular_data

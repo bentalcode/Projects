@@ -1,7 +1,7 @@
 #include "TabularFileInformation.h"
 #include "SmartPointers.h"
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates Tabular File Information.

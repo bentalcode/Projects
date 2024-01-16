@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-namespace TabularData {
+namespace tabular_data {
 
 /**
  * The IRecord interface defines a Record.
@@ -29,4 +29,4 @@ public:
  */
 using IRecordSharedPtr = std::shared_ptr<IRecord>;
 
-} // namespace TabularData
+} // namespace tabular_data

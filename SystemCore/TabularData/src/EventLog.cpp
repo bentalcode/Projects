@@ -2,7 +2,7 @@
 #include "Event.h"
 #include "Uuid.h"
 
-using namespace TabularData;
+using namespace tabular_data;
 
 /**
  * Creates an Event Log.
