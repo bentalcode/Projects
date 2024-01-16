@@ -43,22 +43,28 @@ add_compile_definitions(WINDOWS=1)
 
 
 set(CONSOLE_FILE_FINDER_INCLUDES_FILES
+    ./core/Console.h
     ./core/ConsoleFileFinderCommand.h
     ./core/ConsoleFileFinderCommandConstants.h
     ./core/ConsoleFileFinderCommandManifest.h
     ./core/ConsoleFileFinderCommandParameters.h
     ./core/ConsoleFileFinderException.h
+    ./core/FileConsole.h
     ./core/FileFinder.h
+    ./interfaces/IConsole.h
     ./interfaces/IConsoleFileFinderCommand.h
     ./interfaces/IConsoleFileFinderCommandParameters.h
+    ./interfaces/IFileConsole.h
     ./interfaces/IFileFinder.h
 )
 
 set(CONSOLE_FILE_FINDER_SOURCES_FILES
+    ./core/Console.cpp
     ./core/ConsoleFileFinderCommand.cpp
     ./core/ConsoleFileFinderCommandConstants.cpp
     ./core/ConsoleFileFinderCommandManifest.cpp
     ./core/ConsoleFileFinderCommandParameters.cpp
+    ./core/FileConsole.cpp
     ./core/FileFinder.cpp
     ./main.cpp
 )
@@ -465,22 +471,126 @@ add_library(Command STATIC
     ${COMMAND_SOURCES}
 )
 
+set(TABULAR_DATA_INCLUDES_FILES
+    ../TabularData/interfaces/EventType.h
+    ../TabularData/interfaces/IEvent.h
+    ../TabularData/interfaces/IEventLog.h
+    ../TabularData/interfaces/IFile.h
+    ../TabularData/interfaces/IFileInformation.h
+    ../TabularData/interfaces/IRecord.h
+    ../TabularData/interfaces/ITabularFile.h
+    ../TabularData/interfaces/ITabularFileInformation.h
+    ../TabularData/interfaces/ITabularHeader.h
+    ../TabularData/interfaces/ITabularHeaderParser.h
+    ../TabularData/interfaces/ITabularRecord.h
+    ../TabularData/interfaces/ITabularRecordIterator.h
+    ../TabularData/interfaces/ITabularRecordParser.h
+    ../TabularData/interfaces/ITabularTable.h
+    ../TabularData/interfaces/ITabularTableWriter.h
+    ../TabularData/interfaces/ITokensParser.h
+    ../TabularData/interfaces/IValueTransformer.h
+    ../TabularData/interfaces/IWriter.h
+    ../TabularData/interfaces/ParsingPolicyType.h
+    ../TabularData/src/Event.h
+    ../TabularData/src/EventLog.h
+    ../TabularData/src/File.h
+    ../TabularData/src/FileInformation.h
+    ../TabularData/src/FileLineIterator.h
+    ../TabularData/src/FileWriter.h
+    ../TabularData/src/Record.h
+    ../TabularData/src/TabularDataException.h
+    ../TabularData/src/TabularFile.h
+    ../TabularData/src/TabularFileInformation.h
+    ../TabularData/src/TabularHeader.h
+    ../TabularData/src/TabularHeaderParser.h
+    ../TabularData/src/TabularRecord.h
+    ../TabularData/src/TabularRecordIterator.h
+    ../TabularData/src/TabularRecordParser.h
+    ../TabularData/src/TabularTable.h
+    ../TabularData/src/TabularTableWriter.h
+    ../TabularData/src/TokensParser.h
+)
+
+set(TABULAR_DATA_SOURCES_FILES
+    ../TabularData/src/Event.cpp
+    ../TabularData/src/EventLog.cpp
+    ../TabularData/src/File.cpp
+    ../TabularData/src/FileInformation.cpp
+    ../TabularData/src/FileLineIterator.cpp
+    ../TabularData/src/FileWriter.cpp
+    ../TabularData/src/Record.cpp
+    ../TabularData/src/TabularFile.cpp
+    ../TabularData/src/TabularFileInformation.cpp
+    ../TabularData/src/TabularHeader.cpp
+    ../TabularData/src/TabularHeaderParser.cpp
+    ../TabularData/src/TabularRecord.cpp
+    ../TabularData/src/TabularRecordIterator.cpp
+    ../TabularData/src/TabularRecordParser.cpp
+    ../TabularData/src/TabularTable.cpp
+    ../TabularData/src/TabularTableWriter.cpp
+    ../TabularData/src/TokensParser.cpp
+)
+
+set(TABULAR_DATA_INCLUDES
+    ../TabularData/interfaces
+    ../TabularData/src
+)
+
+set(TABULAR_DATA_SOURCES
+    ${TABULAR_DATA_INCLUDES_FILES}
+    ${TABULAR_DATA_SOURCES_FILES}
+)
+
+add_library(TabularData STATIC
+    ${BASE_SOURCES}
+    ${TABULAR_DATA_SOURCES}
+)
+
+set(CONSOLE_WINDOWS_INCLUDES_FILES
+    ../ConsoleWindows/interfaces/IConsoleWindow.h
+    ../ConsoleWindows/src/ConsoleWindow.h
+    ../ConsoleWindows/src/ConsoleWindowsException.h
+)
+
+set(CONSOLE_WINDOWS_SOURCES_FILES
+    ../ConsoleWindows/src/ConsoleWindow.cpp
+)
+
+set(CONSOLE_WINDOWS_INCLUDES
+    ../ConsoleWindows/interfaces
+    ../ConsoleWindows/src
+)
+
+set(CONSOLE_WINDOWS_SOURCES
+    ${CONSOLE_WINDOWS_INCLUDES_FILES}
+    ${CONSOLE_WINDOWS_SOURCES_FILES}
+)
+
+add_library(ConsoleWindows STATIC
+    ${BASE_SOURCES}
+    ${CONSOLE_WINDOWS_SOURCES}
+)
+
 include_directories(ConsoleFileFinder
     ${BASE_INCLUDES}
     ${COMMAND_INCLUDES}
     ${CONSOLE_FILE_FINDER_INCLUDES}
+    ${CONSOLE_WINDOWS_INCLUDES}
     ${DATA_STRUCTURES_INCLUDES}
+    ${TABULAR_DATA_INCLUDES}
 )
 
 add_executable(ConsoleFileFinder
     ${BASE_SOURCES}
     ${COMMAND_SOURCES}
     ${CONSOLE_FILE_FINDER_SOURCES}
+    ${CONSOLE_WINDOWS_SOURCES}
     ${DATA_STRUCTURES_SOURCES}
+    ${TABULAR_DATA_SOURCES}
 )
 
 target_link_libraries(ConsoleFileFinder
-    PRIVATE Base DataStructures Command
+    PRIVATE Base DataStructures Command TabularData ConsoleWindows
 )
 
 include_directories(

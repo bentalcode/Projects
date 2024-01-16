@@ -1,6 +1,7 @@
 #include "ConsoleFileFinderCommand.h"
 #include "ConsoleFileFinderCommandParameters.h"
 #include "FileFinder.h"
+#include "FileConsole.h"
 
 using namespace consolefilefinder;
 
@@ -46,6 +47,10 @@ void ConsoleFileFinderCommand::Run()
         m_parameters->GetPath(),
         m_parameters->GetFilePatterns(),
         files);
+
+    for (const std::wstring& file : files) {
+        ProcessFile(file);
+    }
 }
 
 /**
@@ -62,4 +67,13 @@ command::ICommand& ConsoleFileFinderCommand::GetCommand()
 void ConsoleFileFinderCommand::Initialize()
 {
     m_parameters = ConsoleFileFinderCommandParameters::Make(command::AbstractCommand::GetParameters());
+}
+
+/**
+ * Processes file.
+ */
+void ConsoleFileFinderCommand::ProcessFile(const std::wstring& path)
+{
+    IFileConsoleSharedPtr fileConsole = FileConsole::Make(path);
+    fileConsole->Display();
 }

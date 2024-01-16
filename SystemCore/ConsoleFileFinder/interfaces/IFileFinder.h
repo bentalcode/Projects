@@ -2,7 +2,6 @@
 #define I_FILE_FINDER_H_d4181e6f_7c22_4c0d_b069_ba50180876a4
 
 #include <memory>
-#include <filesystem>
 #include <vector>
 #include <list>
 #include <string>
@@ -51,6 +50,6 @@ namespace consolefilefinder
     //
     using IFileFinderSharedPtr = std::shared_ptr<IFileFinder>;
 
-} // namespace base
+} // namespace consolefilefinder
 
 #endif // I_FILE_FINDER_H_d4181e6f_7c22_4c0d_b069_ba50180876a4

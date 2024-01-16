@@ -44,6 +44,11 @@ namespace consolefilefinder {
          */
         void Initialize();
 
+        /**
+         * Processes file.
+         */
+        void ProcessFile(const std::wstring& path);
+
         //
         // The parameters of command...
         //

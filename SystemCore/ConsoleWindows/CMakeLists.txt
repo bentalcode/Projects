@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(TabularData VERSION 1.0)
+project(ConsoleWindows VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
     14
@@ -35,74 +35,24 @@ endif()
 add_compile_definitions(WINDOWS=1)
 
 
-set(TABULAR_DATA_INCLUDES_FILES
-    ./interfaces/EventType.h
-    ./interfaces/IEvent.h
-    ./interfaces/IEventLog.h
-    ./interfaces/IFile.h
-    ./interfaces/IFileInformation.h
-    ./interfaces/IRecord.h
-    ./interfaces/ITabularFile.h
-    ./interfaces/ITabularFileInformation.h
-    ./interfaces/ITabularHeader.h
-    ./interfaces/ITabularHeaderParser.h
-    ./interfaces/ITabularRecord.h
-    ./interfaces/ITabularRecordIterator.h
-    ./interfaces/ITabularRecordParser.h
-    ./interfaces/ITabularTable.h
-    ./interfaces/ITabularTableWriter.h
-    ./interfaces/ITokensParser.h
-    ./interfaces/IValueTransformer.h
-    ./interfaces/IWriter.h
-    ./interfaces/ParsingPolicyType.h
-    ./src/Event.h
-    ./src/EventLog.h
-    ./src/File.h
-    ./src/FileInformation.h
-    ./src/FileLineIterator.h
-    ./src/FileWriter.h
-    ./src/Record.h
-    ./src/TabularDataException.h
-    ./src/TabularFile.h
-    ./src/TabularFileInformation.h
-    ./src/TabularHeader.h
-    ./src/TabularHeaderParser.h
-    ./src/TabularRecord.h
-    ./src/TabularRecordIterator.h
-    ./src/TabularRecordParser.h
-    ./src/TabularTable.h
-    ./src/TabularTableWriter.h
-    ./src/TokensParser.h
+set(CONSOLE_WINDOWS_INCLUDES_FILES
+    ./interfaces/IConsoleWindow.h
+    ./src/ConsoleWindow.h
+    ./src/ConsoleWindowsException.h
 )
 
-set(TABULAR_DATA_SOURCES_FILES
-    ./src/Event.cpp
-    ./src/EventLog.cpp
-    ./src/File.cpp
-    ./src/FileInformation.cpp
-    ./src/FileLineIterator.cpp
-    ./src/FileWriter.cpp
-    ./src/Record.cpp
-    ./src/TabularFile.cpp
-    ./src/TabularFileInformation.cpp
-    ./src/TabularHeader.cpp
-    ./src/TabularHeaderParser.cpp
-    ./src/TabularRecord.cpp
-    ./src/TabularRecordIterator.cpp
-    ./src/TabularRecordParser.cpp
-    ./src/TabularTable.cpp
-    ./src/TabularTableWriter.cpp
-    ./src/TokensParser.cpp
+set(CONSOLE_WINDOWS_SOURCES_FILES
+    ./src/ConsoleWindow.cpp
 )
 
-set(TABULAR_DATA_INCLUDES
+set(CONSOLE_WINDOWS_INCLUDES
     ./interfaces
     ./src
 )
 
-set(TABULAR_DATA_SOURCES
-    ${TABULAR_DATA_INCLUDES_FILES}
-    ${TABULAR_DATA_SOURCES_FILES}
+set(CONSOLE_WINDOWS_SOURCES
+    ${CONSOLE_WINDOWS_INCLUDES_FILES}
+    ${CONSOLE_WINDOWS_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -274,14 +224,14 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
-include_directories(TabularData
+include_directories(ConsoleWindows
     ${BASE_INCLUDES}
-    ${TABULAR_DATA_INCLUDES}
+    ${CONSOLE_WINDOWS_INCLUDES}
 )
 
-add_library(TabularData STATIC
+add_library(ConsoleWindows STATIC
     ${BASE_SOURCES}
-    ${TABULAR_DATA_SOURCES}
+    ${CONSOLE_WINDOWS_SOURCES}
 )
 
 include_directories(
