@@ -237,13 +237,13 @@ unsigned int StringSearch::CountSubString(
     size_t subStringEndIndex = subString.length() - 1;
 
     return CountSubString(
-            str,
-            startIndex,
-            endIndex,
-            subString,
-            subStringStartIndex,
-            subStringEndIndex,
-            allowOverlapping);
+        str,
+        startIndex,
+        endIndex,
+        subString,
+        subStringStartIndex,
+        subStringEndIndex,
+        allowOverlapping);
 }
 
 /**

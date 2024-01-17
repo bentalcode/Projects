@@ -23,6 +23,7 @@ namespace base {
         };
 
         using WinHandle = Handle<HANDLE, HandleReleaser>;
+        using WinHandleUniquePtr = HandleUniquePtr<HANDLE, HandleReleaser>;
 
     }  // namespace windows
 

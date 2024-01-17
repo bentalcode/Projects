@@ -21,7 +21,7 @@ ClassType::~ClassType()
 /**
  * Gets the name of a class.
  */
-const std::wstring& ClassType::GetClassName() const
+const std::wstring& ClassType::ClassName() const
 {
     return m_className;
 }
@@ -38,7 +38,7 @@ int ClassType::Compare(const IClassType& classType) const
     return StringComparable::CompareIgnoreCase(
         m_className,
         0,
-        classType.GetClassName(),
+        classType.ClassName(),
         0,
         m_className.size());
 }

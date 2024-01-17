@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(ConsoleWindows VERSION 1.0)
+project(ClientServer VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
     14
@@ -35,30 +35,32 @@ endif()
 add_compile_definitions(WINDOWS=1)
 
 
-set(CONSOLE_WINDOWS_INCLUDES_FILES
-    ./core/ConsolePipe.h
-    ./core/ConsoleProcess.h
-    ./core/ConsoleWindow.h
-    ./core/ConsoleWindowsException.h
-    ./interfaces/IConsolePipe.h
-    ./interfaces/IConsoleProcess.h
-    ./interfaces/IConsoleWindow.h
+set(CLIENT_SERVER_INCLUDES_FILES
+    ./core/AbstractRetryLogic.h
+    ./core/ClientServerException.h
+    ./core/RetryException.h
+    ./core/RetryHandler.h
+    ./core/RetryPolicy.h
+    ./interfaces/ILogic.h
+    ./interfaces/IRetryHandler.h
+    ./interfaces/IRetryLogic.h
+    ./interfaces/IRetryPolicy.h
 )
 
-set(CONSOLE_WINDOWS_SOURCES_FILES
-    ./core/ConsolePipe.cpp
-    ./core/ConsoleProcess.cpp
-    ./core/ConsoleWindow.cpp
+set(CLIENT_SERVER_SOURCES_FILES
+    ./core/AbstractRetryLogic.cpp
+    ./core/RetryHandler.cpp
+    ./core/RetryPolicy.cpp
 )
 
-set(CONSOLE_WINDOWS_INCLUDES
+set(CLIENT_SERVER_INCLUDES
     ./core
     ./interfaces
 )
 
-set(CONSOLE_WINDOWS_SOURCES
-    ${CONSOLE_WINDOWS_INCLUDES_FILES}
-    ${CONSOLE_WINDOWS_SOURCES_FILES}
+set(CLIENT_SERVER_SOURCES
+    ${CLIENT_SERVER_INCLUDES_FILES}
+    ${CLIENT_SERVER_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -230,49 +232,14 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
-set(CLIENT_SERVER_INCLUDES_FILES
-    ../ClientServer/core/AbstractRetryLogic.h
-    ../ClientServer/core/ClientServerException.h
-    ../ClientServer/core/RetryException.h
-    ../ClientServer/core/RetryHandler.h
-    ../ClientServer/core/RetryPolicy.h
-    ../ClientServer/interfaces/ILogic.h
-    ../ClientServer/interfaces/IRetryHandler.h
-    ../ClientServer/interfaces/IRetryLogic.h
-    ../ClientServer/interfaces/IRetryPolicy.h
-)
-
-set(CLIENT_SERVER_SOURCES_FILES
-    ../ClientServer/core/AbstractRetryLogic.cpp
-    ../ClientServer/core/RetryHandler.cpp
-    ../ClientServer/core/RetryPolicy.cpp
-)
-
-set(CLIENT_SERVER_INCLUDES
-    ../ClientServer/core
-    ../ClientServer/interfaces
-)
-
-set(CLIENT_SERVER_SOURCES
-    ${CLIENT_SERVER_INCLUDES_FILES}
-    ${CLIENT_SERVER_SOURCES_FILES}
+include_directories(ClientServer
+    ${BASE_INCLUDES}
+    ${CLIENT_SERVER_INCLUDES}
 )
 
 add_library(ClientServer STATIC
     ${BASE_SOURCES}
     ${CLIENT_SERVER_SOURCES}
-)
-
-include_directories(ConsoleWindows
-    ${BASE_INCLUDES}
-    ${CLIENT_SERVER_INCLUDES}
-    ${CONSOLE_WINDOWS_INCLUDES}
-)
-
-add_library(ConsoleWindows STATIC
-    ${BASE_SOURCES}
-    ${CLIENT_SERVER_SOURCES}
-    ${CONSOLE_WINDOWS_SOURCES}
 )
 
 include_directories(

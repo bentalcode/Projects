@@ -1,6 +1,8 @@
 #ifndef HANDLE_H_6b728a41_95bf_4e58_8e60_44222b897716
 #define HANDLE_H_6b728a41_95bf_4e58_8e60_44222b897716
 
+#include <memory>
+
 namespace base {
 
     /**
@@ -67,6 +69,12 @@ namespace base {
     Handle<HANDLE, RELEASER>::operator HANDLE() const {
         return m_handle;
     }
+
+    /**
+     * Desfines the Unique Ptr of Handle.
+     */
+    template<typename HANDLE, typename RELEASER>
+    using HandleUniquePtr = std::unique_ptr<Handle<HANDLE, RELEASER>>;
 
 }  // namespace base
 

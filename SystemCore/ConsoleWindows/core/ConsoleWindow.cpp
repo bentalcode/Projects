@@ -1,6 +1,6 @@
 #include "ConsoleWindow.h"
 
-using namespace ConsoleWindows;
+using namespace console_windows;
 
 /**
  * Creates a ConsoleWindow.

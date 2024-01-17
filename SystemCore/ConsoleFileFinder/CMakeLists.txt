@@ -472,6 +472,24 @@ add_library(Command STATIC
 )
 
 set(TABULAR_DATA_INCLUDES_FILES
+    ../TabularData/core/Event.h
+    ../TabularData/core/EventLog.h
+    ../TabularData/core/File.h
+    ../TabularData/core/FileInformation.h
+    ../TabularData/core/FileLineIterator.h
+    ../TabularData/core/FileWriter.h
+    ../TabularData/core/Record.h
+    ../TabularData/core/TabularDataException.h
+    ../TabularData/core/TabularFile.h
+    ../TabularData/core/TabularFileInformation.h
+    ../TabularData/core/TabularHeader.h
+    ../TabularData/core/TabularHeaderParser.h
+    ../TabularData/core/TabularRecord.h
+    ../TabularData/core/TabularRecordIterator.h
+    ../TabularData/core/TabularRecordParser.h
+    ../TabularData/core/TabularTable.h
+    ../TabularData/core/TabularTableWriter.h
+    ../TabularData/core/TokensParser.h
     ../TabularData/interfaces/EventType.h
     ../TabularData/interfaces/IEvent.h
     ../TabularData/interfaces/IEventLog.h
@@ -491,49 +509,31 @@ set(TABULAR_DATA_INCLUDES_FILES
     ../TabularData/interfaces/IValueTransformer.h
     ../TabularData/interfaces/IWriter.h
     ../TabularData/interfaces/ParsingPolicyType.h
-    ../TabularData/src/Event.h
-    ../TabularData/src/EventLog.h
-    ../TabularData/src/File.h
-    ../TabularData/src/FileInformation.h
-    ../TabularData/src/FileLineIterator.h
-    ../TabularData/src/FileWriter.h
-    ../TabularData/src/Record.h
-    ../TabularData/src/TabularDataException.h
-    ../TabularData/src/TabularFile.h
-    ../TabularData/src/TabularFileInformation.h
-    ../TabularData/src/TabularHeader.h
-    ../TabularData/src/TabularHeaderParser.h
-    ../TabularData/src/TabularRecord.h
-    ../TabularData/src/TabularRecordIterator.h
-    ../TabularData/src/TabularRecordParser.h
-    ../TabularData/src/TabularTable.h
-    ../TabularData/src/TabularTableWriter.h
-    ../TabularData/src/TokensParser.h
 )
 
 set(TABULAR_DATA_SOURCES_FILES
-    ../TabularData/src/Event.cpp
-    ../TabularData/src/EventLog.cpp
-    ../TabularData/src/File.cpp
-    ../TabularData/src/FileInformation.cpp
-    ../TabularData/src/FileLineIterator.cpp
-    ../TabularData/src/FileWriter.cpp
-    ../TabularData/src/Record.cpp
-    ../TabularData/src/TabularFile.cpp
-    ../TabularData/src/TabularFileInformation.cpp
-    ../TabularData/src/TabularHeader.cpp
-    ../TabularData/src/TabularHeaderParser.cpp
-    ../TabularData/src/TabularRecord.cpp
-    ../TabularData/src/TabularRecordIterator.cpp
-    ../TabularData/src/TabularRecordParser.cpp
-    ../TabularData/src/TabularTable.cpp
-    ../TabularData/src/TabularTableWriter.cpp
-    ../TabularData/src/TokensParser.cpp
+    ../TabularData/core/Event.cpp
+    ../TabularData/core/EventLog.cpp
+    ../TabularData/core/File.cpp
+    ../TabularData/core/FileInformation.cpp
+    ../TabularData/core/FileLineIterator.cpp
+    ../TabularData/core/FileWriter.cpp
+    ../TabularData/core/Record.cpp
+    ../TabularData/core/TabularFile.cpp
+    ../TabularData/core/TabularFileInformation.cpp
+    ../TabularData/core/TabularHeader.cpp
+    ../TabularData/core/TabularHeaderParser.cpp
+    ../TabularData/core/TabularRecord.cpp
+    ../TabularData/core/TabularRecordIterator.cpp
+    ../TabularData/core/TabularRecordParser.cpp
+    ../TabularData/core/TabularTable.cpp
+    ../TabularData/core/TabularTableWriter.cpp
+    ../TabularData/core/TokensParser.cpp
 )
 
 set(TABULAR_DATA_INCLUDES
+    ../TabularData/core
     ../TabularData/interfaces
-    ../TabularData/src
 )
 
 set(TABULAR_DATA_SOURCES
@@ -546,19 +546,58 @@ add_library(TabularData STATIC
     ${TABULAR_DATA_SOURCES}
 )
 
+set(CLIENT_SERVER_INCLUDES_FILES
+    ../ClientServer/core/AbstractRetryLogic.h
+    ../ClientServer/core/ClientServerException.h
+    ../ClientServer/core/RetryException.h
+    ../ClientServer/core/RetryHandler.h
+    ../ClientServer/core/RetryPolicy.h
+    ../ClientServer/interfaces/ILogic.h
+    ../ClientServer/interfaces/IRetryHandler.h
+    ../ClientServer/interfaces/IRetryLogic.h
+    ../ClientServer/interfaces/IRetryPolicy.h
+)
+
+set(CLIENT_SERVER_SOURCES_FILES
+    ../ClientServer/core/AbstractRetryLogic.cpp
+    ../ClientServer/core/RetryHandler.cpp
+    ../ClientServer/core/RetryPolicy.cpp
+)
+
+set(CLIENT_SERVER_INCLUDES
+    ../ClientServer/core
+    ../ClientServer/interfaces
+)
+
+set(CLIENT_SERVER_SOURCES
+    ${CLIENT_SERVER_INCLUDES_FILES}
+    ${CLIENT_SERVER_SOURCES_FILES}
+)
+
+add_library(ClientServer STATIC
+    ${BASE_SOURCES}
+    ${CLIENT_SERVER_SOURCES}
+)
+
 set(CONSOLE_WINDOWS_INCLUDES_FILES
+    ../ConsoleWindows/core/ConsolePipe.h
+    ../ConsoleWindows/core/ConsoleProcess.h
+    ../ConsoleWindows/core/ConsoleWindow.h
+    ../ConsoleWindows/core/ConsoleWindowsException.h
+    ../ConsoleWindows/interfaces/IConsolePipe.h
+    ../ConsoleWindows/interfaces/IConsoleProcess.h
     ../ConsoleWindows/interfaces/IConsoleWindow.h
-    ../ConsoleWindows/src/ConsoleWindow.h
-    ../ConsoleWindows/src/ConsoleWindowsException.h
 )
 
 set(CONSOLE_WINDOWS_SOURCES_FILES
-    ../ConsoleWindows/src/ConsoleWindow.cpp
+    ../ConsoleWindows/core/ConsolePipe.cpp
+    ../ConsoleWindows/core/ConsoleProcess.cpp
+    ../ConsoleWindows/core/ConsoleWindow.cpp
 )
 
 set(CONSOLE_WINDOWS_INCLUDES
+    ../ConsoleWindows/core
     ../ConsoleWindows/interfaces
-    ../ConsoleWindows/src
 )
 
 set(CONSOLE_WINDOWS_SOURCES
@@ -568,11 +607,13 @@ set(CONSOLE_WINDOWS_SOURCES
 
 add_library(ConsoleWindows STATIC
     ${BASE_SOURCES}
+    ${CLIENT_SERVER_SOURCES}
     ${CONSOLE_WINDOWS_SOURCES}
 )
 
 include_directories(ConsoleFileFinder
     ${BASE_INCLUDES}
+    ${CLIENT_SERVER_INCLUDES}
     ${COMMAND_INCLUDES}
     ${CONSOLE_FILE_FINDER_INCLUDES}
     ${CONSOLE_WINDOWS_INCLUDES}
@@ -582,6 +623,7 @@ include_directories(ConsoleFileFinder
 
 add_executable(ConsoleFileFinder
     ${BASE_SOURCES}
+    ${CLIENT_SERVER_SOURCES}
     ${COMMAND_SOURCES}
     ${CONSOLE_FILE_FINDER_SOURCES}
     ${CONSOLE_WINDOWS_SOURCES}
@@ -590,7 +632,7 @@ add_executable(ConsoleFileFinder
 )
 
 target_link_libraries(ConsoleFileFinder
-    PRIVATE Base DataStructures Command TabularData ConsoleWindows
+    PRIVATE Base DataStructures Command TabularData ClientServer ConsoleWindows
 )
 
 include_directories(

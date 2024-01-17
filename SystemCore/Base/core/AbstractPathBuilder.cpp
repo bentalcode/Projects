@@ -92,7 +92,7 @@ std::wstring AbstractPathBuilder::Build()
     }
 
     if (!m_extension.empty()) {
-        pathStream << "." << m_extension;
+        pathStream << L"." << m_extension;
     }
 
     return pathStream.str();

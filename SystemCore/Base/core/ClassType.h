@@ -2,6 +2,7 @@
 #define CLASS_TYPE_H_c3f3b6bb_dea8_4c6c_a08d_0da472765510
 
 #include "IClassType.h"
+#include "NotImplementedException.h"
 
 namespace base
 {
@@ -36,7 +37,7 @@ namespace base
         /**
          * Gets the name of a class.
          */
-        virtual const std::wstring& GetClassName() const;
+        virtual const std::wstring& ClassName() const;
 
         /**
          * Determines the relative order of two instances.
@@ -47,9 +48,26 @@ namespace base
          */
         virtual int Compare(const IClassType& classType) const;
 
+        /**
+         * Determines if the class or interface represented by this Class object is either the same as,
+         * or is a superclass or superinterface of, the class or interface represented by the specified Class parameter.
+         */
+        template <typename T>
+        static bool IsAssignableFrom(T& obj);
+
     private:
         std::wstring m_className;
     };
+
+    /**
+     * Determines if the class or interface represented by this Class object is either the same as,
+     * or is a superclass or superinterface of, the class or interface represented by the specified Class parameter.
+     */
+    template <typename T>
+    bool ClassType::IsAssignableFrom(T& obj)
+    {
+        throw NotImplementedException(L"ClassType::IsAssignableFrom() is not implemented.");
+    }
 
 } // namespace base
 

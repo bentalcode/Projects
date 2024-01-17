@@ -8,6 +8,7 @@
         "Concurrency",
         "Command",
         "TabularData",
+        "ClientServer",
         "ConsoleWindows",
         "TestBase",
         "UnitTesting",
@@ -59,10 +60,18 @@
             ]
         },
         {
-            "name": "ConsoleWindows",
+            "name": "ClientServer",
             "type": "library",
             "dependentModules": [
                 "Base"
+            ]
+        },
+        {
+            "name": "ConsoleWindows",
+            "type": "library",
+            "dependentModules": [
+                "Base",
+                "ClientServer"
             ]
         },
         {
@@ -134,6 +143,7 @@
                 "DataStructures",
                 "Command",
                 "TabularData",
+                "ClientServer",
                 "ConsoleWindows"
             ]
         }

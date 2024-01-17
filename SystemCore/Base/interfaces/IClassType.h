@@ -37,7 +37,7 @@ namespace base
         /**
          * Gets the name of a class.
          */
-        virtual const std::wstring& GetClassName() const = 0;
+        virtual const std::wstring& ClassName() const = 0;
 
         /**
          * Determines the relative order of two instances.

@@ -36,6 +36,24 @@ add_compile_definitions(WINDOWS=1)
 
 
 set(TABULAR_DATA_INCLUDES_FILES
+    ./core/Event.h
+    ./core/EventLog.h
+    ./core/File.h
+    ./core/FileInformation.h
+    ./core/FileLineIterator.h
+    ./core/FileWriter.h
+    ./core/Record.h
+    ./core/TabularDataException.h
+    ./core/TabularFile.h
+    ./core/TabularFileInformation.h
+    ./core/TabularHeader.h
+    ./core/TabularHeaderParser.h
+    ./core/TabularRecord.h
+    ./core/TabularRecordIterator.h
+    ./core/TabularRecordParser.h
+    ./core/TabularTable.h
+    ./core/TabularTableWriter.h
+    ./core/TokensParser.h
     ./interfaces/EventType.h
     ./interfaces/IEvent.h
     ./interfaces/IEventLog.h
@@ -55,49 +73,31 @@ set(TABULAR_DATA_INCLUDES_FILES
     ./interfaces/IValueTransformer.h
     ./interfaces/IWriter.h
     ./interfaces/ParsingPolicyType.h
-    ./src/Event.h
-    ./src/EventLog.h
-    ./src/File.h
-    ./src/FileInformation.h
-    ./src/FileLineIterator.h
-    ./src/FileWriter.h
-    ./src/Record.h
-    ./src/TabularDataException.h
-    ./src/TabularFile.h
-    ./src/TabularFileInformation.h
-    ./src/TabularHeader.h
-    ./src/TabularHeaderParser.h
-    ./src/TabularRecord.h
-    ./src/TabularRecordIterator.h
-    ./src/TabularRecordParser.h
-    ./src/TabularTable.h
-    ./src/TabularTableWriter.h
-    ./src/TokensParser.h
 )
 
 set(TABULAR_DATA_SOURCES_FILES
-    ./src/Event.cpp
-    ./src/EventLog.cpp
-    ./src/File.cpp
-    ./src/FileInformation.cpp
-    ./src/FileLineIterator.cpp
-    ./src/FileWriter.cpp
-    ./src/Record.cpp
-    ./src/TabularFile.cpp
-    ./src/TabularFileInformation.cpp
-    ./src/TabularHeader.cpp
-    ./src/TabularHeaderParser.cpp
-    ./src/TabularRecord.cpp
-    ./src/TabularRecordIterator.cpp
-    ./src/TabularRecordParser.cpp
-    ./src/TabularTable.cpp
-    ./src/TabularTableWriter.cpp
-    ./src/TokensParser.cpp
+    ./core/Event.cpp
+    ./core/EventLog.cpp
+    ./core/File.cpp
+    ./core/FileInformation.cpp
+    ./core/FileLineIterator.cpp
+    ./core/FileWriter.cpp
+    ./core/Record.cpp
+    ./core/TabularFile.cpp
+    ./core/TabularFileInformation.cpp
+    ./core/TabularHeader.cpp
+    ./core/TabularHeaderParser.cpp
+    ./core/TabularRecord.cpp
+    ./core/TabularRecordIterator.cpp
+    ./core/TabularRecordParser.cpp
+    ./core/TabularTable.cpp
+    ./core/TabularTableWriter.cpp
+    ./core/TokensParser.cpp
 )
 
 set(TABULAR_DATA_INCLUDES
+    ./core
     ./interfaces
-    ./src
 )
 
 set(TABULAR_DATA_SOURCES
