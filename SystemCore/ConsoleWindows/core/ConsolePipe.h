@@ -2,9 +2,6 @@
 #define I_CONSOLE_PIPE_H_6be5926f_61de_4b2a_8f28_6143581483ef
 
 #include "IConsolePipe.h"
-#include <Windows.h>
-#include <vector>
-#include <string>
 #include <WinHandle.h>
 
 namespace console_windows {
@@ -16,38 +13,13 @@ namespace console_windows {
     class ConsolePipe final : public IConsolePipe {
     public:
         /**
-         * Defines the states of pipe.
-         */
-        enum class State
-        {
-            Client,
-            ServerConnected,
-            ServerDisconnected
-        };
-
-        /**
-         * Defines the mode of accessing console pipe.
-         */
-        enum class Mode
-        {
-            Read,
-            Write,
-            Both
-        };
-
-        /**
-         * Defines the buffer for reading/writing from/to console pipe.
-         */
-        using Buffer = std::vector<BYTE>;
-
-        /**
          * Creates a Console Pipe.
          */
         static IConsolePipeSharedPtr Create(
             const std::wstring& name,
             Mode mode,
-            size_t writeCapacity,
-            size_t readCapacity);
+            size_t readCapacity,
+            size_t writeCapacity);
 
         /**
          * Opens a Console Pipe.
@@ -70,17 +42,27 @@ namespace console_windows {
         virtual ~ConsolePipe();
 
         /**
-         * Reads data from pipe and returns the number of bytes written to buffer.
+         * Gets name of pipe.
          */
-        size_t Read(Buffer& buffer);
+        virtual const std::wstring& GetName() const override;
 
         /**
-         * Writes data to pipe and returns number of bytes written.
+         * Reads data from pipe and returns the number of characters written to buffer.
          */
-        size_t Write(const Buffer& buffer);
+        virtual size_t Read(Buffer& buffer) override;
+
+        /**
+         * Writes data to pipe and returns number of characters written.
+         */
+        virtual size_t Write(const Buffer& buffer) override;
 
     private:
         static const std::wstring PIPE_NAME_PREFIX;
+
+        /**
+         * Closes the pipe.
+         */
+        void ClosePipe();
 
         /**
          * Connects to pipe.
@@ -112,9 +94,7 @@ namespace console_windows {
         PipeHandleUniquePtr m_handle;
         std::wstring m_name;
         State m_state;
-        size_t m_readCapacity;
-        size_t m_writeCapacity;
-        size_t m_numOfAttempts;
+
     };
 
 } // namespace console_windows

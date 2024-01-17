@@ -77,6 +77,7 @@ public:
             }
 
             m_handle = handle;
+            break;
         }
     }
 
@@ -100,8 +101,8 @@ private:
 IConsolePipeSharedPtr ConsolePipe::Create(
     const std::wstring& name,
     Mode mode,
-    size_t writeCapacity,
-    size_t readCapacity)
+    size_t readCapacity,
+    size_t writeCapacity)
 {
     std::wstring pipeName = CreatePipeName(name);
     DWORD openMode = CreatePipeMode(mode);
@@ -135,7 +136,7 @@ IConsolePipeSharedPtr ConsolePipe::Create(
     return std::make_shared<ConsolePipe>(
         handle,
         name,
-        State::ServerConnected);
+        State::ServerDisconnected);
 }
 
 /**
@@ -176,20 +177,27 @@ ConsolePipe::ConsolePipe(
  */
 ConsolePipe::~ConsolePipe()
 {
-    if (m_handle) {
-        m_handle.release();
-    }
+    ClosePipe();
 }
 
 /**
- * Reads data from pipe and returns the number of bytes written to buffer.
+ * Gets name of pipe.
+ */
+const std::wstring& ConsolePipe::GetName() const
+{
+    return m_name;
+}
+
+/**
+ * Reads data from pipe and returns the number of characters written to buffer.
  */
 size_t ConsolePipe::Read(Buffer& buffer)
 {
     assert(!buffer.empty());
     Connect();
 
-    DWORD numberOfBytesToRead = buffer.size();
+    size_t characterSize = sizeof(std::wstring::value_type);
+    DWORD numberOfBytesToRead = buffer.size() * characterSize;
     DWORD numberOfBytesRead = 0;
     LPOVERLAPPED pOverlapped = nullptr;
 
@@ -211,12 +219,13 @@ size_t ConsolePipe::Read(Buffer& buffer)
         throw ConsoleWindowsException(errorCode, errorMessage);
     }
 
-    buffer.resize(numberOfBytesRead);
-    return numberOfBytesRead;
+    size_t numberOfCharactersWritten = numberOfBytesRead / characterSize;
+    buffer.resize(numberOfCharactersWritten);
+    return numberOfCharactersWritten;
 }
 
 /**
- * Writes data to pipe and returns number of bytes written.
+ * Writes data to pipe and returns number of characters written.
  */
 size_t ConsolePipe::Write(const Buffer& buffer)
 {
@@ -226,7 +235,8 @@ size_t ConsolePipe::Write(const Buffer& buffer)
 
     Connect();
 
-    DWORD numberOfBytesToWrite = buffer.size();
+    size_t characterSize = sizeof(std::wstring::value_type);
+    DWORD numberOfBytesToWrite = buffer.size() * characterSize;
     DWORD numberOfBytesWritten = 0;
     LPOVERLAPPED pOverlapped = nullptr;
 
@@ -248,7 +258,19 @@ size_t ConsolePipe::Write(const Buffer& buffer)
         throw ConsoleWindowsException(errorCode, errorMessage);
     }
 
-    return numberOfBytesWritten;
+    size_t numberOfCharactersWritten = numberOfBytesWritten / characterSize;
+    return numberOfCharactersWritten;
+}
+
+/**
+ * Closes the pipe.
+ */
+void ConsolePipe::ClosePipe()
+{
+    if (m_handle) {
+        Disconnect();
+        m_handle.release();
+    }
 }
 
 /**
@@ -267,7 +289,6 @@ bool ConsolePipe::Connect()
 
         if (errorCode != ERROR_PIPE_CONNECTED) {
             m_handle.release();
-            long errorCode = base::ErrorCodes::INVALID_ARG;
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -293,10 +314,6 @@ bool ConsolePipe::Disconnect()
     }
 
     BOOL status = DisconnectNamedPipe(m_handle->get());
-
-    if (!status) {
-        return false;
-    }
 
     m_state = State::ServerDisconnected;
     return true;

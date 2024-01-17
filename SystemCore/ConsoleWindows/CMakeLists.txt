@@ -38,16 +38,19 @@ add_compile_definitions(WINDOWS=1)
 set(CONSOLE_WINDOWS_INCLUDES_FILES
     ./core/ConsolePipe.h
     ./core/ConsoleProcess.h
+    ./core/ConsoleStreamBuffer.h
     ./core/ConsoleWindow.h
     ./core/ConsoleWindowsException.h
     ./interfaces/IConsolePipe.h
     ./interfaces/IConsoleProcess.h
+    ./interfaces/IConsoleStreamBuffer.h
     ./interfaces/IConsoleWindow.h
 )
 
 set(CONSOLE_WINDOWS_SOURCES_FILES
     ./core/ConsolePipe.cpp
     ./core/ConsoleProcess.cpp
+    ./core/ConsoleStreamBuffer.cpp
     ./core/ConsoleWindow.cpp
 )
 

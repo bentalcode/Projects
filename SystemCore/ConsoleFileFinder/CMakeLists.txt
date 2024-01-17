@@ -582,16 +582,19 @@ add_library(ClientServer STATIC
 set(CONSOLE_WINDOWS_INCLUDES_FILES
     ../ConsoleWindows/core/ConsolePipe.h
     ../ConsoleWindows/core/ConsoleProcess.h
+    ../ConsoleWindows/core/ConsoleStreamBuffer.h
     ../ConsoleWindows/core/ConsoleWindow.h
     ../ConsoleWindows/core/ConsoleWindowsException.h
     ../ConsoleWindows/interfaces/IConsolePipe.h
     ../ConsoleWindows/interfaces/IConsoleProcess.h
+    ../ConsoleWindows/interfaces/IConsoleStreamBuffer.h
     ../ConsoleWindows/interfaces/IConsoleWindow.h
 )
 
 set(CONSOLE_WINDOWS_SOURCES_FILES
     ../ConsoleWindows/core/ConsolePipe.cpp
     ../ConsoleWindows/core/ConsoleProcess.cpp
+    ../ConsoleWindows/core/ConsoleStreamBuffer.cpp
     ../ConsoleWindows/core/ConsoleWindow.cpp
 )
 

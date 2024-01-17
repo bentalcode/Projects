@@ -20,10 +20,16 @@ namespace base {
          */
         template <typename T>
         static void Validate(std::shared_ptr<T> ptr);
+
+        /**
+         * Validates a shared ptr and returns it value.
+         */
+        template <typename T>
+        static std::shared_ptr<T> ValidateAndReturn(std::shared_ptr<T> ptr);
     };
 
     /**
-     * Validate a shared ptr.
+     * Validates a shared ptr.
      */
     template <typename T>
     inline void SmartPointers::Validate(std::shared_ptr<T> ptr)
@@ -40,6 +46,15 @@ namespace base {
             std::wstring errorMessage = errorMessageStream.str();
             throw BaseException(errorCode, errorMessage);
         }
+    }
+
+    /**
+     * Validates a shared ptr and returns it value.
+     */
+    template <typename T>
+    inline std::shared_ptr<T> SmartPointers::ValidateAndReturn(std::shared_ptr<T> ptr) {
+        Validate(ptr);
+        return ptr;
     }
 
 }  // namespace base
