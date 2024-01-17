@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_FILE_INFORMATION_H_f8aef637_a7b6_4eef_b323_bf912555959e
+#define I_FILE_INFORMATION_H_f8aef637_a7b6_4eef_b323_bf912555959e
 
 #include "IRecord.h"
 
@@ -34,3 +35,6 @@ public:
 using IFileInformationSharedPtr = std::shared_ptr<IFileInformation>;
 
 } // namespace tabular_data
+
+#endif // I_FILE_INFORMATION_H_f8aef637_a7b6_4eef_b323_bf912555959e
+

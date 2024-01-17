@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EVENT_H_ce6d1088_53eb_46f6_890c_dd19aa16aa30
+#define EVENT_H_ce6d1088_53eb_46f6_890c_dd19aa16aa30
 
 #include "IEvent.h"
 
@@ -76,3 +77,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // EVENT_H_ce6d1088_53eb_46f6_890c_dd19aa16aa30

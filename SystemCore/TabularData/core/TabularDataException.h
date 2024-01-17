@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_DATA_EXCEPTION_H_b2447514_a296_426c_88d9_cbe92680ccb0
+#define TABULAR_DATA_EXCEPTION_H_b2447514_a296_426c_88d9_cbe92680ccb0
 
 #include "BaseException.h"
 
@@ -36,3 +37,5 @@ public:
 };
 
 }  // namespace tabular_data
+
+#endif // TABULAR_DATA_EXCEPTION_H_b2447514_a296_426c_88d9_cbe92680ccb0

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CLIENT_SERVER_EXCEPTION_H_74038af5_78e2_47b4_af29_53b616f7926c
+#define CLIENT_SERVER_EXCEPTION_H_74038af5_78e2_47b4_af29_53b616f7926c
 
 #include "BaseException.h"
 
@@ -36,3 +37,5 @@ public:
 };
 
 }  // namespace client_server
+
+#endif // CLIENT_SERVER_EXCEPTION_H_74038af5_78e2_47b4_af29_53b616f7926c

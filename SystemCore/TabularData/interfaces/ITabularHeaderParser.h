@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_TABULAR_HEADER_PARSER_H_de1339fb_a0ed_4390_9fb6_7337f5b85ff6
+#define I_TABULAR_HEADER_PARSER_H_de1339fb_a0ed_4390_9fb6_7337f5b85ff6
 
 #include "ITabularHeader.h"
 
@@ -25,3 +26,4 @@ using ITabularHeaderParserSharedPtr = std::shared_ptr<ITabularHeaderParser>;
 
 }  // namespace tabular_data
 
+#endif // I_TABULAR_HEADER_PARSER_H_de1339fb_a0ed_4390_9fb6_7337f5b85ff6

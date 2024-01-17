@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_RECORD_H_d07c37f6_5172_4aec_9726_f43760119770
+#define I_RECORD_H_d07c37f6_5172_4aec_9726_f43760119770
 
 #include <string>
 #include <memory>
@@ -30,3 +31,5 @@ public:
 using IRecordSharedPtr = std::shared_ptr<IRecord>;
 
 } // namespace tabular_data
+
+#endif // I_RECORD_H_d07c37f6_5172_4aec_9726_f43760119770

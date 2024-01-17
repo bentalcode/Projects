@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FILE_H_63616acb_4e57_4c35_8e8f_29fb0b3d1e01
+#define FILE_H_63616acb_4e57_4c35_8e8f_29fb0b3d1e01
 
 #include "IFile.h"
 
@@ -49,3 +50,6 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // FILE_H_63616acb_4e57_4c35_8e8f_29fb0b3d1e01
+

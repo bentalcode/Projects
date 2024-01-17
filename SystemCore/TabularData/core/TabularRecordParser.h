@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_RECORD_PARSER_H_c1afd625_4fbf_48d1_95ed_7ae675c4f4ad
+#define TABULAR_RECORD_PARSER_H_c1afd625_4fbf_48d1_95ed_7ae675c4f4ad
 
 #include "ITabularRecordParser.h"
 #include "ParsingPolicyType.h"
@@ -47,3 +48,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TABULAR_RECORD_PARSER_H_c1afd625_4fbf_48d1_95ed_7ae675c4f4ad

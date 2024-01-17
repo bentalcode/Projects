@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_WRITER_H_0a18796e_672d_478f_8dc8_1894e4ff1cbe
+#define I_WRITER_H_0a18796e_672d_478f_8dc8_1894e4ff1cbe
 
 #include <string>
 #include <memory>
@@ -30,3 +31,5 @@ public:
 using IWriterSharedPtr = std::shared_ptr<IWriter>;
 
 } // namespace tabular_data
+
+#endif // I_WRITER_H_0a18796e_672d_478f_8dc8_1894e4ff1cbe

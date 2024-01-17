@@ -39,7 +39,8 @@ void StringUtils::CopyString(
 void StringUtils::CopyString(
     const wchar_t* src, 
     size_t numOfCharactersToCopy, 
-    wchar_t* dest, size_t maxDestSize)
+    wchar_t* dest,
+    size_t maxDestSize)
 {
     CopyString<wchar_t>(
         src, 

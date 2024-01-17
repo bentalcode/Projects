@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_RECORD_H_8ea4d8f7_897c_4480_bdaf_667cbee46e77
+#define TABULAR_RECORD_H_8ea4d8f7_897c_4480_bdaf_667cbee46e77
 
 #include "ITabularRecord.h"
 
@@ -62,3 +63,5 @@ private:
 };
 
 }  // namespace tabular_data
+
+#endif // TABULAR_RECORD_H_8ea4d8f7_897c_4480_bdaf_667cbee46e77

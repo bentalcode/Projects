@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_TABULAR_RECORD_H_d9fd7cb1_431d_4af7_ba33_d50488e5a125
+#define I_TABULAR_RECORD_H_d9fd7cb1_431d_4af7_ba33_d50488e5a125
 
 #include "IRecord.h"
 #include <vector>
@@ -35,3 +36,5 @@ public:
 using ITabularRecordSharedPtr = std::shared_ptr<ITabularRecord>;
 
 } // namespace tabular_data
+
+#endif // I_TABULAR_RECORD_H_d9fd7cb1_431d_4af7_ba33_d50488e5a125

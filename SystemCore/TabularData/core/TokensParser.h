@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TOKENS_PARSER_H_75ff5a2b_a300_47e9_afce_aaf2daadec27
+#define TOKENS_PARSER_H_75ff5a2b_a300_47e9_afce_aaf2daadec27
 
 #include "ITokensParser.h"
 #include <regex>
@@ -37,3 +38,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TOKENS_PARSER_H_75ff5a2b_a300_47e9_afce_aaf2daadec27

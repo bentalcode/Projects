@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_FILE_INFORMATION_H_8f454215_b6f0_498a_b9e5_2c07cc97a8b0
+#define TABULAR_FILE_INFORMATION_H_8f454215_b6f0_498a_b9e5_2c07cc97a8b0
 
 #include "ITabularFileInformation.h"
 #include "IFileInformation.h"
@@ -45,3 +46,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TABULAR_FILE_INFORMATION_H_8f454215_b6f0_498a_b9e5_2c07cc97a8b0

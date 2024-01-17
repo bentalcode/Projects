@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_TABULAR_FILE_INFORMATION_H_35a784e3_e02c_41a7_8767_f1b69c796c20
+#define I_TABULAR_FILE_INFORMATION_H_35a784e3_e02c_41a7_8767_f1b69c796c20
 
 #include <memory>
 
@@ -31,3 +32,5 @@ public:
 using ITabularFileInformationSharedPtr = std::shared_ptr<ITabularFileInformation>;
 
 } // namespace tabular_data
+
+#endif // I_TABULAR_FILE_INFORMATION_H_35a784e3_e02c_41a7_8767_f1b69c796c20

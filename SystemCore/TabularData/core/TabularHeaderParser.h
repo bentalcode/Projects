@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_HEADER_PARSER_H_84fc6f43_773a_460c_b1a1_909fe57f35c1
+#define TABULAR_HEADER_PARSER_H_84fc6f43_773a_460c_b1a1_909fe57f35c1
 
 #include "ITabularHeaderParser.h"
 #include "ParsingPolicyType.h"
@@ -45,3 +46,6 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TABULAR_HEADER_PARSER_H_84fc6f43_773a_460c_b1a1_909fe57f35c1
+

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_TABULAR_TABLE_WRITER_H_c268de2c_748b_4b8d_b180_65203d4ca380
+#define I_TABULAR_TABLE_WRITER_H_c268de2c_748b_4b8d_b180_65203d4ca380
 
 #include "ITabularHeader.h"
 #include "ITabularRecord.h"
@@ -35,3 +36,5 @@ public:
 using ITabularTableWriterSharedPtr = std::shared_ptr<ITabularTableWriter>;
 
 } // namespace tabular_data
+
+#endif // I_TABULAR_TABLE_WRITER_H_c268de2c_748b_4b8d_b180_65203d4ca380

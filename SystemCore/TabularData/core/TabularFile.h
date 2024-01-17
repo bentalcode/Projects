@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_FILE_H_7c7be1de_2ea5_46a0_baa5_08b06b03feb5
+#define TABULAR_FILE_H_7c7be1de_2ea5_46a0_baa5_08b06b03feb5
 
 #include "ITabularFile.h"
 #include "TabularHeaderParser.h"
@@ -77,3 +78,6 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TABULAR_FILE_H_7c7be1de_2ea5_46a0_baa5_08b06b03feb5
+

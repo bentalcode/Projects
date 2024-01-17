@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_EVENT_LOG_H_a7cb20a8_18cc_4617_9bda_c395e6b0c2ef
+#define I_EVENT_LOG_H_a7cb20a8_18cc_4617_9bda_c395e6b0c2ef
 
 #include "IEvent.h"
 
@@ -60,3 +61,5 @@ public:
 using IEventLogSharedPtr = std::shared_ptr<IEventLog>;
 
 } // namespace tabular_data
+
+#endif // I_EVENT_LOG_H_a7cb20a8_18cc_4617_9bda_c395e6b0c2ef

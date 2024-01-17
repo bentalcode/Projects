@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RETRY_HANDLER_H_9a00bbfd_1aaa_475b_81ba_f835b32648ca
+#define RETRY_HANDLER_H_9a00bbfd_1aaa_475b_81ba_f835b32648ca
 
 #include "IRetryHandler.h"
 #include "IRetryPolicy.h"
@@ -67,3 +68,5 @@ namespace client_server {
     };
 
 } // namespace client_server
+
+#endif // RETRY_HANDLER_H_9a00bbfd_1aaa_475b_81ba_f835b32648ca

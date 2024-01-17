@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_TABLE_WRITER_H_263ae0d9_149d_4ffc_983a_a551cfaa5a11
+#define TABULAR_TABLE_WRITER_H_263ae0d9_149d_4ffc_983a_a551cfaa5a11
 
 #include "ITabularTableWriter.h"
 #include "IWriter.h"
@@ -58,3 +59,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TABULAR_TABLE_WRITER_H_263ae0d9_149d_4ffc_983a_a551cfaa5a11

@@ -1,5 +1,5 @@
-#ifndef I_CONSOLE_WINDOW_H_7099f489_1986_4d0a_8d49_5b3a5c0d53b9
-#define I_CONSOLE_WINDOW_H_7099f489_1986_4d0a_8d49_5b3a5c0d53b9
+#ifndef I_CONSOLE_STREAM_BUFFER_H_0c6ce014_baf8_4786_8c40_98ad9232c70d
+#define I_CONSOLE_STREAM_BUFFER_H_0c6ce014_baf8_4786_8c40_98ad9232c70d
 
 #include "IConsoleWindow.h"
 #include "IConsoleProcess.h"
@@ -47,4 +47,5 @@ namespace console_windows {
 
 } // namespace console_windows
 
-#endif // I_CONSOLE_WINDOW_H_7099f489_1986_4d0a_8d49_5b3a5c0d53b9
+#endif // I_CONSOLE_STREAM_BUFFER_H_0c6ce014_baf8_4786_8c40_98ad9232c70d
+

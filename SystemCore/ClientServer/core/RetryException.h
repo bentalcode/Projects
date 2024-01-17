@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RETRY_EXCEPTION_H_50c516ee_b2a0_4b62_adae_74741c47a4f7
+#define RETRY_EXCEPTION_H_50c516ee_b2a0_4b62_adae_74741c47a4f7
 
 #include "ClientServerException.h"
 
@@ -36,3 +37,6 @@ public:
 };
 
 }  // namespace client_server
+
+#endif // RETRY_EXCEPTION_H_50c516ee_b2a0_4b62_adae_74741c47a4f7
+

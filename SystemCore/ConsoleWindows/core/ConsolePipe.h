@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_CONSOLE_PIPE_H_6be5926f_61de_4b2a_8f28_6143581483ef
+#define I_CONSOLE_PIPE_H_6be5926f_61de_4b2a_8f28_6143581483ef
 
 #include "IConsolePipe.h"
 #include <Windows.h>
@@ -117,3 +118,6 @@ namespace console_windows {
     };
 
 } // namespace console_windows
+
+#endif // I_CONSOLE_PIPE_H_6be5926f_61de_4b2a_8f28_6143581483ef
+

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EVENT_TYPE_H_812d6a45_6e1c_43da_8d5c_9adcd786745e
+#define EVENT_TYPE_H_812d6a45_6e1c_43da_8d5c_9adcd786745e
 
 #include <string>
 
@@ -33,3 +34,5 @@ inline static std::wstring EventTypeToString(EventType eventType)
 }
 
 } // namespace tabular_data
+
+#endif // EVENT_TYPE_H_812d6a45_6e1c_43da_8d5c_9adcd786745e

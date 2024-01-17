@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_FILE_H_c3a5a46d_f33d_47dc_9a7c_a351b3bd5287
+#define I_FILE_H_c3a5a46d_f33d_47dc_9a7c_a351b3bd5287
 
 #include "IIterator.h"
 #include "IRecord.h"
@@ -40,3 +41,5 @@ public:
 using IFileSharedPtr = std::shared_ptr<IFile>;
 
 } // namespace tabular_data
+
+#endif // I_FILE_H_c3a5a46d_f33d_47dc_9a7c_a351b3bd5287

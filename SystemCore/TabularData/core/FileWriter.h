@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FILE_WRITER_H_9973ea8b_b642_4f61_8616_505ab330c3ea
+#define FILE_WRITER_H_9973ea8b_b642_4f61_8616_505ab330c3ea
 
 #include "IWriter.h"
 #include <fstream>
@@ -54,3 +55,6 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // FILE_WRITER_H_9973ea8b_b642_4f61_8616_505ab330c3ea
+

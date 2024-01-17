@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_TABLE_H_f5e8cb8a_87e5_4177_a739_1da7bfa042e7
+#define TABULAR_TABLE_H_f5e8cb8a_87e5_4177_a739_1da7bfa042e7
 
 #include "ITabularTable.h"
 
@@ -44,3 +45,6 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TABULAR_TABLE_H_f5e8cb8a_87e5_4177_a739_1da7bfa042e7
+

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_RECORD_ITERATOR_H_b0d12d1c_c3ae_4883_ac64_dc9143eeae5d
+#define TABULAR_RECORD_ITERATOR_H_b0d12d1c_c3ae_4883_ac64_dc9143eeae5d
 
 #include "IIterator.h"
 #include "ITabularRecord.h"
@@ -63,3 +64,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TABULAR_RECORD_ITERATOR_H_b0d12d1c_c3ae_4883_ac64_dc9143eeae5d

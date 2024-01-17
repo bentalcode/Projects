@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_TABULAR_FILE_H_6d812873_e439_4f2e_8c08_dfbd2cc6bb1b
+#define I_TABULAR_FILE_H_6d812873_e439_4f2e_8c08_dfbd2cc6bb1b
 
 #include <memory>
 
@@ -32,3 +33,5 @@ public:
 using ITabularFileSharedPtr = std::shared_ptr<ITabularFile>;
 
 } // namespace tabular_data
+
+#endif // I_TABULAR_FILE_H_6d812873_e439_4f2e_8c08_dfbd2cc6bb1b

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EVENT_LOG_H_c3a26a34_18b2_45e3_bfb4_684178e798fb
+#define EVENT_LOG_H_c3a26a34_18b2_45e3_bfb4_684178e798fb
 
 #include "IEventLog.h"
 
@@ -16,8 +17,7 @@ public:
 
     /**
      * The EventLog constructor.
-     */
-    EventLog();
+     */    EventLog();
 
     /**
      * The EventLog destructor.
@@ -81,3 +81,5 @@ private:
 };
 
 }  // namespace tabular_data
+
+#endif // EVENT_LOG_H_c3a26a34_18b2_45e3_bfb4_684178e798fb

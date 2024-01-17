@@ -1,13 +1,15 @@
-#pragma once
+#ifndef I_CONSOLE_WINDOW_H_360e288c_3016_4494_b598_0786a26b4237
+#define I_CONSOLE_WINDOW_H_360e288c_3016_4494_b598_0786a26b4237
 
 #include <memory>
+#include <sstream>
 
 namespace console_windows {
 
     /**
      * The IConsoleWindow interface defines a Console Window.
      */
-    class IConsoleWindow {
+    class IConsoleWindow : public std::wostream {
     public:
         IConsoleWindow() = default;
         virtual ~IConsoleWindow() = default;
@@ -19,3 +21,5 @@ namespace console_windows {
     using IConsoleSharedPtr = std::shared_ptr<IConsoleWindow>;
 
 } // namespace console_windows
+
+#endif // I_CONSOLE_WINDOW_H_360e288c_3016_4494_b598_0786a26b4237

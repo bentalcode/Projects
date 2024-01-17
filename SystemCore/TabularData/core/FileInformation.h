@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FILE_INFORMATION_H_6bccdba5_94c1_4abb_ab89_adf682f10fb3
+#define FILE_INFORMATION_H_6bccdba5_94c1_4abb_ab89_adf682f10fb3
 
 #include "IFileInformation.h"
 
@@ -52,3 +53,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // FILE_INFORMATION_H_6bccdba5_94c1_4abb_ab89_adf682f10fb3

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_VALUE_TRANSFORMER_H_027165e3_6fdc_49a3_ac75_82531e0d0e35
+#define I_VALUE_TRANSFORMER_H_027165e3_6fdc_49a3_ac75_82531e0d0e35
 
 #include <string>
 #include <memory>
@@ -27,3 +28,5 @@ template <typename T>
 using IValueTransformerSharedPtr = std::shared_ptr<IValueTransformer<T>>;
 
 } // namespace tabular_data
+
+#endif // I_VALUE_TRANSFORMER_H_027165e3_6fdc_49a3_ac75_82531e0d0e35

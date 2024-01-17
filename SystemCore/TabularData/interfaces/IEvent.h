@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_EVENT_H_22ea9a65_5bf4_4fb9_b26d_fbfdaafc3097
+#define I_EVENT_H_22ea9a65_5bf4_4fb9_b26d_fbfdaafc3097
 
 #include "EventType.h"
 #include "DateTime.h"
@@ -56,3 +57,5 @@ using IEventSharedPtr = std::shared_ptr<IEvent>;
 using EventList = std::list<IEventSharedPtr>;
 
 } // namespace tabular_data
+
+#endif // I_EVENT_H_22ea9a65_5bf4_4fb9_b26d_fbfdaafc3097

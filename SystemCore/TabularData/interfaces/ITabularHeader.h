@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_TABULAR_HEADER_H_54f2f808_1852_4311_afd5_160a7a374bdb
+#define I_TABULAR_HEADER_H_54f2f808_1852_4311_afd5_160a7a374bdb
 
 #include <string>
 #include <vector>
@@ -36,3 +37,5 @@ public:
 using ITabularHeaderSharedPtr = std::shared_ptr<ITabularHeader>;
 
 } // namespace tabular_data
+
+#endif // I_TABULAR_HEADER_H_54f2f808_1852_4311_afd5_160a7a374bdb

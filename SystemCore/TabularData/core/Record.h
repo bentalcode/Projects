@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RECORD_H_71090bf8_9a7f_497b_bcf7_10a54c14e6e1
+#define RECORD_H_71090bf8_9a7f_497b_bcf7_10a54c14e6e1
 
 #include "IRecord.h"
 
@@ -44,3 +45,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // RECORD_H_71090bf8_9a7f_497b_bcf7_10a54c14e6e1

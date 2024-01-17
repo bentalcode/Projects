@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FILE_LINE_ITERATOR_H_c126ac47_2f06_4b94_b56e_da747afcbaff
+#define FILE_LINE_ITERATOR_H_c126ac47_2f06_4b94_b56e_da747afcbaff
 
 #include "IIterator.h"
 #include "IRecord.h"
@@ -61,3 +62,6 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // FILE_LINE_ITERATOR_H_c126ac47_2f06_4b94_b56e_da747afcbaff
+

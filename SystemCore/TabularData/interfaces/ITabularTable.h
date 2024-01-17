@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_TABULAR_TABLE_H_35b041ca_1741_4e8a_8e08_bb841454fbb0
+#define I_TABULAR_TABLE_H_35b041ca_1741_4e8a_8e08_bb841454fbb0
 
 #include "ITabularHeader.h"
 #include "ITabularRecord.h"
@@ -31,3 +32,5 @@ public:
 using ITabularTableSharedPtr = std::shared_ptr<ITabularTable>;
 
 } // namespace tabular_data
+
+#endif // I_TABULAR_TABLE_H_35b041ca_1741_4e8a_8e08_bb841454fbb0

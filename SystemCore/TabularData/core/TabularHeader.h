@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TABULAR_HEADER_H_76cf7e25_5657_4125_bee3_d85f85d8988e
+#define TABULAR_HEADER_H_76cf7e25_5657_4125_bee3_d85f85d8988e
 
 #include "ITabularHeader.h"
 
@@ -44,3 +45,5 @@ private:
 };
 
 } // namespace tabular_data
+
+#endif // TABULAR_HEADER_H_76cf7e25_5657_4125_bee3_d85f85d8988e
