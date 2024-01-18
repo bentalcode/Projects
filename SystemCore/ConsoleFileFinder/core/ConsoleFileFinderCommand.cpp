@@ -1,4 +1,5 @@
 #include "ConsoleFileFinderCommand.h"
+#include "ConsoleWindowManager.h"
 #include "ConsoleFileFinderCommandParameters.h"
 #include "FileFinder.h"
 #include "FileConsole.h"
@@ -16,7 +17,8 @@ IConsoleFileFinderCommandSharedPtr ConsoleFileFinderCommand::Make()
 /**
  * The ConsoleFileFinderCommand constructor.
  */
-ConsoleFileFinderCommand::ConsoleFileFinderCommand()
+ConsoleFileFinderCommand::ConsoleFileFinderCommand() :
+    m_consoleWindowManager(ConsoleWindowManager::Make())
 {
 }
 
@@ -51,6 +53,11 @@ void ConsoleFileFinderCommand::Run()
     for (const std::wstring& file : files) {
         ProcessFile(file);
     }
+
+    //
+    // Create a console windows...
+    //
+    CreateConsoleWindows();
 }
 
 /**
@@ -76,4 +83,12 @@ void ConsoleFileFinderCommand::ProcessFile(const std::wstring& path)
 {
     IFileConsoleSharedPtr fileConsole = FileConsole::Make(path);
     fileConsole->Display();
+}
+
+/**
+ * Creates console windows.
+ */
+void ConsoleFileFinderCommand::CreateConsoleWindows()
+{
+    m_consoleWindowManager->CreateWindow(L"Window1");
 }

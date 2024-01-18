@@ -32,8 +32,8 @@ namespace console_windows {
          * The ConsolePipe constructor.
          */
         ConsolePipe(
-            HANDLE handle,
             const std::wstring& name,
+            HANDLE handle,
             State state);
 
         /**
@@ -89,12 +89,22 @@ namespace console_windows {
          */
         static std::wstring CreatePipeName(const std::wstring& name);
 
+        //
+        // The name of the pipe...
+        //
+        std::wstring m_name;
+
+        //
+        // The handle of the named pipe...
+        //
         using PipeHandle = base::windows::WinHandle;
         using PipeHandleUniquePtr = base::windows::WinHandleUniquePtr;
         PipeHandleUniquePtr m_handle;
-        std::wstring m_name;
-        State m_state;
 
+        //
+        // The current state of the pipe...
+        //
+        State m_state;
     };
 
 } // namespace console_windows

@@ -28,13 +28,17 @@ class ConsoleWindow final : public std::wostream, public IConsoleWindow {
             const std::wstring& name,
             IConsoleStreamBufferSharedPtr pipeBuffer);
 
-    public:
         /**
          * The ConsoleWindow destructor.
          */
         virtual ~ConsoleWindow();
 
-    private:
+        /**
+         * Gets console stream.
+         */
+        virtual std::wostream& GetConsoleStream() override;
+
+private:
         //
         // Defines the default size of console...
         //

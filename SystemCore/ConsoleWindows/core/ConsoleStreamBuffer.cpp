@@ -6,7 +6,7 @@ using namespace console_windows;
 /**
  * Creates a Console Stream Buffer.
  */
-static IConsoleStreamBufferSharedPtr Make(
+IConsoleStreamBufferSharedPtr ConsoleStreamBuffer::Make(
     const std::wstring& name,
     size_t size)
 {

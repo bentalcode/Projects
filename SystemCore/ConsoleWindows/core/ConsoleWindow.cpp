@@ -3,6 +3,7 @@
 #include "ConsoleProcess.h"
 #include "ConsolePipe.h"
 #include "Uuid.h"
+#include "StringUtils.h"
 #include "SmartPointers.h"
 
 using namespace console_windows;
@@ -59,6 +60,14 @@ ConsoleWindow::~ConsoleWindow()
 }
 
 /**
+ * Gets console stream.
+ */
+std::wostream& ConsoleWindow::GetConsoleStream()
+{
+    return *this;
+}
+
+/**
  * Creates a pipe.
  */
 IConsolePipeSharedPtr ConsoleWindow::CreatePipe(const std::wstring& name)
@@ -99,11 +108,14 @@ IConsoleProcessSharedPtr ConsoleWindow::CreateConsoleProcess(
  */
 std::wstring ConsoleWindow::CreateUniquePipeName(const std::wstring& name)
 {
+    std::wstring id = base::Uuid::New()->ToString();
+    id = id.substr(1, id.size() - 2);
+
     std::wstringstream nameStream;
     nameStream
         << name
         << L"_"
-        << base::Uuid::New()->ToString();
+        << id;
 
     return nameStream.str();
 }

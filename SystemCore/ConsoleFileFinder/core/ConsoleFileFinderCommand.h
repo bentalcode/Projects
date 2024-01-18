@@ -4,6 +4,7 @@
 #include "AbstractCommand.h"
 #include "IConsoleFileFinderCommand.h"
 #include "IConsoleFileFinderCommandParameters.h"
+#include "IConsoleWindowManager.h"
 
 namespace consolefilefinder {
 
@@ -47,12 +48,22 @@ namespace consolefilefinder {
         /**
          * Processes file.
          */
-        void ProcessFile(const std::wstring& path);
+        static void ProcessFile(const std::wstring& path);
+
+        /**
+         * Creates console windows.
+         */
+        void CreateConsoleWindows();
 
         //
         // The parameters of command...
         //
         IConsoleFileFinderCommandParametersSharedPtr m_parameters;
+
+        //
+        // The Console Window Manager...
+        //
+        IConsoleWindowManagerSharedPtr m_consoleWindowManager;
     };
 
 } // namespace consolefilefinder

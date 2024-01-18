@@ -12,6 +12,11 @@ class IConsoleWindow {
     public:
         IConsoleWindow() = default;
         virtual ~IConsoleWindow() = default;
+
+        /**
+         * Gets console stream.
+         */
+        virtual std::wostream& GetConsoleStream() = 0;
     };
 
     /**

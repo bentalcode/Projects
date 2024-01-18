@@ -49,11 +49,13 @@ set(CONSOLE_FILE_FINDER_INCLUDES_FILES
     ./core/ConsoleFileFinderCommandManifest.h
     ./core/ConsoleFileFinderCommandParameters.h
     ./core/ConsoleFileFinderException.h
+    ./core/ConsoleWindowManager.h
     ./core/FileConsole.h
     ./core/FileFinder.h
     ./interfaces/IConsole.h
     ./interfaces/IConsoleFileFinderCommand.h
     ./interfaces/IConsoleFileFinderCommandParameters.h
+    ./interfaces/IConsoleWindowManager.h
     ./interfaces/IFileConsole.h
     ./interfaces/IFileFinder.h
 )
@@ -64,6 +66,7 @@ set(CONSOLE_FILE_FINDER_SOURCES_FILES
     ./core/ConsoleFileFinderCommandConstants.cpp
     ./core/ConsoleFileFinderCommandManifest.cpp
     ./core/ConsoleFileFinderCommandParameters.cpp
+    ./core/ConsoleWindowManager.cpp
     ./core/FileConsole.cpp
     ./core/FileFinder.cpp
     ./main.cpp

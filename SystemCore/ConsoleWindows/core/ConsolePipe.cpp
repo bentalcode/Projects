@@ -134,8 +134,8 @@ IConsolePipeSharedPtr ConsolePipe::Create(
     }
 
     return std::make_shared<ConsolePipe>(
-        handle,
         name,
+        handle,
         State::ServerDisconnected);
 }
 
@@ -154,8 +154,8 @@ IConsolePipeSharedPtr ConsolePipe::Open(
     retryHandler->Retry(retryOpenFile);
 
     return std::make_shared<ConsolePipe>(
-        retryOpenFile.GetHandle(),
         name,
+        retryOpenFile.GetHandle(),
         State::Client);
 }
 
@@ -163,11 +163,11 @@ IConsolePipeSharedPtr ConsolePipe::Open(
  * The ConsolePipe constructor.
  */
 ConsolePipe::ConsolePipe(
-    HANDLE handle,
     const std::wstring& name,
+    HANDLE handle,
     State state) :
-    m_handle(std::make_unique<PipeHandle>(handle)),
     m_name(name),
+    m_handle(std::make_unique<PipeHandle>(handle)),
     m_state(state)
 {
 }
