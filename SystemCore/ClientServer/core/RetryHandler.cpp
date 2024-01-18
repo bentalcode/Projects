@@ -22,9 +22,13 @@ IRetryHandlerSharedPtr RetryHandler::MakeDefault()
  */
 IRetryHandlerSharedPtr RetryHandler::Make(
     IRetryPolicySharedPtr policy,
-    ILogicSharedPtr idleLogic)
+    ILogicSharedPtr idleLogic,
+    std::wstringstream* outstream)
 {
-    return std::make_shared<RetryHandler>(policy, idleLogic);
+    return std::make_shared<RetryHandler>(
+        policy,
+        idleLogic,
+        outstream);
 }
 
 /**
@@ -32,10 +36,11 @@ IRetryHandlerSharedPtr RetryHandler::Make(
  */
 RetryHandler::RetryHandler(
     IRetryPolicySharedPtr policy,
-    ILogicSharedPtr idleLogic)
+    ILogicSharedPtr idleLogic,
+    std::wstringstream* outstream) :
+    m_outstream(outstream)
 {
     base::SmartPointers::Validate(policy);
-    base::SmartPointers::Validate(idleLogic);
 
     m_policy = policy;
     m_idleLogic = idleLogic;
@@ -103,7 +108,9 @@ void RetryHandler::Retry(IRetryLogic& logic)
             }
 
             if (attemptIndex < m_policy->GetNumberOfAttempts() && IsAbsorbedException(logic, e)) {
-                m_idleLogic->Run();
+                if (m_idleLogic) {
+                    m_idleLogic->Run();
+                }
 
                 continue;
             }
@@ -130,7 +137,7 @@ void RetryHandler::Retry(IRetryLogic& logic)
 std::wstring RetryHandler::GetLogicInformation(const IRetryLogic& logic) const
 {
     std::wstringstream stream;
-    stream << L"Logic: " << logic.GetName() << ", with Retry Policy: " << m_policy;
+    stream << L"Logic: " << logic.GetName() << ", with Retry Policy: " << *m_policy;
     return stream.str();
 }
 

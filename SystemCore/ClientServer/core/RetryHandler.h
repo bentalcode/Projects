@@ -23,14 +23,16 @@ namespace client_server {
          */
         static IRetryHandlerSharedPtr Make(
             IRetryPolicySharedPtr policy,
-            ILogicSharedPtr idleLogic);
+            ILogicSharedPtr idleLogic = nullptr,
+            std::wstringstream* outstream = nullptr);
 
         /**
          * The RetryHandler constructor.
          */
         RetryHandler(
             IRetryPolicySharedPtr policy,
-            ILogicSharedPtr idleLogic);
+            ILogicSharedPtr idleLogic,
+            std::wstringstream* outstream);
 
         /**
          * The RetryHandler destructor.

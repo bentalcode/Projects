@@ -4,6 +4,8 @@
 #include "AbstractCommand.h"
 #include "IConsoleHelper.h"
 #include "IConsoleHelperParameters.h"
+#include "IConsolePipe.h"
+#include <atomic>
 
 namespace console_helper {
 
@@ -39,15 +41,49 @@ namespace console_helper {
         virtual command::ICommand& GetCommand() override;
 
     private:
+        static const size_t DEFAULT_BUFFER_SIZE;
+
         /**
          * Initializes the command.
          */
         void Initialize();
 
+        /**
+         * Checks whether the process is running.
+         */
+        bool IsRunning() const;
+
+        /**
+         * Sets title of console.
+         */
+        static void UpdateConsoleTitle(const std::wstring& title);
+
+        /**
+         * Refresh data of console.
+         */
+        static void RefreshConsoleData(
+            console_windows::IConsolePipe& pipe,
+            size_t bufferSize = DEFAULT_BUFFER_SIZE);
+
+        /**
+         * Opens pipe for reading.
+         */
+        static console_windows::IConsolePipeSharedPtr OpenPipe(const std::wstring& pipeName);
+
         //
         // The parameters of command...
         //
         IConsoleHelperParametersSharedPtr m_parameters;
+
+        //
+        // The console pipe to read data from...
+        //
+        console_windows::IConsolePipeSharedPtr m_pipe;
+
+        //
+        // The console pipe to read data from...
+        //
+        std::atomic<bool> m_running;
     };
 
 } // namespace console_helper
