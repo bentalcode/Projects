@@ -40,6 +40,11 @@ ConsoleWindow::ConsoleWindow(
     m_pipe(CreatePipe(m_name))
 {
     //
+    // Initialize the pipe buffer with the pipe...
+    //
+    m_pipeBuffer->Initialize(m_pipe);
+
+    //
     // Create the process for running the console...
     //
     std::wstring executableName = EXECUTABLE_NAME;

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "BaseException.h"
+#include <assert.h>
 
 namespace base {
 
@@ -18,16 +19,18 @@ namespace base {
 
         /**
          * Copies a null terminated string.
+         * Returns the number of characters written not including null terminated character.
          */
-        static void CopyString(
+        static size_t CopyString(
             const char* src,
             size_t numOfCharactersToCopy,
             char* dest, size_t maxDestSize);
 
         /**
          * Copies a null terminated string.
+         * Returns the number of characters written not including the null terminated character.
          */
-        static void CopyString(
+        static size_t CopyString(
             const wchar_t* src,
             size_t numOfCharactersToCopy,
             wchar_t* dest, size_t maxDestSize);
@@ -157,11 +160,12 @@ namespace base {
          * Copies a null terminated string.
          */
         template <typename CharType>
-        static void CopyString(
+        static size_t CopyString(
             const CharType* src,
             size_t numOfCharactersToCopy,
             CharType* dest,
-            size_t maxDestSize);
+            size_t maxDestSize,
+            CharType nullCharacter);
 
         /**
          * Gets a length a null terminated string.
@@ -176,16 +180,17 @@ namespace base {
      * Copies a null terminated string.
      */
     template <typename CharType>
-    void StringUtils::CopyString(
+    size_t StringUtils::CopyString(
         const CharType* src,
         size_t numOfCharactersToCopy,
         CharType* dest,
-        size_t maxDestSize)
+        size_t maxDestSize,
+        CharType nullCharacter)
     {
-        if (numOfCharactersToCopy == std::numeric_limits<size_t>::max() ||
+        if (numOfCharactersToCopy >= std::numeric_limits<size_t>::max() - 1 ||
             numOfCharactersToCopy + 1 > maxDestSize) {
 
-            long errorCode = ErrorCodes::INVALID_ARG;
+            long errorCode = ErrorCodes::NOT_ENOUGH_MEMORY;
 
             std::wstringstream errorMessageStream;
             errorMessageStream
@@ -197,9 +202,33 @@ namespace base {
             throw BaseException(errorCode, errorMessage);
         }
 
-        for (size_t index = 0; index < numOfCharactersToCopy; ++index) {
+        size_t counter = 0;
+
+        size_t index = 0;
+        while (index < numOfCharactersToCopy) {
             dest[index] = src[index];
+            ++counter;
+
+            ++index;
         }
+
+        dest[index] = nullCharacter;
+
+        assert(counter == numOfCharactersToCopy);
+
+        if (counter !=  numOfCharactersToCopy) {
+            long errorCode = ErrorCodes::FAIL;
+
+            std::wstringstream errorMessageStream;
+            errorMessageStream
+                << L"StringUtils::CopyString() has failed copying string to destination buffer unexpectedly"
+                << ErrorMessages::GetErrorCodeMessage(errorCode);
+
+            std::wstring errorMessage = errorMessageStream.str();
+            throw BaseException(errorCode, errorMessage);
+        }
+
+        return counter;
     }
 
     /**

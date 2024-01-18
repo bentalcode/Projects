@@ -33,9 +33,6 @@ void ConsoleWindowManager::CreateWindow(const std::wstring& name)
 {
     console_windows::IConsoleWindowSharedPtr consoleWindow = console_windows::ConsoleWindow::Make(name);
 
-    // Create buffer, iniitlaize.
-    // Create pipe.
-
     std::wostream& consoleStream = consoleWindow->GetConsoleStream();
     consoleStream << L"debug console" << std::endl;
     consoleStream << std::hex << std::setfill(L'0') << std::setw(8) << 123456 << "\nflush!\n" << std::flush;

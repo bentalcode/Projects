@@ -20,33 +20,40 @@ using namespace base;
 /**
  * Copies a null terminated string.
  */
-void StringUtils::CopyString(
+size_t StringUtils::CopyString(
     const char* src, 
     size_t numOfCharactersToCopy, 
     char* dest, 
     size_t maxDestSize)
 {
-    CopyString<char>(
+    char nullCharacter = '\0';
+
+    return CopyString<char>(
         src, 
         numOfCharactersToCopy, 
         dest, 
-        maxDestSize);
+        maxDestSize,
+        nullCharacter);
 }
 
 /**
  * Copies a null terminated string.
+ * Returns the number of characters written not including null terminated character.
  */
-void StringUtils::CopyString(
+size_t StringUtils::CopyString(
     const wchar_t* src, 
     size_t numOfCharactersToCopy, 
     wchar_t* dest,
     size_t maxDestSize)
 {
-    CopyString<wchar_t>(
+    wchar_t nullCharacter = L'\0';
+
+    return CopyString<wchar_t>(
         src, 
         numOfCharactersToCopy, 
         dest, 
-        maxDestSize);
+        maxDestSize,
+        nullCharacter);
 }
 
 /**

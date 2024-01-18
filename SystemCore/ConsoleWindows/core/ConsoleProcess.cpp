@@ -78,7 +78,7 @@ void ConsoleProcess::CreateProcess(
     LPCWSTR currentDirectory = nullptr;
 
     if (!CreateProcessW(
-            executablePath.c_str(),
+            nullptr,
             &commandLine[0],
             pProcessAttributes,
             pThreadAttributes,
