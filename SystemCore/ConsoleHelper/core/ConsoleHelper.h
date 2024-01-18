@@ -18,7 +18,7 @@ namespace console_helper {
         /**
          * Creates a Console Helper.
          */
-         static IConsoleHelperSharedPtr Make();
+        static IConsoleHelperSharedPtr Make();
 
         /**
          * The ConsoleHelper constructor.
