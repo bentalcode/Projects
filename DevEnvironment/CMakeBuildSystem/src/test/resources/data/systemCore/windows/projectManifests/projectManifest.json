@@ -16,7 +16,8 @@
         "DataStructuresTest",
         "MemoryManagementTest",
         "ConcurrencyTest",
-        "ConsoleFileFinder"
+        "ConsoleFileFinder",
+        "ConsoleHelper"
     ],
     "cmakeListsManifest": {
         "presetPaths": [
@@ -143,6 +144,16 @@
                 "DataStructures",
                 "Command",
                 "TabularData",
+                "ClientServer",
+                "ConsoleWindows"
+            ]
+        },
+        {
+            "name": "ConsoleHelper",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "Command",
                 "ClientServer",
                 "ConsoleWindows"
             ]
