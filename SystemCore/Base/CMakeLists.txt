@@ -92,6 +92,7 @@ set(BASE_INCLUDES_FILES
     ./core/StringSearch.h
     ./core/StringUtils.h
     ./core/Strings.h
+    ./core/Thread.h
     ./core/ToString.h
     ./core/TwoDimensionalVector.h
     ./core/TwoDimensionalVectorIterator.h
@@ -137,6 +138,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ISizableCollection.h
     ./interfaces/ISkipIterator.h
     ./interfaces/IStringConversion.h
+    ./interfaces/IThread.h
     ./interfaces/IToString.h
     ./interfaces/ITwoDimensionalVector.h
     ./interfaces/IUnaryBitOperator.h
@@ -182,6 +184,7 @@ set(BASE_SOURCES_FILES
     ./core/StringUtils.cpp
     ./core/Strings.cpp
     ./core/Tests.cpp
+    ./core/Thread.cpp
     ./core/TimeUnit.cpp
     ./core/TimeUtils.cpp
     ./core/ToString.cpp
