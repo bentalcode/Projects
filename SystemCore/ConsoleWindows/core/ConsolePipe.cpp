@@ -1,9 +1,8 @@
 #include "ConsolePipe.h"
 #include "AbstractRetryLogic.h"
+#include "NamedPipes.h"
 #include "RetryHandler.h"
 #include "ConsoleWindowsException.h"
-#include <namedpipeapi.h>
-#include <thread>
 #include <assert.h>
 
 using namespace console_windows;
@@ -30,55 +29,14 @@ public:
      * Runs the logic for opening a pipe.
      */
     virtual void Run() override {
-        DWORD shareMode = 0;
-        LPSECURITY_ATTRIBUTES securityAttributes = nullptr;
-        DWORD creationDisposition = OPEN_EXISTING;
-        DWORD flagsAndAttributes = 0;
-        HANDLE templateFile = nullptr;
+        unsigned int numOfAttempts = 3;
+        long retryDurationInMilliseconds = 1 * 1000;
 
-        for (int index = 0; index < 3; ++index) {
-            HANDLE handle = ::CreateFileW(
-                m_pipeName.c_str(),
-                m_desiredAccess,
-                shareMode,
-                securityAttributes,
-                creationDisposition,
-                flagsAndAttributes,
-                templateFile);
-
-            if (handle == INVALID_HANDLE_VALUE) {
-                long errorCode = GetLastError();
-
-                if (errorCode != ERROR_PIPE_BUSY) {
-
-                    std::wstringstream errorMessageStream;
-                    errorMessageStream
-                        << L"Console Pipe has failed opening named pipe: " << m_pipeName
-                        << base::ErrorMessages::GetErrorCodeMessage(errorCode);
-
-                    std::wstring errorMessage = errorMessageStream.str();
-                    throw ConsoleWindowsException(errorCode, errorMessage);
-                }
-
-                long timeout = 1 * 1000;
-                if (!WaitNamedPipeW(m_name.c_str(), timeout)) {
-                    long errorCode = base::ErrorCodes::ACCESS_DENIED;
-
-                    std::wstringstream errorMessageStream;
-                    errorMessageStream
-                        << L"Console Pipe has failed opening named pipe: " << m_pipeName
-                        << base::ErrorMessages::GetErrorCodeMessage(errorCode);
-
-                    std::wstring errorMessage = errorMessageStream.str();
-                    throw ConsoleWindowsException(errorCode, errorMessage);
-                }
-
-                std::this_thread::sleep_for(std::chrono::milliseconds(timeout));
-            }
-
-            m_handle = handle;
-            break;
-        }
+        m_handle = NamedPipes::OpenPipe(
+            m_pipeName,
+            m_desiredAccess,
+            numOfAttempts,
+            retryDurationInMilliseconds);
     }
 
     /**
@@ -96,7 +54,7 @@ private:
 };
 
 /**
- * Creates a ConsolePipe.
+ * Creates a console pipe.
  */
 IConsolePipeSharedPtr ConsolePipe::Create(
     const std::wstring& name,
@@ -107,19 +65,13 @@ IConsolePipeSharedPtr ConsolePipe::Create(
     std::wstring pipeName = CreatePipeName(name);
     DWORD openMode = CreatePipeMode(mode);
     DWORD pipeMode = PIPE_TYPE_MESSAGE | PIPE_READMODE_BYTE | PIPE_WAIT;
-    DWORD maxNumOfInstances = 1;
-    DWORD defaultTimeOut = 1;
-    LPSECURITY_ATTRIBUTES securityAttributes = nullptr;
 
-    HANDLE handle = ::CreateNamedPipeW(
-        pipeName.c_str(),
+    HANDLE handle = NamedPipes::CreatePipe(
+        pipeName,
         openMode,
         pipeMode,
-        maxNumOfInstances,
-        writeCapacity,
         readCapacity,
-        defaultTimeOut,
-        securityAttributes);
+        writeCapacity);
 
     if (handle == INVALID_HANDLE_VALUE) {
         long errorCode = GetLastError();
@@ -134,7 +86,7 @@ IConsolePipeSharedPtr ConsolePipe::Create(
     }
 
     return std::make_shared<ConsolePipe>(
-        name,
+        pipeName,
         handle,
         State::ServerDisconnected);
 }
@@ -163,10 +115,10 @@ IConsolePipeSharedPtr ConsolePipe::Open(
  * The ConsolePipe constructor.
  */
 ConsolePipe::ConsolePipe(
-    const std::wstring& name,
+    const std::wstring& pipeName,
     HANDLE handle,
     State state) :
-    m_name(name),
+    m_pipeName(pipeName),
     m_handle(std::make_unique<PipeHandle>(handle)),
     m_state(state)
 {
@@ -185,7 +137,7 @@ ConsolePipe::~ConsolePipe()
  */
 const std::wstring& ConsolePipe::GetName() const
 {
-    return m_name;
+    return m_pipeName;
 }
 
 /**
@@ -212,7 +164,7 @@ size_t ConsolePipe::Read(Buffer& buffer)
 
         std::wstringstream errorMessageStream;
         errorMessageStream
-            << L"The Console Pipe has failed reading from named pipe: " << m_name
+            << L"The Console Pipe has failed reading from named pipe: " << m_pipeName
             << base::ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
@@ -251,7 +203,7 @@ size_t ConsolePipe::Write(const Buffer& buffer)
 
         std::wstringstream errorMessageStream;
         errorMessageStream
-        << L"The Console Pipe has failed writing to named pipe: " << m_name
+        << L"The Console Pipe has failed writing to named pipe: " << m_pipeName
         << base::ErrorMessages::GetErrorCodeMessage(errorCode);
 
         std::wstring errorMessage = errorMessageStream.str();
@@ -282,23 +234,9 @@ bool ConsolePipe::Connect()
         return false;
     }
 
-    LPOVERLAPPED lpOverlapped = nullptr;
-    if (!::ConnectNamedPipe(m_handle->get(), lpOverlapped))
-    {
-        long errorCode = GetLastError();
-
-        if (errorCode != ERROR_PIPE_CONNECTED) {
-            m_handle.release();
-
-            std::wstringstream errorMessageStream;
-            errorMessageStream
-                << L"Console Pipe has failed connecting to named pipe " << m_name
-                << base::ErrorMessages::GetErrorCodeMessage(errorCode);
-
-            std::wstring errorMessage = errorMessageStream.str();
-            throw ConsoleWindowsException(errorCode, errorMessage);
-        }
-    }
+    NamedPipes::ConnectPipe(
+        m_pipeName,
+        m_handle->get());
 
     m_state = State::ServerConnected;
     return true;
@@ -313,7 +251,9 @@ bool ConsolePipe::Disconnect()
         return false;
     }
 
-    BOOL status = DisconnectNamedPipe(m_handle->get());
+    NamedPipes::DisconnectPipe(
+        m_pipeName,
+        m_handle->get());
 
     m_state = State::ServerDisconnected;
     return true;

@@ -3,9 +3,8 @@
 #include "CommandHandler.h"
 #include "BaseException.h"
 #include "StringUtils.h"
-#include "Duration.h"
+#include "Thread.h"
 #include <algorithm>
-#include <thread>
 
 namespace console_helper {
 
@@ -25,6 +24,8 @@ namespace console_helper {
 int main(int argc, char *argv[])
 {
     int exitCode = 0;
+
+    //base::Thread::SleepFor(*base::Duration::FromSeconds(90));
 
     std::vector<std::wstring> parameters;
     parameters.reserve(argc);

@@ -40,17 +40,20 @@ void ConsoleHelper::Run()
     // Initialize command...
     //
     Initialize();
+    std::wcout << L"Console Helper has initialized successfully." << std::endl;
 
     //
     // Update title of console...
     //
     UpdateConsoleTitle(m_parameters->GetConsoleTile());
+    std::wcout << L"The Console Helper has updated console title successfully." << std::endl;
 
     //
     // Refresh data of console...
     //
     while (IsRunning()) {
-        RefreshConsoleData(*m_pipe);
+        std::wcout << L"Console Helper is refreshing console data." << std::endl;
+        //RefreshConsoleData(*m_pipe);
     }
 }
 
@@ -68,7 +71,7 @@ command::ICommand& ConsoleHelper::GetCommand()
 void ConsoleHelper::Initialize()
 {
     m_parameters = ConsoleHelperParameters::Make(command::AbstractCommand::GetParameters());
-    m_pipe = OpenPipe(m_parameters->GetPipeName());
+    //m_pipe = OpenPipe(m_parameters->GetPipeName());
 }
 
 /**

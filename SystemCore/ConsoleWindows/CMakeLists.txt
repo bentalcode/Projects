@@ -41,6 +41,7 @@ set(CONSOLE_WINDOWS_INCLUDES_FILES
     ./core/ConsoleStreamBuffer.h
     ./core/ConsoleWindow.h
     ./core/ConsoleWindowsException.h
+    ./core/NamedPipes.h
     ./interfaces/IConsolePipe.h
     ./interfaces/IConsoleProcess.h
     ./interfaces/IConsoleStreamBuffer.h
@@ -52,6 +53,7 @@ set(CONSOLE_WINDOWS_SOURCES_FILES
     ./core/ConsoleProcess.cpp
     ./core/ConsoleStreamBuffer.cpp
     ./core/ConsoleWindow.cpp
+    ./core/NamedPipes.cpp
 )
 
 set(CONSOLE_WINDOWS_INCLUDES

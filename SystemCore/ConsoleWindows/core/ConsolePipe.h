@@ -13,7 +13,7 @@ namespace console_windows {
     class ConsolePipe final : public IConsolePipe {
     public:
         /**
-         * Creates a Console Pipe.
+         * Creates a console pipe.
          */
         static IConsolePipeSharedPtr Create(
             const std::wstring& name,
@@ -92,7 +92,7 @@ namespace console_windows {
         //
         // The name of the pipe...
         //
-        std::wstring m_name;
+        std::wstring m_pipeName;
 
         //
         // The handle of the named pipe...
