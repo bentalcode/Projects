@@ -19,6 +19,7 @@ class ConsoleWindow final : public std::wostream, public IConsoleWindow {
          */
         static IConsoleWindowSharedPtr Make(
             const std::wstring& name,
+            const std::wstring& executablePath,
             size_t bufferSize = DEFAULT_BUFFER_SIZE);
 
         /**
@@ -26,6 +27,7 @@ class ConsoleWindow final : public std::wostream, public IConsoleWindow {
          */
         ConsoleWindow(
             const std::wstring& name,
+            const std::wstring& executablePath,
             IConsoleStreamBufferSharedPtr pipeBuffer);
 
         /**
@@ -43,11 +45,6 @@ private:
         // Defines the default size of console...
         //
         static const size_t DEFAULT_BUFFER_SIZE;
-
-        //
-        // Defines the name of the executable of the console process...
-        //
-        static const std::wstring EXECUTABLE_NAME;
 
         /**
          * Creates a pipe.

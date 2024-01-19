@@ -3,7 +3,9 @@
 #include "CommandHandler.h"
 #include "BaseException.h"
 #include "StringUtils.h"
+#include "Duration.h"
 #include <algorithm>
+#include <thread>
 
 namespace console_helper {
 
@@ -55,3 +57,5 @@ int main(int argc, char *argv[])
 
     return exitCode;
 }
+
+

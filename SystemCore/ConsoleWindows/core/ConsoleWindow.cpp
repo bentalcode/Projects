@@ -12,20 +12,23 @@ using namespace console_windows;
 // Defines the default size of console...
 //
 const size_t ConsoleWindow::DEFAULT_BUFFER_SIZE = 4096;
-const std::wstring ConsoleWindow::EXECUTABLE_NAME = L"console_helper.exe";
 
 /**
  * Creates a ConsoleWindow.
  */
 IConsoleWindowSharedPtr ConsoleWindow::Make(
     const std::wstring& name,
+    const std::wstring& executablePath,
     size_t bufferSize)
 {
     IConsoleStreamBufferSharedPtr pipeBuffer = ConsoleStreamBuffer::Make(
         name,
         bufferSize);
 
-    return std::make_shared<ConsoleWindow>(name, pipeBuffer);
+    return std::make_shared<ConsoleWindow>(
+        name,
+        executablePath,
+        pipeBuffer);
 }
 
 /**
@@ -33,6 +36,7 @@ IConsoleWindowSharedPtr ConsoleWindow::Make(
  */
 ConsoleWindow::ConsoleWindow(
     const std::wstring& name,
+    const std::wstring& executablePath,
     IConsoleStreamBufferSharedPtr pipeBuffer) :
     std::wostream(base::SmartPointers::ValidateAndReturn(pipeBuffer).get()),
     m_name(name),
@@ -47,12 +51,11 @@ ConsoleWindow::ConsoleWindow(
     //
     // Create the process for running the console...
     //
-    std::wstring executableName = EXECUTABLE_NAME;
     std::wstring consoleName = name;
     std::wstring pipeName = m_pipe->GetName();
 
     m_process = CreateConsoleProcess(
-        executableName,
+        executablePath,
         consoleName,
         pipeName);
 }

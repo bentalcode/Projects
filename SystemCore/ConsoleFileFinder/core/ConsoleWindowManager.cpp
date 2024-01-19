@@ -1,4 +1,5 @@
 #include "ConsoleWindowManager.h"
+#include "ConsoleWindowManagerConfiguration.h"
 #include "ConsoleWindow.h"
 #include <iomanip>
 
@@ -15,7 +16,8 @@ IConsoleWindowManagerSharedPtr ConsoleWindowManager::Make()
 /**
  * The ConsoleWindowManager constructor.
  */
-ConsoleWindowManager::ConsoleWindowManager()
+ConsoleWindowManager::ConsoleWindowManager() :
+    m_configuration(ConsoleWindowManagerConfiguration::Make())
 {
 }
 
@@ -31,7 +33,9 @@ ConsoleWindowManager::~ConsoleWindowManager()
  */
 void ConsoleWindowManager::CreateWindow(const std::wstring& name)
 {
-    console_windows::IConsoleWindowSharedPtr consoleWindow = console_windows::ConsoleWindow::Make(name);
+    console_windows::IConsoleWindowSharedPtr consoleWindow = console_windows::ConsoleWindow::Make(
+        name,
+        m_configuration->GetConsoleHelperPath());
 
     std::wostream& consoleStream = consoleWindow->GetConsoleStream();
     consoleStream << L"debug console" << std::endl;

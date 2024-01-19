@@ -2,6 +2,7 @@
 #define CONSOLE_WINDOW_MANAGER_H_f9879a33_be9f_48b3_8071_18574b7e0d0e
 
 #include "IConsoleWindowManager.h"
+#include "IConsoleWindowManagerConfiguration.h"
 
 namespace consolefilefinder {
 
@@ -32,7 +33,7 @@ namespace consolefilefinder {
         virtual void CreateWindow(const std::wstring& name) override;
 
     private:
-
+        IConsoleWindowManagerConfigurationSharedPtr m_configuration;
     };
 
 } // namespace consolefilefinder
