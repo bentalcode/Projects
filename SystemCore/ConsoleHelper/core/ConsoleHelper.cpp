@@ -53,7 +53,7 @@ void ConsoleHelper::Run()
     //
     while (IsRunning()) {
         std::wcout << L"Console Helper is refreshing console data." << std::endl;
-        //RefreshConsoleData(*m_pipe);
+        RefreshConsoleData(*m_pipe);
     }
 }
 
@@ -71,7 +71,7 @@ command::ICommand& ConsoleHelper::GetCommand()
 void ConsoleHelper::Initialize()
 {
     m_parameters = ConsoleHelperParameters::Make(command::AbstractCommand::GetParameters());
-    //m_pipe = OpenPipe(m_parameters->GetPipeName());
+    m_pipe = OpenPipe(m_parameters->GetPipeName());
 }
 
 /**
