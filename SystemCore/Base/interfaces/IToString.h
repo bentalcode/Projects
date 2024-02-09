@@ -23,7 +23,7 @@ namespace base {
         virtual ~IToString() = default;
 
         /**
-         * Gets a string translation of an object.
+         * Transforms an object to a string.
          */
         virtual std::wstring ToString(const T& obj) const = 0;
     };

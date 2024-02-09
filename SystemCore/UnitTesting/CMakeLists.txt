@@ -158,6 +158,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IComparatorFactory.h
     ../Base/interfaces/IConsoleColorHandler.h
     ../Base/interfaces/IEquatableComparator.h
+    ../Base/interfaces/IFromString.h
     ../Base/interfaces/IHashCodeProvider.h
     ../Base/interfaces/IIntervalMap.h
     ../Base/interfaces/IIterable.h
