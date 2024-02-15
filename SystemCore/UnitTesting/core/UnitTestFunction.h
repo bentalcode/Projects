@@ -6,7 +6,7 @@
 namespace unit_testing {
 
     /**
-     * The UnitTestFunction abstract base class implements a unit test function.
+     * The UnitTestFunction abstract base class implements a unit Test function.
      */
     template <typename UnitTestType>
     class UnitTestFunction : public ITestFunction {
@@ -36,12 +36,12 @@ namespace unit_testing {
         UnitTestFunction& operator=(UnitTestFunction&&) = delete;
 
         /**
-         * Gets the name of the test.
+         * Gets the name of the Test.
          */
         virtual const std::wstring& GetName() const override;
 
         /**
-         * Gets the unit test.
+         * Gets the unit Test.
          */
         UnitTestType& GetUnitTest();
 
@@ -75,7 +75,7 @@ namespace unit_testing {
     }
 
     /**
-     * Gets the name of the test.
+     * Gets the name of the Test.
      */
     template <typename UnitTestType>
     inline const std::wstring& UnitTestFunction<UnitTestType>::GetName() const
@@ -84,7 +84,7 @@ namespace unit_testing {
     }
 
     /**
-     * Gets the unit test.
+     * Gets the unit Test.
      */
     template <typename UnitTestType>
     inline UnitTestType& UnitTestFunction<UnitTestType>::GetUnitTest()

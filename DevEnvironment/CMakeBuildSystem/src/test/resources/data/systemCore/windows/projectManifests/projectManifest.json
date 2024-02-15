@@ -6,18 +6,20 @@
         "DataStructures",
         "MemoryManagement",
         "Concurrency",
-        "Command",
         "TabularData",
         "ClientServer",
         "ConsoleWindows",
+        "ConsoleFileFinder",
+        "ConsoleHelper",
+        "Command",
+        "Problems",
         "TestBase",
         "UnitTesting",
         "BaseTest",
         "DataStructuresTest",
         "MemoryManagementTest",
         "ConcurrencyTest",
-        "ConsoleFileFinder",
-        "ConsoleHelper"
+        "ProblemsTest"
     ],
     "cmakeListsManifest": {
         "presetPaths": [
@@ -76,7 +78,36 @@
             ]
         },
         {
+            "name": "ConsoleFileFinder",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "DataStructures",
+                "Command",
+                "TabularData",
+                "ClientServer",
+                "ConsoleWindows"
+            ]
+        },
+        {
+            "name": "ConsoleHelper",
+            "type": "executable",
+            "dependentModules": [
+                "Base",
+                "Command",
+                "ClientServer",
+                "ConsoleWindows"
+            ]
+        },
+        {
             "name": "Command",
+            "type": "library",
+            "dependentModules": [
+                "Base"
+            ]
+        },
+        {
+            "name": "Problems",
             "type": "library",
             "dependentModules": [
                 "Base"
@@ -137,25 +168,13 @@
             ]
         },
         {
-            "name": "ConsoleFileFinder",
+            "name": "ProblemsTest",
             "type": "executable",
             "dependentModules": [
                 "Base",
-                "DataStructures",
-                "Command",
-                "TabularData",
-                "ClientServer",
-                "ConsoleWindows"
-            ]
-        },
-        {
-            "name": "ConsoleHelper",
-            "type": "executable",
-            "dependentModules": [
-                "Base",
-                "Command",
-                "ClientServer",
-                "ConsoleWindows"
+                "TestBase",
+                "UnitTesting",
+                "Problems"
             ]
         }
     ]

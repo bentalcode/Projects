@@ -49,7 +49,7 @@ UnitTestManager::~UnitTestManager()
 }
 
 /**
- * Registers a test.
+ * Registers a Test.
  */
 void UnitTestManager::RegisterTest(IUnitTestSharedPtr unitTest)
 {
@@ -60,7 +60,7 @@ void UnitTestManager::RegisterTest(IUnitTestSharedPtr unitTest)
 }
 
 /**
- * Unregisters a test.
+ * Unregisters a Test.
  */
 void UnitTestManager::UnRegisterTest(IUnitTestSharedPtr unitTest)
 {
@@ -90,7 +90,7 @@ void UnitTestManager::Run()
 }
 
 /**
- * Runs a unit test.
+ * Runs a unit Test.
  */
 void UnitTestManager::runUnitTest(IUnitTest& unitTest)
 {

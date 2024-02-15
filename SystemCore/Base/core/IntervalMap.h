@@ -46,7 +46,7 @@ namespace base {
         /**
          * Gets the Size of the collection.
          */
-        virtual std::size_t Size() const override;
+        virtual size_t Size() const override;
 
         /**
          * Gets the iterator.
@@ -216,7 +216,7 @@ namespace base {
     }
 
     template <typename Key, typename Value>
-    std::size_t IntervalMap<Key, Value>::Size() const
+    size_t IntervalMap<Key, Value>::Size() const
     {
         return m_map.size();
     }

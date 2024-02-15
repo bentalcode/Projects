@@ -4,6 +4,7 @@
 #include "ErrorCodes.h"
 #include "BaseException.h"
 #include <memory>
+#include <assert.h>
 
 namespace base
 {
@@ -119,22 +120,49 @@ namespace base
     }
 
     /**
-     * Defines operator less ofintervals.
+     * Implements an operator less for intervals.
      */
     template <typename T>
-    bool operator<(const Interval<T>& left, const Interval<T>& right)
+    bool operator<(const Interval<T>& lhs, const Interval<T>& rhs)
     {
-        if (left.GetStart() < right.GetStart())
+        if (lhs.GetStart() < rhs.GetStart())
         {
             return true;
         }
 
-        if (left.GetStart() > right.GetStart())
+        if (lhs.GetStart() > rhs.GetStart())
         {
             return false;
         }
 
-        return left.GetEnd() < right.GetEnd();
+        return lhs.GetEnd() < rhs.GetEnd();
+    }
+
+    /**
+     * Implements an operator less than or equal for intervals.
+     */
+    template <typename T>
+    bool operator<=(const Interval<T>& lhs, const Interval<T>& rhs)
+    {
+        return !(rhs < lhs);
+    }
+
+    /**
+     * Implements an operator greater than for triples.
+     */
+    template <typename T>
+    inline bool operator>(const Interval<T>& lhs, const Interval<T>& rhs)
+    {
+        return rhs < lhs;
+    }
+
+    /**
+     * Implements an operator greater than or equal for triples.
+     */
+    template <typename T>
+    inline bool operator>=(const Interval<T>& lhs, const Interval<T>& rhs)
+    {
+        return !(lhs < rhs);
     }
 
     /**

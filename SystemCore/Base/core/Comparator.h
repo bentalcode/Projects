@@ -52,7 +52,7 @@ namespace base
         /**
          * Gets the hash code of this instance.
          */
-        virtual std::size_t GetHashCode(const T& obj) const override;
+        virtual size_t GetHashCode(const T& obj) const override;
 
         /**
          * Checks whether two instances are equals.
@@ -117,7 +117,7 @@ namespace base
      * Gets the hash code of this instance.
      */
     template <typename T>
-    std::size_t Comparator<T>::GetHashCode(const T& obj) const
+    size_t Comparator<T>::GetHashCode(const T& obj) const
     {
         return 0;
     }

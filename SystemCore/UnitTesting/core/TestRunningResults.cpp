@@ -91,7 +91,7 @@ void TestRunningResults::SetEndTime()
 }
 
 /**
- * Sets a successful running result of a unit test.
+ * Sets a successful running result of a unit Test.
  */
 void TestRunningResults::SetSuccessfulRunningResult(
     const std::wstring& testName,
@@ -113,7 +113,7 @@ void TestRunningResults::SetSuccessfulRunningResult(
 }
 
 /**
- * Sets a failed running result of a unit test.
+ * Sets a failed running result of a unit Test.
  */
 void TestRunningResults::SetFailedRunningResult(
     const std::wstring& testName,

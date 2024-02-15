@@ -3,6 +3,7 @@
 
 #include "ErrorCodes.h"
 #include "ErrorMessages.h"
+#include <string>
 
 namespace base {
 

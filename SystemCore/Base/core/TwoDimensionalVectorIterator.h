@@ -65,7 +65,7 @@ namespace base
         /**
          * Gets the Size of a specific column.
          */
-        std::size_t ColumnSize(std::size_t rowIndex) const;
+        size_t ColumnSize(size_t rowIndex) const;
 
         const std::vector<std::vector<T>>& m_data;
         size_t m_rowsSize;
@@ -156,7 +156,7 @@ namespace base
      * Gets the Size of a specific column.
      */
     template <typename T>
-    size_t TwoDimensionalVectorIterator<T>::ColumnSize(std::size_t rowIndex) const
+    size_t TwoDimensionalVectorIterator<T>::ColumnSize(size_t rowIndex) const
     {
         return m_data[rowIndex].size();
     }

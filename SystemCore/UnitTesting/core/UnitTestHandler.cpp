@@ -26,7 +26,7 @@ UnitTestHandler::~UnitTestHandler()
 }
 
 /**
- * Registers a test.
+ * Registers a Test.
  */
 void UnitTestHandler::RegisterTest(ITestFunctionSharedPtr testFunction)
 {
@@ -60,7 +60,7 @@ const ITestRunningResults& UnitTestHandler::Run()
 }
 
 /**
- * Processes a test.
+ * Processes a Test.
  */
 void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
 {
@@ -112,7 +112,7 @@ void UnitTestHandler::processTest(ITestFunction& unitTestFunction)
 }
 
 /**
- * Runs a test.
+ * Runs a Test.
  */
 bool UnitTestHandler::runTest(ITestFunction& unitTestFunction, std::wstring& errorMessage)
 {
@@ -129,7 +129,7 @@ bool UnitTestHandler::runTest(ITestFunction& unitTestFunction, std::wstring& err
     {
         std::wstringstream errorMessageStream;
         errorMessageStream
-            << L"The unit test: " << unitTestFunction.GetName() << L" failed due to the following error: "
+            << L"The unit Test: " << unitTestFunction.GetName() << L" failed due to the following error: "
             << e.GetErrorMessage();
 
         errorMessage = errorMessageStream.str();
@@ -138,7 +138,7 @@ bool UnitTestHandler::runTest(ITestFunction& unitTestFunction, std::wstring& err
     {
         std::wstringstream errorMessageStream;
         errorMessageStream
-            << "The unit test: " << unitTestFunction.GetName() << " failed due to an expected exception: "
+            << "The unit Test: " << unitTestFunction.GetName() << " failed due to an expected exception: "
             << e.what();
 
         errorMessage = errorMessageStream.str();

@@ -6,7 +6,7 @@
 namespace unit_testing
 {
     /**
-     * The TestRunningResult implements running result of a single test.
+     * The TestRunningResult implements running result of a single Test.
      */
     class TestRunningResult final : public ITestRunningResult
     {
@@ -39,32 +39,32 @@ namespace unit_testing
         TestRunningResult& operator=(TestRunningResult&&) = delete;
 
         /**
-         * Gets the name of a unit test.
+         * Gets the name of a unit Test.
          */
         virtual const std::wstring& GetName() const override;
 
         /**
-         * Gets the start time of a test.
+         * Gets the start time of a Test.
          */
         virtual const base::DateTime& GetStartTime() const override;
 
         /**
-         * Gets the end time of a test.
+         * Gets the end time of a Test.
          */
         virtual const base::DateTime& GetEndTime() const override;
 
         /**
-         * Gets the duration of a test.
+         * Gets the duration of a Test.
          */
         virtual const base::Duration& GetDuration() const override;
 
         /**
-         * Gets the result status of running a unit test.
+         * Gets the result status of running a unit Test.
          */
         virtual bool GetResultStatus() const override;
 
         /**
-         * Gets the error message of running a unit test.
+         * Gets the error message of running a unit Test.
          */
         virtual const std::wstring& GetErrorMessage() const override;
 

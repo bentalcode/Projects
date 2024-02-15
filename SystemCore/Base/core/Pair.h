@@ -161,15 +161,15 @@ namespace base
         const Pair<Type1, Type2>& lhs,
         const Pair<Type1, Type2>& rhs)
     {
-        if (lhs.getFirst() < rhs.getFirst()) {
+        if (lhs.GetFirst() < rhs.GetFirst()) {
             return true;
         }
 
-        if (lhs.getFirst() > rhs.getFirst()) {
+        if (lhs.GetFirst() > rhs.GetFirst()) {
             return false;
         }
 
-        return lhs.getSecond() < rhs.getSecond();
+        return lhs.GetSecond() < rhs.GetSecond();
     }
 
     /**

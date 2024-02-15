@@ -21,7 +21,7 @@ UnitTestBase::~UnitTestBase()
 }
 
 /**
-  * Gets the name of the unit test.
+  * Gets the name of the unit Test.
   */
 const std::wstring& UnitTestBase::GetName() const
 {

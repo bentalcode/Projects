@@ -48,7 +48,7 @@ namespace base
         /**
          * Gets an element at a specified position.
          */
-        virtual const T& Get(std::size_t index) const override;
+        virtual const T& Get(size_t index) const override;
 
         /**
          * Adds an element to the Back of the list.
@@ -78,7 +78,7 @@ namespace base
         /**
          * Gets the Size of the collection.
          */
-        virtual std::size_t Size() const override;
+        virtual size_t Size() const override;
 
         /**
          * Gets the iterator.
@@ -127,7 +127,7 @@ namespace base
      * Gets an element at a specified position.
      */
     template <typename T>
-    const T& List<T>::Get(std::size_t index) const
+    const T& List<T>::Get(size_t index) const
     {
         auto iterator = m_data.begin();
         std::advance(iterator, index);
@@ -183,7 +183,7 @@ namespace base
      * Gets the Size of the collection.
      */
     template <typename T>
-    std::size_t List<T>::Size() const
+    size_t List<T>::Size() const
     {
         return m_data.size();
     }

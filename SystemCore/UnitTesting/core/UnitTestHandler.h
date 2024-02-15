@@ -13,7 +13,7 @@ namespace base {
 namespace unit_testing
 {
     /**
-     * The UnitTestHandler class implements a handler for running a single unit test.
+     * The UnitTestHandler class implements a handler for running a single unit Test.
      */
     class UnitTestHandler final : public IUnitTestHandler, ITestRegistration
     {
@@ -43,23 +43,23 @@ namespace unit_testing
         UnitTestHandler& operator=(UnitTestHandler&&) = delete;
 
         /**
-         * Registers a test.
+         * Registers a Test.
          */
         virtual void RegisterTest(ITestFunctionSharedPtr testFunction) override;
 
         /**
-         * Runs the unit test.
+         * Runs the unit Test.
          */
         virtual const ITestRunningResults& Run() override;
 
     private:
         /**
-         * Processes a test.
+         * Processes a Test.
          */
         void processTest(ITestFunction& unitTestFunction);
 
         /**
-         * Runs a test.
+         * Runs a Test.
          */
         bool runTest(ITestFunction& unitTestFunction, std::wstring& errorMessage);
 

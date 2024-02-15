@@ -6,7 +6,7 @@
 namespace test_base {
 
     /**
-     * The TestBaseException captured errors in the test module.
+     * The TestBaseException captured errors in the Test module.
      */
     class TestBaseException : public base::BaseException
     {

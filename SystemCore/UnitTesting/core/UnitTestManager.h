@@ -8,7 +8,7 @@
 namespace unit_testing
 {
     /**
-     * The UnitTestManager class implements a unit test manager.
+     * The UnitTestManager class implements a unit Test manager.
      */
     class UnitTestManager final : public IUnitTestManager
     {
@@ -41,12 +41,12 @@ namespace unit_testing
         UnitTestManager& operator=(UnitTestManager&&) = delete;
 
         /**
-         * Registers a test.
+         * Registers a Test.
          */
         virtual void RegisterTest(IUnitTestSharedPtr unitTest) override;
 
         /**
-         * Unregisters a test.
+         * Unregisters a Test.
          */
         virtual void UnRegisterTest(IUnitTestSharedPtr unitTest) override;
 
@@ -57,7 +57,7 @@ namespace unit_testing
 
     private:
         /**
-         * Runs a unit test.
+         * Runs a unit Test.
          */
         void runUnitTest(IUnitTest& unitTest);
 

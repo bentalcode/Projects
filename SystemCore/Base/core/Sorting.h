@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <memory>
+#include <algorithm>
 
 namespace base
 {

@@ -129,6 +129,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Strings.h
     ../Base/core/Thread.h
     ../Base/core/ToString.h
+    ../Base/core/Triple.h
     ../Base/core/TwoDimensionalVector.h
     ../Base/core/TwoDimensionalVectorIterator.h
     ../Base/core/UnexpectedException.h
@@ -179,9 +180,11 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ITwoDimensionalVector.h
     ../Base/interfaces/IUnaryBitOperator.h
     ../Base/interfaces/IUuid.h
+    ../Base/interfaces/IValidator.h
     ../Base/interfaces/IValueIterable.h
     ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
+    ../Base/interfaces/Position.h
     ../Base/interfaces/ReferenceCounter.h
     ../Base/interfaces/ReferenceCounterHolder.h
     ../Base/interfaces/SmartPointers.h

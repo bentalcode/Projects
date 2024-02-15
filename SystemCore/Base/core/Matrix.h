@@ -17,7 +17,7 @@ namespace base
         /**
          * The Matrix constructor, with an initial sizes: rowSize x colSize.
          */
-        Matrix(std::size_t rowsSize, std::size_t colsSize);
+        Matrix(size_t rowsSize, size_t colsSize);
 
         /**
          * The Matrix constructor, with a two dimensional vector.
@@ -49,17 +49,17 @@ namespace base
         /**
          * Gets the number ofrows.
          */
-        virtual std::size_t GetRowsSize() const override;
+        virtual size_t GetRowsSize() const override;
 
         /**
          * Gets the number ofcolumns.
          */
-        virtual std::size_t GetColumnsSize() const override;
+        virtual size_t GetColumnsSize() const override;
 
         /**
          * Gets an element at a specified position.
          */
-        virtual const T& Get(std::size_t rowIndex, std::size_t columnIndex) const override;
+        virtual const T& Get(size_t rowIndex, size_t columnIndex) const override;
 
         /**
          * Gets all elements.
@@ -69,12 +69,12 @@ namespace base
         /**
          * Gets a row.
          */
-        virtual const std::vector<T>& GetRow(std::size_t rowIndex) const override;
+        virtual const std::vector<T>& GetRow(size_t rowIndex) const override;
 
         /**
          * Sets a row.
          */
-        virtual void SetRow(std::size_t rowIndex, const std::vector<T>& data) override;
+        virtual void SetRow(size_t rowIndex, const std::vector<T>& data) override;
 
         /**
          * Gets a row.
@@ -94,7 +94,7 @@ namespace base
         /**
          * Gets the Size of a collection.
          */
-        virtual std::size_t Size() const override;
+        virtual size_t Size() const override;
 
         /**
          * Gets the iterator.
@@ -134,7 +134,7 @@ namespace base
      * The Matrix constructor, with an initial sizes: rowSize x colSize.
      */
     template <typename T>
-    Matrix<T>::Matrix(std::size_t rowsSize, std::size_t columnsSize) :
+    Matrix<T>::Matrix(size_t rowsSize, size_t columnsSize) :
         m_data(rowsSize),
         m_rowsSize(rowsSize),
         m_columnsSize(columnsSize)
@@ -166,7 +166,7 @@ namespace base
     Matrix<T>::Matrix(const std::initializer_list<std::vector<T>>& data) :
         m_data(data.size())
     {
-        std::size_t rowIndex = 0;
+        size_t rowIndex = 0;
         for (const std::vector<T>& row : data)
         {
             m_data[rowIndex] = row;
@@ -174,7 +174,7 @@ namespace base
         }
 
         m_rowsSize = m_data.size();
-        m_columnsSize = m_data[0].Size();
+        m_columnsSize = m_data[0].size();
     }
 
     /**
@@ -218,7 +218,7 @@ namespace base
      * Gets the number ofrows.
      */
     template <typename T>
-    std::size_t Matrix<T>::GetRowsSize() const
+    size_t Matrix<T>::GetRowsSize() const
     {
         return m_rowsSize;
     }
@@ -227,7 +227,7 @@ namespace base
      * Gets the number ofcolumns.
      */
     template <typename T>
-    std::size_t Matrix<T>::GetColumnsSize() const {
+    size_t Matrix<T>::GetColumnsSize() const {
         return m_columnsSize;
     }
 
@@ -235,7 +235,7 @@ namespace base
      * Gets an element at a specified position.
      */
     template <typename T>
-    const T& Matrix<T>::Get(std::size_t rowIndex, std::size_t columnIndex) const
+    const T& Matrix<T>::Get(size_t rowIndex, size_t columnIndex) const
     {
         const std::vector<T>& row = m_data[rowIndex];
         return row[columnIndex];
@@ -254,7 +254,7 @@ namespace base
      * Gets a row.
      */
     template <typename T>
-    const std::vector<T>& Matrix<T>::GetRow(std::size_t rowIndex) const
+    const std::vector<T>& Matrix<T>::GetRow(size_t rowIndex) const
     {
         return m_data[rowIndex];
     }
@@ -263,7 +263,7 @@ namespace base
      * Sets a row.
      */
     template <typename T>
-    void Matrix<T>::SetRow(std::size_t rowIndex, const std::vector<T>& row)
+    void Matrix<T>::SetRow(size_t rowIndex, const std::vector<T>& row)
     {
         if (row.size() != GetRowsSize())
         {
@@ -307,7 +307,7 @@ namespace base
      * Gets the Size of a collection.
      */
     template <typename T>
-    std::size_t Matrix<T>::Size() const
+    size_t Matrix<T>::Size() const
     {
         return m_rowsSize * m_columnsSize;
     }
@@ -356,12 +356,12 @@ namespace base
             return false;
         }
 
-        std::size_t rows = data.size();
-        std::size_t cols = data[0].size();
+        size_t rows = data.size();
+        size_t cols = data[0].size();
 
-        for (std::size_t row = 1; row < rows; ++row)
+        for (size_t row = 1; row < rows; ++row)
         {
-            std::size_t currCols = data[row].size();
+            size_t currCols = data[row].size();
 
             if (cols != currCols)
             {

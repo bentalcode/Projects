@@ -61,7 +61,7 @@ const std::wstring& TestRunningResult::GetName() const
 }
 
 /**
- * Gets the start time of a test.
+ * Gets the start time of a Test.
  */
 const base::DateTime& TestRunningResult::GetStartTime() const
 {
@@ -69,7 +69,7 @@ const base::DateTime& TestRunningResult::GetStartTime() const
 }
 
 /**
- * Gets the end time of a test.
+ * Gets the end time of a Test.
  */
 const base::DateTime& TestRunningResult::GetEndTime() const
 {
@@ -77,7 +77,7 @@ const base::DateTime& TestRunningResult::GetEndTime() const
 }
 
 /**
- * Gets the duration of a test.
+ * Gets the duration of a Test.
  */
 const base::Duration& TestRunningResult::GetDuration() const
 {
@@ -85,7 +85,7 @@ const base::Duration& TestRunningResult::GetDuration() const
 }
 
 /**
- * Gets the result status a test.
+ * Gets the result status a Test.
  */
 bool TestRunningResult::GetResultStatus() const
 {
@@ -93,7 +93,7 @@ bool TestRunningResult::GetResultStatus() const
 }
 
 /**
- * Gets the error message of a test.
+ * Gets the error message of a Test.
  */
 const std::wstring& TestRunningResult::GetErrorMessage() const
 {

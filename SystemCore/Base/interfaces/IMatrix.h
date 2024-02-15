@@ -6,8 +6,6 @@
 
 namespace base
 {
-    class Position;
-
     /**
      * The IMatrix interface defines a matrix.
      */

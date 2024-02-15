@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(BaseTest VERSION 1.0)
+project(Problems VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
     14
@@ -8,13 +8,6 @@ set(CMAKE_CXX_STANDARD
 set(RESOURCES_DIRECTORY_NAME
     resources
 )
-
-#
-# Configure build properties...
-#
-set(VERSION_MAJOR "1")
-set(VERSION_MINOR "1")
-set(VERSION_PATCH "0")
 
 
 set(CMAKE_CXX_STANDARD 14)
@@ -42,36 +35,24 @@ endif()
 add_compile_definitions(WINDOWS=1)
 
 
-set(BASE_TEST_INCLUDES_FILES
-    ./interfaces/IntervalMapUnitTest.h
-    ./interfaces/KmpStringSearchUnitTest.h
-    ./interfaces/ListUnitTest.h
-    ./interfaces/MatrixUnitTest.h
-    ./interfaces/RandomGeneratorUnitTest.h
-    ./interfaces/StringsUnitTest.h
-    ./interfaces/TestData.h
-    ./interfaces/TwoDimensionalVectorUnitTest.h
+set(PROBLEMS_INCLUDES_FILES
+    ./core/ProblemsException.h
+    ./core/QueensPositioning.h
+    ./interfaces/IQueensPositioning.h
 )
 
-set(BASE_TEST_SOURCES_FILES
-    ./core/IntervalMapUnitTest.cpp
-    ./core/KmpStringSearchUnitTest.cpp
-    ./core/ListUnitTest.cpp
-    ./core/MatrixUnitTest.cpp
-    ./core/RandomGeneratorUnitTest.cpp
-    ./core/StringsUnitTest.cpp
-    ./core/TestData.cpp
-    ./core/TwoDimensionalVectorUnitTest.cpp
-    ./main.cpp
+set(PROBLEMS_SOURCES_FILES
+    ./core/QueensPositioning.cpp
 )
 
-set(BASE_TEST_INCLUDES
+set(PROBLEMS_INCLUDES
+    ./core
     ./interfaces
 )
 
-set(BASE_TEST_SOURCES
-    ${BASE_TEST_INCLUDES_FILES}
-    ${BASE_TEST_SOURCES_FILES}
+set(PROBLEMS_SOURCES
+    ${PROBLEMS_INCLUDES_FILES}
+    ${PROBLEMS_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -250,93 +231,14 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
-set(TEST_BASE_INCLUDES_FILES
-    ../TestBase/core/TestBaseException.h
-    ../TestBase/interfaces/Assertion.h
-    ../TestBase/interfaces/IterationTest.h
-    ../TestBase/interfaces/ResourcePaths.h
-)
-
-set(TEST_BASE_SOURCES_FILES
-    ../TestBase/core/Assertion.cpp
-    ../TestBase/core/IterationTest.cpp
-)
-
-set(TEST_BASE_INCLUDES
-    ../TestBase/core
-    ../TestBase/interfaces
-)
-
-set(TEST_BASE_SOURCES
-    ${TEST_BASE_INCLUDES_FILES}
-    ${TEST_BASE_SOURCES_FILES}
-)
-
-add_library(TestBase STATIC
-    ${BASE_SOURCES}
-    ${TEST_BASE_SOURCES}
-)
-
-set(UNIT_TESTING_INCLUDES_FILES
-    ../UnitTesting/core/TestRunningResult.h
-    ../UnitTesting/core/TestRunningResults.h
-    ../UnitTesting/core/UnitTestFunction.h
-    ../UnitTesting/core/UnitTestHandler.h
-    ../UnitTesting/core/UnitTestManager.h
-    ../UnitTesting/core/UnitTestingConsts.h
-    ../UnitTesting/core/UnitTestingException.h
-    ../UnitTesting/interfaces/ITestFunction.h
-    ../UnitTesting/interfaces/ITestRegistration.h
-    ../UnitTesting/interfaces/ITestRunningResult.h
-    ../UnitTesting/interfaces/ITestRunningResults.h
-    ../UnitTesting/interfaces/IUnitTest.h
-    ../UnitTesting/interfaces/IUnitTestHandler.h
-    ../UnitTesting/interfaces/IUnitTestManager.h
-    ../UnitTesting/interfaces/UnitTestBase.h
-    ../UnitTesting/interfaces/UnitTestException.h
-)
-
-set(UNIT_TESTING_SOURCES_FILES
-    ../UnitTesting/core/TestRunningResult.cpp
-    ../UnitTesting/core/TestRunningResults.cpp
-    ../UnitTesting/core/UnitTestBase.cpp
-    ../UnitTesting/core/UnitTestHandler.cpp
-    ../UnitTesting/core/UnitTestManager.cpp
-    ../UnitTesting/core/UnitTestingConsts.cpp
-)
-
-set(UNIT_TESTING_INCLUDES
-    ../UnitTesting/core
-    ../UnitTesting/interfaces
-)
-
-set(UNIT_TESTING_SOURCES
-    ${UNIT_TESTING_INCLUDES_FILES}
-    ${UNIT_TESTING_SOURCES_FILES}
-)
-
-add_library(UnitTesting STATIC
-    ${BASE_SOURCES}
-    ${TEST_BASE_SOURCES}
-    ${UNIT_TESTING_SOURCES}
-)
-
-include_directories(BaseTest
+include_directories(Problems
     ${BASE_INCLUDES}
-    ${BASE_TEST_INCLUDES}
-    ${TEST_BASE_INCLUDES}
-    ${UNIT_TESTING_INCLUDES}
+    ${PROBLEMS_INCLUDES}
 )
 
-add_executable(BaseTest
+add_library(Problems STATIC
     ${BASE_SOURCES}
-    ${BASE_TEST_SOURCES}
-    ${TEST_BASE_SOURCES}
-    ${UNIT_TESTING_SOURCES}
-)
-
-target_link_libraries(BaseTest
-    PRIVATE Base TestBase UnitTesting
+    ${PROBLEMS_SOURCES}
 )
 
 include_directories(

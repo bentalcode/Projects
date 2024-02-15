@@ -75,7 +75,7 @@ namespace unit_testing
         void SetEndTime();
 
         /**
-         * Sets a successful running result of a test.
+         * Sets a successful running result of a Test.
          */
         void SetSuccessfulRunningResult(
             const std::wstring& testName,
@@ -83,7 +83,7 @@ namespace unit_testing
             const base::DateTime& endTime);
 
         /**
-         * Sets a failed running result of a test
+         * Sets a failed running result of a Test
          */
         void SetFailedRunningResult(
             const std::wstring& testName,
