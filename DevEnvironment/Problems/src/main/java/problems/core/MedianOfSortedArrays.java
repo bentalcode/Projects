@@ -41,11 +41,16 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
         int rightStartIndex,
         int rightEndIndex) {
 
-        assert(leftStartIndex >= 0 && leftStartIndex <= leftEndIndex);
-        assert(rightStartIndex >= 0 && rightStartIndex <= rightEndIndex);
+        int length = left.length;
 
-        int leftSize = leftEndIndex - leftStartIndex + 1;
-        int rightSize = rightEndIndex - rightStartIndex + 1;
+        assert(leftStartIndex >= 0 && leftStartIndex < left.length);
+        assert(leftEndIndex >= leftStartIndex && leftEndIndex < left.length);
+
+        assert(rightStartIndex >= 0 && rightStartIndex < right.length);
+        assert(rightEndIndex >= rightStartIndex && rightEndIndex < right.length);
+
+        int leftSize = indexesSize(leftStartIndex, leftEndIndex);
+        int rightSize = indexesSize(rightStartIndex, rightEndIndex);
 
         //
         // Ensure that the size of the left side is less or equal than the size of the right side...
@@ -66,7 +71,10 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 //
                 // Case 1: If both arrays are with size 1.
                 //
-                return this.medianOf(left[leftStartIndex], right[rightStartIndex]);
+                int leftIndex = leftStartIndex;
+                int rightIndex = rightStartIndex;
+
+                return this.medianOf(left[leftIndex], right[rightIndex]);
             }
             else if (rightSize % 2 == 0) {
                 //
@@ -74,11 +82,12 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 // then consider the middle two elements of the larger array,
                 // and the only element of the smaller array.
                 //
-                int rightFirstIndex = rightStartIndex + (rightSize / 2) - 1;
+                int leftIndex = leftStartIndex;
+                int rightFirstIndex = midIndex(rightStartIndex, rightEndIndex);
                 int rightSecondIndex = rightFirstIndex + 1;
 
                 return this.medianOf(
-                    left[leftStartIndex],
+                    left[leftIndex],
                     right[rightFirstIndex], right[rightSecondIndex]);
             }
             else {
@@ -87,12 +96,13 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 // then consider the middle three elements of the larger array,
                 // and the only element of the smaller array.
                 //
-                int rightSecondIndex = rightStartIndex + rightSize / 2;
+                int leftIndex = leftStartIndex;
+                int rightSecondIndex = midIndex(rightStartIndex, rightEndIndex);
                 int rightFirstIndex = rightSecondIndex - 1;
                 int rightThirdIndex = rightSecondIndex + 1;
 
                 return this.medianOf(
-                    left[leftStartIndex],
+                    left[leftIndex],
                     right[rightFirstIndex], right[rightSecondIndex], right[rightThirdIndex]);
             }
         }
@@ -101,12 +111,14 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
             // Case 4: If both arrays are with size 2.
             //
             if (rightSize == 2) {
-                int leftSecondIndex = leftStartIndex + 1;
-                int rightSecondIndex = rightStartIndex + 1;
+                int leftFirstIndex = leftStartIndex;
+                int leftSecondIndex = leftFirstIndex + 1;
+                int rightFirstIndex = rightStartIndex;
+                int rightSecondIndex = rightFirstIndex + 1;
 
                 return this.medianOf(
-                    left[leftStartIndex], left[leftSecondIndex],
-                    right[rightStartIndex], right[rightSecondIndex]);
+                    left[leftFirstIndex], left[leftSecondIndex],
+                    right[rightFirstIndex], right[rightSecondIndex]);
             }
             if (rightSize % 2 == 0) {
                 //
@@ -119,14 +131,15 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 // 3. The min of second element of smaller array and element
                 //    just after the second middle in larger array.
                 //
-                int leftSecondIndex = leftStartIndex + 1;
-                int rightSecondIndex = rightStartIndex + (rightSize / 2) - 1;
+                int leftFirstIndex = leftStartIndex;
+                int leftSecondIndex = leftFirstIndex + 1;
+                int rightSecondIndex = midIndex(rightStartIndex, rightEndIndex);
                 int rightFirstIndex = rightSecondIndex - 1;
                 int rightThirdIndex = rightSecondIndex + 1;
                 int rightForthIndex = rightSecondIndex + 2;
 
                 return this.medianOf(
-                    Math.max(left[leftStartIndex], right[rightFirstIndex]),
+                    Math.max(left[leftFirstIndex], right[rightFirstIndex]),
                     right[rightSecondIndex],
                     right[rightThirdIndex],
                     Math.min(left[leftSecondIndex], right[rightForthIndex]));
@@ -141,20 +154,24 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
                 //    just before the middle element in larger array.
                 // 3. The min of second element of smaller array and element
                 //    just after the middle in larger array.
-                int leftSecondIndex = leftStartIndex + 1;
-                int rightSecondIndex = rightStartIndex + rightSize / 2;
+                int leftFirstIndex = leftStartIndex;
+                int leftSecondIndex = leftFirstIndex + 1;
+                int rightSecondIndex = midIndex(rightStartIndex, rightEndIndex);
                 int rightFirstIndex = rightSecondIndex - 1;
                 int rightThirdIndex = rightSecondIndex + 1;
 
                 return this.medianOf(
-                    Math.max(left[leftStartIndex], right[rightFirstIndex]),
+                    Math.max(left[leftFirstIndex], right[rightFirstIndex]),
                     right[rightSecondIndex],
                     Math.min(left[leftSecondIndex], right[rightThirdIndex]));
             }
         }
 
-        int leftMidIndex = leftStartIndex + (leftSize - 1) / 2;
-        int rightMidIndex = rightStartIndex + (rightSize - 1) / 2;
+        int leftMidIndex1 = midIndex(leftStartIndex, leftEndIndex);
+        int leftMidIndex2 = leftSize % 2 != 0 ? leftMidIndex1 : leftMidIndex1 +1;
+
+        double leftMedian = median(left, leftStartIndex, leftEndIndex);
+        double rightMedian = median(right, rightStartIndex, rightEndIndex);
 
         //
         // If the left median is less or equal than the right median,
@@ -165,18 +182,18 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
         // otherwise, the result is at:
         // left[leftStartIndex...leftMidIndex] right[rightStartIndex + numberOfRemovedElements ...rightEndIndex]
         //
-        if (left[leftMidIndex] <= right[rightMidIndex]) {
-            int numberOfRemovedElements = leftMidIndex - leftStartIndex;
+        if (leftMedian <= rightMedian) {
+            int numberOfRemovedElements = indexesSize(leftStartIndex, leftMidIndex1 - 1);
 
             return this.median(
-                left, leftMidIndex, leftEndIndex,
+                left, leftMidIndex1, leftEndIndex,
                 right, rightStartIndex, rightEndIndex - numberOfRemovedElements);
         }
         else {
-            int numberOfRemovedElements = leftEndIndex - leftMidIndex;
+            int numberOfRemovedElements = indexesSize(leftMidIndex2 + 1, leftEndIndex);
 
             return this.median(
-                left, leftStartIndex, leftMidIndex,
+                left, leftStartIndex, leftMidIndex2,
                 right, rightStartIndex + numberOfRemovedElements, rightEndIndex);
         }
     }
@@ -192,9 +209,10 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
      * Gets the median of values.
      */
     private double median(int[] values, int startIndex, int endIndex) {
-        assert(startIndex >= 0 && startIndex <= endIndex);
+        assert(startIndex >= 0 && startIndex < values.length);
+        assert(endIndex >= startIndex && endIndex < values.length);
 
-        int length = endIndex - startIndex + 1;
+        int length = indexesSize(startIndex, endIndex);
 
         if (length % 2 == 0) {
             IPair<Integer, Integer> medians = this.medianValues(values, startIndex, endIndex);
@@ -209,12 +227,11 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
      * Gets the median of value of an array with an odd length.
      */
     private int medianValue(int[] values, int startIndex, int endIndex) {
-        assert(startIndex >= 0 && startIndex <= endIndex);
-        assert((endIndex - startIndex + 1) % 2 == 1);
+        assert(startIndex >= 0 && startIndex < values.length);
+        assert(endIndex >= startIndex && endIndex < values.length);
+        assert(indexesSize(startIndex, endIndex) % 2 == 1);
 
-        int length = endIndex - startIndex + 1;
-
-        int midIndex = startIndex + (length / 2);
+        int midIndex = midIndex(startIndex, endIndex);
 
         return values[midIndex];
     }
@@ -223,14 +240,14 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
      * Gets the median values of an array with an even length.
      */
     private IPair<Integer, Integer> medianValues(int[] values, int startIndex, int endIndex) {
-        assert(startIndex >= 0 && startIndex <= endIndex);
-        assert((endIndex - startIndex + 1) % 2 == 0);
+        assert(startIndex >= 0 && startIndex < values.length);
+        assert(endIndex >= startIndex && endIndex < values.length);
+        assert(indexesSize(startIndex, endIndex) % 2 == 0);
 
-        int length = endIndex - startIndex + 1;
-        int rightMidIndex = startIndex + (length / 2);
-        int leftMidIndex = rightMidIndex - 1;
+        int midIndex1 = midIndex(startIndex, endIndex);
+        int midIndex2 = midIndex1 + 1;
 
-        return Pair.make(values[leftMidIndex], values[rightMidIndex]);
+        return Pair.make(values[midIndex1], values[midIndex2]);
     }
 
     /**
@@ -340,5 +357,13 @@ public final class MedianOfSortedArrays implements IMedianOfSortedArrays {
         assert(second >= first);
 
         return (double)(second + third) / 2.0;
+    }
+
+    private static int midIndex(int startIndex, int endIndex) {
+        return startIndex + ((endIndex - startIndex) >> 1);
+    }
+
+    private static int indexesSize(int startIndex, int endIndex) {
+        return startIndex <= endIndex ? endIndex - startIndex + 1 : 0;
     }
 }
