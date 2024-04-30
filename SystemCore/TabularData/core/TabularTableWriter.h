@@ -3,7 +3,6 @@
 
 #include "ITabularTableWriter.h"
 #include "IWriter.h"
-#include <filesystem>
 
 namespace tabular_data {
 

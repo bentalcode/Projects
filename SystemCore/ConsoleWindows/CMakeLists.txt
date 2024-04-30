@@ -67,6 +67,7 @@ set(CONSOLE_WINDOWS_SOURCES
 )
 
 set(BASE_INCLUDES_FILES
+    ../Base/core/AbstractPath.h
     ../Base/core/AbstractPathBuilder.h
     ../Base/core/AlmostComparator.h
     ../Base/core/AndBitOperator.h
@@ -86,6 +87,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/DereferenceComparableComparator2.h
     ../Base/core/DereferenceEquatableComparator.h
     ../Base/core/DereferenceEquatableComparator2.h
+    ../Base/core/Environment.h
     ../Base/core/EqualBuilder.h
     ../Base/core/EquatableComparator.h
     ../Base/core/ErrorCodes.h
@@ -94,6 +96,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Interval.h
     ../Base/core/IntervalMap.h
     ../Base/core/IntervalMapIterator.h
+    ../Base/core/InvalidArgumentException.h
     ../Base/core/InvertComparator.h
     ../Base/core/IterableComparator.h
     ../Base/core/IterableObject.h
@@ -107,6 +110,8 @@ set(BASE_INCLUDES_FILES
     ../Base/core/MessageWriter.h
     ../Base/core/NotBitOperator.h
     ../Base/core/NotImplementedException.h
+    ../Base/core/OperatingSystemControlSettings.h
+    ../Base/core/OperatingSystemType.h
     ../Base/core/OrBitOperator.h
     ../Base/core/Pair.h
     ../Base/core/PathBuilder.h
@@ -123,6 +128,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/StringSearch.h
     ../Base/core/StringUtils.h
     ../Base/core/Strings.h
+    ../Base/core/SystemPath.h
     ../Base/core/Thread.h
     ../Base/core/ToString.h
     ../Base/core/Triple.h
@@ -133,6 +139,9 @@ set(BASE_INCLUDES_FILES
     ../Base/core/VectorIterator.h
     ../Base/core/VectorReverseIterator.h
     ../Base/core/WindowsConsoleColorHandler.h
+    ../Base/core/WindowsOperatingSystemType.h
+    ../Base/core/WindowsPath.h
+    ../Base/core/WindowsPathSettings.h
     ../Base/core/XorBitOperator.h
     ../Base/interfaces/ColorType.h
     ../Base/interfaces/Colors.h
@@ -163,6 +172,10 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IMatch.h
     ../Base/interfaces/IMatrix.h
     ../Base/interfaces/IMessageWriter.h
+    ../Base/interfaces/IOperatingSystemControlSettings.h
+    ../Base/interfaces/IOperatingSystemPathSettings.h
+    ../Base/interfaces/IOperatingSystemType.h
+    ../Base/interfaces/IPath.h
     ../Base/interfaces/IPathBuilder.h
     ../Base/interfaces/IRandomGenerator.h
     ../Base/interfaces/IResourceReader.h
@@ -171,6 +184,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/ISizableCollection.h
     ../Base/interfaces/ISkipIterator.h
     ../Base/interfaces/IStringConversion.h
+    ../Base/interfaces/ISystemPath.h
     ../Base/interfaces/IThread.h
     ../Base/interfaces/IToString.h
     ../Base/interfaces/ITwoDimensionalVector.h
@@ -180,6 +194,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IValueIterable.h
     ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
+    ../Base/interfaces/OperatingSystemType.h
     ../Base/interfaces/Position.h
     ../Base/interfaces/ReferenceCounter.h
     ../Base/interfaces/ReferenceCounterHolder.h
@@ -192,6 +207,7 @@ set(BASE_INCLUDES_FILES
 )
 
 set(BASE_SOURCES_FILES
+    ../Base/core/AbstractPath.cpp
     ../Base/core/AbstractPathBuilder.cpp
     ../Base/core/AndBitOperator.cpp
     ../Base/core/Bits.cpp
@@ -201,12 +217,14 @@ set(BASE_SOURCES_FILES
     ../Base/core/CompareToBuilder.cpp
     ../Base/core/ConsoleColorSetter.cpp
     ../Base/core/DateTime.cpp
+    ../Base/core/Environment.cpp
     ../Base/core/EqualBuilder.cpp
     ../Base/core/ErrorCodes.cpp
     ../Base/core/ErrorMessages.cpp
     ../Base/core/KmpStringSearch.cpp
     ../Base/core/MessageWriter.cpp
     ../Base/core/NotBitOperator.cpp
+    ../Base/core/OperatingSystemControlSettings.cpp
     ../Base/core/OrBitOperator.cpp
     ../Base/core/PathBuilder.cpp
     ../Base/core/RandomGenerator.cpp
@@ -218,6 +236,7 @@ set(BASE_SOURCES_FILES
     ../Base/core/StringSearch.cpp
     ../Base/core/StringUtils.cpp
     ../Base/core/Strings.cpp
+    ../Base/core/SystemPath.cpp
     ../Base/core/Tests.cpp
     ../Base/core/Thread.cpp
     ../Base/core/TimeUnit.cpp
@@ -225,6 +244,9 @@ set(BASE_SOURCES_FILES
     ../Base/core/ToString.cpp
     ../Base/core/Uuid.cpp
     ../Base/core/WindowsConsoleColorHandler.cpp
+    ../Base/core/WindowsOperatingSystemType.cpp
+    ../Base/core/WindowsPath.cpp
+    ../Base/core/WindowsPathSettings.cpp
     ../Base/core/XorBitOperator.cpp
 )
 

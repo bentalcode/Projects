@@ -12,18 +12,19 @@ namespace base {
     {
     public:
         /**
+         * Creates a new path builder.
+         */
+        static IPathBuilderSharedPtr Make();
+
+        /**
          * The constructor.
          */
-        explicit PathBuilder(const std::wstring& rootDirectory = ROOT_DIRECTORY);
+        explicit PathBuilder(const std::wstring& rootDirectory = L"");
 
         /**
          * The destructor.
          */
         virtual ~PathBuilder();
-
-    private:
-        static const std::wstring ROOT_DIRECTORY;
-        static const std::wstring SEPARATOR;
     };
 
 } // namespace base

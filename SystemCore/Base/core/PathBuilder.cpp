@@ -1,9 +1,16 @@
 #include "PathBuilder.h"
 
+#include "WindowsPath.h"
+
 using namespace base;
 
-const std::wstring PathBuilder::ROOT_DIRECTORY;
-const std::wstring PathBuilder::SEPARATOR = L"\\";
+/**
+ * Creates a new path builder.
+ */
+IPathBuilderSharedPtr Make()
+{
+    return std::make_shared<PathBuilder>();
+}
 
 /**
  * The PathBuilder constructor.
@@ -11,7 +18,7 @@ const std::wstring PathBuilder::SEPARATOR = L"\\";
 PathBuilder::PathBuilder(const std::wstring& rootDirectory) :
     AbstractPathBuilder(
         rootDirectory,
-        SEPARATOR)
+        WindowsPath::DirectorySeperator())
 {
 }
 

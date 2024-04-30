@@ -13,6 +13,7 @@
         "ConsoleHelper",
         "Command",
         "Problems",
+        "Logging",
         "TestBase",
         "UnitTesting",
         "BaseTest",
@@ -111,6 +112,14 @@
             "type": "library",
             "dependentModules": [
                 "Base"
+            ]
+        },
+        {
+            "name": "Logging",
+            "type": "library",
+            "dependentModules": [
+                "Base",
+                "TabularData"
             ]
         },
         {

@@ -32,7 +32,7 @@ namespace base {
         virtual ~Uuid();
 
         /**
-         * Gets a string representation ofthis instance.
+         * Gets a string representation of this instance.
          */
         virtual std::wstring ToString() const override;
 

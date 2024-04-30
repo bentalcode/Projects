@@ -2,7 +2,6 @@
 #include "ErrorCodes.h"
 #include "StringUtils.h"
 #include "combaseapi.h"
-#include <vector>
 #include "BaseException.h"
 
 using namespace base;

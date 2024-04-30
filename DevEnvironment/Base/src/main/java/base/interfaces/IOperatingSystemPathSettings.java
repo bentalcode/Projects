@@ -5,7 +5,7 @@ package base.interfaces;
  */
 public interface IOperatingSystemPathSettings {
     /**
-     * Creates a path separator.
+     * Gets a path separator.
      */
     String getPathSeparator();
 

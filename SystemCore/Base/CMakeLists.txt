@@ -36,6 +36,7 @@ add_compile_definitions(WINDOWS=1)
 
 
 set(BASE_INCLUDES_FILES
+    ./core/AbstractPath.h
     ./core/AbstractPathBuilder.h
     ./core/AlmostComparator.h
     ./core/AndBitOperator.h
@@ -55,6 +56,7 @@ set(BASE_INCLUDES_FILES
     ./core/DereferenceComparableComparator2.h
     ./core/DereferenceEquatableComparator.h
     ./core/DereferenceEquatableComparator2.h
+    ./core/Environment.h
     ./core/EqualBuilder.h
     ./core/EquatableComparator.h
     ./core/ErrorCodes.h
@@ -63,6 +65,7 @@ set(BASE_INCLUDES_FILES
     ./core/Interval.h
     ./core/IntervalMap.h
     ./core/IntervalMapIterator.h
+    ./core/InvalidArgumentException.h
     ./core/InvertComparator.h
     ./core/IterableComparator.h
     ./core/IterableObject.h
@@ -76,6 +79,8 @@ set(BASE_INCLUDES_FILES
     ./core/MessageWriter.h
     ./core/NotBitOperator.h
     ./core/NotImplementedException.h
+    ./core/OperatingSystemControlSettings.h
+    ./core/OperatingSystemType.h
     ./core/OrBitOperator.h
     ./core/Pair.h
     ./core/PathBuilder.h
@@ -92,6 +97,7 @@ set(BASE_INCLUDES_FILES
     ./core/StringSearch.h
     ./core/StringUtils.h
     ./core/Strings.h
+    ./core/SystemPath.h
     ./core/Thread.h
     ./core/ToString.h
     ./core/Triple.h
@@ -102,6 +108,9 @@ set(BASE_INCLUDES_FILES
     ./core/VectorIterator.h
     ./core/VectorReverseIterator.h
     ./core/WindowsConsoleColorHandler.h
+    ./core/WindowsOperatingSystemType.h
+    ./core/WindowsPath.h
+    ./core/WindowsPathSettings.h
     ./core/XorBitOperator.h
     ./interfaces/ColorType.h
     ./interfaces/Colors.h
@@ -132,6 +141,10 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IMatch.h
     ./interfaces/IMatrix.h
     ./interfaces/IMessageWriter.h
+    ./interfaces/IOperatingSystemControlSettings.h
+    ./interfaces/IOperatingSystemPathSettings.h
+    ./interfaces/IOperatingSystemType.h
+    ./interfaces/IPath.h
     ./interfaces/IPathBuilder.h
     ./interfaces/IRandomGenerator.h
     ./interfaces/IResourceReader.h
@@ -140,6 +153,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ISizableCollection.h
     ./interfaces/ISkipIterator.h
     ./interfaces/IStringConversion.h
+    ./interfaces/ISystemPath.h
     ./interfaces/IThread.h
     ./interfaces/IToString.h
     ./interfaces/ITwoDimensionalVector.h
@@ -149,6 +163,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IValueIterable.h
     ./interfaces/IValueReverseIterable.h
     ./interfaces/IVisitor.h
+    ./interfaces/OperatingSystemType.h
     ./interfaces/Position.h
     ./interfaces/ReferenceCounter.h
     ./interfaces/ReferenceCounterHolder.h
@@ -161,6 +176,7 @@ set(BASE_INCLUDES_FILES
 )
 
 set(BASE_SOURCES_FILES
+    ./core/AbstractPath.cpp
     ./core/AbstractPathBuilder.cpp
     ./core/AndBitOperator.cpp
     ./core/Bits.cpp
@@ -170,12 +186,14 @@ set(BASE_SOURCES_FILES
     ./core/CompareToBuilder.cpp
     ./core/ConsoleColorSetter.cpp
     ./core/DateTime.cpp
+    ./core/Environment.cpp
     ./core/EqualBuilder.cpp
     ./core/ErrorCodes.cpp
     ./core/ErrorMessages.cpp
     ./core/KmpStringSearch.cpp
     ./core/MessageWriter.cpp
     ./core/NotBitOperator.cpp
+    ./core/OperatingSystemControlSettings.cpp
     ./core/OrBitOperator.cpp
     ./core/PathBuilder.cpp
     ./core/RandomGenerator.cpp
@@ -187,6 +205,7 @@ set(BASE_SOURCES_FILES
     ./core/StringSearch.cpp
     ./core/StringUtils.cpp
     ./core/Strings.cpp
+    ./core/SystemPath.cpp
     ./core/Tests.cpp
     ./core/Thread.cpp
     ./core/TimeUnit.cpp
@@ -194,6 +213,9 @@ set(BASE_SOURCES_FILES
     ./core/ToString.cpp
     ./core/Uuid.cpp
     ./core/WindowsConsoleColorHandler.cpp
+    ./core/WindowsOperatingSystemType.cpp
+    ./core/WindowsPath.cpp
+    ./core/WindowsPathSettings.cpp
     ./core/XorBitOperator.cpp
 )
 

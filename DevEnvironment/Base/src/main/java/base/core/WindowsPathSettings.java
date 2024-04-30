@@ -5,7 +5,7 @@ import base.interfaces.IPath;
 import base.interfaces.IPathBuilder;
 
 /**
- * The WindowsPathSettings class implements' path settings of a windows operating system.
+ * The WindowsPathSettings class implements path settings of a windows operating system.
  */
 public final class WindowsPathSettings implements IOperatingSystemPathSettings {
     /**
