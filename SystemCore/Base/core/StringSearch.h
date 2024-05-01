@@ -32,6 +32,26 @@ namespace base
             char character);
 
         /**
+         * Gets first index of a sub string.
+         * Returns string::npos if the character is not found.
+         */
+        static size_t FirstIndexOf(
+            const std::wstring& str,
+            size_t startIndex,
+            size_t endIndex,
+            const std::wstring& substr);
+
+        /**
+         * Gets first index of a sub string. (Ignore Case)
+         * Returns string::npos if the character is not found.
+         */
+        static size_t FirstIndexOfIgnoreCase(
+            const std::wstring& str,
+            size_t startIndex,
+            size_t endIndex,
+            const std::wstring& substr);
+
+        /**
          * Gets last index of a character.
          * Returns string::npos if the character is not found.
          */
@@ -42,6 +62,16 @@ namespace base
             char character);
 
         /**
+         * Gets last index of a sub string.
+         * Returns string::npos if the sub string is not found.
+         */
+        static size_t LastIndexOf(
+            const std::wstring& str,
+            size_t startIndex,
+            size_t endIndex,
+            const std::wstring& substr);
+
+        /**
          * Gets last index of a character. (Ignore Case)
          * Returns string::npos if the character is not found.
          */
@@ -50,6 +80,16 @@ namespace base
             size_t startIndex,
             size_t endIndex,
             char character);
+
+        /**
+         * Gets last index of a sub string. (Ignore Case)
+         * Returns string::npos if the sub string is not found.
+         */
+        static size_t LastIndexOfIgnoreCase(
+            const std::wstring& str,
+            size_t startIndex,
+            size_t endIndex,
+            const std::wstring& substr);
 
         /**
          * Checks whether a string starts with a prefix.

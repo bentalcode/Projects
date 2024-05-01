@@ -28,19 +28,37 @@ size_t StringSearch::FirstIndexOf(
     size_t endIndex,
     char character)
 {
-    if (startIndex > endIndex)
+    std::wstring stringToSearch(1, character);
+
+    return FirstIndexOf(
+        str,
+        startIndex,
+        endIndex,
+        stringToSearch);
+}
+
+/**
+ * Gets first index of a sub string.
+ * Returns string::npos if the sub string is not found.
+ */
+size_t StringSearch::FirstIndexOf(
+    const std::wstring& str,
+    size_t startIndex,
+    size_t endIndex,
+    const std::wstring& substr)
+{
+    if (substr.empty() || startIndex + substr.size() - 1 > endIndex)
     {
         return std::wstring::npos;
     }
 
-    std::wstring stringToSearch(1, character);
     size_t length = Indexes::Size(startIndex, endIndex);
 
     std::wstring::const_iterator resultIterator = std::find_first_of(
         str.begin(),
         str.begin() + length,
-        stringToSearch.begin(),
-        stringToSearch.end());
+        substr.begin(),
+        substr.end());
 
     if (resultIterator == str.end())
     {
@@ -60,19 +78,37 @@ size_t StringSearch::FirstIndexOfIgnoreCase(
     size_t endIndex,
     char character)
 {
-    if (startIndex > endIndex)
+    std::wstring stringToSearch(1, character);
+
+    return FirstIndexOfIgnoreCase(
+        str,
+        startIndex,
+        endIndex,
+        stringToSearch);
+}
+
+/**
+ * Gets first index of a sub string ignore case. (Ignore Case)
+ * Returns string::npos if the character is not found.
+ */
+size_t StringSearch::FirstIndexOfIgnoreCase(
+    const std::wstring& str,
+    size_t startIndex,
+    size_t endIndex,
+    const std::wstring& substr)
+{
+    if (substr.empty() || startIndex + substr.size() - 1 > endIndex)
     {
         return std::wstring::npos;
     }
 
-    std::wstring stringToSearch(1, character);
     size_t length = Indexes::Size(startIndex, endIndex);
 
     std::wstring::const_iterator resultIterator = std::find_first_of(
         str.begin(),
         str.begin() + length,
-        stringToSearch.begin(),
-        stringToSearch.end(),
+        substr.begin(),
+        substr.end(),
         CaseInsensitiveCompare());
 
     if (resultIterator == str.end())
@@ -93,19 +129,37 @@ size_t StringSearch::LastIndexOf(
     size_t endIndex,
     char character)
 {
+    std::wstring stringToSearch(1, character);
+
+    return LastIndexOf(
+        str,
+        startIndex,
+        endIndex,
+        stringToSearch);
+}
+
+/**
+ * Gets last index of a sub string.
+ * Returns string::npos if the sub string is not found.
+ */
+size_t StringSearch::LastIndexOf(
+    const std::wstring& str,
+    size_t startIndex,
+    size_t endIndex,
+    const std::wstring& substr)
+{
     if (startIndex > endIndex)
     {
         return std::wstring::npos;
     }
 
-    std::wstring stringToSearch(1, character);
     size_t length = endIndex - startIndex + 1;
 
     std::wstring::const_iterator resultIterator = std::find_end(
         str.begin(),
         str.begin() + length,
-        stringToSearch.begin(),
-        stringToSearch.end());
+        substr.begin(),
+        substr.end());
 
     if (resultIterator == str.end())
     {
@@ -125,19 +179,37 @@ size_t StringSearch::LastIndexOfIgnoreCase(
     size_t endIndex,
     char character)
 {
-    if (startIndex > endIndex)
+    std::wstring stringToSearch(1, character);
+
+    return LastIndexOfIgnoreCase(
+        str,
+        startIndex,
+        endIndex,
+        stringToSearch);
+}
+
+/**
+* Gets last index of a sub string. (Ignore Case)
+* Returns string::npos if the sub string is not found.
+*/
+size_t StringSearch::LastIndexOfIgnoreCase(
+    const std::wstring& str,
+    size_t startIndex,
+    size_t endIndex,
+    const std::wstring& substr)
+{
+    if (startIndex + substr.size() - 1 > endIndex)
     {
         return std::wstring::npos;
     }
 
-    std::wstring stringToSearch(1, character);
     size_t length = endIndex - startIndex + 1;
 
     std::wstring::const_iterator resultIterator = std::find_end(
         str.begin(),
         str.begin() + length,
-        stringToSearch.begin(),
-        stringToSearch.end(),
+        substr.begin(),
+        substr.end(),
         CaseInsensitiveCompare());
 
     if (resultIterator == str.end())

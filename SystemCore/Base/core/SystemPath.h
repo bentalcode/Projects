@@ -1,5 +1,5 @@
-#ifndef SYSTEM_PATH_H_dad4a35d_0ceb_42a1_ab7a_72e4fce5404e
-#define SYSTEM_PATH_H_dad4a35d_0ceb_42a1_ab7a_72e4fce5404e
+#ifndef SYSTEM_PATH_TYPE_H_be2b2b51_ed77_4f3e_9c45_33dd2cc70ac5
+#define SYSTEM_PATH_TYPE_H_be2b2b51_ed77_4f3e_9c45_33dd2cc70ac5
 
 #include "ISystemPath.h"
 
@@ -138,6 +138,11 @@ namespace base {
          */
         virtual std::wstring ToString() const override;
 
+        /**
+         * Checks whether a path is a device path.
+         */
+        static bool IsDevicePath(const std::wstring& path);
+
     private:
         std::wstring GetSeparator();
 
@@ -146,4 +151,4 @@ namespace base {
 
 } // namespace base
 
-#endif // namespace SYSTEM_PATH_H_dad4a35d_0ceb_42a1_ab7a_72e4fce5404e
+#endif // namespace SYSTEM_PATH_TYPE_H_be2b2b51_ed77_4f3e_9c45_33dd2cc70ac5

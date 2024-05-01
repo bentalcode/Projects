@@ -84,6 +84,7 @@ set(BASE_INCLUDES_FILES
     ./core/OrBitOperator.h
     ./core/Pair.h
     ./core/PathBuilder.h
+    ./core/PathDecomposition.h
     ./core/RandomGenerator.h
     ./core/Range.h
     ./core/ReferenceCounterHolder.h
@@ -111,6 +112,7 @@ set(BASE_INCLUDES_FILES
     ./core/WindowsOperatingSystemType.h
     ./core/WindowsPath.h
     ./core/WindowsPathSettings.h
+    ./core/WindowsSystemPath.h
     ./core/XorBitOperator.h
     ./interfaces/ColorType.h
     ./interfaces/Colors.h
@@ -146,6 +148,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IOperatingSystemType.h
     ./interfaces/IPath.h
     ./interfaces/IPathBuilder.h
+    ./interfaces/IPathDecomposition.h
     ./interfaces/IRandomGenerator.h
     ./interfaces/IResourceReader.h
     ./interfaces/IReverseIterable.h
@@ -173,6 +176,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/TimeUnit.h
     ./interfaces/TimeUtils.h
     ./interfaces/WinHandle.h
+    ./interfaces/WindowsSystemPathType.h
 )
 
 set(BASE_SOURCES_FILES
@@ -196,6 +200,7 @@ set(BASE_SOURCES_FILES
     ./core/OperatingSystemControlSettings.cpp
     ./core/OrBitOperator.cpp
     ./core/PathBuilder.cpp
+    ./core/PathDecomposition.cpp
     ./core/RandomGenerator.cpp
     ./core/ReferenceCounter.cpp
     ./core/SkipIterator.cpp
@@ -216,6 +221,7 @@ set(BASE_SOURCES_FILES
     ./core/WindowsOperatingSystemType.cpp
     ./core/WindowsPath.cpp
     ./core/WindowsPathSettings.cpp
+    ./core/WindowsSystemPath.cpp
     ./core/XorBitOperator.cpp
 )
 
