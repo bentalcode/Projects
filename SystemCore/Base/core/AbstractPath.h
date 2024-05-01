@@ -14,7 +14,10 @@ namespace base {
         /**
          * The constructor.
          */
-        explicit AbstractPath(const std::wstring& path);
+        AbstractPath(
+            const std::wstring& path,
+            const std::wstring& seperator,
+            std::wstring::value_type extensionSeperator);
 
     public:
         /**
@@ -40,6 +43,11 @@ namespace base {
         virtual const std::wstring& GetPath() const override;
 
         /**
+         * Checks whether a path is empty.
+         */
+        virtual bool Empty() const override;
+
+        /**
          * Gets an absolute path.
          */
         virtual std::wstring GetAbsolutePath() const override;
@@ -48,6 +56,21 @@ namespace base {
          * Gets a canonical path.
          */
         virtual std::wstring GetCanonicalPath() const override;
+
+        /**
+         * Checks whether a path is absolute.
+         */
+        virtual bool IsAbsolute() const override;
+
+        /**
+         * Checks whether a path is relative.
+         */
+        virtual bool IsRelative() const override;
+
+        /**
+         * Gets a path decomposition.
+         */
+        virtual const IPathDecomposition& PathDecomposition() const override;
 
     protected:
         /**
@@ -65,13 +88,29 @@ namespace base {
          */
         virtual std::wstring MakeCanonicalPath(const std::wstring& path) const = 0;
 
+        /**
+         * Checks whether a path is absolute.
+         */
+        virtual bool IsAbsolute(const std::wstring& path) const = 0;
+
+        /**
+         * Checks whether a path is relative.
+         */
+        virtual bool IsRelative(const std::wstring& path) const = 0;
+
     private:
         /**
          * Initializes a path.
          */
-        void Initialize(const std::wstring& path);
+        void Initialize(
+            const std::wstring& path,
+            const std::wstring& seperator,
+            std::wstring::value_type extensionSeperator);
 
         std::wstring m_path;
+        std::wstring m_seperator;
+        std::wstring::value_type m_extensionSeparator;
+        mutable IPathDecompositionSharedPtr m_pathDecomposition;
     };
 
 } // namespace base

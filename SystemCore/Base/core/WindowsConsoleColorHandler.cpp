@@ -3,7 +3,7 @@
 #include "BaseException.h"
 #include <assert.h>
 
-using namespace base;
+using namespace base::environment::windows;
 
 /**
  * The WindowsConsoleColorHandler constructor.

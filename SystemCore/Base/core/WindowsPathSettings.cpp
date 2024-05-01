@@ -4,7 +4,7 @@
 #include "WindowsPath.h"
 
 using namespace base;
-using namespace base::environment;
+using namespace base::environment::windows;
 
 /**
  * The WindowsPathSettings constructor.

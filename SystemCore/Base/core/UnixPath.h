@@ -1,5 +1,5 @@
-#ifndef WINDOWS_PATH_H_a43a36f4_3abe_4a14_a19a_3b45b0af0230
-#define WINDOWS_PATH_H_a43a36f4_3abe_4a14_a19a_3b45b0af0230
+#ifndef UNIX_PATH_H_46863f75_d971_45b1_b0d1_27df36937d47
+#define UNIX_PATH_H_46863f75_d971_45b1_b0d1_27df36937d47
 
 #include "AbstractPath.h"
 
@@ -7,28 +7,28 @@ namespace base {
 
     namespace environment {
 
-        namespace windows {
+        namespace unix {
 
             /**
-             * The WindowsPath class implements a Windows' path.
+             * The UnixPath class implements a Unix' path.
              */
-            class WindowsPath final : public AbstractPath
+            class UnixPath final : public AbstractPath
             {
             public:
                 /**
-                 * Creates a new windows path.
+                 * Creates a new unix path.
                  */
                 static IPathSharedPtr Make(const std::wstring& path);
 
                 /**
-                 * The WindowsPath constructor.
+                 * The UnixPath constructor.
                  */
-                explicit WindowsPath(const std::wstring& path);
+                explicit UnixPath(const std::wstring& path);
 
                 /**
-                 * The WindowsPath destructor.
+                 * The UnixPath destructor.
                  */
-                virtual ~WindowsPath();
+                virtual ~UnixPath();
 
                 /**
                  * Gets seperator.
@@ -82,6 +82,7 @@ namespace base {
                 static const std::wstring::value_type EXTENSION_SEPARATOR;
                 static const std::wstring CURRENT_DIRECTORY;
                 static const std::wstring PARENT_DIRECTORY;
+                static const std::wstring HOME_DIRECTORY;
 
                 /**
                  * Makes an absolute path.
@@ -94,10 +95,10 @@ namespace base {
                 static std::wstring MakeCanonical(const std::wstring& path);
             };
 
-        } // namespace windows
+        } // namespace unix
 
     } // namespace environment
 
 } // namespace base
 
-#endif // WINDOWS_PATH_H_a43a36f4_3abe_4a14_a19a_3b45b0af0230
+#endif // UNIX_PATH_H_46863f75_d971_45b1_b0d1_27df36937d47

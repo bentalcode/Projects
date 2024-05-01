@@ -1,7 +1,7 @@
 #include "WindowsOperatingSystemType.h"
 #include "NotImplementedException.h"
 
-using namespace base;
+using namespace base::environment::windows;
 
 /**
  * Checks whether this is an operating system based on the system value.

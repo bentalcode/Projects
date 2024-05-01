@@ -5,19 +5,27 @@
 
 namespace base {
 
-    /**
-     * The WindowsOperatingSystemType class implements an Operating System Type.
-     */
-    class WindowsOperatingSystemType final : public IOperatingSystemType {
-    public:
-        WindowsOperatingSystemType();
-        virtual ~WindowsOperatingSystemType();
+    namespace environment {
 
-        /**
-         * Checks whether this is an operating system based on the system value.
-         */
-        virtual bool IsOperatingSystem(const std::wstring& value) const override;
-    };
+        namespace windows {
+
+            /**
+             * The WindowsOperatingSystemType class implements an Operating System Type.
+             */
+            class WindowsOperatingSystemType final : public IOperatingSystemType {
+            public:
+                WindowsOperatingSystemType();
+                virtual ~WindowsOperatingSystemType();
+
+                /**
+                 * Checks whether this is an operating system based on the system value.
+                 */
+                virtual bool IsOperatingSystem(const std::wstring& value) const override;
+            };
+
+        } // namespace windows
+
+    } // namespace environment
 
 } // namespace base
 

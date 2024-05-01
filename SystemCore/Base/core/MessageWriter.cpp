@@ -123,7 +123,7 @@ void MessageWriter::WriteMessage(
 base::IConsoleColorHandlerSharedPtr MessageWriter::CreateConsoleColorHandler()
 {
     #if defined(WINDOWS)
-        return std::make_shared<WindowsConsoleColorHandler>();
+        return std::make_shared<environment::windows::WindowsConsoleColorHandler>();
     # else
         return nullptr;
     #endif

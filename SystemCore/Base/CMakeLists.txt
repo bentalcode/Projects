@@ -98,13 +98,14 @@ set(BASE_INCLUDES_FILES
     ./core/StringSearch.h
     ./core/StringUtils.h
     ./core/Strings.h
-    ./core/SystemPath.h
     ./core/Thread.h
     ./core/ToString.h
     ./core/Triple.h
     ./core/TwoDimensionalVector.h
     ./core/TwoDimensionalVectorIterator.h
     ./core/UnexpectedException.h
+    ./core/UnixPath.h
+    ./core/UnixPathBuilder.h
     ./core/Uuid.h
     ./core/VectorIterator.h
     ./core/VectorReverseIterator.h
@@ -156,7 +157,6 @@ set(BASE_INCLUDES_FILES
     ./interfaces/ISizableCollection.h
     ./interfaces/ISkipIterator.h
     ./interfaces/IStringConversion.h
-    ./interfaces/ISystemPath.h
     ./interfaces/IThread.h
     ./interfaces/IToString.h
     ./interfaces/ITwoDimensionalVector.h
@@ -210,12 +210,13 @@ set(BASE_SOURCES_FILES
     ./core/StringSearch.cpp
     ./core/StringUtils.cpp
     ./core/Strings.cpp
-    ./core/SystemPath.cpp
     ./core/Tests.cpp
     ./core/Thread.cpp
     ./core/TimeUnit.cpp
     ./core/TimeUtils.cpp
     ./core/ToString.cpp
+    ./core/UnixPath.cpp
+    ./core/UnixPathBuilder.cpp
     ./core/Uuid.cpp
     ./core/WindowsConsoleColorHandler.cpp
     ./core/WindowsOperatingSystemType.cpp

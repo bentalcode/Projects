@@ -1,31 +1,31 @@
-#include "WindowsPath.h"
+#include "UnixPath.h"
 #include "PathBuilder.h"
 #include "Strings.h"
 #include "InvalidArgumentException.h"
+#include "NotImplementedException.h"
 #include <stack>
-#include <experimental/filesystem>
-#include <shlwapi.h>
 
 using namespace base;
-using namespace base::environment::windows;
-const std::wstring::value_type WindowsPath::SEPARATOR = L'\\';
-const std::wstring WindowsPath::DIRECTORY_SEPARATOR = std::wstring(1, SEPARATOR);
-const std::wstring::value_type WindowsPath::EXTENSION_SEPARATOR = L'.';
-const std::wstring WindowsPath::CURRENT_DIRECTORY = L".";
-const std::wstring WindowsPath::PARENT_DIRECTORY = L"..";
+using namespace base::environment::unix;
+const std::wstring::value_type UnixPath::SEPARATOR = L'/';
+const std::wstring UnixPath::DIRECTORY_SEPARATOR = std::wstring(1, SEPARATOR);
+const std::wstring::value_type UnixPath::EXTENSION_SEPARATOR = L'.';
+const std::wstring UnixPath::CURRENT_DIRECTORY = L".";
+const std::wstring UnixPath::PARENT_DIRECTORY = L"..";
+const std::wstring UnixPath::HOME_DIRECTORY = L"~";
 
 /**
- * Creates a new windows path.
+ * Creates a new unix path.
  */
-IPathSharedPtr WindowsPath::Make(const std::wstring& path)
+IPathSharedPtr UnixPath::Make(const std::wstring& path)
 {
-    return std::make_shared<WindowsPath>(path);
+    return std::make_shared<UnixPath>(path);
 }
 
 /**
- * The WindowsPath constructor.
+ * The UnixPath constructor.
  */
-WindowsPath::WindowsPath(const std::wstring& path) :
+UnixPath::UnixPath(const std::wstring& path) :
     AbstractPath(
         path,
         DIRECTORY_SEPARATOR,
@@ -34,16 +34,16 @@ WindowsPath::WindowsPath(const std::wstring& path) :
 }
 
 /**
- * The WindowsPath destructor.
+ * The UnixPath destructor.
  */
-WindowsPath::~WindowsPath()
+UnixPath::~UnixPath()
 {
 }
 
 /**
  * Gets seperator.
  */
-std::wstring::value_type WindowsPath::Seperator()
+std::wstring::value_type UnixPath::Seperator()
 {
     return SEPARATOR;
 }
@@ -51,7 +51,7 @@ std::wstring::value_type WindowsPath::Seperator()
 /**
  * Gets directory seperator.
  */
-std::wstring WindowsPath::DirectorySeperator()
+std::wstring UnixPath::DirectorySeperator()
 {
     return DIRECTORY_SEPARATOR;
 }
@@ -59,7 +59,7 @@ std::wstring WindowsPath::DirectorySeperator()
 /**
  * Gets current directory.
  */
-std::wstring WindowsPath::CurrentDirectory()
+std::wstring UnixPath::CurrentDirectory()
 {
     return CURRENT_DIRECTORY;
 }
@@ -67,7 +67,7 @@ std::wstring WindowsPath::CurrentDirectory()
 /**
  * Gets parent directory.
  */
-std::wstring WindowsPath::ParentDirectory()
+std::wstring UnixPath::ParentDirectory()
 {
     return PARENT_DIRECTORY;
 }
@@ -75,7 +75,7 @@ std::wstring WindowsPath::ParentDirectory()
 /**
  * Validates a path.
  */
-void WindowsPath::ValidatePath(const std::wstring& path) const
+void UnixPath::ValidatePath(const std::wstring& path) const
 {
     if (path.empty()) {
         throw InvalidArgumentException(L"The input path can not be empty.");
@@ -85,7 +85,7 @@ void WindowsPath::ValidatePath(const std::wstring& path) const
 /**
  * Makes an absolute path.
  */
-std::wstring WindowsPath::MakeAbsolutePath(const std::wstring& path) const
+std::wstring UnixPath::MakeAbsolutePath(const std::wstring& path) const
 {
     return MakeAbsolute(path);
 }
@@ -93,7 +93,7 @@ std::wstring WindowsPath::MakeAbsolutePath(const std::wstring& path) const
 /**
  * Makes a canonical path.
  */
-std::wstring WindowsPath::MakeCanonicalPath(const std::wstring& path) const
+std::wstring UnixPath::MakeCanonicalPath(const std::wstring& path) const
 {
     return MakeCanonical(path);
 }
@@ -101,15 +101,15 @@ std::wstring WindowsPath::MakeCanonicalPath(const std::wstring& path) const
 /**
  * Makes an absolute path.
  */
-std::wstring WindowsPath::MakeAbsolute(const std::wstring& path)
+std::wstring UnixPath::MakeAbsolute(const std::wstring& path)
 {
-    return MakeCanonical(path);
+    throw NotImplementedException(L"UnixPath::MakeAbsolute()");
 }
 
 /**
  * Makes a canonical path.
  */
-std::wstring WindowsPath::MakeCanonical(const std::wstring& path)
+std::wstring UnixPath::MakeCanonical(const std::wstring& path)
 {
     //
     // Split tokens by directory seperator...
@@ -159,7 +159,7 @@ std::wstring WindowsPath::MakeCanonical(const std::wstring& path)
 /**
  * Checks whether a path is absolute.
  */
-bool WindowsPath::IsAbsolute(const std::wstring& path) const
+bool UnixPath::IsAbsolute(const std::wstring& path) const
 {
     return !IsRelative(path);
 }
@@ -167,7 +167,7 @@ bool WindowsPath::IsAbsolute(const std::wstring& path) const
 /**
  * Checks whether a path is relative.
  */
-bool WindowsPath::IsRelative(const std::wstring& path) const
+bool UnixPath::IsRelative(const std::wstring& path) const
 {
-    return PathIsRelativeW(path.c_str());
+    throw NotImplementedException(L"UnixPath::IsRelative()");
 }

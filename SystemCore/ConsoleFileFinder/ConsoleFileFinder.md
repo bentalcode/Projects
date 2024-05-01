@@ -31,7 +31,7 @@ Solution A:
 1. For each file path, a file console class is created for displaying the content of a file.
    IFileConsole::Display() is the interface for displaying content of a file.
 
-2. The FileConsole class creates an instance of a TabularData::File() class for reading it's content.
+2. The FileConsole class creates an instance of a tabular_data::File() class for reading it's content.
    Internally, the FileConsole::Display() API is using a record iterator for iterating over the lines of the file,
    and displaying its content to main console.
 

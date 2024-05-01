@@ -18,7 +18,7 @@ IPathBuilderSharedPtr Make()
 PathBuilder::PathBuilder(const std::wstring& rootDirectory) :
     AbstractPathBuilder(
         rootDirectory,
-        WindowsPath::DirectorySeperator())
+        environment::windows::WindowsPath::DirectorySeperator())
 {
 }
 

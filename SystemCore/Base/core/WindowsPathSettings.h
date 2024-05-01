@@ -7,36 +7,40 @@ namespace base {
 
     namespace environment {
 
-        /**
-         * The WindowsPathSettings class implements path settings of a windows operating system.
-         */
-        class WindowsPathSettings final : public IOperatingSystemPathSettings {
-        public:
-            /**
-             * The WindowsPathSettings constructor.
-             */
-            WindowsPathSettings();
+        namespace windows {
 
             /**
-             * The WindowsPathSettings destructor.
+             * The WindowsPathSettings class implements path settings of a windows operating system.
              */
-            virtual ~WindowsPathSettings();
+            class WindowsPathSettings final : public IOperatingSystemPathSettings {
+            public:
+                /**
+                 * The WindowsPathSettings constructor.
+                 */
+                WindowsPathSettings();
 
-            /**
-             * Creates a path separator.
-             */
-            virtual std::wstring GetPathSeparator() const override;
+                /**
+                 * The WindowsPathSettings destructor.
+                 */
+                virtual ~WindowsPathSettings();
 
-            /**
-             * Creates a path.
-             */
-            virtual IPathSharedPtr CreatePath(const std::wstring& path) const override;
+                /**
+                 * Creates a path separator.
+                 */
+                virtual std::wstring GetPathSeparator() const override;
 
-            /**
-             * Creates a path builder.
-             */
-            virtual IPathBuilderSharedPtr CreatePathBuilder() const override;
-        };
+                /**
+                 * Creates a path.
+                 */
+                virtual IPathSharedPtr CreatePath(const std::wstring& path) const override;
+
+                /**
+                 * Creates a path builder.
+                 */
+                virtual IPathBuilderSharedPtr CreatePathBuilder() const override;
+            };
+
+        } // namespace environment
 
     } // namespace environment
 
