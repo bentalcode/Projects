@@ -17,14 +17,14 @@ import java.util.List;
  */
 public final class CMakeModuleManifest implements ICMakeModuleManifest {
     private static final String PROPERTY_NAME = "name";
-    private static final String PROPERTY_PATH = "path";
+    private static final String PROPERTY_ROOT_PATH = "rootPath";
     private static final String PROPERTY_TYPE = "type";
     private static final String PROPERTY_PROPERTIES = "properties";
     private static final String PROPERTY_CMAKE_LISTS_MANIFEST = "cmakeListsManifest";
     private static final String PROPERTY_DEPENDENT_MODULES = "dependentModules";
 
     private final String name;
-    private final String path;
+    private final String rootPath;
     private final CMakeModuleType type;
     private final ICMakeModuleProperties properties;
     private final ICMakeListsManifest cmakeListsManifest;
@@ -38,7 +38,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
      */
     public CMakeModuleManifest(
         String name,
-        String path,
+        String rootPath,
         CMakeModuleType type,
         ICMakeModuleProperties properties,
         ICMakeListsManifest cmakeListsManifest,
@@ -53,7 +53,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
             "The properties of CMake module.");
 
         this.name = name;
-        this.path = path;
+        this.rootPath = rootPath;
         this.type = type;
         this.properties = properties;
         this.cmakeListsManifest = cmakeListsManifest;
@@ -71,11 +71,11 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     }
 
     /**
-     * Gets the path of the module.
+     * Gets the root path of the module.
      */
     @Override
-    public String getPath() {
-        return this.path;
+    public String getRootPath() {
+        return this.rootPath;
     }
 
     /**
@@ -125,8 +125,8 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
     public void writeJson(IJsonObjectWriter writer) {
         writer.writeStringProperty(PROPERTY_NAME, this.name);
 
-        if (this.path != null) {
-            writer.writeStringProperty(PROPERTY_PATH, this.path);
+        if (this.rootPath != null) {
+            writer.writeStringProperty(PROPERTY_ROOT_PATH, this.rootPath);
         }
 
         writer.writeEnumProperty(PROPERTY_TYPE, this.type);
@@ -142,8 +142,8 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
         String name = reader.readStringProperty(PROPERTY_NAME);
 
         String path = null;
-        if (reader.hasProperty(PROPERTY_PATH)) {
-            path = reader.readStringProperty(PROPERTY_PATH);
+        if (reader.hasProperty(PROPERTY_ROOT_PATH)) {
+            path = reader.readStringProperty(PROPERTY_ROOT_PATH);
         }
 
         CMakeModuleType type = reader.readEnumProperty(PROPERTY_TYPE, CMakeModuleType::parse);
@@ -243,7 +243,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
         public int getHashCode(ICMakeModuleManifest obj) {
             return new HashCodeBuilder(113, 127)
                 .withString(obj.getName())
-                .withString(obj.getPath())
+                .withString(obj.getRootPath())
                 .withEnum(obj.getType())
                 .withObject(obj.getProperties())
                 .withObject(obj.getCMakeListsManifest())
@@ -266,7 +266,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
 
             return new EqualBuilder()
                 .withString(lhs.getName(), rhs.getName())
-                .withString(lhs.getPath(), rhs.getPath())
+                .withString(lhs.getRootPath(), rhs.getRootPath())
                 .withEnum(lhs.getType(), rhs.getType())
                 .withObject(lhs.getProperties(), rhs.getProperties())
                 .withObject(lhs.getCMakeListsManifest(), rhs.getCMakeListsManifest())
@@ -297,7 +297,7 @@ public final class CMakeModuleManifest implements ICMakeModuleManifest {
 
             return new CompareToBuilder()
                 .withString(lhs.getName(), rhs.getName())
-                .withString(lhs.getPath(), rhs.getPath())
+                .withString(lhs.getRootPath(), rhs.getRootPath())
                 .withEnum(lhs.getType(), rhs.getType())
                 .withObject(lhs.getProperties(), rhs.getProperties())
                 .withObject(lhs.getCMakeListsManifest(), rhs.getCMakeListsManifest())

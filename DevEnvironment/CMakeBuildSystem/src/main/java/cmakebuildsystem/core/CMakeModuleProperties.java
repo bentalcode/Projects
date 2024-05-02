@@ -18,6 +18,7 @@ import java.util.List;
  */
 public final class CMakeModuleProperties implements ICMakeModuleProperties {
     private static final String PROPERTY_PATH = "path";
+    private static final String PROPERTY_DIRECTORY_NAME = "directoryName";
     private static final String PROPERTY_CMAKE_LISTS_TARGET_PATH = "cmakeListsTargetPath";
     private static final String PROPERTY_HEADER_FILE_EXTENSIONS = "headerFileExtensions";
     private static final String PROPERTY_SOURCE_FILE_EXTENSIONS = "sourceFileExtensions";
@@ -31,6 +32,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     private static final List<String> DEFAULT_CMAKE_LISTS_FILE_EXTENSIONS = ArrayLists.make("CMakeLists.txt");
 
     private final String path;
+    private final String directoryName;
     private final String cmakeListsTargetPath;
     private final List<String> headerFileExtensions;
     private final List<String> sourceFileExtensions;
@@ -46,11 +48,12 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     public static ICMakeModuleProperties defaultProperties() {
         return new CMakeModuleProperties(
             null,
-                DEFAULT_CMAKE_LISTS_TARGET_PATH,
-                DEFAULT_HEADER_FILE_EXTENSIONS,
-                DEFAULT_SOURCE_FILE_EXTENSIONS,
-                DEFAULT_BUILD_FILE_EXTENSIONS,
-                DEFAULT_CMAKE_LISTS_FILE_EXTENSIONS);
+            null,
+            DEFAULT_CMAKE_LISTS_TARGET_PATH,
+            DEFAULT_HEADER_FILE_EXTENSIONS,
+            DEFAULT_SOURCE_FILE_EXTENSIONS,
+            DEFAULT_BUILD_FILE_EXTENSIONS,
+            DEFAULT_CMAKE_LISTS_FILE_EXTENSIONS);
     }
 
     /**
@@ -58,6 +61,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
      */
     public CMakeModuleProperties(
         String path,
+        String directoryName,
         String cmakeListsTargetPath,
         List<String> headerFileExtensions,
         List<String> sourceFileExtensions,
@@ -65,6 +69,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
         List<String> cmakeListsFileExtensions) {
 
         this.path = path;
+        this.directoryName = directoryName;
         this.cmakeListsTargetPath = cmakeListsTargetPath;
         this.headerFileExtensions = headerFileExtensions;
         this.sourceFileExtensions = sourceFileExtensions;
@@ -80,6 +85,14 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
     @Override
     public String getPath() {
         return this.path;
+    }
+
+    /**
+     * Gets the name of the directory.
+     */
+    @Override
+    public String getDirectoryName() {
+        return this.directoryName;
     }
 
     /**
@@ -135,7 +148,14 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
      */
     @Override
     public void writeJson(IJsonObjectWriter writer) {
-        writer.writeStringProperty(PROPERTY_PATH, this.path);
+        if (this.path != null) {
+            writer.writeStringProperty(PROPERTY_PATH, this.path);
+        }
+
+        if (this.directoryName != null) {
+            writer.writeStringProperty(PROPERTY_DIRECTORY_NAME, this.directoryName);
+        }
+
         writer.writeStringProperty(PROPERTY_CMAKE_LISTS_TARGET_PATH, this.cmakeListsTargetPath);
         writer.writeCollectionProperty(PROPERTY_HEADER_FILE_EXTENSIONS, this.headerFileExtensions);
         writer.writeCollectionProperty(PROPERTY_SOURCE_FILE_EXTENSIONS, this.sourceFileExtensions);
@@ -151,6 +171,12 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
 
         if (reader.hasProperty(PROPERTY_PATH)) {
             path = reader.readStringProperty(PROPERTY_PATH);
+        }
+
+        String directoryName = null;
+
+        if (reader.hasProperty(PROPERTY_DIRECTORY_NAME)) {
+            directoryName = reader.readStringProperty(PROPERTY_DIRECTORY_NAME);
         }
 
         String cmakeListsTargetPath = reader.hasProperty(PROPERTY_CMAKE_LISTS_TARGET_PATH) ?
@@ -175,6 +201,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
 
         return new CMakeModuleProperties(
             path,
+            directoryName,
             cmakeListsTargetPath,
             headerFileExtensions,
             sourceFileExtensions,
@@ -254,6 +281,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
         public int getHashCode(ICMakeModuleProperties obj) {
             return new HashCodeBuilder(131, 137)
                 .withString(obj.getPath())
+                .withString(obj.getDirectoryName())
                 .withString(obj.getCMakeListsTargetPath())
                 .withCollection(obj.getHeaderFileExtensions())
                 .withCollection(obj.getSourceFileExtensions())
@@ -277,6 +305,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
 
             return new EqualBuilder()
                 .withString(lhs.getPath(), rhs.getPath())
+                .withString(lhs.getDirectoryName(), rhs.getDirectoryName())
                 .withString(lhs.getCMakeListsTargetPath(), rhs.getCMakeListsTargetPath())
                 .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
                 .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())
@@ -308,6 +337,7 @@ public final class CMakeModuleProperties implements ICMakeModuleProperties {
 
             return new CompareToBuilder()
                 .withString(lhs.getPath(), rhs.getPath())
+                .withString(lhs.getDirectoryName(), rhs.getDirectoryName())
                 .withString(lhs.getCMakeListsTargetPath(), rhs.getCMakeListsTargetPath())
                 .withCollection(lhs.getHeaderFileExtensions(), rhs.getHeaderFileExtensions())
                 .withCollection(lhs.getSourceFileExtensions(), rhs.getSourceFileExtensions())

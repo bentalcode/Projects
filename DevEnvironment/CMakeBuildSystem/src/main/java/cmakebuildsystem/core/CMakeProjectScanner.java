@@ -3,6 +3,7 @@ package cmakebuildsystem.core;
 import base.core.Conditions;
 import base.core.Environment;
 import base.interfaces.IPath;
+import base.interfaces.IPathBuilder;
 import base.interfaces.IScanner;
 import cmakebuildsystem.interfaces.ICMakeModule;
 import cmakebuildsystem.interfaces.ICMakeModuleManifest;
@@ -88,20 +89,42 @@ public final class CMakeProjectScanner implements IScanner<ICMakeProject> {
         Path projectPath,
         ICMakeModuleManifest moduleManifest) {
 
-        String modulePath = moduleManifest.getPath();
+        //
+        // Calculate the root path...
+        //
+        String rootPath = moduleManifest.getRootPath();
 
-        if (modulePath == null) {
-            modulePath = moduleManifest.getProperties().getPath();
+        if (rootPath == null) {
+            rootPath = projectPath.toString();
         }
 
-        if (modulePath == null) {
-            modulePath = moduleManifest.getName();
+        //
+        // Calculate the sub path...
+        //
+        String subPath = moduleManifest.getProperties().getPath();
+
+        //
+        // Calculate the directory name...
+        //
+        String directoryName = moduleManifest.getProperties().getDirectoryName();
+
+        if (directoryName == null) {
+            directoryName = moduleManifest.getName();
         }
-        
-        String path = Environment.getOperatingSystemControlSettings().pathSettings().createPathBuilder()
-            .addComponent(projectPath.toString())
-            .addComponent(modulePath)
-            .build();
+
+        //
+        // Create the path...
+        //
+        IPathBuilder pathBuilder = Environment.getOperatingSystemControlSettings().pathSettings().createPathBuilder();
+        pathBuilder.addComponent(rootPath);
+
+        if (subPath != null) {
+            pathBuilder.addComponent(subPath);
+        }
+
+        pathBuilder.addComponent(directoryName);
+
+        String path = pathBuilder.build();
 
         return Path.of(path);
     }

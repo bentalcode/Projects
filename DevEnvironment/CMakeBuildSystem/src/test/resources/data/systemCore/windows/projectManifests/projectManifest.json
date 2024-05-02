@@ -15,6 +15,7 @@
         "Problems",
         "Logging",
         "DataContainerManagement",
+        "WXWidgets",
         "TestBase",
         "UnitTesting",
         "BaseTest",
@@ -130,6 +131,16 @@
                 "Base",
                 "TabularData",
                 "Logging"
+            ]
+        },
+        {
+            "name": "WXWidgets",
+            "type": "library",
+            "properties": {
+                "path": "WXWidgetsGui"
+            },
+            "dependentModules": [
+                "Base"
             ]
         },
         {

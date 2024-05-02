@@ -14,6 +14,11 @@ public interface ICMakeModuleProperties extends IUnaryComparator<ICMakeModulePro
     String getPath();
 
     /**
+     * Gets the name of the directory.
+     */
+    String getDirectoryName();
+
+    /**
      * Gets the target path of the CMakeLists file.
      */
     String getCMakeListsTargetPath();
