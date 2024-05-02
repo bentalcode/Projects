@@ -1,7 +1,6 @@
 #ifndef ERROR_CODES_H_2fb42be0_4a55_43a5_a430_a8adb867fe6b
 #define ERROR_CODES_H_2fb42be0_4a55_43a5_a430_a8adb867fe6b
 
-#include <sstream>
 #include <iomanip>
 
 #if WINDOWS

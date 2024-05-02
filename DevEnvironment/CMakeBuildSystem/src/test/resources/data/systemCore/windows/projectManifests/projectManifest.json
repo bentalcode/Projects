@@ -139,8 +139,18 @@
             "properties": {
                 "path": "WXWidgetsGui"
             },
+            "cmakeListsManifest": {
+                "presetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\wxWidgetsCMakeListsPreset.txt"
+                ],
+                "postsetPaths": [
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\wxWidgetsCMakeListsPostset.txt"
+                ]
+            },
             "dependentModules": [
-                "Base"
+                "Base",
+                "TabularData",
+                "Logging"
             ]
         },
         {
