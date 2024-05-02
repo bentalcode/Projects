@@ -1,7 +1,7 @@
 #ifndef BITS_H_9ad04492_f4d8_461e_bea3_76147b3f84c0
 #define BITS_H_9ad04492_f4d8_461e_bea3_76147b3f84c0
 
-#include <string>
+#include <cstddef>
 
 namespace base
 {
@@ -34,7 +34,7 @@ namespace base
         /**
          * Turns on a bit at the specified index.
          */
-        static unsigned int TurnOn(unsigned int value, size_t index);
+        static unsigned int TurnOn(unsigned int value, std::size_t index);
 
         /**
          * Turns off a bit at the specified index.

@@ -54,7 +54,7 @@ namespace base
          * Creates the longest prefix suffix (lps) of a string.
          *
          * For instance,
-         * String str = "AAACAAAAAC";
+         * String str = "AAAClogging::AC";
          * Prefixes = {{}, {A}, {AA}, {AAA}, {AAAC}, {AAACA}, {AAACAA}, {AAACAAA}, {AAACAAAA}, {AAACAAAAA}, {AAACAAAAAC}};
          * Postfixes = {{}, {C}, {AC}, {AAC}, {AAAC}, {AAAAC}, {AAAAAC}, {CAAAAAC}, {ACAAAAAC}, {AACAAAAAC}, {AAACAAAAAC}};
          *

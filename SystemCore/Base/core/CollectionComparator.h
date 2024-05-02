@@ -110,14 +110,14 @@ namespace base {
         const CollectionType& lhs,
         const CollectionType& rhs) const
     {
-        if (lhs.Size() != rhs.Size()) {
+        if (lhs.size() != rhs.size()) {
             return false;
         }
 
-        typename CollectionType::const_iterator lhsIterator = lhs.Begin();
-        typename CollectionType::const_iterator rhsIterator = rhs.Begin();
+        typename CollectionType::const_iterator lhsIterator = lhs.begin();
+        typename CollectionType::const_iterator rhsIterator = rhs.begin();
 
-        while (lhsIterator != lhs.End() && rhsIterator != rhs.End()) {
+        while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
             const ValueType& leftValue = *lhsIterator;
             const ValueType& rightValue = *rhsIterator;
 
@@ -126,7 +126,7 @@ namespace base {
             }
         }
 
-        return lhsIterator == lhs.End() && rhsIterator == rhs.End();
+        return lhsIterator == lhs.end() && rhsIterator == rhs.end();
     }
 
     /**
@@ -138,20 +138,20 @@ namespace base {
         const CollectionType& rhs,
         const IEquatableComparator<ValueType>& equatable) const
     {
-        if (lhs.Size() != rhs.Size()) {
+        if (lhs.size() != rhs.size()) {
             return false;
         }
 
-        typename CollectionType::const_iterator lhsIterator = lhs.Begin();
-        typename CollectionType::const_iterator rhsIterator = rhs.Begin();
+        typename CollectionType::const_iterator lhsIterator = lhs.begin();
+        typename CollectionType::const_iterator rhsIterator = rhs.begin();
 
-        while (lhsIterator != lhs.End() && rhsIterator != rhs.End()) {
+        while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
             if (!equatable.AreEqual(*lhsIterator, *rhsIterator)) {
                 return false;
             }
         }
 
-        return lhsIterator == lhs.End() && rhsIterator == rhs.End();
+        return lhsIterator == lhs.end() && rhsIterator == rhs.end();
     }
 
     /**
@@ -166,18 +166,18 @@ namespace base {
         const CollectionType& lhs,
         const CollectionType& rhs) const
     {
-        if (lhs.Size() < rhs.Size()) {
+        if (lhs.size() < rhs.size()) {
             return -1;
         }
 
-        if (lhs.Size() > rhs.Size()) {
+        if (lhs.size() > rhs.size()) {
             return 1;
         }
 
-        typename CollectionType::const_iterator lhsIterator = lhs.Begin();
-        typename CollectionType::const_iterator rhsIterator = rhs.Begin();
+        typename CollectionType::const_iterator lhsIterator = lhs.begin();
+        typename CollectionType::const_iterator rhsIterator = rhs.begin();
 
-        while (lhsIterator != lhs.End() && rhsIterator != rhs.End()) {
+        while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
             const ValueType& leftValue = *lhsIterator;
             const ValueType& rightValue = *rhsIterator;
 
@@ -206,20 +206,20 @@ namespace base {
         const CollectionType& rhs,
         const IComparableComparator<ValueType>& comparator) const
     {
-        if (lhs.Size() < rhs.Size()) {
+        if (lhs.size() < rhs.size()) {
             return -1;
         }
 
-        if (lhs.Size() > rhs.Size()) {
+        if (lhs.size() > rhs.size()) {
             return 1;
         }
 
-        typename CollectionType::const_iterator lhsIterator = lhs.Begin();
-        typename CollectionType::const_iterator rhsIterator = rhs.Begin();
+        typename CollectionType::const_iterator lhsIterator = lhs.begin();
+        typename CollectionType::const_iterator rhsIterator = rhs.begin();
 
         int status = 0;
 
-        while (lhsIterator != lhs.End() && rhsIterator != rhs.End()) {
+        while (lhsIterator != lhs.end() && rhsIterator != rhs.end()) {
             status = comparator.CompareTo(*lhsIterator, *rhsIterator);
 
             if (status != 0) {

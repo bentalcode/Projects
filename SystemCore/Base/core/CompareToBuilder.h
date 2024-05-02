@@ -3,8 +3,6 @@
 
 #include "ComparatorFactory.h"
 #include "ComparableComparator.h"
-#include "DereferenceComparableComparator.h"
-#include "DereferenceComparableComparator2.h"
 #include "CollectionComparator.h"
 #include "MapComparator.h"
 #include "IIterable.h"

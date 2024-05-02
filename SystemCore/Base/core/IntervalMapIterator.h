@@ -2,10 +2,8 @@
 #define INTERVAL_MAP_ITERATOR_H_0fb64af4_e028_43e2_ad83_d36cafde355e
 
 #include "IIterator.h"
-#include "IIntervalMap.h"
 #include "Pair.h"
 #include "Interval.h"
-#include "IntervalMap.h"
 #include <assert.h>
 
 namespace base
