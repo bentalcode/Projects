@@ -22,7 +22,7 @@ public:
      * The TabularDataException constructor.
      */
     TabularDataException(
-        unsigned long errorCode, 
+        long errorCode,
         const std::wstring& errorMessage) :
             base::BaseException(
                 errorCode, 

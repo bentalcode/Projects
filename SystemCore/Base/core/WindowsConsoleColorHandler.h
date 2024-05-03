@@ -3,7 +3,7 @@
 
 #include "IConsoleColorHandler.h"
 #include <map>
-#include <windows.h>
+#include "WindowsDefinitions.h"
 
 namespace base {
 

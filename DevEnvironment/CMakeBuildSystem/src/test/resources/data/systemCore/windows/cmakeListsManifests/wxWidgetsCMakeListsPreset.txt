@@ -6,7 +6,7 @@ add_compile_definitions(WINDOWS=1)
 #
 # Open Sources Path...
 #
-set (OPEN_SOURCES_PATH "/mnt/c/OpenSources")
+set (OPEN_SOURCES_PATH "../../../../../../OpenSources")
 
 #
 # WX Widgets Path...
@@ -24,11 +24,16 @@ set(GLFW_PATH ${OPEN_SOURCES_PATH}/glfw)
 set (GLEW_PATH ${OPEN_SOURCES_PATH}/glew-2.1.0)
 
 #
+# Configure Operating System...
+#
+add_compile_definitions(WINDOWS=1)
+
+#
 # Include Directories...
 #
 include_directories(
     ${WX_WIDGETS_PATH}/include
-    ${WX_WIDGETS_PATH}/include/msvc
+    ${WX_WIDGETS_PATH}/lib/gcc_lib/mswu
     ${GLFW_PATH}/include
     ${GLEW_PATH}/include
 )

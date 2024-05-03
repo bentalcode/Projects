@@ -22,7 +22,7 @@ namespace logging {
          * The LoggingException constructor.
          */
         LoggingException(
-            unsigned long errorCode,
+            long errorCode,
             const std::wstring& errorMessage) :
                 BaseException(
                     errorCode,

@@ -4,7 +4,7 @@
 #include <iomanip>
 
 #if WINDOWS
-    #include <windows.h>
+    #include "WindowsDefinitions.h"
 #endif
 
 #include "ErrorMessages.h"

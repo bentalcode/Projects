@@ -110,6 +110,7 @@ set(BASE_INCLUDES_FILES
     ./core/VectorIterator.h
     ./core/VectorReverseIterator.h
     ./core/WindowsConsoleColorHandler.h
+    ./core/WindowsDefinitions.h
     ./core/WindowsOperatingSystemType.h
     ./core/WindowsPath.h
     ./core/WindowsPathSettings.h

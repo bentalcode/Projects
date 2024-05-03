@@ -2,7 +2,7 @@
 #define WINDOWS_HANDLE_H_be4ac0b3_c800_4a0e_a434_1a8b3c366a72
 
 #include "Handle.h"
-#include <windows.h>
+#include "WindowsDefinitions.h"
 
 namespace base {
 

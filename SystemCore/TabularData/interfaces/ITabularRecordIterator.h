@@ -8,7 +8,7 @@ namespace tabular_data {
 /**
  * The ITabularRecordIterator interface defines a Tabular Record Iterator.
  */
-class ITabularRecordIterator : public Utilities::IIterator<ITabularRecordIterator> {
+class ITabularRecordIterator : public base::IIterator<ITabularRecordIterator> {
 public: 
 	ITabularRecordIterator() = default;
 	virtual ~ITabularRecordIterator() = default;

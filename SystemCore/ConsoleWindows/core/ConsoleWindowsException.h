@@ -22,7 +22,7 @@ namespace console_windows {
          * The ConsoleWindowsException constructor.
          */
         ConsoleWindowsException(
-            unsigned long errorCode,
+            long errorCode,
             const std::wstring& errorMessage) :
                 base::BaseException(
                     errorCode,

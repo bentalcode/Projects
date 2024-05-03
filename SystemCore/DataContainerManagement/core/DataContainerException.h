@@ -22,7 +22,7 @@ namespace DataContainerManagement {
          * The data_container_exception constructor.
          */
         data_container_exception(
-            unsigned long errorCode,
+            long errorCode,
             const std::wstring& errorMessage) :
                 BaseException(
                     errorCode,

@@ -22,7 +22,7 @@ public:
      * The RetryException constructor.
      */
     RetryException(
-        unsigned long errorCode, 
+        long errorCode,
         const std::wstring& errorMessage) :
             ClientServerException(
                 errorCode, 

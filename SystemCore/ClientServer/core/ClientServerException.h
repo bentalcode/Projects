@@ -22,7 +22,7 @@ public:
      * The ClientServerException constructor.
      */
     ClientServerException(
-        unsigned long errorCode, 
+        long errorCode,
         const std::wstring& errorMessage) :
             base::BaseException(
                 errorCode, 
