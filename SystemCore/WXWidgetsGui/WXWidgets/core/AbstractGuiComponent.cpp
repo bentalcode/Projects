@@ -2,6 +2,7 @@
 #include "DataContainer.h"
 #include "DataContainerUpdateFunctors.h"
 #include "DataItem.h"
+#include "IDataItems.h"
 #include "WXDataItems.h"
 #include "WXEventHandler.h"
 #include "TriggerStartRefreshingEventInternal.h"
@@ -47,7 +48,7 @@ private:
 AbstractGuiComponent::AbstractGuiComponent() : 
     m_initialized(false), 
     m_dataUpdateFunctors(DataContainerManagement::DataContainerUpdateFunctors::Make()), 
-    m_loggers(logging::Loggers::Make(typeid(WXWidgets::AbstractGuiComponent)))
+    m_loggers(logging::Loggers::Make(typeid(AbstractGuiComponent)))
 {
 }
 
@@ -118,7 +119,7 @@ void AbstractGuiComponent::Initialize(
     //
     // Register data items...
     //
-    std::wstring dataItemComponentShowMode = WXDataItems::Read().GetComponentShowMode(); 
+    std::wstring dataItemComponentShowMode = WXDataItems::Read().GetComponentShowMode();
     m_data->GetCatalog().RegisterDataItem(dataItemComponentShowMode);
 
     //

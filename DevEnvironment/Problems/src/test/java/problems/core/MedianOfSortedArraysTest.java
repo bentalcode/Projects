@@ -60,6 +60,11 @@ public final class MedianOfSortedArraysTest {
         int[] b7 = {2, 3, 7, 8};
         double result7 = 4.5;
 
+        // Merged: {1, 2, 2, 3, 4, 5}
+        int[] a8 = {1, 2};
+        int[] b8 = {2, 3, 4, 5};
+        double result8 = 2.5;
+
         this.testMedianOfSortedArrays(a1, b1, result1);
         this.testMedianOfSortedArrays(b1, a1, result1);
 
@@ -77,6 +82,9 @@ public final class MedianOfSortedArraysTest {
 
         this.testMedianOfSortedArrays(a7, b7, result7);
         this.testMedianOfSortedArrays(b7, a7, result7);
+
+        this.testMedianOfSortedArrays(a8, b8, result8);
+        this.testMedianOfSortedArrays(b8, a8, result8);
     }
 
     /**

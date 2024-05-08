@@ -52,6 +52,13 @@ include_directories(
 
 
 set(WXWIDGETS_INCLUDES_FILES
+    ./Controller/core/AbstractTransaction.h
+    ./Controller/core/ControllerManager.h
+    ./Controller/core/RefreshingTransaction.h
+    ./Controller/core/WXWidgetsControllerException.h
+    ./Controller/interfaces/IControllerManager.h
+    ./Controller/interfaces/IRefreshingTransaction.h
+    ./Controller/interfaces/ITransaction.h
     ./DataItems/core/DataItemCatalog.h
     ./DataItems/core/WXDataItems.h
     ./DataItems/interfaces/IDataItemCatalog.h
@@ -154,6 +161,9 @@ set(WXWIDGETS_INCLUDES_FILES
 )
 
 set(WXWIDGETS_SOURCES_FILES
+    ./Controller/core/AbstractTransaction.cpp
+    ./Controller/core/ControllerManager.cpp
+    ./Controller/core/RefreshingTransaction.cpp
     ./DataItems/core/DataItemCatalog.cpp
     ./DataItems/core/WXDataItems.cpp
     ./Events/core/PostRefreshEvent.cpp
@@ -216,6 +226,8 @@ set(WXWIDGETS_SOURCES_FILES
 )
 
 set(WXWIDGETS_INCLUDES
+    ./Controller/core
+    ./Controller/interfaces
     ./DataItems/core
     ./DataItems/interfaces
     ./Events/interfaces
