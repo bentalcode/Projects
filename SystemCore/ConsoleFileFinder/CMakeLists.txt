@@ -135,6 +135,7 @@ set(BASE_INCLUDES_FILES
     ../Base/core/Pair.h
     ../Base/core/PathBuilder.h
     ../Base/core/PathDecomposition.h
+    ../Base/core/Position.h
     ../Base/core/RandomGenerator.h
     ../Base/core/Range.h
     ../Base/core/ReferenceCounterHolder.h
@@ -201,6 +202,7 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IPath.h
     ../Base/interfaces/IPathBuilder.h
     ../Base/interfaces/IPathDecomposition.h
+    ../Base/interfaces/IPosition.h
     ../Base/interfaces/IRandomGenerator.h
     ../Base/interfaces/IResourceReader.h
     ../Base/interfaces/IReverseIterable.h
@@ -218,7 +220,6 @@ set(BASE_INCLUDES_FILES
     ../Base/interfaces/IValueReverseIterable.h
     ../Base/interfaces/IVisitor.h
     ../Base/interfaces/OperatingSystemType.h
-    ../Base/interfaces/Position.h
     ../Base/interfaces/ReferenceCounter.h
     ../Base/interfaces/ReferenceCounterHolder.h
     ../Base/interfaces/SmartPointers.h
@@ -385,6 +386,11 @@ set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/priorityqueue/core/AbstractPriorityQueue.h
     ../DataStructures/priorityqueue/core/PriorityQueue.h
     ../DataStructures/priorityqueue/interfaces/IPriorityQueue.h
+    ../DataStructures/tree/core/Tree.h
+    ../DataStructures/tree/core/TreeException.h
+    ../DataStructures/tree/core/TreeNode.h
+    ../DataStructures/tree/interfaces/ITree.h
+    ../DataStructures/tree/interfaces/ITreeNode.h
 )
 
 set(DATA_STRUCTURES_SOURCES_FILES
@@ -424,6 +430,8 @@ set(DATA_STRUCTURES_INCLUDES
     ../DataStructures/priorityqueue
     ../DataStructures/priorityqueue/core
     ../DataStructures/priorityqueue/interfaces
+    ../DataStructures/tree/core
+    ../DataStructures/tree/interfaces
 )
 
 set(DATA_STRUCTURES_SOURCES

@@ -85,6 +85,7 @@ set(BASE_INCLUDES_FILES
     ./core/Pair.h
     ./core/PathBuilder.h
     ./core/PathDecomposition.h
+    ./core/Position.h
     ./core/RandomGenerator.h
     ./core/Range.h
     ./core/ReferenceCounterHolder.h
@@ -151,6 +152,7 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IPath.h
     ./interfaces/IPathBuilder.h
     ./interfaces/IPathDecomposition.h
+    ./interfaces/IPosition.h
     ./interfaces/IRandomGenerator.h
     ./interfaces/IResourceReader.h
     ./interfaces/IReverseIterable.h
@@ -168,7 +170,6 @@ set(BASE_INCLUDES_FILES
     ./interfaces/IValueReverseIterable.h
     ./interfaces/IVisitor.h
     ./interfaces/OperatingSystemType.h
-    ./interfaces/Position.h
     ./interfaces/ReferenceCounter.h
     ./interfaces/ReferenceCounterHolder.h
     ./interfaces/SmartPointers.h

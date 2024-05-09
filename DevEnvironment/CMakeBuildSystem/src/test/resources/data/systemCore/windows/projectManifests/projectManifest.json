@@ -17,6 +17,8 @@
         "DataContainerManagement",
         "GuiConfiguration",
         "WXWidgets",
+        "TLogging",
+        "Model",
         "TestBase",
         "UnitTesting",
         "BaseTest",
@@ -174,6 +176,35 @@
                 "TabularData",
                 "DataContainerManagement",
                 "Logging"
+            ]
+        },
+        {
+            "name": "TLogging",
+            "type": "library",
+            "properties": {
+                "path": "WXWidgetsGui\\VideoRenderingVisualizer"
+            },
+            "dependentModules": [
+                "Base",
+                "TabularData",
+                "DataContainerManagement",
+                "DataStructures",
+                "Logging"
+            ]
+        },
+        {
+            "name": "Model",
+            "type": "library",
+            "properties": {
+                "path": "WXWidgetsGui\\VideoRenderingVisualizer"
+            },
+            "dependentModules": [
+                "Base",
+                "TabularData",
+                "DataContainerManagement",
+                "DataStructures",
+                "Logging",
+                "TLogging"
             ]
         },
         {
