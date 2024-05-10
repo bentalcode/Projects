@@ -67,10 +67,24 @@ public final class CMakeModuleDependencyManager implements ICMakeModuleDependenc
         List<ICMakeModule> dependentModules = new ArrayList<>();
 
         for (String dependentModuleName : module.getDependentModules()) {
-            ICMakeModule dependentModule = this.modules.get(dependentModuleName);
+            ICMakeModule dependentModule = getDependentModule(name, dependentModuleName);
             dependentModules.add(dependentModule);
         }
 
         modulesDependencies.put(module.getName(), dependentModules);
+    }
+
+    private ICMakeModule getDependentModule(String name, String dependentModuleName) {
+        if (!this.modules.containsKey(dependentModuleName)) {
+            String errorMessage =
+                "The Module: " + name + " does not contain a dependent module: " + dependentModuleName;
+
+            this.log.error(errorMessage);
+            throw new CMakeBuildException(errorMessage);
+        }
+
+        ICMakeModule module = this.modules.get(dependentModuleName);
+
+        return module;
     }
 }

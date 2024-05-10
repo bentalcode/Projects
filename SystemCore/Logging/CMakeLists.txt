@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.6)
 
+set(PROJECT_NAME
+    Logging
+)
+
 project(Logging VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
@@ -24,6 +28,11 @@ endmacro()
 print_all_variables()
 
 #
+# Configure operating systems...
+#
+add_compile_definitions(WINDOWS=1)
+
+#
 # Configure boost library...
 #
 if (NOT $ENV{BOOST_ROOT})
@@ -31,8 +40,6 @@ if (NOT $ENV{BOOST_ROOT})
 else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
-
-add_compile_definitions(WINDOWS=1)
 
 
 set(LOGGING_INCLUDES_FILES
@@ -307,6 +314,10 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
+target_link_libraries(Base
+    PRIVATE 
+)
+
 set(TABULAR_DATA_INCLUDES_FILES
     ../TabularData/core/Event.h
     ../TabularData/core/EventLog.h
@@ -378,8 +389,11 @@ set(TABULAR_DATA_SOURCES
 )
 
 add_library(TabularData STATIC
-    ${BASE_SOURCES}
     ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(TabularData
+    PRIVATE Base
 )
 
 include_directories(Logging
@@ -389,11 +403,21 @@ include_directories(Logging
 )
 
 add_library(Logging STATIC
-    ${BASE_SOURCES}
     ${LOGGING_SOURCES}
-    ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(Logging
+    PRIVATE Base TabularData
 )
 
 include_directories(
     ${BOOST_PATH}
 )
+
+#
+# Configure file system dependencies...
+#
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE
+    stdc++fs)
+

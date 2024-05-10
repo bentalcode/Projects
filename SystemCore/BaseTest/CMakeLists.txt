@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.6)
 
+set(PROJECT_NAME
+    BaseTest
+)
+
 project(BaseTest VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
@@ -31,6 +35,11 @@ endmacro()
 print_all_variables()
 
 #
+# Configure operating systems...
+#
+add_compile_definitions(WINDOWS=1)
+
+#
 # Configure boost library...
 #
 if (NOT $ENV{BOOST_ROOT})
@@ -38,8 +47,6 @@ if (NOT $ENV{BOOST_ROOT})
 else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
-
-add_compile_definitions(WINDOWS=1)
 
 
 set(BASE_TEST_INCLUDES_FILES
@@ -281,6 +288,10 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
+target_link_libraries(Base
+    PRIVATE 
+)
+
 set(TEST_BASE_INCLUDES_FILES
     ../TestBase/core/TestBaseException.h
     ../TestBase/interfaces/Assertion.h
@@ -304,8 +315,11 @@ set(TEST_BASE_SOURCES
 )
 
 add_library(TestBase STATIC
-    ${BASE_SOURCES}
     ${TEST_BASE_SOURCES}
+)
+
+target_link_libraries(TestBase
+    PRIVATE Base
 )
 
 set(UNIT_TESTING_INCLUDES_FILES
@@ -347,9 +361,11 @@ set(UNIT_TESTING_SOURCES
 )
 
 add_library(UnitTesting STATIC
-    ${BASE_SOURCES}
-    ${TEST_BASE_SOURCES}
     ${UNIT_TESTING_SOURCES}
+)
+
+target_link_libraries(UnitTesting
+    PRIVATE Base TestBase
 )
 
 include_directories(BaseTest
@@ -360,10 +376,7 @@ include_directories(BaseTest
 )
 
 add_executable(BaseTest
-    ${BASE_SOURCES}
     ${BASE_TEST_SOURCES}
-    ${TEST_BASE_SOURCES}
-    ${UNIT_TESTING_SOURCES}
 )
 
 target_link_libraries(BaseTest
@@ -373,3 +386,11 @@ target_link_libraries(BaseTest
 include_directories(
     ${BOOST_PATH}
 )
+
+#
+# Configure file system dependencies...
+#
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE
+    stdc++fs)
+

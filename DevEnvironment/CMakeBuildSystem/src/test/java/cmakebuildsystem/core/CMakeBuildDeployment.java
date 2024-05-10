@@ -12,7 +12,7 @@ import java.util.List;
  * The CMakeBuildDeployment class implements a CMake Build Deployment.
  */
 public final class CMakeBuildDeployment {
-    ITestData testData = new TestData();
+    private final ITestData testData = new TestData();
     private final IAssertion assertion = new Assertion();
 
     /**

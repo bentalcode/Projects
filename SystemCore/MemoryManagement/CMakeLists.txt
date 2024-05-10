@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.6)
 
+set(PROJECT_NAME
+    MemoryManagement
+)
+
 project(MemoryManagement VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
@@ -24,6 +28,11 @@ endmacro()
 print_all_variables()
 
 #
+# Configure operating systems...
+#
+add_compile_definitions(WINDOWS=1)
+
+#
 # Configure boost library...
 #
 if (NOT $ENV{BOOST_ROOT})
@@ -31,8 +40,6 @@ if (NOT $ENV{BOOST_ROOT})
 else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
-
-add_compile_definitions(WINDOWS=1)
 
 
 set(MEMORY_MANAGEMENT_INCLUDES_FILES
@@ -272,16 +279,31 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
+target_link_libraries(Base
+    PRIVATE 
+)
+
 include_directories(MemoryManagement
     ${BASE_INCLUDES}
     ${MEMORY_MANAGEMENT_INCLUDES}
 )
 
 add_library(MemoryManagement STATIC
-    ${BASE_SOURCES}
     ${MEMORY_MANAGEMENT_SOURCES}
+)
+
+target_link_libraries(MemoryManagement
+    PRIVATE Base
 )
 
 include_directories(
     ${BOOST_PATH}
 )
+
+#
+# Configure file system dependencies...
+#
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE
+    stdc++fs)
+

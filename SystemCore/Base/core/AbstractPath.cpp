@@ -67,7 +67,7 @@ bool AbstractPath::IsAbsolute() const
 /**
  * Checks whether a path is relative.
  */
-bool AbstractPath::IsRelative(const std::wstring& path) const
+bool AbstractPath::IsRelative() const
 {
     return IsRelative(m_path);
 }

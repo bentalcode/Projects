@@ -15,6 +15,8 @@ public final class AddExecutableCommand extends AddBinaryCommand {
         super(
             CMakeListsConstants.ADD_EXECUTABLE_COMMAND,
             moduleName,
-            null);
+            null,
+            false);
     }
 }
+

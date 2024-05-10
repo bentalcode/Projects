@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.6)
 
+set(PROJECT_NAME
+    TLogging
+)
+
 project(TLogging VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
@@ -24,6 +28,11 @@ endmacro()
 print_all_variables()
 
 #
+# Configure operating systems...
+#
+add_compile_definitions(WINDOWS=1)
+
+#
 # Configure boost library...
 #
 if (NOT $ENV{BOOST_ROOT})
@@ -31,8 +40,6 @@ if (NOT $ENV{BOOST_ROOT})
 else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
-
-add_compile_definitions(WINDOWS=1)
 
 
 set(TLOGGING_INCLUDES_FILES
@@ -321,6 +328,10 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
+target_link_libraries(Base
+    PRIVATE 
+)
+
 set(TABULAR_DATA_INCLUDES_FILES
     ../../../TabularData/core/Event.h
     ../../../TabularData/core/EventLog.h
@@ -392,8 +403,11 @@ set(TABULAR_DATA_SOURCES
 )
 
 add_library(TabularData STATIC
-    ${BASE_SOURCES}
     ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(TabularData
+    PRIVATE Base
 )
 
 set(DATA_CONTAINER_MANAGEMENT_INCLUDES_FILES
@@ -447,10 +461,11 @@ set(DATA_CONTAINER_MANAGEMENT_SOURCES
 )
 
 add_library(DataContainerManagement STATIC
-    ${BASE_SOURCES}
     ${DATA_CONTAINER_MANAGEMENT_SOURCES}
-    ${LOGGING_SOURCES}
-    ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(DataContainerManagement
+    PRIVATE Base TabularData Logging
 )
 
 set(DATA_STRUCTURES_INCLUDES_FILES
@@ -601,8 +616,11 @@ set(DATA_STRUCTURES_SOURCES
 )
 
 add_library(DataStructures STATIC
-    ${BASE_SOURCES}
     ${DATA_STRUCTURES_SOURCES}
+)
+
+target_link_libraries(DataStructures
+    PRIVATE Base
 )
 
 set(LOGGING_INCLUDES_FILES
@@ -671,9 +689,11 @@ set(LOGGING_SOURCES
 )
 
 add_library(Logging STATIC
-    ${BASE_SOURCES}
     ${LOGGING_SOURCES}
-    ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(Logging
+    PRIVATE Base TabularData
 )
 
 include_directories(TLogging
@@ -686,14 +706,21 @@ include_directories(TLogging
 )
 
 add_library(TLogging STATIC
-    ${BASE_SOURCES}
-    ${DATA_CONTAINER_MANAGEMENT_SOURCES}
-    ${DATA_STRUCTURES_SOURCES}
-    ${LOGGING_SOURCES}
-    ${TABULAR_DATA_SOURCES}
     ${TLOGGING_SOURCES}
+)
+
+target_link_libraries(TLogging
+    PRIVATE Base TabularData DataContainerManagement DataStructures Logging
 )
 
 include_directories(
     ${BOOST_PATH}
 )
+
+#
+# Configure file system dependencies...
+#
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE
+    stdc++fs)
+

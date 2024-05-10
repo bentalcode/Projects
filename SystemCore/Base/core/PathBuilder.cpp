@@ -7,7 +7,7 @@ using namespace base;
 /**
  * Creates a new path builder.
  */
-IPathBuilderSharedPtr Make()
+IPathBuilderSharedPtr PathBuilder::Make()
 {
     return std::make_shared<PathBuilder>();
 }

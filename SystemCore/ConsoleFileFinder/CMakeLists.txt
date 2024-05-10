@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.6)
 
+set(PROJECT_NAME
+    ConsoleFileFinder
+)
+
 project(ConsoleFileFinder VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
@@ -31,6 +35,11 @@ endmacro()
 print_all_variables()
 
 #
+# Configure operating systems...
+#
+add_compile_definitions(WINDOWS=1)
+
+#
 # Configure boost library...
 #
 if (NOT $ENV{BOOST_ROOT})
@@ -38,8 +47,6 @@ if (NOT $ENV{BOOST_ROOT})
 else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
-
-add_compile_definitions(WINDOWS=1)
 
 
 set(CONSOLE_FILE_FINDER_INCLUDES_FILES
@@ -292,6 +299,10 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
+target_link_libraries(Base
+    PRIVATE 
+)
+
 set(DATA_STRUCTURES_INCLUDES_FILES
     ../DataStructures/binarytree/BinaryTreeException.h
     ../DataStructures/binarytree/core/BinaryTree.h
@@ -440,8 +451,11 @@ set(DATA_STRUCTURES_SOURCES
 )
 
 add_library(DataStructures STATIC
-    ${BASE_SOURCES}
     ${DATA_STRUCTURES_SOURCES}
+)
+
+target_link_libraries(DataStructures
+    PRIVATE Base
 )
 
 set(COMMAND_INCLUDES_FILES
@@ -518,8 +532,11 @@ set(COMMAND_SOURCES
 )
 
 add_library(Command STATIC
-    ${BASE_SOURCES}
     ${COMMAND_SOURCES}
+)
+
+target_link_libraries(Command
+    PRIVATE Base
 )
 
 set(TABULAR_DATA_INCLUDES_FILES
@@ -593,8 +610,11 @@ set(TABULAR_DATA_SOURCES
 )
 
 add_library(TabularData STATIC
-    ${BASE_SOURCES}
     ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(TabularData
+    PRIVATE Base
 )
 
 set(CLIENT_SERVER_INCLUDES_FILES
@@ -626,8 +646,11 @@ set(CLIENT_SERVER_SOURCES
 )
 
 add_library(ClientServer STATIC
-    ${BASE_SOURCES}
     ${CLIENT_SERVER_SOURCES}
+)
+
+target_link_libraries(ClientServer
+    PRIVATE Base
 )
 
 set(CONSOLE_WINDOWS_INCLUDES_FILES
@@ -662,9 +685,11 @@ set(CONSOLE_WINDOWS_SOURCES
 )
 
 add_library(ConsoleWindows STATIC
-    ${BASE_SOURCES}
-    ${CLIENT_SERVER_SOURCES}
     ${CONSOLE_WINDOWS_SOURCES}
+)
+
+target_link_libraries(ConsoleWindows
+    PRIVATE Base ClientServer
 )
 
 include_directories(ConsoleFileFinder
@@ -678,13 +703,7 @@ include_directories(ConsoleFileFinder
 )
 
 add_executable(ConsoleFileFinder
-    ${BASE_SOURCES}
-    ${CLIENT_SERVER_SOURCES}
-    ${COMMAND_SOURCES}
     ${CONSOLE_FILE_FINDER_SOURCES}
-    ${CONSOLE_WINDOWS_SOURCES}
-    ${DATA_STRUCTURES_SOURCES}
-    ${TABULAR_DATA_SOURCES}
 )
 
 target_link_libraries(ConsoleFileFinder
@@ -694,3 +713,11 @@ target_link_libraries(ConsoleFileFinder
 include_directories(
     ${BOOST_PATH}
 )
+
+#
+# Configure file system dependencies...
+#
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE
+    stdc++fs)
+

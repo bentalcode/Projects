@@ -18,7 +18,8 @@
         "GuiConfiguration",
         "WXWidgets",
         "TLogging",
-        "Model",
+        "VideoRenderingVisualizerModel",
+        "VideoRenderingVisualizer",
         "TestBase",
         "UnitTesting",
         "BaseTest",
@@ -193,9 +194,10 @@
             ]
         },
         {
-            "name": "Model",
+            "name": "VideoRenderingVisualizerModel",
             "type": "library",
             "properties": {
+                "directoryName": "Model",
                 "path": "WXWidgetsGui\\VideoRenderingVisualizer"
             },
             "dependentModules": [
@@ -205,6 +207,23 @@
                 "DataStructures",
                 "Logging",
                 "TLogging"
+            ]
+        },
+        {
+            "name": "VideoRenderingVisualizer",
+            "type": "library",
+            "properties": {
+                "directoryName": "Gui",
+                "path": "WXWidgetsGui\\VideoRenderingVisualizer"
+            },
+            "dependentModules": [
+                "Base",
+                "TabularData",
+                "DataContainerManagement",
+                "DataStructures",
+                "Logging",
+                "TLogging",
+                "VideoRenderingVisualizerModel"
             ]
         },
         {

@@ -68,4 +68,3 @@ void RemoveViewRecord::Process(ITLogProcessor& processor) const
 {
     processor.Process(*this);
 }
-

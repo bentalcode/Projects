@@ -4,7 +4,6 @@
 #include "InvalidArgumentException.h"
 #include <stack>
 #include <experimental/filesystem>
-#include <shlwapi.h>
 
 using namespace base;
 using namespace base::environment::windows;
@@ -169,5 +168,6 @@ bool WindowsPath::IsAbsolute(const std::wstring& path) const
  */
 bool WindowsPath::IsRelative(const std::wstring& path) const
 {
-    return PathIsRelativeW(path.c_str());
+    std::experimental::filesystem::path systemPath(path);
+    return systemPath.is_relative();
 }

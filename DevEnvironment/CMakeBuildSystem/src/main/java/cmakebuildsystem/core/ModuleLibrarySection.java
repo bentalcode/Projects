@@ -3,12 +3,15 @@ package cmakebuildsystem.core;
 import base.core.Conditions;
 import cmakebuildsystem.interfaces.*;
 
+import java.util.List;
+
 /**
  * The ModuleLibrarySection class implements a section of a module library.
  */
 public final class ModuleLibrarySection implements ICMakeBuildElement {
     private final ICMakeModule rootModule;
     private final ICMakeModule module;
+    private final ICMakeModuleManifest moduleManifest;
     private final ICMakeListsManifest cmakeListsManifest;
     private final IIgnoreRules ignoreRules;
 
@@ -18,12 +21,17 @@ public final class ModuleLibrarySection implements ICMakeBuildElement {
     public ModuleLibrarySection(
         ICMakeModule rootModule,
         ICMakeModule module,
+        ICMakeModuleManifest moduleManifest,
         ICMakeListsManifest cmakeListsManifest,
         IIgnoreRules ignoreRules) {
 
         Conditions.validateNotNull(
             module,
             "The CMake module.");
+
+        Conditions.validateNotNull(
+            module,
+            "The CMake module manifest.");
 
         Conditions.validateNotNull(
             cmakeListsManifest,
@@ -35,6 +43,7 @@ public final class ModuleLibrarySection implements ICMakeBuildElement {
 
         this.rootModule = rootModule;
         this.module = module;
+        this.moduleManifest = moduleManifest;
         this.cmakeListsManifest = cmakeListsManifest;
         this.ignoreRules = ignoreRules;
     }
@@ -69,10 +78,14 @@ public final class ModuleLibrarySection implements ICMakeBuildElement {
         elements.add(module);
 
         //
-        // Add the add library command...
+        // Add section for module type command...
         //
-        ICMakeBuildElement addLibraryCommand = new AddLibraryCommand(this.module.getName());
-        elements.add(addLibraryCommand);
+        List<ICMakeBuildCommand> moduleTypeCommands =
+            this.moduleManifest.getType().createModuleCommands(this.module.getName());
+
+        for (ICMakeBuildCommand command : moduleTypeCommands) {
+            elements.add(command);
+        }
 
         elements.compile(writer, contextData);
     }

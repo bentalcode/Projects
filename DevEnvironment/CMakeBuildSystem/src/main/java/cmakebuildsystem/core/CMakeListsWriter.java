@@ -94,6 +94,12 @@ public final class CMakeListsWriter implements IWriter {
         elements.add(cmakeVersion);
 
         //
+        // Add the project settings section...
+        //
+        ICMakeBuildElement projectProperties = new ProjectProperties(this.module.getName());
+        elements.add(projectProperties);
+
+        //
         // Add the cmake version section...
         //
         ICMakeBuildElement projectVersion = new ProjectVersion(
@@ -133,9 +139,14 @@ public final class CMakeListsWriter implements IWriter {
         ICMakeModuleContextData moduleContextData = this.contextData.getModuleContextData(this.module.getName());
 
         for (ICMakeModule dependentModule : moduleContextData.getDependencies()) {
+            String dependentModuleName = dependentModule.getName();
+            ICMakeModuleContextData dependentModuleContextData = this.contextData.getModuleContextData(dependentModuleName);
+            ICMakeModuleManifest dependentModuleManifest = dependentModuleContextData.getManifest();
+
             ICMakeBuildElement dependentModuleLibrary = new ModuleLibrarySection(
                 this.module,
                 dependentModule,
+                dependentModuleManifest,
                 cmakeListsManifest,
                 this.ignoreRules);
 
@@ -149,12 +160,12 @@ public final class CMakeListsWriter implements IWriter {
         elements.add(includesDirectoriesCommand);
 
         //
-        // Add the section for the module type command...
+        // Add section for module commands...
         //
-        List<ICMakeBuildCommand> moduleTypeCommands =
-            this.moduleManifest.getType().createCommands(this.module.getName());
+        List<ICMakeBuildCommand> moduleCommands =
+            this.moduleManifest.getType().createModuleCommands(this.module.getName());
 
-        for (ICMakeBuildCommand command : moduleTypeCommands) {
+        for (ICMakeBuildCommand command : moduleCommands) {
             elements.add(command);
         }
 

@@ -17,3 +17,8 @@ if (NOT $ENV{BOOST_ROOT})
 else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
+
+#
+# Configure file system...
+#
+target_link_libraries(${PROJECT_NAME} PRIVATE stdc++fs)

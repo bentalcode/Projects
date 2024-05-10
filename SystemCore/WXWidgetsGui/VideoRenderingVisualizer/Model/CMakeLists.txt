@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(Model VERSION 1.0)
+set(PROJECT_NAME
+    VideoRenderingVisualizerModel
+)
+
+project(VideoRenderingVisualizerModel VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD
     14
@@ -24,6 +28,11 @@ endmacro()
 print_all_variables()
 
 #
+# Configure operating systems...
+#
+add_compile_definitions(WINDOWS=1)
+
+#
 # Configure boost library...
 #
 if (NOT $ENV{BOOST_ROOT})
@@ -32,10 +41,8 @@ else()
     set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
 endif()
 
-add_compile_definitions(WINDOWS=1)
 
-
-set(MODEL_INCLUDES_FILES
+set(VIDEO_RENDERING_VISUALIZER_MODEL_INCLUDES_FILES
     ./core/CallInformation.h
     ./core/CallInformationCollection.h
     ./core/CompositorInformation.h
@@ -66,7 +73,7 @@ set(MODEL_INCLUDES_FILES
     ./interfaces/RenderingStatus.h
 )
 
-set(MODEL_SOURCES_FILES
+set(VIDEO_RENDERING_VISUALIZER_MODEL_SOURCES_FILES
     ./core/CallInformation.cpp
     ./core/CallInformationCollection.cpp
     ./core/CompositorInformation.cpp
@@ -82,14 +89,14 @@ set(MODEL_SOURCES_FILES
     ./core/TLogModelNotificationHandler.cpp
 )
 
-set(MODEL_INCLUDES
+set(VIDEO_RENDERING_VISUALIZER_MODEL_INCLUDES
     ./core
     ./interfaces
 )
 
-set(MODEL_SOURCES
-    ${MODEL_INCLUDES_FILES}
-    ${MODEL_SOURCES_FILES}
+set(VIDEO_RENDERING_VISUALIZER_MODEL_SOURCES
+    ${VIDEO_RENDERING_VISUALIZER_MODEL_INCLUDES_FILES}
+    ${VIDEO_RENDERING_VISUALIZER_MODEL_SOURCES_FILES}
 )
 
 set(BASE_INCLUDES_FILES
@@ -299,6 +306,10 @@ add_library(Base STATIC
     ${BASE_SOURCES}
 )
 
+target_link_libraries(Base
+    PRIVATE 
+)
+
 set(TABULAR_DATA_INCLUDES_FILES
     ../../../TabularData/core/Event.h
     ../../../TabularData/core/EventLog.h
@@ -370,8 +381,11 @@ set(TABULAR_DATA_SOURCES
 )
 
 add_library(TabularData STATIC
-    ${BASE_SOURCES}
     ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(TabularData
+    PRIVATE Base
 )
 
 set(DATA_CONTAINER_MANAGEMENT_INCLUDES_FILES
@@ -425,10 +439,11 @@ set(DATA_CONTAINER_MANAGEMENT_SOURCES
 )
 
 add_library(DataContainerManagement STATIC
-    ${BASE_SOURCES}
     ${DATA_CONTAINER_MANAGEMENT_SOURCES}
-    ${LOGGING_SOURCES}
-    ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(DataContainerManagement
+    PRIVATE Base TabularData Logging
 )
 
 set(DATA_STRUCTURES_INCLUDES_FILES
@@ -579,8 +594,11 @@ set(DATA_STRUCTURES_SOURCES
 )
 
 add_library(DataStructures STATIC
-    ${BASE_SOURCES}
     ${DATA_STRUCTURES_SOURCES}
+)
+
+target_link_libraries(DataStructures
+    PRIVATE Base
 )
 
 set(LOGGING_INCLUDES_FILES
@@ -649,9 +667,11 @@ set(LOGGING_SOURCES
 )
 
 add_library(Logging STATIC
-    ${BASE_SOURCES}
     ${LOGGING_SOURCES}
-    ${TABULAR_DATA_SOURCES}
+)
+
+target_link_libraries(Logging
+    PRIVATE Base TabularData
 )
 
 set(TLOGGING_INCLUDES_FILES
@@ -734,34 +754,39 @@ set(TLOGGING_SOURCES
 )
 
 add_library(TLogging STATIC
-    ${BASE_SOURCES}
-    ${DATA_CONTAINER_MANAGEMENT_SOURCES}
-    ${DATA_STRUCTURES_SOURCES}
-    ${LOGGING_SOURCES}
-    ${TABULAR_DATA_SOURCES}
     ${TLOGGING_SOURCES}
 )
 
-include_directories(Model
+target_link_libraries(TLogging
+    PRIVATE Base TabularData DataContainerManagement DataStructures Logging
+)
+
+include_directories(VideoRenderingVisualizerModel
     ${BASE_INCLUDES}
     ${DATA_CONTAINER_MANAGEMENT_INCLUDES}
     ${DATA_STRUCTURES_INCLUDES}
     ${LOGGING_INCLUDES}
-    ${MODEL_INCLUDES}
     ${TABULAR_DATA_INCLUDES}
     ${TLOGGING_INCLUDES}
+    ${VIDEO_RENDERING_VISUALIZER_MODEL_INCLUDES}
 )
 
-add_library(Model STATIC
-    ${BASE_SOURCES}
-    ${DATA_CONTAINER_MANAGEMENT_SOURCES}
-    ${DATA_STRUCTURES_SOURCES}
-    ${LOGGING_SOURCES}
-    ${MODEL_SOURCES}
-    ${TABULAR_DATA_SOURCES}
-    ${TLOGGING_SOURCES}
+add_library(VideoRenderingVisualizerModel STATIC
+    ${VIDEO_RENDERING_VISUALIZER_MODEL_SOURCES}
+)
+
+target_link_libraries(VideoRenderingVisualizerModel
+    PRIVATE Base TabularData DataContainerManagement DataStructures Logging TLogging
 )
 
 include_directories(
     ${BOOST_PATH}
 )
+
+#
+# Configure file system dependencies...
+#
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE
+    stdc++fs)
+

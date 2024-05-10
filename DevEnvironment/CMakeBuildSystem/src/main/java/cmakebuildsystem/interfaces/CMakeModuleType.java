@@ -23,16 +23,18 @@ public enum CMakeModuleType {
         }
 
         /**
-         * Gets the corresponding cmake commands.
+         * Gets the corresponding cmake commands for a module.
          */
         @Override
-        public List<ICMakeBuildCommand> createCommands(String moduleName) {
+        public List<ICMakeBuildCommand> createModuleCommands(String moduleName) {
             return ArrayLists.make(
-                new AddLibraryCommand(moduleName));
+                new AddLibraryCommand(moduleName),
+                new TargetLinkLibrariesCommand(moduleName));
         }
     },
 
     Executable("executable") {
+
         /**
          * Gets the corresponding build properties.
          */
@@ -45,11 +47,12 @@ public enum CMakeModuleType {
          * Gets the corresponding cmake commands.
          */
         @Override
-        public List<ICMakeBuildCommand> createCommands(String moduleName) {
+        public List<ICMakeBuildCommand> createModuleCommands(String moduleName) {
             return ArrayLists.make(
                 new AddExecutableCommand(moduleName),
                 new TargetLinkLibrariesCommand(moduleName));
         }
+
     };
 
     private final String name;
@@ -67,9 +70,9 @@ public enum CMakeModuleType {
     public abstract ICMakeBuildElement createBuildProperties(Path path);
 
     /**
-     * Gets the corresponding cmake commands.
+     * Gets the corresponding cmake commands for a module.
      */
-    public abstract List<ICMakeBuildCommand> createCommands(String moduleName);
+    public abstract List<ICMakeBuildCommand> createModuleCommands(String moduleName);
 
     /**
      * Gets the string representation of a cmake module type.
