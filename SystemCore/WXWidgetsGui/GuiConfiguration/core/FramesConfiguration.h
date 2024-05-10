@@ -47,6 +47,6 @@ namespace GuiConfiguration {
         IGuiComponentsConfigurationSharedPtr<IFrameConfiguration> m_impl;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // FRAMES_CONFIGURATION_e1e80e33_bc62_49e4_9e85_a62c1422f6c5

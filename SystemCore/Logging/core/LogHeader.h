@@ -88,6 +88,6 @@ namespace logging {
         static const std::wstring LOGGING_SOURCE_FILE_LINE_HEADER_NAME;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // LOG_HEADER_H_4aa89f4e_1fd5_4f66_a38b_fb92dfa8e8ee

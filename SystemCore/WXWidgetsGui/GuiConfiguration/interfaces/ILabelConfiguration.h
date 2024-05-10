@@ -25,6 +25,6 @@ namespace GuiConfiguration {
     //
     using ILabelConfigurationSharedPtr = std::shared_ptr<ILabelConfiguration>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_LABEL_CONFIGURATION_29ae35f6_8864_4aad_b320_3036a1cfb0a3

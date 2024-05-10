@@ -39,6 +39,6 @@ namespace WXWidgets {
      */
     using ISplitterWindowConfigurationSharedPtr = std::shared_ptr<ISplitterWindowConfiguration>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_SPLITTER_WINDOW_CONFIGURATION_e112b05c_4456_4a5b_9565_cd8b8a14ee37

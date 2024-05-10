@@ -123,6 +123,6 @@ namespace logging {
         size_t m_sourceLine;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // LOG_RECORD_H_864770c5_59ec_415a_836d_5f467415af95

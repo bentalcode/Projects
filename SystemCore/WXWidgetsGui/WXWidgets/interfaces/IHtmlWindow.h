@@ -37,6 +37,6 @@ namespace WXWidgets {
     //
     using IHtmlWindowPtr = WXObjectPtr<IHtmlWindow>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_HTML_WINDOW_3b56e748_86b0_4967_9579_fe1ebdb4cd65

@@ -29,7 +29,7 @@ private:
     ListBox& m_listBox;
 };
 
-}  // namespace ListBoxFunctors
+} // namespace ListBoxFunctors
 
 /**
  * Creates a list box.

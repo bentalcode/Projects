@@ -85,6 +85,6 @@ namespace WXWidgets {
         std::wstring m_value;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // TEXT_CONTROL_db212461_cb0a_45b8_9eb8_15e72b235133

@@ -40,7 +40,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace AbstractGuiComponentFunctors
+} // namespace AbstractGuiComponentFunctors
 
 /**
  * The AbstractGuiComponent constructor.

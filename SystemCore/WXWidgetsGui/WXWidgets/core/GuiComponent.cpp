@@ -54,7 +54,7 @@ private:
     GuiComponent& m_component;
 };
 
-}  // namespace GuiComponentFunctors
+} // namespace GuiComponentFunctors
 
 /**
  * The GuiComponent constructor.

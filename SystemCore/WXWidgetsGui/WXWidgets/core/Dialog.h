@@ -34,6 +34,6 @@ namespace WXWidgets {
         virtual void Initialize(IGuiControllerSharedPtr guiController) override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // DIALOG_1fa7a45a_c709_48f7_842e_d656d3fc19da

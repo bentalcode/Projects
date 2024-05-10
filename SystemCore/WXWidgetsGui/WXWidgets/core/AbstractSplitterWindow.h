@@ -147,6 +147,6 @@ namespace WXWidgets {
         IOnUpdationFunctorSharedPtr m_onUpdationFunctor;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_SPLITTER_WINDOW_6ae0fc8c_9959_447f_88cb_299353629b77

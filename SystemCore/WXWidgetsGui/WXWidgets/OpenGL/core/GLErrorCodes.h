@@ -36,6 +36,6 @@ namespace WXWidgets {
         static void InitializeCodeToMessageMap(CodeToMessageMap& map);
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // GL_ERROR_CODES_fc2b5ee9_ff3d_4c12_8cbb_8121df9f687e

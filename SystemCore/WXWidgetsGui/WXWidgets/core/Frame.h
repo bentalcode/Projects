@@ -46,6 +46,6 @@ namespace WXWidgets {
         virtual void Initialize(IGuiControllerSharedPtr guiController) override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // FRAME_a0c6df4e_2819_426f_b1d2_6720e99b21cb

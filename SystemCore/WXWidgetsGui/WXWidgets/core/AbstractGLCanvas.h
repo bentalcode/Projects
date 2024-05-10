@@ -87,6 +87,6 @@ namespace WXWidgets {
         IWXLogPtr m_wxLogger;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_GL_CANVAS_88340919_7ae6_41f0_a14d_954948363c2e

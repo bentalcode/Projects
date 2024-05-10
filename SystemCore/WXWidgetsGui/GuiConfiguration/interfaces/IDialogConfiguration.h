@@ -25,6 +25,6 @@ namespace GuiConfiguration {
     //
     using IDialogConfigurationSharedPtr = std::shared_ptr<IDialogConfiguration>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_DIALOG_CONFIGURATION_3e02d374_8240_47be_a2c3_03751d60fe0f

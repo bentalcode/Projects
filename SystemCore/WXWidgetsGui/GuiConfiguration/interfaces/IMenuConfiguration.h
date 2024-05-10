@@ -25,6 +25,6 @@ namespace GuiConfiguration {
     //
     using IMenuConfigurationSharedPtr = std::shared_ptr<IMenuConfiguration>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_MENU_CONFIGURATION_c0b7b2f9_3b06_4449_bd3c_00da4617c5cd

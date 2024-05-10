@@ -35,6 +35,6 @@ namespace GuiConfiguration {
         virtual ~GuiConfigurationException() = default;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // GUI_CONFIGURATION_EXCEPTION_ca758bf2_081d_41c7_8115_a2cb0ebb4ad7

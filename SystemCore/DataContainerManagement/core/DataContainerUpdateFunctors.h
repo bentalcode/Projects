@@ -275,6 +275,6 @@ namespace DataContainerManagement {
         return functorIterator->second;
     }
 
-}  // namespace DataContainerManagement
+} // namespace DataContainerManagement
 
 #endif // DATA_CONTAINER_UPDATE_FUNCTORS_H_fc67de40_f13d_403a_beb6_8f95ff2e063c

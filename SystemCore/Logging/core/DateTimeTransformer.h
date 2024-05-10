@@ -36,6 +36,6 @@ namespace logging {
         std::wstring m_format;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // DATE_TIME_TRANSFORMER_H_fd93eec9_0ad4_4bba_90af_f8cbb7844091

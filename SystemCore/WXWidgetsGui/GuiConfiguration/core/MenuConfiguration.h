@@ -34,6 +34,6 @@ namespace GuiConfiguration {
         std::wstring m_name;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // MENU_CONFIGURATION_60e28c2d_a819_4b96_955a_7cc74fc18628

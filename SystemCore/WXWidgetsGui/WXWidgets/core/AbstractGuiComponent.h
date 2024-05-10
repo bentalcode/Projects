@@ -183,6 +183,6 @@ namespace WXWidgets {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_GUI_COMPONENT_f3e77033_de7b_4e28_8b8a_5431f882a2e8

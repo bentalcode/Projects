@@ -81,6 +81,6 @@ namespace base {
      */
     using DateTimeIntervalSharedPtr = std::shared_ptr<DateTimeInterval>;
 
-}  // namespace base
+} // namespace base
 
 #endif // DATE_TIME_INTERVAL_H_68a16f40_57d1_11ee_8c99_0242ac120002

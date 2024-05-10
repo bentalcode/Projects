@@ -25,6 +25,6 @@ namespace WXWidgets {
     //
     using IDataItemsSharedPtr = std::shared_ptr<IDataItems>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_DATA_ITEMS_a1fbe1c8_4b91_4ee3_acb1_c9e56c711799

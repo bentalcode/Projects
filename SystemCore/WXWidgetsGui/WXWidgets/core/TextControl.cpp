@@ -33,7 +33,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace TextControlFunctors
+} // namespace TextControlFunctors
 
 /**
  * Creates a text control.

@@ -106,6 +106,6 @@ namespace GuiConfiguration {
     //
     using IGuiConfigurationManagerSharedPtr = std::shared_ptr<IGuiConfigurationManager>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_GUI_CONFIGURATION_MANAGER_f52c51c7_5c9b_4be7_adef_e0796cfc22c3

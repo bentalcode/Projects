@@ -29,6 +29,6 @@ namespace tlogging {
      */
     using IRemoveViewRecordSharedPtr = std::shared_ptr<IRemoveViewRecord>;
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_REMOVE_VIEW_RECORD_H_81673332_33c7_42fe_9199_5dfcb2d02fd5

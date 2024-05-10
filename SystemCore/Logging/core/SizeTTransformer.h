@@ -31,6 +31,6 @@ namespace logging {
         virtual size_t Transform(const std::wstring& value) const override;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // SIZE_T_TRANSFORMER_H_7b513eb9_2c5a_4ade_99ff_e9d29f70bb7e

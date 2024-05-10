@@ -1,5 +1,5 @@
-#ifndef ADD_VIEW_RECORD_H_288a3705_1421_4808_bc60_62f2831e9622
-#define ADD_VIEW_RECORD_H_288a3705_1421_4808_bc60_62f2831e9622
+#ifndef ADD_VIEW_RECORD_H_da74181f_8ba9_41cb_bb38_5d18b68e6fd9
+#define ADD_VIEW_RECORD_H_da74181f_8ba9_41cb_bb38_5d18b68e6fd9
 
 #include "IAddViewRecord.h"
 #include "IPosition.h"
@@ -76,4 +76,4 @@ namespace tlogging {
 
 } // namespace tlogging
 
-#endif // ADD_VIEW_RECORD_H_288a3705_1421_4808_bc60_62f2831e9622
+#endif // ADD_VIEW_RECORD_H_da74181f_8ba9_41cb_bb38_5d18b68e6fd9

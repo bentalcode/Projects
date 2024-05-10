@@ -47,6 +47,6 @@ namespace GuiConfiguration {
         IGuiComponentsConfigurationSharedPtr<IDialogConfiguration> m_impl;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // DIALOGS_CONFIGURATION_a2351deb_505f_4df6_a455_2b7276f34167

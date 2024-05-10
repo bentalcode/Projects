@@ -65,6 +65,6 @@ namespace WXWidgets {
         ISplitterSubWindowConfigurationSharedPtr m_secondWindowConfiguration;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // SPLITTER_WINDOW_CONFIGURATION_4d41ce89_ff7f_4f5a_a5f0_5cb88c1426ff

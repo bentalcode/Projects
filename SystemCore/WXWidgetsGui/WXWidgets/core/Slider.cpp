@@ -29,7 +29,7 @@ private:
     Slider& m_slider;
 };
 
-}  // namespace SliderFunctors
+} // namespace SliderFunctors
 
 /**
  * Creates a horizontal slider.

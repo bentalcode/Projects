@@ -28,6 +28,6 @@ namespace WXWidgets {
         virtual ~WindowUpdationEvent();
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // WINDOW_UPDATION_EVENT_97f9561e_8b60_4ba7_95a8_4bb2461c913a

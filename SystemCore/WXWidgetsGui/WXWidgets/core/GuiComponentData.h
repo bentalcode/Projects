@@ -34,6 +34,6 @@ namespace WXWidgets {
         bool m_showMode;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // GUI_COMPONENT_DATA_a1db1430_44f8_47ad_b117_3e68961ad904

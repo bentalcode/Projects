@@ -32,6 +32,6 @@ namespace base {
      */
     using IUuidSharedPtr = std::shared_ptr<IUuid>;
 
-}  // namespace base
+} // namespace base
 
 #endif // I_UUID_H_8fb4dab4_8b35_4dc8_8797_bb3ec6162c84

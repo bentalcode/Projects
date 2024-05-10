@@ -60,6 +60,6 @@ namespace GuiConfiguration {
         wxItemKind m_kind;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // MENU_ITEM_CONFIGURATION_1442bd82_9e91_42a7_b322_ee065b0cd6af

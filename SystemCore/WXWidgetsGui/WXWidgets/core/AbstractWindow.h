@@ -197,6 +197,6 @@ namespace WXWidgets {
         bool m_showMode;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_WINDOW_dfff1e58_5ce8_4e4d_99a8_a89a66b83b3b

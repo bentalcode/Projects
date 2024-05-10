@@ -97,6 +97,6 @@ namespace WXWidgets {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // GUI_TRANSACTION_7395be10_8196_4ba0_8613_5f7aa5d94934

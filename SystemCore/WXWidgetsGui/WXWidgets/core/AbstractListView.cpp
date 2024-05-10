@@ -61,7 +61,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace AbstractListViewFunctors
+} // namespace AbstractListViewFunctors
 
 /**
  * The AbstractListView constructor.

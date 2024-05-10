@@ -35,7 +35,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace HtmlWindowFunctors
+} // namespace HtmlWindowFunctors
 
 /**
  * Creates a HTML window.

@@ -55,6 +55,6 @@ namespace WXWidgets {
     //
     using IFramePtr = WXObjectPtr<IFrame>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_FRAME_e927ad3c_7035_44f0_927b_4d668cd10c63

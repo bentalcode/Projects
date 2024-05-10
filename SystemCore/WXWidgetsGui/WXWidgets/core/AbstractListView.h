@@ -259,6 +259,6 @@ namespace WXWidgets {
         std::vector<std::vector<std::wstring>> m_values;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_LIST_VIEW_104cadef_a5f4_46bb_8877_9bad766c606d

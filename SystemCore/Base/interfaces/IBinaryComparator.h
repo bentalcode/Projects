@@ -27,6 +27,6 @@ namespace base {
     template <typename T>
     using IBinaryComparatorSharedPtr = std::shared_ptr<IBinaryComparator<T>>;
 
-}  // namespace base
+} // namespace base
 
 #endif // I_BINARY_COMPARATOR_H_ddd2ac78_57ce_11ee_8c99_0242ac120002

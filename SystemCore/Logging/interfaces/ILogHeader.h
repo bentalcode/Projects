@@ -69,7 +69,7 @@ namespace logging {
      */
     using ILogHeaderSharedPtr = std::shared_ptr<ILogHeader>;
 
-}  // namespace logging
+} // namespace logging
 
 #endif // I_LOG_HEADER_H_299a9673_d664_46be_ace4_2e90a2668837
 

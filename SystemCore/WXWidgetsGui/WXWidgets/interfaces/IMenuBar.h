@@ -39,6 +39,6 @@ namespace WXWidgets {
     //
     using IMenuBarPtr = WXObjectPtr<IMenuBar>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_MENU_BAR_0ed937ff_fcc5_4b57_bd1f_8c55d41b71dc

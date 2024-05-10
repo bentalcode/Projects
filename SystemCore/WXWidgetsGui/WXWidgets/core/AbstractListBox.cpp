@@ -37,7 +37,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace AbstractListBoxFunctors
+} // namespace AbstractListBoxFunctors
 
 /**
  * The AbstractListBox constructor.

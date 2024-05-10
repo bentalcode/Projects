@@ -61,6 +61,6 @@ namespace WXWidgets {
         wxColour m_color;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // COLOR_d377be7e_67c0_4a7d_8e71_cefe0ef2aca0

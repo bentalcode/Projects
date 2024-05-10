@@ -78,7 +78,7 @@ public:
     }
 };
 
-}  // namespace EventListViewFunctors
+} // namespace EventListViewFunctors
 
 /**
  * Creates an Event List View.

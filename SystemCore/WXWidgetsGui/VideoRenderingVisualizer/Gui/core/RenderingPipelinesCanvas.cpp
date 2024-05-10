@@ -66,7 +66,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace RenderingPipelinesCanvasFunctors
+} // namespace RenderingPipelinesCanvasFunctors
 
 /**
  * Creates a Rendering Pipelines Canvas.

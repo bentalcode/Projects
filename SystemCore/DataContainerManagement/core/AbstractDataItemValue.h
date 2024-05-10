@@ -70,6 +70,6 @@ namespace DataContainerManagement {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-}  // namespace DataContainerManagement
+} // namespace DataContainerManagement
 
 #endif // ABSTRACT_DATA_ITEM_VALUE_H_99a451ed_2965_4725_9a43_891f8655dabc

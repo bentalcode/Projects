@@ -30,6 +30,6 @@ namespace GuiConfiguration {
     //
     using IFrameConfigurationSharedPtr = std::shared_ptr<IFrameConfiguration>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_FRAME_CONFIGURATION_cd845899_f5cf_4ed8_b8fb_ad012c344a37

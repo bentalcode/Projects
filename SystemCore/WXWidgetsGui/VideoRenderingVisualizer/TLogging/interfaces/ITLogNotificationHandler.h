@@ -85,6 +85,6 @@ namespace tlogging {
      */
     using ITLogNotificationHandlerSharedPtr = std::shared_ptr<ITLogNotificationHandler>;
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_TLOG_NOTIFICATION_HANDLER_H_49628616_850f_42f8_853c_375020224f48

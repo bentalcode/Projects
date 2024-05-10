@@ -31,6 +31,6 @@ namespace WXWidgets {
     //
     using ICanvasPtr = WXObjectPtr<ICanvas>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_CANVAS_036076e0_4a0d_4f02_97a2_de654e1b9d33

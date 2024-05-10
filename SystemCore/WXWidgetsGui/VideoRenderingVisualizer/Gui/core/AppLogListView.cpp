@@ -2,9 +2,6 @@
 #include "GuiManager.h"
 #include "GuiPaths.h"
 #include "Font.h"
-#include "Log.h"
-#include "LogHeader.h"
-#include "TabularRecord.h"
 
 using namespace VideoRenderingVisualizer;
 using namespace VideoRenderingVisualizer::Gui;
@@ -14,7 +11,7 @@ using namespace VideoRenderingVisualizer::Gui;
  */
 WXWidgets::IListViewPtr AppLogListView::Make(
     wxWindow& parent, 
-    const std::filesystem::path& logPath,
+    const std::wstring& logPath,
     IGuiManager& guiManager)
 {
     return WXWidgets::IListViewPtr::Make(
@@ -29,7 +26,7 @@ WXWidgets::IListViewPtr AppLogListView::Make(
  */
 AppLogListView::AppLogListView(
     wxWindow& parent, 
-    const std::filesystem::path& logPath,
+    const std::wstring& logPath,
     IGuiManager& guiManager) : 
         ListView(
             parent, 
@@ -106,8 +103,8 @@ void AppLogListView::GetListViewHeaders(std::vector<std::wstring>& headers) cons
 {
     assert(headers.empty());
     
-    Logging::ILogHeaderSharedPtr header = Logging::LogHeader::Make();
-    TabularData::ITabularHeaderSharedPtr tabularHeader = header->ToHeader();
+    logging::ILogHeaderSharedPtr header = logging::LogHeader::Make();
+    tabular_data::ITabularHeaderSharedPtr tabularHeader = header->ToHeader();
     tabularHeader->GetHeaders(headers);
 }
 
@@ -118,18 +115,18 @@ void AppLogListView::GetListViewValues(std::vector<std::vector<std::wstring>>& v
 {
     assert(values.empty());
     
-    Logging::ILogSharedPtr log = Logging::Log::Make(m_logPath);
+    logging::ILogSharedPtr log = logging::Log::Make(m_logPath);
 
-    Utilities::IIteratorSharedPtr<Logging::ILogRecordSharedPtr> recordIterator = log->GetIterator();
+    base::IIteratorSharedPtr<logging::ILogRecordSharedPtr> recordIterator = log->GetIterator();
 
     while (recordIterator->HasNext()) {
-        Logging::ILogRecordSharedPtr record = recordIterator->Next();
+        logging::ILogRecordSharedPtr record = recordIterator->Next();
 
         if (record == nullptr) {
             continue;
         }
 
-        TabularData::ITabularRecordSharedPtr tabularRecord = record->ToRecord();
+        tabular_data::ITabularRecordSharedPtr tabularRecord = record->ToRecord();
 
         std::vector<std::wstring> recordValues;
         tabularRecord->GetValues(recordValues);

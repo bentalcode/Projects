@@ -57,6 +57,6 @@ namespace base {
         virtual void RemoveFront() = 0;
     };
 
-}  // namespace base
+} // namespace base
 
 #endif // I_LIST_H_b0e2cac0_57d0_11ee_8c99_0242ac120002

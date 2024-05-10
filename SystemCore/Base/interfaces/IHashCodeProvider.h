@@ -26,6 +26,6 @@ namespace base {
     template <typename T>
     using IHashCodeProviderSharedPtr = std::shared_ptr<IHashCodeProvider<T>>;
 
-}  // namespace base
+} // namespace base
 
 #endif // I_HASH_CODE_PROVIDER_H_1404f95e_57cf_11ee_8c99_0242ac120002

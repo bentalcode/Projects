@@ -75,6 +75,6 @@ namespace WXWidgets {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // DATA_ITEM_CATALOG_bec52654_e62c_4fca_ac78_fe4ee7242c2a

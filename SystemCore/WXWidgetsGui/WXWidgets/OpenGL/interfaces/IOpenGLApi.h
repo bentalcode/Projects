@@ -53,6 +53,6 @@ namespace WXWidgets {
      */
     using IOpenGLApiSharedPtr = std::shared_ptr<IOpenGLApi>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_OPEN_GL_API_a3407b9e_87f1_4424_916e_3c3ec1486100

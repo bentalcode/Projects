@@ -100,6 +100,6 @@ namespace VideoRenderingVisualizer {
 
     } // namespace Model
 
-}  // namespace VideoRenderingVisualizer
+} // namespace VideoRenderingVisualizer
 
 #endif // TLOG_MODEL_NOTIFICATION_HANDLER_cb0e7f1c_d629_4231_907b_c804514ae818

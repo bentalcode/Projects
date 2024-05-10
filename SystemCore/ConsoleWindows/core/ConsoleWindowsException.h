@@ -36,6 +36,6 @@ namespace console_windows {
         virtual ~ConsoleWindowsException() = default;
     };
 
-}  // namespace console_windows
+} // namespace console_windows
 
 #endif // I_CONSOLE_WINDOW_EXCEPTION_H_ca50c1a5_ffbd_4790_a93b_15b95fd6f8cd

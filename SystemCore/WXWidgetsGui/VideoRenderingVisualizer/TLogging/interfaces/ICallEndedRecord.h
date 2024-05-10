@@ -19,6 +19,6 @@ namespace tlogging {
      */
     using ICallEndedRecordSharedPtr = std::shared_ptr<ICallEndedRecord>;
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_CALL_ENDED_RECORD_H_a607b78c_cfc4_48b9_8722_e31597a92da7

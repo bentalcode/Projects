@@ -25,8 +25,8 @@ namespace base {
         using WinHandle = Handle<HANDLE, HandleReleaser>;
         using WinHandleUniquePtr = HandleUniquePtr<HANDLE, HandleReleaser>;
 
-    }  // namespace windows
+    } // namespace windows
 
-}  // namespace base
+} // namespace base
 
 #endif // WINDOWS_HANDLE_H_be4ac0b3_c800_4a0e_a434_1a8b3c366a72

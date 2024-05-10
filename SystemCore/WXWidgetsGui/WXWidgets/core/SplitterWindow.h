@@ -39,6 +39,6 @@ namespace WXWidgets {
         virtual void Initialize(IGuiControllerSharedPtr guiController) override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // SPLITTER_WINDOW_93801574_4685_4443_87f1_b551154753c8

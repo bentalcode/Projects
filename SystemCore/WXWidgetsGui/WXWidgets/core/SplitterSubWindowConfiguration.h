@@ -71,6 +71,6 @@ namespace WXWidgets {
         bool m_showMode;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // SPLITTER_SUB_WINDOW_CONFIGURATION_c0023bc8_bd12_4c8d_aa98_8e5cafce1174

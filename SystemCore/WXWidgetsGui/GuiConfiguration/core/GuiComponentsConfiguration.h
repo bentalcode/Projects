@@ -145,4 +145,4 @@ GuiComponentsConfiguration<ConfigurationType>::FindConfiguration(const std::wstr
     return configurationIterator->second;
 }
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration

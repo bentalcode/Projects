@@ -1,34 +1,38 @@
-#pragma once
+#ifndef I_GUI_WINDOW_H_41d5d3f0_5144_484b_85ce_9f1e84587b12
+#define I_GUI_WINDOW_H_41d5d3f0_5144_484b_85ce_9f1e84587b12
 
 #include <memory>
 
 namespace WXWidgets {
-class IWindow;
+    class IWindow;
 }
 
 namespace VideoRenderingVisualizer {
     
-namespace Gui {
+    namespace Gui {
 
-/**
- * The IGuiWindow interface defines a GUI Window of Video Rendering Visualizer.
- */
-class IGuiWindow {
-public:
-    IGuiWindow() = default;
-    virtual ~IGuiWindow() = default;
+        /**
+         * The IGuiWindow interface defines a GUI Window of
+         * Video Rendering Visualizer.
+         */
+        class IGuiWindow {
+        public:
+            IGuiWindow() = default;
+            virtual ~IGuiWindow() = default;
 
-    /**
-     * Gets a window.
-     */
-    virtual WXWidgets::IWindow& GetWindow() = 0;
-};
+            /**
+             * Gets a window.
+             */
+            virtual WXWidgets::IWindow& GetWindow() = 0;
+        };
 
-/**
- * Defines the Shared Ptr of GUI Window.
- */
-using IGuiWindowSharedPtr = std::shared_ptr<IGuiWindow>;
+        /**
+         * Defines the Shared Ptr of GUI Window.
+         */
+        using IGuiWindowSharedPtr = std::shared_ptr<IGuiWindow>;
 
-} // namespace Gui
+    } // namespace Gui
 
-}  // namespace VideoRenderingVisualizer
+} // namespace VideoRenderingVisualizer
+
+#endif // I_GUI_WINDOW_H_41d5d3f0_5144_484b_85ce_9f1e84587b12

@@ -64,7 +64,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace RenderingPipelinesListViewFunctors
+} // namespace RenderingPipelinesListViewFunctors
 
 /**
  * Creates a Rendering Pipelines List View.

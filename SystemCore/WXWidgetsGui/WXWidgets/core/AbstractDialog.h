@@ -48,6 +48,6 @@ namespace WXWidgets {
         std::wstring m_name;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_DIALOG_201497a4_9443_497c_8c16_e1425a52e87e

@@ -61,6 +61,6 @@ namespace WXWidgets {
         virtual const wxFont& AsFont() const override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // FONT_ba6eb94d_2bc3_4cdf_9fc0_d34230eb95a1

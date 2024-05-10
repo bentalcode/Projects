@@ -81,6 +81,6 @@ namespace WXWidgets {
         return *m_internalEvent;
     }
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // WX_EVENT_IMPL_45e2e804_42bf_47dd_82e8_7eaf4511250b

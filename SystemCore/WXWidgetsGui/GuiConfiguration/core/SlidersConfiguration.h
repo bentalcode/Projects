@@ -47,6 +47,6 @@ namespace GuiConfiguration {
         IGuiComponentsConfigurationSharedPtr<ISliderConfiguration> m_impl;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // SLIDERS_CONFIGURATION_c94a7d66_c33e_4b4a_a5da_1275fdbdd184

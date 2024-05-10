@@ -73,7 +73,7 @@ namespace WXWidgets {
     //
     using ISliderPtr = WXObjectPtr<ISlider>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_SLIDER_58fbd89e_3482_4b72_9045_d96a254766ec
 

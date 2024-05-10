@@ -54,6 +54,6 @@ namespace WXWidgets {
     //
     using WXTextCtrlPtr = WXObjectPtr<wxTextCtrl>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // WX_OBJECT_PTRS_2ad0a03e_dfa3_4045_9a81_153699c5d916

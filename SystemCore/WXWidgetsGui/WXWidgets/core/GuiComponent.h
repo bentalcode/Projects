@@ -29,6 +29,6 @@ namespace WXWidgets {
             IGuiControllerSharedPtr guiController);
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // GUI_COMPONENT_dcdfcda4_ebd8_4fbd_a739_bb13f99abf2c

@@ -62,6 +62,6 @@ namespace WXWidgets {
         return *m_internalEvent;
     }
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_WX_EVENT_339a2803_fb3d_4cb0_a4ab_c12ddd9a42a4

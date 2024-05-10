@@ -106,6 +106,6 @@ namespace WXWidgets {
         IGuiComponentList m_componentList;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // GUI_CONTROLLER_c6741841_9823_42b7_b55c_2d010cf738b9

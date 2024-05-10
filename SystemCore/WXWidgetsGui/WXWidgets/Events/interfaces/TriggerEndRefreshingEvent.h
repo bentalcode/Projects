@@ -27,6 +27,6 @@ namespace WXWidgets {
         virtual ~TriggerEndRefreshingEvent();
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // TRIGGER_END_REFRESHING_EVENT_22b321a3_82e9_4ce0_b563_42421af94eab

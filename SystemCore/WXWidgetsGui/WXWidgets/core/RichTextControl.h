@@ -55,6 +55,6 @@ namespace WXWidgets {
     //
     using RichTextControlPtr = WXObjectPtr<RichTextControl>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // RICH_TEXT_CONTROL_493f793f_bd52_4199_a442_50c936876d20

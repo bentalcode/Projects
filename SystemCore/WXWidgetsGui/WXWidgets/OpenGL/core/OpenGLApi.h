@@ -136,6 +136,6 @@ namespace WXWidgets {
         x;                                   \
         WXWidgets::OpenGLApi::VerifyLastGLCall(#x, __FILE__, __LINE__);
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // OPEN_GL_API_85f481f8_e58d_414f_808f_1f66a101b84f

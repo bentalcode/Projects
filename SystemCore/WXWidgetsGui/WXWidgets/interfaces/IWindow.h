@@ -82,6 +82,6 @@ namespace WXWidgets {
         virtual void SetScrollbarToMaxPosition(Orient orient) = 0;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_WINDOW_1e683655_6c51_4b03_bb91_0a29b09bb6d7

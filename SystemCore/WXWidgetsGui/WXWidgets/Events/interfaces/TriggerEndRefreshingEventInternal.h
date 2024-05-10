@@ -37,6 +37,6 @@ namespace WXWidgets {
         wxEvent* Clone() const;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // TRIGGER_END_REFRESHING_EVENT_INTERNAL_00a178bd_40aa_4544_b1ae_38dae93ed545

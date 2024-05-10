@@ -36,7 +36,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace CompositorTextBoxFunctors
+} // namespace CompositorTextBoxFunctors
 
 /**
  * Creates a compositor static text box.

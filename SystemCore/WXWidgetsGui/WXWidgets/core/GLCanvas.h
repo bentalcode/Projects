@@ -52,6 +52,6 @@ namespace WXWidgets {
         static void InitializeDefaultAttributes(wxGLAttributes& attributes);
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // GL_CANVAS_696779c3_5d9e_4dc4_a2d8_65bc93d3887f

@@ -41,6 +41,6 @@ namespace tlogging {
      */
     using IAddViewRecordSharedPtr = std::shared_ptr<IAddViewRecord>;
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_ADD_VIEW_RECORD_H_e151ca50_4088_4ce1_9fc7_7cfa8cc3e1a3

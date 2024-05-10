@@ -30,6 +30,6 @@ namespace base {
     template <typename T>
     using IComparableComparatorSharedPtr = std::shared_ptr<IComparableComparator<T>>;
 
-}  // namespace base
+} // namespace base
 
 #endif // COMPARABLE_COMPARATOR_H_7f3ec5a8_57d2_11ee_8c99_0242ac120002

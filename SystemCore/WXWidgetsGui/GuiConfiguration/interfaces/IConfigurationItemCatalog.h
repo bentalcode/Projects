@@ -50,6 +50,6 @@ namespace GuiConfiguration {
     //
     using IConfigurationItemCatalogSharedPtr = std::shared_ptr<IConfigurationItemCatalog>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_CONFIGURATION_ITEM_CATALOG_20137e61_c7e8_45e3_ad31_52fc2553230d

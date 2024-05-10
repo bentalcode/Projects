@@ -105,7 +105,7 @@ private:
     Window& m_window;
 };
 
-}  // namespace WindowFunctors
+} // namespace WindowFunctors
 
 /**
  * The Window constructor.

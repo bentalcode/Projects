@@ -433,6 +433,6 @@ namespace base {
         return !(lhs < rhs);
     }
 
-}  // namespace base
+} // namespace base
 
 #endif // DURATION_H_a70cdfb1_0685_4640_8d58_c0b94eadc8f5

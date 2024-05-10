@@ -64,7 +64,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace AbstractSplitterWindowFunctors
+} // namespace AbstractSplitterWindowFunctors
 
 /**
  * The AbstractSplitterWindow constructor.

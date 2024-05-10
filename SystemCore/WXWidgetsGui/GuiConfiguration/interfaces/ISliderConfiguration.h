@@ -29,6 +29,6 @@ namespace GuiConfiguration {
     //
     using ISliderConfigurationSharedPtr = std::shared_ptr<ISliderConfiguration>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_SLIDER_CONFIGURATION_4dd1c5e8_9ba4_4b7c_b104_9533d3db9ca3

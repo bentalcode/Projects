@@ -31,7 +31,7 @@ namespace logging {
         virtual std::wstring Transform(const std::wstring& value) const override;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // STRING_TRANSFORMER_H_dfa21af2_cf49_4ed4_aef3_1c23e0d5dc27
 

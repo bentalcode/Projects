@@ -107,6 +107,6 @@ namespace base {
      */
     using IPathDecompositionSharedPtr = std::shared_ptr<IPathDecomposition>;
 
-}  // namespace base
+} // namespace base
 
 #endif // I_PATH_DECOMPOSITON_H_9d6a2e43_5cc2_4589_a5e4_008a6322b36b

@@ -28,6 +28,6 @@ namespace base {
     template <typename T>
     using IEquatableComparatorSharedPtr = std::shared_ptr<IEquatableComparator<T>>;
 
-}  // namespace Utilities
+} // namespace Utilities
 
 #endif // I_EQUATABLE_COMPARATOR_H_43caf2e2_57cf_11ee_8c99_0242ac120002

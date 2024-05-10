@@ -25,6 +25,6 @@ namespace tlogging {
      */
     using ICompositorDestroyedRecordSharedPtr = std::shared_ptr<ICompositorDestroyedRecord>;
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_COMPOSITOR_DESTROYED_RECORD_H_e62ad025_15b4_412a_a1d0_3df6406c4c12

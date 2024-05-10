@@ -86,6 +86,6 @@ namespace GuiConfiguration {
     //
     using IClientConfigurationSharedPtr = std::shared_ptr<IClientConfiguration>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_CLIENT_CONFIGURATION_174e87f4_308f_473c_9cce_ecd017cea47d

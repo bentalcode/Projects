@@ -35,6 +35,6 @@ namespace WXWidgets {
      */
     using IBorderWindowConfigurationSharedPtr = std::shared_ptr<IBorderWindowConfiguration>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_BORDER_WINDOW_CONFIGURATION_cbfbed9b_f5c7_4e46_b1ec_ca331e3c49ec

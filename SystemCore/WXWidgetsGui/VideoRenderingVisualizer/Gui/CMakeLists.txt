@@ -14,32 +14,45 @@ set(RESOURCES_DIRECTORY_NAME
 )
 
 
-set(CMAKE_CXX_STANDARD 14)
-
-macro(print_all_variables)
-    message(STATUS "print_all_variables------------------------------------------{")
-    get_cmake_property(_variableNames VARIABLES)
-    foreach (_variableName ${_variableNames})
-        message(STATUS "${_variableName}=${${_variableName}}")
-    endforeach()
-    message(STATUS "print_all_variables------------------------------------------}")
-endmacro()
-
-print_all_variables()
-
 #
-# Configure operating systems...
+# Configure Operating System...
 #
 add_compile_definitions(WINDOWS=1)
 
 #
-# Configure boost library...
+# Open Sources Path...
 #
-if (NOT $ENV{BOOST_ROOT})
-    set(BOOST_PATH $ENV{BOOST_ROOT})
-else()
-    set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
-endif()
+set (OPEN_SOURCES_PATH "../../../../../../OpenSources")
+
+#
+# WX Widgets Path...
+#
+set (WX_WIDGETS_PATH ${OPEN_SOURCES_PATH}/wxWidgets)
+
+#
+# GLFW Path...
+#
+set(GLFW_PATH ${OPEN_SOURCES_PATH}/glfw)
+
+#
+# Glew Path...
+#
+set (GLEW_PATH ${OPEN_SOURCES_PATH}/glew-2.1.0)
+
+#
+# Configure Operating System...
+#
+add_compile_definitions(WINDOWS=1)
+
+#
+# Include Directories...
+#
+include_directories(
+    ${WX_WIDGETS_PATH}/include
+    ${WX_WIDGETS_PATH}/lib/gcc_lib/mswu
+    ${GLFW_PATH}/include
+    ${GLEW_PATH}/include
+)
 
 
 set(VIDEO_RENDERING_VISUALIZER_INCLUDES_FILES
@@ -83,6 +96,7 @@ set(VIDEO_RENDERING_VISUALIZER_INCLUDES_FILES
     ./core/SliderConfigurationItems.h
     ./core/TLogsFolderDialog.h
     ./core/VideoRenderingVisualizerApp.h
+    ./core/VideoRenderingVisualizerException.h
     ./core/VideoRenderingVisualizerFrame.h
     ./interfaces/IAppConfigurationItems.h
     ./interfaces/IConfigurationProvider.h
@@ -98,7 +112,6 @@ set(VIDEO_RENDERING_VISUALIZER_INCLUDES_FILES
     ./interfaces/IMenuItemConfigurationItems.h
     ./interfaces/ISliderConfigurationItems.h
     ./interfaces/Main.h
-    ./interfaces/video_rendering_visualizer_exception.h
 )
 
 set(VIDEO_RENDERING_VISUALIZER_SOURCES_FILES
@@ -883,15 +896,292 @@ target_link_libraries(VideoRenderingVisualizerModel
     PRIVATE Base TabularData DataContainerManagement DataStructures Logging TLogging
 )
 
+set(WXWIDGETS_INCLUDES_FILES
+    ../../WXWidgets/Controller/core/AbstractTransaction.h
+    ../../WXWidgets/Controller/core/ControllerManager.h
+    ../../WXWidgets/Controller/core/RefreshingTransaction.h
+    ../../WXWidgets/Controller/core/WXWidgetsControllerException.h
+    ../../WXWidgets/Controller/interfaces/IControllerManager.h
+    ../../WXWidgets/Controller/interfaces/IRefreshingTransaction.h
+    ../../WXWidgets/Controller/interfaces/ITransaction.h
+    ../../WXWidgets/DataItems/core/DataItemCatalog.h
+    ../../WXWidgets/DataItems/core/WXDataItems.h
+    ../../WXWidgets/DataItems/interfaces/IDataItemCatalog.h
+    ../../WXWidgets/DataItems/interfaces/IDataItems.h
+    ../../WXWidgets/DataItems/interfaces/IWXDataItems.h
+    ../../WXWidgets/Events/interfaces/AbstractWXEvent.h
+    ../../WXWidgets/Events/interfaces/IWXEvent.h
+    ../../WXWidgets/Events/interfaces/PostRefreshEvent.h
+    ../../WXWidgets/Events/interfaces/PostRefreshEventInternal.h
+    ../../WXWidgets/Events/interfaces/PreRefreshEvent.h
+    ../../WXWidgets/Events/interfaces/PreRefreshEventInternal.h
+    ../../WXWidgets/Events/interfaces/RefreshEvent.h
+    ../../WXWidgets/Events/interfaces/RefreshEventInternal.h
+    ../../WXWidgets/Events/interfaces/TriggerEndRefreshingEvent.h
+    ../../WXWidgets/Events/interfaces/TriggerEndRefreshingEventInternal.h
+    ../../WXWidgets/Events/interfaces/TriggerStartRefreshingEvent.h
+    ../../WXWidgets/Events/interfaces/TriggerStartRefreshingEventInternal.h
+    ../../WXWidgets/Events/interfaces/WXEventIds.h
+    ../../WXWidgets/Events/interfaces/WXEventImpl.h
+    ../../WXWidgets/Events/interfaces/WindowUpdationEvent.h
+    ../../WXWidgets/Events/interfaces/WindowUpdationEventInternal.h
+    ../../WXWidgets/OpenGL/core/GLErrorCodes.h
+    ../../WXWidgets/OpenGL/core/OpenGLApi.h
+    ../../WXWidgets/OpenGL/core/OpenGLHeaders.h
+    ../../WXWidgets/OpenGL/core/OpenGLInitializer.h
+    ../../WXWidgets/OpenGL/interfaces/IOpenGLApi.h
+    ../../WXWidgets/core/AbstractApp.h
+    ../../WXWidgets/core/AbstractDialog.h
+    ../../WXWidgets/core/AbstractFrame.h
+    ../../WXWidgets/core/AbstractGLCanvas.h
+    ../../WXWidgets/core/AbstractGuiComponent.h
+    ../../WXWidgets/core/AbstractListBox.h
+    ../../WXWidgets/core/AbstractListView.h
+    ../../WXWidgets/core/AbstractSlider.h
+    ../../WXWidgets/core/AbstractSplitterWindow.h
+    ../../WXWidgets/core/AbstractWindow.h
+    ../../WXWidgets/core/App.h
+    ../../WXWidgets/core/BorderWindowConfiguration.h
+    ../../WXWidgets/core/Color.h
+    ../../WXWidgets/core/Dialog.h
+    ../../WXWidgets/core/FolderDialog.h
+    ../../WXWidgets/core/Font.h
+    ../../WXWidgets/core/Frame.h
+    ../../WXWidgets/core/GLCanvas.h
+    ../../WXWidgets/core/GuiComponent.h
+    ../../WXWidgets/core/GuiComponentData.h
+    ../../WXWidgets/core/GuiComponentInformation.h
+    ../../WXWidgets/core/GuiController.h
+    ../../WXWidgets/core/GuiTransaction.h
+    ../../WXWidgets/core/HtmlWindow.h
+    ../../WXWidgets/core/ListBox.h
+    ../../WXWidgets/core/ListView.h
+    ../../WXWidgets/core/Menu.h
+    ../../WXWidgets/core/MenuBar.h
+    ../../WXWidgets/core/Panel.h
+    ../../WXWidgets/core/RichTextControl.h
+    ../../WXWidgets/core/Slider.h
+    ../../WXWidgets/core/SplitterSubWindowConfiguration.h
+    ../../WXWidgets/core/SplitterWindow.h
+    ../../WXWidgets/core/SplitterWindowConfiguration.h
+    ../../WXWidgets/core/StaticText.h
+    ../../WXWidgets/core/TextControl.h
+    ../../WXWidgets/core/WXEventHandler.h
+    ../../WXWidgets/core/WXProperty.h
+    ../../WXWidgets/core/WXWidgetsException.h
+    ../../WXWidgets/core/Window.h
+    ../../WXWidgets/core/WindowLogic.h
+    ../../WXWidgets/interfaces/IApp.h
+    ../../WXWidgets/interfaces/IBorderWindowConfiguration.h
+    ../../WXWidgets/interfaces/ICanvas.h
+    ../../WXWidgets/interfaces/IColor.h
+    ../../WXWidgets/interfaces/IDialog.h
+    ../../WXWidgets/interfaces/IFolderDialog.h
+    ../../WXWidgets/interfaces/IFont.h
+    ../../WXWidgets/interfaces/IFrame.h
+    ../../WXWidgets/interfaces/IGuiComponent.h
+    ../../WXWidgets/interfaces/IGuiComponentData.h
+    ../../WXWidgets/interfaces/IGuiComponentInformation.h
+    ../../WXWidgets/interfaces/IGuiController.h
+    ../../WXWidgets/interfaces/IGuiTransaction.h
+    ../../WXWidgets/interfaces/IHtmlWindow.h
+    ../../WXWidgets/interfaces/IListBox.h
+    ../../WXWidgets/interfaces/IListView.h
+    ../../WXWidgets/interfaces/IMenu.h
+    ../../WXWidgets/interfaces/IMenuBar.h
+    ../../WXWidgets/interfaces/IPanel.h
+    ../../WXWidgets/interfaces/ISlider.h
+    ../../WXWidgets/interfaces/ISplitterSubWindowConfiguration.h
+    ../../WXWidgets/interfaces/ISplitterWindow.h
+    ../../WXWidgets/interfaces/ISplitterWindowConfiguration.h
+    ../../WXWidgets/interfaces/IStaticText.h
+    ../../WXWidgets/interfaces/ITextControl.h
+    ../../WXWidgets/interfaces/IWXEventHandler.h
+    ../../WXWidgets/interfaces/IWindow.h
+    ../../WXWidgets/interfaces/IWindowLogic.h
+    ../../WXWidgets/interfaces/Orient.h
+    ../../WXWidgets/interfaces/WXObjectId.h
+    ../../WXWidgets/interfaces/WXObjectPtr.h
+    ../../WXWidgets/interfaces/WXObjectPtrs.h
+)
+
+set(WXWIDGETS_SOURCES_FILES
+    ../../WXWidgets/Controller/core/AbstractTransaction.cpp
+    ../../WXWidgets/Controller/core/ControllerManager.cpp
+    ../../WXWidgets/Controller/core/RefreshingTransaction.cpp
+    ../../WXWidgets/DataItems/core/DataItemCatalog.cpp
+    ../../WXWidgets/DataItems/core/WXDataItems.cpp
+    ../../WXWidgets/Events/core/PostRefreshEvent.cpp
+    ../../WXWidgets/Events/core/PostRefreshEventInternal.cpp
+    ../../WXWidgets/Events/core/PreRefreshEvent.cpp
+    ../../WXWidgets/Events/core/PreRefreshEventInternal.cpp
+    ../../WXWidgets/Events/core/RefreshEvent.cpp
+    ../../WXWidgets/Events/core/RefreshEventInternal.cpp
+    ../../WXWidgets/Events/core/TriggerEndRefreshingEvent.cpp
+    ../../WXWidgets/Events/core/TriggerEndRefreshingEventInternal.cpp
+    ../../WXWidgets/Events/core/TriggerStartRefreshingEvent.cpp
+    ../../WXWidgets/Events/core/TriggerStartRefreshingEventInternal.cpp
+    ../../WXWidgets/Events/core/WXEventIds.cpp
+    ../../WXWidgets/Events/core/WindowUpdationEvent.cpp
+    ../../WXWidgets/Events/core/WindowUpdationEventInternal.cpp
+    ../../WXWidgets/OpenGL/core/GLErrorCodes.cpp
+    ../../WXWidgets/OpenGL/core/OpenGLApi.cpp
+    ../../WXWidgets/OpenGL/core/OpenGLInitializer.cpp
+    ../../WXWidgets/core/AbstractApp.cpp
+    ../../WXWidgets/core/AbstractDialog.cpp
+    ../../WXWidgets/core/AbstractFrame.cpp
+    ../../WXWidgets/core/AbstractGLCanvas.cpp
+    ../../WXWidgets/core/AbstractGuiComponent.cpp
+    ../../WXWidgets/core/AbstractListBox.cpp
+    ../../WXWidgets/core/AbstractListView.cpp
+    ../../WXWidgets/core/AbstractSlider.cpp
+    ../../WXWidgets/core/AbstractSplitterWindow.cpp
+    ../../WXWidgets/core/AbstractWindow.cpp
+    ../../WXWidgets/core/App.cpp
+    ../../WXWidgets/core/BorderWindowConfiguration.cpp
+    ../../WXWidgets/core/Color.cpp
+    ../../WXWidgets/core/Dialog.cpp
+    ../../WXWidgets/core/FolderDialog.cpp
+    ../../WXWidgets/core/Font.cpp
+    ../../WXWidgets/core/Frame.cpp
+    ../../WXWidgets/core/GLCanvas.cpp
+    ../../WXWidgets/core/GuiComponent.cpp
+    ../../WXWidgets/core/GuiComponentData.cpp
+    ../../WXWidgets/core/GuiComponentInformation.cpp
+    ../../WXWidgets/core/GuiController.cpp
+    ../../WXWidgets/core/GuiTransaction.cpp
+    ../../WXWidgets/core/HtmlWindow.cpp
+    ../../WXWidgets/core/ListBox.cpp
+    ../../WXWidgets/core/ListView.cpp
+    ../../WXWidgets/core/Menu.cpp
+    ../../WXWidgets/core/MenuBar.cpp
+    ../../WXWidgets/core/Panel.cpp
+    ../../WXWidgets/core/RichTextControl.cpp
+    ../../WXWidgets/core/Slider.cpp
+    ../../WXWidgets/core/SplitterSubWindowConfiguration.cpp
+    ../../WXWidgets/core/SplitterWindow.cpp
+    ../../WXWidgets/core/SplitterWindowConfiguration.cpp
+    ../../WXWidgets/core/StaticText.cpp
+    ../../WXWidgets/core/TextControl.cpp
+    ../../WXWidgets/core/WXEventHandler.cpp
+    ../../WXWidgets/core/WXObjectId.cpp
+    ../../WXWidgets/core/WXProperty.cpp
+    ../../WXWidgets/core/Window.cpp
+    ../../WXWidgets/core/WindowLogic.cpp
+)
+
+set(WXWIDGETS_INCLUDES
+    ../../WXWidgets/Controller/core
+    ../../WXWidgets/Controller/interfaces
+    ../../WXWidgets/DataItems/core
+    ../../WXWidgets/DataItems/interfaces
+    ../../WXWidgets/Events/interfaces
+    ../../WXWidgets/OpenGL/core
+    ../../WXWidgets/OpenGL/interfaces
+    ../../WXWidgets/core
+    ../../WXWidgets/interfaces
+)
+
+set(WXWIDGETS_SOURCES
+    ${WXWIDGETS_INCLUDES_FILES}
+    ${WXWIDGETS_SOURCES_FILES}
+)
+
+add_library(WXWidgets STATIC
+    ${WXWIDGETS_SOURCES}
+)
+
+target_link_libraries(WXWidgets
+    PRIVATE Base TabularData DataContainerManagement Logging
+)
+
+set(GUI_CONFIGURATION_INCLUDES_FILES
+    ../../GuiConfiguration/core/AppConfiguration.h
+    ../../GuiConfiguration/core/ClientConfiguration.h
+    ../../GuiConfiguration/core/ConfigurationItemCatalog.h
+    ../../GuiConfiguration/core/DialogConfiguration.h
+    ../../GuiConfiguration/core/DialogsConfiguration.h
+    ../../GuiConfiguration/core/FrameConfiguration.h
+    ../../GuiConfiguration/core/FramesConfiguration.h
+    ../../GuiConfiguration/core/GuiComponentsConfiguration.h
+    ../../GuiConfiguration/core/GuiConfigurationException.h
+    ../../GuiConfiguration/core/GuiConfigurationManager.h
+    ../../GuiConfiguration/core/LabelConfiguration.h
+    ../../GuiConfiguration/core/LabelsConfiguration.h
+    ../../GuiConfiguration/core/MenuConfiguration.h
+    ../../GuiConfiguration/core/MenuItemConfiguration.h
+    ../../GuiConfiguration/core/MenuItemsConfiguration.h
+    ../../GuiConfiguration/core/MenusConfiguration.h
+    ../../GuiConfiguration/core/SliderConfiguration.h
+    ../../GuiConfiguration/core/SlidersConfiguration.h
+    ../../GuiConfiguration/interfaces/IAppConfiguration.h
+    ../../GuiConfiguration/interfaces/IClientConfiguration.h
+    ../../GuiConfiguration/interfaces/IConfigurationItemCatalog.h
+    ../../GuiConfiguration/interfaces/IConfigurationItems.h
+    ../../GuiConfiguration/interfaces/IDialogConfiguration.h
+    ../../GuiConfiguration/interfaces/IDialogsConfiguration.h
+    ../../GuiConfiguration/interfaces/IFrameConfiguration.h
+    ../../GuiConfiguration/interfaces/IFramesConfiguration.h
+    ../../GuiConfiguration/interfaces/IGuiComponentsConfiguration.h
+    ../../GuiConfiguration/interfaces/IGuiConfigurationManager.h
+    ../../GuiConfiguration/interfaces/ILabelConfiguration.h
+    ../../GuiConfiguration/interfaces/ILabelsConfiguration.h
+    ../../GuiConfiguration/interfaces/IMenuConfiguration.h
+    ../../GuiConfiguration/interfaces/IMenuItemConfiguration.h
+    ../../GuiConfiguration/interfaces/IMenuItemsConfiguration.h
+    ../../GuiConfiguration/interfaces/IMenusConfiguration.h
+    ../../GuiConfiguration/interfaces/ISliderConfiguration.h
+    ../../GuiConfiguration/interfaces/ISlidersConfiguration.h
+)
+
+set(GUI_CONFIGURATION_SOURCES_FILES
+    ../../GuiConfiguration/core/AppConfiguration.cpp
+    ../../GuiConfiguration/core/ClientConfiguration.cpp
+    ../../GuiConfiguration/core/ConfigurationItemCatalog.cpp
+    ../../GuiConfiguration/core/DialogConfiguration.cpp
+    ../../GuiConfiguration/core/DialogsConfiguration.cpp
+    ../../GuiConfiguration/core/FrameConfiguration.cpp
+    ../../GuiConfiguration/core/FramesConfiguration.cpp
+    ../../GuiConfiguration/core/GuiConfigurationManager.cpp
+    ../../GuiConfiguration/core/LabelConfiguration.cpp
+    ../../GuiConfiguration/core/LabelsConfiguration.cpp
+    ../../GuiConfiguration/core/MenuConfiguration.cpp
+    ../../GuiConfiguration/core/MenuItemConfiguration.cpp
+    ../../GuiConfiguration/core/MenuItemsConfiguration.cpp
+    ../../GuiConfiguration/core/MenusConfiguration.cpp
+    ../../GuiConfiguration/core/SliderConfiguration.cpp
+    ../../GuiConfiguration/core/SlidersConfiguration.cpp
+)
+
+set(GUI_CONFIGURATION_INCLUDES
+    ../../GuiConfiguration/core
+    ../../GuiConfiguration/interfaces
+)
+
+set(GUI_CONFIGURATION_SOURCES
+    ${GUI_CONFIGURATION_INCLUDES_FILES}
+    ${GUI_CONFIGURATION_SOURCES_FILES}
+)
+
+add_library(GuiConfiguration STATIC
+    ${GUI_CONFIGURATION_SOURCES}
+)
+
+target_link_libraries(GuiConfiguration
+    PRIVATE Base TabularData DataContainerManagement Logging
+)
+
 include_directories(VideoRenderingVisualizer
     ${BASE_INCLUDES}
     ${DATA_CONTAINER_MANAGEMENT_INCLUDES}
     ${DATA_STRUCTURES_INCLUDES}
+    ${GUI_CONFIGURATION_INCLUDES}
     ${LOGGING_INCLUDES}
     ${TABULAR_DATA_INCLUDES}
     ${TLOGGING_INCLUDES}
     ${VIDEO_RENDERING_VISUALIZER_INCLUDES}
     ${VIDEO_RENDERING_VISUALIZER_MODEL_INCLUDES}
+    ${WXWIDGETS_INCLUDES}
 )
 
 add_library(VideoRenderingVisualizer STATIC
@@ -899,17 +1189,7 @@ add_library(VideoRenderingVisualizer STATIC
 )
 
 target_link_libraries(VideoRenderingVisualizer
-    PRIVATE Base TabularData DataContainerManagement DataStructures Logging TLogging VideoRenderingVisualizerModel
+    PRIVATE Base TabularData DataContainerManagement DataStructures Logging TLogging VideoRenderingVisualizerModel WXWidgets GuiConfiguration
 )
 
-include_directories(
-    ${BOOST_PATH}
-)
-
-#
-# Configure file system dependencies...
-#
-target_link_libraries(
-    ${PROJECT_NAME} PRIVATE
-    stdc++fs)
 

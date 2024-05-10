@@ -58,6 +58,6 @@ namespace WXWidgets {
         int m_flag;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // BORDER_WINDOW_CONFIGURATION_bf04510a_8974_477b_9739_a3b7571efb2a

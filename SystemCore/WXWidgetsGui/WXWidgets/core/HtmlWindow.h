@@ -81,6 +81,6 @@ namespace WXWidgets {
         std::wstring m_content;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // HTML_WINDOW_83651732_4817_4b03_b77a_b722c9f8b489

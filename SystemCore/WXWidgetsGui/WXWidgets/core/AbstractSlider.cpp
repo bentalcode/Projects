@@ -86,7 +86,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace AbstractSliderFunctors
+} // namespace AbstractSliderFunctors
 
 /**
  * The AbstractSlider constructor.

@@ -42,6 +42,6 @@ namespace tlogging {
      */
     using ISetConfigurationRecordSharedPtr = std::shared_ptr<ISetConfigurationRecord>;
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_SET_CONFIGURATION_RECORD_H_d3b5137e_cc67_46d5_8b7b_1f64a81f72ef

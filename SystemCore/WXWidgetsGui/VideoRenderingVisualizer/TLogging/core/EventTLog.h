@@ -66,6 +66,6 @@ namespace tlogging {
         tabular_data::IEventLogSharedPtr m_eventLog;
     };
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // EVENT_TLOG_RECORD_H_1811107c_4be8_43ad_9308_46f7b0b58d3a

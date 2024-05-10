@@ -36,6 +36,6 @@ namespace tlogging {
         virtual ~TLoggingException() = default;
     };
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_TLOG_EXCEPTION_H_e23f770d_ae2d_4af3_b67e_3d8558b52b58

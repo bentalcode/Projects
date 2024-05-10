@@ -36,6 +36,6 @@ namespace DataContainerManagement {
         virtual ~data_container_exception() = default;
     };
 
-}  // namespace DataContainerManagement
+} // namespace DataContainerManagement
 
 #endif // DATA_CONTAINER_EXCEPTION_H_7d5449df_28b1_42af_bc06_0b9a2852496f

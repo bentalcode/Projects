@@ -34,6 +34,6 @@ namespace base {
     template <typename T>
     using IToStringSharedPtr = std::shared_ptr<IToString<T>>;
 
-}  // namespace base
+} // namespace base
 
 #endif // I_TO_STRING_H_ede5858e_57d0_11ee_8c99_0242ac120002

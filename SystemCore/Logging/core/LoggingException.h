@@ -36,6 +36,6 @@ namespace logging {
         virtual ~LoggingException() = default;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // LOGGING_EXCEPTION_H_025bbfc9_5ef4_48df_8953_a37a8e89e85f

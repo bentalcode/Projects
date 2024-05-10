@@ -44,6 +44,6 @@ namespace GuiConfiguration {
         std::wstring m_statusText;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // FRAME_CONFIGURATION_1d4fa695_b409_4862_99e0_aeb8b20034c8

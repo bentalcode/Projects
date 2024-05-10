@@ -57,7 +57,7 @@ namespace WXWidgets {
     //
     using IWindowLogicSharedPtr = std::shared_ptr<IWindowLogic>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_WINDOW_LOGIC_bc7bed15_c747_47ec_9b47_57652037186e
 

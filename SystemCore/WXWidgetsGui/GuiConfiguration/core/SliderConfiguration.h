@@ -44,6 +44,6 @@ namespace GuiConfiguration {
         unsigned int m_maxNumberOfUnits;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // SLIDER_CONFIGURATION_97c1f56f_1f81_471b_b6eb_88f18ed5ad42

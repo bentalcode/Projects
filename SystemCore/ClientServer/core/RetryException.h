@@ -36,7 +36,7 @@ public:
     virtual ~RetryException() = default;
 };
 
-}  // namespace client_server
+} // namespace client_server
 
 #endif // RETRY_EXCEPTION_H_50c516ee_b2a0_4b62_adae_74741c47a4f7
 

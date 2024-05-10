@@ -47,6 +47,6 @@ namespace GuiConfiguration {
         IGuiComponentsConfigurationSharedPtr<IMenuItemConfiguration> m_impl;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // MENU_ITEMS_CONFIGURATION_92645ce1_8cc2_4b95_90f7_5039d544e56a

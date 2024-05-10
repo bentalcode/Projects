@@ -62,6 +62,6 @@ private:
     std::vector<std::wstring> m_values;
 };
 
-}  // namespace tabular_data
+} // namespace tabular_data
 
 #endif // TABULAR_RECORD_H_8ea4d8f7_897c_4480_bdaf_667cbee46e77

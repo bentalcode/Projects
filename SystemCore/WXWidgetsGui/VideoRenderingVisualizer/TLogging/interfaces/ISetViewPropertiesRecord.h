@@ -47,6 +47,6 @@ namespace tlogging {
      */
     using ISetViewPropertiesRecordSharedPtr = std::shared_ptr<ISetViewPropertiesRecord>;
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_SET_VIEW_PROPERTIES_RECORD_H_a8d1e6c8_40cf_4d11_a938_00d5e7e6efda

@@ -34,6 +34,6 @@ namespace GuiConfiguration {
         std::wstring m_text;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // LABELE_CONFIGURATION_31315e65_f36e_44af_b061_5fa7488cdeeb

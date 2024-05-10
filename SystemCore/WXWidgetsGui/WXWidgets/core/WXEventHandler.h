@@ -36,6 +36,6 @@ namespace WXWidgets {
         wxEvtHandler& m_handler;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // WX_EVENT_HANDLER_e900da59_7034_424d_8caa_a0bf7535929a

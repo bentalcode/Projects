@@ -70,6 +70,6 @@ namespace WXWidgets {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // WINDOW_LOGIC_ea841748_dfd3_4c49_8806_ea7e190b1855

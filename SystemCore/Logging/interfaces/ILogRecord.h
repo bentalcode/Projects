@@ -76,6 +76,6 @@ namespace logging {
      */
     using ILogRecordSharedPtr = std::shared_ptr<ILogRecord>;
 
-}  // namespace logging
+} // namespace logging
 
 #endif // I_LOG_RECORD_H_dc59ec03_41d6_4503_852d_62c4d261b16d

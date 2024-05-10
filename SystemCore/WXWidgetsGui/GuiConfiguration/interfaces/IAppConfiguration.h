@@ -30,7 +30,7 @@ namespace GuiConfiguration {
     //
     using IAppConfigurationSharedPtr = std::shared_ptr<IAppConfiguration>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_APP_CONFIGURATION_e3236732_11db_4b4e_97be_9f4da3f9ce8e
 

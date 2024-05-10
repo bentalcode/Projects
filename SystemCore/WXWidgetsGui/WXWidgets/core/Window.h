@@ -29,6 +29,6 @@ namespace WXWidgets {
             bool showMode = true);
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // WINDOW_9bc360cd_662b_485b_9699_69bf8ca9cd22

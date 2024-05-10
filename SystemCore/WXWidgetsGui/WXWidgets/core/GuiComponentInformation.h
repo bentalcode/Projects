@@ -46,6 +46,6 @@ namespace WXWidgets {
         IGuiComponentDataSharedPtr m_data;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // GUI_COMPONENT_INFORMATION_78df22a5_6db8_41d5_a3a9_b0b76058d0e4

@@ -51,6 +51,6 @@ namespace WXWidgets {
         virtual void SetSizer(wxSizer& sizer) override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // PANEL_919366a8_6dae_4388_8479_9eac23bdf7df

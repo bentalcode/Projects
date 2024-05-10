@@ -24,6 +24,6 @@ namespace WXWidgets {
      */
     using IGuiComponentDataSharedPtr = std::shared_ptr<IGuiComponentData>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_GUI_COMPONENT_DATA_c892531c_1231_4287_89ba_a72be31d1d25

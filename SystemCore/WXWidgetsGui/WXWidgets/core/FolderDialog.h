@@ -61,6 +61,6 @@ namespace WXWidgets {
         std::wstring m_name;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // FOLDER_DIALOG_f8b27af5_5a33_4f71_82d7_8338b704d262

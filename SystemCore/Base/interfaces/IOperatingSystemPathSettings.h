@@ -46,6 +46,6 @@ namespace base {
 
     } // namespace environment
 
-}  // namespace base
+} // namespace base
 
 #endif // I_OPERATING_SYSTEM_PATH_SETTINGS_H_35059260_4fa3_417a_90ee_0c4346f0d278

@@ -32,7 +32,7 @@ namespace logging {
         virtual unsigned long Transform(const std::wstring& value) const override;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // UNSIGNED_LONG_TRANSFORMER_H_5187bb1e_7f9f_4384_bd81_14677ea0d424
 

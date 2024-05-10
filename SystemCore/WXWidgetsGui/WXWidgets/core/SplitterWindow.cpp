@@ -29,7 +29,7 @@ private:
     SplitterWindow& m_splitterWindow;
 };
 
-}  // namespace SplitterWindowFunctors
+} // namespace SplitterWindowFunctors
 
 /**
  * The SplitterWindow constructor.

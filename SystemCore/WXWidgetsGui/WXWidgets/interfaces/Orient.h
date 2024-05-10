@@ -20,6 +20,6 @@ namespace WXWidgets {
         return orient == Orient::HORIZONTAL ? wxHORIZONTAL : wxVERTICAL;
     }
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ORIENT_127f14f6_af61_4c7f_8c96_8655e6846a29

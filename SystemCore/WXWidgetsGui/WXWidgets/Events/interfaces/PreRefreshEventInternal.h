@@ -46,6 +46,6 @@ namespace WXWidgets {
         IGuiTransactionSharedPtr m_guiTransaction;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // PRE_REFRESH_EVENT_INTERNAL_966d9d8b_fc1b_49dd_91e5_1eff08849755

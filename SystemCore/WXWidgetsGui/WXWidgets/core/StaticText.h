@@ -83,6 +83,6 @@ namespace WXWidgets {
         std::wstring m_text;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // STATIC_TEXT_79498382_4ffd_4dbb_a25b_56c7972ae2c3

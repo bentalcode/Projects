@@ -186,6 +186,6 @@ namespace DataContainerManagement {
      */
     using IDataContainerUpdateFunctorsSharedPtr = std::shared_ptr<IDataContainerUpdateFunctors>;
 
-}  // namespace DataContainerManagement
+} // namespace DataContainerManagement
 
 #endif // I_DATA_CONTAINER_UPDATE_FUNCTORS_H_598c482d_abcc_4355_aad7_976814bcdc7a

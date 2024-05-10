@@ -37,6 +37,6 @@ namespace base {
      */
     using IOperatingSystemTypeSharedPtr = std::shared_ptr<IOperatingSystemType>;
 
-}  // namespace base
+} // namespace base
 
 #endif // I_OPERATING_SYSTEM_TYPE_H_691a7d1a_d3ef_4430_9c8a_4eb8662ee76f

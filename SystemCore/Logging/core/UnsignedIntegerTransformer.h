@@ -31,7 +31,7 @@ namespace logging {
         virtual unsigned int Transform(const std::wstring& value) const override;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // UNSIGNED_INTERGER_TRANSFORMER_H_dc61dfd9_18ff_4bd7_a8eb_16175137e174
 

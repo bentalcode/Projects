@@ -119,6 +119,6 @@ namespace GuiConfiguration {
         m_dataContainer->SetDataItem(dataItem);
     }
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // CLIENT_CONFIGURATION_0d8f5c5f_0907_4fd7_a08d_46aa5e08e4ca

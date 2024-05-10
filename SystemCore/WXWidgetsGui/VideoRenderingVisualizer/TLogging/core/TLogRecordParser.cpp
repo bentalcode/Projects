@@ -380,7 +380,7 @@ private:
     const ITLogRecordParser& m_recordParser;
 };
 
-}  // namespace TLogRecordParserCreators
+} // namespace TLogRecordParserCreators
 
 /**
  * Creates a TLog Parser.

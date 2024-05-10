@@ -59,6 +59,6 @@ namespace tlogging {
         logging::ILogRecordSharedPtr m_logRecord;
     };
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // REMOVE_VIEW_RECORD_H_746bc314_8aca_4117_854d_2a538559c70c

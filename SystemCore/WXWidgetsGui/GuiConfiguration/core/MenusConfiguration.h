@@ -59,6 +59,6 @@ namespace GuiConfiguration {
         MenuConfigurationMap m_menuConfigurationMap;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // MENUS_ITEMS_CONFIGURATION_92645ce1_8cc2_4b95_90f7_5039d544e56a

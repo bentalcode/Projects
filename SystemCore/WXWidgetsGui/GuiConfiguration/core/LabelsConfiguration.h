@@ -47,6 +47,6 @@ namespace GuiConfiguration {
         IGuiComponentsConfigurationSharedPtr<ILabelConfiguration> m_impl;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // LABELES_CONFIGURATION_521f58d4_497b_422c_9946_7e084e31a46d

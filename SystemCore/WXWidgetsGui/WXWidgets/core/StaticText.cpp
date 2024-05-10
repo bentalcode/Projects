@@ -33,7 +33,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace StaticTextFunctors
+} // namespace StaticTextFunctors
 
 /**
  * Creates a static text.

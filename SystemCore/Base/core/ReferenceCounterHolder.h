@@ -132,6 +132,6 @@ namespace base {
         m_deletePointee = status;
     }
 
-}  // namespace base
+} // namespace base
 
 #endif // REFERENCE_COUNTER_HOLDER_H_9095d121_a12d_4f55_8db6_be7da379096b

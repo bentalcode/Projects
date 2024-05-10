@@ -64,7 +64,7 @@ private:
     DataContainerManagement::IDataContainer& m_dataContainer;
 };
 
-}  // namespace RenderingPipelinesTimeSliderFunctors
+} // namespace RenderingPipelinesTimeSliderFunctors
 
 /**
  * Creates a HTML window.

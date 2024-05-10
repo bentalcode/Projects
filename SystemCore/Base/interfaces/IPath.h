@@ -72,6 +72,6 @@ namespace base {
         return stream;
     }
 
-}  // namespace base
+} // namespace base
 
 #endif // I_PATH_H_045c532b_93d4_47b1_9701_3278e944e052

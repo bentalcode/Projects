@@ -36,7 +36,7 @@ namespace WXWidgets {
     //
     using IDialogPtr = WXObjectPtr<IDialog>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_DIALOG_cf415f65_69f1_4aaa_9efd_ace8a3fdab38
 

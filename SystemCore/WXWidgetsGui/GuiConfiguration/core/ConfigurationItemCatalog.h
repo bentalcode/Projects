@@ -79,6 +79,6 @@ namespace GuiConfiguration {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // CONFIGURATION_ITEM_CATALOG_73934096_6eab_4ba7_af33_067440e1b60f

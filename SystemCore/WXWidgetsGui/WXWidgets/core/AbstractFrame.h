@@ -60,6 +60,6 @@ namespace WXWidgets {
         virtual void MaximizeAndCenteralize() override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_FRAME_df228e06_f89a_4b6d_882a_f6be995532d2

@@ -32,6 +32,6 @@ namespace WXWidgets {
     //
     using IPanelPtr = WXObjectPtr<IPanel>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_PANEL_9954a8c6_1707_44b4_b6a2_3993055f0fff

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LOG_STATISTICS_DIALOG_H_c8fe3c7a_80b8_49f5_966f_f59b298abdec
+#define LOG_STATISTICS_DIALOG_H_c8fe3c7a_80b8_49f5_966f_f59b298abdec
 
 #include "Dialog.h"
 #include "IGuiManager.h"
@@ -6,49 +7,51 @@
 
 namespace VideoRenderingVisualizer {
 
-namespace Gui {
+    namespace Gui {
 
-/**
- * The LogStatisticsDialog class implements a dialog of Log Statistics.
- */
-class LogStatisticsDialog final : public WXWidgets::Dialog {
-public:
-    /**
-     * Creates a Log Statistics Dialog.
-     */
-    static WXWidgets::IDialogPtr Make(
-        wxWindow& parent, 
-        IGuiManager& guiManager);
+        /**
+         * The LogStatisticsDialog class implements a dialog of Log Statistics.
+         */
+        class LogStatisticsDialog final : public WXWidgets::Dialog {
+        public:
+            /**
+             * Creates a Log Statistics Dialog.
+             */
+            static WXWidgets::IDialogPtr Make(
+                wxWindow& parent,
+                IGuiManager& guiManager);
 
-    /**
-     * The LogStatisticsDialog constructor.
-     */
-    LogStatisticsDialog(
-        wxWindow& parent, 
-        IGuiManager& guiManager);
+            /**
+             * The LogStatisticsDialog constructor.
+             */
+            LogStatisticsDialog(
+                wxWindow& parent,
+                IGuiManager& guiManager);
 
-    /**
-     * The LogStatisticsDialog destructor.
-     */
-    virtual ~LogStatisticsDialog();
+            /**
+             * The LogStatisticsDialog destructor.
+             */
+            virtual ~LogStatisticsDialog();
 
-private:
-    /**
-     * Initializes a GUI component.
-     */
-    void Initialize(IGuiManager& guiManager);
+        private:
+            /**
+             * Initializes a GUI component.
+             */
+            void Initialize(IGuiManager& guiManager);
 
-    //
-    // The GUI Manager...
-    //
-    IGuiManager& m_guiManager;
+            //
+            // The GUI Manager...
+            //
+            IGuiManager& m_guiManager;
 
-    //
-    // The list view of logs statistics...
-    //
-    WXWidgets::IListViewPtr m_logStatisticsListView;
-};
+            //
+            // The list view of logs statistics...
+            //
+            WXWidgets::IListViewPtr m_logStatisticsListView;
+        };
 
-}  // namespace Gui
+    } // namespace Gui
 
-}  // namespace VideoRenderingVisualizer
+} // namespace VideoRenderingVisualizer
+
+#endif // LOG_STATISTICS_DIALOG_H_c8fe3c7a_80b8_49f5_966f_f59b298abdec

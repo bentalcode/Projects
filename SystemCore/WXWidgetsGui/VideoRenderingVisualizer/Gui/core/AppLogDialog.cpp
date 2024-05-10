@@ -26,7 +26,7 @@ WXWidgets::IDialogPtr AppLogDialog::Make(
 AppLogDialog::AppLogDialog(
     wxWindow& parent, 
     IGuiManager& guiManager) : 
-        WXWidgets::Dialog(
+        Dialog(
             parent, 
             GuiPaths::Read().GetMainFrameTopMenuBarViewMenuAppLogDialog()), 
             m_guiManager(guiManager)
@@ -47,7 +47,7 @@ AppLogDialog::AppLogDialog(
     //
     // Set title...
     //
-    std::wstring title = Utilities::StringUtils::ToString(dialogConfiguration->GetTitle());
+    std::wstring title = base::StringUtils::ToString(dialogConfiguration->GetTitle());
     SetTitle(title);
 
     //
@@ -71,9 +71,9 @@ void AppLogDialog::Initialize(IGuiManager& guiManager)
     //
     // Initialize dialog...
     //
-    WXWidgets::Dialog::Initialize(guiManager.GetGuiController());
+    Dialog::Initialize(guiManager.GetGuiController());
 
-    std::filesystem::path logPath = m_guiManager.GetAppLogPath();
+    std::wstring logPath = m_guiManager.GetAppLogPath();
 
     m_logListView = AppLogListView::Make(
         *this, 

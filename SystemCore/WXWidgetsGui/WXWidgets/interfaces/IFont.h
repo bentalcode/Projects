@@ -40,6 +40,6 @@ namespace WXWidgets {
     //
     using IFontSharedPtr = std::shared_ptr<IFont>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_FONT_f288c1f7_aed6_4e40_861b_ab37d99ca3ad

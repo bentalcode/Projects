@@ -57,6 +57,6 @@ namespace base {
         return ptr;
     }
 
-}  // namespace base
+} // namespace base
 
 #endif // SMART_POINTERS_H_0e76a850_57d1_11ee_8c99_0242ac120002

@@ -31,6 +31,6 @@ namespace base {
      */
     using IComparatorFactorySharedPtr = std::shared_ptr<IComparatorFactory>;
 
-}  // namespace base
+} // namespace base
 
 #endif // I_COMPARATOR_FACTORY_H_3bec5bc8_57d0_11ee_8c99_0242ac120002

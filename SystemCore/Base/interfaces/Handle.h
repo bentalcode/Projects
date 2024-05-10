@@ -76,6 +76,6 @@ namespace base {
     template<typename HANDLE, typename RELEASER>
     using HandleUniquePtr = std::unique_ptr<Handle<HANDLE, RELEASER>>;
 
-}  // namespace base
+} // namespace base
 
 #endif // HANDLE_H_6b728a41_95bf_4e58_8e60_44222b897716

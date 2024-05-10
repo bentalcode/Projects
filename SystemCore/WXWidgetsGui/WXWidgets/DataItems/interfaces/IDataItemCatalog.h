@@ -49,6 +49,6 @@ namespace WXWidgets {
     //
     using IDataItemCatalogSharedPtr = std::shared_ptr<IDataItemCatalog>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_DATA_ITEM_CATALOG_18371bc3_4c52_406f_8977_1b7a89029638

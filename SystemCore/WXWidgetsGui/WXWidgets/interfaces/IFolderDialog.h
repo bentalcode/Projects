@@ -37,6 +37,6 @@ namespace WXWidgets {
     //
     using IFolderDialogPtr = WXObjectPtr<IFolderDialog>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_FOLDER_DIALOG_a33f3afd_a1f4_49d6_916d_dc8c8c3989c3

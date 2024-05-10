@@ -163,6 +163,6 @@ namespace WXWidgets {
         base::IBinaryComparatorSharedPtr<int> m_dimensionValueComparator;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_SPLITTER_0b2e3be7_796e_428c_8650_1f4a5215cdd3

@@ -55,6 +55,6 @@ namespace base {
         return startIndex <= endIndex ? endIndex - startIndex + 1 : 0;
     }
 
-}  // namespace base
+} // namespace base
 
 #endif // INDEXES_H_3e52ab95_6bc4_4242_8937_122765bf07c7

@@ -45,6 +45,6 @@ namespace tlogging {
      */
     using ICallStartedRecordSharedPtr = std::shared_ptr<ICallStartedRecord>;
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // I_CALL_STARTED_RECORD_H_5f1258a6_ca41_4fb1_b39c_8e7f57aaefef

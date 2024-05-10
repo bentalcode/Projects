@@ -27,6 +27,6 @@ namespace WXWidgets {
         IOpenGLApiSharedPtr m_openGLApi;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // OPEN_GL_INITIALIZER_f78ac1cc_2ed2_42c2_a820_45cd30fa5726

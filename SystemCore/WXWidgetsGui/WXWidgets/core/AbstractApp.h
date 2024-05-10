@@ -56,6 +56,6 @@ namespace WXWidgets {
         virtual int OnExit() override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // ABSTRACT_APP_1b202bb1_3962_47a3_89ff_9cb575a9404b

@@ -28,6 +28,6 @@ namespace WXWidgets {
             IGuiControllerSharedPtr guiController) override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // APP_440859ed_071f_410a_a14d_15257e71e8c5

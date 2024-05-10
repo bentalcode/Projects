@@ -52,6 +52,6 @@ namespace tlogging {
         logging::ILogRecordSharedPtr m_logRecord;
     };
 
-}  // namespace tlogging
+} // namespace tlogging
 
 #endif // COMPOSITOR_DESTROYED_RECORD_H_ba862ee6_4dfd_4716_a8fb_f15940c1bcbe

@@ -42,6 +42,6 @@ namespace GuiConfiguration {
     template <typename ConfigurationType>
     using IGuiComponentsConfigurationSharedPtr = std::shared_ptr<IGuiComponentsConfiguration<ConfigurationType>>;
 
-}  // namespace GuiConfiguration
+} // namespace GuiConfiguration
 
 #endif // I_GUI_COMPONENTS_CONFIGURATION_8ce55209_aae4_4898_a14a_32c5e08d8f01

@@ -51,6 +51,6 @@ namespace WXWidgets {
             bool showMode = true) override;
     };
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // LIST_BOX_131229c5_126c_4c66_b4c2_dec6649ebf33

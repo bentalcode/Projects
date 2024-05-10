@@ -27,7 +27,7 @@ namespace windows {
 
     using FileHandle = base::Handle<FILE*, FileHandleReleaser>;
 
-}  // namespace windows
+} // namespace windows
 
 /**
  * Creates a File.

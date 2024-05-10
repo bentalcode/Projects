@@ -44,7 +44,7 @@ namespace WXWidgets {
     //
     using IColorSharedPtr = std::shared_ptr<IColor>;
 
-}  // namespace WXWidgets
+} // namespace WXWidgets
 
 #endif // I_COLOR_80669883_9b12_4138_8065_fb420f9fa437
 

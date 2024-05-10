@@ -35,6 +35,6 @@ namespace base {
 
     }
 
-}  // namespace base
+} // namespace base
 
 #endif // I_OPERATING_SYSTEM_CONTROL_SETTINGS_H_424ac884_4e82_47ba_82fb_5e51a24ff680

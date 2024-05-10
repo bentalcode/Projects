@@ -42,6 +42,6 @@ namespace logging {
         static const std::wstring LOG_LEVEL_COMPID;
     };
 
-}  // namespace logging
+} // namespace logging
 
 #endif // LOG_LEVEL_TRANSFORMER_H_e7da1ce8_073d_4ef4_abaa_a37470eecb93
