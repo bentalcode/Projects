@@ -17,12 +17,12 @@ namespace VideoRenderingVisualizer {
          * The RenderingPipelinesListView class implements
          * a list view of rendering pipelines.
          */
-        class RenderingPipelinesListView final : public WXWidgets::ListView {
+        class RenderingPipelinesListView final : public wxwidgets::ListView {
         public:
             /**
              * Creates a Rendering Pipelines List View.
              */
-            static WXWidgets::IListViewPtr Make(
+            static wxwidgets::IListViewPtr Make(
                 wxWindow& parent,
                 const base::DateTimeIntervalSharedPtr intervalTime,
                 IGuiManager& guiManager);
@@ -102,12 +102,12 @@ namespace VideoRenderingVisualizer {
             //
             // Defines the mapping between a rendering status to it's color...
             //
-            using RenderingStatusToColorMap = std::map<Model::RenderingStatus, WXWidgets::ColorType>;
+            using RenderingStatusToColorMap = std::map<Model::RenderingStatus, wxwidgets::ColorType>;
 
             /**
              * Gets a color of rendering status.
              */
-            WXWidgets::ColorType GetRenderingStatusColor(Model::RenderingStatus status) const;
+            wxwidgets::ColorType GetRenderingStatusColor(Model::RenderingStatus status) const;
 
             /**
              * Gets the Rendering Status -> Color map.

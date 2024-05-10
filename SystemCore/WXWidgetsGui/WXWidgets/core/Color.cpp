@@ -1,7 +1,7 @@
 #include "Color.h"
 #include "wx\gdicmn.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a color.

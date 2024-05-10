@@ -24,7 +24,7 @@ extern "C" int __stdcall WinMain(
         ->GetAppConfiguration()
         ->GetLogPath();
     
-    Logging::LoggerFactory::GetInstance()->Initialize(logPath);
+    logging::LoggerFactory::GetInstance()->Initialize(logPath);
 
     //
     // Run main...
@@ -52,22 +52,22 @@ VideoRenderingVisualizer::Gui::VideoRenderingVisualizerApp& wxGetApp()
  */
 wxAppConsole* wxCreateApp()
 {
-    WXWidgets::IAppPtr app = VideoRenderingVisualizer::Gui::VideoRenderingVisualizerApp::Make();
+    wxwidgets::IAppPtr app = VideoRenderingVisualizer::Gui::VideoRenderingVisualizerApp::Make();
     return &app->GetAppConsole();
 }
 
 /**
  * The app initializer.
  */
-static wxAppInitializer wxTheAppInitializer(static_cast<wxAppInitializerFunction>(wxCreateApp));
+wxAppInitializer wxTheAppInitializer(static_cast<wxAppInitializerFunction>(wxCreateApp));
 
 /**
  * The main constructor.
  */
 Main::Main() : 
     m_appName(
-        VideoRenderingVisualizer::Gui::ConfigurationProvider::GetInstance()->GetGuiConfigurationManager()->GetAppConfiguration()->GetName()),
-    m_loggers(Logging::Loggers::Make(typeid(VideoRenderingVisualizer::Gui::Main))) 
+        ConfigurationProvider::GetInstance()->GetGuiConfigurationManager()->GetAppConfiguration()->GetName()),
+    m_loggers(logging::Loggers::Make(typeid(Main)))
 {
     std::wstringstream informationalStream;
     informationalStream << L"The Main of " << m_appName << L" GUI is starting.";
@@ -104,7 +104,7 @@ int Main::Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, wxCmdLineArgType lpC
     //
     // Initialize Open GL...
     //
-    m_openGLInitializer = std::make_unique<WXWidgets::OpenGLInitializer>();
+    m_openGLInitializer = std::make_unique<wxwidgets::OpenGLInitializer>();
 
     //
     // Initialize WX Widgets...

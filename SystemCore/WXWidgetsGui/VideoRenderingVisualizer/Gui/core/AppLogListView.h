@@ -12,12 +12,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The AppLogListView class implements a list view of app log.
          */
-        class AppLogListView final : public WXWidgets::ListView {
+        class AppLogListView final : public wxwidgets::ListView {
         public:
             /**
              * Creates an App Log List View.
              */
-            static WXWidgets::IListViewPtr Make(
+            static wxwidgets::IListViewPtr Make(
                 wxWindow& parent,
                 const std::wstring& logPath,
                 IGuiManager& guiManager);

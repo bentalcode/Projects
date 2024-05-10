@@ -1,6 +1,6 @@
 #include "PreRefreshEvent.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a pre refresh event.

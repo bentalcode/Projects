@@ -6,7 +6,7 @@
 
 class wxAppConsole;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IApp interface defines an app.
@@ -44,6 +44,6 @@ namespace WXWidgets {
     //
     using IAppPtr = WXObjectPtr<IApp>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_APP_H_3d61a005_9f2e_40a1_8711_9a9dfa90037e

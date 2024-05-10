@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a panel.

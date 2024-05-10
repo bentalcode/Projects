@@ -4,9 +4,9 @@
 #include "IControllerManager.h"
 #include "IGuiController.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
-    namespace Command {
+    namespace controller {
 
         /**
          * The ControllerManager class implements a controller manager.
@@ -31,7 +31,7 @@ namespace WXWidgets {
               /**
               * Gets app component.
               */
-              virtual WXWidgets::IGuiComponent& GetAppComponent() override;
+              virtual IGuiComponent& GetAppComponent() override;
 
               /**
               * Gets a component by name.
@@ -52,8 +52,8 @@ namespace WXWidgets {
             IGuiControllerSharedPtr m_guiController;
         };
 
-    } // namespace Command
+    } // namespace controller
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // namespace CONTROLLER_MANAGER_H_fa6e7f58_3ed8_441d_8dbb_742ef21facc5

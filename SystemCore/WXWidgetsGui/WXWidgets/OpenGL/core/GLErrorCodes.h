@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The GLErrorCodes class defines error codes of Open GL.
@@ -36,6 +36,6 @@ namespace WXWidgets {
         static void InitializeCodeToMessageMap(CodeToMessageMap& map);
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // GL_ERROR_CODES_fc2b5ee9_ff3d_4c12_8cbb_8121df9f687e

@@ -1,7 +1,7 @@
 #include "GuiComponentInformation.h"
 #include "SmartPointers.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a GUI component.

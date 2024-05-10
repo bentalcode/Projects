@@ -6,7 +6,7 @@
 #include "IDataContainerUpdateFunctors.h"
 #include "TriggerStartRefreshingEvent.h"
 
-using namespace WXWidgets::Command;
+using namespace wxwidgets::controller;
 
 /**
  * Creates a refreshing transaction.
@@ -170,7 +170,7 @@ void RefreshingTransaction::Commit()
     //
     // Send a trigger start refreshing event to the app...
     //
-    WXWidgets::IWXEventSharedPtr triggerStartRefreshingEvent = WXWidgets::TriggerStartRefreshingEvent::Create();
+    IWXEventSharedPtr triggerStartRefreshingEvent = wxwidgets::TriggerStartRefreshingEvent::Create();
 
     IControllerManager& controllerManager = GetControllerManager();
     IGuiComponent& appComponent = controllerManager.GetAppComponent();

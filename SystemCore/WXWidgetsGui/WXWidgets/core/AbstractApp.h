@@ -5,7 +5,7 @@
 #include "GuiComponent.h"
 #include "wx/app.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractApp class implements an abstract base class of an app.
@@ -56,6 +56,6 @@ namespace WXWidgets {
         virtual int OnExit() override;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_APP_1b202bb1_3962_47a3_89ff_9cb575a9404b

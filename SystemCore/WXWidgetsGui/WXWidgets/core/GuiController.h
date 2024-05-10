@@ -6,7 +6,7 @@
 #include <mutex>
 #include "ILogger.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The GuiController class implements a GUI controller for managing GUI components.
@@ -106,6 +106,6 @@ namespace WXWidgets {
         IGuiComponentList m_componentList;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // GUI_CONTROLLER_c6741841_9823_42b7_b55c_2d010cf738b9

@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a menu.

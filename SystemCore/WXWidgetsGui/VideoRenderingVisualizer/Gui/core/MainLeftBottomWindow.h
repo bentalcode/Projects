@@ -37,7 +37,7 @@ namespace VideoRenderingVisualizer {
             /**
              * Gets a window.
              */
-            virtual WXWidgets::IWindow& GetWindow() override;
+            virtual wxwidgets::IWindow& GetWindow() override;
 
         private:
             /**
@@ -45,7 +45,7 @@ namespace VideoRenderingVisualizer {
              */
             void Initialize(wxWindow& parent);
 
-            WXWidgets::IStaticTextPtr m_staticText;
+            wxwidgets::IStaticTextPtr m_staticText;
         };
 
     } // namespace Gui

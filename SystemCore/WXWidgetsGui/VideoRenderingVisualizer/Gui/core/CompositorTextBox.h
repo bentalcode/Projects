@@ -12,12 +12,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The CompositorTextBox class implements a text box of compositors.
          */
-        class CompositorTextBox final : public WXWidgets::StaticText {
+        class CompositorTextBox final : public wxwidgets::StaticText {
         public:
             /**
              * Creates a compositor static text box.
              */
-            static WXWidgets::IStaticTextPtr Make(
+            static wxwidgets::IStaticTextPtr Make(
                 wxWindow& parent,
                 IGuiManager& guiManager);
 

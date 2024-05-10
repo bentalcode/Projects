@@ -4,7 +4,7 @@
 #include "AbstractWXEvent.h"
 #include "TriggerEndRefreshingEventInternal.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The TriggerEndRefreshingEvent class implements an event of triggering an end refreshing event of a GUI component.
@@ -27,6 +27,6 @@ namespace WXWidgets {
         virtual ~TriggerEndRefreshingEvent();
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // TRIGGER_END_REFRESHING_EVENT_22b321a3_82e9_4ce0_b563_42421af94eab

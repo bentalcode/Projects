@@ -13,12 +13,12 @@ namespace VideoRenderingVisualizer {
          * The RenderingPipelinesVisualizerDialog class implements
          * a dialog of Rendering Pipelines Visualizer.
          */
-        class RenderingPipelinesVisualizerDialog final : public WXWidgets::Dialog {
+        class RenderingPipelinesVisualizerDialog final : public wxwidgets::Dialog {
         public:
             /**
              * Creates a Rendering Pipelines Visualizer Dialog.
              */
-            static WXWidgets::IDialogPtr Make(
+            static wxwidgets::IDialogPtr Make(
                 wxWindow& parent,
                 IGuiManager& guiManager);
 
@@ -48,7 +48,7 @@ namespace VideoRenderingVisualizer {
             //
             // The HTML Document of Rendering Pipelines...
             //
-            WXWidgets::IHtmlWindowPtr m_renderingPiplinesHtmlWindow;
+            wxwidgets::IHtmlWindowPtr m_renderingPiplinesHtmlWindow;
         };
 
     } // namespace Gui

@@ -9,12 +9,12 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates a Log Statistics List View.
  */
-WXWidgets::IListViewPtr LogStatisticsListView::Make(
+wxwidgets::IListViewPtr LogStatisticsListView::Make(
     wxWindow& parent, 
-    TLogging::ITLogStatisticsCollectionSharedPtr logsStatistics,
+    tlogging::ITLogStatisticsCollectionSharedPtr logsStatistics,
     IGuiManager& guiManager)
 {
-    return WXWidgets::IListViewPtr::Make(
+    return wxwidgets::IListViewPtr::Make(
         new LogStatisticsListView(
             parent, 
             logsStatistics,
@@ -26,7 +26,7 @@ WXWidgets::IListViewPtr LogStatisticsListView::Make(
  */
 LogStatisticsListView::LogStatisticsListView(
     wxWindow& parent, 
-    TLogging::ITLogStatisticsCollectionSharedPtr logsStatistics,
+    tlogging::ITLogStatisticsCollectionSharedPtr logsStatistics,
     IGuiManager& guiManager) : 
         ListView(
             parent, 
@@ -69,9 +69,9 @@ void LogStatisticsListView::Initialize(IGuiManager& guiManager)
     //
     // Set header attributes...
     //
-    WXWidgets::ColorType fontColorType = WXWidgets::ColorType::BLACK;
-    WXWidgets::ColorType backgroundColorType = WXWidgets::ColorType::WHITE;
-    WXWidgets::Font headerFont;
+    wxwidgets::ColorType fontColorType = wxwidgets::ColorType::BLACK;
+    wxwidgets::ColorType backgroundColorType = wxwidgets::ColorType::WHITE;
+    wxwidgets::Font headerFont;
     headerFont.MakeBold();
     
     SetHeaderAttributes(
@@ -122,11 +122,11 @@ void LogStatisticsListView::GetListViewValues(std::vector<std::vector<std::wstri
 {
     assert(values.empty());
 
-    Utilities::IIteratorSharedPtr<TLogging::ITLogStatisticsSharedPtr> logStatisticsIterator = m_logsStatistics->GetIterator();
+    base::IIteratorSharedPtr<tlogging::ITLogStatisticsSharedPtr> logStatisticsIterator = m_logsStatistics->GetIterator();
 
     while (logStatisticsIterator->HasNext()) {
-        const TLogging::ITLogStatisticsSharedPtr tlogStatistics = logStatisticsIterator->Next();
-        const Logging::ILogStatisticsSharedPtr logStatistics = tlogStatistics->GetLogStatistics();
+        const tlogging::ITLogStatisticsSharedPtr tlogStatistics = logStatisticsIterator->Next();
+        const logging::ILogStatisticsSharedPtr logStatistics = tlogStatistics->GetLogStatistics();
 
         std::vector<std::wstring> logStatisticsValues;
         logStatisticsValues.reserve(10);
@@ -168,7 +168,7 @@ void LogStatisticsListView::GetListViewValues(std::vector<std::vector<std::wstri
 /**
  * Creates TLog records CallStarted/CallEnded counters string.
  */
-std::wstring LogStatisticsListView::CreateCallStartedCallEndedCountersString(const TLogging::ITLogStatistics& logStatistics)
+std::wstring LogStatisticsListView::CreateCallStartedCallEndedCountersString(const tlogging::ITLogStatistics& logStatistics)
 {
     std::wstringstream stream;
     stream 
@@ -181,7 +181,7 @@ std::wstring LogStatisticsListView::CreateCallStartedCallEndedCountersString(con
 /**
  * Creates TLog records CompositorCreated/CompositorDestroyed counters string.
  */
-std::wstring LogStatisticsListView::CreateCompositorCreatedCompositorDestroyedCountersString(const TLogging::ITLogStatistics& logStatistics)
+std::wstring LogStatisticsListView::CreateCompositorCreatedCompositorDestroyedCountersString(const tlogging::ITLogStatistics& logStatistics)
 {
     std::wstringstream stream;
     stream 
@@ -194,7 +194,7 @@ std::wstring LogStatisticsListView::CreateCompositorCreatedCompositorDestroyedCo
 /**
  * Creates TLog records AddView/RemoveView counters string.
  */
-std::wstring LogStatisticsListView::CreateAddViewRemoveViewCountersString(const TLogging::ITLogStatistics& logStatistics)
+std::wstring LogStatisticsListView::CreateAddViewRemoveViewCountersString(const tlogging::ITLogStatistics& logStatistics)
 {
     std::wstringstream stream;
     stream 
@@ -207,7 +207,7 @@ std::wstring LogStatisticsListView::CreateAddViewRemoveViewCountersString(const 
 /**
  * Creates TLog records SetConfiguration/SetViewProperties counters string.
  */
-std::wstring LogStatisticsListView::CreateSetConfigurationSetViewPropertiesCountersString(const TLogging::ITLogStatistics& logStatistics)
+std::wstring LogStatisticsListView::CreateSetConfigurationSetViewPropertiesCountersString(const tlogging::ITLogStatistics& logStatistics)
 {
     std::wstringstream stream;
     stream 

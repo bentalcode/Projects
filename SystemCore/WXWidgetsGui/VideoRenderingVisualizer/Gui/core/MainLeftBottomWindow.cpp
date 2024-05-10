@@ -55,7 +55,7 @@ void MainLeftBottomWindow::Initialize(wxWindow& parent)
 /**
  * Gets a window.
  */
-WXWidgets::IWindow& MainLeftBottomWindow::GetWindow()
+wxwidgets::IWindow& MainLeftBottomWindow::GetWindow()
 {
     return m_staticText->GetWindow();
 }

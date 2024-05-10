@@ -61,8 +61,8 @@ void MainLeftTopWindow::InitializeWindow(
     //
     // Create a splitter window...
     //
-    m_splitterWindow = WXWidgets::ISplitterWindowPtr::Make(
-        new WXWidgets::SplitterWindow(
+    m_splitterWindow = wxwidgets::ISplitterWindowPtr::Make(
+        new wxwidgets::SplitterWindow(
             GuiPaths::Read().GetMainFrameMainLeftTopWindowSplitterWindow(),
             parent));
 
@@ -83,10 +83,10 @@ void MainLeftTopWindow::InitializeWindow(
         labelsConfiguration->GetConfiguration(
             GuiPaths::Read().GetMainFrameMainLeftTopWindowLowerSubWindowLabel());
 
-    std::wstring topWindowLabel = Utilities::StringUtils::ToString(topWindowLabelConfiguration->GetText());
-    std::wstring bottomWindowLabel = Utilities::StringUtils::ToString(bottomWindowLabelConfiguration->GetText());
+    std::wstring topWindowLabel = topWindowLabelConfiguration->GetText();
+    std::wstring bottomWindowLabel = bottomWindowLabelConfiguration->GetText();
 
-    WXWidgets::ISplitterWindowConfigurationSharedPtr configuration = CreateSplitterWindowConfiguration(
+    wxwidgets::ISplitterWindowConfigurationSharedPtr configuration = CreateSplitterWindowConfiguration(
         parent, 
         topWindowLabel, 
         bottomWindowLabel);
@@ -127,7 +127,7 @@ void MainLeftTopWindow::InitializeWindow(
 /**
  * Gets a window.
  */
-WXWidgets::IWindow& MainLeftTopWindow::GetWindow()
+wxwidgets::IWindow& MainLeftTopWindow::GetWindow()
 {
     return m_splitterWindow->GetWindow();
 }
@@ -135,7 +135,7 @@ WXWidgets::IWindow& MainLeftTopWindow::GetWindow()
 /**
  * Creates a configuration of a splitter window.
  */
-const WXWidgets::ISplitterWindowConfigurationSharedPtr 
+const wxwidgets::ISplitterWindowConfigurationSharedPtr
 MainLeftTopWindow::CreateSplitterWindowConfiguration(
     const wxWindow& window, 
     const std::wstring& topWindowBorderLabel, 
@@ -146,32 +146,32 @@ MainLeftTopWindow::CreateSplitterWindowConfiguration(
 
     int topWindowProportion = 1;
     int topWindowFlag = wxEXPAND;
-    WXWidgets::IBorderWindowConfigurationSharedPtr topWindowBorderConfiguration =
-        WXWidgets::BorderWindowConfiguration::Make(topWindowBorderLabel);
+    wxwidgets::IBorderWindowConfigurationSharedPtr topWindowBorderConfiguration =
+        wxwidgets::BorderWindowConfiguration::Make(topWindowBorderLabel);
     bool topWindowShow = true;
 
     int bottomWindowProportion = 1;
     int bottomWindowFlag = wxEXPAND;
-    WXWidgets::IBorderWindowConfigurationSharedPtr bottomWindowBorderConfiguration =
-        WXWidgets::BorderWindowConfiguration::Make(bottomWindowBorderLabel);
+    wxwidgets::IBorderWindowConfigurationSharedPtr bottomWindowBorderConfiguration =
+        wxwidgets::BorderWindowConfiguration::Make(bottomWindowBorderLabel);
     bool bottomWindowShow = true;
 
-    WXWidgets::ISplitterSubWindowConfigurationSharedPtr leftWindowConfiguration =
-        WXWidgets::SplitterSubWindowConfiguration::Make(
+    wxwidgets::ISplitterSubWindowConfigurationSharedPtr leftWindowConfiguration =
+        wxwidgets::SplitterSubWindowConfiguration::Make(
             topWindowProportion, 
             topWindowFlag, 
             topWindowBorderConfiguration, 
             topWindowShow);
 
-    WXWidgets::ISplitterSubWindowConfigurationSharedPtr rightWindowConfiguration =
-        WXWidgets::SplitterSubWindowConfiguration::Make(
+    wxwidgets::ISplitterSubWindowConfigurationSharedPtr rightWindowConfiguration =
+        wxwidgets::SplitterSubWindowConfiguration::Make(
             bottomWindowProportion, 
             bottomWindowFlag, 
             bottomWindowBorderConfiguration, 
             bottomWindowShow);
 
-    WXWidgets::ISplitterWindowConfigurationSharedPtr configuration = 
-        WXWidgets::SplitterWindowConfiguration::Make(
+    wxwidgets::ISplitterWindowConfigurationSharedPtr configuration =
+        wxwidgets::SplitterWindowConfiguration::Make(
             gravity, 
             initializeInBoxSizer, 
             leftWindowConfiguration, 

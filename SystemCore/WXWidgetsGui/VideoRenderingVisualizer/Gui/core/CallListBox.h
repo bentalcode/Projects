@@ -17,12 +17,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The CallListBox class implements a list box of calls.
          */
-        class CallListBox final : public WXWidgets::ListBox {
+        class CallListBox final : public wxwidgets::ListBox {
         public:
             /**
              * Creates a call list box.
              */
-            static WXWidgets::IListBoxPtr Make(
+            static wxwidgets::IListBoxPtr Make(
                 wxWindow& parent,
                 const std::vector<std::wstring>& items,
                 IGuiManager& guiManager);

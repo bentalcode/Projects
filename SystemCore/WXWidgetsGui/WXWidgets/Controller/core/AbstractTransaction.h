@@ -3,9 +3,9 @@
 
 #include "ITransaction.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
-    namespace Command {
+    namespace controller {
 
         class IControllerManager;
 
@@ -33,8 +33,8 @@ namespace WXWidgets {
             IControllerManager& m_controllerManager;
         };
 
-    } // namespace Command
+    } // namespace controller
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // namespace ABSTRACT_TRANSACTION_H_cc518753_789e_41b7_9bfd_7151015ef844

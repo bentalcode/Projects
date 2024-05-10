@@ -3,7 +3,7 @@
 
 #include "AbstractGuiComponent.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The GuiComponent class implements a GUI component.
@@ -29,6 +29,6 @@ namespace WXWidgets {
             IGuiControllerSharedPtr guiController);
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // GUI_COMPONENT_dcdfcda4_ebd8_4fbd_a739_bb13f99abf2c

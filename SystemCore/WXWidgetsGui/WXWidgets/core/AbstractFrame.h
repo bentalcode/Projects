@@ -5,7 +5,7 @@
 #include "Window.h"
 #include "wx/frame.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractFrame class implements an abstract base class of a frame.
@@ -60,6 +60,6 @@ namespace WXWidgets {
         virtual void MaximizeAndCenteralize() override;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_FRAME_df228e06_f89a_4b6d_882a_f6be995532d2

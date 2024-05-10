@@ -19,14 +19,14 @@ namespace tlogging {
          */
         static ITLogRecordSharedPtr Make(
             const ISetConfigurationRecord::PropertyMapSharedPtr properties,
-            const Logging::ILogRecordSharedPtr logRecord);
+            const logging::ILogRecordSharedPtr logRecord);
 
         /**
          * The SetConfigurationRecord constructor.
          */
         SetConfigurationRecord(
             const ISetConfigurationRecord::PropertyMapSharedPtr properties,
-            const Logging::ILogRecordSharedPtr logRecord);
+            const logging::ILogRecordSharedPtr logRecord);
 
         /**
          * The SetConfigurationRecord destructor.
@@ -51,7 +51,7 @@ namespace tlogging {
         /**
          * Gets a log record.
          */
-        virtual Logging::ILogRecord& GetLogRecord() const override;
+        virtual logging::ILogRecord& GetLogRecord() const override;
 
         /**
          * Processes a record.
@@ -65,8 +65,8 @@ namespace tlogging {
         const std::wstring* FindProperty(const std::wstring& name) const;
 
         ISetConfigurationRecord::PropertyMapSharedPtr m_properties;
-        Logging::ILogRecordSharedPtr m_logRecord;
-        Logging::ILoggersSharedPtr m_loggers;
+        logging::ILogRecordSharedPtr m_logRecord;
+        logging::ILoggersSharedPtr m_loggers;
     };
 
 } // namespace tlogging

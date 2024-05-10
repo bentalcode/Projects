@@ -9,7 +9,7 @@ class wxMenu;
 class wxMenuItem;
 class wxString;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IMenu interface defines a menu.
@@ -49,6 +49,6 @@ namespace WXWidgets {
     //
     using IMenuPtr = WXObjectPtr<IMenu>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_MENU_674b73be_8056_419f_a20f_937d2655be22

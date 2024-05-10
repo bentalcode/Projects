@@ -4,7 +4,7 @@
 #include "AbstractWXEvent.h"
 #include "TriggerStartRefreshingEventInternal.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The TriggerStartRefreshingEvent class implements an event of triggering a start refreshing event of a GUI component.
@@ -27,6 +27,6 @@ namespace WXWidgets {
         virtual ~TriggerStartRefreshingEvent();
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // TRIGGER_START_REFRESHING_EVENT_3f6caf5f_28f4_46fa_9414_89506fac1de4

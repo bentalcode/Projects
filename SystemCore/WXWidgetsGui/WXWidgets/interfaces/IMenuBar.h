@@ -8,7 +8,7 @@ class wxMenuBar;
 class wxMenu;
 class wxString;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IMenuBar interface defines a menu bar.
@@ -39,6 +39,6 @@ namespace WXWidgets {
     //
     using IMenuBarPtr = WXObjectPtr<IMenuBar>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_MENU_BAR_0ed937ff_fcc5_4b57_bd1f_8c55d41b71dc

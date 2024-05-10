@@ -3,7 +3,7 @@
 
 #include <memory>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IGuiComponentData interface defines data of a GUI component.
@@ -24,6 +24,6 @@ namespace WXWidgets {
      */
     using IGuiComponentDataSharedPtr = std::shared_ptr<IGuiComponentData>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_GUI_COMPONENT_DATA_c892531c_1231_4287_89ba_a72be31d1d25

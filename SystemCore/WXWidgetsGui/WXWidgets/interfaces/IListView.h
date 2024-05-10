@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IWindow;
     class IFont;
@@ -103,6 +103,6 @@ namespace WXWidgets {
     //
     using IListViewPtr = WXObjectPtr<IListView>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_LIST_VIEW_57c7bc02_0b37_49d2_a3d4_0e318bf65be6

@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractListBox class implements an abstract base class of a list box.
@@ -135,6 +135,6 @@ namespace WXWidgets {
         size_t m_minNumberOfItems;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_LIST_BOX_5f7b3113_4ce4_4326_9cd5_987641b1e8cf

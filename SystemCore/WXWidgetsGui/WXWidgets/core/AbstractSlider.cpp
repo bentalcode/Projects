@@ -5,7 +5,7 @@
 #include "WXProperty.h"
 #include "ComparatorFactory.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 const double AbstractSlider::PRECISION = 100.0;
 
@@ -343,7 +343,7 @@ bool AbstractSlider::UpdateFromDataContainer(DataContainerManagement::IDataConta
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemSliderDimensionValue);
 
         int dimensionValue = dataItem.GetValue()->GetInteger();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_dimensionValue, dimensionValue);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_dimensionValue, dimensionValue);
 
         dataUpdated |= propertyUpdated;
     }
@@ -354,7 +354,7 @@ bool AbstractSlider::UpdateFromDataContainer(DataContainerManagement::IDataConta
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemSliderDimensionMinValue);
 
         int dimensionMinValue = dataItem.GetValue()->GetInteger();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_dimensionMinValue, dimensionMinValue);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_dimensionMinValue, dimensionMinValue);
 
         dataUpdated |= propertyUpdated;
     }
@@ -365,7 +365,7 @@ bool AbstractSlider::UpdateFromDataContainer(DataContainerManagement::IDataConta
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemSliderDimensionMaxValue);
 
         int dimensionMaxValue = dataItem.GetValue()->GetInteger();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_dimensionMaxValue, dimensionMaxValue);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_dimensionMaxValue, dimensionMaxValue);
 
         dataUpdated |= propertyUpdated;
     }

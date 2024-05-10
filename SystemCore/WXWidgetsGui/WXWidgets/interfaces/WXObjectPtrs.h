@@ -12,7 +12,7 @@ class wxComboBox;
 class wxListBox;
 class wxTextCtrl;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     //
     // Defines the WX Object Ptr of wxWindow.
@@ -54,6 +54,6 @@ namespace WXWidgets {
     //
     using WXTextCtrlPtr = WXObjectPtr<wxTextCtrl>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_OBJECT_PTRS_2ad0a03e_dfa3_4045_9a81_153699c5d916

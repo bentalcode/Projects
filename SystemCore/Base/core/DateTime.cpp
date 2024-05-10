@@ -1,5 +1,7 @@
 #include "DateTime.h"
 
+#include <StringUtils.h>
+
 using namespace base;
 
 /**
@@ -30,7 +32,15 @@ DateTime::~DateTime()
  */
 DateTimeSharedPtr DateTime::Now()
 {
-    return DateTime::Make(GetCurrentTimePoint());
+    return Make(GetCurrentTimePoint());
+}
+
+/**
+ * Gets a string representation of a date time.
+ */
+std::wstring DateTime::ToString(const std::wstring& format) const
+{
+    return TimeUtils::TimePointToString(m_timePoint, format);
 }
 
 /**

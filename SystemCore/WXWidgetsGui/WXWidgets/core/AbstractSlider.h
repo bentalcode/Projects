@@ -6,7 +6,7 @@
 #include "IBinaryComparator.h"
 #include "wx/slider.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractSlider class implements an abstract base class of a slider.
@@ -163,6 +163,6 @@ namespace WXWidgets {
         base::IBinaryComparatorSharedPtr<int> m_dimensionValueComparator;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_SPLITTER_0b2e3be7_796e_428c_8650_1f4a5215cdd3

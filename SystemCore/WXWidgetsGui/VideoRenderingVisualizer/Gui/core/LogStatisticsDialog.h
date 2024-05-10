@@ -12,12 +12,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The LogStatisticsDialog class implements a dialog of Log Statistics.
          */
-        class LogStatisticsDialog final : public WXWidgets::Dialog {
+        class LogStatisticsDialog final : public wxwidgets::Dialog {
         public:
             /**
              * Creates a Log Statistics Dialog.
              */
-            static WXWidgets::IDialogPtr Make(
+            static wxwidgets::IDialogPtr Make(
                 wxWindow& parent,
                 IGuiManager& guiManager);
 
@@ -47,7 +47,7 @@ namespace VideoRenderingVisualizer {
             //
             // The list view of logs statistics...
             //
-            WXWidgets::IListViewPtr m_logStatisticsListView;
+            wxwidgets::IListViewPtr m_logStatisticsListView;
         };
 
     } // namespace Gui

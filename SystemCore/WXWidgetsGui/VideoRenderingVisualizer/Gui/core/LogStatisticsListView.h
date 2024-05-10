@@ -13,12 +13,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The LogStatisticsListView class implements a list view of log statistics.
          */
-        class LogStatisticsListView final : public WXWidgets::ListView {
+        class LogStatisticsListView final : public wxwidgets::ListView {
         public:
             /**
              * Creates a Log Statistics List View.
              */
-            static WXWidgets::IListViewPtr Make(
+            static wxwidgets::IListViewPtr Make(
                 wxWindow& parent,
                 tlogging::ITLogStatisticsCollectionSharedPtr logsStatistics,
                 IGuiManager& guiManager);

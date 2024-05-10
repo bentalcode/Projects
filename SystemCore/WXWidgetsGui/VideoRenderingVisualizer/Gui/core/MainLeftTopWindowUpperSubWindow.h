@@ -40,7 +40,7 @@ namespace VideoRenderingVisualizer {
             /**
              * Gets a window.
              */
-            virtual WXWidgets::IWindow& GetWindow() override;
+            virtual wxwidgets::IWindow& GetWindow() override;
 
         private:
             /**
@@ -50,7 +50,7 @@ namespace VideoRenderingVisualizer {
                 wxWindow& parent,
                 const std::vector<std::wstring>& items);
 
-            WXWidgets::IListBoxPtr m_listBox;
+            wxwidgets::IListBoxPtr m_listBox;
         };
 
     } // namespace Gui

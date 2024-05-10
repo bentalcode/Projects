@@ -29,6 +29,13 @@ namespace base {
             const std::wstring& format);
 
         /**
+         * Converts a time point to a string.
+         */
+        static std::wstring TimePointToString(
+            const std::chrono::system_clock::time_point& timePoint,
+            const std::wstring& format);
+
+        /**
          * Converts a struct tm time to a string.
          */
         static std::wstring TmToString(

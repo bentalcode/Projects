@@ -5,7 +5,7 @@
 #include "WXProperty.h"
 #include "WXWidgetsException.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace HtmlWindowFunctors {
 
@@ -179,7 +179,7 @@ bool HtmlWindow::UpdateFromDataContainer(DataContainerManagement::IDataContainer
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemHtmlWindowContent);
 
         std::wstring content = dataItem.GetValue()->GetString();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_content, content);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_content, content);
 
         dataUpdated |= propertyUpdated;
     }

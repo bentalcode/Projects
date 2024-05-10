@@ -9,7 +9,6 @@
 #include "WXProperty.h"
 #include "wx/dcclient.h"
 #include "OpenGLApi.h"
-#include "video_rendering_visualizer_exception.h"
 
 using namespace VideoRenderingVisualizer;
 using namespace VideoRenderingVisualizer::Gui;
@@ -17,7 +16,8 @@ using namespace VideoRenderingVisualizer::Gui;
 namespace RenderingPipelinesCanvasFunctors {
 
 /**
- * The UpdateDataContainerStartIntervalTimeFunctor class implements an update functor of start interval time.
+ * The UpdateDataContainerStartIntervalTimeFunctor class implements
+ * an update functor of start interval time.
  */
 class UpdateDataContainerStartIntervalTimeFunctor final {
 public:
@@ -32,7 +32,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         RenderingPipelinesCanvas::UpdateDataContainerStartIntervalTime(m_dataContainer, time);
     }
@@ -57,7 +57,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         RenderingPipelinesCanvas::UpdateDataContainerEndIntervalTime(m_dataContainer, time);
     }
@@ -71,12 +71,12 @@ private:
 /**
  * Creates a Rendering Pipelines Canvas.
  */
-WXWidgets::ICanvasPtr RenderingPipelinesCanvas::Make(
+wxwidgets::ICanvasPtr RenderingPipelinesCanvas::Make(
     wxWindow& parent, 
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager)
 {
-    return WXWidgets::ICanvasPtr::Make(new RenderingPipelinesCanvas(
+    return wxwidgets::ICanvasPtr::Make(new RenderingPipelinesCanvas(
         parent, 
         intervalTime, 
         guiManager));
@@ -87,7 +87,7 @@ WXWidgets::ICanvasPtr RenderingPipelinesCanvas::Make(
  */
 RenderingPipelinesCanvas::RenderingPipelinesCanvas(
     wxWindow& parent, 
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager) : 
         GLCanvas(
             parent, 
@@ -121,7 +121,7 @@ void RenderingPipelinesCanvas::Initialize(IGuiManager& guiManager)
     //
     // Initialize canvas...
     //
-    WXWidgets::GLCanvas::Initialize(guiManager.GetGuiController());
+    wxwidgets::GLCanvas::Initialize(guiManager.GetGuiController());
 
     //
     // Register data update functors...
@@ -250,7 +250,7 @@ void RenderingPipelinesCanvas::Render2()
  */
 void RenderingPipelinesCanvas::UpdateDataContainerStartIntervalTime(
     DataContainerManagement::IDataContainer& data, 
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesStartIntervalTime();
 
@@ -267,7 +267,7 @@ void RenderingPipelinesCanvas::UpdateDataContainerStartIntervalTime(
  */
 void RenderingPipelinesCanvas::UpdateDataContainerEndIntervalTime(
     DataContainerManagement::IDataContainer& data, 
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesEndIntervalTime();
 
@@ -284,17 +284,18 @@ void RenderingPipelinesCanvas::UpdateDataContainerEndIntervalTime(
  */
 bool RenderingPipelinesCanvas::UpdateFromDataContainer(DataContainerManagement::IDataContainer& dataContainer)
 {
-    bool dataUpdated = WXWidgets::GLCanvas::UpdateFromDataContainer(dataContainer);
+    bool dataUpdated = wxwidgets::GLCanvas::UpdateFromDataContainer(dataContainer);
 
     std::wstring dataItemStartIntervalTime = GuiDataItems::Read().GetRenderingPipelinesStartIntervalTime();
 
     if (dataContainer.HasDataItem(dataItemStartIntervalTime)) {
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemStartIntervalTime);
 
-        const Utilities::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
+        const base::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr startTime = m_intervalTime->GetStartTime();
 
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetStartTime(), 
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            startTime,
             startIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -305,10 +306,11 @@ bool RenderingPipelinesCanvas::UpdateFromDataContainer(DataContainerManagement::
     if (dataContainer.HasDataItem(dataItemEndIntervalTime)) {
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemEndIntervalTime);
 
-        const Utilities::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
+        const base::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr endTime = m_intervalTime->GetEndTime();
 
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetEndTime(), 
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            endTime,
             endIntervalTime);
 
         dataUpdated |= propertyUpdated;

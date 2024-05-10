@@ -3,7 +3,7 @@
 
 #include "AbstractWindow.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Window class implements a window.
@@ -29,6 +29,6 @@ namespace WXWidgets {
             bool showMode = true);
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WINDOW_9bc360cd_662b_485b_9699_69bf8ca9cd22

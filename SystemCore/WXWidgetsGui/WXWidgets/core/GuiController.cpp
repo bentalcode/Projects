@@ -4,7 +4,7 @@
 #include "WXWidgetsException.h"
 #include <assert.h>
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a GUI controller.
@@ -238,6 +238,6 @@ IGuiComponent* GuiController::FindComponent(const std::wstring& name)
  */
 logging::ILoggerSharedPtr GuiController::GetSLogger()
 {
-    static logging::ILoggersSharedPtr loggers = logging::Loggers::Make(typeid(WXWidgets::GuiController));
+    static logging::ILoggersSharedPtr loggers = logging::Loggers::Make(typeid(wxwidgets::GuiController));
     return loggers->GetLogger();
 }

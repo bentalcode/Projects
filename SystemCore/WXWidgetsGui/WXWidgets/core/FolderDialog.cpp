@@ -1,7 +1,7 @@
 #include "FolderDialog.h"
 #include <assert.h>
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a folder dialog.

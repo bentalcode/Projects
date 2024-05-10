@@ -1,7 +1,7 @@
 #include "Window.h"
 #include "WindowUpdationEventInternal.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace WindowFunctors {
 

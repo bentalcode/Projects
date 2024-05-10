@@ -4,7 +4,7 @@
 #include "wx/event.h"
 #include "IGuiTransaction.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The PostRefreshEventInternal class implements an internal event of post-refreshing a GUI component.
@@ -46,6 +46,6 @@ namespace WXWidgets {
         IGuiTransactionSharedPtr m_guiTransaction;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // POST_REFRESH_EVENT_INTERNAL_ebcafe4c_df12_4f0b_95a4_d52277e54508

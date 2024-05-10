@@ -6,7 +6,7 @@
 #include "WXObjectPtr.h"
 #include <wx/richtext/richtextctrl.h>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Rich Text Control class implements a rich text control.
@@ -55,6 +55,6 @@ namespace WXWidgets {
     //
     using RichTextControlPtr = WXObjectPtr<RichTextControl>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // RICH_TEXT_CONTROL_493f793f_bd52_4199_a442_50c936876d20

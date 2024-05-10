@@ -20,12 +20,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The VideoRenderingVisualizerFrame class implements a frame.
          */
-        class VideoRenderingVisualizerFrame final : public WXWidgets::Frame {
+        class VideoRenderingVisualizerFrame final : public wxwidgets::Frame {
         public:
             /**
              * Creates an app.
              */
-            static WXWidgets::IFramePtr Make(
+            static wxwidgets::IFramePtr Make(
                 const wxString& title,
                 const wxPoint& position,
                 const wxSize& size,
@@ -104,7 +104,7 @@ namespace VideoRenderingVisualizer {
             /**
              * Creates a menu bar.
              */
-            WXWidgets::IMenuBarPtr CreateMenuBar(
+            wxwidgets::IMenuBarPtr CreateMenuBar(
                 wxMenu& fileMenu,
                 wxMenu& viewMenu,
                 wxMenu& helpMenu);
@@ -112,27 +112,27 @@ namespace VideoRenderingVisualizer {
             /**
              * Creates a file menu.
              */
-            WXWidgets::IMenuPtr CreateFileMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager);
+            wxwidgets::IMenuPtr CreateFileMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager);
 
             /**
              * Creates a view menu.
              */
-            WXWidgets::IMenuPtr CreateViewMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager);
+            wxwidgets::IMenuPtr CreateViewMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager);
 
             /**
              * Creates a help menu.
              */
-            WXWidgets::IMenuPtr CreateHelpMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager);
+            wxwidgets::IMenuPtr CreateHelpMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager);
 
             /**
              * Retrieves calls information from data repository.
              */
             void GetCallsInformation(std::vector<Model::ICallInformationSharedPtr>& callsInformation) const;
 
-            WXWidgets::IMenuPtr m_fileMenu;
-            WXWidgets::IMenuPtr m_viewMenu;
-            WXWidgets::IMenuPtr m_helpMenu;
-            WXWidgets::IMenuBarPtr m_menuBar;
+            wxwidgets::IMenuPtr m_fileMenu;
+            wxwidgets::IMenuPtr m_viewMenu;
+            wxwidgets::IMenuPtr m_helpMenu;
+            wxwidgets::IMenuBarPtr m_menuBar;
             IGuiWindowSharedPtr m_mainWindow;
             IGuiManager& m_guiManager;
         };

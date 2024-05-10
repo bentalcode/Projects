@@ -6,7 +6,7 @@
 #include "ILoggerFactory.h"
 #include "wx/listctrl.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractListView class implements an abstract base class of a list view.
@@ -259,6 +259,6 @@ namespace WXWidgets {
         std::vector<std::vector<std::wstring>> m_values;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_LIST_VIEW_104cadef_a5f4_46bb_8877_9bad766c606d

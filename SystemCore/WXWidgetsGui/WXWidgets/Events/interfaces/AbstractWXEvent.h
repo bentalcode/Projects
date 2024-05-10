@@ -4,7 +4,7 @@
 #include "IWXEvent.h"
 #include "SmartPointers.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractWXEvent class implements an abstract base class of an event in wxWidgets.
@@ -62,6 +62,6 @@ namespace WXWidgets {
         return *m_internalEvent;
     }
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_WX_EVENT_339a2803_fb3d_4cb0_a4ab_c12ddd9a42a4

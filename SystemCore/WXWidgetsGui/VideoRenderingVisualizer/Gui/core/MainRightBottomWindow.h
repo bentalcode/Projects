@@ -36,7 +36,7 @@ namespace VideoRenderingVisualizer {
             /**
              * Gets a window.
              */
-            virtual WXWidgets::IWindow& GetWindow() override;
+            virtual wxwidgets::IWindow& GetWindow() override;
 
         private:
             /**
@@ -47,7 +47,7 @@ namespace VideoRenderingVisualizer {
             //
             // The list view of rendering pipelines...
             //
-            WXWidgets::IListViewPtr m_listView;
+            wxwidgets::IListViewPtr m_listView;
         };
 
     } // namespace Gui

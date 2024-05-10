@@ -8,9 +8,9 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates an app.
  */
-WXWidgets::IAppPtr VideoRenderingVisualizerApp::Make()
+wxwidgets::IAppPtr VideoRenderingVisualizerApp::Make()
 {
-    return WXWidgets::IAppPtr::Make(new VideoRenderingVisualizerApp());
+    return wxwidgets::IAppPtr::Make(new VideoRenderingVisualizerApp());
 }
 
 /**
@@ -59,7 +59,7 @@ void VideoRenderingVisualizerApp::OnAppInitialization()
 /**
  * Creates a main frame.
  */
-WXWidgets::IFramePtr VideoRenderingVisualizerApp::CreateMainFrame() 
+wxwidgets::IFramePtr VideoRenderingVisualizerApp::CreateMainFrame()
 {
     //
     // Retrieve configuration...

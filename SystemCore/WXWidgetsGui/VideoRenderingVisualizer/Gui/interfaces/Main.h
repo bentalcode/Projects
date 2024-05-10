@@ -42,7 +42,7 @@ namespace VideoRenderingVisualizer {
             //
             // The Open GL Initializer...
             //
-            using OpenGLInitializerUniquePtr = std::unique_ptr<WXWidgets::OpenGLInitializer>;
+            using OpenGLInitializerUniquePtr = std::unique_ptr<wxwidgets::OpenGLInitializer>;
             OpenGLInitializerUniquePtr m_openGLInitializer;
 
             //

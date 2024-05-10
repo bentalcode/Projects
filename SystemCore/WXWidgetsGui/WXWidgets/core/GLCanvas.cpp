@@ -1,6 +1,6 @@
 #include "GLCanvas.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The GLCanvas constructor.

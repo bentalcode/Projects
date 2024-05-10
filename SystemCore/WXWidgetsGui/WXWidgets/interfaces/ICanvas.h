@@ -5,7 +5,7 @@
 #include "IWindow.h"
 #include "WXObjectPtr.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The ICanvas interface defines a canvas.
@@ -31,6 +31,6 @@ namespace WXWidgets {
     //
     using ICanvasPtr = WXObjectPtr<ICanvas>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_CANVAS_036076e0_4a0d_4f02_97a2_de654e1b9d33

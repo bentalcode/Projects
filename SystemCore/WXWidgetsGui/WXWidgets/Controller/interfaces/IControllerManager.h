@@ -3,9 +3,9 @@
 
 #include "IGuiComponent.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
-    namespace Command {
+    namespace controller {
 
         /**
          * The IControllerManager interface defines a controller manager.
@@ -41,8 +41,8 @@ namespace WXWidgets {
          */
         using IControllerManagerSharedPtr = std::shared_ptr<IControllerManager>;
 
-    } // namespace Command
+    } // namespace controller
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_CONTROLLER_MANAGER_H_952a95aa_9028_4638_941d_65bbd19022d1

@@ -12,12 +12,12 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates a call list box.
  */
-WXWidgets::IListBoxPtr CallListBox::Make(
+wxwidgets::IListBoxPtr CallListBox::Make(
     wxWindow& parent, 
     const std::vector<std::wstring>& items,
     IGuiManager& guiManager)
 {
-    return WXWidgets::IListBoxPtr::Make(
+    return wxwidgets::IListBoxPtr::Make(
         new CallListBox(
             parent, 
             items, 
@@ -86,18 +86,18 @@ void CallListBox::OnSelectedItem(const std::wstring& item)
     //
     // Query rendering pipelines time interval....
     //
-    Utilities::DateTimeIntervalSharedPtr renderingPipelinesTimeInterval = QueryRenderingPipelinesTimeInterval(callId);
+    base::DateTimeIntervalSharedPtr renderingPipelinesTimeInterval = QueryRenderingPipelinesTimeInterval(callId);
 
     //
     // Update items of a compositor list box...
     //
-    Controller::IControllerManagerSharedPtr controllerManager = m_guiManager.GetControllerManager();
-    Controller::IRefreshingTransactionSharedPtr transaction = Controller::RefreshingTransaction::Make(*controllerManager);
+    wxwidgets::controller::IControllerManagerSharedPtr controllerManager = m_guiManager.GetControllerManager();
+    wxwidgets::controller::IRefreshingTransactionSharedPtr transaction = wxwidgets::controller::RefreshingTransaction::Make(*controllerManager);
     
     std::wstring compositorListBoxComponent = GuiPaths::Read().GetMainFrameMainLeftTopWindowLowerSubWindowListBox();
     
-    std::wstring dataItemListBoxItems = WXWidgets::WXDataItems::Read().GetListBoxItems();
-    std::wstring dataItemComponentShowMode = WXWidgets::WXDataItems::Read().GetComponentShowMode();
+    std::wstring dataItemListBoxItems = wxwidgets::WXDataItems::Read().GetListBoxItems();
+    std::wstring dataItemComponentShowMode = wxwidgets::WXDataItems::Read().GetComponentShowMode();
 
     transaction->UpdateData(
         compositorListBoxComponent, 
@@ -114,7 +114,7 @@ void CallListBox::OnSelectedItem(const std::wstring& item)
     //
     std::wstring leftWindowSplitterWindow = GuiPaths::Read().GetMainFrameMainLeftWindowSplitterWindow();
     std::wstring dataItemSplitterWindowSecondSubWindowShowMode =
-        WXWidgets::WXDataItems::Read().GetSplitterWindowSecondSubWindowShowMode();
+        wxwidgets::WXDataItems::Read().GetSplitterWindowSecondSubWindowShowMode();
 
     transaction->UpdateData(
         leftWindowSplitterWindow, 
@@ -168,7 +168,7 @@ void CallListBox::QueryCompositorListBoxItems(
 
     Model::ICompositorInformationCollectionSharedPtr compositors = dataQuery->QueryCompositors(callId);
     
-    Utilities::IIteratorSharedPtr<Model::ICompositorInformationSharedPtr> compositorInformationIterator = compositors->GetIterator();
+    base::IIteratorSharedPtr<Model::ICompositorInformationSharedPtr> compositorInformationIterator = compositors->GetIterator();
 
     //
     // Create corresponding compositors items...
@@ -184,7 +184,7 @@ void CallListBox::QueryCompositorListBoxItems(
 /**
  * Queries rendering pipelines time interval.
  */
-Utilities::DateTimeIntervalSharedPtr CallListBox::QueryRenderingPipelinesTimeInterval(const std::wstring& callId) const
+base::DateTimeIntervalSharedPtr CallListBox::QueryRenderingPipelinesTimeInterval(const std::wstring& callId) const
 {
     const Model::IDataRepositorySharedPtr dataRepository = m_guiManager.GetDataRepository();
     const Model::IDataQuerySharedPtr dataQuery = dataRepository->GetDataQuery();

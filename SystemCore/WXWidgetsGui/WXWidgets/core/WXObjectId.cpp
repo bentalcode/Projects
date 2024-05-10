@@ -1,6 +1,6 @@
 #include "WXObjectId.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The WXObjectId constructor.

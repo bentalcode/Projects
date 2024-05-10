@@ -3,7 +3,7 @@
 
 #include "IDataItems.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IWXDataItems interface defines WX data items.
@@ -74,6 +74,6 @@ namespace WXWidgets {
         virtual const std::wstring& GetSplitterWindowSecondSubWindowShowMode() const = 0;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_WX_DATA_ITEMS_e75df3cd_30f7_47a6_a1d7_8a06c2d69921

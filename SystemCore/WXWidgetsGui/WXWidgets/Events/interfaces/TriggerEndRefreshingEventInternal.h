@@ -3,7 +3,7 @@
 
 #include "wx/event.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The TriggerEndRefreshingEvent class implements an internal event of triggering a refresh event of a GUI component.
@@ -37,6 +37,6 @@ namespace WXWidgets {
         wxEvent* Clone() const;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // TRIGGER_END_REFRESHING_EVENT_INTERNAL_00a178bd_40aa_4544_b1ae_38dae93ed545

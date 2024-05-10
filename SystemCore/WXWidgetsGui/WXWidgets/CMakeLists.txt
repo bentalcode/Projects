@@ -22,7 +22,7 @@ add_compile_definitions(WINDOWS=1)
 #
 # Open Sources Path...
 #
-set (OPEN_SOURCES_PATH "../../../../../../OpenSources")
+set (OPEN_SOURCES_PATH "../../../../../../../OpenSources")
 
 #
 # WX Widgets Path...

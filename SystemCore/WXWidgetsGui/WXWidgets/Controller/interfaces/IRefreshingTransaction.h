@@ -6,9 +6,9 @@
 #include <string>
 #include <vector>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
-    namespace Command {
+    namespace controller {
 
         /**
          * The IRefreshingTransaction interface defines a refreshing transaction in controller.
@@ -88,8 +88,8 @@ namespace WXWidgets {
          */
         using IRefreshingTransactionSharedPtr = std::shared_ptr<IRefreshingTransaction>;
 
-    } // namespace Command
+    } // namespace controller
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_REFRESHING_TRANSACTION_H_b6161727_3661_4a01_a51a_4b2334c783e6

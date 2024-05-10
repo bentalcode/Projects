@@ -5,7 +5,7 @@
 #include "GuiComponent.h"
 #include "wx/menu.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Menu class implements a menu.
@@ -61,6 +61,6 @@ namespace WXWidgets {
         std::wstring m_name;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // MENU_2402b53c_a098_426d_bc0c_0ae68199d56a

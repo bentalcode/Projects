@@ -1,6 +1,6 @@
 #include "GuiComponentData.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a GUI component data.

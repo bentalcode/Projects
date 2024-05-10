@@ -3,7 +3,7 @@
 
 #include "IWXEvent.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IWXEventHandler interface defines an Event Handler in wxWidgets.
@@ -24,7 +24,7 @@ namespace WXWidgets {
      */
     using IWXEventHandlerSharedPtr = std::shared_ptr<IWXEventHandler>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_WX_EVENT_HANDLER_cc2db2fd_3325_4ed0_aa80_8c2eb0b44138
 

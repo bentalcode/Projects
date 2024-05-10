@@ -6,7 +6,7 @@
 #include "OpenGLHeaders.h"
 #include "wx/glcanvas.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractGLCanvas class implements an abstract base class of a GL Canvas
@@ -87,6 +87,6 @@ namespace WXWidgets {
         IWXLogPtr m_wxLogger;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_GL_CANVAS_88340919_7ae6_41f0_a14d_954948363c2e

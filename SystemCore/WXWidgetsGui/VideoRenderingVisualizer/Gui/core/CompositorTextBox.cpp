@@ -41,11 +41,11 @@ private:
 /**
  * Creates a compositor static text box.
  */
-WXWidgets::IStaticTextPtr CompositorTextBox::Make(
+wxwidgets::IStaticTextPtr CompositorTextBox::Make(
     wxWindow& parent, 
     IGuiManager& guiManager)
 {
-    return WXWidgets::IStaticTextPtr::Make(
+    return wxwidgets::IStaticTextPtr::Make(
         new CompositorTextBox(
             parent, 
             guiManager));
@@ -57,7 +57,7 @@ WXWidgets::IStaticTextPtr CompositorTextBox::Make(
 CompositorTextBox::CompositorTextBox(
     wxWindow& parent, 
     IGuiManager& guiManager) : 
-        WXWidgets::StaticText(
+        wxwidgets::StaticText(
             parent, 
             GuiPaths::Read().GetMainFrameMainLeftBottomWindowStaticText()), 
             m_guiManager(guiManager)
@@ -83,7 +83,7 @@ void CompositorTextBox::Initialize(IGuiManager& guiManager)
     //
     // Initialize static text...
     //
-    WXWidgets::StaticText::Initialize(guiManager.GetGuiController());
+    wxwidgets::StaticText::Initialize(guiManager.GetGuiController());
 
     //
     // Register data items...
@@ -140,7 +140,7 @@ bool CompositorTextBox::UpdateFromDataContainer(DataContainerManagement::IDataCo
         std::wstring compositorId = dataItem.GetValue()->GetString();
         compositorInformation = QueryCompositorDisplayInformation(compositorId);
 
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_compositorId, compositorId);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_compositorId, compositorId);
 
         dataUpdated |= propertyUpdated;
 

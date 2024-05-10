@@ -20,13 +20,13 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates an app.
  */
-WXWidgets::IFramePtr VideoRenderingVisualizerFrame::Make(
+wxwidgets::IFramePtr VideoRenderingVisualizerFrame::Make(
     const wxString& title,
     const wxPoint& position,
     const wxSize& size,
     IGuiManager& guiManager)
 { 
-    return WXWidgets::IFramePtr::Make(new VideoRenderingVisualizerFrame(
+    return wxwidgets::IFramePtr::Make(new VideoRenderingVisualizerFrame(
         title,
         position,
         size, 
@@ -45,7 +45,7 @@ VideoRenderingVisualizerFrame::VideoRenderingVisualizerFrame(
             nullptr, 
             GuiPaths::Read().GetMainFrameFrame(), 
             title,
-            WXWidgets::WXObjectId::NextId(), 
+            wxwidgets::WXObjectId::NextId(),
             position, 
             size), 
     m_guiManager(guiManager)
@@ -183,7 +183,7 @@ void VideoRenderingVisualizerFrame::OnOpen(wxCommandEvent& event)
     //
     // Create folder dialog for parsing TLogs...
     //
-    WXWidgets::IFolderDialogPtr dialog = TLogsFolderDialog::Make(
+    wxwidgets::IFolderDialogPtr dialog = TLogsFolderDialog::Make(
         parent, 
         m_guiManager);
 
@@ -236,7 +236,7 @@ void VideoRenderingVisualizerFrame::OnRenderingPipelinesVisualizer(wxCommandEven
     //
     // Create the rendering pipelines visualizer dialog...
     //
-    WXWidgets::IDialogPtr dialog = RenderingPipelinesVisualizerDialog::Make(
+    wxwidgets::IDialogPtr dialog = RenderingPipelinesVisualizerDialog::Make(
         parent, 
         m_guiManager);
 
@@ -258,7 +258,7 @@ void VideoRenderingVisualizerFrame::OnEventViewer(wxCommandEvent& event)
     //
     // Create the event view dialog...
     //
-    WXWidgets::IDialogPtr dialog = EventViewerDialog::Make(parent, m_guiManager);
+    wxwidgets::IDialogPtr dialog = EventViewerDialog::Make(parent, m_guiManager);
 
     dialog.DeleteObject(true);
 
@@ -278,7 +278,7 @@ void VideoRenderingVisualizerFrame::OnLogStatistics(wxCommandEvent& event)
     //
     // Create the log statistics dialog...
     //
-    WXWidgets::IDialogPtr dialog = LogStatisticsDialog::Make(
+    wxwidgets::IDialogPtr dialog = LogStatisticsDialog::Make(
         parent, 
         m_guiManager);
 
@@ -300,7 +300,7 @@ void VideoRenderingVisualizerFrame::OnAppLog(wxCommandEvent& event)
     //
     // Create the app log dialog...
     //
-    WXWidgets::IDialogPtr dialog = AppLogDialog::Make(parent, m_guiManager);
+    wxwidgets::IDialogPtr dialog = AppLogDialog::Make(parent, m_guiManager);
 
     dialog.DeleteObject(true);
 
@@ -383,12 +383,12 @@ void VideoRenderingVisualizerFrame::InitializeMainWindow()
 /**
  * Creates a menu bar.
  */
-WXWidgets::IMenuBarPtr VideoRenderingVisualizerFrame::CreateMenuBar(
+wxwidgets::IMenuBarPtr VideoRenderingVisualizerFrame::CreateMenuBar(
     wxMenu& fileMenu,
     wxMenu& viewMenu,
     wxMenu& helpMenu)
 {
-    WXWidgets::IMenuBarPtr menuBar = WXWidgets::MenuBar::Make(
+    wxwidgets::IMenuBarPtr menuBar = wxwidgets::MenuBar::Make(
         GuiPaths::Read().GetMainFrameTopMenuBar());
 
     menuBar->Initialize(m_guiManager.GetGuiController());
@@ -403,9 +403,9 @@ WXWidgets::IMenuBarPtr VideoRenderingVisualizerFrame::CreateMenuBar(
 /**
  * Creates a file menu.
  */
-WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateFileMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager)
+wxwidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateFileMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager)
 {
-    WXWidgets::IMenuPtr menu = WXWidgets::Menu::Make(
+    wxwidgets::IMenuPtr menu = wxwidgets::Menu::Make(
         GuiPaths::Read().GetMainFrameTopMenuBarFileMenu());
     
     menu->Initialize(m_guiManager.GetGuiController());
@@ -419,8 +419,8 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateFileMenu(const GuiConfi
 
     menu->Append(
         openMenuItemConfiguration->GetItemId(), 
-        Utilities::StringUtils::ToString(openMenuItemConfiguration->GetText()),
-        Utilities::StringUtils::ToString(openMenuItemConfiguration->GetHelp()), 
+        openMenuItemConfiguration->GetText(),
+        openMenuItemConfiguration->GetHelp(),
         openMenuItemConfiguration->GetKind());
 
     menu->AppendSeparator();
@@ -431,8 +431,8 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateFileMenu(const GuiConfi
 
     menu->Append(
         exitMenuItemConfiguration->GetItemId(), 
-        Utilities::StringUtils::ToString(exitMenuItemConfiguration->GetText()),
-        Utilities::StringUtils::ToString(exitMenuItemConfiguration->GetHelp()), 
+        exitMenuItemConfiguration->GetText(),
+        exitMenuItemConfiguration->GetHelp(),
         exitMenuItemConfiguration->GetKind());
 
     return menu;
@@ -441,12 +441,12 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateFileMenu(const GuiConfi
 /**
  * Creates a view menu.
  */
-WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateViewMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager)
+wxwidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateViewMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager)
 {
     //
     // Create view menu...
     //
-    WXWidgets::IMenuPtr menu = WXWidgets::Menu::Make(
+    wxwidgets::IMenuPtr menu = wxwidgets::Menu::Make(
         GuiPaths::Read().GetMainFrameTopMenuBarViewMenu());
 
     menu->Initialize(m_guiManager.GetGuiController());
@@ -463,8 +463,8 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateViewMenu(const GuiConfi
 
     menu->Append(
         renderingPipelinesVisualizerMenuItemConfiguration->GetItemId(),
-        Utilities::StringUtils::ToString(renderingPipelinesVisualizerMenuItemConfiguration->GetText()),
-        Utilities::StringUtils::ToString(renderingPipelinesVisualizerMenuItemConfiguration->GetHelp()),
+        renderingPipelinesVisualizerMenuItemConfiguration->GetText(),
+        renderingPipelinesVisualizerMenuItemConfiguration->GetHelp(),
         renderingPipelinesVisualizerMenuItemConfiguration->GetKind());
 
     //
@@ -475,8 +475,8 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateViewMenu(const GuiConfi
 
     menu->Append(
         eventViewerMenuItemConfiguration->GetItemId(),
-        Utilities::StringUtils::ToString(eventViewerMenuItemConfiguration->GetText()),
-        Utilities::StringUtils::ToString(eventViewerMenuItemConfiguration->GetHelp()),
+        eventViewerMenuItemConfiguration->GetText(),
+        eventViewerMenuItemConfiguration->GetHelp(),
         eventViewerMenuItemConfiguration->GetKind());
 
     //
@@ -488,8 +488,8 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateViewMenu(const GuiConfi
 
     menu->Append(
         logStatisticsMenuItemConfiguration->GetItemId(),
-        Utilities::StringUtils::ToString(logStatisticsMenuItemConfiguration->GetText()),
-        Utilities::StringUtils::ToString(logStatisticsMenuItemConfiguration->GetHelp()),
+        logStatisticsMenuItemConfiguration->GetText(),
+        logStatisticsMenuItemConfiguration->GetHelp(),
         logStatisticsMenuItemConfiguration->GetKind());
 
     menu->AppendSeparator();
@@ -502,8 +502,8 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateViewMenu(const GuiConfi
 
     menu->Append(
         appLogMenuItemConfiguration->GetItemId(),
-        Utilities::StringUtils::ToString(appLogMenuItemConfiguration->GetText()),
-        Utilities::StringUtils::ToString(appLogMenuItemConfiguration->GetHelp()),
+        appLogMenuItemConfiguration->GetText(),
+        appLogMenuItemConfiguration->GetHelp(),
         appLogMenuItemConfiguration->GetKind());
 
     menu->AppendSeparator();
@@ -514,9 +514,9 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateViewMenu(const GuiConfi
 /**
  * Creates a help menu.
  */
-WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateHelpMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager)
+wxwidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateHelpMenu(const GuiConfiguration::IGuiConfigurationManager& configurationManager)
 {
-    WXWidgets::IMenuPtr menu = WXWidgets::Menu::Make(GuiPaths::Read().GetMainFrameTopMenuBarHelpMenu());
+    wxwidgets::IMenuPtr menu = wxwidgets::Menu::Make(GuiPaths::Read().GetMainFrameTopMenuBarHelpMenu());
     menu->Initialize(m_guiManager.GetGuiController());
 
     GuiConfiguration::IMenuItemsConfigurationSharedPtr menuItemsConfiguration = 
@@ -528,8 +528,8 @@ WXWidgets::IMenuPtr VideoRenderingVisualizerFrame::CreateHelpMenu(const GuiConfi
 
     menu->Append(
         aboutMenuItemConfiguration->GetItemId(), 
-        Utilities::StringUtils::ToString(aboutMenuItemConfiguration->GetText()),
-        Utilities::StringUtils::ToString(aboutMenuItemConfiguration->GetHelp()), 
+        aboutMenuItemConfiguration->GetText(),
+        aboutMenuItemConfiguration->GetHelp(),
         aboutMenuItemConfiguration->GetKind());
 
     return menu;
@@ -549,7 +549,7 @@ void VideoRenderingVisualizerFrame::GetCallsInformation(std::vector<Model::ICall
     const Model::IDataQuerySharedPtr dataQuery = dataRepository->GetDataQuery();
 
     const Model::ICallInformationCollectionSharedPtr callInformationCollection = dataQuery->QueryCalls();
-    Utilities::IIteratorSharedPtr<Model::ICallInformationSharedPtr> callInformationIterator =
+    base::IIteratorSharedPtr<Model::ICallInformationSharedPtr> callInformationIterator =
         callInformationCollection->GetIterator();
 
     while (callInformationIterator->HasNext()) {

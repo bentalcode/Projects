@@ -15,12 +15,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The EventListView class implements a list view of events.
          */
-        class EventListView final : public WXWidgets::ListView {
+        class EventListView final : public wxwidgets::ListView {
         public:
             /**
              * Creates an Event List View.
              */
-            static WXWidgets::IListViewPtr Make(
+            static wxwidgets::IListViewPtr Make(
                 wxWindow& parent,
                 tabular_data::IEventLogSharedPtr eventLog,
                 const base::DateTimeIntervalSharedPtr intervalTime,

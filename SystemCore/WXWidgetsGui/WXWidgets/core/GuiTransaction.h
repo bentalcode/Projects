@@ -7,7 +7,7 @@
 #include <condition_variable>
 #include "ILoggers.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The GuiTransaction class implements a GUI transaction.
@@ -97,6 +97,6 @@ namespace WXWidgets {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // GUI_TRANSACTION_7395be10_8196_4ba0_8613_5f7aa5d94934

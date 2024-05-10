@@ -11,12 +11,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The TLogsFolderDialog class implements a folder dialog of TLogs.
          */
-        class TLogsFolderDialog final : public WXWidgets::FolderDialog {
+        class TLogsFolderDialog final : public wxwidgets::FolderDialog {
         public:
             /**
              * Creates a TLogs Folder Dialog.
              */
-            static WXWidgets::IFolderDialogPtr Make(
+            static wxwidgets::IFolderDialogPtr Make(
                 wxWindow& parent,
                 IGuiManager& guiManager);
 

@@ -4,7 +4,7 @@
 #include "wx\event.h"
 #include "IGuiTransaction.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The PreRefreshEventInternal class implements an internal event of pre-refreshing a GUI component.
@@ -46,6 +46,6 @@ namespace WXWidgets {
         IGuiTransactionSharedPtr m_guiTransaction;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // PRE_REFRESH_EVENT_INTERNAL_966d9d8b_fc1b_49dd_91e5_1eff08849755

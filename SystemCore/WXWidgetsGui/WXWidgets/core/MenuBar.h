@@ -6,7 +6,7 @@
 #include "WXObjectPtr.h"
 #include "wx/menu.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The MenuBar class implements a menu bar.
@@ -53,6 +53,6 @@ namespace WXWidgets {
         std::wstring m_name;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // MENU_BAR_62910582_4fa8_45a6_910d_0747934feb74

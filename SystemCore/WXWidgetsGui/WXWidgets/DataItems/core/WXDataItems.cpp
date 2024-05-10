@@ -1,7 +1,7 @@
 #include "WXDataItems.h"
 #include "DataItemCatalog.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 const std::wstring WXDataItems::NAME = L"WXDataItems";
 const std::wstring WXDataItems::COMPONENT_SHOW_MODE = L"window/showMode";
@@ -24,10 +24,10 @@ const IWXDataItems& WXDataItems::Read()
 {
     std::wstring dataItemsName = NAME;
 
-    WXWidgets::IDataItemCatalogSharedPtr dataItemCatalog = WXWidgets::DataItemCatalog::GetInstance();
+    IDataItemCatalogSharedPtr dataItemCatalog = DataItemCatalog::GetInstance();
 
     if (!dataItemCatalog->HasDataItems(dataItemsName)) {
-        WXWidgets::IDataItemsSharedPtr dataItems = WXDataItems::Make();
+        IDataItemsSharedPtr dataItems = Make();
         dataItemCatalog->RegisterDataItems(dataItems);
     }
 

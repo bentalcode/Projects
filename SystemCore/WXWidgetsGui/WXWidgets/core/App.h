@@ -3,7 +3,7 @@
 
 #include "AbstractApp.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The App class implements an app.
@@ -28,6 +28,6 @@ namespace WXWidgets {
             IGuiControllerSharedPtr guiController) override;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // APP_440859ed_071f_410a_a14d_15257e71e8c5

@@ -1,6 +1,6 @@
 #include "SplitterSubWindowConfiguration.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a configuration of a splitter sub window.

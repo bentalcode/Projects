@@ -1,6 +1,6 @@
 #include "App.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The App constructor.

@@ -1,7 +1,7 @@
 #include "SplitterWindowConfiguration.h"
 #include "SmartPointers.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a configuration of a splitter window.

@@ -1,6 +1,6 @@
 #include "Dialog.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The Dialog constructor.

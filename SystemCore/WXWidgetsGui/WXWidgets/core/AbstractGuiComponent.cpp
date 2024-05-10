@@ -11,7 +11,7 @@
 #include "Loggers.h"
 #include "WXWidgetsException.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace AbstractGuiComponentFunctors {
 
@@ -257,7 +257,7 @@ logging::ILoggerSharedPtr AbstractGuiComponent::GetLogger() const
  */
 logging::ILoggerSharedPtr AbstractGuiComponent::GetSLogger()
 {
-    static logging::ILoggersSharedPtr loggers = logging::Loggers::Make(typeid(WXWidgets::AbstractGuiComponent));
+    static logging::ILoggersSharedPtr loggers = logging::Loggers::Make(typeid(wxwidgets::AbstractGuiComponent));
     return loggers->GetLogger();
 }
 

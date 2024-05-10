@@ -1,6 +1,6 @@
 #include "TriggerStartRefreshingEvent.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a start refreshing event.

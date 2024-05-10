@@ -1,3 +1,3 @@
 #include "WXProperty.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;

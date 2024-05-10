@@ -30,7 +30,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         RenderingPipelinesListView::UpdateDataContainerStartIntervalTime(m_dataContainer, time);
     }
@@ -55,7 +55,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         RenderingPipelinesListView::UpdateDataContainerEndIntervalTime(m_dataContainer, time);
     }
@@ -69,12 +69,12 @@ private:
 /**
  * Creates a Rendering Pipelines List View.
  */
-WXWidgets::IListViewPtr RenderingPipelinesListView::Make(
+wxwidgets::IListViewPtr RenderingPipelinesListView::Make(
     wxWindow& parent, 
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager)
 {
-    return WXWidgets::IListViewPtr::Make(
+    return wxwidgets::IListViewPtr::Make(
         new RenderingPipelinesListView(
             parent, 
             intervalTime, 
@@ -86,7 +86,7 @@ WXWidgets::IListViewPtr RenderingPipelinesListView::Make(
  */
 RenderingPipelinesListView::RenderingPipelinesListView(
     wxWindow& parent, 
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager) : 
         ListView(
             parent, 
@@ -131,9 +131,9 @@ void RenderingPipelinesListView::Initialize(IGuiManager& guiManager)
     //
     // Set header attributes...
     //
-    WXWidgets::ColorType fontColorType = WXWidgets::ColorType::BLACK;
-    WXWidgets::ColorType backgroundColorType = WXWidgets::ColorType::WHITE;
-    WXWidgets::Font headerFont;
+    wxwidgets::ColorType fontColorType = wxwidgets::ColorType::BLACK;
+    wxwidgets::ColorType backgroundColorType = wxwidgets::ColorType::WHITE;
+    wxwidgets::Font headerFont;
     headerFont.MakeBold();
     
     SetHeaderAttributes(
@@ -182,7 +182,7 @@ void RenderingPipelinesListView::Reset()
     //
     // Color the rows of list view based on the rendering pipelines status...
     //
-    Utilities::IIteratorSharedPtr<Model::IRenderingPipelineInformationSharedPtr> renderingPipelineIterator =
+    base::IIteratorSharedPtr<Model::IRenderingPipelineInformationSharedPtr> renderingPipelineIterator =
         m_renderingPipelines->GetIterator();
 
     size_t rowIndex = 0;
@@ -190,7 +190,7 @@ void RenderingPipelinesListView::Reset()
     while (renderingPipelineIterator->HasNext()) {
         Model::IRenderingPipelineInformationSharedPtr renderingPipeline = renderingPipelineIterator->Next();
 
-        WXWidgets::ColorType renderingStatusColor = GetRenderingStatusColor(renderingPipeline->GetRenderingStatus());
+        wxwidgets::ColorType renderingStatusColor = GetRenderingStatusColor(renderingPipeline->GetRenderingStatus());
         SetRowBackgroundColor(rowIndex, renderingStatusColor);
     
         ++rowIndex;
@@ -202,7 +202,7 @@ void RenderingPipelinesListView::Reset()
  */
 void RenderingPipelinesListView::UpdateDataContainerStartIntervalTime(
     DataContainerManagement::IDataContainer& data, 
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesStartIntervalTime();
 
@@ -219,7 +219,7 @@ void RenderingPipelinesListView::UpdateDataContainerStartIntervalTime(
  */
 void RenderingPipelinesListView::UpdateDataContainerEndIntervalTime(
     DataContainerManagement::IDataContainer& data, 
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesEndIntervalTime();
 
@@ -244,9 +244,11 @@ bool RenderingPipelinesListView::UpdateFromDataContainer(DataContainerManagement
         const DataContainerManagement::IDataItem& dataItem =
             dataContainer.GetDataItem(dataItemStartIntervalTime);
 
-        const Utilities::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetStartTime(), 
+        const base::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr startTime = m_intervalTime->GetStartTime();
+
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            startTime,
             startIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -258,10 +260,11 @@ bool RenderingPipelinesListView::UpdateFromDataContainer(DataContainerManagement
         const DataContainerManagement::IDataItem& dataItem =
             dataContainer.GetDataItem(dataItemEndIntervalTime);
 
-        const Utilities::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
-        
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetEndTime(), 
+        const base::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr endTime = m_intervalTime->GetEndTime();
+
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            endTime,
             endIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -279,10 +282,10 @@ bool RenderingPipelinesListView::UpdateFromDataContainer(DataContainerManagement
         std::vector<std::vector<std::wstring>> values;
         GetListViewValues(values);
 
-        WXWidgets::ListView::UpdateDataContainerValues(GetData(), values);
+        wxwidgets::ListView::UpdateDataContainerValues(GetData(), values);
     }
 
-    bool propertiesUpdated = WXWidgets::ListView::UpdateFromDataContainer(dataContainer);
+    bool propertiesUpdated = wxwidgets::ListView::UpdateFromDataContainer(dataContainer);
     dataUpdated |= propertiesUpdated;
 
     return dataUpdated;
@@ -296,7 +299,7 @@ void RenderingPipelinesListView::Update()
     //
     // Update the list view...
     //
-    WXWidgets::ListView::Update();
+    wxwidgets::ListView::Update();
 
     //
     // Reset component...
@@ -348,7 +351,7 @@ void RenderingPipelinesListView::GetListViewValues(std::vector<std::vector<std::
     //
     // Create corresponding compositors values...
     //
-    Utilities::IIteratorSharedPtr<Model::IRenderingPipelineInformationSharedPtr> renderingPipelineIterator =
+    base::IIteratorSharedPtr<Model::IRenderingPipelineInformationSharedPtr> renderingPipelineIterator =
         m_renderingPipelines->GetIterator();
 
     while (renderingPipelineIterator->HasNext()) {
@@ -369,7 +372,7 @@ void RenderingPipelinesListView::GetListViewValues(std::vector<std::vector<std::
 /**
  * Gets a color of rendering status.
  */
-WXWidgets::ColorType RenderingPipelinesListView::GetRenderingStatusColor(Model::RenderingStatus status) const
+wxwidgets::ColorType RenderingPipelinesListView::GetRenderingStatusColor(Model::RenderingStatus status) const
 {
     const RenderingStatusToColorMap& renderingStatusMap = GetRenderingStatusToColorMap();
     
@@ -401,7 +404,7 @@ void RenderingPipelinesListView::InitializeRenderingStatusToColorMap(RenderingSt
 {
     assert(map.empty());
 
-    map.insert(std::make_pair(Model::RenderingStatus::CREATED, WXWidgets::ColorType::YELLOW));
-    map.insert(std::make_pair(Model::RenderingStatus::RENDERING, WXWidgets::ColorType::GREEN));
-    map.insert(std::make_pair(Model::RenderingStatus::FROZEN, WXWidgets::ColorType::RED));
+    map.insert(std::make_pair(Model::RenderingStatus::CREATED, wxwidgets::ColorType::YELLOW));
+    map.insert(std::make_pair(Model::RenderingStatus::RENDERING, wxwidgets::ColorType::GREEN));
+    map.insert(std::make_pair(Model::RenderingStatus::FROZEN, wxwidgets::ColorType::RED));
 }

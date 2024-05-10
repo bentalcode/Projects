@@ -4,7 +4,7 @@
 #include "IBorderWindowConfiguration.h"
 #include "wx\defs.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The BorderWindowConfiguration class implements a configuration of a border window.
@@ -58,6 +58,6 @@ namespace WXWidgets {
         int m_flag;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // BORDER_WINDOW_CONFIGURATION_bf04510a_8974_477b_9739_a3b7571efb2a

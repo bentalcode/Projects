@@ -1,5 +1,6 @@
 #include "AbstractGuiWindow.h"
 #include "Loggers.h"
+#include <sstream>
 
 using namespace VideoRenderingVisualizer::Gui;
 
@@ -11,7 +12,7 @@ AbstractGuiWindow::AbstractGuiWindow(
     IGuiManager& guiManager) : 
     m_name(name), 
     m_guiManager(guiManager),
-	m_loggers(Logging::Loggers::Make(typeid(VideoRenderingVisualizer::Gui::AbstractGuiWindow)))
+	m_loggers(logging::Loggers::Make(typeid(VideoRenderingVisualizer::Gui::AbstractGuiWindow)))
 {
     std::wstringstream informationalStream;
     informationalStream << L"The GUI Window: " << m_name << L" has been created successfully.";
@@ -43,7 +44,7 @@ IGuiManager& AbstractGuiWindow::GetGuiManager()
 /**
  * Gets logger of GUI component.
  */
-Logging::ILoggerSharedPtr AbstractGuiWindow::GetLogger()
+logging::ILoggerSharedPtr AbstractGuiWindow::GetLogger()
 {
     return m_loggers->GetLogger();
 }

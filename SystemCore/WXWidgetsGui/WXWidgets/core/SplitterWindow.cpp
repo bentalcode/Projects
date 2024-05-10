@@ -1,6 +1,6 @@
 #include "SplitterWindow.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace SplitterWindowFunctors {
 

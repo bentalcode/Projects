@@ -10,7 +10,7 @@ namespace VideoRenderingVisualizer {
         /**
          * The IGuiDataItems interface defines data items of GUI.
          */
-        class IGuiDataItems : public WXWidgets::IDataItems {
+        class IGuiDataItems : public wxwidgets::IDataItems {
         public:
             IGuiDataItems() = default;
             virtual ~IGuiDataItems() = default;

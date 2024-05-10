@@ -4,7 +4,7 @@
 #include "WXWidgetsException.h"
 #include <assert.h>
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a GUI Transaction.
@@ -19,7 +19,7 @@ IGuiTransactionSharedPtr GuiTransaction::Make()
  */
 GuiTransaction::GuiTransaction() : 
     m_counter(0), 
-    m_loggers(logging::Loggers::Make(typeid(WXWidgets::GuiTransaction)))
+    m_loggers(logging::Loggers::Make(typeid(GuiTransaction)))
 {
 }
 

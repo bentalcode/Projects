@@ -3,7 +3,7 @@
 
 #include "wx\defs.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Orient enum defines orientation of a GUI component.
@@ -20,6 +20,6 @@ namespace WXWidgets {
         return orient == Orient::HORIZONTAL ? wxHORIZONTAL : wxVERTICAL;
     }
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ORIENT_127f14f6_af61_4c7f_8c96_8655e6846a29

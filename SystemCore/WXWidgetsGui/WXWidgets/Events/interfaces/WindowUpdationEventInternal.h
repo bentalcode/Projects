@@ -3,7 +3,7 @@
 
 #include "wx/event.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WindowUpdationEventInternal class implements an internal event for updation of a window.
@@ -37,6 +37,6 @@ namespace WXWidgets {
         wxEvent* Clone() const;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WINDOW_UPDATION_EVENT_INTERNAL_6be98cfa_ed93_41ab_a2fe_81710e56d334

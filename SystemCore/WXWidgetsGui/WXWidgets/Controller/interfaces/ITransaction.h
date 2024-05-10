@@ -3,9 +3,9 @@
 
 #include <memory>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
-    namespace Command {
+    namespace controller {
 
         /**
          * The ITransaction interface defines a generic type of a transaction in controller.
@@ -26,8 +26,8 @@ namespace WXWidgets {
          */
         using ITransactionSharedPtr = std::shared_ptr<ITransaction>;
 
-    } // namespace Command
+    } // namespace controller
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_TRANSACTION_H_654f5588_a698_4e22_81a2_fafd82caf8ce

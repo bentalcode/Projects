@@ -12,7 +12,7 @@
 class wxEvtHandler;
 class wxCommandEvent;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractGuiComponent class implements an abstract base class of a GUI component.
@@ -183,6 +183,6 @@ namespace WXWidgets {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_GUI_COMPONENT_f3e77033_de7b_4e28_8b8a_5431f882a2e8

@@ -6,7 +6,7 @@
 #include "WXObjectId.h"
 #include "wx/textctrl.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Text Control class implements a text control.
@@ -85,6 +85,6 @@ namespace WXWidgets {
         std::wstring m_value;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // TEXT_CONTROL_db212461_cb0a_45b8_9eb8_15e72b235133

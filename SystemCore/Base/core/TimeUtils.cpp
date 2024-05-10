@@ -59,6 +59,18 @@ std::chrono::system_clock::time_point TimeUtils::ParseStringToTimePoint(
 }
 
 /**
+ * Converts a time point to a string.
+ */
+std::wstring TimeUtils::TimePointToString(
+    const std::chrono::system_clock::time_point& timePoint,
+    const std::wstring& format)
+{
+    std::time_t timeT = std::chrono::system_clock::to_time_t(timePoint);
+    std::tm tm = *std::gmtime(&timeT);
+    return TmToString(tm, format);
+}
+
+/**
  * Converts a struct TM time to a string.
  */
 std::wstring TimeUtils::TmToString(
@@ -68,7 +80,7 @@ std::wstring TimeUtils::TmToString(
     //
     // Convert a struct TM to a string with std::wcsftime...
     //
-    size_t bufferSize = TimeUtils::BUFFER_SIZE;
+    size_t bufferSize = BUFFER_SIZE;
     std::vector<std::wstring::value_type> buffer(bufferSize);
 
     size_t numberOfCharactersWritten = std::wcsftime(

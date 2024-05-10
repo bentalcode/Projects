@@ -12,12 +12,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The AppLogDialog class implements a dialog of App Log.
          */
-        class AppLogDialog final : public WXWidgets::Dialog {
+        class AppLogDialog final : public wxwidgets::Dialog {
         public:
             /**
              * Creates an App Log Dialog.
              */
-            static WXWidgets::IDialogPtr Make(
+            static wxwidgets::IDialogPtr Make(
                 wxWindow& parent,
                 IGuiManager& guiManager);
 
@@ -47,7 +47,7 @@ namespace VideoRenderingVisualizer {
             //
             // The list view of log...
             //
-            WXWidgets::IListViewPtr m_logListView;
+            wxwidgets::IListViewPtr m_logListView;
         };
 
     } // namespace Gui

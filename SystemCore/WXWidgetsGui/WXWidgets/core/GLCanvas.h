@@ -4,7 +4,7 @@
 #include "AbstractGLCanvas.h"
 #include "WXObjectId.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The GLCanvas class implements an abstract base class of a GL Canvas
@@ -52,6 +52,6 @@ namespace WXWidgets {
         static void InitializeDefaultAttributes(wxGLAttributes& attributes);
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // GL_CANVAS_696779c3_5d9e_4dc4_a2d8_65bc93d3887f

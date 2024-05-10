@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IWindow;
 
@@ -47,6 +47,6 @@ namespace WXWidgets {
     //
     using IListBoxPtr = WXObjectPtr<IListBox>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_LIST_BOX_83395ff3_963c_493f_91bf_766f8ed75831

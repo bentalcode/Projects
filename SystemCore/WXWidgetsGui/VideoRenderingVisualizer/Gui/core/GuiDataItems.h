@@ -20,7 +20,7 @@ namespace VideoRenderingVisualizer {
             /**
              * Creates GUI data items.
              */
-            static WXWidgets::IDataItemsSharedPtr Make();
+            static wxwidgets::IDataItemsSharedPtr Make();
 
             /**
              * The GuiDataItems constructor.

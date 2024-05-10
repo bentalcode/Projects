@@ -60,8 +60,8 @@ void MainWindow::Initialize(
     //
     // Create a splitter window...
     //
-    m_splitterWindow = WXWidgets::ISplitterWindowPtr::Make(
-        new WXWidgets::SplitterWindow(
+    m_splitterWindow = wxwidgets::ISplitterWindowPtr::Make(
+        new wxwidgets::SplitterWindow(
             GuiPaths::Read().GetMainFrameMainWindowSplitterWindow(),
             parent));
 
@@ -80,13 +80,13 @@ void MainWindow::Initialize(
     GuiConfiguration::ILabelConfigurationSharedPtr rightWindowLabelConfiguration =
         labelsConfiguration->GetConfiguration(GuiPaths::Read().GetMainFrameMainRightWindowLabel());
 
-    std::wstring leftWindowLabel = Utilities::StringUtils::ToString(leftWindowLabelConfiguration->GetText());
-    std::wstring rightWindowLabel = Utilities::StringUtils::ToString(rightWindowLabelConfiguration->GetText());
+    std::wstring leftWindowLabel = leftWindowLabelConfiguration->GetText();
+    std::wstring rightWindowLabel = rightWindowLabelConfiguration->GetText();
 
     //
     // Create a configuration of a splitter window...
     //
-    WXWidgets::ISplitterWindowConfigurationSharedPtr configuration = CreateSplitterWindowConfiguration(
+    wxwidgets::ISplitterWindowConfigurationSharedPtr configuration = CreateSplitterWindowConfiguration(
         parent, 
         leftWindowLabel, 
         rightWindowLabel);
@@ -125,7 +125,7 @@ void MainWindow::Initialize(
 /**
  * Gets a window.
  */
-WXWidgets::IWindow& MainWindow::GetWindow()
+wxwidgets::IWindow& MainWindow::GetWindow()
 {
     return m_splitterWindow->GetWindow();
 }
@@ -133,7 +133,7 @@ WXWidgets::IWindow& MainWindow::GetWindow()
 /**
  * Creates a configuration of a splitter window.
  */
-const WXWidgets::ISplitterWindowConfigurationSharedPtr MainWindow::CreateSplitterWindowConfiguration(
+const wxwidgets::ISplitterWindowConfigurationSharedPtr MainWindow::CreateSplitterWindowConfiguration(
     const wxWindow& window,
     const std::wstring& leftWindowBorderLabel,
     const std::wstring& rightWindowBorderLabel)
@@ -143,29 +143,29 @@ const WXWidgets::ISplitterWindowConfigurationSharedPtr MainWindow::CreateSplitte
 
     int leftWindowProportion = 1;
     int leftWindowFlag = wxEXPAND;
-    WXWidgets::IBorderWindowConfigurationSharedPtr leftWindowBorderConfiguration = nullptr;
+    wxwidgets::IBorderWindowConfigurationSharedPtr leftWindowBorderConfiguration = nullptr;
     bool leftWindowShow = true;
 
     int rightWindowProportion = 1;
     int rightWindowFlag = wxEXPAND;
-    WXWidgets::IBorderWindowConfigurationSharedPtr rightWindowBorderConfiguration = nullptr;
+    wxwidgets::IBorderWindowConfigurationSharedPtr rightWindowBorderConfiguration = nullptr;
     bool rightWindowShow = true;
 
-    WXWidgets::ISplitterSubWindowConfigurationSharedPtr leftWindowConfiguration =
-        WXWidgets::SplitterSubWindowConfiguration::Make(
+    wxwidgets::ISplitterSubWindowConfigurationSharedPtr leftWindowConfiguration =
+        wxwidgets::SplitterSubWindowConfiguration::Make(
             leftWindowProportion, 
             leftWindowFlag, 
             leftWindowBorderConfiguration, 
             leftWindowShow);
 
-    WXWidgets::ISplitterSubWindowConfigurationSharedPtr rightWindowConfiguration =
-        WXWidgets::SplitterSubWindowConfiguration::Make(
+    wxwidgets::ISplitterSubWindowConfigurationSharedPtr rightWindowConfiguration =
+        wxwidgets::SplitterSubWindowConfiguration::Make(
             rightWindowProportion, 
             rightWindowFlag, 
             rightWindowBorderConfiguration, 
             rightWindowShow);
 
-    WXWidgets::ISplitterWindowConfigurationSharedPtr configuration = WXWidgets::SplitterWindowConfiguration::Make(
+    wxwidgets::ISplitterWindowConfigurationSharedPtr configuration = wxwidgets::SplitterWindowConfiguration::Make(
         gravity, 
         initializeInBoxSizer,
         leftWindowConfiguration, 

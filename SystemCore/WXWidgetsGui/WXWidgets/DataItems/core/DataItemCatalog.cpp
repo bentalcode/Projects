@@ -2,7 +2,7 @@
 #include "Loggers.h"
 #include "WXWidgetsException.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 IDataItemCatalogSharedPtr DataItemCatalog::INSTANCE;
 std::mutex DataItemCatalog::MUTEX;
@@ -35,7 +35,7 @@ IDataItemCatalogSharedPtr DataItemCatalog::Make()
  * The DataItemCatalog constructor.
  */
 DataItemCatalog::DataItemCatalog() : 
-    m_loggers(logging::Loggers::Make(typeid(WXWidgets::DataItemCatalog)))
+    m_loggers(logging::Loggers::Make(typeid(DataItemCatalog)))
 {
 }
 

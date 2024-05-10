@@ -1,7 +1,7 @@
 #include "TriggerEndRefreshingEventInternal.h"
 #include "WXObjectId.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 const TriggerEndRefreshingEventInternal::Type TriggerEndRefreshingEventInternal::TYPE(wxNewEventType());
 

@@ -7,7 +7,7 @@
 #include "WXProperty.h"
 #include "WXWidgetsException.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace AbstractListViewFunctors {
 
@@ -418,7 +418,7 @@ bool AbstractListView::UpdateFromDataContainer(DataContainerManagement::IDataCon
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemListViewHeaders);
         
         const std::vector<std::wstring>& newHeaders = dataItem.GetValue()->GetStringArray();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateArrayValue(m_headers, newHeaders);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateArrayValue(m_headers, newHeaders);
 
         dataUpdated |= propertyUpdated;
     }
@@ -429,7 +429,7 @@ bool AbstractListView::UpdateFromDataContainer(DataContainerManagement::IDataCon
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemListViewValues);
 
         const std::vector<std::vector<std::wstring>>& newValues = dataItem.GetValue()->GetStringArrayArray();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateArrayArrayValue(m_values, newValues);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateArrayArrayValue(m_values, newValues);
 
         dataUpdated |= propertyUpdated;
     }

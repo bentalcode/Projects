@@ -4,7 +4,7 @@
 #include "AbstractListView.h"
 #include "WXObjectId.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The ListView class implements an abstract list view.
@@ -17,7 +17,7 @@ namespace WXWidgets {
         static IListViewPtr Make(
             wxWindow& parent,
             const wxString& name,
-            wxWindowID id = WXWidgets::WXObjectId::NextId(),
+            wxWindowID id = wxwidgets::WXObjectId::NextId(),
             const wxPoint& position = wxDefaultPosition,
             const wxSize& size = wxDefaultSize,
             long style = wxLC_REPORT,
@@ -29,7 +29,7 @@ namespace WXWidgets {
         ListView(
             wxWindow& parent,
             const wxString& name,
-            wxWindowID id = WXWidgets::WXObjectId::NextId(),
+            wxWindowID id = wxwidgets::WXObjectId::NextId(),
             const wxPoint& position = wxDefaultPosition,
             const wxSize& size = wxDefaultSize,
             long style = wxLC_REPORT,
@@ -52,6 +52,6 @@ namespace WXWidgets {
             bool showMode = true) override;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // LIST_VIEW_d970ee8e_fac5_4e41_b6c2_da91dd96cf18

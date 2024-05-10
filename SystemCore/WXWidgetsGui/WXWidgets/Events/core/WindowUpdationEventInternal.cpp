@@ -1,7 +1,7 @@
 #include "WindowUpdationEventInternal.h"
 #include "WXObjectId.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 const WindowUpdationEventInternal::Type WindowUpdationEventInternal::TYPE(wxNewEventType());
 

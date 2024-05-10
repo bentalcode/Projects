@@ -3,7 +3,7 @@
 
 #include "IGuiComponentData.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The GuiComponentData class implements data of a GUI data.
@@ -34,6 +34,6 @@ namespace WXWidgets {
         bool m_showMode;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // GUI_COMPONENT_DATA_a1db1430_44f8_47ad_b117_3e68961ad904

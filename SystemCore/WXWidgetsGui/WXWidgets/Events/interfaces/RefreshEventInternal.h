@@ -4,7 +4,7 @@
 #include "wx/event.h"
 #include "IGuiTransaction.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The RefreshEventInternal class implements an internal event of refreshing a GUI component.
@@ -46,6 +46,6 @@ namespace WXWidgets {
         IGuiTransactionSharedPtr m_guiTransaction;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // REFRESH_EVENT_INTERNAL_ae109d36_f8e1_44a4_939c_4d57cbc28583

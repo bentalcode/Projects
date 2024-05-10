@@ -1,6 +1,6 @@
 #include "MenuBar.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a menu bar.

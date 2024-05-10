@@ -4,7 +4,7 @@
 #include <memory>
 #include <assert.h>
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Gets an error message.

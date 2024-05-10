@@ -10,11 +10,11 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates an Event Viewer Dialog.
  */
-WXWidgets::IDialogPtr EventViewerDialog::Make(
+wxwidgets::IDialogPtr EventViewerDialog::Make(
     wxWindow& parent, 
     IGuiManager& guiManager)
 {
-    return WXWidgets::IDialogPtr::Make(
+    return wxwidgets::IDialogPtr::Make(
         new EventViewerDialog(
             parent, 
             guiManager));
@@ -26,7 +26,7 @@ WXWidgets::IDialogPtr EventViewerDialog::Make(
 EventViewerDialog::EventViewerDialog(
     wxWindow& parent, 
     IGuiManager& guiManager) : 
-        WXWidgets::Dialog(
+        wxwidgets::Dialog(
             parent, 
             GuiPaths::Read().GetMainFrameTopMenuBarViewMenuEventViewerDialog()), 
             m_guiManager(guiManager)
@@ -47,7 +47,7 @@ EventViewerDialog::EventViewerDialog(
     //
     // Set title...
     //
-    std::wstring title = Utilities::StringUtils::ToString(dialogConfiguration->GetTitle());
+    std::wstring title = dialogConfiguration->GetTitle();
     SetTitle(title);
 
     //
@@ -71,10 +71,10 @@ void EventViewerDialog::Initialize(IGuiManager& guiManager)
     //
     // Initialize dialog...
     //
-    WXWidgets::Dialog::Initialize(guiManager.GetGuiController());
+    wxwidgets::Dialog::Initialize(guiManager.GetGuiController());
 
-    TabularData::IEventLogSharedPtr eventLog = guiManager.GetEventLog();
-    Utilities::DateTimeIntervalSharedPtr intervalTime = Utilities::DateTimeInterval::Make();
+    tabular_data::IEventLogSharedPtr eventLog = guiManager.GetEventLog();
+    base::DateTimeIntervalSharedPtr intervalTime = base::DateTimeInterval::Make();
 
     m_eventListView = EventListView::Make(
         *this, 

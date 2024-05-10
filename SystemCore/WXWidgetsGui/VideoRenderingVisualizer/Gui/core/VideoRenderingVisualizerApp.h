@@ -12,12 +12,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The VideoRenderingVisualizerApp class implements an app.
          */
-        class VideoRenderingVisualizerApp final : public WXWidgets::App {
+        class VideoRenderingVisualizerApp final : public wxwidgets::App {
         public:
             /**
              * Creates an app.
              */
-            static WXWidgets::IAppPtr Make();
+            static wxwidgets::IAppPtr Make();
 
             /**
              * The VideoRenderingVisualizerApp constructor.
@@ -48,12 +48,12 @@ namespace VideoRenderingVisualizer {
             /**
              * Creates a main frame.
              */
-            WXWidgets::IFramePtr CreateMainFrame();
+            wxwidgets::IFramePtr CreateMainFrame();
 
             //
             // The main frame of the app...
             //
-            WXWidgets::IFramePtr m_mainFrame;
+            wxwidgets::IFramePtr m_mainFrame;
 
             //
             // The GUI Manager...

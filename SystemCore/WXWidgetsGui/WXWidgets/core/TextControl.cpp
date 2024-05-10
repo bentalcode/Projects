@@ -4,7 +4,7 @@
 #include "DataItem.h"
 #include "IDataCatalog.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace TextControlFunctors {
 
@@ -169,7 +169,7 @@ bool TextControl::UpdateFromDataContainer(DataContainerManagement::IDataContaine
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemTextControlValue);
 
         std::wstring value = dataItem.GetValue()->GetString();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_value, value);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_value, value);
 
         dataUpdated |= propertyUpdated;
     }

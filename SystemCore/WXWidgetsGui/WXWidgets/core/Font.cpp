@@ -1,6 +1,6 @@
 #include "Font.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a font.

@@ -1,6 +1,7 @@
 #include "GuiManager.h"
 #include "ConfigurationProvider.h"
 #include "GuiController.h"
+#include "ControllerManager.h"
 #include "DataRepository.h"
 #include "EventLog.h"
 #include "AppConfigurationItems.h"
@@ -27,8 +28,8 @@ IGuiManagerSharedPtr GuiManager::Make()
  */
 GuiManager::GuiManager() : 
     m_configurationManager(ConfigurationProvider::GetInstance()->GetGuiConfigurationManager()),
-    m_guiController(WXWidgets::GuiController::Create()), 
-    m_eventLog(TabularData::EventLog::Make()), 
+    m_guiController(wxwidgets::GuiController::Create()),
+    m_eventLog(tabular_data::EventLog::Make()),
     m_dataRepository(Model::DataRepository::Make(m_eventLog))
 {
     //
@@ -70,15 +71,15 @@ const GuiConfiguration::IGuiConfigurationManager& GuiManager::GetConfigurationMa
 /**
  * Gets a Controller Manager.
  */
-Controller::IControllerManagerSharedPtr GuiManager::GetControllerManager()
+wxwidgets::controller::IControllerManagerSharedPtr GuiManager::GetControllerManager()
 {
-    return Controller::ControllerManager::Make(m_guiController);
+    return wxwidgets::controller::ControllerManager::Make(m_guiController);
 }
 
 /**
  * Gets a GUI Controller.
  */
-WXWidgets::IGuiControllerSharedPtr GuiManager::GetGuiController()
+wxwidgets::IGuiControllerSharedPtr GuiManager::GetGuiController()
 {
     return m_guiController;
 }
@@ -102,7 +103,7 @@ const Model::IDataRepositorySharedPtr GuiManager::GetDataRepository() const
 /**
  * Gets an Event Log.
  */
-TabularData::IEventLogSharedPtr GuiManager::GetEventLog()
+tabular_data::IEventLogSharedPtr GuiManager::GetEventLog()
 {
     return m_eventLog;
 }
@@ -110,7 +111,7 @@ TabularData::IEventLogSharedPtr GuiManager::GetEventLog()
 /**
  * Gets an Event Log.
  */
-const TabularData::IEventLogSharedPtr GuiManager::GetEventLog() const
+const tabular_data::IEventLogSharedPtr GuiManager::GetEventLog() const
 {
     return m_eventLog;
 }
@@ -118,7 +119,7 @@ const TabularData::IEventLogSharedPtr GuiManager::GetEventLog() const
 /**
  * Gets path of rendering pipelines visualizer html.
  */
-const std::filesystem::path& GuiManager::GetRenderingPipelinesVisualizerHtmlPath() const
+const std::wstring& GuiManager::GetRenderingPipelinesVisualizerHtmlPath() const
 {
     return m_renderingPipelinesVisualizerHtmlPath;
 }
@@ -126,7 +127,7 @@ const std::filesystem::path& GuiManager::GetRenderingPipelinesVisualizerHtmlPath
 /**
  * Gets path of app log.
  */
-const std::filesystem::path& GuiManager::GetAppLogPath() const 
+const std::wstring& GuiManager::GetAppLogPath() const
 {
     return m_logPath;
 }

@@ -3,7 +3,7 @@
 
 #include "IBorderWindowConfiguration.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The ISplitterSubWindowConfiguration interface defines a configuration of a splitter sub window (left/right, top/bottom).
@@ -44,6 +44,6 @@ namespace WXWidgets {
      */
     using ISplitterSubWindowConfigurationSharedPtr = std::shared_ptr<ISplitterSubWindowConfiguration>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_SPLITTER_SUB_WINDOW_CONFIGURATION_9f4a770a_1a8e_4d7a_b52b_43c405b15684

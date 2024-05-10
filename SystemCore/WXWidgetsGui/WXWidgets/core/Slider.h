@@ -4,7 +4,7 @@
 #include "AbstractSlider.h"
 #include "WXObjectId.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Slider class implements a slider.
@@ -66,6 +66,6 @@ namespace WXWidgets {
         virtual void Initialize(IGuiControllerSharedPtr guiController) override;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // SLIDER_5f42c772_ab4d_4905_8108_74a4f99447f1

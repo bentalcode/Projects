@@ -8,7 +8,7 @@
 #include "WXProperty.h"
 #include "WindowLogic.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The AbstractWindow constructor.
@@ -254,7 +254,7 @@ bool AbstractWindow::UpdateFromDataContainer(DataContainerManagement::IDataConta
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemName);
 
         bool newShowMode = dataItem.GetValue()->GetBoolean();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_showMode, newShowMode);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_showMode, newShowMode);
 
         dataUpdated = propertyUpdated;
     }

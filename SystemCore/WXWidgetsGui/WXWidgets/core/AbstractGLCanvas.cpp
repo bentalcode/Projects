@@ -5,7 +5,7 @@
 #include "OpenGLApi.h"
 #include "wx/log.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The AbstractGLCanvas constructor.

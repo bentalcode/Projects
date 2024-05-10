@@ -1,6 +1,6 @@
 #include "Frame.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a frame.

@@ -4,7 +4,7 @@
 #include "IWindowLogic.h"
 #include "ILoggers.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WindowLogic class implements logic related to windows.
@@ -70,6 +70,6 @@ namespace WXWidgets {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WINDOW_LOGIC_ea841748_dfd3_4c49_8806_ea7e190b1855

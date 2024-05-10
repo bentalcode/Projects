@@ -1,7 +1,7 @@
 #ifndef WX_EVENT_IDS_7f4a8cdd_b015_46f4_ad0c_d52cf339db09
 #define WX_EVENT_IDS_7f4a8cdd_b015_46f4_ad0c_d52cf339db09
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WXEventIds class defines identifiers for custom events in wxWidgets.
@@ -14,6 +14,6 @@ namespace WXWidgets {
         static const int EVENT_LIST_UPDATION_ID;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_EVENT_IDS_7f4a8cdd_b015_46f4_ad0c_d52cf339db09

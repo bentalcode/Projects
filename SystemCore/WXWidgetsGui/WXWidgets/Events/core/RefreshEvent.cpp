@@ -1,6 +1,6 @@
 #include "RefreshEvent.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a refresh event.

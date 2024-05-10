@@ -6,7 +6,7 @@
 #include "IGuiTransaction.h"
 #include <functional>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class PreRefreshEventInternal;
     class RefreshEventInternal;
@@ -197,6 +197,6 @@ namespace WXWidgets {
         bool m_showMode;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_WINDOW_dfff1e58_5ce8_4e4d_99a8_a89a66b83b3b

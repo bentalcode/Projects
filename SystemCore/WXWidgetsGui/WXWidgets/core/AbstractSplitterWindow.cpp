@@ -10,7 +10,7 @@
 #include "wx/sizer.h"
 #include "assert.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace AbstractSplitterWindowFunctors {
 
@@ -267,7 +267,7 @@ bool AbstractSplitterWindow::UpdateFromDataContainer(DataContainerManagement::ID
     if (dataContainer.HasDataItem(dataItemFirstWindowShowMode)) {
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemFirstWindowShowMode);
 
-        configurationUpdated = WXWidgets::WXProperty::UpdateValue(
+        configurationUpdated = wxwidgets::WXProperty::UpdateValue(
             firstWindowShowMode, 
             dataItem.GetValue()->GetBoolean());
     }
@@ -279,7 +279,7 @@ bool AbstractSplitterWindow::UpdateFromDataContainer(DataContainerManagement::ID
     if (dataContainer.HasDataItem(dataItemSecondWindowShowMode)) {
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemSecondWindowShowMode);
 
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(
             secondWindowShowMode, 
             dataItem.GetValue()->GetBoolean());
 

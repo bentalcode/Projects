@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IOpenGLApi interface defines an Open GL APIs.
@@ -53,6 +53,6 @@ namespace WXWidgets {
      */
     using IOpenGLApiSharedPtr = std::shared_ptr<IOpenGLApi>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_OPEN_GL_API_a3407b9e_87f1_4424_916e_3c3ec1486100

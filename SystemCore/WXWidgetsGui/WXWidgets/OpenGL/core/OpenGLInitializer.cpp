@@ -1,7 +1,7 @@
 #include "OpenGLInitializer.h"
 #include "OpenGLApi.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The OpenGLInitializer constructor.

@@ -15,12 +15,12 @@ namespace VideoRenderingVisualizer {
          * The RenderingPipelinesCanvas class implements a canvas of rendering pipelines
          * for displaying OpenGL Graphics.
          */
-        class RenderingPipelinesCanvas final : public WXWidgets::GLCanvas {
+        class RenderingPipelinesCanvas final : public wxwidgets::GLCanvas {
         public:
             /**
              * Creates a Rendering Pipelines Canvas.
              */
-            static WXWidgets::ICanvasPtr Make(
+            static wxwidgets::ICanvasPtr Make(
                 wxWindow& parent,
                 const base::DateTimeIntervalSharedPtr intervalTime,
                 IGuiManager& guiManager);

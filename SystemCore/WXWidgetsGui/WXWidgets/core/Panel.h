@@ -6,7 +6,7 @@
 #include "WXObjectId.h"
 #include "wx/panel.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Panel class implements a panel.
@@ -51,6 +51,6 @@ namespace WXWidgets {
         virtual void SetSizer(wxSizer& sizer) override;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // PANEL_919366a8_6dae_4388_8479_9eac23bdf7df

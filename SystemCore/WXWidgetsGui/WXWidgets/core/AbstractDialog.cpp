@@ -1,6 +1,6 @@
 #include "AbstractDialog.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The AbstractApp constructor.

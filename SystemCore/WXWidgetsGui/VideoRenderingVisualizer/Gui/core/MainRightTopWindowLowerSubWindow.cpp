@@ -52,7 +52,7 @@ void MainRightTopWindowLowerSubWindow::Initialize(wxWindow& parent)
     const Model::IDataRepositorySharedPtr dataRepository = guiManager.GetDataRepository();
     const Model::IDataQuerySharedPtr dataQuery = dataRepository->GetDataQuery();
 
-    Utilities::DateTimeIntervalSharedPtr intervalTime = dataQuery->QueryRenderingPipelinesTimeInterval();
+    base::DateTimeIntervalSharedPtr intervalTime = dataQuery->QueryRenderingPipelinesTimeInterval();
 
     m_slider = RenderingPipelinesTimeSlider::Make(
         parent, 
@@ -63,7 +63,7 @@ void MainRightTopWindowLowerSubWindow::Initialize(wxWindow& parent)
 /**
  * Gets a window.
  */
-WXWidgets::IWindow& MainRightTopWindowLowerSubWindow::GetWindow()
+wxwidgets::IWindow& MainRightTopWindowLowerSubWindow::GetWindow()
 {
     return m_slider->GetWindow();
 }

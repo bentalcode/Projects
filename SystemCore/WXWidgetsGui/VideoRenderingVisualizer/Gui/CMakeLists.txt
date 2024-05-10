@@ -13,6 +13,13 @@ set(RESOURCES_DIRECTORY_NAME
     resources
 )
 
+#
+# Configure build properties...
+#
+set(VERSION_MAJOR "1")
+set(VERSION_MINOR "1")
+set(VERSION_PATCH "0")
+
 
 #
 # Configure Operating System...
@@ -22,7 +29,7 @@ add_compile_definitions(WINDOWS=1)
 #
 # Open Sources Path...
 #
-set (OPEN_SOURCES_PATH "../../../../../../OpenSources")
+set (OPEN_SOURCES_PATH "../../../../../../../OpenSources")
 
 #
 # WX Widgets Path...
@@ -1184,7 +1191,7 @@ include_directories(VideoRenderingVisualizer
     ${WXWIDGETS_INCLUDES}
 )
 
-add_library(VideoRenderingVisualizer STATIC
+add_executable(VideoRenderingVisualizer
     ${VIDEO_RENDERING_VISUALIZER_SOURCES}
 )
 

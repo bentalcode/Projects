@@ -1,6 +1,6 @@
 #include "BorderWindowConfiguration.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a configuration of a border window.

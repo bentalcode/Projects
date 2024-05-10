@@ -1,6 +1,6 @@
 #include "GuiComponent.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace GuiComponentFunctors {
 

@@ -5,7 +5,7 @@
 #include "ILoggers.h"
 #include <mutex>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The OpenGLApi class implements an Open GL APIs.
@@ -132,10 +132,10 @@ namespace WXWidgets {
     };
 
     #define GL_CALL(x)                       \
-        WXWidgets::OpenGLApi::ClearErrors(); \
+        wxwidgets::OpenGLApi::ClearErrors(); \
         x;                                   \
-        WXWidgets::OpenGLApi::VerifyLastGLCall(#x, __FILE__, __LINE__);
+        wxwidgets::OpenGLApi::VerifyLastGLCall(#x, __FILE__, __LINE__);
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // OPEN_GL_API_85f481f8_e58d_414f_808f_1f66a101b84f

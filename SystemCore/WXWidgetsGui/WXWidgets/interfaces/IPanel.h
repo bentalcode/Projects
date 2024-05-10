@@ -6,7 +6,7 @@
 
 class wxSizer;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IPanel interface defines a panel.
@@ -32,6 +32,6 @@ namespace WXWidgets {
     //
     using IPanelPtr = WXObjectPtr<IPanel>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_PANEL_9954a8c6_1707_44b4_b6a2_3993055f0fff

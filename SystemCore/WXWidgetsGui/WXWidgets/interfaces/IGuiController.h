@@ -5,7 +5,7 @@
 #include <list>
 #include <memory>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IGuiComponent;
     using IGuiComponentList = std::list<IGuiComponent*>;
@@ -64,6 +64,6 @@ namespace WXWidgets {
      */
     using IGuiControllerSharedPtr = std::shared_ptr<IGuiController>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_GUI_CONTROLLER_c613bfb1_b451_4e4b_b422_f232e5bcc499

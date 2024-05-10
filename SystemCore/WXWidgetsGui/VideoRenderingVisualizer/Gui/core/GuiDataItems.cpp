@@ -26,10 +26,10 @@ const IGuiDataItems& GuiDataItems::Read()
 { 
     std::wstring dataItemsName = AppConfigurationItems::Read().GetAppName();
 
-    WXWidgets::IDataItemCatalogSharedPtr dataItemCatalog = WXWidgets::DataItemCatalog::GetInstance();
+    wxwidgets::IDataItemCatalogSharedPtr dataItemCatalog = wxwidgets::DataItemCatalog::GetInstance();
 
     if (!dataItemCatalog->HasDataItems(dataItemsName)) {
-        WXWidgets::IDataItemsSharedPtr dataItems = GuiDataItems::Make();
+        wxwidgets::IDataItemsSharedPtr dataItems = GuiDataItems::Make();
         dataItemCatalog->RegisterDataItems(dataItems);
     }
 
@@ -39,7 +39,7 @@ const IGuiDataItems& GuiDataItems::Read()
 /**
  * Creates GUI data items.
  */
-WXWidgets::IDataItemsSharedPtr GuiDataItems::Make()
+wxwidgets::IDataItemsSharedPtr GuiDataItems::Make()
 {
     return std::make_shared<GuiDataItems>();
 }

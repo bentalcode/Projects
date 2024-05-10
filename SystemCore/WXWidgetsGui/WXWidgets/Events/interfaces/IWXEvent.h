@@ -5,7 +5,7 @@
 
 class wxEvent;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IWXEvent interface defines an abstract event in wxWidgets.
@@ -26,6 +26,6 @@ namespace WXWidgets {
      */
     using IWXEventSharedPtr = std::shared_ptr<IWXEvent>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_WX_EVENT_a9367212_db47_4bd5_bd2a_ca3bc4b3e85f

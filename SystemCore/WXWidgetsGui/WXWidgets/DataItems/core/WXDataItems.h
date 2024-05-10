@@ -3,7 +3,7 @@
 
 #include "IWXDataItems.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WXDataItems class implements data items.
@@ -113,6 +113,6 @@ namespace WXWidgets {
         static const std::wstring SPLITTER_WINDOW_SECOND_SUB_WINDOW_SHOW_MODE;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_DATA_ITEMS_5bd0dd83_31a1_4c7d_abff_66a0b9f204fa

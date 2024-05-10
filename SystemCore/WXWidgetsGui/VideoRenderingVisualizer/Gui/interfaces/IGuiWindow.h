@@ -3,7 +3,7 @@
 
 #include <memory>
 
-namespace WXWidgets {
+namespace wxwidgets {
     class IWindow;
 }
 
@@ -23,7 +23,7 @@ namespace VideoRenderingVisualizer {
             /**
              * Gets a window.
              */
-            virtual WXWidgets::IWindow& GetWindow() = 0;
+            virtual wxwidgets::IWindow& GetWindow() = 0;
         };
 
         /**

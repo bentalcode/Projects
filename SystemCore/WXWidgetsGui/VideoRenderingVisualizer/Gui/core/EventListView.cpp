@@ -31,7 +31,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         EventListView::UpdateDataContainerStartIntervalTime(m_dataContainer, time);
     }
@@ -56,7 +56,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         EventListView::UpdateDataContainerEndIntervalTime(m_dataContainer, time);
     }
@@ -71,8 +71,8 @@ private:
 class EventComparatorByTime final {
 public:
     bool operator()(
-        const TabularData::IEventSharedPtr& left, 
-        const TabularData::IEventSharedPtr& right) const
+        const tabular_data::IEventSharedPtr& left,
+        const tabular_data::IEventSharedPtr& right) const
     {
         return left->GetTime() >= right->GetTime();
     }
@@ -83,13 +83,13 @@ public:
 /**
  * Creates an Event List View.
  */
-WXWidgets::IListViewPtr EventListView::Make(
+wxwidgets::IListViewPtr EventListView::Make(
     wxWindow& parent, 
-    TabularData::IEventLogSharedPtr eventLog,
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    tabular_data::IEventLogSharedPtr eventLog,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager)
 {
-    return WXWidgets::IListViewPtr::Make(
+    return wxwidgets::IListViewPtr::Make(
         new EventListView(
             parent,
             eventLog,
@@ -102,8 +102,8 @@ WXWidgets::IListViewPtr EventListView::Make(
  */
 EventListView::EventListView(
     wxWindow& parent, 
-    TabularData::IEventLogSharedPtr eventLog,
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    tabular_data::IEventLogSharedPtr eventLog,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager) : 
         ListView(
             parent, 
@@ -147,9 +147,9 @@ void EventListView::Initialize(IGuiManager& guiManager)
     //
     // Set header attributes...
     //
-    WXWidgets::ColorType fontColorType = WXWidgets::ColorType::BLACK;
-    WXWidgets::ColorType backgroundColorType = WXWidgets::ColorType::WHITE;
-    WXWidgets::Font headerFont;
+    wxwidgets::ColorType fontColorType = wxwidgets::ColorType::BLACK;
+    wxwidgets::ColorType backgroundColorType = wxwidgets::ColorType::WHITE;
+    wxwidgets::Font headerFont;
     headerFont.MakeBold();
     
     SetHeaderAttributes(
@@ -195,7 +195,7 @@ void EventListView::Initialize(IGuiManager& guiManager)
  */
 void EventListView::UpdateDataContainerStartIntervalTime(
     DataContainerManagement::IDataContainer& data, 
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetEventsStartIntervalTime();
 
@@ -212,7 +212,7 @@ void EventListView::UpdateDataContainerStartIntervalTime(
  */
 void EventListView::UpdateDataContainerEndIntervalTime(
     DataContainerManagement::IDataContainer& data, 
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesEndIntervalTime();
 
@@ -237,9 +237,11 @@ bool EventListView::UpdateFromDataContainer(DataContainerManagement::IDataContai
         const DataContainerManagement::IDataItem& dataItem =
             dataContainer.GetDataItem(dataItemStartIntervalTime);
 
-        const Utilities::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetStartTime(), 
+        const base::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr startTime = m_intervalTime->GetStartTime();
+
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            startTime,
             startIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -251,10 +253,11 @@ bool EventListView::UpdateFromDataContainer(DataContainerManagement::IDataContai
         const DataContainerManagement::IDataItem& dataItem =
             dataContainer.GetDataItem(dataItemEndIntervalTime);
 
-        const Utilities::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
-        
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetEndTime(), 
+        const base::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr endTime = m_intervalTime->GetEndTime();
+
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            endTime,
             endIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -267,10 +270,10 @@ bool EventListView::UpdateFromDataContainer(DataContainerManagement::IDataContai
         std::vector<std::vector<std::wstring>> values;
         GetListViewValues(values);
 
-        WXWidgets::ListView::UpdateDataContainerValues(GetData(), values);
+        wxwidgets::ListView::UpdateDataContainerValues(GetData(), values);
     }
 
-    bool propertiesUpdated = WXWidgets::ListView::UpdateFromDataContainer(dataContainer);
+    bool propertiesUpdated = wxwidgets::ListView::UpdateFromDataContainer(dataContainer);
     dataUpdated |= propertiesUpdated;
 
     return dataUpdated;
@@ -284,7 +287,7 @@ void EventListView::Update()
     //
     // Update the list view...
     //
-    WXWidgets::ListView::Update();
+    wxwidgets::ListView::Update();
 }
 
 /**
@@ -320,11 +323,11 @@ void EventListView::GetListViewValues(std::vector<std::vector<std::wstring>>& va
 {
     assert(values.empty());
 
-    const TabularData::EventList& errorEvents = m_eventLog->GetErrorEvents();
-    const TabularData::EventList& warningEvents = m_eventLog->GetWarningEvents();
-    const TabularData::EventList& informationalEvents = m_eventLog->GetInformationalEvents();
+    const tabular_data::EventList& errorEvents = m_eventLog->GetErrorEvents();
+    const tabular_data::EventList& warningEvents = m_eventLog->GetWarningEvents();
+    const tabular_data::EventList& informationalEvents = m_eventLog->GetInformationalEvents();
 
-    std::vector<TabularData::IEventSharedPtr> events;
+    std::vector<tabular_data::IEventSharedPtr> events;
 
     events.insert(events.end(), errorEvents.begin(), errorEvents.end());
     events.insert(events.end(), warningEvents.begin(), warningEvents.end());
@@ -332,17 +335,17 @@ void EventListView::GetListViewValues(std::vector<std::vector<std::wstring>>& va
 
     SortEventsByTime(events);
 
-    for (const TabularData::IEventSharedPtr& event : events) {
+    for (const tabular_data::IEventSharedPtr& event : events) {
         std::vector<std::wstring> eventValues;
         values.reserve(6);
 
-        std::wstring eventType = TabularData::EventTypeToString(event->GetType());
+        std::wstring eventType = tabular_data::EventTypeToString(event->GetType());
         std::wstring time = event->GetTime().ToString();
         std::wstring source = event->GetSource();
         std::wstring eventId = event->GetId();
         std::wstring name = event->GetName();
         std::wstring description = event->GetDescription();
-        Utilities::StringUtils::Trim(description);
+        base::StringUtils::Trim(description);
 
         eventValues.push_back(eventType);
         eventValues.push_back(time);
@@ -358,7 +361,7 @@ void EventListView::GetListViewValues(std::vector<std::vector<std::wstring>>& va
 /**
  * Sorts events by time.
  */
-void EventListView::SortEventsByTime(std::vector<TabularData::IEventSharedPtr>& events)
+void EventListView::SortEventsByTime(std::vector<tabular_data::IEventSharedPtr>& events)
 {
     std::sort(
         events.begin(),

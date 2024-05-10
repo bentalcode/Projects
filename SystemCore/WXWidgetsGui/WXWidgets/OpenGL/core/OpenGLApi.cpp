@@ -8,7 +8,7 @@
 #include <iostream>
 #include <assert.h>
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 const unsigned int OpenGLApi::MAJOR_VERSION = 3;
 const unsigned int OpenGLApi::MINOR_VERSION = 3;
@@ -36,7 +36,7 @@ IOpenGLApiSharedPtr OpenGLApi::GetInstance()
  * The OpenGLApi constructor.
  */
 OpenGLApi::OpenGLApi() :
-    m_loggers(logging::Loggers::Make(typeid(WXWidgets::OpenGLApi)))
+    m_loggers(logging::Loggers::Make(typeid(wxwidgets::OpenGLApi)))
 {
 }
 
@@ -404,6 +404,6 @@ void OpenGLApi::OnDebug(
  */
 logging::ILoggerSharedPtr OpenGLApi::GetSLogger()
 {
-    static logging::ILoggersSharedPtr loggers = logging::Loggers::Make(typeid(WXWidgets::OpenGLApi));
+    static logging::ILoggersSharedPtr loggers = logging::Loggers::Make(typeid(wxwidgets::OpenGLApi));
     return loggers->GetLogger();
 }

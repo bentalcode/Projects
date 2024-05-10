@@ -7,7 +7,6 @@
 #include "DataItem.h"
 #include "RenderingPipelineInformation.h"
 #include "WXProperty.h"
-#include "video_rendering_visualizer_exception.h"
 
 using namespace VideoRenderingVisualizer;
 using namespace VideoRenderingVisualizer::Gui;
@@ -15,7 +14,8 @@ using namespace VideoRenderingVisualizer::Gui;
 namespace RenderingPipelinesListViewFunctors {
 
 /**
- * The UpdateDataContainerStartIntervalTimeFunctor class implements an update functor of start interval time.
+ * The UpdateDataContainerStartIntervalTimeFunctor class implements
+ * an update functor of start interval time.
  */
 class UpdateDataContainerStartIntervalTimeFunctor final {
 public:
@@ -30,7 +30,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         RenderingPipelinesHtmlWindow::UpdateDataContainerStartIntervalTime(m_dataContainer, time);
     }
@@ -55,7 +55,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         RenderingPipelinesHtmlWindow::UpdateDataContainerEndIntervalTime(m_dataContainer, time);
     }
@@ -69,12 +69,12 @@ private:
 /**
  * Creates a Rendering Pipelines Html Window.
  */
-WXWidgets::IHtmlWindowPtr RenderingPipelinesHtmlWindow::Make(
+wxwidgets::IHtmlWindowPtr RenderingPipelinesHtmlWindow::Make(
     wxWindow& parent, 
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager)
 {
-    return WXWidgets::IHtmlWindowPtr::Make(
+    return wxwidgets::IHtmlWindowPtr::Make(
         new RenderingPipelinesHtmlWindow(
             parent, 
             intervalTime, 
@@ -86,7 +86,7 @@ WXWidgets::IHtmlWindowPtr RenderingPipelinesHtmlWindow::Make(
  */
 RenderingPipelinesHtmlWindow::RenderingPipelinesHtmlWindow(
     wxWindow& parent, 
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager) : 
         HtmlWindow(
             parent, 
@@ -161,7 +161,7 @@ void RenderingPipelinesHtmlWindow::Initialize(IGuiManager& guiManager)
  */
 void RenderingPipelinesHtmlWindow::Reset() 
 {
-    std::filesystem::path htmlPath = m_guiManager.GetRenderingPipelinesVisualizerHtmlPath();
+    std::wstring htmlPath = m_guiManager.GetRenderingPipelinesVisualizerHtmlPath();
     LoadFile(htmlPath);
 }
 
@@ -170,7 +170,7 @@ void RenderingPipelinesHtmlWindow::Reset()
  */
 void RenderingPipelinesHtmlWindow::UpdateDataContainerStartIntervalTime(
     DataContainerManagement::IDataContainer& data, 
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesStartIntervalTime();
 
@@ -187,7 +187,7 @@ void RenderingPipelinesHtmlWindow::UpdateDataContainerStartIntervalTime(
  */
 void RenderingPipelinesHtmlWindow::UpdateDataContainerEndIntervalTime(
     DataContainerManagement::IDataContainer& data, 
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesEndIntervalTime();
 
@@ -212,9 +212,11 @@ bool RenderingPipelinesHtmlWindow::UpdateFromDataContainer(DataContainerManageme
         const DataContainerManagement::IDataItem& dataItem =
             dataContainer.GetDataItem(dataItemStartIntervalTime);
 
-        const Utilities::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetStartTime(), 
+        const base::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr startTime = m_intervalTime->GetStartTime();
+
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            startTime,
             startIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -226,10 +228,11 @@ bool RenderingPipelinesHtmlWindow::UpdateFromDataContainer(DataContainerManageme
         const DataContainerManagement::IDataItem& dataItem =
             dataContainer.GetDataItem(dataItemEndIntervalTime);
 
-        const Utilities::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
-        
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetEndTime(), 
+        const base::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr endTime = m_intervalTime->GetEndTime();
+
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            endTime,
             endIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -248,7 +251,7 @@ bool RenderingPipelinesHtmlWindow::UpdateFromDataContainer(DataContainerManageme
         GetListViewValues(values);
     }
 
-    bool propertiesUpdated = WXWidgets::HtmlWindow::UpdateFromDataContainer(dataContainer);
+    bool propertiesUpdated = wxwidgets::HtmlWindow::UpdateFromDataContainer(dataContainer);
     dataUpdated |= propertiesUpdated;
 
     return dataUpdated;
@@ -262,7 +265,7 @@ void RenderingPipelinesHtmlWindow::Update()
     //
     // Update the Html Window...
     //
-    WXWidgets::HtmlWindow::Update();
+    wxwidgets::HtmlWindow::Update();
 
     //
     // Reset component...
@@ -314,7 +317,7 @@ void RenderingPipelinesHtmlWindow::GetListViewValues(std::vector<std::vector<std
     //
     // Create corresponding compositors values...
     //
-    Utilities::IIteratorSharedPtr<Model::IRenderingPipelineInformationSharedPtr> renderingPipelineIterator =
+    base::IIteratorSharedPtr<Model::IRenderingPipelineInformationSharedPtr> renderingPipelineIterator =
         m_renderingPipelines->GetIterator();
 
     while (renderingPipelineIterator->HasNext()) {

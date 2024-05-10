@@ -3,9 +3,9 @@
 
 #include "WXWidgetsException.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
-    namespace Command {
+    namespace controller {
 
         /**
          * The WXWidgetsControllerException class implements an exception in the WXWidgets Controller module.
@@ -38,8 +38,8 @@ namespace WXWidgets {
             virtual ~WXWidgetsControllerException() = default;
         };
 
-    } // namespace Command
+    } // namespace controller
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_WIDGETS_CONTROLLER_EXCEPTION_H_f5bf3957_8ffd_44dc_a6f9_29a458da9f73

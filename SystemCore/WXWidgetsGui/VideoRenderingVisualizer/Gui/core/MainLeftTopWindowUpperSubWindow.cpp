@@ -63,7 +63,7 @@ void MainLeftTopWindowUpperSubWindow::Initialize(
 /**
  * Gets a window.
  */
-WXWidgets::IWindow& MainLeftTopWindowUpperSubWindow::GetWindow()
+wxwidgets::IWindow& MainLeftTopWindowUpperSubWindow::GetWindow()
 {
     return m_listBox->GetWindow();
 }

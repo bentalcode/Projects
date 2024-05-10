@@ -38,7 +38,7 @@ namespace VideoRenderingVisualizer {
             /**
              * Gets a window.
              */
-            virtual WXWidgets::IWindow& GetWindow() override;
+            virtual wxwidgets::IWindow& GetWindow() override;
 
         private:
             /**
@@ -49,7 +49,7 @@ namespace VideoRenderingVisualizer {
             /**
              * Creates a configuration of a splitter window.
              */
-            static const WXWidgets::ISplitterWindowConfigurationSharedPtr CreateSplitterWindowConfiguration(
+            static const wxwidgets::ISplitterWindowConfigurationSharedPtr CreateSplitterWindowConfiguration(
                 const wxWindow& window,
                 const std::wstring& topWindowBorderLabel,
                 const std::wstring& bottomWindowBorderLabel);
@@ -59,7 +59,7 @@ namespace VideoRenderingVisualizer {
              */
             static double CalculateSplitterWindowGravity(const wxWindow& window);
 
-            WXWidgets::ISplitterWindowPtr m_splitterWindow;
+            wxwidgets::ISplitterWindowPtr m_splitterWindow;
             IGuiWindowSharedPtr m_topWindow;
             IGuiWindowSharedPtr m_bottomWindow;
         };

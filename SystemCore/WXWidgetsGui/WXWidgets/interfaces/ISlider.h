@@ -4,7 +4,7 @@
 #include "IGuiController.h"
 #include "WXObjectPtr.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IWindow;
 
@@ -73,7 +73,7 @@ namespace WXWidgets {
     //
     using ISliderPtr = WXObjectPtr<ISlider>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_SLIDER_58fbd89e_3482_4b72_9045_d96a254766ec
 

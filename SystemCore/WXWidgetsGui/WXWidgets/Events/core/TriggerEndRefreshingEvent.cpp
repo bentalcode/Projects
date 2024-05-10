@@ -1,6 +1,6 @@
 #include "TriggerEndRefreshingEvent.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates an end refreshing event.

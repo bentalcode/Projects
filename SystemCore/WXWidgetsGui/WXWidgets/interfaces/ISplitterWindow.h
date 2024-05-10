@@ -7,7 +7,7 @@
 
 class wxWindow;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IWindow;
 
@@ -54,6 +54,6 @@ namespace WXWidgets {
     //
     using ISplitterWindowPtr = WXObjectPtr<ISplitterWindow>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_SPLITTER_WINDOW_cdec9d79_9f08_47a1_a8ce_c5aa4b43b59f

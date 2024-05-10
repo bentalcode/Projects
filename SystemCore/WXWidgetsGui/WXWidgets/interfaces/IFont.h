@@ -4,7 +4,7 @@
 #include <memory>
 #include <wx/font.h>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IFont interface defines a font.
@@ -40,6 +40,6 @@ namespace WXWidgets {
     //
     using IFontSharedPtr = std::shared_ptr<IFont>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_FONT_f288c1f7_aed6_4e40_861b_ab37d99ca3ad

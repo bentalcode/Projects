@@ -1,8 +1,8 @@
 #include "ControllerManager.h"
 #include "IGuiController.h"
 
-using namespace WXWidgets;
-using namespace WXWidgets::Command;
+using namespace wxwidgets;
+using namespace wxwidgets::controller;
 
 /**
  * Creates a controller manager.

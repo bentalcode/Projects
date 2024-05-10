@@ -2,7 +2,7 @@
 #include "wx/event.h"
 #include "SmartPointers.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a WXEvent Handler.

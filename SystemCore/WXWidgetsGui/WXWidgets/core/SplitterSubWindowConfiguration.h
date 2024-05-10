@@ -3,7 +3,7 @@
 
 #include "ISplitterSubWindowConfiguration.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The ISplitterSubWindowConfiguration class implements a configuration of a splitter sub window (left/right, top/bottom).
@@ -71,6 +71,6 @@ namespace WXWidgets {
         bool m_showMode;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // SPLITTER_SUB_WINDOW_CONFIGURATION_c0023bc8_bd12_4c8d_aa98_8e5cafce1174

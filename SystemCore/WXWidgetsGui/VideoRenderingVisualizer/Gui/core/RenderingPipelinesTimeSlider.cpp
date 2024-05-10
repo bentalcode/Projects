@@ -30,7 +30,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         RenderingPipelinesTimeSlider::UpdateDataContainerStartIntervalTime(m_dataContainer, time);
     }
@@ -55,7 +55,7 @@ public:
     /**
      * The functor logic.
      */
-    void operator()(const Utilities::DateTime& time)
+    void operator()(const base::DateTime& time)
     {
         RenderingPipelinesTimeSlider::UpdateDataContainerEndIntervalTime(m_dataContainer, time);
     }
@@ -69,12 +69,12 @@ private:
 /**
  * Creates a HTML window.
  */
-WXWidgets::ISliderPtr RenderingPipelinesTimeSlider::Make(
+wxwidgets::ISliderPtr RenderingPipelinesTimeSlider::Make(
     wxWindow& parent, 
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager)
 {
-    return WXWidgets::ISliderPtr::Make(
+    return wxwidgets::ISliderPtr::Make(
         new RenderingPipelinesTimeSlider(
             parent, 
             intervalTime, 
@@ -86,9 +86,9 @@ WXWidgets::ISliderPtr RenderingPipelinesTimeSlider::Make(
  */
 RenderingPipelinesTimeSlider::RenderingPipelinesTimeSlider(
     wxWindow& parent, 
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager) : 
-        WXWidgets::Slider(
+        wxwidgets::Slider(
             parent, 
             GuiPaths::Read().GetMainFrameMainRightTopWindowLowerSubWindowSlider()), 
     m_guiManager(guiManager),
@@ -114,10 +114,10 @@ RenderingPipelinesTimeSlider::~RenderingPipelinesTimeSlider()
  * Initializes a GUI component.
  */
 void RenderingPipelinesTimeSlider::Initialize(
-    const Utilities::DateTimeIntervalSharedPtr intervalTime,
+    const base::DateTimeIntervalSharedPtr intervalTime,
     IGuiManager& guiManager)
 {
-    Utilities::SmartPointers::Validate<Utilities::DateTimeInterval>(intervalTime);
+    base::SmartPointers::Validate<base::DateTimeInterval>(intervalTime);
 
     //
     // Initialize the interval time...
@@ -172,7 +172,7 @@ void RenderingPipelinesTimeSlider::Initialize(
  */
 void RenderingPipelinesTimeSlider::UpdateDataContainerStartIntervalTime(
     DataContainerManagement::IDataContainer& data,
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesStartIntervalTime();
 
@@ -188,7 +188,7 @@ void RenderingPipelinesTimeSlider::UpdateDataContainerStartIntervalTime(
  */
 void RenderingPipelinesTimeSlider::UpdateDataContainerEndIntervalTime(
     DataContainerManagement::IDataContainer& data,
-    const Utilities::DateTime& time)
+    const base::DateTime& time)
 {
     std::wstring dataItemName = GuiDataItems::Read().GetRenderingPipelinesEndIntervalTime();
 
@@ -205,16 +205,17 @@ void RenderingPipelinesTimeSlider::UpdateDataContainerEndIntervalTime(
  */
 bool RenderingPipelinesTimeSlider::UpdateFromDataContainer(DataContainerManagement::IDataContainer& dataContainer)
 {
-    bool dataUpdated = WXWidgets::Slider::UpdateFromDataContainer(dataContainer);
+    bool dataUpdated = wxwidgets::Slider::UpdateFromDataContainer(dataContainer);
 
     std::wstring dataItemStartIntervalTime = GuiDataItems::Read().GetRenderingPipelinesStartIntervalTime();
 
     if (dataContainer.HasDataItem(dataItemStartIntervalTime)) {
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemStartIntervalTime);
-        const Utilities::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
+        const base::DateTime& startIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr startTime = m_intervalTime->GetStartTime();
 
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetStartTime(), 
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr(
+            startTime,
             startIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -224,10 +225,11 @@ bool RenderingPipelinesTimeSlider::UpdateFromDataContainer(DataContainerManageme
 
     if (dataContainer.HasDataItem(dataItemEndIntervalTime)) {
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemEndIntervalTime);
-        const Utilities::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
+        const base::DateTime& endIntervalTime = dataItem.GetValue()->GetDateTime();
+        base::DateTimeSharedPtr endTime = m_intervalTime->GetEndTime();
 
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateSharedValuePtr(
-            m_intervalTime->GetEndTime(), 
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateSharedValuePtr<base::DateTime>(
+            endTime,
             endIntervalTime);
 
         dataUpdated |= propertyUpdated;
@@ -271,13 +273,13 @@ void RenderingPipelinesTimeSlider::OnSliderUpdated(int value)
     //
     // Calculate the selected time...
     //
-    Utilities::DateTimeSharedPtr selectedTime = CalculateDimensionTime(value);
+    base::DateTimeSharedPtr selectedTime = CalculateDimensionTime(value);
 
     //
     // Refresh the rendering pipelines in the list view...
     //
-    Controller::IControllerManagerSharedPtr controllerManager = m_guiManager.GetControllerManager();
-    Controller::IRefreshingTransactionSharedPtr transaction = Controller::RefreshingTransaction::Make(*controllerManager);
+    wxwidgets::controller::IControllerManagerSharedPtr controllerManager = m_guiManager.GetControllerManager();
+    wxwidgets::controller::IRefreshingTransactionSharedPtr transaction = wxwidgets::controller::RefreshingTransaction::Make(*controllerManager);
 
     std::wstring renderingPipelinesListView = 
         GuiPaths::Read().GetMainFrameMainRightBottomWindowListView();
@@ -335,7 +337,7 @@ void RenderingPipelinesTimeSlider::CalculateSliderDimensions(
 /**
  * Calculates the time of dimension.
  */
-Utilities::DateTimeSharedPtr RenderingPipelinesTimeSlider::CalculateDimensionTime(int dimensionValue) const 
+base::DateTimeSharedPtr RenderingPipelinesTimeSlider::CalculateDimensionTime(int dimensionValue) const
 { 
     int startDimensionValue = GetDimensionMinValue();
     int endDimensionValue = GetDimensionMaxValue();
@@ -350,8 +352,8 @@ Utilities::DateTimeSharedPtr RenderingPipelinesTimeSlider::CalculateDimensionTim
 /**
  * Calculates the time of dimension.
  */
-Utilities::DateTimeSharedPtr RenderingPipelinesTimeSlider::CalculateDimensionTime(
-    const Utilities::DateTimeInterval& intervalTime,
+base::DateTimeSharedPtr RenderingPipelinesTimeSlider::CalculateDimensionTime(
+    const base::DateTimeInterval& intervalTime,
     int startDimensionValue,
     int endDimensionValue,
     int dimensionValue) 
@@ -360,14 +362,14 @@ Utilities::DateTimeSharedPtr RenderingPipelinesTimeSlider::CalculateDimensionTim
     int intervalLengthInUnits = dimensionValue - startDimensionValue;
     double intervalFactor = static_cast<double>(intervalLengthInUnits) / static_cast<double>(sliderLengthInUnits);
 
-    Utilities::DurationSharedPtr sliderDuration = intervalTime.GetDuration();
+    base::DurationSharedPtr sliderDuration = intervalTime.GetDuration();
     double sliderDurationInMilliseconds = sliderDuration->ToMilliseconds();
     double intervalDurationInMilliseconds = sliderDurationInMilliseconds * intervalFactor;
 
-    Utilities::DateTimeSharedPtr startTime = intervalTime.GetStartTime();
-    Utilities::DurationSharedPtr intervalDuration = Utilities::Duration::FromMilliseconds(intervalDurationInMilliseconds);
+    base::DateTimeSharedPtr startTime = intervalTime.GetStartTime();
+    base::DurationSharedPtr intervalDuration = base::Duration::FromMilliseconds(intervalDurationInMilliseconds);
 
-    Utilities::DateTimeSharedPtr dimensionTime = *startTime + *intervalDuration;
+    base::DateTimeSharedPtr dimensionTime = *startTime + *intervalDuration;
     
     return dimensionTime;
 }

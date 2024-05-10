@@ -1,6 +1,6 @@
 #include "Slider.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace SliderFunctors {
 

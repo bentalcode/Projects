@@ -14,12 +14,12 @@ namespace VideoRenderingVisualizer {
          * The RenderingPipelinesTimeSlider class implements
          * a time slider of rendering pipelines.
          */
-        class RenderingPipelinesTimeSlider final : public WXWidgets::Slider {
+        class RenderingPipelinesTimeSlider final : public wxwidgets::Slider {
         public:
             /**
              * Creates a slider.
              */
-            static WXWidgets::ISliderPtr Make(
+            static wxwidgets::ISliderPtr Make(
                 wxWindow& parent,
                 const base::DateTimeIntervalSharedPtr intervalTime,
                 IGuiManager& guiManager);

@@ -6,7 +6,7 @@
 #include "WXObjectId.h"
 #include <wx/html/htmlwin.h>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The HTML Window class implements a HTML window.
@@ -81,6 +81,6 @@ namespace WXWidgets {
         std::wstring m_content;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // HTML_WINDOW_83651732_4817_4b03_b77a_b722c9f8b489

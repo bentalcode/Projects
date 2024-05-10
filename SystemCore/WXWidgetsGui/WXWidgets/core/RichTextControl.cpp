@@ -1,6 +1,6 @@
 #include "RichTextControl.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a rich text control.
@@ -15,7 +15,7 @@ std::shared_ptr<RichTextControl> RichTextControl::Make(
     long style, 
     const wxValidator& validator)
 {
-    return std::make_shared<WXWidgets::RichTextControl>(
+    return std::make_shared<wxwidgets::RichTextControl>(
         parent, 
         name,
         value,

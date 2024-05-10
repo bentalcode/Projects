@@ -10,11 +10,11 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates an App Log Dialog.
  */
-WXWidgets::IDialogPtr AppLogDialog::Make(
+wxwidgets::IDialogPtr AppLogDialog::Make(
     wxWindow& parent, 
     IGuiManager& guiManager)
 {
-    return WXWidgets::IDialogPtr::Make(
+    return wxwidgets::IDialogPtr::Make(
         new AppLogDialog(
             parent, 
             guiManager));
@@ -47,7 +47,7 @@ AppLogDialog::AppLogDialog(
     //
     // Set title...
     //
-    std::wstring title = base::StringUtils::ToString(dialogConfiguration->GetTitle());
+    std::wstring title = dialogConfiguration->GetTitle();
     SetTitle(title);
 
     //

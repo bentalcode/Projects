@@ -5,7 +5,7 @@
 #include "WXObjectPtr.h"
 #include <string>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IWindow;
 
@@ -38,6 +38,6 @@ namespace WXWidgets {
     //
     using IStaticTextPtr = WXObjectPtr<IStaticText>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_STATIC_TEXT_3476f4ac_72d7_438a_9638_c69bbaa94071

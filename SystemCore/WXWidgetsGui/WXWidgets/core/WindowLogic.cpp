@@ -3,7 +3,7 @@
 #include "wx/window.h"
 #include "WXWidgetsException.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a window logic.
@@ -17,7 +17,7 @@ IWindowLogicSharedPtr WindowLogic::Make()
  * The WindowLogic constructor.
  */
 WindowLogic::WindowLogic() : 
-    m_loggers(logging::Loggers::Make(typeid(WXWidgets::WindowLogic)))
+    m_loggers(logging::Loggers::Make(typeid(wxwidgets::WindowLogic)))
 {
 }
 

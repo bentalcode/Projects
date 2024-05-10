@@ -1,6 +1,6 @@
 #include "AbstractTransaction.h"
 
-using namespace WXWidgets::Command;
+using namespace wxwidgets::controller;
 
 /**
  * The AbstractTransaction constructor.

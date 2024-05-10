@@ -5,7 +5,7 @@
 #include "ReferenceCounterHolder.h"
 #include "ErrorCodes.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WXObjectPtr class template implements a custom smart pointer for a WX Object,
@@ -308,6 +308,6 @@ namespace WXWidgets {
         m_holder->AddReference();
     }
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_OBJECT_PTR_2ad0a03e_dfa3_4045_9a81_153699c5d916

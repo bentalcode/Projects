@@ -12,12 +12,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The EventViewerDialog class implements a dialog of Event Viewer.
          */
-        class EventViewerDialog final : public WXWidgets::Dialog {
+        class EventViewerDialog final : public wxwidgets::Dialog {
         public:
             /**
              * Creates an Event Viewer Dialog.
              */
-            static WXWidgets::IDialogPtr Make(
+            static wxwidgets::IDialogPtr Make(
                 wxWindow& parent,
                 IGuiManager& guiManager);
 
@@ -47,7 +47,7 @@ namespace VideoRenderingVisualizer {
             //
             // The list view of events...
             //
-            WXWidgets::IListViewPtr m_eventListView;
+            wxwidgets::IListViewPtr m_eventListView;
         };
 
     } // namespace Gui

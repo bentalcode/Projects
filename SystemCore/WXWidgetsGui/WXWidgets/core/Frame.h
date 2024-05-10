@@ -4,7 +4,7 @@
 #include "AbstractFrame.h"
 #include "WXObjectId.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Frame class implements a frame.
@@ -46,6 +46,6 @@ namespace WXWidgets {
         virtual void Initialize(IGuiControllerSharedPtr guiController) override;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // FRAME_a0c6df4e_2819_426f_b1d2_6720e99b21cb

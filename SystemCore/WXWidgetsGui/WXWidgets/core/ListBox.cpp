@@ -1,6 +1,6 @@
 #include "ListBox.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace ListBoxFunctors {
 

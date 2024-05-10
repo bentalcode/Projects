@@ -5,7 +5,7 @@
 #include "IGuiComponent.h"
 #include "IGuiComponentData.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The GuiComponentInformation class implements an information of a GUI component.
@@ -46,6 +46,6 @@ namespace WXWidgets {
         IGuiComponentDataSharedPtr m_data;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // GUI_COMPONENT_INFORMATION_78df22a5_6db8_41d5_a3a9_b0b76058d0e4

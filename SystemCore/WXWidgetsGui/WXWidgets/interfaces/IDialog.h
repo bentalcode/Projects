@@ -5,7 +5,7 @@
 #include "IWindow.h"
 #include "WXObjectPtr.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The IDialog interface defines a dialog.
@@ -36,7 +36,7 @@ namespace WXWidgets {
     //
     using IDialogPtr = WXObjectPtr<IDialog>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_DIALOG_cf415f65_69f1_4aaa_9efd_ace8a3fdab38
 

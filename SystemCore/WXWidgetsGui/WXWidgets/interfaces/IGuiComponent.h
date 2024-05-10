@@ -10,7 +10,7 @@ namespace DataContainerManagement {
     class IDataContainerUpdateFunctors;
 }
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IWXEventHandler;
 
@@ -53,6 +53,6 @@ namespace WXWidgets {
      */
     using IGuiComponentSharedPtr = std::shared_ptr<IGuiComponent>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_GUI_COMPONENT_e5ae7611_62de_4b6f_be23_303f7f785a3c

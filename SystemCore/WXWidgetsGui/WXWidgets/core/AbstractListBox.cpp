@@ -5,7 +5,7 @@
 #include "WXProperty.h"
 #include <vector>
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 const size_t AbstractListBox::MIN_ITEM_SIZE = 100;
 const size_t AbstractListBox::MIN_NUMBER_OF_PADS_ITEMS = 10;
@@ -189,7 +189,7 @@ bool AbstractListBox::UpdateFromDataContainer(DataContainerManagement::IDataCont
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemName);
         
         const std::vector<std::wstring>& newItems = dataItem.GetValue()->GetStringArray();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_items, newItems);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_items, newItems);
 
         dataUpdated |= propertyUpdated;
     }

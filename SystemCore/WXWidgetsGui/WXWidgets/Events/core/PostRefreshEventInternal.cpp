@@ -1,7 +1,7 @@
 #include "PostRefreshEventInternal.h"
 #include "WXObjectId.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 const PostRefreshEventInternal::Type PostRefreshEventInternal::TYPE(wxNewEventType());
 

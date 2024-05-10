@@ -1,6 +1,6 @@
 #include "PostRefreshEvent.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates a post refresh event.

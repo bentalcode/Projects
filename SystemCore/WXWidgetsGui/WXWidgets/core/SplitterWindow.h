@@ -4,7 +4,7 @@
 #include "AbstractSplitterWindow.h"
 #include "WXObjectId.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The SplitterWindow class implements a splitter window,
@@ -18,7 +18,7 @@ namespace WXWidgets {
         SplitterWindow(
             const wxString& name,
             wxWindow& parent,
-            wxWindowID id = WXWidgets::WXObjectId::NextId(),
+            wxWindowID id = wxwidgets::WXObjectId::NextId(),
             const wxPoint& position = wxDefaultPosition,
             const wxSize& size = wxDefaultSize,
             long style = wxSP_3D);
@@ -39,6 +39,6 @@ namespace WXWidgets {
         virtual void Initialize(IGuiControllerSharedPtr guiController) override;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // SPLITTER_WINDOW_93801574_4685_4443_87f1_b551154753c8

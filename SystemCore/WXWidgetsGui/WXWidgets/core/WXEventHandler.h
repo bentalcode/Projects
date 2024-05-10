@@ -5,7 +5,7 @@
 
 class wxEvtHandler;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WXEventHandler class implements an event handler of a GUI component in wxWidgets.
@@ -36,6 +36,6 @@ namespace WXWidgets {
         wxEvtHandler& m_handler;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_EVENT_HANDLER_e900da59_7034_424d_8caa_a0bf7535929a

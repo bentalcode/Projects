@@ -1,6 +1,6 @@
 #include "WindowUpdationEvent.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * Creates an event.

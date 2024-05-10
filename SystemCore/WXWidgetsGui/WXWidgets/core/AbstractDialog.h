@@ -5,7 +5,7 @@
 #include "Window.h"
 #include "wx/dialog.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The AbstractDialog class implements an abstract base class of a dialog.
@@ -48,6 +48,6 @@ namespace WXWidgets {
         std::wstring m_name;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_DIALOG_201497a4_9443_497c_8c16_e1425a52e87e

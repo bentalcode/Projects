@@ -5,9 +5,9 @@
 #include "AbstractTransaction.h"
 #include "IDataContainerUpdateFunctors.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
-    namespace Command {
+    namespace controller {
 
         /**
          * The RefreshingTransaction class implements a refreshing transaction.
@@ -105,8 +105,8 @@ namespace WXWidgets {
             DataContainerManagement::IDataContainerUpdateFunctors& GetUpdateFunctors(const std::wstring& componentName);
         };
 
-    } // namespace Command
+    } // namespace controller
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // REFRESHING_TRANSACTION_H_f6543ddf_4d55_40d6_847d_42a765949391

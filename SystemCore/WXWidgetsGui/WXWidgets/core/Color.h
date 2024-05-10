@@ -4,7 +4,7 @@
 #include "IColor.h"
 #include <map>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Color class implements a color.
@@ -61,6 +61,6 @@ namespace WXWidgets {
         wxColour m_color;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // COLOR_d377be7e_67c0_4a7d_8e71_cefe0ef2aca0

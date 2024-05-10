@@ -3,7 +3,7 @@
 
 #include <atomic>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WXObjectId class implements a WX Object Id.
@@ -24,6 +24,6 @@ namespace WXWidgets {
         std::atomic<int> m_id;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_OBJECT_ID_aed76adf_b752_4fde_a80e_f984215c6be1

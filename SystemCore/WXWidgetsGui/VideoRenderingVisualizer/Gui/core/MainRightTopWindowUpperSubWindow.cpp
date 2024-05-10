@@ -53,7 +53,7 @@ void MainRightTopWindowUpperSubWindow::Initialize(wxWindow& parent)
     const Model::IDataRepositorySharedPtr dataRepository = guiManager.GetDataRepository();
     const Model::IDataQuerySharedPtr dataQuery = dataRepository->GetDataQuery();
 
-    Utilities::DateTimeIntervalSharedPtr intervalTime = dataQuery->QueryRenderingPipelinesTimeInterval();
+    base::DateTimeIntervalSharedPtr intervalTime = dataQuery->QueryRenderingPipelinesTimeInterval();
 
     m_canvas = RenderingPipelinesCanvas::Make(
         parent, 
@@ -64,7 +64,7 @@ void MainRightTopWindowUpperSubWindow::Initialize(wxWindow& parent)
 /**
  * Gets a window.
  */
-WXWidgets::IWindow& MainRightTopWindowUpperSubWindow::GetWindow()
+wxwidgets::IWindow& MainRightTopWindowUpperSubWindow::GetWindow()
 {
     return m_canvas->GetWindow();
 }

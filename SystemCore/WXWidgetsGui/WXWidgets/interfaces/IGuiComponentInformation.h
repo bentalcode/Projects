@@ -3,7 +3,7 @@
 
 #include <memory>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IGuiComponent;
     class IGuiComponentData;
@@ -32,6 +32,6 @@ namespace WXWidgets {
      */
     using IGuiComponentInformationSharedPtr = std::shared_ptr<IGuiComponentInformation>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_GUI_COMPONENT_INFORMATION_11f7d027_ea09_44a4_a6ea_54c43034f2fa

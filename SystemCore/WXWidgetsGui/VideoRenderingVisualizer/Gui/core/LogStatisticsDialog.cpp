@@ -10,11 +10,11 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates Log Statistics Dialog.
  */
-WXWidgets::IDialogPtr LogStatisticsDialog::Make(
+wxwidgets::IDialogPtr LogStatisticsDialog::Make(
     wxWindow& parent, 
     IGuiManager& guiManager)
 {
-    return WXWidgets::IDialogPtr::Make(
+    return wxwidgets::IDialogPtr::Make(
         new LogStatisticsDialog(
             parent, 
             guiManager));
@@ -26,7 +26,7 @@ WXWidgets::IDialogPtr LogStatisticsDialog::Make(
 LogStatisticsDialog::LogStatisticsDialog(
     wxWindow& parent, 
     IGuiManager& guiManager) : 
-        WXWidgets::Dialog(
+        wxwidgets::Dialog(
             parent, 
             GuiPaths::Read().GetMainFrameTopMenuBarViewMenuLogStatisticsDialog()), 
             m_guiManager(guiManager)
@@ -47,7 +47,7 @@ LogStatisticsDialog::LogStatisticsDialog(
     //
     // Set title...
     //
-    std::wstring title = Utilities::StringUtils::ToString(dialogConfiguration->GetTitle());
+    std::wstring title = dialogConfiguration->GetTitle();
     SetTitle(title);
 
     //
@@ -71,10 +71,10 @@ void LogStatisticsDialog::Initialize(IGuiManager& guiManager)
     //
     // Initialize dialog...
     //
-    WXWidgets::Dialog::Initialize(guiManager.GetGuiController());
+    wxwidgets::Dialog::Initialize(guiManager.GetGuiController());
 
     Model::IDataRepositorySharedPtr dataRepository = guiManager.GetDataRepository();
-    TLogging::ITLogStatisticsCollectionSharedPtr logsStatistics = dataRepository->GetTLogStatisticsCollection();
+    tlogging::ITLogStatisticsCollectionSharedPtr logsStatistics = dataRepository->GetTLogStatisticsCollection();
 
     m_logStatisticsListView = LogStatisticsListView::Make(
         *this, 

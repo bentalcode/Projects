@@ -15,12 +15,12 @@ namespace VideoRenderingVisualizer {
          * The RenderingPipelinesHtmlWindow class implements
          * a list view of rendering pipelines.
          */
-        class RenderingPipelinesHtmlWindow final : public WXWidgets::HtmlWindow {
+        class RenderingPipelinesHtmlWindow final : public wxwidgets::HtmlWindow {
         public:
             /**
              * Creates a Rendering Pipelines Html Window.
              */
-            static WXWidgets::IHtmlWindowPtr Make(
+            static wxwidgets::IHtmlWindowPtr Make(
                 wxWindow& parent,
                 const base::DateTimeIntervalSharedPtr intervalTime,
                 IGuiManager& guiManager);

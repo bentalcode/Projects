@@ -5,7 +5,7 @@
 #include <string>
 #include <memory>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IGuiComponent;
 
@@ -50,6 +50,6 @@ namespace WXWidgets {
      */
     using IGuiTransactionSharedPtr = std::shared_ptr<IGuiTransaction>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_GUI_TRANSACTION_cff34f94_f929_4401_bcd9_29d2319101f1

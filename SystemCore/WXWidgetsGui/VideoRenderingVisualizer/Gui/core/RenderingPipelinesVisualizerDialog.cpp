@@ -10,11 +10,11 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates a Rendering Pipelines Visualizer Dialog.
  */
-WXWidgets::IDialogPtr RenderingPipelinesVisualizerDialog::Make(
+wxwidgets::IDialogPtr RenderingPipelinesVisualizerDialog::Make(
     wxWindow& parent, 
     IGuiManager& guiManager)
 {
-    return WXWidgets::IDialogPtr::Make(
+    return wxwidgets::IDialogPtr::Make(
         new RenderingPipelinesVisualizerDialog(
             parent, 
             guiManager));
@@ -26,7 +26,7 @@ WXWidgets::IDialogPtr RenderingPipelinesVisualizerDialog::Make(
 RenderingPipelinesVisualizerDialog::RenderingPipelinesVisualizerDialog(
     wxWindow& parent, 
     IGuiManager& guiManager) : 
-        WXWidgets::Dialog(
+        wxwidgets::Dialog(
             parent, 
             GuiPaths::Read().GetMainFrameTopMenuBarViewMenuRenderingPipelinesVisualizerDialog()), 
             m_guiManager(guiManager)
@@ -47,7 +47,7 @@ RenderingPipelinesVisualizerDialog::RenderingPipelinesVisualizerDialog(
     //
     // Set title...
     //
-    std::wstring title = Utilities::StringUtils::ToString(dialogConfiguration->GetTitle());
+    std::wstring title = dialogConfiguration->GetTitle();
     SetTitle(title);
 
     //
@@ -72,10 +72,10 @@ void RenderingPipelinesVisualizerDialog::Initialize(IGuiManager& guiManager)
     //
     // Initialize dialog...
     //
-    WXWidgets::Dialog::Initialize(guiManager.GetGuiController());
+    wxwidgets::Dialog::Initialize(guiManager.GetGuiController());
 
-    TabularData::IEventLogSharedPtr eventLog = guiManager.GetEventLog();
-    Utilities::DateTimeIntervalSharedPtr intervalTime = Utilities::DateTimeInterval::Make();
+    tabular_data::IEventLogSharedPtr eventLog = guiManager.GetEventLog();
+    base::DateTimeIntervalSharedPtr intervalTime = base::DateTimeInterval::Make();
 
     m_renderingPiplinesHtmlWindow = RenderingPipelinesHtmlWindow::Make(
         *this, 

@@ -4,7 +4,7 @@
 #include "IDataCatalog.h"
 #include "WXProperty.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 namespace StaticTextFunctors {
 
@@ -167,7 +167,7 @@ bool StaticText::UpdateFromDataContainer(DataContainerManagement::IDataContainer
         const DataContainerManagement::IDataItem& dataItem = dataContainer.GetDataItem(dataItemStaticTextValue);
 
         std::wstring text = dataItem.GetValue()->GetString();
-        bool propertyUpdated = WXWidgets::WXProperty::UpdateValue(m_text, text);
+        bool propertyUpdated = wxwidgets::WXProperty::UpdateValue(m_text, text);
 
         dataUpdated |= propertyUpdated;
     }

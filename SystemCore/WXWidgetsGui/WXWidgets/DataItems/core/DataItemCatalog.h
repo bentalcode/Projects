@@ -6,7 +6,7 @@
 #include <mutex>
 #include <map>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The DataItemCatalog class implements a data item catalog.
@@ -75,6 +75,6 @@ namespace WXWidgets {
         logging::ILoggersSharedPtr m_loggers;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // DATA_ITEM_CATALOG_bec52654_e62c_4fca_ac78_fe4ee7242c2a

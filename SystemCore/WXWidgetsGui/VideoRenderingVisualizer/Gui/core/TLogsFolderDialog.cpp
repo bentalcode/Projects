@@ -7,11 +7,11 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates a TLog Folder Dialog.
  */
-WXWidgets::IFolderDialogPtr TLogsFolderDialog::Make(
+wxwidgets::IFolderDialogPtr TLogsFolderDialog::Make(
     wxWindow& parent, 
     IGuiManager& guiManager)
 {
-    return WXWidgets::IFolderDialogPtr::Make(
+    return wxwidgets::IFolderDialogPtr::Make(
         new TLogsFolderDialog(
             parent, 
             guiManager));
@@ -23,7 +23,7 @@ WXWidgets::IFolderDialogPtr TLogsFolderDialog::Make(
 TLogsFolderDialog::TLogsFolderDialog(
     wxWindow& parent, 
     IGuiManager& guiManager) : 
-        WXWidgets::FolderDialog(
+        wxwidgets::FolderDialog(
             parent, 
             GuiPaths::Read().GetMainFrameTopMenuBarFileMenuOpenFolderDialog(),
             wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST)
@@ -31,7 +31,7 @@ TLogsFolderDialog::TLogsFolderDialog(
     //
     // Initialize a GUI component...
     //
-    WXWidgets::FolderDialog::Initialize(guiManager.GetGuiController());
+    wxwidgets::FolderDialog::Initialize(guiManager.GetGuiController());
 }
 
 /**

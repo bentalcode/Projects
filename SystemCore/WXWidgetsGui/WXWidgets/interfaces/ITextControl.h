@@ -6,7 +6,7 @@
 
 class wxString;
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class IWindow;
 
@@ -39,6 +39,6 @@ namespace WXWidgets {
     //
     using ITextControlPtr = WXObjectPtr<ITextControl>;
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // I_TEXT_CONTROL_2c50ff34_6e81_4cd9_a914_72733b4135a0

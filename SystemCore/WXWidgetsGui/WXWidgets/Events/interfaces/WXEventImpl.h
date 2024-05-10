@@ -3,7 +3,7 @@
 
 #include "SmartPointers.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WXEventImpl class implements an implementation of an event in wxWidgets.
@@ -81,6 +81,6 @@ namespace WXWidgets {
         return *m_internalEvent;
     }
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_EVENT_IMPL_45e2e804_42bf_47dd_82e8_7eaf4511250b

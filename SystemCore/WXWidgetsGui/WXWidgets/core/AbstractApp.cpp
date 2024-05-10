@@ -7,7 +7,7 @@
 #include "TriggerEndRefreshingEvent.h"
 #include "wx/xrc/xmlres.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The AbstractApp constructor.
@@ -83,7 +83,7 @@ wxAppConsole& AbstractApp::GetAppConsole()
  */
 void AbstractApp::OnTriggerStartRefreshing()
 {
-    WXWidgets::IGuiComponentList components;
+    wxwidgets::IGuiComponentList components;
     GetGuiController()->GetComponents(components);
 
     std::wstring componentListString = GuiController::GetComponentListString(components);
@@ -95,7 +95,7 @@ void AbstractApp::OnTriggerStartRefreshing()
     IWXEventSharedPtr triggerEndRefreshingEvent = TriggerEndRefreshingEvent::Create();
     guiTransaction->SetOnCompletionEvent(GetEventHandler(), triggerEndRefreshingEvent);
 
-    for (WXWidgets::IGuiComponent* component : components) {
+    for (wxwidgets::IGuiComponent* component : components) {
         std::wstring componentName = component->GetName();
 
         if (componentName != GetName()) {

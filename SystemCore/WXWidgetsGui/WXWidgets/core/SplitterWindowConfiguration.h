@@ -3,7 +3,7 @@
 
 #include "ISplitterWindowConfiguration.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The SplitterWindowConfiguration class implements a configuration of a splitter window.
@@ -65,6 +65,6 @@ namespace WXWidgets {
         ISplitterSubWindowConfigurationSharedPtr m_secondWindowConfiguration;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // SPLITTER_WINDOW_CONFIGURATION_4d41ce89_ff7f_4f5a_a5f0_5cb88c1426ff

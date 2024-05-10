@@ -3,7 +3,7 @@
 
 #include "BaseException.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WXWidgetsException class implements an exception in the WX Widgets module.
@@ -34,6 +34,6 @@ namespace WXWidgets {
         virtual ~WXWidgetsException() = default;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_WIDGETS_EXCEPTION_092e3f88_729d_4ff7_9891_ed38b7491fbc

@@ -36,12 +36,12 @@ namespace VideoRenderingVisualizer {
             /**
              * Gets a Controller Manager.
              */
-            virtual WXWidgets::controller::IControllerManagerSharedPtr GetControllerManager() override;
+            virtual wxwidgets::controller::IControllerManagerSharedPtr GetControllerManager() override;
 
             /**
              * Gets a GUI Controller.
              */
-            virtual WXWidgets::IGuiControllerSharedPtr GetGuiController() override;
+            virtual wxwidgets::IGuiControllerSharedPtr GetGuiController() override;
 
             /**
              * Gets an Event Log.
@@ -82,7 +82,7 @@ namespace VideoRenderingVisualizer {
             static const std::wstring APP_LOG_PATH;
 
             GuiConfiguration::IGuiConfigurationManagerSharedPtr m_configurationManager;
-            WXWidgets::IGuiControllerSharedPtr m_guiController;
+            wxwidgets::IGuiControllerSharedPtr m_guiController;
             tabular_data::IEventLogSharedPtr m_eventLog;
             Model::IDataRepositorySharedPtr m_dataRepository;
             std::wstring m_renderingPipelinesVisualizerHtmlPath;

@@ -1,7 +1,7 @@
 #include "AbstractFrame.h"
 #include "IMenuBar.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 /**
  * The AbstractFrame constructor.

@@ -8,7 +8,7 @@
 #include "WXObjectPtrs.h"
 #include "wx/splitter.h"
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     class SplitterWindowUpdationEventInternal;
 
@@ -147,6 +147,6 @@ namespace WXWidgets {
         IOnUpdationFunctorSharedPtr m_onUpdationFunctor;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // ABSTRACT_SPLITTER_WINDOW_6ae0fc8c_9959_447f_88cb_299353629b77

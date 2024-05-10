@@ -6,7 +6,7 @@
 #include "WXObjectId.h"
 #include <wx/stattext.h>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The Static Text class implements a static text.
@@ -83,6 +83,6 @@ namespace WXWidgets {
         std::wstring m_text;
     };
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // STATIC_TEXT_79498382_4ffd_4dbb_a25b_56c7972ae2c3

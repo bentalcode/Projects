@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-namespace WXWidgets {
+namespace wxwidgets {
 
     /**
      * The WXProperty class implements utilities for properties of WXWidgets.
@@ -174,6 +174,6 @@ namespace WXWidgets {
         return lhsIterator == lhs.end() && rhsIterator == rhs.end();
     }
 
-} // namespace WXWidgets
+} // namespace wxwidgets
 
 #endif // WX_PROPERTY_2d5c6b10_be8c_4ccb_9d53_9d8d34cb9296

@@ -352,7 +352,7 @@ GuiConfiguration::ILabelsConfigurationSharedPtr GuiConfigurationFactory::CreateL
  */
 GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::CreateOpenMenuItemConfiguration()
 {
-    int id = WXWidgets::WXObjectId::NextId();
+    int id = wxwidgets::WXObjectId::NextId();
     std::wstring text = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarFileMenuOpenMenuItemText();
     std::wstring help = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarFileMenuOpenMenuItemHelp();
     wxItemKind kind = wxITEM_NORMAL;
@@ -372,7 +372,7 @@ GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::Creat
  */
 GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::CreateExitMenuItemConfiguration()
 {
-    int id = WXWidgets::WXObjectId::NextId();
+    int id = wxwidgets::WXObjectId::NextId();
     std::wstring text = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarFileMenuExitMenuItemText();
     std::wstring help = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarFileMenuExitMenuItemHelp();
     wxItemKind kind = wxITEM_NORMAL;
@@ -392,7 +392,7 @@ GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::Creat
  */
 GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::CreateRenderingPipelinesMenuItemConfiguration()
 {
-    int id = WXWidgets::WXObjectId::NextId();
+    int id = wxwidgets::WXObjectId::NextId();
     std::wstring text = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarViewMenuRenderingPipelinesVisualizerMenuItemText();
     std::wstring help = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarViewMenuRenderingPipelinesVisualizerMenuItemHelp();
     wxItemKind kind = wxITEM_NORMAL;
@@ -412,7 +412,7 @@ GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::Creat
  */
 GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::CreateEventViewerMenuItemConfiguration()
 {
-    int id = WXWidgets::WXObjectId::NextId();
+    int id = wxwidgets::WXObjectId::NextId();
     std::wstring text = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarViewMenuEventViewerMenuItemText();
     std::wstring help = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarViewMenuEventViewerMenuItemHelp();
     wxItemKind kind = wxITEM_NORMAL;
@@ -428,7 +428,7 @@ GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::Creat
  */
 GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::CreateLogStatisticsMenuItemConfiguration()
 {
-    int id = WXWidgets::WXObjectId::NextId();
+    int id = wxwidgets::WXObjectId::NextId();
     std::wstring text = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarViewMenuLogStatisticsMenuItemText();
     std::wstring help = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarViewMenuLogStatisticsMenuItemHelp();
     wxItemKind kind = wxITEM_NORMAL;
@@ -448,7 +448,7 @@ GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::Creat
  */
 GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::CreateAppLogMenuItemConfiguration()
 {
-    int id = WXWidgets::WXObjectId::NextId();
+    int id = wxwidgets::WXObjectId::NextId();
     std::wstring text = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarViewMenuAppLogMenuItemText();
     std::wstring help = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarViewMenuAppLogMenuItemHelp();
     wxItemKind kind = wxITEM_NORMAL;
@@ -468,7 +468,7 @@ GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::Creat
  */
 GuiConfiguration::IMenuItemConfigurationSharedPtr GuiConfigurationFactory::CreateAboutMenuItemConfiguration()
 {
-    int id = WXWidgets::WXObjectId::NextId();
+    int id = wxwidgets::WXObjectId::NextId();
     std::wstring text = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarHelpMenuAboutMenuItemText();
     std::wstring help = MenuItemConfigurationItems::Read().GetMainFrameTopMenuBarHelpMenuAboutMenuItemHelp();
     wxItemKind kind = wxITEM_NORMAL;

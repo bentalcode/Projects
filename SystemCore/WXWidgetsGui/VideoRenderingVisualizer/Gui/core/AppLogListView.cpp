@@ -2,6 +2,8 @@
 #include "GuiManager.h"
 #include "GuiPaths.h"
 #include "Font.h"
+#include "Log.h"
+#include "LogHeader.h"
 
 using namespace VideoRenderingVisualizer;
 using namespace VideoRenderingVisualizer::Gui;
@@ -9,12 +11,12 @@ using namespace VideoRenderingVisualizer::Gui;
 /**
  * Creates an App Log List View.
  */
-WXWidgets::IListViewPtr AppLogListView::Make(
+wxwidgets::IListViewPtr AppLogListView::Make(
     wxWindow& parent, 
     const std::wstring& logPath,
     IGuiManager& guiManager)
 {
-    return WXWidgets::IListViewPtr::Make(
+    return wxwidgets::IListViewPtr::Make(
         new AppLogListView(
             parent, 
             logPath,
@@ -69,9 +71,9 @@ void AppLogListView::Initialize(IGuiManager& guiManager)
     //
     // Set header attributes...
     //
-    WXWidgets::ColorType fontColorType = WXWidgets::ColorType::BLACK;
-    WXWidgets::ColorType backgroundColorType = WXWidgets::ColorType::WHITE;
-    WXWidgets::Font headerFont;
+    wxwidgets::ColorType fontColorType = wxwidgets::ColorType::BLACK;
+    wxwidgets::ColorType backgroundColorType = wxwidgets::ColorType::WHITE;
+    wxwidgets::Font headerFont;
     headerFont.MakeBold();
     
     SetHeaderAttributes(

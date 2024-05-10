@@ -1,7 +1,7 @@
 #include "RefreshEventInternal.h"
 #include "WXObjectId.h"
 
-using namespace WXWidgets;
+using namespace wxwidgets;
 
 const RefreshEventInternal::Type RefreshEventInternal::TYPE(wxNewEventType());
 

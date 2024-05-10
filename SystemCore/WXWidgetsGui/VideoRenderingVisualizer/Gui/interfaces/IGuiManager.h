@@ -1,6 +1,7 @@
 #ifndef I_GUI_MANAGER_H_649c2b2d_a280_4df8_912f_ca01bed46ad7
 #define I_GUI_MANAGER_H_649c2b2d_a280_4df8_912f_ca01bed46ad7
 
+#include "IControllerManager.h"
 #include "IGuiController.h"
 #include "IEventLog.h"
 #include "IDataRepository.h"
@@ -29,12 +30,12 @@ namespace VideoRenderingVisualizer {
             /**
              * Gets a Controller Manager.
              */
-            virtual WXWidgets::controller::IControllerManagerSharedPtr GetControllerManager() = 0;
+            virtual wxwidgets::controller::IControllerManagerSharedPtr GetControllerManager() = 0;
 
             /**
              * Gets a GUI Controller.
              */
-            virtual WXWidgets::IGuiControllerSharedPtr GetGuiController() = 0;
+            virtual wxwidgets::IGuiControllerSharedPtr GetGuiController() = 0;
 
             /**
              * Gets an Event Log.

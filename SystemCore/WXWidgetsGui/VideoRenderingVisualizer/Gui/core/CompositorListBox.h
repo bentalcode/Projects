@@ -12,12 +12,12 @@ namespace VideoRenderingVisualizer {
         /**
          * The CompositorListBox class implements a list box of compositors.
          */
-        class CompositorListBox final : public WXWidgets::ListBox {
+        class CompositorListBox final : public wxwidgets::ListBox {
         public:
             /**
              * Creates a compositor list box.
              */
-            static WXWidgets::IListBoxPtr Make(
+            static wxwidgets::IListBoxPtr Make(
                 wxWindow& parent,
                 const std::vector<std::wstring>& items,
                 IGuiManager& guiManager);
