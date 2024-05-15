@@ -18,38 +18,57 @@ set(RESOURCES_DIRECTORY_NAME
 # Configure Operating System...
 #
 add_compile_definitions(WINDOWS=1)
+add_compile_definitions(UNICODE=1)
 
 #
 # Open Sources Path...
 #
-set (OPEN_SOURCES_PATH "../../../../../../../OpenSources")
+cmake_path(SET OPEN_SOURCES_PATH NORMALIZE "${CMAKE_SOURCE_DIR}/../../../../../../../OpenSources")
+message (OPEN_SOURCES_PATH="${OPEN_SOURCES_PATH}")
 
 #
 # WX Widgets Path...
 #
-set (WX_WIDGETS_PATH ${OPEN_SOURCES_PATH}/wxWidgets)
+set (WX_WIDGETS_PATH ${OPEN_SOURCES_PATH}/wxWidgets-github)
+message (WX_WIDGETS_PATH="${WX_WIDGETS_PATH}")
 
 #
 # GLFW Path...
 #
 set(GLFW_PATH ${OPEN_SOURCES_PATH}/glfw)
+message (GLFW_PATH="${GLFW_PATH}")
 
 #
 # Glew Path...
 #
 set (GLEW_PATH ${OPEN_SOURCES_PATH}/glew-2.1.0)
+message (GLEW_PATH="${GLEW_PATH}")
 
 #
 # Configure Operating System...
 #
 add_compile_definitions(WINDOWS=1)
 
+set (WX_WIDGETS_LIB_PATH ${WX_WIDGETS_PATH}/lib/gcc_lib)
+message (WX_WIDGETS_LIB_PATH="${WX_WIDGETS_LIB_PATH}")
+
+set (WX_WIDGETS_DLL_PATH ${WX_WIDGETS_PATH}/lib/gcc_dll)
+message (WX_WIDGETS_DLL_PATH="${WX_WIDGETS_DLL_PATH}")
+
+if(DEBUG)
+    set (WX_WIDGETS_LIB_INCLUDE_PATH ${WX_WIDGETS_LIB_PATH}/mswud)
+else()
+    set (WX_WIDGETS_LIB_INCLUDE_PATH ${WX_WIDGETS_LIB_PATH}/mswud)
+endif()
+
+message (WX_WIDGETS_LIB_INCLUDE_PATH="${WX_WIDGETS_LIB_INCLUDE_PATH}")
+
 #
 # Include Directories...
 #
 include_directories(
     ${WX_WIDGETS_PATH}/include
-    ${WX_WIDGETS_PATH}/lib/gcc_lib/mswu
+    ${WX_WIDGETS_LIB_INCLUDE_PATH}
     ${GLFW_PATH}/include
     ${GLEW_PATH}/include
 )
@@ -403,6 +422,7 @@ set(BASE_SOURCES_FILES
     ../../Base/core/CompareToBuilder.cpp
     ../../Base/core/ConsoleColorSetter.cpp
     ../../Base/core/DateTime.cpp
+    ../../Base/core/DateTimeInterval.cpp
     ../../Base/core/Environment.cpp
     ../../Base/core/EqualBuilder.cpp
     ../../Base/core/ErrorCodes.cpp

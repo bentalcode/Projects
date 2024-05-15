@@ -7,7 +7,9 @@
 #include "DataItem.h"
 #include "Font.h"
 #include "WXProperty.h"
+#include "DateTime.h"
 #include "StringUtils.h"
+#include "DateTimeInterval.h"
 #include <algorithm>
 
 using namespace VideoRenderingVisualizer;

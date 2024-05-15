@@ -1,0 +1,96 @@
+#
+# Define wx widgets libraries...
+#
+set(WX_DEBUG true)
+
+if(X64)
+    set(WX_WIDGETS_BINARIES_PATH ${WX_WIDGETS_LIB_PATH})
+else()
+    set(WX_WIDGETS_BINARIES_PATH ${WX_WIDGETS_LIB_PATH})
+endif()
+
+message (WX_WIDGETS_BINARIES_PATH="${WX_WIDGETS_BINARIES_PATH}")
+
+if(${WX_DEBUG})
+    list(APPEND WX_WIDGETS_LIBRARIES
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud_net.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud_xml.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxexpatd.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxjpegd.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxlexillad.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_adv.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_aui.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_core.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_gl.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_html.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_media.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_propgrid.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_ribbon.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_richtext.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_stc.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_webview.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_xrc.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxpngd.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxregexud.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxscintillad.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxtiffd.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxzlibd.a
+    )
+else()
+    list(APPEND WX_WIDGETS_LIBRARIES
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33u.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33u_net.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33u_xml.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxexpat.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxjpeg.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxlexilla.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_adv.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_aui.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_core.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_gl.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_html.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_media.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_propgrid.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_ribbon.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_richtext.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_stc.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_webview.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_xrc.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxpng.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxregexu.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxscintilla.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxtiff.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxzlib.a
+    )
+endif()
+
+#
+# Define GLFW Libraries...
+#
+list(APPEND GLFW_LIBRARIES
+    ${GLFW_PATH}/lib-mingw-w64/libglfw3.a
+)
+
+#
+# Define GLEW Libraries...
+#
+if(X64)
+    set(GLEW_LIBRARIES_PATH ${GLEW_PATH}/lib/Release/x64)
+else()
+    set(GLEW_LIBRARIES_PATH ${GLEW_PATH}/lib/Release/Win32)
+endif()
+
+list(APPEND GLEW_LIBRARIES
+    ${GLEW_LIBRARIES_PATH}/glew32s.lib
+)
+
+#
+# GLEW DLL...
+#
+if(X64)
+    set(GLEW_DLL_PATH ${GLEW_PATH}/bin/Release/x64)
+else()
+    set(GLEW_DLL_PATH ${GLEW_PATH}/bin/Release/Win32)
+endif()
+

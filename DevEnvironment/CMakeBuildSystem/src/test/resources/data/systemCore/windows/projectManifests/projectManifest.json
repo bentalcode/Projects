@@ -218,10 +218,12 @@
             },
             "cmakeListsManifest": {
                 "presetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\wxWidgetsCMakeListsPreset.txt"
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\wxWidgetsCMakeListsPreset.txt",
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\wxWidgetsAppCMakeListsPreset.txt"
                 ],
                 "postsetPaths": [
-                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\wxWidgetsCMakeListsPostset.txt"
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\wxWidgetsCMakeListsPostset.txt",
+                    "data\\systemCore\\${os.name}\\cmakeListsManifests\\wxWidgetsAppCMakeListsPostset.txt"
                 ]
             },
             "dependentModules": [

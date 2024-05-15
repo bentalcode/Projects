@@ -25,41 +25,157 @@ set(VERSION_PATCH "0")
 # Configure Operating System...
 #
 add_compile_definitions(WINDOWS=1)
+add_compile_definitions(UNICODE=1)
 
 #
 # Open Sources Path...
 #
-set (OPEN_SOURCES_PATH "../../../../../../../OpenSources")
+cmake_path(SET OPEN_SOURCES_PATH NORMALIZE "${CMAKE_SOURCE_DIR}/../../../../../../../OpenSources")
+message (OPEN_SOURCES_PATH="${OPEN_SOURCES_PATH}")
 
 #
 # WX Widgets Path...
 #
-set (WX_WIDGETS_PATH ${OPEN_SOURCES_PATH}/wxWidgets)
+set (WX_WIDGETS_PATH ${OPEN_SOURCES_PATH}/wxWidgets-github)
+message (WX_WIDGETS_PATH="${WX_WIDGETS_PATH}")
 
 #
 # GLFW Path...
 #
 set(GLFW_PATH ${OPEN_SOURCES_PATH}/glfw)
+message (GLFW_PATH="${GLFW_PATH}")
 
 #
 # Glew Path...
 #
 set (GLEW_PATH ${OPEN_SOURCES_PATH}/glew-2.1.0)
+message (GLEW_PATH="${GLEW_PATH}")
 
 #
 # Configure Operating System...
 #
 add_compile_definitions(WINDOWS=1)
 
+set (WX_WIDGETS_LIB_PATH ${WX_WIDGETS_PATH}/lib/gcc_lib)
+message (WX_WIDGETS_LIB_PATH="${WX_WIDGETS_LIB_PATH}")
+
+set (WX_WIDGETS_DLL_PATH ${WX_WIDGETS_PATH}/lib/gcc_dll)
+message (WX_WIDGETS_DLL_PATH="${WX_WIDGETS_DLL_PATH}")
+
+if(DEBUG)
+    set (WX_WIDGETS_LIB_INCLUDE_PATH ${WX_WIDGETS_LIB_PATH}/mswud)
+else()
+    set (WX_WIDGETS_LIB_INCLUDE_PATH ${WX_WIDGETS_LIB_PATH}/mswud)
+endif()
+
+message (WX_WIDGETS_LIB_INCLUDE_PATH="${WX_WIDGETS_LIB_INCLUDE_PATH}")
+
 #
 # Include Directories...
 #
 include_directories(
     ${WX_WIDGETS_PATH}/include
-    ${WX_WIDGETS_PATH}/lib/gcc_lib/mswu
+    ${WX_WIDGETS_LIB_INCLUDE_PATH}
     ${GLFW_PATH}/include
     ${GLEW_PATH}/include
 )
+
+#
+# Define wx widgets libraries...
+#
+set(WX_DEBUG true)
+
+if(X64)
+    set(WX_WIDGETS_BINARIES_PATH ${WX_WIDGETS_LIB_PATH})
+else()
+    set(WX_WIDGETS_BINARIES_PATH ${WX_WIDGETS_LIB_PATH})
+endif()
+
+message (WX_WIDGETS_BINARIES_PATH="${WX_WIDGETS_BINARIES_PATH}")
+
+if(${WX_DEBUG})
+    list(APPEND WX_WIDGETS_LIBRARIES
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud_net.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud_xml.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxexpatd.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxjpegd.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxlexillad.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_adv.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_aui.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_core.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_gl.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_html.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_media.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_propgrid.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_ribbon.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_richtext.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_stc.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_webview.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33ud_xrc.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxpngd.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxregexud.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxscintillad.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxtiffd.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxzlibd.a
+    )
+else()
+    list(APPEND WX_WIDGETS_LIBRARIES
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33u.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33u_net.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxbase33u_xml.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxexpat.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxjpeg.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxlexilla.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_adv.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_aui.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_core.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_gl.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_html.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_media.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_propgrid.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_ribbon.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_richtext.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_stc.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_webview.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxmsw33u_xrc.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxpng.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxregexu.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxscintilla.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxtiff.a
+        ${WX_WIDGETS_BINARIES_PATH}/libwxzlib.a
+    )
+endif()
+
+#
+# Define GLFW Libraries...
+#
+list(APPEND GLFW_LIBRARIES
+    ${GLFW_PATH}/lib-mingw-w64/libglfw3.a
+)
+
+#
+# Define GLEW Libraries...
+#
+if(X64)
+    set(GLEW_LIBRARIES_PATH ${GLEW_PATH}/lib/Release/x64)
+else()
+    set(GLEW_LIBRARIES_PATH ${GLEW_PATH}/lib/Release/Win32)
+endif()
+
+list(APPEND GLEW_LIBRARIES
+    ${GLEW_LIBRARIES_PATH}/glew32s.lib
+)
+
+#
+# GLEW DLL...
+#
+if(X64)
+    set(GLEW_DLL_PATH ${GLEW_PATH}/bin/Release/x64)
+else()
+    set(GLEW_DLL_PATH ${GLEW_PATH}/bin/Release/Win32)
+endif()
+
 
 
 set(VIDEO_RENDERING_VISUALIZER_INCLUDES_FILES
@@ -333,6 +449,7 @@ set(BASE_SOURCES_FILES
     ../../../Base/core/CompareToBuilder.cpp
     ../../../Base/core/ConsoleColorSetter.cpp
     ../../../Base/core/DateTime.cpp
+    ../../../Base/core/DateTimeInterval.cpp
     ../../../Base/core/Environment.cpp
     ../../../Base/core/EqualBuilder.cpp
     ../../../Base/core/ErrorCodes.cpp
@@ -1200,3 +1317,9 @@ target_link_libraries(VideoRenderingVisualizer
 )
 
 
+#
+# Link with wx widgets libraries...
+#
+target_link_libraries(VideoRenderingVisualizer
+    PRIVATE ${WX_WIDGETS_LIBRARIES} ${GLFW_LIBRARIES} ${GLEW_LIBRARIES}
+)

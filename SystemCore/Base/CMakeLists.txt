@@ -28,6 +28,11 @@ endmacro()
 print_all_variables()
 
 #
+# CMAKE source Directory...
+#
+message (CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+
+#
 # Configure operating systems...
 #
 add_compile_definitions(WINDOWS=1)
@@ -199,6 +204,7 @@ set(BASE_SOURCES_FILES
     ./core/CompareToBuilder.cpp
     ./core/ConsoleColorSetter.cpp
     ./core/DateTime.cpp
+    ./core/DateTimeInterval.cpp
     ./core/Environment.cpp
     ./core/EqualBuilder.cpp
     ./core/ErrorCodes.cpp

@@ -5,6 +5,7 @@
 #include "GuiPaths.h"
 #include "GuiDataItems.h"
 #include "RefreshingTransaction.h"
+#include "DateTimeInterval.h"
 
 using namespace VideoRenderingVisualizer;
 using namespace VideoRenderingVisualizer::Gui;
@@ -136,15 +137,19 @@ void CallListBox::OnSelectedItem(const std::wstring& item)
         GuiDataItems::Read().GetRenderingPipelinesEndIntervalTime();
 
     for (const std::wstring& componentToUpdate : componentsToUpdate) {
+        base::DateTimeSharedPtr renderingPipelinesTimeStartIntervalTime = renderingPipelinesTimeInterval->GetStartTime();
+
         transaction->UpdateData(
             componentToUpdate, 
             dataItemRenderingPipelinesStartIntervalTime,
-            *renderingPipelinesTimeInterval->GetStartTime());
+            *renderingPipelinesTimeStartIntervalTime);
+
+        base::DateTimeSharedPtr renderingPipelinesTimeEndIntervalTime = renderingPipelinesTimeInterval->GetEndTime();
 
         transaction->UpdateData(
             componentToUpdate, 
             dataItemRenderingPipelinesEndIntervalTime,
-            *renderingPipelinesTimeInterval->GetEndTime());
+            *renderingPipelinesTimeEndIntervalTime);
     }
 
     //

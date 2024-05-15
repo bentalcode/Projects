@@ -12,6 +12,11 @@ endmacro()
 print_all_variables()
 
 #
+# CMAKE source Directory...
+#
+message (CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+
+#
 # Configure operating systems...
 #
 add_compile_definitions(WINDOWS=1)
