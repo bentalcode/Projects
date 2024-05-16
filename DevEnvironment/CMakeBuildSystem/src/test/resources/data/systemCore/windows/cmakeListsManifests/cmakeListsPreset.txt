@@ -17,9 +17,16 @@ print_all_variables()
 message (CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
 #
-# Configure operating systems...
+# Configure build systems...
 #
 add_compile_definitions(WINDOWS=1)
+add_compile_definitions(UNICODE=1)
+
+set(RELEASE_TYPE "x64")
+message (RELEASE_TYPE="${RELEASE_TYPE}")
+
+set(BUILD_TYPE "DEBUG")
+message (BUILD_TYPE="${BUILD_TYPE}")
 
 #
 # Configure boost library...

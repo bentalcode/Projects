@@ -15,12 +15,6 @@ set(RESOURCES_DIRECTORY_NAME
 
 
 #
-# Configure Operating System...
-#
-add_compile_definitions(WINDOWS=1)
-add_compile_definitions(UNICODE=1)
-
-#
 # Open Sources Path...
 #
 cmake_path(SET OPEN_SOURCES_PATH NORMALIZE "${CMAKE_SOURCE_DIR}/../../../../../../../OpenSources")
@@ -33,6 +27,12 @@ set (WX_WIDGETS_PATH ${OPEN_SOURCES_PATH}/wxWidgets-github)
 message (WX_WIDGETS_PATH="${WX_WIDGETS_PATH}")
 
 #
+# OpenGL Path...
+#
+set(OPEN_GL_PATH ${OPEN_SOURCES_PATH}/openGL)
+message (OPEN_GL_PATH="${OPEN_GL_PATH}")
+
+#
 # GLFW Path...
 #
 set(GLFW_PATH ${OPEN_SOURCES_PATH}/glfw)
@@ -43,11 +43,6 @@ message (GLFW_PATH="${GLFW_PATH}")
 #
 set (GLEW_PATH ${OPEN_SOURCES_PATH}/glew-2.1.0)
 message (GLEW_PATH="${GLEW_PATH}")
-
-#
-# Configure Operating System...
-#
-add_compile_definitions(WINDOWS=1)
 
 set (WX_WIDGETS_LIB_PATH ${WX_WIDGETS_PATH}/lib/gcc_lib)
 message (WX_WIDGETS_LIB_PATH="${WX_WIDGETS_LIB_PATH}")

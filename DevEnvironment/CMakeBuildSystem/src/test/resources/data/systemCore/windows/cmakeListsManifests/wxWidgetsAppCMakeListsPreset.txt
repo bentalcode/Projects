@@ -1,9 +1,7 @@
 #
 # Define wx widgets libraries...
 #
-set(WX_DEBUG true)
-
-if(X64)
+if(${RELEASE_TYPE} STREQUAL "x64")
     set(WX_WIDGETS_BINARIES_PATH ${WX_WIDGETS_LIB_PATH})
 else()
     set(WX_WIDGETS_BINARIES_PATH ${WX_WIDGETS_LIB_PATH})
@@ -11,7 +9,7 @@ endif()
 
 message (WX_WIDGETS_BINARIES_PATH="${WX_WIDGETS_BINARIES_PATH}")
 
-if(${WX_DEBUG})
+if(${BUILD_TYPE} STREQUAL "DEBUG")
     list(APPEND WX_WIDGETS_LIBRARIES
         ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud.a
         ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud_net.a
@@ -66,6 +64,19 @@ else()
 endif()
 
 #
+# Define OpenGL Libraries...
+#
+if(${RELEASE_TYPE} STREQUAL "x64")
+    set(OPEN_GL_BINARIES_PATH ${OPEN_GL_PATH}/lib/x64)
+else()
+    set(OPEN_GL_BINARIES_PATH ${OPEN_GL_PATH}/lib/x86)
+endif()
+
+list(APPEND OPEN_GL_LIBRARIES
+    ${OPEN_GL_BINARIES_PATH}/OpenGL32.Lib
+)
+
+#
 # Define GLFW Libraries...
 #
 list(APPEND GLFW_LIBRARIES
@@ -75,7 +86,7 @@ list(APPEND GLFW_LIBRARIES
 #
 # Define GLEW Libraries...
 #
-if(X64)
+if(${RELEASE_TYPE} STREQUAL "x64")
     set(GLEW_LIBRARIES_PATH ${GLEW_PATH}/lib/Release/x64)
 else()
     set(GLEW_LIBRARIES_PATH ${GLEW_PATH}/lib/Release/Win32)
@@ -88,9 +99,13 @@ list(APPEND GLEW_LIBRARIES
 #
 # GLEW DLL...
 #
-if(X64)
+if(${RELEASE_TYPE} STREQUAL "x64")
     set(GLEW_DLL_PATH ${GLEW_PATH}/bin/Release/x64)
 else()
     set(GLEW_DLL_PATH ${GLEW_PATH}/bin/Release/Win32)
 endif()
 
+#
+# Compiler and Linker configuration...
+#
+add_compile_definitions(USE_OPENGL=1)

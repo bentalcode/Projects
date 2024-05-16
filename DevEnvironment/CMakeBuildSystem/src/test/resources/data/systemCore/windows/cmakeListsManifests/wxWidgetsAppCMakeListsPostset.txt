@@ -2,5 +2,5 @@
 # Link with wx widgets libraries...
 #
 target_link_libraries(VideoRenderingVisualizer
-    PRIVATE ${WX_WIDGETS_LIBRARIES} ${GLFW_LIBRARIES} ${GLEW_LIBRARIES}
+    PRIVATE ${WX_WIDGETS_LIBRARIES} ${OPEN_GL_LIBRARIES} ${GLFW_LIBRARIES} ${GLEW_LIBRARIES}
 )

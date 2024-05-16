@@ -21,11 +21,44 @@ set(VERSION_MINOR "1")
 set(VERSION_PATCH "0")
 
 
+set(CMAKE_CXX_STANDARD 14)
+
+macro(print_all_variables)
+    message(STATUS "print_all_variables------------------------------------------{")
+    get_cmake_property(_variableNames VARIABLES)
+    foreach (_variableName ${_variableNames})
+        message(STATUS "${_variableName}=${${_variableName}}")
+    endforeach()
+    message(STATUS "print_all_variables------------------------------------------}")
+endmacro()
+
+print_all_variables()
+
 #
-# Configure Operating System...
+# CMAKE source Directory...
+#
+message (CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+
+#
+# Configure build systems...
 #
 add_compile_definitions(WINDOWS=1)
 add_compile_definitions(UNICODE=1)
+
+set(RELEASE_TYPE "x64")
+message (RELEASE_TYPE="${RELEASE_TYPE}")
+
+set(BUILD_TYPE "DEBUG")
+message (BUILD_TYPE="${BUILD_TYPE}")
+
+#
+# Configure boost library...
+#
+if (NOT $ENV{BOOST_ROOT})
+    set(BOOST_PATH $ENV{BOOST_ROOT})
+else()
+    set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
+endif()
 
 #
 # Open Sources Path...
@@ -40,6 +73,12 @@ set (WX_WIDGETS_PATH ${OPEN_SOURCES_PATH}/wxWidgets-github)
 message (WX_WIDGETS_PATH="${WX_WIDGETS_PATH}")
 
 #
+# OpenGL Path...
+#
+set(OPEN_GL_PATH ${OPEN_SOURCES_PATH}/openGL)
+message (OPEN_GL_PATH="${OPEN_GL_PATH}")
+
+#
 # GLFW Path...
 #
 set(GLFW_PATH ${OPEN_SOURCES_PATH}/glfw)
@@ -50,11 +89,6 @@ message (GLFW_PATH="${GLFW_PATH}")
 #
 set (GLEW_PATH ${OPEN_SOURCES_PATH}/glew-2.1.0)
 message (GLEW_PATH="${GLEW_PATH}")
-
-#
-# Configure Operating System...
-#
-add_compile_definitions(WINDOWS=1)
 
 set (WX_WIDGETS_LIB_PATH ${WX_WIDGETS_PATH}/lib/gcc_lib)
 message (WX_WIDGETS_LIB_PATH="${WX_WIDGETS_LIB_PATH}")
@@ -83,9 +117,7 @@ include_directories(
 #
 # Define wx widgets libraries...
 #
-set(WX_DEBUG true)
-
-if(X64)
+if(${RELEASE_TYPE} STREQUAL "x64")
     set(WX_WIDGETS_BINARIES_PATH ${WX_WIDGETS_LIB_PATH})
 else()
     set(WX_WIDGETS_BINARIES_PATH ${WX_WIDGETS_LIB_PATH})
@@ -93,7 +125,7 @@ endif()
 
 message (WX_WIDGETS_BINARIES_PATH="${WX_WIDGETS_BINARIES_PATH}")
 
-if(${WX_DEBUG})
+if(${BUILD_TYPE} STREQUAL "DEBUG")
     list(APPEND WX_WIDGETS_LIBRARIES
         ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud.a
         ${WX_WIDGETS_BINARIES_PATH}/libwxbase33ud_net.a
@@ -148,6 +180,19 @@ else()
 endif()
 
 #
+# Define OpenGL Libraries...
+#
+if(${RELEASE_TYPE} STREQUAL "x64")
+    set(OPEN_GL_BINARIES_PATH ${OPEN_GL_PATH}/lib/x64)
+else()
+    set(OPEN_GL_BINARIES_PATH ${OPEN_GL_PATH}/lib/x86)
+endif()
+
+list(APPEND OPEN_GL_LIBRARIES
+    ${OPEN_GL_BINARIES_PATH}/OpenGL32.Lib
+)
+
+#
 # Define GLFW Libraries...
 #
 list(APPEND GLFW_LIBRARIES
@@ -157,7 +202,7 @@ list(APPEND GLFW_LIBRARIES
 #
 # Define GLEW Libraries...
 #
-if(X64)
+if(${RELEASE_TYPE} STREQUAL "x64")
     set(GLEW_LIBRARIES_PATH ${GLEW_PATH}/lib/Release/x64)
 else()
     set(GLEW_LIBRARIES_PATH ${GLEW_PATH}/lib/Release/Win32)
@@ -170,12 +215,16 @@ list(APPEND GLEW_LIBRARIES
 #
 # GLEW DLL...
 #
-if(X64)
+if(${RELEASE_TYPE} STREQUAL "x64")
     set(GLEW_DLL_PATH ${GLEW_PATH}/bin/Release/x64)
 else()
     set(GLEW_DLL_PATH ${GLEW_PATH}/bin/Release/Win32)
 endif()
 
+#
+# Compiler and Linker configuration...
+#
+add_compile_definitions(USE_OPENGL=1)
 
 
 set(VIDEO_RENDERING_VISUALIZER_INCLUDES_FILES
@@ -1316,10 +1365,21 @@ target_link_libraries(VideoRenderingVisualizer
     PRIVATE Base TabularData DataContainerManagement DataStructures Logging TLogging VideoRenderingVisualizerModel WXWidgets GuiConfiguration
 )
 
+include_directories(
+    ${BOOST_PATH}
+)
+
+#
+# Configure file system dependencies...
+#
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE
+    stdc++fs)
+
 
 #
 # Link with wx widgets libraries...
 #
 target_link_libraries(VideoRenderingVisualizer
-    PRIVATE ${WX_WIDGETS_LIBRARIES} ${GLFW_LIBRARIES} ${GLEW_LIBRARIES}
+    PRIVATE ${WX_WIDGETS_LIBRARIES} ${OPEN_GL_LIBRARIES} ${GLFW_LIBRARIES} ${GLEW_LIBRARIES}
 )
