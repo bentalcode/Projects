@@ -4,6 +4,7 @@
 #include "ITabularRecord.h"
 #include "DateTime.h"
 #include "LogLevel.h"
+#include <thread>
 
 namespace logging {
 
@@ -28,7 +29,7 @@ namespace logging {
         /**
          * Gets logging thread id.
          */
-        virtual unsigned int GetLoggingThreadId() const = 0;
+        virtual std::thread::id GetLoggingThreadId() const = 0;
 
         /**
          * Gets logging component.

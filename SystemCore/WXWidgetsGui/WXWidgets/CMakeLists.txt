@@ -14,6 +14,45 @@ set(RESOURCES_DIRECTORY_NAME
 )
 
 
+set(CMAKE_CXX_STANDARD 14)
+
+macro(print_all_variables)
+    message(STATUS "print_all_variables------------------------------------------{")
+    get_cmake_property(_variableNames VARIABLES)
+    foreach (_variableName ${_variableNames})
+        message(STATUS "${_variableName}=${${_variableName}}")
+    endforeach()
+    message(STATUS "print_all_variables------------------------------------------}")
+endmacro()
+
+print_all_variables()
+
+#
+# CMAKE source Directory...
+#
+message (CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+
+#
+# Configure build systems...
+#
+add_compile_definitions(WINDOWS=1)
+add_compile_definitions(UNICODE=1)
+
+set(RELEASE_TYPE "x64")
+message (RELEASE_TYPE="${RELEASE_TYPE}")
+
+set(BUILD_TYPE "DEBUG")
+message (BUILD_TYPE="${BUILD_TYPE}")
+
+#
+# Configure boost library...
+#
+if (NOT $ENV{BOOST_ROOT})
+    set(BOOST_PATH $ENV{BOOST_ROOT})
+else()
+    set(BOOST_PATH "c:\\Boost\\boost_1_78_0")
+endif()
+
 #
 # Open Sources Path...
 #
@@ -626,6 +665,7 @@ set(LOGGING_INCLUDES_FILES
     ../../Logging/core/LoggingException.h
     ../../Logging/core/SizeTTransformer.h
     ../../Logging/core/StringTransformer.h
+    ../../Logging/core/ThreadIdTransformer.h
     ../../Logging/core/UnsignedIntegerTransformer.h
     ../../Logging/core/UnsignedLongTransformer.h
     ../../Logging/interfaces/ILog.h
@@ -659,6 +699,7 @@ set(LOGGING_SOURCES_FILES
     ../../Logging/core/Loggers.cpp
     ../../Logging/core/SizeTTransformer.cpp
     ../../Logging/core/StringTransformer.cpp
+    ../../Logging/core/ThreadIdTransformer.cpp
     ../../Logging/core/UnsignedIntegerTransformer.cpp
     ../../Logging/core/UnsignedLongTransformer.cpp
 )
@@ -696,5 +737,16 @@ add_library(WXWidgets STATIC
 target_link_libraries(WXWidgets
     PRIVATE Base TabularData DataContainerManagement Logging
 )
+
+include_directories(
+    ${BOOST_PATH}
+)
+
+#
+# Configure file system dependencies...
+#
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE
+    stdc++fs)
 
 

@@ -72,6 +72,7 @@ set(LOGGING_INCLUDES_FILES
     ./core/LoggingException.h
     ./core/SizeTTransformer.h
     ./core/StringTransformer.h
+    ./core/ThreadIdTransformer.h
     ./core/UnsignedIntegerTransformer.h
     ./core/UnsignedLongTransformer.h
     ./interfaces/ILog.h
@@ -105,6 +106,7 @@ set(LOGGING_SOURCES_FILES
     ./core/Loggers.cpp
     ./core/SizeTTransformer.cpp
     ./core/StringTransformer.cpp
+    ./core/ThreadIdTransformer.cpp
     ./core/UnsignedIntegerTransformer.cpp
     ./core/UnsignedLongTransformer.cpp
 )

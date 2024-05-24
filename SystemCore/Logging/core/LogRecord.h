@@ -16,7 +16,7 @@ namespace logging {
         static ILogRecordSharedPtr Make(
             size_t index,
             base::DateTimeSharedPtr loggingTime,
-            unsigned long loggingThreadId,
+            std::thread::id loggingThreadId,
             const std::wstring& loggingComponent,
             LogLevel logLevel,
             const std::wstring& loggingFunction,
@@ -31,7 +31,7 @@ namespace logging {
         LogRecord(
             size_t index,
             base::DateTimeSharedPtr loggingTime,
-            unsigned long loggingThreadId,
+            std::thread::id loggingThreadId,
             const std::wstring& loggingComponent,
             LogLevel logLevel,
             const std::wstring& loggingFunction,
@@ -58,7 +58,7 @@ namespace logging {
         /**
          * Gets logging thread id.
          */
-        virtual unsigned int GetLoggingThreadId() const override;
+        virtual std::thread::id GetLoggingThreadId() const override;
 
         /**
          * Gets logging component.
@@ -113,7 +113,7 @@ namespace logging {
 
         size_t m_index;
         base::DateTimeSharedPtr m_loggingTime;
-        unsigned int m_loggingThreadId;
+        std::thread::id m_loggingThreadId;
         std::wstring m_loggingComponent;
         LogLevel m_logLevel;
         std::wstring m_loggingFunction;

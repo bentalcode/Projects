@@ -9,7 +9,7 @@
 #include "StringTransformer.h"
 #include "SizeTTransformer.h"
 #include "DateTimeTransformer.h"
-#include "UnsignedLongTransformer.h"
+#include "ThreadIdTransformer.h"
 #include "LogLevelTransformer.h"
 
 namespace logging {
@@ -26,7 +26,7 @@ namespace logging {
             base::IIteratorSharedPtr<tabular_data::ITabularRecordSharedPtr> recordIterator,
             tabular_data::IValueTransformerSharedPtr<size_t> indexTransformer = SizeTTransformer::Make(),
             tabular_data::IValueTransformerSharedPtr<base::DateTimeSharedPtr> dateTimeTransformer = DateTimeTransformer::Make(),
-            tabular_data::IValueTransformerSharedPtr<unsigned long> threadIdTransformer = UnsignedLongTransformer::Make(),
+            tabular_data::IValueTransformerSharedPtr<std::thread::id> threadIdTransformer = ThreadIdTransformer::Make(),
             tabular_data::IValueTransformerSharedPtr<std::wstring> componentTransformer = StringTransformer::Make(),
             tabular_data::IValueTransformerSharedPtr<LogLevel> logLevelTransformer = LogLevelTransformer::Make(),
             tabular_data::IValueTransformerSharedPtr<std::wstring> loggingFunctionTransformer = StringTransformer::Make(),
@@ -42,7 +42,7 @@ namespace logging {
             base::IIteratorSharedPtr<tabular_data::ITabularRecordSharedPtr> recordIterator,
             tabular_data::IValueTransformerSharedPtr<size_t> indexTransformer,
             tabular_data::IValueTransformerSharedPtr<base::DateTimeSharedPtr> dateTimeTransformer,
-            tabular_data::IValueTransformerSharedPtr<unsigned long> threadIdTransformer,
+            tabular_data::IValueTransformerSharedPtr<std::thread::id> threadIdTransformer,
             tabular_data::IValueTransformerSharedPtr<std::wstring> componentTransformer,
             tabular_data::IValueTransformerSharedPtr<LogLevel> logLevelTransformer,
             tabular_data::IValueTransformerSharedPtr<std::wstring> loggingFunctionTransformer,
@@ -84,7 +84,7 @@ namespace logging {
         //
         tabular_data::IValueTransformerSharedPtr<size_t> m_indexTransformer;
         tabular_data::IValueTransformerSharedPtr<base::DateTimeSharedPtr> m_dateTimeTransformer;
-        tabular_data::IValueTransformerSharedPtr<unsigned long> m_threadIdTransformer;
+        tabular_data::IValueTransformerSharedPtr<std::thread::id> m_threadIdTransformer;
         tabular_data::IValueTransformerSharedPtr<std::wstring> m_componentTransformer;
         tabular_data::IValueTransformerSharedPtr<LogLevel> m_logLevelTransformer;
         tabular_data::IValueTransformerSharedPtr<std::wstring> m_loggingFunctionTransformer;

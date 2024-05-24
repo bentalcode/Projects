@@ -2,6 +2,7 @@
 #define THREAD_H_28ee6dc7_dc88_4f86_8937_dd0fce1ef307
 
 #include "IThread.h"
+#include <thread>
 
 namespace base
 {
@@ -42,6 +43,16 @@ namespace base
          * Sleeps the current thread for specified duration.
          */
         static void SleepFor(const base::Duration& duration);
+
+        /**
+         * Gets current thread id.
+         */
+        static std::thread::id CurrentThreadId();
+
+        /**
+         * Converts a thread id to a string.
+         */
+        static std::wstring ThreadIdToString(std::thread::id threadId);
     };
 }
 

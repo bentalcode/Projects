@@ -632,6 +632,7 @@ set(LOGGING_INCLUDES_FILES
     ../../../Logging/core/LoggingException.h
     ../../../Logging/core/SizeTTransformer.h
     ../../../Logging/core/StringTransformer.h
+    ../../../Logging/core/ThreadIdTransformer.h
     ../../../Logging/core/UnsignedIntegerTransformer.h
     ../../../Logging/core/UnsignedLongTransformer.h
     ../../../Logging/interfaces/ILog.h
@@ -665,6 +666,7 @@ set(LOGGING_SOURCES_FILES
     ../../../Logging/core/Loggers.cpp
     ../../../Logging/core/SizeTTransformer.cpp
     ../../../Logging/core/StringTransformer.cpp
+    ../../../Logging/core/ThreadIdTransformer.cpp
     ../../../Logging/core/UnsignedIntegerTransformer.cpp
     ../../../Logging/core/UnsignedLongTransformer.cpp
 )

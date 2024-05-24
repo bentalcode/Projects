@@ -1,4 +1,7 @@
 #include "LoggerImpl.h"
+
+#include <Thread.h>
+
 #include "LogRecord.h"
 #include "StringUtils.h"
 #include <thread>
@@ -43,7 +46,7 @@ void LoggerImpl::Log(
 
     size_t index = NextRecordIndex();
     base::DateTimeSharedPtr loggingTime = base::DateTime::Now();
-    unsigned long loggingThreadId = GetCurrentThreadId();
+    std::thread::id loggingThreadId = base::Thread::CurrentThreadId();
     std::wstring loggingComponent = GetLoggingComponent(loggerName);
     std::wstring loggingFunction = L"Func()";
     std::wstring loggingObject = L"[00000000]:";

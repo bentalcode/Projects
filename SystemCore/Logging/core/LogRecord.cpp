@@ -1,6 +1,7 @@
 #include "LogRecord.h"
 #include "TabularRecord.h"
 #include <sstream>
+#include <Thread.h>
 
 using namespace logging;
 
@@ -10,7 +11,7 @@ using namespace logging;
 ILogRecordSharedPtr LogRecord::Make(
     size_t index, 
     base::DateTimeSharedPtr loggingTime,
-    unsigned long loggingThreadId, 
+    std::thread::id loggingThreadId,
     const std::wstring& loggingComponent,
     LogLevel logLevel, 
     const std::wstring& loggingFunction, 
@@ -38,7 +39,7 @@ ILogRecordSharedPtr LogRecord::Make(
 LogRecord::LogRecord(
     size_t index, 
     base::DateTimeSharedPtr loggingTime,
-    unsigned long loggingThreadId,
+    std::thread::id loggingThreadId,
     const std::wstring& loggingComponent, 
     LogLevel logLevel, 
     const std::wstring& loggingFunction,
@@ -85,7 +86,7 @@ base::DateTimeSharedPtr LogRecord::GetLoggingTime() const
 /**
  * Gets logging thread id.
  */
-unsigned int LogRecord::GetLoggingThreadId() const
+std::thread::id LogRecord::GetLoggingThreadId() const
 {
     return m_loggingThreadId;
 }
@@ -153,7 +154,7 @@ tabular_data::ITabularRecordSharedPtr LogRecord::ToRecord() const
 {
     std::wstring index = std::to_wstring(GetIndex());
     std::wstring loggingTime = GetLoggingTimeString();
-    std::wstring loggingThreadId = std::to_wstring(GetLoggingThreadId());
+    std::wstring loggingThreadId = base::Thread::ThreadIdToString(GetLoggingThreadId());
     std::wstring loggingComponent = GetLoggingComponent();
     std::wstring logLevel = LogLevelToInternalString(GetLogLevel());
     std::wstring loggingFucntion = GetLoggingFunction();

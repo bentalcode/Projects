@@ -14,7 +14,7 @@ base::IIteratorSharedPtr<ILogRecordSharedPtr> LogRecordIterator::Make(
     base::IIteratorSharedPtr<tabular_data::ITabularRecordSharedPtr> recordIterator,
     tabular_data::IValueTransformerSharedPtr<size_t> indexTransformer,
     tabular_data::IValueTransformerSharedPtr<base::DateTimeSharedPtr> dateTimeTransformer,
-    tabular_data::IValueTransformerSharedPtr<unsigned long> threadIdTransformer,
+    tabular_data::IValueTransformerSharedPtr<std::thread::id> threadIdTransformer,
     tabular_data::IValueTransformerSharedPtr<std::wstring> componentTransformer,
     tabular_data::IValueTransformerSharedPtr<LogLevel> logLevelTransformer,
     tabular_data::IValueTransformerSharedPtr<std::wstring> loggingFunctionTransformer,
@@ -44,7 +44,7 @@ LogRecordIterator::LogRecordIterator(
     base::IIteratorSharedPtr<tabular_data::ITabularRecordSharedPtr> recordIterator,
     tabular_data::IValueTransformerSharedPtr<size_t> indexTransformer,
     tabular_data::IValueTransformerSharedPtr<base::DateTimeSharedPtr> dateTimeTransformer,
-    tabular_data::IValueTransformerSharedPtr<unsigned long> threadIdTransformer,
+    tabular_data::IValueTransformerSharedPtr<std::thread::id> threadIdTransformer,
     tabular_data::IValueTransformerSharedPtr<std::wstring> componentTransformer,
     tabular_data::IValueTransformerSharedPtr<LogLevel> logLevelTransformer,
     tabular_data::IValueTransformerSharedPtr<std::wstring> loggingFunctionTransformer,
@@ -60,7 +60,7 @@ LogRecordIterator::LogRecordIterator(
     base::SmartPointers::Validate<base::IIterator<tabular_data::ITabularRecordSharedPtr>>(recordIterator);
     base::SmartPointers::Validate<tabular_data::IValueTransformer<size_t>>(indexTransformer);
     base::SmartPointers::Validate<tabular_data::IValueTransformer<base::DateTimeSharedPtr>>(dateTimeTransformer);
-    base::SmartPointers::Validate<tabular_data::IValueTransformer<unsigned long>>(threadIdTransformer);
+    base::SmartPointers::Validate<tabular_data::IValueTransformer<std::thread::id>>(threadIdTransformer);
     base::SmartPointers::Validate<tabular_data::IValueTransformer<std::wstring>>(componentTransformer);
     base::SmartPointers::Validate<tabular_data::IValueTransformer<LogLevel>>(logLevelTransformer);
     base::SmartPointers::Validate<tabular_data::IValueTransformer<std::wstring>>(loggingFunctionTransformer);
@@ -133,7 +133,7 @@ ILogRecordSharedPtr LogRecordIterator::Next()
 
     size_t index = m_indexTransformer->Transform(record->GetValue(0));
     base::DateTimeSharedPtr loggingTime = m_dateTimeTransformer->Transform(record->GetValue(1));
-    unsigned long loggingThreadId = m_threadIdTransformer->Transform(record->GetValue(2));
+    std::thread::id loggingThreadId = m_threadIdTransformer->Transform(record->GetValue(2));
     std::wstring loggingComponent = m_componentTransformer->Transform(record->GetValue(3));
     LogLevel logLevel = m_logLevelTransformer->Transform(record->GetValue(4));
     std::wstring loggingFunction = m_loggingFunctionTransformer->Transform(record->GetValue(5));
