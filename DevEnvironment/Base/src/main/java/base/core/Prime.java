@@ -173,8 +173,12 @@ public final class Prime implements IPrime {
             return false;
         }
 
+        if (number % 2 == 0) {
+            return false;
+        }
+
         int upperRange = (int)Math.sqrt(number);
-        for (int i = 2; i <= upperRange; ++i) {
+        for (int i = 3; i <= upperRange; i += 2) {
             if (number % i == 0) {
                 return false;
             }
