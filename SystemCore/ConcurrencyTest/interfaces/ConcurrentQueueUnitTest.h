@@ -48,35 +48,22 @@ namespace test {
         };
 
         template <typename T>
-        class QueueClient final
-        {
-        public:
-            explicit QueueClient(
-                int id,
-                ConcurrentQueue<T>& concurrentQueue) :
-                m_id(id),
-                m_concurrentQueue(concurrentQueue)
-            {
-            }
-
-            void operator()()
-            {
-                while (!m_concurrentQueue.empty()) {
-                    T item = m_concurrentQueue.front();
-                    m_concurrentQueue.pop();
-                }
-            }
-
-        private:
-            int m_id;
-            ConcurrentQueue<T>& m_concurrentQueue;
-        };
-
-        template <typename T>
         void ConcurrentQueueUnitTest::TestConcurrentQueue(const std::vector<T>& data)
         {
+            ConcurrentQueue<T> concurrentQueue;
+
+            for (const T& item : data)
+            {
+                concurrentQueue.Push(item);
+            }
+
+            while (!concurrentQueue.Empty())
+            {
+                concurrentQueue.Pop();
+            }
+
             GetAssertion().AssertTrue(
-                true,
+                concurrentQueue.Empty(),
                 L"Incorrect logic of a concurrent queue.");
         }
     }

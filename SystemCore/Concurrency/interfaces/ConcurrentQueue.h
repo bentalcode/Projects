@@ -69,7 +69,7 @@ namespace concurrency
 
     private:
         std::queue<T> m_queue;
-        std::mutex m_mutex;
+        mutable std::mutex m_mutex;
         mutable std::condition_variable m_queueHasItemsCondition;
     };
 
@@ -87,7 +87,7 @@ namespace concurrency
     void ConcurrentQueue<T>::Push(const T& item)
     {
         std::unique_lock<std::mutex> lock(m_mutex);
-        m_queue.Push(item);
+        m_queue.push(item);
         lock.unlock();
 
         m_queueHasItemsCondition.notify_one();
@@ -97,7 +97,7 @@ namespace concurrency
     void ConcurrentQueue<T>::Push(T&& item)
     {
         std::unique_lock<std::mutex> lock(m_mutex);
-        m_queue.Push(std::move(item));
+        m_queue.push(std::move(item));
         lock.unlock();
 
         m_queueHasItemsCondition.notify_one();
@@ -108,7 +108,7 @@ namespace concurrency
     {
         std::unique_lock<std::mutex> lock(m_mutex);
 
-        while (m_queue.Empty())
+        while (m_queue.empty())
         {
             m_queueHasItemsCondition.wait(lock);
         }
@@ -128,7 +128,7 @@ namespace concurrency
             m_queueHasItemsCondition.wait(lock);
         }
 
-        T item = m_queue.Back();
+        T item = m_queue.back();
 
         return item;
     }
@@ -138,11 +138,11 @@ namespace concurrency
     {
         std::unique_lock<std::mutex> lock(m_mutex);
 
-        while (!m_queue.Empty()) {
+        while (m_queue.empty()) {
             m_queueHasItemsCondition.wait(lock);
         }
 
-        m_queue.Pop();
+        m_queue.pop();
     }
 
     template <typename T>
@@ -156,7 +156,7 @@ namespace concurrency
     bool ConcurrentQueue<T>::Empty() const
     {
         std::unique_lock<std::mutex> lock(m_mutex);
-        return m_queue.Empty();
+        return m_queue.empty();
     }
 }
 
