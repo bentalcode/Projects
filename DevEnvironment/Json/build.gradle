@@ -1,8 +1,13 @@
 apply from: "${commonDir}/common.build.gradle"
 
 dependencies {
-    compile project(':Base')
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonCoreVersion
-    compile group: 'com.liferay', name: 'com.fasterxml.jackson.databind', version: '2.10.0.LIFERAY-PATCHED-1'
-    compile group: 'joda-time', name: 'joda-time', version: jodaTimeVersion
+    implementation project(':Base')
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonCoreVersion
+    implementation group: 'com.liferay', name: 'com.fasterxml.jackson.databind', version: '2.10.0.LIFERAY-PATCHED-1'
+    implementation group: 'joda-time', name: 'joda-time', version: jodaTimeVersion
+
+    testImplementation 'junit:junit:4.13.2'
+
+    implementation 'org.slf4j:slf4j-api:2.0.9'           // SLF4J API
+    implementation 'ch.qos.logback:logback-classic:1.4.11' // Logging backend
 }

@@ -4,9 +4,9 @@ apply plugin: 'application'
 mainClassName = 'UriReaderCommand.Main'
 
 dependencies {
-    compile project(':Base')
-    compile project(':BasicIO')
-    compile project(':Command')
-    compile group: 'ch.qos.logback', name: 'logback-core', version: logBackVersion
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: logBackVersion
+    implementation project(':Base')
+    implementation project(':BasicIO')
+    implementation project(':Command')
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: logBackVersion
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: logBackVersion
 }

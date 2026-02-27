@@ -1,8 +1,13 @@
 apply from: "${commonDir}/common.build.gradle"
 
 dependencies {
-    compile project(':Base')
-    compile project(':DataStructures')
-    compile project(':Algorithms')
-    compile group: 'org.jsoup', name: 'jsoup', version: jsoupVersion
+    implementation project(':Base')
+    implementation project(':DataStructures')
+    implementation project(':Algorithms')
+    implementation group: 'org.jsoup', name: 'jsoup', version: jsoupVersion
+
+    testImplementation 'junit:junit:4.13.2'
+
+    implementation 'org.slf4j:slf4j-api:2.0.9'           // SLF4J API
+    implementation 'ch.qos.logback:logback-classic:1.4.11' // Logging backend
 }

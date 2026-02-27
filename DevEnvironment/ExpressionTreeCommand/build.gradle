@@ -4,8 +4,8 @@ apply plugin: 'application'
 mainClassName = 'expressiontreecommand.Main'
 
 dependencies {
-    compile project(':Base')
-    compile project(':DataStructures')
-    compile group: 'ch.qos.logback', name: 'logback-core', version: logBackVersion
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: logBackVersion
+    implementation project(':Base')
+    implementation project(':DataStructures')
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: logBackVersion
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: logBackVersion
 }

@@ -7,9 +7,9 @@ applicationName = 'HashCodeCommand'
 applicationDefaultJvmArgs = ["-Xms512m", "-Xmx1024m"]
 
 dependencies {
-    compile project(':Base')
-    compile project(':Command')
-    compile project(':BasicIO')
-    compile group: 'ch.qos.logback', name: 'logback-core', version: logBackVersion
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: logBackVersion
+    implementation project(':Base')
+    implementation project(':Command')
+    implementation project(':BasicIO')
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: logBackVersion
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: logBackVersion
 }
